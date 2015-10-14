@@ -5,8 +5,4 @@ tagline: Building the nextgen awesomeness!
 
 ---
 
-# Testing
-
-
-
-
+### TODO: create website (in progress)
