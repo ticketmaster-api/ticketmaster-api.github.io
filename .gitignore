@@ -1,2 +1,12 @@
 _site
-Gemfile.lock
+.idea
+.sass-cache
+.jekyll-metadata
+
+# NodeJS libs
+node_modules
+
+# Ignore Mac DS_Store files
+.DS_Store
+
+galen-test/reports

@@ -1,0 +1,6 @@
+@objects
+    heading     .page-heading
+
+= Dummy test =
+    heading:
+        text is "Posts"
