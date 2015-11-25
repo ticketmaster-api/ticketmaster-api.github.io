@@ -1,0 +1,82 @@
+
+$base-font-family: "Lato",Helvetica, Arial, sans-serif;
+$base-font-size: 16px;
+
+$base-font-weight: 400;
+$bold-font-weight: 700;
+
+
+$lead-font-size:   1.5em;
+$body-font-size:   1em;
+
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$p1: #009cde;
+$secondary-color1: #d0006f;
+$n2-grey-color: #768692;
+$n1: #414141;
+$n3: #b7c9d3;
+$p1a: #158cd2;
+$p1b: #2a7cc7;
+$s1b: #a61f84;
+$s1a: #ba1079;
+$white: #ffffff;
+$white-70: rgba(255, 255, 255, 0.7);
+
+$code-border: #909090;
+$code-background-color: #F8F8F8;
+
+
+/*Fonts*/
+$font-h1: "InterstateWGL-Black",$base-font-family;       // 54/16=3.37500
+$font-h2: "TMSansLEADINGFIXED-Bold",$base-font-family;   // 36
+$font-h3: "TMSansLEADINGFIXED-Bold",$base-font-family;   // 24
+$font-h4: "TMSansLEADINGFIXED-Bold",$base-font-family;   // 16
+$font-h5: "TMSansLEADINGFIXED-Regular",$base-font-family;// 16
+$font-h6: "TMSansLEADINGFIXED-Regular",$base-font-family;// 11
+
+
+$font-lead: "TMSansLEADINGFIXED-Light",$base-font-family;      //24
+$font-body: "TMSansLEADINGFIXED-Regular",$base-font-family;    //16px
+$font-caption: "TMSansLEADINGFIXED-Italic",$base-font-family;  //16px
+$font-pull-q: "TMSansLEADINGFIXED-Italic",$base-font-family;   //24px
+$font-code: "Source Code Pro",$base-font-family;         //16px
+
+
+/*Sizes header*/
+$size-h1: 3.375em;  //54px
+$size-h2: 2.25em;   //36px
+$size-h3: 1.5em;    //24px
+$size-h4: 1em;      //16px
+$size-h5: 1em;
+$size-h6: 0.6875em; //11px
+
+
+$size-lead: 1.5em;
+$size-body: 1em;
+$size-caption: 1em;
+$size-pull-q: 1.5em;
+$size-code: 0.9em;
+
+$spacing-unit:     30px;
+$spacing-header:    15px;
+// Jekyll custom variables
+
+$grey-color:       $n2-grey-color;
+$text-color:       $n2-grey-color;
+$background-color: $white;
+$brand-color:      $p1;
+
+
+$grey-color-light: lighten($n2-grey-color, 40%);
+$grey-color-dark:  darken($n2-grey-color, 25%);
+
+// Width of the content area
+$content-width:    800px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+
+

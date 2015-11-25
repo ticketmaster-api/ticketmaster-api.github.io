@@ -1,0 +1,92 @@
+$borderHeight: 8px;
+
+#menu-btn,
+#search{
+  float: right;
+  width: 26px;
+  height: 26px;
+  background-repeat: no-repeat;
+  position: relative;
+  margin: 15px 0 0 15px;
+}
+
+#menu-btn{
+  display: none;
+  background-image: url('/assets/img/header/ic-menu-p-1.png');
+}
+
+#search{
+  background-image: url('/assets/img/header/ic-search-p-1.png');
+}
+
+nav{
+  display: table;
+  padding: 0 !important;
+  a {
+    color: #b7c9d3 !important;
+    text-transform: uppercase;
+    line-height: 24px;
+    display: table-cell;
+    width: 1px;
+    text-align: center;
+    padding: 15px 0;
+    white-space: nowrap;
+  }
+}
+
+.top-bar {
+  margin-bottom: 55px;
+  .gray{
+    border-top: $borderHeight solid #768692;
+  }
+  .nav-item{
+    position: relative;
+    &:after{
+      content: '';
+      width: 100%;
+      height: $borderHeight;
+      position: absolute;
+      top: -$borderHeight;
+      left: 0;
+    }
+  }
+  .one {
+    border-top: $borderHeight solid #009CDE;
+  }
+  .two {
+    border-top: $borderHeight solid #009CDE;
+    &:after {
+      background: rgba(208, 0, 110, 0.1);
+    }
+  }
+  .three {
+    border-top: $borderHeight solid #009CDE;
+    &:after {
+      background: rgba(208, 0, 110, 0.2);
+    }
+  }
+  .four {
+    border-top: $borderHeight solid #D0006F;
+    &:after {
+      background: rgba(0, 155, 222, 0.2);
+    }
+  }
+  .five {
+    border-top: $borderHeight solid #D0006F;
+    &:after {
+      background: rgba(0, 155, 222, 0.1);
+    }
+  }
+  .six {
+    border-top: $borderHeight solid #D0006F;
+  }
+}
+
+@media (max-width: 1200px) {
+  #menu {
+    display: none;
+  }
+  #menu-btn {
+    display: inline;
+  }
+}
