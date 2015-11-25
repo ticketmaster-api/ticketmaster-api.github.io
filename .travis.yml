@@ -16,7 +16,7 @@ branches:
 script:
   - ./node_modules/karma/bin/karma start karma.conf.js
   - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
-#  - galen check galen-test/home.gspec --url http://ticketmaster-api.github.io/ --size 1024x768 --htmlreport tests/galen/reports -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
+# - galen check galen-test/home.gspec --url http://ticketmaster-api.github.io/ --size 1024x768 --htmlreport tests/galen/reports -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
 
 
 after_script:
