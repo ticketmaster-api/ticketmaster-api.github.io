@@ -5,11 +5,22 @@ node_js:
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+  - secure: "OlVONHdz4zRDIVTs5yygqwpNVcQ0b86Wgi53hLHY6gFcS9sYVeY09JbT95VPaCSQC1nUUO8aOHy6eO/Oj3j5jM//pvLzn+spoNrcmarKP9Ml9mFUV3csK04uMB5/vquvkqRWszNal/7I8Ytwik+lBIU6pM7hV+RI0XhAVUZRAM4PgLpdstBZvek2DhA9RQA9Fhn8Z2VW1v22aa0vYqEUDWpKxovKs5yCN9P0m1yiCoN8EBer6f52S1QGQ5rd1doQUYnhbSZ9n2Wax1aG6O7BYA4zkCay1xsWL8KJdz82lhoV+HGCb0uLcMoy7BiOJ0Sw0vw6L9oSU3CO+k+cyPjNlABeEt/DhTaxdW3XBHgpwIlPJeeXWihv4L31zvIuiXxQNNjkjN4hr2nfLY01isz6bkZzrvPQQuOsEYA1as2YldXVhJlnTQ1HJ1VyfN6pXeGVTbTjUE60brCcQIuYxSw4d/2sTiG2TW8wI42Y5ehh42YjUjufdORwiKAMneKeoQwIs4NK+RaQ/NFxaLdq7WYmRKYqDLcTUJInyFxvL2bvko148xttmSkokSC1PkCQ48FliVNiwQ/TwR83oBjPvvCxv06xE83biK7v4lJGUWH+5eV0EsEsQpbVtNfbcfY7wd0zYwwF5C8S+dfCYDy+Rg+a5zVvoGBF3MFyEit1E2273DM="
+
+# whitelist
+branches:
+  only:
+    - master
+    - dev
 
 script:
   - ./node_modules/karma/bin/karma start karma.conf.js
   - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - galen check galen-test/home.gspec --url http://ticketmaster-api.github.io/ --size 1024x768 --htmlreport tests/galen/reports -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
+
+
+after_script:
+  - rake travis:deploy --trace --verbose
 
 cache:
   directories:
@@ -24,3 +35,5 @@ before_install:
   - gem install jekyll
   - gem install html-proofer
   - npm install -g galenframework-cli
+
+    
