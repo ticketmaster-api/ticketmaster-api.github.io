@@ -34,9 +34,31 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
+    margin-top: $spacing-unit / 2;
     margin-bottom: $spacing-unit / 2;
 }
+h1{
+    font: $font-h1;
+    font-size:$size-h1;
+    color: $n1;
+}
+h2{
+    font: $font-h2 ;
+    font-size: $size-h2;
+    color: $n1;
+}
 
+h3{
+    font: $font-h3;
+    font-size: $size-h3;
+}
+
+h4{
+    font: $font-h4;
+    font-size: $size-h4;
+    margin-bottom: $spacing-header;
+    margin-top: $spacing-header;
+}
 
 
 /**
@@ -70,6 +92,7 @@ ul, ol {
 }
 
 li {
+    list-style: none;
     > ul,
     > ol {
          margin-bottom: 0;
@@ -77,12 +100,11 @@ li {
 }
 
 
-
 /**
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: $base-font-weight;
+    font-weight: $bold-font-weight;
 }
 
 
@@ -100,7 +122,7 @@ a {
 
     &:hover {
         color: $text-color;
-        text-decoration: underline;
+        text-decoration: none;
     }
 }
 
@@ -203,4 +225,14 @@ pre {
             fill: $grey-color;
         }
     }
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.body-wrapper {
+    max-width: 1200px;
+    margin: auto;
 }
