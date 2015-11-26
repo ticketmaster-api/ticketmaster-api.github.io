@@ -1,5 +1,5 @@
 
-$base-font-family: "Lato",Helvetica, Arial, sans-serif;
+$base-font-family: Helvetica, Arial, sans-serif;
 $base-font-size: 16px;
 
 $base-font-weight: 400;
@@ -41,7 +41,7 @@ $font-lead: "TMSansLEADINGFIXED-Light",$base-font-family;      //24
 $font-body: "TMSansLEADINGFIXED-Regular",$base-font-family;    //16px
 $font-caption: "TMSansLEADINGFIXED-Italic",$base-font-family;  //16px
 $font-pull-q: "TMSansLEADINGFIXED-Italic",$base-font-family;   //24px
-$font-code: "Source Code Pro",$base-font-family;         //16px
+$font-code: "SourceCodePro-Regular",$base-font-family;         //16px
 
 
 /*Sizes header*/
@@ -77,6 +77,3 @@ $content-width:    800px;
 
 $on-palm:          600px;
 $on-laptop:        800px;
-
-
-

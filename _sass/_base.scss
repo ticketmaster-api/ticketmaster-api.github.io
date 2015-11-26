@@ -38,24 +38,37 @@ ul, ol, dl, figure,
     margin-bottom: $spacing-unit / 2;
 }
 h1{
-    font: $font-h1;
+    font-family: $font-h1;
     font-size:$size-h1;
     color: $n1;
 }
 h2{
-    font: $font-h2 ;
+    font-family: $font-h2 ;
     font-size: $size-h2;
     color: $n1;
 }
 
 h3{
-    font: $font-h3;
+    font-family: $font-h3;
     font-size: $size-h3;
+    color: $n3;
 }
 
 h4{
-    font: $font-h4;
+    font-family: $font-h4;
     font-size: $size-h4;
+    margin-bottom: $spacing-header;
+    margin-top: $spacing-header;
+}
+h5{
+    font-family: $font-h5;
+    font-size: $size-h5;
+    margin-bottom: $spacing-header;
+    margin-top: $spacing-header;
+}
+h6{
+    font-family: $font-h6;
+    font-size: $size-h6;
     margin-bottom: $spacing-header;
     margin-top: $spacing-header;
 }
@@ -88,6 +101,7 @@ figcaption {
  * Lists
  */
 li {
+    font-family: $font-body;
     list-style: none;
     > ul,
     > ol {
@@ -111,18 +125,20 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: $brand-color;
     text-decoration: none;
+    font-family: $font-body;
 
     &:visited {
-        color: $brand-color;
+        //color: darken($p1b, 15%);
     }
 
     &:hover {
-        color: $text-color;
+        color: $p1b;
         text-decoration: none;
     }
 }
-
-
+p{
+    font-family: $font-lead;
+}
 
 /**
  * Blockquotes
@@ -151,6 +167,7 @@ code {
     border: 1px solid $grey-color-light;
     border-radius: 3px;
     background-color: #eef;
+    font-family: $font-code;
 }
 
 code {
