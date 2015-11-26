@@ -79,7 +79,7 @@ h6{
  */
 img {
     max-width: 100%;
-    vertical-align: middle;
+    vertical-align: inherit;
 }
 
 
@@ -100,10 +100,6 @@ figcaption {
 /**
  * Lists
  */
-ul, ol {
-    margin-left: $spacing-unit;
-}
-
 li {
     font-family: $font-body;
     list-style: none;
@@ -244,6 +240,9 @@ pre {
     }
 }
 
+/**
+  * Basic Structure Elements
+  */
 .row {
     margin-right: 0px;
     margin-left: 0px;
@@ -252,4 +251,35 @@ pre {
 .body-wrapper {
     max-width: 1200px;
     margin: auto;
+}
+
+.row-container{
+  max-width: 1160px;
+  margin: auto;
+}
+
+@media (max-width: 1200px) {
+  .row-container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .xs-center{
+    text-align: center;
+    li{
+      position: relative;
+      display: inline;
+      margin-right: 15px;
+      &:not(:last-child):after{
+        content: '';
+        position: absolute;
+        border: 1px solid;
+        width: 2px;
+        height: 2px;
+        right: -10px;
+        top: 10px;
+      }
+    }
+  }
 }

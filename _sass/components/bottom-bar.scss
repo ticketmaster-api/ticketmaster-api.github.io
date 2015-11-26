@@ -14,21 +14,6 @@
 
 @media (max-width: 768px) {
   #footer{
-    text-align: center;
-    li {
-      position: relative;
-      display: inline;
-      margin-right: 15px;
-      &:not(:last-child):after{
-        content: '';
-        position: absolute;
-        border: 1px solid #ffffff;
-        width: 2px;
-        height: 2px;
-        right: -10px;
-        top: 10px;
-      }
-    }
     img{
       display: block;
       margin: 0 auto 10px;

@@ -1,5 +1,107 @@
+$colorWhite: #ffffff;
+$colorWhite-70: rgba(255, 255, 255, 0.7);
+
+#top-promo{
+  background-image: url('/assets/img/home/bg-football-p-1.png');
+  min-height: 800px;
+  margin-bottom: 20px;
+}
+
+#bottom-promo{
+  text-align: center;
+  background-image: url('/assets/img/home/bg-baseball-p-1-a.png');
+  min-height: 520px;
+  margin-bottom: 300px;
+  .row-container{
+    max-width: 655px;
+  }
+}
+
+.tm-btn{
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 12px 29px;
+}
+
+.tm-btn-white{
+  background-color: $colorWhite;
+  &:hover{
+    color: $brand-color;
+  }
+  &:visited{
+    color: $brand-color;
+  }
+}
+
+.tm-btn-transparent{
+  border: 2px solid $colorWhite-70;
+  color: $colorWhite-70;
+  &:hover{
+    color: $colorWhite-70;
+  }
+  &:visited{
+    color: $colorWhite-70;
+  }
+}
+
+li{
+  &.social-link{
+    position: relative;
+    display: inline;
+    margin-right: 15px;
+    &:after{
+      display: none;
+    }
+  }
+}
+
+.promo {
+  h1,
+  h2{
+    color: $colorWhite;
+  }
+  h1{
+    font-size: 81px;
+    line-height: 88px;
+  }
+  h2{
+    font-size: 36px;
+    line-height: 48px;
+  }
+  h3{
+    color: $colorWhite-70;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .rightarrow{
+    margin-right: 60px;
+    &:after{
+      content: '';
+      background: url("/assets/img/home/ic-rightarrow.png") no-repeat;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      right: -65px;
+      top: 15px;
+    }
+  }
+}
+
 @media (max-width: 768px) {
-  .promo {
-    text-align: center;
+  .rightarrow{
+    margin: 0 !important;
+    &:after{
+      display: none;
+    }
+  }
+  .tm-btn-transparent{
+    display: none;
+  }
+  #top-promo{
+    min-height: 900px;
+  }
+  #bottom-promo{
+    display: none;
   }
 }
