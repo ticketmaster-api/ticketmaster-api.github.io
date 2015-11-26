@@ -18,8 +18,6 @@
   }
 }
 
-
-
 @mixin transition ($time: 0.35s){
   -webkit-transition: all $time ease;
   -moz-transition: all $time ease;
@@ -108,7 +106,7 @@
 "layout",
 "syntax-highlighting",
 "pages/home",
+"pages/documentation",
 "components/top-bar",
-"components/bottom-bar",
-"documentation"
+"components/bottom-bar"
 ;

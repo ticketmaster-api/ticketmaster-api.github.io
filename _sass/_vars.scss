@@ -6,8 +6,8 @@ $base-font-weight: 400;
 $bold-font-weight: 700;
 
 
-$lead-font-size:   1.5em;
-$body-font-size:   1em;
+$lead-font-size: 1.5em;
+$body-font-size: 1em;
 
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
@@ -39,9 +39,10 @@ $font-h6: "TMSansLEADINGFIXED-Regular",$base-font-family;// 11
 
 $font-lead: "TMSansLEADINGFIXED-Light",$base-font-family;      //24
 $font-body: "TMSansLEADINGFIXED-Regular",$base-font-family;    //16px
-$font-caption: "TMSansLEADINGFIXED-Italic",$base-font-family;  //16px
-$font-pull-q: "TMSansLEADINGFIXED-Italic",$base-font-family;   //24px
 $font-code: "SourceCodePro-Regular",$base-font-family;         //16px
+$font-pull-q: "TMSansLEADINGFIXED-Italic",$base-font-family;   //24px
+$font-caption: "TMSansLEADINGFIXED-Italic",$base-font-family;  //16px
+
 
 
 /*Sizes header*/
@@ -59,21 +60,21 @@ $size-caption: 1em;
 $size-pull-q: 1.5em;
 $size-code: 0.9em;
 
-$spacing-unit:     30px;
-$spacing-header:    15px;
+$spacing-unit: 30px;
+$spacing-header: 15px;
 // Jekyll custom variables
 
-$grey-color:       $n2-grey-color;
-$text-color:       $n2-grey-color;
+$grey-color: $n2-grey-color;
+$text-color: $n2-grey-color;
 $background-color: $white;
-$brand-color:      $p1;
+$brand-color: $p1;
 
 
 $grey-color-light: lighten($n2-grey-color, 40%);
-$grey-color-dark:  darken($n2-grey-color, 25%);
+$grey-color-dark: darken($n2-grey-color, 25%);
 
 // Width of the content area
-$content-width:    800px;
+$content-width: 800px;
 
-$on-palm:          600px;
-$on-laptop:        800px;
+$on-palm: 600px;
+$on-laptop: 800px;
