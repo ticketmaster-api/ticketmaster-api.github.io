@@ -35,7 +35,10 @@ nav{
 }
 
 .top-bar {
-  margin-bottom: 55px;
+  #header-logo{
+    position: relative;
+    top: 5px;
+  }
   .gray{
     border-top: $borderHeight solid #768692;
   }

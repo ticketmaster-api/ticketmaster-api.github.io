@@ -240,3 +240,37 @@
         }
     }
 }
+
+/**
+ * Sliced images
+ */
+.slice-bottom-right{
+  &:after{
+    @include sliced-image('bottom', 'right');
+  }
+}
+
+.slice-bottom-left{
+  &:after{
+    @include sliced-image('bottom', 'left');
+  }
+}
+
+.slice-top-right{
+  &:before{
+    @include sliced-image('top', 'right');
+  }
+}
+.slice-top-left{
+  &:before{
+    @include sliced-image('top', 'left');
+  }
+}
+.slice-bottom-right,
+.slice-bottom-left,
+.slice-top-right,
+.slice-top-left{
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
