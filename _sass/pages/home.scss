@@ -7,11 +7,15 @@ $colorWhite-70: rgba(255, 255, 255, 0.7);
   margin-bottom: 20px;
 }
 
+#promo-social{
+  margin-bottom: 70px;
+}
+
 #bottom-promo{
   text-align: center;
   background-image: url('/assets/img/home/bg-baseball-p-1-a.png');
   min-height: 520px;
-  margin-bottom: 300px;
+  margin-bottom: 80px;
   .row-container{
     max-width: 655px;
   }
@@ -99,9 +103,13 @@ li{
     display: none;
   }
   #top-promo{
-    min-height: 900px;
+    h1{
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
-  #bottom-promo{
+  #bottom-promo,
+  #promo-social {
     display: none;
   }
 }
