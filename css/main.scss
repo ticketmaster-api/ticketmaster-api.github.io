@@ -4,19 +4,6 @@
 @charset "utf-8";
 
 /*Ticket Master Style*/
-@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
-
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Lato Regular"), local("Lato-Regular"), url("https://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2") format("woff2");
-}
-
-
-
-
-
 
 // Use media queries like this:
 // @include media-query($on-palm) {
@@ -26,9 +13,9 @@
 //     }
 // }
 @mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
+  @media screen and (max-width: $device) {
+    @content;
+  }
 }
 
 
@@ -114,13 +101,14 @@
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
-  "bootstrap",
-  "vars",
-  "base",
-  "layout",
-  "syntax-highlighting",
-  "pages/home",
-  "components/top-bar",
-  "components/bottom-bar",
-  "documentation"
+"bootstrap",
+"fonts",
+"vars",
+"base",
+"layout",
+"syntax-highlighting",
+"pages/home",
+"components/top-bar",
+"components/bottom-bar",
+"documentation"
 ;
