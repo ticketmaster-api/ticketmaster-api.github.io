@@ -113,7 +113,7 @@ a {
     text-decoration: none;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: $brand-color;
     }
 
     &:hover {
@@ -231,12 +231,38 @@ pre {
     margin-left: 0px;
 }
 
-.row-container{
-    max-width: 1000px;
-    margin: auto;
-}
-
 .body-wrapper {
     max-width: 1200px;
     margin: auto;
+}
+
+.row-container{
+  max-width: 1160px;
+  margin: auto;
+}
+
+@media (max-width: 1200px) {
+  .row-container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .xs-center{
+    text-align: center;
+    li{
+      position: relative;
+      display: inline;
+      margin-right: 15px;
+      &:not(:last-child):after{
+        content: '';
+        position: absolute;
+        border: 1px solid;
+        width: 2px;
+        height: 2px;
+        right: -10px;
+        top: 10px;
+      }
+    }
+  }
 }
