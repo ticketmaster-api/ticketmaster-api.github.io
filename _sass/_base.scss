@@ -52,6 +52,9 @@ h3{
     font-family: $font-h3;
     font-size: $size-h3;
     color: $n3;
+    &.black{
+      color: $n1;
+    }
 }
 
 h4{
@@ -280,6 +283,21 @@ pre {
         right: -10px;
         top: 10px;
       }
+    }
+  }
+  .xs-border-bottom{
+    position: relative;
+    margin-bottom: 50px;
+    &:after{
+      content: '';
+      width: 90%;
+      position: absolute;
+      border-bottom: 1px solid $borderGrayColor;
+      left: 5%;
+      bottom: -25px;
+    }
+    img{
+      max-height: 40px !important;
     }
   }
 }
