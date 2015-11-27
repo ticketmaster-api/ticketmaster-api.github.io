@@ -115,6 +115,7 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
     font-weight: $bold-font-weight;
+    word-break: break-word;
 }
 
 
@@ -163,10 +164,10 @@ blockquote {
  */
 pre,
 code {
-    font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
+    font-size: $size-code;
+    border: 0;
+    border-radius: 0;
+    background-color: $code-background-color;
     font-family: $font-code;
 }
 

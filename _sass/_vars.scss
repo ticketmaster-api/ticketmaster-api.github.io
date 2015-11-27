@@ -25,24 +25,23 @@ $white: #ffffff;
 $white-70: rgba(255, 255, 255, 0.7);
 
 $code-border: #909090;
-$code-background-color: #F8F8F8;
+$code-background-color: #f1f4f6;
 
 
 /*Fonts*/
-$font-h1: "InterstateWGL-Black",$base-font-family;       // 54/16=3.37500
-$font-h2: "TMSansLEADINGFIXED-Bold",$base-font-family;   // 36
-$font-h3: "TMSansLEADINGFIXED-Bold",$base-font-family;   // 24
-$font-h4: "TMSansLEADINGFIXED-Bold",$base-font-family;   // 16
-$font-h5: "TMSansLEADINGFIXED-Regular",$base-font-family;// 16
-$font-h6: "TMSansLEADINGFIXED-Regular",$base-font-family;// 11
+$font-h1: "InterstateWGL-Black",$base-font-family;
+$font-h2: "TMSansLEADINGFIXED-Bold",$base-font-family;
+$font-h3: "TMSansLEADINGFIXED-Bold",$base-font-family;
+$font-h4: "TMSansLEADINGFIXED-Bold",$base-font-family;
+$font-h5: "TMSansLEADINGFIXED-Regular",$base-font-family;
+$font-h6: "TMSansLEADINGFIXED-Regular",$base-font-family;
 
 
-$font-lead: "TMSansLEADINGFIXED-Light",$base-font-family;      //24
-$font-body: "TMSansLEADINGFIXED-Regular",$base-font-family;    //16px
-$font-code: "SourceCodePro-Regular",$base-font-family;         //16px
-$font-pull-q: "TMSansLEADINGFIXED-Italic",$base-font-family;   //24px
-$font-caption: "TMSansLEADINGFIXED-Italic",$base-font-family;  //16px
-
+$font-lead: "TMSansLEADINGFIXED-Light",$base-font-family;
+$font-body: "TMSansLEADINGFIXED-Regular",$base-font-family;
+$font-code: "SourceCodePro-Regular",$base-font-family;
+$font-pull-q: "TMSansLEADINGFIXED-Italic",$base-font-family;
+$font-caption: "TMSansLEADINGFIXED-Italic",$base-font-family;
 
 
 /*Sizes header*/
@@ -62,6 +61,7 @@ $size-code: 0.9em;
 
 $spacing-unit: 30px;
 $spacing-header: 15px;
+
 // Jekyll custom variables
 
 $grey-color: $n2-grey-color;
@@ -69,9 +69,12 @@ $text-color: $n2-grey-color;
 $background-color: $white;
 $brand-color: $p1;
 
-
 $grey-color-light: lighten($n2-grey-color, 40%);
 $grey-color-dark: darken($n2-grey-color, 25%);
+
+/*paddings*/
+$p-padding: 28px;
+$code-margin: 28px;
 
 // Width of the content area
 $content-width: 800px;
