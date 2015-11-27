@@ -4,23 +4,18 @@ layout: documentation
 
 # API DOCUMENTATION
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, [this a link](http://kramdown.gettalong.org) sed do eiusmod tempor incididunt ut 
-
 <div markdown="1" class="row">
 
 <div markdown="1" class="row-container">
 
-<div markdown="1" class="col-xs-12 page-column col-sm-9">
+<div markdown="1" class="col-xs-12 page-column col-sm-7">
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, [this a link](http://kramdown.gettalong.org) sed do eiusmod tempor incididunt ut          
-            
+Hella narwhal Cosby dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+{: .main-description}
+
 </div>
 
-<div markdown="1" class="col-xs-12 page-column col-sm-3">
+<div markdown="1" class="col-xs-12 page-column col-sm-5">
 
 #### Developer Console
 
@@ -32,6 +27,8 @@ Test this endpoint right now in the interactive docs:
 </div>
 </div>
 
+-----------
+
 <!-- Start double columns -->
 <div markdown="1" class="row">
 
@@ -41,13 +38,13 @@ Test this endpoint right now in the interactive docs:
 
 <div markdown="1" class="block-central"><!--.block-central-->
 
-## Fixie tote bag ethnic
+## Fixie tote bag ethnic keytar
 
 <div markdown="1" class="block-central side-comment">{::comment}Block side{:/}
 
 <div markdown="1" class="lang-selector">
 <a markdown="1" class="active" href="#" data-language-name="JS">JS</a>
-<a markdown="1" href="#" data-language-name="cUrl">cUrl</a>
+<a markdown="1" href="#" data-language-name="cUrl">cULR</a>
 </div>   
 
 {% highlight javascript %}
@@ -67,10 +64,8 @@ function Animal(name) {
 };
 
 var animal = new Animal('Animal');
-
 alert( animal.speed );
-animal.run(10);
-animal.stop();
+
 {% endhighlight %}
 
 </div><!-- end .side-comment-->
@@ -81,9 +76,9 @@ labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+labore et dolore magna aliqua [this a link](http://kramdown.gettalong.org) Ut enim ad minim veniam, quis nostrud exercitation ullamco
 
-<div markdown="1" class="clear"></div>
+-----------
 
 ## Authentication
 
