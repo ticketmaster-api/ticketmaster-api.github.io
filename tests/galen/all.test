@@ -6,6 +6,6 @@ Home page on desktop
     http://${domain} 1920x1080
         check tests/galen/home.gspec --include "desktop"
 
-#Home page on mobile
-#    selenium phantomjs http://${domain} 375x627
-#        check tests/galen/home.gspec --include "mobile" --exclude "nomobile"
+Home page on mobile
+    http://${domain} 375x627
+        check tests/galen/home.gspec --include "mobile,all" --exclude "nomobile"
