@@ -1,0 +1,11 @@
+@@ set
+    domain      127.0.0.1:4000
+    base_url    http://${domain}/
+
+Home page on desktop
+    http://${domain} 1920x1080
+        check tests/galen/home.gspec --include "desktop"
+
+Home page on mobile
+    http://${domain} 375x627
+        check tests/galen/home.gspec --include "mobile,all" --exclude "nomobile"
