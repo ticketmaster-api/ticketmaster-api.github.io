@@ -74,6 +74,8 @@
   content: "";
   width: 0;
   height: 0;
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
   @if $position == 'top'{
     border-bottom: 20px solid transparent;
     border-top: 112px solid white;
@@ -82,14 +84,14 @@
     border-top: 20px solid transparent;
     border-bottom: 112px solid white;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
   }
   @if $orientation == 'right'{
-    border-right: 1440px solid transparent;
+    border-right: 1200px solid transparent;
     border-left: 5px;
   }
   @else{
-    border-left: 1440px solid transparent;
+    border-left: 1200px solid transparent;
     border-right: 5px;
   }
 }
