@@ -13,6 +13,9 @@ branches:
     - master
     - dev
 
+before_script:
+  - jekyll serve &
+
 script:
   - ./node_modules/karma/bin/karma start karma.conf.js
   - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
