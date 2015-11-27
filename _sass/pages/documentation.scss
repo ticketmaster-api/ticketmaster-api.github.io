@@ -14,9 +14,6 @@
     }
 
     .sidebar {
-        a {
-            color: #fff;
-        }
         h1 {
             color: #fff;
             margin-top: 0;
@@ -29,32 +26,38 @@
         ul{
             & .lvl-1{
             margin-left: 0;
-                li:hover {
-                    color: $n2-grey-color;
-                }
             }
             & .lvl-2 {
                 margin-left: 10px;
                 li {
                     color: $n2-grey-color;
+                    line-height: 1.9em;
+                    a{
+                        color: $n2-grey-color;
+                    }
+                    a:hover {
+                        color: $p1a;
+                    }
                 }
             }
             & .lvl-3 {
+                a{
+                    color: $n2-grey-color;
+                }
+                a:hover {
+                    color: $p1a;
+                }
                 padding-left: 20px;
                 border-left: 2px solid lighten( $n2-grey-color, 35);
-            }
-            li:hover {
-                color: $p1b;
             }
         }
 
     }
-    @media (min-width: 600px) {
+    @media (min-width: 768px) {
         .sidebar {
             top: 0;
             left: 0;
             bottom: 0;
-            width: 18rem;
             text-align: left;
         }
     }
@@ -86,6 +89,140 @@
             right:  1rem;
             bottom: 1rem;
             left:   1rem;
+        }
+    }
+
+    hr{
+        clear: both;
+        border: 0;
+        padding-top: 20px;
+    }
+    .block-central{
+        h1, h2, h3, h4, h5, h6,
+        p, table, ul, ol, aside, dl, figure{
+            display: block;
+            width: 55%;
+            @media (max-width: 767px) {
+                width: 100%;
+            }
+        }
+
+        & .side-comment {
+            float: right;
+            width: calc(40% - 2px);
+
+            h1, h2, h3, h4, h5, h6,
+            p, table, ul, ol, aside, dl,
+            pre, code, blockquote, figure{
+                width: 100%;
+            }
+            @media (max-width: 767px) {
+                float: inherit;
+                width: 100%;
+            }
+        }
+
+        .lang-selector{
+            a{
+                color: $n2-grey-color;
+                font-size: $size-h3;
+                border-bottom: 3px solid $n2-grey-color;
+                text-decoration: none;
+                display: block;
+                width: 30%;
+                float: left;
+                margin: 0 5px 20px 5px;
+                text-align: center;
+                line-height: 2em;
+                &:hover{
+                    color: $s1a;
+                    border-color: $s1a;
+                }
+            }
+            .active{
+                color: $p1a;
+                border-bottom: 3px solid $p1a;
+            }
+        }
+
+        /*TO align header and code example*/
+        @media (min-width: 768px) {
+            h2{
+                float: left;
+            }
+        }
+
+    }
+
+    .side-box {
+        width: 43%;
+        //background-color: #ccc;
+        border-left:2px solid lighten( $n2-grey-color, 35); ;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    p.main-description{
+        font-size: 1.3em;
+    }
+
+    /*bootstrap btn*/
+    
+    .btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; }
+    .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px; }
+    .btn:hover, .btn:focus, .btn.focus {
+        color: #333;
+        text-decoration: none; }
+    .btn:active, .btn.active {
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
+    .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+        cursor: not-allowed;
+        opacity: 0.65;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none; }
+    
+    /*btn bootstrap end*/
+
+    .btn-default{
+        border: 2px solid $n3;
+        font-family: $font-bold-p;
+        padding: 10px 40px;
+        color: $n3;
+        &:hover,
+        :focus{
+            color: $n1;
+            background-color: $white;
         }
     }
 }
