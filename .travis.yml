@@ -14,12 +14,16 @@ branches:
     - dev
 
 before_script:
-  - jekyll serve &
-  - sleep 20
+  - jekyll build
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 10 # give xvfb some time to start
 
 script:
   - ./node_modules/karma/bin/karma start karma.conf.js
   - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
+  - jekyll serve &
+  - sleep 20 # give jekyll some time to start
   - galen check galen-test/home.gspec --url localhost:4000 --size 1024x768 --htmlreport tests/galen/reports -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
 
 
