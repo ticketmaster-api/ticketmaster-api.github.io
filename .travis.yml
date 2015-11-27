@@ -12,6 +12,7 @@ branches:
   only:
     - master
     - dev
+    - ran-test
 
 before_script:
   - jekyll build
@@ -44,4 +45,3 @@ before_install:
   - gem install html-proofer
   - npm install -g galenframework-cli
 
-    
