@@ -1,6 +1,6 @@
 ---
 layout: documentation
-categories : products-and-docs/apis/test/
+categories : products-and-docs/apis/samples/
 ---
 
 {: #headers}
