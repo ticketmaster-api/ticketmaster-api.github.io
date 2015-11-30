@@ -1,0 +1,72 @@
+h1 {
+  font-family: $font-h1;
+  font-size:$size-h1;
+  color: $n1;
+  line-height: $line-height-h2;
+}
+h2 {
+  font-family: $font-h2 ;
+  font-size: $size-h2;
+  color: $n1;
+  line-height: $line-height-h2;
+}
+
+h3 {
+  font-family: $font-h3;
+  font-size: $size-h3;
+  color: $n3;
+  line-height: $line-height-h3;
+}
+
+h4 {
+  font-family: $font-h4;
+  font-size: $size-h4;
+  margin-bottom: $spacing-header;
+  margin-top: $spacing-header;
+  line-height: $line-height-h4;
+}
+h5 {
+  font-family: $font-h5;
+  font-size: $size-h5;
+  margin-bottom: $spacing-header;
+  margin-top: $spacing-header;
+  line-height: $line-height-h5;
+}
+h6 {
+  font-family: $font-h6;
+  font-size: $size-h6;
+  margin-bottom: $spacing-header;
+  margin-top: $spacing-header;
+  line-height: $line-height-h6;
+}
+
+
+.lead {
+  font-family: $font-lead;
+  font-size: $size-lead;
+  color: $n2-grey-color;
+}
+
+.body {
+   font-family: $font-body;
+   font-size: $size-body;
+   color: $n2-grey-color;
+ }
+
+.caption {
+  font-family: $font-caption;
+  font-size: $size-caption;
+  color: $n2-grey-color;
+}
+
+.pull-quote {
+  font-family: $font-pull-q;
+  font-size: $size-pull-q;
+  color: $p1b;
+}
+
+.code {
+  font-family: $font-code;
+  font-size: $size-code;
+  color: $n2-grey-color;
+}
