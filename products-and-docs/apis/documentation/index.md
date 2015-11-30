@@ -1,9 +1,6 @@
 ---
 layout: documentation
-
-language_tabs:
-  - js
-  - cURL  
+ 
 ---
 
 # API DOCUMENTATION
