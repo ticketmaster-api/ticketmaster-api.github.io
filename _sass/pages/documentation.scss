@@ -104,7 +104,7 @@
         border: 0;
         padding-top: 20px;
     }
-    .block-central{
+    blockquote{
         h1, h2, h3, h4, h5, h6,
         p, table, ul, ol, aside, dl, figure{
             display: block;
@@ -113,10 +113,26 @@
                 width: 100%;
             }
         }
+        //float: right;
+        //color: #768692;
+        border-left: 0;
+        padding-left: 0;
+        font-size: inherit;
+        letter-spacing: 0;
+        font-style: normal;
+    }
+    .block-central{
 
         //& .side-comment,
         blockquote{
             float: right;
+            //color: #768692;
+            border-left: 0;
+            padding-left: 0;
+            font-size: inherit;
+            letter-spacing: 0;
+            font-style: normal;
+
             width: calc(40% - 2px);
 
             h1, h2, h3, h4, h5, h6,
