@@ -1,30 +1,26 @@
-
-
-<div class="top-bar">
+<div class="top-bar{% if page.title != "home" %} bg-header slice-bottom-left{% endif %}">
     <div class="row">
         <div class="col-xs-7 col-lg-3 gray">
-            <a id="header-logo" href="{{"/" | prepend: site.baseurl}}"><img src="/assets/img/header/tm-developer-logo-p-1.png"></a>
+            <a id="header-logo" href="{{"/" | prepend: site.baseurl}}">
+                {% if page.title == "home" %}
+                    <img src="/assets/img/header/tm-developer-logo-p-1.png">
+                {% else %}
+                    <img src="/assets/img/header/tm_dev_white_logo.png">
+                {% endif %}
+            </a>
         </div>
         <nav id="menu" class="col-xs-12 col-lg-6">
-            <a class="one nav-item" href="{{"/products-and-docs/apis/documentation/" | prepend: site.baseurl}}">Products & Docs</a>
-            <a class="two nav-item" href="#">Partners</a>
-            <a class="three nav-item" href="#">Support</a>
-            <a class="four nav-item" href="#">Blogs</a>
-            <a class="five nav-item" href="#">Events</a>
-            <a class="six nav-item" href="#">Open Source</a>
+            <a {% if page.title == "home" or page.title == "documentation" %} class="one nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/apis/documentation/" | prepend: site.baseurl}}">Products & Docs</a>
+            <a {% if page.title == "home" or page.title == "partners" %} class="two nav-item" {% else %} class="gray" {% endif %} href="#">Partners</a>
+            <a {% if page.title == "home" or page.title == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="#">Support</a>
+            <a {% if page.title == "home" or page.title == "blogs" %} class="four nav-item" {% else %} class="gray" {% endif %} href="#">Blogs</a>
+            <a {% if page.title == "home" or page.title == "events" %} class="five nav-item" {% else %} class="gray" {% endif %} href="#">Events</a>
+            <a {% if page.title == "home" or page.title == "opensource" %} class="six nav-item" {% else %} class="gray" {% endif %} href="#">Open Source</a>
         </nav>
         <div class="col-xs-5 col-lg-3 gray">
-            <a id="menu-btn"></a>
-            <a id="search"></a>
+            <a id="menu-btn" {% if page.title != "home" %} class="white"{% endif %}></a>
+            <a id="search" {% if page.title != "home" %} class="white"{% endif %}></a>
         </div>
-        <ul id="menu-dropdown" class="col-xs-12 col-sm-6 col-lg-3 closed" tabindex="-1">
-            <li><a href="{{"/products-and-docs/apis/documentation/" | prepend: site.baseurl}}">Products & Docs</a></li>
-            <li><a href="#">Partners</a></li>
-            <li><a href="#">Support</a></li>
-            <li><a href="#">Blogs</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Open Source</a></li>
-        </ul>
         <div id="rainbow">
             <span class="one"></span>
             <span class="two"></span>
@@ -35,5 +31,13 @@
         </div>
     </div>
 </div>
+<ul id="menu-dropdown" class="col-xs-12 col-sm-6 col-lg-3 closed" tabindex="-1">
+    <li><a href="{{"/products-and-docs/apis/documentation/" | prepend: site.baseurl}}">Products & Docs</a></li>
+    <li><a href="#">Partners</a></li>
+    <li><a href="#">Support</a></li>
+    <li><a href="#">Blogs</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Open Source</a></li>
+</ul>
 
 
