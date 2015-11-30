@@ -102,36 +102,35 @@
     hr{
         clear: both;
         border: 0;
-        padding-top: 20px;
     }
+
     blockquote{
         h1, h2, h3, h4, h5, h6,
         p, table, ul, ol, aside, dl, figure{
             display: block;
             width: 55%;
+            float: left;
             @media (max-width: 767px) {
                 width: 100%;
             }
         }
-        //float: right;
-        //color: #768692;
         border-left: 0;
         padding-left: 0;
         font-size: inherit;
         letter-spacing: 0;
         font-style: normal;
-    }
-    .block-central{
 
-        //& .side-comment,
+        & .side-comment,
         blockquote{
             float: right;
-            //color: #768692;
-            border-left: 0;
-            padding-left: 0;
+            margin: 0px;
+            padding-left: 20px;
+            padding-top: 0px;
+            padding-bottom: 10px;
             font-size: inherit;
             letter-spacing: 0;
             font-style: normal;
+            border-left: 2px solid $n3;
 
             width: calc(40% - 2px);
 
@@ -143,6 +142,7 @@
             @media (max-width: 767px) {
                 float: inherit;
                 width: 100%;
+                border: 0;
             }
         }
 
@@ -179,7 +179,6 @@
 
     .side-box {
         width: 43%;
-        //background-color: #ccc;
         border-left:2px solid lighten( $n2-grey-color, 35); ;
         position: absolute;
         right: 0;

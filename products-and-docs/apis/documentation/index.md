@@ -1,30 +1,11 @@
 ---
 layout: documentation
- 
+content: ../doc-custom-header.md
 ---
 
 # API DOCUMENTATION
 
-<div markdown="1" class="row">
-
-<div markdown="1" class="col-xs-12 page-column col-sm-7">
-
-Hella narwhal Cosby dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-{: .main-description}
-
-</div>
-
-<div markdown="1" class="col-xs-12 page-column col-sm-5">
-
-#### Developer Console
-
-Test this endpoint right now in the interactive docs:
-            
-<button class="btn btn-default"  markdown="1" >INTERACTIVE DOCS</button>
-
-</div>
-
-</div>
+{{ content }}
 
 -----------
 
@@ -49,37 +30,36 @@ function Animal('name') {
     var animal = new Animal('Animal');
     alert( animal.speed );    
 ~~~
-
->>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua [this a link](http://kramdown.gettalong.org) Ut enim ad minim veniam, quis nostrud exercitation ullamco
-{: .block-central .side-comment}
-
+>
 -----------
-
+>
 >## Authentication
-><div markdown="1" class="block-central side-comment"><!-- .side-comment-->
->#### Sync polaro
->Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+>>#### Sync polaro
+>>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua.
->* [Android blog](http://tech.ticketmaster.com)
->* [Ticketmaster Tech blog](http://tech.ticketmaster.com)
->* [Android blog](http://tech.ticketmaster.com)
->{% highlight javascript %}
+>>
+>> * [Android blog](http://tech.ticketmaster.com)
+>> * [Ticketmaster Tech blog](http://tech.ticketmaster.com)
+>> * [Android blog](http://tech.ticketmaster.com)
+>>
+~~~js
 def what?
     42
 end
->{% endhighlight %}
-></div><!-- end .side-comment-->
+~~~
+>
 >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-></div><!--end .block-central-->
-{: .block-central .side-box"}
-{: .row .col-xs-12 .page-column .col-sm-12 .block-central}
+
+
