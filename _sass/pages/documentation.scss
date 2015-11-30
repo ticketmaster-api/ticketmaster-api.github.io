@@ -14,6 +14,10 @@
     }
 
     .sidebar {
+        &.is-fixed{
+            //position: fixed;
+            top: 0px;
+        }
         h1 {
             color: #fff;
             margin-top: 0;
@@ -52,13 +56,16 @@
             }
         }
 
+
     }
     @media (min-width: 768px) {
-        .sidebar {
-            top: 0;
-            left: 0;
-            bottom: 0;
-            text-align: left;
+        .sidebar.is-fixed {
+            position: fixed;
+        }
+    }
+    @media (max-width: 768px) {
+        .is-fixed {
+            position: relative;
         }
     }
 
@@ -107,7 +114,8 @@
             }
         }
 
-        & .side-comment {
+        //& .side-comment,
+        blockquote{
             float: right;
             width: calc(40% - 2px);
 
@@ -151,7 +159,6 @@
                 float: left;
             }
         }
-
     }
 
     .side-box {
@@ -172,57 +179,5 @@
         font-size: 1.3em;
     }
 
-    /*bootstrap btn*/
-    
-    .btn {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: normal;
-        text-align: center;
-        vertical-align: middle;
-        touch-action: manipulation;
-        cursor: pointer;
-        background-image: none;
-        border: 1px solid transparent;
-        white-space: nowrap;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857;
-        border-radius: 4px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none; }
-    .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
-        outline: thin dotted;
-        outline: 5px auto -webkit-focus-ring-color;
-        outline-offset: -2px; }
-    .btn:hover, .btn:focus, .btn.focus {
-        color: #333;
-        text-decoration: none; }
-    .btn:active, .btn.active {
-        outline: 0;
-        background-image: none;
-        -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
-    .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
-        cursor: not-allowed;
-        opacity: 0.65;
-        filter: alpha(opacity=65);
-        -webkit-box-shadow: none;
-        box-shadow: none; }
-    
-    /*btn bootstrap end*/
 
-    .btn-default{
-        border: 2px solid $n3;
-        font-family: $font-bold-p;
-        padding: 10px 40px;
-        color: $n3;
-        &:hover,
-        :focus{
-            color: $n1;
-            background-color: $white;
-        }
-    }
 }

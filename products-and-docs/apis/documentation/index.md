@@ -1,12 +1,14 @@
 ---
 layout: documentation
+
+language_tabs:
+  - js
+  - cURL  
 ---
 
 # API DOCUMENTATION
 
 <div markdown="1" class="row">
-
-<div markdown="1" class="row-container">
 
 <div markdown="1" class="col-xs-12 page-column col-sm-7">
 
@@ -24,15 +26,14 @@ Test this endpoint right now in the interactive docs:
 <button class="btn btn-default"  markdown="1" >INTERACTIVE DOCS</button>
 
 </div>
-</div>
+
 </div>
 
 -----------
 
 <!-- Start double columns -->
-<div markdown="1" class="row">
 
-<div markdown="1" class="row-container">
+<div markdown="1" class="row">
 
 <div markdown="1" class="col-xs-12 page-column col-sm-12">
 
@@ -40,35 +41,30 @@ Test this endpoint right now in the interactive docs:
 
 ## Fixie tote bag ethnic keytar
 
-<div markdown="1" class="block-central side-comment">{::comment}Block side{:/}
+>{: .block-central .side-comment}
+><!--<div markdown="1" class="block-central side-comment"> end .side-comment-->
+><div markdown="1" class="lang-selector">
+><a markdown="1" class="active" href="#" data-language-name="JS">JS</a>
+><a markdown="1" href="#" data-language-name="cUrl">cULR</a>
+></div>
+    ```js
+        function Animal(name) {
+          this.speed = 0;
+          this.name = name;        
+          this.run = function(speed) {
+            this.speed += speed;
+            alert( this.name + ' run, speed ' + this.speed );
+          };        
+          this.stop = function() {
+            this.speed = 0;
+            alert( this.name + ' is stay' );
+          };
+        };        
+        var animal = new Animal('Animal');
+        alert( animal.speed );    
+    ```
 
-<div markdown="1" class="lang-selector">
-<a markdown="1" class="active" href="#" data-language-name="JS">JS</a>
-<a markdown="1" href="#" data-language-name="cUrl">cULR</a>
-</div>   
-
-{% highlight javascript %}
-function Animal(name) {
-  this.speed = 0;
-  this.name = name;
-
-  this.run = function(speed) {
-    this.speed += speed;
-    alert( this.name + ' run, speed ' + this.speed );
-  };
-
-  this.stop = function() {
-    this.speed = 0;
-    alert( this.name + ' is stay' );
-  };
-};
-
-var animal = new Animal('Animal');
-alert( animal.speed );
-
-{% endhighlight %}
-
-</div><!-- end .side-comment-->
+<!--side-block-->
 
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -113,6 +109,5 @@ labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio
 
 <div markdown="1" class="side-box"></div>
 
-</div>
 </div>
 </div>
