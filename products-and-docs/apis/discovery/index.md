@@ -33,14 +33,14 @@ Returns the 20 most recent events for the authenticating user.
 - size - The number of events returned in the API response. Default value "10";
 - page - The page for paginating through the results. Default value "1";
 - sort - The search sort criteria. 
-  - Values: 
+  Values: 
   - "", 
   - "eventDate,desc", 
   - "eventDate,asc", 
   - "name,desc", 
   - "name,asc";
 - locale - The event locale, including country and localization. 
-  - Values: 
+  Values: 
   - "", 
   - "en-us", 
   - "en-gb", 
