@@ -59,7 +59,7 @@ Returns the 20 most recent events for the authenticating user.
 
 ###Response
 
-<iframe src="https://snap.apigee.com/1ls3jia" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://snap.apigee.com/1ls3jia" width="760" height="300" frameborder="0" scrolling="no"></iframe>
 
 {: #get-enent-det }
 ##Event Details
@@ -101,7 +101,7 @@ Returns the event detail by event ID.
 
 ###Response
 
-<iframe src="https://snap.apigee.com/1YERdB2" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://snap.apigee.com/1ImqiFR" width="860" height="600" frameborder="0" scrolling="no"></iframe>
 
 {: #srch-event-img }
 ##Event Images
@@ -138,7 +138,7 @@ Returns all the images for an event by ID. If an event does not have an image fo
 
 ###Response
 
-<iframe src="https://snap.apigee.com/1YERkwm" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://snap.apigee.com/1YERkwm" width="400" height="300" frameborder="0" scrolling="no"></iframe>
 
 {: #srch-att }
 ##Search Attractions
