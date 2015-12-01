@@ -35,25 +35,25 @@ Returns the 20 most recent events for the authenticating user.
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- keyword - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-- attractionId - Attraction ID(s) separated by comma. Default value "768011";
-- venueId - Venue ID(s) separated by comma. Default value "115378";
-- promoterId - Promoter ID(s) separated by comma. Default value "494";
-- zipCode - Zipcode or Portal Code of the venue in which the event is taking place. Default value "90069";
-- latlong - The longitude/Latitude coordinates for the venue in which this event is taking place. Default value "34.0928090,-118.3286610";
-- radius - The radius of the area in which we want to search for events. Default value "25";
-- size - The number of events returned in the API response. Default value "10";
-- page - The page for paginating through the results. Default value "1";
-- sort - The search sort criteria. Values: "", "eventDate,desc", "eventDate,asc", "name,desc", "name,asc";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
-- marketId - The city/area in which this event takes place. Default value "27";
-- deviceId - The device making the API call. Default value "1";
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com".
+- __keyword__ - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
+- __attractionId__ - Attraction ID(s) separated by comma. Default value "768011";
+- __venueId__ - Venue ID(s) separated by comma. Default value "115378";
+- __promoterId__ - Promoter ID(s) separated by comma. Default value "494";
+- __zipCode__ - Zipcode or Portal Code of the venue in which the event is taking place. Default value "90069";
+- __latlong__ - The longitude/Latitude coordinates for the venue in which this event is taking place. Default value "34.0928090,-118.3286610";
+- __radius__ - The radius of the area in which we want to search for events. Default value "25";
+- __size__ - The number of events returned in the API response. Default value "10";
+- __page__ - The page for paginating through the results. Default value "1";
+- __sort__ - The search sort criteria. Values: "", "eventDate,desc", "eventDate,asc", "name,desc", "name,asc";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
+- __marketId__ - The city/area in which this event takes place. Default value "27";
+- __deviceId__ - The device making the API call. Default value "1";
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com".
 
 ###Response
 
@@ -87,14 +87,14 @@ Returns the event detail by event ID.
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- id - Event ID. Required. Default value "29004F223C406ABF";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __id__ - Event ID. Required. Default value "29004F223C406ABF";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
 
 ###Response
 
@@ -129,9 +129,9 @@ Returns all the images for an event by ID. If an event does not have an image fo
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- id - Event ID. Required. Default value "0B004F0401BD55E5";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __id__ - Event ID. Required. Default value "0B004F0401BD55E5";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Response
 
@@ -165,17 +165,17 @@ Search Attractions!
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- keyword - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
-- size - The number of events returned in the API response. Default value "10";
-- page - The page for paginating through the results. Default value "1";
-- sort - The search sort criteria. Values: "", "name,desc", "name,asc".
+- __keyword__ - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
+- __size__ - The number of events returned in the API response. Default value "10";
+- __page__ - The page for paginating through the results. Default value "1";
+- __sort__ - The search sort criteria. Values: "", "name,desc", "name,asc".
 
 ###Response
 
@@ -209,14 +209,14 @@ Search Attractions!
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- id - Attraction ID. Required. Default value "768011";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __id__ - Attraction ID. Required. Default value "768011";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
 
 ###Response
 
@@ -250,17 +250,17 @@ Search Categories!
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- keyword - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
-- size - The number of events returned in the API response. Default value "10";
-- page - The page for paginating through the results. Default value "1";
-- sort - The search sort criteria. Values: "", "name,desc", "name,asc".
+- __keyword__ - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
+- __size__ - The number of events returned in the API response. Default value "10";
+- __page__ - The page for paginating through the results. Default value "1";
+- __sort__ - The search sort criteria. Values: "", "name,desc", "name,asc".
 
 ###Response
 
@@ -294,14 +294,14 @@ Returns the category detail by ID.
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- id - Category ID. Required. Default value "203";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __id__ - Category ID. Required. Default value "203";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
 
 ###Response
 
@@ -335,17 +335,17 @@ Search Venues!
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- keyword - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
-- size - The number of events returned in the API response. Default value "10";
-- page - The page for paginating through the results. Default value "1";
-- sort - The search sort criteria. Values: "", "name,desc", "name,asc".
+- __keyword__ - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
+- __size__ - The number of events returned in the API response. Default value "10";
+- __page__ - The page for paginating through the results. Default value "1";
+- __sort__ - The search sort criteria. Values: "", "name,desc", "name,asc".
 
 ###Response
 
@@ -379,14 +379,14 @@ Returns the venue detail by ID.
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v1";
-- id - Venue ID. Required. Default value "90150";
-- format - API Response Format. Required. Default value "json".
+- __version__ - The API Version. Required. Default value "v1";
+- __id__ - Venue ID. Required. Default value "90150";
+- __format__ - API Response Format. Required. Default value "json".
 
 ###Query parameters:
 
-- domain - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- locale - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
+- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
+- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
 
 ###Response
 
