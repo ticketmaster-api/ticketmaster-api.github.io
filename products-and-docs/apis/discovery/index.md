@@ -8,6 +8,10 @@ categories: products-and-docs/apis/discovery/
 {: .lead #lead}
 Description of API for discovery service. This API allows to work with events, attractions, categories and venues.
 
+{: .pull-quote #pull-quote}
+For work with API you should add to query string the __apikey__ parameter with your key.
+
+
 {: #srch-evets }
 ##Search Events
 
