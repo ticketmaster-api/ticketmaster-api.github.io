@@ -197,7 +197,7 @@
         border-left:2px solid lighten( $n2-grey-color, 35); ;
         position: absolute;
         right: 0;
-        top: 0;
+        top: 380px;
         bottom: 0;
         z-index: -1;
         @media (max-width: 768px) {
@@ -205,12 +205,6 @@
         }
     }
 
-    p.main-description{
-        font-size: 1.3em;
-        width: 100%;
-        float: left;
-        width: 55%;
-    }
     h1, h2, h3, h4, h5, h6,
     p, table, ul, ol, aside, dl, figure{
         display: block;
@@ -254,6 +248,24 @@
             border: 0;
         }
     }
+
+    /**/
+    .dev-console-header{
+        h1, h2, h3{
+            width: 100%;
+        }
+        h3{
+            color: $n3;
+        }
+        p{
+            width: 100%;
+
+            &.main-description {
+                font-size: 1.3em;
+            }
+        }
+    }
+
 
 
 }
