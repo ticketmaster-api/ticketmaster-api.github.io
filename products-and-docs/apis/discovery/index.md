@@ -359,7 +359,7 @@ Search Venues!
 
 <iframe src="https://snap.apigee.com/1XuzHCk" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
-{: get-venues-det }
+{: #get-venues-det }
 ##Venue Details
 
 > [JS](#js){: .active}
