@@ -6,7 +6,6 @@ layout: default
     {% include home-header.html %}
 
     <div class="maincontent">
-
         <div class="row">
             <div class="row-container">
                 <div class="col-xs-12 page-column col-sm-3">
@@ -14,9 +13,14 @@ layout: default
                         {% include pd-side-menu.html %}
                     </div>
                 </div>
+
                 <div class="col-xs-12 page-column col-sm-9">
                     <div class="content" style="display: block;">
+                    {% include  partials/doc-custom-header.html %}
+                    </div>
+                    <div class="content" style="display: block;">
                         {{ content }}
+                    <div class="side-box"></div>
                     </div>
                 </div>
             </div>
