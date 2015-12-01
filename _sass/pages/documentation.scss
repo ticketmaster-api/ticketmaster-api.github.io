@@ -2,6 +2,22 @@
     .maincontent{
         margin-top: 55px;
     }
+    .content{
+        blockquote{
+            .highlighter-rouge {
+                position: relative;
+                display: inline-block;
+                width: 57%;
+            }
+            blockquote{
+                .highlighter-rouge {
+                    position: inherit;
+                    display: inherit;
+                    width: 100%;
+                }
+            }
+        }
+    }
     /*
      * Sidebar
      *
@@ -12,10 +28,13 @@
         padding-top: 10px;
         border-top: 1px solid $code-border;
     }
-
+    .content {
+        h3.menu-header{
+            color: $n3;
+        }
+    }
     .sidebar {
         &.is-fixed{
-            //position: fixed;
             top: 0px;
         }
         h1 {
@@ -23,6 +42,9 @@
             margin-top: 0;
             font-family: "Abril Fatface", serif;
             font-size: 3.25rem;
+        }
+        h4{
+            color: $n3;
         }
         ul:first-child{
             margin-left: 0;
@@ -102,38 +124,37 @@
     hr{
         clear: both;
         border: 0;
-        padding-top: 20px;
     }
+
     blockquote{
         h1, h2, h3, h4, h5, h6,
         p, table, ul, ol, aside, dl, figure{
             display: block;
             width: 55%;
+            float: left;
             @media (max-width: 767px) {
                 width: 100%;
             }
         }
-        //float: right;
-        //color: #768692;
         border-left: 0;
         padding-left: 0;
         font-size: inherit;
         letter-spacing: 0;
         font-style: normal;
-    }
-    .block-central{
 
-        //& .side-comment,
+        & .side-comment,
         blockquote{
             float: right;
-            //color: #768692;
-            border-left: 0;
-            padding-left: 0;
+            margin: 0px;
+            padding-left: 20px;
+            padding-top: 0px;
+            padding-bottom: 10px;
             font-size: inherit;
             letter-spacing: 0;
             font-style: normal;
+            border-left: 2px solid $n3;
 
-            width: calc(40% - 2px);
+            width: calc(44% - 2px);
 
             h1, h2, h3, h4, h5, h6,
             p, table, ul, ol, aside, dl,
@@ -143,6 +164,7 @@
             @media (max-width: 767px) {
                 float: inherit;
                 width: 100%;
+                border: 0;
             }
         }
 
@@ -179,7 +201,6 @@
 
     .side-box {
         width: 43%;
-        //background-color: #ccc;
         border-left:2px solid lighten( $n2-grey-color, 35); ;
         position: absolute;
         right: 0;
@@ -193,6 +214,7 @@
 
     p.main-description{
         font-size: 1.3em;
+        width: 100%;
     }
 
 
