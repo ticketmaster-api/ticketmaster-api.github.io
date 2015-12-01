@@ -1,14 +1,13 @@
 (function(){
     $(document).ready(function() {
-        var secondaryNav = $('#sideMenu'),
-            secondaryNavTopPosition = 175; //secondaryNav.offset().top,
-            //firstLiElem = $("#sideMenu ul").first().css('margin-top').replace("px", '');
+        var secondaryNav = $('#sideMenu');
+        var offset = 307;
 
-        console.log("Name is " + navigator.appName + ". Code name is " + navigator.appCodeName)
-
+        console.log([$('#sideMenu').offset().top,offset]);
 
         $(window).on('scroll', function () {
-            if ($(window).scrollTop() > secondaryNavTopPosition) {
+            console.log($(window).scrollTop());
+            if ($(window).scrollTop() > offset) {
                 secondaryNav.addClass('is-fixed');
 
             } else {

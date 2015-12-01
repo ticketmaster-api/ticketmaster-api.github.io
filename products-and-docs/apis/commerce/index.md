@@ -1,5 +1,6 @@
 ---
 layout: documentation
+categories: products-and-docs/apis/commerce/
 ---
 
 #Commerse REST API
