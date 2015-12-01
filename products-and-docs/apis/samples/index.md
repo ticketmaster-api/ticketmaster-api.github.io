@@ -1,5 +1,5 @@
 ---
-layout: documentation
+layout: documentation-single
 categories : products-and-docs/apis/samples/
 ---
 

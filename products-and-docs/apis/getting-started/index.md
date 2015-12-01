@@ -1,10 +1,10 @@
 ---
-layout: documentation
+layout: documentation-single
 ---
 
 #Welcome to TicketMaster API !
 
-{: .body }
+{: .lead }
 The following APIs are available for you:
 [Discovery API](/products-and-docs/apis/discovery/) - everything you need for searching events and getting event details
 [Commerce API](/products-and-docs/apis/commerce/) - allows to buy tickets

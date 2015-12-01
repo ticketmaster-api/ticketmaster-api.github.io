@@ -23,6 +23,7 @@
     }
     .content {
         h3.menu-header{
+            width: 100%;
             color: $n3;
         }
     }
@@ -257,6 +258,7 @@
         }
         h3{
             color: $n3;
+            width: 100% !important;
         }
         p{
             width: 100%;
