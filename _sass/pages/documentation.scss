@@ -5,16 +5,9 @@
     .content{
         blockquote{
             .highlighter-rouge {
-                position: relative;
-                display: inline-block;
-                width: 57%;
-            }
-            blockquote{
-                .highlighter-rouge {
-                    position: inherit;
-                    display: inherit;
-                    width: 100%;
-                }
+                position: inherit;
+                display: inherit;
+                width: 100%;
             }
         }
     }
@@ -200,11 +193,11 @@
     }
 
     .side-box {
-        width: 43%;
+        width: 44%;
         border-left:2px solid lighten( $n2-grey-color, 35); ;
         position: absolute;
         right: 0;
-        top: 0;
+        top: 380px;
         bottom: 0;
         z-index: -1;
         @media (max-width: 768px) {
@@ -212,10 +205,67 @@
         }
     }
 
-    p.main-description{
-        font-size: 1.3em;
-        width: 100%;
+    h1, h2, h3, h4, h5, h6,
+    p, table, ul, ol, aside, dl, figure{
+        display: block;
+        width: 55%;
+        float: left;
+        @media (max-width: 767px) {
+            width: 100%;
+        }
     }
+    blockquote.main-description-console{
+        border-left: 0px solid $n3;
+    }
+
+    /*new*/
+    h2{
+        float: left;
+        width: 55%;
+    }
+
+    blockquote{
+        float: right;
+        margin: 0px;
+        padding-left: 20px;
+        padding-top: 0px;
+        padding-bottom: 10px;
+        font-size: inherit;
+        letter-spacing: 0;
+        font-style: normal;
+        /*border-left: 2px solid $n3;*/
+        width: calc(44% - 2px);
+
+
+        h1, h2, h3, h4, h5, h6,
+        p, table, ul, ol, aside, dl,
+        pre, code, blockquote, figure{
+            width: 100%;
+        }
+        @media (max-width: 767px) {
+            float: inherit;
+            width: 100%;
+            border: 0;
+        }
+    }
+
+    /**/
+    .dev-console-header{
+        h1, h2, h3{
+            width: 100%;
+        }
+        h3{
+            color: $n3;
+        }
+        p{
+            width: 100%;
+
+            &.main-description {
+                font-size: 1.3em;
+            }
+        }
+    }
+
 
 
 }
