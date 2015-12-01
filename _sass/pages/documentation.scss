@@ -215,6 +215,42 @@
     p.main-description{
         font-size: 1.3em;
         width: 100%;
+        float: left;
+        width: 55%;
+    }
+    blockquote.main-description-console{
+        border-left: 0px solid $n3;
+    }
+
+    /*new*/
+    h2{
+        float: left;
+        width: 55%;
+    }
+
+    blockquote{
+        float: right;
+        margin: 0px;
+        padding-left: 20px;
+        padding-top: 0px;
+        padding-bottom: 10px;
+        font-size: inherit;
+        letter-spacing: 0;
+        font-style: normal;
+        border-left: 2px solid $n3;
+        width: calc(44% - 2px);
+
+
+        h1, h2, h3, h4, h5, h6,
+        p, table, ul, ol, aside, dl,
+        pre, code, blockquote, figure{
+            width: 100%;
+        }
+        @media (max-width: 767px) {
+            float: inherit;
+            width: 100%;
+            border: 0;
+        }
     }
 
 
