@@ -5,15 +5,27 @@ content: ../doc-custom-header.md
 
 # API DOCUMENTATION
 
-{{ content }}
+>
+>Hella narwhal Cosby dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+>{: .main-description}
+>
+{: .col-xs-12 .page-column .col-sm-7}
+>
+>#### Developer Console
+>Test this endpoint right now in the interactive docs:
+><button class="btn btn-default"  markdown="1" >INTERACTIVE DOCS</button>
+>
+{: .col-xs-12 .page-column .col-sm-5}
+>
+{: .row}
 
 -----------
 
 >## Fixie tote bag ethnic keytar
->> <div markdown="1" class="lang-selector">
->> <a markdown="1" class="active" href="#" data-language-name="JS">JS</a>
->> <a markdown="1" href="#" data-language-name="cUrl">cULR</a>
->> </div>
+>> [JS](#js){: .active}
+>> [cULR](#cULR)
+>>{: .lang-selector}
+>>
 ~~~js
 function Animal('name') {
     this.speed = 0;
@@ -61,5 +73,33 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-
+>
+-----------
+>
+>### Overview
+>The Inventory API provides access to the *vehicle inventories* (or *cars for sale*) available at dealerships with a relationship with Edmunds.com. 
+Due to the nature of this data, it's only available to **API Partners** and **Edmunds Developers**. 
+If you're interested in becoming an API Partner, please <a href="http://developer.edmunds.com/contact_us/" 
+onclick="window.open(this.href,  null, 'height=1155, width=680, toolbar=0, location=0, status=1, scrollbars=1, resizable=1'); return false">contact us</a>.
+>If you haven't yet, this might be a good time to read the [API Overview](/api-documentation/overview/) page to familiarize yourself with some of the core concepts required to using the API.<a name='sec-2'> </a>
+>[Back to top](#top)
+>
+>### OAuth 2.0
+>The Inventory API requires **[OAuth 2.0](http://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified)** for 
+both *authentication* and *authorization*. Here is how you would get an OAuth access token:
+>
+>>	curl -i -H 'Content-Type: application/x-www-form-urlencoded' 'https://api.edmunds.com/inventory/token' -X POST -d 'client_id=<api key>' -d 'client_secret=<shared secret>' -d 'grant_type=client_credentials'
+>
+>You will find both your *api key* and *shared secret* in your [dashboard](http://edmunds.mashery.com/apps/mykeys).
+>If you've been given access by the Edmunds API Team, you should receive an _access\_token_ back. The _access\_token_ is valid for **one hour** after which you'll need to get a new one.
+>Now that you have your _access\_token_ for the hour, you can start making calls to the Inventory API resources this way:
+>
+>>	curl -i -H 'Authorization: Bearer <access_token>' 'http://api.edmunds.com/{endpoint}'
+>
+>Alternative, you can add the the _access\_token_ to the query string:
+>
+>	curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
+>
+>We **do not recommend** the second approach since it's not secure.<a name='sec-3'> </a>
+>[Back to top](#top)
 

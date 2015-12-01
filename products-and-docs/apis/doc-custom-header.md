@@ -18,3 +18,14 @@
     </div>
 
 </div>
+>
+{: .col-xs-12 .page-column .col-sm-7}
+>
+>#### Developer Console
+
+>Test this endpoint right now in the interactive docs:
+
+><button class="btn btn-default"  markdown="1" >INTERACTIVE DOCS</button>        
+{: .col-xs-12 .page-column .col-sm-5}
+>
+{: .row} 

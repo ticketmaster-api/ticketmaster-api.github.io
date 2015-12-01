@@ -14,11 +14,12 @@ h2 {
 h3 {
   font-family: $font-h3;
   font-size: $size-h3;
-  color: $n3;
+  color: $n1;
   line-height: $line-height-h3;
 }
 
 h4 {
+  color: $n1;
   font-family: $font-h4;
   font-size: $size-h4;
   margin-bottom: $spacing-header;
@@ -26,6 +27,7 @@ h4 {
   line-height: $line-height-h4;
 }
 h5 {
+  color: $n1;
   font-family: $font-h5;
   font-size: $size-h5;
   margin-bottom: $spacing-header;
@@ -33,6 +35,7 @@ h5 {
   line-height: $line-height-h5;
 }
 h6 {
+  color: $n1;
   font-family: $font-h6;
   font-size: $size-h6;
   margin-bottom: $spacing-header;

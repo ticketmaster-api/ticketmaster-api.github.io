@@ -2,6 +2,22 @@
     .maincontent{
         margin-top: 55px;
     }
+    .content{
+        blockquote{
+            .highlighter-rouge {
+                position: relative;
+                display: inline-block;
+                width: 57%;
+            }
+            blockquote{
+                .highlighter-rouge {
+                    position: inherit;
+                    display: inherit;
+                    width: 100%;
+                }
+            }
+        }
+    }
     /*
      * Sidebar
      *
@@ -12,10 +28,13 @@
         padding-top: 10px;
         border-top: 1px solid $code-border;
     }
-
+    .content {
+        h3.menu-header{
+            color: $n3;
+        }
+    }
     .sidebar {
         &.is-fixed{
-            //position: fixed;
             top: 0px;
         }
         h1 {
@@ -23,6 +42,9 @@
             margin-top: 0;
             font-family: "Abril Fatface", serif;
             font-size: 3.25rem;
+        }
+        h4{
+            color: $n3;
         }
         ul:first-child{
             margin-left: 0;
@@ -132,7 +154,7 @@
             font-style: normal;
             border-left: 2px solid $n3;
 
-            width: calc(40% - 2px);
+            width: calc(44% - 2px);
 
             h1, h2, h3, h4, h5, h6,
             p, table, ul, ol, aside, dl,
@@ -192,6 +214,7 @@
 
     p.main-description{
         font-size: 1.3em;
+        width: 100%;
     }
 
 
