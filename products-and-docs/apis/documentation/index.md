@@ -1,6 +1,6 @@
 ---
 layout: documentation
-content: ../doc-custom-header.md
+ 
 ---
 
 # API DOCUMENTATION

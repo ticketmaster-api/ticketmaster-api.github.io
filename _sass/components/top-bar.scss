@@ -22,16 +22,26 @@ $borderHeight: 8px;
 #menu-btn{
   display: none;
   background-image: url('/assets/img/header/ic-menu-p-1.png');
+  &.white{
+    background-image: url('/assets/img/header/ic_menu_white.png');
+    background-position: 5px 5px;
+  }
   cursor: pointer;
   &.tm-close{
     background-image: url('/assets/img/header/ic_close.png');
     background-size: 18px 18px;
     background-position: 4px 4px;
+    &.white{
+      background-image: url('/assets/img/header/ic_close_white.png');
+    }
   }
 }
 
 #search{
   background-image: url('/assets/img/header/ic-search-p-1.png');
+  &.white{
+    background-image: url('/assets/img/header/ic_search_white.png');
+  }
 }
 
 #rainbow{
@@ -54,21 +64,21 @@ $borderHeight: 8px;
 }
 
 #menu-dropdown{
+  display: none;
   overflow-y: hidden;
   transition-property: all;
   transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.17, 0.04, 0.03, 0.94);
+  transition-timing-function: cubic-bezier(0.33, 0.01, 0.32, 0.48);
   &.expanded{
     max-height: 500px;
     box-shadow: 2px 8px 9px 0px rgba(0, 0, 0, 0.68);
   }
-  &.closed{
-    max-height: 0;
-  }
-  position: absolute;
   background: $white;
+  min-height: 0;
+  max-height: 0;
+  position: absolute;
   z-index: 1;
-  top: 50px;
+  top: 60px;
   right: 0px;
   outline: none;
   li{
@@ -85,7 +95,6 @@ nav{
   a {
     font-family: $font-body;
     letter-spacing: 0.8px;
-    color: $n3 !important;
     text-transform: uppercase;
     line-height: $line-height-h4;
     display: table-cell;
@@ -97,6 +106,15 @@ nav{
 }
 
 .top-bar {
+  &.bg-header{
+    background-image: url('/assets/img/home/bg-football-p-1.png');
+    padding-bottom: 130px;
+    nav{
+      &>a {
+        color: $white !important;
+      }
+    }
+  }
   &>.row{
     position: relative;
   }
@@ -108,10 +126,15 @@ nav{
   .gray{
     border-top: $borderHeight solid #768692;
   }
-  .nav-item{
-    position: relative;
-    &:after{
-      @include rainbowAfter();
+  nav{
+    &>a{
+      position: relative;
+      color: $n3 !important;
+    }
+    .nav-item{
+      &:after{
+        @include rainbowAfter();
+      }
     }
   }
   .one {
@@ -155,6 +178,9 @@ nav{
   }
   #rainbow{
     display: table;
+  }
+  #menu-dropdown {
+    display: block;
   }
 }
 
