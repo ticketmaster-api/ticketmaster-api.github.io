@@ -96,7 +96,7 @@ Now that you have your _access\_token_ for the hour, you can start making calls 
 
 Alternative, you can add the the _access\_token_ to the query string:
 
-	curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
+>	curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
 
 We **do not recommend** the second approach since it's not secure.<a name='sec-3'> </a>
 [Back to top](#top)
