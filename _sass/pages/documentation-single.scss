@@ -1,0 +1,127 @@
+.samples{
+    .maincontent{
+        margin-top: 55px;
+    }
+    .content{
+        blockquote{
+            .highlighter-rouge {
+                position: inherit;
+                display: inherit;
+                width: 100%;
+            }
+        }
+    }
+    /*
+     * Sidebar
+     *
+     * Flexible banner for housing site name, intro, and "footer" content. Starts
+     * out above content in mobile and later moves to the side with wider viewports.
+     */
+    h4>.right-col{
+        padding-top: 10px;
+        border-top: 1px solid $code-border;
+    }
+    .content {
+        h3.menu-header{
+            color: $n3;
+            display: block;
+            width: 100%;
+            float: none;
+        }
+    }
+    .sidebar {
+        &.is-fixed{
+            top: 0px;
+        }
+        h1 {
+            color: #fff;
+            margin-top: 0;
+            font-family: "Abril Fatface", serif;
+            font-size: 3.25rem;
+        }
+        h4{
+            color: $n3;
+        }
+        ul:first-child{
+            margin-left: 0;
+        }
+        ul{
+            width: 100%;
+            & .lvl-1{
+                margin-left: 0;
+                a{
+                    color: $n2-grey-color;
+                }
+                a:hover {
+                    color: $p1a;
+                }
+            }
+            & .lvl-2 {
+                margin-left: 10px;
+                li {
+                    color: $n2-grey-color;
+                    line-height: 1.9em;
+                    a{
+                        color: $n2-grey-color;
+                    }
+                    a:hover {
+                        color: $p1a;
+                    }
+                }
+            }
+            & .lvl-3 {
+                a{
+                    color: $n2-grey-color;
+                }
+                a:hover {
+                    color: $p1a;
+                }
+                padding-left: 20px;
+                border-left: 2px solid lighten( $n2-grey-color, 35);
+            }
+        }
+
+
+    }
+    @media (min-width: 768px) {
+        .sidebar.is-fixed {
+            position: fixed;
+        }
+    }
+    @media (max-width: 768px) {
+        .is-fixed {
+            position: relative;
+        }
+    }
+
+    /* Sidebar nav */
+    .sidebar-nav {
+        margin-bottom: 1rem;
+    }
+    .sidebar-nav-item {
+        display: block;
+        line-height: 1.75;
+        .active {
+            font-weight: bold;
+        }
+    }
+    a.sidebar-nav-item:hover,
+    a.sidebar-nav-item:focus {
+        text-decoration: underline;
+    }
+    /* Sticky sidebar
+     *
+     * Add the `sidebar-sticky` class to the sidebar's container to affix it the
+     * contents to the bottom of the sidebar in tablets and up.
+     */
+
+    @media (min-width: 1000px) {
+        .sidebar-sticky {
+            position: absolute;
+            right:  1rem;
+            bottom: 1rem;
+            left:   1rem;
+        }
+    }
+
+}
