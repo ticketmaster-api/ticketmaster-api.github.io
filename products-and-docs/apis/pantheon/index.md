@@ -3,11 +3,7 @@ layout: documentation
 categories: products-and-docs/apis/pantheon/
 ---
 
-
-FORMAT: X-1A
-HOST: https://app.ticketmaster.com
-
-# Ticketmaster Partner-App API
+## Ticketmaster Partner-App API
 
 The Ticketmaster Partner-App API lets users purchase tickets through your app's native experience. Users will receive an email with a link to ticketmaster.com or our mobile app to redeem tickets.<br/><br/>
 
