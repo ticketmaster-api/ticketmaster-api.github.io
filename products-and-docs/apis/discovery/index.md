@@ -8,6 +8,7 @@ categories: products-and-docs/apis/discovery/
 {: .lead #lead}
 Description of API for discovery service. This API allows to work with events, attractions, categories and venues.
 
+{: #srch-evets }
 ##Search Events
 
 > [JS](#js){: .active}
@@ -60,6 +61,7 @@ Returns the 20 most recent events for the authenticating user.
 
 <iframe src="https://snap.apigee.com/1ls3jia" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
+{: #get-enent-det }
 ##Event Details
 
 > [JS](#js){: .active}
@@ -101,7 +103,7 @@ Returns the event detail by event ID.
 
 <iframe src="https://snap.apigee.com/1YERdB2" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
-
+{: #srch-event-img }
 ##Event Images
 
 > [JS](#js){: .active}
@@ -138,6 +140,7 @@ Returns all the images for an event by ID. If an event does not have an image fo
 
 <iframe src="https://snap.apigee.com/1YERkwm" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
+{: #srch-att }
 ##Search Attractions
 
 > [JS](#js){: .active}
@@ -182,6 +185,7 @@ Search Attractions!
 
 <iframe src="https://snap.apigee.com/1XuyzP2" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
+{: #get-attr-det }
 ##Attraction Details
 
 > [JS](#js){: .active}
@@ -223,6 +227,7 @@ Search Attractions!
 
 <iframe src="https://snap.apigee.com/1YERrIr" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
+{: #srch-cat }
 ##Search Categories
 
 > [JS](#js){: .active}
@@ -267,6 +272,7 @@ Search Categories!
 
 <iframe src="https://snap.apigee.com/1XuznDt" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
+{: #get-cat-det }
 ##Category Details
 
 > [JS](#js){: .active}
@@ -308,6 +314,7 @@ Returns the category detail by ID.
 
 <iframe src="https://snap.apigee.com/1YERyU9" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
+{: #srch-venues }
 ##Search Venues
 
 > [JS](#js){: .active}
@@ -352,6 +359,7 @@ Search Venues!
 
 <iframe src="https://snap.apigee.com/1XuzHCk" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
+{: #get-venues-det }
 ##Venue Details
 
 > [JS](#js){: .active}
