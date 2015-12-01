@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<div class="body-wrapper samples">
+    {% include home-header.html %}
+
+    <div class="maincontent">
+        <div class="row">
+            <div class="row-container">
+                <div class="col-xs-12 page-column col-sm-3">
+                    <div class="content" style="display: block;">
+                        {% include pd-side-menu.html %}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 page-column col-sm-9">
+                    <div class="content" style="display: block;">
+                        {{ content }}
+                    <div class="side-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include home-footer.html %}
+
+</div>
+<script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
