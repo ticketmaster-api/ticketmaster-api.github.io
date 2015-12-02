@@ -1,129 +1,115 @@
 .documentation{
-    .maincontent{
-        margin-top: 55px;
-    }
-    .content{
-        blockquote{
+    .content {
+        blockquote {
             .highlighter-rouge {
                 position: inherit;
                 display: inherit;
                 width: 100%;
             }
         }
-    }
-    /*
-     * Sidebar
-     *
-     * Flexible banner for housing site name, intro, and "footer" content. Starts
-     * out above content in mobile and later moves to the side with wider viewports.
-     */
-    h4>.right-col{
-        padding-top: 10px;
-        border-top: 1px solid $code-border;
-    }
-    .content {
-        h3.menu-header{
+        h3.menu-header {
             width: 100%;
             color: $n3;
         }
-    }
-    .sidebar {
-        &.is-fixed{
-            top: 0px;
+
+        h4 > .right-col {
+            padding-top: 10px;
+            border-top: 1px solid $code-border;
         }
-        h1 {
-            color: #fff;
-            margin-top: 0;
-            font-family: "Abril Fatface", serif;
-            font-size: 3.25rem;
+
+        hr {
+            clear: both;
+            border: 0;
         }
-        h4{
-            color: $n3;
-        }
-        ul:first-child{
-            margin-left: 0;
-        }
-        ul{
-            width: 100%;
-            & .lvl-1{
-            margin-left: 0;
-            }
-            & .lvl-2 {
-                margin-left: 10px;
-                li {
-                    color: $n2-grey-color;
-                    line-height: 1.9em;
-                    a{
-                        color: $n2-grey-color;
-                    }
-                    a:hover {
-                        color: $p1a;
-                    }
+
+        blockquote {
+            h1, h2, h3, h4, h5, h6,
+            p, table, ul, ol, aside, dl, figure {
+                display: block;
+                width: 55%;
+                float: left;
+                @media (max-width: 767px) {
+                    width: 100%;
                 }
             }
-            & .lvl-3 {
-                a{
-                    color: $n2-grey-color;
-                }
-                a:hover {
-                    color: $p1a;
-                }
+            border-left: 0;
+            padding-left: 0;
+            font-size: inherit;
+            letter-spacing: 0;
+            font-style: normal;
+
+            & .side-comment,
+            blockquote {
+                float: right;
+                margin: 0px;
                 padding-left: 20px;
-                border-left: 2px solid lighten( $n2-grey-color, 35);
+                padding-top: 0px;
+                padding-bottom: 10px;
+                font-size: inherit;
+                letter-spacing: 0;
+                font-style: normal;
+                border-left: 2px solid $n3;
+
+                width: calc(44% - 2px);
+
+                h1, h2, h3, h4, h5, h6,
+                p, table, ul, ol, aside, dl,
+                pre, code, blockquote, figure {
+                    width: 100%;
+                }
+                @media (max-width: 767px) {
+                    float: inherit;
+                    width: 100%;
+                    border: 0;
+                }
+            }
+
+            .lang-selector {
+                a {
+                    color: $n2-grey-color;
+                    font-size: $size-h3;
+                    border-bottom: 3px solid $n2-grey-color;
+                    text-decoration: none;
+                    display: block;
+                    width: 30%;
+                    float: left;
+                    margin: 0 5px 20px 5px;
+                    text-align: center;
+                    line-height: 2em;
+                    &:hover {
+                        color: $s1a;
+                        border-color: $s1a;
+                    }
+                }
+                .active {
+                    color: $p1a;
+                    border-bottom: 3px solid $p1a;
+                }
+            }
+
+            /*TO align header and code example*/
+            @media (min-width: 768px) {
+                h2 {
+                    float: left;
+                }
             }
         }
 
-
-    }
-    @media (min-width: 768px) {
-        .sidebar.is-fixed {
-            position: fixed;
-        }
-    }
-    @media (max-width: 768px) {
-        .is-fixed {
-            position: relative;
-        }
-    }
-
-    /* Sidebar nav */
-    .sidebar-nav {
-        margin-bottom: 1rem;
-    }
-    .sidebar-nav-item {
-        display: block;
-        line-height: 1.75;
-        .active {
-            font-weight: bold;
-        }
-    }
-    a.sidebar-nav-item:hover,
-    a.sidebar-nav-item:focus {
-        text-decoration: underline;
-    }
-    /* Sticky sidebar
-     *
-     * Add the `sidebar-sticky` class to the sidebar's container to affix it the
-     * contents to the bottom of the sidebar in tablets and up.
-     */
-
-    @media (min-width: 1000px) {
-        .sidebar-sticky {
+        .side-box {
+            width: 44%;
+            border-left: 2px solid lighten($n2-grey-color, 35);;
             position: absolute;
-            right:  1rem;
-            bottom: 1rem;
-            left:   1rem;
+            right: 0;
+            top: 280px;
+            bottom: 0;
+            z-index: -1;
+            @media (max-width: 768px) {
+                display: none;
+            }
         }
-    }
 
-    hr{
-        clear: both;
-        border: 0;
-    }
-
-    blockquote{
         h1, h2, h3, h4, h5, h6,
-        p, table, ul, ol, aside, dl, figure{
+        p, table, ul, ol, aside, dl, figure {
             display: block;
             width: 55%;
             float: left;
@@ -131,14 +117,14 @@
                 width: 100%;
             }
         }
-        border-left: 0;
-        padding-left: 0;
-        font-size: inherit;
-        letter-spacing: 0;
-        font-style: normal;
 
-        & .side-comment,
-        blockquote{
+        /*new*/
+        h2 {
+            float: left;
+            width: 55%;
+        }
+
+        blockquote {
             float: right;
             margin: 0px;
             padding-left: 20px;
@@ -147,15 +133,19 @@
             font-size: inherit;
             letter-spacing: 0;
             font-style: normal;
-            border-left: 2px solid $n3;
-
+            /*border-left: 2px solid $n3;*/
             width: calc(44% - 2px);
 
             h1, h2, h3, h4, h5, h6,
             p, table, ul, ol, aside, dl,
-            pre, code, blockquote, figure{
+            pre, code, blockquote, figure {
                 width: 100%;
             }
+
+            .main-description-console {
+                border-left: 0px solid $n3;
+            }
+
             @media (max-width: 767px) {
                 float: inherit;
                 width: 100%;
@@ -163,112 +153,22 @@
             }
         }
 
-        .lang-selector{
-            a{
-                color: $n2-grey-color;
-                font-size: $size-h3;
-                border-bottom: 3px solid $n2-grey-color;
-                text-decoration: none;
-                display: block;
-                width: 30%;
-                float: left;
-                margin: 0 5px 20px 5px;
-                text-align: center;
-                line-height: 2em;
-                &:hover{
-                    color: $s1a;
-                    border-color: $s1a;
+        .dev-console-header {
+            h1, h2, h3 {
+                width: 100%;
+            }
+            h3 {
+                color: $n3;
+                width: 100% !important;
+            }
+            p {
+                width: 100%;
+
+                &.main-description {
+                    font-size: 1.3em;
                 }
             }
-            .active{
-                color: $p1a;
-                border-bottom: 3px solid $p1a;
-            }
         }
 
-        /*TO align header and code example*/
-        @media (min-width: 768px) {
-            h2{
-                float: left;
-            }
-        }
     }
-
-    .side-box {
-        width: 44%;
-        border-left:2px solid lighten( $n2-grey-color, 35); ;
-        position: absolute;
-        right: 0;
-        top: 380px;
-        bottom: 0;
-        z-index: -1;
-        @media (max-width: 768px) {
-            display: none;
-        }
-    }
-
-    h1, h2, h3, h4, h5, h6,
-    p, table, ul, ol, aside, dl, figure{
-        display: block;
-        width: 55%;
-        float: left;
-        @media (max-width: 767px) {
-            width: 100%;
-        }
-    }
-    blockquote.main-description-console{
-        border-left: 0px solid $n3;
-    }
-
-    /*new*/
-    h2{
-        float: left;
-        width: 55%;
-    }
-
-    blockquote{
-        float: right;
-        margin: 0px;
-        padding-left: 20px;
-        padding-top: 0px;
-        padding-bottom: 10px;
-        font-size: inherit;
-        letter-spacing: 0;
-        font-style: normal;
-        /*border-left: 2px solid $n3;*/
-        width: calc(44% - 2px);
-
-
-        h1, h2, h3, h4, h5, h6,
-        p, table, ul, ol, aside, dl,
-        pre, code, blockquote, figure{
-            width: 100%;
-        }
-        @media (max-width: 767px) {
-            float: inherit;
-            width: 100%;
-            border: 0;
-        }
-    }
-
-    /**/
-    .dev-console-header{
-        h1, h2, h3{
-            width: 100%;
-        }
-        h3{
-            color: $n3;
-            width: 100% !important;
-        }
-        p{
-            width: 100%;
-
-            &.main-description {
-                font-size: 1.3em;
-            }
-        }
-    }
-
-
-
 }

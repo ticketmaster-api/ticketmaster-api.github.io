@@ -1,0 +1,68 @@
+h3.menu-header {
+  width: 100%;
+  color: $n3;
+}
+
+.aside-menu {
+  width: 100%;
+  display: block;
+  float: inherit;
+
+  h4 {
+    color: $n2-grey-color;
+    margin-top: 0;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &.is-fixed {
+    top: 0px;
+    position: fixed;
+  }
+
+  .categories {
+    margin-left: 10px;
+    a {
+      color: $n2-grey-color;
+
+      &:hover {
+        color: $p1a;
+      }
+    }
+  }
+  .sections {
+    padding-left: 20px;
+    border-left: 2px solid lighten( $n2-grey-color, 35);
+    margin: 10px 0;
+    li {
+      color: $n2-grey-color;
+      line-height: 2em;
+      a {
+        color: $n2-grey-color;
+
+        &:hover {
+          color: $p1a;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar.is-fixed {
+    position: fixed;
+  }
+}
+@media (max-width: 768px) {
+  .is-fixed {
+    position: relative;
+  }
+}
+
+/* Sticky sidebar
+ *
+ * Add the `sidebar-sticky` class to the sidebar's container to affix it the
+ * contents to the bottom of the sidebar in tablets and up.
+ */
