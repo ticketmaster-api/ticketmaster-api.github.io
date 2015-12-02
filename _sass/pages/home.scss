@@ -1,12 +1,3 @@
-@mixin social-link(){
-  position: relative;
-  display: inline;
-  margin-right: 15px;
-  &:after{
-    display: none;
-  }
-}
-
 #top-promo{
   background-image: url('/assets/img/home/bg-football-p-1.png');
 }
@@ -66,7 +57,12 @@
 
 li{
   &.social-link{
-    @include social-link();
+    position: relative;
+    display: inline;
+    margin-right: 15px;
+    &:after{
+      display: none;
+    }
   }
 }
 
@@ -85,26 +81,6 @@ li{
       position: absolute;
       right: -65px;
       top: 15px;
-    }
-  }
-}
-
-.columns {
-  .content {
-    h3{
-      text-align: center;
-    }
-    &.social {
-      li{
-        @include social-link();
-      }
-    }
-    p {
-      &>img {
-        max-height: 80px;
-        display: block;
-        margin: auto;
-      }
     }
   }
 }
