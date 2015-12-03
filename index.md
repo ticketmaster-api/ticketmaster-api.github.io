@@ -7,20 +7,25 @@ title: home
 Top promo large heading
 {:/comment}
 {% capture top-promo-heading %}
+
 #WELCOME TO <br/>THE FAN-CENTRIC<br/>PLATFORM.
+
 {% endcapture %}
 
 {::comment}
 Top promo description
 {:/comment}
 {% capture top-promo-desc %}
+
 Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
+
 {% endcapture %}
 
 {::comment}
 Partners block heading
 {:/comment}
 {% capture partners-heading %}
+
 ##Groupon is delivering game-winning value with local sports tickets.
 
 Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food truck sriracha cornhole single-origin coffee chu.
@@ -30,9 +35,11 @@ Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiy
 Social promo, rendered left to the twitter card
 {:/comment}
 {% capture social-promo %}
+
 ###We’re rebuilding the ticketing platform.
 
 Follow along on [Twitter](https://twitter.com/tmastertech), [FaceBook](https://www.facebook.com/TicketmasterTech) and [Medium](https://medium.com/ticketmaster-tech).
+
 {% endcapture %}
 
 {::comment}
