@@ -19,6 +19,10 @@ The current time (when you run the jekyll command).
 
 {{ site.time }}
 
+### site.data
+
+{{site.data}}
+
 ### site.pages
 
 {% for p in site.pages %}
