@@ -1,10 +1,13 @@
 h3.menu-header {
   width: 100%;
   color: $n3;
+  margin: 0;
 }
 
 .aside-menu {
   width: 100%;
+  margin-top: 15px;
+  //margin-bottom: 0;
   display: block;
   float: inherit;
 
@@ -20,21 +23,15 @@ h3.menu-header {
   &.is-fixed {
     top: 0px;
     position: fixed;
+    @include transition(2.35s);
   }
 
   .categories {
     margin-left: 10px;
-    a {
-      color: $n2-grey-color;
-
-      &:hover {
-        color: $p1a;
-      }
-    }
   }
   .sections {
     padding-left: 20px;
-    border-left: 2px solid lighten( $n2-grey-color, 35);
+    border-left: 2px solid lighten($n2-grey-color, 35);
     margin: 10px 0;
     li {
       color: $n2-grey-color;
@@ -48,21 +45,44 @@ h3.menu-header {
       }
     }
   }
+
+  a {
+    color: $n2-grey-color;
+
+    &:hover {
+      color: $p1a;
+    }
+    &.nav-active {
+      color:$s1a;
+
+      &:hover {
+        color: $n2-grey-color;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 985px) {
+  .aside-menu.is-fixed {
+    max-width: 20%;
+  }
 }
 
 @media (min-width: 768px) {
-  .sidebar.is-fixed {
+  .aside-menu.is-fixed {
     position: fixed;
-  }
-}
-@media (max-width: 768px) {
-  .is-fixed {
-    position: relative;
+    max-width: 20%;
   }
 }
 
-/* Sticky sidebar
- *
- * Add the `sidebar-sticky` class to the sidebar's container to affix it the
- * contents to the bottom of the sidebar in tablets and up.
- */
+@media (max-width: 768px) {
+  .aside-menu .sections {
+    display: none;
+  }
+  .aside-menu.is-fixed {
+    position: relative;
+    max-width: 100%;
+  }
+}
+
