@@ -1,0 +1,5 @@
+{% for p in site.pages %}
+  {% if p.id == include.id %}
+{{ p.content }}
+  {% endif %}
+{% endfor %}
