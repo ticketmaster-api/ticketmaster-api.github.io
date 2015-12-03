@@ -5,8 +5,6 @@ id: col5
 
 ---
 
-###H!!!!!!!!!
-
 * ![Icon1](/assets/img/Icon1.png)
   
   ### Open Source
