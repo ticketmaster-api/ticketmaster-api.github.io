@@ -21,7 +21,7 @@ $borderHeight: 8px;
 
 #menu-btn{
   display: none;
-  background-image: url('/assets/img/header/ic-menu-p-1.png');
+  background-image: url('/assets/img/header/ic-menu-p-1.svg');
   &.white{
     background-image: url('/assets/img/header/ic_menu_white.png');
     background-position: 5px 5px;
@@ -38,7 +38,7 @@ $borderHeight: 8px;
 }
 
 #search{
-  background-image: url('/assets/img/header/ic-search-p-1.png');
+  background-image: url('/assets/img/header/ic-search-p-1.svg');
   &.white{
     background-image: url('/assets/img/header/ic_search_white.png');
   }

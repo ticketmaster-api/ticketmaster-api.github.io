@@ -5,7 +5,7 @@ id: col5
 
 ---
 
-* ![Icon1](/assets/img/Icon1.png)
+* ![Icon1](/assets/img/home/ic-brick-lg-p-2.svg)
   
   ### Open Source
   
@@ -16,7 +16,7 @@ id: col5
   * [iOS](http://code.ticketmaster.com)
   * [Web](http://code.ticketmaster.com)
 
-* ![Icon2](/assets/img/Icon2.png)
+* ![Icon2](/assets/img/home/ic-scroll-lg-p-2-b.svg)
 
   ### Blog
 
@@ -25,7 +25,7 @@ id: col5
   * [Ticketmaster Tech blog](http://tech.ticketmaster.com)
   * [Android blog](http://code.ticketmaster.com)
 
-* ![Icon3](/assets/img/Icon3.png)
+* ![Icon3](/assets/img/home/ic-helmet-lg-p-1-a.svg)
 
   ### Existing Affiliates
 
@@ -35,7 +35,7 @@ id: col5
   * [Commerce API](http://live-livenation.devportal.apigee.com/apis/commerce)
   * [Legacy docs](http://live-livenation.devportal.apigee.com/apis)
 
-* ![Icon4](/assets/img/Icon4.png)
+* ![Icon4](/assets/img/home/ic-blocks-lg-p-1-b.svg)
 
   ### Social
 

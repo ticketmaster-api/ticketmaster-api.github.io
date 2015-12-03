@@ -47,7 +47,7 @@ Follow along on [Twitter](https://twitter.com/tmastertech), [FaceBook](https://w
 Four columns, displayed between top promo and partners blocks at home page
 {:/comment}
 {% capture column1 %}
-![Icon1](/assets/img/Icon1.png)
+![Icon1](/assets/img/home/ic-brick-lg-p-2.svg)
 
 ### Open Source
 
@@ -60,7 +60,7 @@ While we finish up the official APIs, SDKs, and widgets, check out the open sour
 {% endcapture %}
 
 {% capture column2 %}
-![Icon2](/assets/img/Icon2.png)
+![Icon2](/assets/img/home/ic-scroll-lg-p-2-b.svg)
 
 ### Blog
 
@@ -71,7 +71,7 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 {% endcapture %}
 
 {% capture column3 %}
-![Icon3](/assets/img/Icon3.png)
+![Icon3](/assets/img/home/ic-helmet-lg-p-1-a.svg)
 
 ### Existing Affiliates
 
@@ -83,15 +83,15 @@ Are you an existing partner looking for current developer resources? Look no fur
 {% endcapture %}
 
 {% capture column4 %}
-![Icon4](/assets/img/Icon4.png)
+![Icon4](/assets/img/home/ic-blocks-lg-p-1-b.svg)
 
 ### Social
 
 Follow us on our magical journey of wonder as we move mountains of tech debt to build the Ticketmaster developer platform.
 
-* [![Icon4](/assets/img/twitter.png)](https://twitter.com/tmastertech)
-* [![Icon4](/assets/img/facebook.png)](https://www.facebook.com/TicketmasterTech)
-* [![Icon4](/assets/img/medium.png)](https://medium.com/ticketmaster-tech)
+* [![Icon4](/assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
+* [![Icon4](/assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
+* [![Icon4](/assets/img/ic-medium.svg)](https://medium.com/ticketmaster-tech)
 {% endcapture %}
 
 {::comment}
@@ -168,17 +168,17 @@ Raw html goes here (uses liquid variabled defined above)
 <ul>
     <li class="social-link">
         <a href="https://twitter.com/tmastertech">
-            <img src="/assets/img/twitter.png">
+            <img src="/assets/img/ic-twitter.svg">
         </a>
     </li>
     <li class="social-link">
         <a href="https://www.facebook.com/TicketmasterTech">
-            <img src="/assets/img/facebook.png">
+            <img src="/assets/img/ic-facebook.svg">
         </a>
     </li>
     <li class="social-link">
         <a href="https://medium.com/ticketmaster-tech">
-            <img src="/assets/img/medium.png">
+            <img src="/assets/img/ic-medium.svg">
         </a>
     </li>
 </ul>
