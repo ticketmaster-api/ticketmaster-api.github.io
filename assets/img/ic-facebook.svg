@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.4 (381) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_facebook</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path id="path-1" d="M0,0 L24,0 L24,24 L0,24"></path>
+    </defs>
+    <g id="0.x-Landing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="0.1.1-Interim-Landing" sketch:type="MSArtboardGroup" transform="translate(-1082.000000, -1107.000000)">
+            <g id="Feature-blocks" sketch:type="MSLayerGroup" transform="translate(150.000000, 817.000000)">
+                <g id="Social" transform="translate(877.000000, 0.500000)">
+                    <g id="Logos" transform="translate(0.000000, 288.500000)">
+                        <g id="ic_facebook" transform="translate(54.000000, 0.000000)">
+                            <mask id="mask-2" sketch:name="Bounds" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Bounds"></g>
+                            <path d="M2.2141899,1 C1.5434592,1 1,1.5434592 1,2.2141899 L1,21.7858101 C1,22.4563759 1.5434592,23 2.2141899,23 L12.7508524,23 L12.7508524,14.4804754 L9.88386401,14.4804754 L9.88386401,11.1602059 L12.7508524,11.1602059 L12.7508524,8.71163083 C12.7508524,5.8700308 14.4864103,4.32274236 17.0212894,4.32274236 C18.2354793,4.32274236 19.279122,4.41316777 19.5832053,4.45355834 L19.5832053,7.42317175 L17.8251441,7.42399604 C16.4465069,7.42399604 16.1795994,8.0790651 16.1795994,9.04036059 L16.1795994,11.1602059 L19.467474,11.1602059 L19.039334,14.4804754 L16.1795994,14.4804754 L16.1795994,23 L21.7858101,23 C22.4563759,23 23,22.4563759 23,21.7858101 L23,2.2141899 C23,1.5434592 22.4563759,1 21.7858101,1 L2.2141899,1 Z" id="f" fill="#3B5999" sketch:type="MSShapeGroup" mask="url(#mask-2)"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
