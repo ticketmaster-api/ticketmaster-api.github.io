@@ -6,7 +6,7 @@ title: home
 {::comment}
 Top promo large heading
 {:/comment}
-{% capture top-promo-heading %}
+{% capture top_promo_heading %}
 
 # WELCOME TO <br/>THE FAN-CENTRIC<br/>PLATFORM.
 
@@ -15,7 +15,7 @@ Top promo large heading
 {::comment}
 Top promo description
 {:/comment}
-{% capture top-promo-desc %}
+{% capture top_promo_desc %}
 
 Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
 
@@ -24,7 +24,7 @@ Join the Ticketmaster developer network, build innovative applications,and help 
 {::comment}
 Partners block heading
 {:/comment}
-{% capture partners-heading %}
+{% capture partners_heading %}
 
 ## Groupon is delivering game-winning value with local sports tickets.
 
@@ -35,7 +35,7 @@ Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiy
 {::comment}
 Social promo, rendered left to the twitter card
 {:/comment}
-{% capture social-promo %}
+{% capture social_promo %}
 
 ### We’re rebuilding the ticketing platform.
 
@@ -101,10 +101,10 @@ Raw html goes here (uses liquid variabled defined above)
     <div class="row">
         <div class="row-container">
 <div class="col-xs-12 white" markdown="1">
-{{top-promo-heading}}
+{{top_promo_heading}}
 </div>
 <div class="col-xs-12 col-sm-11 col-md-10" markdown="1">
-{{top-promo-desc}}
+{{top_promo_desc}}
 </div>
 <div class="col-xs-12" style="margin-top: 40px;">
     <a href="#" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
@@ -143,7 +143,7 @@ Raw html goes here (uses liquid variabled defined above)
     <div class="row">
         <div class="row-container">
 <div class="col-xs-12" markdown="1">
-{{ partners-heading }}
+{{partners_heading}}
 <div style="margin-top: 36px;">
     <a href="#" class="tm-btn tm-btn-white">SEE HOW</a>
 </div>
@@ -164,7 +164,7 @@ Raw html goes here (uses liquid variabled defined above)
 <div id="promo-social" class="row">
     <div class="row-container">
 <div class="col-xs-12 col-sm-6" style="padding-top: 20px;" markdown="1">
-{{ social-promo }}
+{{social_promo}}
 <ul>
     <li class="social-link">
         <a href="https://twitter.com/tmastertech">
