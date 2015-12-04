@@ -38,9 +38,8 @@ Social promo, rendered left to the twitter card
 {:/comment}
 {% capture social_promo %}
 
-### We’re rebuilding the ticketing platform.
-
-Follow along on [Twitter](https://twitter.com/tmastertech), [FaceBook](https://www.facebook.com/TicketmasterTech) and [Medium](https://medium.com/ticketmaster-tech).
+### "I love the interactive documentation! It helps me get stuff done. Love the API!"
+\–Thomas Freeman, API Developer
 
 {% endcapture %}
 
@@ -88,7 +87,7 @@ Are you an existing partner looking for current developer resources? Look no fur
 
 ### Social
 
-Follow us on our magical journey of wonder as we move mountains of tech debt to build the Ticketmaster developer platform.
+Follow us on our exciting journey as we open up the Ticketmaster ticketing platform.
 
 * [![Icon4](/assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
 * [![Icon4](/assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
