@@ -1,5 +1,3 @@
-$borderHeight: 8px;
-
 @mixin rainbowAfter(){
   content: '';
   width: 100%;
@@ -47,12 +45,8 @@ $borderHeight: 8px;
 #rainbow{
   display: none;
   position: absolute;
-  width: 592px;
+  width: 100%;
   height: $borderHeight;
-  right: 0;
-  left: 0;
-  margin-left:auto;
-  margin-right:auto;
   &>span{
     height: $borderHeight;
     position: relative;
@@ -106,6 +100,10 @@ nav{
 }
 
 .top-bar {
+  border-top: $borderHeight solid $n2-grey-color;
+  .body-wrapper {
+    margin-top: -$borderHeight;
+  }
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     padding-bottom: 130px;
@@ -124,7 +122,7 @@ nav{
     left: 10px;
   }
   .gray{
-    border-top: $borderHeight solid #768692;
+    border-top: $borderHeight solid $n2-grey-color;
   }
   nav{
     &>a{
@@ -138,34 +136,34 @@ nav{
     }
   }
   .one {
-    border-top: $borderHeight solid #009CDE;
+    border-top: $borderHeight solid $p1;
   }
   .two {
-    border-top: $borderHeight solid #009CDE;
+    border-top: $borderHeight solid $p1;
     &:after {
       background: rgba(208, 0, 110, 0.1);
     }
   }
   .three {
-    border-top: $borderHeight solid #009CDE;
+    border-top: $borderHeight solid $p1;
     &:after {
       background: rgba(208, 0, 110, 0.2);
     }
   }
   .four {
-    border-top: $borderHeight solid #D0006F;
+    border-top: $borderHeight solid $secondary-color1;
     &:after {
       background: rgba(0, 155, 222, 0.2);
     }
   }
   .five {
-    border-top: $borderHeight solid #D0006F;
+    border-top: $borderHeight solid $secondary-color1;
     &:after {
       background: rgba(0, 155, 222, 0.1);
     }
   }
   .six {
-    border-top: $borderHeight solid #D0006F;
+    border-top: $borderHeight solid $secondary-color1;
   }
 }
 
@@ -181,11 +179,5 @@ nav{
   }
   #menu-dropdown {
     display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  #rainbow {
-    width: 100%;
   }
 }

@@ -3,13 +3,13 @@
  */
 .slice-bottom-right{
   &:after{
-    @include sliced-image('bottom', 'right');
+    @include sliced-image('bottom', 'left');
   }
 }
 
 .slice-bottom-left{
   &:after{
-    @include sliced-image('bottom', 'left');
+    @include sliced-image('bottom', 'right');
   }
 }
 
@@ -32,8 +32,17 @@
   position: relative;
   overflow: hidden;
 }
+.slice-top-right,
+.slice-top-left{
+  &>div:first-child{
+    margin-top: 140px;
+  }
+}
 .slice-bottom-right,
 .slice-bottom-left{
   padding-bottom: 150px;
+  &>div:first-child{
+    margin-bottom: 90px;
+  }
 }
 
