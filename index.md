@@ -1,6 +1,7 @@
 ---
 layout: home
 title: The Ticketmaster Developer Network
+category: home
 ---
 
 {::comment}

@@ -1,6 +1,6 @@
 ---
 layout: documentation
-categories: products-and-docs/apis/commerce/
+category: documentation
 id: com1
 ---
 

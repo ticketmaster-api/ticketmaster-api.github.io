@@ -1,6 +1,6 @@
 ---
 layout: documentation
-categories: products-and-docs/apis/pantheon/
+category: documentation
 ---
 
 ## Ticketmaster Partner-App API

@@ -1,6 +1,7 @@
 ---
 layout: documentation
 title: documentation
+category: documentation
 ---
 
 ## Fixie tote bag ethnic keytar

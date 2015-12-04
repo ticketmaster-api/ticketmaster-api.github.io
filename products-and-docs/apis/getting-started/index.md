@@ -1,5 +1,6 @@
 ---
 layout: documentation-single
+category: documentation
 ---
 
 #Welcome to TicketMaster API !
