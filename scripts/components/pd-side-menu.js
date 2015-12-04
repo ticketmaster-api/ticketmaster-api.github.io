@@ -11,8 +11,8 @@
 
         $(window).on({
             resize:function(){
-                firstLiElem = $('.menu-header').first().css('height').replace("px", ''),
-                    firstLiElem = parseFloat(firstLiElem);
+                firstLiElem = $('.menu-header').first().css('height').replace("px", '');
+                firstLiElem = parseFloat(firstLiElem);
                 offset = wrapperMenu + firstLiElem;
             },
             scroll:function(){
