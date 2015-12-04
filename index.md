@@ -185,8 +185,7 @@ Raw html goes here (uses liquid variabled defined above)
 </ul>
 </div>
         <div class="col-xs-12 col-sm-6">
-            <blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/nicmcfarlanee">@nicmcfarlanee</a> Resale tickets are tickets posted by individuals who wish to sell them.</p>&mdash; Ticketmaster (@Ticketmaster) <a href="https://twitter.com/Ticketmaster/status/669885490229813248">26 Листопад 2015</a></blockquote>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" href="https://twitter.com/TMasterTech" data-widget-id="672857201812213760">Tweets by @TMasterTech</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
     </div>
 </div>
