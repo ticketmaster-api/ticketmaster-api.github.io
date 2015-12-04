@@ -69,30 +69,23 @@
   width: $width - $padding*2 + px;
 }
 @mixin sliced-image($position, $orientation) {
-  display: table;
+  display: block;
   clear: both;
   content: "";
-  width: 0;
-  height: 0;
-  -moz-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  @if $position == 'top'{
-    border-bottom: 20px solid transparent;
-    border-top: 112px solid white;
+  width: 100%;
+  height: 180px;
+  background-color: $white;
+  @if $orientation == 'right'{
+    transform: matrix(1.048,-0.083,-0.001,0.920,3.782,-10.585);
+  }
+  @if $orientation == 'left'{
+    transform: matrix(1.048,0.072,-0.001,0.920,3.782,-10.585);
+  }
+  @if $position == 'bottom'{
+    margin-bottom: -235px;
   }
   @else {
-    border-top: 20px solid transparent;
-    border-bottom: 112px solid white;
-    position: absolute;
-    bottom: 0px;
-  }
-  @if $orientation == 'right'{
-    border-right: 1200px solid transparent;
-    border-left: 5px;
-  }
-  @else{
-    border-left: 1200px solid transparent;
-    border-right: 5px;
+    margin: -80px 0;
   }
 }
 
