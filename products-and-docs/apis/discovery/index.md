@@ -16,7 +16,7 @@ For work with API you should add to query string the __apikey__ parameter with y
 ##Search Events
 
 > [JS](#js){: .active}
-> [cURL](#cURL)
+> [cULR](#cULR)
 >{: .lang-selector}
 >
 ~~~js
