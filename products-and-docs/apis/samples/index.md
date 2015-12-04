@@ -1,6 +1,6 @@
 ---
 layout: documentation-single
-categories : products-and-docs/apis/samples/
+category: documentation
 ---
 
 {: #headers}

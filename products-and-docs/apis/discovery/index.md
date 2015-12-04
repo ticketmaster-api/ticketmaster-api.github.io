@@ -1,6 +1,6 @@
 ---
 layout: documentation
-categories: products-and-docs/apis/discovery/
+category: documentation
 ---
 
 ##Discovery REST API
