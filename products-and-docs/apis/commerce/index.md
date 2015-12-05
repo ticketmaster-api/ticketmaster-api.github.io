@@ -6,119 +6,183 @@ categories:
 - commerce
 ---
 
+#API DOCUMENTATION
+{: .article}
+
+Hella narwhal Cosby dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+{: .article .lead}
+
+###Developer Console
+{: .aside}
+
+Test this endpoint right now in the interactive docs:
+
+<button class="btn btn-default">INTERACTIVE DOCS</button>
+
 ##Commerse REST API
-
-
->
+{: .article}
 
 ###Event Offers
+{: .article}
 
 Method: GET. 
-
 Authentication required.
-
 Returns Event Offers.
+
+commerce/{version}/events/{id}/offers.{format}
+{: .pull-quote #pull-quote}
 
 ###Template parameters:
 
-- version - The API Version. Required. Default value "v2";
-- id - Event ID. Required. Default value "05004F24E0B864B3";
-- format - API Response Format. Required. Default value "json".
+__version__ - The API Version. Required. Default value "v2";
 
->
-~~~
-https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json
-~~~
+__id__ - Event ID. Required. Default value "05004F24E0B864B3";
 
->
-~~~json
-{
-  "limits": {
-    "max": 8
-  },
-  "prices": {
-    "_embedded": [
-      {
-        "type": "offered-prices",
-        "attributes": {
-          "currency": "USD",
-          "value": "17.00"
-        },
-        "relationships": {
-          "offers": {
-            "_embedded": [
-              {
-                "id": "000062800006",
-                "type": "offers"
-              },
-              {
-                "id": "000062810006",
-                "type": "offers"
-              }
-            ]
-          },
-          "price-zones": {
-            "_embedded": [
-              {
-                "id": "1",
-                "type": "price-zones"
-              }
-            ]
-          }
-        }
-      }
-    ]
-  },
-  "price-zones": {
-    "_embedded": [
-      {
-        "id": "1",
-        "type": "price-zones",
-        "attributes": {
-          "currency": "USD",
-          "name": "PRICE LEVEL 1"
-        },
-        "relationships": {
-          "offers": {
-            "_embedded": [
-              {
-                "id": "000000000001",
-                "type": "offers"
-              },
-              {
-                "id": "000050820004",
-                "type": "offers"
-              },
-              {
-                "id": "000052830004",
-                "type": "offers"
-              },
-              {
-                "id": "000062800006",
-                "type": "offers"
-              },
-              {
-                "id": "000062810006",
-                "type": "offers"
-              },
-              {
-                "id": "00006E840004",
-                "type": "offers"
-              }
-            ]
-          },
-          "areas": {
-            "_embedded": [
-              {
-                "id": "3",
-                "type": "areas"
-              }
-            ]
-          }
-        }
-      }
-    ]
-  }
-}
+__format__ - API Response Format. Required. Default value "json".
+
+{: .aside}
+>[CURL](#curl){: .active}
+>[RUBY](#ruby)
+>[PYTHON](#python)
+{: .lang-selector}
+
+~~~curl
+curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
 ~~~
 
+~~~ruby
+require 'open-uri'
+response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
+puts response
+~~~
+
+~~~python
+import urllib2
+urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
+~~~
+
+<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
+
+###Event Offers
+{: .article}
+
+Method: GET. 
+Authentication required.
+Returns Event Offers.
+
+commerce/{version}/events/{id}/offers.{format}
+{: .pull-quote #pull-quote}
+
+###Template parameters:
+
+| Parameter    | Description          | Possible Values   | Default Value      | Required |
+|:-------------|:---------------------|:----------------- |:------------------ |:-------- |
+| __version__  | The API Version.     | string            |       “v2”         | Yes      |
+| __id__       | Event ID. Required.  | string            | “05004F24E0B864B3” | Yes      |
+| __format__   | API Response Format. | string            |       “json”       | Yes      |
+
+{: .aside}
+>[CURL](#curl){: .active}
+>[RUBY](#ruby)
+>[PYTHON](#python)
+{: .lang-selector}
+
+~~~curl
+curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
+~~~
+
+~~~ruby
+require 'open-uri'
+response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
+puts response
+~~~
+
+~~~python
+import urllib2
+urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
+~~~
+
+<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
+
+###Event Offers
+{: .article}
+
+Method: GET. 
+Authentication required.
+Returns Event Offers.
+
+commerce/{version}/events/{id}/offers.{format}
+{: .pull-quote #pull-quote}
+
+###Template parameters:
+
+`version` - The API Version. Required. Default value "v2";
+
+`id` - Event ID. Required. Default value "05004F24E0B864B3";
+
+`format` - API Response Format. Required. Default value "json".
+
+{: .aside}
+>[CURL](#curl){: .active}
+>[RUBY](#ruby)
+>[PYTHON](#python)
+{: .lang-selector}
+
+~~~curl
+curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
+~~~
+
+~~~ruby
+require 'open-uri'
+response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
+puts response
+~~~
+
+~~~python
+import urllib2
+urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
+~~~
+
+<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
+
+
+###Event Offers
+{: .article}
+
+Method: GET. 
+Authentication required.
+Returns Event Offers.
+
+commerce/{version}/events/{id}/offers.{format}
+{: .pull-quote #pull-quote}
+
+###Template parameters:
+
+__version__{: style="color: red"} - The API Version. Required. Default value "v2";
+
+__id__{: style="color: red"} - Event ID. Required. Default value "05004F24E0B864B3";
+
+__format__{: style="color: red"} - API Response Format. Required. Default value "json".
+
+{: .aside}
+>[CURL](#curl){: .active}
+>[RUBY](#ruby)
+>[PYTHON](#python)
+{: .lang-selector}
+
+~~~curl
+curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
+~~~
+
+~~~ruby
+require 'open-uri'
+response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
+puts response
+~~~
+
+~~~python
+import urllib2
+urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
+~~~
+
+<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
