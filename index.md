@@ -38,8 +38,8 @@ Social promo, rendered left to the twitter card
 {:/comment}
 {% capture social_promo %}
 
-### "I love the interactive documentation! It helps me get stuff done. Love the API!"
-\–Thomas Freeman, API Developer
+### "Thanks for the APIs, we got an Amazon Echo app integration up and running in about 30 hours at a USC hackathon!"
+–TPramod Setlur, API developer
 
 {% endcapture %}
 
