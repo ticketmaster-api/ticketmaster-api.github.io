@@ -74,3 +74,7 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+~~~curl
+curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
+~~~
