@@ -1,6 +1,4 @@
-# developers.ticketmaster.com
-
-The home of the Ticketmaster Developer Portal
+# The Ticketmaster Developer Network (staging)
 
 [ticketmaster-api-staging.github.io](ticketmaster-api-staging.github.io)
 
