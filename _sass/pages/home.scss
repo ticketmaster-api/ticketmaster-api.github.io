@@ -1,24 +1,35 @@
 @mixin social-link(){
   position: relative;
   display: inline;
-  margin-right: 15px;
+  margin-right: 27px;
+  top: 43px;
   &:after{
     display: none;
   }
 }
 
 #top-promo{
+  h1 {
+    font-size: 81px;
+    line-height: 88px;
+    padding-top: 73px;
+  }
+  p{
+    font-size: $size-lead;
+    line-height: $line-height-h3;
+  }
+  margin-bottom: 40px;
   background-image: url('/assets/img/home/bg-football-p-1.png');
 }
 
 #promo-social{
-  margin-bottom: 70px;
+  margin-bottom: 102px;
 }
 
 #bottom-promo{
   text-align: center;
   background-image: url('/assets/img/home/bg-baseball-p-1-a.png');
-  margin-bottom: 80px;
+  margin: 22px 0 69px;
   .row-container{
     max-width: 820px;
   }
@@ -38,7 +49,7 @@
   position: relative;
   display: inline-block;
   border-radius: 5px;
-  padding: 12px 29px;
+  padding: 14px 30px 10px;
 }
 
 .tm-btn-white{
@@ -56,6 +67,7 @@
   border: 2px solid $white-70;
   font-family: $font-h4;
   color: $white-70;
+  padding: 12px 34px 9px;
   &:hover{
     color: $white-70;
   }
@@ -72,7 +84,6 @@ li{
 
 .promo {
   p{
-    font-size: $size-lead;
     color: $white-70;
   }
   h1,
@@ -88,7 +99,7 @@ li{
       height: 40px;
       position: absolute;
       right: -65px;
-      top: 15px;
+      top: 17px;
     }
   }
 }
@@ -98,6 +109,12 @@ li{
     h3{
       text-align: center;
     }
+    ul{
+      margin-top: -2px;
+      li{
+        padding: 4px 0;
+      }
+    }
     &.social {
       li{
         @include social-link();
@@ -105,9 +122,9 @@ li{
     }
     p {
       &>img {
-        max-height: 80px;
+        height: 94px;
         display: block;
-        margin: auto;
+        margin: 0 auto 22px;
       }
     }
   }

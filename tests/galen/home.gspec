@@ -6,6 +6,19 @@
     social      id   promo-social
     twitter     css  .twitter-tweet
 
+    top-promo   id   top-promo
+    main-header css  #top-promo h1
+    main-desc   css  #top-promo p
+    get-api-btn css  #top-promo .tm-btn-white
+    explore-btn css  #top-promo .tm-btn-transparent
+
+    columns-block css .columns
+    column-item-* css .columns .row-container>div
+
+    partners-block id bottom-promo
+
+    footer id footer
+
 = Navigation test =
     @on *
         logo:
@@ -42,3 +55,29 @@
     @on desktop
         twitter:
             inside social
+
+= desctop layout test =
+    @on desktop
+        column-item-*:
+            width ~ 25 % of columns-block/width
+        columns-block:
+            below top-promo 35 to 45px
+        partners-block:
+            below columns-block 20 to 25px
+        social:
+            below partners-block 65 to 75px
+        footer:
+            below social 100 to 105px
+        main-desc:
+            below main-header 25 to 35px
+        get-api-btn:
+            near explore-btn 55 to 65px left
+            width 195 to 200px
+            height 45 to 50px
+        explore-btn:
+            width 315to 320px
+            height 45 to 50px
+            visible
+        main-desc:
+            width 195 to 200px
+            height 45 to 50px

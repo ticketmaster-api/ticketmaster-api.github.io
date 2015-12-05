@@ -76,16 +76,22 @@
   height: 180px;
   background-color: $white;
   @if $orientation == 'right'{
-    transform: matrix(1.048,-0.083,-0.001,0.920,3.782,-10.585);
+    transform: matrix(1.06,-0.089,0,1,0,0);
   }
   @if $orientation == 'left'{
-    transform: matrix(1.048,0.072,-0.001,0.920,3.782,-10.585);
+    transform: matrix(1.06,0.082,0,1,0,0);
   }
   @if $position == 'bottom'{
     margin-bottom: -235px;
   }
   @else {
     margin: -80px 0;
+  }
+  @media (max-width: 1440px) {
+    height: 143px;
+  }
+  @media (max-width: 1200px) {
+    height: 160px;
   }
 }
 

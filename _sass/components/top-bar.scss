@@ -14,7 +14,8 @@
   height: 26px;
   background-repeat: no-repeat;
   position: relative;
-  margin: 20px 0 0 15px;
+  top: 23px;
+  left: 6px;
 }
 
 #menu-btn{
@@ -90,11 +91,10 @@ nav{
     font-family: $font-body;
     letter-spacing: 0.8px;
     text-transform: uppercase;
-    line-height: $line-height-h4;
     display: table-cell;
     width: 1px;
     text-align: center;
-    padding: 23px 0;
+    padding: 25px 0;
     white-space: nowrap;
   }
 }
@@ -104,6 +104,7 @@ nav{
   overflow: visible;
   .body-wrapper {
     margin-top: -$borderHeight;
+    max-width: 1400px;
   }
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
@@ -119,8 +120,8 @@ nav{
   }
   #header-logo{
     position: relative;
-    top: 11px;
-    left: 10px;
+    top: 15px;
+    left: -5px;
   }
   .gray{
     border-top: $borderHeight solid $n2-grey-color;
