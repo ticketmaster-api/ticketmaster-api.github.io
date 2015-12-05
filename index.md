@@ -39,7 +39,7 @@ Social promo, rendered left to the twitter card
 {% capture social_promo %}
 
 ### "Thanks for the APIs, we got an Amazon Echo app integration up and running in about 30 hours at a USC hackathon!"
-–TPramod Setlur, API developer
+–Pramod Setlur, API developer
 
 {% endcapture %}
 
@@ -165,23 +165,7 @@ Raw html goes here (uses liquid variabled defined above)
     <div class="row-container">
 <div class="col-xs-12 col-sm-6" style="padding-top: 20px;" markdown="1">
 {{social_promo}}
-<ul>
-    <li class="social-link">
-        <a href="https://twitter.com/tmastertech">
-            <img src="/assets/img/ic-twitter.svg">
-        </a>
-    </li>
-    <li class="social-link">
-        <a href="https://www.facebook.com/TicketmasterTech">
-            <img src="/assets/img/ic-facebook.svg">
-        </a>
-    </li>
-    <li class="social-link">
-        <a href="https://medium.com/ticketmaster-tech">
-            <img src="/assets/img/ic-medium.svg">
-        </a>
-    </li>
-</ul>
+
 </div>
         <div class="col-xs-12 col-sm-6">
             <blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/nicmcfarlanee">@nicmcfarlanee</a> Resale tickets are tickets posted by individuals who wish to sell them.</p>&mdash; Ticketmaster (@Ticketmaster) <a href="https://twitter.com/Ticketmaster/status/669885490229813248">26 Листопад 2015</a></blockquote>
