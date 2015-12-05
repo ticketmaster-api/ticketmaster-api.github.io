@@ -38,7 +38,7 @@ Social promo, rendered left to the twitter card
 {:/comment}
 {% capture social_promo %}
 
-### "Thanks for the APIs, we got an Amazon Echo app integration up and running in about 30 hours at a USC hackathon!"
+### "Thanks to the APIs, we got an Amazon Echo app integration up and running in about 30 hours at a USC hackathon!"
 –Pramod Setlur, API developer
 
 {% endcapture %}
