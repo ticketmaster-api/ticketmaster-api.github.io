@@ -13,6 +13,7 @@
     explore-btn css  #top-promo .tm-btn-transparent
 
     columns-block css .columns
+    columns-container css .columns .row-container
     column-item-* css .columns .row-container>div
 
     partners-block id bottom-promo
@@ -59,7 +60,7 @@
 = desctop layout test =
     @on desktop
         column-item-*:
-            width ~ 25 % of columns-block/width
+            width ~ 25 % of columns-container/width
         columns-block:
             below top-promo 35 to 45px
         partners-block:
@@ -69,15 +70,12 @@
         footer:
             below social 100 to 105px
         main-desc:
-            below main-header 25 to 35px
+            below main-header 35 to 45px
         get-api-btn:
             near explore-btn 55 to 65px left
             width 195 to 200px
             height 45 to 50px
         explore-btn:
-            width 315to 320px
+            width 320to 325px
             height 45 to 50px
             visible
-        main-desc:
-            width 195 to 200px
-            height 45 to 50px
