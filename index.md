@@ -103,10 +103,10 @@ Raw html goes here (uses liquid variabled defined above)
 <div class="col-xs-12 white" markdown="1">
 {{top_promo_heading}}
 </div>
-<div class="col-xs-12 col-sm-11 col-md-10" markdown="1">
+<div class="col-xs-12 col-sm-11 col-md-10" markdown="1" style="margin: 11px 0 -3px;">
 {{top_promo_desc}}
 </div>
-<div class="col-xs-12" style="margin-top: 40px;">
+<div class="col-xs-12" style="margin: 37px 0 49px;">
     <a href="#" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE INTERACTIVE DOCS</a>
 </div>
@@ -142,9 +142,9 @@ Raw html goes here (uses liquid variabled defined above)
 <div id="bottom-promo" class="slice-top-right promo xs-center">
     <div class="row">
         <div class="row-container">
-<div class="col-xs-12" markdown="1">
+<div class="col-xs-12" markdown="1" style="padding-top: 56px;">
 {{partners_heading}}
-<div style="margin-top: 36px;">
+<div style="margin: 57px 0 85px;">
     <a href="#" class="tm-btn tm-btn-white">SEE HOW</a>
 </div>
 <div class="social-buttons">
