@@ -16,7 +16,7 @@ For work with API you should add to query string the __apikey__ parameter with y
 ##Search Events
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -69,7 +69,7 @@ Returns the 20 most recent events for the authenticating user.
 ##Event Details
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -111,7 +111,7 @@ Returns the event detail by event ID.
 ##Event Images
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -148,7 +148,7 @@ Returns all the images for an event by ID. If an event does not have an image fo
 ##Search Attractions
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -193,7 +193,7 @@ Search Attractions!
 ##Attraction Details
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -235,7 +235,7 @@ Search Attractions!
 ##Search Categories
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -280,7 +280,7 @@ Search Categories!
 ##Category Details
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -322,7 +322,7 @@ Returns the category detail by ID.
 ##Search Venues
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js
@@ -367,7 +367,7 @@ Search Venues!
 ##Venue Details
 
 > [JS](#js){: .active}
-> [cULR](#cULR)
+> [cURL](#cURL)
 >{: .lang-selector}
 >
 ~~~js

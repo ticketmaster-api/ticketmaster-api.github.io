@@ -38,9 +38,8 @@ Social promo, rendered left to the twitter card
 {:/comment}
 {% capture social_promo %}
 
-### We’re rebuilding the ticketing platform.
-
-Follow along on [Twitter](https://twitter.com/tmastertech), [FaceBook](https://www.facebook.com/TicketmasterTech) and [Medium](https://medium.com/ticketmaster-tech).
+### "Thanks to the APIs, we got an Amazon Echo app integration up and running in about 30 hours at a USC hackathon!"
+–Pramod Setlur, API developer
 
 {% endcapture %}
 
@@ -88,7 +87,7 @@ Are you an existing partner looking for current developer resources? Look no fur
 
 ### Social
 
-Follow us on our magical journey of wonder as we move mountains of tech debt to build the Ticketmaster developer platform.
+Follow us on our exciting journey as we open up the Ticketmaster ticketing platform.
 
 * [![Icon4](/assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
 * [![Icon4](/assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
@@ -166,23 +165,7 @@ Raw html goes here (uses liquid variabled defined above)
     <div class="row-container">
 <div class="col-xs-12 col-sm-6" style="padding-top: 20px;" markdown="1">
 {{social_promo}}
-<ul>
-    <li class="social-link">
-        <a href="https://twitter.com/tmastertech">
-            <img src="/assets/img/ic-twitter.svg">
-        </a>
-    </li>
-    <li class="social-link">
-        <a href="https://www.facebook.com/TicketmasterTech">
-            <img src="/assets/img/ic-facebook.svg">
-        </a>
-    </li>
-    <li class="social-link">
-        <a href="https://medium.com/ticketmaster-tech">
-            <img src="/assets/img/ic-medium.svg">
-        </a>
-    </li>
-</ul>
+
 </div>
         <div class="col-xs-12 col-sm-6">
             <blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/nicmcfarlanee">@nicmcfarlanee</a> Resale tickets are tickets posted by individuals who wish to sell them.</p>&mdash; Ticketmaster (@Ticketmaster) <a href="https://twitter.com/Ticketmaster/status/669885490229813248">26 Листопад 2015</a></blockquote>
