@@ -46,7 +46,7 @@ Social promo, rendered left to the twitter card
 {::comment}
 Four columns, displayed between top promo and partners blocks at home page
 {:/comment}
-{% capture column1-asset %}
+{% capture column1_asset %}
 ![Icon1](/assets/img/home/ic-brick-lg-p-2.svg)
 {% endcapture %}
 
@@ -62,7 +62,7 @@ While we finish up the official APIs, SDKs, and widgets, check out the open sour
 * [Web](http://code.ticketmaster.com)
 {% endcapture %}
 
-{% capture column2-asset %}
+{% capture column2_asset %}
 ![Icon2](/assets/img/home/ic-scroll-lg-p-2-b.svg)
 {% endcapture %}
 
@@ -76,7 +76,7 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 * [Android blog](http://code.ticketmaster.com)
 {% endcapture %}
 
-{% capture column3-asset %}
+{% capture column3_asset %}
 ![Icon3](/assets/img/home/ic-helmet-lg-p-1-a.svg)
 {% endcapture %}
 
@@ -91,7 +91,7 @@ Are you an existing partner looking for current developer resources? Look no fur
 * [Legacy docs](http://live-livenation.devportal.apigee.com/apis)
 {% endcapture %}
 
-{% capture column4-asset %}
+{% capture column4_asset %}
 ![Icon4](/assets/img/home/ic-blocks-lg-p-1-b.svg)
 {% endcapture %}
 
@@ -132,7 +132,7 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="content" style="display: block;">
             <div class="row">
 <div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
-{{column1-asset}}
+{{column1_asset}}
 </div>
 <div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
 {{column1}}
@@ -144,7 +144,7 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="content" style="display: block;">
             <div class="row">
 <div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
-{{column2-asset}}
+{{column2_asset}}
 </div>
 <div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
 {{column2}}
@@ -156,7 +156,7 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="content" style="display: block;">
             <div class="row">
 <div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
-{{column3-asset}}
+{{column3_asset}}
 </div>
 <div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
 {{column3}}
@@ -168,7 +168,7 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="content social" style="display: block;">
             <div class="row">
 <div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
-{{column4-asset}}
+{{column4_asset}}
 </div>
 <div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
 {{column4}}
