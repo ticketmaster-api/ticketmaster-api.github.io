@@ -28,7 +28,7 @@
 = general layout test =
     @on mobile
         column-item-*:
-            width ~ 100 % of columns-container/width
+            width 90 to 95% of columns-container/width
         columns-block:
             below top-promo 25 to 35px
         partners-block:
@@ -38,7 +38,7 @@
         footer:
             below social 50 to 55px
         main-desc:
-            below main-header 25 to 35px
+            below main-header 20 to 25px
         get-api-btn:
             near explore-btn 55 to 65px left
             width 195 to 200px
