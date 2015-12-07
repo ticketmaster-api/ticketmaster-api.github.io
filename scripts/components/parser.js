@@ -29,7 +29,7 @@
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
                 groupLeft.wrapAll('<div class="left-wrapper"></div>');
-                console.log($('*').length);//As less is better
+                //console.log($('*').length);//As less is better
             });
 
 
