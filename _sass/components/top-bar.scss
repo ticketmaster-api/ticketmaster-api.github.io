@@ -182,4 +182,16 @@ nav{
   #menu-dropdown {
     display: block;
   }
+  #header-logo{
+    left: 8px !important;
+  }
+  #menu-btn{
+    left: 9px !important;
+    top: 24px !important;
+  }
+  #search{
+    top: 26px !important;
+    left: -11px !important;
+    background-image: url('/assets/img/header/ic-search-mobile.svg') !important;
+  }
 }
