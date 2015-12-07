@@ -1,15 +1,26 @@
+$menu-top: 10px;
+$menu-bg-top-margin: 250px;
+
+.wrapper-aside-menu{
+  background-color: #F7F9FA;
+}
+
 h3.menu-header {
   width: 100%;
   color: $n3;
-  margin: 0;
+  margin-bottom: 10px;
 }
 
 .aside-menu {
   width: 100%;
-  margin-top: 15px;
-  //margin-bottom: 0;
+  margin-top: 0;
+  padding-top: $menu-top;
   display: block;
   float: inherit;
+
+  //padding-top: $menu-bg-top-margin;
+  //margin-top: -$menu-bg-top-margin;
+  //z-index: 0;
 
   h4 {
     color: $n2-grey-color;
