@@ -46,8 +46,11 @@ Social promo, rendered left to the twitter card
 {::comment}
 Four columns, displayed between top promo and partners blocks at home page
 {:/comment}
-{% capture column1 %}
+{% capture column1-asset %}
 ![Icon1](/assets/img/home/ic-brick-lg-p-2.svg)
+{% endcapture %}
+
+{% capture column1 %}
 
 ### Open Source
 
@@ -59,8 +62,11 @@ While we finish up the official APIs, SDKs, and widgets, check out the open sour
 * [Web](http://code.ticketmaster.com)
 {% endcapture %}
 
-{% capture column2 %}
+{% capture column2-asset %}
 ![Icon2](/assets/img/home/ic-scroll-lg-p-2-b.svg)
+{% endcapture %}
+
+{% capture column2 %}
 
 ### Blog
 
@@ -70,8 +76,11 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 * [Android blog](http://code.ticketmaster.com)
 {% endcapture %}
 
-{% capture column3 %}
+{% capture column3-asset %}
 ![Icon3](/assets/img/home/ic-helmet-lg-p-1-a.svg)
+{% endcapture %}
+
+{% capture column3 %}
 
 ### Existing Affiliates
 
@@ -82,8 +91,11 @@ Are you an existing partner looking for current developer resources? Look no fur
 * [Legacy docs](http://live-livenation.devportal.apigee.com/apis)
 {% endcapture %}
 
-{% capture column4 %}
+{% capture column4-asset %}
 ![Icon4](/assets/img/home/ic-blocks-lg-p-1-b.svg)
+{% endcapture %}
+
+{% capture column4 %}
 
 ### Social
 
@@ -103,10 +115,10 @@ Raw html goes here (uses liquid variabled defined above)
 <div class="col-xs-12 white" markdown="1">
 {{top_promo_heading}}
 </div>
-<div class="col-xs-12 col-sm-11 col-md-10" markdown="1" style="margin: 11px 0 -3px;">
+<div class="col-xs-12 col-sm-11 col-md-10 description" markdown="1">
 {{top_promo_desc}}
 </div>
-<div class="col-xs-12" style="margin: 37px 0 49px;">
+<div class="col-xs-12 button-block">
     <a href="#" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE INTERACTIVE DOCS</a>
 </div>
@@ -116,24 +128,52 @@ Raw html goes here (uses liquid variabled defined above)
 </div>
 <div class="row xs-center columns">
 <div class="row-container">
-    <div class="col-xs-12 col-sm-3 xs-border-bottom">
-<div class="content" style="display: block;" markdown="1">
+    <div class="col-xs-12 col-lg-3 xs-border-bottom">
+        <div class="content" style="display: block;">
+            <div class="row">
+<div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
+{{column1-asset}}
+</div>
+<div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
 {{column1}}
 </div>
+</div>
+</div>
     </div>
-    <div class="col-xs-12 col-sm-3 xs-border-bottom">
-<div class="content" style="display: block;" markdown="1">
+    <div class="col-xs-12 col-lg-3 xs-border-bottom">
+        <div class="content" style="display: block;">
+            <div class="row">
+<div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
+{{column2-asset}}
+</div>
+<div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
 {{column2}}
 </div>
-    </div>
-    <div class="col-xs-12 col-sm-3 xs-border-bottom">
-<div class="content" style="display: block;" markdown="1">
-{{column3}}
+</div>
 </div>
     </div>
-    <div class="col-xs-12 col-sm-3 xs-border-bottom">
-<div class="content social" style="display: block;" markdown="1">
+    <div class="col-xs-12 col-lg-3 xs-border-bottom">
+        <div class="content" style="display: block;">
+            <div class="row">
+<div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
+{{column3-asset}}
+</div>
+<div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
+{{column3}}
+</div>
+</div>
+</div>
+    </div>
+    <div class="col-xs-12 col-lg-3 xs-border-bottom">
+        <div class="content social" style="display: block;">
+            <div class="row">
+<div class="col-xs-12 col-sm-4 col-lg-12" markdown="1">
+{{column4-asset}}
+</div>
+<div class="col-xs-12 col-sm-8 col-lg-12" markdown="1">
 {{column4}}
+</div>
+</div>
 </div>
     </div>
 </div>
@@ -144,30 +184,30 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="row-container">
 <div class="col-xs-12" markdown="1" style="padding-top: 56px;">
 {{partners_heading}}
-<div style="margin: 57px 0 85px;">
+<div class="button-block">
     <a href="#" class="tm-btn tm-btn-white">SEE HOW</a>
-</div>
-<div class="social-buttons">
-    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_ret.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_ret.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
 </div>
 </div>
         </div>
+<div class="social-buttons col-xs-12">
+    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
+    <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
+    <a href="#"><img src="/assets/img/home/ic_ret.png"></a>
+    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
+    <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
+    <a href="#"><img src="/assets/img/home/ic_ret.png"></a>
+    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
+</div>
     </div>
 </div>
 
 <div id="promo-social" class="row">
     <div class="row-container">
-<div class="col-xs-12 col-sm-6" style="padding-top: 20px;" markdown="1">
+<div class="col-xs-12 col-lg-6" style="padding-top: 20px;" markdown="1">
 {{social_promo}}
 
 </div>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-lg-6">
             <blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/nicmcfarlanee">@nicmcfarlanee</a> Resale tickets are tickets posted by individuals who wish to sell them.</p>&mdash; Ticketmaster (@Ticketmaster) <a href="https://twitter.com/Ticketmaster/status/669885490229813248">26 Листопад 2015</a></blockquote>
             <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
