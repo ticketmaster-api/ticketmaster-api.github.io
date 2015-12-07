@@ -3,7 +3,7 @@ layout: documentation
 category: documentation
 ---
 
-##Discovery REST API
+#Discovery REST API
 
 {: .lead #lead}
 Description of API for discovery service. This API allows to work with events, attractions, categories and venues.
@@ -11,26 +11,8 @@ Description of API for discovery service. This API allows to work with events, a
 {: .pull-quote #pull-quote}
 For work with API you should add to query string the __apikey__ parameter with your key.
 
-
-{: #srch-evets }
+{: .article}
 ##Search Events
-
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
-~~~js
-var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events.json?size=1",
-  method: “GET”
-});
-request.done(function( msg ) {
-  console.log( msg );
-});
-request.fail(function( jqXHR, textStatus ) {
-  console.log("Request failed: " + textStatus);
-});
-~~~
 
 {: .pull-quote #pull-quote}
 discovery/{version}/events.{format}
@@ -61,20 +43,19 @@ Returns the 20 most recent events for the authenticating user.
 - __deviceId__ - The device making the API call. Default value "1";
 - __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com".
 
-###Response
+###Response1
 
-<iframe src="https://snap.apigee.com/1ls3jia" width="760" height="300" frameborder="0" scrolling="no"></iframe>
+{: .article}
+<iframe src="https://snap.apigee.com/1ls3jia" height="400" frameborder="0" scrolling="no"></iframe>
 
-{: #get-enent-det }
-##Event Details
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json",
+  url: "https://app.ticketmaster.com/discovery/v1/events.json?size=1",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -84,6 +65,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #get-enent-det }
+##Event Details
 
 {: .pull-quote #pull-quote}
 discovery/{version}/events/{id}.{format}
@@ -103,20 +88,18 @@ Returns the event detail by event ID.
 - __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
 - __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca".
 
-###Response
+###Response2
 
 <iframe src="https://snap.apigee.com/1ImqiFR" width="860" height="600" frameborder="0" scrolling="no"></iframe>
 
-{: #srch-event-img }
-##Event Images
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json",
+  url: "https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -126,6 +109,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #srch-event-img }
+##Event Images
 
 {: .pull-quote #pull-quote}
 discovery/{version}/events/{id}/images.{format}
@@ -144,16 +131,14 @@ Returns all the images for an event by ID. If an event does not have an image fo
 
 <iframe src="https://snap.apigee.com/1YERkwm" width="400" height="300" frameborder="0" scrolling="no"></iframe>
 
-{: #srch-att }
-##Search Attractions
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/attractions.json",
+  url: "https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -163,6 +148,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #srch-att }
+##Search Attractions
 
 {: .pull-quote #pull-quote}
 discovery/{version}/attractions.{format}
@@ -189,16 +178,14 @@ Search Attractions!
 
 <iframe src="https://snap.apigee.com/1XuyzP2" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
-{: #get-attr-det }
-##Attraction Details
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/attractions/768011.json",
+  url: "https://app.ticketmaster.com/discovery/v1/attractions.json",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -208,6 +195,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #get-attr-det }
+##Attraction Details
 
 {: .pull-quote #pull-quote}
 discovery/{version}/attractions/{id}.{format}
@@ -231,16 +222,14 @@ Search Attractions!
 
 <iframe src="https://snap.apigee.com/1YERrIr" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
-{: #srch-cat }
-##Search Categories
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/categories.json",
+  url: "https://app.ticketmaster.com/discovery/v1/attractions/768011.json",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -250,6 +239,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #srch-cat }
+##Search Categories
 
 {: .pull-quote #pull-quote}
 discovery/{version}/categories.{format}
@@ -276,16 +269,14 @@ Search Categories!
 
 <iframe src="https://snap.apigee.com/1XuznDt" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
-{: #get-cat-det }
-##Category Details
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/categories/203.json",
+  url: "https://app.ticketmaster.com/discovery/v1/categories.json",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -295,6 +286,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #get-cat-det }
+##Category Details
 
 {: .pull-quote #pull-quote}
 discovery/{version}/categories/{id}.{format}
@@ -318,16 +313,14 @@ Returns the category detail by ID.
 
 <iframe src="https://snap.apigee.com/1YERyU9" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
-{: #srch-venues }
-##Search Venues
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "http://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV",
+  url: "https://app.ticketmaster.com/discovery/v1/categories/203.json",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -337,6 +330,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #srch-venues }
+##Search Venues
 
 {: .pull-quote #pull-quote}
 discovery/{version}/venues.{format}
@@ -363,16 +360,14 @@ Search Venues!
 
 <iframe src="https://snap.apigee.com/1XuzHCk" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
-{: #get-venues-det }
-##Venue Details
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
 
-> [JS](#js){: .active}
-> [cURL](#cURL)
->{: .lang-selector}
->
 ~~~js
 var request = $.ajax({
-  url: "https://http://app.ticketmaster.com/discovery/v1/venues/90150.json",
+  url: "http://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV",
   method: “GET”
 });
 request.done(function( msg ) {
@@ -382,6 +377,10 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
+
+{: .article}
+{: #get-venues-det }
+##Venue Details
 
 {: .pull-quote #pull-quote}
 discovery/{version}/venues/{id}.{format}
@@ -404,3 +403,21 @@ Returns the venue detail by ID.
 ###Response
 
 <iframe src="https://snap.apigee.com/1XuA0gh" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+
+{: .aside}
+>[JS](#js){: .active}
+>[cULR](#cULR)
+{: .lang-selector}
+
+~~~js
+var request = $.ajax({
+  url: "https://http://app.ticketmaster.com/discovery/v1/venues/90150.json",
+  method: “GET”
+});
+request.done(function( msg ) {
+  console.log( msg );
+});
+request.fail(function( jqXHR, textStatus ) {
+  console.log("Request failed: " + textStatus);
+});
+~~~

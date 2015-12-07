@@ -2,6 +2,18 @@
 layout: documentation
 categories : products-and-docs/apis/samples/
 ---
+#API DOCUMENTATION
+
+{: .article}
+Description of API for discovery service. This API allows to work with events, attractions, categories and venues.
+{: .lead #lead}
+
+{: .aside}
+###Developer Console
+
+Test this endpoint right now in the interactive docs:
+
+<button markdown="1" class="btn btn-default" >INTERACTIVE DOCS</button>
 
 #WIDE ONE COLUMN
 {: .article}
@@ -12,7 +24,6 @@ This is one column article.
 {: .article}
 
 ##Left
-{: .left}
 
 This is left column.
 
