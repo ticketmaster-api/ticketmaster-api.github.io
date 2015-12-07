@@ -1,0 +1,45 @@
+@objects
+    header      css  .top-bar
+    logo        css  #header-logo img
+    nav-item-*  css  #menu a
+
+    social      id   promo-social
+    twitter     css  .twitter-tweet
+
+    top-promo   id   top-promo
+    main-header css  #top-promo h1
+    main-desc   css  #top-promo p
+    get-api-btn css  #top-promo .tm-btn-white
+    explore-btn css  #top-promo .tm-btn-transparent
+
+    columns-block css .columns
+    columns-container css .columns .row-container
+    column-item-* css .columns .row-container>div
+
+    partners-block id bottom-promo
+
+    footer id footer
+
+= Navigation test =
+    @on mobile
+        logo:
+            visible
+
+= general layout test =
+    @on mobile
+        column-item-*:
+            width ~ 100 % of columns-container/width
+        columns-block:
+            below top-promo 20 to 30px
+        partners-block:
+        social:
+            absent
+        footer:
+            below columns-block 0 to 5px
+        main-desc:
+            below main-header 0 to 5px
+        get-api-btn:
+            width 195 to 200px
+            height 45 to 50px
+        explore-btn:
+            absent
