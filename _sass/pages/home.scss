@@ -195,6 +195,7 @@ li{
   }
   .columns {
     .row-container{
+      max-width: 720px;
       &>div{
         margin-bottom: 69px;
       }

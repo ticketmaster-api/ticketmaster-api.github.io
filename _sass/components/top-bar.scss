@@ -66,7 +66,7 @@
   transition-timing-function: cubic-bezier(0.33, 0.01, 0.32, 0.48);
   &.expanded{
     max-height: 500px;
-    box-shadow: 2px 8px 9px 0px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.68);
   }
   background: $white;
   min-height: 0;
@@ -80,6 +80,14 @@
     padding: 6px 10px;
     a{
       color: $n3;
+    }
+  }
+  &.long{
+    top: 44px;
+    li{
+      &:first-child{
+        padding: 22px 10px 6px;
+      }
     }
   }
 }
