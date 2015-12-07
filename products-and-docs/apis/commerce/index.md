@@ -32,7 +32,7 @@ Returns Event Offers.
 commerce/{version}/events/{id}/offers.{format}
 {: .pull-quote #pull-quote}
 
-###Template parameters:
+####Template parameters:
 
 __version__ - The API Version. Required. Default value "v2";
 
@@ -73,7 +73,7 @@ Returns Event Offers.
 commerce/{version}/events/{id}/offers.{format}
 {: .pull-quote #pull-quote}
 
-###Template parameters:
+####Template parameters:
 
 | Parameter    | Description          | Possible Values   | Default Value      | Required |
 |:-------------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -114,7 +114,48 @@ Returns Event Offers.
 commerce/{version}/events/{id}/offers.{format}
 {: .pull-quote #pull-quote}
 
-###Template parameters:
+####Template parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       “v2”         | Yes      |
+| `id`       | Event ID. Required.  | string            | “05004F24E0B864B3” | Yes      |
+| `format`   | API Response Format. | string            |       “json”       | Yes      |
+
+{: .aside}
+>[CURL](#curl){: .active}
+>[RUBY](#ruby)
+>[PYTHON](#python)
+{: .lang-selector}
+
+~~~curl
+curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
+~~~
+
+~~~ruby
+require 'open-uri'
+response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
+puts response
+~~~
+
+~~~python
+import urllib2
+urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
+~~~
+
+<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
+
+###Event Offers
+{: .article}
+
+Method: GET. 
+Authentication required.
+Returns Event Offers.
+
+commerce/{version}/events/{id}/offers.{format}
+{: .pull-quote #pull-quote}
+
+####Template parameters:
 
 `version` - The API Version. Required. Default value "v2";
 
@@ -156,7 +197,7 @@ Returns Event Offers.
 commerce/{version}/events/{id}/offers.{format}
 {: .pull-quote #pull-quote}
 
-###Template parameters:
+####Template parameters:
 
 __version__{: style="color: red"} - The API Version. Required. Default value "v2";
 
