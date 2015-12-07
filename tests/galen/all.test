@@ -11,5 +11,5 @@ Home page on tablet
         check tests/galen/home-tablet.gspec --include "mobile,all" --exclude "nomobile"
 
 Home page on mobile
-    http://${domain} 480 x 800
+    http://${domain} 480x800
         check tests/galen/home-mobile.gspec --include "mobile,all" --exclude "nomobile"
