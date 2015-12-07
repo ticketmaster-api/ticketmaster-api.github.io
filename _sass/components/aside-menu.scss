@@ -2,7 +2,7 @@ $menu-top: 10px;
 $menu-bg-top-margin: 250px;
 
 .wrapper-aside-menu{
-  background-color: #F7F9FA;
+  //background-color: $aside-menu-background;
 }
 
 h3.menu-header {
@@ -72,6 +72,19 @@ h3.menu-header {
     }
   }
 
+}
+
+.aside-menu-bg{
+  width: 34%;
+  background-color: $aside-menu-background;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 @media (max-width: 985px) {
