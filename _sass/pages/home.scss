@@ -210,14 +210,14 @@ li{
       }
       ul {
         li {
-          @include inline-list();
+          @include inline-list(14px);
         }
       }
     }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .rightarrow {
     margin: 0 !important;
     &:after {

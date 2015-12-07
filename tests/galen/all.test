@@ -4,8 +4,12 @@
 
 Home page on desktop
     http://${domain} 1920x1080
-        check tests/galen/home.gspec --include "desktop"
+        check tests/galen/home-desktop.gspec --include "desktop"
+
+Home page on tablet
+    http://${domain} 768x1024
+        check tests/galen/home-tablet.gspec --include "mobile,all" --exclude "nomobile"
 
 Home page on mobile
-    http://${domain} 375x627
-        check tests/galen/home.gspec --include "mobile,all" --exclude "nomobile"
+    http://${domain} 480x800
+        check tests/galen/home-mobile.gspec --include "mobile,all" --exclude "nomobile"

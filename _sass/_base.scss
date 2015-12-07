@@ -242,7 +242,7 @@ pre {
   clear: both;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .row-container {
     padding: 0 23px;
   }
@@ -303,7 +303,7 @@ pre {
   }
 }
 
-@mixin inline-list(){
+@mixin inline-list($top){
   position: relative;
   display: inline;
   margin-right: 15px;
@@ -314,15 +314,15 @@ pre {
     width: 2px;
     height: 2px;
     right: -10px;
-    top: 10px;
+    top: $top;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .xs-center{
     text-align: center;
     li{
-      @include inline-list();
+      @include inline-list(10px);
     }
   }
   .xs-border-bottom{

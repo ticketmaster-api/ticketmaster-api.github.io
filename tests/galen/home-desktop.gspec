@@ -21,7 +21,7 @@
     footer id footer
 
 = Navigation test =
-    @on *
+    @on desktop
         logo:
             visible
 
@@ -48,16 +48,7 @@
         nav-item-6:
             text is "OPEN SOURCE"
 
-@objects
-    social      id   promo-social
-    twitter     css  .twitter-tweet
-
-= twitter card =
-    @on desktop
-        twitter:
-            inside social
-
-= desctop layout test =
+= general layout test =
     @on desktop
         column-item-*:
             width ~ 25 % of columns-container/width
@@ -79,3 +70,8 @@
             width 320to 325px
             height 45 to 50px
             visible
+
+= twitter card =
+    @on desktop
+        twitter:
+            inside social

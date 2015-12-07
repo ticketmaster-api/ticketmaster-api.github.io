@@ -36,7 +36,7 @@
 .slice-top-left{
   &>div:first-child{
     margin-top: 140px;
-    @media (max-width: 768px){
+    @media (max-width: 767px){
       margin-top: 101px;
     }
   }
@@ -46,7 +46,7 @@
   padding-bottom: 150px;
   &>div:first-child{
     margin-bottom: 90px;
-    @media (max-width: 768px){
+    @media (max-width: 767px){
       margin-bottom: 64px;
     }
   }
