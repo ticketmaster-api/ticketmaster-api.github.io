@@ -26,7 +26,7 @@
             visible
 
 = general layout test =
-    @on desktop
+    @on mobile
         column-item-*:
             width ~ 100 % of columns-container/width
         columns-block:
