@@ -2,7 +2,7 @@
 layout: documentation
 category: documentation
 ---
-
+{: .article}
 #Discovery REST API
 
 {: .lead #lead}
@@ -45,7 +45,6 @@ Returns the 20 most recent events for the authenticating user.
 
 ###Response1
 
-{: .article}
 <iframe src="https://snap.apigee.com/1ls3jia" height="400" frameborder="0" scrolling="no"></iframe>
 
 {: .aside}
@@ -92,23 +91,8 @@ Returns the event detail by event ID.
 
 <iframe src="https://snap.apigee.com/1ImqiFR" width="860" height="600" frameborder="0" scrolling="no"></iframe>
 
+- - - -
 {: .aside}
->[JS](#js){: .active}
->[cULR](#cULR)
-{: .lang-selector}
-
-~~~js
-var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json",
-  method: “GET”
-});
-request.done(function( msg ) {
-  console.log( msg );
-});
-request.fail(function( jqXHR, textStatus ) {
-  console.log("Request failed: " + textStatus);
-});
-~~~
 
 {: .article}
 {: #srch-event-img }

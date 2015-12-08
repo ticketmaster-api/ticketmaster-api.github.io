@@ -29,9 +29,13 @@
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
                 groupLeft.wrapAll('<div class="left-wrapper"></div>');
+
+                //add underline
+                if (me.hasClass('lang-selector')) {
+                    groupLeft.parent().children().first().addClass('underline');
+                }
                 //console.log($('*').length);//As less is better
             });
-
 
     })
 })();
