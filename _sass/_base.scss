@@ -306,15 +306,17 @@ pre {
 @mixin inline-list($top){
   position: relative;
   display: inline;
-  margin-right: 15px;
-  &:not(:last-child):after{
-    content: '';
-    position: absolute;
-    border: 1px solid;
-    width: 2px;
-    height: 2px;
-    right: -10px;
-    top: $top;
+  &:not(:last-child){
+    margin-right: 15px;
+    &:after{
+      content: '';
+      position: absolute;
+      border: 1px solid;
+      width: 2px;
+      height: 2px;
+      right: -10px;
+      top: $top;
+    }
   }
 }
 
