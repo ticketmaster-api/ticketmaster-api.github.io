@@ -81,9 +81,6 @@
         float: left;
         margin-top: 15px;
 
-        h2{
-          border-bottom: 2px solid $n3;
-        }
         h3 {
           color: $n3;
         }
@@ -107,6 +104,10 @@
             font-size: 1.3em;
           }
         }
+      }
+
+      .underline {
+        border-bottom: 2px solid $n3;
       }
 
     }
