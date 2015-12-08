@@ -1,6 +1,8 @@
 ---
 layout: documentation
-category: documentation
+categories:
+- documentation
+- discovery
 ---
 
 ##Discovery REST API

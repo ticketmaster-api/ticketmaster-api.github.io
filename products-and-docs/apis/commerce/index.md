@@ -1,7 +1,9 @@
 ---
 layout: documentation
-category: documentation
 id: com1
+categories:
+- documentation
+- commerce
 ---
 
 ##Commerse REST API

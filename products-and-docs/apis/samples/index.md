@@ -1,6 +1,8 @@
 ---
 layout: documentation-single
-category: documentation
+categories:
+- documentation
+- samples
 ---
 
 {: #headers}

@@ -1,6 +1,8 @@
 ---
 layout: documentation
-category: partners
+categories:
+- documentation
+- partner
 ---
 
 ## Ticketmaster Partner-App API
