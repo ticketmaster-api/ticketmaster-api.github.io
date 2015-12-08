@@ -11,12 +11,12 @@
                 </a>
             </div>
             <nav id="menu" class="col-xs-12 col-lg-6">
-                <a {% if page.category == "home" or page.category == "documentation" or page.categories[0] == "documentation" %} class="one nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}">Products & Docs</a>
-                <a {% if page.category == "home" or page.category == "partners" %} class="two nav-item" {% else %} class="gray" {% endif %} href="#">Partners</a>
-                <a {% if page.category == "home" or page.category == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="#">Support</a>
-                <a {% if page.category == "home" or page.category == "blogs" %} class="four nav-item" {% else %} class="gray" {% endif %} href="#">Blogs</a>
-                <a {% if page.category == "home" or page.category == "events" %} class="five nav-item" {% else %} class="gray" {% endif %} href="#">Events</a>
-                <a {% if page.category == "home" or page.category == "opensource" %} class="six nav-item" {% else %} class="gray" {% endif %} href="#">Open Source</a>
+                <a {% if page.category == "home" or page.category == "documentation" or page.categories[0] == "documentation" or page.category == "under_development" %} class="one nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}">Products & Docs</a>
+                <a {% if page.category == "home" or page.category == "partners" or page.category == "under_development" %} class="two nav-item" {% else %} class="gray" {% endif %} href="#">Partners</a>
+                <a {% if page.category == "home" or page.category == "support" or page.category == "under_development" %} class="three nav-item" {% else %} class="gray" {% endif %} href="#">Support</a>
+                <a {% if page.category == "home" or page.category == "blogs" or page.category == "under_development" %} class="four nav-item" {% else %} class="gray" {% endif %} href="#">Blogs</a>
+                <a {% if page.category == "home" or page.category == "events" or page.category == "under_development" %} class="five nav-item" {% else %} class="gray" {% endif %} href="#">Events</a>
+                <a {% if page.category == "home" or page.category == "opensource" or page.category == "under_development" %} class="six nav-item" {% else %} class="gray" {% endif %} href="#">Open Source</a>
             </nav>
             <div class="col-xs-5 col-lg-3 gray">
                 <a id="menu-btn" {% if page.category != "home" %} class="white"{% endif %}></a>

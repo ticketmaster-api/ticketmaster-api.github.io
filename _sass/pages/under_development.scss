@@ -1,0 +1,21 @@
+.under_development{
+  position: relative;
+  padding-top: 37px;
+  margin-bottom: 148px;
+  &>.row-container{
+    text-align: center;
+    &>div{
+      float: none;
+      display: inline-block;
+      h1 {
+        color: $n1-grey-color;
+        padding-top: 31px;
+        margin-bottom: 42px;
+        word-break: normal;
+      }
+      p{
+        margin: 0;
+      }
+    }
+  }
+}
