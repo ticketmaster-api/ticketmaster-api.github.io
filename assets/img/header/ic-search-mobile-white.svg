@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.4 (381) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_search_mobile_white</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="-Stylesheet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-901.000000, -487.000000)">
+            <g id="ic_search_mobile_white" sketch:type="MSLayerGroup" transform="translate(899.000000, 485.000000)">
+                <rect id="Rectangle-85" sketch:type="MSShapeGroup" x="0" y="0" width="24" height="24"></rect>
+                <path d="M16,9.5 C16,13.089625 13.089625,16 9.5,16 C5.910375,16 3,13.089625 3,9.5 C3,5.9095625 5.910375,3 9.5,3 C13.089625,3 16,5.9095625 16,9.5 L16,9.5 Z" id="Stroke-337" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M14,14 L21,21" id="Stroke-338" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

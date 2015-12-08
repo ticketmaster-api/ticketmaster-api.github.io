@@ -6,6 +6,9 @@
   &:after {
     display: none;
   }
+  &:last-child{
+    margin-right: 0;
+  }
 }
 
 #top-promo {
@@ -168,7 +171,7 @@ li{
   #bottom-promo{
     margin: 22px 0 61px;
     .button-block {
-      margin: 42px 0 85px;
+      margin: 66px 0 85px;
     }
     .row-container{
       &>div:first-child {

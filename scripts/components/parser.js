@@ -14,28 +14,25 @@
         }
         /*Normalize END*/
 
-        main.find('.article').each(
-            function () {
-                var group = $(this).nextUntil('.article').addBack();
-                group.wrapAll('<div class="article-wrapper"></div>');
-            });
+        main.find('.article').each(function () {
+            var group = $(this).nextUntil('.article').addBack();
+            group.wrapAll('<div class="article-wrapper"></div>');
+        });
 
-        main.find('.aside').each(
-            function () {
-                var me = $(this);
-                var group = me.nextUntil('.article').addBack();
-                var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
+        main.find('.aside').each(function () {
+            var me = $(this);
+            var group = me.nextUntil('.article').addBack();
+            var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
 
-                group.wrapAll('<div class="aside-wrapper"></div>');
+            group.wrapAll('<div class="aside-wrapper"></div>');
 
-                groupLeft.wrapAll('<div class="left-wrapper"></div>');
+            groupLeft.wrapAll('<div class="left-wrapper"></div>');
 
-                //add underline
-                if (me.hasClass('lang-selector')) {
-                    groupLeft.parent().children().first().addClass('underline');
-                }
-                //console.log($('*').length);//As less is better
-            });
-
+            //add underline
+            if (me.hasClass('lang-selector')) {
+                groupLeft.parent().children().first().addClass('underline');
+            }
+            //console.log($('*').length);//As less is better
+        });
     })
 })();
