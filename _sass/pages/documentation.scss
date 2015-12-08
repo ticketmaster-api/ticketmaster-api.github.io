@@ -1,160 +1,115 @@
 .documentation{
-    /*deprecated*/
-    /*.content-old {
-        blockquote {
-            .highlighter-rouge {
-                position: inherit;
-                display: inherit;
-                width: 100%;
-            }
+  .content {
+    hr {
+      display: initial;
+      clear: both;
+      border: 0;
+      content: '';
+
+    }
+    .article-wrapper {
+      //background-color: lemonchiffon;
+      display: table;
+      width: 100%;
+      margin-bottom: 10px;
+
+      h1, h2, h3, h4, h5, h6,
+      p, table, ul, ol, aside, dl, figure {
+        display: block;
+
+        @media (max-width: 767px) {
+          width: 100%;
         }
-        h3.menu-header {
-            width: 100%;
-            color: $n3;
-        }
+      }
 
-        h4 > .right-col {
-            padding-top: 10px;
-            border-top: 1px solid $code-border;
-        }
-
-        hr {
-            clear: both;
-            border: 0;
-        }
-
-        blockquote {
-            h1, h2, h3, h4, h5, h6,
-            p, table, ul, ol, aside, dl, figure {
-                display: block;
-                width: 55%;
-                float: left;
-                @media (max-width: 767px) {
-                    width: 100%;
-                }
-            }
-            border-left: 0;
-            padding-left: 0;
-            font-size: inherit;
-            letter-spacing: 0;
-            font-style: normal;
-
-            & .side-comment,
-            blockquote {
-                float: right;
-                margin: 0px;
-                padding-left: 20px;
-                padding-top: 0px;
-                padding-bottom: 10px;
-                font-size: inherit;
-                letter-spacing: 0;
-                font-style: normal;
-                border-left: 2px solid $n3;
-
-                width: calc(44% - 2px);
-
-                h1, h2, h3, h4, h5, h6,
-                p, table, ul, ol, aside, dl,
-                pre, code, blockquote, figure {
-                    width: 100%;
-                }
-                @media (max-width: 767px) {
-                    float: inherit;
-                    width: 100%;
-                    border: 0;
-                }
-            }
-
-            .lang-selector {
-                a {
-                    color: $n2-grey-color;
-                    font-size: $size-h3;
-                    border-bottom: 3px solid $n2-grey-color;
-                    text-decoration: none;
-                    display: block;
-                    width: 30%;
-                    float: left;
-                    margin: 0 5px 20px 5px;
-                    text-align: center;
-                    line-height: 2em;
-                    &:hover {
-                        color: $s1a;
-                        border-color: $s1a;
-                    }
-                }
-                .active {
-                    color: $p1a;
-                    border-bottom: 3px solid $p1a;
-                }
-            }
-
-            @media (min-width: 768px) {
-                h2 {
-                    float: left;
-                }
-            }
-        }
+      .aside-wrapper {
+        //background-color: yellowgreen;
+        width: 50%;
+        float: right;
+        margin-top: 15px;
+        padding-left: 20px;
 
         h1, h2, h3, h4, h5, h6,
+        iframe,
         p, table, ul, ol, aside, dl, figure {
-            display: block;
-            width: 55%;
-            float: left;
-            @media (max-width: 767px) {
-                width: 100%;
-            }
+          display: block;
+          width: 100%;
+
+          @media (max-width: 767px) {
+            width: 100%;
+          }
         }
-
-
-        h2 {
-            float: left;
-            width: 55%;
-        }
-
         blockquote {
-            float: right;
-            margin: 0px;
-            padding-left: 20px;
-            padding-top: 0px;
-            padding-bottom: 10px;
-            font-size: inherit;
-            letter-spacing: 0;
-            font-style: normal;
-            width: calc(44% - 2px);
-
-            h1, h2, h3, h4, h5, h6,
-            p, table, ul, ol, aside, dl,
-            pre, code, blockquote, figure {
-                width: 100%;
-            }
-
-            .main-description-console {
-                border-left: 0px solid $n3;
-            }
-
-            @media (max-width: 767px) {
-                float: inherit;
-                width: 100%;
-                border: 0;
-            }
+          border-left: 0;
+          padding: 0;
+          margin: 0;
+          font-size: 16px;
+          letter-spacing: -1px;
+          display: inline-block;
+          width: 100%;
+          font-style: normal;
         }
-
-        .dev-console-header {
-            h1, h2, h3 {
-                width: 100%;
-            }
-            h3 {
-                color: $n3;
-                width: 100% !important;
-            }
-            p {
-                width: 100%;
-
-                &.main-description {
-                    font-size: 1.3em;
-                }
-            }
+        blockquote ~ blockquote {
+          border-bottom: 2px solid $n2-grey-color;
         }
+        .lang-selector {
+          a {
+            color: $n2-grey-color;
+            font-size: $size-h3;
+            border-bottom: 2px solid $n2-grey-color;
+            text-decoration: none;
+            display: block;
+            width: 30%;
+            float: left;
+            margin: 0 5px 20px 5px;
+            text-align: center;
+            line-height: 2em;
+            &:hover {
+              color: $s1a;
+              border-color: $s1a;
+            }
+          }
+          .active {
+            color: $p1a;
+            border-bottom: 2px solid $p1a;
+          }
+        }
+      }
 
-    }*/
+      .left-wrapper {
+        width: 50%;
+        float: left;
+        margin-top: 15px;
+
+        h3 {
+          color: $n3;
+        }
+        iframe{
+          width: 100%;
+        }
+      }
+
+      .dev-console-header {
+        h1, h2, h3 {
+          width: 100%;
+        }
+        h3 {
+          color: $n3;
+          width: 100% !important;
+        }
+        p {
+          width: 100%;
+
+          &.main-description {
+            font-size: 1.3em;
+          }
+        }
+      }
+
+      .underline {
+        border-bottom: 2px solid $n3;
+      }
+
+    }
+  }
 }
