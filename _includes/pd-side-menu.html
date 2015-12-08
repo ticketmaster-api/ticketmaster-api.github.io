@@ -4,7 +4,7 @@
         <ul class="categories">
             <li><a href="/products-and-docs/apis/getting-started/">Getting started</a></li>
             <li><a href="/products-and-docs/apis/discovery/">Discovery API</a>
-                {% if page.categories == "products-and-docs/apis/discovery/" %}
+                {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" %}
                 <ul class="sections">
                     <li><a href="#srch-evets">Searching for events</a></li>
                     <li><a href="#get-enent-det">Getting event details</a></li>
@@ -19,14 +19,14 @@
                 {% endif %}
             </li>
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
-                {% if page.categories == "products-and-docs/apis/commerce/" %}
-                <ul class="lvl-3">
+                {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
+                <ul class="sections">
                     <li><a href="#">Getting event offers</a></li>
                 </ul>
                 {% endif %}
             </li>
             <li><a href="/products-and-docs/apis/partner/">Commerce API for partners</a>
-                {% if page.categories == "products-and-docs/apis/pantheon/" %}
+                {% if page.categories[0] == "documentation" and page.categories[1] == "partner" %}
                 <ul class="sections">
                     <li><a href="#">Pantheon</a></li>
                 </ul>
@@ -34,7 +34,7 @@
             </li>
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive console</a>
             <li><a href="/products-and-docs/apis/samples/">Samples</a>
-                {% if page.categories == "products-and-docs/apis/samples/" %}
+            {% if page.categories[0] == "documentation" and page.categories[1] == "samples" %}
                 <ul class="sections">
                     <li><a href="#headers">headers</a></li>
                     <li><a href="#lead">lead</a></li>
