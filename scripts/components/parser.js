@@ -56,9 +56,9 @@
             allBtn.siblings().removeClass("active");
 
             event.preventDefault();
-            var tabcURL = "tab-cURL";
-            //var tabGroup = $(".tab-active [class*=" + tabcURL + "]");
+            //var tabcURL = "tab-cURL";
             var currentClassName = $('.tab-content').attr("class");
+            //var tabGroup = $(".tab-active [class*=" + currentClassName  + "]");
             var tabGroup = $('.tab-active');
 
             if(currentButton.attr("class") ==='active'){
