@@ -22,7 +22,7 @@
       }
     }
   }
-  @media #{$max-1200} {
+  @media #{$max-768} {
     margin-bottom: 25px;
   }
   h1 {
@@ -89,17 +89,17 @@
   }
   .row-container {
     max-width: 820px;
+    h2 {
+      margin-bottom: 22px;
+    }
     @media #{$max-1200} {
       &>div:first-child {
         padding-top: 21px !important;
-        h2{
-          margin-bottom: 22px;
-        }
       }
     }
   }
   .button-block {
-    margin: 57px 0 85px;
+    margin: 50px 0 85px;
     @media #{$max-1200} {
       margin: 66px 0 85px;
     }
