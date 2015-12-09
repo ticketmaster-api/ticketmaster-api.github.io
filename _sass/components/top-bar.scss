@@ -126,12 +126,25 @@ nav{
       }
     }
     &:after{
+      background: $white;
+      -webkit-backface-visibility: hidden;
       margin-bottom: -210px;
       @media (max-width: 1440px){
         height: 170px;
       }
       @media (min-width: 1921px){
         margin-bottom: -250px;
+      }
+    }
+    &.grey-after{
+      &:after{
+        background: -webkit-linear-gradient(left, $aside-menu-background, $aside-menu-background 25%, $white 25%, $white);
+        @media #{$max-1200}{
+          background: -webkit-linear-gradient(left, $aside-menu-background, $aside-menu-background ((100% / 12) * 5), $white ((100% / 12) * 5), $white);
+        }
+        @media #{$max-768}{
+          background: $aside-menu-background;
+        }
       }
     }
   }

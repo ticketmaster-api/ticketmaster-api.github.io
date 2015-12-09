@@ -1,14 +1,56 @@
 $menu-top: 10px;
 $menu-bg-top-margin: 250px;
 
-.wrapper-aside-menu{
-  //background-color: $aside-menu-background;
+#aside-block{
+  margin-left: -0.9%;
+  padding-left: 4%;
+  @media #{$max-1200}{
+    top: -70px;
+    position: absolute;
+    z-index: 1;
+  }
+  &.bg-grey{
+    background-color: $aside-menu-background;
+    &.bg-top{
+      &:after{
+        top: 0;
+      }
+    }
+    &:after{
+      content: '';
+      position: fixed;
+      width: 25%;
+      @media #{$max-1200}{
+        width: ((100% / 12) * 5);
+      }
+      @media #{$max-768}{
+        width: 100%;
+      }
+      height: 100%;
+      left: -1.5%;
+      background-color: $aside-menu-background;
+      z-index: -1;
+    }
+    .wrapper-aside-menu{
+      display: block !important;
+    }
+  }
+  &.is-fixed {
+    top: 0px;
+    position: fixed;
+    @include transition(2.35s);
+  }
 }
 
 h3.menu-header {
   width: 100%;
   color: $n3;
   margin-bottom: 10px;
+  position: relative;
+  #side-menu-btn{
+    position: relative;
+    right: -20px;
+  }
 }
 
 .aside-menu {
@@ -29,12 +71,6 @@ h3.menu-header {
 
   &:first-child {
     margin-left: 0;
-  }
-
-  &.is-fixed {
-    top: 0px;
-    position: fixed;
-    @include transition(2.35s);
   }
 
   .categories {
@@ -88,25 +124,25 @@ h3.menu-header {
 }
 
 @media (max-width: 985px) {
-  .aside-menu.is-fixed {
+  /*.aside-menu.is-fixed {
     max-width: 20%;
-  }
+  }*/
 }
 
 @media (min-width: 768px) {
-  .aside-menu.is-fixed {
+  /*.aside-menu.is-fixed {
     position: fixed;
     max-width: 20%;
-  }
+  }*/
 }
 
 @media (max-width: 767px) {
   .aside-menu .sections {
     display: none;
   }
-  .aside-menu.is-fixed {
+  /*.aside-menu.is-fixed {
     position: relative;
     max-width: 100%;
-  }
+  }*/
 }
 
