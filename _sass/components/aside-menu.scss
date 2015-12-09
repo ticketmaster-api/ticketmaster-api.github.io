@@ -1,44 +1,22 @@
 $menu-top: 10px;
 $menu-bg-top-margin: 250px;
 
-#aside-block{
-  margin-left: -0.9%;
+body{
+  &.menu-bg{
+    @include aside-menu-bg(23.5%);
+  }
+}
+
+#aside-block {
+  background-color: $aside-menu-background;
+  left: - 1.5%;
   padding-left: 4%;
-  @media #{$max-1200}{
-    top: -70px;
-    position: absolute;
-    z-index: 1;
+  @media #{$max-1200} {
+    left: -0.762%;
   }
-  &.bg-grey{
-    background-color: $aside-menu-background;
-    &.bg-top{
-      &:after{
-        top: 0;
-      }
-    }
-    &:after{
-      content: '';
-      position: fixed;
-      width: 25%;
-      @media #{$max-1200}{
-        width: ((100% / 12) * 5);
-      }
-      @media #{$max-768}{
-        width: 100%;
-      }
-      height: 100%;
-      left: -1.5%;
-      background-color: $aside-menu-background;
-      z-index: -1;
-    }
-    .wrapper-aside-menu{
-      display: block !important;
-    }
-  }
-  &.is-fixed {
+  .is-fixed{
     top: 0px;
     position: fixed;
-    @include transition(2.35s);
   }
 }
 
@@ -59,10 +37,6 @@ h3.menu-header {
   padding-top: $menu-top;
   display: block;
   float: inherit;
-
-  //padding-top: $menu-bg-top-margin;
-  //margin-top: -$menu-bg-top-margin;
-  //z-index: 0;
 
   h4 {
     color: $n2-grey-color;
@@ -107,42 +81,11 @@ h3.menu-header {
       }
     }
   }
-
-}
-
-.aside-menu-bg{
-  width: 34%;
-  background-color: $aside-menu-background;
-  //position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-
-@media (max-width: 985px) {
-  /*.aside-menu.is-fixed {
-    max-width: 20%;
-  }*/
-}
-
-@media (min-width: 768px) {
-  /*.aside-menu.is-fixed {
-    position: fixed;
-    max-width: 20%;
-  }*/
 }
 
 @media (max-width: 767px) {
   .aside-menu .sections {
     display: none;
   }
-  /*.aside-menu.is-fixed {
-    position: relative;
-    max-width: 100%;
-  }*/
 }
 

@@ -1,29 +1,31 @@
 (function(){
     $(document).ready(function() {
-        var menuHeader = $('.menu-header'),
-            offset = menuHeader.offset().top,
-            asideBlock = $("#aside-block"),
+        var menuWraper = $('.wrapper-aside-menu'),
+            offset = menuWraper.offset().top,
             sideBtn = $("#side-menu-btn"),
-            topbar = $('.top-bar');
+            asideBlock = $("#aside-block"),
+            topBar = $('.top-bar').addClass('menu-bg'),
+            bottomBar = $('#footer').addClass('menu-bg');
+
+        $('body').addClass('menu-bg');
 
         $(window).on({
             resize:function(){
-                offset = menuHeader.offset().top;
+                offset = menuWraper.offset().top;
             },
             scroll:function(){
                 if ($(window).scrollTop() > offset) {
-                    //menuHeader.addClass('is-fixed');
-                    menuHeader.parent().addClass("bg-top").addClass('is-fixed');
+                    menuWraper.parent().addClass("is-fixed");
                 } else {
-                    //menuHeader.removeClass('is-fixed');
-                    menuHeader.parent().removeClass("bg-top").removeClass('is-fixed');
-                };
+                    menuWraper.parent().removeClass("is-fixed");
+                }
             }
         });
 
         sideBtn.on("click", function(){
             asideBlock.toggleClass("bg-grey");
-            topbar.toggleClass('grey-after');
+            topBar.toggleClass('menu-bg');
+            bottomBar.toggleClass('menu-bg');
         });
     })
 
