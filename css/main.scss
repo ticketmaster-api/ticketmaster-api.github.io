@@ -83,9 +83,18 @@
   }
   @if $position == 'bottom'{
     margin-bottom: -235px;
+    @media (min-width: 1921px) {
+      margin-bottom: -270px;
+    }
   }
   @else {
     margin: -80px 0;
+    @media (min-width: 1921px) {
+      margin: -120px 0;
+    }
+  }
+  @media (min-width: 1921px) {
+    height: 240px;
   }
   @media (max-width: 1440px) {
     height: 143px;
@@ -113,6 +122,7 @@
 "pages/home",
 "pages/documentation",
 "pages/documentation-single",
+"pages/under_development",
 "components/top-bar",
 "components/bottom-bar",
 "components/table",

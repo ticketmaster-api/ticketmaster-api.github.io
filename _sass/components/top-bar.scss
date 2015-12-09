@@ -22,16 +22,16 @@
   display: none;
   background-image: url('/assets/img/header/ic-menu-p-1.svg');
   &.white{
-    background-image: url('/assets/img/header/ic_menu_white.png');
+    background-image: url('/assets/img/header/ic-menu-p-1-white.svg');
     background-position: 5px 5px;
   }
   cursor: pointer;
   &.tm-close{
-    background-image: url('/assets/img/header/ic_close.png');
+    background-image: url('/assets/img/header/ic-close-grey.svg');
     background-size: 18px 18px;
     background-position: 4px 4px;
     &.white{
-      background-image: url('/assets/img/header/ic_close_white.png');
+      background-image: url('/assets/img/header/ic-close-white.svg');
     }
   }
 }
@@ -39,7 +39,7 @@
 #search{
   background-image: url('/assets/img/header/ic-search-p-1.svg');
   &.white{
-    background-image: url('/assets/img/header/ic_search_white.png');
+    background-image: url('/assets/img/header/ic-search-white.svg');
   }
 }
 
@@ -96,7 +96,7 @@ nav{
   display: table;
   padding: 0 !important;
   a {
-    font-family: $font-body;
+    font-family: $font-bold-p;
     letter-spacing: 0.8px;
     text-transform: uppercase;
     display: table-cell;
@@ -117,9 +117,21 @@ nav{
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     padding-bottom: 130px;
+    &>.body-wrapper{
+      margin-bottom: 58px;
+    }
     nav{
       &>a {
         color: $white !important;
+      }
+    }
+    &:after{
+      margin-bottom: -210px;
+      @media (max-width: 1440px){
+        height: 170px;
+      }
+      @media (min-width: 1921px){
+        margin-bottom: -250px;
       }
     }
   }
@@ -201,5 +213,8 @@ nav{
     top: 26px !important;
     left: -11px !important;
     background-image: url('/assets/img/header/ic-search-mobile.svg') !important;
+    &.white{
+      background-image: url('/assets/img/header/ic-search-mobile-white.svg') !important;
+    }
   }
 }

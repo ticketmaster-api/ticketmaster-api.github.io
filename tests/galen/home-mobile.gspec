@@ -35,7 +35,7 @@
         social:
             absent
         footer:
-            below columns-block 0 to 5px
+            below columns-block ~0px
         main-desc:
             below main-header 10 to 20px
         get-api-btn:
