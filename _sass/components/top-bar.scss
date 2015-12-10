@@ -106,8 +106,7 @@ nav{
 }
 
 .top-bar {
-  border-top: $borderHeight solid $n2-grey-color;
-  overflow: visible;
+  padding-top: $borderHeight;
   .body-wrapper {
     margin-top: -$borderHeight;
     max-width: 1400px;

@@ -30,9 +30,20 @@ body{
   }
   &.has-bg {
     background-color: $aside-menu-background;
+    &:before{
+      background-color: $aside-menu-background;
+    }
+  }
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    height: 55px;
+    width: 100%;
+    top: -55px;
+    left: 0;
   }
   &.is-fixed {
-    overflow: hidden;
     &>.wrapper-aside-menu {
       top: 0px;
       position: fixed;
