@@ -92,6 +92,7 @@ h3.menu-header {
   padding-top: $menu-top;
   display: block;
   float: inherit;
+  @include tm-transition();
   @media (min-width: 1200px){
     display: block !important;
   }
