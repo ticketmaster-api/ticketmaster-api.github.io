@@ -10,7 +10,6 @@ body{
 }
 
 #aside-block {
-  overflow: hidden;
   left: - 1.5%;
   padding-left: 4.5%;
   @media #{$max-1200} {
@@ -33,6 +32,7 @@ body{
     background-color: $aside-menu-background;
   }
   &.is-fixed {
+    overflow: hidden;
     &>.wrapper-aside-menu {
       top: 0px;
       position: fixed;
