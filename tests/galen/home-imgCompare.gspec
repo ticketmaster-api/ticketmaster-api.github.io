@@ -5,9 +5,8 @@
 ==============
     body:
         count any menu-item-* is < 5
-
     body:
-        image file img\scr-home451.png, tolerance 10, map-filter denoise 10
+        image file img/scr-home480.png, tolerance 10, map-filter denoise 10
 
 #### to run local
 #galen check tests/galen/home-imageCheck.gspec --url localhost:4000 --size 480x1024 --htmlreport tests/galen/reports/report480
