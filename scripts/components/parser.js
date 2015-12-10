@@ -25,6 +25,7 @@
                 var me = $(this);
                 var group = me.nextUntil('.article').addBack();
                 var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
+                var firstElemGroupLeft =groupLeft.parent().children().first();
 
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -32,11 +33,18 @@
 
                 //add underline
                 if (me.hasClass('lang-selector')) {
-                    groupLeft.parent().children().first().addClass('underline');
+                    firstElemGroupLeft.addClass('underline');
 
+                    //check if heading h2 has more then 1 line (height >50)
+                    var firstElemHeigh = firstElemGroupLeft.css('height').replace('px','');
+                        firstElemHeigh = parseFloat(firstElemHeigh);
+                    if(firstElemHeigh > 50){
+                        me.children('p').css('margin-top',firstElemHeigh-50)
+                    }
+
+                    /**/
                     //add class for tabs
                     me.children().children().first().addClass('active')//set first elm active
-                    //me.children(':not(:first-child)').first().addClass('tab-content') //hide all tab-content
                     $(".aside-wrapper blockquote").nextAll().addClass('tab-content'); //hide all tab-content ":not(:first-child)"
                     group.nextAll().first().addClass('tab-active');//show first tab-content
                 }
