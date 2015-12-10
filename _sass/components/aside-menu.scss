@@ -1,14 +1,89 @@
 $menu-top: 10px;
 $menu-bg-top-margin: 250px;
 
-.wrapper-aside-menu{
-  //background-color: $aside-menu-background;
+body{
+  &.menu-bg {
+    @media (min-width: 1200px) {
+      @include aside-menu-bg(23.5%);
+    }
+  }
+}
+
+#aside-block {
+  overflow: hidden;
+  left: - 1.5%;
+  padding-left: 4.5%;
+  @media #{$max-1200} {
+    left: -0.762%;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+  }
+  @media #{$max-768} {
+    left: 0;
+  }
+  .wrapper-aside-menu {
+    @include tm-transition();
+    @media #{$max-1200}{
+      position: relative;
+      top: -60px;
+    }
+  }
+  &.has-bg {
+    background-color: $aside-menu-background;
+  }
+  &.is-fixed {
+    &>.wrapper-aside-menu {
+      top: 0px;
+      position: fixed;
+      @media #{$max-768}{
+        width: 94%;
+      }
+    }
+    &:not(.has-bg){
+      .wrapper-aside-menu{
+        background-color: $white-90;
+        width: 100%;
+        left: 0;
+        padding-left: 4%;
+        padding-bottom: 5px;
+      }
+    }
+  }
+}
+
+#side-menu-btn {
+  display: none;
+  @media #{$max-1200} {
+    display: inline-block;
+  }
+  @media #{$max-768}{
+    position: absolute;
+    right: 8px;
+    top: 8px !important;
+  }
+  position: relative;
+  right: -20px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position-y: 82%;
+  @include tm-transition();
+  &.expanded {
+    background-image: url('/assets/img/header/ic-close-grey.svg');
+    top: 2px;
+  }
+  &.closed {
+    background-image: url('/assets/img/aside-menu/ic-close-grey.svg');
+  }
 }
 
 h3.menu-header {
   width: 100%;
   color: $n3;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .aside-menu {
@@ -17,11 +92,9 @@ h3.menu-header {
   padding-top: $menu-top;
   display: block;
   float: inherit;
-
-  //padding-top: $menu-bg-top-margin;
-  //margin-top: -$menu-bg-top-margin;
-  //z-index: 0;
-
+  @media (min-width: 1200px){
+    display: block !important;
+  }
   h4 {
     color: $n2-grey-color;
     margin-top: 0;
@@ -29,12 +102,6 @@ h3.menu-header {
 
   &:first-child {
     margin-left: 0;
-  }
-
-  &.is-fixed {
-    top: 0px;
-    position: fixed;
-    @include transition(2.35s);
   }
 
   .categories {
@@ -70,43 +137,6 @@ h3.menu-header {
         color: $n2-grey-color;
       }
     }
-  }
-
-}
-
-.aside-menu-bg{
-  width: 34%;
-  background-color: $aside-menu-background;
-  //position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-
-@media (max-width: 985px) {
-  .aside-menu.is-fixed {
-    max-width: 20%;
-  }
-}
-
-@media (min-width: 768px) {
-  .aside-menu.is-fixed {
-    position: fixed;
-    max-width: 20%;
-  }
-}
-
-@media (max-width: 767px) {
-  .aside-menu .sections {
-    display: none;
-  }
-  .aside-menu.is-fixed {
-    position: relative;
-    max-width: 100%;
   }
 }
 

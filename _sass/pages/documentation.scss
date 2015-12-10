@@ -53,6 +53,10 @@
           border-bottom: 2px solid $n2-grey-color;
         }
         .lang-selector {
+          width: 95%;
+          margin-left: auto;
+          margin-right: auto;
+
           a {
             color: $n2-grey-color;
             font-size: $size-h3;
@@ -61,7 +65,7 @@
             display: block;
             width: 30%;
             float: left;
-            margin: 0 5px 20px 5px;
+            margin: 0 5px;
             text-align: center;
             line-height: 2em;
             &:hover {
@@ -73,6 +77,29 @@
             color: $p1a;
             border-bottom: 2px solid $p1a;
           }
+        }
+        .tab{
+         background-color: orange;
+        }
+
+        .tab-content {
+          width: 100%;
+          display: none;
+
+          //:first-child{
+          //  display: block;
+          //}
+        }
+        .tab-active {
+          display: block;
+        }
+        .tab-hide {
+          display: none;
+        }
+
+        @media (max-width: 767px) {
+          width: 100%;
+          float: inherit;
         }
       }
 
@@ -86,6 +113,11 @@
         }
         iframe{
           width: 100%;
+        }
+
+        @media (max-width: 767px) {
+          width: 100%;
+          float: inherit;
         }
       }
 
