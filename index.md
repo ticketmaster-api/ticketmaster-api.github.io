@@ -73,7 +73,7 @@ While we finish up the official APIs, SDKs, and widgets, check out the open sour
 We have a ton of brilliant minds working on some incredibly challenging problems. Read what they have to say about it on our blogs.
 
 * [Ticketmaster Tech blog](http://tech.ticketmaster.com)
-* [Android blog](http://code.ticketmaster.com)
+* [Ticketmaster Medium Publication](https://medium.com/ticketmaster-tech)
 {% endcapture %}
 
 {% capture column3_asset %}
