@@ -321,11 +321,15 @@ pre {
 }
 
 @mixin aside-menu-bg($percent){
-  background: -webkit-linear-gradient(left, $aside-menu-background, $aside-menu-background $percent, $white $percent, $white);
+  background: -moz-linear-gradient(left, $aside-menu-background 0%, $aside-menu-background $percent, $white $percent, $white 100%);
+  background: -webkit-linear-gradient(left,$aside-menu-background 0%, $aside-menu-background $percent, $white $percent, $white 100%);
+  background: linear-gradient(to right,$aside-menu-background 0%, $aside-menu-background $percent, $white $percent, $white 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$aside-menu-background, endColorstr=$white, GradientType=0 );
 }
 
 @mixin component-menu-bg(){
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   @include aside-menu-bg(25%);
   @media #{$max-1200}{
     @include aside-menu-bg(((100% / 12) * 5));

@@ -77,9 +77,17 @@
   background-color: $white;
   @if $orientation == 'right'{
     transform: matrix(1.06,-0.089,0,1,0,0);
+    -webkit-transform: matrix(1.06,-0.089,0,1,0,0);
+    -moz-transform: matrix(1.06,-0.089,0,1,0,0);
+    -o-transform: matrix(1.06,-0.089,0,1,0,0);
+    -ms-transform: matrix(1.06,-0.089,0,1,0,0);
   }
   @if $orientation == 'left'{
     transform: matrix(1.06,0.082,0,1,0,0);
+    -webkit-transform: matrix(1.06,0.082,0,1,0,0);
+    -moz-transform: matrix(1.06,0.082,0,1,0,0);
+    -o-transform: matrix(1.06,0.082,0,1,0,0);
+    -ms-transform: matrix(1.06,0.082,0,1,0,0);
   }
   @if $position == 'bottom'{
     margin-bottom: -235px;
