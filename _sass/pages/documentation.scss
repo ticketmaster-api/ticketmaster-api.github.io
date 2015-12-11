@@ -8,10 +8,14 @@
 
     }
     .article-wrapper {
-      //background-color: lemonchiffon;
       display: table;
       width: 100%;
       margin-bottom: 10px;
+
+      &:not(:first-child)>*:first-child{
+        margin-right: 51%;
+      }
+
 
       h1, h2, h3, h4, h5, h6 {
         margin: 0;
@@ -27,11 +31,14 @@
       }
 
       .aside-wrapper {
-        //background-color: yellowgreen;
         width: 50%;
         float: right;
-        margin-top: 15px;
         padding-left: 20px;
+        margin-top: -50px;
+
+        #developer-console {
+          margin-top: 50px;
+        }
 
         h1, h2, h3, h4, h5, h6,
         iframe,
@@ -57,9 +64,7 @@
             margin-top: 0;
           }
         }
-        blockquote ~ blockquote {
-          border-bottom: 2px solid $n2-grey-color;
-        }
+
         .lang-selector {
           width: 95%;
           margin-left: auto;
@@ -85,9 +90,6 @@
             color: $p1a;
             border-bottom: 2px solid $p1a;
           }
-        }
-        .tab{
-         background-color: orange;
         }
 
         .tab-content {
@@ -148,6 +150,7 @@
           border-bottom: 0;
         }
       }
+
       .pull-quote{
         word-break: break-word;
       }

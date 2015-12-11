@@ -35,12 +35,8 @@
                 if (me.hasClass('lang-selector')) {
                     firstElemGroupLeft.addClass('underline');
 
-                    //check if heading h2 has more then 1 line (height >50)
-                    var firstElemHeigh = firstElemGroupLeft.css('height').replace('px','');
-                        firstElemHeigh = parseFloat(firstElemHeigh);
-                    if(firstElemHeigh > 50){
-                        me.children('p').css('margin-top',firstElemHeigh-50)
-                    }
+                    //move first element to class="aside-wrapper"
+                    firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
 
                     /**/
                     //add class for tabs
@@ -48,29 +44,21 @@
                     $(".aside-wrapper blockquote").nextAll().addClass('tab-content'); //hide all tab-content ":not(:first-child)"
                     group.nextAll().first().addClass('tab-active');//show first tab-content
                 }
+
                 //console.log($('*').length);//As less is better
+                //console.log('firstElemGroupLeft',firstElemGroupLeft);
             });
 
-        $(window).on({
-            resize: function(){
-                var main = $('.content');
-                var elemUnderline = $(".underline");
-
-                main.find('.aside').each(
-                    function () {
-                        var me = $(this);
-                        var firstElemHeigh = elemUnderline.css('height').replace('px', '');
-                        firstElemHeigh = parseFloat(firstElemHeigh);
-
-                        if (firstElemHeigh > 50 && elemUnderline.hasClass('underline')) {
-                            me.children('p').css('margin-top', firstElemHeigh - 50);
-                        }else{
-                            me.children('p').css('margin-top', 0);
-                        }
-                        //console.log('resize');
-                    })
+        //if 1 column don't draw a line
+        main.find('.article-wrapper').each(function(){
+            var me = $(this);
+            if ( !me.children().first().hasClass('underline') ) {
+                me.children().first().css('margin-right','0');
             }
         });
+
+        //console.log( '0', $('#developer-console').parent().css('margin-top','15') );
+
 
         $(".lang-selector a").click(function(event) {
             var currentButton =$(this);
