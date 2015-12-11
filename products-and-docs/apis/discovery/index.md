@@ -21,12 +21,12 @@ For work with API you should add to query string the __apikey__ parameter with y
 - __venueId__ - Venue ID(s) separated by comma. Default value "115378";
 
 {: .aside}
->[JS](#tab-js)
->[cULR](#tab-cURL)
->[ruby](#tab-ruby)
+>[curl](#curl)
+>[ruby](#ruby)
+>[phyton](#python)
 {: .lang-selector}
 
-~~~js
+{% highlight curl %}
 var request = $.ajax({
   url: "https://app.ticketmaster.com/discovery/v1/events.json?size=1",
   method: “GET”
@@ -37,20 +37,20 @@ request.done(function( msg ) {
 request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
-~~~
-{: #tab-js .tab-js}
+{% endhighlight %}
 
-~~~cURL
+
+{% highlight ruby %}
 curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
-~~~
-{: #tab-cURL .tab-cURL}
+{% endhighlight %}
 
-~~~rudy
+
+{% highlight python %}
 def foo
   puts 'foo'
 end
-~~~
-{: #tab-ruby .tab-ruby}
+{% endhighlight %}
+
 
 {: .article}
 ##Search Events
@@ -60,9 +60,9 @@ end
 - __venueId__ - Venue ID(s) separated by comma. Default value "115378";
 
 {: .aside}
->[JS](#tab-js)
->[cULR](#tab-cURL)
->[ruby](#tab-ruby)
+>[curl](#curl)
+>[ruby](#ruby)
+>[phyton](#python)
 {: .lang-selector}
 
 ~~~js
@@ -114,9 +114,9 @@ Returns all the images for an event by ID. If an event does not have an image fo
 <iframe src="https://snap.apigee.com/1YERkwm" width="400" height="300" frameborder="0" scrolling="no"></iframe>
 
 {: .aside}
->[JS](#tab-js)
->[cURL](#tab-cURL)
->[ruby](#tab-ruby)
+>[curl](#curl)
+>[ruby](#ruby)
+>[phyton](#python)
 {: .lang-selector}
 
 ~~~js
@@ -177,9 +177,9 @@ Search Attractions!
 <iframe src="https://snap.apigee.com/1XuyzP2" width="800" height="300" frameborder="0" scrolling="no"></iframe>
 
 {: .aside}
->[JS](#tab-js)
->[cULR](#tab-cURL)
->[ruby](#tab-ruby)
+>[curl](#curl)
+>[ruby](#ruby)
+>[phyton](#python)
 {: .lang-selector}
 
 ~~~js
@@ -194,19 +194,19 @@ request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
 ~~~
-{: #tab-js}
+
 
 ~~~ruby
 def foo
   puts 'foo'
 end
 ~~~
-{: #tab-cURL}
+
 
 ~~~rudy
 def foo
   puts 'foo'
 end
 ~~~
-{: #tab-ruby}
+
 
