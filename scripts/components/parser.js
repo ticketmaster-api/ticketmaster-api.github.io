@@ -13,6 +13,7 @@
             firstElem.addClass("article");
         }
         /*Normalize END*/
+        var i =0;
 
         main.find('.article').each(
             function () {
@@ -41,9 +42,23 @@
                     /**/
                     //add class for tabs
                     me.children().children().first().addClass('active')//set first elm active
-                    $(".aside-wrapper blockquote").nextAll().addClass('tab-content'); //hide all tab-content ":not(:first-child)"
-                    group.nextAll().first().addClass('tab-active');//show first tab-content
+
+                    i++;
+
+
+                    $(".aside-wrapper blockquote").nextAll().addClass('tab-content' ); //hide all tab-content ":not(:first-child)"
+
+                    $(".aside-wrapper blockquote").nextAll().addClass( group.index() );
+                    //console.log('index' , me, me.children().index( $('tab-content' ) ));
+
+                    group.nextAll().first().addClass('tab-active curl');//show first tab-content
+
+                    //here should get all classes from tab menu then add this name to tab-content
+                    group.next(':nth-child(3)').addClass('ruby');//hardcode need to imrove it
+                    group.next(':nth-child(4)').addClass('python');//hardcode
+
                 }
+
 
                 //console.log($('*').length);//As less is better
                 //console.log('firstElemGroupLeft',firstElemGroupLeft);
@@ -72,6 +87,7 @@
             allBtn.siblings().removeClass("active");
 
             event.preventDefault();
+
             var currentClassName = $('.tab-content').attr("class");
             //var tabGroup = $(".tab-active [class*=" + currentClassName  + "]");
             var tabGroup = $('.tab-active');
