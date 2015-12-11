@@ -7,7 +7,9 @@
             topBar = $('.top-bar').addClass('menu-bg'),
             bottomBar = $('#footer').addClass('menu-bg'),
             menu = $('ul.aside-menu'),
-            $body = $('body').addClass('menu-bg');
+            initialMenuHeight = menu.height(),
+            $body = $('body').addClass('menu-bg'),
+            screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
         var showMenu = function(){
             asideBlock.addClass("has-bg");
@@ -27,23 +29,57 @@
             sideBtn.addClass("closed").removeClass("expanded");
         };
 
-        if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 1200){
+        var fixMenuHeight = function(){
+
+            var menuTop = menu.offset().top,
+                menuHeight = menu.height(),
+                bottomBarOffset = bottomBar.offset().top,
+                maxHeight =  bottomBarOffset - menuTop + 40;
+
+            //lower menu height when scrolled to bottom
+            if (menuTop + menuHeight >= bottomBarOffset){
+                menu.css('max-height', maxHeight + 'px');
+            }
+            else {
+                if (menuHeight < initialMenuHeight){
+                    menu.css('max-height', maxHeight + 'px');
+                }
+                else {
+                    menu.css('max-height', '');
+                }
+            }
+        };
+
+        if (screenWidth < 1200){
             hideMenu();
         }
 
         $(window).on({
             resize: function(){
+
                 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+                screenWidth = w;
+
                 if (w >= 1200){
                     showMenu();
+                    fixMenuHeight();
                 }
+                else {
+                    menu.css('max-height', '');
+                }
+
             },
             scroll:function(){
+
+                //fix side menu position on scroll
                 if ($(window).scrollTop() > offset) {
                     menuWraper.parent().addClass("is-fixed");
                 } else {
                     menuWraper.parent().removeClass("is-fixed");
                 }
+
+                if (screenWidth >= 1200)
+                    fixMenuHeight();
             }
         });
 

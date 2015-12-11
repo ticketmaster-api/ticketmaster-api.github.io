@@ -106,8 +106,7 @@ nav{
 }
 
 .top-bar {
-  border-top: $borderHeight solid $n2-grey-color;
-  overflow: visible;
+  padding-top: $borderHeight;
   .body-wrapper {
     margin-top: -$borderHeight;
     max-width: 1400px;
@@ -115,6 +114,9 @@ nav{
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     padding-bottom: 130px;
+    background-position-y: 8px;
+    background-repeat: no-repeat;
+    background-color: $n2-grey-color;
     &>.body-wrapper{
       margin-bottom: 58px;
     }
