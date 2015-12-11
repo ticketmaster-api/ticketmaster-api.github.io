@@ -16,6 +16,9 @@
             topBar.addClass('menu-bg');
             bottomBar.addClass('menu-bg');
             $body.addClass('menu-bg');
+            if (asideBlock.hasClass("is-fixed")){
+                $body.addClass('no-scroll');
+            }
             menu.show();
             sideBtn.addClass("expanded").removeClass("closed");
         };
@@ -24,7 +27,7 @@
             asideBlock.removeClass("has-bg");
             topBar.removeClass('menu-bg');
             bottomBar.removeClass('menu-bg');
-            $body.removeClass('menu-bg');
+            $body.removeClass('menu-bg no-scroll');
             menu.hide();
             sideBtn.addClass("closed").removeClass("expanded");
         };
@@ -73,9 +76,9 @@
 
                 //fix side menu position on scroll
                 if ($(window).scrollTop() > offset) {
-                    menuWraper.parent().addClass("is-fixed");
+                    asideBlock.addClass("is-fixed");
                 } else {
-                    menuWraper.parent().removeClass("is-fixed");
+                    asideBlock.removeClass("is-fixed");
                 }
 
                 if (screenWidth >= 1200)

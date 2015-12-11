@@ -6,6 +6,8 @@ body{
     @media (min-width: 1200px) {
       @include aside-menu-bg(23.5%);
     }
+  }
+  &.no-scroll {
     @media #{$max-768} {
       overflow: hidden;
     }
@@ -15,6 +17,7 @@ body{
 #aside-block {
   left: - 1.5%;
   padding-left: 4.5%;
+  @include transform-3d();
   @media #{$max-1200} {
     left: -0.762%;
     position: absolute;
@@ -25,6 +28,7 @@ body{
     left: 0;
   }
   .wrapper-aside-menu {
+    @include transform-3d();
     @include tm-transition();
     @media #{$max-1200}{
       position: relative;
@@ -98,7 +102,7 @@ body{
   height: 18px;
   cursor: pointer;
   background-repeat: no-repeat;
-  background-position-y: 82%;
+  background-position: 0 82%;
   @include tm-transition();
   &.expanded {
     background-image: url('/assets/img/header/ic-close-grey.svg');
