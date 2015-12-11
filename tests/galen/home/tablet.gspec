@@ -23,7 +23,7 @@
 
 = image test =
     body:
-        image file img/scr-home768.png, tolerance 10, map-filter denoise 10
+        image file img/scr-home768.png, tolerance 4000, map-filter denoise 10
 
 = Navigation test =
     @on mobile
@@ -49,7 +49,7 @@
             width 195 to 200px
             height 45 to 50px
         explore-btn:
-            width 320to 325px
+            width 310to 320px
             height 45 to 50px
             visible
 
