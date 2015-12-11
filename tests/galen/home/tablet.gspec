@@ -1,4 +1,5 @@
 @objects
+    body        css  body
     header      css  .top-bar
     logo        css  #header-logo img
     nav-item-*  css  #menu a
@@ -19,6 +20,10 @@
     partners-block id bottom-promo
 
     footer id footer
+
+= image test =
+    body:
+        image file img/scr-home768.png, tolerance 10, map-filter denoise 10
 
 = Navigation test =
     @on mobile

@@ -1,5 +1,5 @@
 @objects
-    body            css  body
+    body        css  body
     header      css  .top-bar
     logo        css  #header-logo img
     nav-item-*  css  #menu a

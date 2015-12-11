@@ -25,8 +25,7 @@ script:
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
-#  - galen check tests/galen/home.gspec --url localhost:4000 --size 1024x768 --htmlreport tests/galen/reports -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
-  - galen test tests/galen/all.test
+  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
 after_script:
   - rake travis:deploy --trace --verbose
@@ -44,4 +43,3 @@ before_install:
   - gem install jekyll
   - gem install html-proofer
   - npm install -g galenframework-cli
-

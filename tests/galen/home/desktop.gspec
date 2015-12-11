@@ -1,24 +1,26 @@
 @objects
-    header      css  .top-bar
-    logo        css  #header-logo img
-    nav-item-*  css  #menu a
-
-    social      id   promo-social
-    twitter     css  .twitter-tweet
-
-    top-promo   id   top-promo
-    main-header css  #top-promo h1
-    main-desc   css  #top-promo p
-    get-api-btn css  #top-promo .tm-btn-white
-    explore-btn css  #top-promo .tm-btn-transparent
-
-    columns-block css .columns
+    body              css  body
+    header            css  .top-bar
+    logo              css  #header-logo img
+    nav-item-*        css  #menu a
+    social            id   promo-social
+    twitter           css  .twitter-tweet
+    top-promo         id   top-promo
+    main-header       css  #top-promo h1
+    main-desc         css  #top-promo p
+    get-api-btn       css  #top-promo .tm-btn-white
+    explore-btn       css  #top-promo .tm-btn-transparent
+    columns-block     css .columns
     columns-container css .columns .row-container
-    column-item-* css .columns .row-container>div
+    column-item-*     css .columns .row-container>div
+    partners-block    id bottom-promo
+    footer            id footer
 
-    partners-block id bottom-promo
 
-    footer id footer
+= image test =
+    body:
+        image file img/scr-home1200.png, tolerance 10, map-filter denoise 10
+
 
 = Navigation test =
     @on desktop
