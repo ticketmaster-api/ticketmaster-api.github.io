@@ -51,6 +51,26 @@
                 //console.log($('*').length);//As less is better
             });
 
+        $(window).on({
+            resize: function(){
+                var main = $('.content');
+                var elemUnderline = $(".underline");
+
+                main.find('.aside').each(
+                    function () {
+                        var me = $(this);
+                        var firstElemHeigh = elemUnderline.css('height').replace('px', '');
+                        firstElemHeigh = parseFloat(firstElemHeigh);
+
+                        if (firstElemHeigh > 50 && elemUnderline.hasClass('underline')) {
+                            me.children('p').css('margin-top', firstElemHeigh - 50);
+                        }else{
+                            me.children('p').css('margin-top', 0);
+                        }
+                        //console.log('resize');
+                    })
+            }
+        });
 
         $(".lang-selector a").click(function(event) {
             var currentButton =$(this);
