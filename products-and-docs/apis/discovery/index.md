@@ -27,6 +27,16 @@ For work with API you should add to query string the __apikey__ parameter with y
 {: .lang-selector}
 
 {% highlight curl %}
+curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
+{% endhighlight %}
+
+{% highlight ruby%}
+def foo
+  puts 'foo'
+end
+{% endhighlight %}
+
+{% highlight python  %}
 var request = $.ajax({
   url: "https://app.ticketmaster.com/discovery/v1/events.json?size=1",
   method: “GET”
@@ -37,18 +47,6 @@ request.done(function( msg ) {
 request.fail(function( jqXHR, textStatus ) {
   console.log("Request failed: " + textStatus);
 });
-{% endhighlight %}
-
-
-{% highlight ruby %}
-curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
-{% endhighlight %}
-
-
-{% highlight python %}
-def foo
-  puts 'foo'
-end
 {% endhighlight %}
 
 
