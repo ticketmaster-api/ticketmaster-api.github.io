@@ -61,9 +61,7 @@
 #menu-dropdown{
   display: none;
   overflow-y: hidden;
-  transition-property: all;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.33, 0.01, 0.32, 0.48);
+  @include tm-transition();
   &.expanded{
     max-height: 500px;
     box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.68);
@@ -72,7 +70,7 @@
   min-height: 0;
   max-height: 0;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 60px;
   right: 0px;
   outline: none;
@@ -108,8 +106,7 @@ nav{
 }
 
 .top-bar {
-  border-top: $borderHeight solid $n2-grey-color;
-  overflow: visible;
+  padding-top: $borderHeight;
   .body-wrapper {
     margin-top: -$borderHeight;
     max-width: 1400px;
@@ -117,6 +114,9 @@ nav{
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     padding-bottom: 130px;
+    background-position-y: 8px;
+    background-repeat: no-repeat;
+    background-color: $n2-grey-color;
     &>.body-wrapper{
       margin-bottom: 58px;
     }
@@ -126,12 +126,18 @@ nav{
       }
     }
     &:after{
+      background: $white;
       margin-bottom: -210px;
       @media (max-width: 1440px){
         height: 170px;
       }
       @media (min-width: 1921px){
         margin-bottom: -250px;
+      }
+    }
+    &.menu-bg{
+      &:after{
+        @include component-menu-bg();
       }
     }
   }

@@ -10,6 +10,11 @@
   .footer-nav{
     margin: 198px 0 70px;
   }
+  &.menu-bg{
+    &:before{
+      @include component-menu-bg();
+    }
+  }
 }
 
 @media (max-width: 1199px) {
