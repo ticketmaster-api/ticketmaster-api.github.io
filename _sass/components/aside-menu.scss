@@ -6,6 +6,9 @@ body{
     @media (min-width: 1200px) {
       @include aside-menu-bg(23.5%);
     }
+    @media #{$max-768} {
+      overflow: hidden;
+    }
   }
 }
 
@@ -38,26 +41,42 @@ body{
     content: '';
     display: block;
     position: absolute;
-    height: 55px;
+    height: $maincontent-margin;
     width: 100%;
-    top: -55px;
+    top: -$maincontent-margin;
     left: 0;
   }
   &.is-fixed {
-    &>.wrapper-aside-menu {
-      top: 0px;
-      position: fixed;
-      @media #{$max-768}{
-        width: 94%;
+    .wrapper-aside-menu{
+      z-index: 1;
+      height: 95%;
+      .aside-menu{
+        max-height: 88%;
+        min-height: 30%;
+        overflow: auto;
+        @media (min-width: 1200px) {
+          padding-right: 9%;
+        }
+        @media (min-width: 1400px) {
+          padding-right: 21%;
+        }
+      }
+      @media (min-width: 1200px) {
+        position: fixed;
+        top: 0;
+      }
+      @media (min-width: 1400px) {
+        padding-right: 4%;
       }
     }
-    &:not(.has-bg){
-      .wrapper-aside-menu{
-        background-color: $white-90;
+    @media #{$max-1200}{
+      top: $maincontent-margin;
+      position: fixed;
+      &:not(.has-bg){
         width: 100%;
-        left: 0;
-        padding-left: 4%;
-        padding-bottom: 5px;
+        &:before{
+          background-color: $white-90;
+        }
       }
     }
   }
@@ -103,9 +122,11 @@ h3.menu-header {
   padding-top: $menu-top;
   display: block;
   float: inherit;
-  @include tm-transition();
   @media (min-width: 1200px){
     display: block !important;
+  }
+  @media #{$max-1200}{
+    @include tm-transition();
   }
   h4 {
     color: $n2-grey-color;

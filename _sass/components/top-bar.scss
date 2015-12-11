@@ -114,6 +114,9 @@ nav{
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     padding-bottom: 130px;
+    background-position-y: 8px;
+    background-repeat: no-repeat;
+    background-color: $n2-grey-color;
     &>.body-wrapper{
       margin-bottom: 58px;
     }
