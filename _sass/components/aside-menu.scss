@@ -16,7 +16,7 @@ body{
 
 #aside-block {
   left: - 1.5%;
-  padding-left: 4.5%;
+  padding-left: 5%;
   @include transform-3d();
   @media #{$max-1200} {
     left: -0.762%;
@@ -30,6 +30,7 @@ body{
   .wrapper-aside-menu {
     @include transform-3d();
     @include tm-transition();
+    overflow: hidden;
     @media #{$max-1200}{
       position: relative;
       top: -60px;
@@ -52,25 +53,15 @@ body{
   }
   &.is-fixed {
     .wrapper-aside-menu{
-      z-index: 1;
       height: 95%;
       .aside-menu{
         max-height: 88%;
-        min-height: 30%;
         overflow: auto;
-        @media (min-width: 1200px) {
-          padding-right: 9%;
-        }
-        @media (min-width: 1400px) {
-          padding-right: 21%;
-        }
       }
       @media (min-width: 1200px) {
         position: fixed;
         top: 0;
-      }
-      @media (min-width: 1400px) {
-        padding-right: 4%;
+        width: 21%;
       }
     }
     @media #{$max-1200}{
@@ -100,7 +91,6 @@ body{
   right: -20px;
   width: 18px;
   height: 18px;
-  cursor: pointer;
   background-repeat: no-repeat;
   background-position: 0 82%;
   @include tm-transition();
@@ -118,10 +108,11 @@ h3.menu-header {
   color: $n3;
   margin-bottom: 10px;
   position: relative;
+  cursor: pointer;
 }
 
 .aside-menu {
-  width: 100%;
+  width: 107%;
   margin-top: 0;
   padding-top: $menu-top;
   display: block;
@@ -136,23 +127,23 @@ h3.menu-header {
     color: $n2-grey-color;
     margin-top: 0;
   }
-
   &:first-child {
     margin-left: 0;
   }
-
   .categories {
     margin-left: 10px;
   }
+  li{
+    line-height: 2em;
+  }
   .sections {
     padding-left: 20px;
-    border-left: 2px solid lighten($n2-grey-color, 35);
+    border-left: 2px solid $p1-border-grey;
     margin: 10px 0;
     li {
-      color: $n2-grey-color;
-      line-height: 2em;
+      color: $n3;
       a {
-        color: $n2-grey-color;
+        color: $n3;
 
         &:hover {
           color: $p1a;
@@ -174,6 +165,11 @@ h3.menu-header {
         color: $n2-grey-color;
       }
     }
+
+    &.current {
+      color: $p1 !important;
+    }
+
   }
 }
 
