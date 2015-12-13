@@ -102,6 +102,7 @@
           width: 100%;
           float: inherit;
           margin-top: 0;
+          padding-left: 0;
         }
       }
 
@@ -125,6 +126,10 @@
 
       .tab-panel-offset{
         margin-top: -50px;
+
+        @media (max-width: 767px) {
+          margin-top: 0;
+        }
       }
 
       .underline {
