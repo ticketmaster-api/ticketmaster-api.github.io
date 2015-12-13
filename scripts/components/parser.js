@@ -44,34 +44,29 @@
                     $(".aside-wrapper blockquote").nextAll().addClass('tab-content' ); //hide all tab-content
 
                     group.nextAll().first().addClass('tab-active');//set first tab visible
-
-                    //var tabIndex = $('.aside-wrapper blockquote').first().children('a');
-                    //    console.log(tabIndex , tabIndex.length);
-
                 }
                 //console.log($('*').length);//As less then better
             });
 
         var tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('.article').length;
-        //console.log('tabIndex2-Len nextUntil',tabsCount.length);
+        //console.log('tabIndex2-Len nextUntil',tabsCount);
 
         $(".aside-wrapper blockquote").nextAll()
             .addClass(function( index ) {
-                if(index>=tabsCount+1) {
-                    index = [index%tabsCount+1]
+                if(index>tabsCount) {
+                    index = [index % (tabsCount+1)]
                 };
                 return "tab-" + index;
             })
             .attr( "id", function( index ) {
-                if(index>=tabsCount+1) {
-                    index = [index%tabsCount+1]
+                if(index>tabsCount) {
+                    index = [index % (tabsCount+1)]
                 };
                 return "tab-" + index;
             });
 
         if(firstElem.hasClass('underline')){
             firstElem.css('margin-right','51%');
-
         }
 
          $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
