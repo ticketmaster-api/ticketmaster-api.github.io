@@ -34,11 +34,6 @@
         width: 50%;
         float: right;
         padding-left: 20px;
-        margin-top: -50px;
-
-        #developer-console {
-          margin-top: 50px;
-        }
 
         h1, h2, h3, h4, h5, h6,
         iframe,
@@ -128,21 +123,8 @@
         }
       }
 
-      .dev-console-header {
-        h1, h2, h3 {
-          width: 100%;
-        }
-        h3 {
-          color: $n3;
-          width: 100% !important;
-        }
-        p {
-          width: 100%;
-
-          &.main-description {
-            font-size: 1.3em;
-          }
-        }
+      .tab-panel-offset{
+        margin-top: -50px;
       }
 
       .underline {
