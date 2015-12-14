@@ -5,13 +5,23 @@
       clear: both;
       border: 0;
       content: '';
-
     }
+
     .article-wrapper {
-      //background-color: lemonchiffon;
       display: table;
       width: 100%;
       margin-bottom: 10px;
+
+      &:not(:first-child)>*:first-child{
+        margin-right: 45%;
+      }
+      iframe {
+        width: 55%;
+
+        @media #{$max-1200} {
+          width: 100%;
+        }
+      }
 
       h1, h2, h3, h4, h5, h6 {
         margin: 0;
@@ -27,19 +37,16 @@
       }
 
       .aside-wrapper {
-        //background-color: yellowgreen;
-        width: 50%;
+        width: 45%;
         float: right;
-        margin-top: 15px;
-        padding-left: 20px;
+        padding-top: 15px;
+        padding-left: 2%;
 
         h1, h2, h3, h4, h5, h6,
         iframe,
         p, table, ul, ol, aside, dl, figure {
-          display: block;
-          width: 100%;
 
-          @media (max-width: 767px) {
+          @media #{$max-768} {
             width: 100%;
           }
         }
@@ -57,18 +64,16 @@
             margin-top: 0;
           }
         }
-        blockquote ~ blockquote {
-          border-bottom: 2px solid $n2-grey-color;
-        }
+
         .lang-selector {
           width: 95%;
           margin-left: auto;
           margin-right: auto;
 
           a {
-            color: $n2-grey-color;
+            color: $n3;
             font-size: $size-h3;
-            border-bottom: 2px solid $n2-grey-color;
+            border-bottom: 2px solid $n3;
             text-decoration: none;
             display: block;
             width: 30%;
@@ -80,14 +85,16 @@
               color: $s1a;
               border-color: $s1a;
             }
+
+            @media #{$max-1200} {
+              width: auto;
+              padding: 0 25px;
+            }
           }
           .active {
             color: $p1a;
             border-bottom: 2px solid $p1a;
           }
-        }
-        .tab{
-         background-color: orange;
         }
 
         .tab-content {
@@ -101,14 +108,16 @@
           display: none;
         }
 
-        @media (max-width: 767px) {
+        @media #{$max-1200} {
           width: 100%;
           float: inherit;
+          margin-top: 0;
+          padding-left: 0;
         }
       }
 
       .left-wrapper {
-        width: 50%;
+        width: 55%;
         float: left;
         margin-top: 15px;
 
@@ -119,37 +128,48 @@
           width: 100%;
         }
 
-        @media (max-width: 767px) {
+        @media #{$max-1200} {
           width: 100%;
           float: inherit;
         }
       }
 
-      .dev-console-header {
-        h1, h2, h3 {
-          width: 100%;
-        }
-        h3 {
-          color: $n3;
-          width: 100% !important;
-        }
-        p {
-          width: 100%;
+      .tab-panel-offset{
+        margin-top: -65px;
 
-          &.main-description {
-            font-size: 1.3em;
-          }
+        @media #{$max-1200} {
+          margin-top: 0;
         }
       }
 
       .underline {
         border-bottom: 2px solid $n3;
-        @media (max-width: 767px) {
+        @media #{$max-1200} {
           border-bottom: 0;
         }
       }
+
       .pull-quote{
         word-break: break-word;
+      }
+
+      .lead {
+        margin-top: 0px;
+      }
+
+      .button{
+        border: 2px solid $n3;
+        border-radius: 4px;
+        font-family: $font-bold-p;
+        padding: 10px 40px;
+        color: $n3;
+        &:hover,
+        :active,
+        :focus{
+          color: $n1;
+          background-color: $white;
+          outline: none;
+        }
       }
 
     }
