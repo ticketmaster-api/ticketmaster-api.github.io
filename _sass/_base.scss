@@ -302,6 +302,10 @@ pre {
   }
 }
 
+.gray{
+  color: $n3;
+}
+
 @mixin inline-list($top){
   position: relative;
   display: inline;

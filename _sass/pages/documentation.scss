@@ -5,8 +5,8 @@
       clear: both;
       border: 0;
       content: '';
-
     }
+
     .article-wrapper {
       display: table;
       width: 100%;
@@ -15,7 +15,22 @@
       &:not(:first-child)>*:first-child{
         margin-right: 51%;
       }
+      iframe {
+        width: 50%;
 
+        .btn-large {
+          background-image: none;
+          background-color: #2b8ecf;
+          padding: 6px 50px;
+          text-transform: uppercase;
+          font-weight: bold;
+          border: none;
+        }
+
+        @media #{$max-1200} {
+          width: 100%;
+        }
+      }
 
       h1, h2, h3, h4, h5, h6 {
         margin: 0;
@@ -33,6 +48,7 @@
       .aside-wrapper {
         width: 50%;
         float: right;
+        padding-top: 15px;
         padding-left: 20px;
 
         h1, h2, h3, h4, h5, h6,
@@ -66,9 +82,9 @@
           margin-right: auto;
 
           a {
-            color: $n2-grey-color;
+            color: $n3;
             font-size: $size-h3;
-            border-bottom: 2px solid $n2-grey-color;
+            border-bottom: 2px solid $n3;
             text-decoration: none;
             display: block;
             width: 30%;
@@ -98,12 +114,18 @@
           display: none;
         }
 
-        @media (max-width: 767px) {
+        @media #{$max-1200} {
           width: 100%;
           float: inherit;
           margin-top: 0;
           padding-left: 0;
         }
+
+        /*@media #{$max-1200} {
+          width: 100%;
+          margin-top: 0;
+          padding-left: 0;
+        }*/
       }
 
       .left-wrapper {
@@ -118,29 +140,33 @@
           width: 100%;
         }
 
-        @media (max-width: 767px) {
+        @media #{$max-1200} {
           width: 100%;
           float: inherit;
         }
       }
 
       .tab-panel-offset{
-        margin-top: -50px;
+        margin-top: -65px;
 
-        @media (max-width: 767px) {
+        @media #{$max-1200} {
           margin-top: 0;
         }
       }
 
       .underline {
         border-bottom: 2px solid $n3;
-        @media (max-width: 767px) {
+        @media #{$max-1200} {
           border-bottom: 0;
         }
       }
 
       .pull-quote{
         word-break: break-word;
+      }
+
+      .lead {
+        margin-top: 0px;
       }
 
     }
