@@ -17,8 +17,7 @@ Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive bar
 
 Test this endpoint right now in the interactive docs:
 
-[INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/)
-{: .button}
+[INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
 ##Event Offers
 {: .article}
