@@ -40,7 +40,7 @@ commerce/{version}/events/{id}/offers.{format}
 
 {: .aside}
 >[JS](#js)
->[CURL](#curl)
+>[cURL](#curl)
 {: .lang-selector}
 
 {% highlight js %}
