@@ -12,8 +12,8 @@ categories:
 Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive barcode and ticket information. Ticket inventory for each event must be established beforehand with Ticketmaster, venues, and ticketing partners. Only this held inventory will be made available through the API. All events are U.S. only.
 {: .article .lead}
 
-###Developer Console
-{: .aside}
+####Developer Console
+{: .aside .gray}
 
 Test this endpoint right now in the interactive docs:
 
@@ -43,15 +43,19 @@ commerce/{version}/events/{id}/offers.{format}
 {: .lang-selector}
 
 {% highlight js %}
-var request = $.ajax({
-  url: "https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
-  method: "GET"
-});
-request.done(function( msg ) {
-  console.log( msg );
-});
-request.fail(function( jqXHR, textStatus ) {
-  console.log("Request failed: " + textStatus);
+$.ajax({
+  type:"GET",
+  url:"http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
 });
 {% endhighlight %}
 
