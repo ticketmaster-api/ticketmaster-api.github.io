@@ -33,6 +33,10 @@ body{
     overflow: hidden;
     @media #{$max-1200}{
       position: relative;
+    }
+  }
+  &:not(.is-fixed){
+    .wrapper-aside-menu{
       top: -60px;
     }
   }
@@ -65,13 +69,13 @@ body{
       }
     }
     @media #{$max-1200}{
-      top: $maincontent-margin;
+      top: 0;
       position: fixed;
       &:not(.has-bg){
         width: 100%;
-        &:before{
-          background-color: $white-90;
-        }
+        height: inherit;
+        top: 0;
+        background-color: $white-90;
       }
     }
   }
