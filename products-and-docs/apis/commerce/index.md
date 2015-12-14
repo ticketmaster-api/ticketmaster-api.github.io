@@ -56,7 +56,7 @@ request.fail(function( jqXHR, textStatus ) {
 });
 {% endhighlight %}
 
-{% highlight curl %}
+{% highlight bash %}
 curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
 {% endhighlight %}
 
