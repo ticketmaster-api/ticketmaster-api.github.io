@@ -8,10 +8,14 @@
 
     }
     .article-wrapper {
-      //background-color: lemonchiffon;
       display: table;
       width: 100%;
       margin-bottom: 10px;
+
+      &:not(:first-child)>*:first-child{
+        margin-right: 51%;
+      }
+
 
       h1, h2, h3, h4, h5, h6 {
         margin: 0;
@@ -27,10 +31,8 @@
       }
 
       .aside-wrapper {
-        //background-color: yellowgreen;
         width: 50%;
         float: right;
-        margin-top: 15px;
         padding-left: 20px;
 
         h1, h2, h3, h4, h5, h6,
@@ -57,9 +59,7 @@
             margin-top: 0;
           }
         }
-        blockquote ~ blockquote {
-          border-bottom: 2px solid $n2-grey-color;
-        }
+
         .lang-selector {
           width: 95%;
           margin-left: auto;
@@ -86,9 +86,6 @@
             border-bottom: 2px solid $p1a;
           }
         }
-        .tab{
-         background-color: orange;
-        }
 
         .tab-content {
           width: 100%;
@@ -104,6 +101,8 @@
         @media (max-width: 767px) {
           width: 100%;
           float: inherit;
+          margin-top: 0;
+          padding-left: 0;
         }
       }
 
@@ -125,20 +124,11 @@
         }
       }
 
-      .dev-console-header {
-        h1, h2, h3 {
-          width: 100%;
-        }
-        h3 {
-          color: $n3;
-          width: 100% !important;
-        }
-        p {
-          width: 100%;
+      .tab-panel-offset{
+        margin-top: -50px;
 
-          &.main-description {
-            font-size: 1.3em;
-          }
+        @media (max-width: 767px) {
+          margin-top: 0;
         }
       }
 
@@ -148,6 +138,7 @@
           border-bottom: 0;
         }
       }
+
       .pull-quote{
         word-break: break-word;
       }
