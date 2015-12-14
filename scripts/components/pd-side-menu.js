@@ -57,8 +57,12 @@
             //fix side menu position on scroll
             if ($(window).scrollTop() > offset) {
                 asideBlock.addClass("is-fixed");
+                if(window.location.href.indexOf("getting-started") > -1) {
+                    asideBlock.parent().css("margin-bottom", 400);
+                }
             } else {
                 asideBlock.removeClass("is-fixed");
+                asideBlock.parent().css("margin-bottom", 0);
             }
 
             if (screenWidth >= 1200)
