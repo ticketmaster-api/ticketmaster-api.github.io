@@ -13,19 +13,10 @@
       margin-bottom: 10px;
 
       &:not(:first-child)>*:first-child{
-        margin-right: 51%;
+        margin-right: 45%;
       }
       iframe {
-        width: 50%;
-
-        .btn-large {
-          background-image: none;
-          background-color: #2b8ecf;
-          padding: 6px 50px;
-          text-transform: uppercase;
-          font-weight: bold;
-          border: none;
-        }
+        width: 55%;
 
         @media #{$max-1200} {
           width: 100%;
@@ -46,10 +37,10 @@
       }
 
       .aside-wrapper {
-        width: 50%;
+        width: 45%;
         float: right;
         padding-top: 15px;
-        padding-left: 20px;
+        padding-left: 2%;
 
         h1, h2, h3, h4, h5, h6,
         iframe,
@@ -120,16 +111,10 @@
           margin-top: 0;
           padding-left: 0;
         }
-
-        /*@media #{$max-1200} {
-          width: 100%;
-          margin-top: 0;
-          padding-left: 0;
-        }*/
       }
 
       .left-wrapper {
-        width: 50%;
+        width: 55%;
         float: left;
         margin-top: 15px;
 
