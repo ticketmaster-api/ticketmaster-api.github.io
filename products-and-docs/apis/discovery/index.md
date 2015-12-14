@@ -26,7 +26,7 @@ For work with API you should add to query string the __apikey__ parameter with y
 >[phyton](#python)
 {: .lang-selector}
 
-{% highlight curl %}
+{% highlight bash %}
 curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
 {% endhighlight %}
 
