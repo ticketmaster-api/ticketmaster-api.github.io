@@ -1,5 +1,5 @@
 ---
-layout: documentation
+layout: documentation-single
 category: documentation
 ---
 
@@ -14,17 +14,12 @@ Everything you need to start playing with the Ticketmaster APIs.
 ##Introduction
 
 
-{: .article .body}
+{: .body}
 Welcome! To get you started, let’s go over the automotive datasets we’ve made
 available for you through the Edmunds API. Once you register for a key, you will
 be able to access the following datasets:
 
 
----
-{: .aside}
-
-
-{: .article .double-margin}
 |Dataset            |  Description                                                                                              |
 |:------------------|:----------------------------------------------------------------------------------------------------------|
 |Vehicle Specs      |Vehicle make/model/year/trim data, vehicle equipment, vehicle options, vehicle colors, etc.                |
@@ -35,7 +30,7 @@ be able to access the following datasets:
 |Dealership Content |Dealership info, consumer reviews, list of cars for sale, dealer pricing, etc.                             |
 
 
-{: .article .body}
+{: .body}
 These datasets are distributed across four distinct APIs: [Vehicle API](), [Editorial API](),
 [Dealer API]() and [Inventory API](). A list of resources available under each API is on the left.
 
@@ -58,13 +53,9 @@ structured and how our APIs work.
 and highlighting in the left sidebar nav to show current location.]
 
 
----
-{: .aside}
-
-{: .article .double-margin}
 ##Available Resources
 
-<table>
+<table class="article double-margin">
   <thead>
     <tr>
       <th style="text-align: center" rowspan="2">API</th>
@@ -82,77 +73,77 @@ and highlighting in the left sidebar nav to show current location.]
     <tr>
       <td style="text-align: left" rowspan="9">Discovery API</td>
       <td style="text-align: left">Search Events</td>
-      <td style="text-align: left;border-right: 0px;"></td>
+      <td style="text-align: left;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Event Details</td>
-      <td style="text-align: left;border-right: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Search Event Images</td>
-      <td style="text-align: left;border-right: 0px;"></td>
+      <td style="text-align: left;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Search Attractions</td>
       <td style="text-align: left;border-right: 0px;"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Attraction Details</td>
       <td style="text-align: left;border-right: 0px;"></td>
       <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Search Categories</td>
       <td style="text-align: left;border-right: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Category Details</td>
-      <td style="text-align: left;border-right: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Search Venues</td>
       <td style="text-align: left;border-right: 0px;"></td>
       <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left">Venue Details</td>
       <td style="text-align: left;border-right: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left">Commerce API</td>
+      <td style="text-align: left">
+        <img src="/assets/img/home/ic-brick-lg-p-2.svg" alt="Icon1">
+        Commerce API
+        </td>
       <td style="text-align: left">Event Offers</td>
-      <td style="text-align: left;border-right: 0px;"></td>
+      <td style="text-align: left;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: left;border-left: 0px;"></td>
+      <td style="text-align: left;border-right: 0px; border-left: 0px;"  class="checked-td"></td>
+      <td style="text-align: left;border-left: 0px;" class="checked-td"></td>
     </tr>
   </tbody>
 </table>
-
----
-{: .article}
