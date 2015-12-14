@@ -39,8 +39,8 @@ commerce/{version}/events/{id}/offers.{format}
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
 {: .aside}
->[JS]()
->[CURL]()
+>[JS](#js)
+>[CURL](#curl)
 {: .lang-selector}
 
 {% highlight js %}
