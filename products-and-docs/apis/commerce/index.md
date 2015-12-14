@@ -6,10 +6,10 @@ categories:
 - commerce
 ---
 
-#API DOCUMENTATION
+#Commerse REST API
 {: .article}
 
-Hella narwhal Cosby dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive barcode and ticket information. Ticket inventory for each event must be established beforehand with Ticketmaster, venues, and ticketing partners. Only this held inventory will be made available through the API. All events are U.S. only.
 {: .article .lead}
 
 ###Developer Console
@@ -17,53 +17,10 @@ Hella narwhal Cosby dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 
 Test this endpoint right now in the interactive docs:
 
-<button class="btn btn-default">INTERACTIVE DOCS</button>
+[INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/)
+{: .button}
 
-##Commerse REST API
-{: .article}
-
-###Event Offers
-{: .article}
-
-Method: GET. 
-Authentication required.
-Returns Event Offers.
-
-commerce/{version}/events/{id}/offers.{format}
-{: .pull-quote #pull-quote}
-
-####Template parameters:
-
-__version__ - The API Version. Required. Default value "v2";
-
-__id__ - Event ID. Required. Default value "05004F24E0B864B3";
-
-__format__ - API Response Format. Required. Default value "json".
-
-{: .aside}
->[CURL](#curl){: .active}
->[RUBY](#ruby)
->[PYTHON](#python)
-{: .lang-selector}
-
-~~~curl
-curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
-~~~
-
-~~~ruby
-require 'open-uri'
-response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
-puts response
-~~~
-
-~~~python
-import urllib2
-urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
-~~~
-
-<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
-
-###Event Offers
+##Event Offers
 {: .article}
 
 Method: GET. 
@@ -71,159 +28,40 @@ Authentication required.
 Returns Event Offers.
 
 commerce/{version}/events/{id}/offers.{format}
-{: .pull-quote #pull-quote}
+{: .pull-quote}
 
-####Template parameters:
-
-| Parameter    | Description          | Possible Values   | Default Value      | Required |
-|:-------------|:---------------------|:----------------- |:------------------ |:-------- |
-| __version__  | The API Version.     | string            |       “v2”         | Yes      |
-| __id__       | Event ID. Required.  | string            | “05004F24E0B864B3” | Yes      |
-| __format__   | API Response Format. | string            |       “json”       | Yes      |
-
-{: .aside}
->[CURL](#curl){: .active}
->[RUBY](#ruby)
->[PYTHON](#python)
-{: .lang-selector}
-
-~~~curl
-curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
-~~~
-
-~~~ruby
-require 'open-uri'
-response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
-puts response
-~~~
-
-~~~python
-import urllib2
-urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
-~~~
-
-<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
-
-###Event Offers
-{: .article}
-
-Method: GET. 
-Authentication required.
-Returns Event Offers.
-
-commerce/{version}/events/{id}/offers.{format}
-{: .pull-quote #pull-quote}
-
-####Template parameters:
+###Template parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `version`  | The API Version.     | string            |       “v2”         | Yes      |
-| `id`       | Event ID. Required.  | string            | “05004F24E0B864B3” | Yes      |
-| `format`   | API Response Format. | string            |       “json”       | Yes      |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `id`       | Event ID. Required.  | string            | "05004F24E0B864B3" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
 
 {: .aside}
->[CURL](#curl){: .active}
->[RUBY](#ruby)
->[PYTHON](#python)
+>[JS](#js)
+>[cURL](#curl)
 {: .lang-selector}
 
-~~~curl
+{% highlight js %}
+var request = $.ajax({
+  url: "https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
+  method: "GET"
+});
+request.done(function( msg ) {
+  console.log( msg );
+});
+request.fail(function( jqXHR, textStatus ) {
+  console.log("Request failed: " + textStatus);
+});
+{% endhighlight %}
+
+{% highlight bash %}
 curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
-~~~
+{% endhighlight %}
 
-~~~ruby
-require 'open-uri'
-response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
-puts response
-~~~
-
-~~~python
-import urllib2
-urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
-~~~
 
 <iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
 
-###Event Offers
-{: .article}
-
-Method: GET. 
-Authentication required.
-Returns Event Offers.
-
-commerce/{version}/events/{id}/offers.{format}
-{: .pull-quote #pull-quote}
-
-####Template parameters:
-
-`version` - The API Version. Required. Default value "v2";
-
-`id` - Event ID. Required. Default value "05004F24E0B864B3";
-
-`format` - API Response Format. Required. Default value "json".
-
+---
 {: .aside}
->[CURL](#curl){: .active}
->[RUBY](#ruby)
->[PYTHON](#python)
-{: .lang-selector}
-
-~~~curl
-curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
-~~~
-
-~~~ruby
-require 'open-uri'
-response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
-puts response
-~~~
-
-~~~python
-import urllib2
-urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
-~~~
-
-<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
-
-
-###Event Offers
-{: .article}
-
-Method: GET. 
-Authentication required.
-Returns Event Offers.
-
-commerce/{version}/events/{id}/offers.{format}
-{: .pull-quote #pull-quote}
-
-####Template parameters:
-
-__version__{: style="color: red"} - The API Version. Required. Default value "v2";
-
-__id__{: style="color: red"} - Event ID. Required. Default value "05004F24E0B864B3";
-
-__format__{: style="color: red"} - API Response Format. Required. Default value "json".
-
-{: .aside}
->[CURL](#curl){: .active}
->[RUBY](#ruby)
->[PYTHON](#python)
-{: .lang-selector}
-
-~~~curl
-curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
-~~~
-
-~~~ruby
-require 'open-uri'
-response = open('http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}').read
-puts response
-~~~
-
-~~~python
-import urllib2
-urllib2.urlopen("http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}").read()
-~~~
-
-<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>

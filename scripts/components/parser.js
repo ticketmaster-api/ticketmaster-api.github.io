@@ -25,6 +25,7 @@
                 var me = $(this);
                 var group = me.nextUntil('.article').addBack();
                 var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
+                var firstElemGroupLeft =groupLeft.parent().children().first();
 
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -32,17 +33,51 @@
 
                 //add underline
                 if (me.hasClass('lang-selector')) {
-                    groupLeft.parent().children().first().addClass('underline');
+                    firstElemGroupLeft.addClass('underline');
+
+                    //move first element to class="aside-wrapper"
+                    firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
 
                     //add class for tabs
-                    me.children().children().first().addClass('active')//set first elm active
-                    //me.children(':not(:first-child)').first().addClass('tab-content') //hide all tab-content
-                    $(".aside-wrapper blockquote").nextAll().addClass('tab-content'); //hide all tab-content ":not(:first-child)"
-                    group.nextAll().first().addClass('tab-active');//show first tab-content
+                    me.children().children().first().addClass('active')//set first button active
+
+                    $(".aside-wrapper blockquote").nextAll().addClass('tab-content' ); //hide all tab-content
+
+                    group.nextAll().first().addClass('tab-active');//set first tab visible
                 }
-                //console.log($('*').length);//As less is better
+                //console.log($('*').length);//As less then better
             });
 
+        var tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('.article').length;
+        //console.log('tabIndex2-Len nextUntil',tabsCount);
+
+        $(".aside-wrapper blockquote").nextAll()
+            .addClass(function( index ) {
+                if(index>tabsCount) {
+                    index = [index % (tabsCount+1)]
+                };
+                return "tab-" + index;
+            })
+            .attr( "id", function( index ) {
+                if(index>tabsCount) {
+                    index = [index % (tabsCount+1)]
+                };
+                return "tab-" + index;
+            });
+
+        if(firstElem.hasClass('underline')){
+            firstElem.css('margin-right','51%');
+        }
+
+         $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
+
+        //if 1 column don't draw a line
+        main.find('.article-wrapper').each(function(){
+            var me = $(this);
+            if ( !me.children().first().hasClass('underline') ) {
+                me.children().first().css('margin-right','0');
+            }
+        });
 
         $(".lang-selector a").click(function(event) {
             var currentButton =$(this);
@@ -56,22 +91,19 @@
             allBtn.siblings().removeClass("active");
 
             event.preventDefault();
+
             var currentClassName = $('.tab-content').attr("class");
             //var tabGroup = $(".tab-active [class*=" + currentClassName  + "]");
             var tabGroup = $('.tab-active');
 
             if(allBtn.hasClass('active')){
-
-                var aClass = currentButton.attr('href');
-
-                var strTMP = aClass.toString().replace("#","");
+                var strTMP = currentButton.index().toString();
 
                 tabGroup.removeClass("tab-active");
-                tabGroup = $("."+strTMP );
-                //console.log('new tabGroup',tabGroup);
+                tabGroup = $(".tab-"+strTMP );
                 tabGroup.addClass("tab-active");
-
             }
+
         });
 
     })
