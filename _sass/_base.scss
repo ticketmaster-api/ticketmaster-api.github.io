@@ -38,8 +38,13 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-top: $spacing-unit / 2;
-    margin-bottom: $spacing-unit / 2;
+    margin-top: $base-margin;
+    margin-bottom: $base-margin;
+}
+
+.double-margin {
+  margin-top: $base-margin * 2;
+  margin-bottom: $base-margin * 2;
 }
 
 .black{
