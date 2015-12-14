@@ -71,6 +71,8 @@
 
          $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
 
+        $('table').wrap('<div class="table-wrapper"></div>');
+
         //if 1 column don't draw a line
         main.find('.article-wrapper').each(function(){
             var me = $(this);
