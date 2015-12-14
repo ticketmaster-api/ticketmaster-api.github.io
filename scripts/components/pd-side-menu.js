@@ -4,6 +4,7 @@
             offset = menuWraper.offset().top,
             sideBtn = $("#side-menu-btn"),
             asideBlock = $("#aside-block"),
+            mainBlock = $("#main-block"),
             topBar = $('.top-bar').addClass('menu-bg'),
             bottomBar = $('#footer').addClass('menu-bg'),
             menu = document.getElementById('scrollable-element'),
@@ -56,10 +57,10 @@
         var adjustMenuPosition = function(){
             //fix side menu position on scroll
             if ($(window).scrollTop() > offset) {
-                asideBlock.addClass("is-fixed");
-                if(window.location.href.indexOf("getting-started") > -1) {
-                    asideBlock.parent().css("margin-bottom", 400);
+                if(asideBlock.height() > mainBlock.height()) {
+                    asideBlock.parent().css("margin-bottom", asideBlock.height() - mainBlock.height());
                 }
+                asideBlock.addClass("is-fixed");
             } else {
                 asideBlock.removeClass("is-fixed");
                 asideBlock.parent().css("margin-bottom", 0);
