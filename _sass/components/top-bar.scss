@@ -116,7 +116,6 @@ nav{
     border-top: none;
     padding-top: $borderHeight;
     padding-bottom: 130px;
-    background-position: 0 8px;
     background-repeat: no-repeat;
     background-color: $n2-grey-color;
     &>.body-wrapper{
@@ -124,8 +123,19 @@ nav{
     }
     nav{
       &>a {
-        color: $white !important;
+        color: $white-70;
+        &.nav-item{
+          color: $white
+        }
       }
+    }
+    &:before {
+      content: '';
+      width: 100%;
+      height: $borderHeight;
+      background-color: $n2-grey-color;
+      position: absolute;
+      top: 0;
     }
     &:after{
       background: $white;
@@ -157,7 +167,7 @@ nav{
   nav{
     &>a{
       position: relative;
-      color: $n3 !important;
+      color: $n3;
     }
     .nav-item{
       &:after{
