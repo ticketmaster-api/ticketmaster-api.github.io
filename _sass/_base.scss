@@ -47,6 +47,15 @@ ul, ol, dl, figure,
   margin-bottom: $base-margin * 2;
 }
 
+.double-margin-top {
+  margin-top: $base-margin * 2;
+}
+
+.double-margin-bottom {
+  margin-bottom: $base-margin * 2;
+}
+
+
 .black{
   color: $n1;
 }
