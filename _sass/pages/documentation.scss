@@ -56,14 +56,19 @@
         overflow: auto;
         overflow-y: hidden;
 
-        @media (max-width: 610px) {
+        @media (max-width: 535px) {
           overflow: auto;
           overflow-y: hidden;
+          width: 450px;
           max-width: 100%;
-          width: 460px;
         }
-        @media (max-width: 510px) {
+        @media (max-width: 500px) {
           width: 430px;
+          max-width: 100%;
+        }
+        @media (max-width: 320px){
+          width: 290px;
+          max-width: 100%;
         }
       }
       table{
