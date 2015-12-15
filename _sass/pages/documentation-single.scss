@@ -1,3 +1,47 @@
 /*.samples{
      //here will be custom styles for 1-column page
 }*/
+
+/*
+  Desktop
+*/
+.single-column {
+  p {
+    width: 50%;
+    &.lead {
+      width: 100%;
+    }
+  }
+  table {
+    width: 85%;
+  }
+}
+
+
+@media (max-width: 1199px) {
+  .single-column {
+    p {
+      width: 70%;
+      &.lead {
+        width: 100%;
+      }
+    }
+    table {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .single-column {
+    p {
+      width: 100%;
+      &.lead {
+        width: 100%;
+      }
+    }
+    table {
+      width: 100%;
+    }
+  }
+}

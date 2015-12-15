@@ -23,6 +23,7 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
+    overflow-x: hidden;
 }
 
 iframe{
@@ -37,9 +38,23 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-top: $spacing-unit / 2;
-    margin-bottom: $spacing-unit / 2;
+    margin-top: $base-margin;
+    margin-bottom: $base-margin;
 }
+
+.double-margin {
+  margin-top: $base-margin * 2;
+  margin-bottom: $base-margin * 2;
+}
+
+.double-margin-top {
+  margin-top: $base-margin * 2;
+}
+
+.double-margin-bottom {
+  margin-bottom: $base-margin * 2;
+}
+
 
 .black{
   color: $n1;
@@ -305,6 +320,13 @@ pre {
 .gray{
   color: $n3;
 }
+
+.checked-td:after {
+  font-family: "fontawesome";
+  content: "\f00c";
+  color: $apple-green;
+}
+
 
 @mixin inline-list($top){
   position: relative;

@@ -25,6 +25,7 @@ $p1c: #2b8ecf;
 $s1b: #a61f84;
 $s1a: #ba1079;
 $white: #ffffff;
+$apple-green: #7ed321;
 $white-70: rgba(255, 255, 255, 0.7);
 $white-90: rgba(255, 255, 255, 0.9);
 
@@ -54,6 +55,8 @@ $font-pull-q: "TMSans-Italic",$base-font-family;
 $font-caption: "TMSans-Italic",$base-font-family;
 $font-bold-p: "TMSans-Bold",$base-font-family;
 
+$font-icons: "fontawesome",$base-font-family;
+
 
 /*Sizes header*/
 $size-h1: 3.375em;  //54px
@@ -72,6 +75,8 @@ $size-code: 0.9em;
 
 $spacing-unit: 30px;
 $spacing-header: 15px;
+
+$base-margin: 24px;
 
 // Jekyll custom variables
 
