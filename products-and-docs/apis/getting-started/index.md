@@ -1,6 +1,8 @@
 ---
 layout: documentation-single
-category: documentation
+categories:
+- documentation
+- getting-started
 ---
 
 
@@ -10,7 +12,7 @@ category: documentation
 {: .lead .double-margin}
 Everything you need to start playing with the Ticketmaster APIs.
 
-
+{: #introduction}
 ##Introduction
 
 
@@ -39,7 +41,7 @@ fully use the APIs to their potential. Once you have a good understanding of the
 API core concepts, you can then dig deeper into each API by visiting its 
 dedicated overview page.
 
-
+{: #data-hierarchy}
 ##Data Hierarchy
 
 {: .body}
@@ -51,7 +53,7 @@ structured and how our APIs work.
 [Remaining content follows in similar fashion, with H2s heading each section
 and highlighting in the left sidebar nav to show current location.]
 
-{: .double-margin}
+{: .double-margin #available-resources}
 ##Available Resources
 
 <div class="table-wrapper">
