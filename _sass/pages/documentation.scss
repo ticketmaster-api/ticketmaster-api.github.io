@@ -15,7 +15,11 @@
       &:not(:first-child)>*:first-child{
         margin-right: 45%;
       }
-
+      .iframe-wrapper{
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        width: 100%
+      }
       iframe {
         width: 1px;   /*need for safari*/
         min-width: 55%;

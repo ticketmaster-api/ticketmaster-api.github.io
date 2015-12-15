@@ -63,8 +63,9 @@ $.ajax({
 curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
 {% endhighlight %}
 
-
-<iframe src="https://snap.apigee.com/1lhYRmB" class="article" frameborder="0" scrolling="no"></iframe>
+<div class="article iframe-wrapper">
+<iframe src="https://snap.apigee.com/1lhYRmB" class="" frameborder="0" scrolling="no"></iframe>
+</div>
 
 ---
 {: .aside}
