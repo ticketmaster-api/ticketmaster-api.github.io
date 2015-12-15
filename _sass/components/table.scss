@@ -1,18 +1,19 @@
 table{
+  font-family: $font-body;
   border-collapse: collapse;
-  border: 1px solid #F1F3F4;
+  border: 1px solid $table-body-border;
 }
 th {
-  background-color: #E9EEF1;
+  background-color: $table-head-bg; //#E9EEF1
 }
-tr:nth-child(even) {background: #F8F9FB}
-tr:nth-child(odd) {background: #FFF}
+tr:nth-child(even) {background: $table-body-even-bg}
+tr:nth-child(odd) {background: $table-body-odd-bg}
 
 table {
 
 }
 table td, table th {
-  border: 1px solid #F1F3F4;
+  border: 1px solid $table-body-border;
   padding: 10px;
 
 }
