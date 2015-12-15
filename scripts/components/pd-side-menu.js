@@ -59,7 +59,7 @@
         var adjustMenuPosition = function(){
             //fix side menu position on scroll
             if ($(window).scrollTop() > offset) {
-                if(asideBlock.height() > mainBlock.height()) {
+                if(asideBlock.height() > mainBlock.height() && screenWidth >= 1200) {
                     asideBlock.parent().css("margin-bottom", asideBlock.height() - mainBlock.height());
                 }
                 asideBlock.addClass("is-fixed");
@@ -128,6 +128,12 @@
             }
         });
 
+        $(".sections").on("click", function(e){
+           if (e.target.tagName == "A"){
+               hideMenu();
+           }
+        });
+
         //using document click listener since mobile iOS touch devices do not understand blur event
         $(document).on("touchend click", function (e) {
             if (dragging)
@@ -162,31 +168,33 @@
         }
 
         function wheelHandler(event) {
-            var e = event || window.event;  // Standard or IE event object
+            if (screenWidth >= 768 ){
+                var e = event || window.event;  // Standard or IE event object
 
-            var deltaX = e.deltaX * -30 ||  // wheel event
-                e.wheelDeltaX / 4 ||  // mousewheel
-                0;    // property not defined
-            var deltaY = e.deltaY * -30 ||  // wheel event
-                e.wheelDeltaY / 4 ||  // mousewheel event in Webkit
-                (e.wheelDeltaY === undefined &&      // if there is no 2D property then
-                e.wheelDelta / 4) ||  // use the 1D wheel property
-                e.detail * -10 ||  // Firefox DOMMouseScroll event
-                0;     // property not defined
+                var deltaX = e.deltaX * -30 ||  // wheel event
+                    e.wheelDeltaX / 4 ||  // mousewheel
+                    0;    // property not defined
+                var deltaY = e.deltaY * -30 ||  // wheel event
+                    e.wheelDeltaY / 4 ||  // mousewheel event in Webkit
+                    (e.wheelDeltaY === undefined &&      // if there is no 2D property then
+                    e.wheelDelta / 4) ||  // use the 1D wheel property
+                    e.detail * -10 ||  // Firefox DOMMouseScroll event
+                    0;     // property not defined
 
-            if (isMacWebkit) {
-                deltaX /= 30;
-                deltaY /= 30;
+                if (isMacWebkit) {
+                    deltaX /= 30;
+                    deltaY /= 30;
+                }
+                e.currentTarget.scrollTop -= deltaY;
+                if (isFirefox && e.type !== "DOMMouseScroll")
+                    menu.removeEventListener("DOMMouseScroll", wheelHandler, false);
+
+                if (e.preventDefault) e.preventDefault();
+                if (e.stopPropagation) e.stopPropagation();
+                e.cancelBubble = true;  // IE events
+                e.returnValue = false;  // IE events
+                return false;
             }
-            e.currentTarget.scrollTop -= deltaY;
-            if (isFirefox && e.type !== "DOMMouseScroll")
-                menu.removeEventListener("DOMMouseScroll", wheelHandler, false);
-
-            if (e.preventDefault) e.preventDefault();
-            if (e.stopPropagation) e.stopPropagation();
-            e.cancelBubble = true;  // IE events
-            e.returnValue = false;  // IE events
-            return false;
         }
     })
 

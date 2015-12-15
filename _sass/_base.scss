@@ -351,6 +351,15 @@ pre {
   background: linear-gradient(to right,$aside-menu-background 0%, $aside-menu-background $percent, $white $percent, $white 100%);
 }
 
+@mixin no-select() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 // this supports visualizing fixed elements in iOS devices - important!
 @mixin transform-3d(){
   @media (-webkit-min-device-pixel-ratio: 2){
