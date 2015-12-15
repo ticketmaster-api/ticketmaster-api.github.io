@@ -10,7 +10,8 @@
             menu = document.getElementById('scrollable-element'),
             initialMenuHeight = $(menu).height(),
             $body = $('body').addClass('menu-bg'),
-            screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+            dragging = false;
 
         var showMenu = function(){
             asideBlock.addClass("has-bg");
@@ -22,6 +23,7 @@
             }
             $(menu).show();
             sideBtn.addClass("expanded").removeClass("closed");
+            adjustMenuPosition();
         };
 
         var hideMenu = function(){
@@ -66,8 +68,12 @@
                 asideBlock.parent().css("margin-bottom", 0);
             }
 
-            if (screenWidth >= 1200)
+            if (screenWidth >= 1200 || (screenWidth < 1200 && !asideBlock.hasClass('is-fixed'))){
                 fixMenuHeight();
+            }
+            else{
+                $(menu).css('max-height', '');
+            }
         };
 
         adjustMenuPosition();
@@ -98,6 +104,7 @@
 
                 adjustMenuPosition();
 
+                //highlight the appropriate menu item when scrolling
                 var winTop = $(window).scrollTop();
 
                 var top = $.grep($('.article'), function(item) {
@@ -122,12 +129,23 @@
         });
 
         //using document click listener since mobile iOS touch devices do not understand blur event
-        $(document).on("mouseup touchend", function (e) {
+        $(document).on("touchend click", function (e) {
+            if (dragging)
+                return;
             if (!asideBlock.is(e.target)
                 && asideBlock.has(e.target).length === 0
                 && screenWidth < 1200) {
                 hideMenu();
             }
+        });
+
+        //this is to ensure menu does not disappear when user just scrolls through the content
+        $("body").on("touchmove", function(){
+            dragging = true;
+        });
+
+        $("body").on("touchstart", function(){
+            dragging = false;
         });
 
         // prevent document from scrolling when menu is scrolled

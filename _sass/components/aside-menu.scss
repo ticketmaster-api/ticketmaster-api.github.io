@@ -133,9 +133,6 @@ h3.menu-header {
   @media (min-width: 1200px){
     display: block !important;
   }
-  @media #{$max-1200}{
-    @include tm-transition();
-  }
   h4 {
     color: $n2-grey-color;
     margin-top: 0;
