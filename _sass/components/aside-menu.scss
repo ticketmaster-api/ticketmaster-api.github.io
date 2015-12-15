@@ -141,15 +141,17 @@ h3.menu-header {
     margin-left: 0;
   }
   .categories {
+    margin-top: 0;
     margin-left: 10px;
   }
   li{
-    line-height: 2em;
+    line-height: 1em;
+    margin-bottom: 1em;
   }
   .sections {
-    padding-left: 20px;
+    padding-left: 12px;
     border-left: 2px solid $p1-border-grey;
-    margin: 10px 0;
+    margin: 14px 0;
     li {
       color: $n3;
       a {
