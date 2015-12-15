@@ -17,7 +17,8 @@
       }
 
       iframe {
-        width: 55%;
+        width: 1px;   /*need for safari*/
+        min-width: 55%;
         height: 500px;
 
         .btn .btn-large{
@@ -26,7 +27,8 @@
 
 
         @media #{$max-1200} {
-          width: 100%;
+          width: 1px;   /*need for safari*/
+          min-width: 100%;
         }
       }
 
@@ -54,14 +56,19 @@
         overflow: auto;
         overflow-y: hidden;
 
-        @media (max-width: 610px) {
+        @media (max-width: 535px) {
           overflow: auto;
           overflow-y: hidden;
+          width: 450px;
           max-width: 100%;
-          width: 460px;
         }
-        @media (max-width: 510px) {
+        @media (max-width: 500px) {
           width: 430px;
+          max-width: 100%;
+        }
+        @media (max-width: 320px){
+          width: 290px;
+          max-width: 100%;
         }
       }
       table{
@@ -83,7 +90,6 @@
       .aside-wrapper {
         width: 45%;
         float: right;
-        padding-top: 15px;
         padding-left: 2%;
 
         h1, h2, h3, h4, h5, h6,
@@ -179,7 +185,7 @@
       }
 
       .tab-panel-offset{
-        margin-top: -89px;
+        margin-top: -74px;
 
         @media #{$max-1200} {
           margin-top: 0;
