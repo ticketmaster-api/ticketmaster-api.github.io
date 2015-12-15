@@ -59,7 +59,7 @@
         var adjustMenuPosition = function(){
             //fix side menu position on scroll
             if ($(window).scrollTop() > offset) {
-                if(asideBlock.height() > mainBlock.height()) {
+                if(asideBlock.height() > mainBlock.height() && screenWidth >= 1200) {
                     asideBlock.parent().css("margin-bottom", asideBlock.height() - mainBlock.height());
                 }
                 asideBlock.addClass("is-fixed");
