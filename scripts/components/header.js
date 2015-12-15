@@ -24,7 +24,10 @@
             init: function(){
                 var self = this;
                 self.menuBtn.on("click", function(){
-                    self.show();
+                    if (!self.menuBtn.hasClass("tm-close"))
+                        self.show();
+                    else
+                        self.hide();
                 });
 
                 //using document click listener since mobile iOS touch devices do not understand blur event
