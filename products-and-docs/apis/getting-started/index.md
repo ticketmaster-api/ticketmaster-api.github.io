@@ -16,7 +16,7 @@ Everything you need to start playing with the Ticketmaster APIs.
 
 {: .body}
 Welcome! To get you started, let’s go over the automotive datasets we’ve made
-available for you through the Edmunds API. Once you register for a key, you will
+available for you through the Edmunds API. Once you [register for a key](/products-and-docs/under-development/), you will
 be able to access the following datasets:
 
 {: .double-margin}
@@ -30,8 +30,8 @@ be able to access the following datasets:
 |Dealership Content |Dealership info, consumer reviews, list of cars for sale, dealer pricing, etc.                             |
 
 
-These datasets are distributed across four distinct APIs: [Vehicle API](), [Editorial API](),
-[Dealer API]() and [Inventory API](). A list of resources available under each API is on the left.
+These datasets are distributed across four distinct APIs: [Vehicle API](/products-and-docs/under-development/), [Editorial API](/products-and-docs/under-development/),
+[Dealer API](/products-and-docs/under-development/) and [Inventory API](/products-and-docs/under-development/). A list of resources available under each API is on the left.
 
 {: .body .double-margin-bottom}
 This overview covers the core concepts that you need to know before you could 
