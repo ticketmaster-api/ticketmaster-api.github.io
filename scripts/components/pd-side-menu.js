@@ -80,15 +80,18 @@
             resize: function(){
 
                 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-                screenWidth = w;
 
                 if (w >= 1200){
                     showMenu();
                     fixMenuHeight();
                 }
                 else {
+                    if (screenWidth >= 1200)
+                        hideMenu();
                     $(menu).css('max-height', '');
                 }
+
+                screenWidth = w;
 
             },
             scroll:function(){
@@ -115,6 +118,15 @@
                 else {
                     hideMenu();
                 }
+            }
+        });
+
+        //using document click listener since mobile iOS touch devices do not understand blur event
+        $(document).on("mouseup touchend", function (e) {
+            if (!asideBlock.is(e.target)
+                && asideBlock.has(e.target).length === 0
+                && screenWidth < 1200) {
+                hideMenu();
             }
         });
 
