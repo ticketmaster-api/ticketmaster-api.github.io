@@ -119,7 +119,7 @@ Raw html goes here (uses liquid variabled defined above)
 {{top_promo_desc}}
 </div>
 <div class="col-xs-12 button-block">
-    <a href="#" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
+    <a href="https://oauth.ticketmaster.com/oauth/register" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE INTERACTIVE DOCS</a>
 </div>
         </div>

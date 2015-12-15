@@ -27,8 +27,12 @@
                     self.show();
                 });
 
-                this.menuDropdown.on('blur', function(){
-                    self.hide();
+                //using document click listener since mobile iOS touch devices do not understand blur event
+                $(document).on("mouseup touchend", function (e) {
+                    if (!self.menuDropdown.is(e.target)
+                        && self.menuDropdown.has(e.target).length === 0) {
+                        self.hide();
+                    }
                 });
             }
         };
