@@ -4,6 +4,7 @@ categories:
 - documentation
 - discovery
 ---
+
 {: .article}
 #Discovery REST API
 
@@ -12,6 +13,13 @@ Description of API for discovery service. This API allows to work with events, a
 
 {: .pull-quote #pull-quote}
 For work with API you should add to query string the __apikey__ parameter with your key.
+
+####Developer Console
+{: .aside .gray}
+
+Test this endpoint right now in the interactive docs:
+
+[INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
 {: .article}
 ##Search Events
