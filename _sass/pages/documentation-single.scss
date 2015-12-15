@@ -40,8 +40,14 @@
         width: 100%;
       }
     }
-    table {
+    .table-wrapper{
       width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    .table-wrapper table {
+      width: 100%;
+      min-width: 600px;
     }
   }
 }

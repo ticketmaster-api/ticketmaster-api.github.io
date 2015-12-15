@@ -16,7 +16,7 @@ Everything you need to start playing with the Ticketmaster APIs.
 
 {: .body}
 Welcome! To get you started, let’s go over the automotive datasets we’ve made
-available for you through the Edmunds API. Once you [register for a key](/products-and-docs/under-development/), you will
+available for you through the Edmunds API. Once you [register for a key](https://oauth.ticketmaster.com/oauth/register), you will
 be able to access the following datasets:
 
 {: .double-margin}
@@ -54,6 +54,7 @@ and highlighting in the left sidebar nav to show current location.]
 {: .double-margin}
 ##Available Resources
 
+<div class="table-wrapper">
 <table class="article double-margin">
   <thead>
     <tr>
@@ -149,3 +150,4 @@ and highlighting in the left sidebar nav to show current location.]
     </tr>
   </tbody>
 </table>
+</div>
