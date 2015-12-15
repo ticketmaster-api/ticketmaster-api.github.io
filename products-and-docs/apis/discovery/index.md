@@ -5,14 +5,15 @@ categories:
 - discovery
 ---
 
-{: .article}
 #Discovery REST API
+{: .article}
 
-{: .lead #lead}
+
 Description of API for discovery service. This API allows to work with events, attractions, categories and venues.
+{: .lead .article}
 
-{: .pull-quote #pull-quote}
 For work with API you should add to query string the __apikey__ parameter with your key.
+{: .pull-quote}
 
 ####Developer Console
 {: .aside .gray}
@@ -21,198 +22,129 @@ Test this endpoint right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
-{: .article}
+
 ##Search Events
-
-- __keyword__ - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-- __attractionId__ - Attraction ID(s) separated by comma. Default value "768011";
-- __venueId__ - Venue ID(s) separated by comma. Default value "115378";
-
-{: .aside}
->[curl](#curl)
->[ruby](#ruby)
->[phyton](#python)
-{: .lang-selector}
-
-{% highlight bash %}
-curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
-{% endhighlight %}
-
-{% highlight ruby%}
-def foo
-  puts 'foo'
-end
-{% endhighlight %}
-
-{% highlight python  %}
-var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events.json?size=1",
-  method: “GET”
-});
-request.done(function( msg ) {
-  console.log( msg );
-});
-request.fail(function( jqXHR, textStatus ) {
-  console.log("Request failed: " + textStatus);
-});
-{% endhighlight %}
-
-
-{: .article}
-##Search Events
-
-- __keyword__ - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-- __attractionId__ - Attraction ID(s) separated by comma. Default value "768011";
-- __venueId__ - Venue ID(s) separated by comma. Default value "115378";
-
-{: .aside}
->[curl](#curl)
->[ruby](#ruby)
->[phyton](#python)
-{: .lang-selector}
-
-~~~js
-var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events.json?size=1",
-  method: “GET”
-});
-request.done(function( msg ) {
-  console.log( msg );
-});
-request.fail(function( jqXHR, textStatus ) {
-  console.log("Request failed: " + textStatus);
-});
-~~~
-{: #tab-js .tab-js}
-
-~~~cURL
-curl -i 'http://api.edmunds.com/{endpoint}?access_token=<access_token>'
-~~~
-{: #tab-cURL .tab-cURL}
-
-~~~rudy
-def foo
-  puts 'foo'
-end
-~~~
-{: #tab-ruby .tab-ruby}
-
-
-{: .article}
-{: #srch-event-img }
-##Event Images
-
-{: .pull-quote #pull-quote}
-discovery/{version}/events/{id}/images.{format}
+{: .article #srch-events }
 
 Method: GET. 
 Authentication required.
-Returns all the images for an event by ID. If an event does not have an image for a supported resolution, the event's major category image will be returned instead.
+Returns the 20 most recent events for the authenticating user.
+
+discovery/{version}/events.{format}
+{: .pull-quote}
 
 ###Template parameters:
 
-- __version__ - The API Version. Required. Default value "v1";
-- __id__ - Event ID. Required. Default value "0B004F0401BD55E5";
-- __format__ - API Response Format. Required. Default value "json".
-
-###Response
-
-<iframe src="https://snap.apigee.com/1YERkwm" width="400" height="300" frameborder="0" scrolling="no"></iframe>
-
-{: .aside}
->[curl](#curl)
->[ruby](#ruby)
->[phyton](#python)
-{: .lang-selector}
-
-~~~js
-var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json",
-  method: “GET”
-});
-request.done(function( msg ) {
-  console.log( msg );
-});
-request.fail(function( jqXHR, textStatus ) {
-  console.log("Request failed: " + textStatus);
-});
-~~~
-{: #tab-js}
-
-~~~ruby
-def foo
-  puts 'foo'
-end
-~~~
-{: #tab-cURL}
-
-~~~rudy
-def foo
-  puts 'foo'
-end
-~~~
-{: #tab-ruby}
-
-{: .article}
-{: #srch-att }
-##Search Attractions
-
-{: .pull-quote #pull-quote}
-discovery/{version}/attractions.{format}
-
-Method: GET.
-Authentication required.
-Search Attractions!
-
-###Template parameters:
-
-- __version__ - The API Version. Required. Default value "v1";
-- __format__ - API Response Format. Required. Default value "json".
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v1"         | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
 
 ###Query parameters:
 
-- __keyword__ - A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-- __domain__ - The entity interested in this event (special use case). Default value "ticketmaster.com";
-- __locale__ - The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca";
-- __size__ - The number of events returned in the API response. Default value "10";
-- __page__ - The page for paginating through the results. Default value "1";
-- __sort__ - The search sort criteria. Values: "", "name,desc", "name,asc".
-
-###Response
-
-<iframe src="https://snap.apigee.com/1XuyzP2" width="800" height="300" frameborder="0" scrolling="no"></iframe>
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
+| `attractionId`   | Attraction ID(s) separated by comma. | string            |       "768011"       | No      |
+| `venueId`   | Venue ID(s) separated by comma. | string            |       "115378"       | No      |
+| `promoterId`   | Promoter ID(s) separated by comma. | string            |       "494"       | No      |
+| `zipCode`   | Zipcode or Portal Code of the venue in which the event is taking place. | string            |       "90069"       | No      |
+| `latlong`   | The longitude/Latitude coordinates for the venue in which this event is taking place. | string            |       "34.0928090,-118.3286610"       | No      |
+| `radius`   | The radius of the area in which we want to search for events. | string            |       "25"       | No      |
+| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
+| `page`   | The page for paginating through the results. | string            |       "1"       | No      |
+| `sort`   | The search sort criteria. Values: "", "eventDate,desc", "eventDate,asc", "name,desc", "name,asc". | string            |              | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+| `marketId`   | The city/area in which this event takes place. | string            |       "27"       | No      |
+| `deviceId`   | The device making the API call. | string            |       "1"       | No      |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 
 {: .aside}
->[curl](#curl)
->[ruby](#ruby)
->[phyton](#python)
+>[JS](#js)
+>[cURL](#curl)
 {: .lang-selector}
 
-~~~js
-var request = $.ajax({
-  url: "https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json",
-  method: “GET”
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
 });
-request.done(function( msg ) {
-  console.log( msg );
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
+{% endhighlight %}
+
+
+<iframe src="https://snap.apigee.com/1ls3jia" class="article" frameborder="0" scrolling="no"></iframe>
+
+---
+{: .aside}
+
+
+##Event Details
+{: .article #event-details }
+
+Method: GET.
+Authentication required.
+Returns the event detail by event ID.
+
+discovery/{version}/events/{id}.{format}
+{: .pull-quote}
+
+
+###Template parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v1"         | Yes      |
+| `id`       | Event ID. Required.  | string            | "29004F223C406ABF" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+###Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
 });
-request.fail(function( jqXHR, textStatus ) {
-  console.log("Request failed: " + textStatus);
-});
-~~~
+{% endhighlight %}
 
+{% highlight bash %}
+curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}
+{% endhighlight %}
 
-~~~ruby
-def foo
-  puts 'foo'
-end
-~~~
+<iframe src="https://snap.apigee.com/1lLCpCR" class="article" frameborder="0" scrolling="no"></iframe>
 
-
-~~~rudy
-def foo
-  puts 'foo'
-end
-~~~
-
-
+---
+{: .aside}
