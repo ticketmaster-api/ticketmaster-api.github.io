@@ -45,7 +45,7 @@ commerce/{version}/events/{id}/offers.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
+  url:"https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
