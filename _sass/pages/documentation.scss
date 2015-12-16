@@ -1,4 +1,4 @@
-.documentation{
+.documentation {
   .content {
     hr {
       display: initial;
@@ -12,38 +12,34 @@
       width: 100%;
       margin-bottom: $base-margin;
 
-      &:not(:first-child)>*:first-child{
+      &:not(:first-child) > *:first-child {
         margin-right: 45%;
       }
-      .iframe-wrapper{
+      .iframe-wrapper {
         overflow: hidden;
         -webkit-overflow-scrolling: touch;
         width: 100%
       }
       iframe {
-        width: 1px;   /*need for safari*/
-        min-width: 55%;
+        width: 1px; /*need for safari*/
+        min-width: 100%;
         height: 500px;
 
-        .btn .btn-large{
+        .btn .btn-large {
           background-color: #8a6d3b;
         }
 
-
         @media #{$max-1200} {
-          width: 1px;   /*need for safari*/
+          width: 1px; /*need for safari*/
           min-width: 100%;
         }
       }
 
-      h1, h2, h3, h4, h5, h6 {
+      h1, h2, h3, h4, h5, h6,
+      p, ul, ol, aside, dl, figure {
+        display: block;
         margin-bottom: $base-margin;
         margin-top: 0;
-      }
-
-      h1, h2, h3, h4, h5, h6,
-      p,  ul, ol, aside, dl, figure {
-        display: block;
 
         @media #{$max-768} {
           width: 100%;
@@ -60,23 +56,27 @@
           margin-bottom: 24px;
           line-height: 1em;
         }
-        h3,h4, h5,h6 {
+        h3, h4, h5, h6 {
           font-size: $size-h4;
         }
       }
 
-      pre{
+      pre {
         @media #{$max-768} {
           margin: auto -15px;
           padding: 15px;
         }
       }
 
-      .table-wrapper{
-        overflow: auto;
-        overflow-y: hidden;
+      .table-wrapper {
 
-        @media (max-width: 535px) {
+        @media (max-width: 767px) {
+          width: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+
+        /*@media (max-width: 535px) {
           overflow: auto;
           overflow-y: hidden;
           width: 450px;
@@ -89,21 +89,23 @@
         @media (max-width: 320px){
           width: 272px;
           max-width: 100%;
-        }
+        }*/
       }
-      table{
-        max-width: 100%;
+      table {
+        width: 100%;
+        min-width: 600px;
+        margin-bottom: $base-margin*2;
 
-        tbody,
+        /*tbody,
         thead{
-          display: table-row-group;
-          width: 100%;
+          //display: table-row;
+          //width: 100%;
         }
         th,td{
           @media #{$max-768} {
             padding: 10px 5px;
           }
-        }
+        }*/
 
       }
 
@@ -130,7 +132,7 @@
           width: 100%;
           font-style: normal;
 
-          p{
+          p {
             margin-top: 0;
           }
         }
@@ -153,7 +155,7 @@
             margin: 0 1.3%;
             text-align: center;
             line-height: 2em;
-            &:hover{
+            &:hover {
               color: $s1a;
               border-color: $s1a;
             }
@@ -198,11 +200,15 @@
         float: left;
         margin-top: 0;
 
-        h3 {
-          color: $n3;
-        }
-        iframe{
-          width: 100%;
+        iframe {
+          width: 1px; /*need for safari*/
+          min-width: 100%;
+          height: 500px;
+
+          @media #{$max-1200} {
+            width: 1px; /*need for safari*/
+            min-width: 100%;
+          }
         }
 
         @media #{$max-1200} {
@@ -212,7 +218,7 @@
         }
       }
 
-      .tab-panel-offset{
+      .tab-panel-offset {
         margin-top: -74px;
 
         @media #{$max-1200} {
@@ -227,34 +233,38 @@
         }
       }
 
-      .pull-quote{
-        word-break: break-word;
+      .pull-quote {
+        word-break: break-all;
       }
 
       .lead {
         margin-top: 0px;
       }
 
-      .button{
+      .button {
         border: 2px solid $n3;
         border-radius: 4px;
         font-family: $font-bold-p;
         padding: 10px 40px;
         color: $n3;
+        //display: inline-block;
 
-        &:visited{
+        &:visited {
           color: $n3;
         }
 
         &:hover,
         &:focus,
-        &:active{
-          color: $n1;
-          background-color: $white;
+        &:active {
+          color: $p1a;
+          border-color: $p1a;
           outline: none;
           text-decoration: none;
         }
+      }
 
+      .dev-console {
+        margin-bottom: 10px;
       }
 
     }

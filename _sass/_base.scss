@@ -91,11 +91,15 @@ figcaption {
  */
 li {
     font-family: $font-body;
-    list-style: none;
     > ul,
     > ol {
          margin-bottom: 0;
     }
+}
+ul,
+ol
+{
+  list-style-position:inside;
 }
 
 
@@ -104,7 +108,7 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
     font-weight: $bold-font-weight;
-    word-break: break-word;
+    word-break: break-all;
 }
 
 

@@ -48,28 +48,33 @@ h6 {
   font-family: $font-lead;
   font-size: $size-lead;
   color: $n2-grey-color;
+  line-height: $line-height-lead;
 }
 
 .body {
-   font-family: $font-body;
-   font-size: $size-body;
-   color: $n2-grey-color;
+  font-family: $font-body;
+  font-size: $size-body;
+  color: $n2-grey-color;
+  line-height: $line-height-body;
  }
 
 .caption {
   font-family: $font-caption;
   font-size: $size-caption;
   color: $n2-grey-color;
+  line-height: $line-height-caption;
 }
 
 .pull-quote {
   font-family: $font-pull-q;
   font-size: $size-pull-q;
   color: $p1c;
+  line-height: $line-height-pull-q;
 }
 
 .code {
   font-family: $font-code;
   font-size: $size-code;
   color: $n2-grey-color;
+  line-height: $line-height-code;
 }
