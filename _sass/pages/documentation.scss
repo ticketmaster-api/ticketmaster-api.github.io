@@ -8,7 +8,6 @@
     }
 
     .article-wrapper {
-      display: table;
       width: 100%;
       margin-bottom: $base-margin;
 
@@ -69,44 +68,12 @@
       }
 
       .table-wrapper {
-
-        @media (max-width: 767px) {
-          width: 100%;
-          overflow-x: auto;
-          overflow-y: hidden;
-        }
-
-        /*@media (max-width: 535px) {
-          overflow: auto;
-          overflow-y: hidden;
-          width: 450px;
-          max-width: 100%;
-        }
-        @media (max-width: 500px) {
-          width: 430px;
-          max-width: 100%;
-        }
-        @media (max-width: 320px){
-          width: 272px;
-          max-width: 100%;
-        }*/
+        overflow-x: auto;
+        overflow-y: hidden;
+        margin-bottom: $base-margin*2;
       }
       table {
         width: 100%;
-        min-width: 600px;
-        margin-bottom: $base-margin*2;
-
-        /*tbody,
-        thead{
-          //display: table-row;
-          //width: 100%;
-        }
-        th,td{
-          @media #{$max-768} {
-            padding: 10px 5px;
-          }
-        }*/
-
       }
 
       .aside-wrapper {
@@ -214,7 +181,6 @@
         @media #{$max-1200} {
           width: 100%;
           float: inherit;
-          padding-bottom: $base-margin;
         }
       }
 
