@@ -381,6 +381,7 @@ pre {
   @include aside-menu-bg(25%);
   @media #{$max-1200}{
     @include aside-menu-bg(((100% / 12) * 5));
+    background: -moz-linear-gradient(left, $aside-menu-background 0%, $aside-menu-background 41.4%, $white 41.4%, $white 100%);
   }
   @media #{$max-768}{
     background: $aside-menu-background;
