@@ -22,7 +22,7 @@ selvage.
 [Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?](/products-and-docs/under-development/)
 
 
-{: #account}
+
 ####Account
 
 {: .link-inline .double-margin-bottom}
@@ -30,7 +30,7 @@ selvage.
 [Sweater McSweeney's, salvia kitsch before they sold out High Life?](/products-and-docs/under-development/)
 
 
-{: #affiliates}
+
 ####Affiliates
 
 {: .link-inline .double-margin-bottom}
@@ -40,7 +40,7 @@ selvage.
 [Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?](/products-and-docs/under-development/)
 
 
-{: #general .double-margin}
+{: #general-a .double-margin}
 ##General
 
 
@@ -87,7 +87,7 @@ truck sriracha cornhole single-origin coffee church-key roof party. Leggings eth
 normcore you probably haven't heard of them Marfa organic squid.
 
 
-{: #account .double-margin}
+{: #account-a .double-margin}
 ##Account
 
 
@@ -107,7 +107,7 @@ American Apparel plai.
 
 
 
-{: #affiliates .double-margin}
+{: #affiliates-a .double-margin}
 ##Affiliates
 
 
