@@ -24,16 +24,15 @@ be able to access the following datasets:
 {: .double-margin}
 |Dataset            |  Description                                                                                              |
 |:------------------|:----------------------------------------------------------------------------------------------------------|
-|Vehicle Specs      |Vehicle make/model/year/trim data, vehicle equipment, vehicle options, vehicle colors, etc.                |
-|Vehicle Pricing     |Edmunds.com TMV® (True Market Value®), Edmunds.com TCO® (True Cost to Own®), Incentives and Rebates, etc.  |
-|Vehicle Service    |Vehicle maintenance schedule, vehicle recalls, vehicle service bulletins, local labor rates, etc.          |
-|Vehicle Content    |Consumer reviews, editorial reviews, editorial articles, etc.                                              |
-|Vehicle Media      |Vehicle photos                                                                                             |
-|Dealership Content |Dealership info, consumer reviews, list of cars for sale, dealer pricing, etc.                             |
+|Events             |A live event must have a date, time, venue and attaction associated with it. Sometime the venue is TBD     |
+|Venues             |A venue is a physical location at which an event takes place. A venue can also has sub-venues (rooms).     |
+|Attractions        |Any event should have at least one attraction. Artists, teams, stand-up comics are examples of attractions.|
+|Offers             |Offers are generally event-specific. Sometimes special offers are applied to carts or to particular API keys.  |
+|Tickets            |Any particular offer can hold a variety of tickets. A ticket is transactable.                              |
+|Cart               |A cart can hold any transactable item, like tickets, merchandize, parking, etc.                         |
 
 
-These datasets are distributed across four distinct APIs: [Vehicle API](/products-and-docs/under-development/), [Editorial API](/products-and-docs/under-development/),
-[Dealer API](/products-and-docs/under-development/) and [Inventory API](/products-and-docs/under-development/). A list of resources available under each API is on the left.
+These datasets are distributed across four distinct APIs: Discovery API, Commerce API, Accounts API and Orders API.
 
 {: .body .double-margin-bottom}
 This overview covers the core concepts that you need to know before you could 
