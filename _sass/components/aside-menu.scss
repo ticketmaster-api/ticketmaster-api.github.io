@@ -1,6 +1,3 @@
-
-
-
 .close-aside-menu {
   display: none;
   @media #{$max-1200} {
@@ -28,6 +25,13 @@
 }
 
 .support-aside-menu {
+
+  list-style-type: none;
+
+  ul {
+    list-style-type: none;
+  }
+
   margin-top: $base-margin;
   h4 {
     color: $n2-grey-color;
