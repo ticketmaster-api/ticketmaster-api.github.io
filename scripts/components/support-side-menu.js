@@ -55,12 +55,17 @@
     };
 
 
-    $("#side-menu-btn").click(function(){
-        if( $(this).hasClass("closed") ){
+    $(".base-content-wrapper").on("click", ".menu-header", function(){
+        if( $(this).find("#side-menu-btn").hasClass("closed") ){
             showMenu();
         }
         else{
             hideMenu();
         }
     });
+
+    $(".sections").on("click", "a", function(){
+        hideMenu();
+    });
+
 })();
