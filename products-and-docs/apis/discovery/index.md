@@ -94,7 +94,7 @@ curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey
 {: .aside}
 
 
-##Event Details
+##Get Event Details
 {: .article #event-details }
 
 Method: GET.
@@ -155,7 +155,7 @@ curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apik
 
 
 
-##Event Images
+##Search Event Images
 {: .article #event-img}
 
 Method: GET. 
@@ -275,7 +275,7 @@ curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
 
 
 {: .article #attraction-details}
-##Attraction Details
+##Get Attraction Details
 
 Method: GET. 
 Authentication required.
@@ -403,7 +403,7 @@ curl https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}
 
 
 {: .article #category-details}
-##Category Details
+##Get Category Details
 
 Method: GET.
 Authentication required.
@@ -529,7 +529,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={a
 
 
 {: .article #venue-details}
-##Venue Details
+##Get Venue Details
 
 Method: GET.
 Authentication required.
