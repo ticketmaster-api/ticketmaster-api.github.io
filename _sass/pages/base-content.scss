@@ -43,15 +43,23 @@
       &.expanded {
         background-color: $aside-menu-background;
         height: 10000px;
+        width: 100%;
       }
     }
 
   }
 
   .menu-header {
+    cursor: pointer;
     margin-top: 0;
+    margin-bottom: 10px;
+    @media #{$max-1200} {
+      width: 40%;
+    }
+    @media #{$max-768} {
+      width: 100%;
+    }
   }
-
 
   .content {
     @media #{$max-1200} {
