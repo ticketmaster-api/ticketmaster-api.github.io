@@ -1,6 +1,6 @@
 ---
 layout: landing
-category: under_development
+category: products-and-docs
 ---
 
 
@@ -38,7 +38,7 @@ Already doing business with Ticketmaster? <br>
 {: .lead}
 Everything you need to handle event discovery,  commerce , accounts, orders, and fans.
 
-[LEARN MORE](/products-and-docs/apis/interactive-console/){: .button.button-blue}
+[LEARN MORE](/products-and-docs/apis/getting-started/){: .button.button-blue}
 
 {% endcapture %}
 
@@ -58,7 +58,7 @@ Easy integration? No sweat.
 {: .body}
 Enable fans to manage their tickets within your app using the AccountManager SDK for iOS and Android.
  
-[EXPLORE SDKs](/products-and-docs/apis/interactive-console/){: .button.button-blue}
+[EXPLORE SDKs](/products-and-docs/under-development/){: .button.button-blue}
 
 {% endcapture %}
 
@@ -70,7 +70,7 @@ Enable fans to manage their tickets within your app using the AccountManager SDK
 {: .body}
 Sell tickets directly on your website at no additional <br> cost with Universe's dead-simple event widget.
 
-[GET WIDGETIZED](/products-and-docs/apis/interactive-console/){: .button.button-blue}
+[GET WIDGETIZED](/products-and-docs/under-development/){: .button.button-blue}
 
 {% endcapture %}
 

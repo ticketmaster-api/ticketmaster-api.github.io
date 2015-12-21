@@ -55,6 +55,18 @@ ul, ol, dl, figure,
   margin-bottom: $base-margin * 2;
 }
 
+.x3-margin{
+  margin-top: $base-margin * 3;
+  margin-bottom: $base-margin * 3;
+}
+
+.x3-margin-top {
+  margin-top: $base-margin * 2;
+}
+
+.x3-margin-bottom {
+  margin-bottom: $base-margin * 2;
+}
 
 .black{
   color: $n1;
