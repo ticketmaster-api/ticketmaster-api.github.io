@@ -1,3 +1,100 @@
+.close-aside-menu {
+  display: none;
+  @media #{$max-1200} {
+    display: inline-block;
+  }
+  @media #{$max-768}{
+    position: absolute;
+    right: 8px;
+    top: 8px !important;
+  }
+  position: relative;
+  right: -20px;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-position: 0 82%;
+  @include tm-transition();
+  &.expanded {
+    background-image: url('/assets/img/header/ic-close-grey.svg');
+    top: 2px;
+  }
+  &.closed {
+    background-image: url('/assets/img/aside-menu/ic-close-grey.svg');
+  }
+}
+
+.support-aside-menu {
+
+  list-style-type: none;
+
+  ul {
+    list-style-type: none;
+  }
+
+  margin-top: $base-margin;
+  h4 {
+    color: $n2-grey-color;
+    margin-top: 0;
+  }
+  &:first-child {
+    margin-left: 0;
+  }
+  .categories {
+    margin: 0;
+    &>li>a {
+      color: $n2-grey-color;
+      font-family: $font-tms-led-bold;
+      font-size: $size-h4;
+    }
+  }
+  li{
+    line-height: 1em;
+    margin-bottom: 1em;
+  }
+  .sections {
+    padding-left: 15px;
+    border-left: 2px solid $p1-border-grey;
+    margin: 14px 0;
+    li {
+      color: $n3;
+      a {
+        color: $n3;
+
+        &:hover {
+          color: $p1a;
+        }
+      }
+    }
+  }
+
+  a {
+    color: $n2-grey-color;
+
+    &:hover {
+      color: $p1a;
+    }
+    &.nav-active {
+      color:$s1a;
+
+      &:hover {
+        color: $n2-grey-color;
+      }
+    }
+
+    &.current {
+      color: $p1 !important;
+    }
+
+  }
+
+}
+
+
+
+
+
+
 $menu-top: 10px;
 $menu-bg-top-margin: 250px;
 
@@ -71,7 +168,7 @@ body{
         max-height: 88%;
         overflow: auto;
         &>li:last-child {
-          margin-bottom: 5%;
+          margin-bottom: 8%;
         }
       }
       @media (min-width: 1200px) {
@@ -141,15 +238,18 @@ h3.menu-header {
     margin-left: 0;
   }
   .categories {
+    margin-top: 0;
     margin-left: 10px;
   }
   li{
-    line-height: 2em;
+    list-style: none;
+    line-height: 1em;
+    margin-bottom: 1em;
   }
   .sections {
-    padding-left: 20px;
+    padding-left: 12px;
     border-left: 2px solid $p1-border-grey;
-    margin: 10px 0;
+    margin: 14px 0;
     li {
       color: $n3;
       a {

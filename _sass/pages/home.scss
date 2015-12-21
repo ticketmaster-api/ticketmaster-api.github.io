@@ -12,6 +12,7 @@
 }
 
 #top-promo {
+  @include no-select();
   margin-bottom: 40px;
   background-image: url('/assets/img/home/bg-football-p-1.png');
   @media #{$max-1200} {
@@ -81,6 +82,7 @@
 }
 
 #bottom-promo {
+  @include no-select();
   text-align: center;
   background-image: url('/assets/img/home/bg-baseball-p-1-a.png');
   margin: 22px 0 69px;

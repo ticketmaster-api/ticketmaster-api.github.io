@@ -20,7 +20,7 @@ Test this endpoint right now in the interactive docs:
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
 ##Event Offers
-{: .article}
+{: .article #event-offers}
 
 Method: GET. 
 Authentication required.
@@ -45,7 +45,7 @@ commerce/{version}/events/{id}/offers.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"http://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
+  url:"https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {

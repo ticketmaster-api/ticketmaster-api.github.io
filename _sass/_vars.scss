@@ -38,6 +38,7 @@ $table-body-border: #e4e7e9;
 $code-border: #909090;
 $code-background-color: #f1f4f6;
 $aside-menu-background: #F7F9FA;
+$support-aside-menu-background: #FFFFFF;
 
 
 /*Fonts*/
@@ -56,6 +57,9 @@ $font-pull-q: "TMSans-Italic",$base-font-family;
 $font-caption: "TMSans-Italic",$base-font-family;
 $font-bold-p: "TMSans-Bold",$base-font-family;
 
+$font-tms-led-bold :"TMSansLEADINGFIXED-Bold",$base-font-family;
+
+
 $font-icons: "fontawesome",$base-font-family;
 
 
@@ -72,7 +76,7 @@ $size-lead: 1.5em;
 $size-body: 1em;
 $size-caption: 1em;
 $size-pull-q: 1.5em;
-$size-code: 0.9em;
+$size-code: 1em;
 
 $spacing-unit: 30px;
 $spacing-header: 15px;
@@ -107,6 +111,12 @@ $line-height-h3: 32px;
 $line-height-h4: 24px;
 $line-height-h5: 24px;
 $line-height-h6: 16px;
+
+$line-height-lead: 32px;
+$line-height-body: 24px;
+$line-height-caption: 24px;
+$line-height-pull-q: 32px;
+$line-height-code: 24px;
 
 $borderHeight: 8px;
 $maincontent-margin: 55px;

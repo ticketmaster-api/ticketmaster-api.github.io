@@ -24,13 +24,19 @@
             init: function(){
                 var self = this;
                 self.menuBtn.on("click", function(){
-                    self.show();
+                    if (!self.menuBtn.hasClass("tm-close"))
+                        self.show();
+                    else
+                        self.hide();
                 });
 
                 //using document click listener since mobile iOS touch devices do not understand blur event
-                $(document).on("mouseup touchend", function (e) {
+                $(document).on("click touchend", function (e) {
+                    var menuCloseBtn = $(".tm-close");
                     if (!self.menuDropdown.is(e.target)
-                        && self.menuDropdown.has(e.target).length === 0) {
+                        && self.menuDropdown.has(e.target).length === 0
+                        && !menuCloseBtn.is(e.target)
+                        && menuCloseBtn.has(e.target).length === 0) {
                         self.hide();
                     }
                 });
