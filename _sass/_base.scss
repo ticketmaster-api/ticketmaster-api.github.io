@@ -62,6 +62,9 @@ ul, ol, dl, figure,
 .white{
   color: $white;
 }
+.blue{
+  color: $blue;
+}
 
 /**
  * Images
@@ -364,6 +367,7 @@ pre {
   @include aside-menu-bg(25%);
   @media #{$max-1200}{
     @include aside-menu-bg(((100% / 12) * 5));
+    @include aside-menu-bg(41.4%);
   }
   @media #{$max-768}{
     background: $aside-menu-background;
