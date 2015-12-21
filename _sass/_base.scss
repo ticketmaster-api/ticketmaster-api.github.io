@@ -74,6 +74,9 @@ ul, ol, dl, figure,
 .white{
   color: $white;
 }
+.blue{
+  color: $blue;
+}
 
 /**
  * Images
@@ -103,15 +106,20 @@ figcaption {
  */
 li {
     font-family: $font-body;
+    list-style: none;
     > ul,
     > ol {
          margin-bottom: 0;
     }
 }
-ul,
-ol
-{
-  list-style-position:inside;
+
+.content {
+  ul>li {
+    list-style: inside disc;
+  }
+  ol>li {
+    list-style: inside decimal;
+  }
 }
 
 
@@ -120,7 +128,6 @@ ol
  */
 h1, h2, h3, h4, h5, h6 {
     font-weight: $bold-font-weight;
-    word-break: break-all;
 }
 
 

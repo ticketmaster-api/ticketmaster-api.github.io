@@ -14,6 +14,8 @@
         }
         /*Normalize END*/
 
+        var tabsCount = 0;
+
         main.find('.article').each(
             function () {
                 var group = $(this).nextUntil('.article').addBack();
@@ -41,17 +43,16 @@
                     //add class for tabs
                     me.children().children().first().addClass('active')//set first button active
 
-                    $(".aside-wrapper blockquote").nextAll().addClass('tab-content' ); //hide all tab-content
+                    tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('p').length;
+                    $(".aside-wrapper blockquote").nextAll().slice(0,tabsCount+1).addClass('tab-content' ); //hide all tab-content
 
                     group.nextAll().first().addClass('tab-active');//set first tab visible
                 }
                 //console.log($('*').length);//As less then better
             });
 
-        var tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('.article').length;
-        //console.log('tabIndex2-Len nextUntil',tabsCount);
-
-        $(".aside-wrapper blockquote").nextAll()
+        //add class and id to tab content
+        $(".aside-wrapper blockquote").nextAll().slice(0,tabsCount+1)
             .addClass(function( index ) {
                 if(index>tabsCount) {
                     index = [index % (tabsCount+1)]
@@ -69,7 +70,7 @@
             firstElem.css('margin-right','51%');
         }
 
-         $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
+        $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
 
         $('table').wrap('<div class="table-wrapper"></div>');
 
@@ -83,29 +84,20 @@
 
         $(".lang-selector a").click(function(event) {
             var currentButton =$(this);
-            //console.log( 'first of this block currentId tab: ', $('.tab-content').attr('id') );
-
-            var allBtn = $(".lang-selector a[href*=" + currentButton.attr('href') + "]");
 
             event.preventDefault();
-            //allBtn.parent().addClass("tab");
-            allBtn.addClass("active");
-            allBtn.siblings().removeClass("active");
+            currentButton.addClass("active");
+            currentButton.siblings().removeClass("active");
 
-            event.preventDefault();
-
-            var currentClassName = $('.tab-content').attr("class");
-            //var tabGroup = $(".tab-active [class*=" + currentClassName  + "]");
             var tabGroup = $('.tab-active');
 
-            if(allBtn.hasClass('active')){
+            if(currentButton.hasClass('active')){
                 var strTMP = currentButton.index().toString();
 
                 tabGroup.removeClass("tab-active");
                 tabGroup = $(".tab-"+strTMP );
                 tabGroup.addClass("tab-active");
             }
-
         });
 
     })

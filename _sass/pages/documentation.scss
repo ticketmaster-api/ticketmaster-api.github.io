@@ -1,15 +1,20 @@
 .documentation {
   .content {
     hr {
-      display: initial;
-      clear: both;
-      border: 0;
-      content: '';
+      margin-bottom: $base-margin;
+
+      &.aside{
+        border: 0;
+        margin-bottom: 0;
+      }
     }
 
     .article-wrapper {
       width: 100%;
       margin-bottom: $base-margin;
+      clear: both;
+      border: 0;
+      content: '';
 
       &:not(:first-child) > *:first-child {
         margin-right: 45%;
@@ -23,10 +28,6 @@
         width: 1px; /*need for safari*/
         min-width: 100%;
         height: 500px;
-
-        .btn .btn-large {
-          background-color: #8a6d3b;
-        }
 
         @media #{$max-1200} {
           width: 1px; /*need for safari*/
@@ -62,7 +63,7 @@
 
       pre {
         @media #{$max-768} {
-          margin: auto -15px;
+          margin: $base-margin -15px;
           padding: 15px;
         }
       }
@@ -70,7 +71,7 @@
       .table-wrapper {
         overflow-x: auto;
         overflow-y: hidden;
-        margin-bottom: $base-margin*2;
+        margin-bottom: $base-margin;
       }
       table {
         width: 100%;
@@ -117,11 +118,14 @@
             border-bottom: 2px solid $n3;
             text-decoration: none;
             display: block;
-            width: 30%;
+            padding: 0 2.5%;
             float: left;
             margin: 0 1.3%;
             text-align: center;
             line-height: 2em;
+            white-space: nowrap;
+            min-width: 30%;
+
             &:hover {
               color: $s1a;
               border-color: $s1a;
@@ -130,6 +134,7 @@
             @media #{$max-1200} {
               width: auto;
               padding: 0 25px;
+              min-width: 0%;
             }
 
             @media (max-width: 320px) {
@@ -213,7 +218,7 @@
         font-family: $font-bold-p;
         padding: 10px 40px;
         color: $n3;
-        //display: inline-block;
+        display: inline-block;
 
         &:visited {
           color: $n3;
