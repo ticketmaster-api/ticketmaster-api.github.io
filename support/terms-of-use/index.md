@@ -114,6 +114,6 @@ Beverly Hills, CA 90210 
 Attn: Trademark Department, Legal 
 
 {: .body .left-margin .clear-margin}
-[copyrightofficer@livenation.com](copyrightofficer@livenation.com)
+[copyrightofficer@livenation.com](mailto:copyrightofficer@livenation.com)
 
 
