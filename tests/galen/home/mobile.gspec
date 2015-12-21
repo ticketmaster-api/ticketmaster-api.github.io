@@ -43,7 +43,7 @@
         footer:
             below columns-block ~0px
         main-desc:
-            below main-header 10 to 20px
+            below main-header 25 to 35px
         get-api-btn:
             width 195 to 200px
             height 45 to 50px

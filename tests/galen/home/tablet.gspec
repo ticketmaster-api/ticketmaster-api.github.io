@@ -43,7 +43,7 @@
         footer:
             below social 50 to 55px
         main-desc:
-            below main-header 20 to 25px
+            below main-header 30 to 40px
         get-api-btn:
             near explore-btn 55 to 65px left
             width 195 to 200px
