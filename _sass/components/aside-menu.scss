@@ -58,6 +58,12 @@
     margin: 14px 0;
     li {
       color: $n3;
+
+      &.active a {
+        color: $p1a;
+        text-decoration: none;
+      }
+
       a {
         color: $n3;
 
@@ -252,6 +258,12 @@ h3.menu-header {
     margin: 14px 0;
     li {
       color: $n3;
+
+      &.active a {
+        color: $p1a;
+        text-decoration: none;
+      }
+
       a {
         color: $n3;
 
