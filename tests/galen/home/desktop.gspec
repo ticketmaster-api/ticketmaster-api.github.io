@@ -1,0 +1,79 @@
+@objects
+    body              css  body
+    header            css  .top-bar
+    logo              css  #header-logo img
+    nav-item-*        css  #menu a
+    social            id   promo-social
+    twitter           css  .twitter-tweet
+    top-promo         id   top-promo
+    main-header       css  #top-promo h1
+    main-desc         css  #top-promo p
+    get-api-btn       css  #top-promo .tm-btn-white
+    explore-btn       css  #top-promo .tm-btn-transparent
+    columns-block     css .columns
+    columns-container css .columns .row-container
+    column-item-*     css .columns .row-container>div
+    partners-block    id bottom-promo
+    footer            id footer
+
+
+= image test =
+    body:
+        image file img/scr-home1200.png, tolerance 4000, map-filter denoise 10
+
+
+= Navigation test =
+    @on desktop
+        logo:
+            visible
+
+    @on desktop
+        global:
+            count any nav-item-* is 6
+
+    @on desktop
+        nav-item-1:
+            text is "PRODUCTS & DOCS"
+            aligned horizontally all nav-item-2
+        nav-item-2:
+            text is "PARTNERS"
+            aligned horizontally all nav-item-3
+        nav-item-3:
+            text is "SUPPORT"
+            aligned horizontally all nav-item-4
+        nav-item-4:
+            text is "BLOGS"
+            aligned horizontally all nav-item-5
+        nav-item-5:
+            text is "EVENTS"
+            aligned horizontally all nav-item-6
+        nav-item-6:
+            text is "OPEN SOURCE"
+
+= general layout test =
+    @on desktop
+        column-item-*:
+            width ~ 25 % of columns-container/width
+        columns-block:
+            below top-promo 35 to 45px
+        partners-block:
+            below columns-block 20 to 25px
+        social:
+            below partners-block 65 to 75px
+        footer:
+            below social 100 to 105px
+        main-desc:
+            below main-header 35 to 45px
+        get-api-btn:
+            near explore-btn 55 to 65px left
+            width 195 to 200px
+            height 45 to 50px
+        explore-btn:
+            width 315 to 325px
+            height 45 to 50px
+            visible
+
+= twitter card =
+    @on desktop
+        twitter:
+            inside social
