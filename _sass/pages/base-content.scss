@@ -54,7 +54,7 @@
     margin-top: 0;
     margin-bottom: 10px;
     @media #{$max-1200} {
-      width: 40%;
+      width: 50%;
     }
     @media #{$max-768} {
       width: 100%;
@@ -73,10 +73,14 @@
   margin: 7px 0;
 }
 
-.left-margin{
+.left-margin {
   padding-left: 30px;
 }
 
-.clear-margin{
+.clear-margin {
   margin: 0;
+}
+
+.left-border {
+  border-left: 2px solid $border-color;
 }
