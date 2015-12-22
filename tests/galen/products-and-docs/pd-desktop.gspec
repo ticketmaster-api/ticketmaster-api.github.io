@@ -19,7 +19,7 @@
     partners-block              id      bottom-promo
     footer                      id      footer
 
-
+@set
     margin-x1    24px
     margin-x2    48px
     margin-x3    76px
@@ -84,38 +84,38 @@
             border-bottom-style        solid
             border-bottom-width        1px
             display table
-            font-family TMSans-Regular,
-            color rgb(118, 134, 146)
-            font-size normal
+            font-family     "TMSans-Regular"
+            color           rgb(118, 134, 146)
+            font-size       normal
             margin-bottom   ${margin-x2}
-            margin-top  ${margin-x2}
+            margin-top      ${margin-x2}
 
-        p-body,p-simple-01:
-            box-sizing border-box;
-            color #768692;
-            font-family "TMSans-Light",Helvetica,Arial,sans-serif;
-            font-feature-settings "kern";
-            font-kerning normal;
-            font-language-override normal;
-            font-size 16px;
-            font-size-adjust none;
-            font-stretch normal;
-            font-style normal;
-            font-synthesis weight style;
-            font-variant normal;
-            font-variant-alternates normal;
-            font-variant-caps normal;
-            font-variant-east-asian normal;
-            font-variant-ligatures normal;
-            font-variant-numeric normal;
-            font-variant-position normal;
-            font-weight 400;
-            line-height 24px;
-            margin-bottom ${margin-x1};
-            margin-left 0px;
+        p-body, p-simple-01:
+            box-sizing border-box
+            color #768692
+            font-family "TMSans-Light",Helvetica,Arial,sans-serif
+            font-feature-settings "kern"
+            font-kerning normal
+            font-language-override normal
+            font-size 16px
+            font-size-adjust none
+            font-stretch normal
+            font-style normal
+            font-synthesis weight style
+            font-variant normal
+            font-variant-alternates normal
+            font-variant-caps normal
+            font-variant-east-asian normal
+            font-variant-ligatures normal
+            font-variant-numeric normal
+            font-variant-position normal
+            font-weight 400
+            line-height 24px
+            margin-bottom ${margin-x1}
+            margin-left 0px
             margin-right 0px;
-            margin-top ${margin-x1};
-            padding-bottom 0px;
-            padding-left 0px;
-            padding-right 0px;
-            padding-top 0px;
+            margin-top ${margin-x1}
+            padding-bottom 0px
+            padding-left 0px
+            padding-right 0px
+            padding-top 0px
