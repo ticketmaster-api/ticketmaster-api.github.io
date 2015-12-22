@@ -19,7 +19,7 @@
 
 = image test =
     body:
-        image file img/scr-home1200.png, tolerance 4000, map-filter denoise 10
+    ### image file img/scr-home1200.png, tolerance 4000, map-filter denoise 10
 
 
 = Navigation test =
