@@ -3,6 +3,8 @@
     base_url    http://${domain}/
 
     home        tests/galen/home
+    prDocs      tests/galen/products-and-docs
+
 
 Home page on desktop
     http://${domain} 1200x1080
@@ -16,4 +18,13 @@ Home page on mobile
     http://${domain} 480x800
         check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
 
-### galen check tests/galen/home/tablet.gspec --url localhost:4000 --size 480x800 --htmlreport tests/galen/reports/mobNew -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
+### galen check tests/galen/home/tablet.gspec --url 127.0.0.1:4000 --size 480x800 --htmlreport tests/galen/reports/mobNew -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
+
+
+
+
+Prod-and-Docs page on desktop
+    http://${domain} 1200x1080
+        check ${prDocs}/pd-desktop.gspec --include "desktop"
+
+### galen check tests/galen/products-and-docs/pd-desktop.gspec --url 127.0.0.1:4000 --size 1200x1080 --htmlreport tests/galen/reports/mobNew -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
