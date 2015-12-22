@@ -20,10 +20,10 @@
     footer                      id      footer
 
 @set
-    margin-x1    24px
-    margin-x2    48px
-    margin-x3    76px
-    margin-x4    96px
+    marginX1    24px
+    marginX2    48px
+    marginX3    76px
+    marginX4    96px
 
     header-main                 xpath   //*[@id="getting-started"]
     header-h2-introduction      xpath   //*[@id="introduction"]
@@ -83,12 +83,12 @@
             border-bottom-color        rgb(228, 231, 233)
             border-bottom-style        solid
             border-bottom-width        1px
-            display table
-            font-family     "TMSans-Regular"
+            display                table
+            css font-family contains      "TMSans-Regular"
             color           rgb(118, 134, 146)
             font-size       normal
-            margin-bottom   ${margin-x2}
-            margin-top      ${margin-x2}
+            margin-bottom   ${marginX2}
+            margin-top      ${marginX2}
 
         p-body, p-simple-01:
             box-sizing border-box
@@ -111,10 +111,10 @@
             font-variant-position normal
             font-weight 400
             line-height 24px
-            margin-bottom ${margin-x1}
+            margin-bottom ${marginX1}
             margin-left 0px
             margin-right 0px;
-            margin-top ${margin-x1}
+            margin-top ${marginX1}
             padding-bottom 0px
             padding-left 0px
             padding-right 0px
