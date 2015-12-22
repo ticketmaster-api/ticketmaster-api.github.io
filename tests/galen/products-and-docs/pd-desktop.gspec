@@ -18,7 +18,7 @@
 
     partners-block      id  bottom-promo
     footer              id  footer
-    header-main         xpath     //*[@id="discovery-rest-api"]
+    header-main         xpath     //*[@id="getting-started"]
 
 = Navigation test =
     @on desktop
