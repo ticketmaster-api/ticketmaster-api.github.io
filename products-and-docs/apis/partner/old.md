@@ -5,7 +5,6 @@ categories:
 - partner
 ---
 
-{: .article}
 # Ticketmaster Partner-App API
 
 The Ticketmaster Partner-App API lets users purchase tickets through your app's native experience. Users will receive an email with a link to ticketmaster.com or our mobile app to redeem tickets.<br/><br/>
@@ -63,37 +62,29 @@ The Ticketmaster back-end reservation systems are distributed globally and event
 
 
 
-{: .article}
+
 ## Group Event Details
 {: #event-details}
 
 Event and ticket information
 
-{: .article}
 ### Retrieve Event Details  [GET]
 
 Retrieve details for a given event including the ticket type & pricing details. The boolean field `api_transactable` indicates if this event can be sold through the API.  If not, clients should be forwarded to the Ticketmaster mobile-web event page.  
 
-/partners/v1/events/{event_id}?apikey={apikey}
-{: .pull-quote}
-
 <b>Polling: No</b>
 
-####Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+ + event_id (string, `0B004ED9FC825ACB`) ... The 16-digit alphanumeric event ID.
+ + apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
 
++ Model (application/json)
 
++ Response 200
 
-{: .aside}
-####Response 
-
-Model (application/json)
-
-Status 200
+/partners/v1/events/{event_id}?apikey={apikey}
+{: .pull-quote}
 
 {% highlight js %}
 {
@@ -896,13 +887,12 @@ Status 200
 
 
 
-{: .article}
+
 ## Group Inventory Management
 {: #inventory-management}
 
 Inventory endpoints for specifically-enabled accounts only.
 
-{: .article}
 ### Event Availability [GET]
 
 Discover events available to transact on<br/>
@@ -912,12 +902,7 @@ Discover events available to transact on<br/>
 
 <b>Polling: No</b>
 
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -952,7 +937,7 @@ Status 200
 
 
 
-{: .article}
+
 ### Ticket Availability [GET]
 
 Get total allocated and remaining ticket amounts for each ticket type per event. Current un-sold seat inventory is also included along with the current ticket reservation limit.<br/>
@@ -962,18 +947,7 @@ Get total allocated and remaining ticket amounts for each ticket type per event.
 
 <b>Polling: No</b>
 
-####Parameters
-
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
-
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1064,7 +1038,7 @@ Status 200
 
 
 
-{: .article}
+
 ### Retrieve an Event  [GET]
 
 Returns an alphanumeric event id based on a Venue-supplied event code+host combination<br/>
@@ -1074,20 +1048,12 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 
 <b>Polling: No</b>
 
-####Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_code` | The event code given by the venue.     | string            |     "1"           | Yes      |
-| `event_host` | The event host given by the venue.     | string            |     "1"           | Yes      |
+ + event_code (string, `1`) ... The event code given by the venue
+ + event_host (string, `1`) ... The event host given by the venue
 
-
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1098,7 +1064,6 @@ Status 200
 }
 {% endhighlight %}
 
-{: .article}
 ## Group Ticket reservation and purchasing
 {: #ticket-reservation}
 
@@ -1107,32 +1072,25 @@ Services related to Ticket reservation and purchasing. Only events marked with `
 
 
 
-{: .article}
+
 ### Get captcha page [GET]
 Retreive captcha information to render to the user.<br/>
 
 /partners/v1/captcha?apikey={apikey}
 {: .pull-quote}
 
++ Parameters
+
+ + apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
+
++ Model (application/json)
+
 <b>Polling: No</b>
 
-####Parameters
++ Response 200
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
++ Body
 
-
-
-
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
-
-#####Headers
 {% highlight html %}
 Header: X-TM-CAPTCHA-V2-SITEKEY: <sitekey>
 <html>
@@ -1150,66 +1108,63 @@ Header: X-TM-CAPTCHA-V2-SITEKEY: <sitekey>
 </html>
 {% endhighlight %}
 
-#####Body
-
 {% highlight js %}
 { "token" : "<token received from captcha solution>" }
 {% endhighlight %}
 
 
 
-{: .article}
+
 ### Post captcha solution [POST]
 
 Post captcha solution and establish a cart session<br/>
+
++ Request
 
 /partners/v1/cart?apikey={apikey}
 {: .pull-quote}
 
 <b>Polling: No</b><br/>
 
-
-
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {"cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo="}
 {% endhighlight %}
 
-{: .article}
+
 ### Reserve tickets and create a Cart [PUT]
 
 Reserves the specified tickets.  Multiple ticket types can be added to the `tickets` array as part of an adult+child combination if available.
 
 <b>Polling: Yes</b><br/>
 
++ Request
+
 /partners/v1/cart/tickets?apikey={apikey}
 {: .pull-quote}
 
-#### Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-
+ + apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
 
 #### Properties
 
-Model (application/json)
-
 + event (object)
-    - id 0B004ED9FC825ACB (string)
-    - tickets (array)
-        + id (string)
-        + quantity (number)
-        + price (object, optional)
-    - amount (number, optional) 
 
+ - id 0B004ED9FC825ACB (string)
+ 
+ - tickets (array)
+ 
+  + id (string)
+  
+  + quantity (number)
+  
+  + price (object, optional)
+  
+   - amount (number, optional) 
+
++ Model (application/json)
 
 {% highlight js %}
 {
@@ -1237,12 +1192,7 @@ Model (application/json)
 }
 {% endhighlight %}
 
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1315,7 +1265,7 @@ Status 200
 
 
 
-{: .article}
+
 ### Encryption Certificate [GET]
 
 Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.<br/>
@@ -1325,20 +1275,14 @@ Credit card information must be encrypted before sent to the API. Use this endpo
 
 <b>Polling: No</b><br/>
 
-#### Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `cart_id`   | Cart ID for this session. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
+ - apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
+
+ - cart_id (string, `bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D`) ... Cart ID for this session. Must be url encoded.
 
 
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1360,7 +1304,7 @@ Status 200
 {% endhighlight %}
 
 
-{: .article}
+
 ### Post credit card information [PUT]
 
 Add customer billing and credit card information to the transaction. Set `encryption_key` with the `id` value from the output of /certificate. After encrypting the credit card number and cvv, clients should call `[PUT] /partners/v1/cart` to finalize the purchase and obtain an order number.<br/>
@@ -1382,95 +1326,12 @@ Fake credit-card information for use in the sandbox environment:<br/>
     <li>Expiration: 12/2020</li><br/>
 </ul>
 
-
-<b>Polling: No</b><br/>
-
 /partners/v1/cart/payment?apikey={apikey}
 {: .pull-quote}
 
-{: .article}
-#### Parameters
+<b>Polling: No</b><br/>
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-
-
-
-#### Properties
-
-Model (application/json)
-
-+ cart_id (string)
-+ payment (object)
-    - first_name (string)
-    - last_name (string)
-    - home_phone (string)
-    - type (string)
-    - reference (string)
-    - email_address (string)
-    - address (object)
-        + line1 (string)
-        + line2 (string)
-        + unit (string)
-        + city (string)
-        + country (object)
-            - id (number)
-        + region (object)
-            - region (string)
-        + postal_code (string)
-    - amount (number)
-    - card (object)
-        + number (string)
-        + cin (string)
-        + encryption_key (string)
-        + expire_month (number)
-        + expire_year (number)
-        + postal_code (string)
-
-{% highlight js %}
-{
-
-    "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
-
-    "payment": {
-
-        "first_name": "John",           // Required
-        "last_name": "Doe",             // Required
-        "home_phone": "212-867-5309",   // Required
-        "type": "CC",                   // Required, CC or INVOICE
-        "reference" : "15278303",        // Required for type=INVOICE only. Your numeric reference number for this invoice transaction.
-        "email_address" : "john.doe@ticketmaster.com", // Required
-
-        "address": {                    // Optional. (parameters below may be required if address block is supplied)
-            "line1": "123 Main Street", // Required
-            "line2": "",                // Field required, but empty allowed
-            "unit": "1h"                // Optional
-            "city": "Los Angeles",      // Required
-            "country": {                // Required, use 840 for United States or 36 for Canada
-                "id": 840
-            },
-            "region": {                 // Required
-                "abbrev": "CA"
-            },
-            "postal_code": "90210",     // Required
-        },
-        "amount": "69.00",              // Required for type=CC
-        "card": {                       // All fields Required for type=CC
-            "number": "qvaEc5EX2bt5pt5DiTQR4J6iYZKxsujQPdw7LXCAnbeb8cD/CiXoB1V/pG2GAHBcHS/IdIMskFg=", // encrypted, json-encoded credit-card number
-            "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=", // encrypted, json-encoded cvv number
-            "encryption_key": "paysys-dev.0.us.999",
-            "expire_month": 12,
-            "expire_year": 2020,
-            "postal_code": "90210"
-        }
-    }
-}
-{% endhighlight %}
-
-
-
-{: .aside}
+<br/><br/>
 Sample Java code using a certificate (arg 1) to encrypt a credit card or cvv number (arg 2):
 
 {% highlight java %}
@@ -1516,14 +1377,55 @@ CDEFGHIJK=
 }
 {% endhighlight %}
 
++ Request
 
++ Parameters
 
+ + apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
 
-####Response
++ Model (application/json)
 
-Model (application/json)
+{% highlight js %}
+{
 
-Status 200
+    "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
+
+    "payment": {
+
+        "first_name": "John",           // Required
+        "last_name": "Doe",             // Required
+        "home_phone": "212-867-5309",   // Required
+        "type": "CC",                   // Required, CC or INVOICE
+        "reference" : "15278303",        // Required for type=INVOICE only. Your numeric reference number for this invoice transaction.
+        "email_address" : "john.doe@ticketmaster.com", // Required
+
+        "address": {                    // Optional. (parameters below may be required if address block is supplied)
+            "line1": "123 Main Street", // Required
+            "line2": "",                // Field required, but empty allowed
+            "unit": "1h"                // Optional
+            "city": "Los Angeles",      // Required
+            "country": {                // Required, use 840 for United States or 36 for Canada
+                "id": 840
+            },
+            "region": {                 // Required
+                "abbrev": "CA"
+            },
+            "postal_code": "90210",     // Required
+        },
+        "amount": "69.00",              // Required for type=CC
+        "card": {                       // All fields Required for type=CC
+            "number": "qvaEc5EX2bt5pt5DiTQR4J6iYZKxsujQPdw7LXCAnbeb8cD/CiXoB1V/pG2GAHBcHS/IdIMskFg=", // encrypted, json-encoded credit-card number
+            "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=", // encrypted, json-encoded cvv number
+            "encryption_key": "paysys-dev.0.us.999",
+            "expire_month": 12,
+            "expire_year": 2020,
+            "postal_code": "90210"
+        }
+    }
+}
+{% endhighlight %}
+
++ Response 200
 
 {% highlight js %}
 {
@@ -1538,7 +1440,7 @@ Status 200
 
 
 
-{: .article}
+
 ### Purchase Tickets [PUT]
 
 Finalize the purchase and commit the transaction. `source_account_id` can be any unique identifier of the user (i.e. hash of member id). This is required for tracking bounces of ticket redemption emails.<br/>
@@ -1548,19 +1450,13 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 
 <b>Polling: Yes</b><br/>
 
-#### Parameters
++ Request
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
++ Parameters
 
+ + apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
 
-#### Properties
-
-Model (application/json)
-
-+ cart_id (string)
-+ source_account_id (string)
++ Model (application/json)
 
 {% highlight js %}
 { 
@@ -1569,12 +1465,7 @@ Model (application/json)
 }
 {% endhighlight %}
 
-{: .aside}
-####Response
-
-Model (application/json)
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1587,7 +1478,7 @@ Status 200
 
 
 
-{: .article}
+
 ### Delete a Cart [DELETE]
 
 Delete a Cart. Each partner has a limited amount of reservation resources that can be simultaneously in use. If the user abandons the reservation process, it is a good practice to manually delete the cart to allow these resources to be re-allocated. Increased polling may occur if carts are not cleaned up.  Not required if the user finalizes the transaction<br/>
@@ -1597,25 +1488,20 @@ Delete a Cart. Each partner has a limited amount of reservation resources that c
 
 <b>Polling: Yes</b><br/>
 
-#### Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `cart_id`   | Cart ID for this session. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
+ - apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
 
-{: .aside}
-####Response
+ - cart_id (string, `bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D`) ... Cart ID for this session. Must be url encoded.
 
-Status 204
++ Response 204
 
-{: .article}
+
 ## Group Order Management
 {: #order-mangement}
 
 Backend operations for order management
 
-{: .article}
 ### Unredeemed orders [GET]
 
 Get detailed information about an order. For specifically-enabled accounts only. 
@@ -1623,18 +1509,13 @@ Get detailed information about an order. For specifically-enabled accounts only.
 /partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .pull-quote}
 
-#### Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `order_number`   | An order number (ex. 39-5234153/LA1)         | string            |     ""          | Yes      |
+ - apikey  (string, required) ... Your API Key
 
+ - order_number  (string, required) ... An order number (ex. 39-5234153/LA1)
 
-{: .aside}
-####Response
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1742,26 +1623,23 @@ Status 200
 {% endhighlight %}
 
 
-{: .article}
+
 ### Unredeemed orders [GET]
 Retreive unredeemed orders within a given time period. Some orders may have had bad email addresses, or emails that went to spam. Use your app's notification features to notify the user of an unredeemed order. This endpoint requires IP-address whitelisting.  Please contact us for details.
 
 /partners/v1/orders/unredeemed?apikey={apikey}
 {: .pull-quote}
 
-#### Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `days_from_purchase`   | Number of days since purchase was made. This or days_before_event is required.         | string            |     ""          | No      |
-| `days_before_event`   | Number of days before event date.         | string            |     ""          | No      |
+ - apikey  (string, required) ... Your API Key
+
+ - days_from_purchase (number, optional) ... Number of days since purchase was made. This or days_before_event is required
+
+ - days_before_event (number, optional) ... Number of days before event date
 
 
-{: .aside}
-####Response
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1780,7 +1658,7 @@ Status 200
 
 
 
-{: .article}
+
 ## Group Polling
 {: #polling}
 
@@ -1802,28 +1680,20 @@ Clients can test polling by issuing the following header: `X-TM-FORCE-POLLING: t
 
 The output of the original action will eventually be returned in the body of the response.
 
-{: .article}
-### Poll [GET]
 
+### Poll [GET]
 Polling urls may be received from resources marked with "Polling: Yes" and can return subsequent polling responses.
 
 /partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
 {: .pull-quote}
 
-#### Parameters
++ Parameters
 
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `cart_id`   | Cart ID for this session. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
+ - apikey (string, `GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne`) ... Your API Key
 
+ - cart_id (string, `bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D`) ... Cart ID for this session. Must be url encoded.
 
-
-{: .aside}
-####Response
-
-Status 202
-
++ Response 202 
 {% highlight js %}
 {
     "polling_url": "https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D",
@@ -1831,9 +1701,7 @@ Status 202
 }
 {% endhighlight %}
 
-####Response
-
-Status 200
++ Response 200
 
 {% highlight js %}
 {
@@ -1841,11 +1709,9 @@ Status 200
 }
 {% endhighlight %}
 
-{: .article}
 ## Group Error Responses
 {: #error-responses}
 
-{: .article}
 Client or API-side errors will generate a json-formatted response body as well as standard HTTP status codes.
 
 Example:
@@ -1861,10 +1727,6 @@ Example:
 }
 {% endhighlight %}
 
----
-{: .aside}
-
-{: .article}
 Event not transactable.
 
 Example:
@@ -1880,10 +1742,8 @@ Example:
 }
 {% endhighlight %}
 
----
-{: .aside}
 
-{: .article}
+
 Example of sold-out tickets, per ticket id. Can also occur if the number of available continuous seats cannot be fulfilled:
 
 {% highlight js %}
@@ -1895,10 +1755,6 @@ Example of sold-out tickets, per ticket id. Can also occur if the number of avai
 }
 {% endhighlight %}
 
----
-{: .aside}
-
-{: .article}
 Missing captcha token:
 
 {% highlight js %}
@@ -1912,10 +1768,6 @@ Missing captcha token:
 }
 {% endhighlight %}
 
----
-{: .aside}
-
-{: .article}
 Incorrect or stale captcha token:
 
 {% highlight js %}
@@ -1929,10 +1781,6 @@ Incorrect or stale captcha token:
 }
 {% endhighlight %}
 
----
-{: .aside}
-
-{: .article}
 Payment not accepted:
 
 {% highlight js %}
@@ -1946,10 +1794,6 @@ Payment not accepted:
 }
 {% endhighlight %}
 
----
-{: .aside}
-
-{: .article}
 Invalid CVV/Security code on back of credit card:
 
 {% highlight js %}
@@ -1963,10 +1807,6 @@ Invalid CVV/Security code on back of credit card:
 }
 {% endhighlight %}
 
----
-{: .aside}
-
-{: .article}
 Ticketing system is down/unavailable/niterun
 
 {% highlight js %}
@@ -1980,10 +1820,6 @@ Ticketing system is down/unavailable/niterun
 }
 {% endhighlight %}
 
----
-{: .aside}
-
-{: .article}
 Invalid cart id
 
 {% highlight js %}
@@ -1997,10 +1833,7 @@ Invalid cart id
 }
 {% endhighlight %}
 
----
-{: .aside}
 
-{: .article}
 Clients can reference the *code* field when communicating and debugging errors with Ticketmaster. We will automatically be notified of any internal, unrecoverable errors.
 
 The following status codes will be used by this API
