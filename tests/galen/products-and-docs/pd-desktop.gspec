@@ -3,7 +3,7 @@
     marginX2    48px
     marginX3    76px
     marginX4    96px
-    
+
 @objects
     header                      css  .top-bar
     logo                        css  #header-logo img
@@ -64,7 +64,7 @@
     @on desktop
         header-main:
             height 64px
-            color #414141
+            color scheme: #414141
             font-family "InterstateWGL-Black"
 
         header-h2-introduction:
