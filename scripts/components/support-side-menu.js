@@ -63,7 +63,9 @@
     });
 
     $(".sections").on("click", "a", function(){
-        hideMenu();
+        if ( window.innerWidth < 1200 ) {
+            hideMenu();
+        }
     });
 
 })();

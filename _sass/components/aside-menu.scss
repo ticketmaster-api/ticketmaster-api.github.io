@@ -58,6 +58,7 @@
     margin: 14px 0;
     li {
       color: $n3;
+      max-width: 200px;
 
       &.active a {
         color: $p1a;
