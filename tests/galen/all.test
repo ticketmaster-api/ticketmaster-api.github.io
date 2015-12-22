@@ -15,3 +15,5 @@ Home page on tablet
 Home page on mobile
     http://${domain} 480x800
         check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
+
+### galen check tests/galen/home/tablet.gspec --url localhost:4000 --size 480x800 --htmlreport tests/galen/reports/mobNew -Dphantomjs.binary.path=/usr/local/phantomjs/bin/phantomjs
