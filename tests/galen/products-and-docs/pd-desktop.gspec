@@ -1,24 +1,28 @@
 @objects
-    header              css  .top-bar
-    logo                css  #header-logo img
-    nav-item-*          css  #menu a
+    header                      css  .top-bar
+    logo                        css  #header-logo img
+    nav-item-*                  css  #menu a
 
-    social              id   promo-social
-    twitter             css  .twitter-tweet
+    social                      id   promo-social
+    twitter                     css  .twitter-tweet
 
-    top-promo           id   top-promo
-    main-header         css  #top-promo h1
-    main-desc           css  #top-promo p
-    get-api-btn         css  #top-promo .tm-btn-white
-    explore-btn         css  #top-promo .tm-btn-transparent
+    top-promo                   id   top-promo
+    main-header                 css  #top-promo h1
+    main-desc                   css  #top-promo p
+    get-api-btn                 css  #top-promo .tm-btn-white
+    explore-btn                 css  #top-promo .tm-btn-transparent
 
-    columns-block       css .columns
-    columns-container   css .columns .row-container
-    column-item-*       css .columns .row-container>div
+    columns-block               css     .columns
+    columns-container           css     .columns .row-container
+    column-item-*               css     .columns .row-container>div
 
-    partners-block      id  bottom-promo
-    footer              id  footer
-    header-main         xpath     //*[@id="getting-started"]
+    partners-block              id      bottom-promo
+    footer                      id      footer
+
+    header-main                 xpath   //*[@id="getting-started"]
+    header-h2-introduction      xpath   //*[@id="introduction"]
+    p-lead                      xpath   //*[@id="main-block"]/div/p[1]
+    table-dataset               xpath   //*[@id="main-block"]/div/table
 
 = Navigation test =
     @on desktop
@@ -51,4 +55,29 @@
 = general layout test =
     @on desktop
         header-main:
-            height 45 to 50px
+            height: 64px
+            color: #414141
+            font-family: "InterstateWGL-Black"
+
+        header-h2-introduction:
+            height: 48px
+            line-height: 48px
+            color: #414141
+            font-family: "TMSans-Bold"
+
+        p-lead:
+            height: 32px
+            line-height: 32px
+            color: #768692
+            font-family: "TMSans-Light"
+
+        table-dataset:
+            border-bottom-color        rgb(228, 231, 233)
+            border-bottom-style        solid
+            border-bottom-width        1px
+            display table
+            font-family TMSans-Regular,
+            color rgb(118, 134, 146)
+            font-size normal
+            margin-bottom   48px
+            margin-top  48px
