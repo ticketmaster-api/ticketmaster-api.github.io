@@ -27,7 +27,7 @@
                 var me = $(this);
                 var group = me.nextUntil('.article').addBack();
                 var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
-                var firstElemGroupLeft =groupLeft.parent().children().first();
+                var firstElemGroupLeft = groupLeft.parent().children().first();
 
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -43,8 +43,8 @@
                     //add class for tabs
                     me.children().children().first().addClass('active')//set first button active
 
-                    tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('p').length;
-                    $(".aside-wrapper blockquote").nextAll().slice(0,tabsCount+1).addClass('tab-content' ); //hide all tab-content
+                    $(".aside-wrapper blockquote").nextAll(".highlight").addClass('tab-content' ); //hide all tab-content
+                    me.children(".highlight:lt("+ tabsCount +")");
 
                     group.nextAll().first().addClass('tab-active');//set first tab visible
                 }
@@ -52,25 +52,34 @@
             });
 
         //add class and id to tab content
-        $(".aside-wrapper blockquote").nextAll().slice(0,tabsCount+1)
-            .addClass(function( index ) {
-                if(index>tabsCount) {
-                    index = [index % (tabsCount+1)]
-                };
-                return "tab-" + index;
-            })
-            .attr( "id", function( index ) {
-                if(index>tabsCount) {
-                    index = [index % (tabsCount+1)]
-                };
-                return "tab-" + index;
+        tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('p').length;
+        $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
+
+        //add classes to tab-content
+        tabsCount = tabsCount+1;
+        main.find('.tab-panel-offset').each(
+            function () {
+                var me = $(this);
+                //console.log('sibling' , me.children().siblings(":nth-child(n+1)").nextUntil(":nth-child(6)") );
+                me.children(".highlight:lt("+ tabsCount +")")
+                    .addClass(function (index) {
+                        if (index > tabsCount) {
+                            index = [index % (tabsCount + 1)]
+                        }
+                        return "tab-" + index;
+                    })
+                    .attr("id", function (index) {
+                        if (index > tabsCount) {
+                            index = [index % (tabsCount + 1)]
+                        }
+                        return "tab-" + index;
+                    });
             });
 
         if(firstElem.hasClass('underline')){
             firstElem.css('margin-right','51%');
         }
 
-        $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
 
         $('table').wrap('<div class="table-wrapper"></div>');
 
@@ -84,14 +93,15 @@
 
         $(".lang-selector a").click(function(event) {
             var currentButton =$(this);
+            var allBtn = $(".lang-selector a[href*=" + currentButton.attr('href') + "]")
 
             event.preventDefault();
-            currentButton.addClass("active");
-            currentButton.siblings().removeClass("active");
+            allBtn.addClass("active");
+            allBtn.siblings().removeClass("active");
 
             var tabGroup = $('.tab-active');
 
-            if(currentButton.hasClass('active')){
+            if(allBtn.hasClass('active')){
                 var strTMP = currentButton.index().toString();
 
                 tabGroup.removeClass("tab-active");
