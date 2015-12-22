@@ -18,13 +18,13 @@ before_script:
   - jekyll build
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - sleep 10 # give xvfb some time to start
+  - sleep 5 # give xvfb some time to start
 
 script:
   - ./node_modules/karma/bin/karma start karma.conf.js
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - jekyll serve &
-  - sleep 20 # give jekyll some time to start
+  - sleep 5 # give jekyll some time to start
   - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
 after_script:
