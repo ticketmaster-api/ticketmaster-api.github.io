@@ -53,7 +53,7 @@
             css font-family contains "TMSans-Light"
 
         p-body, p-simple-01:
-            css box-sizing border-box
+            css box-sizing is "border-box"
             ${color} "rgba(118, 134, 146, 1)"
             css font-feature-settings is "kern"
             css font-kerning is 'normal'
