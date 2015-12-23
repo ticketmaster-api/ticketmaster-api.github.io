@@ -69,7 +69,7 @@
 
         header-h2-introduction:
             height 48px
-            line-height 48px
+            css line-height is "48px"
             css color is "rgb(65, 65, 65)"
             css font-family contains "TMSans-Bold"
 
