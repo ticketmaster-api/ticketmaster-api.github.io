@@ -6,6 +6,7 @@
     marginX2    "48px"
     marginX3    "76px"
     marginX4    "96px"
+    line-height "css line-height is"
 
 @objects
     header-main                 xpath   //*[@id="getting-started"]
@@ -32,11 +33,19 @@
             css font-size is "36px"
 
         table-dataset:
-            css border-bottom-color is "rgb(228, 231, 233)"
+            css border-bottom-color is "rgba(228, 231, 233, 1)"
             css border-bottom-style is "solid"
-            css border-bottom-width is "1px"
+            css border-top-width is "1px"
+            css border-left-width is "1px"
             css font-family contains      "TMSans-Regular"
-            css color is "rgb(118, 134, 146)"
+            css color is "rgba(118, 134, 146, 1)"
+            css background-color is "rgba(0, 0, 0, 0)"
             css font-size is "16px"
             css margin-bottom is ${marginX2}
             css margin-top is ${marginX2}
+
+        p-lead:
+            height 32px
+            ${line-height} "32px"
+            ${color} "rgba(118, 134, 146, 1)"
+            ${font-family} "TMSans-Light"
