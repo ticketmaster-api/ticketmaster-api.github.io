@@ -13,7 +13,7 @@ category: products-and-docs
 # THE REAL BACKSTAGE <br> PASS TO LIVE EVENT <br> DATA
 
 {: .lead}
-Whether you need a quick drop-in or are building a custom product, we have the APIs, SDKs, and widgets you’re looking for.
+Whether you need a quick drop-in or are building a custom product, we have the [APIs](/products-and-docs/apis/getting-started/), SDKs, and widgets you’re looking for.
 
 {% endcapture %}
 
