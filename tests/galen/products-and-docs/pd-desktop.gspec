@@ -65,12 +65,12 @@
         header-main:
             height 64px
             css font-family contains "InterstateWGL-Black"
-            color scheme: #414141
+            color scheme: rgb(65, 65, 65)
 
         header-h2-introduction:
             height 48px
             line-height 48px
-            color scheme: #414141
+            color rgb(65, 65, 65)
             css font-family contains "TMSans-Bold"
 
 
