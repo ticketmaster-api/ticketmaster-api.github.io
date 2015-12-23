@@ -1,0 +1,48 @@
+@objects
+    header                      css  .top-bar
+    logo                        css  #header-logo img
+    nav-item-*                  css  #menu a
+
+    social                      id   promo-social
+    twitter                     css  .twitter-tweet
+
+    top-promo                   id   top-promo
+    main-header                 css  #top-promo h1
+    main-desc                   css  #top-promo p
+    get-api-btn                 css  #top-promo .tm-btn-white
+    explore-btn                 css  #top-promo .tm-btn-transparent
+
+    columns-block               css     .columns
+    columns-container           css     .columns .row-container
+    column-item-*               css     .columns .row-container>div
+
+    partners-block              id      bottom-promo
+    footer                      id      footer
+
+= Navigation test =
+    @on desktop
+        logo:
+            visible
+
+    @on desktop
+        global:
+            count any nav-item-* is 6
+
+    @on desktop
+        nav-item-1:
+            text is "PRODUCTS & DOCS"
+            aligned horizontally all nav-item-2
+        nav-item-2:
+            text is "PARTNERS"
+            aligned horizontally all nav-item-3
+        nav-item-3:
+            text is "SUPPORT"
+            aligned horizontally all nav-item-4
+        nav-item-4:
+            text is "BLOGS"
+            aligned horizontally all nav-item-5
+        nav-item-5:
+            text is "EVENTS"
+            aligned horizontally all nav-item-6
+        nav-item-6:
+            text is "OPEN SOURCE"
