@@ -82,7 +82,7 @@
             css padding-top   is "0px"
 
         p-body:
-            css font-family contains ""TMSans-Regular",Helvetica,Arial,sans-serif"
+            css font-family contains "TMSans-Regular"
 
         p-simple-01:
             css font-family contains "TMSans-Light"
