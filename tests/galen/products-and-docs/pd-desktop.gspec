@@ -32,5 +32,5 @@
             css font-family contains      "TMSans-Regular"
             css color is "rgb(118, 134, 146)"
             css font-size is "16px"
-            margin-bottom   ${marginX2}
-            margin-top      ${marginX2}
+            css margin-bottom is ${marginX2}
+            css margin-top is ${marginX2}
