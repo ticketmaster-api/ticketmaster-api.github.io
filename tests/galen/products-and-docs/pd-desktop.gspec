@@ -64,8 +64,8 @@
     @on desktop
         header-main:
             height 64px
-            css font-family contains "InterstateWGL-Black"
             css color is "rgba(65, 65, 65, 1)"
+            css font-family contains "InterstateWGL-Black"
 
         header-h2-introduction:
             height 48px
