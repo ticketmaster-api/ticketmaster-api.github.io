@@ -2,12 +2,13 @@
 @import header.gspec
 
 @set
-    marginX1    "24px"
-    marginX2    "48px"
-    marginX3    "76px"
-    marginX4    "96px"
-    lineHeight  "css line-height is"
-    color       "css color is"
+   # marginX1    "24px"
+   # marginX2    "48px"
+   # marginX3    "76px"
+   # marginX4    "96px"
+
+    lineHeight  css line-height is
+    color       css color is
 
 @objects
     header-main                 xpath   //*[@id="getting-started"]
@@ -49,4 +50,37 @@
             height 32px
             ${lineHeight} "32px"
             ${color} "rgba(118, 134, 146, 1)"
+            css font-family contains "TMSans-Light"
+
+        p-body, p-simple-01:
+            css box-sizing border-box
+            ${color} "rgba(118, 134, 146, 1)"
+            css font-feature-settings is "kern"
+            css font-kerning is 'normal'
+            css font-language-override is "normal"
+            css font-size is "16px"
+
+            css font-synthesis is "weight style"
+            css font-variant is "normal"
+            css font-variant-alternates is "normal"
+            css font-variant-caps is "normal"
+            css font-variant-east-asian is "normal"
+            css font-variant-ligatures is "normal"
+            css font-variant-numeric is "normal"
+            css font-variant-position is "normal"
+            css font-weight is '400'
+            ${lineHeight} '24px'
+            css margin-bottom is ${marginX1}
+            css margin-left is "0px"
+            css margin-right is "0px"
+            css margin-top ${marginX1}
+            css padding-bottom is "0px"
+            css padding-left is "0px"
+            css padding-right is "0px"
+            css padding-top is "0px"
+
+        p-body:
+            css font-family contains "TMSans-Light,Helvetica,Arial,sans-serif"
+
+        p-simple-01:
             css font-family contains "TMSans-Light"
