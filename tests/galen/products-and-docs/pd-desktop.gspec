@@ -31,6 +31,6 @@
             css border-bottom-width is "1px"
             css font-family contains      "TMSans-Regular"
             css color is "rgb(118, 134, 146)"
-            font-size       normal
+            font-size    is "16px"
             margin-bottom   ${marginX2}
             margin-top      ${marginX2}
