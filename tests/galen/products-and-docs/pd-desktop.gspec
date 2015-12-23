@@ -42,7 +42,7 @@
             css border-left-width is "1px"
             css font-family contains      "TMSans-Regular"
             css color is "rgba(118, 134, 146, 1)"
-            css background-color is "rgba(0, 0, 0, 0)"
+            css background-color is "transparent"
             css font-size is "16px"
             css margin-bottom is ${marginX2}
             css margin-top is ${marginX2}
@@ -82,7 +82,7 @@
             css padding-top   is "0px"
 
         p-body:
-            css font-family contains "TMSans-Light,Helvetica,Arial,sans-serif"
+            css font-family contains ""TMSans-Regular",Helvetica,Arial,sans-serif"
 
         p-simple-01:
             css font-family contains "TMSans-Light"
