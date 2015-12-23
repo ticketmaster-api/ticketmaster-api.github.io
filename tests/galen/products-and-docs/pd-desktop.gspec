@@ -11,6 +11,7 @@
     color       css color is
 
 @objects
+    h2      css     h2
     header-main                 xpath   //*[@id="getting-started"]
     header-h2-introduction      xpath   //*[@id="introduction"]
 
@@ -55,20 +56,21 @@
         p-body, p-simple-01:
             css box-sizing is "border-box"
             ${color} "rgba(118, 134, 146, 1)"
-            css font-feature-settings is "kern"
-            css font-kerning is 'normal'
-            css font-language-override is "normal"
             css font-size is "16px"
 
-            css font-synthesis is "weight style"
-            css font-variant is "normal"
-            css font-variant-alternates is "normal"
-            css font-variant-caps is "normal"
-            css font-variant-east-asian is "normal"
-            css font-variant-ligatures is "normal"
-            css font-variant-numeric is "normal"
-            css font-variant-position is "normal"
-            css font-weight is '400'
+            # css font-feature-settings is "kern"
+            # css font-kerning is 'normal'
+            # css font-language-override is "normal"
+            # css font-synthesis is "weight style"
+            # css font-variant is "normal"
+            # css font-variant-alternates is "normal"
+            # css font-variant-caps is "normal"
+            # css font-variant-east-asian is "normal"
+            # css font-variant-ligatures is "normal"
+            # css font-variant-numeric is "normal"
+            # css font-variant-position is "normal"
+            # css font-weight is '400'
+            
             ${lineHeight} '24px'
             css margin-bottom is ${marginX1}
             css margin-left is "0px"
