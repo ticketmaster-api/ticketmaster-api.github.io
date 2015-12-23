@@ -69,9 +69,9 @@
             # css font-variant-ligatures is "normal"
             # css font-variant-numeric is "normal"
             # css font-variant-position is "normal"
-            # css font-weight is '400'
-            
-            ${lineHeight} '24px'
+            # css font-weight is "400"
+
+            ${lineHeight} "24px"
             css margin-bottom is ${marginX1}
             css margin-left is "0px"
             css margin-right is "0px"
