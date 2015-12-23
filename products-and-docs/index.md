@@ -18,7 +18,7 @@ Whether you need a quick drop-in or are building a custom product, we have the A
 {% endcapture %}
 
 {% capture right_column %}
-## Are you a partner?
+## Are you a Ticketmaster client?
 
 {: .body}
 Already doing business with Ticketmaster? <br>
@@ -38,7 +38,7 @@ Already doing business with Ticketmaster? <br>
 {: .lead}
 Everything you need to handle event discovery,  commerce , accounts, orders, and fans.
 
-[LEARN MORE](/products-and-docs/apis/getting-started/){: .button.button-blue}
+[ACCESS API DOCS](/products-and-docs/apis/getting-started/){: .button.button-blue}
 
 {% endcapture %}
 
