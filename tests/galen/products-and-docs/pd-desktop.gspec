@@ -65,7 +65,7 @@
         header-main:
             height 64px
             css font-family contains "InterstateWGL-Black"
-            css color is "rgb(65, 65, 65, 1)"
+            css color is "rgb(65, 65, 65)"
 
         header-h2-introduction:
             height 48px
