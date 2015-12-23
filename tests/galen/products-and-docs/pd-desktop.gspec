@@ -64,58 +64,13 @@
     @on desktop
         header-main:
             height 64px
+            css font-family contains "InterstateWGL-Black"
             color scheme: #414141
-            font-family "InterstateWGL-Black"
 
         header-h2-introduction:
             height 48px
             line-height 48px
             color scheme: #414141
-            font-family "TMSans-Bold"
+            css font-family contains "TMSans-Bold"
 
-        p-lead:
-            height 32px
-            line-height 32px
-            color scheme: #768692
-            font-family "TMSans-Light"
 
-        table-dataset:
-            border-bottom-color        rgb(228, 231, 233)
-            border-bottom-style        solid
-            border-bottom-width        1px
-            display                table
-            css font-family contains      "TMSans-Regular"
-            color scheme:           rgb(118, 134, 146)
-            font-size       normal
-            margin-bottom   ${marginX2}
-            margin-top      ${marginX2}
-
-        p-body, p-simple-01:
-            box-sizing border-box
-            color scheme: #768692
-            font-family "TMSans-Light",Helvetica,Arial,sans-serif
-            font-feature-settings "kern"
-            font-kerning normal
-            font-language-override normal
-            font-size 16px
-            font-size-adjust none
-            font-stretch normal
-            font-style normal
-            font-synthesis weight style
-            font-variant normal
-            font-variant-alternates normal
-            font-variant-caps normal
-            font-variant-east-asian normal
-            font-variant-ligatures normal
-            font-variant-numeric normal
-            font-variant-position normal
-            font-weight 400
-            line-height 24px
-            margin-bottom ${marginX1}
-            margin-left 0px
-            margin-right 0px;
-            margin-top ${marginX1}
-            padding-bottom 0px
-            padding-left 0px
-            padding-right 0px
-            padding-top 0px
