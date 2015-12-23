@@ -6,7 +6,8 @@
     marginX2    "48px"
     marginX3    "76px"
     marginX4    "96px"
-    line-height "css line-height is"
+    lineHeight  "css line-height is"
+    color       "css color is"
 
 @objects
     header-main                 xpath   //*[@id="getting-started"]
@@ -46,6 +47,6 @@
 
         p-lead:
             height 32px
-            ${line-height} "32px"
+            ${lineHeight} "32px"
             ${color} "rgba(118, 134, 146, 1)"
-            ${font-family} "TMSans-Light"
+            css font-family contains "TMSans-Light"
