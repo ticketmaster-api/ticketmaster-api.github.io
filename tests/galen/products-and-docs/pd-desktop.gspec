@@ -73,13 +73,13 @@
 
             ${lineHeight} "24px"
             css margin-bottom is ${marginX1}
-            css margin-left is "0px"
-            css margin-right is "0px"
-            css margin-top ${marginX1}
+            css margin-left   is "0px"
+            css margin-right  is "0px"
+            css margin-top    is ${marginX1}
             css padding-bottom is "0px"
-            css padding-left is "0px"
+            css padding-left  is "0px"
             css padding-right is "0px"
-            css padding-top is "0px"
+            css padding-top   is "0px"
 
         p-body:
             css font-family contains "TMSans-Light,Helvetica,Arial,sans-serif"
