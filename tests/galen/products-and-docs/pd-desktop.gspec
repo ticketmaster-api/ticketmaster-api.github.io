@@ -1,6 +1,12 @@
 @import vars.gspec
 @import header.gspec
 
+@set
+    marginX1    24px
+    marginX2    48px
+    marginX3    76px
+    marginX4    96px
+
 @objects
     header-main                 xpath   //*[@id="getting-started"]
     header-h2-introduction      xpath   //*[@id="introduction"]
