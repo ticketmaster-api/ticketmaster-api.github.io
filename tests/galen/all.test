@@ -22,6 +22,6 @@
 
 Prod-and-Docs page on desktop
     ${base_url}/products-and-docs/apis/getting-started/ 1200x1080
-        check ${prDocs}/pd-desktop.gspec --include "desktop"
+        check ${prDocs}/getting-started.gspec --include "desktop"
 
 ### galen check tests/galen/products-and-docs/getting-started.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 1229x1080 --htmlreport tests/galen/reports/mobNew

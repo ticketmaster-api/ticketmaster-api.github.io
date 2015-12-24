@@ -37,7 +37,6 @@
                  absent
 
 
-
 = general content ui-test =
     @on desktop
         header-main:
