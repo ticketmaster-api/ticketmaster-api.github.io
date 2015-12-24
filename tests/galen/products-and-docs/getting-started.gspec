@@ -1,37 +1,52 @@
 @import vars.gspec
 @import header.gspec
 
-@set
-   # marginX1    "24px"
-   # marginX2    "48px"
-   # marginX3    "76px"
-   # marginX4    "96px"
-
-    lineHeight  css line-height is
-    color       css color is
-
 @objects
-    h2      css     h2
+    h2                          css     h2
     header-main                 xpath   //*[@id="getting-started"]
     header-h2-introduction      xpath   //*[@id="introduction"]
-
-    table-dataset               xpath   //*[@id="main-block"]/div/table
-
     p-lead                      xpath   //*[@id="main-block"]/div/p[1]
     p-body                      xpath   //*[@id="main-block"]/div/p[2]
     p-simple-01                 xpath   //*[@id="main-block"]/div/p[3]
 
-= general layout test =
+    table-*                     css     table
+    table-dataset               xpath   //*[@id="main-block"]/div/table
+    table-dataset-th-*          css     #main-block > div > table > thead > tr > th
+    table-dataset-tr-*          css     #main-block > div > table > tr
+
+    table-api                   css     #main-block > div > div.table-wrapper
+    table-api-h4                css     //*[@id="main-block"]/div/div[1]/table/tbody/tr[1]/td[1]/h4
+    table-api-th-01             css     //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
+    table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
+
+== count and text test ==
+    @on desktop
+        global:
+            table-*            is 2
+            table-dataset-th-* is 2
+            table-dataset-tr-* is 7
+
+    @on desktop
+            table-dataset-th-1:
+                text is "Dataset"
+                aligned horizontally all table-dataset-th-2
+            table-dataset-th-2:
+                text is "Description"
+
+            table-dataset:
+                 absent
+
+
+
+= general content ui-test =
     @on desktop
         header-main:
             css font-size is "54px"
-            css color is "rgba(65, 65, 65, 1)"
             css font-family contains "InterstateWGL-Black"
 
         header-h2-introduction:
             height 48px
-            css line-height is "48px"
-            css color is "rgba(65, 65, 65, 1)"
+            ${lineHeight} "48px"
             css font-family contains "TMSans-Bold"
             css font-size is "36px"
 
@@ -41,8 +56,7 @@
             css border-top-width is "1px"
             css border-left-width is "1px"
             css font-family contains      "TMSans-Regular"
-            css color is "rgba(118, 134, 146, 1)"
-            css background-color is "transparent"
+            css background-color is "rgba(0, 0, 0, 0)"
             css font-size is "16px"
             css margin-bottom is ${marginX2}
             css margin-top is ${marginX2}
@@ -55,22 +69,7 @@
 
         p-body, p-simple-01:
             css box-sizing is "border-box"
-            ${color} "rgba(118, 134, 146, 1)"
             css font-size is "16px"
-
-            # css font-feature-settings is "kern"
-            # css font-kerning is 'normal'
-            # css font-language-override is "normal"
-            # css font-synthesis is "weight style"
-            # css font-variant is "normal"
-            # css font-variant-alternates is "normal"
-            # css font-variant-caps is "normal"
-            # css font-variant-east-asian is "normal"
-            # css font-variant-ligatures is "normal"
-            # css font-variant-numeric is "normal"
-            # css font-variant-position is "normal"
-            # css font-weight is "400"
-
             ${lineHeight} "24px"
             css margin-bottom is ${marginX1}
             css margin-left   is "0px"
@@ -86,3 +85,14 @@
 
         p-simple-01:
             css font-family contains "TMSans-Light"
+
+        h2:
+            ${lineHeight} "48px"
+            css font-family contains "TMSans-Bold"
+            css font-size is "36px"
+
+        header-main, header-h2-introduction, h2, table-api-h4:
+            ${color} "rgba(65, 65, 65, 1)"
+
+        table-dataset, p-lead, p-body, p-simple-01:
+            ${color} "rgba(118, 134, 146, 1)"
