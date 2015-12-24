@@ -22,7 +22,7 @@
             count any aside-menu-sections-* is 3
 
     @on desktop
-        aside-menu-header
+        aside-menu-header:
             text is "Products & Docs"
 
         aside-menu-categories-first-1:
