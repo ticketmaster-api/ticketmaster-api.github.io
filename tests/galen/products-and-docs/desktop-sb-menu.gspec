@@ -59,8 +59,8 @@
         aside-menu-categories-third-3:
             text is "Installation instruction"
 
-        side-panel
-            width: 25%
-            below: main-content 0px
-            inside: screen 0px right
-            near: content 40px left
+        side-panel:
+            width 25%
+            below main-content 0px
+            inside screen 0px right
+            near content 40px left
