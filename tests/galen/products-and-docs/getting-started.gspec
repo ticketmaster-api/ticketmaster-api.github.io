@@ -1,5 +1,6 @@
 @import vars.gspec
-@import header.gspec
+@import desktop-header.gspec
+@import desktop-sb-menu.gspec
 
 @objects
     h2                          css     h2
@@ -33,11 +34,13 @@
             table-dataset-th-2:
                 text is "Description"
 
-            table-api,
+            table-api:
+                absent
             table-dataset:
-                 absent
+                absent
 
-            table-api,
+            table-api:
+                visible
             table-dataset:
                 visible
 

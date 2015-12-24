@@ -1,0 +1,66 @@
+@objects
+    main-content                     css     body > div.single-column > div
+    content                         css     #main-block
+    side-panel                      css     #aside-block
+    wrapper-menu                    css     wrapper-aside-menu
+    aside-menu-header               css     #aside-block > div > h3
+    aside-menu                      css     ul.aside-menu
+    aside-menu-block-*              css     ul.aside-menu > li
+    aside-menu-categories-*         css     ul.aside-menu > li > ul.categories > li a
+    aside-menu-categories-first-*   css     ul.aside-menu > li:nth-child(1) > ul.categories > li a
+    aside-menu-categories-second-*  css     ul.aside-menu > li:nth-child(2) > ul.categories > li a
+    aside-menu-categories-third-*   css     ul.aside-menu > li:nth-child(3) > ul.categories > li a
+    aside-menu-sections-*           css     ul.aside-menu > li:nth-child(1) > ul.categories > li:nth-child(1) > ul.sections > li a
+
+
+== count and text test ==
+    @on desktop
+        global:
+            count any aside-menu-categories-* is 15
+            count any aside-menu-block-* is 3
+            count any aside-menu-categories-* is > 4
+            count any aside-menu-sections-* is 3
+
+    @on desktop
+        aside-menu-header
+            text is "Products & Docs"
+
+        aside-menu-categories-first-1:
+            text is "Getting Started"
+        aside-menu-categories-first-2:
+            text is "Discovery API"
+        aside-menu-categories-first-3:
+            text is "Commerce API"
+        aside-menu-categories-first-4:
+            text is "Partner-App API"
+        aside-menu-categories-first-5:
+            text is "Interactive Docs"
+
+            aside-menu-sections-1:
+                text is "Introduction"
+            aside-menu-sections-1:
+                text is "Data Hierarchy"
+            aside-menu-sections-1:
+                text is "Available Resources"
+
+        aside-menu-categories-second-1:
+            text is "Getting Started"
+        aside-menu-categories-second-2:
+            text is "Installation instruction"
+        aside-menu-categories-second-3:
+            text is "Documentation"
+        aside-menu-categories-second-4:
+            text is "Code samples"
+
+        aside-menu-categories-third-1:
+            text is "Getting Started"
+        aside-menu-categories-third-2:
+            text is "Installation instruction"
+        aside-menu-categories-third-3:
+            text is "Installation instruction"
+
+        side-panel
+            width: 25%
+            below: main-content 0px
+            inside: screen 0px right
+            near: content 40px left
