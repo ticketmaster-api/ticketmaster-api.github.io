@@ -6,9 +6,11 @@
       overflow: hidden;
       @media #{$max-1200} {
         height: auto;
+        background-image: url("/assets/img/blogs/bg.png");
       }
       @media #{$max-768} {
         height: auto;
+        background-image: url("/assets/img/blogs/bg.png");
       }
       .body-wrapper {
         margin-bottom: 0;
