@@ -60,7 +60,7 @@
             text is "Installation instruction"
 
         side-panel:
-            width 25%
-            below main-content 0px
-            inside screen 0px right
-            near content 40px left
+            width > 20 % of screen/width
+            below main-content 0 px
+            inside screen 0 px right
+            near content ~ 40 px left
