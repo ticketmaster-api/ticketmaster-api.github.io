@@ -14,7 +14,7 @@
     table-dataset-th-*          css     #main-block > div > table > thead > tr > th
     table-dataset-tr-*          css     #main-block > div > table > tr
 
-    table-api                   css     #main-block > div > div.table-wrapper
+    table-api                   css     //*[@id="main-block"]/div/div[1]/table
     table-api-h4                css     //*[@id="main-block"]/div/div[1]/table/tbody/tr[1]/td[1]/h4
     table-api-th-01             css     //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
