@@ -36,12 +36,12 @@
         aside-menu-categories-first-5:
             text is "Interactive Docs"
 
-            aside-menu-sections-1:
-                text is "Introduction"
-            aside-menu-sections-1:
-                text is "Data Hierarchy"
-            aside-menu-sections-1:
-                text is "Available Resources"
+        aside-menu-sections-1:
+            text is "Introduction"
+        aside-menu-sections-1:
+            text is "Data Hierarchy"
+        aside-menu-sections-1:
+            text is "Available Resources"
 
         aside-menu-categories-second-1:
             text is "Getting Started"
