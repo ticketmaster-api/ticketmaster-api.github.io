@@ -15,8 +15,8 @@
     table-dataset-th-*          css     #main-block > div > table > thead > tr > th
     table-dataset-tr-*          css     #main-block > div > table > tr
 
-    table-api                   css     //*[@id="main-block"]/div/div[1]/table
-    table-api-h4                css     //*[@id="main-block"]/div/div[1]/table/tbody/tr[1]/td[1]/h4
+    table-api                   css     #main-block > div > div.table-wrapper > table
+    table-api-h4                css     #main-block > div > div.table-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(1) > h4
     table-api-th-01             css     //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
 
@@ -35,12 +35,8 @@
                 text is "Description"
 
             table-api:
-                absent
-            table-dataset:
-                absent
-
-            table-api:
                 visible
+
             table-dataset:
                 visible
 
@@ -64,6 +60,7 @@
             css font-family contains      "TMSans-Regular"
             css background-color is "rgba(0, 0, 0, 0)"
             css font-size is "16px"
+            ${color} "transparent"
             css margin-bottom is ${marginX2}
             css margin-top is ${marginX2}
 
@@ -97,8 +94,11 @@
             css font-family contains "TMSans-Bold"
             css font-size is "36px"
 
+        table-api-h4:
+            text is "Discovery API"
+
         header-main, header-h2-introduction, h2, table-api-h4:
             ${color} "rgba(65, 65, 65, 1)"
 
-        table-dataset, p-lead, p-body, p-simple-01:
+        p-lead, p-body, p-simple-01:
             ${color} "rgba(118, 134, 146, 1)"

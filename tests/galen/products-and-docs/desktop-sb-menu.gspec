@@ -6,7 +6,7 @@
     aside-menu-header               css     //*[@id="aside-block"]/div/h3
     aside-menu                      css     ul.aside-menu
     aside-menu-block-*              css     ul.aside-menu > li
-    aside-menu-categories-*         css     ul.aside-menu > li > ul.categories > li a
+    aside-menu-categories-*         css     ul.aside-menu > li > ul.categories > li
     aside-menu-categories-first-*   css     ul.aside-menu > li:nth-child(1) > ul.categories > li a
     aside-menu-categories-second-*  css     ul.aside-menu > li:nth-child(2) > ul.categories > li a
     aside-menu-categories-third-*   css     ul.aside-menu > li:nth-child(3) > ul.categories > li a
@@ -16,10 +16,12 @@
 == count and text test ==
     @on desktop
         global:
-            count any aside-menu-categories-* is 15
+            count aside-menu-categories-* is 15
+
             count any aside-menu-block-* is 3
-            count any aside-menu-categories-* is > 4
-            count any aside-menu-sections-* is 3
+            count any aside-menu-categories-first-* is 8
+            count any aside-menu-categories-second-* is 4
+            count any aside-menu-categories-second-* is 3
 
     @on desktop
         aside-menu-header:
@@ -28,20 +30,20 @@
         aside-menu-categories-first-1:
             text is "Getting Started"
         aside-menu-categories-first-2:
-            text is "Discovery API"
+            text is "Introduction"
         aside-menu-categories-first-3:
-            text is "Commerce API"
+            text is "Data Hierarchy"
         aside-menu-categories-first-4:
-            text is "Partner-App API"
+            text is "Available Resources"
         aside-menu-categories-first-5:
+            text is "Discovery API"
+        aside-menu-categories-first-6:
+            text is "Commerce API"
+        aside-menu-categories-first-7:
+            text is "Partner-App API"
+        aside-menu-categories-first-8:
             text is "Interactive Docs"
 
-        aside-menu-sections-1:
-            text is "Introduction"
-        aside-menu-sections-1:
-            text is "Data Hierarchy"
-        aside-menu-sections-1:
-            text is "Available Resources"
 
         aside-menu-categories-second-1:
             text is "Getting Started"
@@ -55,12 +57,12 @@
         aside-menu-categories-third-1:
             text is "Getting Started"
         aside-menu-categories-third-2:
-            text is "Installation instruction"
+            text is "Configuration Docs"
         aside-menu-categories-third-3:
-            text is "Installation instruction"
+            text is "Installation instructions"
 
         side-panel:
             width > 20 % of screen/width
-            below main-content 0 px
-            inside screen 0 px right
-            near content ~ 40 px left
+            #below main-content 0 px
+            inside screen 0 px left
+            near content ~ 20 px left
