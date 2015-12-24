@@ -1,9 +1,45 @@
+.row-container {
+    @media #{$max-1200} {
+        padding: 0;
+    }
+    @media #{$max-768} {
+        padding: 0;
+    }
+}
+
+h1 {
+    @media #{$max-1200} {
+        font-size: $size-h1;
+        line-height: $line-height-h1;
+        padding-top: 21px;
+    }
+    @media #{$max-768} {
+        font-size: $size-h3;
+        line-height: $line-height-h3;
+    }
+}
+.lead {
+    font-size: $size-lead;
+    line-height: $line-height-h3;
+    @media #{$max-768} {
+        font-size: $size-h4;
+        line-height: $line-height-h4;
+        letter-spacing: 0.8px;
+    }
+}
+
 .triple-margin-top {
     /*
     BUG WITH TRIPLE MARGIN - MUST BE 96px
     margin-top: 96px;
     */
     margin-top: 72px;
+    @media #{$max-1200} {
+        margin-top: 0;
+    }
+    @media #{$max-768} {
+        margin-top: 0;
+    }
 }
 
 .partner {
