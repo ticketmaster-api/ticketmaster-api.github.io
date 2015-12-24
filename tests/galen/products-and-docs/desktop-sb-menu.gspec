@@ -16,7 +16,7 @@
 == count and text test ==
     @on desktop
         global:
-            count aside-menu-categories-* is 15
+            count any aside-menu-categories-* is 15
 
             count any aside-menu-block-* is 3
             count any aside-menu-categories-first-* is 8
