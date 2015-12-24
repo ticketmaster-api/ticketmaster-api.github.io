@@ -13,12 +13,12 @@ category: products-and-docs
 # THE REAL BACKSTAGE <br> PASS TO LIVE EVENT <br> DATA
 
 {: .lead}
-Whether you need a quick drop-in or are building a custom product, we have the APIs, SDKs, and widgets you’re looking for.
+Whether you need a quick drop-in or are building a custom product, we have the [APIs](/products-and-docs/apis/getting-started/), SDKs, and widgets you’re looking for.
 
 {% endcapture %}
 
 {% capture right_column %}
-## Are you a partner?
+## Are you a Ticketmaster client?
 
 {: .body}
 Already doing business with Ticketmaster? <br>
@@ -38,7 +38,7 @@ Already doing business with Ticketmaster? <br>
 {: .lead}
 Everything you need to handle event discovery,  commerce , accounts, orders, and fans.
 
-[LEARN MORE](/products-and-docs/apis/getting-started/){: .button.button-blue}
+[ACCESS API DOCS](/products-and-docs/apis/getting-started/){: .button.button-blue}
 
 {% endcapture %}
 

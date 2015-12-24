@@ -13,8 +13,8 @@
             <nav id="menu" class="col-xs-12 col-lg-6">
                 <a {% if page.category == "home" or page.category == "documentation" or page.categories[0] == "documentation" or page.category == "products-and-docs" %} class="one nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a>
                 <a {% if page.category == "home" or page.category == "partners" or page.category == "under_development" %} class="two nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Partners</a>
-                <a {% if page.category == "home" or page.category == "support" or page.categories[0] == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="{{"/support/faq/" | prepend: site.baseurl}}">Support</a>
-                <a {% if page.category == "home" or page.category == "blogs" or page.category == "under_development" %} class="four nav-item" {% else %} class="gray" {% endif %} href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a>
+                <a {% if page.category == "home" or page.category == "support" or page.categories[0] == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="{{"/support/" | prepend: site.baseurl}}">Support</a>
+                <a {% if page.category == "home" or page.category == "blogs" or page.category == "blogs" %} class="four nav-item" {% else %} class="gray" {% endif %} href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a>
                 <a {% if page.category == "home" or page.category == "events" or page.category == "under_development" %} class="five nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Events</a>
                 <a {% if page.category == "home" or page.category == "opensource" or page.category == "under_development" %} class="six nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Open Source</a>
             </nav>
@@ -36,8 +36,8 @@
 <ul id="menu-dropdown" class="col-xs-12 col-sm-6 col-lg-3 closed{% if page.category == "home" %} long{% endif %}" tabindex="-1">
     <li><a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}">Products & Docs</a></li>
     <li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Partners</a></li>
-    <li><a href="{{"/support/faq" | prepend: site.baseurl}}">Support</a></li>
-    <li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Blogs</a></li>
+    <li><a href="{{"/support/" | prepend: site.baseurl}}">Support</a></li>
+    <li><a href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a></li>
     <li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Events</a></li>
     <li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Open Source</a></li>
 </ul>

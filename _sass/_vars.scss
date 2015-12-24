@@ -32,6 +32,7 @@ $white-90: rgba(255, 255, 255, 0.9);
 
 $table-head-bg: rgba(183, 201, 211, 0.3);
 $table-body-even-bg: rgba(183, 201, 211, 0.1);
+$border-color: rgba(118, 134, 146, 0.2);
 $table-body-odd-bg: rgb(255, 255, 255);
 $table-body-border: #e4e7e9;
 
@@ -73,6 +74,7 @@ $size-h6: 0.6875em; //11px
 
 
 $size-lead: 1.5em;
+$size-lead-mobile: 18px;
 $size-body: 1em;
 $size-caption: 1em;
 $size-pull-q: 1.5em;
@@ -113,6 +115,7 @@ $line-height-h5: 24px;
 $line-height-h6: 16px;
 
 $line-height-lead: 32px;
+$line-height-lead-mobile: 26px;
 $line-height-body: 24px;
 $line-height-caption: 24px;
 $line-height-pull-q: 32px;

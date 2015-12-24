@@ -54,7 +54,7 @@
     margin-top: 0;
     margin-bottom: 10px;
     @media #{$max-1200} {
-      width: 40%;
+      width: 50%;
     }
     @media #{$max-768} {
       width: 100%;
@@ -65,7 +65,33 @@
     @media #{$max-1200} {
       padding-top: 28px;
     }
+    @media #{$max-768} {
+      padding-top: 52px;
+    }
   }
+
+  .row-container{
+    @media #{$max-1200} {
+      padding: 0;
+    }
+  }
+
+  .column {
+    @media (max-width: 767px) {
+      text-align: center;
+    }
+    &:first-child {
+      @media (min-width: 768px) {
+        margin-left: -15px;
+      }
+    }
+    &:last-child{
+      @media (min-width: 768px){
+        margin-right: -15px;
+      }
+    }
+  }
+
 }
 
 .link-inline > a {
@@ -73,10 +99,16 @@
   margin: 7px 0;
 }
 
-.left-margin{
+.left-margin {
   padding-left: 30px;
 }
 
-.clear-margin{
+.clear-margin {
   margin: 0;
 }
+
+.left-border {
+  border-left: 2px solid $border-color;
+}
+
+
