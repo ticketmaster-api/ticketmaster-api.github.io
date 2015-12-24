@@ -21,7 +21,7 @@
             count any aside-menu-block-* is 3
             count any aside-menu-categories-first-* is 8
             count any aside-menu-categories-second-* is 4
-            count any aside-menu-categories-second-* is 3
+            count any aside-menu-categories-second-* is 4
 
     @on desktop
         aside-menu-header:
@@ -54,15 +54,15 @@
         aside-menu-categories-second-4:
             text is "Code samples"
 
-        aside-menu-categories-third-1:
-            text is "Getting Started"
-        aside-menu-categories-third-2:
-            text is "Configuration Docs"
-        aside-menu-categories-third-3:
-            text is "Installation instructions"
+        #aside-menu-categories-third-1:
+        #    text is "Getting Started"
+        #aside-menu-categories-third-2:
+        #    text is "Configuration Docs"
+        #aside-menu-categories-third-3:
+        #    text is "Installation instructions"
 
         side-panel:
             width > 20 % of screen/width
             #below main-content 0 px
-            inside screen 0 px left
+            #inside screen -18 px left
             near content ~ 20 px left
