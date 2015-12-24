@@ -22,9 +22,9 @@
 == count and text test ==
     @on desktop
         global:
-            table-*            is 2
-            table-dataset-th-* is 2
-            table-dataset-tr-* is 7
+            count any table-*            is 2
+            count any table-dataset-th-* is 2
+            count any table-dataset-tr-* is 7
 
     @on desktop
             table-dataset-th-1:
@@ -38,7 +38,10 @@
 
             table-dataset:
                  absent
-
+                 
+            table-dataset,
+            table-api:
+                visible
 
 = general content ui-test =
     @on desktop
