@@ -9,7 +9,7 @@
     p-body                      xpath   //*[@id="main-block"]/div/p[2]
     p-simple-01                 xpath   //*[@id="main-block"]/div/p[3]
 
-    table-*                     css     table
+    table-*                     css     #main-block > table
     table-dataset               xpath   //*[@id="main-block"]/div/table
     table-dataset-th-*          css     #main-block > div > table > thead > tr > th
     table-dataset-tr-*          css     #main-block > div > table > tr
@@ -33,6 +33,9 @@
             table-dataset-th-2:
                 text is "Description"
 
+            table-1:
+                table-dataset
+                
             table-dataset:
                  absent
 
