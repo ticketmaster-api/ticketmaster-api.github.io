@@ -242,3 +242,10 @@
 
   }
 }
+
+.r-tab {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
