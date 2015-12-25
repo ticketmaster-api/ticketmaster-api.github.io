@@ -17,7 +17,7 @@
 
     table-api                   css     #main-block > div > div.table-wrapper > table
     table-api-h4                css     #main-block > div > div.table-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(1) > h4
-    table-api-th-01             css     //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
+    table-api-th-01             xpath    //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
 
 == count and text test ==
@@ -25,7 +25,7 @@
         global:
             #count any table-*            is 2
             count any table-dataset-th-* is 2
-            count any table-dataset-tr-* is 7
+            count any table-dataset-tr-* is 6
 
     @on desktop
             table-dataset-th-1:
@@ -33,6 +33,12 @@
                 aligned horizontally all table-dataset-th-2
             table-dataset-th-2:
                 text is "Description"
+            table-api-th-01:
+                text uppercase starts "API"
+
+            table-1:
+                visible
+                contains table-dataset
 
             table-dataset:
                 visible
@@ -53,6 +59,7 @@
             height 48px
             ${lineHeight} "48px"
             css font-family contains "TMSans-Bold"
+            css font-family contains "Arial"
             css font-size is "36px"
 
         table-dataset:
@@ -63,7 +70,7 @@
             css font-family contains      "TMSans-Regular"
             css background-color is "transparent"
             css font-size is "16px"
-            ${color} "rgba(0, 0, 0, 0)"
+            ${color} "rgba(118, 134, 146, 1)"
             css margin-bottom is ${marginX2}
             css margin-top is ${marginX2}
 

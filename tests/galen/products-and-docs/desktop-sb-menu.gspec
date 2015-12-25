@@ -16,7 +16,7 @@
 == count and text test ==
     @on desktop
         global:
-            count any aside-menu-categories-* is 15
+            # count any aside-menu-categories-* is 15
 
             count any aside-menu-block-* is 3
             count any aside-menu-categories-first-* is 8
@@ -45,20 +45,20 @@
             text is "Interactive Docs"
 
 
-        #aside-menu-categories-second-1:
+        # aside-menu-categories-second-1:
         #    text is "Getting Started"
-        #aside-menu-categories-second-2:
+        # aside-menu-categories-second-2:
         #    text is "Installation instruction"
-        #aside-menu-categories-second-3:
+        # aside-menu-categories-second-3:
         #    text is "Documentation"
-        #aside-menu-categories-second-4:
+        # aside-menu-categories-second-4:
         #    text is "Code samples"
 
-        #aside-menu-categories-third-1:
+        # aside-menu-categories-third-1:
         #    text is "Getting Started"
-        #aside-menu-categories-third-2:
+        # aside-menu-categories-third-2:
         #    text is "Configuration Docs"
-        #aside-menu-categories-third-3:
+        # aside-menu-categories-third-3:
         #    text is "Installation instructions"
 
         side-panel:
