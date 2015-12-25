@@ -28,15 +28,9 @@
         aside-menu-header:
             text is "Products & Docs"
 
-        aside-menu-categories-first-1,
-        aside-menu-categories-first-2,
-        aside-menu-categories-first-3:
+        aside-menu-categories-first-1, aside-menu-categories-first-2, aside-menu-categories-first-3, aside-menu-categories-first-4:
             not visible
-        aside-menu-categories-first-4,
-        aside-menu-categories-first-5,
-        aside-menu-categories-first-6,
-        aside-menu-categories-first-7,
-        aside-menu-categories-first-8:
+        aside-menu-categories-first-5, aside-menu-categories-first-6, aside-menu-categories-first-7, aside-menu-categories-first-8:
             absent
 
         scrollable-element:
