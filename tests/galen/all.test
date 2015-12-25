@@ -28,6 +28,6 @@ Prod-and-Docs page on tablet
     ${base_url}/products-and-docs/apis/getting-started/ 768x1024
         check ${prDocs}/tablet-getting-started.gspec --include "tablet" --exclude "nomobile"
 
-Prod-and-Docs page on tablet
+Prod-and-Docs page on mobile
     ${base_url}/products-and-docs/apis/getting-started/ 320x800
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
