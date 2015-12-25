@@ -68,6 +68,6 @@
             css position is "relative"
             css background-color is "rgba(247, 249, 250, 1)"
 
-        main-conten:
+        main-content:
             below header ~ 0 px
             below header 30 to 80 px

@@ -16,7 +16,7 @@
     side-menu-btn                   css     #side-menu-btn
 
 
-== count and text test ==
+= count and text test =
     @on tablet
         global:
             count any aside-menu-block-* is 3
