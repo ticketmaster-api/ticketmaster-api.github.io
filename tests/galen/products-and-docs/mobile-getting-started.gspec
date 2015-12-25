@@ -5,4 +5,7 @@
     heading-h1 css #getting-started
 
 
-= general layout test =
+= general layout test *on mobile =
+    @on mobile
+        heading-h1:
+            css font-size is "24px"
