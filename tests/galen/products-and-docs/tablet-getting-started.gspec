@@ -47,7 +47,6 @@
                 visible
 
 
-
 = general content ui-test @tablet=
     @on tablet
         header-main:
