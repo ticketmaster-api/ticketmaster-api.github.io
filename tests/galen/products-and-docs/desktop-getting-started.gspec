@@ -1,6 +1,6 @@
-@import vars.gspec
-@import desktop-header.gspec
-@import desktop-sb-menu.gspec
+@import common\vars.gspec
+@import common\desktop-header.gspec
+@import common\desktop-sb-menu.gspec
 
 @objects
     h2                          css     h2
@@ -37,16 +37,16 @@
                 text uppercase starts "API"
 
             table-1:
-                visible
                 contains table-dataset
+            table-2:
+                contains table-api
 
             table-dataset:
                 visible
-                contains table-1
 
             table-api:
                 visible
-                contains table-2
+
 
 
 = general content ui-test =
