@@ -66,7 +66,7 @@
             #inside screen -18 px left
             near content ~ 20 px left
             css position is "relative"
-            css background-color "rgba(247, 249, 250, 1)"
+            css background-color is "rgba(247, 249, 250, 1)"
 
         main-conten:
             below header ~ 0 px

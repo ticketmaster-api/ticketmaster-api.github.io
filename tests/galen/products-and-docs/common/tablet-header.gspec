@@ -1,0 +1,41 @@
+@objects
+    header                      css  .top-bar
+    logo                        css  #header-logo img
+    nav-item-*                  css  #menu a
+    menu-dropdown               css  #menu-dropdown
+    menu-btn                    css  #menu-btn
+
+= Navigation test =
+    @on tablet
+        logo:
+            visible
+
+    @on tablet
+        global:
+            count any nav-item-* is 6
+
+    @on tablet
+        nav-item-1:
+            text is "PRODUCTS & DOCS"
+            aligned horizontally all nav-item-2
+        nav-item-2:
+            text is "PARTNERS"
+            aligned horizontally all nav-item-3
+        nav-item-3:
+            text is "SUPPORT"
+            aligned horizontally all nav-item-4
+        nav-item-4:
+            text is "BLOGS"
+            aligned horizontally all nav-item-5
+        nav-item-5:
+            text is "EVENTS"
+            aligned horizontally all nav-item-6
+        nav-item-6:
+            text is "OPEN SOURCE"
+
+        menu-dropdown:
+            absent
+
+        menu-btn:
+            visible
+            css background-image is "url('/assets/img/header/ic-menu-p-1-white.svg')"

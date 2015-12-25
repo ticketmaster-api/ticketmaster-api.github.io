@@ -1,4 +1,5 @@
 @import common/vars.gspec
+@import common/tablet-header.gspec
 @import common/tablet-sb-menu.gspec
 
 @objects
@@ -20,13 +21,12 @@
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
 
 == count and text test ==
-    @on desktop
+    @on tablet
         global:
-            #count any table-*            is 2
             count any table-dataset-th-* is 2
             count any table-dataset-tr-* is 6
 
-    @on desktop
+    @on tablet
             table-dataset-th-1:
                 text is "Dataset"
                 aligned horizontally all table-dataset-th-2
@@ -49,7 +49,7 @@
 
 
 = general content ui-test =
-    @on desktop
+    @on tablet
         header-main:
             css font-size is "54px"
             css font-family contains "InterstateWGL-Black"

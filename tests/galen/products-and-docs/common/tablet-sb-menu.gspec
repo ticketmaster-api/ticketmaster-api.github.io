@@ -17,7 +17,7 @@
 
 
 == count and text test ==
-    @on desktop
+    @on tablet
         global:
             count any aside-menu-block-* is 3
             count any aside-menu-categories-first-* is 8
