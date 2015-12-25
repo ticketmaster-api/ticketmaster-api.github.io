@@ -18,8 +18,8 @@
         nav-item-1, nav-item-2, nav-item-3, nav-item-4, nav-item-5, nav-item-6:
             absent
 
-        menu-dropdown:
-            absent
+        #menu-dropdown:
+        #    absent
 
         menu-btn:
             visible

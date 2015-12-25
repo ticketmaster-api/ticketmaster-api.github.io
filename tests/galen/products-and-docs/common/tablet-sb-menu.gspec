@@ -45,7 +45,7 @@
             width > 20 % of screen/width
             #below main-content 0 px
             #inside screen -18 px left
-            near content ~ 20 px right
+            # near content ~ 20 px right
             css position is "absolute"
 
         side-menu-btn:
