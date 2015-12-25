@@ -76,63 +76,63 @@ and highlighting in the left sidebar nav to show current location.]
       <img src="/assets/img/getting-started/ic-search-big.svg" alt="search">
       <h4 style="margin-top:11px;">Discovery API</h4>
       </td>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Search Events</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#srch-events">Search Events</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Event Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#event-details">Event Details</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Search Event Images</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#event-img">Search Event Images</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Search Attractions</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-attractions">Search Attractions</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Attraction Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#attraction-details">Attraction Details</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Search Categories</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-categories">Search Categories</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Category Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#category-details">Category Details</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Search Venues</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-venues">Search Venues</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Venue Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#venue-details">Venue Details</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
@@ -143,7 +143,7 @@ and highlighting in the left sidebar nav to show current location.]
         <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Icon1">
         <h4 style="margin-top:11px;text-">Commerce API</h4>
         </td>
-      <td style="text-align: left"><a href="/products-and-docs/under-development/">Event Offers</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#event-offers">Event Offers</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"  class="checked-td"></td>

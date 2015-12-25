@@ -8,7 +8,7 @@ categories:
 #ANSWERS TO YOUR MOST BURNING QUESTIONS.
 
 {: .lead .double-margin-top}
-Hella narwhal Cosby sweater McSweeney's,.
+Hella narwhal Cosby sweater McSweeney's.
 
 {% capture left %}
 
