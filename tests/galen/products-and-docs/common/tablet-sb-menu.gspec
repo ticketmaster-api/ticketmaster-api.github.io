@@ -11,7 +11,7 @@
     aside-menu-categories-third-*   css     ul.aside-menu > li:nth-child(3) > ul.categories > li a
     aside-menu-sections-*           css     ul.aside-menu > li:nth-child(1) > ul.categories > li:nth-child(1) > ul.sections > li a
 
-    = vars for tablet =
+###vars for tablet
     scrollable-element              css     #scrollable-element
     side-menu-btn                   css     #side-menu-btn
 
