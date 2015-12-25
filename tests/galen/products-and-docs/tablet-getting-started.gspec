@@ -1,6 +1,5 @@
 @import common\vars.gspec
-@import common\desktop-header.gspec
-@import common\desktop-sb-menu.gspec
+@import common\tablet-sb-menu.gspec
 
 @objects
     h2                          css     h2
@@ -70,14 +69,12 @@
             css font-family contains      "TMSans-Regular"
             css background-color is "transparent"
             css font-size is "16px"
-            ${color} "rgba(118, 134, 146, 1)"
             css margin-bottom is ${marginX2}
             css margin-top is ${marginX2}
 
         p-lead:
             height 32px
             ${lineHeight} "32px"
-            ${color} "rgba(118, 134, 146, 1)"
             css font-family contains "TMSans-Light"
 
         p-body, p-simple-01:
@@ -110,5 +107,5 @@
         header-main, header-h2-introduction, h2, table-api-h4:
             ${color} "rgba(65, 65, 65, 1)"
 
-        p-lead, p-body, p-simple-01:
+        p-lead, p-body, p-simple-01, table-dataset:
             ${color} "rgba(118, 134, 146, 1)"

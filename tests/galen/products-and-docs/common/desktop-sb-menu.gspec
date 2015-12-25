@@ -63,6 +63,11 @@
 
         side-panel:
             width > 20 % of screen/width
-            #below main-content 0 px
             #inside screen -18 px left
             near content ~ 20 px left
+            css position is "relative"
+            css background-color "rgb(247, 249, 250)"
+
+        main-conten:
+            below header ~ 0 px
+            below header 30 to 80 px
