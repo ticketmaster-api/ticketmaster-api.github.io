@@ -1,0 +1,8 @@
+@import common/vars.gspec
+@import common/mobile-header.gspec
+
+@objects
+    heading-h1 css #getting-started
+
+
+= general layout test =

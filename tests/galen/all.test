@@ -26,4 +26,4 @@
 
 Prod-and-Docs page on tablet
     ${base_url}/products-and-docs/apis/getting-started/ 768x1024
-        check ${prDocs}/tablet-getting-started.gspec --include "mobile,all" --exclude "nomobile" --parallel-tests 2
+        check ${prDocs}/tablet-getting-started.gspec --include "mobile,all" --exclude "nomobile"
