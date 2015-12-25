@@ -28,39 +28,32 @@
         aside-menu-header:
             text is "Products & Docs"
 
-        aside-menu-categories-first-1:
-            text is "Getting Started"
-        aside-menu-categories-first-2:
-            text is "Introduction"
+        aside-menu-categories-first-1,
+        aside-menu-categories-first-2,
         aside-menu-categories-first-3:
-            text is "Data Hierarchy"
-        aside-menu-categories-first-4:
-            text is "Available Resources"
-        aside-menu-categories-first-5:
-            text is "Discovery API"
-        aside-menu-categories-first-6:
-            text is "Commerce API"
-        aside-menu-categories-first-7:
-            text is "Partner-App API"
+            not visible
+        aside-menu-categories-first-4,
+        aside-menu-categories-first-5,
+        aside-menu-categories-first-6,
+        aside-menu-categories-first-7,
         aside-menu-categories-first-8:
-            text is "Interactive Docs"
+            absent
 
         scrollable-element:
             absent
-            css display is "none"
 
         content:
             width 100 % of screen/width
-            width 768px
-            below side-panel 0 px
+            width 752 to 768px
+            below side-panel ~ -66px
 
         side-panel:
             width > 20 % of screen/width
             #below main-content 0 px
             #inside screen -18 px left
-            near content ~ 20 px left
+            near content ~ 20 px right
             css position is "absolute"
 
         side-menu-btn:
             css display is "inline-block"
-            css background-image is "url('/assets/img/aside-menu/ic-close-grey.svg')"
+            css background-image is "url("/assets/img/aside-menu/ic-close-grey.svg")"

@@ -12,7 +12,7 @@
 
 ### Home page on tablet
 ###    http://${domain} 768x1024
-###        check ${home}/tablet.gspec --include "mobile,all" --exclude "nomobile"
+###        check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
 ### Home page on mobile
 ###    http://${domain} 480x800
@@ -30,4 +30,4 @@ Prod-and-Docs page on tablet
 
 Prod-and-Docs page on tablet
     ${base_url}/products-and-docs/apis/getting-started/ 320x800
-        check ${prDocs}/mobile-getting-started.gspec --include "tablet" --exclude "nomobile"
+        check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
