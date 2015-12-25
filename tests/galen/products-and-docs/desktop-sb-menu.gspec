@@ -3,7 +3,7 @@
     content                         css     #main-block
     side-panel                      css     #aside-block
     wrapper-menu                    css     wrapper-aside-menu
-    aside-menu-header               css     //*[@id="aside-block"]/div/h3
+    aside-menu-header               css     #aside-block > div > h3
     aside-menu                      css     ul.aside-menu
     aside-menu-block-*              css     ul.aside-menu > li
     aside-menu-categories-*         css     ul.aside-menu > li > ul.categories > li

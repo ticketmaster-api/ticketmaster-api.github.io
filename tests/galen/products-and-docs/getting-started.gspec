@@ -13,7 +13,7 @@
     table-*                     css     table
     table-dataset               xpath   //*[@id="main-block"]/div/table
     table-dataset-th-*          css     #main-block > div > table > thead > tr > th
-    table-dataset-tr-*          css     #main-block > div > table > tr
+    table-dataset-tr-*          css     #main-block > div > table > tbody > tr
 
     table-api                   css     #main-block > div > div.table-wrapper > table
     table-api-h4                css     #main-block > div > div.table-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(1) > h4
@@ -58,9 +58,9 @@
             css border-top-width is "1px"
             css border-left-width is "1px"
             css font-family contains      "TMSans-Regular"
-            css background-color is "rgba(0, 0, 0, 0)"
+            css background-color is "transparent"
             css font-size is "16px"
-            ${color} "transparent"
+            ${color} "rgba(0, 0, 0, 0)"
             css margin-bottom is ${marginX2}
             css margin-top is ${marginX2}
 
