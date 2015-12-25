@@ -5,7 +5,7 @@
     menu-dropdown               css  #menu-dropdown
     menu-btn                    css  #menu-btn
 
-= Navigation test =
+= Navigation test @tablet=
     @on tablet
         logo:
             visible
