@@ -45,14 +45,14 @@
             text is "Interactive Docs"
 
 
-        aside-menu-categories-second-1:
-            text is "Getting Started"
-        aside-menu-categories-second-2:
-            text is "Installation instruction"
-        aside-menu-categories-second-3:
-            text is "Documentation"
-        aside-menu-categories-second-4:
-            text is "Code samples"
+        #aside-menu-categories-second-1:
+        #    text is "Getting Started"
+        #aside-menu-categories-second-2:
+        #    text is "Installation instruction"
+        #aside-menu-categories-second-3:
+        #    text is "Documentation"
+        #aside-menu-categories-second-4:
+        #    text is "Code samples"
 
         #aside-menu-categories-third-1:
         #    text is "Getting Started"
