@@ -1,5 +1,5 @@
-@import common\vars.gspec
-@import common\tablet-sb-menu.gspec
+@import common/vars.gspec
+@import common/tablet-sb-menu.gspec
 
 @objects
     h2                          css     h2

@@ -1,6 +1,6 @@
-@import common\vars.gspec
-@import common\desktop-header.gspec
-@import common\desktop-sb-menu.gspec
+@import common/vars.gspec
+@import common/desktop-header.gspec
+@import common/desktop-sb-menu.gspec
 
 @objects
     header-main                 css   #scrollable-element
