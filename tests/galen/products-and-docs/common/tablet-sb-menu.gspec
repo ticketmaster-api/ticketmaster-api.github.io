@@ -50,4 +50,4 @@
 
         side-menu-btn:
             css display is "inline-block"
-            css background-image is "url("/assets/img/aside-menu/ic-close-grey.svg")"
+            #css background-image is "url("/assets/img/aside-menu/ic-close-grey.svg")"
