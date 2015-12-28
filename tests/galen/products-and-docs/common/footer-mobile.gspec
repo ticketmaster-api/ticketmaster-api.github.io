@@ -91,7 +91,7 @@
             text is "Ticketmaster Tech"
         #    aligned horizontally all nav-item-block-4-footer-2
         nav-item-block-4-footer-2:
-        #    text is "Ticketmaster Medium Publication"
+            text is "Ticketmaster Medium Publication"
 
 = block-5 (Events) text, align check =
         nav-item-block-5-footer-1:
