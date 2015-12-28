@@ -6,17 +6,17 @@
     prDocs      tests/galen/products-and-docs
 
 
-#Home page on desktop
-#    http://${domain} 1200x1080
-#        check ${home}/desktop.gspec --include "desktop"
+Home page on desktop
+    http://${domain} 1200x1080
+        check ${home}/desktop.gspec --include "desktop"
 
-#Home page on tablet
-#    http://${domain} 768x1024
-#        check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
+Home page on tablet
+    http://${domain} 768x1024
+        check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
-#Home page on mobile
-#    http://${domain} 480x800
-#        check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
+Home page on mobile
+    http://${domain} 480x800
+        check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
 
 
 Prod-and-Docs page on desktop
