@@ -44,7 +44,7 @@
     });
 
     window.onresize = function(event) {
-        stickyHeaderTop = menu.offset().top + calculate_offset();
+        //stickyHeaderTop = menu.offset().top + calculate_offset();
         if ( window.innerWidth < 1200 ) {
             hideMenu();
         }else{
