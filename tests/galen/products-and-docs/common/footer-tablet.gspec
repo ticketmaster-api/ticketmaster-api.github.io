@@ -50,7 +50,7 @@
         nav-item-heading-footer-6:
             text is "Open Source"
 
-= block-1 (Products & Docs) text, align check =
+= block-1 (Products & Docs) text, align check on @tablet=
         nav-item-block-1-footer-1:
             text is "APIs"
             aligned horizontally all nav-item-block-1-footer-2
@@ -60,7 +60,7 @@
         nav-item-block-1-footer-3:
             text is "Widgets"
 
-= block-2 (Partners) text, align check =
+= block-2 (Partners) text, align check @tablet =
         nav-item-block-2-footer-1:
             text is "Clients & vendors"
             aligned horizontally all nav-item-block-2-footer-2
@@ -73,7 +73,7 @@
         nav-item-block-2-footer-4:
             text is "Affiliates"
 
-= block-3 (Support) text, align check =
+= block-3 (Support) text, align check @tablet =
         nav-item-block-3-footer-1:
             text is "FAQ"
             aligned horizontally all nav-item-block-3-footer-2
@@ -86,21 +86,21 @@
         nav-item-block-3-footer-4:
             text is "Branding Guide"
 
-= block-4 (Blogs) text, align check =
+= block-4 (Blogs) text, align check @tablet =
         nav-item-block-4-footer-1:
             text is "Ticketmaster Tech"
             aligned horizontally all nav-item-block-4-footer-2
         nav-item-block-4-footer-2:
             text is "Ticketmaster Medium Publication"
 
-= block-5 (Events) text, align check =
+= block-5 (Events) text, align check @tablet =
         nav-item-block-5-footer-1:
             text is "Hackatons"
             aligned horizontally all nav-item-block-5-footer-2
         nav-item-block-5-footer-2:
             text is "Meetups"
 
-= block-6 (Open Source) text, align check =
+= block-6 (Open Source) text, align check @tablet =
         nav-item-block-6-footer-1:
             text is "Android"
             aligned horizontally all nav-item-block-6-footer-2
@@ -113,9 +113,9 @@
         nav-item-block-6-footer-4:
             text is "Web"
 
-= colors, height =
+= colors, height @tablet=
         footer-container:
-            height  780 to 788 px
+            height  784 to 790 px
             # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
 
         nav-all-item-footer-*:
@@ -128,4 +128,4 @@
             aligned vertically centered logo-bottom-text
 
 ### run me local (FF). In prod version should be --size 768x1080
-### galen check tests/galen/products-and-docs/common/footer-tablet.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 760x1080 --htmlreport tests/galen/reports/mobNew
+### galen check tests/galen/products-and-docs/common/footer-tablet.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 768x1080 --htmlreport tests/galen/reports/mobNew
