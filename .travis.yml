@@ -40,7 +40,6 @@ notifications:
 
 before_install:
   - rvm install 2.1.5
-  - gem install jekyll
-  - gem install pygments
+  - gem install github-pages
   - gem install html-proofer
   - npm install -g galenframework-cli
