@@ -1,7 +1,8 @@
 @import common/vars.gspec
 @import common/desktop-header.gspec
 @import common/desktop-sb-menu.gspec
-### keyword @import - not saw in local run test
+@import common/footer-desktop.gspec
+### keyword @import - not saw in local run test or Windows (becouse of '/' in path)
 
 @objects
     h2                          css     h2
