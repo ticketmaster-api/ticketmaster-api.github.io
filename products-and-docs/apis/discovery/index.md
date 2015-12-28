@@ -26,50 +26,12 @@ Test this endpoint right now in the interactive docs:
 ##Search Events
 {: .article #srch-events }
 
->[Request](#rq)
->[Response](#rs)
-{: .reqres}
-
-{% highlight js %}
-GET /discovery/v1/events.json?apikey=****&size=1 HTTP/1.1
-Host: app.ticketmaster.com
-X-Target-URI: https://app.ticketmaster.com
-Connection: Keep-Alive
-{% endhighlight %}
-
-{% highlight js %}
-GET /discovery/v1/events.json?apikey=****&size=1 HTTP/1.1
-Host: app.ticketmaster.com
-X-Target-URI: https://app.ticketmaster.com
-Connection: Keep-Alive
-{% endhighlight %}
-
-
 Method: GET. 
 Authentication required.
 Returns the 20 most recent events for the authenticating user.
 
 discovery/{version}/events.{format}
 {: .pull-quote}
-
-
->[Request](#rq)
->[Response](#rs)
-{: .reqres}
-
-{% highlight js %}
-GET /discovery/v1/events.json?apikey=****&size=1 HTTP/1.1
-Host: app.ticketmaster.com
-X-Target-URI: https://app.ticketmaster.com
-Connection: Keep-Alive
-{% endhighlight %}
-
-{% highlight js %}
-GET /discovery/v1/events.json?apikey=****&size=1 HTTP/1.1
-Host: app.ticketmaster.com
-X-Target-URI: https://app.ticketmaster.com
-Connection: Keep-Alive
-{% endhighlight %}
 
 ###Template parameters:
 

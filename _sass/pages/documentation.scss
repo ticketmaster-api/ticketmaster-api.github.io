@@ -249,3 +249,83 @@
     display: block;
   }
 }
+
+.documentation .content .article-wrapper .reqres-wrapper blockquote p {
+  margin-bottom: 0;
+}
+
+.reqres-wrapper {
+  .highlight {
+    border: 2px solid #f1f5f7;
+    margin: 0;
+    overflow: hidden;
+    pre {
+      margin: 0;
+      padding: 30px;
+      background: none;
+      width: 100%;
+      max-height: 550px;
+      overflow-x: auto;
+      code {
+        width: auto;
+        display: block;
+        span {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+  .reqres {
+    border: none;
+    margin: 0 0 -2px 0;
+    padding: 0;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    a {
+      display: block;
+      float: left;
+      font-size: 1.4em;
+      line-height: 2em;
+      font-style: normal;
+      margin: 0;
+      padding: 0 30px;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+      color: $n3;
+      background: #fff;
+      outline: none;
+      &:first-of-type {
+        margin-left: 22px;
+        margin-right: -8px;
+        @media (max-width: 767px) {
+          margin-left: 15px;
+        }
+      }
+      &:focus,
+      &active {
+        outline: none;
+      }
+      &:after {
+        content: " ";
+        position: relative;
+        color: red;
+        border-bottom: 2px solid #f1f5f7;
+        margin: 0 -22px;
+        display: block;
+      }
+      &.active {
+        color: $p1;
+        &:after {
+          content: " ";
+          position: relative;
+          color: red;
+          border-bottom: 2px solid #009cde;
+          margin: 0 -22px;
+          display: block;
+        }
+      }
+    }
+  }
+}
