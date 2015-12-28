@@ -30,7 +30,7 @@
 
     @on mobile
         nav-item-heading-footer-*:
-        #    width 290px of footer-container/width
+            width ~90% of footer-container/width
 
         nav-item-heading-footer-1:
             text is "Products & Docs"
@@ -114,18 +114,18 @@
             text is "Web"
 
 = colors, height =
-        #footer-container:
-        #    height  950 to 956 px
+        footer-container:
+            height  884 to 890 px
             # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
 
-        #nav-all-item-footer-*:
-        #    ${color} "rgba(255, 255, 255, 0.7)"
+        nav-all-item-footer-*:
+            ${color} "rgba(255, 255, 255, 0.7)"
 
-        #nav-item-heading-footer-*:
-        #    ${color} "rgba(255, 255, 255, 1)"
+        nav-item-heading-footer-*:
+            ${color} "rgba(255, 255, 255, 1)"
 
         logo-bottom-img:
             aligned vertically centered logo-bottom-text
 
 ### run me local (FF)
-### galen check tests/galen/products-and-docs/common/footer-mobile.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 320x1080 --htmlreport tests/galen/reports/mobNew -Dwebdriver.chrome.driver=/opt/chromedriver/chromedrive
+### galen check tests/galen/products-and-docs/common/footer-mobile.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 320x1080 --htmlreport tests/galen/reports/mobNew

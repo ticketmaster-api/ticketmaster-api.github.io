@@ -1,8 +1,3 @@
-## need to del in prod
-#@set
-#    color       css color is
-## need to del in prod
-
 @objects
     footer-container            css  #footer
     nav-blocks-footer-*         css  #footer > div.row.footer-nav > div > div
@@ -28,13 +23,13 @@
             count any nav-all-item-footer-* is 19
 
 
-    @on tablet
+   @on tablet
         nav-item-heading-footer-*:
             width ~ 13% of screen/width
 
         nav-item-heading-footer-1:
             text is "Products & Docs"
-            aligned horizontally all nav-item-heading-footer-2
+            aligned horizontally top nav-item-heading-footer-2
         nav-item-heading-footer-2:
             text is "Partners"
             aligned horizontally all nav-item-heading-footer-3
@@ -125,7 +120,9 @@
             ${color} "rgba(255, 255, 255, 1)"
 
         logo-bottom-img:
-            aligned vertically centered logo-bottom-text
+            aligned horizontally centered logo-bottom-text 1px
 
 ### run me local (FF). In prod version should be --size 768x1080
-### galen check tests/galen/products-and-docs/common/footer-tablet.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 768x1080 --htmlreport tests/galen/reports/mobNew
+## in local 768x1080 run as 739x1080
+
+### galen check tests/galen/products-and-docs/common/footer-tablet.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 797x1080 --htmlreport tests/galen/reports/footerTablet
