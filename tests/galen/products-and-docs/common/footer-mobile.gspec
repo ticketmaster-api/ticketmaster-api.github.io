@@ -30,8 +30,7 @@
 
     @on mobile
         nav-item-heading-footer-*:
-        #    width 290px
-            # of footer-container/width
+        #    width 290px of footer-container/width
 
         nav-item-heading-footer-1:
             text is "Products & Docs"

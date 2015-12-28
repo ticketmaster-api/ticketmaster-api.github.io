@@ -30,92 +30,92 @@
 
     @on tablet
         nav-item-heading-footer-*:
-            width ~ 90% of screen/width
+            width ~ 13% of screen/width
 
         nav-item-heading-footer-1:
             text is "Products & Docs"
-            aligned vertically centered nav-item-heading-footer-2
+            aligned horizontally all nav-item-heading-footer-2
         nav-item-heading-footer-2:
             text is "Partners"
-            aligned vertically centered nav-item-heading-footer-3
+            aligned horizontally all nav-item-heading-footer-3
         nav-item-heading-footer-3:
             text is "Support"
-            aligned vertically centered nav-item-heading-footer-4
+            aligned horizontally all nav-item-heading-footer-4
         nav-item-heading-footer-4:
             text is "Blogs"
-            aligned vertically centered nav-item-heading-footer-5
+            aligned horizontally all nav-item-heading-footer-5
         nav-item-heading-footer-5:
             text is "Events"
-            aligned vertically centered nav-item-heading-footer-6
+            aligned horizontally all nav-item-heading-footer-6
         nav-item-heading-footer-6:
             text is "Open Source"
 
-= block-1 (Products & Docs) text, align check on @tablet=
+= block-1 (Products & Docs) text, align check @tablet=
         nav-item-block-1-footer-1:
             text is "APIs"
-            aligned horizontally all nav-item-block-1-footer-2
+            aligned vertically left nav-item-block-1-footer-2
         nav-item-block-1-footer-2:
             text is "SDKs"
-            aligned horizontally all nav-item-block-1-footer-3
+            aligned vertically left nav-item-block-1-footer-3
         nav-item-block-1-footer-3:
             text is "Widgets"
 
-= block-2 (Partners) text, align check @tablet =
+= block-2 (Partners) text, align check @tablet=
         nav-item-block-2-footer-1:
             text is "Clients & vendors"
-            aligned horizontally all nav-item-block-2-footer-2
+            aligned vertically left nav-item-block-2-footer-2
         nav-item-block-2-footer-2:
             text is "Other partners"
-            aligned horizontally all nav-item-block-2-footer-3
+            aligned vertically left nav-item-block-2-footer-3
         nav-item-block-2-footer-3:
             text is "Developers"
-            aligned horizontally all nav-item-block-2-footer-4
+            aligned vertically left nav-item-block-2-footer-4
         nav-item-block-2-footer-4:
             text is "Affiliates"
 
-= block-3 (Support) text, align check @tablet =
+= block-3 (Support) text, align check @tablet=
         nav-item-block-3-footer-1:
             text is "FAQ"
-            aligned horizontally all nav-item-block-3-footer-2
+            aligned vertically left nav-item-block-3-footer-2
         nav-item-block-3-footer-2:
             text is "Forums"
-            aligned horizontally all nav-item-block-3-footer-3
+            aligned vertically left nav-item-block-3-footer-3
         nav-item-block-3-footer-3:
             text is "Terms of Use"
-            aligned horizontally all nav-item-block-3-footer-4
+            aligned vertically left nav-item-block-3-footer-4
         nav-item-block-3-footer-4:
             text is "Branding Guide"
 
-= block-4 (Blogs) text, align check @tablet =
+= block-4 (Blogs) text, align check @tablet=
         nav-item-block-4-footer-1:
             text is "Ticketmaster Tech"
-            aligned horizontally all nav-item-block-4-footer-2
+            aligned vertically left nav-item-block-4-footer-2
         nav-item-block-4-footer-2:
             text is "Ticketmaster Medium Publication"
 
-= block-5 (Events) text, align check @tablet =
+= block-5 (Events) text, align check @tablet=
         nav-item-block-5-footer-1:
             text is "Hackatons"
-            aligned horizontally all nav-item-block-5-footer-2
+            aligned vertically left nav-item-block-5-footer-2
         nav-item-block-5-footer-2:
             text is "Meetups"
 
-= block-6 (Open Source) text, align check @tablet =
+= block-6 (Open Source) text, align check @tablet=
         nav-item-block-6-footer-1:
             text is "Android"
-            aligned horizontally all nav-item-block-6-footer-2
+            aligned vertically left nav-item-block-6-footer-2
         nav-item-block-6-footer-2:
             text is "Backend"
-            aligned horizontally all nav-item-block-6-footer-3
+            aligned vertically left nav-item-block-6-footer-3
         nav-item-block-6-footer-3:
             text is "iOS"
-            aligned horizontally all nav-item-block-6-footer-4
+            aligned vertically left nav-item-block-6-footer-4
         nav-item-block-6-footer-4:
             text is "Web"
 
 = colors, height @tablet=
         footer-container:
-            height  784 to 790 px
+            height  435 to 445 px
             # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
 
         nav-all-item-footer-*:
