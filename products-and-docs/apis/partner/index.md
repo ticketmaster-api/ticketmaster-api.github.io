@@ -8,7 +8,7 @@ categories:
 {: .article}
 # Ticketmaster Partner-App API
 
-The Ticketmaster Partner-App API lets users purchase tickets through your app's native experience. Users will receive an email with a link to ticketmaster.com or our mobile app to redeem tickets.<br/><br/>
+The Ticketmaster Partner-App API lets users purchase tickets through your app's native experience. Users will receive an email with a link to ticketmaster.com or our mobile app to redeem tickets.
 
 ## Overview
 {: #overview }
@@ -17,7 +17,7 @@ The Ticketmaster Partner-App API lets users purchase tickets through your app's 
 
 Clients will be provided an API key from Ticketmaster which should be added to every resource endpoint call.
 
-Example: `https://app.ticketmaster.com/partners/v1/cart?apikey=3QIvq55bS608ai6r8moig1WdW57bONry`<br/><br/>
+Example: `https://app.ticketmaster.com/partners/v1/cart?apikey=3QIvq55bS608ai6r8moig1WdW57bONry`
 
 ### Host and API endpoint information
 
@@ -27,39 +27,29 @@ Staging: https://app.ticketmaster.com/partners-sandbox/v1
 
 All connections must be made over SSL using https.
 
-All ticketing and polling requests must include the header`True-Client-IP` which includes the user's ip address. Optionally, you may pass`Original-User-Id` to identify specific users to aid in debugging. As part of our bot-detection efforts we use all headers to model good and bad behavior.  Therefore you may send as much identifiable information about the client including browser user-agent, ip address, user id (if logged in), etc.<br/><br/>
+All ticketing and polling requests must include the header `True-Client-IP` which includes the user's ip address. Optionally, you may pass `Original-User-Id` to identify specific users to aid in debugging. As part of our bot-detection efforts we use all headers to model good and bad behavior.  Therefore you may send as much identifiable information about the client including browser user-agent, ip address, user id (if logged in), etc.
 
 ### Best Practices
 
-Polling results from limited per-partner resources in the ticketing system. Clients should always be ready to handle polling responses. See the <a href="#polling">polling section</a> for more details.
+Polling results from limited per-partner resources in the ticketing system. Clients should always be ready to handle polling responses. See the [polling section](#polling) for more details.
 
-**Cleanup**
+#### Cleanup
 
-If a user abandons a page/tab after a ticket reserve has been made, client applications should do their best to detect this and issue a `DELETE /cart` request to free up allocated resources on the ticketing server.  This should also be done if client apps no longer want to wait through a long, continuing polling process.  This is necessary since ticket reserve requests that result in polling will eventually complete asynchronously and take up resources even if clients do not consume the next polling url.<br/><br/>
+If a user abandons a page/tab after a ticket reserve has been made, client applications should do their best to detect this and issue a `DELETE /cart` request to free up allocated resources on the ticketing server.  This should also be done if client apps no longer want to wait through a long, continuing polling process.  This is necessary since ticket reserve requests that result in polling will eventually complete asynchronously and take up resources even if clients do not consume the next polling url.
 
 ### Terms and Conditions
 
-By using the Ticketmaster Developer Portal, you understand and agree to our <a href="/apis/api-terms">Terms of Use</a><br/><br/>
+By using the Ticketmaster Developer Portal, you understand and agree to our [Terms of Use](/support/terms-of-use/).
 
 
 ### Contact
 
-Ticketmaster Distributed Commerce team <a href="mailto:developer@ticketmaster.com">developer@ticketmaster.com</a><br/><br/>
+Ticketmaster Distributed Commerce team [developer@ticketmaster.com](mailto:developer@ticketmaster.com).
 
 
 ### Service Availability
 
 The Ticketmaster back-end reservation systems are distributed globally and events are processed on their local system.  These systems go into a nightly maintenance mode at 2AM local time. This means a show playing at Madison Square Garden will not be transactable between 2-3AM Eastern Time.  Use the timezone value from the event details response to note when these events may be unavailable for transactions.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -77,9 +67,9 @@ Retrieve details for a given event including the ticket type & pricing details. 
 /partners/v1/events/{event_id}?apikey={apikey}
 {: .pull-quote}
 
-<b>Polling: No</b>
+*Polling: No*
 
-####Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -88,7 +78,7 @@ Retrieve details for a given event including the ticket type & pricing details. 
 
 
 
-{: .aside}
+
 ####Response 
 
 Model (application/json)
@@ -895,6 +885,32 @@ Status 200
 {% endhighlight %}
 
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB?apikey={apikey}
+{% endhighlight %}
+
 
 {: .article}
 ## Group Inventory Management
@@ -905,14 +921,14 @@ Inventory endpoints for specifically-enabled accounts only.
 {: .article}
 ### Event Availability [GET]
 
-Discover events available to transact on<br/>
+Discover events available to transact on
 
 /partners/v1/events
 {: .pull-quote}
 
-<b>Polling: No</b>
+*Polling: No*
 
-{: .aside}
+
 ####Response
 
 Model (application/json)
@@ -950,7 +966,31 @@ Status 200
 }
 {% endhighlight %}
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
 
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/events",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
 
 {: .article}
 ### Ticket Availability [GET]
@@ -960,15 +1000,15 @@ Get total allocated and remaining ticket amounts for each ticket type per event.
 /partners/v1/events/{event_id}/availability
 {: .pull-quote}
 
-<b>Polling: No</b>
+*Polling: No*
 
-####Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
 
-{: .aside}
+
 ####Response
 
 Model (application/json)
@@ -1063,6 +1103,33 @@ Status 200
 {% endhighlight %}
 
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/availability",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/availability
+{% endhighlight %}
+
+
 
 {: .article}
 ### Retrieve an Event  [GET]
@@ -1072,9 +1139,9 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 /partners/v1/events/code/{event_code}/{event_host}
 {: .pull-quote}
 
-<b>Polling: No</b>
+*Polling: No*
 
-####Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1082,7 +1149,7 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 | `event_host` | The event host given by the venue.     | string            |     "1"           | Yes      |
 
 
-{: .aside}
+
 ####Response
 
 Model (application/json)
@@ -1097,6 +1164,35 @@ Status 200
     }
 }
 {% endhighlight %}
+
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/events/code/1/1",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events/code/1/1
+{% endhighlight %}
+
+
 
 {: .article}
 ## Group Ticket reservation and purchasing
@@ -1114,9 +1210,9 @@ Retreive captcha information to render to the user.<br/>
 /partners/v1/captcha?apikey={apikey}
 {: .pull-quote}
 
-<b>Polling: No</b>
+*Polling: No*
 
-####Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1125,7 +1221,7 @@ Retreive captcha information to render to the user.<br/>
 
 
 
-{: .aside}
+
 ####Response
 
 Model (application/json)
@@ -1158,6 +1254,33 @@ Header: X-TM-CAPTCHA-V2-SITEKEY: <sitekey>
 
 
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/captcha?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/captcha?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
+
+
 {: .article}
 ### Post captcha solution [POST]
 
@@ -1166,11 +1289,11 @@ Post captcha solution and establish a cart session<br/>
 /partners/v1/cart?apikey={apikey}
 {: .pull-quote}
 
-<b>Polling: No</b><br/>
+*Polling: No*
 
 
 
-{: .aside}
+
 ####Response
 
 Model (application/json)
@@ -1181,17 +1304,44 @@ Status 200
 {"cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo="}
 {% endhighlight %}
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"POST",
+  url:"https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl -X POST https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
+
+
 {: .article}
 ### Reserve tickets and create a Cart [PUT]
 
 Reserves the specified tickets.  Multiple ticket types can be added to the `tickets` array as part of an adult+child combination if available.
 
-<b>Polling: Yes</b><br/>
+*Polling: Yes*
 
 /partners/v1/cart/tickets?apikey={apikey}
 {: .pull-quote}
 
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1237,7 +1387,7 @@ Model (application/json)
 }
 {% endhighlight %}
 
-{: .aside}
+
 ####Response
 
 Model (application/json)
@@ -1312,20 +1462,45 @@ Status 200
 }
 {% endhighlight %}
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
 
+{% highlight js %}
+$.ajax({
+  type:"PUT",
+  url:"https://app.ticketmaster.com/partners/v1/cart/tickets?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne",
+  async:true,
+  data: eventObject,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d @eventObject.json https://app.ticketmaster.com/partners/v1/cart/tickets?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
 
 
 {: .article}
 ### Encryption Certificate [GET]
 
-Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.<br/>
+Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.
 
 /partners/v1/certificate?apikey={apikey}&cart_id={cart_id}
 {: .pull-quote}
 
-<b>Polling: No</b><br/>
+*Polling: No*
 
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1333,7 +1508,7 @@ Credit card information must be encrypted before sent to the API. Use this endpo
 | `cart_id`   | Cart ID for this session. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
 
 
-{: .aside}
+
 ####Response
 
 Model (application/json)
@@ -1360,12 +1535,38 @@ Status 200
 {% endhighlight %}
 
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+{% endhighlight %}
+
 {: .article}
 ### Post credit card information [PUT]
 
-Add customer billing and credit card information to the transaction. Set `encryption_key` with the `id` value from the output of /certificate. After encrypting the credit card number and cvv, clients should call `[PUT] /partners/v1/cart` to finalize the purchase and obtain an order number.<br/>
+Add customer billing and credit card information to the transaction. Set `encryption_key` with the `id` value from the output of /certificate. After encrypting the credit card number and cvv, clients should call `[PUT] /partners/v1/cart` to finalize the purchase and obtain an order number.
 
-Encrypt the credit card and cvv number using the following steps:<br/>
+Encrypt the credit card and cvv number using the following steps:
 
 <ol>
     <li>Call `GET /certificate` to obtain the certificate value and id. The results will be valid for 24 hours.</li>
@@ -1374,22 +1575,22 @@ Encrypt the credit card and cvv number using the following steps:<br/>
     <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol><br/>
 
-Fake credit-card information for use in the sandbox environment:<br/>
+Fake credit-card information for use in the sandbox environment:
 
 <ul>
     <li>CC#: 4588883206000011</li>
     <li>CVV: 123</li>
-    <li>Expiration: 12/2020</li><br/>
+    <li>Expiration: 12/2020</li>
 </ul>
 
 
-<b>Polling: No</b><br/>
+*Polling: No*
 
 /partners/v1/cart/payment?apikey={apikey}
 {: .pull-quote}
 
 {: .article}
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1470,7 +1671,7 @@ Model (application/json)
 
 
 
-{: .aside}
+
 Sample Java code using a certificate (arg 1) to encrypt a credit card or cvv number (arg 2):
 
 {% highlight java %}
@@ -1534,7 +1735,32 @@ Status 200
 {% endhighlight %}
 
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
 
+{% highlight js %}
+$.ajax({
+  type:"PUT",
+  url:"https://app.ticketmaster.com/partners/v1/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne",
+  async:true,
+  data: paymentObject,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d @paymentObject.json https://app.ticketmaster.com/partners/v1/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
 
 
 
@@ -1546,9 +1772,9 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 /partners/v1/cart?apikey={apikey}
 {: .pull-quote}
 
-<b>Polling: Yes</b><br/>
+*Polling: Yes*
 
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1569,7 +1795,6 @@ Model (application/json)
 }
 {% endhighlight %}
 
-{: .aside}
 ####Response
 
 Model (application/json)
@@ -1586,6 +1811,34 @@ Status 200
 {% endhighlight %}
 
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"PUT",
+  url:"https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne",
+  async:true,
+  data: purchaseObject,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d @purchaseObject.json https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
+
+
 
 {: .article}
 ### Delete a Cart [DELETE]
@@ -1595,19 +1848,48 @@ Delete a Cart. Each partner has a limited amount of reservation resources that c
 /partners/v1/cart?apikey={apikey}&cart_id={cart_id}
 {: .pull-quote}
 
-<b>Polling: Yes</b><br/>
+*Polling: Ye*
 
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 | `cart_id`   | Cart ID for this session. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
 
-{: .aside}
+
 ####Response
 
 Status 204
+
+
+
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"DELETE",
+  url:"https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl -X DELETE https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo
+{% endhighlight %}
 
 {: .article}
 ## Group Order Management
@@ -1623,7 +1905,7 @@ Get detailed information about an order. For specifically-enabled accounts only.
 /partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .pull-quote}
 
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1631,7 +1913,7 @@ Get detailed information about an order. For specifically-enabled accounts only.
 | `order_number`   | An order number (ex. 39-5234153/LA1)         | string            |     ""          | Yes      |
 
 
-{: .aside}
+
 ####Response
 
 Status 200
@@ -1741,6 +2023,32 @@ Status 200
 }
 {% endhighlight %}
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/orders?order_number=39-5234153&#47LA1?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/orders?order_number=39-5234153&#47LA1?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
+
 
 {: .article}
 ### Unredeemed orders [GET]
@@ -1749,7 +2057,7 @@ Retreive unredeemed orders within a given time period. Some orders may have had 
 /partners/v1/orders/unredeemed?apikey={apikey}
 {: .pull-quote}
 
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1758,7 +2066,7 @@ Retreive unredeemed orders within a given time period. Some orders may have had 
 | `days_before_event`   | Number of days before event date.         | string            |     ""          | No      |
 
 
-{: .aside}
+
 ####Response
 
 Status 200
@@ -1778,7 +2086,31 @@ Status 200
 }
 {% endhighlight %}
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
 
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/orders/unredeemed?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/orders/unredeemed?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
 
 {: .article}
 ## Group Polling
@@ -1810,7 +2142,7 @@ Polling urls may be received from resources marked with "Polling: Yes" and can r
 /partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
 {: .pull-quote}
 
-#### Parameters
+####Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1819,7 +2151,7 @@ Polling urls may be received from resources marked with "Polling: Yes" and can r
 
 
 
-{: .aside}
+
 ####Response
 
 Status 202
@@ -1840,6 +2172,33 @@ Status 200
     // json payload from originally requested response (status code = 200)
 }
 {% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+{% endhighlight %}
+
 
 {: .article}
 ## Group Error Responses
@@ -2023,22 +2382,22 @@ The following status codes will be used by this API
 
 The following illustrates a typical purchase flow:
 
-<b>1&#46; Discover event availability and ticket information.</b>
+###1. Discover event availability and ticket information.
 
 Request: `GET /partners/v1/event/09004E6CE6325123`
 
 Further ticketing operations only allowed if event.api_transactable=true.  Display a list of areas and price levels to the user to select a ticket type + price level to reserve.
 
-<b>2&#46; Display captcha to user</b>
+###2. Display captcha to user
 
 Request: `GET /partners/v1/captcha`
 
 Response contains html to render in a webview containing a Google NoCaptcha ReCaptcha form.  Upon user-submit, the form will redirect the page to ticketmaster-g-recaptcha-response://{captcha-token}.
 Listen for redirects on the webview and obtain the captcha-token.
 
-<b>3&#46; Exchange captcha-token for a new cart session</b>
+###3. Exchange captcha-token for a new cart session
 
-Request: `POST /partners/v1/cart`<br/>
+Request: `POST /partners/v1/cart`
 Body: `{"token" : "2822b0737710e549a2f74c1e65be19b9"}`
 
 Post the captcha token. Response contains cart_id to be used on further operations on this cart.
@@ -2047,9 +2406,9 @@ Response:
 `{"cart_id" : "6LcA5cESAAAAAPsVEe0jgHVOqlKIbkHaeK0HGhQ6cd34a074e785f2107de2c9fea0016c20"}`
 
 
-<b>4&#46; Make a reserve call.</b>
+###4. Make a reserve call.
 
-Request: `PUT /partners/v1/cart/tickets`<br/>
+Request: `PUT /partners/v1/cart/tickets`
 
 Request body:
 
@@ -2063,13 +2422,13 @@ Request body:
 }
 {% endhighlight %}
 
-<b>5&#46; Get payment encryption certificate. Extract `id` and `value` from response.</b>
+###5. Get payment encryption certificate. Extract `id` and `value` from response.
 
-Request: `GET /partners/v1/certificate`<br/>
+Request: `GET /partners/v1/certificate`
 
-<b>6&#46; Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)</b>
+###6. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
 
-Request: `PUT /partners/v1/cart/payment`<br/>
+Request: `PUT /partners/v1/cart/payment`
 
 Request body:
 
@@ -2111,9 +2470,9 @@ Request body:
 }
 {% endhighlight %}
 
-<b>7&#46; Purchase the tickets</b>
+###7. Purchase the tickets
 
-Request: `PUT /partners/v1/cart`<br/>
+Request: `PUT /partners/v1/cart`
 
 Request body:
 
