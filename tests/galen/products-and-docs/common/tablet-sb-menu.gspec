@@ -7,6 +7,7 @@
     aside-menu-block-*              css     ul.aside-menu > li
     aside-menu-categories-*         css     ul.aside-menu > li > ul.categories > li
     aside-menu-categories-first-*   css     ul.aside-menu > li:nth-child(1) > ul.categories > li a
+
     aside-menu-categories-second-*  css     ul.aside-menu > li:nth-child(2) > ul.categories > li a
     aside-menu-categories-third-*   css     ul.aside-menu > li:nth-child(3) > ul.categories > li a
     aside-menu-sections-*           css     ul.aside-menu > li:nth-child(1) > ul.categories > li:nth-child(1) > ul.sections > li a
@@ -16,13 +17,13 @@
     side-menu-btn                   css     #side-menu-btn
 
 
-= count and text test @tablet=
+= count and text sb-menu @tablet=
     @on tablet
         global:
             count any aside-menu-block-* is 3
             count any aside-menu-categories-first-* is 8
-            count any aside-menu-categories-second-* is 4
-            count any aside-menu-categories-second-* is 4
+            #count any aside-menu-categories-second-* is 4
+            #count any aside-menu-categories-second-* is 4
 
     @on tablet
         aside-menu-header:

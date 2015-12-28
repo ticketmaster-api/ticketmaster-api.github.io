@@ -33,7 +33,7 @@
 = general layout test =
     @on mobile
         column-item-*:
-            width ~ 90 % of columns-container/width
+            width ~ 100 % of columns-container/width
         columns-block:
             below top-promo 20 to 30px
         partners-block:
