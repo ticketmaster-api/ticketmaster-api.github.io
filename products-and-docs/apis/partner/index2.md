@@ -54,14 +54,10 @@ The Ticketmaster back-end reservation systems are distributed globally and event
 
 
 {: .article}
-## Group Event Details
+## Retrieve Event Details  [GET]
 {: #event-details}
 
-Event and ticket information
-
-{: .article}
-### Retrieve Event Details  [GET]
-
+Group Event Details. Event and ticket information
 Retrieve details for a given event including the ticket type & pricing details. The boolean field `api_transactable` indicates if this event can be sold through the API.  If not, clients should be forwarded to the Ticketmaster mobile-web event page.  
 
 /partners/v1/events/{event_id}?apikey={apikey}
@@ -69,7 +65,7 @@ Retrieve details for a given event including the ticket type & pricing details. 
 
 *Polling: No*
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -913,15 +909,12 @@ curl https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB?apikey={ap
 {% endhighlight %}
 
 
+
 {: .article}
-## Group Inventory Management
+## Event Availability [GET]
 {: #inventory-management}
 
-Inventory endpoints for specifically-enabled accounts only.
-
-{: .article}
-### Event Availability [GET]
-
+Group Inventory Management. Inventory endpoints for specifically-enabled accounts only.
 Discover events available to transact on
 
 /partners/v1/events
@@ -996,8 +989,9 @@ curl https://app.ticketmaster.com/partners/v1/events
 {% endhighlight %}
 
 {: .article}
-### Ticket Availability [GET]
+## Ticket Availability [GET]
 
+Group Inventory Management. Inventory endpoints for specifically-enabled accounts only.
 Get total allocated and remaining ticket amounts for each ticket type per event. Current un-sold seat inventory is also included along with the current ticket reservation limit.
 
 /partners/v1/events/{event_id}/availability
@@ -1005,7 +999,7 @@ Get total allocated and remaining ticket amounts for each ticket type per event.
 
 *Polling: No*
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1139,8 +1133,9 @@ curl https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/availabili
 
 
 {: .article}
-### Retrieve an Event  [GET]
+## Retrieve an Event  [GET]
 
+Group Inventory Management. Inventory endpoints for specifically-enabled accounts only.
 Returns an alphanumeric event id based on a Venue-supplied event code+host combination<br/>
 
 /partners/v1/events/code/{event_code}/{event_host}
@@ -1148,7 +1143,7 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 
 *Polling: No*
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1204,24 +1199,21 @@ curl https://app.ticketmaster.com/partners/v1/events/code/1/1
 
 
 {: .article}
-## Group Ticket reservation and purchasing
+## Get captcha page [GET]
 {: #ticket-reservation}
+
+Group Ticket reservation and purchasing.
 
 Services related to Ticket reservation and purchasing. Only events marked with `api_transactable` (from Event Details response) can transact on this API. All ticketing operations require the client to first solve a captcha to establish a secure session. Upon posting the Captcha solution, a cart id will be returned and required for further cart operations.
 
-
-
-
-{: .article}
-### Get captcha page [GET]
-Retreive captcha information to render to the user.<br/>
+Retreive captcha information to render to the user.
 
 /partners/v1/captcha?apikey={apikey}
 {: .pull-quote}
 
 *Polling: No*
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1358,7 +1350,7 @@ Reserves the specified tickets.  Multiple ticket types can be added to the `tick
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 
-#### Properties
+### Properties
 
 Model (application/json)
 
@@ -1504,8 +1496,9 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d
 
 
 {: .article}
-### Encryption Certificate [GET]
+## Encryption Certificate [GET]
 
+Group Ticket reservation and purchasing.
 Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.
 
 /partners/v1/certificate?apikey={apikey}&cart_id={cart_id}
@@ -1513,7 +1506,7 @@ Credit card information must be encrypted before sent to the API. Use this endpo
 
 *Polling: No*
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1576,8 +1569,9 @@ curl https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCN
 {% endhighlight %}
 
 {: .article}
-### Post credit card information [PUT]
+## Post credit card information [PUT]
 
+Group Ticket reservation and purchasing.
 Add customer billing and credit card information to the transaction. Set `encryption_key` with the `id` value from the output of /certificate. After encrypting the credit card number and cvv, clients should call `[PUT] /partners/v1/cart` to finalize the purchase and obtain an order number.
 
 Encrypt the credit card and cvv number using the following steps:
@@ -1604,7 +1598,7 @@ Fake credit-card information for use in the sandbox environment:
 {: .pull-quote}
 
 {: .article}
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1612,7 +1606,7 @@ Fake credit-card information for use in the sandbox environment:
 
 
 
-#### Properties
+### Properties
 
 Model (application/json)
 
@@ -1784,8 +1778,9 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d
 
 
 {: .article}
-### Purchase Tickets [PUT]
+## Purchase Tickets [PUT]
 
+Group Ticket reservation and purchasing.
 Finalize the purchase and commit the transaction. `source_account_id` can be any unique identifier of the user (i.e. hash of member id). This is required for tracking bounces of ticket redemption emails.<br/>
 
 /partners/v1/cart?apikey={apikey}
@@ -1793,14 +1788,14 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 
 *Polling: Yes*
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 
-#### Properties
+### Properties
 
 Model (application/json)
 
@@ -1863,7 +1858,8 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d
 
 
 {: .article}
-### Delete a Cart [DELETE]
+## Delete a Cart [DELETE]
+Group Ticket reservation and purchasing.
 
 Delete a Cart. Each partner has a limited amount of reservation resources that can be simultaneously in use. If the user abandons the reservation process, it is a good practice to manually delete the cart to allow these resources to be re-allocated. Increased polling may occur if carts are not cleaned up.  Not required if the user finalizes the transaction<br/>
 
@@ -1872,7 +1868,7 @@ Delete a Cart. Each partner has a limited amount of reservation resources that c
 
 *Polling: Yes*
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1920,21 +1916,21 @@ $.ajax({
 curl -X DELETE https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo
 {% endhighlight %}
 
+
+
+
 {: .article}
-## Group Order Management
+## Unredeemed orders [GET]
 {: #order-mangement}
 
-Backend operations for order management
-
-{: .article}
-### Unredeemed orders [GET]
-
+Group Order Management.
+Backend operations for order management.
 Get detailed information about an order. For specifically-enabled accounts only. 
 
 /partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .pull-quote}
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -2085,13 +2081,16 @@ curl https://app.ticketmaster.com/partners/v1/orders?order_number=39-5234153&#47
 
 
 {: .article}
-### Unredeemed orders [GET]
+## Unredeemed orders [GET]
+
+Group Order Management.
+Backend operations for order management.
 Retreive unredeemed orders within a given time period. Some orders may have had bad email addresses, or emails that went to spam. Use your app's notification features to notify the user of an unredeemed order. This endpoint requires IP-address whitelisting.  Please contact us for details.
 
 /partners/v1/orders/unredeemed?apikey={apikey}
 {: .pull-quote}
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -2151,8 +2150,10 @@ $.ajax({
 curl https://app.ticketmaster.com/partners/v1/orders/unredeemed?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
+
+
 {: .article}
-## Group Polling
+## Poll [GET]
 {: #polling}
 
 Resource endpoints that have polling enabled may alternatively return a json response with a polling url and wait time, along with http status code=202.  This is used to inform client applications of long-waiting operations and queuing restrictions for particular actions in the Ticketmaster system.
@@ -2173,15 +2174,12 @@ Clients can test polling by issuing the following header: `X-TM-FORCE-POLLING: t
 
 The output of the original action will eventually be returned in the body of the response.
 
-{: .article}
-### Poll [GET]
-
 Polling urls may be received from resources marked with "Polling: Yes" and can return subsequent polling responses.
 
 /partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
 {: .pull-quote}
 
-####Template parameters
+###Template parameters
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |

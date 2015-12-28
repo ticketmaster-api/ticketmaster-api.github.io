@@ -52,10 +52,10 @@ structured and how our APIs work.
 [Remaining content follows in similar fashion, with H2s heading each section
 and highlighting in the left sidebar nav to show current location.]
 
-{: .double-margin #available-resources}
+{: .double-margin #available-resources .no-mobile}
 ##Available Resources
 
-<div class="table-wrapper">
+<div class="table-wrapper no-mobile">
 <table class="article double-margin">
   <thead>
     <tr>
