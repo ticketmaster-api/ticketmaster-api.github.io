@@ -1,0 +1,54 @@
+@objects
+    main-content                    css     body > div.single-column > div
+    content                         css     #main-block
+    side-panel                      css     #aside-block
+    aside-menu-header               css     #aside-block > div > h3
+    aside-menu                      css     ul.aside-menu
+    aside-menu-block-*              css     ul.aside-menu > li
+    aside-menu-categories-*         css     ul.aside-menu > li > ul.categories > li
+    aside-menu-categories-first-*   css     ul.aside-menu > li:nth-child(1) > ul.categories > li a
+
+    aside-menu-categories-second-*  css     ul.aside-menu > li:nth-child(2) > ul.categories > li a
+    aside-menu-categories-third-*   css     ul.aside-menu > li:nth-child(3) > ul.categories > li a
+    aside-menu-sections-*           css     ul.aside-menu > li:nth-child(1) > ul.categories > li:nth-child(1) > ul.sections > li a
+
+###vars for tablet
+    scrollable-element              css     #scrollable-element
+    side-menu-btn                   css     #side-menu-btn
+
+
+= count and text sb-menu @tablet=
+    @on tablet
+        global:
+            count any aside-menu-block-* is 3
+            count any aside-menu-categories-first-* is 8
+            #count any aside-menu-categories-second-* is 4
+            #count any aside-menu-categories-second-* is 4
+
+    @on tablet
+        aside-menu-header:
+            text is "Products & Docs"
+
+        aside-menu-categories-first-1, aside-menu-categories-first-2, aside-menu-categories-first-3, aside-menu-categories-first-4:
+            absent
+        aside-menu-categories-first-5, aside-menu-categories-first-6, aside-menu-categories-first-7, aside-menu-categories-first-8:
+            absent
+
+        scrollable-element:
+            absent
+
+        content:
+            width 100 % of screen/width
+            width 752 to 768px
+            below side-panel ~ -66px
+
+        side-panel:
+            width > 20 % of screen/width
+            #below main-content 0 px
+            #inside screen -18 px left
+            # near content ~ 20 px right
+            css position is "absolute"
+
+        side-menu-btn:
+            css display is "inline-block"
+            #css background-image is "url("/assets/img/aside-menu/ic-close-grey.svg")"

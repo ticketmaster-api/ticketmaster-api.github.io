@@ -1,24 +1,26 @@
 @objects
-    header      css  .top-bar
-    logo        css  #header-logo img
-    nav-item-*  css  #menu a
-
-    social      id   promo-social
-    twitter     css  .twitter-tweet
-
-    top-promo   id   top-promo
-    main-header css  #top-promo h1
-    main-desc   css  #top-promo p
-    get-api-btn css  #top-promo .tm-btn-white
-    explore-btn css  #top-promo .tm-btn-transparent
-
-    columns-block css .columns
+    body              css  body
+    header            css  .top-bar
+    logo              css  #header-logo img
+    nav-item-*        css  #menu a
+    social            id   promo-social
+    twitter           css  .twitter-tweet
+    top-promo         id   top-promo
+    main-header       css  #top-promo h1
+    main-desc         css  #top-promo p
+    get-api-btn       css  #top-promo .tm-btn-white
+    explore-btn       css  #top-promo .tm-btn-transparent
+    columns-block     css .columns
     columns-container css .columns .row-container
-    column-item-* css .columns .row-container>div
+    column-item-*     css .columns .row-container>div
+    partners-block    id bottom-promo
+    footer            id footer
 
-    partners-block id bottom-promo
 
-    footer id footer
+= image test =
+    body:
+    ### image file img/scr-home1200.png, tolerance 4000, map-filter denoise 10
+
 
 = Navigation test =
     @on desktop
@@ -61,13 +63,13 @@
         footer:
             below social 100 to 105px
         main-desc:
-            below main-header 35 to 45px
+            below main-header 55 to 65px
         get-api-btn:
             near explore-btn 55 to 65px left
             width 195 to 200px
             height 45 to 50px
         explore-btn:
-            width 320to 325px
+            width 315 to 325px
             height 45 to 50px
             visible
 

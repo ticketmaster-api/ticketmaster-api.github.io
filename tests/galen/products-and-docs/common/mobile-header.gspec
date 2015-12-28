@@ -1,0 +1,26 @@
+@objects
+    header                      css  .top-bar
+    logo                        css  #header-logo img
+    nav-item-*                  css  #menu a
+    menu-dropdown               css  #menu-dropdown
+    menu-btn                    css  #menu-btn
+
+= Navigation test @mobile=
+    @on mobile
+        logo:
+            visible
+
+    @on mobile
+        global:
+            count any nav-item-* is 6
+
+    @on mobile
+        nav-item-1, nav-item-2, nav-item-3, nav-item-4, nav-item-5, nav-item-6:
+            absent
+
+        # menu-dropdown:
+        #    absent
+
+        menu-btn:
+            visible
+            # css background-image is "url("http://127.0.0.1:4000/assets/img/header/ic-menu-p-1-white.svg")"

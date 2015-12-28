@@ -1,0 +1,110 @@
+@import common/vars.gspec
+@import common/tablet-header.gspec
+@import common/tablet-sb-menu.gspec
+
+@objects
+    h2                          css     h2
+    header-main                 xpath   //*[@id="getting-started"]
+    header-h2-introduction      xpath   //*[@id="introduction"]
+    p-lead                      xpath   //*[@id="main-block"]/div/p[1]
+    p-body                      xpath   //*[@id="main-block"]/div/p[2]
+    p-simple-01                 xpath   //*[@id="main-block"]/div/p[3]
+
+    table-*                     css     table
+    table-dataset               xpath   //*[@id="main-block"]/div/table
+    table-dataset-th-*          css     #main-block > div > table > thead > tr > th
+    table-dataset-tr-*          css     #main-block > div > table > tbody > tr
+
+    table-api                   css     #main-block > div > div.table-wrapper > table
+    table-api-h4                css     #main-block > div > div.table-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(1) > h4
+    table-api-th-01             xpath    //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
+    table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
+
+== count and text test @tablet==
+    @on tablet
+        global:
+            count any table-dataset-th-* is 2
+            count any table-dataset-tr-* is 6
+
+    @on tablet
+            table-dataset-th-1:
+                text is "Dataset"
+                aligned horizontally all table-dataset-th-2
+            table-dataset-th-2:
+                text is "Description"
+            table-api-th-01:
+                text uppercase starts "API"
+
+            table-1:
+                contains table-dataset
+            table-2:
+                contains table-api
+
+            table-dataset:
+                visible
+
+            table-api:
+                visible
+
+
+= general content ui-test @tablet=
+    @on tablet
+        header-main:
+            css font-size is "54px"
+            css font-family contains "InterstateWGL-Black"
+
+        header-h2-introduction:
+            height 48px
+            ${lineHeight} "48px"
+            css font-family contains "TMSans-Bold"
+            css font-family contains "Arial"
+            css font-size is "36px"
+
+        table-dataset:
+            css border-bottom-color is "rgba(228, 231, 233, 1)"
+            css border-bottom-style is "solid"
+            css border-top-width is "1px"
+            css border-left-width is "1px"
+            css font-family contains      "TMSans-Regular"
+            css background-color is "transparent"
+            css font-size is "16px"
+            css margin-bottom is ${marginX2}
+            css margin-top is ${marginX2}
+
+        p-lead:
+            height 32px
+            ${lineHeight} "32px"
+            css font-family contains "TMSans-Light"
+
+        p-body, p-simple-01:
+            css box-sizing is "border-box"
+            css font-size is "16px"
+            ${lineHeight} "24px"
+            css margin-bottom is ${marginX1}
+            css margin-left   is "0px"
+            css margin-right  is "0px"
+            css margin-top    is ${marginX1}
+            css padding-bottom is "0px"
+            css padding-left  is "0px"
+            css padding-right is "0px"
+            css padding-top   is "0px"
+
+        p-body:
+            css font-family contains "TMSans-Regular"
+
+        p-simple-01:
+            css font-family contains "TMSans-Light"
+
+        h2:
+            ${lineHeight} "48px"
+            css font-family contains "TMSans-Bold"
+            css font-size is "36px"
+
+        table-api-h4:
+            text is "Discovery API"
+
+        header-main, header-h2-introduction, h2, table-api-h4:
+            ${color} "rgba(65, 65, 65, 1)"
+
+        p-lead, p-body, p-simple-01, table-dataset:
+            ${color} "rgba(118, 134, 146, 1)"

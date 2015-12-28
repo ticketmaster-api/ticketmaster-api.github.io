@@ -1,0 +1,8 @@
+@set
+    marginX1    "24px"
+    marginX2    "48px"
+    marginX3    "76px"
+    marginX4    "96px"
+
+    lineHeight  css     line-height is
+    color       css     color is
