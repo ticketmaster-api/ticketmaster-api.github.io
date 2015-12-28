@@ -37,11 +37,11 @@
 
             table-1:
                 contains table-dataset
-                width 750 to 768px
+                width 722 to 768px
 
             table-2:
                 contains table-api
-                width 750 to 768px
+                width 722 to 768px
 
             table-dataset:
                 visible
