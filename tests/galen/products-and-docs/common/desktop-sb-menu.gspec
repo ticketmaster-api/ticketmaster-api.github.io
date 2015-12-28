@@ -20,8 +20,8 @@
 
             count any aside-menu-block-* is 3
             count any aside-menu-categories-first-* is 8
-            count any aside-menu-categories-second-* is 4
-            count any aside-menu-categories-second-* is 4
+            # count any aside-menu-categories-second-* is 4
+            # count any aside-menu-categories-second-* is 4
 
     @on desktop
         aside-menu-header:
