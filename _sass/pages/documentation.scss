@@ -324,7 +324,7 @@
         }
       }
       &:focus,
-      &active {
+      &.active {
         outline: none;
       }
       &:after {
