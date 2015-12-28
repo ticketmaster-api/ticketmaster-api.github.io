@@ -1,8 +1,7 @@
 @import common/vars.gspec
 @import common/tablet-header.gspec
 @import common/tablet-sb-menu.gspec
-### @import common/footer-tablet.gspec
-##footer-tablet - FAILs becouse of has issue 767px
+@import common/footer-tablet.gspec
 
 @objects
     h2                          css     h2
