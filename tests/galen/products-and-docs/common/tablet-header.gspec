@@ -1,20 +1,19 @@
 @objects
     header                      css  .top-bar
     logo                        css  #header-logo img
-    nav-item-*                  css  #menu a
+    nav-item-pd-*               css  #menu a
     menu-dropdown               css  #menu-dropdown
     menu-btn                    css  #menu-btn
 
-= Navigation test @tablet=
-    @on tablet
-        logo:
-            visible
-
+= Navigation test header @tablet=
     @on tablet
         global:
-            count any nav-item-* is 6
+            count any nav-item-pd-* is 6
 
     @on tablet
+        logo:
+           visible
+
         nav-item-1, nav-item-2, nav-item-3, nav-item-4, nav-item-5, nav-item-6:
             absent
 

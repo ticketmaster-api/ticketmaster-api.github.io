@@ -1,6 +1,7 @@
 @import common/vars.gspec
 @import common/tablet-header.gspec
 @import common/tablet-sb-menu.gspec
+#@import common/footer-tablet.gspec
 
 @objects
     h2                          css     h2
@@ -20,7 +21,7 @@
     table-api-th-01             xpath    //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
 
-== count and text test @tablet==
+=count and text test @tablet=
     @on tablet
         global:
             count any table-dataset-th-* is 2
@@ -37,8 +38,11 @@
 
             table-1:
                 contains table-dataset
+                width 722 to 768px
+
             table-2:
                 contains table-api
+                width 722 to 768px
 
             table-dataset:
                 visible
