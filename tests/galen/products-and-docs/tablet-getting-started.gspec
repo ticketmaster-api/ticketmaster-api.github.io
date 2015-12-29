@@ -1,7 +1,7 @@
 @import common/vars.gspec
 @import common/tablet-header.gspec
 @import common/tablet-sb-menu.gspec
-@import common/footer-tablet.gspec
+#@import common/footer-tablet.gspec
 
 @objects
     h2                          css     h2
