@@ -4,7 +4,8 @@ table{
   border: 1px solid $table-body-border;
 }
 th {
-  background-color: $table-head-bg; //#E9EEF1
+  /* background-color: $table-head-bg; //#E9EEF1 */
+  background-color: #e9eef1;
 }
 tr:nth-child(even) {background: $table-body-even-bg}
 tr:nth-child(odd) {background: $table-body-odd-bg}
