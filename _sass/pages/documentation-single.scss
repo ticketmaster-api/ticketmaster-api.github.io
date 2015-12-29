@@ -51,3 +51,22 @@
     }
   }
 }
+
+.mobile {
+  display: none;
+  @media #{$max-1200} {
+    display: none;
+  }
+  @media #{$max-768} {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
+
+.no-mobile {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
