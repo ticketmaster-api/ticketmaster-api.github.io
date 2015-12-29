@@ -39,6 +39,7 @@ notifications:
   email: false
 
 before_install:
+  - cp ./tests/content/ ./ -r
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
