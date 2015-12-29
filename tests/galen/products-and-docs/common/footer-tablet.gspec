@@ -10,19 +10,12 @@
     nav-item-block-5-footer-*   css  #footer > div.row.footer-nav > div > div:nth-child(5) > ul > li > a
     nav-item-block-6-footer-*   css  #footer > div.row.footer-nav > div > div:nth-child(6) > ul > li > a
 
-    nav-all-item-footer-*   css  #footer > div.row.footer-nav > div > div > ul > li > a
+    nav-all-item-footer-*       css  #footer > div.row.footer-nav > div > div > ul > li > a
 
     logo-bottom-img             css  #footer > div.row.bottom-logo > div > div > a > img
     logo-bottom-text            css  #footer > div.row.bottom-logo > div > div > a > span
 
-= Navigation test @tablet =
-    @on tablet
-        global:
-            count any nav-blocks-footer-* is 6
-            count any nav-item-heading-footer-* is 6
-            count any nav-all-item-footer-* is 19
-
-
+= Navigation test footer @tablet =
    @on tablet
         nav-item-heading-footer-*:
             width ~ 13% of screen/width
@@ -122,7 +115,16 @@
         logo-bottom-img:
             aligned horizontally centered logo-bottom-text 1px
 
+
+    @on tablet
+        global:
+            count any nav-blocks-footer-* is 6
+            count any nav-item-heading-footer-* is 6
+            count any nav-all-item-footer-* is 19
+
+
+
+
 ### run me local (FF). In prod version should be --size 768x1080
 ## in local 768x1080 run as 739x1080
-
 ### galen check tests/galen/products-and-docs/common/footer-tablet.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 797x1080 --htmlreport tests/galen/reports/footerTablet
