@@ -6,8 +6,6 @@ categories:
 ---
 
 #Discovery REST API
-{: .article}
-
 
 Description of API for discovery service. This API allows to work with events, attractions, categories and venues.
 {: .lead .article}
@@ -26,12 +24,12 @@ Test this endpoint right now in the interactive docs:
 ##Search Events
 {: .article #srch-events }
 
-Method: GET. 
-Authentication required.
+####Method:
+GET.Authentication required.
 Returns the 20 most recent events for the authenticating user.
 
 discovery/{version}/events.{format}
-{: .pull-quote}
+{: .code .red}
 
 ###Template parameters:
 
@@ -58,6 +56,47 @@ discovery/{version}/events.{format}
 | `marketId`   | The city/area in which this event takes place. | string            |       "27"       | No      |
 | `deviceId`   | The device making the API call. | string            |       "1"       | No      |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
+
 
 {: .aside}
 >[JS](#js)
@@ -93,16 +132,16 @@ curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey
 ---
 {: .aside}
 
-
 ##Get Event Details
 {: .article #event-details }
 
-Method: GET.
-Authentication required.
+####Method: 
+
+GET.Authentication required.
 Returns the event detail by event ID.
 
 discovery/{version}/events/{id}.{format}
-{: .pull-quote}
+{: .code .red}
 
 
 ###Template parameters:
@@ -119,6 +158,46 @@ discovery/{version}/events/{id}.{format}
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
 
 {: .aside}
 >[JS](#js)
@@ -153,16 +232,15 @@ curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apik
 ---
 {: .aside}
 
-
-
 ##Search Event Images
 {: .article #event-img}
 
-Method: GET. 
-Authentication required.
+####Method:
+
+GET.Authentication required.
 Returns all the images for an event by ID. If an event does not have an image for a supported resolution, the event's major category image will be returned instead.
 
-{: .pull-quote}
+{: .code .red}
 discovery/{version}/events/{id}/images.{format}
 
 ###Template parameters:
@@ -172,6 +250,46 @@ discovery/{version}/events/{id}/images.{format}
 | `version`  | The API Version.     | string            |       "v1"         | Yes      |
 | `id`       | Event ID.            | string            | "0B004F0401BD55E5" | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
 
 {: .aside}
 >[JS](#js)
@@ -199,7 +317,6 @@ $.ajax({
 curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}
 {% endhighlight %}
 
-
 <div class="article iframe-wrapper">
 <iframe src="https://snap.apigee.com/1YERkwm" frameborder="0" scrolling="no"></iframe>
 </div>
@@ -207,17 +324,15 @@ curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.js
 ---
 {: .aside}
 
-
-
-
 {: .article #search-attractions}
 ##Search Attractions
 
-Method: GET.
-Authentication required.
+####Method:
+
+GET.Authentication required.
 Search Attractions!
 
-{: .pull-quote}
+{: .code .red}
 discovery/{version}/attractions.{format}
 
 ###Template parameters:
@@ -237,6 +352,46 @@ discovery/{version}/attractions.{format}
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "name,desc", "name,asc". | string            |              | No      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
 
 {: .aside}
 >[JS](#js)
@@ -264,7 +419,6 @@ $.ajax({
 curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
 {% endhighlight %}
 
-
 <div class="article iframe-wrapper">
 <iframe src="https://snap.apigee.com/1XuyzP2" frameborder="0" scrolling="no"></iframe>
 </div>
@@ -272,17 +426,16 @@ curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
 ---
 {: .aside}
 
-
-
 {: .article #attraction-details}
 ##Get Attraction Details
 
-Method: GET. 
-Authentication required.
+####Method:
+
+GET.Authentication required.
 Search Attractions!
 
 discovery/{version}/attractions/{id}.{format}
-{: .pull-quote}
+{: .code .red}
 
 ###Template parameters:
 
@@ -300,6 +453,46 @@ discovery/{version}/attractions/{id}.{format}
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
 
 
 {: .aside}
@@ -328,6 +521,7 @@ $.ajax({
 curl https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}
 {% endhighlight %}
 
+
 <div class="article iframe-wrapper">
 <iframe src="https://snap.apigee.com/1YERrIr" frameborder="0" scrolling="no"></iframe>
 </div>
@@ -336,17 +530,16 @@ curl https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={a
 {: .aside}
 
 
-
-
 {: .article #search-categories}
 ##Search Categories
 
-Method: GET.
-Authentication required.
+####Method:
+
+GET.Authentication required.
 Search Categories!
 
 discovery/{version}/categories.{format}
-{: .pull-quote}
+{: .code .red}
 
 ###Template parameters:
 
@@ -365,6 +558,46 @@ discovery/{version}/categories.{format}
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
 
 
 {: .aside}
@@ -401,7 +634,6 @@ curl https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}
 {: .aside}
 
 
-
 {: .article #category-details}
 ##Get Category Details
 
@@ -409,7 +641,7 @@ Method: GET.
 Authentication required.
 Returns the category detail by ID.
 
-{: .pull-quote}
+{: .code .red}
 discovery/{version}/categories/{id}.{format}
 
 ###Template parameters:
@@ -427,6 +659,46 @@ discovery/{version}/categories/{id}.{format}
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
 
 
 {: .aside}
@@ -463,16 +735,15 @@ curl https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apike
 {: .aside}
 
 
-
 {: .article #search-venues}
 ##Search Venues
 
-Method: GET.
-Authentication required.
+####Method:
+GET.Authentication required.
 Search Venues!
 
 discovery/{version}/venues.{format}
-{: .pull-quote}
+{: .code .red}
 
 
 ###Template parameters:
@@ -492,6 +763,46 @@ discovery/{version}/venues.{format}
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+curl https://app.ticketmaster.com/partners/v1/events
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "events" : [
+        {
+            "eventCode" : "EPT0726E",
+            "eventHost" : "LA2",
+            "eventId" : "0B004D43F86C478F",
+            "eventDate" : "2015-07-26",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440003" }
+            ]
+        },
+        {
+            "eventCode" : "EPT0896A",
+            "eventHost" : "LA2",
+            "eventId" : "0C004F43F86C4BAC",
+            "eventDate" : "2015-07-27",
+            "eventTime" : "18:30:00",
+            "timeZone" : "America/Los_Angeles",
+            "offers": [
+                { "repName": "GPAS4", "ticketType": "00004C440004" }
+            ]
+        }
+
+        // ...
+    ]
+}
+{% endhighlight %}
 
 
 {: .aside}
@@ -527,7 +838,6 @@ curl https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={a
 ---
 {: .aside}
 
-
 {: .article #venue-details}
 ##Get Venue Details
 
@@ -536,7 +846,7 @@ Authentication required.
 Returns the venue detail by ID.
 
 discovery/{version}/venues/{id}.{format}
-{: .pull-quote}
+{: .code .red}
 
 ###Template parameters:
 
@@ -584,7 +894,61 @@ curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
 <iframe src="https://snap.apigee.com/1XuA0gh" frameborder="0" scrolling="no"></iframe>
 </div>
 
----
-{: .aside}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
 
+{% highlight HTTP %}
+GET /discovery/v1/venues/90150.json?apikey=**** HTTP/1.1
+Host:
+app.ticketmaster.com
+X-Target-URI:
+https://app.ticketmaster.com
+Connection:
+Keep-Alive
+{% endhighlight %}
 
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:07:04 GMT
+Content-Length: 641
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
+
+{
+  "name": "Hollywood Bowl",
+  "locale": "en-us",
+  "marketId":  [
+    27
+  ],
+  "country":  {
+    "countryCode": "US"
+  },
+  "state":  {
+    "stateCode": "CA"
+  },
+  "city":  {
+    "name": "Hollywood"
+  },
+  "postalCode": "90068",
+  "address":  {
+    "line1": "2301 N Highland Ave",
+    "line2": "Hollywood, CA"
+  },
+  "timeZone": "America/Los_Angeles",
+  "_links":  {
+    "self":  {
+      "href": "/discovery/v1/venues/90150?locale=en-us&domain=ticketmaster.com"
+    }
+  },
+  "id": "90150",
+  "type": "venue"
+}
+{% endhighlight %}
