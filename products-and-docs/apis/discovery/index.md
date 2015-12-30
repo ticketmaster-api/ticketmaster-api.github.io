@@ -61,7 +61,7 @@ discovery/{version}/events.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/events.json?apikey=****&size=1 HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -71,7 +71,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
@@ -326,7 +326,7 @@ discovery/{version}/events/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/events/15004F83A3383A3E.json?apikey=**** HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -336,7 +336,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
@@ -543,7 +543,7 @@ discovery/{version}/events/{id}/images.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/events/0B004F0401BD55E5/images.json?apikey=**** HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -553,7 +553,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Content-Length:
 1789
@@ -731,7 +731,7 @@ discovery/{version}/attractions.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/attractions.json?apikey=**** HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -741,7 +741,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
@@ -1096,7 +1096,7 @@ discovery/{version}/attractions/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/attractions/768011.json?apikey=**** HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -1106,7 +1106,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
@@ -1210,7 +1210,7 @@ discovery/{version}/categories.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/categories.json?apikey=**** HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -1220,7 +1220,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
@@ -1634,7 +1634,7 @@ discovery/{version}/categories/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/categories/203.json?apikey=**** HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -1644,7 +1644,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
@@ -1748,7 +1748,7 @@ discovery/{version}/venues.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/venues.json?apikey=****&keyword=UCV HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -1758,7 +1758,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
@@ -1921,7 +1921,7 @@ discovery/{version}/venues/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight HTTP %}
+{% highlight js %}
 GET /discovery/v1/venues/90150.json?apikey=**** HTTP/1.1
 Host:
 app.ticketmaster.com
@@ -1931,7 +1931,7 @@ Connection:
 Keep-Alive
 {% endhighlight %}
 
-{% highlight HTTP %}
+{% highlight js %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers:
 origin, x-requested-with, accept
