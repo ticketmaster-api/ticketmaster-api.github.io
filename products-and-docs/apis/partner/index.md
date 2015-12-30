@@ -61,7 +61,7 @@ Group Event Details. Event and ticket information
 Retrieve details for a given event including the ticket type & pricing details. The boolean field `api_transactable` indicates if this event can be sold through the API.  If not, clients should be forwarded to the Ticketmaster mobile-web event page.  
 
 /partners/v1/events/{event_id}?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 *Polling: No*
 
@@ -918,7 +918,7 @@ Group Inventory Management. Inventory endpoints for specifically-enabled account
 Discover events available to transact on
 
 /partners/v1/events
-{: .pull-quote}
+{: .code .red}
 
 *Polling: No*
 
@@ -996,7 +996,7 @@ Group Inventory Management. Inventory endpoints for specifically-enabled account
 Get total allocated and remaining ticket amounts for each ticket type per event. Current un-sold seat inventory is also included along with the current ticket reservation limit.
 
 /partners/v1/events/{event_id}/availability
-{: .pull-quote}
+{: .code .red}
 
 *Polling: No*
 
@@ -1141,7 +1141,7 @@ Group Inventory Management. Inventory endpoints for specifically-enabled account
 Returns an alphanumeric event id based on a Venue-supplied event code+host combination<br/>
 
 /partners/v1/events/code/{event_code}/{event_host}
-{: .pull-quote}
+{: .code .red}
 
 *Polling: No*
 
@@ -1211,7 +1211,7 @@ Services related to Ticket reservation and purchasing. Only events marked with `
 Retreive captcha information to render to the user.
 
 /partners/v1/captcha?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 *Polling: No*
 
@@ -1289,7 +1289,7 @@ curl https://app.ticketmaster.com/partners/v1/captcha?apikey=GkB8Z037ZfqbLCNtZVi
 Post captcha solution and establish a cart session<br/>
 
 /partners/v1/cart?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 *Polling: No*
 
@@ -1345,7 +1345,7 @@ Reserves the specified tickets.  Multiple ticket types can be added to the `tick
 *Polling: Yes*
 
 /partners/v1/cart/tickets?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 ####Template parameters
 
@@ -1507,7 +1507,7 @@ Group Ticket reservation and purchasing.
 Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.
 
 /partners/v1/certificate?apikey={apikey}&cart_id={cart_id}
-{: .pull-quote}
+{: .code .red}
 
 *Polling: No*
 
@@ -1601,7 +1601,7 @@ Fake credit-card information for use in the sandbox environment:
 *Polling: No*
 
 /partners/v1/cart/payment?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 {: .article}
 ###Template parameters
@@ -1791,7 +1791,7 @@ Group Ticket reservation and purchasing.
 Finalize the purchase and commit the transaction. `source_account_id` can be any unique identifier of the user (i.e. hash of member id). This is required for tracking bounces of ticket redemption emails.<br/>
 
 /partners/v1/cart?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 *Polling: Yes*
 
@@ -1873,7 +1873,7 @@ Group Ticket reservation and purchasing.
 Delete a Cart. Each partner has a limited amount of reservation resources that can be simultaneously in use. If the user abandons the reservation process, it is a good practice to manually delete the cart to allow these resources to be re-allocated. Increased polling may occur if carts are not cleaned up.  Not required if the user finalizes the transaction<br/>
 
 /partners/v1/cart?apikey={apikey}&cart_id={cart_id}
-{: .pull-quote}
+{: .code .red}
 
 *Polling: Yes*
 
@@ -1937,7 +1937,7 @@ Backend operations for order management.
 Get detailed information about an order. For specifically-enabled accounts only. 
 
 /partners/v1/orders?order_number={order_number}?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 ###Template parameters
 
@@ -2098,7 +2098,7 @@ Backend operations for order management.
 Retreive unredeemed orders within a given time period. Some orders may have had bad email addresses, or emails that went to spam. Use your app's notification features to notify the user of an unredeemed order. This endpoint requires IP-address whitelisting.  Please contact us for details.
 
 /partners/v1/orders/unredeemed?apikey={apikey}
-{: .pull-quote}
+{: .code .red}
 
 ###Template parameters
 
@@ -2187,7 +2187,7 @@ The output of the original action will eventually be returned in the body of the
 Polling urls may be received from resources marked with "Polling: Yes" and can return subsequent polling responses.
 
 /partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
-{: .pull-quote}
+{: .code .red}
 
 ###Template parameters
 
