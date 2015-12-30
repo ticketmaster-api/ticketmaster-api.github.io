@@ -61,12 +61,19 @@ h6 {
   }
 }
 
+b,strong {
+  font-family: $font-bold-p;
+  color: $n1;
+}
 
 .lead {
   font-family: $font-lead;
   font-size: $size-lead;
   color: $n2-grey-color;
   line-height: $line-height-lead;
+  b,strong {
+    color: $n2-grey-color;
+  }
   @media (max-width: 767px){
     font-size: $size-lead-mobile;
     line-height: $line-height-lead-mobile;
@@ -78,6 +85,9 @@ h6 {
   font-size: $size-body;
   color: $n2-grey-color;
   line-height: $line-height-body;
+  b,strong {
+    color: $n2-grey-color;
+  }
  }
 
 .caption {
@@ -85,6 +95,9 @@ h6 {
   font-size: $size-caption;
   color: $n2-grey-color;
   line-height: $line-height-caption;
+  b,strong {
+    color: $n2-grey-color;
+  }
 }
 
 .pull-quote {
@@ -92,6 +105,9 @@ h6 {
   font-size: $size-pull-q;
   color: $p1c;
   line-height: $line-height-pull-q;
+  b,strong {
+    color: $p1c;
+  }
 }
 
 .code {
