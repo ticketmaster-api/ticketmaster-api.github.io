@@ -7,17 +7,20 @@
     }
 }
 
-h1 {
-    @media #{$max-1200} {
-        font-size: $size-h1;
-        line-height: $line-height-h1;
-        padding-top: 21px;
-    }
-    @media #{$max-768} {
-        font-size: $size-h3;
-        line-height: $line-height-h3;
+.documentation{
+    h1 {
+        @media #{$max-1200} {
+            font-size: $size-h1;
+            line-height: $line-height-h1;
+            padding-top: 21px;
+        }
+        @media #{$max-768} {
+            font-size: $size-h3;
+            line-height: $line-height-h3;
+        }
     }
 }
+
 .lead {
     font-size: $size-lead;
     line-height: $line-height-h3;

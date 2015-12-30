@@ -2,6 +2,12 @@
   @media #{$max-1200} {
     max-width: 1200px;
   }
+
+  @media #{$max-768} {
+    margin-top: -45px;
+  }
+
+
   max-width: 1146px;
   overflow: hidden;
   margin: auto;
@@ -53,6 +59,9 @@
     cursor: pointer;
     margin-top: 0;
     margin-bottom: 10px;
+    @media (min-width: 1200px) {
+      margin-top: 30px;
+    }
     @media #{$max-1200} {
       width: 50%;
     }
@@ -63,7 +72,7 @@
 
   .content {
     @media #{$max-1200} {
-      padding-top: 28px;
+      padding-top: 64px;
     }
     @media #{$max-768} {
       padding-top: 52px;
