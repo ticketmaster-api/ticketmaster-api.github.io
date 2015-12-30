@@ -11,14 +11,14 @@
 
     .article-wrapper {
       width: 100%;
-      margin-bottom: $base-margin;
-      clear: both;
-      border: 0;
-      content: '';
+      margin-top: $base-margin*2;
+      margin-bottom: $base-margin*2;
 
       &:not(:first-child) > *:first-child {
         margin-right: 45%;
       }
+
+      /*apigee wrapper*/
       .iframe-wrapper {
         overflow: hidden;
         -webkit-overflow-scrolling: touch;
@@ -34,10 +34,10 @@
           min-width: 100%;
         }
       }
+      /*apigee wrapper END*/
 
       h1, h2, h3, h4, h5, h6,
       p, ul, ol, aside, dl, figure {
-        display: block;
         margin-bottom: $base-margin;
         margin-top: 0;
 
@@ -49,6 +49,27 @@
       h1 {
         text-transform: uppercase;
       }
+      h3{
+        margin-top: $base-margin*2;
+      }
+      h4{
+        margin-bottom: $base-margin - 8px;
+      }
+
+      .small-margin{
+        margin-top: $base-margin / 3;
+        margin-bottom: $base-margin / 3;
+      }
+
+      .small-margin-top {
+        margin-top: $base-margin / 3;
+      }
+
+      .small-margin-bottom {
+        margin-bottom: $base-margin / 3;
+      }
+
+
       /*mobile headings*/
       @media (max-width: 320px) {
         h1, h2 {
@@ -124,7 +145,7 @@
             text-align: center;
             line-height: 2em;
             white-space: nowrap;
-            min-width: 30%;
+            min-width: 86px;
 
             &:hover {
               color: $s1a;
@@ -204,10 +225,16 @@
         }
       }
 
+      .body.red,
+      .code.red,
+      .caption.red,
+      .pull-quote.red {
+        color: $secondary-color1;
+      }
+
       .pull-quote {
         word-break: break-all;
       }
-
       .lead {
         margin-top: 0px;
       }
@@ -238,6 +265,24 @@
         margin-bottom: 10px;
       }
 
+    }
+
+    .article-wrapper {
+      &::after {
+        clear: both;
+        border: 0;
+        content: '';
+        display: table;
+      }
+
+      /*specific margins for 2 first articles*/
+      &:first-child {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      &:nth-child(2){
+        margin-top: 0;
+      }
     }
 
   }

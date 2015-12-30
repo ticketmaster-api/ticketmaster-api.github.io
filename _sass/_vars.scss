@@ -77,7 +77,7 @@ $size-lead: 1.5em;
 $size-lead-mobile: 18px;
 $size-body: 1em;
 $size-caption: 1em;
-$size-pull-q: 1.5em;
+$size-pull-q: 1.125em; // 18px
 $size-code: 1em;
 
 $spacing-unit: 30px;
@@ -96,9 +96,10 @@ $borderGrayColor: #e4e7e9;
 $grey-color-light: lighten($n2-grey-color, 40%);
 $grey-color-dark: darken($n2-grey-color, 25%);
 
-/*paddings*/
-$p-padding: 28px;
-$code-margin: 28px;
+/*paddings
+$p-padding: 24px;
+$code-margin: 24px;
+not used*/
 
 // Width of the content area
 $content-width: 800px;
