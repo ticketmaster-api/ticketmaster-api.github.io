@@ -1,0 +1,43 @@
+##
+#galen check tests/galen/blog/desktop-content.gspec --url localhost:4000/blogs --size 1229x1024 --htmlreport tests/galen/reports/desktop-con
+##
+
+@set
+    white "rgba(255, 255, 255, 1)"
+    whiteDisabled "rgba(255, 255, 255, 0.7)"
+
+@objects
+    body-wrapper                css  .top-bar
+    #menu-wrapper                css  div.body-wrapper
+    #header-menu                 css  #menu
+    #logo                        css  #header-logo img
+    #search-button               css  #search
+    #nav-item-*                  css  #menu a
+
+    area-left                   css     .box-left
+    area-right                  css     .box-right
+
+= Blogs page desktop content =
+#    @on desktop
+        area-left:
+            visible
+
+        body-wrapper:
+            visible
+            below area-left 100 to 101px
+            below area-right 100 to 101px
+
+            width > 10 % of screen/width
+            inside menu-wrapper 10 px left, 20 to 30px top
+            near header-menu ~ 110 px left
+
+        search-button:
+            visible
+            inside menu-wrapper ~10 px right, 30 to 32px top
+
+        header-menu:
+            visible
+
+= I see the TM logo, the header menu and the search button in one row=
+        logo:
+            aligned horizontally centered  header-menu 3px search-button
