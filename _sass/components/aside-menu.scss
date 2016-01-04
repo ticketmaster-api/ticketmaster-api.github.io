@@ -133,7 +133,6 @@ body{
   }
   .wrapper-aside-menu {
     @include transform-3d();
-    @include tm-transition();
     overflow: hidden;
     @media #{$max-1200}{
       position: relative;
