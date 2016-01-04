@@ -114,8 +114,8 @@
         });
 
         $(".sections").on("click", function(e){
-           if (e.target.tagName == "A"){
-               hideMenu();
+           if (e.target.tagName == "A" && screenWidth < 1200){
+                hideMenu();
            }
         });
 
