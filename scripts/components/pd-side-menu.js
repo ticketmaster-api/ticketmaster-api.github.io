@@ -57,6 +57,7 @@
         };
 
         var adjustMenuPosition = function(){
+
             //fix side menu position on scroll
             if ($(window).scrollTop() > offset) {
                 if(asideBlock.height() > mainBlock.height() && screenWidth >= 1200) {
@@ -111,8 +112,8 @@
                     return $(item).offset().top >= winTop;
                 });
 
-                $(menu).find('a').removeClass('current');
-                $(menu).find("a[href='#" + $(top[0]).attr('id') + "']").addClass('current');
+                //$(menu).find('a').removeClass('current');
+                //$(menu).find("a[href='#" + $(top[0]).attr('id') + "']").addClass('current');
 
             }
         });
