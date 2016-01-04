@@ -1,17 +1,16 @@
 (function(){
     $(document).ready(function() {
         var menuWraper = $('.wrapper-aside-menu'),
-            offset = menuWraper.offset().top,
-            sideBtn = $("#side-menu-btn"),
             asideBlock = $("#aside-block"),
-            mainBlock = $("#main-block"),
+            offset = asideBlock.offset().top,
+            sideBtn = $("#side-menu-btn"),
             topBar = $('.top-bar').addClass('menu-bg'),
             bottomBar = $('#footer').addClass('menu-bg'),
             menu = document.getElementById('scrollable-element'),
-            initialMenuHeight = $(menu).height(),
             $body = $('body').addClass('menu-bg'),
             screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-            dragging = false;
+            dragging = false,
+            belowFooter = false;
 
         var showMenu = function(){
             asideBlock.addClass("has-bg");
@@ -35,45 +34,42 @@
             sideBtn.addClass("closed").removeClass("expanded");
         };
 
-        var fixMenuHeight = function(){
+        var adjustMenuPosition = function(){
 
             var menuTop = $(menu).offset().top,
                 menuHeight = $(menu).height(),
                 bottomBarOffset = bottomBar.offset().top,
-                maxHeight =  bottomBarOffset - menuTop;
-
-            //lower menu height when scrolled to bottom
-            if (menuTop + menuHeight >= bottomBarOffset){
-                $(menu).css('max-height', maxHeight + 'px');
-            }
-            else {
-                if (menuHeight < initialMenuHeight){
-                    $(menu).css('max-height', bottomBarOffset - menuTop + 'px');
-                }
-                else {
-                    $(menu).css('max-height', '');
-                }
-            }
-        };
-
-        var adjustMenuPosition = function(){
+                windowScrollTop = $(window).scrollTop();
 
             //fix side menu position on scroll
-            if ($(window).scrollTop() > offset) {
-                if(asideBlock.height() > mainBlock.height() && screenWidth >= 1200) {
-                    asideBlock.parent().css("margin-bottom", asideBlock.height() - mainBlock.height());
-                }
+            if ((windowScrollTop > offset)) {
                 asideBlock.addClass("is-fixed");
+
             } else {
                 asideBlock.removeClass("is-fixed");
-                asideBlock.parent().css("margin-bottom", 0);
             }
 
-            if (screenWidth >= 1200 || (screenWidth < 1200 && !asideBlock.hasClass('is-fixed'))){
-                fixMenuHeight();
+            //set menu position to absolute when footer is reached
+            if (!belowFooter){
+                if ((menuTop + menuHeight >= bottomBarOffset)){
+                    belowFooter = true;
+                    menuWraper.css({
+                        'position': 'absolute',
+                        'top': $('.documentation').height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44,
+                        'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44,
+                        'width': 100 + '%'
+                    });
+                }
             }
-            else{
-                $(menu).css('max-height', '');
+
+            if (windowScrollTop <= menuWraper.offset().top){
+                belowFooter = false;
+                menuWraper.css({
+                    'position': '',
+                    'top': '',
+                    'width': '',
+                    'height': ''
+                });
             }
         };
 
@@ -90,7 +86,7 @@
 
                 if (w >= 1200){
                     showMenu();
-                    fixMenuHeight();
+                    //fixMenuHeight();
                 }
                 else {
                     if (screenWidth >= 1200)
@@ -102,19 +98,7 @@
 
             },
             scroll:function(){
-
                 adjustMenuPosition();
-
-                //highlight the appropriate menu item when scrolling
-                var winTop = $(window).scrollTop();
-
-                var top = $.grep($('.article'), function(item) {
-                    return $(item).offset().top >= winTop;
-                });
-
-                //$(menu).find('a').removeClass('current');
-                //$(menu).find("a[href='#" + $(top[0]).attr('id') + "']").addClass('current');
-
             }
         });
 

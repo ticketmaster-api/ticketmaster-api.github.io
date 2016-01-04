@@ -6,7 +6,7 @@
 @objects
     footer-container            css  #footer
     nav-blocks-footer-*         css  #footer > div.row.footer-nav > div > div
-    nav-item-heading-footer-*   css  #footer > div.row.footer-nav > div > div > h5
+    nav-item-heading-footer-*   css  #footer > div.row.footer-nav > div > div > a > h5
 
     nav-item-block-1-footer-*   css  #footer > div.row.footer-nav > div > div:nth-child(1) > ul > li > a
     nav-item-block-2-footer-*   css  #footer > div.row.footer-nav > div > div:nth-child(2) > ul > li > a
