@@ -292,6 +292,10 @@
       code,
       .code {
         word-break: break-all;
+
+        &:not(table){
+          word-break: normal;
+        }
       }
       /*.lead {
         margin-top: 0px;
