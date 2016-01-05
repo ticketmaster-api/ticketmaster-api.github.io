@@ -208,8 +208,36 @@ Raw html goes here (uses liquid variabled defined above)
 
 </div>
         <div class="col-xs-12 col-lg-6">
-            <blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/nicmcfarlanee">@nicmcfarlanee</a> Resale tickets are tickets posted by individuals who wish to sell them.</p>&mdash; Ticketmaster (@Ticketmaster) <a href="https://twitter.com/Ticketmaster/status/669885490229813248">26 Листопад 2015</a></blockquote>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <div id="timeline"></div>
+        <script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+        <script>
+            window.twttr = (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0],
+                        t = window.twttr || {};
+                if (d.getElementById(id)) return t;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+        
+                t._e = [];
+                t.ready = function(f) {
+                    t._e.push(f);
+                };
+        
+                return t;
+            }(document, "script", "twitter-wjs"));
+            
+            twttr.widgets.createTimeline(  
+                    '677152457621823488',
+                    document.getElementById('timeline'),
+                    {
+                        width: '550',
+                        height: '258',
+                        related: 'twitterdev,twitterapi'
+                    }).then(function (el) {        
+                });
+            </script>
         </div>
     </div>
 </div>
