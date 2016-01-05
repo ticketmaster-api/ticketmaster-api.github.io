@@ -292,11 +292,12 @@
       code,
       .code {
         word-break: break-all;
+      }
 
-        &:not(table){
+      table code {
           word-break: normal;
         }
-      }
+
       /*.lead {
         margin-top: 0px;
       }*/
