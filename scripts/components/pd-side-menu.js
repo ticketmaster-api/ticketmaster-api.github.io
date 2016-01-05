@@ -71,7 +71,7 @@
                     belowFooter = true;
                     menuWraper.addClass("below-footer").css({
                         'position': 'absolute',
-                        'top': $('.documentation').height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44,
+                        'top': $('.maincontent').parent().height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44,
                         'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44,
                         'width': 80 + '%'
                     });
