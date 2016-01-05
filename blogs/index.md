@@ -11,7 +11,7 @@ category: blogs
 {: .lead}
 Our tech blog posts about technical challenges at Ticketmaster and how we go about solving them.
 
-[GEEK OUT WITH US](/products-and-docs/apis/getting-started/){: .button.button-blue}
+[GEEK OUT WITH US](http://tech.ticketmaster.com){: .button.button-blue}
 
 {% endcapture %}
 
@@ -23,7 +23,7 @@ Our tech blog posts about technical challenges at Ticketmaster and how we go abo
 {: .right-lead}
 Get the scoop on events, tickets, and everything else going on in our wonderful world of live event ticketing on our company blog.
 
-[COME INSIDE](/products-and-docs/apis/getting-started/){: .button.button-blue}
+[COME INSIDE](http://insider.ticketmaster.com){: .button.button-blue}
 
 {% endcapture %}
 

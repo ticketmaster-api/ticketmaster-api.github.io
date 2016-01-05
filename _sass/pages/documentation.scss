@@ -134,6 +134,16 @@
           width: 95%;
           margin-left: auto;
           margin-right: auto;
+          &.lang-small + .tab-content {
+            pre {
+              max-height: 250px;
+            }
+          }
+          &.lang-medium + .tab-content {
+            pre {
+              max-height: 550px;
+            }
+          }
           p {
             text-align: center;
           }
