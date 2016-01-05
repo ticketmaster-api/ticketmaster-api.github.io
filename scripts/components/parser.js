@@ -52,12 +52,6 @@
                                 index = [index % (tabsCount + 1)]
                             }
                             return "tab-" + index;
-                        })
-                        .attr("id", function (index) {
-                            if (index > tabsCount) {
-                                index = [index % (tabsCount + 1)]
-                            }
-                            return "tab-" + index;
                         });
 
                     group.nextAll().first().addClass('tab-active');//set first tab visible
