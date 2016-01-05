@@ -4,7 +4,7 @@
     logo              css  #header-logo img
     nav-item-*        css  #menu a
     social            id   promo-social
-    twitter           css  .twitter-tweet
+    twitter           css  .twitter-timeline
     top-promo         id   top-promo
     main-header       css  #top-promo h1
     main-desc         css  #top-promo p
