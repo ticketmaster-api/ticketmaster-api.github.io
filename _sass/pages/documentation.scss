@@ -146,6 +146,33 @@
           }
         }
 
+        .tab-content {
+          pre {
+            overflow-x: auto;
+            code {
+              width: 980px;
+              display: block;
+            }
+          }
+        }
+
+        .noscroll + .tab-content {
+          pre {
+            overflow-x: hidden;
+            code {
+              width: auto;
+            }
+          }
+          + .tab-content {
+              pre {
+                overflow-x: hidden;
+                code {
+                  width: auto;
+                }
+              }
+          }
+        }
+
         .lang-selector {
           width: 95%;
           margin-left: auto;
