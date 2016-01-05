@@ -11,8 +11,8 @@
 
     .article-wrapper {
       width: 100%;
-      margin-top: $base-margin*2;
-      margin-bottom: $base-margin*2;
+      /*margin-top: $base-margin*2;
+      margin-bottom: $base-margin*2;*/
 
       &:not(:first-child) > *:first-child {
         margin-right: 45%;
@@ -36,7 +36,7 @@
       }
       /*apigee wrapper END*/
 
-      h1, h2, h3, h4, h5, h6,
+     /* h1, h2, h3, h4, h5, h6,
       p, ul, ol, aside, dl, figure {
         margin-bottom: $base-margin;
         margin-top: 0;
@@ -54,6 +54,22 @@
       }
       h4{
         margin-bottom: $base-margin - 8px;
+      }*/
+
+      h1 { margin: 96px 0px 24px 0px; }
+
+      h1 + h2 { margin: 24px 0px 0px 0px; }
+
+      h2 + h3 { margin: 24px 0px 0px 0px; }
+
+      h2 { margin: 72px 0px 0px 0px; }
+
+      h3 { margin: 48px 0px 0px 0px; }
+
+      h4, h5, h6 { margin: 24px 0px 0px 0px; }
+
+      p, ul, ol, aside, dl, figure, table, .reqres-wrapper {
+        margin: 24px 0px 0px 10px;
       }
 
       .small-margin{
@@ -225,7 +241,7 @@
       }
 
       .tab-panel-offset {
-        margin-top: -74px;
+        margin-top: -50px;
 
         @media #{$max-1200} {
           margin-top: 0;
