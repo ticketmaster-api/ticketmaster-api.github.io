@@ -180,7 +180,11 @@ body{
       @media (min-width: 1200px) {
         position: fixed;
         top: 0;
-        width: 21%;
+        width: 20%;
+        &:not(.below-footer){
+          left: inherit;
+          padding-left: inherit;
+        }
       }
     }
     @media #{$max-1200}{

@@ -34,6 +34,20 @@
             sideBtn.addClass("closed").removeClass("expanded");
         };
 
+        var scrollMenu = function(direction){
+            var scrollHeight = direction == "top" ? 0 : $(menu).height()*1.5;
+
+            // Disable user scrolling just before animating scrollTop
+            $(menu).disablescroll();
+
+            //start scrolling animation
+            $(menu).animate({
+                scrollTop: scrollHeight
+            }, 700, function(){
+                $(menu).disablescroll("undo");
+            });
+        };
+
         var adjustMenuPosition = function(){
 
             var menuTop = $(menu).offset().top,
@@ -43,8 +57,10 @@
 
             //fix side menu position on scroll
             if ((windowScrollTop > offset)) {
-                asideBlock.addClass("is-fixed");
-
+                if (!asideBlock.hasClass("is-fixed")){
+                    asideBlock.addClass("is-fixed");
+                    scrollMenu("top");
+                }
             } else {
                 asideBlock.removeClass("is-fixed");
             }
@@ -53,18 +69,19 @@
             if (!belowFooter){
                 if ((menuTop + menuHeight >= bottomBarOffset)){
                     belowFooter = true;
-                    menuWraper.css({
+                    menuWraper.addClass("below-footer").css({
                         'position': 'absolute',
                         'top': $('.documentation').height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44,
                         'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44,
-                        'width': 100 + '%'
+                        'width': 80 + '%'
                     });
+                    scrollMenu("bottom");
                 }
             }
 
             if (windowScrollTop <= menuWraper.offset().top){
                 belowFooter = false;
-                menuWraper.css({
+                menuWraper.removeClass("below-footer").css({
                     'position': '',
                     'top': '',
                     'width': '',
@@ -86,7 +103,6 @@
 
                 if (w >= 1200){
                     showMenu();
-                    //fixMenuHeight();
                 }
                 else {
                     if (screenWidth >= 1200)
