@@ -8,11 +8,11 @@ categories:
 #ANSWERS TO YOUR MOST BURNING QUESTIONS.
 
 {: .lead .double-margin-top}
-Hella narwhal Cosby sweater McSweeney's.
+No matter what question you have or help you need, we're here for you.
 
 {% capture left %}
 
-### More resources
+### Resources
 
 {: .link-inline }
 [Terms of Use](/support/terms-of-use/)
