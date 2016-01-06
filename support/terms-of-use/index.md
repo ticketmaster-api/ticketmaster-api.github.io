@@ -29,7 +29,7 @@ The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldw
 2.	Remove from your application within 24 hours any Event Content or other information or tickets that the owner asks you to remove.
 3.  Disclose in your application through a privacy policy or otherwise displayed in the footer of each page, how you collect, use, store, and disclose data collected from visitors, including, where applicable, that third parties (including advertisers) may serve content and/or advertisements and collect information directly from visitors and may place or recognize cookies on visitors' browsers.
 
-(: .body}
+{: .body}
 **You shall not:**
 
 {: .left-margin}
