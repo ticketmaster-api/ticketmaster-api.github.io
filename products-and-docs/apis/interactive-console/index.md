@@ -4,7 +4,19 @@ layout: interactive-console
 category: documentation
 ---
 
+{::comment}
+page title
+{:/comment}
+{% capture page_title %}
+
 # INTERACTIVE API CONSOLE
+
+{% endcapture %}
+
+{::comment}
+instructions list
+{:/comment}
+{% capture instructions_list %}
 
 ### Instructions
 
@@ -13,4 +25,43 @@ category: documentation
 3. Enter your API Key in the "value" field.
 4. Some calls require Oauth 2 authentication. You'll need to log in with your credentials to authenticate.
 
-<iframe src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 2em;"></iframe>
+{% endcapture %}
+
+{::comment}
+Get api key block text
+{:/comment}
+{% capture api_callout_text %}
+
+### LOREM IPSUM DOLER?
+
+Loram ipsum doler apsilon <br/> lorem ipsum doler
+
+{% endcapture %}
+
+{::comment}
+Get api button text
+{:/comment}
+{% capture api_callout_button_text %}
+
+GET YOUR API KEY
+
+{% endcapture %}
+
+{::comment}
+page layout goes here
+{:/comment}
+
+{{page_title}}
+
+<div id="console-instructions" markdown="1">
+{{instructions_list}}
+</div>
+
+<div id="get-key-callout">
+<div markdown="1">
+{{api_callout_text}}
+</div>
+<a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white">{{api_callout_button_text}}</a>
+</div>
+
+<iframe src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 3em;"></iframe>

@@ -10,7 +10,7 @@ layout: default
         <div class="row" style="position: relative;">
             <div class="col-xs-12 col-sm-5 col-lg-3 has-bg" id="aside-block">
                 <div class="wrapper-aside-menu">
-                    <h3 class="menu-header">
+                    <h3 class="menu-header" id="aside-heading">
                         Products &amp; Docs
                         <span class="expanded" id="side-menu-btn"></span>
                     </h3>
@@ -31,5 +31,6 @@ layout: default
 
 {% include home-footer.html %}
 
+<script src="{{"/scripts/vendors/user-scroll-disabler.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>

@@ -1,0 +1,24 @@
+#console-instructions{
+  ol{
+    list-style-position: inside;
+    li{
+      list-style: inherit;
+    }
+  }
+}
+
+#get-key-callout{
+  position: absolute;
+  top: 65px;
+  right: 0;
+  text-align: center;
+  border: 2px solid $border-color;
+  padding: 0 40px 25px;
+  @media #{$max-1200}{
+    display: none;
+  }
+  .tm-btn{
+    background-color: $blue;
+    color: $white;
+  }
+}

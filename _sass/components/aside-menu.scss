@@ -133,7 +133,6 @@ body{
   }
   .wrapper-aside-menu {
     @include transform-3d();
-    @include tm-transition();
     overflow: hidden;
     @media #{$max-1200}{
       position: relative;
@@ -175,13 +174,17 @@ body{
         max-height: 88%;
         overflow: auto;
         &>li:last-child {
-          margin-bottom: 8%;
+          margin-bottom: 15%;
         }
       }
       @media (min-width: 1200px) {
         position: fixed;
         top: 0;
-        width: 21%;
+        width: 20%;
+        &:not(.below-footer){
+          left: inherit;
+          padding-left: inherit;
+        }
       }
     }
     @media #{$max-1200}{
@@ -226,10 +229,12 @@ h3.menu-header {
   margin-top: 10px;
   position: relative;
   cursor: pointer;
+  font-size: $size-h3;
+  line-height: $line-height-h3;
 }
 
 .aside-menu {
-  width: 107%;
+  width: 109%;
   margin-top: 0;
   padding-top: $menu-top;
   display: block;
@@ -240,6 +245,12 @@ h3.menu-header {
   h4 {
     color: $n2-grey-color;
     margin-top: 0;
+    a {
+      font-family: "TMSans-Bold",Helvetica,Arial,sans-serif;
+      &.active {
+        color: $p1a;
+      }
+    }
   }
   &:first-child {
     margin-left: 0;

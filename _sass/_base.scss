@@ -347,8 +347,15 @@ pre {
 }
 
 .checked-td:after {
+  /*
   font-family: "fontawesome";
   content: "\f00c";
+  */
+  content: "";
+  display: inline-block;
+  width: 13.2px;
+  height: 9.9px;
+  background-image: url('/assets/img/ic-chekmark.svg');
   color: $apple-green;
 }
 

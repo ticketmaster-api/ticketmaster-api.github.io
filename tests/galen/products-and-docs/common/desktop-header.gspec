@@ -1,32 +1,31 @@
 @objects
     header                      css  .top-bar
     logo                        css  #header-logo img
-    nav-item-*                  css  #menu a
+    nav-item-pd-*               css  #menu a
 
 = Navigation test =
+    @on desktop
+        global:
+            count any nav-item-pd-* is 6
+
     @on desktop
         logo:
             visible
 
-    @on desktop
-        global:
-            count any nav-item-* is 6
-
-    @on desktop
-        nav-item-1:
+        nav-item-pd-1:
             text is "PRODUCTS & DOCS"
-            aligned horizontally all nav-item-2
-        nav-item-2:
+            aligned horizontally all nav-item-pd-2
+        nav-item-pd-2:
             text is "PARTNERS"
-            aligned horizontally all nav-item-3
-        nav-item-3:
+            aligned horizontally all nav-item-pd-3
+        nav-item-pd-3:
             text is "SUPPORT"
-            aligned horizontally all nav-item-4
-        nav-item-4:
+            aligned horizontally all nav-item-pd-4
+        nav-item-pd-4:
             text is "BLOGS"
-            aligned horizontally all nav-item-5
-        nav-item-5:
+            aligned horizontally all nav-item-pd-5
+        nav-item-pd-5:
             text is "EVENTS"
-            aligned horizontally all nav-item-6
-        nav-item-6:
+            aligned horizontally all nav-item-pd-6
+        nav-item-pd-6:
             text is "OPEN SOURCE"

@@ -1,7 +1,12 @@
 .documentation {
   .content {
+    &:last-child {
+      margin-bottom: $base-margin;
+    }
+
     hr {
       margin-bottom: $base-margin;
+      margin-top: $base-margin;
 
       &.aside{
         border: 0;
@@ -11,12 +16,15 @@
 
     .article-wrapper {
       width: 100%;
-      margin-top: $base-margin*2;
-      margin-bottom: $base-margin*2;
 
       &:not(:first-child) > *:first-child {
         margin-right: 45%;
+
+        @media #{$max-1200} {
+          margin-right: 0;
+        }
       }
+
 
       /*apigee wrapper*/
       .iframe-wrapper {
@@ -36,25 +44,33 @@
       }
       /*apigee wrapper END*/
 
-      h1, h2, h3, h4, h5, h6,
-      p, ul, ol, aside, dl, figure {
-        margin-bottom: $base-margin;
-        margin-top: 0;
+      h1 {
+        margin: 96px 0px 24px 0px;
 
-        @media #{$max-768} {
-          width: 100%;
+        &:first-child {
+          margin-top: 0;
+
+          @media #{$max-1200} {
+            margin-top: $base-margin;
+          }
         }
       }
 
-      h1 {
-        text-transform: uppercase;
+      h1 + h2 { margin: $base-margin 0px 0px 0px; }
+
+      h2 + h3 { margin: $base-margin 0px 0px 0px; }
+
+      h2 { margin: $base-margin*3 0px 0px 0px; }
+
+      h3 { margin: $base-margin*2 0px 0px 0px; }
+
+      h4, h5, h6 { margin: $base-margin 0px 0px 0px; }
+
+      p, ul, ol, dl, figure, .table-wrapper, .reqres-wrapper {
+        margin: $base-margin 0px 0px 0px;
       }
-      h3{
-        margin-top: $base-margin*2;
-      }
-      h4{
-        margin-bottom: $base-margin - 8px;
-      }
+      .v-button { margin: $base-margin 0px $base-margin 0px; }
+      .v-description { margin: 0px 0px 0px 0px; }
 
       .small-margin{
         margin-top: $base-margin / 3;
@@ -84,7 +100,6 @@
 
       pre {
         @media #{$max-768} {
-          margin: $base-margin -15px;
           padding: 15px;
         }
       }
@@ -92,9 +107,11 @@
       .table-wrapper {
         overflow-x: auto;
         overflow-y: hidden;
-        margin-bottom: $base-margin;
+        border: 1px solid $table-body-border;
+        border-collapse: collapse;
       }
       table {
+        border: none;
         width: 100%;
       }
 
@@ -124,12 +141,64 @@
           p {
             margin-top: 0;
           }
+
+          @media #{$max-1200} {
+            margin-top: $base-margin;
+          }
+        }
+
+        .tab-content {
+          width: 100%;
+          display: none;
+
+          pre {
+            overflow-x: auto;
+            margin-bottom: 0;
+            code {
+              width: 980px;
+              display: block;
+            }
+          }
+        }
+
+        .noscroll + .tab-content {
+          pre {
+            overflow-x: hidden;
+            code {
+              width: auto;
+            }
+          }
+          + .tab-content {
+              pre {
+                overflow-x: hidden;
+                code {
+                  width: auto;
+                }
+              }
+          }
+        }
+
+        .tab-active {
+          display: block;
+        }
+        .tab-hide {
+          display: none;
         }
 
         .lang-selector {
           width: 95%;
           margin-left: auto;
           margin-right: auto;
+          &.lang-small + .tab-content {
+            pre {
+              max-height: 250px;
+            }
+          }
+          &.lang-medium + .tab-content {
+            pre {
+              max-height: 550px;
+            }
+          }
           p {
             text-align: center;
           }
@@ -169,17 +238,6 @@
           }
         }
 
-        .tab-content {
-          width: 100%;
-          display: none;
-        }
-        .tab-active {
-          display: block;
-        }
-        .tab-hide {
-          display: none;
-        }
-
         @media #{$max-1200} {
           width: 100%;
           float: inherit;
@@ -211,7 +269,7 @@
       }
 
       .tab-panel-offset {
-        margin-top: -74px;
+        margin-top: -50px;
 
         @media #{$max-1200} {
           margin-top: 0;
@@ -232,12 +290,18 @@
         color: $secondary-color1;
       }
 
-      .pull-quote {
+      code,
+      .code {
         word-break: break-all;
       }
-      .lead {
+
+      table code {
+          word-break: normal;
+        }
+
+      /*.lead {
         margin-top: 0px;
-      }
+      }*/
 
       .button {
         border: 2px solid $n3;
@@ -316,10 +380,13 @@
 }
 
 .documentation .content .article-wrapper .reqres-wrapper blockquote p {
+  margin-top: 0;
   margin-bottom: 0;
 }
 
 .reqres-wrapper {
+  /*margin-bottom: $base-margin;*/
+
   .highlight {
     border: 2px solid #f1f5f7;
     margin: 0;
@@ -365,7 +432,7 @@
         margin-left: 22px;
         margin-right: -8px;
         @media (max-width: 767px) {
-          margin-left: 15px;
+          margin-left: 0;
         }
       }
       &:focus,

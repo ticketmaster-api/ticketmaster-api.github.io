@@ -7,6 +7,7 @@ h1 {
   @media (max-width: 767px){
     font-size:$size-h3;
     line-height: $line-height-h3;
+    padding: 0;
   }
 }
 h2 {
@@ -107,6 +108,7 @@ b,strong {
   line-height: $line-height-pull-q;
   b,strong {
     color: $p1c;
+    font-family: $font-pull-q;
   }
 }
 

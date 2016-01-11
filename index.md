@@ -86,9 +86,9 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 
 Are you an existing partner looking for current developer resources? Look no further!
 
-* [Sign in](https://live-livenation.devportal.apigee.com/user/login)
-* [Commerce API](http://live-livenation.devportal.apigee.com/apis/commerce)
-* [Legacy docs](http://live-livenation.devportal.apigee.com/apis)
+* [Sign in](https://dev-livenation.devportal.apigee.com/user/login)
+* [Commerce API](http://dev-livenation.devportal.apigee.com/apis/commerce)
+* [Legacy docs](http://dev-livenation.devportal.apigee.com/apis)
 {% endcapture %}
 
 {% capture column4_asset %}
@@ -119,7 +119,8 @@ Raw html goes here (uses liquid variabled defined above)
 {{top_promo_desc}}
 </div>
 <div class="col-xs-12 button-block">
-    <a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
+    <a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
+    <a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent rightarrow">REVIEW DOCUMENTATION</a>
     <a href="{{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE INTERACTIVE DOCS</a>
 </div>
         </div>
@@ -208,8 +209,19 @@ Raw html goes here (uses liquid variabled defined above)
 
 </div>
         <div class="col-xs-12 col-lg-6">
-            <blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/nicmcfarlanee">@nicmcfarlanee</a> Resale tickets are tickets posted by individuals who wish to sell them.</p>&mdash; Ticketmaster (@Ticketmaster) <a href="https://twitter.com/Ticketmaster/status/669885490229813248">26 Листопад 2015</a></blockquote>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <div id="timeline"></div>
+        <script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+        <script>                      
+            twttr.widgets.createTimeline(  
+                    '677152457621823488',
+                    document.getElementById('timeline'),
+                    {
+                        width: '550',
+                        height: '420',
+                        related: 'twitterdev,twitterapi'
+                    }).then(function (el) {        
+                });
+            </script>
         </div>
     </div>
 </div>

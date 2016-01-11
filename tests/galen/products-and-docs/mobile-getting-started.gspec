@@ -1,5 +1,6 @@
 @import common/vars.gspec
 @import common/mobile-header.gspec
+@import common/footer-mobile.gspec
 
 @objects
     heading-h1 css #getting-started

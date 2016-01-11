@@ -1,6 +1,6 @@
 <ul class="aside-menu" id="scrollable-element">
     <li>
-        <h4>APIs</h4>
+        <h4><a href="/products-and-docs/apis/getting-started/">APIs</a></h4>
         <ul class="categories">
             <li><a href="/products-and-docs/apis/getting-started/">Getting Started</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
@@ -33,15 +33,24 @@
                 </ul>
                 {% endif %}
             </li>
-            <li><a href="/products-and-docs/apis/partner/">Partner-App API</a>
+            <li><a href="/products-and-docs/apis/partner/">Partner API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "partner" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#event-details">Group Event Details</a></li>
-                    <li><a href="#inventory-management">Group Inventory Management</a></li>
-                    <li><a href="#ticket-reservation">Group Ticket reservation and purchasing</a></li>
-                    <li><a href="#order-mangement">Group Order Management</a></li>
-                    <li><a href="#polling">Group Polling</a></li>
+                    <li><a href="#event-details">Retrieve Event Details</a></li>
+                    <li><a href="#inventory-management">Event Availability</a></li>
+                    <li><a href="#ticket-availability">Ticket Availability</a></li>
+                    <li><a href="#retrieve-event">Retrieve an Event</a></li>
+                    <li><a href="#ticket-reservation">Get captcha page</a></li>
+                    <li><a href="#post-captcha">Post captcha solution</a></li>
+                    <li><a href="#reserve-tickets">Reserve tickets and create a Cart</a></li>
+                    <li><a href="#encrypt-cert">Encryption Certificate</a></li>
+                    <li><a href="#post-card">Post credit card information</a></li>
+                    <li><a href="#purchase-tickets">Purchase Tickets</a></li>
+                    <li><a href="#delete-cart">Delete a Cart</a></li>
+                    <li><a href="#order-mangement">Unredeemed orders</a></li>
+                    <li><a href="#unredeemed-orders">Unredeemed orders</a></li>
+                    <li><a href="#polling">Poll</a></li>
                     <li><a href="#error-responses">Group Error Responses</a></li>
                     <li><a href="#examples">Group Examples</a></li>
                     <li><a href="#versions">Group Versions</a></li>
@@ -50,11 +59,24 @@
                 {% endif %}
             </li>
             
+            <li><a href="/products-and-docs/apis/deals-api/">Deals API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "deals-api" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#group-ticket-deals">Group Ticket Deals</a></li>
+                    <li><a href="#search-for-events-with-deals-dealsevents">Search for Events with Deals</a></li>
+                    <li><a href="#search-for-events-with-a-specified-deal-dealsdealevents">Search for Events with a Specified Deal</a></li>
+                    <li><a href="#group-error-responses">Group Error Responses</a></li>
+                    <li><a href="#group-appendix-market-ids">Group Appendix: Market IDs</a></li>
+                </ul>
+                {% endif %}
+            </li>
+
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>
         </ul>
     </li>
     <li>
-        <h4>SDKs</h4>
+        <h4><a href="/products-and-docs/sdks/" {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %} class="active" {% endif %} >SDKs</a></h4>
         <!--<ul class="categories">
             <li><a href="/products-and-docs/under-development/">Getting Started</a></li>
             <li><a href="/products-and-docs/under-development/">Installation instruction</a></li>
@@ -63,7 +85,7 @@
         </ul>-->
     </li>
     <li>
-        <h4>Wigets</h4>
+        <h4><a href="/products-and-docs/widgets/" {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %} class="active" {% endif %} >Widgets</a></h4>
         <!--<ul class="categories">
             <li><a href="/products-and-docs/under-development/">Getting started</a></li>
             <li><a href="/products-and-docs/under-development/">Configuration Docs</a></li>
