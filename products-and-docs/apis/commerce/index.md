@@ -9,7 +9,7 @@ categories:
 #Commerce REST API
 {: .article}
 
-Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive barcode and ticket information. Ticket inventory for each event must be established beforehand with Ticketmaster, venues, and ticketing partners. Only this held inventory will be made available through the API. All events are U.S. only.
+Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive barcode and ticket information. Ticket inventory for each event must be established beforehand with Ticketmaster, venues, and ticketing partners. Only this held inventory will be made available through the API.
 {: .article .lead}
 
 ####Developer Console
@@ -42,44 +42,28 @@ commerce/{version}/events/{id}/offers.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight HTTP %}
 GET /commerce/v2/events/05004F24E0B864B3/offers.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight HTTP %}
 HTTP/1.1 200 OK
-Content-Length:
-8333
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-X-TM-SESSION-BID:
-commerce-offering
-Server:
-Apache-Coyote/1.1
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Sat, 05 Dec 2015 13:18:15 GMT
-Access-Control-Allow-Origin:
-*
-X-TM-SESSION-SID:
-1A007CBEA4E8A92DBF44801E2124FAB4
-Content-Type:
-application/json;charset=UTF-8
-X-Application-Context:
-commerce-api-commerce-offering:default,jphx1:8080
-Set-Cookie:
-****
+Content-Length: 8333
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+X-TM-SESSION-BID: commerce-offering
+Server: Apache-Coyote/1.1
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Sat, 05 Dec 2015 13:18:15 GMT
+Access-Control-Allow-Origin: *
+X-TM-SESSION-SID: 1A007CBEA4E8A92DBF44801E2124FAB4
+Content-Type: application/json;charset=UTF-8
+X-Application-Context: commerce-api-commerce-offering:default,jphx1:8080
+Set-Cookie: ****
 
 {
   "limits":  {

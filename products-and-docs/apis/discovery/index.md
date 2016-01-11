@@ -61,40 +61,26 @@ discovery/{version}/events.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/events.json?apikey=****&size=1 HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight http %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 01 Dec 2015 11:48:01 GMT
-Content-Length:
-4174
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson4
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 11:48:01 GMT
+Content-Length: 4174
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson4
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "_links":  {
@@ -326,40 +312,26 @@ discovery/{version}/events/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/events/15004F83A3383A3E.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight http %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 15 Dec 2015 13:43:46 GMT
-Content-Length:
-3485
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson1
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 15 Dec 2015 13:43:46 GMT
+Content-Length: 3485
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "name": "Aquarium Admission",
@@ -543,50 +515,31 @@ discovery/{version}/events/{id}/images.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/events/0B004F0401BD55E5/images.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight http %}
 HTTP/1.1 200 OK
-Content-Length:
-1789
-Expires:
-Tue, 01 Dec 2015 12:53:10 GMT
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Cache-Control:
-max-age=0, no-cache, no-store
-Pragma:
-no-cache
-X-Varnish:
-1715762
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Tue, 01 Dec 2015 12:53:10 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-content-content-runtime-service:jash1,default:8080
-Content-Type:
-application/json;charset=UTF-8
-Accept-Ranges:
-bytes
-Set-Cookie:
-****
+Content-Length: 1789
+Expires: Tue, 01 Dec 2015 12:53:10 GMT
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Cache-Control: max-age=0, no-cache, no-store
+Pragma: no-cache
+X-Varnish: 1715762
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Tue, 01 Dec 2015 12:53:10 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: content-content-runtime-service:jash1,default:8080
+Content-Type: application/json;charset=UTF-8
+Accept-Ranges: bytes
+Set-Cookie: ****
 
 {
   "type": "event",
@@ -731,40 +684,26 @@ discovery/{version}/attractions.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/attractions.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight http %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 01 Dec 2015 12:55:01 GMT
-Content-Length:
-7606
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson4
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 12:55:01 GMT
+Content-Length: 7606
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson4
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "_links":  {
@@ -1096,40 +1035,26 @@ discovery/{version}/attractions/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/attractions/768011.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight http %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 01 Dec 2015 12:58:55 GMT
-Content-Length:
-445
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson4
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 12:58:55 GMT
+Content-Length: 445
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson4
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "url": "/Madonna-tickets/artist/768011",
@@ -1210,40 +1135,26 @@ discovery/{version}/categories.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/categories.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
 {% highlight js %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 01 Dec 2015 13:02:18 GMT
-Content-Length:
-8336
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson4
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:02:18 GMT
+Content-Length: 8336
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson4
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "_links":  {
@@ -1634,40 +1545,26 @@ discovery/{version}/categories/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/categories/203.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight http %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 01 Dec 2015 13:03:29 GMT
-Content-Length:
-568
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson1
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:03:29 GMT
+Content-Length: 568
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "name": "Classical",
@@ -1748,40 +1645,26 @@ discovery/{version}/venues.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/venues.json?apikey=****&keyword=UCV HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-http://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: http://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight http %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 01 Dec 2015 13:04:50 GMT
-Content-Length:
-1646
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson1
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:04:50 GMT
+Content-Length: 1646
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "_links":  {
@@ -1921,40 +1804,26 @@ discovery/{version}/venues/{id}.{format}
 >[Response](#res)
 {: .reqres}
 
-{% highlight js %}
+{% highlight http %}
 GET /discovery/v1/venues/90150.json?apikey=**** HTTP/1.1
-Host:
-app.ticketmaster.com
-X-Target-URI:
-https://app.ticketmaster.com
-Connection:
-Keep-Alive
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 {% endhighlight %}
 
 {% highlight js %}
 HTTP/1.1 200 OK
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Access-Control-Allow-Origin:
-*
-Date:
-Tue, 01 Dec 2015 13:07:04 GMT
-Content-Length:
-641
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-X-Application-Context:
-application:default,jetson1
-Connection:
-keep-alive
-Content-Type:
-application/json;charset=utf-8
-Server:
-Apache-Coyote/1.1
-Set-Cookie:
-****
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:07:04 GMT
+Content-Length: 641
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
 
 {
   "name": "Hollywood Bowl",

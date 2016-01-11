@@ -180,7 +180,11 @@ body{
       @media (min-width: 1200px) {
         position: fixed;
         top: 0;
-        width: 21%;
+        width: 20%;
+        &:not(.below-footer){
+          left: inherit;
+          padding-left: inherit;
+        }
       }
     }
     @media #{$max-1200}{
@@ -230,7 +234,7 @@ h3.menu-header {
 }
 
 .aside-menu {
-  width: 107%;
+  width: 109%;
   margin-top: 0;
   padding-top: $menu-top;
   display: block;

@@ -6,7 +6,7 @@ categories:
 ---
 
 {: .article}
-# Ticketmaster Partner-App API
+# Partner API
 
 The Ticketmaster Partner-App API lets users purchase tickets through your app's native experience. Users will receive an email with a link to ticketmaster.com or our mobile app to redeem tickets.
 

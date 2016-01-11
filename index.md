@@ -86,9 +86,9 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 
 Are you an existing partner looking for current developer resources? Look no further!
 
-* [Sign in](https://live-livenation.devportal.apigee.com/user/login)
-* [Commerce API](http://live-livenation.devportal.apigee.com/apis/commerce)
-* [Legacy docs](http://live-livenation.devportal.apigee.com/apis)
+* [Sign in](https://dev-livenation.devportal.apigee.com/user/login)
+* [Commerce API](http://dev-livenation.devportal.apigee.com/apis/commerce)
+* [Legacy docs](http://dev-livenation.devportal.apigee.com/apis)
 {% endcapture %}
 
 {% capture column4_asset %}
@@ -119,7 +119,7 @@ Raw html goes here (uses liquid variabled defined above)
 {{top_promo_desc}}
 </div>
 <div class="col-xs-12 button-block">
-    <a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
+    <a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE INTERACTIVE DOCS</a>
 </div>
         </div>
