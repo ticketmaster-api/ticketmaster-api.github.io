@@ -70,3 +70,44 @@
     display: none;
   }
 }
+
+.noupper {
+  text-transform: none;
+}
+.grey-box {
+  width: 847px;
+  padding: 46px 46px 26px 46px;
+  background: #f1f4f6;
+  margin-top: 75px;
+  h3 {
+    margin-top: 0;
+  }
+  &.android {
+    background-color: #f1f4f6;
+    background-image: url('/assets/img/products-and-docs/android-mock-i-o-s-mock.png');
+    background-position: 523px bottom;
+    background-repeat: no-repeat;
+  }
+  &.mask {
+    background-color: #f1f4f6;
+    background-image: url('/assets/img/products-and-docs/mask-bitmap.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 70px;
+  }
+  .button-grey, .button-blue {
+    margin-top: 27px;
+  }
+}
+
+.content {
+  .button-grey,
+  .button-grey:hover,
+  .button-grey:focus {
+    color: #fff;
+    background: #d8dee1;
+    text-decoration: none;
+    padding: 12px 26px;
+    cursor: default;
+  }
+}
