@@ -216,7 +216,7 @@ Raw html goes here (uses liquid variabled defined above)
                     document.getElementById('timeline'),
                     {
                         width: '550',
-                        height: '258',
+                        height: '420',
                         related: 'twitterdev,twitterapi'
                     }).then(function (el) {        
                 });
