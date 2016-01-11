@@ -9,25 +9,27 @@ categories:
 # Ticketmaster Distributed Commerce Content API
 
 Use the Ticketmaster Distributed Commerce Content API to find content that is interesting to your audience.
+{: .lead}
 
-#### Authentication
+##Overview
+
+### Authentication
 Clients will be provided an API key from Ticketmaster which should be tagged to the end of every resource endpoint call. 
 
 Example `https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=YourApiKey`
 
-
-#### Best Practices
+### Best Practices
 Clients should expect that new attributes may be added at any time.  However, attributes will not be removed or changed without notice.
+{: .body}
 
+### Host and API endpoint information
+Production Base URL: `https://app.ticketmaster.com/dc/content/`
 
-#### Host and API endpoint information
-Production Base URL: https://app.ticketmaster.com/dc/content/
+QA Base URL: `https://app.ticketmaster.com/dc/content-qa/`
 
-QA Base URL: https://app.ticketmaster.com/dc/content-qa/
+All connections must be made over **SSL** using https.
 
-All connections must be made over SSL using https.
-
-#### Contact
+### Contact
 Ticketmaster Distributed Commerce team <a href="mailto:developer@ticketmaster.com">developer@ticketmaster.com</a>
 
 {: .article}
@@ -36,34 +38,43 @@ Ticketmaster Distributed Commerce team <a href="mailto:developer@ticketmaster.co
 ### Example Requests
 
 Find events with deals that are exclusive to the affiliate audience to me as an affiliate in the California area:
-+ https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqDJiPQwQWqMAQuWtD&state=CA&exclusivities=EXCLUSIVE
+
+https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqDJiPQwQWqMAQuWtD&state=CA&exclusivities=EXCLUSIVE
+{: .code .red}
+---
 
 Find events with deals in the Greater Los Angeles market area:
-+ https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqDJiPQwQWqMAQuWtD&marketIds=27
+
+https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqDJiPQwQWqMAQuWtD&marketIds=27
+{: .code .red}
+---
 
 Find events within 2 miles of Hollywood, CA that have deals:
-+ https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqDJiPQwQWqMAQuWtD&radius=2&radiusUnit=miles&latitude=34.101279&longitude=-118.343552
+
+https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqDJiPQwQWqMAQuWtD&radius=2&radiusUnit=miles&latitude=34.101279&longitude=-118.343552
+{: .code .red}
+---
 
 ## Search for Events with Deals [/deals/events]
 
-+ Parameters
-    + exclusivities (Array[string], optional) ... Default is "EXCLUSIVE,NONEXCLUSIVE".  Allowable values: EXCLUSIVE, NONEXCLUSIVE
-    + marketIds (optional Array[number]) ...  Default is null.  See Appendix: Market Ids for values.
-    + startRow (optional number) ... Paging start row.  Default is 0.
-    + rows (optional number) ... Paging page size.  Default is 25.  Maximum allowed value is 500.
-    + country (optional string) ... Search country code.  Default is 'US'
-    + city (optional string) ... Search city.  Default is null.
-    + state (optional string) ... Search state.  Default is null.
-    + latitude (optional number) ... Search location, required if longitude is sent.  Default is null.
-    + longitude (optional number) ... Search location, required if latitude is sent.  Default is null.
-    + radius (optional number) ... Search location distance from lat/long radius, Default is 10.
-    + radiusUnit (optional string) ... Search location radius unit of measurement, Default is 'kilometers'.  Allowable values: miles, kilometers
-    + majorGenreId (optional number) ... Search for events with the specified major genre.
-    + minorGenreId (optional number) ... Search for events with the specified minor genre.
-    + venueId (optional number) ... Search for events at the specified venue.
-    + attractionId (optional number) ... Search for events with the specified attraction/artist.
-    + timeRangeStart (optional string) ... Search for events starting at or after the time specified. (ISO 8601 Date Time Format. Ex: 2001-07-18T00:00:00Z)
-    + timeRangeEnd (optional string) ... Search for events starting before the time specified. (ISO 8601 Date Time Format. Ex: 2001-07-18T00:00:00Z)
++ **Parameters:**
+    + **exclusivities** (optional `Array[string]`) ... Default is `"EXCLUSIVE,NONEXCLUSIVE"`.  Allowable values: `EXCLUSIVE`, `NONEXCLUSIVE`
+    + **marketIds** (optional `Array[number]`) ...  Default is null.  See Appendix: Market Ids for values.
+    + **startRow** (optional `number`) ... Paging start row.  Default is `0`.
+    + **rows** (optional `number`) ... Paging page size.  Default is `25`.  Maximum allowed value is `500`.
+    + **country** (optional `string`) ... Search country code.  Default is `'US'`
+    + **city** (optional `string`) ... Search city.  Default is `null`.
+    + **state** (optional `string`) ... Search state.  Default is `null`.
+    + **latitude** (optional `number`) ... Search location, required if longitude is sent.  Default is `null`.
+    + **longitude** (optional `number`) ... Search location, required if latitude is sent.  Default is `null`.
+    + **radius** (optional `number`) ... Search location distance from lat/long radius, Default is `10`.
+    + **radiusUnit** (optional `string`) ... Search location radius unit of measurement, Default is `'kilometers'`.  Allowable values: `miles`, `kilometers`
+    + **majorGenreId** (optional `number`) ... Search for events with the specified `major genre`.
+    + **minorGenreId** (optional `number`) ... Search for events with the specified `minor genre`.
+    + **venueId** (optional `number`) ... Search for events at the specified `venue`.
+    + **attractionId** (optional `number`) ... Search for events with the specified `attraction/artist`.
+    + **timeRangeStart** (optional `string`) ... Search for events starting at or after the time specified. (ISO 8601 Date Time Format. Ex: `2001-07-18T00:00:00Z`)
+    + **timeRangeEnd** (optional `string`) ... Search for events starting before the time specified. (ISO 8601 Date Time Format. Ex: `2001-07-18T00:00:00Z`)
 
 
 ### Search for Events with Deals [GET]
@@ -151,19 +162,21 @@ Find events that have a particular promotional deal associated with them.
 + Request
 + Response 200 (application/json)
 {
-    //this API returns the same format as the /deals/events endpoint above.
+    //this API returns the same format as the `/deals/events` endpoint above.
 }
 
 ## Group Error Responses
 API-side errors will generate a json-formatted response body as well as standard HTTP status codes.
+{: .body}
 
-Example:
-```js
+**Example:**
+
+{% highlight js %}
 {
   "message": "Maximum allowed rows exceeded.", // The error message
   "statusCode": 400  // HTTP Status Code
 }
-```
+{% endhighlight %}
 
 The following status codes will be used by this API
 
@@ -181,7 +194,7 @@ The following status codes will be used by this API
 
 ## Group Appendix: Market IDs
 
-Market Ids
+**Market Ids**
 
 | Market Id | Market Name                                  | Country Name             | Country Code|
 |-----------|----------------------------------------------|--------------------------|--------|
