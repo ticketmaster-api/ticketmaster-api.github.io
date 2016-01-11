@@ -1,0 +1,33 @@
+##
+#galen check tests/galen/blog/desktop-header.gspec --url localhost:4000/blogs --size 1229x1024 --htmlreport tests/galen/reports/desktop
+##
+
+@set
+    white "rgba(255, 255, 255, 1)"
+    whiteDisabled "rgba(255, 255, 255, 0.7)"
+
+@objects
+    body-wrapper                css  .top-bar
+    menu-wrapper                css  div.body-wrapper
+    header-menu                 css  #menu
+    logo                        css  #header-logo img
+    search-button               css  #search
+    nav-item-*                  css  #menu a
+
+= Blogs page footer at the bottom of the page =
+    @on tablet
+        global:
+            count any table-dataset-th-* is 2
+            count any table-dataset-tr-* is 6
+
+    @on tablet
+            table-dataset-th-1:
+                text is "Dataset"
+                aligned horizontally all table-dataset-th-2
+
+
+=Blogs page footer consist of six columns with blue titles=
+    @on tablet
+        header-main:
+            css font-size is "54px"
+            css font-family contains "InterstateWGL-Black"
