@@ -1,8 +1,9 @@
 #console-instructions{
   ol{
-    list-style-position: inside;
+    margin-left: 20px;
     li{
       list-style: inherit;
+      padding-left: 0.5em;
     }
   }
 }
@@ -13,12 +14,15 @@
   right: 0;
   text-align: center;
   border: 2px solid $border-color;
-  padding: 0 40px 25px;
+  padding: 5px 30px 30px;
   @media #{$max-1200}{
     display: none;
   }
+  h3{
+    color: $blue;
+  }
   .tm-btn{
-    background-color: $blue;
-    color: $white;
+    color: $n3;
+    border: 2px solid $n3;
   }
 }
