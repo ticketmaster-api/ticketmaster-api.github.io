@@ -53,6 +53,17 @@
     margin: 37px 0 49px;
     @media #{$max-1200}{
       margin: 37px 0 3px;
+      .tm-btn-white{
+        vertical-align: super;
+      }
+      .tm-btn-transparent {
+        padding: 23px 15px 23px;
+        width: 198px;
+        text-align: center;
+        &.rightarrow:after{
+          top: 38px !important;
+        }
+      }
     }
     @media #{$max-768} {
       margin: 54px 0 -9px;
