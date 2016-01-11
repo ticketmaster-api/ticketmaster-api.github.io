@@ -7,18 +7,28 @@ categories:
 
 #Discovery REST API
 
-Description of API for discovery service. This API allows to work with events, attractions, categories and venues.
+Use the Discovery API to discovery, search and look up events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.
 {: .lead .article}
-
-For work with API you should add to query string the __apikey__ parameter with your key.
-{: .pull-quote}
 
 ####Developer Console
 {: .aside .gray}
 
-Test this endpoint right now in the interactive docs:
+Make live API calls right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
+
+## Overview
+{: #overview }
+
+### Authentication
+
+To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
+
+Example: `https://app.ticketmaster.com/discovery/v1/events.json?apikey=3QIvq55bS608ai6r8moig1WdW57bONry`
+
+### Root URL
+
+`https://app.ticketmaster.com/discovery/{API version}`
 
 
 ##Search Events
