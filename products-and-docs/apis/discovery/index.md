@@ -1894,7 +1894,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
 
 
 ## Supported Markets
-{: #supported-markets}
+{: .article #supported-markets}
 
 #### USA
 
@@ -2024,7 +2024,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
 
 
 ## Supported Domains
-{: #supported-domains}
+{: .article #supported-domains}
 
 | Domain				                         | 
 | :----------------------------------------------|
@@ -2036,7 +2036,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
 | livenation.com		                         |
 
 ## Supported Sources
-{: #supported-sources}
+{: .article #supported-sources}
 
 | Source	|
 |:----------|
@@ -2046,7 +2046,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
 
 
 ## Available Locales
-{: #supported-locales}
+{: .article #supported-locales}
 
 | Locale	|
 |:----------|
