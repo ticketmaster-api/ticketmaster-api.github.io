@@ -245,6 +245,12 @@ h3.menu-header {
   h4 {
     color: $n2-grey-color;
     margin-top: 0;
+    a {
+      font-family: "TMSans-Bold",Helvetica,Arial,sans-serif;
+      &.active {
+        color: $p1a;
+      }
+    }
   }
   &:first-child {
     margin-left: 0;
