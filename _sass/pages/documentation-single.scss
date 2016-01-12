@@ -107,6 +107,11 @@
     background-image: url('/assets/img/products-and-docs/android-mock-i-o-s-mock.png');
     background-position: 523px bottom;
     background-repeat: no-repeat;
+    .body+p {
+      @media #{$max-768} {
+        text-align: center;
+      }
+    }
   }
   &.mask {
     background-color: #f1f4f6;
