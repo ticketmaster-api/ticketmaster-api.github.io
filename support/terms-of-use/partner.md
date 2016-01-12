@@ -13,11 +13,11 @@ Your license to the Ticketmaster API under these terms continues until it is ter
 
 ##1. Licensed Uses and Restrictions.
 
-The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldwide (except as limited below), non-exclusive, non-sublicenseable, non-transferable basis on the terms and conditions set forth herein. These terms define legal use of the Ticketmaster API, including all ticket purchases, updates, revisions, substitutions, and any copies of the Ticketmaster API made by or for you. Ticketmaster content (event name, dates, times, venue name, and additional information such as Tickets, Attendees, Orders ("Event Content") are owned by the organizers and/or Ticketmaster.  Any purchase of tickets through the Ticketmaster API will be governed by Ticketmaster’s Terms of Use, located at [www.ticketmaster.com](www.ticketmaster.com).  All rights not expressly granted to you are reserved by Ticketmaster.
+The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldwide (except as limited below), non-exclusive, non-sublicenseable, non-transferable basis on the terms and conditions set forth herein. These terms define legal use of the Ticketmaster API, including all ticket purchases, updates, revisions, substitutions, and any copies of the Ticketmaster API made by or for you. Ticketmaster content (event name, dates, times, venue name, and additional information such as Tickets, Attendees, Orders ("Event Content") are owned by the organizers and/or Ticketmaster.  Any purchase of tickets through the Ticketmaster API will be governed by Ticketmaster’s Terms of Use, located at [www.ticketmaster.com](http://www.google.com/url?q=http%3A%2F%2Fwww.ticketmaster.com&sa=D&sntz=1&usg=AFQjCNH8v-CbrAax_P1HJVCteCLcHbQdZw).  All rights not expressly granted to you are reserved by Ticketmaster.
 
 **You shall:**
 
-1.     Comply with the Ticketmaster Terms of Use at [www.ticketmaster.com](www.ticketmaster.com).
+1.     Comply with the Ticketmaster Terms of Use at [www.ticketmaster.com](http://www.ticketmaster.com).
 2.     Remove from your application within 24 hours any Event Content or other information or tickets that the owner asks you to remove.
 3.     Disclose in your application through a privacy policy or otherwise displayed in the footer of each page, how you collect, use, store, and disclose data collected from visitors, including, where applicable, that third parties (including advertisers) may serve content and/or advertisements and collect information directly from visitors and may place or recognize cookies on visitors' browsers.
 
