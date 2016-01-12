@@ -56,10 +56,10 @@ Four columns, displayed between top promo and partners blocks at home page
 
 While we finish up the official APIs, SDKs, and widgets, check out the open source offerings we have today.
 
-* [Android](http://code.ticketmaster.com)
-* [Backend](http://code.ticketmaster.com)
-* [iOS](http://code.ticketmaster.com)
-* [Web](http://code.ticketmaster.com)
+* [Android](http://code.ticketmaster.com/#android-projects)
+* [Backend](http://code.ticketmaster.com/#backend-projects)
+* [iOS](http://code.ticketmaster.com/#iOS-projects)
+* [Web](http://code.ticketmaster.com/#web-projects)
 {% endcapture %}
 
 {% capture column2_asset %}
