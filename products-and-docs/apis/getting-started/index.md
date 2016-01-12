@@ -40,17 +40,94 @@ fully use the APIs to their potential. Once you have a good understanding of the
 API core concepts, you can then dig deeper into each API by visiting its 
 dedicated overview page.
 
-{: #data-hierarchy}
-##Data Hierarchy
+{: .double-margin}
+## URI Format
 
-{: .body}
-Exploring a new API can be daunting. To make using our API enjoyable, easy, 
-and fun, it’s important to understand a few things regarding how our data is 
-structured and how our APIs work.
+All API calls follow this format: _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
 
-{: .body}
-[Remaining content follows in similar fashion, with H2s heading each section
-and highlighting in the left sidebar nav to show current location.]
+<table class="tableParametrs">
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Required?</th>
+		<th>Default Value</th>	
+	</tr>
+	
+	<tr>
+		<td>
+			<code>package</code>
+		</td>
+		<td>A bucket that provides access to logically-related resources</td>
+		<td><strong>Yes</strong></td>
+		<td>
+			<span class="text-info">discovery, commerce, accounts, etc</span>
+		</td>
+	</tr>
+	
+		<tr>
+		<td>
+			<code>version</code>
+		</td>
+		<td>The package version</td>
+		<td><strong><strong>Yes</strong></strong></td>
+		<td>
+			<span class="text-info">v1, v2, v3, etc</span>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<code>resource</code>
+		</td>
+		<td>Path to API method</td>
+		<td><strong>Yes</strong></td>
+		<td>
+			<span class="text-info">varies per API call</span>
+			<p>
+				<strong>Note:</strong>
+				Endpoints are documented under each API's resources and will include the endpoint's version as well as the API method
+			</p>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<code>API key</code>
+		</td>
+		<td>Authorized API Key</td>
+		<td><strong>Yes</strong></td>
+		<td>
+			<a class="standart-btn" href="http://edmunds.mashery.com/member/my-account" title="Get your API key">Get your API key</a> 
+		</td>
+	</tr>
+
+</table>
+
+### URI Examples
+
+> https://app.ticketmaster.com/discovery/v1/events.json?apikey=4dsfsf94tyghf85jdhshwge334
+
+> http://app.ticketmaster.com/discovery/v1/events.json?keyword=Madonna&apikey=4dsfsf94tyghf85jdhshwge334&callback=myFunction
+
+> https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
+
+{: .double-margin}
+## Rate Limit
+
+All API keys are issued with a _default quota_ of **2 API calls/second** and **5000 API calls/day**. We do increase rate limits on case-by-case basis. In order to increase the rate limit for a particular application, we need to verify the following:
+
+1. The application is in compliance with our [Terms of Service](/support/terms-of-use/)
+2. The application is in compliance with our branding guide
+3. The application is representing the Ticketmaster data properly
+
+Once these three criteria are verified, the rate limit is increased to what Ticketmaster and the developer determine to be appropriate.
+
+
+{: .double-margin}
+## CORS Support
+
+The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy). CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors).
+
 
 {: .double-margin #available-resources .no-mobile}
 ##Available Resources
