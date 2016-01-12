@@ -74,11 +74,31 @@
 .noupper {
   text-transform: none;
 }
+
+.content {
+  .body-100 {
+  font-family: "TMSans-Regular",Helvetica,Arial,sans-serif;
+    @media #{$max-1200} {
+      width: 100%;
+    }
+    @media #{$max-768} {
+      width: 100%;
+    }
+  }
+}
+
 .grey-box {
   width: 847px;
   padding: 46px 46px 26px 46px;
   background: #f1f4f6;
   margin-top: 75px;
+  @media #{$max-1200} {
+    width: 100%;
+    margin-bottom: 80px;
+  }
+  @media #{$max-768} {
+    width: 100%;
+  }
   h3 {
     margin-top: 0;
   }
@@ -94,9 +114,33 @@
     background-position: right bottom;
     background-repeat: no-repeat;
     padding-bottom: 70px;
+    @media #{$max-1200} {
+      padding-bottom: 26px;
+    }
+    @media #{$max-768} {
+      background-image: none;
+      padding-bottom: 5px;
+    }
+
+    .body {
+      @media #{$max-1200} {
+        width: 50%;
+      }
+      @media #{$max-768} {
+        width: 100%;
+      }
+    }
+    .body+p {
+      @media #{$max-768} {
+        text-align: center;
+      }
+    }
   }
   .button-grey, .button-blue {
     margin-top: 27px;
+    @media #{$max-768} {
+      margin: 27px auto;
+    }
   }
 }
 
