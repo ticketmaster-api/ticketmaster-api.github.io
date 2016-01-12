@@ -13,7 +13,7 @@ categories:
 {: .lead .double-margin}
 Easy integration for iOS and Android.
 
-{: .body}
+{: .body-100}
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually 
 beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan 
 Portland ennui.

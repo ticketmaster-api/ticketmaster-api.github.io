@@ -18,7 +18,7 @@ Everything you need to start playing with the Ticketmaster APIs.
 
 {: .body}
 Welcome to the Ticketmaster API! To get you started, we'll go over the **live events core datasets** we’ve made
-available to you. Once you [register for a key](https://live-livenation.devportal.apigee.com/user/login), you will
+available to you. Once you [register for a key](https://dev-livenation.devportal.apigee.com/user/login), you will
 be able to access the following datasets:
 
 {: .double-margin}
