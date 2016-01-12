@@ -40,7 +40,7 @@ fully use the APIs to their potential. Once you have a good understanding of the
 API core concepts, you can then dig deeper into each API by visiting its 
 dedicated overview page.
 
-{: .double-margin}
+{: .double-margin #uri-format}
 ## URI Format
 
 All API calls follow this format: _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
@@ -111,7 +111,7 @@ All API calls follow this format: _https://app.ticketmaster.com/{package}/{versi
 
 > https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
 
-{: .double-margin}
+{: .double-margin #rate-limit}
 ## Rate Limit
 
 All API keys are issued with a _default quota_ of **2 API calls/second** and **5000 API calls/day**. We do increase rate limits on case-by-case basis. In order to increase the rate limit for a particular application, we need to verify the following:
@@ -123,7 +123,7 @@ All API keys are issued with a _default quota_ of **2 API calls/second** and **5
 Once these three criteria are verified, the rate limit is increased to what Ticketmaster and the developer determine to be appropriate.
 
 
-{: .double-margin}
+{: .double-margin #cors-support}
 ## CORS Support
 
 The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy). CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors).
