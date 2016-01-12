@@ -7,16 +7,10 @@ categories:
 
 #FAQ
 
-{: .lead .double-margin}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. 
-Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub 
-selvage.
-
-
 ####General
 
 {: .link-inline .double-margin-bottom}
-[Why has Ticketmaster decided to open up its data?](#q-1)
+[Why has Ticketmaster decided to open up its API?](#q-1)
 [How can I reach out to Ticketmaster to discuss a potential partnership opportunity?](#q-2)
 [How might I use the content that’s made available via the Ticketmaster API?](#q-3)
 [What is the default quota for API requests?](#q4)
@@ -50,7 +44,7 @@ selvage.
 
 
 {: #q-1}
-### Why has Ticketmaster decided to open up its data?
+### Why has Ticketmaster decided to open up its API?
 
 At Ticketmaster, we see ourselves as the engine that powers unforgetable moments of joy for fans everywhere. That’s our purpose. That’s our promise. We also believe strongly that innovation is fostered best through openness and transparency. Therefore, we’re opening up our data because we want to give you, the developer, the ability to explore its potential beyond what we have already done. We want you to bring those moments of joy to fans through compelling and innovative products powered by our APIs.
 
