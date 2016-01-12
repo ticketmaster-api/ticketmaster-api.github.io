@@ -12,11 +12,6 @@ categories:
 {: .lead .double-margin}
 Drop-in, clock out.
 
-{: .body}
-Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually 
-beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan 
-Portland ennui.
-
 {% capture payments %}
 ### Direct Payments
 
@@ -24,7 +19,7 @@ Portland ennui.
 Visit Universe’s site to get everything you need to sell tickets 
 directly on your website at no additional cost.
 
-[LEARN MORE!](/){: .button.button-blue}
+[LEARN MORE!](http://www.universe.com/){: .button.button-blue}
 
 {% endcapture %}
 
