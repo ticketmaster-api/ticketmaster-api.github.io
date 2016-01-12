@@ -20,7 +20,7 @@ instructions list
 
 ### Instructions
 
-1. Have your API Key handy. If you don't have an API Key, get one here.
+1. Have your **[API Key](https://dev-livenation.devportal.apigee.com/user/login)** handy. Get your API Key if you don’t have one.
 2. Under "Authentication" tab, choose "Custom Token".
 3. Enter your API Key in the "value" field.
 4. Some calls require Oauth 2 authentication. You'll need to log in with your credentials to authenticate.
@@ -32,9 +32,9 @@ Get api key block text
 {:/comment}
 {% capture api_callout_text %}
 
-### LOREM IPSUM DOLER?
+### Don't have an API key?
 
-Loram ipsum doler apsilon <br/> lorem ipsum doler
+To continue working with Api Console you <br/> need to have an API Key
 
 {% endcapture %}
 
@@ -61,7 +61,7 @@ page layout goes here
 <div markdown="1">
 {{api_callout_text}}
 </div>
-<a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white">{{api_callout_button_text}}</a>
+<a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-transparent">{{api_callout_button_text}}</a>
 </div>
 
 <iframe src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 3em;"></iframe>

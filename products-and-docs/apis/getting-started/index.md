@@ -78,7 +78,7 @@ and highlighting in the left sidebar nav to show current location.]
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#srch-events">Search Events</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
@@ -92,27 +92,27 @@ and highlighting in the left sidebar nav to show current location.]
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#event-img">Search Event Images</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-attractions">Search Attractions</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#attraction-details">Attraction Details</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-categories">Search Categories</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
@@ -126,14 +126,14 @@ and highlighting in the left sidebar nav to show current location.]
     </tr>
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-venues">Search Venues</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#venue-details">Venue Details</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
@@ -145,7 +145,7 @@ and highlighting in the left sidebar nav to show current location.]
         </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#event-offers">Event Offers</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;"  class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>

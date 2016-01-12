@@ -13,7 +13,7 @@ category: products-and-docs
 # THE REAL BACKSTAGE <br> PASS TO LIVE EVENT <br> DATA
 
 {: .lead}
-Whether you need a quick drop-in or are building a custom product, we have the [APIs](/products-and-docs/apis/getting-started/), SDKs, and widgets you’re looking for.
+Whether you need a quick drop-in or are building a custom product, we have the [APIs](/products-and-docs/apis/getting-started/), [SDKs](/products-and-docs/sdks/), and [widgets](/products-and-docs/widgets/) you’re looking for.
 
 {% endcapture %}
 
@@ -22,7 +22,7 @@ Whether you need a quick drop-in or are building a custom product, we have the [
 
 {: .body}
 Already doing business with Ticketmaster? <br>
-[Get in touch](http://code.ticketmaster.com) so we can hook you up.
+[Get in touch](mailto: distributedcommerce@ticketmaster.com) so we can hook you up.
 
 {% endcapture %}
 
@@ -58,19 +58,19 @@ Easy integration? No sweat.
 {: .body}
 Enable fans to manage their tickets within your app using the AccountManager SDK for iOS and Android.
  
-[EXPLORE SDKs](/products-and-docs/under-development/){: .button.button-blue}
+[EXPLORE SDKs](/products-and-docs/sdks/){: .button.button-blue}
 
 {% endcapture %}
 
 {% capture sdk_right %}
-[![Icon2](/assets/img/products-and-docs/sdk-right.png)](https://twitter.com/tmastertech)
+[![Icon2](/assets/img/products-and-docs/sdk-right.png)](https://www.universe.com/)
 
 ### Direct Payments
 
 {: .body}
 Sell tickets directly on your website at no additional <br> cost with Universe's dead-simple event widget.
 
-[GET WIDGETIZED](/products-and-docs/under-development/){: .button.button-blue}
+[GET WIDGETIZED](/products-and-docs/widgets/){: .button.button-blue}
 
 {% endcapture %}
 
@@ -80,7 +80,7 @@ Sell tickets directly on your website at no additional <br> cost with Universe's
 
 Do you have a site that attracts visitors who are interested in buying tickets? If so, we have an opportunity for you to monetize your site and make money through the Ticketmaster Affiliate Program.
 
-[BECOME AN AFFILIATE](/products-and-docs/apis/interactive-console/){: .button.button-white}
+[BECOME AN AFFILIATE](/support/faq/#affiliates-a){: .button.button-white}
 
 {% endcapture %}
 

@@ -6,9 +6,9 @@ categories:
 ---
 
 {: .article}
-# Ticketmaster Distributed Commerce Content API
+# Deals API
 
-Use the Ticketmaster Distributed Commerce Content API to find content that is interesting to your audience.
+Use the Deals API to find content that is interesting to your audience.
 {: .lead}
 
 ##Overview
