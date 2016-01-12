@@ -82,11 +82,7 @@ All API calls follow this format: _https://app.ticketmaster.com/{package}/{versi
 		<td>Path to API method</td>
 		<td><strong>Yes</strong></td>
 		<td>
-			<span class="text-info">varies per API call</span>
-			<p>
-				<strong>Note:</strong>
-				Endpoints are documented under each API's resources and will include the endpoint's version as well as the API method
-			</p>
+			<span class="text-info">Varies per API call</span>
 		</td>
 	</tr>
 
@@ -97,7 +93,7 @@ All API calls follow this format: _https://app.ticketmaster.com/{package}/{versi
 		<td>Authorized API Key</td>
 		<td><strong>Yes</strong></td>
 		<td>
-			<a class="standart-btn" href="http://edmunds.mashery.com/member/my-account" title="Get your API key">Get your API key</a> 
+			<a class="standart-btn" href="https://dev-livenation.devportal.apigee.com/user/login" title="Get your API key">Get your API key</a> 
 		</td>
 	</tr>
 
