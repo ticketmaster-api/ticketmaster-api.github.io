@@ -82,13 +82,13 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 
 {% capture column3 %}
 
-### Existing Affiliates
+### Existing Partners
 
 Are you an existing partner looking for current developer resources? Look no further!
 
-* [Sign in](https://dev-livenation.devportal.apigee.com/user/login)
-* [Commerce API](http://dev-livenation.devportal.apigee.com/apis/commerce)
-* [Legacy docs](http://dev-livenation.devportal.apigee.com/apis)
+* [Partner API](/products-and-docs/apis/partner/)
+* [Deals API](/products-and-docs/apis/deals-api/)
+* [Legacy docs](http://apidocs.ticketmaster.com/)
 {% endcapture %}
 
 {% capture column4_asset %}
