@@ -27,7 +27,7 @@ selvage.
 
 {: .link-inline .double-margin-bottom}
 [What datasets does the API cover?](#q-5)
-[What data formats does the Edmunds API support?](#q-6)
+[What data formats does the Ticketmaster API support?](#q-6)
 
 
 
@@ -86,7 +86,7 @@ The Ticketmaster API offers access to live events, attractions, venues and ticke
 
 
 {: #q-6}
-### What data formats does the Edmunds API support?
+### What data formats does the Ticketmaster API support?
 
 {: .double-margin-bottom}
 The Ticketmaster API supports the JSON format only at this time.
