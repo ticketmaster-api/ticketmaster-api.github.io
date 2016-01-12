@@ -53,15 +53,24 @@
     margin: 37px 0 49px;
     @media #{$max-1200}{
       margin: 37px 0 3px;
-      .tm-btn-white{
-        vertical-align: super;
-      }
-      .tm-btn-transparent {
-        padding: 23px 15px 23px;
-        width: 198px;
-        text-align: center;
+    }
+    @media (min-width: 768px) and #{$max-1200}{
+      text-align: center;
+      &>a{
+        display: block;
+        width: 350px;
+        margin: 0 auto 4em;
         &.rightarrow:after{
-          top: 38px !important;
+          right: 165px;
+          top: 72px;
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+        }
+        &:last-child{
+          margin-bottom: 0;
         }
       }
     }
