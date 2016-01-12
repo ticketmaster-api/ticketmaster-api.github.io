@@ -149,6 +149,177 @@ and highlighting in the left sidebar nav to show current location.]
       <td style="text-align: center;border-right: 0px; border-left: 0px;"  class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
+    
+    <tr>
+      <td style="text-align: center" rowspan="18">
+        <img src="/assets/img/getting-started/ic-user.svg" alt="Icon1">
+        <h4 style="margin-top:11px;text-">Partner API</h4>
+      </td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#event-details">Retrieve Event Details</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;"  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#inventory-management">Event Availability</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#ticket-availability">Ticket Availability</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#retrieve-event">Retrieve an Event</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#ticket-reservation">Get captcha page</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#post-captcha">Post captcha solution</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#reserve-tickets">Reserve tickets and create a Cart</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#encrypt-cert">Encryption Certificate</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#post-card">Post credit card information</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#purchase-tickets">Purchase Tickets</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#delete-cart">Delete a Cart</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#order-mangement">Order mangement</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#unredeemed-orders">Unredeemed orders</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#polling">Poll</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#error-responses">Group Error Responses</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#examples">Group Examples</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#versions">Group Versions</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#appendix">Group Appendix</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    
+    <tr>
+      <td style="text-align: center" rowspan="5">
+        <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
+        <h4 style="margin-top:11px;text-">Deal API</h4>
+      </td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#group-ticket-deals">Group Ticket Deals</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;"  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#search-events-deals">Search for Events with Deals</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#search-events-specified-deals">Search for Events with Deals</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>    
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#group-error-responses">Group Error Responses</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#group-appendix">Group Appendix: Market IDs</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
   </tbody>
 </table>
 </div>
