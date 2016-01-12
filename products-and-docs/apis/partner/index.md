@@ -3,7 +3,9 @@ layout: documentation
 categories:
 - documentation
 - partner
-redirect_from: "/products-and-docs/apis/commerce-api/"
+redirect_from: 
+- "/products-and-docs/apis/commerce-api/"
+- "/products-and-docs/apis/partners/"
 ---
 
 {: .article}
