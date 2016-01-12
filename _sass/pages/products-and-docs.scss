@@ -164,6 +164,12 @@
     background: #019cde;
     text-decoration: none;
     padding: 12px 26px;
+    @media #{$max-1200} {
+        margin-bottom: 50px;
+    }
+    @media #{$max-768} {
+        margin-bottom: 50px;
+    }
 }
 
 .button-white,
