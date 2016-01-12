@@ -16,28 +16,33 @@ selvage.
 ####General
 
 {: .link-inline .double-margin-bottom}
-[Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?](#q-1)
-[Hella narwhal Cosby?](#q-1)
-[Sweater McSweeney's, salvia kitsch before they sold out High Life?](#q-3)
-[Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?](#q4)
+[Why has Ticketmaster decided to open up its data?](#q-1)
+[How can I reach out to Ticketmaster to discuss a potential partnership opportunity?](#q-2)
+[How might I use the content that’s made available via the Ticketmaster API?](#q-3)
+[What is the default quota for API requests?](#q4)
 
 
 
-####Account
+####Data
 
 {: .link-inline .double-margin-bottom}
-[Hella narwhal Cosby?](#q-5)
-[Sweater McSweeney's, salvia kitsch before they sold out High Life?](#q-6)
+[What datasets does the API cover?](#q-5)
+[What data formats does the Edmunds API support?](#q-6)
 
 
 
 ####Affiliates
 
 {: .link-inline .double-margin-bottom}
-[Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?](#q-7)
-[Hella narwhal Cosby?](#q-8)
-[Sweater McSweeney's, salvia kitsch before they sold out High Life?](#q-9)
-[Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?](#q-10)
+[Why should I join the Ticketmaster Affiliate Program?](#q-7)
+[Speaking of monetization, how do I earn money through the affiliate program?](#q-8)
+[Is the Ticketmaster affiliate program right for me?](#q-9)
+[How does the onboarding process work?](#q-10)
+[What content and tools will be available to me?](#q-11)
+[Can my users transact on tickets through my site? ](#q-12)
+[But I’d like to actually sell tickets in my own shopping cart. Can I do that?](#q-13)
+[What markets does the Ticketmaster serve?](#q-14)
+[Will I have access to official artist/team creative?](#q-15)
 
 
 {: #general-a .double-margin}
@@ -45,68 +50,46 @@ selvage.
 
 
 {: #q-1}
-###Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?
+### Why has Ticketmaster decided to open up its data?
 
-Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food
-truck sriracha cornhole single-origin coffee church-key roof party. Leggings ethical McSweeney's,
-normcore you probably haven't heard of them Marfa organic squid Synth polaroid bitters chillwave
-pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food truck sriracha cornhole single-origin
-coffee church-key roof party. Leggings ethical McSweeney's.
+At Ticketmaster, we see ourselves as the engine that powers unforgetable moments of joy for fans everywhere. That’s our purpose. That’s our promise. We also believe strongly that innovation is fostered best through openness and transparency. Therefore, we’re opening up our data because we want to give you, the developer, the ability to explore its potential beyond what we have already done. We want you to bring those moments of joy to fans through compelling and innovative products powered by our APIs.
 
-{: .double-margin-bottom}
-Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food
-truck sriracha cornhole single-origin coffee church-key roof party. Leggings ethical McSweeney's,
-normcore you probably haven't heard of them Marfa organic squid.
 
 {: #q-2}
-###Hella narwhal Cosby?
+### How can I reach out to Ticketmaster to discuss a potential partnership opportunity?
 
 {: .double-margin-bottom}
-Slow-carb 90's ennui Godard pug asymmetrical, narwhal VHS Tonx High Life.
+Exciting! Please [contact us](mailto: distributedcommerce@ticketmaster.com) and try to be as specific as you can so we can bring in the right people to have a follow-up discussion regarding this potential opportunity. We should get back to you by email within 48 hours.
 
 {: #q-3}
-###Sweater McSweeney's, salvia kitsch before they sold out High Life?
+### How might I use the content that’s made available via the Ticketmaster API?
 
 {: .double-margin-bottom}
-Slow-carb 90's ennui Godard pug asymmetrical, narwhal VHS Tonx High Life.
-Retro dreamcatcher synth Godard pickled Etsy jean shorts beard, pour-over
-fanny pack mumblecore. Quinoa retro aesthetic polaroid, Williamsburg 
-American Apparel plai.
+We want you to be as creative and as innovative as possible with our data. We have tried hard to put as little constraints on you as possible. The only thing we ask you to do is to comply with our [Terms of Use](/support/terms-of-use/).
+
 
 {: #q-4}
-###Umami tattooed sriracha meggings pickled Marfa Blue Bottle High Life next level four loko PBR?
+### What is the default quota for API requests?
 
-Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food
-truck sriracha cornhole single-origin coffee church-key roof party. Leggings ethical McSweeney's,
-normcore you probably haven't heard of them Marfa organic squid Synth polaroid bitters chillwave
-pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food truck sriracha cornhole single-origin
-coffee church-key roof party. Leggings ethical McSweeney's.
-
-{: .double-margin-bottom}
-Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food
-truck sriracha cornhole single-origin coffee church-key roof party. Leggings ethical McSweeney's,
-normcore you probably haven't heard of them Marfa organic squid.
+The default access all applications get is to our **Public** APIs with a quota of 2 requests/sec and 5000 req/day.
 
 
 {: #account-a .double-margin}
-##Account
+##Data
 
 
 {: #q-5}
-###Hella narwhal Cosby?
+### What datasets does the API cover?
 
 {: .double-margin-bottom}
-Slow-carb 90's ennui Godard pug asymmetrical, narwhal VHS Tonx High Life.
+The Ticketmaster API offers access to live events, attractions, venues and tickets! The datasets span all North American and International markets. Furthermore, the Ticketmaster API provides data coming from ticketing platforms like TicketWeb, Universe and Front Gate.
 
 
 {: #q-6}
-###Sweater McSweeney's, salvia kitsch before they sold out High Life?
+### What data formats does the Edmunds API support?
 
 {: .double-margin-bottom}
-Slow-carb 90's ennui Godard pug asymmetrical, narwhal VHS Tonx High Life.
-Retro dreamcatcher synth Godard pickled Etsy jean shorts beard, pour-over
-fanny pack mumblecore. Quinoa retro aesthetic polaroid, Williamsburg 
-American Apparel plai.
+The Ticketmaster API supports the JSON format only at this time.
 
 
 
