@@ -165,10 +165,12 @@
     text-decoration: none;
     padding: 12px 26px;
     @media #{$max-1200} {
-        margin-bottom: 50px;
+        margin-top: 27px!important;
+        margin-bottom: 70px;
     }
     @media #{$max-768} {
-        margin-bottom: 50px;
+        margin-top: 27px!important;
+        margin-bottom: 70px;
     }
 }
 

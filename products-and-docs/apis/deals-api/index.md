@@ -12,6 +12,7 @@ Use the Deals API to find content that is interesting to your audience.
 {: .lead}
 
 ##Overview
+{: ##overview}
 
 ### Authentication
 Clients will be provided an API key from Ticketmaster which should be tagged to the end of every resource endpoint call. 
@@ -32,8 +33,8 @@ All connections must be made over **SSL** using https.
 ### Contact
 Ticketmaster Distributed Commerce team <a href="mailto:developer@ticketmaster.com">developer@ticketmaster.com</a>
 
-{: .article}
 ## Group Ticket Deals
+{: .article #group-ticket-deals}
 
 ### Example Requests
 
@@ -56,6 +57,7 @@ https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqD
 ---
 
 ## Search for Events with Deals [/deals/events]
+{: #search-events-deals}
 
 + **Parameters:**
     + **exclusivities** (optional `Array[string]`) ... Default is `"EXCLUSIVE,NONEXCLUSIVE"`.  Allowable values: `EXCLUSIVE`, `NONEXCLUSIVE`
@@ -155,6 +157,7 @@ Content-Type: application/json
 Find events that have a particular promotional deal associated with them.
 
 ## Search for Events with a Specified Deal [/deals/{deal}/events]
+{: #search-events-specified-deals}
 
 ### Search for Events with Deals [GET]
 Find events that have a particular promotional deal associated with them.
@@ -166,6 +169,8 @@ Find events that have a particular promotional deal associated with them.
 }
 
 ## Group Error Responses
+{: #group-error-responses}
+
 API-side errors will generate a json-formatted response body as well as standard HTTP status codes.
 {: .body}
 
@@ -193,6 +198,7 @@ The following status codes will be used by this API
 
 
 ## Group Appendix: Market IDs
+{: #group-appendix}
 
 **Market Ids**
 
