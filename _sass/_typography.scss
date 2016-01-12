@@ -62,9 +62,14 @@ h6 {
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $base-font-weight;
+}
+
 b,strong {
   font-family: $font-bold-p;
   color: $n1;
+  font-weight: normal;
 }
 
 .lead {
