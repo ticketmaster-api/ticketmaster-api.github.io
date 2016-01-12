@@ -155,3 +155,38 @@
     cursor: default;
   }
 }
+
+#back-top {
+  bottom: 2em;
+  display: none;
+  margin-right: 2em;
+  position: fixed;
+  right: 0;
+  z-index: 10;
+  a {
+    background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #000;
+    display: block;
+    font: 18px/100% Arial,Helvetica,sans-serif;
+    height: 46px;
+    margin-bottom: 7px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s ease 0s;
+    width: 46px;
+    &:hover, &:focus {
+      outline: none;
+      border: none;
+      span {
+        background-position: 0 -46px;
+      }
+    }
+  }
+  span {
+    background: url('/assets/img/footer/to-top.png') 0px 0px no-repeat;
+    display: block;
+    height: 46px;
+    width: 46px;
+  }
+}
