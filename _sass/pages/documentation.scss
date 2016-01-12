@@ -278,8 +278,20 @@
 
       .underline {
         border-bottom: 2px solid $n3;
+        position: relative;
         @media #{$max-1200} {
           border-bottom: 0;
+        }
+        .console-btn{
+          position: absolute;
+          display: block;
+          background-image: url("/assets/img/products-and-docs/ic-console.svg");
+          background-repeat: no-repeat;
+          width: 20px;
+          height: 20px;
+          top: 15px;
+          right: 0;
+          cursor: pointer;
         }
       }
 

@@ -28,6 +28,7 @@
                 var group = me.nextUntil('.article').addBack();
                 var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
                 var firstElemGroupLeft = groupLeft.parent().children().first();
+                var consoleBtn = $(document.createElement("span")).addClass("console-btn");
 
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -36,6 +37,7 @@
                 //add underline
                 if (me.hasClass('lang-selector')) {
                     firstElemGroupLeft.addClass('underline');
+                    firstElemGroupLeft.append(consoleBtn);
 
                     //move first element to class="aside-wrapper"
                     firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
@@ -95,5 +97,9 @@
             }
         });
 
+        $(".console-btn").on("click", function(){
+            var id = $(this).parent().attr("id");
+            window.location.href = '/products-and-docs/apis/interactive-console?id=' + id;
+        });
     })
 })();
