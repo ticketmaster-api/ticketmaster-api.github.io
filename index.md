@@ -185,7 +185,7 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="row-container">
 <div class="col-xs-12" markdown="1" style="padding-top: 56px;">
 {{partners_heading}}
-<img src="/assets/img/home/discovery-partner.png" /><img src="/assets/img/home/commerce-partner.png" />
+<img src="/assets/img/home/discovery-partner.png" style="margin-right: 50px;" /><img src="/assets/img/home/commerce-partner.png" />
 </div>
         </div>
 <div class="social-buttons col-xs-12">
