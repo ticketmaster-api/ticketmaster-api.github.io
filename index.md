@@ -27,9 +27,9 @@ Partners block heading
 {:/comment}
 {% capture partners_heading %}
 
-## Groupon is delivering game-winning value with local sports tickets.
+## Partners delight fans with native event discovery and commerce.
 
-Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food truck sriracha cornhole single-origin coffee chu.
+The Ticketmaster API provides partners with real-time, up-to-date listings for the best in music, sports, theater and family events.
 
 {% endcapture %}
 
@@ -185,9 +185,7 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="row-container">
 <div class="col-xs-12" markdown="1" style="padding-top: 56px;">
 {{partners_heading}}
-<div class="button-block">
-    <a href="#" class="tm-btn tm-btn-white">SEE HOW</a>
-</div>
+<img src="/assets/img/home/discovery-partner.png" /><img src="/assets/img/home/commerce-partner.png" />
 </div>
         </div>
 <div class="social-buttons col-xs-12">
