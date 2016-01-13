@@ -124,7 +124,6 @@ All API keys are issued with a _default quota_ of **2 API calls/second** and **5
 
 Once these three criteria are verified, the rate limit is increased to what Ticketmaster and the developer determine to be appropriate.
 
-
 {: .double-margin #cors-support}
 ## CORS Support
 
@@ -336,8 +335,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    
-    
+
     <tr>
       <td style="text-align: center" rowspan="2">
         <a href="/products-and-docs/apis/deals-api/">
