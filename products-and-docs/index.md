@@ -13,7 +13,7 @@ category: products-and-docs
 # THE REAL BACKSTAGE <br> PASS TO LIVE EVENT <br> DATA
 
 {: .lead}
-Whether you need a quick drop-in or are building a custom product, we have the [APIs](/products-and-docs/apis/getting-started/), [SDKs](/products-and-docs/sdks/), and [widgets](/products-and-docs/widgets/) you’re looking for.
+Whether you need a quick drop-in or are building a custom product, we have the [APIs](/products-and-docs/apis/getting-started/), [SDKs](/products-and-docs/sdks/), and [Widgets](/products-and-docs/widgets/) you’re looking for.
 
 {% endcapture %}
 
@@ -29,10 +29,10 @@ Already doing business with Ticketmaster? <br>
 {% capture api %}
 ## APIs
 
-![Icon1](/assets/img/products-and-docs/ic-search-big.svg)
-![Icon2](/assets/img/products-and-docs/ic-commerce-api.svg)
-![Icon3](/assets/img/products-and-docs/ic-user.svg)
-![Icon4](/assets/img/products-and-docs/ic-cart.svg)
+[![Discovery API](/assets/img/products-and-docs/ic-search-big.svg)](/products-and-docs/apis/discovery/)
+[![Commerce API](/assets/img/products-and-docs/ic-commerce-api.svg)](/products-and-docs/apis/commerce/)
+[![Partner API](/assets/img/products-and-docs/ic-user.svg)](/products-and-docs/apis/partner/)
+[![Deals API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/deals-api/)
 ![Icon5](/assets/img/products-and-docs/ic-flag.svg)
 
 {: .lead}
