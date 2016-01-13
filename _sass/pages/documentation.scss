@@ -217,7 +217,7 @@
           a {
             color: $n3;
             font-size: $size-h3;
-            border-bottom: 2px solid $n3;
+            border-bottom: 2px solid $underline-border-grey;
             text-decoration: none;
             display: block;
             padding: 0 2.5%;
@@ -229,8 +229,8 @@
             min-width: 86px;
 
             &:hover {
-              color: $s1a;
-              border-color: $s1a;
+              color: $p1b;
+              border-color: $p1b;
             }
 
             @media #{$max-1200} {
@@ -289,9 +289,10 @@
       }
 
       .underline {
-        border-bottom: 2px solid $n3;
+        border-bottom: 2px solid $underline-border-grey;
         position: relative;
         padding-right: 40px;
+        padding-bottom: 10px;
         @media #{$max-1200} {
           border-bottom: 0;
         }
