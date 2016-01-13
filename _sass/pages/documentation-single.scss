@@ -107,6 +107,11 @@
     background-image: url('/assets/img/products-and-docs/android-mock-i-o-s-mock.png');
     background-position: 523px bottom;
     background-repeat: no-repeat;
+    .body+p {
+      @media #{$max-768} {
+        text-align: center;
+      }
+    }
   }
   &.mask {
     background-color: #f1f4f6;
@@ -153,5 +158,44 @@
     text-decoration: none;
     padding: 12px 26px;
     cursor: default;
+  }
+}
+
+#back-top {
+  bottom: 2em;
+  display: none;
+  margin-right: 2em;
+  position: fixed;
+  right: 0;
+  z-index: 10;
+  a {
+    background: none;
+    border-radius: 50%;
+    color: #000;
+    display: block;
+    font: 18px/100% Arial,Helvetica,sans-serif;
+    height: 46px;
+    margin-bottom: 7px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s ease 0s;
+    width: 46px;
+    &:hover{
+      outline: none;
+      border: none;
+      span {
+        background-position: 0 -46px;
+      }
+    }
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+  span {
+    background: url('/assets/img/footer/to-top.png') 0px 0px no-repeat;
+    display: block;
+    height: 46px;
+    width: 46px;
   }
 }

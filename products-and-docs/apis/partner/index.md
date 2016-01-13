@@ -3,7 +3,10 @@ layout: documentation
 categories:
 - documentation
 - partner
-redirect_from: "/products-and-docs/apis/commerce-api/"
+redirect_from: 
+- "/apis/commerce/"
+- "/apis/partners/"
+- "/apis/partner/"
 ---
 
 {: .article}
@@ -40,7 +43,7 @@ If a user abandons a page/tab after a ticket reserve has been made, client appli
 
 ### Terms and Conditions
 
-By using the Ticketmaster Developer Portal, you understand and agree to our [Terms of Use](/support/terms-of-use/).
+By using the Ticketmaster Developer Portal, you understand and agree to our [Terms of Use](/support/terms-of-use/partner).
 
 
 ### Contact

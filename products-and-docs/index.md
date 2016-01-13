@@ -36,7 +36,7 @@ Already doing business with Ticketmaster? <br>
 ![Icon5](/assets/img/products-and-docs/ic-flag.svg)
 
 {: .lead}
-Everything you need to handle event discovery,  commerce , accounts, orders, and fans.
+Everything you need to handle event discovery,  commerce, accounts, orders, and fans.
 
 [ACCESS API DOCS](/products-and-docs/apis/getting-started/){: .button.button-blue}
 

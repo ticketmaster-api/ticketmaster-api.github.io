@@ -1,4 +1,7 @@
-
+---
+redirect_from: 
+- "/apis/commerce/v1/"
+---
 <!-- saved from url=(0068)file:///C:/Users/Oleksandr_Reshetnik/Downloads/commerce-v1.body.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><link href="./index_files/css" rel="stylesheet" type="text/css">
                 <style>
@@ -166,13 +169,13 @@
 
 <p>All connections must be made over SSL using https.</p>
 
-<p>All ticketing and polling requests must include the header<code>True-Client-IP</code> which includes the user’s ip address. Optionally, you may pass<code>Original-User-Id</code> to identify specific users to aid in debugging. As part of our bot-detection efforts we use all headers to model good and bad behavior.  Therefore you may send as much identifiable information about the client including browser user-agent, ip address, user id (if logged in), etc.</p>
+<p>All ticketing and polling requests must include the header<code>True-Client-IP</code> which includes the userвЂ™s ip address. Optionally, you may pass<code>Original-User-Id</code> to identify specific users to aid in debugging. As part of our bot-detection efforts we use all headers to model good and bad behavior.  Therefore you may send as much identifiable information about the client including browser user-agent, ip address, user id (if logged in), etc.</p>
 
-<p>If users will be transacting against the API directly during the purchase flow (as opposed to a batch process afterwards) we require the use of a captcha before the user is able to make a reserve request.  The Google <a href="https://www.google.com/recaptcha/intro/index.html">“no CAPTCHA”</a> has proved to combat bots more effectivly than other methods.<br><br></p>
+<p>If users will be transacting against the API directly during the purchase flow (as opposed to a batch process afterwards) we require the use of a captcha before the user is able to make a reserve request.  The Google <a href="https://www.google.com/recaptcha/intro/index.html">вЂњno CAPTCHAвЂќ</a> has proved to combat bots more effectivly than other methods.<br><br></p>
 
 <h4>Cookies</h4>
 
-<p>The API uses cookies to track sessions.  While not “RESTful”, these cookies must be maintained for the duration of a reservation session and not be re-used for new ticket reservations. Clients of the API should establish a local cookie store using data from the <i>Set-Cookie:</i> response header. Each cookie key=value pair should be transmitted back to the API using the <i>Cookie:</i> header.  <br><br></p>
+<p>The API uses cookies to track sessions.  While not вЂњRESTfulвЂќ, these cookies must be maintained for the duration of a reservation session and not be re-used for new ticket reservations. Clients of the API should establish a local cookie store using data from the <i>Set-Cookie:</i> response header. Each cookie key=value pair should be transmitted back to the API using the <i>Cookie:</i> header.  <br><br></p>
 
 <h4>Best Practices</h4>
 
@@ -225,7 +228,7 @@
                 </div>
 
                 <div class="panel-body">
-                        <p>Retrieve details for a given event including the ticket type, pricing details and ticket availability. Partners may receive ticket codes such as “GPAS1” from the venue or Ticketmaster which will correspond to the <code>tickets[].description</code> field in the Event response.  API clients should then use the <code>tickets[].id</code> field when making reserve calls with the API.  The ticket information shown here is exclusive to each partner.<br>
+                        <p>Retrieve details for a given event including the ticket type, pricing details and ticket availability. Partners may receive ticket codes such as вЂњGPAS1вЂќ from the venue or Ticketmaster which will correspond to the <code>tickets[].description</code> field in the Event response.  API clients should then use the <code>tickets[].id</code> field when making reserve calls with the API.  The ticket information shown here is exclusive to each partner.<br>
 <b>Polling: No</b></p>
 
                 </div>
@@ -2937,7 +2940,7 @@ CDEFGHIJK=
                         <div class="panel-body">
                                 <p class="lead"><small></small></p><p><small>Resource endpoints that have polling enabled may alternatively return a json response with a polling url and wait time.  This is used to inform client applications of long-waiting operations and queuing restrictions for particular actions in the Ticketmaster system.</small></p><small>
 
-<p>Client applications may receive the following json response for any resource marked “Polling: Yes”.</p>
+<p>Client applications may receive the following json response for any resource marked вЂњPolling: YesвЂќ.</p>
 
 <pre><code class="language-js">{
     "polling_url": "https://app.ticketmaster.com/commerce/v1/poll/cart/tickets/PUT/1080E00",
@@ -2966,7 +2969,7 @@ seconds.  It is possible that this request may also result in another polling re
                 </div>
 
                 <div class="panel-body">
-                        <p>Polling urls may be received from resources marked with “Polling: Yes” and can return subsequent polling responses.</p>
+                        <p>Polling urls may be received from resources marked with вЂњPolling: YesвЂќ and can return subsequent polling responses.</p>
 
                 </div>
 
@@ -3111,7 +3114,7 @@ Example:</small></p><small>
 
 <p><code>GET /commerce/v1/event/09004E6CE6325123</code></p>
 
-<p>Response body contains ticket id i.e. “000000000001”</p>
+<p>Response body contains ticket id i.e. вЂњ000000000001вЂќ</p>
 
 <p>2. Clear local cookie storage</p>
 
@@ -3155,7 +3158,7 @@ Example:</small></p><small>
 }
 </code></pre>
 
-<p>Response body contains order number: { “cart”: { “order_number”: <strong>“BDF403FD0/LA1”</strong> } }</p>
+<p>Response body contains order number: { вЂњcartвЂќ: { вЂњorder_numberвЂќ: <strong>вЂњBDF403FD0/LA1вЂќ</strong> } }</p>
 
 <p>5. Retreive ticket and barcode information for an order.  Order number received from Cart purchase placed at the end of the url.</p>
 
@@ -3198,7 +3201,7 @@ Example:</small></p><small>
 <td>2015-04-18</td>
 <td>1</td>
 <td>0</td>
-<td>Combined customer info and invoice requests into PUT /cart. Added “Best Practices” section.</td>
+<td>Combined customer info and invoice requests into PUT /cart. Added вЂњBest PracticesвЂќ section.</td>
 <td>Ryan Aviles</td>
 </tr>
 
