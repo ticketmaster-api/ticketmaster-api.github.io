@@ -188,7 +188,7 @@ Raw html goes here (uses liquid variabled defined above)
 <img src="/assets/img/home/discovery-partner.png" style="margin-right: 10px;" /><img src="/assets/img/home/commerce-partner.png" />
 </div>
         </div>
-<div class="social-buttons col-xs-12">
+<div class="social-buttons col-xs-12" style="visibility: hidden;">
     <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
     <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
     <a href="#"><img src="/assets/img/home/ic_ret.png"></a>
