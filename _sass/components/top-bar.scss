@@ -91,17 +91,16 @@
 }
 
 nav{
-  display: table;
   padding: 0 !important;
+  text-align: center;
   a {
     font-family: $font-bold-p;
     letter-spacing: 0.8px;
     text-transform: uppercase;
-    display: table-cell;
-    width: 1px;
     text-align: center;
-    padding: 25px 0;
+    padding: 25px 15px;
     white-space: nowrap;
+    display: inline-block;
   }
 }
 
@@ -123,8 +122,11 @@ nav{
     nav{
       &>a {
         color: $white-70;
+        &:hover{
+          color: $white;
+        }
         &.nav-item{
-          color: $white
+          color: $white;
         }
       }
     }
@@ -159,6 +161,9 @@ nav{
     position: relative;
     top: 15px;
     left: -5px;
+    img{
+      min-width: 181px;
+    }
   }
   .gray{
     border-top: $borderHeight solid $n2-grey-color;
@@ -167,6 +172,9 @@ nav{
     &>a{
       position: relative;
       color: $n3;
+      &:hover{
+        color: $p1;
+      }
     }
     .nav-item{
       &:after{
@@ -220,7 +228,7 @@ nav{
     display: block;
   }
   #header-logo{
-    left: 8px !important;
+    left: 0px !important;
   }
   #menu-btn{
     left: 9px !important;
