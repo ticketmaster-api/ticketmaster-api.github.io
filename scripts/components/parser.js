@@ -28,7 +28,7 @@
                 var group = me.nextUntil('.article').addBack();
                 var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
                 var firstElemGroupLeft = groupLeft.parent().children().first();
-                var consoleBtn = $(document.createElement("span")).addClass("console-btn");
+                var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
 
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -97,9 +97,11 @@
             }
         });
 
-        $(".console-btn").on("click", function(){
-            var id = $(this).parent().attr("id");
-            window.location.href = '/products-and-docs/apis/interactive-console?id=' + id;
+        $(".console-btn").on("click", function(e){
+            e.preventDefault();
+            var id = $(this).parent().attr("id"),
+                urlParam = id ? "?id=" + id : "";
+            window.location.href = '/products-and-docs/apis/interactive-console' + urlParam;
         });
     })
 })();

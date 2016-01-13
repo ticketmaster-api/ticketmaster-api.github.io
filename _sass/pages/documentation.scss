@@ -292,6 +292,9 @@
           top: 15px;
           right: 0;
           cursor: pointer;
+          @media #{$max-768}{
+            top: 7px;
+          }
         }
       }
 
