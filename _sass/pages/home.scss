@@ -17,11 +17,6 @@
   background-image: url('/assets/img/home/bg-football-p-1.png');
   @media #{$max-1200} {
     margin-bottom: 30px;
-    .row-container{
-      &>div{
-        padding: 0;
-      }
-    }
   }
   @media #{$max-768} {
     margin-bottom: 25px;

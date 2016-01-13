@@ -1,3 +1,10 @@
+.xs-padding {
+  @media #{$max-1200}{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 #console-instructions{
   ol{
     margin-left: 20px;
