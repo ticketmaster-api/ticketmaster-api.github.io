@@ -4,8 +4,9 @@ categories:
 - documentation
 - partner
 redirect_from: 
-- "/products-and-docs/apis/commerce-api/"
-- "/products-and-docs/apis/partners/"
+- "/apis/commerce/"
+- "/apis/partners/"
+- "/apis/partner/"
 ---
 
 {: .article}
