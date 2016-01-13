@@ -127,7 +127,7 @@ Once these three criteria are verified, the rate limit is increased to what Tick
 {: .double-margin #cors-support}
 ## CORS Support
 
-The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy). CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors).
+The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing){:target="_blank"} which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy){:target="_blank"}. CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors){:target="_blank"}.
 
 {: .double-margin #available-resources .no-mobile}
 ##Available Resources

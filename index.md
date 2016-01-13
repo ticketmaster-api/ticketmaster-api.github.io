@@ -27,7 +27,7 @@ Partners block heading
 {:/comment}
 {% capture partners_heading %}
 
-## Partners delight fans with native event discovery and commerce.
+## Partners delight fans with native event discovery and commerce
 
 The Ticketmaster API provides partners with real-time, up-to-date listings for the best in music, sports, theater and family events.
 
