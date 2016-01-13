@@ -69,7 +69,7 @@ Retrieve details for a given event including the ticket type & pricing details. 
 
 *Polling: No*
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1004,7 +1004,7 @@ Get total allocated and remaining ticket amounts for each ticket type per event.
 
 *Polling: No*
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1149,7 +1149,7 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 
 *Polling: No*
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1219,7 +1219,7 @@ Retreive captcha information to render to the user.
 
 *Polling: No*
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1351,7 +1351,7 @@ Reserves the specified tickets.  Multiple ticket types can be added to the `tick
 /partners/v1/cart/tickets?apikey={apikey}
 {: .code .red}
 
-####URL parameters
+####URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1515,7 +1515,7 @@ Credit card information must be encrypted before sent to the API. Use this endpo
 
 *Polling: No*
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1798,7 +1798,7 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 
 *Polling: Yes*
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1880,7 +1880,7 @@ Delete a Cart. Each partner has a limited amount of reservation resources that c
 
 *Polling: Yes*
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1942,7 +1942,7 @@ Get detailed information about an order. For specifically-enabled accounts only.
 /partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .code .red}
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -2103,7 +2103,7 @@ Retreive unredeemed orders within a given time period. Some orders may have had 
 /partners/v1/orders/unredeemed?apikey={apikey}
 {: .code .red}
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -2192,7 +2192,7 @@ Polling urls may be received from resources marked with "Polling: Yes" and can r
 /partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
-###URL parameters
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
