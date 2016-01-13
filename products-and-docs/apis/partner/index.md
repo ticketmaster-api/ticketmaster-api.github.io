@@ -1362,6 +1362,7 @@ Reserves the specified tickets.  Multiple ticket types can be added to the `tick
 
 Model (application/json)
 
+{: .nested-list}
 + event (object)
     - id 0B004ED9FC825ACB (string)
     - tickets (array)
@@ -1619,6 +1620,7 @@ Fake credit-card information for use in the sandbox environment:
 
 Model (application/json)
 
+{: .nested-list}
 + cart_id (string)
 + payment (object)
     - first_name (string)

@@ -25,7 +25,6 @@
         }
       }
 
-
       /*apigee wrapper*/
       .iframe-wrapper {
         overflow: hidden;
@@ -56,23 +55,37 @@
         }
       }
 
-      h1 + h2 { margin: $base-margin 0px 0px 0px; }
+      h1 + h2 {
+        margin: $base-margin 0px 0px 0px;
+      }
 
-      h2 + h3 { margin: $base-margin 0px 0px 0px; }
+      h2 + h3 {
+        margin: $base-margin 0px 0px 0px;
+      }
 
-      h2 { margin: $base-margin*3 0px 0px 0px; }
+      h2 {
+        margin: $base-margin*3 0px 0px 0px;
+      }
 
-      h3 { margin: $base-margin*2 0px 0px 0px; }
+      h3 {
+        margin: $base-margin*2 0px 0px 0px;
+      }
 
-      h4, h5, h6 { margin: $base-margin 0px 0px 0px; }
+      h4, h5, h6 {
+        margin: $base-margin 0px 0px 0px;
+      }
 
       p, ul, ol, dl, figure, .table-wrapper, .reqres-wrapper {
         margin: $base-margin 0px 0px 0px;
       }
-      .v-button { margin: $base-margin 0px $base-margin 0px; }
-      .v-description { margin: 0px 0px 0px 0px; }
+      .v-button {
+        margin: $base-margin 0px $base-margin 0px;
+      }
+      .v-description {
+        margin: 0px 0px 0px 0px;
+      }
 
-      .small-margin{
+      .small-margin {
         margin-top: $base-margin / 3;
         margin-bottom: $base-margin / 3;
       }
@@ -84,7 +97,6 @@
       .small-margin-bottom {
         margin-bottom: $base-margin / 3;
       }
-
 
       /*mobile headings*/
       @media (max-width: 320px) {
@@ -169,12 +181,12 @@
             }
           }
           + .tab-content {
-              pre {
-                overflow-x: hidden;
-                code {
-                  width: auto;
-                }
+            pre {
+              overflow-x: hidden;
+              code {
+                width: auto;
               }
+            }
           }
         }
 
@@ -282,7 +294,7 @@
         @media #{$max-1200} {
           border-bottom: 0;
         }
-        .console-btn{
+        .console-btn {
           position: absolute;
           display: block;
           background-image: url("/assets/img/products-and-docs/ic-console.svg");
@@ -304,8 +316,8 @@
       }
 
       table code {
-          word-break: normal;
-        }
+        word-break: normal;
+      }
 
       .button {
         border: 2px solid $n3;
@@ -332,7 +344,6 @@
       .dev-console {
         margin-bottom: 10px;
       }
-
     }
 
     .article-wrapper {
@@ -350,6 +361,25 @@
       }
       &:nth-child(2){
         margin-top: 0;
+      }
+    }
+
+    .nested-list {
+      margin-top: 10px;
+      padding: 0;
+      ul {
+        margin-top: 10px;
+      }
+
+      li {
+        padding-top: 10px;
+        padding-left: 10px;
+        border-left: 2px solid #f0f0f0;
+        list-style-type: none;
+      }
+
+      li:first-child {
+        padding-top: 0;
       }
     }
 
