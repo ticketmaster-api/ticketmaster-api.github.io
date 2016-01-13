@@ -1932,7 +1932,7 @@ curl -X DELETE https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037Zfqb
 
 
 {: .article}
-## Unredeemed orders [GET]
+## Order management [GET]
 {: #order-mangement}
 
 Group Order Management.
