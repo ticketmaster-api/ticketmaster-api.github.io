@@ -5,7 +5,7 @@ categories:
 - terms-of-use
 ---
 
-#TERMS OF USE
+#GENERAL TERMS OF USE
 
 {: .body .double-margin}
 _Last Updated: September 28, 2015_

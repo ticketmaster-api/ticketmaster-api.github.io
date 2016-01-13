@@ -297,13 +297,6 @@
         }
       }
 
-      .body.red,
-      .code.red,
-      .caption.red,
-      .pull-quote.red {
-        color: $secondary-color1;
-      }
-
       code,
       .code {
         word-break: break-all;
@@ -312,10 +305,6 @@
       table code {
           word-break: normal;
         }
-
-      /*.lead {
-        margin-top: 0px;
-      }*/
 
       .button {
         border: 2px solid $n3;
