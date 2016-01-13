@@ -6,18 +6,28 @@
             test: true,
             menuDropdown: $('#menu-dropdown'),
             menuBtn: $('#menu-btn'),
+            searchBtn: $('#search'),
+            hasBackground: $('.top-bar').hasClass('bg-header') ? true : false,
             show: function(){
                 var self = this;
                 if (!self.menuBtn.hasClass('tm-close')){
                     self.menuBtn.addClass('tm-close');
                     self.menuDropdown.removeClass('closed').addClass('expanded');
                     self.menuDropdown.focus();
+                    if (self.hasBackground){
+                        self.menuBtn.removeClass('white');
+                        self.searchBtn.removeClass('white');
+                    }
                 }
             },
             hide: function(){
                 var self = this;
                 setTimeout(function(){
                     self.menuBtn.removeClass('tm-close')
+                    if (self.hasBackground){
+                        self.menuBtn.addClass('white');
+                        self.searchBtn.addClass('white');
+                    }
                 }, 300);
                 self.menuDropdown.removeClass('expanded').addClass('closed');
             },
