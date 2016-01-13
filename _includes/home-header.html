@@ -1,7 +1,7 @@
 <div class="top-bar{% if page.category != "home" %} bg-header slice-bottom-left{% endif %}">
     <div class="body-wrapper">
         <div class="row">
-            <div class="col-xs-7 col-lg-3 gray">
+            <div class="col-xs-7 col-lg-2 gray">
                 <a id="header-logo" href="{{"/" | prepend: site.baseurl}}">
                     {% if page.category == "home" %}
                         <img src="/assets/img/header/tm-developer-logo-p-1.svg">
@@ -10,15 +10,11 @@
                     {% endif %}
                 </a>
             </div>
-            <nav id="menu" class="col-xs-12 col-lg-6">
-                <a {% if page.category == "home" or page.category == "documentation" or page.categories[0] == "documentation" or page.category == "products-and-docs" %} class="one nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a>
-                <a {% if page.category == "home" or page.category == "partners" or page.category == "null" %} class="two nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Partners</a>
-                <a {% if page.category == "home" or page.category == "support" or page.categories[0] == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="{{"/support/" | prepend: site.baseurl}}">Support</a>
-                <a {% if page.category == "home" or page.category == "blogs" or page.category == "blogs" %} class="four nav-item" {% else %} class="gray" {% endif %} href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a>
-                <a {% if page.category == "home" or page.category == "events" or page.category == "null" %} class="five nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Events</a>
-                <a {% if page.category == "home" or page.category == "opensource" or page.category == "null" %} class="six nav-item" {% else %} class="gray" {% endif %} href="http://code.ticketmaster.com/">Open Source</a>
+            <nav id="menu" class="col-xs-12 col-lg-8">
+                <!-- links put into single line intentionally to avoid browser rendered spaces -->
+                <a {% if page.category == "home" or page.category == "documentation" or page.categories[0] == "documentation" or page.category == "products-and-docs" %} class="one nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a><a {% if page.category == "home" or page.category == "partners" or page.category == "null" %} class="two nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Partners</a><a {% if page.category == "home" or page.category == "support" or page.categories[0] == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="{{"/support/" | prepend: site.baseurl}}">Support</a><a {% if page.category == "home" or page.category == "blogs" or page.category == "blogs" %} class="four nav-item" {% else %} class="gray" {% endif %} href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a><a {% if page.category == "home" or page.category == "events" or page.category == "null" %} class="five nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Events</a><a {% if page.category == "home" or page.category == "opensource" or page.category == "null" %} class="six nav-item" {% else %} class="gray" {% endif %} href="http://code.ticketmaster.com/">Open Source</a>
             </nav>
-            <div class="col-xs-5 col-lg-3 gray">
+            <div class="col-xs-5 col-lg-2 gray">
                 <a id="menu-btn" {% if page.category != "home" %} class="white"{% endif %}></a>
                 <a id="search" {% if page.category != "home" %} class="white"{% endif %}></a>
             </div>
