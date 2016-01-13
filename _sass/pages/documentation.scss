@@ -279,6 +279,7 @@
       .underline {
         border-bottom: 2px solid $n3;
         position: relative;
+        padding-right: 40px;
         @media #{$max-1200} {
           border-bottom: 0;
         }
@@ -289,12 +290,10 @@
           background-repeat: no-repeat;
           width: 20px;
           height: 20px;
-          top: 15px;
+          top: 50%;
+          margin-top: -6px;
           right: 0;
           cursor: pointer;
-          @media #{$max-768}{
-            top: 7px;
-          }
         }
       }
 
