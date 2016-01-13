@@ -43,7 +43,10 @@ dedicated overview page.
 {: .double-margin #uri-format}
 ## URI Format
 
-All API calls follow this format: _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
+All API calls follow this format: 
+
+_https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
+{: .code .red}
 
 <table class="tableParametrs">
 	<tr>
@@ -101,11 +104,14 @@ All API calls follow this format: _https://app.ticketmaster.com/{package}/{versi
 
 ### URI Examples
 
-> https://app.ticketmaster.com/discovery/v1/events.json?apikey=4dsfsf94tyghf85jdhshwge334
+https://app.ticketmaster.com/discovery/v1/events.json?apikey=4dsfsf94tyghf85jdhshwge334
+{: .code .red}
 
-> http://app.ticketmaster.com/discovery/v1/events.json?keyword=Madonna&apikey=4dsfsf94tyghf85jdhshwge334&callback=myFunction
+http://app.ticketmaster.com/discovery/v1/events.json?keyword=Madonna&apikey=4dsfsf94tyghf85jdhshwge334&callback=myFunction
+{: .code .red}
 
-> https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
+https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
+{: .code .red}
 
 {: .double-margin #rate-limit}
 ## Rate Limit
