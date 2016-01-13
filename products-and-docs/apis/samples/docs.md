@@ -52,7 +52,7 @@ Method: GET.
 Authentication required.
 Returns the 20 most recent events for the authenticating user.
 
-###Template parameters:
+###URL parameters:
 
 - __version__ - The API Version. Required. Default value "v1";
 - __format__ - API Response Format. Required. Default value "json".

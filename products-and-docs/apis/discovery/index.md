@@ -5,7 +5,7 @@ categories:
 - discovery
 ---
 
-#Discovery REST API
+#Discovery API
 
 Use the Discovery API to search, look up and find events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.
 {: .lead .article}
@@ -41,7 +41,7 @@ Returns the 20 most recent events for the authenticating user.
 discovery/{version}/events.{format}
 {: .code .red}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -303,7 +303,7 @@ discovery/{version}/events/{id}.{format}
 {: .code .red}
 
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -513,7 +513,7 @@ Returns all the images for an event by ID. If an event does not have an image fo
 {: .code .red}
 discovery/{version}/events/{id}/images.{format}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -672,7 +672,7 @@ Search Attractions!
 {: .code .red}
 discovery/{version}/attractions.{format}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1024,7 +1024,7 @@ Search Attractions!
 discovery/{version}/attractions/{id}.{format}
 {: .code .red}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1123,7 +1123,7 @@ Search Categories!
 discovery/{version}/categories.{format}
 {: .code .red}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1535,7 +1535,7 @@ Returns the category detail by ID.
 {: .code .red}
 discovery/{version}/categories/{id}.{format}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1633,7 +1633,7 @@ discovery/{version}/venues.{format}
 {: .code .red}
 
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1792,7 +1792,7 @@ Returns the venue detail by ID.
 discovery/{version}/venues/{id}.{format}
 {: .code .red}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |

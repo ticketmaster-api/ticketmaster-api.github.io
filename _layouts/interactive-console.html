@@ -8,7 +8,7 @@ layout: default
 
     <div class="maincontent">
         <div class="row">
-            <div class="row-container" style="position: relative;">
+            <div class="row-container xs-padding" style="position: relative;">
                 {{content}}
             </div>
         </div>
@@ -17,3 +17,5 @@ layout: default
 </div>
 
 {% include home-footer.html %}
+
+<script src="{{"/scripts/components/interactive-console.js" | prepend: site.baseurl }}"></script>

@@ -27,7 +27,7 @@ Partners block heading
 {:/comment}
 {% capture partners_heading %}
 
-## Partners delight fans with native event discovery and commerce.
+## Partners delight fans with native event discovery and commerce
 
 The Ticketmaster API provides partners with real-time, up-to-date listings for the best in music, sports, theater and family events.
 
@@ -185,10 +185,10 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="row-container">
 <div class="col-xs-12" markdown="1" style="padding-top: 56px;">
 {{partners_heading}}
-<img src="/assets/img/home/discovery-partner.png" style="margin-right: 10px;" /><img src="/assets/img/home/commerce-partner.png" />
+<img src="/assets/img/home/discovery-partner.png" style="margin-left: 8px;" /><img src="/assets/img/home/commerce-partner.png" style="margin-left: 8px;"/>
 </div>
         </div>
-<div class="social-buttons col-xs-12">
+<div class="social-buttons col-xs-12" style="visibility: hidden;">
     <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
     <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
     <a href="#"><img src="/assets/img/home/ic_ret.png"></a>

@@ -15,7 +15,8 @@ No matter what question you have or help you need, we're here for you.
 ### Resources
 
 {: .link-inline }
-[Terms of Use](/support/terms-of-use/)
+[General Terms of Use](/support/terms-of-use/)
+[Partner API Terms & Conditions](/support/terms-of-use/partner)
 [Branding Guide](/products-and-docs/under-development/)
 [Contact Us](/products-and-docs/under-development/)
 

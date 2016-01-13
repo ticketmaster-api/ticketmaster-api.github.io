@@ -124,12 +124,10 @@ All API keys are issued with a _default quota_ of **2 API calls/second** and **5
 
 Once these three criteria are verified, the rate limit is increased to what Ticketmaster and the developer determine to be appropriate.
 
-
 {: .double-margin #cors-support}
 ## CORS Support
 
-The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy). CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors).
-
+The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing){:target="_blank"} which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy){:target="_blank"}. CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors){:target="_blank"}.
 
 {: .double-margin #available-resources .no-mobile}
 ##Available Resources
@@ -152,7 +150,9 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
   <tbody>
     <tr>
       <td style="text-align: center" rowspan="9">
-      <img src="/assets/img/getting-started/ic-search-big.svg" alt="search">
+        <a href="/products-and-docs/apis/discovery/">
+          <img src="/assets/img/getting-started/ic-search-big.svg" alt="search">
+        </a>
       <h4 style="margin-top:11px;">Discovery API</h4>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#srch-events">Search Events</a></td>
@@ -219,7 +219,9 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     </tr>
     <tr>
       <td style="text-align: center">
-        <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Icon1">
+        <a href="/products-and-docs/apis/commerce/">
+          <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Icon1">
+        </a>
         <h4 style="margin-top:11px;text-">Commerce API</h4>
         </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#event-offers">Event Offers</a></td>
@@ -231,7 +233,9 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     
     <tr>
       <td style="text-align: center" rowspan="14">
-        <img src="/assets/img/getting-started/ic-user.svg" alt="Icon1">
+        <a href="/products-and-docs/apis/partner/">
+          <img src="/assets/img/getting-started/ic-user.svg" alt="Icon1">
+        </a>
         <h4 style="margin-top:11px;text-">Partner API</h4>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/partner/#event-details">Retrieve Event Details</a></td>
@@ -331,12 +335,13 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    
-    
+
     <tr>
-      <td style="text-align: center" rowspan="5">
-        <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
-        <h4 style="margin-top:11px;text-">Deal API</h4>
+      <td style="text-align: center" rowspan="2">
+        <a href="/products-and-docs/apis/deals-api/">
+          <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
+        </a>
+        <h4 style="margin-top:11px;text-">Deals API</h4>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#search-events-deals">Search for Events with Deals</a></td>
       <td style="text-align: center;border-right: 0px;"></td>

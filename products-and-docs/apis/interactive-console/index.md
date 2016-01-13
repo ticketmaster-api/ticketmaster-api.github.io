@@ -64,4 +64,4 @@ page layout goes here
 <a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-transparent">{{api_callout_button_text}}</a>
 </div>
 
-<iframe src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 3em;"></iframe>
+<iframe id="console-iframe" src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 3em;"></iframe>
