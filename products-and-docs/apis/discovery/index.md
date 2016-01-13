@@ -5,7 +5,7 @@ categories:
 - discovery
 ---
 
-#Discovery REST API
+#Discovery API
 
 Use the Discovery API to search, look up and find events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.
 {: .lead .article}
