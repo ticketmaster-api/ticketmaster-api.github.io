@@ -29,7 +29,7 @@ Returns Event Offers.
 commerce/{version}/events/{id}/offers.{format}
 {: .code .red}
 
-###Template parameters:
+###URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
