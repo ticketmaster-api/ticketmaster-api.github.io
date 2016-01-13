@@ -43,7 +43,10 @@ dedicated overview page.
 {: .double-margin #uri-format}
 ## URI Format
 
-All API calls follow this format: _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
+All API calls follow this format: 
+
+_https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
+{: .code .red}
 
 <table class="tableParametrs">
 	<tr>
@@ -101,11 +104,14 @@ All API calls follow this format: _https://app.ticketmaster.com/{package}/{versi
 
 ### URI Examples
 
-> https://app.ticketmaster.com/discovery/v1/events.json?apikey=4dsfsf94tyghf85jdhshwge334
+https://app.ticketmaster.com/discovery/v1/events.json?apikey=4dsfsf94tyghf85jdhshwge334
+{: .code .red}
 
-> http://app.ticketmaster.com/discovery/v1/events.json?keyword=Madonna&apikey=4dsfsf94tyghf85jdhshwge334&callback=myFunction
+http://app.ticketmaster.com/discovery/v1/events.json?keyword=Madonna&apikey=4dsfsf94tyghf85jdhshwge334&callback=myFunction
+{: .code .red}
 
-> https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
+https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
+{: .code .red}
 
 {: .double-margin #rate-limit}
 ## Rate Limit
@@ -224,7 +230,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     </tr>
     
     <tr>
-      <td style="text-align: center" rowspan="18">
+      <td style="text-align: center" rowspan="14">
         <img src="/assets/img/getting-started/ic-user.svg" alt="Icon1">
         <h4 style="margin-top:11px;text-">Partner API</h4>
       </td>
@@ -325,47 +331,13 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#error-responses">Group Error Responses</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#examples">Group Examples</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#versions">Group Versions</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#appendix">Group Appendix</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
+    
     
     <tr>
       <td style="text-align: center" rowspan="5">
         <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
         <h4 style="margin-top:11px;text-">Deal API</h4>
       </td>
-      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#group-ticket-deals">Group Ticket Deals</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;"  class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
-    <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#search-events-deals">Search for Events with Deals</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
@@ -373,26 +345,13 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#search-events-specified-deals">Search for Events with Deals</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>    
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#group-error-responses">Group Error Responses</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#search-events-specified-deals">Search for Events with a Specified Deal</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#group-appendix">Group Appendix: Market IDs</a></td>
-      <td style="text-align: center;border-right: 0px;"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
+    
   </tbody>
 </table>
 </div>
