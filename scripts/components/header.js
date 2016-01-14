@@ -7,6 +7,7 @@
             menuDropdown: $('#menu-dropdown'),
             menuBtn: $('#menu-btn'),
             searchBtn: $('#search'),
+            searchAlert: $('#search-alert'),
             hasBackground: $('.top-bar').hasClass('bg-header') ? true : false,
             logo: $('#header-logo img'),
             show: function(){
@@ -18,7 +19,8 @@
                     if (self.hasBackground){
                         self.menuBtn.removeClass('white');
                         self.searchBtn.removeClass('white');
-                        self.logo.attr('src', '/assets/img/header/tm-developer-logo-p-1.svg');
+                        if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 768)
+                            self.logo.attr('src', '/assets/img/header/tm-developer-logo-p-1.svg');
                     }
                 }
             },
@@ -41,6 +43,17 @@
                         self.show();
                     else
                         self.hide();
+                });
+
+                self.searchAlert.on("blur", function(){
+                    self.searchAlert.hide();
+                });
+
+                self.searchBtn.on("click", function(){
+                    self.searchAlert.toggle();
+                    if (self.searchAlert.is(':visible')){
+                        self.searchAlert.focus();
+                    }
                 });
 
                 //using document click listener since mobile iOS touch devices do not understand blur event
