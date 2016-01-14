@@ -76,13 +76,13 @@
   position: absolute;
   z-index: 2;
   top: $borderHeight;
-  padding-top: 60px;
+  padding-top: 70px;
   margin: 0;
   right: 0px;
   outline: none;
   border-left: 1px solid $border-color;
   li{
-    padding: 10px 10px;
+    padding: 10px 0;
     &:last-child{
       margin-bottom: 60px;
     }
@@ -165,6 +165,7 @@ nav{
     position: relative;
     top: 15px;
     left: -5px;
+    z-index: 3;
     img{
       min-width: 181px;
     }
