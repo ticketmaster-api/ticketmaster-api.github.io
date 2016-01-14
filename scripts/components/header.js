@@ -8,6 +8,7 @@
             menuBtn: $('#menu-btn'),
             searchBtn: $('#search'),
             searchAlert: $('#search-alert'),
+            alertTimeout: null,
             hasBackground: $('.top-bar').hasClass('bg-header') ? true : false,
             logo: $('#header-logo img'),
             show: function(){
@@ -47,12 +48,16 @@
 
                 self.searchAlert.on("blur", function(){
                     self.searchAlert.hide();
+                    clearTimeout(self.alertTimeout);
                 });
 
                 self.searchBtn.on("click", function(){
                     self.searchAlert.toggle();
                     if (self.searchAlert.is(':visible')){
                         self.searchAlert.focus();
+                        self.alertTimeout = setTimeout(function() {
+                            self.searchAlert.hide();
+                        }, 4000);
                     }
                 });
 
