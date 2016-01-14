@@ -5,7 +5,7 @@ categories:
 - terms-of-use-partner
 ---
 
-#Partner API Terms of Use
+#PARTNER API TERMS OF USE
 
 The following terms and conditions govern the use of the Ticketmaster application programming interfaces (the "Ticketmaster API"). By using the Ticketmaster API, you agree to the terms below. If you disagree with any of these terms, Ticketmaster does not grant you a license to use the Ticketmaster API. We reserve the right to update and change these terms from time to time without notice.
 
