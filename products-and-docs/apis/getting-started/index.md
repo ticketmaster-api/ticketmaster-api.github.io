@@ -219,7 +219,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     </tr>
     <tr>
       <td style="text-align: center">
-        <a href="/products-and-docs/apis/discovery/">
+        <a href="/products-and-docs/apis/commerce/">
           <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Icon1">
         </a>
         <h4 style="margin-top:11px;text-">Commerce API</h4>
