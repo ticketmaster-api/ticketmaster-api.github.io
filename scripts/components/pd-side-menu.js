@@ -173,7 +173,7 @@
         }
 
         function wheelHandler(event) {
-            if (screenWidth >= 768 ){
+            if (screenWidth >= 768 && asideBlock.hasClass('is-fixed')){
                 var e = event || window.event;  // Standard or IE event object
 
                 var deltaX = e.deltaX * -30 ||  // wheel event
