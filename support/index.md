@@ -42,7 +42,7 @@ No matter what question you have or help you need, we're here for you.
 
 {: .link-inline }
 [General](/support/faq/#general-a)
-[Account](/support/faq/#account-a)
+[Data](/support/faq/#account-a)
 [Affiliates](/support/faq/#affiliates-a)
 
 {% endcapture %}
