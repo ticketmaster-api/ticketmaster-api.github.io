@@ -1,5 +1,4 @@
 ---
-title: interactive-console
 layout: interactive-console
 category: documentation
 ---

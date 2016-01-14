@@ -1,6 +1,5 @@
 ---
 layout: documentation
-title: documentation
 category: documentation
 ---
 

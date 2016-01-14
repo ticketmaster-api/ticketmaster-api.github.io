@@ -59,25 +59,25 @@ https://app.ticketmaster.com/dc/content/v1/deals/events?apikey=D9WFY74lF0f0ICkqD
 ## Search for Events with Deals [/deals/events]
 {: #search-events-deals}
 
-+ **Parameters:**
-    + **exclusivities** (optional `Array[string]`) ... Default is `"EXCLUSIVE,NONEXCLUSIVE"`.  Allowable values: `EXCLUSIVE`, `NONEXCLUSIVE`
-    + **marketIds** (optional `Array[number]`) ...  Default is null.  See Appendix: Market Ids for values.
-    + **startRow** (optional `number`) ... Paging start row.  Default is `0`.
-    + **rows** (optional `number`) ... Paging page size.  Default is `25`.  Maximum allowed value is `500`.
-    + **country** (optional `string`) ... Search country code.  Default is `'US'`
-    + **city** (optional `string`) ... Search city.  Default is `null`.
-    + **state** (optional `string`) ... Search state.  Default is `null`.
-    + **latitude** (optional `number`) ... Search location, required if longitude is sent.  Default is `null`.
-    + **longitude** (optional `number`) ... Search location, required if latitude is sent.  Default is `null`.
-    + **radius** (optional `number`) ... Search location distance from lat/long radius, Default is `10`.
-    + **radiusUnit** (optional `string`) ... Search location radius unit of measurement, Default is `'kilometers'`.  Allowable values: `miles`, `kilometers`
-    + **majorGenreId** (optional `number`) ... Search for events with the specified `major genre`.
-    + **minorGenreId** (optional `number`) ... Search for events with the specified `minor genre`.
-    + **venueId** (optional `number`) ... Search for events at the specified `venue`.
-    + **attractionId** (optional `number`) ... Search for events with the specified `attraction/artist`.
-    + **timeRangeStart** (optional `string`) ... Search for events starting at or after the time specified. (ISO 8601 Date Time Format. Ex: `2001-07-18T00:00:00Z`)
-    + **timeRangeEnd** (optional `string`) ... Search for events starting before the time specified. (ISO 8601 Date Time Format. Ex: `2001-07-18T00:00:00Z`)
-
+| Parameter | Description | Type        | Default Value | Required |
+| --------- | ----------- | ----------- | ------------- | -------- |
+| `exclusivities` | Allowable values: EXCLUSIVE, NONEXCLUSIVE |Array[string] | 'EXCLUSIVE, NONEXCLUSIVE' | No |
+| `marketIds`     | See Appendix: Market Ids for values | Array[number] | null | No |
+| `startRow`      | Paging start row. | number | 0 | No |
+| `rows`          | Paging page size.  Maximum allowed value is 500 | number | 25 | No |
+| `country`       | Search country code. | string  | 'US' | No |
+| `city`          | Search city. | string | null | No |
+| `state`         | Search state. | string |  null | No |
+| `latitude`      | Search location, required if longitude is sent. | number | null | No |
+| `longitude`     | Search location, required if latitude is sent. | number | null | No |
+| `radius`        | Search location distance from lat/long radius. | number | 10 | No |
+| `radiusUnit`    | Search location radius unit of measurement. Allowable values: miles, kilometers. | string | 'kilometers' | No |
+| `majorGenreId`  | Search for events with the specified *major genre*. | number |    | No |
+| `minorGenreId`  | Search for events with the specified *minor genre*. | number |    | No |
+| `venueId`       | Search for events at the specified *venue*. | number |    | No |
+| `attractionId`  | Search for events with the specified *attraction/artist*. | number |      | No |
+| `timeRangeStart` | Search for events starting at or after the time specified. (ISO 8601 Date Time Format. Ex: 2001-07-18T00:00:00Z)| string |     | No |
+| `timeRangeEnd`  | Search for events starting before the time specified. (ISO 8601 Date Time Format. Ex: 2001-07-18T00:00:00Z) | string |      | No |
 
 ### Search for Events with Deals [GET]
 Find events that have promotional deals associated with them.

@@ -16,6 +16,7 @@
   position: relative;
   top: 23px;
   left: 6px;
+  z-index: 3;
 }
 
 #menu-btn{
@@ -37,9 +38,49 @@
 }
 
 #search{
+  cursor: pointer;
   background-image: url('/assets/img/header/ic-search-p-1.svg');
   &.white{
     background-image: url('/assets/img/header/ic-search-white.svg');
+  }
+  #search-alert{
+    display: inline-block;
+    outline: none;
+    background-color: #768692;
+    position: absolute;
+    padding: 13px 12px;
+    left: -435px;
+    top: -14px;
+    border-radius: 5px;
+    color: $white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    @media #{$max-1200}{
+      top: -17px;
+    }
+    @media #{$max-768} {
+      font-size: 12px;
+      left: -225px;
+      top: -23px;
+      right: 45px;
+      &:after{
+        top: 21px !important;
+      }
+    }
+    &:after{
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid $n2-grey-color;
+      position: absolute;
+      right: -10px;
+      top: 15px;
+    }
   }
 }
 
@@ -66,26 +107,34 @@
     max-height: 500px;
     box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.68);
   }
+  &.closed{
+    padding-top: 0;
+  }
   background: $white;
   min-height: 0;
   max-height: 0;
   position: absolute;
   z-index: 2;
-  top: 60px;
+  top: $borderHeight;
+  padding-top: 70px;
+  margin: 0;
   right: 0px;
   outline: none;
+  border-left: 1px solid $border-color;
   li{
-    padding: 6px 10px;
+    padding: 10px 0;
+    &:hover{
+      a{
+        color: $p1;
+      }
+    }
+    &:last-child{
+      margin-bottom: 24px;
+    }
     a{
       color: $n3;
-    }
-  }
-  &.long{
-    top: 44px;
-    li{
-      &:first-child{
-        padding: 22px 10px 6px;
-      }
+      text-transform: uppercase;
+      font-family: $font-bold-p;
     }
   }
 }
@@ -161,6 +210,7 @@ nav{
     position: relative;
     top: 15px;
     left: -5px;
+    z-index: 3;
     img{
       min-width: 181px;
     }

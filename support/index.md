@@ -16,7 +16,7 @@ No matter what question you have or help you need, we're here for you.
 
 {: .link-inline }
 [General Terms of Use](/support/terms-of-use/)
-[Partner API Terms & Conditions](/support/terms-of-use/partner)
+[Partner API Terms of Use](/support/terms-of-use/partner)
 [Branding Guide](/products-and-docs/under-development/)
 [Contact Us](/products-and-docs/under-development/)
 
@@ -42,7 +42,7 @@ No matter what question you have or help you need, we're here for you.
 
 {: .link-inline }
 [General](/support/faq/#general-a)
-[Account](/support/faq/#account-a)
+[Data](/support/faq/#account-a)
 [Affiliates](/support/faq/#affiliates-a)
 
 {% endcapture %}

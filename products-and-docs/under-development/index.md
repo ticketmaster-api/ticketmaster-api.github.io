@@ -6,11 +6,12 @@ category: under_development
 {% capture content %}
 ![Icon](/assets/img/ic-under-development.svg)
 
-# THIS PAGE IS UNDER <br> DEVELOPMENT
+# SORRY, WE'RE STILL WORKING ON IT :)
 
 This page is not available at the moment.
 
-You can return to the [previous page](#){: #back} or go to our [home page]({{"/" | prepend: site.baseurl}}).
+But you can go to the [API Docs]({{"/products-and-docs/" | prepend: site.baseurl}}) or check out the [interactive console]({{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}})!
+
 {% endcapture %}
 
 <div class="row under_development">
@@ -20,10 +21,3 @@ You can return to the [previous page](#){: #back} or go to our [home page]({{"/"
 </div>
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $("#back").click(function(){
-            window.history.back();
-        });
-    });
-</script>
