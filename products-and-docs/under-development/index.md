@@ -10,7 +10,7 @@ category: under_development
 
 This page is not available at the moment.
 
-But you can go to the [API Docs]({{"/products-and-docs/" | prepend: site.baseurl}}), or check out the [interactive console]({{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}})!
+But you can go to the [API Docs]({{"/products-and-docs/" | prepend: site.baseurl}}) or check out the [interactive console]({{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}})!
 
 {% endcapture %}
 
