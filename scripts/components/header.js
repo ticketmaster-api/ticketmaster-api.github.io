@@ -59,6 +59,13 @@
                             self.searchAlert.hide();
                         }, 4000);
                     }
+                    //Send custom event to Google Analytic
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Search',
+                        eventAction: 'click',
+                        eventLabel: 'Try to search'
+                    });
                 });
 
                 //using document click listener since mobile iOS touch devices do not understand blur event
