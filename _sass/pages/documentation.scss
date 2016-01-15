@@ -25,6 +25,16 @@
         }
       }
 
+      /**set first h1 margin-top: 0;**/
+      &:first-child h1 {
+          margin-top: 0;
+
+          @media #{$max-1200} {
+            margin-top: $base-margin;
+          }
+
+      }
+
       /*apigee wrapper*/
       .iframe-wrapper {
         overflow: hidden;
@@ -45,14 +55,6 @@
 
       h1 {
         margin: 96px 0px 24px 0px;
-
-        &:first-child {
-          margin-top: 0;
-
-          @media #{$max-1200} {
-            margin-top: $base-margin;
-          }
-        }
       }
 
       h1 + h2 {

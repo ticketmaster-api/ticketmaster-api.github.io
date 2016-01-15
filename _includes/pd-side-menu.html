@@ -66,7 +66,6 @@
                 </ul>
                 {% endif %}
             </li>
-            
             <li><a href="/products-and-docs/apis/deals-api/">Deals API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "deals-api" %}
                 <ul class="sections menu-highlight">
@@ -79,7 +78,14 @@
                 </ul>
                 {% endif %}
             </li>
-
+            <li><a href="/products-and-docs/apis/international-discovery/">International Discovery API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "international-discovery" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#event-search">Event Search</a></li>
+                </ul>
+                {% endif %}
+            </li>
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>
         </ul>
     </li>
