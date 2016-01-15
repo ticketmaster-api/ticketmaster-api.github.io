@@ -2045,7 +2045,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
 | frontgate	|
 
 
-## Available Locales
+## Supported Locales
 {: .article #supported-locales}
 
 | Locale	|
