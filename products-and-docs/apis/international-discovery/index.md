@@ -4,6 +4,7 @@ categories:
 - documentation
 - international-discovery
 ---
+{: .article}
 #Ticketmaster International Discovery API 
 
 The Ticketmaster International Discovery API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
@@ -1029,7 +1030,8 @@ The Attractions Service API allows you to search for attractions, get details fo
 An attraction can be a music artist, a type of sport, a play or show, and so on.
 {: .lead.article}
 
-##Attraction Search 
+{: .article #attraction-search}
+## Attraction Search 
 
 Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more. 
 
@@ -1063,3 +1065,775 @@ sort_by = attraction_name (optional, string)attraction_namepopulatityorder = asc
 
 #### *Other Parameters*
 There are additional parameters which allow you to filter the search by attraction name, and attractions with events on sale.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdV1AaB09UUQoBCFJYVQ4dAVZSHRQLVgJTVglVAQANWgBWC0cVB1ANQAc5
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 5698ff57b152b20b00fb5cbf
+Content-Length: 606
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "attractions": [
+    {
+      "id": 709593,
+      "name": "Royal Blood",
+      "url": "http://www.ticketmaster.nl/artist/royal-blood-tickets/709593?track=DiscoveryAPI",
+      "images": [
+        {
+          "url": "http://media.ticketmaster.com/img/tat/cft1/201409/01/459810.jpg?track=DiscoveryAPI",
+          "type": "standard",
+          "width": 205,
+          "height": 115
+        },
+        {
+          "url": "http://media.ticketmaster.com/img/tat/cft1/201409/01/459800.jpg?track=DiscoveryAPI",
+          "type": "large",
+          "width": 305,
+          "height": 225
+        }
+      ],
+      "event_count": 1
+    }
+  ],
+  "pagination": {
+    "start": 0,
+    "rows": 1,
+    "total": 1
+  }
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+     --header "Accept: application/json" \
+  '/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start'
+{% endhighlight %}
+
+
+{: .article #attraction-details}
+## Attraction Details 
+Get details for a specific event using the unique identifer for the event.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/attraction/709593?lang&domain_ids HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHUwDTFQGBU1WTQkDAFVZWwEJB19dCA8KW19aTgRUCE4aXFdTUAZdAwBTVlABAg9DSgVZX0MBPA==
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 5699031d8392e30b00afb209
+Content-Length: 460
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "id": 13047,
+  "name": "Belle & Sebastian",
+  "url": "http://www.billettservice.no/artist/belle-sebastian-tickets/13047?track=DiscoveryAPI",
+  "images": [
+    {
+      "url": "http://media.ticketmaster.com/img/tat/cft1/201501/19/558680.jpg?track=DiscoveryAPI",
+      "type": "standard",
+      "width": 205,
+      "height": 115
+    },
+    {
+      "url": "http://media.ticketmaster.com/img/tat/cft1/201501/19/558670.jpg?track=DiscoveryAPI",
+      "type": "large",
+      "width": 305,
+      "height": 225
+    }
+  ],
+  "event_count": 2
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/attraction/709593?lang&domain_ids');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+'/attraction/709593?lang&domain_ids'
+{% endhighlight %}
+
+{: .article #attraction-suggestions}
+## Attraction Suggestions 
+Get suggestions for attractions based on the first 2 characters of the name. The top matching attractions are returned 
+and sorted by popularity in descending order. Unlike the Attractions Search service, this service allows a degree of 
+partial and fuzzy matching and can therefore be used for a suggest-as-you type feature. The response provides limited 
+fields compared to the Attraction Search to allow for more real-time display.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdUlQBG1FIUgkGB1FXWgECDl9dCA8KW19PWgNQFEBaDwUEC1UAAFdRV1ddBhVNAAJUQFU5
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 569903c78392e30b00afb2a5
+Content-Length: 832
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "attractions": [
+    {
+      "id": 2990,
+      "name": "Foo Fighters",
+      "url": "http://www.billettservice.no/artist/foo-fighters-tickets/2990?track=DiscoveryAPI",
+      "event_count": 1
+    },
+    {
+      "id": 937856,
+      "name": "Fighting Foo",
+      "url": "http://www.billettservice.no/artist/fighting-foo-tickets/937856?track=DiscoveryAPI",
+      "event_count": 1
+    },
+    {
+      "id": 903917,
+      "name": "Sound Of Irish Footprints",
+      "url": "http://www.billettservice.no/artist/sound-of-irish-footprints-tickets/903917?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 947297,
+      "name": "Food With Friends",
+      "url": "http://www.billettservice.no/artist/food-with-friends-tickets/947297?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 953756,
+      "name": "The Football Ramble",
+      "url": "http://www.billettservice.no/artist/the-football-ramble-tickets/953756?track=DiscoveryAPI",
+      "event_count": 0
+    }
+  ]
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/attractions/suggestions?attraction_name&lang&domain_ids&has_events');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+     --header "Accept: application/json" \
+  '/attractions/suggestions?attraction_name&lang&domain_ids&has_events'
+{% endhighlight %}
+
+{: .article #similar-attractions}
+## Similar Attractions 
+Get back other attractions which are similar to the attraction specified. This is based on a combination of factors 
+including category and sub-category, and ticket sales (users who purchased this attraction also purchased).
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdUlQEG1FIUgkHAl1YWgEHG1dRBwAfQF8BB1FTWgBZAAJRCwAJQx0HUg4XU2o=
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 569904da877a580b00514c99
+Content-Length: 1566
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "attractions": [
+    {
+      "id": 8073,
+      "name": "WU-TANG CLAN",
+      "url": "http://www.ticketmaster.de/artist/wu-tang-clan-tickets/8073?track=DiscoveryAPI",
+      "event_count": 5
+    },
+    {
+      "id": 3148,
+      "name": "SNOOP DOGG AKA SNOOP LION",
+      "url": "http://www.ticketmaster.de/artist/snoop-dogg-aka-snoop-lion-tickets/3148?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 404083,
+      "name": "Die Antwoord",
+      "url": "http://www.ticketmaster.de/artist/die-antwoord-tickets/404083?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 951687,
+      "name": "Rockavaria 2015",
+      "url": "http://www.ticketmaster.de/artist/rockavaria-2015-tickets/951687?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 3017,
+      "name": "Social Distortion",
+      "url": "http://www.ticketmaster.de/artist/social-distortion-tickets/3017?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 20912,
+      "name": "The Black Keys",
+      "url": "http://www.ticketmaster.de/artist/the-black-keys-tickets/20912?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 85593,
+      "name": "THE XX",
+      "url": "http://www.ticketmaster.de/artist/the-xx-tickets/85593?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 26326,
+      "name": "MUSE",
+      "url": "http://www.ticketmaster.de/artist/muse-tickets/26326?track=DiscoveryAPI",
+      "event_count": 2
+    },
+    {
+      "id": 21307,
+      "name": "Justin Timberlake",
+      "url": "http://www.ticketmaster.de/artist/justin-timberlake-tickets/21307?track=DiscoveryAPI",
+      "event_count": 0
+    },
+    {
+      "id": 946272,
+      "name": "FC Bayern Basketball",
+      "url": "http://www.ticketmaster.de/artist/fc-bayern-basketball-tickets/946272?track=DiscoveryAPI",
+      "event_count": 1
+    }
+  ]
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/attractions/similar?attraction_id&lang&domain_id&has_events&rows');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+     --header "Accept: application/json" \
+  '/attractions/similar?attraction_id&lang&domain_id&has_events&rows'
+{% endhighlight %}
+
+
+
+
+{: .article}
+# Venue Service 
+The Venue Service API allows you to search for event venues and get details for specific venues. Seatmaps for venues are available in the Event Service - See Event Seatmaps
+{: .lead.article}
+
+{: .article #venue-search}
+## Venue Search 
+Find venues and filter your search by name, and much more. 
+
+### Query Parameters
+
+#### Pagination 
+You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 500 rows. 
+
++ `rows` = `10` (optional, integer) 
++ `start` = `0` (optional, integer)
+
+#### Sorting 
+You can specify a sorting method and order. Options include event name, event date, popularity, and proximity (based on 
+the lat and long) with ascending or descending order. The default is eventdate and ascending.
+
+| Parameters | Optional values | Type |
+| -------- | | ------------------ |
+|`sort_by` | venuename, cityname | string |
+|`order` | asc, desc | string |
+
+#### Other Parameters 
+There are additional parameters which allow you to filter the search by venue name, and location including proximity to a lat / long.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHUwDTFQHBk1WTQgFAFFXUAYIBkpQAAEfQFdSBgIEW1NZXlZWVlAIURNNVQMIRVI8
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 56990fb77503cc0b001826d4
+Content-Length: 417
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "venues": [
+    {
+      "id": "385",
+      "name": "Akkerhaugen brygge",
+      "code": "BAK",
+      "url": "http://www.billettservice.no/venue/akkerhaugen-brygge-akkerhaugen-tickets/BAK/3?track=DiscoveryAPI",
+      "location": {
+        "address": {
+          "postal_code": "3812",
+          "city": "Akkerhaugen",
+          "country": "Norway",
+          "long": 13.242,
+          "lat": 65.398
+        }
+      }
+    }
+  ],
+  "pagination": {
+    "start": 0,
+    "rows": 1,
+    "total": 3
+  }
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+'/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start'
+{% endhighlight %}
+
+
+{: .article #venue-search}
+## Venue Details 
+Get details for a specific event using the unique identifer for the event. Seatmaps for venues are available in the Event Service - See [Event Seatmaps](#event-seatmap)
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/venue/7353?lang&domain_ids HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdUlQHG1FIUw4DAldQVQYJDl9dCA8KW19VTgNbC04aXVYCVQcOUwdRAFQAVAdDSgVZX0MBPA==
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 56991582b152b20b00fb7346
+Content-Length: 393
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "id": "7353",
+  "domainId": "sweden",
+  "name": "Araby Park Arena",
+  "code": "AAP",
+  "url": "http://www.ticnet.se/venue/araby-park-arena-vaxjo-tickets/AAP/511?track=DiscoveryAPI",
+  "location": {
+    "url": "http://www.regionteatern.se?track=DiscoveryAPI",
+    "address": {
+      "address": "Höstvägen 5A",
+      "postal_code": "352 37",
+      "city": "Växjö",
+      "country": "Sweden",
+      "long": 14.79411,
+      "lat": 56.89197
+    }
+  }
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/venue/7353?lang&domain_ids');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+'/venue/7353?lang&domain_ids'
+{% endhighlight %}
+
+{: .article}
+# Information Service 
+A collection of services which provide information on supported countries, domains, languages, cities and categories.
+{: .lead.article}
+
+{: .article #countries-list}
+## Countries List 
+Get a list of countries and domains for each. Although not required, it is advisable to specify the domain. The domain 
+relates to the Ticketmaster website through which tickets are listed and sold, whereas the Country is a geographical location.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/countries?lang&domain_id HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdUlQFG1FIUwEKBF1YUgYGG1dUBgAfQFIGVghaWlpZAQBXUFEbTVcAXxEBaw==
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 569916d1b152b20b00fb74ad
+Content-Length: 1076
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "countries": [
+    {
+      "id": 124,
+      "name": "Canada"
+    },
+    {
+      "id": 840,
+      "name": "United States"
+    },
+    {
+      "id": 40,
+      "name": "Austria"
+    },
+    {
+      "id": 56,
+      "name": "Belgium"
+    },
+    {
+      "id": 208,
+      "name": "Denmark"
+    },
+    {
+      "id": 246,
+      "name": "Finland"
+    },
+    {
+      "id": 250,
+      "name": "France"
+    },
+    {
+      "id": 276,
+      "name": "Germany"
+    },
+    {
+      "id": 578,
+      "name": "Norway"
+    },
+    {
+      "id": 620,
+      "name": "Portugal"
+    },
+    {
+      "id": 724,
+      "name": "Spain"
+    },
+    {
+      "id": 752,
+      "name": "Sweden"
+    },
+    {
+      "id": 756,
+      "name": "Switzerland"
+    },
+    {
+      "id": 826,
+      "name": "United Kingdom"
+    },
+    {
+      "id": 833,
+      "name": "Isle of Man"
+    },
+    {
+      "id": 70,
+      "name": "Bosnia and Herzegovina"
+    },
+    {
+      "id": 100,
+      "name": "Bulgaria"
+    },
+    {
+      "id": 112,
+      "name": "Belarus"
+    },
+    {
+      "id": 191,
+      "name": "Croatia"
+    },
+    {
+      "id": 196,
+      "name": "Cyprus"
+    },
+    {
+      "id": 203,
+      "name": "Czech Republic"
+    },
+    {
+      "id": 233,
+      "name": "Estonia"
+    },
+    {
+      "id": 268,
+      "name": "Georgia"
+    },
+    {
+      "id": 348,
+      "name": "Hungary"
+    },
+    {
+      "id": 428,
+      "name": "Latvia"
+    },
+    {
+      "id": 440,
+      "name": "Lithuania"
+    },
+    {
+      "id": 499,
+      "name": "Montenegro"
+    },
+    {
+      "id": 616,
+      "name": "Poland"
+    },
+    {
+      "id": 642,
+      "name": "Romania"
+    },
+    {
+      "id": 688,
+      "name": "Serbia"
+    }
+  ]
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/countries?lang&domain_id');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+'/countries?lang&domain_id'
+{% endhighlight %}
+
+{: .article #countries-list}
+## Domains List 
+Get a list of domains (countries and markets) and the domain ID as well supported langauges.Although not required, it is advisable to specify the domain. The domain relates to the Ticketmaster website through which tickets are listed and sold. Domain_id differs from the Country_id which is the geographical location rather than the market.
+
+##Cities List 
+Get a list of city names and city IDs.
+
+
+##Categories 
+List Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
