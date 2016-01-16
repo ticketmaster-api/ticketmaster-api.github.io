@@ -61,8 +61,11 @@ The Ticketmaster back-end reservation systems are distributed globally and event
 ## Retrieve Event Details  [GET]
 {: #event-details}
 
-Group Event Details. Event and ticket information
+Event and ticket information
+
 Retrieve details for a given event including the ticket type & pricing details. The boolean field `api_transactable` indicates if this event can be sold through the API.  If not, clients should be forwarded to the Ticketmaster mobile-web event page.  
+
+Group: _Event Details_
 
 /partners/v1/events/{event_id}?apikey={apikey}
 {: .code .red}
@@ -918,8 +921,9 @@ curl https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB?apikey={ap
 ## Event Availability [GET]
 {: #inventory-management}
 
-Group Inventory Management. Inventory endpoints for specifically-enabled accounts only.
 Discover events available to transact on
+
+Group: _Inventory Management_ (Inventory endpoints for specifically-enabled accounts only.)
 
 /partners/v1/events
 {: .code .red}
@@ -996,8 +1000,9 @@ curl https://app.ticketmaster.com/partners/v1/events
 ## Ticket Availability [GET]
 {: #ticket-availability}
 
-Group Inventory Management. Inventory endpoints for specifically-enabled accounts only.
 Get total allocated and remaining ticket amounts for each ticket type per event. Current un-sold seat inventory is also included along with the current ticket reservation limit.
+
+Group: _Inventory Management_ (Inventory endpoints for specifically-enabled accounts only.)
 
 /partners/v1/events/{event_id}/availability
 {: .code .red}
@@ -1141,8 +1146,9 @@ curl https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/availabili
 ## Retrieve an Event  [GET]
 {: #retrieve-event}
 
-Group Inventory Management. Inventory endpoints for specifically-enabled accounts only.
 Returns an alphanumeric event id based on a Venue-supplied event code+host combination<br/>
+
+Group: _Inventory Management_ (Inventory endpoints for specifically-enabled accounts only.)
 
 /partners/v1/events/code/{event_code}/{event_host}
 {: .code .red}
@@ -1208,11 +1214,11 @@ curl https://app.ticketmaster.com/partners/v1/events/code/1/1
 ## Get captcha page [GET]
 {: #ticket-reservation}
 
-Group Ticket reservation and purchasing.
-
 Services related to Ticket reservation and purchasing. Only events marked with `api_transactable` (from Event Details response) can transact on this API. All ticketing operations require the client to first solve a captcha to establish a secure session. Upon posting the Captcha solution, a cart id will be returned and required for further cart operations.
 
 Retreive captcha information to render to the user.
+
+Group: _Ticket reservation and purchasing_
 
 /partners/v1/captcha?apikey={apikey}
 {: .code .red}
@@ -1345,6 +1351,8 @@ curl -X POST https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037ZfqbLC
 {: #reserve-tickets}
 
 Reserves the specified tickets.  Multiple ticket types can be added to the `tickets` array as part of an adult+child combination if available.
+
+Group: _Ticket reservation and purchasing_
 
 *Polling: Yes*
 
@@ -1508,8 +1516,10 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d
 ## Encryption Certificate [GET]
 {: #encrypt-cert}
 
-Group Ticket reservation and purchasing.
 Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.
+
+Group: _Ticket reservation and purchasing_
+
 
 /partners/v1/certificate?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
@@ -1582,7 +1592,6 @@ curl https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCN
 ## Post credit card information [PUT]
 {: #post-card}
 
-Group Ticket reservation and purchasing.
 Add customer billing and credit card information to the transaction. Set `encryption_key` with the `id` value from the output of /certificate. After encrypting the credit card number and cvv, clients should call `[PUT] /partners/v1/cart` to finalize the purchase and obtain an order number.
 
 Encrypt the credit card and cvv number using the following steps:
@@ -1604,6 +1613,8 @@ Fake credit-card information for use in the sandbox environment:
 
 
 *Polling: No*
+
+Group: _Ticket reservation and purchasing_
 
 /partners/v1/cart/payment?apikey={apikey}
 {: .code .red}
@@ -1792,8 +1803,9 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d
 ## Purchase Tickets [PUT]
 {: #purchase-tickets}
 
-Group Ticket reservation and purchasing.
 Finalize the purchase and commit the transaction. `source_account_id` can be any unique identifier of the user (i.e. hash of member id). This is required for tracking bounces of ticket redemption emails.<br/>
+
+Group: _Ticket reservation and purchasing_
 
 /partners/v1/cart?apikey={apikey}
 {: .code .red}
@@ -1873,14 +1885,14 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' -X PUT -d
 ## Delete a Cart [DELETE]
 {: #delete-cart}
 
-Group Ticket reservation and purchasing.
-
 Delete a Cart. Each partner has a limited amount of reservation resources that can be simultaneously in use. If the user abandons the reservation process, it is a good practice to manually delete the cart to allow these resources to be re-allocated. Increased polling may occur if carts are not cleaned up.  Not required if the user finalizes the transaction<br/>
 
 /partners/v1/cart?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
 *Polling: Yes*
+
+Group: _Ticket reservation and purchasing_
 
 ###URL parameters:
 
@@ -1937,9 +1949,10 @@ curl -X DELETE https://app.ticketmaster.com/partners/v1/cart?apikey=GkB8Z037Zfqb
 ## Order management [GET]
 {: #order-mangement}
 
-Group Order Management.
 Backend operations for order management.
 Get detailed information about an order. For specifically-enabled accounts only. 
+
+Group: _Order Management_
 
 /partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .code .red}
@@ -1958,7 +1971,7 @@ Get detailed information about an order. For specifically-enabled accounts only.
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/orders?order_number=39-5234153&#47LA1?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/orders?order_number=39-5234153/LA1?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 {% highlight js %}
@@ -2098,9 +2111,10 @@ curl https://app.ticketmaster.com/partners/v1/orders?order_number=39-5234153&#47
 ## Unredeemed orders [GET]
 {: #unredeemed-orders}
 
-Group Order Management.
 Backend operations for order management.
 Retreive unredeemed orders within a given time period. Some orders may have had bad email addresses, or emails that went to spam. Use your app's notification features to notify the user of an unredeemed order. This endpoint requires IP-address whitelisting.  Please contact us for details.
+
+Group: _Order Management_
 
 /partners/v1/orders/unredeemed?apikey={apikey}
 {: .code .red}
