@@ -404,12 +404,33 @@
     }
   }
 
+  .copy-btn {
+    position: absolute;
+    display: block;
+    background-image: url("/assets/img/products-and-docs/ic-copy.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin-top: 10px;
+    right: 40px;
+    cursor: pointer;
+
+    &:hover{
+      /*background-color: white;*/
+    }
+  }
+
 }
 
 .r-tab {
   display: none;
   &.active {
     display: block;
+  }
+  .copy-btn {
+    margin-top: 0;
+    left: 50%;
+    right: 0;
   }
 }
 
