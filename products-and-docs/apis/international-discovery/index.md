@@ -1827,13 +1827,581 @@ curl --include \
 '/countries?lang&domain_id'
 {% endhighlight %}
 
-{: .article #countries-list}
+{: .article #domains-list}
 ## Domains List 
 Get a list of domains (countries and markets) and the domain ID as well supported langauges.Although not required, it is advisable to specify the domain. The domain relates to the Ticketmaster website through which tickets are listed and sold. Domain_id differs from the Country_id which is the geographical location rather than the market.
 
-##Cities List 
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/domains?country_id HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHUwDTFQGD01WTQoGBlFSWwEBDkpXCQAHTkRRBwkDAVJeDgQFB11dURNNVQMIRVI8
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 569cabbbd895b90b008f9bbf
+Content-Length: 3864
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "domains": [
+    {
+      "id": "canada",
+      "name": "Canada Admission",
+      "country_id": 124,
+      "site_url": "www.admission.com?track=DiscoveryAPI",
+      "currency": "CAD",
+      "langs": [
+        {
+          "id": "fr-ca",
+          "name": "Français - CA",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "billetech",
+      "name": "Canada Billetech",
+      "country_id": 124,
+      "site_url": "www.billetech.com?track=DiscoveryAPI",
+      "currency": "CAD",
+      "langs": [
+        {
+          "id": "fr-ca",
+          "name": "Français - CA",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "belgium",
+      "name": "Belgium",
+      "country_id": 56,
+      "site_url": "www.ticketmaster.be?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "fr-be",
+          "name": "Français - BE",
+          "default": true
+        },
+        {
+          "id": "nl-be",
+          "name": "Nederlands - BE",
+          "default": false
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "denmark",
+      "name": "Denmark",
+      "country_id": 208,
+      "site_url": "www.billetnet.dk?track=DiscoveryAPI",
+      "currency": "DKK",
+      "langs": [
+        {
+          "id": "da-dk",
+          "name": "Dansk",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "country_id": 276,
+      "site_url": "www.ticketmaster.de?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "de-de",
+          "name": "Deutsch",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "netherlands",
+      "name": "Netherlands",
+      "country_id": 528,
+      "site_url": "www.ticketmaster.nl?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "nl-nl",
+          "name": "Nederlands - NL",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "finland",
+      "name": "Finland",
+      "country_id": 246,
+      "site_url": "www.lippupalvelu.fi?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "fi-fi",
+          "name": "Suomi",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "norway",
+      "name": "Norway",
+      "country_id": 578,
+      "site_url": "www.billettservice.no?track=DiscoveryAPI",
+      "currency": "NOK",
+      "langs": [
+        {
+          "id": "no-no",
+          "name": "Norsk",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "sweden",
+      "name": "Sweden",
+      "country_id": 752,
+      "site_url": "www.ticnet.se?track=DiscoveryAPI",
+      "currency": "SEK",
+      "langs": [
+        {
+          "id": "sv-se",
+          "name": "Svenska",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "austria",
+      "name": "Austria",
+      "country_id": 40,
+      "site_url": "www.ticketmaster.at?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "de-at",
+          "name": "Österreichisches Deutsch",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "unitedarabemirates",
+      "name": "United Arab Emirates",
+      "country_id": 784,
+      "site_url": "www.ae.ticketmaster.com?track=DiscoveryAPI",
+      "currency": "AED",
+      "langs": [
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": true
+        }
+      ]
+    },
+    {
+      "id": "unitedkingdom",
+      "name": "TicketWeb",
+      "country_id": 826,
+      "site_url": "www.ticketweb.co.uk?track=DiscoveryAPI",
+      "currency": "GBP",
+      "langs": [
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+     --header "Accept: application/json" \
+  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id'
+{% endhighlight %}
+
+
+{: .article #cities-list}
+##Cities List (code need to finish)
 Get a list of city names and city IDs.
 
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
 
+{% highlight HTTP %}
+GET /mfxapi/v1/domains?country_id HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHUwDTFQGD01WTQoGBlFSWwEBDkpXCQAHTkRRBwkDAVJeDgQFB11dURNNVQMIRVI8
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 569cabbbd895b90b008f9bbf
+Content-Length: 3864
+Date: Fri, 15 Jan 2016 12:16:37 GMT
+Via: 1.1 vegur
+
+{
+  "domains": [
+    {
+      "id": "canada",
+      "name": "Canada Admission",
+      "country_id": 124,
+      "site_url": "www.admission.com?track=DiscoveryAPI",
+      "currency": "CAD",
+      "langs": [
+        {
+          "id": "fr-ca",
+          "name": "Français - CA",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "billetech",
+      "name": "Canada Billetech",
+      "country_id": 124,
+      "site_url": "www.billetech.com?track=DiscoveryAPI",
+      "currency": "CAD",
+      "langs": [
+        {
+          "id": "fr-ca",
+          "name": "Français - CA",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "belgium",
+      "name": "Belgium",
+      "country_id": 56,
+      "site_url": "www.ticketmaster.be?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "fr-be",
+          "name": "Français - BE",
+          "default": true
+        },
+        {
+          "id": "nl-be",
+          "name": "Nederlands - BE",
+          "default": false
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "denmark",
+      "name": "Denmark",
+      "country_id": 208,
+      "site_url": "www.billetnet.dk?track=DiscoveryAPI",
+      "currency": "DKK",
+      "langs": [
+        {
+          "id": "da-dk",
+          "name": "Dansk",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "country_id": 276,
+      "site_url": "www.ticketmaster.de?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "de-de",
+          "name": "Deutsch",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "netherlands",
+      "name": "Netherlands",
+      "country_id": 528,
+      "site_url": "www.ticketmaster.nl?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "nl-nl",
+          "name": "Nederlands - NL",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "finland",
+      "name": "Finland",
+      "country_id": 246,
+      "site_url": "www.lippupalvelu.fi?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "fi-fi",
+          "name": "Suomi",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "norway",
+      "name": "Norway",
+      "country_id": 578,
+      "site_url": "www.billettservice.no?track=DiscoveryAPI",
+      "currency": "NOK",
+      "langs": [
+        {
+          "id": "no-no",
+          "name": "Norsk",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "sweden",
+      "name": "Sweden",
+      "country_id": 752,
+      "site_url": "www.ticnet.se?track=DiscoveryAPI",
+      "currency": "SEK",
+      "langs": [
+        {
+          "id": "sv-se",
+          "name": "Svenska",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "austria",
+      "name": "Austria",
+      "country_id": 40,
+      "site_url": "www.ticketmaster.at?track=DiscoveryAPI",
+      "currency": "EUR",
+      "langs": [
+        {
+          "id": "de-at",
+          "name": "Österreichisches Deutsch",
+          "default": true
+        },
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "unitedarabemirates",
+      "name": "United Arab Emirates",
+      "country_id": 784,
+      "site_url": "www.ae.ticketmaster.com?track=DiscoveryAPI",
+      "currency": "AED",
+      "langs": [
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": true
+        }
+      ]
+    },
+    {
+      "id": "unitedkingdom",
+      "name": "TicketWeb",
+      "country_id": 826,
+      "site_url": "www.ticketweb.co.uk?track=DiscoveryAPI",
+      "currency": "GBP",
+      "langs": [
+        {
+          "id": "en-us",
+          "name": "English",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+     --header "Accept: application/json" \
+  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id'
+{% endhighlight %}
+
+{: .article #categories-list}
 ##Categories 
 List Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
