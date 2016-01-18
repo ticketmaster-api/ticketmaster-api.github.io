@@ -84,7 +84,7 @@ to search multiple domains. (A logical OR search is performed).
     - unitedarabemirates
     - canada
     - poland
-{% endcomment %}  
+{% endcomment %}
 
 | Parameters | Optional values | Type |
 | -------- | | ------------------ |
@@ -122,35 +122,6 @@ or descending. The default sort method is eventdate and order is ascending.
 #### Other Parameters
 There are multiple _additional parameters_ which allow you to filter the search by event name, category, 
 location, venue, date, availability, attraction (artist, sport, package, play and so on) and many more. See the 'Event Search' GET example for further details.
-
-{: .aside}
->[JS](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-var request = new XMLHttpRequest();
-
-request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events');
-
-request.setRequestHeader('Accept', 'application/json');
-
-request.onreadystatechange = function () {
-  if (this.readyState === 4) {
-    console.log('Status:', this.status);
-    console.log('Headers:', this.getAllResponseHeaders());
-    console.log('Body:', this.responseText);
-  }
-};
-
-request.send();
-{% endhighlight %}
-
-{% highlight bash %}
-curl --include \
-     --header "Accept: application/json" \
-  'https://app.ticketmaster.eu/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events'
-{% endhighlight %}
 
 >[Request](#req)
 >[Response](#res)
@@ -329,7 +300,36 @@ Via: 1.1 vegur
 }
 {% endhighlight %}
 
-{: .article #event-details }
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events'
+{% endhighlight %}
+
+{: .article #event-details}
 ## Event Details
 Get details for a specific event using the unique identifer for the event. This includes the venue and location, ticket 
 availability and pricing, a description, and the Ticketmaster Website URL for purchasing tickets for the event.
@@ -478,7 +478,7 @@ curl --include \
 
 
 
-{: .article #updated-events  }
+{: .article #updated-events}
 ## Updated Events 
 Find the events which have been updated since a given timestamp. First call the service with the updated_since timestamp, 
 then process the response and call the service again with parameters provided in the next field. Finally continue until 
@@ -1561,7 +1561,7 @@ curl --include \
 {% endhighlight %}
 
 
-{: .article #venue-search}
+{: .article #venue-details}
 ## Venue Details 
 Get details for a specific event using the unique identifer for the event. Seatmaps for venues are available in the Event Service - See [Event Seatmaps](#event-seatmap)
 
@@ -2116,7 +2116,7 @@ curl --include \
 
 
 {: .article #cities-list}
-##Cities List (code need to finish)
+## Cities List
 Get a list of city names and city IDs.
 
 >[Request](#req)
@@ -2124,7 +2124,7 @@ Get a list of city names and city IDs.
 {: .reqres}
 
 {% highlight HTTP %}
-GET /mfxapi/v1/domains?country_id HTTP/1.1
+GET /mfxapi/v1/cities?lang&domain_id&country_id HTTP/1.1
 Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
 Accept: application/json
 Content-Length: 0
@@ -2134,238 +2134,300 @@ Content-Length: 0
 HTTP/1.1 200 OK
 Server: Cowboy
 Connection: keep-alive
-X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHUwDTFQGD01WTQoGBlFSWwEBDkpXCQAHTkRRBwkDAVJeDgQFB11dURNNVQMIRVI8
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdUlQCG1FIUggLBldWUA8IG1dcAA8fQFdTUANVWwMMCVcLVwBbURNNVQMIRVI8
 Content-Type: application/json
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
 Access-Control-Max-Age: 10
-X-Apiary-Transaction-Id: 569cabbbd895b90b008f9bbf
-Content-Length: 3864
-Date: Fri, 15 Jan 2016 12:16:37 GMT
+X-Apiary-Transaction-Id: 569cb7bc4fd0130b001f48c6
+Content-Length: 1819
+Date: Mon, 18 Jan 2016 10:00:28 GMT
 Via: 1.1 vegur
 
 {
-  "domains": [
+  "cities": [
     {
-      "id": "canada",
-      "name": "Canada Admission",
-      "country_id": 124,
-      "site_url": "www.admission.com?track=DiscoveryAPI",
-      "currency": "CAD",
-      "langs": [
-        {
-          "id": "fr-ca",
-          "name": "Français - CA",
-          "default": true
-        },
-        {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
+      "id": 40001,
+      "name": "OSLO",
+      "region_id": 40002,
+      "country_id": 578
     },
     {
-      "id": "billetech",
-      "name": "Canada Billetech",
-      "country_id": 124,
-      "site_url": "www.billetech.com?track=DiscoveryAPI",
-      "currency": "CAD",
-      "langs": [
-        {
-          "id": "fr-ca",
-          "name": "Français - CA",
-          "default": true
-        },
-        {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
+      "id": 40009,
+      "name": "SVERIGE",
+      "region_id": 40026,
+      "country_id": 578
     },
     {
-      "id": "belgium",
-      "name": "Belgium",
-      "country_id": 56,
-      "site_url": "www.ticketmaster.be?track=DiscoveryAPI",
-      "currency": "EUR",
-      "langs": [
-        {
-          "id": "fr-be",
-          "name": "Français - BE",
-          "default": true
-        },
-        {
-          "id": "nl-be",
-          "name": "Nederlands - BE",
-          "default": false
-        },
-        {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
+      "id": 40129,
+      "name": "NESODDEN",
+      "region_id": 40058,
+      "country_id": 578
     },
     {
-      "id": "denmark",
-      "name": "Denmark",
-      "country_id": 208,
-      "site_url": "www.billetnet.dk?track=DiscoveryAPI",
-      "currency": "DKK",
-      "langs": [
+      "id": 40130,
+      "name": "SANDVIKA",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 40132,
+      "name": "HØVIK",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 40133,
+      "name": "GJETTUM",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 40134,
+      "name": "BEKKESTUA",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 40135,
+      "name": "LOMMEDALEN",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 40136,
+      "name": "STABEKK",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 40137,
+      "name": "ASKER",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 40500,
+      "name": "BERGEN",
+      "region_id": 40069,
+      "country_id": 578
+    },
+    {
+      "id": 40510,
+      "name": "SALHUS",
+      "region_id": 40069,
+      "country_id": 578
+    },
+    {
+      "id": 41927,
+      "name": "ORRE",
+      "region_id": 40076,
+      "country_id": 578
+    },
+    {
+      "id": 41929,
+      "name": "OSCARSBORG",
+      "region_id": 40063,
+      "country_id": 578
+    },
+    {
+      "id": 41932,
+      "name": "OSTEREIDET",
+      "region_id": 40069,
+      "country_id": 578
+    },
+    {
+      "id": 41934,
+      "name": "OTTESTAD",
+      "region_id": 40068,
+      "country_id": 578
+    },
+    {
+      "id": 41935,
+      "name": "PARADIS",
+      "region_id": 40069,
+      "country_id": 578
+    },
+    {
+      "id": 41937,
+      "name": "PLASSEN",
+      "region_id": 40068,
+      "country_id": 578
+    },
+    {
+      "id": 41941,
+      "name": "RAMBERG",
+      "region_id": 40073,
+      "country_id": 578
+    },
+    {
+      "id": 41943,
+      "name": "RAMNES",
+      "region_id": 40083,
+      "country_id": 578
+    },
+    {
+      "id": 41952,
+      "name": "REIPÅ",
+      "region_id": 40073,
+      "country_id": 578
+    },
+    {
+      "id": 41956,
+      "name": "RENNEBU",
+      "region_id": 40078,
+      "country_id": 578
+    },
+    {
+      "id": 41957,
+      "name": "RENNESØY",
+      "region_id": 40076,
+      "country_id": 578
+    },
+    {
+      "id": 41959,
+      "name": "REVETAL",
+      "region_id": 40083,
+      "country_id": 578
+    }
+  ]
+}
+{% endhighlight %}
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/cities?lang&domain_id&country_id');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+'/cities?lang&domain_id&country_id'
+{% endhighlight %}
+
+{: .article #categories-list}
+## Categories List
+Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /mfxapi/v1/categories?lang&domain_id&category_id&subcategories HTTP/1.1
+Host: https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdUlYHG1FIUgsDAlxRVg8AG1dWAwIfQFJTUARRCFQNDg1TVV1aQx0HUg4XU2o=
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 569cb826f446de0b00e07619
+Content-Length: 1224
+Date: Mon, 18 Jan 2016 10:00:28 GMT
+Via: 1.1 vegur
+
+{
+  "categories": [
+    {
+      "name": "Musikk",
+      "id": 10001,
+      "subcategories": [
         {
-          "id": "da-dk",
-          "name": "Dansk",
-          "default": true
+          "name": "Rock/Pop",
+          "id": 1
         },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
-    },
-    {
-      "id": "germany",
-      "name": "Germany",
-      "country_id": 276,
-      "site_url": "www.ticketmaster.de?track=DiscoveryAPI",
-      "currency": "EUR",
-      "langs": [
-        {
-          "id": "de-de",
-          "name": "Deutsch",
-          "default": true
+          "name": "Country/Viser",
+          "id": 2
         },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
-    },
-    {
-      "id": "netherlands",
-      "name": "Netherlands",
-      "country_id": 528,
-      "site_url": "www.ticketmaster.nl?track=DiscoveryAPI",
-      "currency": "EUR",
-      "langs": [
-        {
-          "id": "nl-nl",
-          "name": "Nederlands - NL",
-          "default": true
+          "name": "Rap/Hip-hop/R&B",
+          "id": 3
         },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
-    },
-    {
-      "id": "finland",
-      "name": "Finland",
-      "country_id": 246,
-      "site_url": "www.lippupalvelu.fi?track=DiscoveryAPI",
-      "currency": "EUR",
-      "langs": [
-        {
-          "id": "fi-fi",
-          "name": "Suomi",
-          "default": true
+          "name": "Jazz/Blues",
+          "id": 4
         },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
-    },
-    {
-      "id": "norway",
-      "name": "Norway",
-      "country_id": 578,
-      "site_url": "www.billettservice.no?track=DiscoveryAPI",
-      "currency": "NOK",
-      "langs": [
-        {
-          "id": "no-no",
-          "name": "Norsk",
-          "default": true
+          "name": "Verdensmusikk",
+          "id": 5
         },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
-    },
-    {
-      "id": "sweden",
-      "name": "Sweden",
-      "country_id": 752,
-      "site_url": "www.ticnet.se?track=DiscoveryAPI",
-      "currency": "SEK",
-      "langs": [
-        {
-          "id": "sv-se",
-          "name": "Svenska",
-          "default": true
+          "name": "Annen musikk",
+          "id": 52
         },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
-    },
-    {
-      "id": "austria",
-      "name": "Austria",
-      "country_id": 40,
-      "site_url": "www.ticketmaster.at?track=DiscoveryAPI",
-      "currency": "EUR",
-      "langs": [
-        {
-          "id": "de-at",
-          "name": "Österreichisches Deutsch",
-          "default": true
+          "name": "Alternativ rock/Indie",
+          "id": 60
         },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": false
-        }
-      ]
-    },
-    {
-      "id": "unitedarabemirates",
-      "name": "United Arab Emirates",
-      "country_id": 784,
-      "site_url": "www.ae.ticketmaster.com?track=DiscoveryAPI",
-      "currency": "AED",
-      "langs": [
+          "name": "Hard Rock/Metall",
+          "id": 200
+        },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": true
-        }
-      ]
-    },
-    {
-      "id": "unitedkingdom",
-      "name": "TicketWeb",
-      "country_id": 826,
-      "site_url": "www.ticketweb.co.uk?track=DiscoveryAPI",
-      "currency": "GBP",
-      "langs": [
+          "name": "Dance/Elektronika",
+          "id": 201
+        },
         {
-          "id": "en-us",
-          "name": "English",
-          "default": true
+          "name": "Vokalist",
+          "id": 1001
+        },
+        {
+          "name": "Franske Sanger",
+          "id": 1002
+        },
+        {
+          "name": "Klassisk",
+          "id": 1012
+        },
+        {
+          "name": "Kirkemusikk",
+          "id": 1201
+        },
+        {
+          "name": "Dansegalla",
+          "id": 1202
+        },
+        {
+          "name": "Slager- og dansebandmusikk",
+          "id": 1220
+        },
+        {
+          "name": "Reggae",
+          "id": 1258
+        },
+        {
+          "name": "Soul",
+          "id": 1259
+        },
+        {
+          "name": "Progressive Rock",
+          "id": 10103
         }
       ]
     }
@@ -2381,7 +2443,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id');
+request.open('GET', '/categories?lang&domain_id&category_id&subcategories');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -2399,9 +2461,5 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id'
+  '/categories?lang&domain_id&category_id&subcategories'
 {% endhighlight %}
-
-{: .article #categories-list}
-##Categories 
-List Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
