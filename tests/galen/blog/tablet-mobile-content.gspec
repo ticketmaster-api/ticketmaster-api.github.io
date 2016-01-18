@@ -35,7 +35,7 @@
         area-left:
             height > 430px
         area-right:
-            height > 348px
+            height > 340px
 
 = I see that content areas do not overlapping =
 

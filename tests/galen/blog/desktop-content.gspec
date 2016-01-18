@@ -11,7 +11,7 @@
     #menu-wrapper                css  div.body-wrapper
     #header-menu                 css  #menu
     #logo                        css  #header-logo img
-    search-button                css  .blogs #search
+    search-button                css  #search
     #nav-item-*                  css  #menu a
 
     area-left                   css     .box-left
