@@ -157,12 +157,12 @@ When you do go over your quota, you will get an HTTP status code 429 indicating 
 
 {: .code .red}
 {
-    "fault": {
-        "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : JEredGrkQNdT2KaNauMWGfTFqusCvupS",
-        "detail": {
-            "errorcode": "policies.ratelimit.QuotaViolation"
-        }
-    }
+	"fault": {
+		"faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
+		"detail": {
+			"errorcode": "policies.ratelimit.QuotaViolation"
+		}
+	}
 }
 
 {: .double-margin #cors-support}
