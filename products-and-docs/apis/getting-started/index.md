@@ -136,34 +136,23 @@ You can see how much of your quota has been used by checking the following **res
 	curl -I 'http://app.ticketmaster.com/discovery/v1/events.json?keyword=Queen&apikey=xxx'
 
 	HTTP/1.1 200 OK
-	Access-Control-Allow-Headers: origin, x-requested-with, accept
-	Access-Control-Allow-Methods: GET, PUT, POST, DELETE
-	Access-Control-Allow-Origin: *
-	Access-Control-Max-Age: 3628800
-	Content-Length: 10125
-	Content-Type: application/json;charset=UTF-8
-	Date: Mon, 18 Jan 2016 05:59:31 GMT
 	Rate-Limit: 5000
 	Rate-Limit-Available: 4978
 	Rate-Limit-Over: 0
 	Rate-Limit-Reset: 1453180594367
-	Server: Apache-Coyote/1.1
-	Set-Cookie: CMPS=b01cyHYOVqQFEK9xyZUInjGMULg4OGYH0q+EgdHzEcw0F8ofGi6q9Ok4j2Q64oa3LVBfFF06x90=; path=/
-	X-Application-Context: application:default,jetson4
-	Connection: keep-alive
 
 ### API Response When Quota is Reached
 When you do go over your quota, you will get an HTTP status code 429 indicating you've made too many requests. The following is the API response you will receive:
 
 {: .code .red}
-{
-	"fault": {
-		"faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
-		"detail": {
-			"errorcode": "policies.ratelimit.QuotaViolation"
+	{
+		"fault": {
+			"faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
+			"detail": {
+				"errorcode": "policies.ratelimit.QuotaViolation"
+			}
 		}
 	}
-}
 
 {: .double-margin #cors-support}
 ## CORS Support
