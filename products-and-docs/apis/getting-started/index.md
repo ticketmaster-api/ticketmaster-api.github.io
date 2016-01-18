@@ -152,7 +152,7 @@ You can see how much of your quota has been used by checking the following **res
 	X-Application-Context: application:default,jetson4
 	Connection: keep-alive
 
-### Over Quota API Response
+### API Response When Quota is Reached
 When you do go over your quota, you will get an HTTP status code 429 indicating you've made too many requests. The following is the API response you will receive:
 
 {: .code .red}
