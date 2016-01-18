@@ -122,6 +122,9 @@ All API keys are issued with a _default quota_ of **5000 API calls/day**. We do 
 2. The application is in compliance with our branding guide
 3. The application is representing the Ticketmaster data properly
 
+Once these three criteria are verified, the rate limit is increased to what Ticketmaster and the developer determine to be appropriate.
+
+### Rate Limit Info in Response Header
 You can see how much of your quota has been used by checking the following **response headers**:
 
 * **Rate-Limit**: What's the rate limit available to you. The default is 5000.
@@ -149,7 +152,18 @@ You can see how much of your quota has been used by checking the following **res
 	X-Application-Context: application:default,jetson4
 	Connection: keep-alive
 
-Once these three criteria are verified, the rate limit is increased to what Ticketmaster and the developer determine to be appropriate.
+### Over Quota API Response
+When you do go over your quota, you will get an HTTP status code 429 indicating you've made too many requests. The following is the API response you will receive:
+
+{: .code .red}
+{
+    "fault": {
+        "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : JEredGrkQNdT2KaNauMWGfTFqusCvupS",
+        "detail": {
+            "errorcode": "policies.ratelimit.QuotaViolation"
+        }
+    }
+}
 
 {: .double-margin #cors-support}
 ## CORS Support
