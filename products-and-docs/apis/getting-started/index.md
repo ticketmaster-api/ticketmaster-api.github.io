@@ -129,6 +129,7 @@ You can see how much of your quota has been used by checking the following **res
 * Rate-Limit-Over:
 * Rate-Limit-Reset:
 
+{: .code .red}
 	curl -I 'http://app.ticketmaster.com/discovery/v1/events.json?keyword=Queen&apikey=xxx'
 
 	HTTP/1.1 200 OK
