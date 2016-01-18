@@ -124,10 +124,10 @@ All API keys are issued with a _default quota_ of **5000 API calls/day**. We do 
 
 You can see how much of your quota has been used by checking the following **response headers**:
 
-* Rate-Limit:
-* Rate-Limit-Available:
-* Rate-Limit-Over:
-* Rate-Limit-Reset:
+* **Rate-Limit**: What's the rate limit available to you. The default is 5000.
+* **Rate-Limit-Available**: How many requests are available to you. This will be 5000 minus all the requests you've done.
+* **Rate-Limit-Over**: How many requests over your quota you've made.
+* **Rate-Limit-Reset**: The UTC date and time of when your quota will be reset.
 
 {: .code .red}
 	curl -I 'http://app.ticketmaster.com/discovery/v1/events.json?keyword=Queen&apikey=xxx'
