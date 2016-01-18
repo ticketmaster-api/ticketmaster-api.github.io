@@ -29,6 +29,7 @@
                 var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
                 var firstElemGroupLeft = groupLeft.parent().children().first();
                 var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
+                var copyBtn = $(document.createElement("a")).addClass("copy-btn").attr("href", "#");
 
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -54,7 +55,8 @@
                                 index = [index % (tabsCount + 1)]
                             }
                             return "tab-" + index;
-                        });
+                        })
+                        .prepend(copyBtn);// add copy button
 
                     group.nextAll().first().addClass('tab-active');//set first tab visible
                     /*parse tabs end*/
