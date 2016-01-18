@@ -10,6 +10,9 @@ $(document).ready(function() {
             $(this).next().addClass("active");
         });
 
+        var copyBtn = $(document.createElement("div")).addClass("copy-btn");
+        $(".r-tab").prepend(copyBtn);
+
         $(".reqres a").click(function(event) {
             $(this).parent().find(".active").removeClass("active");
             $(this).parent().parent().parent().find(".r-tab.active").removeClass("active");

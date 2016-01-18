@@ -427,6 +427,11 @@
   &.active {
     display: block;
   }
+  .copy-btn {
+    margin-top: 0;
+    left: 50%;
+    right: 0;
+  }
 }
 
 .documentation .content .article-wrapper .reqres-wrapper blockquote p {

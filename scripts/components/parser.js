@@ -29,7 +29,7 @@
                 var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
                 var firstElemGroupLeft = groupLeft.parent().children().first();
                 var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
-                var copyBtn = $(document.createElement("a")).addClass("copy-btn").attr("href", "#");
+                var copyBtn = $(document.createElement("div")).addClass("copy-btn");
 
                 group.wrapAll('<div class="aside-wrapper"></div>');
 
