@@ -7,7 +7,7 @@
     menu-btn                    css  .blogs #menu-btn
     menu-btn-close              css  .blogs #menu-btn .tm-close
     logo                        css  .blogs #header-logo img
-    search-button               css  .blogs #search
+    search-button               css  #search
 
 =  two content areas under the header row (tablet-mobile-header.gspec)=
     @on tablet,mobile
