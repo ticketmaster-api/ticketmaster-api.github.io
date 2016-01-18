@@ -1,0 +1,49 @@
+##
+#galen check tests/galen/blog/desktop-tablet-footer.gspec --url localhost:4000/blogs --size 1229x1024 --htmlreport tests/galen/reports/desktop-tablet-footer
+##
+
+@set
+    white "rgba(255, 255, 255, 1)"
+    whiteDisabled "rgba(255, 255, 255, 0.7)"
+    color   css color is
+
+@objects
+    top-content                 css  .top-bar.bg-header.blogs.slice-bottom-left
+    footer                      css  #footer-blogs
+    nav-blocks-footer-*         css  #footer-blogs > div.row.footer-nav > div > div
+    nav-item-heading-footer-*   css  #footer-blogs > div.row.footer-nav > div > div > a > h5
+
+
+=Blogs page footer consist of six columns with blue titles=
+    @on desktop, tablet
+        global:
+            % count any nav-blocks-footer-* is 6
+            % count any nav-item-heading-footer-* is 6
+
+
+= Blogs page footer at the bottom of the page =
+        footer:
+            below top-content ~0 px
+
+= Navigation test @desktop =
+    @on desktop, tablet
+        nav-item-heading-footer-1:
+            % text is "Products & Docs"
+            aligned horizontally all nav-item-heading-footer-2
+        nav-item-heading-footer-2:
+            % text is "Partners"
+            aligned horizontally all nav-item-heading-footer-3
+        nav-item-heading-footer-3:
+            % text is "Support"
+            aligned horizontally all nav-item-heading-footer-4
+        nav-item-heading-footer-4:
+            % text is "Blogs"
+            aligned horizontally all nav-item-heading-footer-5
+        nav-item-heading-footer-5:
+            % text is "Events"
+            aligned horizontally all nav-item-heading-footer-6
+        nav-item-heading-footer-6:
+            text is "Open Source"
+
+        nav-item-heading-footer-*:
+            ${color} "rgba(0, 156, 222, 1)"

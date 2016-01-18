@@ -4,6 +4,7 @@
 
     home        tests/galen/home
     prDocs      tests/galen/products-and-docs
+    blog        tests/galen/blog
 
 
 Home page on desktop
@@ -30,3 +31,20 @@ Prod-and-Docs page on tablet
 Prod-and-Docs page on mobile
     ${base_url}/products-and-docs/apis/getting-started/ 320x800
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
+
+######
+Blogs page on mobile
+    ${base_url}/blogs/ 320x800
+        check ${blog}/mobile-footer.gspec --include "mobile" --exclude "nomobile"
+
+Blogs page on tablet
+    ${base_url}/blogs/ 768x1024
+        check ${blog}/tablet-mobile-content.gspec --include "tablet, mobile"
+        check ${blog}/tablet-mobile-header.gspec --include "tablet, mobile"
+        check ${blog}/tablet-mobile-header-menu.gspec --include "tablet, mobile"
+
+Blogs page on desktop
+    ${base_url}/blogs/ 1200x1080
+        check ${blog}/desktop-content.gspec --include "desktop"
+        check ${blog}/desktop-header.gspec --include "desktop"
+        check ${blog}/desktop-tablet-footer.gspec --include "desktop"
