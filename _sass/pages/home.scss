@@ -13,8 +13,9 @@
 
 #top-promo {
   @include no-select();
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   background-image: url('/assets/img/home/bg-football-p-1.png');
+  padding-top: 187px;
   @media #{$max-1200} {
     margin-bottom: 30px;
   }
@@ -24,7 +25,7 @@
   h1 {
     font-size: 81px;
     line-height: 88px;
-    padding-top: 73px;
+    //padding-top: 47px;
     @media #{$max-1200} {
       font-size: $size-h1;
       line-height: $line-height-h1;
@@ -74,7 +75,7 @@
     }
   }
   .description {
-    margin: 11px 0 -3px;
+    margin: -7px 0 -11px;
     @media #{$max-1200} {
       margin: -9px 0 -3px;
     }
@@ -100,7 +101,7 @@
   @include no-select();
   text-align: center;
   background-image: url('/assets/img/home/bg-baseball-p-1-a.png');
-  margin: 22px 0 69px;
+  margin: 0px 0 69px;
   @media #{$max-1200} {
     margin: 22px 0 61px;
   }
