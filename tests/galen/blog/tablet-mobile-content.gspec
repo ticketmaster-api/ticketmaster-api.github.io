@@ -16,7 +16,7 @@
 
         area-wrapper:
             visible
-            below menu-wrapper 50 to 55px
+            below menu-wrapper 90 to 104px
             width > 90 % of screen/width
 
 = I see that the header row and the content areas row have one picture background =
@@ -35,13 +35,13 @@
         area-left:
             height > 430px
         area-right:
-            height > 410px
+            height > 348px
 
 = I see that content areas do not overlapping =
 
 = I see that content areas width is equal=
         area-right, area-left:
-            width ~ 89% of screen/width
+            width ~ 94% of screen/width
 
 = I see that content inside a content area does not cross the area border =
         area-right, area-left:
@@ -49,8 +49,8 @@
             css padding-right is "40px"
 
         area-right:
-            css padding-top is "47px"
-            css padding-bottom is "47px"
+            css padding-top is "37px"
+            css padding-bottom is "37px"
         area-left:
             css padding-top is "40px"
             css padding-bottom is "40px"

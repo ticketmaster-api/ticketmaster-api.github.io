@@ -7,11 +7,11 @@
     whiteDisabled "rgba(255, 255, 255, 0.7)"
 
 @objects
-    body-wrapper                css  .top-bar
+    body-wrapper                 css  .top-bar
     #menu-wrapper                css  div.body-wrapper
     #header-menu                 css  #menu
     #logo                        css  #header-logo img
-    #search-button               css  #search
+    search-button                css  .blogs #search
     #nav-item-*                  css  #menu a
 
     area-left                   css     .box-left

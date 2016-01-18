@@ -10,7 +10,7 @@
     search-button               css  .blogs #search
 
 =  two content areas under the header row (tablet-mobile-header.gspec)=
-#    @on tablet,mobile
+    @on tablet,mobile
         logo:
             visible
             width > 10 % of screen/width
@@ -26,7 +26,7 @@
 
 = TM logo, the header menu and the search button in one row=
         logo:
-            aligned horizontally centered  menu-btn 3px search-button
+            aligned horizontally centered menu-btn 3px search-button
 
         menu-btn-close:
             absent
