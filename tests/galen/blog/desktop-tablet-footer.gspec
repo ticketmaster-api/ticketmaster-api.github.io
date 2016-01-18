@@ -11,7 +11,7 @@
     top-content                 css  .top-bar.bg-header.blogs.slice-bottom-left
     footer                      css  #footer-blogs
     nav-blocks-footer-*         css  #footer-blogs > div.row.footer-nav > div > div
-    nav-item-heading-footer-*   css  #footer-blogs > div.row.footer-nav > div > div > a > h5
+    nav-item-heading-footer-*   css  #footer-blogs > div.row.footer-nav > div > div > a > h4
 
 
 =Blogs page footer consist of six columns with blue titles=
