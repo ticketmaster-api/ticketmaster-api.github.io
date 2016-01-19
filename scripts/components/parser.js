@@ -64,7 +64,7 @@
                     rawBtn.dataset.contentText = proxyItem_.textContent;
                     rawBtn.addEventListener("click", function(){
                         window.sessionStorage.setItem("content",this.dataset.contentText);
-                        var win = window.open(window.location.host + "/products-and-docs/raw-view/", '_blank');
+                        var win = window.open(window.location.protocol + "//" + window.location.host + "/products-and-docs/raw-view/", '_blank');
                         win.focus();
                     });
 

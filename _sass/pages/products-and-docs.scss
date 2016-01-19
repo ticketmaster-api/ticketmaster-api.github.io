@@ -63,21 +63,18 @@
 
 .slice-left {
     background: #f0f4f7;
-    margin-top: 32px;
+    margin-top: 54px;
     .row, .row-container  {
         text-align: center;
-        div {
-            margin: 75px auto 0 auto;
+        &>div {
+            margin: 0 auto;
             float: none;
             img {
                 margin: 25px 22px 14px 22px;
             }
             .lead {
-                margin-bottom: 50px;
+                margin-bottom: 24px;
             }
-        }
-        .clearfix {
-            margin: 0 0 20px 0;
         }
     }
     h2 {
@@ -86,8 +83,13 @@
 }
 
 .sdk {
-    margin-top: 27px;
+    margin-top: 50px;
     text-align: center;
+    @media #{$max-768}{
+      .sdk-elem{
+        margin-bottom: 23px;
+      }
+    }
     .row-sdk {
         max-width: 802px;
     }
@@ -97,7 +99,9 @@
     }
     .lead {
         margin-top: 15px;
-        margin-bottom: 73px;
+        @media (min-width: 768px){
+          margin-bottom: 73px;
+        }
     }
 
     & .col-md-6:nth-child(odd) {
@@ -122,9 +126,6 @@
             margin-bottom: 14px;
         }
     }
-    & .button-blue {
-        margin-top: 50px;
-    }
 }
 
 
@@ -144,12 +145,6 @@
     }
 }
 
-.slice-bottom-left{
-    &:after{
-        height: 170px;
-    }
-}
-
 .button {
     border-radius: 5px;
     display: inline-block;
@@ -164,14 +159,7 @@
     background: #019cde;
     text-decoration: none;
     padding: 12px 26px;
-    @media #{$max-1200} {
-        margin-top: 27px!important;
-        margin-bottom: 70px;
-    }
-    @media #{$max-768} {
-        margin-top: 27px!important;
-        margin-bottom: 70px;
-    }
+    margin-top: 27px;
 }
 
 .button-white,
