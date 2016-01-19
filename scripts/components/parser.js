@@ -22,45 +22,55 @@
                 group.wrapAll('<div class="article-wrapper"></div>');
             });
 
-        main.find('.aside').each(
-            function () {
-                var me = $(this);
-                var group = me.nextUntil('.article').addBack();
-                var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
-                var firstElemGroupLeft = groupLeft.parent().children().first();
-                var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
+        main.find('.aside').each(function () {
+            var me = $(this);
+            var group = me.nextUntil('.article').addBack();
+            var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
+            var firstElemGroupLeft = groupLeft.parent().children().first();
+            var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
 
-                group.wrapAll('<div class="aside-wrapper"></div>');
+            group.wrapAll('<div class="aside-wrapper"></div>');
 
-                groupLeft.wrapAll('<div class="left-wrapper"></div>');
+            groupLeft.wrapAll('<div class="left-wrapper"></div>');
 
-                //add underline
-                if (me.hasClass('lang-selector')) {
-                    firstElemGroupLeft.addClass('underline');
-                    firstElemGroupLeft.append(consoleBtn);
+            //add underline
+            if (me.hasClass('lang-selector')) {
+                firstElemGroupLeft.addClass('underline');
+                firstElemGroupLeft.append(consoleBtn);
 
-                    //move first element to class="aside-wrapper"
-                    firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
+                //move first element to class="aside-wrapper"
+                firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
 
-                    /*parse tabs*/
-                    me.children().children().first().addClass('active')//set first button active
+                /*parse tabs*/
+                me.children().children().first().addClass('active')//set first button active
 
-                    tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('p').length+1;
+                tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('p').length+1;
 
-                    me.siblings(':lt('+tabsCount+')')
-                        .addClass('tab-content')
-                        .addClass(function (index) {
-                            if (index > tabsCount) {
-                                index = [index % (tabsCount + 1)]
-                            }
-                            return "tab-" + index;
-                        });
+                me.siblings(':lt('+tabsCount+')')
+                  .addClass('tab-content')
+                  .addClass(function (index) {
+                    if (index > tabsCount) {
+                        index = [index % (tabsCount + 1)]
+                    }
+                    return "tab-" + index;
+                  }).each(function(){
+                    var copyBtn = document.createElement("div");
+                    copyBtn.className = "copy-btn";
 
-                    group.nextAll().first().addClass('tab-active');//set first tab visible
-                    /*parse tabs end*/
-                }
-                //console.log($('*').length);//As less is better
-            });
+                    var html = this.outerHTML;
+                    var proxyItem = document.createElement("div");
+                        proxyItem.innerHTML = html;
+
+                    copyBtn.dataset.clipboardText = proxyItem.textContent;
+
+                    $(this).prepend(copyBtn);// add copy button
+                  });
+
+                group.nextAll().first().addClass('tab-active');//set first tab visible
+                /*parse tabs end*/
+            }
+            //console.log($('*').length);//As less is better
+        });
 
         //add class to move it top
         $(".aside-wrapper > blockquote").parent('.aside-wrapper').addClass('tab-panel-offset');
