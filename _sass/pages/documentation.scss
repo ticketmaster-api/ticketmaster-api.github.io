@@ -409,7 +409,7 @@
     position: absolute;
     display: block;
     background-image: url("/assets/img/products-and-docs/ic-copy-w.svg");
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(201,207,212,1);
     background-repeat: no-repeat;
     width: 24px;
     height: 24px;
@@ -423,14 +423,14 @@
     transition: opacity 0.5s ease-in-out;
 
     &:hover{
-      background-color: rgba(10, 152, 206, 0.4);
+      background-color: rgba(153, 216, 242, 1);
     }
   }
   .raw-btn {
     position: absolute;
     display: block;
     background-image: url("/assets/img/products-and-docs/ic-raw-w.svg");
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(201,207,212,1);
     background-repeat: no-repeat;
     width: 24px;
     height: 24px;
@@ -444,7 +444,7 @@
     transition: opacity 0.5s ease-in-out;
 
     &:hover{
-      background-color: rgba(10, 152, 206, 0.4);
+      background-color: rgba(153, 216, 242, 1);
     }
   }
 
