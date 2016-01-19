@@ -56,7 +56,7 @@ discovery/{version}/events.{format}
 | `attractionId`   | Attraction ID(s) separated by comma. | string            |       "768011"       | No      |
 | `venueId`   | Venue ID(s) separated by comma. | string            |       "115378"       | No      |
 | `promoterId`   | Promoter ID(s) separated by comma. | string            |       "494"       | No      |
-| `zipCode`   | Zipcode or Portal Code of the venue in which the event is taking place. | string            |       "90069"       | No      |
+| `postalCode`   | Zipcode or Postal Code of the venue in which the event is taking place. | string            |       "90069"       | No      |
 | `latlong`   | The longitude/Latitude coordinates for the venue in which this event is taking place. | string            |       "34.0928090,-118.3286610"       | No      |
 | `radius`   | The radius of the area in which we want to search for events. | string            |       "25"       | No      |
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |

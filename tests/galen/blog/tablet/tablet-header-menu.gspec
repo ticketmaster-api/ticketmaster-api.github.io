@@ -1,0 +1,14 @@
+##
+#galen check tests/galen/blog/tablet-mobile-header-menu.gspec --url localhost:4000/blogs --size 797x1080 --htmlreport tests/galen/reports/blog/tablet-all
+##
+
+@objects
+    body-wrapper                css  .top-bar
+    menu-wrapper                css  div.body-wrapper
+    header-menu                 css  #menu
+    menu-btn                    css  #menu-btn
+    menu-btn-close              css  #menu-btn .tm-close
+    nav-item-*                  css  #menu a
+
+=  clicks on the menu button (tablet-header-menu.gspec)=
+

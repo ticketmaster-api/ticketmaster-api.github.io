@@ -74,7 +74,7 @@
                             'position': 'absolute',
                             'top': $('.maincontent').parent().height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44,
                             'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44,
-                            'width': 80 + '%'
+                            'width': 100 + '%'
                         });
                         scrollMenu("bottom");
                     }

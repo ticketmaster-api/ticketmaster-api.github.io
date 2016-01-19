@@ -15,20 +15,6 @@
       .body-wrapper {
         margin-bottom: 0;
       }
-      &:after {
-        height: 500px;
-        transform: matrix(1.01, -0.093, 0, 1, 0, 0);
-        -webkit-transform: matrix(1.01, -0.093, 0, 1, 0, 0);
-        -moz-transform: matrix(1.01, -0.093, 0, 1, 0, 0);
-        -o-transform: matrix(1.01, -0.093, 0, 1, 0, 0);
-        -ms-transform: matrix(1.01, -0.093, 0, 1, 0, 0);
-        @media #{$max-1200} {
-          height: 140px;
-        }
-        @media #{$max-768} {
-          height: 140px;
-        }
-      }
       .row-blogs {
         margin: 94px auto 238px auto;
         @media #{$max-1200} {
@@ -152,12 +138,12 @@
     margin-right: 30px;
   }
   .footer-nav{
-    margin: 190px 0 70px;
+    margin: 25px 0 70px;
     @media #{$max-1200} {
-      margin-top: 230px;
+      margin-top: 23px;
     }
     @media #{$max-768} {
-      margin-top: 230px;
+      margin-top: 23px;
     }
     ul {
       margin-top: 17px;
@@ -168,7 +154,7 @@
   }
   &.menu-bg{
     &:before{
-      @include component-menu-bg();
+      @include component-menu-bg-top();
     }
   }
 }

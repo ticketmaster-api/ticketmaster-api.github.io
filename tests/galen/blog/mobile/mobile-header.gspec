@@ -1,0 +1,34 @@
+##
+#galen check tests/galen/blog/mobile-header.gspec --url localhost:4000/blogs --size 349x1080 --htmlreport tests/galen/reports/blog/mobile-header
+##
+#galen check tests/galen/blog/mobile-header.gspec --url http://ticketmaster-api-staging.github.io/blogs --size 349x1080 --htmlreport tests/galen/reports/blog/mobile-header
+##
+
+@objects
+    menu-wrapper                css  .blogs div.body-wrapper
+    menu-btn                    css  .blogs #menu-btn
+    menu-btn-close              css  .blogs #menu-btn .tm-close
+    logo                        css  .blogs #header-logo img
+    search                      css  .blogs #search
+
+=  two content areas under the header row (mobile-header.gspec)=
+        logo:
+            visible
+            width > 50 % of screen/width
+            inside partly menu-wrapper 10 to 30px left, 20 to 30px top
+
+        search:
+            visible
+            inside partly menu-wrapper ~52 px right, 30 to 34px top
+
+        menu-btn:
+            visible
+            inside partly menu-wrapper ~6 px right, 30 to 34px top
+
+= TM logo, the header menu and the search button in one row=
+        logo:
+            aligned horizontally centered menu-btn 3px
+            aligned horizontally centered search 3px
+
+        menu-btn-close:
+            absent

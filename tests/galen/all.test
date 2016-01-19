@@ -2,31 +2,58 @@
     domain      127.0.0.1:4000
     base_url    http://${domain}/
 
+    mobile_size     320x480
+    tablet_size     768x1024
+    desktop_size    1440x1220
+
     home        tests/galen/home
     prDocs      tests/galen/products-and-docs
+    blog        tests/galen/blog
 
+##############################################################################
 
+@@ disabled
 Home page on desktop
-    http://${domain} 1200x1080
+    http://${domain} ${desktop_size}
         check ${home}/desktop.gspec --include "desktop"
 
+@@ disabled
 Home page on tablet
-    http://${domain} 768x1024
+    http://${domain} ${tablet_size}
         check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
+@@ disabled
 Home page on mobile
-    http://${domain} 480x800
+    http://${domain} ${mobile_size}
         check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
 
+##############################################################################
 
+@@ disabled
 Prod-and-Docs page on desktop
     ${base_url}/products-and-docs/apis/getting-started/ 1200x1080
         check ${prDocs}/desktop-getting-started.gspec --include "desktop"
 
+@@ disabled
 Prod-and-Docs page on tablet
     ${base_url}/products-and-docs/apis/getting-started/ 768x1024
         check ${prDocs}/tablet-getting-started.gspec --include "tablet"
 
+@@ disabled
 Prod-and-Docs page on mobile
-    ${base_url}/products-and-docs/apis/getting-started/ 320x800
+    ${base_url}/products-and-docs/apis/getting-started/ ${mobile_size}
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
+
+##############################################################################
+
+Blogs page on desktop
+    ${base_url}/blogs/ ${desktop_size}
+        check ${blog}/desktop-blog.gspec --include "desktop"
+
+Blogs page on tablet
+    ${base_url}/blogs/ ${tablet_size}
+        check ${blog}/tablet-blog.gspec --include "tablet"
+
+Blogs page on mobile
+    ${base_url}/blogs/ ${mobile_size}
+        check ${blog}/mobile-blog.gspec --include "mobile" --exclude "nomobile"
