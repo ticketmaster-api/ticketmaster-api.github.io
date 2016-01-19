@@ -1,9 +1,6 @@
 #footer{
   background-image: url('/assets/img/footer/bg-die-antwoord-p-1.png');
   color: $white-70;
-  @media #{$max-768} {
-    background-position: right 60% center;
-  }
   a {
     color: $white-70;
   }
@@ -23,7 +20,7 @@
 @media #{$max-1200} {
   #footer {
     .footer-nav{
-      margin: 155px 0 44px -23px;
+      margin: 25px 0 44px 0;
     }
     .bottom-logo {
       margin-left: 0;
@@ -33,6 +30,13 @@
 
 @media #{$max-768} {
   #footer{
+    background-position: right 60% center;
+    margin-top: 44px;
+    &.xs-center{
+      li:not(:last-child):after{
+        border-color: $white;
+      }
+    }
     img{
       display: block;
       margin: 0 auto 10px;
@@ -41,7 +45,7 @@
       margin-left: 0;
     }
     .footer-nav {
-      margin: 120px 0 44px;
+      margin: 23px 0 44px;
       h5,
       .row-container>div{
         margin-bottom: -5px;
@@ -66,41 +70,14 @@
     margin-right: 30px;
   }
   .footer-nav{
-    margin: 108px 0 70px;
+    margin: -33px 0 70px;
+    @media #{$max-1200} {
+      margin-top: 48px;
+    }
   }
   &.menu-bg{
     &:before{
       @include component-menu-bg();
-    }
-  }
-}
-
-@media #{$max-1200} {
-  #footer {
-    .footer-nav{
-      margin: 155px 0 44px 0;
-    }
-    .bottom-logo {
-      margin-left: 0;
-    }
-  }
-}
-
-@media #{$max-768} {
-  #footer{
-    img{
-      display: block;
-      margin: 0 auto 10px;
-    }
-    .bottom-logo {
-      margin-left: 0;
-    }
-    .footer-nav {
-      margin: 120px 0 44px;
-      h5,
-      .row-container>div{
-        margin-bottom: -5px;
-      }
     }
   }
 }

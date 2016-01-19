@@ -163,7 +163,6 @@ nav{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     border-top: none;
     padding-top: $borderHeight;
-    padding-bottom: 130px;
     background-repeat: no-repeat;
     &>.body-wrapper{
       margin-bottom: 58px;
@@ -187,14 +186,25 @@ nav{
       position: absolute;
       top: 0;
     }
-    &:after{
-      background: $white;
-      margin-bottom: -210px;
-      @media (max-width: 1440px){
-        height: 170px;
+    @media (max-width: 1440px) {
+      padding-bottom: 69px;
+      margin-bottom: 24px;
+      &:after{
+        height: 130px;
       }
-      @media (min-width: 1921px){
-        margin-bottom: -250px;
+    }
+    @media #{$max-1200} {
+      padding-bottom: 38px;
+      margin-bottom: 96px;
+      &:after{
+        height: 70px;
+      }
+    }
+    @media #{$max-768} {
+      padding-bottom: 4px;
+      margin-bottom: 90px;
+      &:after{
+        height: 42px;
       }
     }
     &.menu-bg{

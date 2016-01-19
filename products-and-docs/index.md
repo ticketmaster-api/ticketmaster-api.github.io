@@ -114,10 +114,10 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
   <div class="row-container row-sdk">
 <div class="col-xs-12 col-md-12" markdown="1">
 {{sdk}}
-<div class="col-xs-12 col-md-6" markdown="1">
+<div class="col-xs-12 col-sm-6 sdk-elem" markdown="1">
 {{sdk_left}}
 </div>
-<div class="col-xs-12 col-md-6" markdown="1">
+<div class="col-xs-12 col-sm-6" markdown="1">
 {{sdk_right}} 
 </div>
 </div>

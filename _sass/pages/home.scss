@@ -15,25 +15,29 @@
   @include no-select();
   margin-bottom: 36px;
   background-image: url('/assets/img/home/bg-football-p-1.png');
-  padding-top: 187px;
+  @media (min-width: 1200px){
+    padding-top: 187px;
+  }
   @media #{$max-1200} {
-    margin-bottom: 30px;
+    margin: 25px 0 59px;
   }
   @media #{$max-768} {
-    margin-bottom: 25px;
+    margin: 20px 0 44px;
   }
   h1 {
     font-size: 81px;
     line-height: 88px;
-    //padding-top: 47px;
     @media #{$max-1200} {
       font-size: $size-h1;
       line-height: $line-height-h1;
       padding-top: 21px;
+      margin-bottom: 22px;
     }
     @media #{$max-768} {
       font-size: $size-h3;
       line-height: $line-height-h3;
+      padding-top: 8px;
+      margin-bottom: 15px;
     }
   }
   p{
@@ -71,7 +75,7 @@
       }
     }
     @media #{$max-768} {
-      margin: 54px 0 -9px;
+      margin: 5px 0 -9px;
     }
   }
   .description {
@@ -198,7 +202,7 @@ li{
     .row-container{
       max-width: 720px;
       &>div{
-        margin-bottom: 69px;
+        margin-bottom: 23px;
       }
     }
   }
@@ -206,6 +210,9 @@ li{
     &>.row {
       &>div{
         padding: 0;
+        &>p{
+          margin: 17px 0;
+        }
       }
     }
     h3 {
