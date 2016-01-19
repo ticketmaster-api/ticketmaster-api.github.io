@@ -408,31 +408,43 @@
   .copy-btn {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-copy.svg");
+    background-image: url("/assets/img/products-and-docs/ic-copy-w.svg");
+    background-color: rgba(0,0,0,0.2);
     background-repeat: no-repeat;
     width: 24px;
     height: 24px;
+    border-radius: 3px;
     margin-top: 10px;
-    right: 68px;
+    right: 73px;
     cursor: pointer;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 
     &:hover{
-      /*background-color: white;*/
+      background-color: rgba(10, 152, 206, 0.4);
     }
   }
   .raw-btn {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-raw.svg");
+    background-image: url("/assets/img/products-and-docs/ic-raw-w.svg");
+    background-color: rgba(0,0,0,0.2);
     background-repeat: no-repeat;
     width: 24px;
     height: 24px;
+    border-radius: 3px;
     margin-top: 10px;
     right: 40px;
     cursor: pointer;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 
     &:hover{
-      /*background-color: white;*/
+      background-color: rgba(10, 152, 206, 0.4);
     }
   }
 
@@ -444,10 +456,10 @@
     display: block;
   }
   .copy-btn {
-    right: 55px;
+    right: 61px;
   }
   .raw-btn {
-    right: 25px;
+    right: 28px;
   }
 }
 
@@ -466,7 +478,7 @@
     overflow: hidden;
     pre {
       margin: 0;
-      padding: 50px 30px 30px 30px;
+      padding: 50px 30px 30px 30px!important;
       background: none;
       width: 100%;
       max-height: 550px;
@@ -477,6 +489,14 @@
         span {
           white-space: nowrap;
         }
+      }
+    }
+    &:hover {
+      .copy-btn {
+        opacity: 1;
+      }
+      .raw-btn {
+        opacity: 1;
       }
     }
   }

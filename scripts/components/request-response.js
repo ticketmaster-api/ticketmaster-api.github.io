@@ -16,7 +16,8 @@ $(document).ready(function() {
 
         var startRowView = function(){
             window.sessionStorage.setItem("content",this.dataset.clipboardText);
-            var win = window.open(window.location.host + "/products-and-docs/raw-view/", '_blank');
+            alert(window.location.protocol + "/" + window.location.host + "/products-and-docs/raw-view/");
+            var win = window.open(window.location.protocol + "/" + window.location.host + "/products-and-docs/raw-view/", '_blank');
             win.focus();
         }
 
