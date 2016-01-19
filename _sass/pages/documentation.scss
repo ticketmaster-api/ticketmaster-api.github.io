@@ -165,6 +165,7 @@
 
           pre {
             overflow-x: auto;
+            padding-top: 50px;
             margin-bottom: 0;
             code {
               width: 980px;
@@ -412,6 +413,21 @@
     width: 24px;
     height: 24px;
     margin-top: 10px;
+    right: 68px;
+    cursor: pointer;
+
+    &:hover{
+      /*background-color: white;*/
+    }
+  }
+  .raw-btn {
+    position: absolute;
+    display: block;
+    background-image: url("/assets/img/products-and-docs/ic-raw.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin-top: 10px;
     right: 40px;
     cursor: pointer;
 
@@ -428,9 +444,10 @@
     display: block;
   }
   .copy-btn {
-    margin-top: 0;
-    left: 50%;
-    right: 0;
+    right: 55px;
+  }
+  .raw-btn {
+    right: 25px;
   }
 }
 
@@ -441,6 +458,7 @@
 
 .reqres-wrapper {
   /*margin-bottom: $base-margin;*/
+  position: relative;
 
   .highlight {
     border: 2px solid #f1f5f7;
@@ -448,7 +466,7 @@
     overflow: hidden;
     pre {
       margin: 0;
-      padding: 30px;
+      padding: 50px 30px 30px 30px;
       background: none;
       width: 100%;
       max-height: 550px;

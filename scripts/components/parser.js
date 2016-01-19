@@ -54,6 +54,20 @@
                     }
                     return "tab-" + index;
                   }).each(function(){
+
+                    var rawBtn = document.createElement("div");
+                        rawBtn.className = "raw-btn";
+                    var html_ = this.outerHTML;
+                    var proxyItem_ = document.createElement("div");
+                        proxyItem_.innerHTML = html_;
+
+                    rawBtn.dataset.contentText = proxyItem_.textContent;
+                    rawBtn.addEventListener("click", function(){
+                        window.sessionStorage.setItem("content",this.dataset.contentText);
+                        var win = window.open(window.location.host + "/products-and-docs/raw-view/", '_blank');
+                        win.focus();
+                    });
+
                     var copyBtn = document.createElement("div");
                     copyBtn.className = "copy-btn";
 
@@ -63,6 +77,7 @@
 
                     copyBtn.dataset.clipboardText = proxyItem.textContent;
 
+                    $(this).prepend(rawBtn);// add raw button
                     $(this).prepend(copyBtn);// add copy button
                   });
 
