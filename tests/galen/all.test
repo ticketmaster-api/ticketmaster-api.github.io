@@ -1,6 +1,5 @@
 @@ set
-    #domain      127.0.0.1:4000
-    domain      ticketmaster-api-staging.github.io
+    domain      127.0.0.1:4000
     base_url    http://${domain}/
 
     mobile_size     320x480
