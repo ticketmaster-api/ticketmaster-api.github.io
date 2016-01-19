@@ -1,5 +1,6 @@
 ##
-#galen check tests/galen/blog/mobile-footer.gspec --url localhost:4000/blogs --size 349x1024 --htmlreport tests/galen/reports/mobile-footer
+#galen check tests/galen/blog/mobile/mobile-footer.gspec --url localhost:4000/blogs --size 349x1024 --htmlreport tests/galen/reports/blogs/mobile-footer
+#galen check tests/galen/blog/mobile/mobile-footer.gspec --url http://ticketmaster-api-staging.github.io/blogs --size 349x1080 --htmlreport tests/galen/reports/blog/mobile-footer
 ##
 
 @set
@@ -10,23 +11,20 @@
     footer                      css  #footer-blogs
     nav-blocks-footer-*         css  #footer-blogs > div.row.footer-nav > div > div
     nav-item-heading-footer-*   css  #footer-blogs > div.row.footer-nav > div > div > a > h4
-
     nav-item-block-1-footer-*   css  #footer-blogs > div.row.footer-nav > div > div:nth-child(1) > ul > li > a
 
 
-=Blogs page footer consist of six columns with blue titles=
-    @on mobile
+= Blog page footer consist of six columns with blue titles=
         global:
             % count any nav-blocks-footer-* is 6
             % count any nav-item-heading-footer-* is 6
 
 
-= Blogs page footer at the bottom of the page =
+= Blog page footer at the bottom of the page =
         footer:
             below top-content ~0 px
 
-= Navigation test @desktop =
-    @on mobile
+= Blog page navigation test @mobile =
         nav-item-heading-footer-1:
             % text is "Products & Docs"
         nav-item-heading-footer-2:
@@ -44,7 +42,7 @@
         nav-item-heading-footer-*:
             ${color} "rgba(0, 156, 222, 1)"
 
-= block-1 (Products & Docs) text, align check =
+= block-1 (Blog pages) text, align check =
         nav-item-block-1-footer-1:
             % text is "APIs"
             aligned horizontally all nav-item-block-1-footer-2

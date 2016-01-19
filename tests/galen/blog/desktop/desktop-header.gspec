@@ -15,13 +15,10 @@
     nav-item-*                  css  #menu a
 
 = Blogs page desktop header (desktop-header.gspec) =
-#    @on desktop
-        #global:
-        #    count any nav-item-* is 6
+        #is12?
         global:
             count any nav-item-* is 6 to 12
 
-#    @on desktop
         logo:
             visible
             width > 10 % of screen/width
@@ -38,31 +35,30 @@
 = I see the TM logo, the header menu and the search button in one row=
         logo:
             aligned horizontally centered  header-menu 3px
-        logo:
             aligned horizontally centered  search-button 3px
 
 
 = I see such menu items in the header menu =
         nav-item-1:
-            text is "PRODUCTS & DOCS"
+            % text is "PRODUCTS & DOCS"
             aligned horizontally all nav-item-2
             css color is ${whiteDisabled}
         nav-item-2:
-            text is "PARTNERS"
+            % text is "PARTNERS"
             aligned horizontally all nav-item-3
             css color is ${whiteDisabled}
         nav-item-3:
-            text is "SUPPORT"
+            % text is "SUPPORT"
             aligned horizontally all nav-item-4
             css color is ${whiteDisabled}
         nav-item-4:
-            text is "BLOGS"
+            % text is "BLOGS"
             aligned horizontally all nav-item-5
             css color is ${white}
         nav-item-5:
-            text is "EVENTS"
+            % text is "EVENTS"
             aligned horizontally all nav-item-6
             css color is ${whiteDisabled}
         nav-item-6:
-            text is "OPEN SOURCE"
+            % text is "OPEN SOURCE"
             css color is ${whiteDisabled}
