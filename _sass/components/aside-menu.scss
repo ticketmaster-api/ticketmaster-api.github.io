@@ -108,7 +108,13 @@ $menu-bg-top-margin: 250px;
 body{
   &.menu-bg {
     @media (min-width: 1200px) {
-      @include aside-menu-bg(23.5%);
+      @include aside-menu-bg(25%);
+    }
+    @media #{$max-1200} {
+      @include aside-menu-bg(50%);
+    }
+    @media #{$max-768} {
+      @include aside-menu-bg(100%);
     }
   }
   &.no-scroll {
@@ -118,20 +124,25 @@ body{
   }
 }
 
+#main-block{
+  @media (min-width: 1200px){
+    padding-left: 40px;
+  }
+}
+
 #aside-block {
-  left: - 1.5%;
-  padding-left: 5%;
+  padding: 0;
   @include transform-3d();
   @media #{$max-1200} {
-    left: -0.762%;
     position: absolute;
     z-index: 1;
     height: 100%;
-  }
-  @media #{$max-768} {
-    left: 0;
+    padding-left: 15px;
   }
   .wrapper-aside-menu {
+    @media (min-width: 1200px){
+      padding-left: 50px;
+    }
     @include transform-3d();
     overflow: hidden;
     @media #{$max-1200}{
@@ -164,12 +175,11 @@ body{
       height: inherit;
       top: 0;
       left: 0;
-      padding-left: 15px;
     }
   }
   &.is-fixed {
     .wrapper-aside-menu{
-      height: 95%;
+      height: 100%;
       .aside-menu{
         max-height: 88%;
         overflow: auto;
@@ -180,11 +190,9 @@ body{
       @media (min-width: 1200px) {
         position: fixed;
         top: 0;
-        width: 20%;
-        &:not(.below-footer){
-          left: inherit;
-          padding-left: inherit;
-        }
+        left: 0;
+        width: 25%;
+        background: $aside-menu-background;
       }
     }
     @media #{$max-1200}{

@@ -12,7 +12,7 @@
   }
   &.menu-bg{
     &:before{
-      @include component-menu-bg();
+      @include component-menu-bg-bottom();
     }
   }
 }
@@ -77,7 +77,7 @@
   }
   &.menu-bg{
     &:before{
-      @include component-menu-bg();
+      @include component-menu-bg-bottom();
     }
   }
 }

@@ -399,17 +399,18 @@ pre {
   }
 }
 
-@mixin component-menu-bg(){
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  @include aside-menu-bg(25%);
+@mixin component-menu-bg-top(){
+  background: url('../assets/img/slice-bottom-right-menu.svg') !important;
   @media #{$max-1200}{
-    @include aside-menu-bg(((100% / 12) * 5));
-    background: -moz-linear-gradient(left, $aside-menu-background 0%, $aside-menu-background 41.4%, $white 41.4%, $white 100%);
+    background: url('../assets/img/slice-bottom-right-menu-tablet.svg') !important;
   }
   @media #{$max-768}{
-    background: $aside-menu-background;
+    background: url('../assets/img/slice-bottom-right-menu-mobile.svg') !important;
   }
+}
+
+@mixin component-menu-bg-bottom(){
+  background: url('../assets/img/slice-top-right-menu.svg') !important;
 }
 
 @mixin tm-transition(){

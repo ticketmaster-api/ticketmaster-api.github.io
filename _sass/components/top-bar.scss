@@ -186,7 +186,7 @@ nav{
       position: absolute;
       top: 0;
     }
-    @media (max-width: 1440px) {
+    @media (min-width: 1201px){
       padding-bottom: 69px;
       margin-bottom: 24px;
       &:after{
@@ -209,7 +209,7 @@ nav{
     }
     &.menu-bg{
       &:after{
-        @include component-menu-bg();
+        @include component-menu-bg-top();
       }
     }
   }
