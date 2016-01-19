@@ -26,6 +26,9 @@
 
 .slice-top-right,
 .slice-top-left{
+  &:before{
+    background-size: 100% 100% !important;
+  }
   @media (min-width: 1921px) {
     padding-top: 240px;
     &:before{
@@ -60,6 +63,9 @@
 
 .slice-bottom-right,
 .slice-bottom-left{
+  &:after{
+    background-size: 100% 100% !important;
+  }
   @media (min-width: 1921px) {
     padding-bottom: 240px;
     &:after{

@@ -400,17 +400,17 @@ pre {
 }
 
 @mixin component-menu-bg-top(){
-  background: url('../assets/img/slice-bottom-right-menu.svg') !important;
+  background: url('../assets/img/slice-bottom-right-menu.svg');
   @media #{$max-1200}{
-    background: url('../assets/img/slice-bottom-right-menu-tablet.svg') !important;
+    background: url('../assets/img/slice-bottom-right-menu-tablet.svg');
   }
   @media #{$max-768}{
-    background: url('../assets/img/slice-bottom-right-menu-mobile.svg') !important;
+    background: url('../assets/img/slice-bottom-right-menu-mobile.svg');
   }
 }
 
 @mixin component-menu-bg-bottom(){
-  background: url('../assets/img/slice-top-right-menu.svg') !important;
+  background: url('../assets/img/slice-top-right-menu.svg');
 }
 
 @mixin tm-transition(){
