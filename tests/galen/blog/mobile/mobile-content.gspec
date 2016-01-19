@@ -1,0 +1,57 @@
+##
+#galen check tests/galen/blog/mobile-content.gspec --url localhost:4000/blogs --size 320x1080 --htmlreport tests/galen/reports/blog/mobile-content
+#galen check tests/galen/blog/mobile-content.gspec --url http://ticketmaster-api-staging.github.io/blogs --size 349x1080 --htmlreport tests/galen/reports/blog/mobile-content
+##
+
+@objects
+    menu-wrapper                css     .blogs div.body-wrapper
+    area-wrapper                css     .blogs div.row.row-blogs
+    area-left                   css     .box-left
+    area-right                  css     .box-right
+
+= I see two content areas under the header row (tablet-mobile-content.gspec) =
+    @on tablet,mobile
+        area-left:
+            visible
+
+        area-wrapper:
+            visible
+            below menu-wrapper 50 to 60px
+            width > 95% of screen/width
+
+= I see that the header row and the content areas row have one picture background =
+
+= I see that content areas has white background. =
+= And I see the first content area under the header row. =
+= And I see the second content area under the first content area. =
+        area-left:
+            css background-color is "rgba(255, 255, 255, 1)"
+            inside area-wrapper 0px top
+
+        area-right:
+            below area-left ~20px
+
+=  I see that the first content area higher than the second content area. =
+        area-left:
+            height > 430px
+        area-right:
+            height > 340px
+
+= I see that content areas do not overlapping =
+
+= I see that content areas width is equal=
+        area-right, area-left:
+            width ~ 90% of screen/width
+
+= I see that content inside a content area does not cross the area border =
+        area-right, area-left:
+            css padding-left is "40px"
+            css padding-right is "40px"
+
+        area-right:
+            css padding-top is "47px"
+            css padding-bottom is "47px"
+
+        area-left:
+            css padding-top is "40px"
+            css padding-bottom is "40px"

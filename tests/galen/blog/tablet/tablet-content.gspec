@@ -1,15 +1,16 @@
 ##
-#galen check tests/galen/blog/tablet-mobile-content.gspec --url localhost:4000/blogs --size 768x1080 --htmlreport tests/galen/reports/blog/tablet-mobile-content
-#galen check tests/galen/blog/tablet-mobile-content.gspec --url localhost:4000/blogs --size 320x1080 --htmlreport tests/galen/reports/blog/tablet-mobile-content
+#galen check tests/galen/blog/tablet/tablet-content.gspec --url localhost:4000/blogs --size 797x1080 --htmlreport tests/galen/reports/blog/tablet-all
+#
+#galen check tests/galen/blog/tablet/tablet-content.gspec --url http://ticketmaster-api-staging.github.io/blogs --size 797x1080 --htmlreport tests/galen/reports/blog/tablet-all
 ##
 
 @objects
     menu-wrapper                css     .blogs div.body-wrapper
-    area-wrapper                css     .blogs > div.row.row-blogs
+    area-wrapper                css     .blogs div.row.row-blogs
     area-left                   css     .box-left
     area-right                  css     .box-right
 
-= I see two content areas under the header row (tablet-mobile-content.gspec) =
+= I see two content areas under the header row (tablet-content.gspec) =
 #    @on tablet,mobile
         area-left:
             visible
@@ -17,7 +18,7 @@
         area-wrapper:
             visible
             below menu-wrapper 90 to 104px
-            width > 90 % of screen/width
+            width > 95% of screen/width
 
 = I see that the header row and the content areas row have one picture background =
 

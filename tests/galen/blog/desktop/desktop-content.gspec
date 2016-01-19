@@ -1,0 +1,41 @@
+##
+#galen check tests/galen/blog/desktop/desktop-content.gspec --url localhost:4000/blogs --size 1229x1024 --htmlreport tests/galen/reports/blog/desktop-con
+##
+#galen check tests/galen/blog/desktop/desktop-content.gspec --url http://ticketmaster-api-staging.github.io/blogs --size 1469x1024 --htmlreport tests/galen/reports/blog/desktop-con
+
+@set
+    white "rgba(255, 255, 255, 1)"
+    whiteDisabled "rgba(255, 255, 255, 0.7)"
+
+@objects
+    body-wrapper                 css  .top-bar
+    menu-wrapper                css  div.body-wrapper
+    header-menu                 css  #menu
+    #logo                        css  #header-logo img
+    search-button                css  #search
+    #nav-item-*                  css  #menu a
+
+    area-left                   css     .box-left
+    area-right                  css     .box-right
+
+= Blogs page desktop content (desktop-content.gspec) =
+#    @on desktop
+        area-left:
+            visible
+
+        menu-wrapper:
+            visible
+            above area-left 90 to 101px
+            above area-right 90 to 101px
+
+            width > 10 % of screen/width
+            inside menu-wrapper ~0 px left, ~0px top
+
+
+        search-button:
+            visible
+            inside menu-wrapper ~10 px right, 30 to 32px top
+
+        header-menu:
+            visible
+            inside menu-wrapper ~0px top

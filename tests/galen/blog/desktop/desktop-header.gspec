@@ -1,5 +1,5 @@
 ##
-#galen check tests/galen/blog/desktop-header.gspec --url localhost:4000/blogs --size 1229x1024 --htmlreport tests/galen/reports/desktop
+#galen check tests/galen/blog/desktop/desktop-header.gspec --url http://ticketmaster-api-staging.github.io/blogs --size 1469x1024 --htmlreport tests/galen/reports/blog/desktop-header
 ##
 
 @set
@@ -14,17 +14,19 @@
     search-button               css  #search
     nav-item-*                  css  #menu a
 
-= Blogs page desktop header =
-    @on desktop
+= Blogs page desktop header (desktop-header.gspec) =
+#    @on desktop
+        #global:
+        #    count any nav-item-* is 6
         global:
-            count any nav-item-* is 6
+            count any nav-item-* is 6 to 12
 
-    @on desktop
+#    @on desktop
         logo:
             visible
             width > 10 % of screen/width
             inside menu-wrapper 10 px left, 20 to 30px top
-            near header-menu ~ 110 px left
+            near header-menu ~ 42 px left
 
         search-button:
             visible
@@ -35,7 +37,10 @@
 
 = I see the TM logo, the header menu and the search button in one row=
         logo:
-            aligned horizontally centered  header-menu 3px search-button
+            aligned horizontally centered  header-menu 3px
+        logo:
+            aligned horizontally centered  search-button 3px
+
 
 = I see such menu items in the header menu =
         nav-item-1:

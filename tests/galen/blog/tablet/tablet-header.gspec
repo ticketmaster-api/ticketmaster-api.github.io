@@ -1,5 +1,7 @@
 ##
-#galen check tests/galen/blog/tablet-mobile-header.gspec --url localhost:4000/blogs --size 420x1080 --htmlreport tests/galen/reports/blog/tablet-mobile-header
+#galen check tests/galen/blog/tablet/tablet-header.gspec --url localhost:4000/blogs --size 797x1080 --htmlreport tests/galen/reports/blog/tablet-all
+##
+#galen check tests/galen/blog/tablet/tablet-header.gspec --url http://ticketmaster-api-staging.github.io/blogs --size 797x1080 --htmlreport tests/galen/reports/blog/tablet-all
 ##
 
 @objects
@@ -9,12 +11,12 @@
     logo                        css  .blogs #header-logo img
     search-button               css  #search
 
-=  two content areas under the header row (tablet-mobile-header.gspec)=
-    @on tablet,mobile
+=  two content areas under the header row (tablet-header.gspec)=
+#    @on tablet,mobile
         logo:
             visible
             width > 10 % of screen/width
-            inside partly menu-wrapper ~23 px left, 20 to 30px top
+            inside partly menu-wrapper ~15 px left, 20 to 30px top
 
         search-button:
             visible
@@ -26,7 +28,8 @@
 
 = TM logo, the header menu and the search button in one row=
         logo:
-            aligned horizontally centered menu-btn 3px search-button
+            aligned horizontally centered menu-btn 3px
+            aligned horizontally centered search-button 3px
 
         menu-btn-close:
             absent
