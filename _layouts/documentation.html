@@ -36,13 +36,7 @@ layout: default
 <script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/request-response.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/components/tooltip-mes.js" | prepend: site.baseurl }}"></script>
 
 <script>
     new Clipboard('.copy-btn');
-
-    $(".content").on("click", ".copy-btn", function(){
-        ToolTipMes("copied");
-    });
-
 </script>

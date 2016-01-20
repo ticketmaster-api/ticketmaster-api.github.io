@@ -445,15 +445,9 @@ pre {
   }
 }
 
-.tooltip-mes {
-  position: fixed;
-  top: 50%;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 20px 40px;
-  left: 50%;
-  color: white;
-  font-size: 24px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  display: none;
+.documentation .copy-btn.copied {
+  background-color: #FFF;
+  background-position-x: -2px;
+  background-position-y: -2px;
+  background-image: url("/assets/img/products-and-docs/ic-copied.svg");
 }
