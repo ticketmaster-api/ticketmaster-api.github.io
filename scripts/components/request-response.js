@@ -21,11 +21,11 @@ $(document).ready(function() {
         };
 
         var makeCopy = function () {
-                this.classList.add("copied")
-                window.setTimeout(function(){
-                    document.getElementsByClassName("copied")[0].classList.remove("copied");
-                }, 2000);
-            }
+            this.classList.add("copied")
+            window.setTimeout(function(){
+                document.getElementsByClassName("copied")[0].classList.remove("copied");
+            }, 2000);
+        };
 
         $(".reqres").each(function() {
             tab1 = $(this).next();
