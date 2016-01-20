@@ -2,7 +2,7 @@
     $(document).ready(function() {
         var menuWraper = $('.wrapper-aside-menu'),
             asideBlock = $("#aside-block"),
-            offset = asideBlock.offset().top,
+            offset = menuWraper.offset().top,
             sideBtn = $("#side-menu-btn"),
             topBar = $('.top-bar').addClass('menu-bg'),
             bottomBar = $('#footer').addClass('menu-bg'),
@@ -43,7 +43,7 @@
             //start scrolling animation
             $(menu).animate({
                 scrollTop: scrollHeight
-            }, 700, function(){
+            }, 300, function(){
                 $(menu).disablescroll("undo");
             });
         };
@@ -56,7 +56,7 @@
                 windowScrollTop = $(window).scrollTop();
 
             //fix side menu position on scroll
-            if ((windowScrollTop > offset)) {
+            if (windowScrollTop > offset) {
                 if (!asideBlock.hasClass("is-fixed")){
                     asideBlock.addClass("is-fixed");
                     scrollMenu("top");
@@ -92,11 +92,11 @@
             }
         };
 
-        adjustMenuPosition();
-
         if (screenWidth < 1200){
             hideMenu();
         }
+
+        adjustMenuPosition();
 
         $(window).on({
             resize: function(){
