@@ -61,15 +61,28 @@
                     var proxyItem_ = document.createElement("div");
                         proxyItem_.innerHTML = html_;
 
-                    rawBtn.dataset.contentText = proxyItem_.textContent;
+                    if(rawBtn.dataset !== undefined){
+                        rawBtn.dataset.contentText = proxyItem_.textContent;
+                    }
+                    else{
+                        rawBtn.setAttribute("data-clipboard-text", proxyItem_.textContent);
+                    }
+
                     rawBtn.addEventListener("click", function(){
+                        var content = rawBtn.dataset !== undefined ? this.dataset.contentText : rawBtn.getAttribute("data-clipboard-text");
                         window.sessionStorage.setItem("content",this.dataset.contentText);
                         var win = window.open(window.location.protocol + "//" + window.location.host + "/products-and-docs/raw-view/", '_blank');
                         win.focus();
                     });
 
                     var copyBtn = document.createElement("div");
-                    copyBtn.className = "copy-btn";
+                        copyBtn.className = "copy-btn";
+                        copyBtn.addEventListener("click", function () {
+                            this.classList.add("copied")
+                            window.setTimeout(function(){
+                                document.getElementsByClassName("copied")[0].classList.remove("copied");
+                            }, 2000);
+                        });
 
                     var html = this.outerHTML;
                     var proxyItem = document.createElement("div");
