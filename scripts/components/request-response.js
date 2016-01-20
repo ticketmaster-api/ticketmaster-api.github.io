@@ -15,7 +15,8 @@ $(document).ready(function() {
 
 
         var startRowView = function(){
-            window.sessionStorage.setItem("content",this.dataset.clipboardText);
+            var content = this.dataset !== undefined ? this.dataset.clipboardText : this.getAttribute("data-clipboard-text");
+            window.sessionStorage.setItem("content", content);
             var win = window.open(window.location.protocol + "//" + window.location.host + "/products-and-docs/raw-view/", '_blank');
             win.focus();
         };
@@ -33,7 +34,12 @@ $(document).ready(function() {
 
 
             var rawbtn1 = createButton("raw-btn");
-                rawbtn1.dataset.clipboardText =  getInnerText(tab1);
+                if(rawbtn1.dataset !== undefined){
+                    rawbtn1.dataset.clipboardText =  getInnerText(tab1);
+                }
+                else{
+                    rawbtn1.setAttribute("data-clipboard-text", getInnerText(tab1));
+                }
                 rawbtn1.addEventListener("click",startRowView);
                 tab1.prepend(rawbtn1);
 
@@ -43,7 +49,12 @@ $(document).ready(function() {
                 tab1.prepend(btn1);
 
             var rawbtn2 = createButton("raw-btn");
-                rawbtn2.dataset.clipboardText =  getInnerText(tab2);
+                if(rawbtn2.dataset !== undefined){
+                    rawbtn2.dataset.clipboardText =  getInnerText(tab2);
+                }
+                else{
+                    rawbtn2.setAttribute("data-clipboard-text", getInnerText(tab2));
+                }
                 rawbtn2.addEventListener("click", startRowView);
                 tab2.prepend(rawbtn2);
 
