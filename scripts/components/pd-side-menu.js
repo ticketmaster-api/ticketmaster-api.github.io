@@ -115,7 +115,6 @@
                 screenWidth = w;
 
                 adjustMenuPosition(true);
-                offset = menuWraper.offset().top;
 
             },
             scroll:function(){
