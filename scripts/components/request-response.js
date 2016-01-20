@@ -18,7 +18,14 @@ $(document).ready(function() {
             window.sessionStorage.setItem("content",this.dataset.clipboardText);
             var win = window.open(window.location.protocol + "//" + window.location.host + "/products-and-docs/raw-view/", '_blank');
             win.focus();
-        }
+        };
+
+        var makeCopy = function () {
+            this.classList.add("copied")
+            window.setTimeout(function(){
+                document.getElementsByClassName("copied")[0].classList.remove("copied");
+            }, 2000);
+        };
 
         $(".reqres").each(function() {
             tab1 = $(this).next();
@@ -32,6 +39,7 @@ $(document).ready(function() {
 
             var btn1 = createButton("copy-btn");
                 btn1.dataset.clipboardText =  getInnerText(tab1);
+                btn1.addEventListener("click", makeCopy);
                 tab1.prepend(btn1);
 
             var rawbtn2 = createButton("raw-btn");
@@ -41,7 +49,8 @@ $(document).ready(function() {
 
             var btn2 = createButton("copy-btn");
                 btn2.dataset.clipboardText =  getInnerText(tab2);
-                tab2.prepend(btn2);
+                btn2.addEventListener("click", makeCopy);
+            tab2.prepend(btn2);
 
             $('<div class="reqres-wrapper"></div>').insertBefore($(this));
             $(this).prev().append($(this)).append(tab1).append(tab2);
@@ -56,5 +65,9 @@ $(document).ready(function() {
             $(this).parent().parent().parent().find(".r-tab").eq($(this).index()).addClass("active");
             $(this).addClass("active");
         });
+
+
+
+
 
 });
