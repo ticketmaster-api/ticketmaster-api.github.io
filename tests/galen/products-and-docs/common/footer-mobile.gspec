@@ -81,17 +81,17 @@
             % text is "Forums"
             aligned horizontally all nav-item-block-3-footer-3
         nav-item-block-3-footer-3:
-            % text is "Terms of Use"
+            % text is "General Terms of Use"
         #    aligned horizontally all nav-item-block-3-footer-4
         nav-item-block-3-footer-4:
-            % text is "Branding Guide"
+            % text is "Partner API Terms of Use"
 
 = block-4 (Blogs) text, align check =
         nav-item-block-4-footer-1:
-            % text is "Ticketmaster Tech"
+            % text is "Tech Blog"
         #    aligned horizontally all nav-item-block-4-footer-2
         nav-item-block-4-footer-2:
-            % text is "Ticketmaster Medium Publication"
+            % text is "Medium Publication"
 
 = block-5 (Events) text, align check =
         nav-item-block-5-footer-1:
