@@ -54,5 +54,5 @@ Blogs page on mobile
 
 Blogs page on mobile open-menu
     ${base_url}/blogs/ ${mobile_size}
-        inject tests/galen/blog/menu/open-burger.js
+        inject ./tests/galen/blog/menu/open-burger.js
         check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
