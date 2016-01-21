@@ -123,6 +123,38 @@ or descending. The default sort method is eventdate and order is ascending.
 There are multiple _additional parameters_ which allow you to filter the search by event name, category, 
 location, venue, date, availability, attraction (artist, sport, package, play and so on) and many more. See the 'Event Search' GET example for further details.
 
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Use a comma separated list of values to search multiple domains. (A logical OR search is performed). | string | No |
+|`lang` | The language in ISO code format. The default language is specified in the Domains List service. Usually two or three languages are supported. Example: no-no. | string | No |
+|`event_id` | The unique identifier for the attraction (which could be an artist, or sport, tour, package, play and so on). This is linked to domain. Use a comma separated list of values to search for multiple events. (A logical OR search is performed). Example: 453127. | string | No |
+|`attraction_ids` | The unique identifier for the attraction (which could be an artist, package, play and so on). This is linked to domain. Use a comma separated list of values to search for multiple attractions. (A logical OR search is performed). Example: 709593. | string | No |
+|`category_ids` | A unique identifer for the major category of an event. For example, 10001 is for 'Music'. A list of category IDs and names is available in the Category List service. Use a comma separated list of values to search for multiple categories. (A logical OR search is performed). Example: 10001. | string | No |
+|`subcategory_ids` | A unique identifier for the subcategory of an event. For example, 1 is for 'Rock/Pop'. A list of category IDs and names is available in the Category List service. Use a comma separated list of values to search for multiple subcategories. (A logical OR search is performed). Example: 1. | string | No |
+|`event_name` | The name of the event. Example: 50. | Integer | No |
+|`country_ids` | The unique identifer for the Country. This is the geographical location, whereas Domain relates to the market. Use a comma separated list of values to search multiple Countries (A logical OR search is performed). Example: 539. | string | No |
+|`postal_code` | The postal code or zip code. Example: 0151. | string | No |
+|`lat` | The latitude of the required search location. Example: 59.9047. | Double | No |
+|`long` | The longitude of the required search location. Example: 10.7497. | Double | No |
+|`radius` | The radius to be applied to results where a location (lat, long) is used as a search parameter. The radius is given in km. The default language is specified in the Domains List service. Usually two or three languages are supported. Example: 50. | Integer | No |
+|`eventdate_from` | The start date of the event for a date range search. Dates are always given in UTC. The date should be in format yyyy-MM-dd'T'HH:mm:ssZ. Example: 2015-02-01T10:00:00Z. | Date | No |
+|`eventdate_to` | The end date of the event for a date range search. Dates are always given in UTC. The date should be in format yyyy-MM-dd'T'HH:mm:ssZ. | Date | No |
+|`onsaledate_from` | The start date of the event for a date range search. Dates are always given in UTC. The date should be in format yyyy-MM-dd'T'HH:mm:ssZ. Example: 2015-02-01T10:00:00Z. | Date | No |
+|`onsaledate_to` | The end date of the event for a date range search. Dates are always given in UTC. The date should be in format yyyy-MM-dd'T'HH:mm:ssZ. | Date | No |
+|`offsaledate_from` | The start date of the event for a date range search. Dates are always given in UTC. The date should be in format yyyy-MM-dd'T'HH:mm:ssZ. Example: 2015-02-01T10:00:00Z. | Date | No |
+|`offsaledate_to` | The end date of the event for a date range search. Dates are always given in UTC. The date should be in format yyyy-MM-dd'T'HH:mm:ssZ. | Date | No |
+|`min_price` | The minimum price for tickets. | Integer | No |
+|`max_price` | The maximum price for tickets. | Integer | No |
+|`price_excl_fees` | A flag to indicate whether fees are included in the minimum and maximum price. Default: false. | Boolean | No |
+|`is_seats_available` | A flag which when set to 'true' gives only events which still have tickets available on sale. | Boolean | No |
+|`is_not_cancelled` | A flag which when set to 'true' gives only events have not been cancelled or rescheduled. | Boolean | No |
+|`is_not_package` | A flag which when set to 'true' gives only events which are not a package event. | Boolean | No |
+|`include_external_events` | A flag which when set to 'true' returns external events, which were events from other Ticketmaster platforms or partners with a more limited set of data fields in the response. | Boolean | No |
+|`sort_by` | The method for sorting the results. Proximity can only be used where a lat and long is used as a query parameter. Default: eventdate. Possible values:  eventdate , eventname , popularity , proximity . | string | No |
+|`order` | The order in which results are sorted, whether ascending or descending. Default: asc. Possible values:  asc , desc . | string | No |
+|`rows` | The number of rows to return, up to a maximum of 500. Default: 10. | Integer | No |
+|`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -334,6 +366,15 @@ curl --include \
 Get details for a specific event using the unique identifer for the event. This includes the venue and location, ticket 
 availability and pricing, a description, and the Ticketmaster Website URL for purchasing tickets for the event.
 
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/{event_id}
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`event_id` | A unique identifier for the event which is specific to the domain (e.g. Norway) Example: 449621. | Integer | Yes|
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | Yes|
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -484,6 +525,16 @@ Find the events which have been updated since a given timestamp. First call the 
 then process the response and call the service again with parameters provided in the next field. Finally continue until 
 the returned number of rows is less than the requested number - or until the response is an empty array. 
 (This service does not consider what fields are updated or changes to values, only when the event data was written)
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/updated
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`updated_since` | The timestamp for the date and time from which updated events are returned. Time is always UTC and should be specified to hour, minutes, seconds and miliseconds. Example: 2008-01-18T18:51:43.01Z. | string | Yes|
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | No |
+|`rows` | The number of rows to return in the response. Example: 100. | Integer | No |
 
 >[Request](#req)
 >[Response](#res)
@@ -742,6 +793,16 @@ curl --include \
 ## Event Prices 
 Get information about the ticket price levels applicable for an specific event ID, the price range for each level and ticket availability.
 
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/prices
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`event_id` | A unique identifier for the event which is specific to the domain. Example: 449621. | Integer | Yes|
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
+|`domain_ids` | The unique identifier for the domain or market. Example: norway. | string | No |
+|`price_level_ids` | The unique identifier for the price level. If no price level ID is specified, all applicable price levels for the event are returned. Example: 1,2. | string | No |
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -869,6 +930,14 @@ curl --include \
 ## Event Seatmap 
 Get a static map image of the venue for the event showing the location of seating or standing areas. Note that not all events will have a seatmap available - for example packages, festivals, many general admission music events, and so on. Interactive seatmaps are currently not available.
 
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/seatmap
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`event_id` | A unique identifier for the event which is specific to the domain. Example: 449621. | Integer | Yes|
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | No |
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -940,6 +1009,15 @@ curl --include \
 {: .article #event-areas}
 ## Event Areas 
 Get information on the seating areas available for an event and the prices for tickets.
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/areas
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`event_id` | A unique identifier for the event which is specific to the domain. Example: 449621. | Integer | Yes|
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | No |
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
 
 >[Request](#req)
 >[Response](#res)
@@ -1033,7 +1111,10 @@ An attraction can be a music artist, a type of sport, a play or show, and so on.
 {: .article #attraction-search}
 ## Attraction Search 
 
-Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more. 
+Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.
+ 
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions
 
 ### Query Parameters
 
@@ -1065,6 +1146,18 @@ sort_by = attraction_name (optional, string)attraction_namepopulatityorder = asc
 
 #### *Other Parameters*
 There are additional parameters which allow you to filter the search by attraction name, and attractions with events on sale.
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`domain_ids` | The unique identifier for the domain or market. Use a comma separated list of values to search multiple domains. (A logical OR search is performed). Example: norway. | string | No |
+|`lang` | The language in ISO code format. The default language is specified in the Domains List service. Usually two or three languages are supported. Example: no-no. | string | No |
+|`attraction_name` | The attraction name which can be a partial name (one word) or full name. Example: Kings of Convenience. | Integer | No |
+|`attraction_ids` | The unique identifier for the attraction (which could be an artist, or sport, package and so on). Use a comma separated list of values to search multiple. (A logical OR search is performed). Example: 709593. | string | No |
+|`has_events` | A flag which when set to 'true' gives only attractions with events on sale.| boolean | No |
+|`sort_by` | The method for sorting the results. Proximity can only be used where a lat and long is used as a query parameter. Default: attraction_name.| string | No |
+|`order` | The order in which results are sorted, whether ascending or descending. Default: asc. | string | No |
+|`rows` | The number of rows to return, up to a maximum of 500. Default: 10. | Integer | No |
+|`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
 
 >[Request](#req)
 >[Response](#res)
@@ -1154,6 +1247,15 @@ curl --include \
 ## Attraction Details 
 Get details for a specific event using the unique identifer for the event.
 
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/{attraction_ids}
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`attraction_ids` | A unique identifier for the attraction which is specific to the domain. Example: 709593. | Integer | Yes |
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | Yes |
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1235,6 +1337,16 @@ Get suggestions for attractions based on the first 2 characters of the name. The
 and sorted by popularity in descending order. Unlike the Attractions Search service, this service allows a degree of 
 partial and fuzzy matching and can therefore be used for a suggest-as-you type feature. The response provides limited 
 fields compared to the Attraction Search to allow for more real-time display.
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/suggestions
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`attraction_name` | The attraction name which must be a minimum of 3 characters. Example: Foo. | Integer | Yes |
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
+|`domain_ids` | The unique identifier for the domain or market. Use a comma separated list of values to search multiple domains. (A logical OR search is performed). Example: norway. | string | No |
+|`has_events` | A flag which when set to 'true' gives only attractions with events on sale. | boolean | No |
 
 >[Request](#req)
 >[Response](#res)
@@ -1328,6 +1440,17 @@ curl --include \
 ## Similar Attractions 
 Get back other attractions which are similar to the attraction specified. This is based on a combination of factors 
 including category and sub-category, and ticket sales (users who purchased this attraction also purchased).
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/similar
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`attraction_id` | The ID of the attraction for which similar attractions are requested. Example: Foo. | Integer | Yes |
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | No |
+|`has_events` | A flag which when set to 'true' gives only attractions with events on sale. | boolean | No |
+|`rows` | The number of rows to return. The default is 10. | Integer | No |
 
 >[Request](#req)
 >[Response](#res)
@@ -1459,7 +1582,27 @@ The Venue Service API allows you to search for event venues and get details for 
 
 {: .article #venue-search}
 ## Venue Search 
-Find venues and filter your search by name, and much more. 
+Find venues and filter your search by name, and much more.
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/venues
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`domain_ids` | The unique identifier for the domain or market. Use a comma separated list of values to search multiple domains. (A logical OR search is performed). Example: norway. | string | Yes |
+|`lang` | The language in ISO code format. The default language is specified in the Domains List service. Usually two or three languages are supported. Example: no-no. | string | No |
+|`venuename` | The venue name. Use a comma separated list of values to search multiple venues. (A logical OR search is performed). Example: Rockefeller. | string | No |
+|`venue_ids` | The unique identifier for the venue which is linked to the domain. Use a comma separated list of values to search multiple venues. Example: no-no. | string | No |
+|`city_ids` | The unique identifier for the City. Use a comma separated list of values to search multiple Cities. (A logical OR search is performed). Supported City names and IDs are available in the Cities List service. Example: 40500. | string | No |
+|`postal_code` | The postal code or zip code of the venue. Example: 0151. | string | No |
+|`lat` | The latitude of the required search location. Example: 59.9047. | string | No |
+|`lat` | The longitude of the required search location. Example: 10.7497. | string | No |
+|`radius` | The radius to be applied to results where a location (lat, long) is used as a query parameter. The radius is given in km. Example: 50. | Integer | No |
+|`sort_by` | The method for sorting the results. Default: venuename. Possible values:  venuename , cityname . | string | No |
+|`order` | The order in which results are sorted, whether ascending or descending. Default: asc. Possible values:  asc , desc . | string | No |
+|`rows` | The number of rows to return, up to a maximum of 500. Default: 10. | Integer | No |
+|`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
+
 
 ### Query Parameters
 
@@ -1565,6 +1708,15 @@ curl --include \
 ## Venue Details 
 Get details for a specific event using the unique identifer for the event. Seatmaps for venues are available in the Event Service - See [Event Seatmaps](#event-seatmap)
 
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/venues/{venue_id}
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`venue_id` | A unique identifier for the venue which is specific to the domain. Example: 7353. | Integer | Yes |
+|`lang` | The language in ISO code format. Example: no-no. | string | No |
+|`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | Yes |
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1647,6 +1799,14 @@ A collection of services which provide information on supported countries, domai
 ## Countries List 
 Get a list of countries and domains for each. Although not required, it is advisable to specify the domain. The domain 
 relates to the Ticketmaster website through which tickets are listed and sold, whereas the Country is a geographical location.
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/countries
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`domain_ids` | A unique identifier for the domain or market. Example: 56. | string | No |
+|`lang` | The language in ISO code format. Example: en-us. | string | No |
 
 >[Request](#req)
 >[Response](#res)
@@ -1830,6 +1990,13 @@ curl --include \
 {: .article #domains-list}
 ## Domains List 
 Get a list of domains (countries and markets) and the domain ID as well supported langauges.Although not required, it is advisable to specify the domain. The domain relates to the Ticketmaster website through which tickets are listed and sold. Domain_id differs from the Country_id which is the geographical location rather than the market.
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`country_id` | A unique identifier for the country. Example: 56. | string | No |
 
 >[Request](#req)
 >[Response](#res)
@@ -2119,6 +2286,15 @@ curl --include \
 ## Cities List
 Get a list of city names and city IDs.
 
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/cities
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`country_id` | A unique identifier for the country. Example: 56.| string | No |
+|`domain_id` | A unique identifier for the domain or market. Example: norway. | string | No |
+|`lang` | The language in ISO code format. Example: 56. | string | No |
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -2325,6 +2501,16 @@ curl --include \
 {: .article #categories-list}
 ## Categories List
 Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
+
+{: .code.red}
+https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/categories
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`lang` | The language in ISO code format. Example: 56. | string | No |
+|`domain_id` | A unique identifer for the domain or market. Example: en-us. | string | No |
+|`category_id` | A unique identifier for the major category such as 'Music'. Example: en-us. | Integer | No |
+|`subcategories` | A flag used in combination with category_id. Where set to 'true' a list of subcategories such as 'Festivals' will be returned for the specified major category. Example: en-us. | boolean | No |
 
 >[Request](#req)
 >[Response](#res)
