@@ -13,19 +13,19 @@
             visible
 
         nav-item-pd-1:
-            text is "PRODUCTS & DOCS"
+            % text is "PRODUCTS & DOCS"
             aligned horizontally all nav-item-pd-2
         nav-item-pd-2:
-            text is "PARTNERS"
+            % text is "PARTNERS"
             aligned horizontally all nav-item-pd-3
         nav-item-pd-3:
-            text is "SUPPORT"
+            % text is "SUPPORT"
             aligned horizontally all nav-item-pd-4
         nav-item-pd-4:
-            text is "BLOGS"
+            % text is "BLOGS"
             aligned horizontally all nav-item-pd-5
         nav-item-pd-5:
-            text is "EVENTS"
+            % text is "EVENTS"
             aligned horizontally all nav-item-pd-6
         nav-item-pd-6:
-            text is "OPEN SOURCE"
+            % text is "OPEN SOURCE"

@@ -1,7 +1,7 @@
 @objects
     header                      css  .top-bar
     logo                        css  #header-logo img
-    nav-item-pd-*               css  #menu a
+    nav-item-mob-pd-*           css  #menu a
     menu-dropdown               css  #menu-dropdown
     menu-btn                    css  #menu-btn
 
@@ -12,7 +12,7 @@
 
     @on mobile
         global:
-            count any nav-item-pd-* is 6
+            count any nav-item-mob-pd-* is 6
 
     @on mobile
         nav-item-1, nav-item-2, nav-item-3, nav-item-4, nav-item-5, nav-item-6:

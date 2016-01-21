@@ -1,7 +1,7 @@
 @import common/vars.gspec
 @import common/tablet-header.gspec
 @import common/tablet-sb-menu.gspec
-#@import common/footer-tablet.gspec
+@import common/footer-tablet.gspec
 
 @objects
     h2                          css     h2
@@ -20,28 +20,29 @@
     table-api-h4                css     #main-block > div > div.table-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(1) > h4
     table-api-th-01             xpath    //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
-
-=count and text test @tablet=
+=====
+=count and text test @tablet (footer-tablet.gspec)=
+=====
     @on tablet
         global:
             count any table-dataset-th-* is 2
-            count any table-dataset-tr-* is 6
+            % count any table-dataset-tr-* is 11
 
     @on tablet
             table-dataset-th-1:
-                text is "Dataset"
+                % text is "Dataset"
                 aligned horizontally all table-dataset-th-2
             table-dataset-th-2:
-                text is "Description"
+                % text is "Description"
             table-api-th-01:
-                text uppercase starts "API"
+                % text uppercase starts "API"
 
             table-1:
                 contains table-dataset
                 width 722 to 768px
 
             table-2:
-                contains table-api
+                % contains table-api
                 width 722 to 768px
 
             table-dataset:
@@ -93,11 +94,8 @@
             css padding-right is "0px"
             css padding-top   is "0px"
 
-        p-body:
+        p-body, p-simple-01:
             css font-family contains "TMSans-Regular"
-
-        p-simple-01:
-            css font-family contains "TMSans-Light"
 
         h2:
             ${lineHeight} "48px"
