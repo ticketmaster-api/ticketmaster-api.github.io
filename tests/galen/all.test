@@ -51,3 +51,8 @@ Blogs page on tablet
 Blogs page on mobile
     ${base_url}/blogs/ ${mobile_size}
         check ${blog}/mobile-blog.gspec --include "mobile" --exclude "nomobile"
+
+Blogs page on mobile open-menu
+    ${base_url}/blogs/ ${mobile_size}
+        inject ./tests/galen/blog/menu/menu-top-trigger.js
+        check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
