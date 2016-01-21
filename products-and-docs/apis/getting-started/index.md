@@ -48,6 +48,7 @@ All API calls follow this format:
 _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
 {: .code .red}
 
+<div class="table-wrapper">
 <table class="tableParametrs">
 	<tr>
 		<th>Name</th>
@@ -101,6 +102,7 @@ _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API 
 	</tr>
 
 </table>
+</div>
 
 ### URI Examples
 

@@ -6,7 +6,7 @@
 @objects
     footer-container            css  #footer
     nav-blocks-footer-*         css  #footer > div.row.footer-nav > div > div
-    nav-item-heading-footer-*   css  #footer > div.row.footer-nav > div > div > a > h5
+    nav-item-heading-footer-*   css  #footer > div.row.footer-nav > div > div > a > h4
 
     nav-item-block-1-footer-*   css  #footer > div.row.footer-nav > div > div:nth-child(1) > ul > li > a
     nav-item-block-2-footer-*   css  #footer > div.row.footer-nav > div > div:nth-child(2) > ul > li > a
@@ -17,98 +17,98 @@
 
     nav-all-item-footer-*   css  #footer > div.row.footer-nav > div > div > ul > li > a
 
-= Navigation test @desktop =
+= Navigation test @desktop (footer-desktop.gspec)=
     @on desktop
         global:
             count any nav-blocks-footer-* is 6
             count any nav-item-heading-footer-* is 6
-            count any nav-all-item-footer-* is 19
+            count any nav-all-item-footer-* is > 19
 
     @on desktop
         nav-item-heading-footer-1:
-            text is "Products & Docs"
+            % text is "Products & Docs"
             aligned horizontally all nav-item-heading-footer-2
         nav-item-heading-footer-2:
-            text is "Partners"
+            % text is "Partners"
             aligned horizontally all nav-item-heading-footer-3
         nav-item-heading-footer-3:
-            text is "Support"
+            % text is "Support"
             aligned horizontally all nav-item-heading-footer-4
         nav-item-heading-footer-4:
-            text is "Blogs"
+            % text is "Blogs"
             aligned horizontally all nav-item-heading-footer-5
         nav-item-heading-footer-5:
-            text is "Events"
+            % text is "Events"
             aligned horizontally all nav-item-heading-footer-6
         nav-item-heading-footer-6:
-            text is "Open Source"
+            % text is "Open Source"
 
 = block-1 (Products & Docs) text, align check =
         nav-item-block-1-footer-1:
-            text is "APIs"
+            % text is "APIs"
             aligned vertically left nav-item-block-1-footer-2
         nav-item-block-1-footer-2:
-            text is "SDKs"
+            % text is "SDKs"
             aligned vertically left nav-item-block-1-footer-3
         nav-item-block-1-footer-3:
-            text is "Widgets"
+            % text is "Widgets"
 
 = block-2 (Partners) text, align check =
         nav-item-block-2-footer-1:
-            text is "Clients & vendors"
+            % text is "Clients & vendors"
             aligned vertically left nav-item-block-2-footer-2
         nav-item-block-2-footer-2:
-            text is "Other partners"
+            % text is "Other partners"
             aligned vertically left nav-item-block-2-footer-3
         nav-item-block-2-footer-3:
-            text is "Developers"
+            % text is "Developers"
             aligned vertically left nav-item-block-2-footer-4
         nav-item-block-2-footer-4:
-            text is "Affiliates"
+            % text is "Affiliates"
 
 = block-3 (Support) text, align check =
         nav-item-block-3-footer-1:
-            text is "FAQ"
+            % text is "FAQ"
             aligned vertically left nav-item-block-3-footer-2
         nav-item-block-3-footer-2:
-            text is "Forums"
+            % text is "Forums"
             aligned vertically left nav-item-block-3-footer-3
         nav-item-block-3-footer-3:
-            text is "Terms of Use"
+            % text is "General Terms of Use"
             aligned vertically left nav-item-block-3-footer-4
         nav-item-block-3-footer-4:
-            text is "Branding Guide"
+            % text is "Partner API Terms of Use"
 
 = block-4 (Blogs) text, align check =
         nav-item-block-4-footer-1:
-            text is "Ticketmaster Tech"
+            % text is "Tech Blog"
             aligned vertically left nav-item-block-4-footer-2
         nav-item-block-4-footer-2:
-            text is "Ticketmaster Medium Publication"
+            % text is "Medium Publication"
 
 = block-5 (Events) text, align check =
         nav-item-block-5-footer-1:
-            text is "Hackatons"
+            % text is "Hackatons"
             aligned vertically left nav-item-block-5-footer-2
         nav-item-block-5-footer-2:
-            text is "Meetups"
+            % text is "Meetups"
 
 = block-6 (Open Source) text, align check =
         nav-item-block-6-footer-1:
-            text is "Android"
+            % text is "Android"
             aligned vertically left nav-item-block-6-footer-2
         nav-item-block-6-footer-2:
-            text is "Backend"
+            % text is "Backend"
             aligned vertically left nav-item-block-6-footer-3
         nav-item-block-6-footer-3:
-            text is "iOS"
+            % text is "iOS"
             aligned vertically left nav-item-block-6-footer-4
         nav-item-block-6-footer-4:
-            text is "Web"
+            % text is "Web"
 
 = colors, height =
         footer-container:
-            height 460 to 468 px
+            height 430 to 460 px
             # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
 
         nav-all-item-footer-*:

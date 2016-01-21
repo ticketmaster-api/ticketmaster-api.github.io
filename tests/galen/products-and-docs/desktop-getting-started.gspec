@@ -19,29 +19,30 @@
 
     table-api                   css     #main-block > div > div.table-wrapper > table
     table-api-h4                css     #main-block > div > div.table-wrapper > table > tbody > tr:nth-child(1) > td:nth-child(1) > h4
-    table-api-th-01             xpath    //*[@id="main-block"]/div/div[1]/table/thead/tr[1]/th[1]
+    table-api-th-01             css     #main-block > div > div.table-wrapper.no-mobile > table > thead > tr:nth-child(1) > th:nth-child(1)
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
 
-= count and text test =
+= count and text test (desktop-getting-started.gspec) =
     @on desktop
         global:
             #count any table-*            is 2
             count any table-dataset-th-* is 2
-            count any table-dataset-tr-* is 6
+            % count any table-dataset-tr-* is 6
 
     @on desktop
             table-dataset-th-1:
-                text is "Dataset"
+                % text is "Dataset"
                 aligned horizontally all table-dataset-th-2
             table-dataset-th-2:
-                text is "Description"
+                % text is "Description"
             table-api-th-01:
-                text uppercase starts "API"
+                visible
+                % text uppercase starts "API"
 
             table-1:
                 contains table-dataset
             table-2:
-                contains table-api
+                % contains table-api
 
             table-dataset:
                 visible
@@ -93,11 +94,8 @@
             css padding-right is "0px"
             css padding-top   is "0px"
 
-        p-body:
+        p-body, p-simple-01:
             css font-family contains "TMSans-Regular"
-
-        p-simple-01:
-            css font-family contains "TMSans-Light"
 
         h2:
             ${lineHeight} "48px"
@@ -106,7 +104,7 @@
 
 = text check =
         table-api-h4:
-            text is "Discovery API"
+            % text is "Discovery API"
 
 = color check =
         header-main, header-h2-introduction, h2, table-api-h4:
