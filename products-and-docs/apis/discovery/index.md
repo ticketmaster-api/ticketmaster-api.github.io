@@ -32,7 +32,7 @@ Example: `https://app.ticketmaster.com/discovery/v1/events.json?apikey=3QIvq55bS
 
 
 ##Search Events
-{: .article #srch-events }
+{: .article .console-link #srch-events }
 
 **Method:** GET.
 Authentication required.
@@ -293,7 +293,7 @@ curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey
 
 
 ##Get Event Details
-{: .article #event-details }
+{: .article .console-link #event-details }
 
 **Method:** GET.
 Authentication required.
@@ -504,7 +504,7 @@ curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apik
 
 
 ##Search Event Images
-{: .article #event-img}
+{: .article .console-link #event-img}
 
 **Method:** GET.
 Authentication required.
@@ -662,7 +662,7 @@ curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.js
 {% endhighlight %}
 
 
-{: .article #search-attractions}
+{: .article .console-link #search-attractions}
 ##Search Attractions
 
 **Method:** GET.
@@ -1014,7 +1014,7 @@ curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
 
 
 
-{: .article #attraction-details}
+{: .article .console-link #attraction-details}
 ##Get Attraction Details
 
 **Method:** GET.
@@ -1113,7 +1113,7 @@ curl https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={a
 
 
 
-{: .article #search-categories}
+{: .article .console-link #search-categories}
 ##Search Categories
 
 **Method:** GET.
@@ -1525,7 +1525,7 @@ curl https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}
 
 
 
-{: .article #category-details}
+{: .article .console-link #category-details}
 ##Get Category Details
 
 **Method:** GET.
@@ -1622,7 +1622,7 @@ curl https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apike
 
 
 
-{: .article #search-venues}
+{: .article .console-link #search-venues}
 ##Search Venues
 
 **Method:** GET.
@@ -1782,7 +1782,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={a
 {% endhighlight %}
 
 
-{: .article #venue-details}
+{: .article .console-link #venue-details}
 ##Get Venue Details
 
 **Method:** GET.

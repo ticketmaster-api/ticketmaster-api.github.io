@@ -20,7 +20,7 @@ Test this endpoint right now in the interactive docs:
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
 ##Event Offers
-{: .article #event-offers}
+{: .article .console-link #event-offers}
 
 **Method:** GET.
 Authentication required.
