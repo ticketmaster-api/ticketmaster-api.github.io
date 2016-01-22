@@ -33,10 +33,13 @@
 
             groupLeft.wrapAll('<div class="left-wrapper"></div>');
 
+            //add link to console button
+            if (firstElemGroupLeft.hasClass("console-link"))
+                firstElemGroupLeft.append(consoleBtn);
+
             //add underline
             if (me.hasClass('lang-selector')) {
                 firstElemGroupLeft.addClass('underline');
-                firstElemGroupLeft.append(consoleBtn);
 
                 //move first element to class="aside-wrapper"
                 firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
