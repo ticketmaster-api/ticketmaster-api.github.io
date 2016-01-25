@@ -7,10 +7,3 @@
     promo-social        css     #promo-social
 
     footer              id      footer
-
-=create screen=
-    documentation:
-        visible
-
-    top-bar:
-        visible

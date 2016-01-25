@@ -11,13 +11,11 @@
     blog        tests/galen/blog
 
 ##############################################################################
-
+## create images by --export tests/galen/home/dumpsDesktop/ then compare it
 Home page Dump Images test on desktop
     ${base_url} ${desktop_size}
-        dump ${home}/homeDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
+        dump ${home}/desktopDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
-
-## create images by --export tests/galen/home/dumpsDesktop/ then compare it
 
 Home page on tablet
     http://${domain} ${tablet_size}
