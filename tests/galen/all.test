@@ -17,6 +17,8 @@ Home page Dump Images test on desktop
         dump ${home}/homeDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
 
+## create images by --export tests/galen/home/dumpsDesktop/ then compare it
+
 Home page on tablet
     http://${domain} ${tablet_size}
         check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
@@ -57,15 +59,3 @@ Blogs page on mobile open-menu
     ${base_url}/blogs/ ${mobile_size}
         inject ./tests/galen/blog/menu/menu-top-trigger.js
         check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
-
-#################
-Home page Dump Images test on desktop
-    ${base_url} 1440x3611
-        wait 1m until visible "id: qual_ol"
-        dump ${home}/homeDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
-        check ${home}/desktop.gspec --include "desktop"
-
-
-## create images by --export tests/galen/home/dumpsDesktop/ then compare it
-## actual size: 1440x3522   (89px difference)
-## 1440x3611
