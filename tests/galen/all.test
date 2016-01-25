@@ -13,8 +13,7 @@
 ##############################################################################
 
 Home page Dump Images test on desktop
-    ${base_url} 1440x3611
-        wait 1m until visible "id: qual_ol"
+    ${base_url} ${desktop_size}
         dump ${home}/homeDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
 
