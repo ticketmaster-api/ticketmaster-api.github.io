@@ -28,8 +28,7 @@ script:
   - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
 after_script:
-#check if it's test content
-  - less ./index.md &
+#  - less ./index.md & #check if it's test content
   - rake travis:deploy --trace --verbose
 
 cache:
@@ -41,6 +40,7 @@ notifications:
   email: false
 
 before_install:
+  - rm ./tests/galen/home/dumpsDesktop/  #clear old dump images
   - cp ./tests/content/ ./ -r
   - rvm install 2.1.5
   - gem install github-pages
