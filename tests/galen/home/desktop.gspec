@@ -18,8 +18,14 @@
 
 
 = image test =
-    body:
-    ### image file img/scr-home1200.png, tolerance 4000, map-filter denoise 10
+    top-promo:
+        image file dumpsDesktop/objects/top-promo.png, tolerance 40
+    columns-block:
+        image file dumpsDesktop/objects/columns-block.png, tolerance 400
+    partners-block:
+        image file dumpsDesktop/objects/partners-block.png, tolerance 40
+    promo-social:
+        image file dumpsDesktop/objects/promo-social.png, tolerance 40
 
 
 = Navigation test =
