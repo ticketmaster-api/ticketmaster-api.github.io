@@ -29,7 +29,7 @@ script:
 
 after_script:
 #check if it's test content
-  - less ./index.md & sleep 1
+  - less ./index.md &
   - rake travis:deploy --trace --verbose
 
 cache:
