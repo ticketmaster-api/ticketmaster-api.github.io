@@ -40,7 +40,6 @@ notifications:
   email: false
 
 before_install:
-  - rm ./tests/galen/home/dumpsDesktop/  #clear old dump images
   - cp ./tests/content/ ./ -r
   - rvm install 2.1.5
   - gem install github-pages
