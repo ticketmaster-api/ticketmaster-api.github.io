@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
-  {% include head.html %}
-  <body>
-	  <!-- Qualaroo for github.io -->
-	  <!-- Paste this code right after the <body> tag on every page of your site. -->
-	  <script type="text/javascript">
-	    var _kiq = _kiq || [];
-	    (function(){
-	      setTimeout(function(){
-	      var d = document, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript';
-	      s.async = true; s.src = '//s3.amazonaws.com/ki.js/62776/emK.js'; f.parentNode.insertBefore(s, f);
-	      }, 1);
-	    })();
-	  </script>
-    {{ content }}
-    <div id="back-top">
-      <a href="javascript:void(0)"><span></span></a>
-    </div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-72344127-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <script src="{{"/scripts/components/scroll-top.js" | prepend: site.baseurl }}"></script>
-  </body>
+    {% include head.html %}
+    <body>
+        <!-- Qualaroo for github.io -->
+        <!-- Paste this code right after the <body> tag on every page of your site. -->
+        <script type="text/javascript">
+            var _kiq = _kiq || [];
+            (function(){
+              setTimeout(function(){
+              var d = document, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript';
+              s.async = true; s.src = '//s3.amazonaws.com/ki.js/62776/emK.js'; f.parentNode.insertBefore(s, f);
+              }, 1);
+            })();
+        </script>
+        {{ content }}
+        <div id="back-top">
+            <a href="javascript:void(0)"><span></span></a>
+        </div>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-72344127-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <script src="{{"/scripts/components/scroll-top.js" | prepend: site.baseurl }}"></script>
+    </body>
 </html>

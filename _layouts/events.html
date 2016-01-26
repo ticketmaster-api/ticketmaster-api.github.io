@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+<div class="top-bar{% if page.category != "home" %} bg-header-events slice-bottom-left{% endif %}">
+{% include partials/common-header.html %}
+    <div class="events-wrapper">
+        <h1>2015 Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free XOXO</h1>
+        <div class="description">
+            <p>Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui.</p>
+            <a href="#" class="trans-btn">Conferences</a>
+        </div>
+        <div class="des-address">
+            <h4>Fri–Sun, Jan 8–10, 2015</h4>
+            <h5>XYZ Conference Center</h5>
+            <p> New York, NY</p>
+            <a href="#" class="blue-btn">RSVP</a>
+        </div>
+    </div>
+</div>
+
+{% include partials/common-header-small.html %}
+
+<ul class="tags">
+    {% for tag in site.tags %}
+    {% assign t = tag | first %}
+    {% assign posts = tag | last %}
+    <li>{{t | downcase | replace:" ","-" }} has {{ posts | size }} posts</li>
+    {% endfor %}
+</ul>
+
+<div class="base-content-wrapper">
+    <div class="col-lg-3 menu">
+        <h3 class="menu-header">
+            Events
+            <span class="expanded" id="side-menu-btn"></span>
+        </h3>
+        <ul class="support-aside-menu" id="scrollable-element">
+            <li>
+                <ul class="categories">
+                    <li><a href="#all" class="active">All</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-9 col-md-12 col-sm-12 content">
+        {{ content }}
+    </div>
+</div>
+
+<div id="footer" class="xs-center slice-top-left">
+{% include partials/footer.html %}
+</div>
+
+<script src="{{"/scripts/components/support-side-menu.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
+<script>
+    var unique = [].map.call(document.getElementsByClassName("tag-btn"),function(item){
+        return '<li><a href="#' + item.textContent + '">' + item.textContent + '</a></li>';;
+    }).filter( function(value, index, self) {
+        return self.indexOf(value) === index;
+    }).join("");
+
+    $(".categories").append(unique);
+
+    var tagClickHandler = function(){
+
+        if(this.tagName = "A"){
+            $(this).parents(".categories").find("a").removeClass("active");
+            this.classList.add("active");
+        }
+
+        var tag = this.textContent;
+        if ( tag.toLowerCase() == "all" ) {
+            $(".event").show();
+            return;
+        }
+        $(".event").hide().filter(function() {
+            return $(this).find("[tag="+tag+"]").size() !== 0;
+        }).show();
+    };
+
+    $(".categories").on("click", "a", tagClickHandler);
+    $(".tags").on("click", ".tag-btn", tagClickHandler);
+
+</script>

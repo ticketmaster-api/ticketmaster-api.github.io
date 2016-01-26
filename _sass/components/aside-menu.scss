@@ -46,6 +46,10 @@
       color: $n2-grey-color;
       font-family: $font-tms-led-bold;
       font-size: $size-h4;
+      &.active{
+        color: $p1a;
+        text-decoration: none;
+      }
     }
   }
   li{
