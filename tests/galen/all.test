@@ -14,11 +14,14 @@
 ## create images by --export tests/galen/home/dumpsDesktop/ then compare it
 Home page Dump Images test on desktop
     ${base_url} ${desktop_size}
-        dump ${home}/desktopDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
+        wait 1m until visible "id: timeline"
+        #dump ${home}/desktopDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
 
 Home page on tablet
     http://${domain} ${tablet_size}
+        wait 1m until visible "id: timeline"
+        #dump ${home}/desktopDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
 Home page on mobile

@@ -8,7 +8,7 @@ Top promo large heading
 {:/comment}
 {% capture top_promo_heading %}
 
-# Testing  home page WELCOME TO <br/>THE FAN-CENTRIC<br/>PLATFORM.
+# WELCOME TO <br/>THE FAN-CENTRIC<br/>PLATFORM.
 
 {% endcapture %}
 
