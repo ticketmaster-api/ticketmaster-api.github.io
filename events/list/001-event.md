@@ -1,17 +1,16 @@
 ---
-prime: true
 date: "Wed, Nov 21, 2015"
-title: "Test Content Tralalal"
+title: "Fixie tote bag"
 category: event
+img: "/assets/img/events/rectangle-28.png"
 place: 
   - "wood"
   - "http://google.com"
 city: "NY city"
 rsvp: "http://google.com"
 tags: 
-  - javascript
-  - php
-  - phyton
+  - JavaScript
+  - Classes
 ---
 
 Bushwick meh Blue Bottle pork belly mustache skateboard [3 wolf moon](). Actually beard single-origin coffee, 
