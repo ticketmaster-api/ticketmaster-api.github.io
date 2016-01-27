@@ -264,9 +264,6 @@ Set-Cookie: ****
 {: .aside}
 >[JavaScript](#js)
 >[cURL](#curl)
->[Ruby](#ruby)
->[Python](#python)
->[PHP](#php)
 {: .lang-selector}
 
 {% highlight js %}
@@ -289,45 +286,6 @@ $.ajax({
 {% highlight bash %}
 curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
 {% endhighlight %}
-
-{% highlight ruby %}
-<%= form_for :article do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-{% endhighlight %}
-
-{% highlight python %}
->>> for i in 'hello world':
-...     if i == 'o':
-...         continue
-...     print(i * 2, end='')
-...
-hheellll  wwrrlldd
-{% endhighlight %}
-
-{% highlight php %}
-<?php
-  foreach ($cUrl as $key => url) {
-    $arTemp = url["conf"];
-  }
-?>
-{% endhighlight %}
-
-
-
-
 
 
 ##Get Event Details
