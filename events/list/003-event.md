@@ -3,7 +3,7 @@ prime: true
 date: "Saturday, January 16, 2016"
 category: event
 title: "The Ticketmaster API Devjam in Scottsdale, AZ!"
-img: "/assets/img/events/devjam.png"
+img: "/assets/img/events/devjam.jpg"
 place: 
   - "Ticketmaster HQ"
   - "https://www.google.com/maps/place/Ticketmaster/@33.4636158,-111.9255313,17z/data=!4m6!1m3!3m2!1s0x872b0b1e9a288da9:0xff2655399901fb58!2sTicketmaster!3m1!1s0x872b0b1e9a288da9:0xff2655399901fb58"
