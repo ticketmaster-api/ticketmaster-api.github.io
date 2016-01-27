@@ -9,7 +9,6 @@ categories:
 
 The Ticketmaster International API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
 
-{: .lead .article}
 
 ## Overview
 {: .article #overview }
