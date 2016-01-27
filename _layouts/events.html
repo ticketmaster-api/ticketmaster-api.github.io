@@ -2,32 +2,37 @@
 layout: default
 ---
 
-<div class="top-bar{% if page.category != "home" %} bg-header-events slice-bottom-left{% endif %}">
+<div class="top-bar bg-header bg-header-events slice-bottom-left">
 {% include partials/common-header.html %}
+
+
+
+{% for event in site.pages %}
+    {% if event.prime %}
     <div class="events-wrapper">
-        <h1>2015 Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free XOXO</h1>
-        <div class="description">
-            <p>Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui.</p>
-            <a href="#" class="trans-btn">Conferences</a>
+        <h1>{{ event.title }}</h1>
+        <div class="description col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <p>{{ event.content | markdownify }}</p>
+            <div class="tags">
+                {% for tag in event.tags %}
+                <button class="trans-btn" tag="{{tag}}">{{tag}}</button>
+                {% endfor %}
+            </div>
         </div>
-        <div class="des-address">
-            <h4>Fri–Sun, Jan 8–10, 2015</h4>
-            <h5>XYZ Conference Center</h5>
-            <p> New York, NY</p>
-            <a href="#" class="blue-btn">RSVP</a>
+        <div class="des-address col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <h4>{{ event.date }}</h4>
+            <a href="{{ event.place[1] }}"><h5>{{ event.place[0] }}</h5></a>
+            <p>{{ event.city }}</p>
+            {% if event.rsvp %}
+                <a href="{{ event.rsvp }}" class="blue-btn">RSVP</a>
+            {% endif %}
         </div>
     </div>
+    {% endif %}
+{% endfor %}
 </div>
 
 {% include partials/common-header-small.html %}
-
-<ul class="tags">
-    {% for tag in site.tags %}
-    {% assign t = tag | first %}
-    {% assign posts = tag | last %}
-    <li>{{t | downcase | replace:" ","-" }} has {{ posts | size }} posts</li>
-    {% endfor %}
-</ul>
 
 <div class="base-content-wrapper">
     <div class="col-lg-3 menu">
@@ -65,16 +70,24 @@ layout: default
 
     var tagClickHandler = function(){
 
-        if(this.tagName = "A"){
-            $(this).parents(".categories").find("a").removeClass("active");
-            this.classList.add("active");
-        }
+        $(".bg-header-events").addClass("small");
+
+        $(".events-wrapper").hide();
+        window.scrollTo(0,0);
 
         var tag = this.textContent;
+
+        $(".tag-btn").add(".categories a").removeClass("active");
+        $(".tag-btn[tag="+tag+"]").add(".categories a[href=#"+tag+"]").addClass("active");
+
         if ( tag.toLowerCase() == "all" ) {
             $(".event").show();
+            $(".events-wrapper").show();
+            $(".bg-header-events").removeClass("small");
+            $(".categories a[href=#all]").addClass("active");
             return;
         }
+
         $(".event").hide().filter(function() {
             return $(this).find("[tag="+tag+"]").size() !== 0;
         }).show();
@@ -82,5 +95,6 @@ layout: default
 
     $(".categories").on("click", "a", tagClickHandler);
     $(".tags").on("click", ".tag-btn", tagClickHandler);
+    $(".tags").on("click", ".trans-btn", tagClickHandler);
 
 </script>
