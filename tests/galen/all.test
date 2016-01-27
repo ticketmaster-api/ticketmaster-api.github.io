@@ -11,51 +11,59 @@
     blog        tests/galen/blog
 
 ##############################################################################
-## create images by --export tests/galen/home/dumpsDesktop/ then compare it
-Home page Dump Images test on desktop
+## create images by dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
+
+@@ groups HomePage
+Home page on desktop
     ${base_url} ${desktop_size}
         wait 1m until visible "id: timeline"
-        #dump ${home}/desktopDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
+        # wait 1m until visible "id: qual_ol"
+        #dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
 
+@@ groups HomePage
 Home page on tablet
-    http://${domain} ${tablet_size}
+    ${base_url} ${tablet_size}
         wait 1m until visible "id: timeline"
-        #dump ${home}/desktopDumpContent.gspec --name "Home page desktop" --export tests/galen/home/dumpsDesktop/
+        # wait 1m until visible "id: qual_ol"
+        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsTablet/
         check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
+@@ groups HomePage
 Home page on mobile
-    http://${domain} ${mobile_size}
+    ${base_url} ${mobile_size}
+        # wait 1m until visible "id: qual_ol"
+        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsMobile/
         check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
 
 ##############################################################################
-
+@@ groups PD-getting-started-Page
 Prod-and-Docs page on desktop
     ${base_url}/products-and-docs/apis/getting-started/ 1200x1080
         check ${prDocs}/desktop-getting-started.gspec --include "desktop"
-
+@@ groups PD-getting-started-Page
 Prod-and-Docs page on tablet
     ${base_url}/products-and-docs/apis/getting-started/ 768x1024
         check ${prDocs}/tablet-getting-started.gspec --include "tablet"
-
+@@ groups PD-getting-started-Page
 Prod-and-Docs page on mobile
     ${base_url}/products-and-docs/apis/getting-started/ ${mobile_size}
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
 
 ##############################################################################
-
+@@ groups BlogsPage
 Blogs page on desktop
     ${base_url}/blogs/ ${desktop_size}
         check ${blog}/desktop-blog.gspec --include "desktop"
-
+@@ groups BlogsPage
 Blogs page on tablet
     ${base_url}/blogs/ ${tablet_size}
         check ${blog}/tablet-blog.gspec --include "tablet"
-
+@@ groups BlogsPage
 Blogs page on mobile
     ${base_url}/blogs/ ${mobile_size}
         check ${blog}/mobile-blog.gspec --include "mobile" --exclude "nomobile"
-
+@@ groups BlogsPage
 Blogs page on mobile open-menu
     ${base_url}/blogs/ ${mobile_size}
         inject ./tests/galen/blog/menu/menu-top-trigger.js

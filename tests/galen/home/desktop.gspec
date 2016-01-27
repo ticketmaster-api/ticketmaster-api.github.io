@@ -15,6 +15,7 @@
     column-item-*     css .columns .row-container>div
     partners-block    id bottom-promo
     promo-social      id promo-social
+    promo-social-left css #promo-social > div > div:nth-child(1)
     footer            id footer
 
 
@@ -25,8 +26,8 @@
         image file dumpsDesktop/objects/columns-block.png, tolerance 400
     partners-block:
         image file dumpsDesktop/objects/partners-block.png, tolerance 40
-    promo-social:
-        image file dumpsDesktop/objects/promo-social.png, tolerance 40
+    promo-social-left:
+        image file dumpsDesktop/objects/promo-social-left.png, tolerance 40
 
 
 = Navigation test =
