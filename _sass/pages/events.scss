@@ -3,32 +3,47 @@
 }
 
 .bg-header-events {
-  background-image: url("/assets/img/events/event_bg@2x_compressed.jpg");
-  height: 800px;
+
+  background-image: url("/assets/img/events/event_bg@2x_compressed.jpg") !important;
+  &.small {
+    background-image: url("/assets/img/events/top-curtain.png") !important;
+  }
+
   .events-wrapper {
-    width: 950px;
+    max-width: 950px;
     margin: 0 auto;
-    margin-top: 75px;
+    margin-top: 50px;
+    margin-bottom: 48px;
+    overflow: hidden;
+    padding: 0 24px;
+
     h1 {
       color: #FFF;
       text-transform: none;
     }
     .description {
-      width: 650px;
-      float: left;
+      padding-left: 0;
       color: rgba(250,250,250,.7);
+
+      @media #{$max-768}{
+        padding: 0;
+      }
     }
     .trans-btn {
       color: #FFF;
       padding: 2px 8px;
       border: 1px solid rgba(250,250,250,.7);
       border-radius: 2px;
+      background-color: transparent;
+      outline: none;
+      margin-right: 20px;
     }
     .des-address {
-      width: 270px;
-      float: left;
-      margin-left: 30px;
+      padding-right: 0;
       color: rgba(250,250,250,.7);
+      @media #{$max-768}{
+        padding: 0;
+      }
       h4 {
         color: rgba(250,250,250,.7);
       }
@@ -46,6 +61,7 @@
 }
 .event {
   margin-bottom: 70px;
+  overflow: hidden;
   .image {
     width: 100%;
     height: 330px;
@@ -59,35 +75,43 @@
     background-color: #fff;
     float: left;
     margin-right: 20px;
+    margin-bottom: 24px;
     outline: none;
+    &.active{
+      background: #009cde;
+      color: #FFF;
+    }
   }
   .comntent {
-    width: 550px;
-    float: left;
+    /*width: 550px;*/
+    float: left !important;
+    padding: 0;
+    padding-right: 15px;
+
     h2 {
       margin-top: 0;
+    }
+    .tags {
+      width: 100%;
+      overflow: hidden;
+      clear: both;
     }
   }
   .location {
     border: 1px solid rgba(118, 134, 146, 0.20);
-    float: left;
-    width: 245px;
-    padding: 24px;
+    /*width: 245px;
     margin-left: 30px;
+    float: left;*/
+    padding: 24px;
     .date {
       font-family: $font-lead-bold;
       margin-bottom: 15px;
     }
     .blue-btn {
       margin-top: 25px;
-      display: inline-block;
     }
   }
-  .tags {
-    width: 100%;
-    overflow: hidden;
-    clear: both;
-  }
+
 }
 
 .blue-btn {
@@ -95,6 +119,7 @@
   border-radius: 4px;
   padding: 14px 24px;
   background-color: $p1;
+  display: inline-block;
 }
 
 

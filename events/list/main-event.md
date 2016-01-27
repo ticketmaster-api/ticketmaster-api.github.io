@@ -1,4 +1,5 @@
 ---
+prime: true
 date: "Wed, Nov 21, 2015"
 title: "Test Content Tralalal"
 category: event
@@ -8,9 +9,6 @@ place:
 city: "NY city"
 rsvp: "http://google.com"
 tags: 
-  - javascript
-  - php
-  - phyton
   - javascript
   - php
   - phyton
