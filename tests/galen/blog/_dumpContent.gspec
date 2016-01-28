@@ -1,0 +1,6 @@
+@objects
+    header              css     .body-wrapper
+
+    row-blogs           css     div.row.row-blogs
+
+    footer              id      footer-blogs

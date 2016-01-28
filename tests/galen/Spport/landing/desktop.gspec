@@ -1,0 +1,13 @@
+@objects
+    header                  css  .top-bar
+    footer                  css  #footer
+    base-content-wrapper    css  .base-content-wrapper
+
+
+= image test =
+    base-content-wrapper:
+        image file dumpsDesktop/objects/base-content-wrapper.png, tolerance 40
+
+= Navigation test =
+    header, footer:
+        visible

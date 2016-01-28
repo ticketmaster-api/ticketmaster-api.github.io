@@ -20,12 +20,23 @@
     column-item-* css .columns .row-container>div
 
     partners-block css #bottom-promo
+    promo-social-left css #promo-social > div > div:nth-child(1)
 
     footer id footer
 
 = image test =
-    body:
-     ### image file img/scr-home480.png, tolerance 10, map-filter denoise 10
+    top-promo:
+        image file etalonImg/dumpsMobile/objects/top-promo.png, tolerance 40
+        % width 320 px
+
+    columns-block:
+        image file etalonImg/dumpsMobile/objects/columns-block.png, tolerance 40
+        % width 320 px
+
+    partners-block:
+        absent
+    promo-social-left:
+        absent
 
 = Navigation test =
     @on mobile

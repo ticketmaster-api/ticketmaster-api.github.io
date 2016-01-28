@@ -108,8 +108,7 @@
 
 = colors, height =
         footer-container:
-            height 430 to 460 px
-            # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
+            height 430 to 475px
 
         nav-all-item-footer-*:
             ${color} "rgba(255, 255, 255, 0.7)"
