@@ -9,7 +9,7 @@
 
 = image test (desktop-getting-started.gspec)=
     single-column:
-        image file etalonImg/dumpsMobile/objects/single-column.png, tolerance 40
+        image file etalonImg/dumpsMobile/objects/single-column.png, tolerance 40, error 4%
         % width 320 px
 
 = general layout test *on mobile =

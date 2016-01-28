@@ -44,12 +44,14 @@ Home page on mobile ${mobile_size}
 Prod-and-Docs page on desktop ${desktop_size}
     ${base_url}/products-and-docs/apis/getting-started/ ${desktop_size}
         check ${prDocs}/desktop-getting-started.gspec --include "desktop"
+
 @@ groups PD-getting-started-Page
-Prod-and-Docs page on tablet
-    ${base_url}/products-and-docs/apis/getting-started/ 768x1024
+Prod-and-Docs page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/getting-started/ ${tablet_size}
         check ${prDocs}/tablet-getting-started.gspec --include "tablet"
 @@ groups PD-getting-started-Page
-Prod-and-Docs page on mobile
+
+Prod-and-Docs page on mobile ${mobile_size}
     ${base_url}/products-and-docs/apis/getting-started/ ${mobile_size}
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
 
@@ -59,7 +61,7 @@ Blogs page on desktop ${desktop_size}
     ${base_url}/blogs/ ${desktop_size}
         check ${blog}/desktop-blog.gspec --include "desktop"
 @@ groups BlogsPage
-Blogs page on tablet
+Blogs page on tablet ${tablet_size}
     ${base_url}/blogs/ ${tablet_size}
         check ${blog}/tablet-blog.gspec --include "tablet"
 @@ groups BlogsPage
