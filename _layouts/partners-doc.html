@@ -2,11 +2,15 @@
 layout: default
 ---
 
-{% include home-header.html %}
+<div class="top-bar bg-header bg-header-partners slice-bottom-left">
+    {% include partials/common-header.html %}
+</div>
+
+{% include partials/common-header-small.html %}
 
 <div class="base-content-wrapper">
     <div class="col-lg-3 menu">
-        {% include support-side-menu.html %}
+        {% include partners-menu.html %}
     </div>
     <div class="col-lg-9 col-md-12 col-sm-12 content">
         {{ content }}
@@ -16,7 +20,6 @@ layout: default
 <div id="footer" class="xs-center slice-top-left">
     {% include partials/footer.html %}
 </div>
-
 
 <script src="{{"/scripts/components/support-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
