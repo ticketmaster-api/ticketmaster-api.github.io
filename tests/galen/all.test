@@ -41,8 +41,8 @@ Home page on mobile ${mobile_size}
 
 ##############################################################################
 @@ groups PD-getting-started-Page
-Prod-and-Docs page on desktop
-    ${base_url}/products-and-docs/apis/getting-started/ 1200x1080
+Prod-and-Docs page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/getting-started/ ${desktop_size}
         check ${prDocs}/desktop-getting-started.gspec --include "desktop"
 @@ groups PD-getting-started-Page
 Prod-and-Docs page on tablet
@@ -55,7 +55,7 @@ Prod-and-Docs page on mobile
 
 ##############################################################################
 @@ groups BlogsPage
-Blogs page on desktop
+Blogs page on desktop ${desktop_size}
     ${base_url}/blogs/ ${desktop_size}
         check ${blog}/desktop-blog.gspec --include "desktop"
 @@ groups BlogsPage

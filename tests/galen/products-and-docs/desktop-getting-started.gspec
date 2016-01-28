@@ -27,6 +27,7 @@
 = image test (desktop-getting-started.gspec)=
     single-column:
         image file etalonImg/dumpsDesktop/objects/single-column.png, tolerance 40
+        % width 1440 px
 
 = count and text test =
     @on desktop
