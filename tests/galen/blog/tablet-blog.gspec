@@ -8,4 +8,4 @@
 
 = image test (tablet-blog.gspec)=
     row-blogs:
-        image file etalonImg/dumpsTablet/objects/row-blogs.png, tolerance 40
+        image file etalonImg/dumpsTablet/objects/row-blogs.png, tolerance 40,  error 4%

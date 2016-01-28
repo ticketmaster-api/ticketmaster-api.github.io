@@ -9,4 +9,4 @@
 
 = image test (mobile-blog.gspec)=
     row-blogs:
-        image file detalonImg/umpsMobile/objects/row-blogs.png, tolerance 40
+        image file etalonImg/dumpsMobile/objects/row-blogs.png, tolerance 40
