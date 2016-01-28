@@ -1,5 +1,5 @@
 ---
-prime: true
+
 date: "Saturday, January 16, 2016"
 category: event
 title: "The Ticketmaster API Devjam in Scottsdale, AZ!"
