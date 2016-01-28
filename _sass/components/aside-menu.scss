@@ -314,6 +314,19 @@ h3.menu-header {
     }
   }
 
+  .sub-section {
+    ul {
+      border-left: 0px !important;
+      padding-left: 18px !important;
+    }
+
+    .sub-section-label {
+      color: $n2-grey-color !important;
+    }
+  }
+
+
+
   a {
     color: $n2-grey-color;
 

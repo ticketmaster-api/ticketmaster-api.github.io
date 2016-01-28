@@ -44,24 +44,38 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "partner" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#event-details">Retrieve Event Details</a></li>
-                    <li><a href="#inventory-management">Event Availability</a></li>
-                    <li><a href="#ticket-availability">Ticket Availability</a></li>
-                    <li><a href="#retrieve-event">Retrieve an Event</a></li>
-                    <li><a href="#ticket-reservation">Get captcha page</a></li>
-                    <li><a href="#post-captcha">Post captcha solution</a></li>
-                    <li><a href="#reserve-tickets">Reserve tickets and create a Cart</a></li>
-                    <li><a href="#encrypt-cert">Encryption Certificate</a></li>
-                    <li><a href="#post-card">Post credit card information</a></li>
-                    <li><a href="#purchase-tickets">Purchase Tickets</a></li>
-                    <li><a href="#delete-cart">Delete a Cart</a></li>
-                    <li><a href="#order-mangement">Order management</a></li>
-                    <li><a href="#unredeemed-orders">Unredeemed orders</a></li>
-                    <li><a href="#polling">Poll</a></li>
-                    <li><a href="#error-responses">Group Error Responses</a></li>
-                    <li><a href="#examples">Group Examples</a></li>
-                    <li><a href="#versions">Group Versions</a></li>
-                    <li><a href="#appendix">Group Appendix</a></li>
+                    <li class="sub-section">
+                        <span class="sub-section-label">Inventory</span>
+                        <ul class="sections menu-highlight">
+                            <li><a href="#event-details">Event Details</a></li>
+                            <li><a href="#inventory-management">Event Inventory</a></li>
+                            <li><a href="#ticket-availability">Ticket & Seat Inventory</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-section">
+                        <span class="sub-section-label">Cart Management</span>
+                        <ul class="sections menu-highlight">
+                            <li><a href="#ticket-reservation">Get captcha page</a></li>
+                            <li><a href="#post-captcha">Solve captcha</a></li>
+                            <li><a href="#reserve-tickets">Reserve Tickets</a></li>
+                            <li><a href="#encrypt-cert">Encryption Certificate</a></li>
+                            <li><a href="#post-card">Add Billing Information</a></li>
+                            <li><a href="#purchase-tickets">Commit Transactions</a></li>
+                            <li><a href="#delete-cart">Delete Cart</a></li>
+                            <li><a href="#poll">Polling</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-section">
+                        <span class="sub-section-label">Order Management</span>
+                        <ul class="sections menu-highlight">
+                            <li><a href="#order-mangement">Order information</a></li>
+                            <li><a href="#unredeemed-orders">Unredeemed orders</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#error-responses">Error Responses</a></li>
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="#versions">Versions</a></li>
+                    <li><a href="#appendix">Appendix</a></li>
                 </ul>
                 {% endif %}
             </li>
@@ -77,7 +91,7 @@
                 </ul>
                 {% endif %}
             </li>
-            <li><a href="/products-and-docs/apis/international-discovery/">International API</a>
+            <li><a href="/products-and-docs/apis/international-discovery/">International Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "international-discovery" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
