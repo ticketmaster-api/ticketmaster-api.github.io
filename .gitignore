@@ -9,9 +9,8 @@ node_modules
 npm-debug.log
 
 /tests/galen/reports
-!/tests/galen/reports/all/*
 # Ignore Mac DS_Store files
 .DS_Store
 /tests/galen/reports
 
-galen-test/reports
+!/tests/galen/reports/all/*
