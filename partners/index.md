@@ -1,4 +1,5 @@
 ---
 layout: partners
+category: partners
 ---
 
