@@ -714,6 +714,9 @@ body .modal-header .close {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
+  &:focus, &:active {
+    outline: none;
+  }
   span {
     display: none;
   }

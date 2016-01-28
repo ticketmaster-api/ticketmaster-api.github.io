@@ -69,6 +69,13 @@
 
 
                     screenBtn.addEventListener("click", function(){
+                        var title = $(this).parent().parent().parent().find('h2')
+                            .clone(true)
+                            .find('a')
+                            .remove()
+                            .end()
+                            .html();
+
                         var content = $(this).parent().parent()
                             .clone(true)
                             .find('.active-lang')
@@ -80,11 +87,12 @@
                             .end()
                             .html();
 
+                        $("#modal-title").html(title);
                         $(".modal-body").html(content);
+
                         $(".modal-body").delegate(".lang-selector a", "click", function() {
                             $(this).parent().children().removeClass("active");
                             $(this).addClass("active");
-                            // $(this).parent().parent().parent().children().removeClass("tab-active");
                             $(this).parents().closest(".modal-body").children().removeClass("tab-active");
                             $(this).parents().closest(".modal-body").children().eq($(this).index() + 1).addClass("tab-active");
                         });
@@ -134,7 +142,7 @@
                 group.nextAll().first().addClass('tab-active');//set first tab visible
                 /*parse tabs end*/
 
-                me.parent().prepend('<a href="javascript:void(0)" class="active-lang">JavaScript</a>');
+                me.parent().prepend('<a href="javascript:void(0)" class="active-lang">' + $(me).find('.active').html() + '</a>');
                 me.attr('tabindex', '-1');
 
             }
