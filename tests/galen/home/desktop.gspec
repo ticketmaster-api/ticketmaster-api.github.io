@@ -21,13 +21,21 @@
 
 = image test =
     top-promo:
-        image file dumpsDesktop/objects/top-promo.png, tolerance 40
+        image file etalonImg/dumpsDesktop/objects/top-promo.png, tolerance 40, analyze-offset 2
+        % width 1440 px
+        % height 868 px
     columns-block:
-        image file dumpsDesktop/objects/columns-block.png, tolerance 400
+        image file etalonImg/dumpsDesktop/objects/columns-block.png, tolerance 40
+        % width 1440 px
+        % height 421 px
     partners-block:
-        image file dumpsDesktop/objects/partners-block.png, tolerance 40
+        image file etalonImg/dumpsDesktop/objects/partners-block.png, tolerance 40
+        % width 1440 px
+        % height 1151px
     promo-social-left:
-        image file dumpsDesktop/objects/promo-social-left.png, tolerance 40
+        image file etalonImg/dumpsDesktop/objects/promo-social-left.png, tolerance 40
+        % width 585 px
+        % height 212px
 
 
 = Navigation test =

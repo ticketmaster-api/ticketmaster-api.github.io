@@ -21,7 +21,14 @@
     table-api-th-01             css     #main-block > div > div.table-wrapper.no-mobile > table > thead > tr:nth-child(1) > th:nth-child(1)
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
 
-=count and text test @tablet (footer-tablet.gspec)=
+
+    single-column       css     .single-column
+
+= image test @tablet (footer-tablet.gspec)=
+    single-column:
+        image file dumpsTablet/objects/single-column.png, tolerance 40
+
+=count and text test=
 
     @on tablet
         global:

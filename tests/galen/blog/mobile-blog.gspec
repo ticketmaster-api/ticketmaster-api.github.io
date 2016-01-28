@@ -3,3 +3,10 @@
 @import mobile/mobile-header.gspec
 @import mobile/mobile-header-menu.gspec
 # keyword @import - not saw in local run test on Windows (becouse of '/' in path)
+
+@objects
+    row-blogs   css     div.row.row-blogs
+
+= image test (mobile-blog.gspec)=
+    row-blogs:
+        image file detalonImg/umpsMobile/objects/row-blogs.png, tolerance 40
