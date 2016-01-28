@@ -2,7 +2,7 @@
 
 prime: true
 date: "Sat-Sun, February 6-7, 2016"
-title: "HackPoly"
+title: "Ticketmaster at HackPoly"
 category: event
 place: 
   - "Bronco Student Center "
