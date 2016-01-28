@@ -59,6 +59,8 @@ namespace 'travis' do
     end
 
     puts "Report from #{SOURCE_BRANCH} to #{REPORT_BRANCH} add files to 'tests/galen/reports/all'"
+        system "git config --global user.email 'de.gratnik@gmail.com'"
+        system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
         system "git add tests/galen/"
         system "git commit -a -m 'Auto-Report from Travis'"
