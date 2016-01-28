@@ -1,0 +1,100 @@
+---
+layout: default
+---
+
+<div class="top-bar bg-header bg-header-events slice-bottom-left">
+{% include partials/common-header.html %}
+
+
+
+{% for event in site.pages %}
+    {% if event.prime %}
+    <div class="events-wrapper">
+        <h1>{{ event.title }}</h1>
+        <div class="description col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <p>{{ event.content | markdownify }}</p>
+            <div class="tags">
+                {% for tag in event.tags %}
+                <button class="trans-btn" tag="{{tag}}">{{tag}}</button>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="des-address col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <h4>{{ event.date }}</h4>
+            <a href="{{ event.place[1] }}"><h5>{{ event.place[0] }}</h5></a>
+            <p>{{ event.city }}</p>
+            {% if event.rsvp %}
+                <a href="{{ event.rsvp }}" class="blue-btn">RSVP</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}
+</div>
+
+{% include partials/common-header-small.html %}
+
+<div class="base-content-wrapper">
+    <div class="col-lg-3 menu">
+        <h3 class="menu-header">
+            Events
+            <span class="expanded" id="side-menu-btn"></span>
+        </h3>
+        <ul class="support-aside-menu" id="scrollable-element">
+            <li>
+                <ul class="categories">
+                    <li><a href="#all" class="active">All</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-9 col-md-12 col-sm-12 content">
+        {{ content }}
+    </div>
+</div>
+
+<div id="footer" class="xs-center slice-top-left">
+{% include partials/footer.html %}
+</div>
+
+<script src="{{"/scripts/components/support-side-menu.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
+<script>
+    var unique = [].map.call(document.getElementsByClassName("tag-btn"),function(item){
+        return '<li><a href="#' + item.textContent + '">' + item.textContent + '</a></li>';;
+    }).filter( function(value, index, self) {
+        return self.indexOf(value) === index;
+    }).join("");
+
+    $(".categories").append(unique);
+
+    var tagClickHandler = function(){
+
+        $(".bg-header-events").addClass("small");
+
+        $(".events-wrapper").hide();
+        window.scrollTo(0,0);
+
+        var tag = this.textContent;
+
+        $(".tag-btn").add(".categories a").removeClass("active");
+        $(".tag-btn[tag="+tag+"]").add(".categories a[href=#"+tag+"]").addClass("active");
+
+        if ( tag.toLowerCase() == "all" ) {
+            $(".event").show();
+            $(".events-wrapper").show();
+            $(".bg-header-events").removeClass("small");
+            $(".categories a[href=#all]").addClass("active");
+            return;
+        }
+
+        $(".event").hide().filter(function() {
+            return $(this).find("[tag="+tag+"]").size() !== 0;
+        }).show();
+    };
+
+    $(".categories").on("click", "a", tagClickHandler);
+    $(".tags").on("click", ".tag-btn", tagClickHandler);
+    $(".tags").on("click", ".trans-btn", tagClickHandler);
+
+</script>
