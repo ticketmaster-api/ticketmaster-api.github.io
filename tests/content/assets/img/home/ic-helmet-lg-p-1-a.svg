@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="94px" height="94px" viewBox="0 0 94 94" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.4 (381) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_helmet_lg_p1a</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path id="path-1" d="M34.2168,87.91 C14.6248,83.462 0.0008,65.942 0.0008,44.998 C0.0008,20.694 19.6968,0.998 44.0008,0.998 C68.2968,0.998 88.0008,20.694 88.0008,44.998 L60.0008,44.998 C51.1648,44.998 44.0008,52.162 44.0008,60.998"></path>
+        <path id="path-2" d="M92,81 L44,81"></path>
+        <path id="path-3" d="M80,69 L80,85 C80,89.416 76.42,93 72,93 L68,93"></path>
+        <path id="path-4" d="M38,69 C38,72.312 35.312,75 32,75 C28.688,75 26,72.312 26,69 C26,65.684 28.688,63 32,63 C35.312,63 38,65.684 38,69 L38,69 Z"></path>
+        <path id="path-5" d="M32,63 L32,57 C32,43.744 42.744,33 56,33 L92,33"></path>
+        <path id="path-6" d="M38,69 L92,69 L92,81 L92,85 C92,89.416 88.42,93 84,93 L65.948,93 C59.576,93 53.468,90.468 48.964,85.96 L36.184,73.184"></path>
+        <path id="path-7" d="M64,69 L64,85 C64,88.12 62.212,90.824 59.604,92.14"></path>
+    </defs>
+    <g id="0.x-Landing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="0.1.1-Interim-Landing" sketch:type="MSArtboardGroup" transform="translate(-819.000000, -819.000000)">
+            <g id="Feature-blocks" sketch:type="MSLayerGroup" transform="translate(150.000000, 817.000000)">
+                <g id="Affiliates" transform="translate(585.000000, 0.500000)">
+                    <g id="ic_helmet_lg_p1a" transform="translate(83.000000, 0.500000)">
+                        <rect id="Rectangle-15" sketch:type="MSShapeGroup" x="0" y="0" width="96" height="96"></rect>
+                        <g id="Group" transform="translate(2.000000, 1.000000)" stroke-width="2" stroke-linejoin="round">
+                            <g id="Stroke-1591" stroke-linecap="round">
+                                <use stroke="#009CDE" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                                <use stroke-opacity="0.100000001" stroke="#D0006F" xlink:href="#path-1"></use>
+                            </g>
+                            <g id="Stroke-1592" stroke-linecap="round">
+                                <use stroke="#009CDE" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
+                                <use stroke-opacity="0.100000001" stroke="#D0006F" xlink:href="#path-2"></use>
+                            </g>
+                            <g id="Stroke-1593" stroke-linecap="round">
+                                <use stroke="#009CDE" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                                <use stroke-opacity="0.100000001" stroke="#D0006F" xlink:href="#path-3"></use>
+                            </g>
+                            <g id="Stroke-1594">
+                                <use stroke="#009CDE" sketch:type="MSShapeGroup" xlink:href="#path-4"></use>
+                                <use stroke-opacity="0.100000001" stroke="#D0006F" xlink:href="#path-4"></use>
+                            </g>
+                            <g id="Stroke-1595" stroke-linecap="round">
+                                <use stroke="#009CDE" sketch:type="MSShapeGroup" xlink:href="#path-5"></use>
+                                <use stroke-opacity="0.100000001" stroke="#D0006F" xlink:href="#path-5"></use>
+                            </g>
+                            <g id="Stroke-1596">
+                                <use stroke="#009CDE" sketch:type="MSShapeGroup" xlink:href="#path-6"></use>
+                                <use stroke-opacity="0.100000001" stroke="#D0006F" xlink:href="#path-6"></use>
+                            </g>
+                            <g id="Stroke-1597" stroke-linecap="round">
+                                <use stroke="#009CDE" sketch:type="MSShapeGroup" xlink:href="#path-7"></use>
+                                <use stroke-opacity="0.100000001" stroke="#D0006F" xlink:href="#path-7"></use>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
