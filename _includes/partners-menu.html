@@ -11,8 +11,8 @@
                     <ul class="sections menu-highlight">
                     {% for partner in site.pages %}
                         {% if partner.categories[0] == "partner" && partner.categories[1] == "certified" %}
-                            <li class="{% if partner.title == page.title %}active{% endif %}">
-                                <a href="/partners/list/{{partner.name | replace:'md','html'}}">{{ partner.title | capitalize }}</a>
+                            <li class="{% if partner.pname == page.pname %}active{% endif %}">
+                                <a href="/partners/list/{{partner.name | replace:'.md',''}}">{{ partner.pname | capitalize }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}

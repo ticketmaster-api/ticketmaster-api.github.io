@@ -1,7 +1,7 @@
 ---
 layout: partners-doc
 
-title: "groupon"
+pname: "groupon"
 
 type: big
 

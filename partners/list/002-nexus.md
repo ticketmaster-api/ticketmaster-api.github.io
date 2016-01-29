@@ -1,7 +1,7 @@
 ---
 layout: partners-doc
 
-title: "nexus"
+pname: "nexus"
 
 categories: 
   - partner
