@@ -41,9 +41,9 @@ notifications:
   email: false
 
 before_install:
-  - rmdir ./events/ #remove directory events
-  - cp ./tests/content/ ./ -r #copy test content
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
   - npm install -g galenframework-cli
+  - rmdir ./events/ #remove directory events
+  - cp ./tests/content/ ./ -r #copy test content
