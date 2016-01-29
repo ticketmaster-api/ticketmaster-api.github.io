@@ -27,6 +27,9 @@ script:
   - sleep 20 # give jekyll some time to start
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
   - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage #generate comparing images
+  - file tests/galen/support/landing/ls &
+  - file tests/galen/support/landing/dumpsDesktop/objects/base-content-wrapper.png &
+  - sleep 2
 
 after_script:
   - rake travis:deploy --trace --verbose
