@@ -262,7 +262,7 @@ Set-Cookie: ****
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -286,10 +286,6 @@ $.ajax({
 {% highlight bash %}
 curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
 {% endhighlight %}
-
-
-
-
 
 
 ##Get Event Details
@@ -474,7 +470,7 @@ Set-Cookie: ****
 {% endhighlight %}
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -636,7 +632,7 @@ Set-Cookie: ****
 {% endhighlight %}
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -987,7 +983,7 @@ Set-Cookie: ****
 {% endhighlight %}
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -1085,7 +1081,7 @@ Set-Cookie: ****
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -1498,7 +1494,7 @@ Set-Cookie: ****
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -1595,7 +1591,7 @@ Set-Cookie: ****
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -1756,7 +1752,7 @@ Set-Cookie: ****
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -1867,7 +1863,7 @@ Set-Cookie: ****
 {% endhighlight %}
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 

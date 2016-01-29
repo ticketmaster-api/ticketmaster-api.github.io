@@ -2,56 +2,73 @@
     domain      127.0.0.1:4000
     base_url    http://${domain}/
 
-    mobile_size     320x480
-    tablet_size     768x1024
-    desktop_size    1440x1220
+    mobile_size     336x480
+        ## gen local 320px + 16px= 336
+    tablet_size     784x1024
+        ## gen local 768px + 16px= 784
+    desktop_size    1456x1220
+        ## gen local 1440px + 16px= 1456
 
     home        tests/galen/home
     prDocs      tests/galen/products-and-docs
     blog        tests/galen/blog
 
 ##############################################################################
+## create images by dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
 
-Home page on desktop
-    http://${domain} ${desktop_size}
+@@ groups HomePage
+Home page on desktop ${desktop_size}
+    ${base_url} ${desktop_size}
+        wait 1m until visible "id: timeline"
+        # wait 1m until visible "id: qual_ol"
+        #dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
 
-Home page on tablet
-    http://${domain} ${tablet_size}
+@@ groups HomePage
+Home page on tablet ${tablet_size}
+    ${base_url} ${tablet_size}
+        wait 1m until visible "id: timeline"
+        # wait 1m until visible "id: qual_ol"
+        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsTablet/
         check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
-Home page on mobile
-    http://${domain} ${mobile_size}
+@@ groups HomePage
+Home page on mobile ${mobile_size}
+    ${base_url} ${mobile_size}
+        # wait 1m until visible "id: qual_ol"
+        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsMobile/
         check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
 
 ##############################################################################
-
-Prod-and-Docs page on desktop
-    ${base_url}/products-and-docs/apis/getting-started/ 1200x1080
+@@ groups PD-getting-started-Page
+Prod-and-Docs page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/getting-started/ ${desktop_size}
         check ${prDocs}/desktop-getting-started.gspec --include "desktop"
 
-Prod-and-Docs page on tablet
-    ${base_url}/products-and-docs/apis/getting-started/ 768x1024
+@@ groups PD-getting-started-Page
+Prod-and-Docs page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/getting-started/ ${tablet_size}
         check ${prDocs}/tablet-getting-started.gspec --include "tablet"
+@@ groups PD-getting-started-Page
 
-Prod-and-Docs page on mobile
+Prod-and-Docs page on mobile ${mobile_size}
     ${base_url}/products-and-docs/apis/getting-started/ ${mobile_size}
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
 
 ##############################################################################
-
-Blogs page on desktop
+@@ groups BlogsPage
+Blogs page on desktop ${desktop_size}
     ${base_url}/blogs/ ${desktop_size}
         check ${blog}/desktop-blog.gspec --include "desktop"
-
-Blogs page on tablet
+@@ groups BlogsPage
+Blogs page on tablet ${tablet_size}
     ${base_url}/blogs/ ${tablet_size}
         check ${blog}/tablet-blog.gspec --include "tablet"
-
+@@ groups BlogsPage
 Blogs page on mobile
     ${base_url}/blogs/ ${mobile_size}
         check ${blog}/mobile-blog.gspec --include "mobile" --exclude "nomobile"
-
+@@ groups BlogsPage
 Blogs page on mobile open-menu
     ${base_url}/blogs/ ${mobile_size}
         inject ./tests/galen/blog/menu/menu-top-trigger.js

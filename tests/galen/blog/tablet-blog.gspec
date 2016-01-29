@@ -2,3 +2,10 @@
 @import tablet/tablet-content.gspec
 @import tablet/tablet-header-menu.gspec
 # keyword @import - not saw in local run test on Windows (becouse of '/' in path)
+
+@objects
+    row-blogs   css     div.row.row-blogs
+
+= image test (tablet-blog.gspec)=
+    row-blogs:
+        image file etalonImg/dumpsTablet/objects/row-blogs.png, tolerance 40,  error 4%

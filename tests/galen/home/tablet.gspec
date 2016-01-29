@@ -18,13 +18,27 @@
     columns-container   css .columns .row-container
     column-item-*       css .columns .row-container>div
 
-    partners-block id bottom-promo
+    partners-block css #bottom-promo
+    promo-social-left css #promo-social > div > div:nth-child(1)
 
     footer id footer
 
 = image test =
+    top-promo:
+         % image file etalonImg/dumpsTablet/objects/top-promo.png, tolerance 40, analyze-offset 2
+         % width 768 px
+         % height 857 px
+    columns-block:
+         % image file etalonImg/dumpsTablet/objects/columns-block.png, error 4%
+    partners-block:
+         % image file etalonImg/dumpsTablet/objects/partners-block.png, tolerance 40
+    promo-social-left:
+         % image file etalonImg/dumpsTablet/objects/promo-social-left.png, tolerance 40
+
+
     body:
-     ### image file img/scr-home768.png, tolerance 4000, map-filter denoise 10
+        # % image file img/scr-home768.png, tolerance 40, analyze-offset 20
+
 
 = Navigation test =
         logo:

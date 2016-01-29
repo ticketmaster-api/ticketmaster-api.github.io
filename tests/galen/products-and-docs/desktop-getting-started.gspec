@@ -22,7 +22,14 @@
     table-api-th-01             css     #main-block > div > div.table-wrapper.no-mobile > table > thead > tr:nth-child(1) > th:nth-child(1)
     table-api-tr                css     #main-block > div > div.table-wrapper > table > thead > tr:nth-child(1)
 
-= count and text test (desktop-getting-started.gspec) =
+    single-column       css     .single-column
+
+= image test (desktop-getting-started.gspec)=
+    single-column:
+        image file etalonImg/dumpsDesktop/objects/single-column.png, tolerance 40, error 4%
+        % width 1440 px
+
+= count and text test =
     @on desktop
         global:
             #count any table-*            is 2

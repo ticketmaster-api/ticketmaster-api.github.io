@@ -3,8 +3,14 @@
 @import common/footer-mobile.gspec
 
 @objects
-    heading-h1 css #getting-started
+    heading-h1          css     #getting-started
+    single-column       css     .single-column
 
+
+= image test (desktop-getting-started.gspec)=
+    single-column:
+        image file etalonImg/dumpsMobile/objects/single-column.png, tolerance 40, error 4%
+        % width 320 px
 
 = general layout test *on mobile =
     @on mobile

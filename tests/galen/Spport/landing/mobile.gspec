@@ -1,0 +1,39 @@
+@objects
+    header      css  .top-bar
+
+
+    footer      css  #footer
+
+= image test =
+    top-promo:
+        image file dumpsMobile/objects/top-promo.png, tolerance 40
+    columns-block:
+        image file dumpsMobile/objects/columns-block.png, tolerance 40
+    partners-block:
+        absent
+    promo-social-left:
+        absent
+
+= Navigation test =
+    @on mobile
+        logo:
+            visible
+
+= general layout test =
+    @on mobile
+        column-item-*:
+            width ~ 100 % of columns-container/width
+        columns-block:
+            below top-promo 40 to 50px
+        footer:
+            below columns-block ~43px
+        main-desc:
+            below main-header 20 to 40px
+        get-api-btn:
+            width 195 to 200px
+            height 45 to 50px
+
+        partners-block, social:
+            absent
+        review-doc-btn, explore-btn:
+            absent

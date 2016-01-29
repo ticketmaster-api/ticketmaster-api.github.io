@@ -29,6 +29,7 @@ script:
 
 after_script:
   - rake travis:deploy --trace --verbose
+  - rake travis:report --trace --verbose
 
 cache:
   directories:

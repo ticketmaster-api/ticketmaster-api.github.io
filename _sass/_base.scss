@@ -445,7 +445,8 @@ pre {
   }
 }
 
-.documentation .copy-btn.copied {
+.documentation .copy-btn.copied,
+.modal-body .copy-btn-fs.copied {
   background-color: #FFF;
   background-position-x: -2px;
   background-position-y: -2px;
