@@ -6,10 +6,9 @@
 
 = Support page content test =
     single-column:
-        image file dumpsDesktop/objects/base-content-wrapper.png, error 2%
+        image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 2%
 
-
-= general layout Support page test =
+= header, footer Support page =
     header, footer:
         visible
     body:
