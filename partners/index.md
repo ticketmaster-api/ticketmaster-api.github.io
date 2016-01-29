@@ -70,6 +70,28 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 {% endcapture %}
 
 
+{% capture developers %}
+
+#### Startups &amp; Developers
+
+{: .image}
+![Groupon](/assets/img/partners/spinzo-logo.png)
+
+{: .image}
+![Groupon](/assets/img/partners/tradablebits-logo.png)
+
+{: .image}
+![Groupon](/assets/img/partners/pricemaster-logo.png)
+
+{: .image}
+![Groupon](/assets/img/partners/reply-logo.png)
+
+{: .c}
+[See all 50+ startup and developer partners](/partners/channel/)
+
+{% endcapture %}
+
+
 <div class="row parnters">
   <div class="row-container row-partners">
     <div class="col-xs-12 col-md-12">
@@ -96,3 +118,10 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
     </div>
 </div>
 
+<div class="row developers">
+  <div class="row-container row-developers">
+<div class="col-xs-12 col-md-12" markdown="1">
+{{developers}}
+</div>
+  </div>
+</div>
