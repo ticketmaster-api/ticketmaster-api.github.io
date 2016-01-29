@@ -22,7 +22,7 @@
 
 = Blog page footer at the bottom of the page =
         footer:
-            below top-content > ~30 px
+            below top-content  ~30 px
 
 = Blog page navigation test @mobile =
         nav-item-heading-footer-1:
