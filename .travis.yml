@@ -28,8 +28,8 @@ script:
   - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
 after_script:
-#  - less ./index.md & #check if it's test content
   - rake travis:deploy --trace --verbose
+  - rake travis:report --trace --verbose
 
 cache:
   directories:
