@@ -1,72 +1,16 @@
 @objects
-    body        css  body
-    header      css  .top-bar
-    logo        css  #header-logo img
-    nav-item-*  css  #menu a
+    body                    css     body
+    header                  css     .top-bar
+    base-content-wrapper    css     .base-content-wrapper
+    footer                  id      footer
 
-    social      id   promo-social
-    twitter     css  #timeline
-
-    top-promo   id   top-promo
-    main-header css  #top-promo h1
-    main-desc   css  #top-promo p
-    get-api-btn css  #top-promo .tm-btn-white
-    review-doc-btn css  #top-promo > div > div.row-container > div.col-xs-12.button-block > a:nth-child(2)
-    explore-btn css  #top-promo > div > div.row-container > div.col-xs-12.button-block > a:nth-child(3)
-
-    columns-block       css .columns
-    columns-container   css .columns .row-container
-    column-item-*       css .columns .row-container>div
-
-    partners-block css #bottom-promo
-    promo-social-left css #promo-social > div > div:nth-child(1)
-
-    footer id footer
-
-= image test =
-    top-promo:
-        image file dumpsTablet/objects/top-promo.png, tolerance 40
-    columns-block:
-        image file dumpsTablet/objects/columns-block.png, tolerance 40
-    partners-block:
-        image file dumpsTablet/objects/partners-block.png, tolerance 40
-    promo-social-left:
-        image file dumpsTablet/objects/promo-social-left.png, tolerance 40
+= Support page content test =
+    base-content-wrapper:
+        image file dumpsDesktop/objects/base-content-wrapper.png, error 2%
 
 
-= Navigation test =
-        logo:
-            visible
-
-= general layout test =
-        body:
-            width ~99% of screen/width
-        column-item-*:
-            width 90 to 95% of screen/width
-        columns-block:
-            below top-promo 50 to 69px
-        partners-block:
-            below columns-block 20 to 25px
-        social:
-            below partners-block 60 to 65px
-        footer:
-            below social 50 to 55px
-        main-desc:
-            below main-header 30 to 40px
-        get-api-btn:
-            above review-doc-btn 45 to 55px
-            width 345 to 350px
-            height 45 to 50px
-        review-doc-btn:
-            above explore-btn 45 to 55px
-            width 345 to 350px
-            height 45 to 50px
-            visible
-        explore-btn:
-            width 345 to 350px
-            height 45 to 50px
-            visible
-
-= twitter card =
-        twitter:
-            visible
+= general layout Support page test =
+    header, footer:
+        visible
+    body:
+        width ~99% of screen/width

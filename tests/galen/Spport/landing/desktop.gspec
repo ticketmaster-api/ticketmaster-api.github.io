@@ -1,12 +1,12 @@
 @objects
-    header                  css  .top-bar
-    footer                  css  #footer
-    base-content-wrapper    css  .base-content-wrapper
+    body                    css     body
+    header                  css     .top-bar
+    base-content-wrapper    css     .base-content-wrapper
+    footer                  id      footer
 
-
-= image test =
+= Support page content test =
     base-content-wrapper:
-        image file dumpsDesktop/objects/base-content-wrapper.png, tolerance 40
+        image file dumpsDesktop/objects/base-content-wrapper.png, error 2%
 
 = Navigation test =
     header, footer:

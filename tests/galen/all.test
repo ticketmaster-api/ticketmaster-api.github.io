@@ -21,7 +21,6 @@ Home page on desktop ${desktop_size}
     ${base_url} ${desktop_size}
         wait 1m until visible "id: timeline"
         # wait 1m until visible "id: qual_ol"
-        #dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
 
 @@ groups HomePage
@@ -29,14 +28,12 @@ Home page on tablet ${tablet_size}
     ${base_url} ${tablet_size}
         wait 1m until visible "id: timeline"
         # wait 1m until visible "id: qual_ol"
-        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsTablet/
         check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
 @@ groups HomePage
 Home page on mobile ${mobile_size}
     ${base_url} ${mobile_size}
         # wait 1m until visible "id: qual_ol"
-        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsMobile/
         check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
 
 ##############################################################################
@@ -49,8 +46,8 @@ Prod-and-Docs page on desktop ${desktop_size}
 Prod-and-Docs page on tablet ${tablet_size}
     ${base_url}/products-and-docs/apis/getting-started/ ${tablet_size}
         check ${prDocs}/tablet-getting-started.gspec --include "tablet"
-@@ groups PD-getting-started-Page
 
+@@ groups PD-getting-started-Page
 Prod-and-Docs page on mobile ${mobile_size}
     ${base_url}/products-and-docs/apis/getting-started/ ${mobile_size}
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
@@ -60,16 +57,39 @@ Prod-and-Docs page on mobile ${mobile_size}
 Blogs page on desktop ${desktop_size}
     ${base_url}/blogs/ ${desktop_size}
         check ${blog}/desktop-blog.gspec --include "desktop"
+
 @@ groups BlogsPage
 Blogs page on tablet ${tablet_size}
     ${base_url}/blogs/ ${tablet_size}
         check ${blog}/tablet-blog.gspec --include "tablet"
+
 @@ groups BlogsPage
 Blogs page on mobile
     ${base_url}/blogs/ ${mobile_size}
         check ${blog}/mobile-blog.gspec --include "mobile" --exclude "nomobile"
+
 @@ groups BlogsPage
 Blogs page on mobile open-menu
     ${base_url}/blogs/ ${mobile_size}
         inject ./tests/galen/blog/menu/menu-top-trigger.js
         check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
+
+##############################################################################
+@@ groups SupportPage
+SupportPage page on desktop ${desktop_size}
+    ${base_url}/support/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        dump ${support}/_dumpContent.gspec --name "dump Support page desktop" --export ${support}/etalonImg/dumpsDesktop/
+        check ${support}/desktop.gspec --include "desktop"
+
+@@ groups SupportPage
+SupportPage page on tablet ${tablet_size}
+    ${base_url}/support/ ${tablet_size}
+        dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsTablet/
+        check ${support}/tablet.gspec --include "tablet"
+
+@@ groups SupportPage
+SupportPage page on mobile ${mobile_size}
+    ${base_url}/support/ ${mobile_size}
+        dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsMobile/
+        check ${support}/mobile.gspec --include "mobile" --exclude "nomobile"

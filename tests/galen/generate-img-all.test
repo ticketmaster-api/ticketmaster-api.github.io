@@ -15,7 +15,6 @@
     desktop_size    1456x1220
         ## gen local 1440px + 16px= 1456
 ###
-
     home        tests/galen/home
     prDocs      tests/galen/products-and-docs
     blog        tests/galen/blog
@@ -107,10 +106,21 @@ Blogs page on mobile open-menu
         check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
 
 ##############################################################################
-@@ disabled
-@@ groups SupportLandingPage
-SupportLanding page on desktop
+@@ groups SupportPage
+SupportPage page on desktop ${desktop_size}
     ${base_url}/support/ ${desktop_size}
-        wait 1m until visible "id: qual_ol"
+        #wait 1m until visible "id: qual_ol"
         dump ${support}/_dumpContent.gspec --name "dump Support page desktop" --export ${support}/etalonImg/dumpsDesktop/
-        check ${support}/desktop-blog.gspec --include "desktop"
+        check ${support}/desktop.gspec --include "desktop"
+
+@@ groups SupportPage
+SupportPage page on tablet ${tablet_size}
+    ${base_url}/support/ ${tablet_size}
+        dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsTablet/
+        check ${support}/tablet.gspec --include "tablet"
+
+@@ groups SupportPage
+SupportPage page on mobile ${mobile_size}
+    ${base_url}/support/ ${mobile_size}
+        dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsMobile/
+        check ${support}/mobile.gspec --include "mobile" --exclude "nomobile"
