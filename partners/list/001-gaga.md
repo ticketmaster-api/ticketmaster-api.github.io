@@ -1,7 +1,7 @@
 ---
 layout: partners-doc
 
-title: "gaga"
+pname: "gaga"
 
 categories: 
   - partner
