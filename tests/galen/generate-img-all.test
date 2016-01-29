@@ -86,13 +86,13 @@ PD-WidgetsPage page on desktop ${desktop_size}
 
 @@ groups PD-WidgetsPage
 PD-WidgetsPage page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/getting-started/widgets/ ${tablet_size}
+    ${base_url}/products-and-docs/apis/widgets/ ${tablet_size}
         dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsTablet/
         check ${prDocsWidjets}/tablet.gspec --include "tablet"
 
 @@ groups PD-WidgetsPage
 PD-WidgetsPage page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/getting-started/widgets/ ${mobile_size}
+    ${base_url}/products-and-docs/apis/widgets/ ${mobile_size}
         dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsMobile/
         check ${prDocsWidjets}/mobile.gspec --include "mobile" --exclude "nomobile"
 
@@ -100,20 +100,20 @@ PD-WidgetsPage page on mobile ${mobile_size}
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on desktop ${desktop_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${desktop_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
         dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${prDocsSlate}/etalonImg/dumpsDesktop/
         check ${prDocsSlate}/desktop.gspec --include "desktop"
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${tablet_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${tablet_size}
         dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsTablet/
         check ${prDocsSlate}/tablet.gspec --include "tablet"
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${mobile_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${mobile_size}
         dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsMobile/
         check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
 
@@ -121,20 +121,20 @@ ProductsDocsSlate page on mobile ${mobile_size}
 
 @@ groups ProductsDocsConsole
 ProductsDocsConsole page on desktop ${desktop_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${desktop_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
         dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole desktop" --export ${prDocsConsole}/etalonImg/dumpsDesktop/
         check ${prDocsConsole}/desktop.gspec --include "desktop"
 
 @@ groups ProductsDocsConsole
 ProductsDocsConsole page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${tablet_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${tablet_size}
         dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole tablet" --export ${prDocsConsole}/etalonImg/dumpsTablet/
         #check ${prDocsConsole}/tablet.gspec --include "tablet"
 
 @@ groups ProductsDocsConsole
 ProductsDocsConsole page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${mobile_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${mobile_size}
         dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole tablet" --export ${prDocsConsole}/etalonImg/dumpsMobile/
         #check ${prDocsConsole}/mobile.gspec --include "mobile" --exclude "nomobile"
 
