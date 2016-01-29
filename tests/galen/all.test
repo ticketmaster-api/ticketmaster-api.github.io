@@ -9,9 +9,12 @@
     desktop_size    1456x1220
         ## gen local 1440px + 16px= 1456
 
-    home        tests/galen/home
-    prDocs      tests/galen/products-and-docs
-    blog        tests/galen/blog
+    home            tests/galen/home
+    prDocs          tests/galen/products-and-docs
+    prDocsSlate     tests/galen/products-and-docs/slate
+    prDocsWidjets   tests/galen/products-and-docs/widjets
+    blog            tests/galen/blog
+    support         tests/galen/support/landing
 
 ##############################################################################
 ## create images by dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
@@ -52,7 +55,60 @@ Prod-and-Docs page on mobile ${mobile_size}
     ${base_url}/products-and-docs/apis/getting-started/ ${mobile_size}
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
 
-##############################################################################
+###WidgetsPage###########################################################################
+
+@@ groups PD-WidgetsPage
+SupportPage page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/getting-started/widgets/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        check ${prDocsWidjets}/desktop.gspec --include "desktop"
+
+@@ groups PD-WidgetsPage
+SupportPage page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/getting-started/widgets/ ${tablet_size}
+        check ${prDocsWidjets}/tablet.gspec --include "tablet"
+
+@@ groups PD-WidgetsPage
+SupportPage page on mobile ${mobile_size}
+    ${base_url}/products-and-docs/apis/getting-started/widgets/ ${mobile_size}
+        check ${prDocsWidjets}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+###prDocsSlate(discoveryAPI)#####################################################################
+
+@@ groups ProductsDocsSlate
+SupportPage page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        check ${prDocsSlate}/desktop.gspec --include "desktop"
+
+@@ groups ProductsDocsSlate
+SupportPage page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${tablet_size}
+        check ${prDocsSlate}/tablet.gspec --include "tablet"
+
+@@ groups ProductsDocsSlate
+SupportPage page on mobile ${mobile_size}
+    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${mobile_size}
+        check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+###prDocsConsole###########################################################################
+
+@@ groups ProductsDocsConsole
+SupportPage page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${desktop_size}
+        check ${prDocsConsole}/desktop.gspec --include "desktop"
+
+@@ groups ProductsDocsConsole
+SupportPage page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${tablet_size}
+        check ${prDocsConsole}/tablet.gspec --include "tablet"
+
+@@ groups ProductsDocsConsole
+SupportPage page on mobile ${mobile_size}
+    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${mobile_size}
+        check ${prDocsConsole}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+###BlogsPage###########################################################################
 @@ groups BlogsPage
 Blogs page on desktop ${desktop_size}
     ${base_url}/blogs/ ${desktop_size}
@@ -79,17 +135,14 @@ Blogs page on mobile open-menu
 SupportPage page on desktop ${desktop_size}
     ${base_url}/support/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
-        dump ${support}/_dumpContent.gspec --name "dump Support page desktop" --export ${support}/etalonImg/dumpsDesktop/
         check ${support}/desktop.gspec --include "desktop"
 
 @@ groups SupportPage
 SupportPage page on tablet ${tablet_size}
     ${base_url}/support/ ${tablet_size}
-        dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsTablet/
         check ${support}/tablet.gspec --include "tablet"
 
 @@ groups SupportPage
 SupportPage page on mobile ${mobile_size}
     ${base_url}/support/ ${mobile_size}
-        dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsMobile/
         check ${support}/mobile.gspec --include "mobile" --exclude "nomobile"

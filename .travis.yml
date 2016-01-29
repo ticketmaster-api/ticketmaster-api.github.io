@@ -41,7 +41,8 @@ notifications:
   email: false
 
 before_install:
-  - cp ./tests/content/ ./ -r
+  - rmdir ./events/ #remove directory events
+  - cp ./tests/content/ ./ -r #copy test content
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
