@@ -26,7 +26,11 @@ script:
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
-  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage #generate comparing images
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsConsole
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsSlate
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PD-WidgetsPage
+#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage #generate comparing images
 
 after_script:
   - rake travis:deploy --trace --verbose
