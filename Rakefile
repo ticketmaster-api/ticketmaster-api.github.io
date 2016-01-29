@@ -67,7 +67,7 @@ namespace 'travis' do
         system "git checkout -b #{REPORT_BRANCH}"
     reported = system "git push -u -f origin #{REPORT_BRANCH}"
 
-    puts "Deployed: #{reported}"
+    puts "Reported: #{reported}"
 
     File.delete '.git/credentials'
 
