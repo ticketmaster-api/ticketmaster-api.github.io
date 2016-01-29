@@ -1,12 +1,16 @@
 @objects
     body                    css     body
     header                  css     .top-bar
-    single-column           css     .single-column
+
+    title                   css     #interactive-api-console
+    console-instructions    css     #console-instructions
+    get-key-callout         css     #get-key-callout
+
     footer                  id      footer
 
 = Support page content test =
-    single-column:
-        image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 2%
+    title:
+        image file etalonImg/dumpsDesktop/objects/title.png, error 2%
 
 = header, footer Support page =
     header, footer:
