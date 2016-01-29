@@ -105,7 +105,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
   </div>
 </div>
 
-<div class="slice-left slice-top-left slice-bottom-left xs-center">
+<div class="slice-left partn slice-top-left slice-bottom-left xs-center">
     <div class="row">
         <div class="row-container row-affilate">
 <div class="col-xs-12 col-md-7" markdown="1">
