@@ -75,16 +75,16 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 #### Startups &amp; Developers
 
 {: .image}
-![Groupon](/assets/img/partners/spinzo-logo.png)
-
-{: .image}
-![Groupon](/assets/img/partners/tradablebits-logo.png)
-
-{: .image}
 ![Groupon](/assets/img/partners/pricemaster-logo.png)
 
 {: .image}
 ![Groupon](/assets/img/partners/reply-logo.png)
+
+{: .image}
+![Groupon](/assets/img/partners/spinzo-logo.png)
+
+{: .image}
+![Groupon](/assets/img/partners/tradablebits-logo.png)
 
 {: .c}
 [See all 50+ startup and developer partners](/partners/channel/)
@@ -95,10 +95,10 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="row parnters">
   <div class="row-container row-partners">
     <div class="col-xs-12 col-md-12">
-<div class="col-xs-12 col-sm-6" markdown="1">
+<div class="col-xs-12 col-md-6" markdown="1">
 {{channel}}
 </div>
-<div class="col-xs-12 col-sm-6" markdown="1">
+<div class="col-xs-12 col-md-6" markdown="1">
 {{certified}} 
 </div>
     </div>
@@ -111,7 +111,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="col-xs-12 col-md-7" markdown="1">
 {{affilated}}
 </div>
-<div class="col-xs-12 col-md-5" markdown="1">
+<div class="col-xs-12 col-md-5 pics" markdown="1">
 {{logos}}
 </div>
         </div>
