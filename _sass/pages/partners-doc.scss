@@ -77,11 +77,19 @@
     border: 1px solid rgba(118, 134, 146, 0.2);
     .logo-box {
       height:100%;
+      @media (min-width: 768px){
+        margin-left: 48px;
+      }
       @media #{$max-768}{
         height: 215px;
       }
     }
     .description{
+      @media (min-width: 768px){
+        margin-right: 30px;
+      }
+
+      float:right;
       color: $white-70;
       top: 50%;
       transform: translateY(-50%);
@@ -93,6 +101,8 @@
         color: #FFF;
         @media #{$max-768}{
           text-align: center;
+          font-size: 24px;
+          line-height: 32px;
         }
       }
     }
