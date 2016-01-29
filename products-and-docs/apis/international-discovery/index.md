@@ -337,7 +337,6 @@ Via: 1.1 vegur
 {% endhighlight %}
 
 {: .aside}
-{: .aside}
 >[JS](#js)
 >[cURL](#curl)
 >[Java](#java)
@@ -372,14 +371,14 @@ request.onreadystatechange = function () {
 request.send();
 {% endhighlight %}
 
-{% highlight java %}
+{% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
   'https://app.ticketmaster.eu/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events'
 {% endhighlight %}
 
-{::comment}java{:/comment}
-{% highlight bash %}
+
+{% highlight java %}
 // Maven : Add these dependecies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
@@ -410,7 +409,6 @@ System.out.println("body:" + response.readEntity(String.class));
 {% endhighlight %}
 
 
-{::comment}node{:/comment}
 {% highlight js %}
 var request = require('request');
 
@@ -427,7 +425,6 @@ request({
 {% endhighlight %}
 
 
-{::comment}perl{:/comment}
 {% highlight perl %}
 require LWP::UserAgent;
 
@@ -440,12 +437,20 @@ my $response = $ua->get("https://private-anon-ebc054a4b-ticketmasterdiscoveryapi
 print $response->as_string;
 {% endhighlight %}
 
-{::comment}python{:/comment}
-{% highlight python %}
 
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
 {% endhighlight %}
 
-{::comment}php{:/comment}
+
 {% highlight php %}
 <?php
 $ch = curl_init();
@@ -465,7 +470,7 @@ var_dump($response);
 {% endhighlight %}
 
 
-{::comment}ruby{:/comment}
+
 {% highlight ruby %}
 require 'rubygems' if RUBY_VERSION < '1.9'
 require 'rest_client'
@@ -478,8 +483,6 @@ response = RestClient.get 'https://private-anon-ebc054a4b-ticketmasterdiscoverya
 puts response
 {% endhighlight %}
 
-
-{::comment}go(not supported){:/comment}
 {% highlight java %}
 package main
 
@@ -490,29 +493,27 @@ import (
 )
 
 func main() {
-	client := &http.Client{}
+client := &http.Client{}
 
-	req, _ := http.NewRequest("GET", "https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events", nil)
+req, _ := http.NewRequest("GET", "https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events", nil)
 
-	req.Header.Add("Accept", "application/json")
+req.Header.Add("Accept", "application/json")
 
-	resp, err := client.Do(req)
+resp, err := client.Do(req)
 
-	if err != nil {
-		fmt.Println("Errored when sending request to the server")
-		return
-	}
+if err != nil {
+    fmt.Println("Errored when sending request to the server")
+	return
+}
 
-	defer resp.Body.Close()
-	resp_body, _ := ioutil.ReadAll(resp.Body)
+defer resp.Body.Close()
+resp_body, _ := ioutil.ReadAll(resp.Body)
 
-	fmt.Println(resp.Status)
-	fmt.Println(string(resp_body))
+fmt.Println(resp.Status)
+fmt.Println(string(resp_body))
 }
 {% endhighlight %}
 
-
-{::comment}c-sharp{:/comment}
 {% highlight c %}
 //Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
 //System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -531,12 +532,12 @@ using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
   using(var response = await httpClient.GetAsync("events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"))
   {
  
-        string responseData = await response.Content.ReadAsStringAsync();
+  string responseData = await response.Content.ReadAsStringAsync();
   }
 }
 {% endhighlight %}
 
-{::comment}visual-basic{:/comment}
+
 {% highlight vbnet %}
 Dim request = TryCast(System.Net.WebRequest.Create("https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"), System.Net.HttpWebRequest)
 
@@ -553,7 +554,7 @@ Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
 End Using
 {% endhighlight %}
 
-{::comment}groovy{:/comment}
+
 {% highlight groovy %}
 import groovyx.net.http.RESTClient
 import static groovyx.net.http.ContentType.JSON
@@ -576,7 +577,7 @@ if (response.data) {
 }
 {% endhighlight %}
 
-{::comment}objective-c{:/comment}
+
 {% highlight obj-c++ %}
 NSURL *URL = [NSURL URLWithString:@"https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"];
 
@@ -588,25 +589,25 @@ NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
 NSURLSession *session = [NSURLSession sharedSession];
 NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                         completionHandler:
-                              ^(NSData *data, NSURLResponse *response, NSError *error) {
-
-                                  if (error) {
-                                      // Handle error...
-                                      return;
-                                  }
-
-                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
-                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
-                                  }
-
-                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                  NSLog(@"Response Body:\n%@\n", body);
-                              }];
+^(NSData *data, NSURLResponse *response, NSError *error) {
+ 
+if (error) {
+    // Handle error...
+    return;
+}
+ 
+if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+    NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+    NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+}
+ 
+NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+NSLog(@"Response Body:\n%@\n", body);
+}];                             
 [task resume];
 {% endhighlight %}
 
-{::comment}swift{:/comment}
+
 {% highlight swift %}
 // NOTE: Uncommment following two lines for use in a Playground
 // import XCPlayground
@@ -759,6 +760,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1031,6 +1044,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1168,6 +1193,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1250,6 +1287,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1342,6 +1391,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1486,6 +1547,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1574,6 +1647,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1680,6 +1765,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1814,6 +1911,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1946,6 +2055,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2033,6 +2154,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2230,6 +2363,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2523,6 +2668,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2741,6 +2898,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2892,6 +3061,18 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
