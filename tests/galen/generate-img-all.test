@@ -79,20 +79,20 @@ Prod-and-Docs page on mobile
 
 @@ groups PD-WidgetsPage
 PD-WidgetsPage page on desktop ${desktop_size}
-    ${base_url}/products-and-docs/apis/getting-started/widgets/ ${desktop_size}
+    ${base_url}/products-and-docs/widgets/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
         dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage desktop" --export ${prDocsWidjets}/etalonImg/dumpsDesktop/
         check ${prDocsWidjets}/desktop.gspec --include "desktop"
 
 @@ groups PD-WidgetsPage
 PD-WidgetsPage page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/widgets/ ${tablet_size}
+    ${base_url}/products-and-docs/widgets/ ${tablet_size}
         dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsTablet/
         check ${prDocsWidjets}/tablet.gspec --include "tablet"
 
 @@ groups PD-WidgetsPage
 PD-WidgetsPage page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/widgets/ ${mobile_size}
+    ${base_url}/products-and-docs/widgets/ ${mobile_size}
         dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsMobile/
         check ${prDocsWidjets}/mobile.gspec --include "mobile" --exclude "nomobile"
 

@@ -1,11 +1,11 @@
 @objects
     body                    css     body
     header                  css     .top-bar
-    single-column           css     .single-column
+    content                 css     .documentation
     footer                  id      footer
 
 = Support page content test =
-    single-column:
+    content:
         image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 2%
 
 

@@ -8,7 +8,7 @@
 
     footer                  id      footer
 
-= Support page content test =
+= Console page content test =
     title:
         image file etalonImg/dumpsDesktop/objects/title.png, error 2%
     console-instructions:
