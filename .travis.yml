@@ -45,5 +45,5 @@ before_install:
   - gem install github-pages
   - gem install html-proofer
   - npm install -g galenframework-cli
-  - rmdir ./events/ #remove directory events
+  - rm ./events/ -rf #remove directory events
   - cp ./tests/content/ ./ -r #copy test content
