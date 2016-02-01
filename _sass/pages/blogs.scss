@@ -117,6 +117,21 @@
   }
 }
 
+#footer-blogs.slice-top-right {
+  @media #{$max-1200} {
+    padding-top: 0;
+    margin-top: -60px;
+  }
+  @media #{$max-768} {
+    padding-top: 0;
+    margin-top: -60px;
+  }
+  @media (max-width: 767px) {
+    padding-top: 0;
+    margin-top: -60px;
+  }
+}
+
 #footer-blogs {
   background-image: none;
   color: $white-70;

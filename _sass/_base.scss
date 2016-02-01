@@ -31,6 +31,12 @@ iframe{
   position: relative;
 }
 
+a {
+  &active, &:focus {
+    outline: none;
+  }
+}
+
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */

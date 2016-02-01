@@ -54,6 +54,19 @@
   }
 }
 
+
+#footer-white.slice-top-right {
+  @media #{$max-1200} {
+    padding-top: 0;
+  }
+  @media #{$max-768} {
+    padding-top: 37px;
+  }
+  @media (max-width: 767px) {
+    padding-top: 0;
+  }
+}
+
 #footer-white{
   background-image: none;
   color: $white-70;
