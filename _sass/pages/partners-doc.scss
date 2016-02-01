@@ -30,6 +30,7 @@
   padding: 15px;
   position: absolute;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .tiles-wrapper{
