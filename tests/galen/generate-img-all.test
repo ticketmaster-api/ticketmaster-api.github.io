@@ -124,7 +124,7 @@ ProductsDocsConsole page on desktop ${desktop_size}
     ${base_url}/products-and-docs/apis/interactive-console/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
         dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole desktop" --export ${prDocsConsole}/etalonImg/dumpsDesktop/
-        check ${prDocsConsole}/desktop.gspec --include "desktop"
+        #check ${prDocsConsole}/desktop.gspec --include "desktop"
 
 @@ groups ProductsDocsConsole
 ProductsDocsConsole page on tablet ${tablet_size}
