@@ -146,3 +146,24 @@ SupportPage page on tablet ${tablet_size}
 SupportPage page on mobile ${mobile_size}
     ${base_url}/support/ ${mobile_size}
         check ${support}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### Events ###########################################################################
+
+@@ groups Events
+ProductsDocsSlate page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${events}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${events}/etalonImg/dumpsDesktop/
+        check ${events}/desktop.gspec --include "desktop"
+
+@@ groups Events
+ProductsDocsSlate page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${tablet_size}
+        #dump ${events}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${events}/etalonImg/dumpsTablet/
+        check ${events}/tablet.gspec --include "tablet"
+
+@@ groups Events
+ProductsDocsSlate page on mobile ${mobile_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${mobile_size}
+        #dump ${events}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${events}/etalonImg/dumpsMobile/
+        check ${events}/mobile.gspec --include "mobile" --exclude "nomobile"
