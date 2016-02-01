@@ -6,7 +6,7 @@
 
 = ProductsDocsSlate page content test =
     content:
-        image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 2%
+        % image file etalonImg/dumpsTablet/objects/base-content-wrapper.png, error 2%
 
 
 = general layout Support page test =
