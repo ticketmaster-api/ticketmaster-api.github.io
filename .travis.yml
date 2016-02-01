@@ -27,13 +27,13 @@ script:
   - sleep 20 # give jekyll some time to start
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
-  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsSlate
-  - sleep 30
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage
-#  - sleep 20
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsConsole
-#  - sleep 20
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PD-WidgetsPage
+#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsSlate
+#  - sleep 30
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage
+  - sleep 20
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsConsole
+  - sleep 20
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PD-WidgetsPage
 
 #  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage #generate comparing images
 
