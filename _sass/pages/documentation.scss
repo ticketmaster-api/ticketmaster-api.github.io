@@ -782,6 +782,9 @@ body .modal-content {
     clear: both;
     margin: 0;
   }
+  pre {
+    max-height: 550px;
+  }
   .tab-content {
     display: none;
   }
