@@ -13,9 +13,40 @@ $(document).ready(function() {
             return btn;
         };
 
+        var startScreenView = function(){
+            var content = this.dataset !== undefined ? this.dataset.clipboardText : this.getAttribute("data-clipboard-text");
+            window.sessionStorage.setItem("content", content);
+            var title = $(this).parent().parent().parent().parent().find('h2')
+                .clone(true)
+                .find('a')
+                .remove()
+                .end()
+                .html();
+
+            var content = $(this).parent().parent()
+                .clone(true)
+                .find('.active-lang')
+                .remove()
+                .end()
+                .find('.copy-btn')
+                .addClass('copy-btn-fs')
+                .removeClass('copy-btn')
+                .end()
+                .html();
+
+            $("#modal-title").html(title);
+            $(".modal-body").html(content);
+
+            $(".modal-body").delegate(".reqres a", "click", function() {
+                $(this).parent().children().removeClass("active");
+                $(this).addClass("active");
+                $(this).parents().closest(".modal-body").children().removeClass("active");
+                $(this).parents().closest(".modal-body").children().eq($(this).index() + 1).addClass("active");
+            });
+        };
 
         var startRowView = function(){
-            var content = this.dataset !== undefined ? this.dataset.clipboardText : this.getAttribute("data-clipboard-text");
+            var content = this.dataset !== undefined ? this.dataset.contentText : this.getAttribute("data-content-text");
             window.sessionStorage.setItem("content", content);
             var win = window.open(window.location.protocol + "//" + window.location.host + "/products-and-docs/raw-view/", '_blank');
             win.focus();
@@ -33,12 +64,24 @@ $(document).ready(function() {
             tab2 = $(this).next().next();
 
 
-            var rawbtn1 = createButton("raw-btn");
-                if(rawbtn1.dataset !== undefined){
-                    rawbtn1.dataset.clipboardText =  getInnerText(tab1);
+            var screenbtn1 = createButton("screen-btn");
+                if(screenbtn1.dataset !== undefined){
+                    screenbtn1.dataset.clipboardText =  getInnerText(tab1);
                 }
                 else{
-                    rawbtn1.setAttribute("data-clipboard-text", getInnerText(tab1));
+                    screenbtn1.setAttribute("data-clipboard-text", getInnerText(tab1));
+                }
+                screenbtn1.addEventListener("click",startScreenView);
+                tab1.prepend(screenbtn1);
+                screenbtn1.setAttribute("data-toggle", "modal");
+                screenbtn1.setAttribute("data-target", ".modal-langs");
+
+            var rawbtn1 = createButton("raw-btn");
+                if(rawbtn1.dataset !== undefined){
+                    rawbtn1.dataset.contentText =  getInnerText(tab1);
+                }
+                else{
+                    rawbtn1.setAttribute("data-content-text", getInnerText(tab1));
                 }
                 rawbtn1.addEventListener("click",startRowView);
                 tab1.prepend(rawbtn1);
@@ -48,12 +91,24 @@ $(document).ready(function() {
                 btn1.addEventListener("click", makeCopy);
                 tab1.prepend(btn1);
 
+            var screenbtn2 = createButton("screen-btn");
+            if(screenbtn2.dataset !== undefined){
+                screenbtn2.dataset.clipboardText =  getInnerText(tab2);
+            }
+            else{
+                screenbtn2.setAttribute("data-clipboard-text", getInnerText(tab2));
+            }
+            screenbtn2.addEventListener("click",startScreenView);
+            tab2.prepend(screenbtn2);
+            screenbtn2.setAttribute("data-toggle", "modal");
+            screenbtn2.setAttribute("data-target", ".modal-langs");
+
             var rawbtn2 = createButton("raw-btn");
                 if(rawbtn2.dataset !== undefined){
-                    rawbtn2.dataset.clipboardText =  getInnerText(tab2);
+                    rawbtn2.dataset.contentText =  getInnerText(tab2);
                 }
                 else{
-                    rawbtn2.setAttribute("data-clipboard-text", getInnerText(tab2));
+                    rawbtn2.setAttribute("data-content-text", getInnerText(tab2));
                 }
                 rawbtn2.addEventListener("click", startRowView);
                 tab2.prepend(rawbtn2);
@@ -76,9 +131,5 @@ $(document).ready(function() {
             $(this).parent().parent().parent().find(".r-tab").eq($(this).index()).addClass("active");
             $(this).addClass("active");
         });
-
-
-
-
 
 });
