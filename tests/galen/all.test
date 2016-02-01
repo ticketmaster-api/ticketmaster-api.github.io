@@ -77,35 +77,35 @@ SupportPage page on mobile ${mobile_size}
 
 @@ groups ProductsDocsSlate
 SupportPage page on desktop ${desktop_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${desktop_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
         check ${prDocsSlate}/desktop.gspec --include "desktop"
 
 @@ groups ProductsDocsSlate
 SupportPage page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${tablet_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${tablet_size}
         check ${prDocsSlate}/tablet.gspec --include "tablet"
 
 @@ groups ProductsDocsSlate
 SupportPage page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/discovery/ ${mobile_size}
+    ${base_url}/products-and-docs/apis/discovery/ ${mobile_size}
         check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
 
 ###prDocsConsole###########################################################################
 
 @@ groups ProductsDocsConsole
 SupportPage page on desktop ${desktop_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${desktop_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${desktop_size}
         check ${prDocsConsole}/desktop.gspec --include "desktop"
 
 @@ groups ProductsDocsConsole
 SupportPage page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${tablet_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${tablet_size}
         check ${prDocsConsole}/tablet.gspec --include "tablet"
 
 @@ groups ProductsDocsConsole
 SupportPage page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/getting-started/apis/interactive-console/ ${mobile_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${mobile_size}
         check ${prDocsConsole}/mobile.gspec --include "mobile" --exclude "nomobile"
 
 ###BlogsPage###########################################################################
