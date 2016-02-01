@@ -1,14 +1,10 @@
 ---
 layout: partners-doc
-
 pname: "groupon"
-
 type: big
-
 categories: 
   - partner
   - certified
-
 tile_bg: "bitmap-bg.jpeg"
 tile_logo: "fill-1.png"
 tile_header: "A featured partner or case study."

@@ -15,8 +15,8 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
     {% if partner.categories[0] == "partner" && partner.categories[1] == "certified" %}
 
 
-{% if partner.type == blank or partner.type == nil or partner.type == "small" %}
-<div class="flip-container col-md-6 col-lg-4" >
+{% if partner.type == blank or partner.type == nil or partner.type == "small" or partner.type == "wide" %}
+<div class="flip-container col-xs-12 {% if partner.type == "wide" %} col-sm-12 col-md-12 {% else %} col-sm-6 col-md-6 {% endif %}  col-lg-4" >
     <div class="flipper">
         <div class="front">
             {% capture fullpath %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
@@ -39,7 +39,7 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 {% capture bgimg %}{{ page.logos_url }}{{ partner.tile_bg }}{% endcapture %}
 {% capture logo %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
 
-<div class="big-tile col-md-12 col-lg-12" >
+<div class="big-tile col-xs-12 col-sm-12 col-md-12 col-lg-12" >
     <div class="content-box" style="background-image: url('{{bgimg}}');">
         <div class="logo-box col-sm-4 col-md-4 col-lg-4">
             <div class="img-wrapper ">
@@ -61,5 +61,8 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 </div>
 
 <script>
-$(".flip-container").on("tap","this.classList.toggle('hover')");
+$(".flip-container").on("tap",function(){
+    debugger;
+    this.classList.toggle('hover')
+});
 </script>
