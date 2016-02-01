@@ -64,7 +64,7 @@ namespace 'travis' do
         system "git config --global push.default current"
         system "git add tests/galen"
         system "git commit -a -m 'Auto-Report from Travis'"
-        system "git checkout -b #{REPORT_BRANCH}"
+        system "git checkout -b #{SOURCE_BRANCH}"
     reported = system "git push -u -f origin #{REPORT_BRANCH}"
 
     puts "Reported: #{reported}"
