@@ -16,7 +16,7 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 
 
 {% if partner.type == blank or partner.type == nil or partner.type == "small" %}
-<div class="flip-container col-md-6 col-lg-4" ontouchstart="this.classList.toggle('hover');">
+<div class="flip-container col-md-6 col-lg-4" ontouchend="this.classList.toggle('hover');">
     <div class="flipper">
         <div class="front">
             {% capture fullpath %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
