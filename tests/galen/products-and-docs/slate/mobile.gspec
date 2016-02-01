@@ -4,7 +4,7 @@
     content                 css     .documentation
     footer                  id      footer
 
-= Support page content test =
+= ProductsDocsSlate page content test =
     content:
         image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 2%
 
