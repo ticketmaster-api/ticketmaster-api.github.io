@@ -2,13 +2,13 @@
 
 date: "Saturday, February 27, 2016"
 category: event
-title: "The Ticketmaster API Devjam in Hollywood, CA!"
+title: "The Ticketmaster API Devjam in Durham, NC!"
 img: "/assets/img/events/devjam2.jpg"
 place: 
-  - "Ticketmaster HQ"
-  - "https://www.google.com/maps/place/Ticketmaster/@34.1011643,-118.3457179,17z/data=!3m1!4b1!4m2!3m1!1s0x80c2bf20fddbeff5:0x39a16a8bedc69237"
-city: " Hollywood, CA"
-rsvp: "http://universe.com/tmdevjam"
+  - "Ticketmaster // Two Toasters"
+  - "https://www.google.com/maps/place/318+Blackwell+St,+Durham,+NC+27701/@35.9932503,-78.9066525,17z/data=!3m1!4b1!4m2!3m1!1s0x89ace46cc0e5f9dd:0x3df231f8fbd83002"
+city: " Durham, NC"
+rsvp: "http://universe.com/tmdevjam-durham"
 tags: 
   - devjam
   - hackathon
