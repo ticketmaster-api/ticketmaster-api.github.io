@@ -6,6 +6,56 @@ env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
   - secure: "S0LPAFWXDLDDDzBLh2ptfxUNUvE4q6gEWTuS2TCiq8ZAoeR9jwMKQuT5scAKqQeKSjEWfTXdNJRKuvwKsruWfYLtXz4yoMjPz7/WMmJLedRLp9nh7lIJP7/p/Fs3zJwMYE/twvOlnNUXCSQaL7FMefrvXf52Tn34i3edRTsx2x0ALGHEcj+nv7ISCN7+IAOC4C2Fyc0UXZ8KQECtHIJ94ZXrbMRWKR2tYeVsa9Z4QVIXBzQ+ku64t4ccQvw/mFAj/qqrys0+ayF1sWjvU3Nn8mfiuB1OZdrpJ5dwNE5LEm/CbJIl2hYbwhGXa23FtZr1mLQeNChzcKffk9TR+xYk6s2ndYkLdgeSX9GM71DPk0d3NEXWfugL2Hcf585W5gjdY2WIoJO6cHGrcsGmJ7dHAr2XwDD0wuO7Vqdkk6rCxLjFnJ3MJtGNwjDujxtrlXTuR/K4vI+sMB4fKCfIFZfDJHYCqh2bcQnOQJchlWR80AAkbJ1ApbE3uuFS7sgCHjyqJI49MyWAjCRTfyhtLvj37KaCEZTZht2Ye27sR/6P4qruPfHCU8DbH5bAYd4IZ5QPWzsSgO3Y9y6yUh5k21fcIjfQ+CR+Sjp1D5Ck8ycwNJcHiUVX0yjLjK4ZJT/zJ8A87hNACyjKJMtyer7DqW2d9cmACPBqHT4lMOdaTKEz/sU="
+  - secure: "VCzuwvKySp/qnZHBrMnCspSXwFXxOoAk81c7LkKb5c0PnuNgzcFOzt1V/3bBVgbxCakvwkxfqJ9BHf6IOYfpNHZOOc1VgYl2JvmH7Ujyky7yl9x/+79UEj1XLsc70nJrXSK1Z2ncfu68ZQxoaftvC27r3zK/og1K8zxDa6zzQiDdkxOvoK00lwB17vdzC5BZvnwlbK9pi/sdrf1REqeerhYdv+mog4wIKf7BOEsTza11FTRZPRfWBxN3bR31QYt7GWPVWZGj0TEQKViFFE2MZMTplgjl0hyeJOkv/Cd5XT+lIaFZyohhCmiStOe1j83jEHKLA9Dwm1GXN5u3tG7i969kb2pAMLu3P14ukomSLkrNXtxTti4QBpZq1ZekIT9tq4RJvINaXUv12n0LcG7/HM3uEZLZ1lCqzCTe1pMec2GK5/H2JfxpuqcVjgxWdkeG7CP20omGgO7Jt1JQxFXtPn5Y8PLOzRpwZJTgPJFWnK8b4ziSr+IXvKzJnIXJU+0HQkdhSG4tgcLqUdi2yjKHKqyCmpEQxQAeP7EckCj8w+Fw+6Gx48ZPdzATotGrYJlI7mNyLvwtLFpNCWwFCssiOjZBu8U8Ygcp2mmneiWmkZ2udzhWGONAVO0VIc0iyW5QibINOty/3B+nFSQx3Xk/FXDYkv0FKioL/VE75O7GyC8="
+  # whitelist
+  branches:
+    only:
+      - master
+      - dev
+      - ran-test
+
+  before_script:
+    - sudo apt-get install w3m
+  #  - sudo apt-get install w3m w3m-img  # to niew img
+    - jekyll build
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 3 # give xvfb some time to start
+
+  script:
+  #  - ./node_modules/karma/bin/karma start karma.conf.js
+  #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
+    - jekyll serve &
+    - sleep 5 # give jekyll some time to start
+
+    ## generate and test it
+    - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups HomePage,PD-getting-started-Page,BlogsPage
+    #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all
+
+    # local run
+    # galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups HomePage,BlogsPage,PD-getting-started-Page
+    # galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PD-getting-started-Page,HomePage,BlogsPage
+    # galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups HomePage
+
+  after_script:
+  #  - rake travis:deploy --trace --verbose
+    - rake travis:report --trace --verbose
+
+  cache:
+    directories:
+      - node_modules
+      - bundler
+
+  notifications:
+    email: false
+
+  before_install:
+    - cp ./tests/content/ ./ -r
+    - rvm install 2.1.5
+    - gem install github-pages
+    - gem install html-proofer
+    - npm install -g galenframework-cli
+
 
 # whitelist
 branches:
