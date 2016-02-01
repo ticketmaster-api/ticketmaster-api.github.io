@@ -1,7 +1,7 @@
 @objects
     body                    css     body
     header                  css     .top-bar
-    single-column           css     .single-column
+    single-column           css     .documentation
     footer                  id      footer
 
 = Support page content test =
