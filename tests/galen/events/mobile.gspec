@@ -1,9 +1,3 @@
-@import mobile/mobile-content.gspec
-@import mobile/mobile-footer.gspec
-@import mobile/mobile-header.gspec
-@import mobile/mobile-header-menu.gspec
-# keyword @import - not saw in local run test on Windows (becouse of '/' in path)
-
 @objects
     base-content-wrapper    css     .base-content-wrapper
 
