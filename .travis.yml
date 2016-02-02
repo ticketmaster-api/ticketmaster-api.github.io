@@ -43,5 +43,6 @@ before_install:
   - cp ./tests/content/ ./ -r
   - rvm install 2.1.5
   - gem install github-pages
+  - gem install pygments.rb
   - gem install html-proofer
   - npm install -g galenframework-cli
