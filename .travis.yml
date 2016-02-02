@@ -25,7 +25,7 @@ script:
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups PD-getting-started-Page
+  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
 #  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,BlogsPage,Events,PartnersLanding #generate comparing images
