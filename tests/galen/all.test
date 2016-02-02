@@ -186,3 +186,24 @@ SupportPage page on mobile ${mobile_size}
     ${base_url}/support/ ${mobile_size}
         #dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsMobile/
         check ${support}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### Events ###########################################################################
+
+@@ groups Events
+Events page on desktop ${desktop_size}
+    ${base_url}/events/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${events}/_dumpContent.gspec --name "dump Events desktop" --export ${events}/etalonImg/dumpsDesktop/
+        check ${events}/desktop.gspec --include "desktop"
+
+@@ groups Events
+Events page on tablet ${tablet_size}
+    ${base_url}/events/ ${tablet_size}
+        #dump ${events}/_dumpContent.gspec --name "dump Events tablet" --export ${events}/etalonImg/dumpsTablet/
+        check ${events}/tablet.gspec --include "tablet"
+
+@@ groups Events
+Events page on mobile ${mobile_size}
+    ${base_url}/events/ ${mobile_size}
+        #dump ${events}/_dumpContent.gspec --name "dump Events tablet" --export ${events}/etalonImg/dumpsMobile/
+        check ${events}/mobile.gspec --include "mobile" --exclude "nomobile"
