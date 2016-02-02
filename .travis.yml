@@ -25,10 +25,9 @@ script:
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
-  #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all
-  #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups ProductsDocsSlate,PartnersLanding
+  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
+#  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
 #  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,BlogsPage,Events,PartnersLanding #generate comparing images
 
 after_script:
@@ -44,7 +43,7 @@ notifications:
   email: false
 
 before_install:
-#  - ls ./events/
+  - ls ./
   - rm ./_site/* -rf #remove directory _site
   - rm ./events/* -rf #remove directory events
   - \cp -avrf ./tests/content/*/ ./ #copy test content
