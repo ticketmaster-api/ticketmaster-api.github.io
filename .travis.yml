@@ -45,9 +45,10 @@ notifications:
 
 before_install:
 #  - ls ./events/
-  - rm ./events/ -rf #remove directory events
+  - rm ./events/* -rf #remove directory events
   - \cp -avrf ./tests/content/*/ ./ #copy test content
   - ls ./events/
+  - ls ./events/list
   - rvm install 2.1.5
   - gem install github-pages
   - gem install pygments.rb
