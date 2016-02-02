@@ -45,6 +45,7 @@ notifications:
 
 before_install:
 #  - ls ./events/
+  - rm ./_site/* -rf #remove directory _site
   - rm ./events/* -rf #remove directory events
   - \cp -avrf ./tests/content/*/ ./ #copy test content
   - ls ./events/
