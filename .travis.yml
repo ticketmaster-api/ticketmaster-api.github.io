@@ -51,8 +51,9 @@ notifications:
   email: false
 
 before_install:
-  - rm ./events/ -rf #remove directory events
+#  - rm ./events/ -rf #remove directory events
   - cp ./tests/content/ ./ -rf #copy test content
+  - ls ./events/
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
