@@ -18,6 +18,7 @@
     blog            tests/galen/blog
     support         tests/galen/support/landing
     events          tests/galen/events
+    partnersLanding tests/galen/partners/landing
 
 ########################################################################################################################
 ## size takes from "window.innerWidth" but comparing with "document.body.clientWidth"
@@ -208,3 +209,23 @@ Events page on mobile ${mobile_size}
     ${base_url}/events/ ${mobile_size}
         #dump ${events}/_dumpContent.gspec --name "dump Events tablet" --export ${events}/etalonImg/dumpsMobile/
         check ${events}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### PartnersLanding ###########################################################################
+
+@@ groups PartnersLanding
+PartnersLanding page on desktop ${desktop_size}
+    ${base_url}/partners/ ${desktop_size}
+        dump ${partnersLanding}/_dumpContent.gspec --name "dump Events desktop" --export ${partnersLanding}/etalonImg/dumpsDesktop/
+        check ${partnersLanding}/desktop.gspec --include "desktop"
+
+@@ groups PartnersLanding
+PartnersLanding page on tablet ${tablet_size}
+    ${base_url}/partners/ ${tablet_size}
+        dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsTablet/
+        check ${partnersLanding}/tablet.gspec --include "tablet"
+
+@@ groups PartnersLanding
+PartnersLanding page on mobile ${mobile_size}
+    ${base_url}/partners/ ${mobile_size}
+        dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsMobile/
+        check ${partnersLanding}/mobile.gspec --include "mobile" --exclude "nomobile"

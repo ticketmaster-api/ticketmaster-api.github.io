@@ -26,10 +26,10 @@ script:
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all
-  #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups Events
+  #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
+  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups ProductsDocsSlate,PartnersLanding
 
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,Events #generate comparing images
+#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,BlogsPage,Events,PartnersLanding #generate comparing images
 
 after_script:
   - rake travis:deploy --trace --verbose
@@ -48,7 +48,6 @@ before_install:
   - rm ./_site/* -rf #remove directory _site
   - rm ./events/* -rf #remove directory events
   - \cp -avrf ./tests/content/*/ ./ #copy test content
-  - ls ./events/
   - ls ./events/list
   - rvm install 2.1.5
   - gem install github-pages
