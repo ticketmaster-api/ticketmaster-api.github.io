@@ -41,12 +41,12 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 
 <div class="big-tile col-xs-12 col-sm-12 col-md-12 col-lg-12" >
     <div class="content-box" style="background-image: url('{{bgimg}}');">
-        <div class="logo-box col-sm-4 col-md-4 col-lg-4">
+        <div class="logo-box col-sm-3 col-md-3 col-lg-3">
             <div class="img-wrapper ">
-                <img src="{{logo}}">
+                <img src="{{logo}}" style="width:200px;">
             </div>
         </div>
-        <div class="description col-sm-6 col-md-6 col-lg-6">
+        <div class="description col-sm-7 col-md-7 col-lg-7">
             {% if partner.tile_header %}
             <h3>{{ partner.tile_header }}</h3>
             {% endif %}
