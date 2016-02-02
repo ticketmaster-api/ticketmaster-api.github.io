@@ -7,5 +7,5 @@
     base-content-wrapper    css     .base-content-wrapper
 
 = Events image test (desktop) =
-    row-blogs:
-        image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, tolerance 40
+    base-content-wrapper:
+        % image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, tolerance 40
