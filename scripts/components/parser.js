@@ -108,7 +108,7 @@
                         rawBtn.dataset.contentText = proxyItem_.textContent;
                     }
                     else{
-                        rawBtn.setAttribute("data-clipboard-text", proxyItem_.textContent);
+                        rawBtn.setAttribute("data-content-text", proxyItem_.textContent);
                     }
 
                     rawBtn.addEventListener("click", function(){
@@ -254,8 +254,8 @@
         // Modal Raw button click
         $(".modal-body").on("click", ".raw-btn", function() {
             var rawBtn = this;
-            var content = rawBtn.dataset !== undefined ? this.dataset.contentText : rawBtn.getAttribute("data-clipboard-text");
-            window.sessionStorage.setItem("content",this.dataset.contentText);
+            var content = rawBtn.dataset !== undefined ? this.dataset.contentText : rawBtn.getAttribute("data-content-text");
+            window.sessionStorage.setItem("content", content);
             var win = window.open(window.location.protocol + "//" + window.location.host + "/products-and-docs/raw-view/", '_blank');
             win.focus();
         });

@@ -77,7 +77,7 @@ Prod-and-Docs page on mobile
         #dump ${prDocs}/_dumpContent.gspec --name "dump PD page mobile" --export ${prDocs}/etalonImg/dumpsMobile/
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
 
-###WidgetsPage###########################################################################
+### WidgetsPage ###########################################################################
 
 @@ groups PD-WidgetsPage
 PD-WidgetsPage page on desktop ${desktop_size}
@@ -98,28 +98,28 @@ PD-WidgetsPage page on mobile ${mobile_size}
         #dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsMobile/
         check ${prDocsWidjets}/mobile.gspec --include "mobile" --exclude "nomobile"
 
-###prDocsSlate(discoveryAPI)###########################################################################
+### prDocsSlate(discoveryAPI) ###########################################################################
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on desktop ${desktop_size}
     ${base_url}/products-and-docs/apis/discovery/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
-        dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${prDocsSlate}/etalonImg/dumpsDesktop/
+        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${prDocsSlate}/etalonImg/dumpsDesktop/
         check ${prDocsSlate}/desktop.gspec --include "desktop"
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on tablet ${tablet_size}
     ${base_url}/products-and-docs/apis/discovery/ ${tablet_size}
-        dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsTablet/
+        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsTablet/
         check ${prDocsSlate}/tablet.gspec --include "tablet"
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on mobile ${mobile_size}
     ${base_url}/products-and-docs/apis/discovery/ ${mobile_size}
-        dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsMobile/
+        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsMobile/
         check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
 
-###prDocsConsole###########################################################################
+### prDocsConsole ###########################################################################
 
 @@ groups ProductsDocsConsole
 ProductsDocsConsole page on desktop ${desktop_size}
@@ -140,7 +140,7 @@ ProductsDocsConsole page on mobile ${mobile_size}
         #dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole tablet" --export ${prDocsConsole}/etalonImg/dumpsMobile/
         check ${prDocsConsole}/mobile.gspec --include "mobile" --exclude "nomobile"
 
-###BlogsPage###########################################################################
+### BlogsPage ###########################################################################
 
 @@ groups BlogsPage
 Blogs page on desktop
@@ -169,7 +169,7 @@ Blogs page on mobile open-menu
         inject ./tests/galen/blog/menu/menu-top-trigger.js
         check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
 
-##############################################################################
+### SupportPage ###########################################################################
 @@ groups SupportPage
 SupportPage page on desktop ${desktop_size}
     ${base_url}/support/ ${desktop_size}
@@ -215,17 +215,17 @@ Events page on mobile ${mobile_size}
 @@ groups PartnersLanding
 PartnersLanding page on desktop ${desktop_size}
     ${base_url}/partners/ ${desktop_size}
-        dump ${partnersLanding}/_dumpContent.gspec --name "dump Events desktop" --export ${partnersLanding}/etalonImg/dumpsDesktop/
+        #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events desktop" --export ${partnersLanding}/etalonImg/dumpsDesktop/
         check ${partnersLanding}/desktop.gspec --include "desktop"
 
 @@ groups PartnersLanding
 PartnersLanding page on tablet ${tablet_size}
     ${base_url}/partners/ ${tablet_size}
-        dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsTablet/
+        #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsTablet/
         check ${partnersLanding}/tablet.gspec --include "tablet"
 
 @@ groups PartnersLanding
 PartnersLanding page on mobile ${mobile_size}
     ${base_url}/partners/ ${mobile_size}
-        dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsMobile/
+        #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsMobile/
         check ${partnersLanding}/mobile.gspec --include "mobile" --exclude "nomobile"
