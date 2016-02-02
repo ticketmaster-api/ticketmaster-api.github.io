@@ -79,6 +79,12 @@
                         self.hide();
                     }
                 });
+
+                // Search [START]
+                $(".top-bar").on("click", "#search", function (e) {
+                  // alert('wrthwrthwr');
+                });
+                // Search [END]
             }
         };
 

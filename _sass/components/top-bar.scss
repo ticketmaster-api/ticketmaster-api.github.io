@@ -40,8 +40,23 @@
 #search{
   cursor: pointer;
   background-image: url('/assets/img/header/ic-search-p-1.svg');
+  background-position: right center;
+  background-repeat: no-repeat;
+  top: 10px;
+  left: 0;
+  width: 320px;
+  height: 48px;
+  text-align: right;
   &.white{
     background-image: url('/assets/img/header/ic-search-white.svg');
+  }
+  #searchText {
+    width: 320px;
+    height: 48px;
+    padding: 15px;
+    border: none;
+    background: #f1f4f6;
+    border-radius: 4px;
   }
   #search-alert{
     display: inline-block;

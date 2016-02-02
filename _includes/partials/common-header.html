@@ -20,7 +20,41 @@
         </nav>
         <div class="col-xs-5 col-lg-2 gray">
             <a id="menu-btn" {% if page.category != "home" %} class="white"{% endif %}></a>
-            <a id="search" {% if page.category != "home" %} class="white"{% endif %}><span tabindex="-1" id="search-alert" style="display: none;">Whoa! Search isn't quite ready yet! We're still working on it.</span></a>
+            <div id="search" {% if page.category != "home" %} class="white"{% endif %}>
+                <script>
+                /*
+                    (function() {
+                        var cx = '005729231290321871364:pb-ym0dnvm4';
+                        var gcse = document.createElement('script');
+                        gcse.type = 'text/javascript';
+                        gcse.async = true;
+                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                '//cse.google.com/cse.js?cx=' + cx;
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(gcse, s);
+                    })();
+                */
+                </script>
+                <!-- <gcse:searchbox-only></gcse:searchbox-only> -->
+
+
+                <form action="http://localhost:4000/search/" id="cse-search-box">
+                    <div>
+                        <input type="hidden" name="cx" value="partner-pub-0038881427072600:many4o-9lx4" />
+                        <input type="hidden" name="cof" value="FORID:11" />
+                        <input type="hidden" name="ie" value="windows-1251" />
+                        <input type="text" name="q" size="14" />
+                        <input type="submit" name="sa" value="Search for ..." />
+                    </div>
+                </form>
+                <script type="text/javascript" src="//www.google.com/jsapi"></script>
+                <script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script>
+                <script type="text/javascript" src="//www.google.com.ua/cse/brand?form=cse-search-box&lang=ru"></script>
+
+
+                <!-- <input name="searchText" id="searchText" placeholder="Search for ..." value=""> -->
+                <!-- <span tabindex="-1" id="search-alert" style="display: none;">Whoa! Search isn't quite ready yet! We're still working on it.</span> -->
+            </div>
         </div>
         <div id="rainbow">
             <span class="one"></span>
