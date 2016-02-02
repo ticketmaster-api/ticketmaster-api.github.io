@@ -26,7 +26,8 @@ script:
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage
+  #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage
+  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups Events
 
 #  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,Events #generate comparing images
 
@@ -44,7 +45,7 @@ notifications:
 
 before_install:
   - rm ./events/ -rf #remove directory events
-  - \cp -R ./tests/content/ ./ #copy test content
+  - \cp -avr ./tests/content/ ./ #copy test content
   - ls ./events/
   - rvm install 2.1.5
   - gem install github-pages
