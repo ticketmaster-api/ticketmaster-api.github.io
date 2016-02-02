@@ -44,6 +44,7 @@ notifications:
   email: false
 
 before_install:
+  - ls ./events/
   - rm ./events/ -rf #remove directory events
   - \cp -avrf ./tests/content/ ./ #copy test content
   - ls ./events/
