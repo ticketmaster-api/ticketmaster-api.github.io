@@ -43,8 +43,8 @@ notifications:
   email: false
 
 before_install:
-#  - rm ./events/ -rf #remove directory events
-  - cp ./tests/content ./ -rf #copy test content
+  - rm ./events/ -rf #remove directory events
+  - \cp -R ./tests/content/ ./ #copy test content
   - ls ./events/
   - rvm install 2.1.5
   - gem install github-pages
