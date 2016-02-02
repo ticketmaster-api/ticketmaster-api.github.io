@@ -17,6 +17,7 @@
     prDocsConsole   tests/galen/products-and-docs/console
     blog            tests/galen/blog
     support         tests/galen/support/landing
+    events          tests/galen/events
 
 ########################################################################################################################
 ## size takes from "window.innerWidth" but comparing with "document.body.clientWidth"
