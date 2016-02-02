@@ -45,7 +45,7 @@ notifications:
 
 before_install:
   - rm ./events/ -rf #remove directory events
-  - \cp -avr ./tests/content/ ./ #copy test content
+  - \cp -avrf ./tests/content/ ./ #copy test content
   - ls ./events/
   - rvm install 2.1.5
   - gem install github-pages
