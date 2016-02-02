@@ -26,7 +26,7 @@
 
 = image test @tablet (footer-tablet.gspec)=
     single-column:
-        image file etalonImg/dumpsTablet/objects/single-column.png, tolerance 40, error 4%
+        image file etalonImg/dumpsTablet/objects/single-column.png, tolerance 40, error 2%
         % width 768 px
 
 =count and text test=
