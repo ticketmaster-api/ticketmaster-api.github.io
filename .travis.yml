@@ -25,16 +25,7 @@ script:
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
-#  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
-
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsSlate
-#  - sleep 30
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage
-#  - sleep 20
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups ProductsDocsConsole
-#  - sleep 20
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PD-WidgetsPage
-  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups Events
+  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 
 #  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,Events #generate comparing images
 
@@ -51,10 +42,11 @@ notifications:
   email: false
 
 before_install:
-#  - rm ./events/ -rf #remove directory events
+  - rm ./events/ -rf #remove directory events
   - cp ./tests/content/ ./ -rf #copy test content
   - ls ./events/
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
   - npm install -g galenframework-cli
+  - gem install pygments.rb
