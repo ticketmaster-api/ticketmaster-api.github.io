@@ -7,7 +7,7 @@ categories:
 
 
 {: .noupper}
-#SDKs
+# SDKs
 
 
 {: .lead .double-margin}

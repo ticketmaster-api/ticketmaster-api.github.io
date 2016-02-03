@@ -5,7 +5,7 @@ categories:
 - support
 ---
 
-#ANSWERS TO YOUR MOST BURNING QUESTIONS.
+# ANSWERS TO YOUR MOST BURNING QUESTIONS.
 
 {: .lead .double-margin-top}
 No matter what question you have or help you need, we're here for you.

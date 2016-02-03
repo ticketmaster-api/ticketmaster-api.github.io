@@ -64,7 +64,7 @@ Retrieve details for a given event including the ticket type & pricing details. 
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -892,7 +892,7 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -982,7 +982,7 @@ Get total allocated and remaining ticket amounts for each ticket type per event.
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1099,7 +1099,7 @@ If your integration requires captcha, use this endpoint to retreive a basic Goog
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1150,7 +1150,7 @@ Solve the captcha and establish a cart session<br/>
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1185,7 +1185,7 @@ Reserves the specified tickets. For integrations not requiring captcha, use this
 /partners/v1/cart/events/{event_id}/cart/tickets?apikey={apikey}
 {: .code .red}
 
-####Parameters
+#### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1321,7 +1321,7 @@ Credit card information must be encrypted before sent to the API. Use this endpo
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1386,7 +1386,7 @@ Sample credit-card information for use in the sandbox environment:
 /partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey={apikey}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1512,7 +1512,7 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 
 *Polling: Yes*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1558,7 +1558,7 @@ Each partner has a limited amount of reservation resources that can be simultane
 
 *Polling: Yes*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1591,7 +1591,7 @@ Get detailed information about an order. For specifically-enabled accounts only.
 /partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1725,7 +1725,7 @@ Retreive unredeemed orders within a given time period. Some orders may have had 
 /partners/v1/orders/unredeemed?apikey={apikey}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1786,7 +1786,7 @@ The output of the original action will eventually be returned in the body of the
 /partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -2000,20 +2000,20 @@ The following status codes will be used by this API
 
 The following illustrates a typical purchase flow:
 
-###1. Discover event availability and ticket information.
+### 1. Discover event availability and ticket information.
 
 Request: `GET /partners/v1/events/09004E6CE6325123`
 
 Further ticketing operations only allowed if event.api_transactable=true.  Display a list of areas and price levels to the user to select a ticket type + price level to reserve.
 
-###2. Display captcha to user
+### 2. Display captcha to user
 
 Request: `GET /partners/v1/captcha`
 
 Response contains html to render in a webview containing a Google NoCaptcha ReCaptcha form.  Upon user-submit, the form will redirect the page to ticketmaster-g-recaptcha-response://{captcha-token}.
 Listen for redirects on the webview and obtain the captcha-token.
 
-###3. Exchange captcha-token for a new cart session
+### 3. Exchange captcha-token for a new cart session
 
 Request: `POST /partners/v1/events/09004E6CE6325123/cart`
 Body: `{"token" : "2822b0737710e549a2f74c1e65be19b9"}`
@@ -2024,7 +2024,7 @@ Response:
 `{"cart_id" : "6LcA5cESAAAAAPsVEe0jgHVOqlKIbkHaeK0HGhQ6cd34a074e785f2107de2c9fea0016c20"}`
 
 
-###4. Make a reserve call.
+### 4. Make a reserve call.
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart/tickets`
 
@@ -2040,11 +2040,11 @@ Request body:
 }
 {% endhighlight %}
 
-###5. Get payment encryption certificate. Extract `id` and `value` from response.
+### 5. Get payment encryption certificate. Extract `id` and `value` from response.
 
 Request: `GET /partners/v1/certificate`
 
-###6. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
+### 6. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart/payment`
 
@@ -2088,7 +2088,7 @@ Request body:
 }
 {% endhighlight %}
 
-###7. Purchase the tickets
+### 7. Purchase the tickets
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart`
 
