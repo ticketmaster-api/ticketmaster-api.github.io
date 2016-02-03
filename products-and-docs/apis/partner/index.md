@@ -1584,11 +1584,9 @@ Status 204
 ## Order management [GET]
 {: #order-mangement}
 
-Get detailed information about an order. For specifically-enabled accounts only. 
+Get detailed information about an order. For specifically-enabled accounts only. One of order_token or order_number is required.
 
 /partners/v1/orders?order_token={order_token}?apikey={apikey}
-
-/partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .code .red}
 
 ###Parameters
@@ -1596,8 +1594,8 @@ Get detailed information about an order. For specifically-enabled accounts only.
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `order_token`   | An order token         | string            |     "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"          | Yes      |
-| `order_number`   | An order number          | string            |     "39-5234153/LA1"          | Yes      |
+| `order_token`   | An order token         | string            |     "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"          |  No     |
+| `order_number`   | A legacy Ticketmaster order account number (ex. 39-5234153/LA1) | string            |     "39-5234153/LA1"          | No      |
 
 
 
