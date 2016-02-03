@@ -1,8 +1,7 @@
 ---
 layout: partners-doc
-
 pname: "nexus"
-
+available: true
 categories: 
   - partner
   - certified
