@@ -47,7 +47,7 @@
     @media #{$max-768} {
       z-index: 1;
       left: 0;
-      width: 100%;
+      width: 50%;
       position: absolute;
       padding-top: 10px;
       &.expanded {
