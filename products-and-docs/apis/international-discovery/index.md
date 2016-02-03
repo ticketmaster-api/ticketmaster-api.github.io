@@ -5,17 +5,13 @@ categories:
 - international-discovery
 ---
 {: .article}
-#International API 
+# Ticketmaster International Discovery API 
 
-The Ticketmaster International API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
-
+The Ticketmaster International Discovery API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
+{: .lead .article}
 
 ## Overview
 {: .article #overview }
-This API supports the following markets:
-
-* Europe
-* Middle East
 
 ### Discovery API Services
 
@@ -40,7 +36,7 @@ For example:
 
 To request an API Key send an email to the [Ticketmaster Product Manager](mailto:carie.hughes@ticketmaster.co.uk).
 
-###Format
+### Format
 You can set the output format from all API Services with an Accept header. The API supports:
 
 + `application/json`
@@ -74,7 +70,7 @@ through which tickets are listed and sold. (It differs from Country which is the
 Domains List Service for a list of domains and default URL, language, and currency. Use a comma separated list of values 
 to search multiple domains. (A logical OR search is performed).
 
-{% comment %} 
+{% comment %}
 {: .nested-list}
 + `domain_ids` = (optional, string) 
     - norway
@@ -337,8 +333,10 @@ Via: 1.1 vegur
 {% endhighlight %}
 
 {: .aside}
+{: .aside}
 >[JS](#js)
 >[cURL](#curl)
+{::comment}
 >[Java](#java)
 >[Node.js](#node)
 >[Perl](#perl)
@@ -351,6 +349,7 @@ Via: 1.1 vegur
 >[Groovy](#groovy)
 >[Objective-C](#objective-c)
 >[Swift](#swift)
+{:/comment}
 {: .lang-selector}
 
 {% highlight js %}
@@ -377,7 +376,7 @@ curl --include \
   'https://app.ticketmaster.eu/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events'
 {% endhighlight %}
 
-
+{::comment}
 {% highlight java %}
 // Maven : Add these dependecies to your pom.xml (java6+)
 // <dependency>
@@ -423,6 +422,7 @@ request({
   console.log('Response:', body);
 });
 {% endhighlight %}
+{:/comment}
 
 
 {% highlight perl %}
@@ -483,6 +483,8 @@ response = RestClient.get 'https://private-anon-ebc054a4b-ticketmasterdiscoverya
 puts response
 {% endhighlight %}
 
+
+
 {% highlight java %}
 package main
 
@@ -493,26 +495,28 @@ import (
 )
 
 func main() {
-client := &http.Client{}
+	client := &http.Client{}
 
-req, _ := http.NewRequest("GET", "https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events", nil)
+	req, _ := http.NewRequest("GET", "https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events", nil)
 
-req.Header.Add("Accept", "application/json")
+	req.Header.Add("Accept", "application/json")
 
-resp, err := client.Do(req)
+	resp, err := client.Do(req)
 
-if err != nil {
-    fmt.Println("Errored when sending request to the server")
-	return
-}
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
 
-defer resp.Body.Close()
-resp_body, _ := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
 
-fmt.Println(resp.Status)
-fmt.Println(string(resp_body))
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
 }
 {% endhighlight %}
+
+
 
 {% highlight c %}
 //Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
@@ -532,7 +536,7 @@ using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
   using(var response = await httpClient.GetAsync("events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"))
   {
  
-  string responseData = await response.Content.ReadAsStringAsync();
+        string responseData = await response.Content.ReadAsStringAsync();
   }
 }
 {% endhighlight %}
@@ -589,25 +593,25 @@ NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
 NSURLSession *session = [NSURLSession sharedSession];
 NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                         completionHandler:
-^(NSData *data, NSURLResponse *response, NSError *error) {
- 
-if (error) {
-    // Handle error...
-    return;
-}
- 
-if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-    NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
-    NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
-}
- 
-NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-NSLog(@"Response Body:\n%@\n", body);
-}];                             
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
 [task resume];
 {% endhighlight %}
 
-
+{::comment}
 {% highlight swift %}
 // NOTE: Uncommment following two lines for use in a Playground
 // import XCPlayground
@@ -629,6 +633,7 @@ let task = session.dataTaskWithRequest(request) { data, response, error in
 
 task.resume()
 {% endhighlight %}
+{:/comment}
 
 {: .article #event-details}
 ## Event Details
@@ -760,18 +765,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1044,18 +1037,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1193,18 +1174,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1287,18 +1256,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1391,18 +1348,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1547,18 +1492,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1647,18 +1580,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1765,18 +1686,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -1911,18 +1820,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2055,18 +1952,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2154,18 +2039,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2363,18 +2236,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2668,18 +2529,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -2898,18 +2747,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}
@@ -3061,18 +2898,6 @@ Via: 1.1 vegur
 {: .aside}
 >[JS](#js)
 >[cURL](#curl)
->[Java](#java)
->[Node.js](#node)
->[Perl](#perl)
->[Python](#python)
->[PHP](#php)
->[Ruby](#ruby)
->[Go](#go)
->[C#](#c-sharp)
->[Visual Basic](#visual-basic)
->[Groovy](#groovy)
->[Objective-C](#objective-c)
->[Swift](#swift)
 {: .lang-selector}
 
 {% highlight js %}

@@ -6,20 +6,20 @@ categories:
 - commerce
 ---
 
-#Commerce API
+# Commerce API
 {: .article}
 
 Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive barcode and ticket information. Ticket inventory for each event must be established beforehand with Ticketmaster, venues, and ticketing partners. Only this held inventory will be made available through the API.
 {: .article .lead}
 
-####Developer Console
+#### Developer Console
 {: .aside .gray}
 
 Test this endpoint right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
-##Event Offers
+## Event Offers
 {: .article .console-link #event-offers}
 
 **Method:** GET.
@@ -29,7 +29,7 @@ Returns Event Offers.
 commerce/{version}/events/{id}/offers.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |

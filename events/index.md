@@ -3,7 +3,7 @@ layout: events
 category: events
 ---
 
-###Upcoming
+### Upcoming
 
 {% for event in site.pages %}
     {% if event.category == "event" %}

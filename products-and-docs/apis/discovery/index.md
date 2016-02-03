@@ -5,12 +5,12 @@ categories:
 - discovery
 ---
 
-#Discovery API
+# Discovery API
 
 Use the Discovery API to search, look up and find events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.
 {: .lead .article}
 
-####Developer Console
+#### Developer Console
 {: .aside .gray}
 
 Make live API calls right now in the interactive docs:
@@ -31,7 +31,7 @@ Example: `https://app.ticketmaster.com/discovery/v1/events.json?apikey=3QIvq55bS
 `https://app.ticketmaster.com/discovery/{API version}`
 
 
-##Search Events
+## Search Events
 {: .article .console-link #srch-events }
 
 **Method:** GET.
@@ -41,14 +41,14 @@ Returns the 20 most recent events for the authenticating user.
 discovery/{version}/events.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v1"         | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -288,7 +288,7 @@ curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey
 {% endhighlight %}
 
 
-##Get Event Details
+## Get Event Details
 {: .article .console-link #event-details }
 
 **Method:** GET.
@@ -299,7 +299,7 @@ discovery/{version}/events/{id}.{format}
 {: .code .red}
 
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -307,7 +307,7 @@ discovery/{version}/events/{id}.{format}
 | `id`       | Event ID. Required.  | string            | "29004F223C406ABF" | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -499,7 +499,7 @@ curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apik
 
 
 
-##Search Event Images
+## Search Event Images
 {: .article .console-link #event-img}
 
 **Method:** GET.
@@ -509,7 +509,7 @@ Returns all the images for an event by ID. If an event does not have an image fo
 {: .code .red}
 discovery/{version}/events/{id}/images.{format}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -659,7 +659,7 @@ curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.js
 
 
 {: .article .console-link #search-attractions}
-##Search Attractions
+## Search Attractions
 
 **Method:** GET.
 Authentication required..
@@ -668,14 +668,14 @@ Search Attractions!
 {: .code .red}
 discovery/{version}/attractions.{format}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v1"         | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1011,7 +1011,7 @@ curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
 
 
 {: .article .console-link #attraction-details}
-##Get Attraction Details
+## Get Attraction Details
 
 **Method:** GET.
 Authentication required.
@@ -1020,7 +1020,7 @@ Search Attractions!
 discovery/{version}/attractions/{id}.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1030,7 +1030,7 @@ discovery/{version}/attractions/{id}.{format}
 
 
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1110,7 +1110,7 @@ curl https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={a
 
 
 {: .article .console-link #search-categories}
-##Search Categories
+## Search Categories
 
 **Method:** GET.
 Authentication required.
@@ -1119,14 +1119,14 @@ Search Categories!
 discovery/{version}/categories.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |     "v1"           | Yes      |
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1522,7 +1522,7 @@ curl https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}
 
 
 {: .article .console-link #category-details}
-##Get Category Details
+## Get Category Details
 
 **Method:** GET.
 Authentication required.
@@ -1531,7 +1531,7 @@ Returns the category detail by ID.
 {: .code .red}
 discovery/{version}/categories/{id}.{format}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1540,7 +1540,7 @@ discovery/{version}/categories/{id}.{format}
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1619,7 +1619,7 @@ curl https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apike
 
 
 {: .article .console-link #search-venues}
-##Search Venues
+## Search Venues
 
 **Method:** GET.
 Authentication required.
@@ -1629,14 +1629,14 @@ discovery/{version}/venues.{format}
 {: .code .red}
 
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |     "v1"           | Yes      |
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1779,7 +1779,7 @@ curl https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={a
 
 
 {: .article .console-link #venue-details}
-##Get Venue Details
+## Get Venue Details
 
 **Method:** GET.
 Authentication required.
@@ -1788,7 +1788,7 @@ Returns the venue detail by ID.
 discovery/{version}/venues/{id}.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1796,7 +1796,7 @@ discovery/{version}/venues/{id}.{format}
 | `id`       | Venue ID.            | string            |     "90150"          | Yes      |
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
