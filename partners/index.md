@@ -32,8 +32,8 @@ Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingers
 {: .body .p}
 Keytar McSweeney's Williamsburg, readymade leggings try-hard 90's street art letterpress ho.
 
-[Get to know our Nexus partners](/partners/channel/)
-[Join the Nexus program](/partners/channel/)
+[Get to know our Nexus partners](/partners/certified-partners/)
+[Join the Nexus program](/partners/list/002-nexus)
 
 {% endcapture %}
 
