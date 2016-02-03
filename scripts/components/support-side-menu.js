@@ -14,7 +14,7 @@
 
         menu.addClass("expanded").find("ul").show();
         sideBtn.addClass("expanded").removeClass("closed");
-        //adjustMenuPosition();
+        adjustMenuPosition();
     };
 
     var hideMenu = function(){
@@ -24,11 +24,44 @@
     };
     var menu = $('.menu'),
         sideBtn = $("#side-menu-btn"),
-        stickyHeaderTop = $('.menu').offset().top + calculate_offset();
+        stickyHeaderTop = $('.menu').offset().top + calculate_offset(),
+        belowFooter = false;
 
     if ( window.innerWidth < 1200 ) {
         hideMenu();
     }
+
+    var adjustMenuPosition = function(){
+
+        var menuTop = menu.offset().top,
+            menuHeight = menu.height(),
+            bottomBarOffset = $('#footer').offset().top,
+            windowScrollTop = $(window).scrollTop();
+
+        //set menu position to absolute when footer is reached
+        if (window.innerWidth >= 1200){
+            if (!belowFooter){
+                if ((menuTop + menuHeight >= bottomBarOffset)){
+                    belowFooter = true;
+                    menu.addClass("below-footer").css({
+                        'top': $('.base-content-wrapper').height() - $(menu).height()
+                    });
+                }
+            }
+
+            if (windowScrollTop <= menu.offset().top){
+                belowFooter = false;
+                menu.removeClass("below-footer").css({
+                    'top': ''
+                });
+            }
+        }
+        else {
+            menu.removeClass("below-footer").css({
+                'top': ''
+            });
+        }
+    };
 
     // Check the initial Poistion of the Sticky Header
     $(window).scroll(function(){
@@ -37,6 +70,7 @@
         } else {
             menu.removeClass("fixed")
         }
+        adjustMenuPosition();
     });
 
     window.onresize = function(event) {
@@ -46,6 +80,7 @@
         }else{
             showMenu();
         }
+        adjustMenuPosition();
     };
 
 
@@ -65,5 +100,7 @@
             hideMenu();
         }
     });
+
+    adjustMenuPosition();
 
 })();

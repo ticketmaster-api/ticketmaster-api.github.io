@@ -11,6 +11,7 @@
   max-width: 1146px;
   overflow: hidden;
   margin: auto;
+  position: relative;
 
   .col-lg-9 {
     float: right;
@@ -22,6 +23,9 @@
   .fixed {
     position: fixed !important;
     top: 0px;
+    &.below-footer{
+      position: absolute !important;
+    }
   }
 
   .menu {

@@ -8,14 +8,14 @@ category: partners
 #### Channel partners
 
 {: .image}
-[![Groupon](/assets/img/partners/groupon-logo.png)](/partners/groupon/)
+[![Groupon](/assets/img/partners/groupon-logo.png)](/products-and-docs/under-development/)
 
 ### Helping us reach the world
 
 {: .body .p}
 Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authe.
 
-[See all channel partners](/partners/channel/)
+[See all channel partners](/products-and-docs/under-development/)
 
 {% endcapture %}
 
@@ -25,7 +25,7 @@ Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingers
 #### Cerfified partners
 
 {: .image}
-[![Nexus](/assets/img/partners/nexus-logo.png)](/partners/nexus/)
+[![Nexus](/assets/img/partners/nexus-logo.png)](/products-and-docs/under-development/)
 
 ### Supporting our clients
 
@@ -45,7 +45,7 @@ Keytar McSweeney's Williamsburg, readymade leggings try-hard 90's street art let
 {: .body .p}
 Do you have a site that attracts visitors who are interested in buying tickets? If so, we have an opportunity for you to monetize your site and make money through the Ticketmaster Affiliate Program.
 
-[BECOME AN AFFILIATE](/partners/get-affilated/){: .button.button-blue}
+[BECOME AN AFFILIATE](/support/faq/#affiliates-a){: .button.button-blue}
 
 {% endcapture %}
 
@@ -65,7 +65,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 ![Groupon](/assets/img/partners/reply-logo.png)
 
 {: .c}
-[See all 30+ affiliate partners](/partners/channel/)
+[See all 30+ affiliate partners](/products-and-docs/under-development/)
 
 {% endcapture %}
 
@@ -87,7 +87,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 ![Groupon](/assets/img/partners/tradablebits-logo.png)
 
 {: .c}
-[See all 50+ startup and developer partners](/partners/channel/)
+[See all 50+ startup and developer partners](/products-and-docs/under-development/)
 
 {% endcapture %}
 
@@ -105,7 +105,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
   </div>
 </div>
 
-<div class="slice-left slice-top-left slice-bottom-left xs-center">
+<div class="slice-left partn slice-top-left slice-bottom-left xs-center">
     <div class="row">
         <div class="row-container row-affilate">
 <div class="col-xs-12 col-md-7" markdown="1">

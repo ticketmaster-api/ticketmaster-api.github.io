@@ -471,7 +471,7 @@
       /* background-color: rgba(153, 216, 242, 1); */
     }
   }
-  .raw-btn {
+  .raw-btn, .raw-btn-w  {
     position: absolute;
     display: block;
     background-image: url("/assets/img/products-and-docs/ic-raw.svg");
@@ -520,10 +520,16 @@
     display: block;
   }
   .copy-btn {
-    right: 61px;
+    margin-top: -45px;
+    right: 67px;
   }
-  .raw-btn {
-    right: 28px;
+  .raw-btn, .raw-btn-w {
+    margin-top: -45px;
+    right: 35px;
+  }
+  .screen-btn {
+    margin-top: -45px;
+    right: 0;
   }
 }
 
@@ -551,7 +557,7 @@
         width: 1300px;
         display: block;
         span {
-          white-space: nowrap;
+        /* white-space: nowrap; */
         }
       }
     }
@@ -647,7 +653,7 @@ body .modal {
       /* background-color: rgba(153, 216, 242, 1); */
     }
   }
-  .raw-btn {
+  .raw-btn, .raw-btn-w {
     position: absolute;
     display: block;
     background-image: url("/assets/img/products-and-docs/ic-raw.svg");
@@ -745,7 +751,7 @@ body .modal-content {
       margin: 0;
     }
   }
-  .lang-selector {
+  .lang-selector, .reqres {
     width: 95%;
     margin-bottom: 15px;
     overflow:hidden;
@@ -775,6 +781,9 @@ body .modal-content {
   .highlight, pre {
     clear: both;
     margin: 0;
+  }
+  pre {
+    max-height: 550px;
   }
   .tab-content {
     display: none;

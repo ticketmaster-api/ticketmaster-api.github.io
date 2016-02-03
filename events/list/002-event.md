@@ -14,4 +14,4 @@ tags:
  
 ---
 
-Ticketmaster is a proud sponsor of Hackpoly this year! From February 6-7 at the Bronco Student Center, we invite everyone of all skill levels to come out to this annual 24-hour hackathon and create whatever you can imagine with !
+Ticketmaster is a proud sponsor of HackPoly this year! From February 6-7 at the Bronco Student Center, we invite YOU to come out to this annual 24-hour hackathon and create whatever you can imagine with our API!
