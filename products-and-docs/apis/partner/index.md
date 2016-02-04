@@ -1835,161 +1835,24 @@ Example:
 }
 {% endhighlight %}
 
----
-{: .aside}
 
-{: .article}
-Event not transactable.
+| message  | code  | http_code              | Note
+|:-----------|:---------------------|:----------------- |
+| Event is not API transactable | 90001 | 403 | |
+| No inventory found to match request | 20052 | 400 | Example of sold-out tickets, per ticket id. Can also occur if the number of available continuous seats cannot be fulfilled |
+| Unauthorized Access | 10004 | 401 | Missing captcha token |
+| Invalid captcha solution | 10031 | 400 | Invalid captcha solution |
+| Payment Not Accepted | 20122 | 400 | |
+| Please enter a valid security code | 20152 | 400 | Invalid CVV/Security code on back of credit card |
+| Ticketing system is down/unavailable/niterun | 20001 | 503 |  |
+| Invalid cart | 90003 | 400 | cart_id parameter is invalid or stale |
 
-Example:
-
-{% highlight js %}
-{
-    "error": {
-        "message": "Event is not API transactable",
-        "code": 90001
-        "http_code":403,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Example of sold-out tickets, per ticket id. Can also occur if the number of available continuous seats cannot be fulfilled:
-
-{% highlight js %}
-{
-    "error": {
-        "message": "No inventory found to match request",
-        "code": 20052
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Missing captcha token:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Unauthorized Access",
-        "code":10004,
-        "http_code":401,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Incorrect or stale captcha token:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Invalid captcha solution.",
-        "code":10031,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Payment not accepted:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Payment Not Accepted",
-        "code":20122,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Invalid CVV/Security code on back of credit card:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Please enter a valid security code.",
-        "code":20152,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Ticketing system is down/unavailable/niterun
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Ticketing system is down/unavailable/niterun",
-        "code":20001,
-        "http_code":400,
-        "severity":"DEBUG"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Invalid cart id
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Invalid cart",
-        "code": 90003,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
 
 ---
 {: .aside}
 
 {: .article}
 Clients can reference the *code* field when communicating and debugging errors with Ticketmaster. We will automatically be notified of any internal, unrecoverable errors.
-
-The following status codes will be used by this API
-
-| Status Code | Description |
-| ----------- | ----------- |
-| 200         | OK. Successful operation |
-| 202         | Polling response |
-| 204         | Operation completed successfully. No content returned. (See Cart DELETE method) |
-| 401         | Unauthorized access to API. May be missing *apikey* parameter |
-| 404         | API endpoint or event not found. |
-| 405         | HTTP method not allowed for endpoint |
-| 406         | Input/parameters not acceptable |
-| 500         | Internal error occurred |
-| 503         | Service is unavailable |
 
 
 ## Examples
