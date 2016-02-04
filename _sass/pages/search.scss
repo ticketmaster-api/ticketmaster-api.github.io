@@ -11,10 +11,46 @@
   border: 0px !important;
 }
 
+.gstl_50 {
+  line-height: 45px!important;
+  tr {
+    background: transparent !important;
+  }
+}
+
+.gscb_a {
+  padding-top: 14px !important;
+  padding-right: 14px !important;
+}
+
+.gsc-input {
+  padding: 0 15px !important;
+}
+
 .gsc-input-box {
   border: 1px solid #d5dade !important;
   border-radius: 4px !important;
   height: 50px !important;
+}
+
+.gsc-input-box-hover, .gsc-input-box-focus {
+  border-radius: 4px !important;
+  height: 50px !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+.gsc-input-box-focus {
+  border-color: #009cde !important;
+}
+
+.gcsc-branding {
+  margin-top: -20px !important;
+  padding-right: 210px !important;
+  margin-bottom: 35px !important;
+  .gcsc-branding-img-noclear {
+    display: block;
+    width: 51px;
+  }
 }
 
 .gsc-search-button {
@@ -24,12 +60,33 @@
 
 .gsc-search-button {
   input {
-    width: 0px !important;
-    min-width: 0px !important;
-    max-width: 0px !important;
-    height: 0px !important;
-    padding: 0px !important;
+    width: 165px !important;
+    height: 49px !important;
+    line-height: 48px !important;
+    background: none !important;
     border: none !important;
+    color: #fff !important;
+    border-radius: 4px !important;
+    opacity: 0;
+  }
+  &:after {
+    content: "Search";
+    display: block;
+    font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 165px;
+    height: 50px;
+    line-height: 50px;
+    background: #009cde;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: -57px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: center;
+    cursor: pointer;
   }
 }
 
@@ -79,9 +136,30 @@
       font-weight: normal !important;
     }
   }
+
+  .gs-title b:first-child {
+    color: #d01e6f !important;
+  }
+
   .gs-webResult .gs-snippet, .gs-imageResult .gs-snippet,
   .gs-fileFormatType {
     color: #768692!important;
+  }
+
+  .gsc-cursor-box {
+    margin-top: 20px !important;
+  }
+  .gsc-results .gsc-cursor-box .gsc-cursor-page {
+    height: auto;
+    font-family: "TMSans-Regular", Helvetica, Arial, sans-serif !important;
+    font-size: 25px !important;
+    text-decoration:none !important;
+    color:#009cde !important;
+    font-weight:normal !important;
+    margin-right: 24px !important;
+  }
+  .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+    color: #b7c9d3 !important;
   }
 
 }
