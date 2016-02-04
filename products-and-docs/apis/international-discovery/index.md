@@ -633,7 +633,7 @@ Get details for a specific event using the unique identifer for the event. This 
 availability and pricing, a description, and the Ticketmaster Website URL for purchasing tickets for the event.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/{event_id}
+https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -774,7 +774,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621?lang&domain_ids');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -792,7 +792,7 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621?lang&domain_ids'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids'
 {% endhighlight %}
 
 {% highlight java %}
@@ -1051,7 +1051,7 @@ the returned number of rows is less than the requested number - or until the res
 (This service does not consider what fields are updated or changes to values, only when the event data was written)
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/updated
+https://app.ticketmaster.eu/mfxapi/v1/event/updated
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1304,7 +1304,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -1322,7 +1322,7 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows'
 {% endhighlight %}
 
 {% highlight java %}
@@ -1584,7 +1584,7 @@ task.resume()
 Get information about the ticket price levels applicable for an specific event ID, the price range for each level and ticket availability.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/prices
+https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1707,7 +1707,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -1725,7 +1725,7 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids'
 {% endhighlight %}
 {% highlight java %}
 // Maven : Add these dependecies to your pom.xml (java6+)
@@ -1983,7 +1983,7 @@ task.resume()
 Get a static map image of the venue for the event showing the location of seating or standing areas. Note that not all events will have a seatmap available - for example packages, festivals, many general admission music events, and so on. Interactive seatmaps are currently not available.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/seatmap
+https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -2051,7 +2051,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/seatmap?domain_ids');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids');
 
 request.onreadystatechange = function () {
   if (this.readyState === 4) {
@@ -2067,7 +2067,7 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/seatmap?domain_ids'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids'
 {% endhighlight %}
 
 {% highlight java %}
@@ -2328,7 +2328,7 @@ task.resume()
 Get information on the seating areas available for an event and the prices for tickets.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/areas
+https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -2425,7 +2425,8 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/event/449621/areas?domain_ids&lang'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang'
 {% endhighlight %}
 
 {% highlight java %}
@@ -2691,7 +2692,7 @@ An attraction can be a music artist, a type of sport, a play or show, and so on.
 Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.
  
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions
+https://app.ticketmaster.eu/mfxapi/v1/attractions
 
 ### Query Parameters
 
@@ -3089,7 +3090,7 @@ task.resume()
 Get details for a specific event using the unique identifer for the event.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/{attraction_ids}
+https://app.ticketmaster.eu/mfxapi/v1/attractions/{attraction_ids}
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -3181,7 +3182,8 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/attraction/709593?lang&domain_ids'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids'
 {% endhighlight %}
 
 {% highlight java %}
@@ -3441,7 +3443,7 @@ partial and fuzzy matching and can therefore be used for a suggest-as-you type f
 fields compared to the Attraction Search to allow for more real-time display.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/suggestions
+https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -3806,7 +3808,7 @@ Get back other attractions which are similar to the attraction specified. This i
 including category and sub-category, and ticket sales (users who purchased this attraction also purchased).
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/similar
+https://app.ticketmaster.eu/mfxapi/v1/attractions/similar
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -4210,7 +4212,7 @@ The Venue Service API allows you to search for event venues and get details for 
 Find venues and filter your search by name, and much more.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/venues
+https://app.ticketmaster.eu/mfxapi/v1/venues
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -4337,7 +4339,8 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start'
+     --header "Accept: application/json" \
+'https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows'
 {% endhighlight %}
 
 
@@ -4596,7 +4599,7 @@ task.resume()
 Get details for a specific event using the unique identifer for the event. Seatmaps for venues are available in the Event Service - See [Event Seatmaps](#event-seatmap)
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/venues/{venue_id}
+https://app.ticketmaster.eu/mfxapi/v1/venues/{venue_id}
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -4686,7 +4689,8 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/venue/7353?lang&domain_ids'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids'
 {% endhighlight %}
 
 
@@ -4951,7 +4955,7 @@ Get a list of countries and domains for each. Although not required, it is advis
 relates to the Ticketmaster website through which tickets are listed and sold, whereas the Country is a geographical location.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/countries
+https://app.ticketmaster.eu/mfxapi/v1/countries
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -5146,7 +5150,8 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/countries?lang&domain_id'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id'
 {% endhighlight %}
 
 
@@ -5405,7 +5410,7 @@ task.resume()
 Get a list of domains (countries and markets) and the domain ID as well supported langauges.Although not required, it is advisable to specify the domain. The domain relates to the Ticketmaster website through which tickets are listed and sold. Domain_id differs from the Country_id which is the geographical location rather than the market.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains
+https://app.ticketmaster.eu/mfxapi/v1/domains
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -5685,7 +5690,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/domains?country_id');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -5703,7 +5708,7 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id'
+  'https://app.ticketmaster.eu/mfxapi/v1/domains?country_id'
 {% endhighlight %}
 
 
@@ -5970,7 +5975,7 @@ task.resume()
 Get a list of city names and city IDs.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/cities
+https://app.ticketmaster.eu/mfxapi/v1/cities
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -6190,7 +6195,8 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/cities?lang&domain_id&country_id'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id'
 {% endhighlight %}
 
 
@@ -6450,7 +6456,7 @@ task.resume()
 Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/categories
+https://app.ticketmaster.eu/mfxapi/v1/categories
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
