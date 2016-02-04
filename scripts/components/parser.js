@@ -91,6 +91,7 @@
                         $(".modal-body").html(content);
 
                         $(".modal-body").delegate(".lang-selector a", "click", function() {
+                            $(".aside.lang-selector a").eq($(this).index()).click();
                             $(this).parent().children().removeClass("active");
                             $(this).addClass("active");
                             $(this).parents().closest(".modal-body").children().removeClass("tab-active");

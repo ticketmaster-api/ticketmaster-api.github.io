@@ -42,6 +42,8 @@ $(document).ready(function() {
                 $(this).addClass("active");
                 $(this).parents().closest(".modal-body").children().removeClass("active");
                 $(this).parents().closest(".modal-body").children().eq($(this).index() + 1).addClass("active");
+                var reqresNo = $(this).parent().parent().attr('class').substr(7);
+                $(".left-wrapper .reqres." + reqresNo + " a").eq($(this).index()).click();
             });
         };
 
@@ -59,7 +61,10 @@ $(document).ready(function() {
             }, 2000);
         };
 
-        $(".reqres").each(function() {
+        $(".reqres").each(function(index) {
+
+            $(this).addClass("n" + index);
+
             tab1 = $(this).next();
             tab2 = $(this).next().next();
 
