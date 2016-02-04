@@ -284,7 +284,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}'
 {% endhighlight %}
 
 
@@ -492,7 +493,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}'
 {% endhighlight %}
 
 
@@ -654,7 +656,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}'
 {% endhighlight %}
 
 
@@ -1005,7 +1008,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}'
 {% endhighlight %}
 
 
@@ -1103,7 +1107,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}'
 {% endhighlight %}
 
 
@@ -1516,7 +1521,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}'
 {% endhighlight %}
 
 
@@ -1613,7 +1619,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}'
 {% endhighlight %}
 
 
@@ -1774,7 +1781,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}'
 {% endhighlight %}
 
 
@@ -1885,7 +1893,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}'
 {% endhighlight %}
 
 
