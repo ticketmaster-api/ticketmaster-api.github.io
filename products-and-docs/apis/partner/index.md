@@ -1383,7 +1383,7 @@ Sample credit-card information for use in the sandbox environment:
 
 *Polling: No*
 
-/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey={apikey}
+/partners/v1/events/{event_id}/cart/payment?apikey={apikey}
 {: .code .red}
 
 ### Parameters
@@ -1392,7 +1392,6 @@ Sample credit-card information for use in the sandbox environment:
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-
 
 
 Sample Java code using a certificate (arg 1) to encrypt a credit card or cvv number (arg 2):
