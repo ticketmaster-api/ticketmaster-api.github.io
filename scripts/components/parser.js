@@ -63,6 +63,9 @@
                     screenBtn.className = "screen-btn";
                     screenBtn.setAttribute("data-toggle", "modal");
                     screenBtn.setAttribute("data-target", ".modal-langs");
+                    screenBtn.setAttribute("rel", "tooltip");
+                    screenBtn.setAttribute("data-placement", "top");
+                    screenBtn.setAttribute("data-original-title", "View Full Screen");
                     var html_s = this.outerHTML;
                     var proxyItem_s = document.createElement("div");
                     proxyItem_s.innerHTML = html_s;
@@ -85,6 +88,9 @@
                             .addClass('copy-btn-fs')
                             .removeClass('copy-btn')
                             .end()
+                            .find('.screen-btn')
+                            .attr('data-original-title', 'Exit Full Screen')
+                            .end()
                             .html();
 
                         $("#modal-title").html(title);
@@ -101,6 +107,9 @@
 
                     var rawBtn = document.createElement("div");
                         rawBtn.className = "raw-btn";
+                        rawBtn.setAttribute("rel", "tooltip");
+                        rawBtn.setAttribute("data-placement", "top");
+                        rawBtn.setAttribute("data-original-title", "View Raw");
                     var html_ = this.outerHTML;
                     var proxyItem_ = document.createElement("div");
                         proxyItem_.innerHTML = html_;
@@ -122,6 +131,9 @@
 
                     var copyBtn = document.createElement("div");
                         copyBtn.className = "copy-btn";
+                        copyBtn.setAttribute("rel", "tooltip");
+                        copyBtn.setAttribute("data-placement", "top");
+                        copyBtn.setAttribute("data-original-title", "Copy to Clipboard");
                         copyBtn.addEventListener("click", function () {
                             this.classList.add("copied")
                             window.setTimeout(function(){

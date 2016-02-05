@@ -32,6 +32,12 @@ $(document).ready(function() {
                 .addClass('copy-btn-fs')
                 .removeClass('copy-btn')
                 .end()
+                .find('.screen-btn')
+                .attr('data-original-title', 'Exit Full Screen')
+                .end()
+                .find('.tooltip')
+                .remove()
+                .end()
                 .html();
 
             $("#modal-title").html(title);
@@ -80,6 +86,9 @@ $(document).ready(function() {
                 tab1.prepend(screenbtn1);
                 screenbtn1.setAttribute("data-toggle", "modal");
                 screenbtn1.setAttribute("data-target", ".modal-langs");
+                screenbtn1.setAttribute("rel", "tooltip");
+                screenbtn1.setAttribute("data-placement", "top");
+                screenbtn1.setAttribute("data-original-title", "View Full Screen");
 
             var rawbtn1 = createButton("raw-btn");
                 if(rawbtn1.dataset !== undefined){
@@ -90,11 +99,17 @@ $(document).ready(function() {
                 }
                 rawbtn1.addEventListener("click",startRowView);
                 tab1.prepend(rawbtn1);
+                rawbtn1.setAttribute("rel", "tooltip");
+                rawbtn1.setAttribute("data-placement", "top");
+                rawbtn1.setAttribute("data-original-title", "View Raw");
 
             var btn1 = createButton("copy-btn");
                 btn1.dataset.clipboardText =  getInnerText(tab1);
                 btn1.addEventListener("click", makeCopy);
                 tab1.prepend(btn1);
+                btn1.setAttribute("rel", "tooltip");
+                btn1.setAttribute("data-placement", "top");
+                btn1.setAttribute("data-original-title", "Copy to Clipboard");
 
             var screenbtn2 = createButton("screen-btn");
             if(screenbtn2.dataset !== undefined){
@@ -107,6 +122,9 @@ $(document).ready(function() {
             tab2.prepend(screenbtn2);
             screenbtn2.setAttribute("data-toggle", "modal");
             screenbtn2.setAttribute("data-target", ".modal-langs");
+            screenbtn2.setAttribute("rel", "tooltip");
+            screenbtn2.setAttribute("data-placement", "top");
+            screenbtn2.setAttribute("data-original-title", "View Full Screen");
 
             var rawbtn2 = createButton("raw-btn");
                 if(rawbtn2.dataset !== undefined){
@@ -117,11 +135,17 @@ $(document).ready(function() {
                 }
                 rawbtn2.addEventListener("click", startRowView);
                 tab2.prepend(rawbtn2);
+                rawbtn2.setAttribute("rel", "tooltip");
+                rawbtn2.setAttribute("data-placement", "top");
+                rawbtn2.setAttribute("data-original-title", "View Raw");
 
             var btn2 = createButton("copy-btn");
                 btn2.dataset.clipboardText =  getInnerText(tab2);
                 btn2.addEventListener("click", makeCopy);
             tab2.prepend(btn2);
+            btn2.setAttribute("rel", "tooltip");
+            btn2.setAttribute("data-placement", "top");
+            btn2.setAttribute("data-original-title", "Copy to Clipboard");
 
             $('<div class="reqres-wrapper"></div>').insertBefore($(this));
             $(this).prev().append($(this)).append(tab1).append(tab2);
@@ -136,5 +160,15 @@ $(document).ready(function() {
             $(this).parent().parent().parent().find(".r-tab").eq($(this).index()).addClass("active");
             $(this).addClass("active");
         });
+
+        $(function () {
+            $('body').tooltip({
+                selector: '[rel="tooltip"]'
+            });
+            /* $('[rel="tooltip"]').tooltip({
+                animation: true
+            });
+            */
+        })
 
 });
