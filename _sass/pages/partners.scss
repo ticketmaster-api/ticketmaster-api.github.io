@@ -323,3 +323,56 @@ body .top-bar.bg-header {
     clear: both;
   }
 }
+
+.nexus-form {
+  font-family: $font-body;
+  textarea {
+    height: 96px;
+  }
+  .col-left,
+  .col-right {
+    float: left;
+    width: 50%;
+  }
+  .col-right {
+    margin-left: 5%;
+    width: 45%;
+  }
+  .label-radio-group{
+    width: 100%;
+  }
+  .label-radio {
+    display: inline;
+    label {
+      margin-right: 55px;
+      font-family: $font-body;
+      font-size: $size-h4;
+      line-height: $line-height-h4;
+      font-weight: normal;
+      color: $n2;
+    }
+  }
+  .company-detail {
+    font-family: $font-h5;
+    font-size: $size-h6;
+    line-height: $line-height-h6;
+  }
+  .button-blue {
+    border: none;
+    border-radius: 4px;
+    font-family: $font-bold-p;
+    font-size: $size-h4;
+    margin-top: 30px;
+    padding: 10px 40px;
+    color: $white;
+    display: inline-block;
+    width: 100%;
+
+    &:hover,
+    &:focus,
+    &:active {
+      outline: none;
+      text-decoration: none;
+    }
+  }
+}
