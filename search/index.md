@@ -8,6 +8,13 @@ layout: search
         <h1>SEARCH RESULTS</h1>
         <script>
           (function() {
+            
+            window.__gcse = {
+              callback: function() {
+                $('input.q').val($('input.gsc-input').val());
+              }
+            };
+          
             var cx = '005729231290321871364:pb-ym0dnvm4';
             var gcse = document.createElement('script');
             gcse.type = 'text/javascript';

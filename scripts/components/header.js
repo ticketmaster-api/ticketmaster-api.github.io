@@ -82,8 +82,14 @@
 
                 // Search [START]
                 $(".top-bar").on("click", "#search", function (e) {
-                  // alert('wrthwrthwr');
+                  $("#cse-search-box").addClass("sopen");
+                  $("input.q").focus();
                 });
+
+                $("input.q").blur(function(e) {
+                    $("#cse-search-box").removeClass("sopen");
+                });
+
                 // Search [END]
             }
         };

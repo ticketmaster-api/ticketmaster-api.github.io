@@ -31,7 +31,7 @@ iframe{
   position: relative;
 }
 
-a {
+a, input {
   &active, &:focus {
     outline: none;
   }

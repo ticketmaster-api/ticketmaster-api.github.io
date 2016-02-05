@@ -1,3 +1,56 @@
+#search {
+    div:after {
+      content: "Go";
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #189ddc;
+      font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-left: -55px;
+      z-index: 0;
+    }
+    #cse-search-box {
+      width: 0px;
+      overflow: hidden !important;
+      -webkit-transition: width .3s ease-in-out;
+      -moz-transition: width .3s ease-in-out;
+      -o-transition: width .3s ease-in-out;
+      transition: width .3s ease-in-out;
+      text-align: right;
+      float: right;
+      position: absolute;
+      right: 0;
+      &.sopen {
+        width: 320px;
+      }
+    }
+}
+
+.q {
+  width: 290px;
+  height: 48px;
+  color: #768692;
+  background: #f1f4f6 !important;
+  border: 0px !important;
+  border-radius: 4px;
+  padding: 15px 50px 15px 20px !important;
+  font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+}
+.sa {
+  width:48px;
+  height:48px;
+  margin-left: -30px;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+}
+
 .gsc-control-cse table,
 .gsc-control-cse table td {
     border: 0 !important;
