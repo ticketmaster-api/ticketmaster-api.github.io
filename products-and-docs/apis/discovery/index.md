@@ -689,6 +689,33 @@ discovery/{version}/attractions.{format}
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "name,desc", "name,asc". | string            |              | No      |
 
+### Response structure
+
+{: .nested-list}
+- `_embedded` - (object) container for data
+ * `attractions` - (array) attractions
+   - `{array item object}` - attraction
+     * `id` (string) - id of attraction
+     * `type` (string) - type of attraction
+     * `url` (string) - url to attraction
+     * `name` (string) - name of attraction
+     * `locale` (string) - locale of attraction
+     * `image` (object) - image for attraction
+       - `url` (string) - url to image
+     * `_links` (object) - links to attrations
+       - `self` - (object) link to this attraction
+         * `href` - (string) reference
+- `_links` - (object) links to attrations
+ * `self` - (object) link to this attraction
+   - `href` - (string) reference
+   - `templated` - (boolean) is reference templated
+ * `next` - (object) link to the next attraction
+   - `href` - (string) reference
+   - `templated` - (boolean) is reference templated
+ * `next` - (object) link to the next attraction
+- `page` - (object) information about current page in data source
+
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1040,6 +1067,21 @@ discovery/{version}/attractions/{id}.{format}
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+### Response structure
+
+{: .nested-list}
+* `id` (string) - id of attraction
+* `type` (string) - type of attraction
+* `url` (string) - url to attraction
+* `name` (string) - name of attraction
+* `locale` (string) - locale of attraction
+* `image` (object) - image for attraction
+  - `url` (string) - url to image
+* `_links` (object) - links to attrations
+  - `self` - (object) link to this attraction
+    * `href` - (string) reference
+
 
 >[Request](#req)
 >[Response](#res)
