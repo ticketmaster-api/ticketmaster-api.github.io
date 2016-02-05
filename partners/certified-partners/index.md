@@ -4,7 +4,7 @@ logos_url: "/assets/img/partners/logos/"
 category: partners
 ---
 
-#CERTIFIED PARTNERS
+# CERTIFIED PARTNERS
 
 {: .lead .double-margin}
 Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh 
