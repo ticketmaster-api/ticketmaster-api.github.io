@@ -69,23 +69,27 @@ layout: default
     });
 
     // Get list of upcoming events
-    var uniqueUpcoming = [].map.call(document.getElementsByClassName("tag-btn"),function(item){
+    var uniqueUpcoming = [].map.call($(".event").not(".past").find(".tag-btn"),function(item){
         return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
     }).filter( function(value, index, self) {
         return self.indexOf(value) === index;
     }).join("");
 
-    $(".categories").append('<li class="tag-group upcoming" data-type="upcoming" ><a href="#upcoming" class="group-title">Upcoming</a><ul class="sections menu-highlight">'+uniqueUpcoming+'</ul></li>');
+    if(uniqueUpcoming !== ""){
+      $(".categories").append('<li class="tag-group upcoming" data-type="upcoming" ><a href="#upcoming" class="group-title">Upcoming</a><ul class="sections menu-highlight">'+uniqueUpcoming+'</ul></li>');
+    }
 
     // Get list of past events
-    var uniquePast =[].map.call($(".past").find(".tag-btn"),function(item){
+    var uniquePast =[].map.call($(".event.past").find(".tag-btn"),function(item){
         return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
     }).filter( function(value, index, self) {
         return self.indexOf(value) === index;
     }).join("");
 
+    if(uniquePast !== ""){
+      $(".categories").append('<li class="tag-group past" data-type="past" ><a href="#past" class="group-title">Past</a><ul class="sections menu-highlight">'+uniquePast+'</ul></li>');
+    }
 
-    $(".categories").append('<li class="tag-group past" data-type="past" ><a href="#past" class="group-title">Past</a><ul class="sections menu-highlight">'+uniquePast+'</ul></li>');
 
     var getActiveEvents = function(element) {
       if( $(element).hasClass("tag-menu-btn") ){
@@ -113,13 +117,11 @@ layout: default
 
       var tag = this.textContent;
 
-
       $(".tag-btn").add(".categories a").removeClass("active");
       $(".tag-btn[tag="+tag+"]").add(".categories ." + currentEventType + " a[href=#"+tag+"]").addClass("active");
 
 
-
-      if($(this).hasClass("group")) {
+      if($(this).hasClass("group-title")) {
         toShow.show();
         toHide.hide();
 
@@ -129,11 +131,16 @@ layout: default
         return;
       }
 
+      $("#event-header").html(currentEventType);
+
       toHide.hide();
       toShow.hide().filter(function() {
           return $(this).find("[tag="+tag+"]").size() !== 0;
       }).show();
+
     };
+
+
 
     $(".categories").on("click", "a", tagClickHandler);
     $(".tags").on("click", ".tag-btn", tagClickHandler);

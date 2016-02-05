@@ -5,8 +5,8 @@ title: "2 Ticketmaster at HackPoly"
 category: event
 
 date_title: "Sat-Sun, February 6-7, 2016"
-date_start: "2016-01-25 9:30:00"
-date_end: "2016-01-26 10:30:00"
+date_start: "2016-02-03 9:30:00"
+date_end: "2016-02-04 12:24:00"
 
 
 place: 

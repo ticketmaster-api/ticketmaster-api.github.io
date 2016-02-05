@@ -4,8 +4,8 @@ category: event
 title: "3 The Ticketmaster API Devjam in Scottsdale, AZ!"
 
 date_title: "Saturday, January 16, 2016"
-date_start: "2016-03-25 9:30:00"
-date_end: "2016-04-26 10:30:00"
+date_start: "2016-01-05 9:30:00"
+date_end: "2016-01-06 12:24:00"
 
 img: "/assets/img/events/devjam.jpg"
 

@@ -2,7 +2,7 @@
 layout: events
 category: events
 ---
-
+{: #event-header }
 ### Upcoming
 
 {% assign sorted_event = (site.pages | sort: 'date_start', 'last') %}
