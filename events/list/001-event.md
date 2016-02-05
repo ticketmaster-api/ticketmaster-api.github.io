@@ -1,6 +1,6 @@
 ---
 category: event
-title: "1 The Ticketmaster API Devjam in Durham, NC!"
+title: "The Ticketmaster API Devjam in Durham, NC!"
 
 date_title: "Saturday, February 27, 2016"
 date_start: "2016-03-01 9:30:00"

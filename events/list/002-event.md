@@ -1,7 +1,7 @@
 ---
 prime: true
 
-title: "2 Ticketmaster at HackPoly"
+title: "Ticketmaster at HackPoly"
 category: event
 
 date_title: "Sat-Sun, February 6-7, 2016"
