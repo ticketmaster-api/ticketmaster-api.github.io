@@ -1,6 +1,6 @@
 #search {
     div:after {
-      content: "Go";
+      content: "";
       width: 48px;
       height: 48px;
       line-height: 48px;
@@ -12,8 +12,12 @@
       position: absolute;
       right: 0;
       top: 0;
-      margin-left: -55px;
+      padding-left: -55px;
       z-index: 0;
+      background-color: #f1f4f6;
+      background-image: url("/assets/img/header/ic-search-p-1.svg");
+      background-position: center center;
+      background-repeat: no-repeat;
     }
     #cse-search-box {
       width: 0px;
@@ -25,7 +29,8 @@
       text-align: right;
       float: right;
       position: absolute;
-      right: 0;
+      right: -11px;
+      top: 0;
       &.sopen {
         width: 320px;
       }
@@ -45,10 +50,11 @@
 .sa {
   width:48px;
   height:48px;
-  margin-left: -30px;
   opacity: 0;
   position: absolute;
   z-index: 1;
+  top: 0;
+  right: 0;
 }
 
 .gsc-control-cse table,

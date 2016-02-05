@@ -86,8 +86,11 @@
                   $("input.q").focus();
                 });
 
+
                 $("input.q").blur(function(e) {
-                    $("#cse-search-box").removeClass("sopen");
+                    setTimeout(function () {
+                        $("#cse-search-box").removeClass("sopen");
+                    }, 127);
                 });
 
                 // Search [END]
