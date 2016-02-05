@@ -32,6 +32,12 @@ $(document).ready(function() {
                 .addClass('copy-btn-fs')
                 .removeClass('copy-btn')
                 .end()
+                .find('.screen-btn')
+                .attr('data-original-title', 'Exit Full Screen')
+                .end()
+                .find('.tooltip')
+                .remove()
+                .end()
                 .html();
 
             $("#modal-title").html(title);
@@ -156,9 +162,13 @@ $(document).ready(function() {
         });
 
         $(function () {
-            $('[rel="tooltip"]').tooltip({
+            $('body').tooltip({
+                selector: '[rel="tooltip"]'
+            });
+            /* $('[rel="tooltip"]').tooltip({
                 animation: true
             });
+            */
         })
 
 });
