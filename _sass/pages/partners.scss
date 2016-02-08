@@ -326,6 +326,7 @@ body .top-bar.bg-header {
 
 .nexus-form {
   font-family: $font-body;
+  margin-bottom: 96px;
   textarea {
     height: 96px;
   }
@@ -375,6 +376,13 @@ body .top-bar.bg-header {
     font-size: $size-h6;
     line-height: $line-height-h6;
     margin-top: 10px;
+
+    @media (max-width: 767px) {
+      color: $n1;
+      font-family: $font-h5;
+      font-size: $size-h4;
+      line-height: $line-height-h6;
+    }
   }
   .button-blue {
     border: none;
@@ -382,6 +390,7 @@ body .top-bar.bg-header {
     font-family: $font-bold-p;
     font-size: $size-h4;
     margin-top: 30px;
+    margin-bottom: 0;
     padding: 10px 40px;
     color: $white;
     display: inline-block;
@@ -397,5 +406,16 @@ body .top-bar.bg-header {
 
   @media (min-width: 767px) {
     margin-right: calc(25% - 15px);
+
+    /*75px - button height */
+    margin-bottom: calc(75px + 96px);
+  }
+  @media (min-width: 1199px) {
+    margin-bottom: 96px;
+  }
+  @media (max-width: 767px) {
+    /* 44px - footer top margin
+       75px - button height */
+    margin-bottom: calc(75px + 96px - 44px);
   }
 }

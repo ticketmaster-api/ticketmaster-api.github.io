@@ -53,11 +53,11 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="col-left">
     <label >Number of Ticketmaster clients</label>
-    <input type="text" min="0" name="ticketsNumber" placeholder="0000000" tabindex="6">
+    <input type="text" min="0" name="ticketsNumber" placeholder="0000000" pattern="[0-9]*" tabindex="6">
     </div>
     <div class="col-right">
     <label >Company annual revenue ($)</label>
-    <input type="text" id="tickets-number" min="0" name="ticketsNumber" placeholder="0000000" tabindex="7">
+    <input type="text" id="tickets-number" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="0000000" tabindex="7">
     </div>
     
     <label class="label-radio-group">Is product offering free or paid?</label>
