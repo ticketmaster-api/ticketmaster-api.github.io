@@ -35,7 +35,7 @@ At Ticketmaster, we are always looking for innovative products and services that
 {: .col-lg-8}
 We offer the support, knowledge and validation to make sure your solution is fully-compatible with Ticketmaster systems.  For vendors to access the Ticketmaster Ticketing System services, they must become a member of Ticketmaster’s Partner program, the costs of which help Ticketmaster offset its costs for vendor integration support.  If you are interested in finding out ways to integrate your product or service with Ticketmaster’s systems, please complete the form below: 
 
-<form class="col-lg-8 nexus-form" accept-charset="UTF-8" action="https://getsimpleform.com/messages?form_api_token=892e0c5e4c169c6128c7342614608330" method="POST">
+<form class="col-lg-8 nexus-form" accept-charset="UTF-8" action="#" method="POST">
     <div class="col-left">
         <input type="text" id="name" name="name" maxlength="255" placeholder="First name" autofocus tabindex="1">
     </div>
@@ -75,4 +75,18 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <button type="submit" class="button-blue">SEND</button>
     </div>
 </form>
+<script type="text/javascript">
+    $('.nexus-form').submit(function(){
+        $.ajax({
+          dataType: 'jsonp',
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=892e0c5e4c169c6128c7342614608330",
+          data: $('.nexus-form').serialize() 
+        }).done(function() {
+          //callback which can be used to show a thank you message
+          //and reset the form
+          alert("Thank you, for contacting us");
+        });
+    return false; //to stop the form from submitting
+    });
+</script>
 
