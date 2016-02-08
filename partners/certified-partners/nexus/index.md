@@ -1,12 +1,5 @@
 ---
 layout: partners-doc
-pname: "nexus"
-#available: true
-categories: 
-  - partner
-  - certified
-tile_logo: "nexus-logo.png"
-tile_description: "SKIDATA is ranked among the worldwide leading providers of access solutions and visitor management. With a focus on supporting operators of stadiums and arenas, SKIDATA works with clients during the entire workflow of…"
 ---
 
 {: .col-lg-12 .partner-logo-fix}
@@ -53,11 +46,11 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="col-left">
     <label >Number of Ticketmaster clients</label>
-    <input type="text" min="0" name="ticketsNumber" placeholder="0000000" pattern="[0-9]*" tabindex="6">
+    <input type="text" min="0" name="ticketsNumber" placeholder="0000000" tabindex="6">
     </div>
     <div class="col-right">
     <label >Company annual revenue ($)</label>
-    <input type="text" id="tickets-number" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="0000000" tabindex="7">
+    <input type="text" id="tickets-number" min="0" name="ticketsNumber" placeholder="0000000" tabindex="7">
     </div>
     
     <label class="label-radio-group">Is product offering free or paid?</label>
