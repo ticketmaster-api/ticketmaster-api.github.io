@@ -329,15 +329,33 @@ body .top-bar.bg-header {
   textarea {
     height: 96px;
   }
-  .col-left,
+  input[type="radio"] {
+    width: inherit;
+    margin-right: 6px;
+  }
+  .col-full {
+    input {
+      width: 100%;
+    }
+  }
+  .col-left {
+    float: left;
+    width: 47.5%;
+    input {
+      margin-right: 5%;
+      width: 100%;
+    }
+  }
   .col-right {
     float: left;
-    width: 50%;
-  }
-  .col-right {
     margin-left: 5%;
-    width: 45%;
+    width: 47.5%;
+    input {
+      margin-right: 5%;
+      width: 100%;
+    }
   }
+
   .label-radio-group{
     width: 100%;
   }
@@ -373,6 +391,23 @@ body .top-bar.bg-header {
     &:active {
       outline: none;
       text-decoration: none;
+    }
+  }
+
+  @media (min-width: 767px) {
+    label,
+    input{
+      float: left;
+      margin-right: 5%;
+      width: 47.5%;
+    }
+    input:nth-child(2n){
+      margin-right: 0;
+    }
+    label {
+      float: inherit;
+      display: inline-block;
+      width: 100%;
     }
   }
 }
