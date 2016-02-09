@@ -9,7 +9,7 @@ layout: default
 
 {% for event in site.pages %}
     {% if event.prime %}
-    <div class="events-wrapper">
+    <div class="events-wrapper top-event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}" >
         <h1>{{ event.title }}</h1>
         <div class="description col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <p>{{ event.content | markdownify }}</p>
@@ -24,7 +24,7 @@ layout: default
             <a href="{{ event.place[1] }}"><h5>{{ event.place[0] }}</h5></a>
             <p>{{ event.city }}</p>
             {% if event.rsvp %}
-                <a href="{{ event.rsvp }}" class="blue-btn">RSVP</a>
+                <a href="{{ event.rsvp }}" class="blue-btn rsvp">RSVP</a>
             {% endif %}
         </div>
     </div>
@@ -60,11 +60,14 @@ layout: default
 <script>
 
     // Hide Past events and Remove of RSVP
-    $(".event").each(function(){
+    $(".event").add(".top-event").each(function(){
         var date = new Date();
-        var eventDate = new Date($(this).data("eventEnd"));
+        var eventDate = new Date($(this).data("eventEnd").replace(" ", "T"));
         if( eventDate.getTime() < date.getTime() ){
-            $(this).addClass("past").hide().find(".rsvp").remove();
+            if($(this).hasClass("event")){
+              $(this).addClass("past").hide();
+            }
+            $(this).find(".rsvp").remove();
         }
     });
 
@@ -120,6 +123,7 @@ layout: default
       $(".tag-btn").add(".categories a").removeClass("active");
       $(".tag-btn[tag="+tag+"]").add(".categories ." + currentEventType + " a[href=#"+tag+"]").addClass("active");
 
+      $("#event-header").html(currentEventType);
 
       if($(this).hasClass("group-title")) {
         toShow.show();
@@ -131,13 +135,11 @@ layout: default
         return;
       }
 
-      $("#event-header").html(currentEventType);
 
       toHide.hide();
       toShow.hide().filter(function() {
           return $(this).find("[tag="+tag+"]").size() !== 0;
       }).show();
-
     };
 
 
