@@ -55,10 +55,10 @@ We offer the support, knowledge and validation to make sure your solution is ful
     
     <label class="label-radio-group">Is product offering free or paid?</label>
     <div class="label-radio">
-        <input type="radio" id="radio-yes" name="radio"  value="paid_Yes" required tabindex="8"/><label ><span><span></span></span>Yes</label>
+        <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label ><span><span></span></span>Paid</label>
     </div>
     <div class="label-radio">
-        <input type="radio" id="radio-no" name="radio" value="paid_No" tabindex="9"/><label ><span><span></span></span>No</label>
+        <input type="radio" id="radio-no" name="productOffering" value="free" tabindex="9"/><label ><span><span></span></span>Free</label>
     </div>
     
     <p class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</p>
@@ -72,12 +72,12 @@ We offer the support, knowledge and validation to make sure your solution is ful
     $('.nexus-form').submit(function(){
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=892e0c5e4c169c6128c7342614608330",
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=76ee6b36a22523d29942539c22273fd6",
           data: $('.nexus-form').serialize() 
         }).done(function() {
           //callback which can be used to show a thank you message
           //and reset the form
-          alert("Thank you, for contacting us");
+          alert("Thank you for contacting us. We will review and respond promptly.");
         });
     return false; //to stop the form from submitting
     });
