@@ -132,7 +132,6 @@ layout: default
         $(".events-wrapper").show();
         $(".bg-header-events").removeClass("small");
         $(this).addClass("active");
-        adjustMenuPosition();
         return;
       }
 
@@ -141,7 +140,6 @@ layout: default
       toShow.hide().filter(function() {
           return $(this).find("[tag="+tag+"]").size() !== 0;
       }).show();
-      adjustMenuPosition();
     };
 
 
