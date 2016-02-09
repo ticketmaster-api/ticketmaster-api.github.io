@@ -55,10 +55,10 @@ We offer the support, knowledge and validation to make sure your solution is ful
     
     <label class="label-radio-group">Is product offering free or paid?</label>
     <div class="label-radio">
-        <input type="radio" id="radio-yes" name="radio"  value="paid_Yes" required tabindex="8"/><label ><span><span></span></span>Yes</label>
+        <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label ><span><span></span></span>Paid</label>
     </div>
     <div class="label-radio">
-        <input type="radio" id="radio-no" name="radio" value="paid_No" tabindex="9"/><label ><span><span></span></span>No</label>
+        <input type="radio" id="radio-no" name="productOffering" value="free" tabindex="9"/><label ><span><span></span></span>Free</label>
     </div>
     
     <p class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</p>
