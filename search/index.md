@@ -11,7 +11,7 @@ layout: search
             
             window.__gcse = {
               callback: function() {
-                $('input.q').val($('input.gsc-input').val());
+                /* $('input.q').val($('input.gsc-input').val()); */
               }
             };
           
