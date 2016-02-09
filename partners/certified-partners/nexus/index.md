@@ -72,7 +72,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
     $('.nexus-form').submit(function(){
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=892e0c5e4c169c6128c7342614608330",
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=76ee6b36a22523d29942539c22273fd6",
           data: $('.nexus-form').serialize() 
         }).done(function() {
           //callback which can be used to show a thank you message
