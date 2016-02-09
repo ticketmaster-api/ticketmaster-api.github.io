@@ -77,7 +77,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
         }).done(function() {
           //callback which can be used to show a thank you message
           //and reset the form
-          alert("Thank you, for contacting us");
+          alert("Thank you for contacting us. We will review and respond promptly.");
         });
     return false; //to stop the form from submitting
     });
