@@ -7,8 +7,7 @@
   left: 0;
 }
 
-#menu-btn,
-#search {
+#menu-btn {
   float: right;
   width: 26px;
   height: 26px;
@@ -38,15 +37,20 @@
 }
 
 #search{
+  position: absolute;
   cursor: pointer;
   background-image: url('/assets/img/header/ic-search-p-1.svg');
   background-position: right center;
   background-repeat: no-repeat;
   top: 12px;
   left: 0;
-  width: 320px;
+  width: 225px;
   height: 48px;
   text-align: right;
+  z-index: 10;
+  @media #{$max-768} {
+    width: 25px;
+  }
   &.white{
     background-image: url('/assets/img/header/ic-search-white.svg');
   }
@@ -302,8 +306,6 @@ nav{
     top: 24px !important;
   }
   #search{
-    top: 26px !important;
-    left: -11px !important;
     background-image: url('/assets/img/header/ic-search-mobile.svg') !important;
     &.white{
       background-image: url('/assets/img/header/ic-search-mobile-white.svg') !important;

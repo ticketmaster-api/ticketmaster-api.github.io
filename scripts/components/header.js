@@ -93,6 +93,11 @@
                     }, 127);
                 });
 
+                $("#search").on("submit", "#cse-search-box", function (e) {
+                  if ($("input[name='q']").val() == '') {
+                      return false;
+                  }
+                });
                 // Search [END]
             }
         };
