@@ -37,6 +37,119 @@ commerce/{version}/events/{id}/offers.{format}
 | `id`       | Event ID. Required.  | string            | "05004F24E0B864B3" | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
+### Response structure
+
+{: .nested-list}
+- `limits` - (object) limits for event
+    * `max` - (object) max limit
+- `prices` - (object) - information about prices in data source
+    * `_embedded` - (array) container for prices data
+        - `type` (string) - type of price
+        - `attributes` (object) - attributes of price
+            * `currency` (string) - currency of price
+        - `relationships` (object) - available relationships
+            * `offers` (string) - currency of price
+                - `_embedded` - (array) container for data
+                    * `id` - (string) id of offers relationship
+                    * `type` - (string) type of offers relationship
+            * `price-zones` (object) - price zones
+                - `_embedded` - (array) price
+                    * `id` - (string) id of price-zone relationship
+                    * `type` - (string) type of price-zone relationship                    
+- `areas` - (object) - event areas
+    - `_embedded` - (array) container for areas data
+        * `id` - (string) current area id
+        * `type` - (string) area type
+        * `attributes` (object) - attributes of areas
+            - `rank` (string) - rank of area
+            - `name` (string) - name of area 
+            - `area-type` (string) - type of area
+        * `relationships` (object) - relationships of areas
+            - `areas` (object) - related areas
+            - `offers` (object) - related areas
+                * `_embedded` - (array) offers
+                    - `id` - (string) id of offers relationship for area
+                    - `type` - (string) type of offers relationship for area
+        * `price-zones` (string) - currency of price
+            - `_embedded` - (array) container for price-zones data
+                * `id` - (string) id of price-zone relationship for area
+                * `type` - (string) type of price-zone relationship for area
+- `passwords` - (object) - event passwords
+    - `_embedded` - (array) container for passwords data
+        * `id` - (string) current password id
+        * `type` - (string) password type
+        * `attributes` (object) - attributes of passwords
+            - `name` (string) - name of attribute for embed password 
+            - `exclusive` (boolean) - exclusiveness of password 
+            - `prompts` (array) - container for prompts data
+                * `text` (array) - text of prompt
+            - `text-label` (array) - text label of prompt
+        * `relationships` (object) - relationships of embed passwords
+            - `offers` (object) - relationship offer of embed passwords
+                * `_embedded` - (array) container for offers data
+                    - `id` - (string) id of offers relationship for password
+                    - `type` - (string) type of price-zone relationship for password
+- `_embedded` - (array) container for data
+    * `id` - (string) current id
+    * `type` - (string) type of embed
+    * `attributes` (object) - attributes of embed
+        - `name` (string) - name of embed
+        - `description` (string) - description of embed
+        - `rank` (string) - rank of embed            
+        - `currency` (string) - currency of embedded            
+        - `prices` (array) - prices for event
+            * `value` (string) - price value of embed        
+            * `total` (string) - total price of embed          
+            * `fees` (array) - container for fees data        
+                - `value` (string) - fees value of price
+                - `label` (string) - fees label of price
+                - `type` (string) - fees type of price
+            * `taxes` (array) - container for taxes data        
+                - `value` (string) - taxes value of price
+                - `label` (string) - taxes label of price
+                - `type` (string) - taxes type of price
+            * `price-zone` (string) - price-zone of embed                    
+        - `limit` (object) - limit for embed            
+            * `min` (number) - min count of tickets
+                - `max` (number) - max count of tickets
+                - `multiplies` (number) - tickets multiplies
+        - `offer-details` (object) - offer-details of embed         
+            * `text` (number) - text of offer-details
+        - `offer-type` (string) - offer-type of embed        
+        - `relationships` (object) - relationships of embed
+            * `areas` (object) - areas of relationship
+                - `_embedded` - (array) container for areas data
+                    * `id` - (string) id of area relationship
+                    * `type` - (string) type of area relationship
+            * `passwords` (object) - passwords of relationship
+                * `_embedded` - (array) container for passwords data
+                    - `id` - (string) id of password relationship
+                    - `type` - (string) type of password relationship
+            * `products` (object) - products of relationship
+                * `_embedded` - (array) container for products data
+                    - `id` - (string) id of product relationship
+                    - `type` - (string) type of product relationship
+            * `price-zones` (object) - price-zones of relationship
+                * `_embedded` - (array) container for price-zones data
+                    - `id` - (string) id of price-zones relationship 
+                    - `type` - (string) type of price-zone relationship 
+- `price-zones` - (object) - price zones
+    - `_embedded` - (array) container for price-zones data
+        * `id` - (string) current price-zone id
+        * `type` - (string) price-zone type
+        * `attributes` (object) - attributes of price-zone
+            - `currency` (string) - currency of price-zone
+            - `name` (string) - name of price-zone            
+        * `relationships` (object) - relationships of price-zones
+            - `offers` (object) - relationship offer price-zones
+                * `_embedded` - (array) container for offers data
+                    - `id` - (string) id of offer relationship for price-zones
+                    - `type` - (string) type of offer relationship for price-zones
+            - `areas` - (object) - areas of price-zones
+                - `_embedded` - (array) container for areas data
+                    * `id` - (string) id of area relationship for price-zones
+                    * `type` - (string) type of area relationship for price-zones
+
 
 >[Request](#req)
 >[Response](#res)
