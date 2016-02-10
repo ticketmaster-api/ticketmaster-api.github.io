@@ -67,6 +67,53 @@ discovery/{version}/events.{format}
 | `deviceId`   | The device making the API call. | string            |       "1"       | No      |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 
+### Response structure
+
+{: .nested-list}
+- `_embedded` - (object) container for data
+    * `events` - (array) - event
+        - `{array item object}` - event
+            * `name` (string) - name of event
+            * `locale` (string) - locale of event
+            * `eventUrl` (string) - links to event detail page
+            * `dates` (object) - dates of event
+                - `start` (object) - start of event
+                    * `dateTime` (string) - Date and Time start of event
+                    * `localDate` (string) - local Date start of event
+                    * `localTime` (string) - local Time start of event
+                - `end` (object) - end of event
+                    * `dateTime` (string) - Date and Time end of event
+                    * `localDate` (string) - local Date end of event
+                    * `localTime` (string) - local Time end of event
+                - `timezone` (string) - timezone of event
+                - `displayOptions` (object) - display options of event
+                    * `range` (object) - range of event displayed
+                        - `localStartDate` (string) - local start Date of event displayed
+                        - `localEndDate` (string) - local end Date of event displayed
+                - `status` (object) - status of event
+                    * `code` (string) - code of status
+            * `test` (boolean) - test of event
+            * `_links` (object) - links to event
+                - `self` - (object) link to this event
+                    + `href` - (string) reference
+                - `parent` - (object) link to parent event
+                    + `href` - (string) reference
+            * `id` (string) - id of event
+            * `_embedded` (object) - id of event
+            * `type` (string) - type of event
+- `_links` - (object) links to categories
+    * `self` - (object) link to this category
+        - `href` - (string) reference
+        - `templated` - (boolean) ability to be templated
+    * `next` - (object) link to the next category
+        - `href` - (string) reference
+        - `templated` - (boolean) ability to be templated
+- `page` - (object) information about current page in data source
+    * `size` - (number) count of returned categories
+    * `totalElements` - (number) total number of available elements in server
+    * `totalPages` - (number) total number of available pages in server
+    * `number` - (number) current page number counted from 0
+    
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -314,6 +361,83 @@ discovery/{version}/events/{id}.{format}
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+### Response structure
+
+{: .nested-list}
+* `name` (string) - name of event
+* `locale` (string) - locale of event
+* `eventUrl` (string) - links to event detail page
+* `promoterId` (array of numbers) - promoter Ids of event
+* `dates` (object) - dates of event
+    - `start` (object) - start of event
+        * `dateTime` (string) - Date and Time start of event
+        * `localDate` (string) - local Date start of event
+        * `localTime` (string) - local Time start of event
+    - `end` (object) - end of event
+        * `dateTime` (string) - Date and Time end of event
+        * `localDate` (string) - local Date end of event
+        * `localTime` (string) - local Time end of event
+    - `timezone` (string) - timezone of event
+    - `displayOptions` (object) - display options of event
+        * `range` (object) - range of event displayed
+            - `localStartDate` (string) - local start Date of event displayed
+            - `localEndDate` (string) - local end Date of event displayed
+    - `status` (object) - status of event
+        * `code` (string) - code of status
+* `test` (boolean) - test of event
+* `_links` (object) - links to event
+    - `self` - (object) link to this event
+        + `href` - (string) reference
+    - `categories` - (array) link to event categories
+        + `href` - (string) reference to event category
+    - `attractions` - (array) link to event attractions
+        + `href` - (string) reference to event attraction
+    - `venue` - (object) link to event venues
+        + `href` - (string) reference to event venue
+* `id` (string) - id of current event
+* `_embedded` (object) - id of event
+    - `venue` - (array) link to event venues
+        + `name` - (string) name of event venue
+        + `marketId` - (array of numbers) id of venue markets
+        + `country` - (object) name of venue
+            - `countryCode` - (string) country code of venue
+        + `state` - (object) state of venue
+            - `stateCode` - (string) state code of venue
+        + `city` - (object) city of venue
+            - `name` - (string) city name of venue
+        + `location` - (object) location of venue
+            - `latitude` - (string) latitude of venue
+            - `longitude` - (string) longitude of venue
+        + `postalCode` - (string) postal code of venue
+        + `address` - (object) address of venue
+            - `line1` (string) - street name
+            - `line2` (string) - city and state code where event happen
+        + `timeZone` (string) - time zone of event
+        + `_links` (object) - links to event
+            - `self` - (object) link to this event
+                * `href` - (string) reference
+        + `id` (string) - id of current venue
+        + `type` (string) - type of current venue
+    - `categories` - (array) link to event categories
+        + `name` - (string) name of event category
+        + `level` - (string) level of event category
+        + `_links` - (object) links to categories
+            - `self` - (object) link to this category
+                * `href` - (string) reference
+        + `id` (string) - id of current category
+        + `type` (string) - type of current category        
+    - `attractions` - (array) link to event attractions
+        + `url` - (string) url to event attraction
+        + `image` - (object) images of attraction
+            - `url` - (string) images url of event
+        + `name` - (string) name of event attraction
+        + `_links` - (object) links to attractions
+            - `self` - (object) link to this attraction
+                * `href` - (string) reference
+        + `id` (string) - id of current attraction
+        + `type` (string) - type of current attraction 
+* `type` (string) - type of event
 
 >[Request](#req)
 >[Response](#res)
@@ -706,14 +830,18 @@ discovery/{version}/attractions.{format}
        - `self` - (object) link to this attraction
          * `href` - (string) reference
 - `_links` - (object) links to attrations
- * `self` - (object) link to this attraction
-   - `href` - (string) reference
-   - `templated` - (boolean) is reference templated
- * `next` - (object) link to the next attraction
-   - `href` - (string) reference
-   - `templated` - (boolean) is reference templated
- * `next` - (object) link to the next attraction
+    * `self` - (object) link to this attraction
+        - `href` - (string) reference
+        - `templated` - (boolean) ability to be templated
+    * `next` - (object) link to the next attraction
+        - `href` - (string) reference
+        - `templated` - (boolean) ability to be templated
+    * `next` - (object) link to the next attraction
 - `page` - (object) information about current page in data source
+    * `size` - (number) count of returned categories
+    * `totalElements` - (number) total number of available elements in server
+    * `totalPages` - (number) total number of available pages in server
+    * `number` - (number) current page number counted from 0
 
 
 >[Request](#req)
@@ -1077,10 +1205,10 @@ discovery/{version}/attractions/{id}.{format}
 * `name` (string) - name of attraction
 * `locale` (string) - locale of attraction
 * `image` (object) - image for attraction
-  - `url` (string) - url to image
+    - `url` (string) - url to image
 * `_links` (object) - links to attrations
-  - `self` - (object) link to this attraction
-    * `href` - (string) reference
+    - `self` - (object) link to this attraction
+        * `href` - (string) reference
 
 
 >[Request](#req)
@@ -1183,6 +1311,35 @@ discovery/{version}/categories.{format}
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
+
+### Response structure
+
+{: .nested-list}
+- `_embedded` - (object) container for data
+    * `categories` - (array) category
+        - `{array item object}` - category
+            * `name` (string) - name of category
+            * `locale` (string) - locale of category
+            * `level` (string) - level of category
+            * `id` (string) - id of category
+            * `_links` (object) - links to attrations
+                - `self` - (object) link to this category
+                    + `href` - (string) reference
+                - `parent` - (object) link to parent category
+                    + `href` - (string) reference
+            * `type` (string) - type of category
+- `_links` - (object) links to categories
+    * `self` - (object) link to this category
+        - `href` - (string) reference
+        - `templated` - (boolean) ability to be templated
+    * `next` - (object) link to the next category
+        - `href` - (string) reference
+        - `templated` - (boolean) ability to be templated
+- `page` - (object) information about current page in data source
+    * `size` - (number) count of returned categories
+    * `totalElements` - (number) total number of available elements in server
+    * `totalPages` - (number) total number of available pages in server
+    * `number` - (number) current page number counted from 0
 
 >[Request](#req)
 >[Response](#res)
@@ -1595,6 +1752,21 @@ discovery/{version}/categories/{id}.{format}
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
 
+### Response structure
+
+{: .nested-list}
+* `name` (string) - name of category
+* `locale` (string) - locale of category
+* `level` (number) - level of category
+    - `url` (string) - url to image
+* `_links` (object) - links to categories
+    - `self` - (object) link to this category
+        * `href` - (string) reference
+    - `parent` - (object) link to parent category
+        * `href` - (string) reference
+* `id` (string) - id of category
+* `type` (string) - type of category
+        
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1695,6 +1867,41 @@ discovery/{version}/venues.{format}
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
+
+### Response structure
+
+{: .nested-list}
+- `_embedded` - (object) container for data
+    * `venues` - (array) category
+        * `name` (string) - name of category
+        * `locale` (string) - locale of category
+        * `marketId` (array) - id of supported markets
+        * `{array item number}` - category
+        * `country` (string) - country code
+        * `state` (object) - state of venue
+            - `stateCode` (string) - code of state
+        * `city` (object) - cities where event happen
+            - `name` (string) - city where event happen
+        * `postalCode` (string) - postal code of venue
+        * `address` (object) - address of event
+            - `line1` (string) - street name
+            - `line2` (string) - city and state code where event happen
+        * `timeZone` (string) - time zone of venue
+        * `_links` (object) - links to categories
+            - `self` - (object) link to this category
+                * `href` - (string) reference
+        * `id` (string) - id of category
+        * `type` (string) - type of category
+- `_links` - (object) links to categories
+    * `self` - (object) link to this category
+        - `href` - (string) reference
+        - `templated` - (boolean) ability to be templated    
+- `page` - (object) information about current page in data source
+    * `size` - (number) count of returned categories
+    * `totalElements` - (number) total number of available elements in server
+    * `totalPages` - (number) total number of available pages in server
+    * `number` - (number) current page number counted from 0
+    
 
 >[Request](#req)
 >[Response](#res)
@@ -1853,8 +2060,28 @@ discovery/{version}/venues/{id}.{format}
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
 
+### Response structure
 
-
+{: .nested-list}
+* `name` (string) - name of category
+* `locale` (string) - locale of category
+* `marketId` (array) - id of supported markets
+* `{array item number}` - category
+* `country` (string) - country code
+* `state` (object) - state of venue
+    - `stateCode` (string) - code of state
+* `city` (object) - cities where event happen
+    - `name` (string) - city where event happen
+* `postalCode` (string) - postal code of venue
+* `address` (object) - address of event
+    - `line1` (string) - street name
+    - `line2` (string) - city and state code where event happen
+* `timeZone` (string) - time zone of venue
+* `_links` (object) - links to categories
+    - `self` - (object) link to this category
+        * `href` - (string) reference
+* `id` (string) - id of category
+* `type` (string) - type of category
 
 >[Request](#req)
 >[Response](#res)
