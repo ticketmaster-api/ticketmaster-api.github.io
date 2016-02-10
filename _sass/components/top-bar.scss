@@ -36,6 +36,21 @@
   }
 }
 
+.apigee-login {
+  position: absolute;
+  right: 0;
+  top: 17px;
+  display: block;
+  float: left;
+  font-size: 16px;
+  line-height: 32px;
+  height:32px;
+  background-image: url('/assets/img/header/ic-user.svg');
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 30px;
+}
+
 #search{
   position: absolute;
   cursor: pointer;
@@ -43,7 +58,8 @@
   background-position: right center;
   background-repeat: no-repeat;
   top: 12px;
-  left: 0;
+  left: -80px;
+  margin-right: 100px;
   width: 225px;
   height: 48px;
   text-align: right;
