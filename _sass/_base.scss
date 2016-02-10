@@ -354,6 +354,9 @@ input[type=radio]:not(old):checked + label > span > span{
   .row-container {
     padding: 0 23px;
   }
+  .tooltip {
+    display: none!important;
+  }
 }
 /**/
 /*bootstrap btn*/
