@@ -327,7 +327,6 @@ body .top-bar.bg-header {
 .nexus-form {
   font-family: $font-body;
   margin-bottom: 96px;
-  padding-top: 16px; /*space for required label*/
   textarea {
     height: 96px;
     resize: vertical;
@@ -370,7 +369,7 @@ body .top-bar.bg-header {
       color: $n1;
       font-family: $font-h5;
       font-size: $size-h4;
-      line-height: $line-height-h6;
+      line-height: $line-height-h5;
     }
   }
   .button-blue {
