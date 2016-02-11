@@ -95,6 +95,10 @@
                     }, 127);
                 });
 
+                $("#search").on("click", ".search-button", function (e) {
+                    $("#cse-search-box").submit();
+                });
+
                 $("#search").on("submit", "#cse-search-box", function (e) {
                   if ($("input[name='q']").val() == '') {
                       return false;
