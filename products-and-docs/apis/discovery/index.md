@@ -1334,7 +1334,7 @@ discovery/{version}/categories.{format}
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
 
-### Response structure( {array item object} ):
+### Response structure:
 
 {: .nested-list}
 - `_embedded` (object) - container for data.
