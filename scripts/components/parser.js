@@ -96,10 +96,10 @@
                             .end()
                             .html();
 
-                        $("#modal-title").html(title);
-                        $(".modal-body").html(content);
+                        $(".fs-modal #modal-title").html(title);
+                        $(".fs-modal .modal-body").html(content);
 
-                        $(".modal-body").delegate(".lang-selector a", "click", function() {
+                        $(".fs-modal .modal-body").delegate(".lang-selector a", "click", function() {
                             $(".aside.lang-selector a").eq($(this).index()).click();
                             $(this).parent().children().removeClass("active");
                             $(this).addClass("active");
@@ -236,7 +236,7 @@
         });
 
         // Modal Copy button click
-        $(".modal-body").on("click", ".copy-btn-fs", function() {
+        $(".fs-modal .modal-body").on("click", ".copy-btn-fs", function() {
             var copyBtn = this;
             var content = copyBtn.dataset !== undefined ? this.dataset.clipboardText : copyBtn.getAttribute("data-clipboard-text");
 
@@ -268,7 +268,7 @@
         });
 
         // Modal Raw button click
-        $(".modal-body").on("click", ".raw-btn", function() {
+        $(".fs-modal .modal-body").on("click", ".raw-btn", function() {
             var rawBtn = this;
             var content = rawBtn.dataset !== undefined ? this.dataset.contentText : rawBtn.getAttribute("data-content-text");
             window.sessionStorage.setItem("content", content);
