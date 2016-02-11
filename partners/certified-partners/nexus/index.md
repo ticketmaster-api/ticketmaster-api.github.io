@@ -38,7 +38,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <input type="text" id="last-name" name="lastName" maxlength="255" placeholder="" tabindex="2">
     </div>
     <div class="col-sm-6">
-        <label for="email">Email address(required)</label>
+        <label for="email">Email address <span class="label-required">(required)</span></label>
         <input type="email" id="email" name="email" placeholder="" required tabindex="3">
     </div>
     <div class="col-sm-6">
@@ -58,7 +58,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
     <input type="text" id="tickets-number" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="" tabindex="7">
     </div>
     
-    <label class="label-radio-group">Is product offering free or paid?(required)</label>
+    <label class="label-radio-group">Is product offering free or paid? <span class="label-required">(required)</span></label>
     <div class="label-radio">
         <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label class="js-label-radio"><span><span></span></span>Paid</label>
     </div>

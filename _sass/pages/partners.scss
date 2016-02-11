@@ -357,6 +357,9 @@ body .top-bar.bg-header {
       }
     }
   }
+  .label-required {
+    font-family: $font-body;
+  }
   .company-detail {
     font-family: $font-h5;
     font-size: $size-h6;
