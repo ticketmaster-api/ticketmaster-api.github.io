@@ -48,7 +48,12 @@
   background-image: url('/assets/img/header/ic-user.svg');
   background-position: left center;
   background-repeat: no-repeat;
-  padding-left: 30px;
+  padding-left: 32px;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+    color: #009cde;
+  }
 }
 
 #search{
@@ -64,6 +69,10 @@
   height: 48px;
   text-align: right;
   z-index: 10;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
   @media #{$max-768} {
     width: 25px;
   }
