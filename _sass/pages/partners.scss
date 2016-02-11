@@ -329,28 +329,13 @@ body .top-bar.bg-header {
   margin-bottom: 96px;
   textarea {
     height: 96px;
+    resize: vertical;
   }
-  .col-full {
-    input {
-      width: 100%;
-    }
+  .col-sm-12,
+  .col-sm-6 {
+    padding-left: 0;
   }
-  .col-left {
-    float: left;
-    width: 47.5%;
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-  }
-  .col-right {
-    float: left;
-    margin-left: 5%;
-    width: 47.5%;
-    @media (max-width: 767px) {
-      margin-left: 0;
-      width: 100%;
-    }
-  }
+
   .label-radio-group{
     width: 100%;
   }
@@ -375,9 +360,9 @@ body .top-bar.bg-header {
     font-family: $font-h5;
     font-size: $size-h6;
     line-height: $line-height-h6;
-    margin-top: 10px;
+    margin-top: $base-margin;
 
-    @media (max-width: 767px) {
+    @media (max-width: 1199px) {
       color: $n1;
       font-family: $font-h5;
       font-size: $size-h4;
@@ -405,12 +390,13 @@ body .top-bar.bg-header {
   }
 
   @media (min-width: 767px) {
-    margin-right: calc(25% - 15px);
+    margin: auto 10%;
 
     /*75px - button height */
     margin-bottom: calc(75px + 96px);
   }
   @media (min-width: 1199px) {
+    margin: 0;
     margin-bottom: 96px;
   }
   @media (max-width: 767px) {

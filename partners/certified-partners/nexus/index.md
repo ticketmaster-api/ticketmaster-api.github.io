@@ -9,7 +9,7 @@ layout: partners-doc
 At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s Ticketing Services; that’s why we’ve created the Nexus Certified Partner Program.  Our goal is to work with best in breed solution providers.  
 
 
-{: .col-lg-8}
+{: .x3-margin-top .col-lg-8}
 ### Example integrations from Ticketmaster include the following
 
 
@@ -29,31 +29,36 @@ At Ticketmaster, we are always looking for innovative products and services that
 We offer the support, knowledge and validation to make sure your solution is fully-compatible with Ticketmaster systems.  For vendors to access the Ticketmaster Ticketing System services, they must become a member of Ticketmaster’s Partner program, the costs of which help Ticketmaster offset its costs for vendor integration support.  If you are interested in finding out ways to integrate your product or service with Ticketmaster’s systems, please complete the form below: 
 
 <form class="col-lg-8 nexus-form" accept-charset="UTF-8" action="#" method="POST">
-    <div class="col-left">
-        <input type="text" id="name" name="name" maxlength="255" placeholder="First name" autofocus tabindex="1">
+    <div class="col-sm-6">
+        <label for="name">First name</label>
+        <input type="text" id="first-name" name="name" maxlength="255" placeholder="" autofocus tabindex="1">
     </div>
-    <div class="col-right">
-        <input type="text" id="last-name" name="lastName" maxlength="255" placeholder="Last Name" tabindex="2">
+    <div class="col-sm-6">
+        <label for="last-name">Last name</label>
+        <input type="text" id="last-name" name="lastName" maxlength="255" placeholder="" tabindex="2">
     </div>
-    <div class="col-left">
-        <input type="email" id="email" name="email" placeholder="Email address" required tabindex="3">
+    <div class="col-sm-6">
+        <label for="email">Email address*</label>
+        <input type="email" id="email" name="email" placeholder="" required tabindex="3">
     </div>
-    <div class="col-right">
-        <input type="tel" id="phone" name="phone" placeholder="Contact number" tabindex="4">
+    <div class="col-sm-6">
+        <label for="phone">Contact number</label>
+        <input type="tel" id="phone" name="phone" placeholder="" tabindex="4">
     </div>
-    <div class="col-full">    
-        <input type="text" id="organization" name="organization" placeholder="Organization name" tabindex="5">
+    <div class="col-sm-12">
+        <label for="organization">Organization name</label>
+        <input type="text" id="organization" name="organization" placeholder="" tabindex="5">
     </div>
-    <div class="col-left">
+    <div class="col-sm-6">
     <label >Number of Ticketmaster clients</label>
-    <input type="text" min="0" name="ticketsNumber" placeholder="0000000" tabindex="6">
+    <input type="text" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="" tabindex="6">
     </div>
-    <div class="col-right">
+    <div class="col-sm-6">
     <label >Company annual revenue ($)</label>
-    <input type="text" id="tickets-number" min="0" name="ticketsNumber" placeholder="0000000" tabindex="7">
+    <input type="text" id="tickets-number" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="" tabindex="7">
     </div>
     
-    <label class="label-radio-group">Is product offering free or paid?</label>
+    <label class="label-radio-group">Is product offering free or paid?*</label>
     <div class="label-radio">
         <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label ><span><span></span></span>Paid</label>
     </div>
@@ -64,7 +69,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
     <p class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</p>
     <textarea name="companyDetail" id="company-detail-text" tabindex="10"></textarea>
 
-    <div class="col-left">
+    <div class="col-sm-6">
         <button type="submit" class="button-blue">SEND</button>
     </div>
 </form>
