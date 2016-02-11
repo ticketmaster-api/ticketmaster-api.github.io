@@ -42,7 +42,7 @@ commerce/{version}/events/{id}/offers.{format}
 {: .nested-list}
 - `limits` (object) - limits for event.
     * `max` (object) - max limit.
-- `prices` (object) - information about prices in data source.
+- `prices` (object) - prices.
     * `_embedded` (array) - container for prices data.
         + `{array item object}` - price.
             - `type` (string) - type of price.
@@ -50,17 +50,17 @@ commerce/{version}/events/{id}/offers.{format}
                 * `currency` (string) - currency of price.
             - `relationships` (object) - available relationships.
                 * `offers` (object) - related offers.
-                    - `_embedded` (array) - container for offer data.
+                    - `_embedded` (array) - container for offers.
                         + `{array item object}` - offer.
                             * `id` (string) - id of offer.
                             * `type` (string) - type of offer.
-                * `price-zones` (object) - price zones.
-                    - `_embedded` (array) - price zone.
+                * `price-zones` (object) - related price zones.
+                    - `_embedded` (array) - container for price zones.
                         + `{array item object}` - price zone.
                             * `id` (string) - id of price zone.
                             * `type` (string) - type of price zone.                 
 - `areas` (object) - event areas.
-    - `_embedded` (array) - container for areas data.
+    - `_embedded` (array) - container for areas.
         + `{array item object}` - area.
             * `id` (string) - id of area.
             * `type` (string) - type of area.
@@ -68,102 +68,102 @@ commerce/{version}/events/{id}/offers.{format}
                 - `rank` (string) - rank of area.
                 - `name` (string) - name of area.
                 - `area-type` (string) - type of area.
-            * `relationships` (object) - relationships of areas.
+            * `relationships` (object) - available relationships.
                 - `areas` (object) - related areas.
                     * `_embedded` (array) - areas.
-                        + `{array item object}` - container for areas data.
+                        + `{array item object}` - container for areas.
                             - `id` (string) - id of area.
                             - `type` (string) - type of area.
                 - `offers` (object) - related offers.
-                    * `_embedded` (array) - offers.
+                    * `_embedded` (array) - container for offers.
                         + `{array item object}` - offer.
                             - `id` (string) - id of offer.
                             - `type` (string) - type of offer.
                 - `price-zones` (object) - related price zones.
-                    * `_embedded` (array) - price zones.
+                    * `_embedded` (array) - container for price zones.
                         + `{array item object}` - price zone.
                             - `id` (string) - id of price zone.
                             - `type` (string) - type of price zone.
-- `passwords` (object) - event passwords.
-    - `_embedded` (array) - container for passwords data.
-        + `{array item object}` - container for password data.
-            * `id` (string) - current password id.
+- `passwords` (object) - passwords.
+    - `_embedded` (array) - container for passwords.
+        + `{array item object}` - password.
+            * `id` (string) - password id.
             * `type` (string) - password type.
             * `attributes` (object) - attributes of passwords.
-                - `name` (string) - name of attribute.
-                - `exclusive` (boolean) - exclusiveness of attribute.
-                - `prompts` (array) - container for prompts data.
+                - `name` (string) - name.
+                - `exclusive` (boolean) - is exclusive.
+                - `prompts` (array) - prompts.
                     + `{array item object}` - prompt.
                         * `text` (string) - text of prompt.
-                - `text-label` (string) - text label of prompt.
-            * `relationships` (object) - relationships of embed passwords.
-                - `offers` (object) - offers of relationship.
-                    * `_embedded` (array) - container for offers data.
+                - `text-label` (string) - text label.
+            * `relationships` (object) - available relationships.
+                - `offers` (object) - related offers.
+                    * `_embedded` (array) - container for offers.
                         + `{array item object}` - offer.
                             - `id` (string) - id of offer.
                             - `type` (string) - type of offer.
-- `_embedded` (array) - container for data.
-    + `{array item object}` - embedded data.
-        * `id` (string) - current id.
-        * `type` (string) - type of embed.
-        * `attributes` (object) - attributes of embed.
-            - `name` (string) - name of embed.
-            - `description` (string) - description of embed.
-            - `rank` (number) - rank of embed.
-            - `currency` (string) - currency of embedded.            
-            - `prices` (array) - prices for event.
+- `_embedded` (array) - container for offers.
+    + `{array item object}` - offer.
+        * `id` (string) - id.
+        * `type` (string) - type.
+        * `attributes` (object) - attributes of offer.
+            - `name` (string) - name.
+            - `description` (string) - description.
+            - `rank` (number) - rank.
+            - `currency` (string) - currency.            
+            - `prices` (array) - prices.
                 + `{array item object}` - price.
-                    * `value` (string) - price value of embed.        
-                    * `total` (string) - total price of embed.         
-                    * `fees` (array) - container for fees data.
+                    * `value` (string) - price value.        
+                    * `total` (string) - total price.         
+                    * `fees` (array) - fees.
                         + `{array item object}` - fee.
                             - `value` (string) - fee value.
                             - `label` (string) - fee label.
                             - `type` (string) - fee type.
-                    * `taxes` (array) - container for taxes data.
+                    * `taxes` (array) - taxes.
                         + `{array item object}` - tax.
                             - `value` (string) - tax value.
                             - `label` (string) - tax label.
                             - `type` (string) - tax type.
-                    * `price-zone` (string) - price zone of embed.                    
-            - `limit` (object) - limit for embed.
-                - `min` (number) - min count of tickets.
-                - `max` (number) - max count of tickets.
-                - `multiplies` (number) - tickets multiplies.
-            - `offer-type` (string) - offer type of embed.       
-        * `relationships` (object) - relationships of embed.
-            * `areas` (object) - areas of relationship.
-                - `_embedded` (array) - container for areas data.
-                    + `{array item object}` - embed for area.
+                    * `price-zone` (string) - price zone.                    
+            - `limit` (object) - limit.
+                - `min` (number) - min.
+                - `max` (number) - max.
+                - `multiplies` (number) - multiplies.
+            - `offer-type` (string) - offer type.       
+        * `relationships` (object) - available relationships.
+            * `areas` (object) - related areas.
+                - `_embedded` (array) - container for areas.
+                    + `{array item object}` - area.
                         * `id` (string) - id of area.
                         * `type` (string) - type of area.            
-            * `products` (object) - products of relationship.
-                * `_embedded` (array) - container for products data.
-                    + `{array item object}` - embed for product.
+            * `products` (object) - related products.
+                * `_embedded` (array) - container for products.
+                    + `{array item object}` - product.
                         - `id` (string) - id of product.
                         - `type` (string) - type of product.
-            * `price-zones` (object) - price zones of relationship.
-                * `_embedded` (array) - container for price zones data.
-                    + `{array item object}` - embeds for price zone.
+            * `price-zones` (object) - related price zones.
+                * `_embedded` (array) - container for price zones.
+                    + `{array item object}` - price zone.
                         - `id` (string) - id of price zone.
                         - `type` (string) - type of price zone.
 - `price-zones` (object) - price zones.
-    - `_embedded` (array) - container for price zones data.
-        + `{array item object}` - embed for price zone.
+    - `_embedded` (array) - container for price zones.
+        + `{array item object}` - price zone.
             * `id` (string) - price zone id.
             * `type` (string) - price zone type.
             * `attributes` (object) - attributes of price zone.
                 - `currency` (string) - currency of price zone.
                 - `name` (string) - name of price zone.
-            * `relationships` (object) - relationships of price zone.
-                - `offers` (object) - relationship offers.
-                    * `_embedded` (array) - relationship offer.
-                        + `{array item object}` - embed for offer.
+            * `relationships` (object) - available relationships.
+                - `offers` (object) - related offers.
+                    * `_embedded` (array) - container for offers.
+                        + `{array item object}` - offer.
                             - `id` (string) - id of offer.
                             - `type` (string) - type of offer.
-                - `areas` (object) - areas of price zone.
-                    - `_embedded` (array) - container for areas data.
-                        + `{array item object}` - embed for area.
+                - `areas` (object) - related areas.
+                    - `_embedded` (array) - container for areas.
+                        + `{array item object}` - area.
                             * `id` (string) - id of area.
                             * `type` (string) - type of area.
 

@@ -70,8 +70,8 @@ discovery/{version}/events.{format}
 ### Response structure:
 
 {: .nested-list}
-- `_embedded` (object) - container for data.
-    * `events` (array) - event.
+- `_embedded` (object) - container for events.
+    * `events` (array) - events.
         - `{array item object}` - event.
             * `name` (string) - name of event.
             * `locale` (string) - locale of event.
@@ -92,24 +92,76 @@ discovery/{version}/events.{format}
                         - `localEndDate` (string) - local end date of event displayed.
                 - `status` (object) - status of event.
                     * `code` (string) - code of status.
-            * `test` (boolean) - test of event.
+            * `test` (boolean) - is test.
+            * `id` (string) - id of event.
             * `_links` (object) - links to event.
                 - `self` (object) - link to this event.
                     + `href` (string) - reference.
-                - `parent` (object) - link to parent event.
-                    + `href` (string) - reference.
-            * `id` (string) - id of event.
-            * `_embedded` (object) - id of event.
+                - `categories` (array) - links to event categories.    
+                    * `{array item object}` - link.
+                        - `href` (string) - reference to event category.
+                - `attractions` (object) - links to event attractions.
+                    * `{array item object}` - link.
+                        * `href` (string) - reference to event attraction.
+                - `venue` (object) - link to event venues.
+                    * `{array item object}` - link.
+                        * `href` (string) - reference to event venue.
+            * `_embedded` (object) - container for related items.
+                - `venue` (array) - related venues.
+                    * `{array item object}` - venue.
+                        * `name` (string) - name of event venue.
+                        * `marketId` (array) - id of venue markets.
+                            - `{array item numbers}` - promoter id.
+                        * `country` (object) - country of venue.
+                            - `countryCode` (string) - country code of venue.
+                        * `state` (object) - state of venue.
+                            - `stateCode` (string) - state code of venue.
+                        * `city` (object) - city of venue.
+                            - `name` (string) - city name of venue.
+                        * `location` (object) - location of venue.
+                            - `latitude` (string) - latitude of venue.
+                            - `longitude` (string) - longitude of venue.
+                        * `postalCode` (string) - postal code of venue.
+                        * `address` (object) - address of venue.
+                            - `line1` (string) - street name.
+                            - `line2` (string) - city and state code where event happen.
+                        * `timeZone` (string) - time zone of event.
+                        * `_links` (object) - links.
+                            - `self` (object) - link to this venue.
+                                * `href` (string) - reference.
+                        * `id` (string) - id of current venue.
+                        * `type` (string) - type of current venue.
+                - `categories` (array) - related categories.
+                    + `{array item object}` - categories.
+                        * `name` (string) - name of event category.
+                        * `level` (number) - level of event category.
+                        * `_links` (object) - links to categories.
+                            - `self` (object) - link to this category.
+                                * `href` (string) - reference.
+                    * `id` (string) - id of current category.
+                    * `type` (string) - type of current category.     
+                - `attractions` (array) - related attractions.
+                    + `{array item object}` - event attractions.
+                        * `url` (string) - url to event attraction.
+                        * `image` (object) - images of attraction.
+                            - `url` (string) - images url of event.
+                        * `name` (string) - name of event attraction.
+                        * `_links` (object) - links to attractions.
+                            - `self` (object) - link to this attraction.
+                                * `href` (string) - reference.
+                        * `id` (string) - id of current attraction.
+                        * `type` (string) - type of current attraction.
+
             * `type` (string) - type of event.
-- `_links` (object) - links to categories.
-    * `self` (object) - link to this category.
+- `_links` (object) - links to data sets.
+    * `self` (object) - link to this data set.
         - `href` (string) - reference.
         - `templated` (boolean) - ability to be templated.
-    * `next` (object) - link to the next category.
+    * `next` (object) - link to the next data set.
         - `href` (string) - reference.
         - `templated` (boolean) - ability to be templated.
 - `page` (object) - information about current page in data source.
-    * `size` (number) - count of returned categories.
+    * `size` (number) - size of page.
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
     * `number` (number) - current page number counted from 0.
@@ -386,17 +438,19 @@ discovery/{version}/events/{id}.{format}
             - `localEndDate` (string) - local end date of event displayed.
     - `status` (object) - status of event.
         * `code` (string) - code of status.
-* `test` (boolean) - test of event.
+* `test` (boolean) - is test.
 * `_links` (object) - links to event.
     - `self` (object) - link to this event.
         + `href` (string) - reference.
-    - `categories` (array) - link to event categories.    
-        * `{array item object}` - promoter id.
+    - `categories` (array) - links to event categories.    
+        * `{array item object}` - link.
             - `href` (string) - reference to event category.
-    - `attractions` (object) - link to event attractions.
-        * `href` (string) - reference to event attraction.
+    - `attractions` (object) - links to event attractions.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event attraction.
     - `venue` (object) - link to event venues.
-        * `href` (string) - reference to event venue.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event venue.
 * `id` (string) - id of current event.
 * `_embedded` (object) - container for data.
     - `venue` (array) - event venues.
@@ -652,17 +706,17 @@ discovery/{version}/events/{id}/images.{format}
 ### Response structure:
 
 {: .nested-list}
-- `type` (string) - type of price
-- `id` (string) - id of offers relationship
-- `images` (array) - container for images.
+- `type` (string) - type of images set
+- `id` (string) - id of event
+- `images` (array) - images.
     * `{array item object}` - image.
         * `ratio` (string) - image ratio.
         * `url` (string) - image url.
         * `width` (string) - image width.
         * `height` (string) - image height.
         * `fallback` (boolean) - image fallback availability.
-- `_links` (object) - links to image.
-    * `self` (object) - link to this image.
+- `_links` (object) - links to images data set.
+    * `self` (object) - link to this images set.
         - `href` (string) - reference.
 
 >[Request](#req)
@@ -838,7 +892,7 @@ discovery/{version}/attractions.{format}
 ### Response structure:
 
 {: .nested-list}
-- `_embedded` (object) - container for data.
+- `_embedded` (object) - container attractions.
     * `attractions` (array) - attractions.
         - `{array item object}` - attraction.
             * `id` (string) - id of attraction.
@@ -851,16 +905,16 @@ discovery/{version}/attractions.{format}
             * `_links` (object) - links to attractions.
                 - `self` (object) - link to this attraction.
                     * `href` (string) - reference.
-- `_links` (object) - links to attractions.
-    * `self` (object) - link to this attraction.
+- `_links` (object) - links to attractions data set.
+    * `self` (object) - link to this data set.
         - `href` (string) - reference.
-        - `templated` (boolean) - ability to be templated.
-    * `next` (object) - link to the next attraction.
+        - `templated` (boolean) - is templated.
+    * `next` (object) - link to the next data set.
         - `href` (string) - reference.
-        - `templated` (boolean) - ability to be templated.
+        - `templated` (boolean) - is templated.
     * `next` (object) - link to the next attraction.
 - `page` (object) - information about current page in data source.
-    * `size` (number) - count of returned categories.
+    * `size` (number) - size of page.
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
     * `number` (number) - current page number counted from 0.
@@ -1337,28 +1391,28 @@ discovery/{version}/categories.{format}
 ### Response structure:
 
 {: .nested-list}
-- `_embedded` (object) - container for data.
-    * `categories` (array) - category.
-        - `{array item object}` - categories details.
+- `_embedded` (object) - container for categories.
+    * `categories` (array) - categories.
+        - `{array item object}` - category.
             * `name` (string) - name of category.
             * `locale` (string) - locale of category.
-            * `level` (string) - level of category.
-            * `id` (string) - id of category.
-            * `_links` (object) - links to attractions.
+            * `level` (number) - level of category.
+            * `_links` (object) - links to categories.
                 - `self` (object) - link to this category.
-                    + `href` (string) - reference.
+                    * `href` (string) - reference.
                 - `parent` (object) - link to parent category.
-                    + `href` (string) - reference.
-            * `type` (string) - type of category.
-- `_links` (object) - links to categories.
-    * `self` (object) - link to this category.
+                    * `href` (string) - reference.
+            * `id` (string) - id of category.
+            * `type` (string) - type of category.            
+- `_links` (object) - links to categories data sets.
+    * `self` (object) - link to this data set.
         - `href` (string) - reference.
         - `templated` (boolean) - ability to be templated.
-    * `next` (object) - link to the next category.
+    * `next` (object) - link to the next data set.
         - `href` (string) - reference.
         - `templated` (boolean) - ability to be templated.
 - `page` (object) - information about current page in data source.
-    * `size` (number) - count of returned categories.
+    * `size` (number) - size of page.
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
     * `number` (number) - current page number counted from 0.
@@ -1780,7 +1834,6 @@ discovery/{version}/categories/{id}.{format}
 * `name` (string) - name of category.
 * `locale` (string) - locale of category.
 * `level` (number) - level of category.
-    - `url` (string) - url to image.
 * `_links` (object) - links to categories.
     - `self` (object) - link to this category.
         * `href` (string) - reference.
@@ -1893,33 +1946,33 @@ discovery/{version}/venues.{format}
 ### Response structure:
 
 {: .nested-list}
-- `_embedded` (object) - container for data.
-    * `venues` (array) - category.
-        - `{array item object}` - category.
-            * `name` (string) - name of category.
-            * `locale` (string) - locale of category.
+- `_embedded` (object) - container for venues.
+    * `venues` (array) - venues.
+        - `{array item object}` - venue.
+            * `name` (string) - name of venue.
+            * `locale` (string) - locale of venue.
             * `marketId` (array of numbers) - id of supported markets.
             * `country` (string) - country code.
             * `state` (object) - state of venue.
                 - `stateCode` (string) - code of state.
-            * `city` (object) - cities where event happen.
-                - `name` (string) - city where event happen.
+            * `city` (object) - citiy of venue.
+                - `name` (string) - name of city.
             * `postalCode` (string) - postal code of venue.
-            * `address` (object) - address of event.
-                - `line1` (string) - street name.
-                - `line2` (string) - city and state code where event happen.
+            * `address` (object) - address of venue.
+                - `line1` (string) - address line 1.
+                - `line2` (string) - address line 2.
             * `timeZone` (string) - time zone of venue.
-            * `_links` (object) - links to categories.
-                - `self` (object) - link to this category.
+            * `_links` (object) - links to venues.
+                - `self` (object) - link to this venue.
                     * `href` (string) - reference.
-            * `id` (string) - id of category.
-            * `type` (string) - type of category.
-- `_links` (object) - links to categories.
-    * `self` (object) - link to this category.
+            * `id` (string) - id of venue.
+            * `type` (string) - type of venue.
+- `_links` (object) - links to venues data set.
+    * `self` (object) - link to this data set.
         - `href` (string) - reference.
-        - `templated` (boolean) - ability to be templated.
+        - `templated` (boolean) - is templated.
 - `page` (object) - information about current page in data source.
-    * `size` (number) - count of returned categories.
+    * `size` (number) - page size.
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
     * `number` (number) - current page number counted from 0.
@@ -2085,24 +2138,24 @@ discovery/{version}/venues/{id}.{format}
 ### Response structure:
 
 {: .nested-list}
-* `name` (string) - name of category.
-* `locale` (string) - locale of category.
+* `name` (string) - name of venue.
+* `locale` (string) - locale of venue.
 * `marketId` (array of numbers) - id of supported markets.
 * `country` (string) - country code.
 * `state` (object) - state of venue.
     - `stateCode` (string) - code of state.
-* `city` (object) - cities where event happen.
-    - `name` (string) - city where event happen.
+* `city` (object) - citiy of venue.
+    - `name` (string) - name of city.
 * `postalCode` (string) - postal code of venue.
-* `address` (object) - address of event.
-    - `line1` (string) - street name.
-    - `line2` (string) - city and state code where event happen.
+* `address` (object) - address of venue.
+    - `line1` (string) - address line 1.
+    - `line2` (string) - address line 2.
 * `timeZone` (string) - time zone of venue.
-* `_links` (object) - links to categories.
-    - `self` (object) - link to this category.
+* `_links` (object) - links to venues.
+    - `self` (object) - link to this venue.
         * `href` (string) - reference.
-* `id` (string) - id of category.
-* `type` (string) - type of category.
+* `id` (string) - id of venue.
+* `type` (string) - type of venue.
 
 >[Request](#req)
 >[Response](#res)
