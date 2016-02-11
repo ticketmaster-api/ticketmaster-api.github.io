@@ -217,6 +217,7 @@ input {
   margin-bottom: 24px;
   border-radius: 4px;
   outline: none;
+  height: 48px;
 }
 textarea {
   border-radius: 4px;
@@ -225,6 +226,10 @@ input,textarea {
   width: 100%;
   border: 1px solid #CCCCCC;
   padding: 8px 16px;
+  &:focus {
+    border-color: $p1;
+    outline: 0px none;
+  }
 }
 /*
 * Custom checker

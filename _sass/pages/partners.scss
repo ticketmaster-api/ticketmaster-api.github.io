@@ -327,6 +327,7 @@ body .top-bar.bg-header {
 .nexus-form {
   font-family: $font-body;
   margin-bottom: 96px;
+  padding-top: 16px; /*space for required label*/
   textarea {
     height: 96px;
     resize: vertical;
@@ -355,6 +356,14 @@ body .top-bar.bg-header {
         display: inline;
       }
     }
+  }
+  .label-required {
+    font-family: $font-caption;
+    font-size: $size-h6;
+    right: 0px;
+    top: 0px;
+    padding-right: 30px;
+    position: absolute;
   }
   .company-detail {
     font-family: $font-h5;
@@ -386,6 +395,7 @@ body .top-bar.bg-header {
     &:active {
       outline: none;
       text-decoration: none;
+      background-color: $p1b;
     }
   }
 

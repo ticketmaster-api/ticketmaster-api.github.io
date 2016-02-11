@@ -29,6 +29,7 @@ At Ticketmaster, we are always looking for innovative products and services that
 We offer the support, knowledge and validation to make sure your solution is fully-compatible with Ticketmaster systems.  For vendors to access the Ticketmaster Ticketing System services, they must become a member of Ticketmaster’s Partner program, the costs of which help Ticketmaster offset its costs for vendor integration support.  If you are interested in finding out ways to integrate your product or service with Ticketmaster’s systems, please complete the form below: 
 
 <form class="col-lg-8 nexus-form" accept-charset="UTF-8" action="#" method="POST">
+    <div class="label-required">*Required</div>
     <div class="col-sm-6">
         <label for="name">First name</label>
         <input type="text" id="first-name" name="name" maxlength="255" placeholder="" autofocus tabindex="1">
@@ -60,10 +61,10 @@ We offer the support, knowledge and validation to make sure your solution is ful
     
     <label class="label-radio-group">Is product offering free or paid?*</label>
     <div class="label-radio">
-        <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label ><span><span></span></span>Paid</label>
+        <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label class="js-label-radio"><span><span></span></span>Paid</label>
     </div>
     <div class="label-radio">
-        <input type="radio" id="radio-no" name="productOffering" value="free" tabindex="9"/><label ><span><span></span></span>Free</label>
+        <input type="radio" id="radio-no" name="productOffering" value="free" tabindex="9"/><label class="js-label-radio"><span><span></span></span>Free</label>
     </div>
     
     <p class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</p>
@@ -73,7 +74,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <button type="submit" class="button-blue">SEND</button>
     </div>
 </form>
-<script type="text/javascript">
+<script type="text/javascript">    
     $('.nexus-form').submit(function(){
         $.ajax({
           dataType: 'jsonp',
@@ -85,6 +86,6 @@ We offer the support, knowledge and validation to make sure your solution is ful
           alert("Thank you for contacting us. We will review and respond promptly.");
         });
     return false; //to stop the form from submitting
-    });
+    });    
 </script>
 
