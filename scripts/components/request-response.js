@@ -40,10 +40,10 @@ $(document).ready(function() {
                 .end()
                 .html();
 
-            $("#modal-title").html(title);
-            $(".modal-body").html(content);
+            $(".fs-modal #modal-title").html(title);
+            $(".fs-modal .modal-body").html(content);
 
-            $(".modal-body").delegate(".reqres a", "click", function() {
+            $(".fs-modal .modal-body").delegate(".reqres a", "click", function() {
                 $(this).parent().children().removeClass("active");
                 $(this).addClass("active");
                 $(this).parents().closest(".modal-body").children().removeClass("active");
