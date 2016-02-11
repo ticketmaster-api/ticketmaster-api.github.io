@@ -641,7 +641,7 @@
   }
 }
 
-body .modal {
+.fs-modal {
   text-align: center;
   padding: 0!important;
   #copy-clip {
@@ -711,7 +711,7 @@ body .modal {
   }
 }
 
-body .modal:before {
+.fs-modal:before {
   content: '';
   display: inline-block;
   height: 100%;
@@ -719,14 +719,14 @@ body .modal:before {
   margin-right: -4px; /* Adjusts for spacing */
 }
 
-body .modal-dialog {
+.fs-modal .modal-dialog {
   display: inline-block;
   text-align: left;
   vertical-align: top;
   width: 96%;
 }
 
-body .modal-header .close {
+.fs-modal .modal-header .close {
   position: absolute;
   right: 10px;
   top: 20px;
@@ -744,20 +744,20 @@ body .modal-header .close {
   }
 }
 
-body .modal-content {
+.fs-modal .modal-content {
   border: none;
   border-radius: 0px;
   box-shadow: none;
 }
 
-.modal-header {
+.fs-modal .modal-header {
   border-bottom: none;
   padding-top: 40px;
   h4 {
     font-size: 2.25em;
   }
 }
-.modal-body {
+.fs-modal .modal-body {
   padding-top: 0;
   blockquote {
     border: none;
