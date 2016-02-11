@@ -30,11 +30,11 @@
       @media #{$max-1200}{
         top: 0px!important;
         background-image: url('/assets/img/header/ic-search-mobile.svg') !important;
-        right: 0px!important;
+        right: -3px!important;
       }
       @media #{$max-768} {
         top: 0px!important;
-        right: 0px!important;
+        right: -3px!important;
         background-image: url('/assets/img/header/ic-search-mobile.svg') !important;
       }
     }

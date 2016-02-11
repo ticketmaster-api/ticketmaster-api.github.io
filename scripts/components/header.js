@@ -82,6 +82,7 @@
 
                 // Search [START]
                 $(".top-bar").on("click", "#search", function (e) {
+                  $(this).addClass("smopen");
                   $("#cse-search-box").addClass("sopen");
                   $("input.q").focus();
                 });
@@ -90,6 +91,7 @@
                 $("input.q").blur(function(e) {
                     setTimeout(function () {
                         $("#cse-search-box").removeClass("sopen");
+                        $("#search").removeClass("smopen");
                     }, 127);
                 });
 
