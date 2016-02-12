@@ -10,7 +10,8 @@
             additionalScrollSpace: 50,
             cssClass: 'table_collapse',
             cssClassBtn: 'table_collapse__btn',
-            cssClassBtnClose: 'table_collapse__btn-collapsed'
+            cssClassInner: 'table_collapse__inner',
+            cssClassCollapsed: 'table_collapse-collapsed'
         },
         settings = $.extend( {}, defaults, options),
         $htmlBody = $('body, html'),
@@ -18,28 +19,30 @@
 
         return this.each(function() {
             var $this = $(this),
-                originalHeight = Number($this.outerHeight(true));
+                originalHeight = parseInt($this.outerHeight(true)) - parseInt($this.css('margin-top'));
 
             if(originalHeight > settings.fixedHeight){
                 originalHeight += settings.separationLineHeight;
-                $this.wrap('<div></div>');
+                var wrapper = "<div class='" + settings.cssClass + " " + settings.cssClassCollapsed + "'>" +
+                    "<div class='" + settings.cssClassInner + "' style='height:" + settings.fixedHeight + "px'></div>" +
+                    "</div>";
+                $this.wrap(wrapper);
 
                 var $btn = $('<div></div>', {
-                        'class': settings.cssClassBtn + ' ' + settings.cssClassBtnClose
+                        'class': settings.cssClassBtn
                     }),
-                    $tableCollapse = $this.parent()
-                        .addClass(settings.cssClass)
-                        .css({height: settings.fixedHeight});
+                    $tableCollapseInner = $this.parent(),
+                    $tableCollapse = $tableCollapseInner.parent();
 
-                $this.after($btn);
+                $tableCollapseInner.after($btn);
 
                 (function setToggle(show){
                     $btn.one('click', function(){
                         var newHeight = originalHeight;
                         if(show){
-                            $btn.removeClass(settings.cssClassBtnClose);
+                            $tableCollapse.removeClass(settings.cssClassCollapsed);
                         }else{
-                            $btn.addClass(settings.cssClassBtnClose);
+                            $tableCollapse.addClass(settings.cssClassCollapsed);
                             newHeight = settings.fixedHeight;
                             // Scroll up window if wrapper head invisible
                             if(settings.scrollUpOnCollapse){
@@ -51,7 +54,7 @@
                             }
                         }
 
-                        $tableCollapse.css({
+                        $tableCollapseInner.css({
                             height: newHeight + 'px'
                         });
 

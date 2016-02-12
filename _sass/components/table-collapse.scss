@@ -1,17 +1,22 @@
 
-.table_collapse{
-  @include transition(0.5s);
-  overflow: hidden;
+.table_collapse {
   position: relative;
   margin-bottom: 5px;
+  padding-top: 24px;
   &:before {
     content: '';
     position: absolute;
     left: 0;
+    right: -1px;
     bottom: 0;
-    width: 100%;
     height: 30px;
     @include gradient-vertical-three-colors($start-color: rgba(255, 255, 255, 0), $mid-color: #ffffff, $color-stop: 50%, $end-color: #ffffff);
+  }
+
+  &__inner {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    @include transition(0.5s);
   }
 
   &__btn {
@@ -23,8 +28,18 @@
     margin-left: -10px;
     cursor: pointer;
     background: url("/assets/img/products-and-docs/ic-chevron-open.svg") no-repeat center bottom;
-    &-collapsed {
+  }
+
+  &-collapsed {
+    .table_collapse__btn {
       background-image: url("/assets/img/products-and-docs/ic-chevron.svg");
     }
+    .table_collapse__inner {
+      overflow-y: auto;
+    }
   }
+}
+// TODO: fix it
+.documentation .content .article-wrapper .table_collapse .table-wrapper{
+  margin-top: 0;
 }
