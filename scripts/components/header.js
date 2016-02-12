@@ -81,6 +81,7 @@
                 });
 
                 // Search [START]
+
                 $(".top-bar").on("click", "#search", function (e) {
                   $(this).addClass("smopen");
                   $("#cse-search-box").addClass("sopen");
@@ -103,6 +104,7 @@
                       return false;
                   }
                 });
+
                 // Search [END]
             }
         };
