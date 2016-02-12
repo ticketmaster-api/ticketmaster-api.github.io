@@ -1,0 +1,30 @@
+
+.table_collapse{
+  @include transition(0.5s);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    @include gradient-vertical-three-colors($start-color: rgba(255, 255, 255, 0), $mid-color: #ffffff, $color-stop: 50%, $end-color: #ffffff);
+  }
+
+  &__btn {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    cursor: pointer;
+    background: url("/assets/img/products-and-docs/ic-chevron-open.svg") no-repeat center bottom;
+    &-collapsed {
+      background-image: url("/assets/img/products-and-docs/ic-chevron.svg");
+    }
+  }
+}
