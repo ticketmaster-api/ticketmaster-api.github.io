@@ -87,7 +87,6 @@
                   $("input.q").focus();
                 });
 
-
                 $("input.q").blur(function(e) {
                     setTimeout(function () {
                         $("#cse-search-box").removeClass("sopen");
