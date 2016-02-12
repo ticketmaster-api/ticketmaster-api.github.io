@@ -28,7 +28,8 @@ At Ticketmaster, we are always looking for innovative products and services that
 {: .col-lg-8}
 We offer the support, knowledge and validation to make sure your solution is fully-compatible with Ticketmaster systems.  For vendors to access the Ticketmaster Ticketing System services, they must become a member of Ticketmaster’s Partner program, the costs of which help Ticketmaster offset its costs for vendor integration support.  If you are interested in finding out ways to integrate your product or service with Ticketmaster’s systems, please complete the form below: 
 
-<form class="col-lg-8 nexus-form" accept-charset="UTF-8" action="#" method="POST">    
+<div class="col-sm-12 col-lg-8 nexus-form">
+<form accept-charset="UTF-8" action="#" method="POST">    
     <div class="col-sm-6">
         <label for="name">First name</label>
         <input type="text" id="first-name" name="name" maxlength="255" placeholder="" autofocus tabindex="1">
@@ -66,13 +67,15 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <input type="radio" id="radio-no" name="productOffering" value="free" tabindex="9"/><label class="js-label-radio"><span><span></span></span>Free</label>
     </div>
     
-    <p class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</p>
-    <textarea name="companyDetail" id="company-detail-text" tabindex="10"></textarea>
-
+    <div class="col-sm-12">
+        <p class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</p>
+        <textarea name="companyDetail" id="company-detail-text" tabindex="10"></textarea>
+    </div>
     <div class="col-sm-6">
         <button type="submit" class="button-blue">SEND</button>
     </div>
 </form>
+</div>
 <script type="text/javascript">    
     $('.nexus-form').submit(function(){
         $.ajax({
