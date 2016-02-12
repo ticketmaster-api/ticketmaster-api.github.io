@@ -5,12 +5,12 @@ categories:
 - discovery
 ---
 
-#Discovery API
+# Discovery API
 
 Use the Discovery API to search, look up and find events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.
 {: .lead .article}
 
-####Developer Console
+#### Developer Console
 {: .aside .gray}
 
 Make live API calls right now in the interactive docs:
@@ -31,7 +31,7 @@ Example: `https://app.ticketmaster.com/discovery/v1/events.json?apikey=3QIvq55bS
 `https://app.ticketmaster.com/discovery/{API version}`
 
 
-##Search Events
+## Search Events
 {: .article .console-link #srch-events }
 
 **Method:** GET.
@@ -41,14 +41,14 @@ Returns the 20 most recent events for the authenticating user.
 discovery/{version}/events.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v1"         | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -67,6 +67,105 @@ discovery/{version}/events.{format}
 | `deviceId`   | The device making the API call. | string            |       "1"       | No      |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container for events.
+    * `events` (array) - events.
+        - `{array item object}` - event.
+            * `name` (string) - name of event.
+            * `locale` (string) - locale of event.
+            * `eventUrl` (string) - links to event detail page.
+            * `dates` (object) - dates of event.
+                - `start` (object) - start of event.
+                    * `dateTime` (string) - date and time start of event.
+                    * `localDate` (string) - local date start of event.
+                    * `localTime` (string) - local time start of event.
+                - `end` (object) - end of event.
+                    * `dateTime` (string) - date and time end of event.
+                    * `localDate` (string) - local date end of event.
+                    * `localTime` (string) - local time end of event.
+                - `timezone` (string) - time zone of event.
+                - `displayOptions` (object) - display options of event.
+                    * `range` (object) - range of event displayed.
+                        - `localStartDate` (string) - local start date of event displayed.
+                        - `localEndDate` (string) - local end date of event displayed.
+                - `status` (object) - status of event.
+                    * `code` (string) - code of status.
+            * `test` (boolean) - is test.
+            * `id` (string) - id of event.
+            * `_links` (object) - links to event.
+                - `self` (object) - link to this event.
+                    + `href` (string) - reference.
+                - `categories` (array) - links to event categories.    
+                    * `{array item object}` - link.
+                        - `href` (string) - reference to event category.
+                - `attractions` (object) - links to event attractions.
+                    * `{array item object}` - link.
+                        * `href` (string) - reference to event attraction.
+                - `venue` (object) - link to event venues.
+                    * `{array item object}` - link.
+                        * `href` (string) - reference to event venue.
+            * `_embedded` (object) - container for related items.
+                - `venue` (array) - related venues.
+                    * `{array item object}` - venue.
+                        * `name` (string) - name of event venue.
+                        * `marketId` (array) - id of venue markets.
+                            - `{array item numbers}` - promoter id.
+                        * `country` (object) - country of venue.
+                            - `countryCode` (string) - country code of venue.
+                        * `state` (object) - state of venue.
+                            - `stateCode` (string) - state code of venue.
+                        * `city` (object) - city of venue.
+                            - `name` (string) - city name of venue.
+                        * `location` (object) - location of venue.
+                            - `latitude` (string) - latitude of venue.
+                            - `longitude` (string) - longitude of venue.
+                        * `postalCode` (string) - postal code of venue.
+                        * `address` (object) - address of venue.
+                            - `line1` (string) - street name.
+                            - `line2` (string) - city and state code where event happen.
+                        * `timeZone` (string) - time zone of event.
+                        * `_links` (object) - links.
+                            - `self` (object) - link to this venue.
+                                * `href` (string) - reference.
+                        * `id` (string) - id of current venue.
+                        * `type` (string) - type of current venue.
+                - `categories` (array) - related categories.
+                    + `{array item object}` - categories.
+                        * `name` (string) - name of event category.
+                        * `level` (number) - level of event category.
+                        * `_links` (object) - links to categories.
+                            - `self` (object) - link to this category.
+                                * `href` (string) - reference.
+                    * `id` (string) - id of current category.
+                    * `type` (string) - type of current category.     
+                - `attractions` (array) - related attractions.
+                    + `{array item object}` - event attractions.
+                        * `url` (string) - url to event attraction.
+                        * `image` (object) - images of attraction.
+                            - `url` (string) - images url of event.
+                        * `name` (string) - name of event attraction.
+                        * `_links` (object) - links to attractions.
+                            - `self` (object) - link to this attraction.
+                                * `href` (string) - reference.
+                        * `id` (string) - id of current attraction.
+                        * `type` (string) - type of current attraction.
+
+            * `type` (string) - type of event.
+- `_links` (object) - links to data sets.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+    * `next` (object) - link to the next data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - size of page.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+    
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -284,11 +383,12 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}'
 {% endhighlight %}
 
 
-##Get Event Details
+## Get Event Details
 {: .article .console-link #event-details }
 
 **Method:** GET.
@@ -299,7 +399,7 @@ discovery/{version}/events/{id}.{format}
 {: .code .red}
 
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -307,12 +407,97 @@ discovery/{version}/events/{id}.{format}
 | `id`       | Event ID. Required.  | string            | "29004F223C406ABF" | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+* `name` (string) - name of event.
+* `locale` (string) - locale of event.
+* `eventUrl` (string) - links to event detail page.
+* `promoterId` (array) - promoter ids of event.
+    - `{array item numbers}` - promoter id.
+* `dates` (object) - dates of event.
+    - `start` (object) - start of event.
+        * `dateTime` (string) - date and time start of event.
+        * `localDate` (string) - local date start of event.
+        * `localTime` (string) - local time start of event.
+    - `end` (object) - end of event.
+        * `dateTime` (string) - date and time end of event.
+        * `localDate` (string) - local date end of event.
+        * `localTime` (string) - local time end of event.
+    - `timezone` (string) - time zone of event.
+    - `displayOptions` (object) - display options of event.
+        * `range` (object) - range of event displayed.
+            - `localStartDate` (string) - local start date of event displayed.
+            - `localEndDate` (string) - local end date of event displayed.
+    - `status` (object) - status of event.
+        * `code` (string) - code of status.
+* `test` (boolean) - is test.
+* `_links` (object) - links to event.
+    - `self` (object) - link to this event.
+        + `href` (string) - reference.
+    - `categories` (array) - links to event categories.    
+        * `{array item object}` - link.
+            - `href` (string) - reference to event category.
+    - `attractions` (object) - links to event attractions.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event attraction.
+    - `venue` (object) - link to event venues.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event venue.
+* `id` (string) - id of current event.
+* `_embedded` (object) - container for data.
+    - `venue` (array) - event venues.
+        * `{array item object}` - event venues.
+            * `name` (string) - name of event venue.
+            * `marketId` (array) - id of venue markets.
+                - `{array item numbers}` - promoter id.
+            * `country` (object) - country of venue.
+                - `countryCode` (string) - country code of venue.
+            * `state` (object) - state of venue.
+                - `stateCode` (string) - state code of venue.
+            * `city` (object) - city of venue.
+                - `name` (string) - city name of venue.
+            * `location` (object) - location of venue.
+                - `latitude` (string) - latitude of venue.
+                - `longitude` (string) - longitude of venue.
+            * `postalCode` (string) - postal code of venue.
+            * `address` (object) - address of venue.
+                - `line1` (string) - street name.
+                - `line2` (string) - city and state code where event happen.
+            * `timeZone` (string) - time zone of event.
+            * `_links` (object) - links to event.
+                - `self` (object) - link to this event.
+                    * `href` (string) - reference.
+            * `id` (string) - id of current venue.
+            * `type` (string) - type of current venue.
+    - `categories` (array) - link to event categories.
+        + `{array item object}` - event categories.
+            * `name` (string) - name of event category.
+            * `level` (number) - level of event category.
+            * `_links` (object) - links to categories.
+                - `self` (object) - link to this category.
+                    * `href` (string) - reference.
+        * `id` (string) - id of current category.
+        * `type` (string) - type of current category.     
+    - `attractions` (array) - event attractions.
+        + `{array item object}` - event attractions.
+            * `url` (string) - url to event attraction.
+            * `image` (object) - images of attraction.
+                - `url` (string) - images url of event.
+            * `name` (string) - name of event attraction.
+            * `_links` (object) - links to attractions.
+                - `self` (object) - link to this attraction.
+                    * `href` (string) - reference.
+            * `id` (string) - id of current attraction.
+            * `type` (string) - type of current attraction.
+* `type` (string) - type of event.
 
 >[Request](#req)
 >[Response](#res)
@@ -492,14 +677,15 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}'
 {% endhighlight %}
 
 
 
 
 
-##Search Event Images
+## Search Event Images
 {: .article .console-link #event-img}
 
 **Method:** GET.
@@ -509,13 +695,29 @@ Returns all the images for an event by ID. If an event does not have an image fo
 {: .code .red}
 discovery/{version}/events/{id}/images.{format}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v1"         | Yes      |
 | `id`       | Event ID.            | string            | "0B004F0401BD55E5" | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Response structure:
+
+{: .nested-list}
+- `type` (string) - type of images set
+- `id` (string) - id of event
+- `images` (array) - images.
+    * `{array item object}` - image.
+        * `ratio` (string) - image ratio.
+        * `url` (string) - image url.
+        * `width` (string) - image width.
+        * `height` (string) - image height.
+        * `fallback` (boolean) - image fallback availability.
+- `_links` (object) - links to images data set.
+    * `self` (object) - link to this images set.
+        - `href` (string) - reference.
 
 >[Request](#req)
 >[Response](#res)
@@ -628,7 +830,7 @@ Set-Cookie: ****
     }
   }
 }
-}
+
 {% endhighlight %}
 
 {: .aside}
@@ -654,12 +856,13 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}'
 {% endhighlight %}
 
 
 {: .article .console-link #search-attractions}
-##Search Attractions
+## Search Attractions
 
 **Method:** GET.
 Authentication required..
@@ -668,14 +871,14 @@ Search Attractions!
 {: .code .red}
 discovery/{version}/attractions.{format}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v1"         | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -685,6 +888,37 @@ discovery/{version}/attractions.{format}
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "name,desc", "name,asc". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container attractions.
+    * `attractions` (array) - attractions.
+        - `{array item object}` - attraction.
+            * `id` (string) - id of attraction.
+            * `type` (string) - type of attraction.
+            * `url` (string) - url to attraction.
+            * `name` (string) - name of attraction.
+            * `locale` (string) - locale of attraction.
+            * `image` (object) - image for attraction.
+                - `url` (string) - url to attraction image.
+            * `_links` (object) - links to attractions.
+                - `self` (object) - link to this attraction.
+                    * `href` (string) - reference.
+- `_links` (object) - links to attractions data set.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - is templated.
+    * `next` (object) - link to the next data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - is templated.
+    * `next` (object) - link to the next attraction.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - size of page.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+
 
 >[Request](#req)
 >[Response](#res)
@@ -1005,13 +1239,14 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}'
 {% endhighlight %}
 
 
 
 {: .article .console-link #attraction-details}
-##Get Attraction Details
+## Get Attraction Details
 
 **Method:** GET.
 Authentication required.
@@ -1020,7 +1255,7 @@ Search Attractions!
 discovery/{version}/attractions/{id}.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1030,25 +1265,40 @@ discovery/{version}/attractions/{id}.{format}
 
 
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
 
+### Response structure:
+
+{: .nested-list}
+* `url` (string) - url to attraction.
+* `name` (string) - name of attraction.
+* `locale` (string) - locale of attraction.
+* `image` (object) - image for attraction.
+    - `url` (string) - url to image.
+* `_links` (object) - links to attractions.
+    - `self` (object) - link to this attraction.
+        * `href` (string) - reference.
+* `id` (string) - id of attraction.
+* `type` (string) - type of attraction.
+
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
 
-{% highlight http %}
+{% highlight HTTP %}
 GET /discovery/v1/attractions/768011.json?apikey=**** HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight http %}
+{% highlight HTTP %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers: origin, x-requested-with, accept
 Access-Control-Allow-Origin: *
@@ -1103,14 +1353,15 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}'
 {% endhighlight %}
 
 
 
 
 {: .article .console-link #search-categories}
-##Search Categories
+## Search Categories
 
 **Method:** GET.
 Authentication required.
@@ -1119,14 +1370,14 @@ Search Categories!
 discovery/{version}/categories.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |     "v1"           | Yes      |
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1137,18 +1388,47 @@ discovery/{version}/categories.{format}
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
 
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container for categories.
+    * `categories` (array) - categories.
+        - `{array item object}` - category.
+            * `name` (string) - name of category.
+            * `locale` (string) - locale of category.
+            * `level` (number) - level of category.
+            * `_links` (object) - links to categories.
+                - `self` (object) - link to this category.
+                    * `href` (string) - reference.
+                - `parent` (object) - link to parent category.
+                    * `href` (string) - reference.
+            * `id` (string) - id of category.
+            * `type` (string) - type of category.            
+- `_links` (object) - links to categories data sets.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+    * `next` (object) - link to the next data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - size of page.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
 
-{% highlight http %}
+{% highlight HTTP %}
 GET /discovery/v1/categories.json?apikey=**** HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight HTTP %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers: origin, x-requested-with, accept
 Access-Control-Allow-Origin: *
@@ -1516,13 +1796,14 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}'
 {% endhighlight %}
 
 
 
 {: .article .console-link #category-details}
-##Get Category Details
+## Get Category Details
 
 **Method:** GET.
 Authentication required.
@@ -1531,7 +1812,7 @@ Returns the category detail by ID.
 {: .code .red}
 discovery/{version}/categories/{id}.{format}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1540,25 +1821,39 @@ discovery/{version}/categories/{id}.{format}
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
 
+### Response structure:
+
+{: .nested-list}
+* `name` (string) - name of category.
+* `locale` (string) - locale of category.
+* `level` (number) - level of category.
+* `_links` (object) - links to categories.
+    - `self` (object) - link to this category.
+        * `href` (string) - reference.
+    - `parent` (object) - link to parent category.
+        * `href` (string) - reference.
+* `id` (string) - id of category.
+* `type` (string) - type of category.
+        
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
 
-{% highlight http %}
+{% highlight HTTP %}
 GET /discovery/v1/categories/203.json?apikey=**** HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight http %}
+{% highlight HTTP %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers: origin, x-requested-with, accept
 Access-Control-Allow-Origin: *
@@ -1613,13 +1908,14 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}'
 {% endhighlight %}
 
 
 
 {: .article .console-link #search-venues}
-##Search Venues
+## Search Venues
 
 **Method:** GET.
 Authentication required.
@@ -1629,14 +1925,14 @@ discovery/{version}/venues.{format}
 {: .code .red}
 
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |     "v1"           | Yes      |
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1647,18 +1943,53 @@ discovery/{version}/venues.{format}
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
 
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container for venues.
+    * `venues` (array) - venues.
+        - `{array item object}` - venue.
+            * `name` (string) - name of venue.
+            * `locale` (string) - locale of venue.
+            * `marketId` (array of numbers) - id of supported markets.
+            * `country` (string) - country code.
+            * `state` (object) - state of venue.
+                - `stateCode` (string) - code of state.
+            * `city` (object) - citiy of venue.
+                - `name` (string) - name of city.
+            * `postalCode` (string) - postal code of venue.
+            * `address` (object) - address of venue.
+                - `line1` (string) - address line 1.
+                - `line2` (string) - address line 2.
+            * `timeZone` (string) - time zone of venue.
+            * `_links` (object) - links to venues.
+                - `self` (object) - link to this venue.
+                    * `href` (string) - reference.
+            * `id` (string) - id of venue.
+            * `type` (string) - type of venue.
+- `_links` (object) - links to venues data set.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - is templated.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - page size.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+    
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
 
-{% highlight http %}
+{% highlight HTTP %}
 GET /discovery/v1/venues.json?apikey=****&keyword=UCV HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: http://app.ticketmaster.com
 Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight http %}
+{% highlight HTTP %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers: origin, x-requested-with, accept
 Access-Control-Allow-Origin: *
@@ -1774,12 +2105,13 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}'
 {% endhighlight %}
 
 
 {: .article .console-link #venue-details}
-##Get Venue Details
+## Get Venue Details
 
 **Method:** GET.
 Authentication required.
@@ -1788,7 +2120,7 @@ Returns the venue detail by ID.
 discovery/{version}/venues/{id}.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1796,28 +2128,47 @@ discovery/{version}/venues/{id}.{format}
 | `id`       | Venue ID.            | string            |     "90150"          | Yes      |
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
 
+### Response structure:
 
-
+{: .nested-list}
+* `name` (string) - name of venue.
+* `locale` (string) - locale of venue.
+* `marketId` (array of numbers) - id of supported markets.
+* `country` (string) - country code.
+* `state` (object) - state of venue.
+    - `stateCode` (string) - code of state.
+* `city` (object) - citiy of venue.
+    - `name` (string) - name of city.
+* `postalCode` (string) - postal code of venue.
+* `address` (object) - address of venue.
+    - `line1` (string) - address line 1.
+    - `line2` (string) - address line 2.
+* `timeZone` (string) - time zone of venue.
+* `_links` (object) - links to venues.
+    - `self` (object) - link to this venue.
+        * `href` (string) - reference.
+* `id` (string) - id of venue.
+* `type` (string) - type of venue.
 
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
 
-{% highlight http %}
+{% highlight HTTP %}
 GET /discovery/v1/venues/90150.json?apikey=**** HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight HTTP %}
 HTTP/1.1 200 OK
 Access-Control-Allow-Headers: origin, x-requested-with, accept
 Access-Control-Allow-Origin: *
@@ -1885,7 +2236,8 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}'
 {% endhighlight %}
 
 

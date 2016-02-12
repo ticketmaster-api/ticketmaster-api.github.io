@@ -1,9 +1,14 @@
 ---
-
 prime: true
-date: "Sat-Sun, February 6-7, 2016"
+
 title: "Ticketmaster at HackPoly"
 category: event
+
+date_title: "Sat-Sun, February 6-7, 2016"
+date_start: "2016-02-03 9:30:00"
+date_end: "2016-02-04 12:24:00"
+
+
 place: 
   - "Bronco Student Center "
   - "https://www.google.com/maps/place/Bronco+Student+Center/@34.0563994,-117.8235895,17z/data=!3m1!4b1!4m2!3m1!1s0x80c32eafe97cfa0f:0x4b135e36979ae41"

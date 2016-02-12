@@ -8,6 +8,11 @@
   transform: rotateY(180deg);
 }
 
+.partner-logo-fix img{
+  width: 100%;
+  max-width: 450px;
+}
+
 /* flip speed goes here */
 .flipper {
   height: 265px;

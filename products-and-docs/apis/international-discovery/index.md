@@ -5,17 +5,13 @@ categories:
 - international-discovery
 ---
 {: .article}
-#International API 
+# Ticketmaster International Discovery API 
 
-The Ticketmaster International API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
-
+The Ticketmaster International Discovery API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
+{: .lead .article}
 
 ## Overview
 {: .article #overview }
-This API supports the following markets:
-
-* Europe
-* Middle East
 
 ### Discovery API Services
 
@@ -40,7 +36,7 @@ For example:
 
 To request an API Key send an email to the [Ticketmaster Product Manager](mailto:carie.hughes@ticketmaster.co.uk).
 
-###Format
+### Format
 You can set the output format from all API Services with an Accept header. The API supports:
 
 + `application/json`
@@ -74,7 +70,7 @@ through which tickets are listed and sold. (It differs from Country which is the
 Domains List Service for a list of domains and default URL, language, and currency. Use a comma separated list of values 
 to search multiple domains. (A logical OR search is performed).
 
-{% comment %} 
+{% comment %}
 {: .nested-list}
 + `domain_ids` = (optional, string) 
     - norway
@@ -377,7 +373,6 @@ curl --include \
   'https://app.ticketmaster.eu/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events'
 {% endhighlight %}
 
-
 {% highlight java %}
 // Maven : Add these dependecies to your pom.xml (java6+)
 // <dependency>
@@ -438,7 +433,7 @@ print $response->as_string;
 {% endhighlight %}
 
 
-{% highlight python %}
+{% highlight py %}
 from urllib2 import Request, urlopen
 
 headers = {
@@ -470,7 +465,6 @@ var_dump($response);
 {% endhighlight %}
 
 
-
 {% highlight ruby %}
 require 'rubygems' if RUBY_VERSION < '1.9'
 require 'rest_client'
@@ -483,7 +477,8 @@ response = RestClient.get 'https://private-anon-ebc054a4b-ticketmasterdiscoverya
 puts response
 {% endhighlight %}
 
-{% highlight java %}
+
+{% highlight go %}
 package main
 
 import (
@@ -494,7 +489,7 @@ import (
 
 func main() {
 client := &http.Client{}
-
+	
 req, _ := http.NewRequest("GET", "https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events", nil)
 
 req.Header.Add("Accept", "application/json")
@@ -502,19 +497,21 @@ req.Header.Add("Accept", "application/json")
 resp, err := client.Do(req)
 
 if err != nil {
-    fmt.Println("Errored when sending request to the server")
+	fmt.Println("Errored when sending request to the server")
 	return
 }
 
 defer resp.Body.Close()
-resp_body, _ := ioutil.ReadAll(resp.Body)
+	resp_body, _ := ioutil.ReadAll(resp.Body)
 
 fmt.Println(resp.Status)
-fmt.Println(string(resp_body))
+	fmt.Println(string(resp_body))
 }
 {% endhighlight %}
 
-{% highlight c %}
+
+
+{% highlight csharp %}
 //Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
 //System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
@@ -530,15 +527,14 @@ using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
   httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
   
   using(var response = await httpClient.GetAsync("events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"))
-  {
- 
-  string responseData = await response.Content.ReadAsStringAsync();
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
   }
 }
 {% endhighlight %}
 
 
-{% highlight vbnet %}
+{% highlight vb %}
 Dim request = TryCast(System.Net.WebRequest.Create("https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"), System.Net.HttpWebRequest)
 
 request.Method = "GET"
@@ -578,7 +574,7 @@ if (response.data) {
 {% endhighlight %}
 
 
-{% highlight obj-c++ %}
+{% highlight objc %}
 NSURL *URL = [NSURL URLWithString:@"https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"];
 
 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
@@ -589,21 +585,21 @@ NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
 NSURLSession *session = [NSURLSession sharedSession];
 NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                         completionHandler:
-^(NSData *data, NSURLResponse *response, NSError *error) {
- 
-if (error) {
-    // Handle error...
-    return;
-}
- 
-if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-    NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
-    NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
-}
- 
-NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-NSLog(@"Response Body:\n%@\n", body);
-}];                             
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
 [task resume];
 {% endhighlight %}
 
@@ -630,13 +626,14 @@ let task = session.dataTaskWithRequest(request) { data, response, error in
 task.resume()
 {% endhighlight %}
 
+
 {: .article #event-details}
 ## Event Details
 Get details for a specific event using the unique identifer for the event. This includes the venue and location, ticket 
 availability and pricing, a description, and the Ticketmaster Website URL for purchasing tickets for the event.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/{event_id}
+https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -777,7 +774,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621?lang&domain_ids');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -795,9 +792,255 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621?lang&domain_ids'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids'
 {% endhighlight %}
 
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}?lang&#38;domain_ids")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids");
+
+print $response->as_string;
+{% endhighlight %}
+
+
+{% highlight py %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids", nil)
+	req.Header.Add("Accept", "application/json")
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("event/{event_id}?lang&domain_ids"))
+  { 
+    string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/event/{event_id}?lang&domain_ids", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://private-anon-ebc054a4b-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/events?domain_ids&lang&attraction_ids&category_ids&subcategory_ids&event_ids&event_name&venue_ids&city_ids&country_ids&postal_code&lat&long&radius&eventdate_to&eventdate_from&onsaledate_to&onsaledate_from&offsaledate_to&offsaledate_from&min_price&max_price&price_excl_fees&is_seats_available&is_not_cancelled&&is_not_package&sort_by&order&rows&start&include_external_events"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/event/449621?lang&domain_ids")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
 
 
 {: .article #updated-events}
@@ -808,7 +1051,7 @@ the returned number of rows is less than the requested number - or until the res
 (This service does not consider what fields are updated or changes to values, only when the event data was written)
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/updated
+https://app.ticketmaster.eu/mfxapi/v1/event/updated
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1061,7 +1304,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -1079,7 +1322,261 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows'
+{% endhighlight %}
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&#38;lang&#38;domain_ids&#38;rows")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows");
+
+print $response->as_string;
+{% endhighlight %}
+
+
+{% highlight py %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows', headers
+puts response
+{% endhighlight %}
+
+
+
+{% highlight java %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("event/updated?updated_since&lang&domain_ids&rows"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/event/updated?updated_since&lang&domain_ids&rows", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/event/updated?updated_since&lang&domain_ids&rows")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
 {% endhighlight %}
 
 {: .article #event-prices}
@@ -1087,7 +1584,7 @@ curl --include \
 Get information about the ticket price levels applicable for an specific event ID, the price range for each level and ticket availability.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/prices
+https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1210,7 +1707,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -1228,7 +1725,257 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids'
+{% endhighlight %}
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}/prices?domain_ids&#38;lang&#38;price_level_ids")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight py %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight java %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("event/{event_id}/prices?domain_ids&lang&price_level_ids"))
+  {
+ 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/event/{event_id}/prices?domain_ids&lang&price_level_ids", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
 {% endhighlight %}
 
 {: .article #event-seatmap}
@@ -1236,7 +1983,7 @@ curl --include \
 Get a static map image of the venue for the event showing the location of seating or standing areas. Note that not all events will have a seatmap available - for example packages, festivals, many general admission music events, and so on. Interactive seatmaps are currently not available.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/seatmap
+https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1304,7 +2051,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/seatmap?domain_ids');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids');
 
 request.onreadystatechange = function () {
   if (this.readyState === 4) {
@@ -1320,7 +2067,260 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/seatmap?domain_ids'
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids'
+{% endhighlight %}
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}/seatmap?domain_ids")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight py %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+", nil)
+	req.Header.Add("Accept", "application/json")
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}	
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("event/{event_id}/seatmap?domain_ids"))
+  { 
+    string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/event/{event_id}/seatmap?domain_ids", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/event/449621/seatmap?domain_ids
+")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
 {% endhighlight %}
 
 {: .article #event-areas}
@@ -1328,7 +2328,7 @@ curl --include \
 Get information on the seating areas available for an event and the prices for tickets.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/event/449621/areas
+https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1425,10 +2425,259 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/event/449621/areas?domain_ids&lang'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang'
+{% endhighlight %}
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}/areas?domain_ids&#38;lang")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
 {% endhighlight %}
 
 
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("event/{event_id}/areas?domain_ids&lang"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/event/{event_id}/areas?domain_ids&lang", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/event/449621/areas?domain_ids&lang")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
 
 
 {: .article}
@@ -1443,7 +2692,7 @@ An attraction can be a music artist, a type of sport, a play or show, and so on.
 Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.
  
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions
+https://app.ticketmaster.eu/mfxapi/v1/attractions
 
 ### Query Parameters
 
@@ -1583,13 +2832,265 @@ curl --include \
   '/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start'
 {% endhighlight %}
 
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&#38;lang&#38;attraction_ids&#38;attraction_name&#38;has_events&#38;sort_by&#38;order&#38;rows&#38;start")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start");
+
+print $response->as_string;
+
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/attractions?domain_ids&lang&attraction_ids&attraction_name&has_events&sort_by&order&rows&start")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
+
+
 
 {: .article #attraction-details}
 ## Attraction Details 
 Get details for a specific event using the unique identifer for the event.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/{attraction_ids}
+https://app.ticketmaster.eu/mfxapi/v1/attractions/{attraction_ids}
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1681,8 +3182,258 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/attraction/709593?lang&domain_ids'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids'
 {% endhighlight %}
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/attraction/{attraction_id}?lang&#38;domain_ids")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("attraction/{attraction_id}?lang&domain_ids"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/attraction/{attraction_id}?lang&domain_ids", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/attraction/709593?lang&domain_ids")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+{% endhighlight %}
+
 
 {: .article #attraction-suggestions}
 ## Attraction Suggestions 
@@ -1692,7 +3443,7 @@ partial and fuzzy matching and can therefore be used for a suggest-as-you type f
 fields compared to the Attraction Search to allow for more real-time display.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/suggestions
+https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1801,13 +3552,263 @@ curl --include \
   '/attractions/suggestions?attraction_name&lang&domain_ids&has_events'
 {% endhighlight %}
 
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&#38;lang&#38;domain_ids&#38;has_events")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("attractions/suggestions?attraction_name&lang&domain_ids&has_events"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/attractions/suggestions?attraction_name&lang&domain_ids&has_events", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions?attraction_name&lang&domain_ids&has_events")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
+
 {: .article #similar-attractions}
 ## Similar Attractions 
 Get back other attractions which are similar to the attraction specified. This is based on a combination of factors 
 including category and sub-category, and ticket sales (users who purchased this attraction also purchased).
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/attractions/similar
+https://app.ticketmaster.eu/mfxapi/v1/attractions/similar
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -1950,6 +3951,255 @@ curl --include \
 {% endhighlight %}
 
 
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&#38;lang&#38;domain_id&#38;has_events&#38;rows")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("attractions/similar?attraction_id&lang&domain_id&has_events&rows"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/attractions/similar?attraction_id&lang&domain_id&has_events&rows", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
 
 
 {: .article}
@@ -1962,7 +4212,7 @@ The Venue Service API allows you to search for event venues and get details for 
 Find venues and filter your search by name, and much more.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/venues
+https://app.ticketmaster.eu/mfxapi/v1/venues
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -2089,16 +4339,267 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start'
+     --header "Accept: application/json" \
+'https://app.ticketmaster.eu/mfxapi/v1/attractions/similar?attraction_id&lang&domain_id&has_events&rows'
 {% endhighlight %}
 
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&#38;lang&#38;venuename&#38;venue_ids&#38;city_ids&#38;postal_code&#38;lat&#38;long&#38;radius&#38;sort_by&#38;order&#38;rows&#38;start")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/venues?domain_ids&lang&venuename&venue_ids&city_ids&postal_code&lat&long&radius&sort_by&order&rows&start")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
 
 {: .article #venue-details}
 ## Venue Details 
 Get details for a specific event using the unique identifer for the event. Seatmaps for venues are available in the Event Service - See [Event Seatmaps](#event-seatmap)
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/venues/{venue_id}
+https://app.ticketmaster.eu/mfxapi/v1/venues/{venue_id}
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -2188,7 +4689,259 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/venue/7353?lang&domain_ids'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids'
+{% endhighlight %}
+
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/venue/{venue_id}?lang&#38;domain_ids")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("venue/{venue_id}?lang&domain_ids"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/venue/{venue_id}?lang&domain_ids", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/venue/7353?lang&domain_ids")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
 {% endhighlight %}
 
 {: .article}
@@ -2202,7 +4955,7 @@ Get a list of countries and domains for each. Although not required, it is advis
 relates to the Ticketmaster website through which tickets are listed and sold, whereas the Country is a geographical location.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/countries
+https://app.ticketmaster.eu/mfxapi/v1/countries
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -2397,7 +5150,259 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/countries?lang&domain_id'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id'
+{% endhighlight %}
+
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/countries?lang&#38;domain_id")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("countries?lang&domain_id"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/countries?lang&domain_id", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/countries?lang&domain_id")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
 {% endhighlight %}
 
 {: .article #domains-list}
@@ -2405,7 +5410,7 @@ curl --include \
 Get a list of domains (countries and markets) and the domain ID as well supported langauges.Although not required, it is advisable to specify the domain. The domain relates to the Ticketmaster website through which tickets are listed and sold. Domain_id differs from the Country_id which is the geographical location rather than the market.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains
+https://app.ticketmaster.eu/mfxapi/v1/domains
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -2685,7 +5690,7 @@ Via: 1.1 vegur
 {% highlight js %}
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id');
+request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/domains?country_id');
 
 request.setRequestHeader('Accept', 'application/json');
 
@@ -2703,7 +5708,265 @@ request.send();
 {% highlight bash %}
 curl --include \
      --header "Accept: application/json" \
-  'https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/domains?country_id'
+  'https://app.ticketmaster.eu/mfxapi/v1/domains?country_id'
+{% endhighlight %}
+
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/domains?country_id")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/domains?country_id',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/domains?country_id");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/domains?country_id', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/domains?country_id");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/domains?country_id', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/domains?country_id", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("domains?country_id"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+
+
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/domains?country_id
+"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+
+
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/domains?country_id", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/domains?country_id
+"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/domains?country_id
+")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
 {% endhighlight %}
 
 
@@ -2712,7 +5975,7 @@ curl --include \
 Get a list of city names and city IDs.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/cities
+https://app.ticketmaster.eu/mfxapi/v1/cities
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -2932,15 +6195,268 @@ request.send();
 
 {% highlight bash %}
 curl --include \
-'/cities?lang&domain_id&country_id'
+     --header "Accept: application/json" \
+  'https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id'
 {% endhighlight %}
+
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/cities?lang&#38;domain_id&#38;country_id")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("cities?lang&domain_id&country_id"))
+  { 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/cities?lang&domain_id&country_id", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/cities?lang&domain_id&country_id")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
+
 
 {: .article #categories-list}
 ## Categories List
 Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
 
 {: .code.red}
-https://private-anon-82c09eec8-ticketmasterdiscoveryapi.apiary-mock.com/mfxapi/v1/categories
+https://app.ticketmaster.eu/mfxapi/v1/categories
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
@@ -3097,4 +6613,256 @@ request.send();
 curl --include \
      --header "Accept: application/json" \
   '/categories?lang&domain_id&category_id&subcategories'
+{% endhighlight %}
+
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/categories?lang&#38;domain_id&#38;category_id&#38;subcategories")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("categories?lang&domain_id&category_id&subcategories"))
+  {
+ 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/categories?lang&domain_id&category_id&subcategories", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/categories?lang&domain_id&category_id&subcategories")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
 {% endhighlight %}

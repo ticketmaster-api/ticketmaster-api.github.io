@@ -4,7 +4,7 @@ logos_url: "/assets/img/partners/logos/"
 category: partners
 ---
 
-#CERTIFIED PARTNERS
+# CERTIFIED PARTNERS
 
 {: .lead .double-margin}
 Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh 
@@ -41,12 +41,12 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 
 <div class="big-tile col-xs-12 col-sm-12 col-md-12 col-lg-12" >
     <div class="content-box" style="background-image: url('{{bgimg}}');">
-        <div class="logo-box col-sm-4 col-md-4 col-lg-4">
+        <div class="logo-box col-sm-3 col-md-3 col-lg-3">
             <div class="img-wrapper ">
-                <img src="{{logo}}">
+                <img src="{{logo}}" style="width:200px;">
             </div>
         </div>
-        <div class="description col-sm-6 col-md-6 col-lg-6">
+        <div class="description col-sm-7 col-md-7 col-lg-7">
             {% if partner.tile_header %}
             <h3>{{ partner.tile_header }}</h3>
             {% endif %}
@@ -60,9 +60,8 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 {% endfor %}
 </div>
 
+<a href="#" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:center;">See all partners</a>
+
 <script>
-$(".flip-container").on("tap",function(){
-    debugger;
-    this.classList.toggle('hover')
-});
+$(".flip-container").on('tap', 'this.classList.toggle("hover")');
 </script>

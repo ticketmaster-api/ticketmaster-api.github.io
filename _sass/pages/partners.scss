@@ -323,3 +323,91 @@ body .top-bar.bg-header {
     clear: both;
   }
 }
+
+.nexus-form {
+  font-family: $font-body;
+  margin-bottom: 96px;
+  textarea {
+    height: 96px;
+    resize: vertical;
+  }
+  .col-sm-12,
+  .col-sm-6 {
+    padding-left: 0;
+  }
+
+  .label-radio-group{
+    width: 100%;
+  }
+  .label-radio {
+    display: inline;
+    label {
+      margin-bottom: 0;
+      margin-right: 55px;
+      font-family: $font-body;
+      font-size: $size-h4;
+      line-height: 28px;
+      font-weight: normal;
+      color: $n2;
+    }
+    @media (min-width: 1199px) {
+      label {
+        display: inline;
+      }
+    }
+  }
+  .label-required {
+    font-family: $font-body;
+  }
+  .company-detail {
+    font-family: $font-h5;
+    font-size: $size-h6;
+    line-height: $line-height-h6;
+    margin-top: $base-margin;
+    margin-bottom: $base-margin/2;
+
+    @media (max-width: 1199px) {
+      color: $n1;
+      font-family: $font-h5;
+      font-size: $size-h4;
+      line-height: $line-height-h5;
+    }
+  }
+  .button-blue {
+    border: none;
+    border-radius: 4px;
+    font-family: $font-bold-p;
+    font-size: $size-h4;
+    margin-top: 30px;
+    margin-bottom: 0;
+    padding: 10px 40px;
+    color: $white;
+    display: inline-block;
+    width: 100%;
+
+    &:hover,
+    &:focus,
+    &:active {
+      outline: none;
+      text-decoration: none;
+      background-color: $p1b;
+    }
+  }
+
+  @media (min-width: 767px) {
+    padding: 0 10%;
+  }
+  @media (min-width: 1199px) {
+    padding: 0 15px;
+    margin: 0;
+    margin-bottom: 96px;
+  }
+  @media (max-width: 767px) {
+    /* 44px - footer top margin */
+    margin-bottom: calc(96px - 44px);
+    .col-sm-6,
+    .col-sm-12 {
+      padding-right: 0;
+    }
+  }
+}

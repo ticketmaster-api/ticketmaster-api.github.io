@@ -30,10 +30,10 @@ Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingers
 ### Supporting our clients
 
 {: .body .p}
-Keytar McSweeney's Williamsburg, readymade leggings try-hard 90's street art letterpress ho.
+Nexus Certified Partners are distinguished best-in-class solutions providers to the live events industry.
 
-[Get to know our Nexus partners](/products-and-docs/under-development/)
-[Join the Nexus program](/products-and-docs/under-development/)
+[Get to know our Nexus partners](/partners/certified-partners/)
+[Join the Nexus program](/partners/certified-partners/nexus)
 
 {% endcapture %}
 

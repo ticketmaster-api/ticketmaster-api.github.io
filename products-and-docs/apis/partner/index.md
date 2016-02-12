@@ -64,7 +64,7 @@ Retrieve details for a given event including the ticket type & pricing details. 
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -892,7 +892,7 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -982,7 +982,7 @@ Get total allocated and remaining ticket amounts for each ticket type per event.
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1099,7 +1099,7 @@ If your integration requires captcha, use this endpoint to retreive a basic Goog
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1150,7 +1150,7 @@ Solve the captcha and establish a cart session<br/>
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1185,7 +1185,7 @@ Reserves the specified tickets. For integrations not requiring captcha, use this
 /partners/v1/cart/events/{event_id}/cart/tickets?apikey={apikey}
 {: .code .red}
 
-####Parameters
+#### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1321,7 +1321,7 @@ Credit card information must be encrypted before sent to the API. Use this endpo
 
 *Polling: No*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1383,16 +1383,15 @@ Sample credit-card information for use in the sandbox environment:
 
 *Polling: No*
 
-/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey={apikey}
+/partners/v1/events/{event_id}/cart/payment?apikey={apikey}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-
 
 
 Sample Java code using a certificate (arg 1) to encrypt a credit card or cvv number (arg 2):
@@ -1512,7 +1511,7 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 
 *Polling: Yes*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1558,7 +1557,7 @@ Each partner has a limited amount of reservation resources that can be simultane
 
 *Polling: Yes*
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1584,20 +1583,18 @@ Status 204
 ## Order management [GET]
 {: #order-mangement}
 
-Get detailed information about an order. For specifically-enabled accounts only. 
+Get detailed information about an order. For specifically-enabled accounts only. One of order_token or order_number is required.
 
 /partners/v1/orders?order_token={order_token}?apikey={apikey}
-
-/partners/v1/orders?order_number={order_number}?apikey={apikey}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `order_token`   | An order token         | string            |     "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"          | Yes      |
-| `order_number`   | An order number          | string            |     "39-5234153/LA1"          | Yes      |
+| `order_token`   | An order token         | string            |     "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"          |  No     |
+| `order_number`   | A legacy Ticketmaster order account number (ex. 39-5234153/LA1) | string            |     "39-5234153/LA1"          | No      |
 
 
 
@@ -1725,7 +1722,7 @@ Retreive unredeemed orders within a given time period. Some orders may have had 
 /partners/v1/orders/unredeemed?apikey={apikey}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1786,7 +1783,7 @@ The output of the original action will eventually be returned in the body of the
 /partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
-###Parameters
+### Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -1838,141 +1835,18 @@ Example:
 }
 {% endhighlight %}
 
----
-{: .aside}
 
-{: .article}
-Event not transactable.
+| message  | code  | http_code              | Note
+|:-----------|:---------------------|:----------------- |
+| Event is not API transactable | 90001 | 403 | |
+| No inventory found to match request | 20052 | 400 | Example of sold-out tickets, per ticket id. Can also occur if the number of available continuous seats cannot be fulfilled |
+| Unauthorized Access | 10004 | 401 | Missing captcha token |
+| Invalid captcha solution | 10031 | 400 | Invalid captcha solution |
+| Payment Not Accepted | 20122 | 400 | |
+| Please enter a valid security code | 20152 | 400 | Invalid CVV/Security code on back of credit card |
+| Ticketing system is down/unavailable/niterun | 20001 | 503 |  |
+| Invalid cart | 90003 | 400 | cart_id parameter is invalid or stale |
 
-Example:
-
-{% highlight js %}
-{
-    "error": {
-        "message": "Event is not API transactable",
-        "code": 90001
-        "http_code":403,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Example of sold-out tickets, per ticket id. Can also occur if the number of available continuous seats cannot be fulfilled:
-
-{% highlight js %}
-{
-    "error": {
-        "message": "No inventory found to match request",
-        "code": 20052
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Missing captcha token:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Unauthorized Access",
-        "code":10004,
-        "http_code":401,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Incorrect or stale captcha token:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Invalid captcha solution.",
-        "code":10031,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Payment not accepted:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Payment Not Accepted",
-        "code":20122,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Invalid CVV/Security code on back of credit card:
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Please enter a valid security code.",
-        "code":20152,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Ticketing system is down/unavailable/niterun
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Ticketing system is down/unavailable/niterun",
-        "code":20001,
-        "http_code":400,
-        "severity":"DEBUG"
-    }
-}
-{% endhighlight %}
-
----
-{: .aside}
-
-{: .article}
-Invalid cart id
-
-{% highlight js %}
-{
-    "error": {
-        "message":"Invalid cart",
-        "code": 90003,
-        "http_code":400,
-        "severity":"ERROR"
-    }
-}
-{% endhighlight %}
 
 ---
 {: .aside}
@@ -1980,40 +1854,26 @@ Invalid cart id
 {: .article}
 Clients can reference the *code* field when communicating and debugging errors with Ticketmaster. We will automatically be notified of any internal, unrecoverable errors.
 
-The following status codes will be used by this API
-
-| Status Code | Description |
-| ----------- | ----------- |
-| 200         | OK. Successful operation |
-| 202         | Polling response |
-| 204         | Operation completed successfully. No content returned. (See Cart DELETE method) |
-| 401         | Unauthorized access to API. May be missing *apikey* parameter |
-| 404         | API endpoint or event not found. |
-| 405         | HTTP method not allowed for endpoint |
-| 406         | Input/parameters not acceptable |
-| 500         | Internal error occurred |
-| 503         | Service is unavailable |
-
 
 ## Examples
 {: #examples}
 
 The following illustrates a typical purchase flow:
 
-###1. Discover event availability and ticket information.
+### 1. Discover event availability and ticket information.
 
 Request: `GET /partners/v1/events/09004E6CE6325123`
 
 Further ticketing operations only allowed if event.api_transactable=true.  Display a list of areas and price levels to the user to select a ticket type + price level to reserve.
 
-###2. Display captcha to user
+### 2. Display captcha to user
 
 Request: `GET /partners/v1/captcha`
 
 Response contains html to render in a webview containing a Google NoCaptcha ReCaptcha form.  Upon user-submit, the form will redirect the page to ticketmaster-g-recaptcha-response://{captcha-token}.
 Listen for redirects on the webview and obtain the captcha-token.
 
-###3. Exchange captcha-token for a new cart session
+### 3. Exchange captcha-token for a new cart session
 
 Request: `POST /partners/v1/events/09004E6CE6325123/cart`
 Body: `{"token" : "2822b0737710e549a2f74c1e65be19b9"}`
@@ -2024,7 +1884,7 @@ Response:
 `{"cart_id" : "6LcA5cESAAAAAPsVEe0jgHVOqlKIbkHaeK0HGhQ6cd34a074e785f2107de2c9fea0016c20"}`
 
 
-###4. Make a reserve call.
+### 4. Make a reserve call.
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart/tickets`
 
@@ -2040,11 +1900,11 @@ Request body:
 }
 {% endhighlight %}
 
-###5. Get payment encryption certificate. Extract `id` and `value` from response.
+### 5. Get payment encryption certificate. Extract `id` and `value` from response.
 
 Request: `GET /partners/v1/certificate`
 
-###6. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
+### 6. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart/payment`
 
@@ -2088,7 +1948,7 @@ Request body:
 }
 {% endhighlight %}
 
-###7. Purchase the tickets
+### 7. Purchase the tickets
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart`
 
