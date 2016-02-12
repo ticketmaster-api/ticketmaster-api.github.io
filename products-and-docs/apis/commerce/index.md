@@ -167,6 +167,35 @@ commerce/{version}/events/{id}/offers.{format}
                             * `id` (string) - id of area.
                             * `type` (string) - type of area.
 
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
+{% endhighlight %}
+
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -957,31 +986,4 @@ Set-Cookie: ****
     ]
   }
 }
-{% endhighlight %}
-
-{: .aside}
->[JS](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
 {% endhighlight %}
