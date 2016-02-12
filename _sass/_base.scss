@@ -272,6 +272,17 @@ input[type=radio]:not(old):checked + label > span > span{
   border-radius    : 50%;
   background       : $p1;
 }
+
+.custom-select:after {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  width: 15px;
+  height: 10px;
+  content: ' ';
+  background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+}
+
 /*Custom checker END*/
 
 /**
