@@ -18,13 +18,20 @@
           </div>
           <div class="col-lg-12">
             <label for="subject">Subject</label>
-            <div class="custom-select">
-              <select id="subject">
-                <option>General feedback</option>
-                <option>Current workflow of the portal</option>
-                <option>Technical issues</option>
-                <option>Lorem ipsum dolor sit amet</option>
+            <div class="js_custom_select custom_select">
+              <select class="custom_select__field" id="subject">
+                <option value="0">General feedback</option>
+                <option value="1">Current workflow of the portal</option>
+                <option value="2">Technical issues</option>
+                <option value="3">Lorem ipsum dolor sit amet</option>
               </select>
+              <input  class="custom_select__placeholder" type="text" value="General feedback" readonly>
+              <ul class="custom_select__list">
+                <li class="custom_select__item custom_select__item-active" data-value="0">General feedback</li>
+                <li class="custom_select__item" data-value="1">Current workflow of the portal</li>
+                <li class="custom_select__item" data-value="2">Technical issues</li>
+                <li class="custom_select__item" data-value="3">Lorem ipsum dolor sit amet</li>
+              </ul>
             </div>
           </div>
           <div class="col-lg-12">
