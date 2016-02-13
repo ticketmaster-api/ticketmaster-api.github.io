@@ -1200,7 +1200,6 @@ Reserves the specified tickets. For integrations not requiring captcha, use this
 {% highlight js %}
 https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/tickets?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
-
 {
     "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
     "tickets":[
@@ -1307,6 +1306,138 @@ Status 200
         }
     }
 }
+{% endhighlight %}
+
+{: .article}
+## Shipping Options [GET]
+{: #get-shipping-options}
+
+Get shipping options available for this event.  Note: some API users will be pre-configured for certain shipping options and may not need to perform this.
+
+/partners/v1/events/{event_id}/cart/shipping?apikey={apikey}&cart_id={cart_id}
+{: .code .red}
+
+*Polling: No*
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/events/{event_id}/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+
+{
+    "shipping_options": [
+        {
+            "carrier": "TICKETMASTER",
+            "id": "1",
+            "service_level": "ETICKET",
+            "totals": {
+                "currency_code": "USD",
+                "fee": 0.0,
+                "grand": 0.0,
+                "merchandise": 0.0,
+                "tax": 0.0,
+                "unpaid": 0.0
+            }
+        },
+        {
+            "carrier": "USPS",
+            "id": "2",
+            "service_level": "MAIL",
+            "totals": {
+                "currency_code": "USD",
+                "fee": 0.5,
+                "grand": 0.5,
+                "merchandise": 0.0,
+                "tax": 0.0,
+                "unpaid": 0.0
+            }
+        },
+        {
+            "carrier": "USPS",
+            "id": "3",
+            "service_level": "AIRMAIL",
+            "totals": {
+                "currency_code": "USD",
+                "fee": 0.5,
+                "grand": 0.5,
+                "merchandise": 0.0,
+                "tax": 0.0,
+                "unpaid": 0.0
+            }
+        },
+        {
+            "carrier": "TICKETMASTER",
+            "id": "4",
+            "service_level": "WILLCALL",
+            "totals": {
+                "currency_code": "USD",
+                "fee": 2.5,
+                "grand": 2.5,
+                "merchandise": 0.0,
+                "tax": 0.0,
+                "unpaid": 0.0
+            }
+        }
+    ]
+}
+
+{% endhighlight %}
+
+
+{: .article}
+## Shipping Options [PUT]
+{: #add-shipping-option}
+
+Add a shipping option to the event.  Note: some API users will be pre-configured for certain shipping options and may not need to perform this.
+
+/partners/v1/events/{event_id}/cart/shipping?apikey={apikey}&cart_id={cart_id}
+{: .code .red}
+
+*Polling: No*
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight js %}
+    https://app.ticketmaster.com/partners/v1/events/{event_id}/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+
+    {"delivery_id": "4"}
+{% endhighlight %}
+
+{% highlight js %}
+    Status 200
+
+    {
+        "cart" : {
+            ...
+        }
+    }
+
 {% endhighlight %}
 
 
@@ -1446,9 +1577,7 @@ CDEFGHIJK=
 
 {% highlight bash %}
 https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
-{% endhighlight %}
 
-{% highlight js %}
 {
 
     "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
@@ -1528,6 +1657,7 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 
 {% highlight js %}
 https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+
 { 
     "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
     "source_account_id" : "30f86cd70ac7216bc596aa2d060a7064" // Your reference number (or hash) to correlate unredeemed orders
@@ -1846,6 +1976,8 @@ Example:
 | Please enter a valid security code | 20152 | 400 | Invalid CVV/Security code on back of credit card |
 | Ticketing system is down/unavailable/niterun | 20001 | 503 |  |
 | Invalid cart | 90003 | 400 | cart_id parameter is invalid or stale |
+| Invalid Delivery Method ID | 10104 | 400 ||
+| Event had no visible/usable ticket types for the current channel | 20046 | 400 | API user is not configured to sell the specified ticket types |
 
 
 ---
