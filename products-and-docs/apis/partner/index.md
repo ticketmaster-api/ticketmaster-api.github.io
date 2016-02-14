@@ -1426,7 +1426,7 @@ Add a shipping option to the event.  Note: some API users will be pre-configured
 {% highlight js %}
     https://app.ticketmaster.com/partners/v1/events/{event_id}/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
 
-    {"delivery_id": "4"}
+    {"shipping_id": "4"}
 {% endhighlight %}
 
 {% highlight js %}
