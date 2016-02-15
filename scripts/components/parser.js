@@ -63,6 +63,9 @@
                     screenBtn.className = "screen-btn";
                     screenBtn.setAttribute("data-toggle", "modal");
                     screenBtn.setAttribute("data-target", ".modal-langs");
+                    screenBtn.setAttribute("rel", "tooltip");
+                    screenBtn.setAttribute("data-placement", "top");
+                    screenBtn.setAttribute("data-original-title", "View Full Screen");
                     var html_s = this.outerHTML;
                     var proxyItem_s = document.createElement("div");
                     proxyItem_s.innerHTML = html_s;
@@ -81,16 +84,23 @@
                             .find('.active-lang')
                             .remove()
                             .end()
+                            .find('.tooltip')
+                            .remove()
+                            .end()
                             .find('.copy-btn')
                             .addClass('copy-btn-fs')
                             .removeClass('copy-btn')
                             .end()
+                            .find('.screen-btn')
+                            .attr('data-original-title', 'Exit Full Screen')
+                            .end()
                             .html();
 
-                        $("#modal-title").html(title);
-                        $(".modal-body").html(content);
+                        $(".fs-modal #modal-title").html(title);
+                        $(".fs-modal .modal-body").html(content);
 
-                        $(".modal-body").delegate(".lang-selector a", "click", function() {
+                        $(".fs-modal .modal-body").delegate(".lang-selector a", "click", function() {
+                            $(".aside.lang-selector a").eq($(this).index()).click();
                             $(this).parent().children().removeClass("active");
                             $(this).addClass("active");
                             $(this).parents().closest(".modal-body").children().removeClass("tab-active");
@@ -100,6 +110,9 @@
 
                     var rawBtn = document.createElement("div");
                         rawBtn.className = "raw-btn";
+                        rawBtn.setAttribute("rel", "tooltip");
+                        rawBtn.setAttribute("data-placement", "top");
+                        rawBtn.setAttribute("data-original-title", "View Raw");
                     var html_ = this.outerHTML;
                     var proxyItem_ = document.createElement("div");
                         proxyItem_.innerHTML = html_;
@@ -121,6 +134,9 @@
 
                     var copyBtn = document.createElement("div");
                         copyBtn.className = "copy-btn";
+                        copyBtn.setAttribute("rel", "tooltip");
+                        copyBtn.setAttribute("data-placement", "top");
+                        copyBtn.setAttribute("data-original-title", "Copy to Clipboard");
                         copyBtn.addEventListener("click", function () {
                             this.classList.add("copied")
                             window.setTimeout(function(){
@@ -220,7 +236,7 @@
         });
 
         // Modal Copy button click
-        $(".modal-body").on("click", ".copy-btn-fs", function() {
+        $(".fs-modal .modal-body").on("click", ".copy-btn-fs", function() {
             var copyBtn = this;
             var content = copyBtn.dataset !== undefined ? this.dataset.clipboardText : copyBtn.getAttribute("data-clipboard-text");
 
@@ -252,7 +268,7 @@
         });
 
         // Modal Raw button click
-        $(".modal-body").on("click", ".raw-btn", function() {
+        $(".fs-modal .modal-body").on("click", ".raw-btn", function() {
             var rawBtn = this;
             var content = rawBtn.dataset !== undefined ? this.dataset.contentText : rawBtn.getAttribute("data-content-text");
             window.sessionStorage.setItem("content", content);

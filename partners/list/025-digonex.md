@@ -1,9 +1,6 @@
 ---
 layout: partners-doc
-
 pname: "digonex"
-
-type: wide
 categories: 
   - partner
   - certified

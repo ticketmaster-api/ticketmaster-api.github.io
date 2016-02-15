@@ -5,9 +5,9 @@ categories:
 - faq
 ---
 
-#FAQ
+# FAQ
 
-####General
+#### General
 
 {: .link-inline .double-margin-bottom}
 [Why has Ticketmaster decided to open up its API?](#q-1)
@@ -17,7 +17,7 @@ categories:
 
 
 
-####Data
+#### Data
 
 {: .link-inline .double-margin-bottom}
 [What datasets does the API cover?](#q-5)
@@ -25,7 +25,7 @@ categories:
 
 
 
-####Affiliates
+#### Affiliates
 
 {: .link-inline .double-margin-bottom}
 [Why should I join the Ticketmaster Affiliate Program?](#q-7)
@@ -40,7 +40,7 @@ categories:
 
 
 {: #general-a .double-margin}
-##General
+## General
 
 
 {: #q-1}
@@ -69,7 +69,7 @@ The default access all applications get is to our **Public** APIs with a quota o
 
 
 {: #account-a .double-margin}
-##Data
+## Data
 
 
 {: #q-5}
@@ -88,7 +88,7 @@ The Ticketmaster API supports the JSON format only at this time.
 
 
 {: #affiliates-a .double-margin}
-##Affiliates
+## Affiliates
 
 {: #q-7}
 ### Why should I join the Ticketmaster Affiliate Program?

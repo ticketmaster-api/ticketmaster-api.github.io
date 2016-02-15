@@ -5,12 +5,12 @@ categories:
 - discovery
 ---
 
-#Discovery API
+# Discovery API
 
 Use the Discovery API to search, look up and find events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.
 {: .lead .article}
 
-####Developer Console
+#### Developer Console
 {: .aside .gray}
 
 Make live API calls right now in the interactive docs:
@@ -31,7 +31,7 @@ Example: `https://app.ticketmaster.com/discovery/v1/events.json?apikey=3QIvq55bS
 `https://app.ticketmaster.com/discovery/{API version}`
 
 
-##Search Events
+## Search Events
 {: .article .console-link #srch-events }
 
 **Method:** GET.
@@ -41,14 +41,14 @@ Returns the 20 most recent events for the authenticating user.
 discovery/{version}/events.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v1"         | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
-###Query parameters:
+### Query parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -67,6 +67,133 @@ discovery/{version}/events.{format}
 | `deviceId`   | The device making the API call. | string            |       "1"       | No      |
 | `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container for events.
+    * `events` (array) - events.
+        - `{array item object}` - event.
+            * `name` (string) - name of event.
+            * `locale` (string) - locale of event.
+            * `eventUrl` (string) - links to event detail page.
+            * `dates` (object) - dates of event.
+                - `start` (object) - start of event.
+                    * `dateTime` (string) - date and time start of event.
+                    * `localDate` (string) - local date start of event.
+                    * `localTime` (string) - local time start of event.
+                - `end` (object) - end of event.
+                    * `dateTime` (string) - date and time end of event.
+                    * `localDate` (string) - local date end of event.
+                    * `localTime` (string) - local time end of event.
+                - `timezone` (string) - time zone of event.
+                - `displayOptions` (object) - display options of event.
+                    * `range` (object) - range of event displayed.
+                        - `localStartDate` (string) - local start date of event displayed.
+                        - `localEndDate` (string) - local end date of event displayed.
+                - `status` (object) - status of event.
+                    * `code` (string) - code of status.
+            * `test` (boolean) - is test.
+            * `id` (string) - id of event.
+            * `_links` (object) - links to event.
+                - `self` (object) - link to this event.
+                    + `href` (string) - reference.
+                - `categories` (array) - links to event categories.    
+                    * `{array item object}` - link.
+                        - `href` (string) - reference to event category.
+                - `attractions` (object) - links to event attractions.
+                    * `{array item object}` - link.
+                        * `href` (string) - reference to event attraction.
+                - `venue` (object) - link to event venues.
+                    * `{array item object}` - link.
+                        * `href` (string) - reference to event venue.
+            * `_embedded` (object) - container for related items.
+                - `venue` (array) - related venues.
+                    * `{array item object}` - venue.
+                        * `name` (string) - name of event venue.
+                        * `marketId` (array) - id of venue markets.
+                            - `{array item numbers}` - promoter id.
+                        * `country` (object) - country of venue.
+                            - `countryCode` (string) - country code of venue.
+                        * `state` (object) - state of venue.
+                            - `stateCode` (string) - state code of venue.
+                        * `city` (object) - city of venue.
+                            - `name` (string) - city name of venue.
+                        * `location` (object) - location of venue.
+                            - `latitude` (string) - latitude of venue.
+                            - `longitude` (string) - longitude of venue.
+                        * `postalCode` (string) - postal code of venue.
+                        * `address` (object) - address of venue.
+                            - `line1` (string) - street name.
+                            - `line2` (string) - city and state code where event happen.
+                        * `timeZone` (string) - time zone of event.
+                        * `_links` (object) - links.
+                            - `self` (object) - link to this venue.
+                                * `href` (string) - reference.
+                        * `id` (string) - id of current venue.
+                        * `type` (string) - type of current venue.
+                - `categories` (array) - related categories.
+                    + `{array item object}` - categories.
+                        * `name` (string) - name of event category.
+                        * `level` (number) - level of event category.
+                        * `_links` (object) - links to categories.
+                            - `self` (object) - link to this category.
+                                * `href` (string) - reference.
+                    * `id` (string) - id of current category.
+                    * `type` (string) - type of current category.     
+                - `attractions` (array) - related attractions.
+                    + `{array item object}` - event attractions.
+                        * `url` (string) - url to event attraction.
+                        * `image` (object) - images of attraction.
+                            - `url` (string) - images url of event.
+                        * `name` (string) - name of event attraction.
+                        * `_links` (object) - links to attractions.
+                            - `self` (object) - link to this attraction.
+                                * `href` (string) - reference.
+                        * `id` (string) - id of current attraction.
+                        * `type` (string) - type of current attraction.
+            * `type` (string) - type of event.
+- `_links` (object) - links to data sets.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+    * `next` (object) - link to the next data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - size of page.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}'
+{% endhighlight %}
+
+    
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -260,16 +387,125 @@ Set-Cookie: ****
 }
 {% endhighlight %}
 
+## Get Event Details
+{: .article .console-link #event-details }
+
+**Method:** GET.
+Authentication required.
+Returns the event detail by event ID.
+
+discovery/{version}/events/{id}.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v1"         | Yes      |
+| `id`       | Event ID. Required.  | string            | "29004F223C406ABF" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+* `name` (string) - name of event.
+* `locale` (string) - locale of event.
+* `eventUrl` (string) - links to event detail page.
+* `promoterId` (array) - promoter ids of event.
+    - `{array item numbers}` - promoter id.
+* `dates` (object) - dates of event.
+    - `start` (object) - start of event.
+        * `dateTime` (string) - date and time start of event.
+        * `localDate` (string) - local date start of event.
+        * `localTime` (string) - local time start of event.
+    - `end` (object) - end of event.
+        * `dateTime` (string) - date and time end of event.
+        * `localDate` (string) - local date end of event.
+        * `localTime` (string) - local time end of event.
+    - `timezone` (string) - time zone of event.
+    - `displayOptions` (object) - display options of event.
+        * `range` (object) - range of event displayed.
+            - `localStartDate` (string) - local start date of event displayed.
+            - `localEndDate` (string) - local end date of event displayed.
+    - `status` (object) - status of event.
+        * `code` (string) - code of status.
+* `test` (boolean) - is test.
+* `_links` (object) - links to event.
+    - `self` (object) - link to this event.
+        + `href` (string) - reference.
+    - `categories` (array) - links to event categories.    
+        * `{array item object}` - link.
+            - `href` (string) - reference to event category.
+    - `attractions` (object) - links to event attractions.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event attraction.
+    - `venue` (object) - link to event venues.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event venue.
+* `id` (string) - id of current event.
+* `_embedded` (object) - container for data.
+    - `venue` (array) - event venues.
+        * `{array item object}` - event venues.
+            * `name` (string) - name of event venue.
+            * `marketId` (array) - id of venue markets.
+                - `{array item numbers}` - promoter id.
+            * `country` (object) - country of venue.
+                - `countryCode` (string) - country code of venue.
+            * `state` (object) - state of venue.
+                - `stateCode` (string) - state code of venue.
+            * `city` (object) - city of venue.
+                - `name` (string) - city name of venue.
+            * `location` (object) - location of venue.
+                - `latitude` (string) - latitude of venue.
+                - `longitude` (string) - longitude of venue.
+            * `postalCode` (string) - postal code of venue.
+            * `address` (object) - address of venue.
+                - `line1` (string) - street name.
+                - `line2` (string) - city and state code where event happen.
+            * `timeZone` (string) - time zone of event.
+            * `_links` (object) - links to event.
+                - `self` (object) - link to this event.
+                    * `href` (string) - reference.
+            * `id` (string) - id of current venue.
+            * `type` (string) - type of current venue.
+    - `categories` (array) - link to event categories.
+        + `{array item object}` - event categories.
+            * `name` (string) - name of event category.
+            * `level` (number) - level of event category.
+            * `_links` (object) - links to categories.
+                - `self` (object) - link to this category.
+                    * `href` (string) - reference.
+        * `id` (string) - id of current category.
+        * `type` (string) - type of current category.     
+    - `attractions` (array) - event attractions.
+        + `{array item object}` - event attractions.
+            * `url` (string) - url to event attraction.
+            * `image` (object) - images of attraction.
+                - `url` (string) - images url of event.
+            * `name` (string) - name of event attraction.
+            * `_links` (object) - links to attractions.
+                - `self` (object) - link to this attraction.
+                    * `href` (string) - reference.
+            * `id` (string) - id of current attraction.
+            * `type` (string) - type of current attraction.
+* `type` (string) - type of event.
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}",
+  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -284,40 +520,11 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}'
 {% endhighlight %}
 
-
-
-
-
-
-##Get Event Details
-{: .article .console-link #event-details }
-
-**Method:** GET.
-Authentication required.
-Returns the event detail by event ID.
-
-discovery/{version}/events/{id}.{format}
-{: .code .red}
-
-
-###URL parameters:
-
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `version`  | The API Version.     | string            |       "v1"         | Yes      |
-| `id`       | Event ID. Required.  | string            | "29004F223C406ABF" | Yes      |
-| `format`   | API Response Format. | string            |       "json"       | Yes      |
-
-###Query parameters:
-
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
-| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
-
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -473,15 +680,51 @@ Set-Cookie: ****
 }
 {% endhighlight %}
 
+
+
+## Search Event Images
+{: .article .console-link #event-img}
+
+**Method:** GET.
+Authentication required.
+Returns all the images for an event by ID. If an event does not have an image for a supported resolution, the event's major category image will be returned instead.
+
+{: .code .red}
+discovery/{version}/events/{id}/images.{format}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v1"         | Yes      |
+| `id`       | Event ID.            | string            | "0B004F0401BD55E5" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Response structure:
+
+{: .nested-list}
+- `type` (string) - type of images set
+- `id` (string) - id of event
+- `images` (array) - images.
+    * `{array item object}` - image.
+        * `ratio` (string) - image ratio.
+        * `url` (string) - image url.
+        * `width` (string) - image width.
+        * `height` (string) - image height.
+        * `fallback` (boolean) - image fallback availability.
+- `_links` (object) - links to images data set.
+    * `self` (object) - link to this images set.
+        - `href` (string) - reference.
+
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}",
+  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -496,31 +739,11 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}'
 {% endhighlight %}
 
-
-
-
-
-##Search Event Images
-{: .article .console-link #event-img}
-
-**Method:** GET.
-Authentication required.
-Returns all the images for an event by ID. If an event does not have an image for a supported resolution, the event's major category image will be returned instead.
-
-{: .code .red}
-discovery/{version}/events/{id}/images.{format}
-
-###URL parameters:
-
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `version`  | The API Version.     | string            |       "v1"         | Yes      |
-| `id`       | Event ID.            | string            | "0B004F0401BD55E5" | Yes      |
-| `format`   | API Response Format. | string            |       "json"       | Yes      |
-
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -632,18 +855,77 @@ Set-Cookie: ****
     }
   }
 }
-}
+
 {% endhighlight %}
 
+{: .article .console-link #search-attractions}
+## Search Attractions
+
+**Method:** GET.
+Authentication required..
+Search Attractions!
+
+{: .code .red}
+discovery/{version}/attractions.{format}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v1"         | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
+| `page`   | The page for paginating through the results. | string            |       "1"       | No      |
+| `sort`   | The search sort criteria. Values: "name,desc", "name,asc". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container attractions.
+    * `attractions` (array) - attractions.
+        - `{array item object}` - attraction.
+            * `id` (string) - id of attraction.
+            * `type` (string) - type of attraction.
+            * `url` (string) - url to attraction.
+            * `name` (string) - name of attraction.
+            * `locale` (string) - locale of attraction.
+            * `image` (object) - image for attraction.
+                - `url` (string) - url to attraction image.
+            * `_links` (object) - links to attractions.
+                - `self` (object) - link to this attraction.
+                    * `href` (string) - reference.
+- `_links` (object) - links to attractions data set.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - is templated.
+    * `next` (object) - link to the next data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - is templated.
+    * `next` (object) - link to the next attraction.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - size of page.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+
+
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}",
+  url:"https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -658,38 +940,11 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}'
 {% endhighlight %}
 
-
-{: .article .console-link #search-attractions}
-##Search Attractions
-
-**Method:** GET.
-Authentication required..
-Search Attractions!
-
-{: .code .red}
-discovery/{version}/attractions.{format}
-
-###URL parameters:
-
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `version`  | The API Version.     | string            |       "v1"         | Yes      |
-| `format`   | API Response Format. | string            |       "json"       | Yes      |
-
-###Query parameters:
-
-| Parameter  | Description          | Type              | Default Value      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
-| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
-| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
-| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
-| `page`   | The page for paginating through the results. | string            |       "1"       | No      |
-| `sort`   | The search sort criteria. Values: "name,desc", "name,asc". | string            |              | No      |
-
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -986,15 +1241,56 @@ Set-Cookie: ****
 }
 {% endhighlight %}
 
+{: .article .console-link #attraction-details}
+## Get Attraction Details
+
+**Method:** GET.
+Authentication required.
+Search Attractions!
+
+discovery/{version}/attractions/{id}.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |     "v1"           | Yes      |
+| `id`       | Attraction ID.       | string            |     "768011"       | Yes      |
+| `format`   | API Response Format. | string            |     "json"         | Yes      |
+
+
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+* `url` (string) - url to attraction.
+* `name` (string) - name of attraction.
+* `locale` (string) - locale of attraction.
+* `image` (object) - image for attraction.
+    - `url` (string) - url to image.
+* `_links` (object) - links to attractions.
+    - `self` (object) - link to this attraction.
+        * `href` (string) - reference.
+* `id` (string) - id of attraction.
+* `type` (string) - type of attraction.
+
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}",
+  url:"https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -1009,6 +1305,1100 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}'
 {% endhighlight %}
 
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /discovery/v1/attractions/768011.json?apikey=**** HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 12:58:55 GMT
+Content-Length: 445
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson4
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
+
+{
+  "url": "/Madonna-tickets/artist/768011",
+  "image":  {
+    "url": "/dbimages/213810a.jpg"
+  },
+  "name": "Madonna",
+  "locale": "en-us",
+  "_links":  {
+    "self":  {
+      "href": "/discovery/v1/attractions/768011?locale=en-us&domain=ticketmaster.com"
+    }
+  },
+  "id": "768011",
+  "type": "attraction"
+}
+{% endhighlight %}
+
+
+{: .article .console-link #search-categories}
+## Search Categories
+
+**Method:** GET.
+Authentication required.
+Search Categories!
+
+discovery/{version}/categories.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |     "v1"           | Yes      |
+| `format`   | API Response Format. | string            |     "json"         | Yes      |
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
+| `page`   | The page for paginating through the results. | string            |       "1"       | No      |
+| `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container for categories.
+    * `categories` (array) - categories.
+        - `{array item object}` - category.
+            * `name` (string) - name of category.
+            * `locale` (string) - locale of category.
+            * `level` (number) - level of category.
+            * `_links` (object) - links to categories.
+                - `self` (object) - link to this category.
+                    * `href` (string) - reference.
+                - `parent` (object) - link to parent category.
+                    * `href` (string) - reference.
+            * `id` (string) - id of category.
+            * `type` (string) - type of category.            
+- `_links` (object) - links to categories data sets.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+    * `next` (object) - link to the next data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - ability to be templated.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - size of page.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /discovery/v1/categories.json?apikey=**** HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:02:18 GMT
+Content-Length: 8336
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson4
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
+
+{
+  "_links":  {
+    "self":  {
+      "href": "/discovery/v1/categories.json {?page,size,sort}",
+      "templated": true
+    },
+    "next":  {
+      "href": "/discovery/v1/categories.json?page=1&size=20 {&sort}",
+      "templated": true
+    }
+  },
+  "_embedded":  {
+    "categories":  [
+       {
+        "name": "Plays",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/32?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "32",
+        "type": "category"
+      },
+       {
+        "name": "Classical",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/203?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "203",
+        "type": "category"
+      },
+       {
+        "name": "Ballet and Dance",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/12?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "12",
+        "type": "category"
+      },
+       {
+        "name": "Opera",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/13?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "13",
+        "type": "category"
+      },
+       {
+        "name": "Museums and Exhibits",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/14?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "14",
+        "type": "category"
+      },
+       {
+        "name": "Musicals",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/207?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "207",
+        "type": "category"
+      },
+       {
+        "name": "Broadway",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/16?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "16",
+        "type": "category"
+      },
+       {
+        "name": "Audio Tours",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/240?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10005?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "240",
+        "type": "category"
+      },
+       {
+        "name": "Off-Broadway",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/17?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "17",
+        "type": "category"
+      },
+       {
+        "name": "Magic Shows",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/209?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "209",
+        "type": "category"
+      },
+       {
+        "name": "Arts & Theater",
+        "locale": "en-us",
+        "level": 1,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "10002",
+        "type": "category"
+      },
+       {
+        "name": "Comedy",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/51?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "51",
+        "type": "category"
+      },
+       {
+        "name": "Family",
+        "locale": "en-us",
+        "level": 1,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "10003",
+        "type": "category"
+      },
+       {
+        "name": "Family Attractions",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/19?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "19",
+        "type": "category"
+      },
+       {
+        "name": "More Arts and Theater",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/53?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "53",
+        "type": "category"
+      },
+       {
+        "name": "Miscellaneous",
+        "locale": "en-us",
+        "level": 1,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/10005?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "10005",
+        "type": "category"
+      },
+       {
+        "name": "Fairs and Festivals",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/54?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "54",
+        "type": "category"
+      },
+       {
+        "name": "Ice Shows",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/22?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "22",
+        "type": "category"
+      },
+       {
+        "name": "Children's Music and Theater",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/23?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "23",
+        "type": "category"
+      },
+       {
+        "name": "More Family",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/55?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "55",
+        "type": "category"
+      },
+       {
+        "name": "Circus",
+        "locale": "en-us",
+        "level": 2,
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/categories/29?locale=en-us&domain=ticketmaster.com"
+          },
+          "parent":  {
+            "href": "/discovery/v1/categories/10003?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "29",
+        "type": "category"
+      }
+    ]
+  },
+  "page":  {
+    "size": 20,
+    "totalElements": 76,
+    "totalPages": 4,
+    "number": 0
+  }
+}
+{% endhighlight %}
+
+
+{: .article .console-link #category-details}
+## Get Category Details
+
+**Method:** GET.
+Authentication required.
+Returns the category detail by ID.
+
+{: .code .red}
+discovery/{version}/categories/{id}.{format}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |     "v1"           | Yes      |
+| `id`       | Category ID.         | string            |     "203"          | Yes      |
+| `format`   | API Response Format. | string            |     "json"         | Yes      |
+
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+* `name` (string) - name of category.
+* `locale` (string) - locale of category.
+* `level` (number) - level of category.
+* `_links` (object) - links to categories.
+    - `self` (object) - link to this category.
+        * `href` (string) - reference.
+    - `parent` (object) - link to parent category.
+        * `href` (string) - reference.
+* `id` (string) - id of category.
+* `type` (string) - type of category.
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /discovery/v1/categories/203.json?apikey=**** HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:03:29 GMT
+Content-Length: 568
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
+
+{
+  "name": "Classical",
+  "locale": "en-us",
+  "level": 2,
+  "_links":  {
+    "self":  {
+      "href": "/discovery/v1/categories/203?locale=en-us&domain=ticketmaster.com"
+    },
+    "parent":  {
+      "href": "/discovery/v1/categories/10002?locale=en-us&domain=ticketmaster.com"
+    }
+  },
+  "id": "203",
+  "type": "category"
+}
+{% endhighlight %}
+
+
+{: .article .console-link #search-venues}
+## Search Venues
+
+**Method:** GET.
+Authentication required.
+Search Venues!
+
+discovery/{version}/venues.{format}
+{: .code .red}
+
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |     "v1"           | Yes      |
+| `format`   | API Response Format. | string            |     "json"         | Yes      |
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
+| `page`   | The page for paginating through the results. | string            |       "1"       | No      |
+| `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+- `_embedded` (object) - container for venues.
+    * `venues` (array) - venues.
+        - `{array item object}` - venue.
+            * `name` (string) - name of venue.
+            * `locale` (string) - locale of venue.
+            * `marketId` (array of numbers) - id of supported markets.
+            * `country` (string) - country code.
+            * `state` (object) - state of venue.
+                - `stateCode` (string) - code of state.
+            * `city` (object) - citiy of venue.
+                - `name` (string) - name of city.
+            * `postalCode` (string) - postal code of venue.
+            * `address` (object) - address of venue.
+                - `line1` (string) - address line 1.
+                - `line2` (string) - address line 2.
+            * `timeZone` (string) - time zone of venue.
+            * `_links` (object) - links to venues.
+                - `self` (object) - link to this venue.
+                    * `href` (string) - reference.
+            * `id` (string) - id of venue.
+            * `type` (string) - type of venue.
+- `_links` (object) - links to venues data set.
+    * `self` (object) - link to this data set.
+        - `href` (string) - reference.
+        - `templated` (boolean) - is templated.
+- `page` (object) - information about current page in data source.
+    * `size` (number) - page size.
+    * `totalElements` (number) - total number of available elements in server.
+    * `totalPages` (number) - total number of available pages in server.
+    * `number` (number) - current page number counted from 0.
+    
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /discovery/v1/venues.json?apikey=****&keyword=UCV HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: http://app.ticketmaster.com
+Connection: Keep-Alive
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:04:50 GMT
+Content-Length: 1646
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
+
+{
+  "_links":  {
+    "self":  {
+      "href": "/discovery/v1/venues.json?keyword=UCV {&page,size,sort}",
+      "templated": true
+    }
+  },
+  "_embedded":  {
+    "venues":  [
+       {
+        "name": "#1 Please do not use, left over from UCV initial acct set up",
+        "locale": "en-us",
+        "marketId":  [
+          103
+        ],
+        "country":  {
+          "countryCode": "CA"
+        },
+        "state":  {
+          "stateCode": "ON"
+        },
+        "city":  {
+          "name": "Morrisburg"
+        },
+        "postalCode": "K0C1X0",
+        "address":  {
+          "line1": "Crysler Park Marina, 13480 County Rd 2",
+          "line2": "Morrisburg, ON"
+        },
+        "timeZone": "America/Toronto",
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/venues/341396?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "341396",
+        "type": "venue"
+      },
+       {
+        "name": "#2 Please do not use, left over from UCV initial acct set up",
+        "locale": "en-us",
+        "marketId":  [
+          103
+        ],
+        "country":  {
+          "countryCode": "CA"
+        },
+        "state":  {
+          "stateCode": "ON"
+        },
+        "city":  {
+          "name": "Morrisburg"
+        },
+        "postalCode": "K0C1X0",
+        "address":  {
+          "line1": "13740 County Road 2",
+          "line2": "Morrisburg, ON"
+        },
+        "timeZone": "America/Toronto",
+        "_links":  {
+          "self":  {
+            "href": "/discovery/v1/venues/341395?locale=en-us&domain=ticketmaster.com"
+          }
+        },
+        "id": "341395",
+        "type": "venue"
+      }
+    ]
+  },
+  "page":  {
+    "size": 20,
+    "totalElements": 2,
+    "totalPages": 1,
+    "number": 0
+  }
+}
+{% endhighlight %}
+
+
+{: .article .console-link #venue-details}
+## Get Venue Details
+
+**Method:** GET.
+Authentication required.
+Returns the venue detail by ID.
+
+discovery/{version}/venues/{id}.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |     "v1"           | Yes      |
+| `id`       | Venue ID.            | string            |     "90150"          | Yes      |
+| `format`   | API Response Format. | string            |     "json"         | Yes      |
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+
+### Response structure:
+
+{: .nested-list}
+* `name` (string) - name of venue.
+* `locale` (string) - locale of venue.
+* `marketId` (array of numbers) - id of supported markets.
+* `country` (string) - country code.
+* `state` (object) - state of venue.
+    - `stateCode` (string) - code of state.
+* `city` (object) - citiy of venue.
+    - `name` (string) - name of city.
+* `postalCode` (string) - postal code of venue.
+* `address` (object) - address of venue.
+    - `line1` (string) - address line 1.
+    - `line2` (string) - address line 2.
+* `timeZone` (string) - time zone of venue.
+* `_links` (object) - links to venues.
+    - `self` (object) - link to this venue.
+        * `href` (string) - reference.
+* `id` (string) - id of venue.
+* `type` (string) - type of venue.
+
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /discovery/v1/venues/90150.json?apikey=**** HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Access-Control-Allow-Origin: *
+Date: Tue, 01 Dec 2015 13:07:04 GMT
+Content-Length: 641
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+X-Application-Context: application:default,jetson1
+Connection: keep-alive
+Content-Type: application/json;charset=utf-8
+Server: Apache-Coyote/1.1
+Set-Cookie: ****
+
+{
+  "name": "Hollywood Bowl",
+  "locale": "en-us",
+  "marketId":  [
+    27
+  ],
+  "country":  {
+    "countryCode": "US"
+  },
+  "state":  {
+    "stateCode": "CA"
+  },
+  "city":  {
+    "name": "Hollywood"
+  },
+  "postalCode": "90068",
+  "address":  {
+    "line1": "2301 N Highland Ave",
+    "line2": "Hollywood, CA"
+  },
+  "timeZone": "America/Los_Angeles",
+  "_links":  {
+    "self":  {
+      "href": "/discovery/v1/venues/90150?locale=en-us&domain=ticketmaster.com"
+    }
+  },
+  "id": "90150",
+  "type": "venue"
+}
+{% endhighlight %}
+
+
+## Supported Markets
+{: .article #supported-markets}
+
+#### USA
+
+| ID          | Market                                       |
+| :---------- | :--------------------------------------------|
+| 1           | Birmingham & More                            |
+| 2           | Charlotte                                    |
+| 3           | Chicagoland & Northern IL                    |
+| 4           | Cincinnati & Dayton                          |
+| 5           | Dallas - Fort Worth & More                   |
+| 6           | Denver & More                                |
+| 7           | Detroit, Toledo & More                       |
+| 8           | El Paso & New Mexico                         |
+| 9           | Grand Rapids & More                          |
+| 10          | Greater Atlanta Area                         |
+| 11          | Greater Boston Area                          |
+| 12          | Cleveland, Youngstown & More                 |
+| 13          | Greater Columbus Area                        |
+| 14          | Greater Las Vegas Area                       |
+| 15          | Greater Miami Area                           |
+| 16          | Minneapolis/St. Paul & More                  |
+| 17          | Greater Orlando Area                         |
+| 18          | Greater Philadelphia Area                    |
+| 19          | Greater Pittsburgh Area                      |
+| 20          | Greater San Diego Area                       |
+| 21          | Greater Tampa Area                           |
+| 22          | Houston & More                               |
+| 23          | Indianapolis & More                          |
+| 24          | Iowa                                         |
+| 25          | Jacksonville & More                          |
+| 26          | Kansas City & More                           |
+| 27          | Greater Los Angeles Area                     |
+| 28          | Louisville & Lexington                       |
+| 29          | Memphis, Little Rock & More                  |
+| 30          | Milwaukee & WI                               |
+| 31          | Nashville, Knoxville & More                  |
+| 32          | United States                                |
+| 33          | New England                                  |
+| 34          | New Orleans & More                           |
+| 35          | New York/Tri-State Area                      |
+| 36          | Phoenix & Tucson                             |
+| 37          | Portland & More                              |
+| 38          | Raleigh & Durham                             |
+| 39          | Saint Louis & More                           |
+| 40          | San Antonio & Austin                         |
+| 41          | N. California/N. Nevada                      |
+| 42          | Greater Seattle Area                         |
+| 43          | North & South Dakota                         |
+| 44          | Upstate New York                             |
+| 45          | Utah & Montana                               |
+| 46          | Virginia                                     |
+| 47          | Washington, DC and Maryland                  |
+| 48          | West Virginia                                |
+| 49          | Hawaii                                       |
+| 50          | Alaska                                       |
+| 51          | All of US                                    |
+| 52          | Nebraska                                     |
+| 53          | Springfield                                  |
+| 54          | Central Illinois                             |
+| 55          | Northern New Jersey                          |
+| 121         | South Carolina                               |
+| 122         | South Texas                                  |
+| 123         | Beaumont                                     |
+| 124         | Connecticut                                  |
+| 125         | Oklahoma                                     |
+
+
+#### Canada
+
+| ID          | Market                                       |
+| :---------- | :--------------------------------------------|
+| 101         | All of Canada                                |
+| 102         | Toronto, Hamilton & Area                     |
+| 103         | Ottawa & Eastern Ontario                     |
+| 106         | Manitoba                                     |
+| 107         | Edmonton & Northern Alberta                  |
+| 108         | Calgary & Southern Alberta                   |
+| 110         | B.C. Interior                                |
+| 111         | Vancouver & Area                             |
+| 112         | Saskatchewan                                 |
+| 120         | Montréal & Area                           	 |
+
+
+#### Europe
+
+| ID          | Market                                       |
+| :---------- | :--------------------------------------------|
+| 201         | All of United Kingdom                        |
+| 202         | London                                       |
+| 203         | South                                        |
+| 204         | Midlands and Central                         |
+| 205         | Wales and North West                         |
+| 206         | North and North East                         |
+| 207         | Scotland                                     |
+| 208         | Ireland                                      |
+| 209         | Northern Ireland                             |
+| 210         | Germany                                      |
+| 211         | Netherlands                                  |
+| 500         | Sweden                                       |
+| 501         | Todas las poblaciones                        |
+| 502         | Barcelona                                    |
+| 503         | Madrid                                       |
+| 600         | Turkey                                       |
+
+#### Australia and New Zealand
+
+| ID          | Market                                       |
+| :---------- | :--------------------------------------------|
+| 301         | All of Australia                             |
+| 302         | New South Wales/Australian Capital Territory |
+| 303         | Queensland                                   |
+| 304         | Western Australi                             |
+| 305         | Victoria/Tasmania                            |
+| 306         | Western Australia                            |
+| 350         | All of New Zealand                           |
+| 351         | North Island                                 |
+| 352         | South Island                                 |
+
+#### Mexico
+
+| ID          | Market                                       |
+| :---------- | :--------------------------------------------|
+| 401         | All of Mexico                                |
+| 402         | Mexico City and Metropolitan Area            |
+| 403         | Monterrey                                    |
+| 404         | Guadalajara                                  |
+
+
+## Supported Domains
+{: .article #supported-domains}
+
+| Domain				                         | 
+| :----------------------------------------------|
+| ticketmaster.com		                         |
+| ticketmaster.ca		                         |
+| ticketmaster.mx		                         |
+| ticketmaster.au		                         |
+| ticketmaster.nz		                         |
+| livenation.com		                         |
+
+## Supported Sources
+{: .article #supported-sources}
+
+| Source	|
+|:----------|
+| ticketweb	|
+| universe	|
+| frontgate	|
+
+
+## Supported Locales
+{: .article #supported-locales}
+
+| Locale	|
+|:----------|
+| en-us		|
+| en-au		|
+| en-gb		|
+| en-nz		|
+| en-mx		|
+| en-ca		|
+| es-us		|
+| es-mx		|
+| fr-fr		|
+| fr-ca		|

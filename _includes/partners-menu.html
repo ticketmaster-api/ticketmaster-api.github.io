@@ -9,13 +9,16 @@
             <li><a href="/partners/certified-partners/" class="{% if page.category == "partners" page.categories[0] == "partner" && page.categories[1] == "certified" %}active{% endif %}" >Certified Partners</a>
                 {% if page.category == "partners" page.categories[0] == "partner" && page.categories[1] == "certified" %}
                     <ul class="sections menu-highlight">
-                    {% for partner in site.pages %}
-                        {% if partner.categories[0] == "partner" && partner.categories[1] == "certified" %}
-                            <li class="{% if partner.pname == page.pname %}active{% endif %}">
-                                <a href="/partners/list/{{partner.name | replace:'.md',''}}">{{ partner.pname | capitalize }}</a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
+                        <li>
+                            <a href="/partners/certified-partners/nexus">Nexus</a>
+                        </li>
+                        {% for partner in site.pages %}
+                            {% if partner.available && partner.categories[0] == "partner" && partner.categories[1] == "certified" %}
+                                <li class="{% if partner.pname == page.pname %}active{% endif %}">
+                                    <a href="/partners/list/{{partner.name | replace:'.md',''}}">{{ partner.pname | capitalize }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 {% endif %}
             </li>
