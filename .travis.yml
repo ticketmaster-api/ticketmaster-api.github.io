@@ -25,8 +25,9 @@ script:
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - jekyll serve &
   - sleep 20 # give jekyll some time to start
-# - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
-# - jekyll serve  #refresh jekyll
+  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
+  - jekyll serve & #refresh jekyll
+  - sleep 5
   - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2
 
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
@@ -49,10 +50,10 @@ before_install:
   - ls ./
   - rm ./_site/* -rf #remove directory _site
   - rm ./events/* -rf #remove directory events
+  - rm ./partners/* -rf #remove directory partners
   - \cp -avrf ./tests/content/*/ ./ #copy test content
   - ls ./events/list
   - rvm install 2.1.5
   - gem install github-pages
-#  - gem install pygments.rb
   - gem install html-proofer
   - npm install -g galenframework-cli
