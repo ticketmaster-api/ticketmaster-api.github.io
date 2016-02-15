@@ -151,7 +151,6 @@ discovery/{version}/events.{format}
                                 * `href` (string) - reference.
                         * `id` (string) - id of current attraction.
                         * `type` (string) - type of current attraction.
-
             * `type` (string) - type of event.
 - `_links` (object) - links to data sets.
     * `self` (object) - link to this data set.
@@ -165,7 +164,36 @@ discovery/{version}/events.{format}
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
     * `number` (number) - current page number counted from 0.
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}'
+{% endhighlight %}
+
     
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -359,35 +387,6 @@ Set-Cookie: ****
 }
 {% endhighlight %}
 
-
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}'
-{% endhighlight %}
-
-
 ## Get Event Details
 {: .article .console-link #event-details }
 
@@ -397,7 +396,6 @@ Returns the event detail by event ID.
 
 discovery/{version}/events/{id}.{format}
 {: .code .red}
-
 
 ### URL parameters:
 
@@ -499,6 +497,34 @@ discovery/{version}/events/{id}.{format}
             * `type` (string) - type of current attraction.
 * `type` (string) - type of event.
 
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -654,35 +680,6 @@ Set-Cookie: ****
 }
 {% endhighlight %}
 
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}'
-{% endhighlight %}
-
-
-
 
 
 ## Search Event Images
@@ -719,6 +716,34 @@ discovery/{version}/events/{id}/images.{format}
     * `self` (object) - link to this images set.
         - `href` (string) - reference.
 
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -833,34 +858,6 @@ Set-Cookie: ****
 
 {% endhighlight %}
 
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}'
-{% endhighlight %}
-
-
 {: .article .console-link #search-attractions}
 ## Search Attractions
 
@@ -920,6 +917,34 @@ discovery/{version}/attractions.{format}
     * `number` (number) - current page number counted from 0.
 
 
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1216,35 +1241,6 @@ Set-Cookie: ****
 }
 {% endhighlight %}
 
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}'
-{% endhighlight %}
-
-
-
 {: .article .console-link #attraction-details}
 ## Get Attraction Details
 
@@ -1286,7 +1282,34 @@ discovery/{version}/attractions/{id}.{format}
 * `id` (string) - id of attraction.
 * `type` (string) - type of attraction.
 
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
 
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1328,36 +1351,6 @@ Set-Cookie: ****
   "type": "attraction"
 }
 {% endhighlight %}
-
-
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}'
-{% endhighlight %}
-
-
 
 
 {: .article .console-link #search-categories}
@@ -1417,6 +1410,35 @@ discovery/{version}/categories.{format}
     * `totalPages` (number) - total number of available pages in server.
     * `number` (number) - current page number counted from 0.
 
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1773,35 +1795,6 @@ Set-Cookie: ****
 {% endhighlight %}
 
 
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}'
-{% endhighlight %}
-
-
-
 {: .article .console-link #category-details}
 ## Get Category Details
 
@@ -1841,7 +1834,35 @@ discovery/{version}/categories/{id}.{format}
         * `href` (string) - reference.
 * `id` (string) - id of category.
 * `type` (string) - type of category.
-        
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1883,35 +1904,6 @@ Set-Cookie: ****
   "type": "category"
 }
 {% endhighlight %}
-
-
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}'
-{% endhighlight %}
-
 
 
 {: .article .console-link #search-venues}
@@ -1978,6 +1970,34 @@ discovery/{version}/venues.{format}
     * `number` (number) - current page number counted from 0.
     
 
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -2082,34 +2102,6 @@ Set-Cookie: ****
 {% endhighlight %}
 
 
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}'
-{% endhighlight %}
-
-
 {: .article .console-link #venue-details}
 ## Get Venue Details
 
@@ -2157,6 +2149,35 @@ discovery/{version}/venues/{id}.{format}
 * `id` (string) - id of venue.
 * `type` (string) - type of venue.
 
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}'
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -2211,33 +2232,6 @@ Set-Cookie: ****
   "id": "90150",
   "type": "venue"
 }
-{% endhighlight %}
-
-{: .aside}
->[JavaScript](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}'
 {% endhighlight %}
 
 
