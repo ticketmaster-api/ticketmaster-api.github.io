@@ -1,0 +1,21 @@
+@objects
+    body                    css     body
+    header                  css     .top-bar
+
+    title                   css     #interactive-api-console
+    console-instructions    css     #console-instructions
+    get-key-callout         css     #get-key-callout
+
+    footer                  id      footer
+
+= Console page content test =
+    title:
+        image file etalonImg/dumpsDesktop/objects/title.png, error 2%
+    console-instructions:
+        image file etalonImg/dumpsDesktop/objects/console-instructions.png, error 2%
+    get-key-callout :
+        image file etalonImg/dumpsDesktop/objects/get-key-callout.png, error 2%
+
+= header, footer Support page =
+    header, footer:
+        visible

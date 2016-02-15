@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.4.4 (395) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_console_v2</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-243.000000, -556.000000)" fill="#B7C9D3">
+            <g id="ic_console_v2" sketch:type="MSLayerGroup" transform="translate(243.000000, 556.000000)">
+                <g id="Path-+-Rectangle-532" transform="translate(3.000000, 5.000000)" sketch:type="MSShapeGroup">
+                    <path d="M8.06767723,7.36246069 L1.49505907,13.9350789 C1.40102973,14.0291082 1.2928976,14.0761222 1.17065946,14.0761222 C1.04842131,14.0761222 0.940289192,14.0291082 0.84625985,13.9350789 L0.141043308,13.2298623 C0.047013966,13.135833 0,13.0277009 0,12.9054627 C0,12.7832246 0.047013966,12.6750924 0.141043308,12.5810631 L5.68404532,7.03806108 L0.141043308,1.49505907 C0.047013966,1.40102973 0,1.2928976 0,1.17065946 C0,1.04842131 0.047013966,0.940289192 0.141043308,0.84625985 L0.84625985,0.141043308 C0.940289192,0.047013966 1.04842131,-2.24486748e-15 1.17065946,0 C1.2928976,-2.24486748e-15 1.40102973,0.047013966 1.49505907,0.141043308 L8.06767723,6.71366147 C8.16170658,6.80769082 8.20872054,6.91582294 8.20872054,7.03806108 C8.20872054,7.16029923 8.16170658,7.26843135 8.06767723,7.36246069 L8.06767723,7.36246069 Z" id="Path"></path>
+                    <rect id="Rectangle-532" x="9" y="12" width="8.78259366" height="2" rx="0.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
