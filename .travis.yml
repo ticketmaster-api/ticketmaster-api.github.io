@@ -29,7 +29,7 @@ script:
 
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
 #  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,BlogsPage,Events,PartnersLanding #generate comparing images
-  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PartnersNexus, PartnersLanding #generate comparing images
+  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PartnersNexus,PartnersLanding #generate comparing images
 
 after_script:
   - rake travis:deploy --trace --verbose
