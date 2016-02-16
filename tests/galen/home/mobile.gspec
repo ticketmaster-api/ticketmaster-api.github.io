@@ -26,7 +26,7 @@
 
 = image test =
     top-promo:
-        image file etalonImg/dumpsMobile/objects/top-promo.png, tolerance 40
+        % image file etalonImg/dumpsMobile/objects/top-promo.png, tolerance 40
         % width 320 px
 
     columns-block:

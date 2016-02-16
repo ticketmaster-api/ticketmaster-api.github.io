@@ -6,7 +6,7 @@
 
 = Support page content test =
     single-column:
-        image file etalonImg/dumpsTablet/objects/base-content-wrapper.png, error 2%
+        % image file etalonImg/dumpsTablet/objects/base-content-wrapper.png, error 2%
 
 
 = general layout Support page test =
