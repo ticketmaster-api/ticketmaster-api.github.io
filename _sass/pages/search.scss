@@ -158,8 +158,9 @@
   }
 }
 .gcsc-branding {
-  margin-top: -20px !important;
-  padding-right: 210px !important;
+  /* margin-top: -20px !important; */
+  /* padding-right: 210px !important; */
+  float: right !important;
   margin-bottom: 35px !important;
   @media #{$max-768} {
     margin-top: -40px !important;
@@ -330,6 +331,17 @@
     @media #{$max-768} {
       display: block;
       float: none;
+    }
+  }
+}
+
+.gsc-control-cse {
+  .gs-no-results-result {
+    .gs-snippet {
+      background: none !important;
+      border: none !important;
+      color: #009cde !important;
+      font-size: 25px;
     }
   }
 }
