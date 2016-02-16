@@ -6,7 +6,7 @@
 
 = Support page content test =
     single-column:
-        image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 2%
+        % image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 2%
 
 = Navigation test =
     header, footer:
