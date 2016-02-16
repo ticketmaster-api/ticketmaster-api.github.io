@@ -25,7 +25,7 @@
 
 = image test =
     top-promo:
-         % image file etalonImg/dumpsTablet/objects/top-promo.png, tolerance 40, analyze-offset 2
+         % image file etalonImg/dumpsTablet/objects/top-promo.png error 2%
          % width 768 px
          % height 857 px
     columns-block:
