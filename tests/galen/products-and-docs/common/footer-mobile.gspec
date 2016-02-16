@@ -95,10 +95,10 @@
 
 = block-5 (Events) text, align check =
         nav-item-block-5-footer-1:
-            % text is "Hackatons"
+            % text is "devjam"
             aligned horizontally all nav-item-block-5-footer-2
         nav-item-block-5-footer-2:
-            % text is "Meetups"
+            % text is "hackathon"
 
 = block-6 (Open Source) text, align check =
         nav-item-block-6-footer-1:

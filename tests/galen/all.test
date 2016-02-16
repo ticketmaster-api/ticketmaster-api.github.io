@@ -97,24 +97,3 @@ PD-WidgetsPage page on mobile ${mobile_size}
     ${base_url}/products-and-docs/widgets/ ${mobile_size}
         #dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsMobile/
         check ${prDocsWidjets}/mobile.gspec --include "mobile" --exclude "nomobile"
-
-### prDocsSlate(discoveryAPI) ###########################################################################
-
-@@ groups ProductsDocsSlate
-ProductsDocsSlate page on desktop ${desktop_size}
-    ${base_url}/products-and-docs/apis/discovery/ ${desktop_size}
-        #wait 1m until visible "id: qual_ol"
-        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${prDocsSlate}/etalonImg/dumpsDesktop/
-        check ${prDocsSlate}/desktop.gspec --include "desktop"
-
-@@ groups ProductsDocsSlate
-ProductsDocsSlate page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/discovery/ ${tablet_size}
-        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsTablet/
-        check ${prDocsSlate}/tablet.gspec --include "tablet"
-
-@@ groups ProductsDocsSlate
-ProductsDocsSlate page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/discovery/ ${mobile_size}
-        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsMobile/
-        check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
