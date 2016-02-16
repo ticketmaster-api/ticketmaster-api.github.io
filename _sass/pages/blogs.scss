@@ -172,6 +172,12 @@
     }
     h4 {
       margin-bottom: 8px;
+      &:hover,
+      &:active,
+      &:focus{
+        color: $p1b;
+        outline: none;
+      }
     }
   }
   &.menu-bg{
