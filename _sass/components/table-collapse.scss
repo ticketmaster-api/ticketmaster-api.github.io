@@ -3,15 +3,6 @@
   position: relative;
   margin-bottom: 5px;
   padding-top: 24px;
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: -1px;
-    bottom: 0;
-    height: 30px;
-    @include gradient-vertical-three-colors($start-color: rgba(255, 255, 255, 0), $mid-color: #ffffff, $color-stop: 50%, $end-color: #ffffff);
-  }
 
   &__inner {
     overflow-x: hidden;
@@ -22,24 +13,59 @@
   &__btn {
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -16px;
     width: 20px;
     height: 20px;
     margin-left: -10px;
     cursor: pointer;
-    background: url("/assets/img/products-and-docs/ic-chevron-open.svg") no-repeat center bottom;
+
+    // Pseudo elements used only for background loading
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      @include transition(opacity 0.3s ease);
+    }
+
+    &:before {
+      opacity: 1;
+      background-image: url("/assets/img/products-and-docs/ic-chevron-open.svg")
+    }
+
+    &:after {
+      opacity: 0;
+      margin-top: -1px;
+      @include rotate(180deg);
+      background-image: url("/assets/img/products-and-docs/ic-shevron-down-blue.svg");
+    }
+
+    &:hover {
+      &:before {
+        opacity: 0;
+      }
+
+      &:after {
+        opacity: 1;
+      }
+    }
   }
 
   &-collapsed {
     .table_collapse__btn {
-      background-image: url("/assets/img/products-and-docs/ic-chevron.svg");
+      @include rotate(180deg);
     }
     .table_collapse__inner {
       overflow-y: auto;
     }
   }
 }
-// TODO: fix it
+
 .documentation .content .article-wrapper .table_collapse .table-wrapper{
   margin-top: 0;
 }
