@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Generator: sketchtool 3.4.4 (395) - http://www.bohemiancoding.com/sketch -->
+ <defs>
+  <svg id="svg_9" xmlns:xlink="http://www.w3.org/1999/xlink" height="24" width="24">
+   <!-- Generator: sketchtool 3.4.4 (395) - http://www.bohemiancoding.com/sketch -->
+   <defs>
+    <svg id="svg_5" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512">
+     <path d="m201.526993,357.972992l40.25,40.25l142.223007,-142.222992l-142.223007,-142.223007l-40.25,40.249985l73.528,73.528h-275.054993v56.889023h275.056l-73.529007,73.528992zm253.584,-357.972992h-398.221985c-31.431,0 -56.889,25.458 -56.889,56.889v113.778008h56.889v-113.778008h398.222992v398.223h-398.222992v-113.778992h-56.889v113.778015c0,31.430969 25.458,56.888977 56.889,56.888977h398.222992c31.429993,0 56.888,-25.458008 56.888,-56.889008v-398.221992c0,-31.431 -25.458008,-56.889 -56.889008,-56.889z"/>
+    </svg>
+   </defs>
+   <title></title>
+   <desc>Created with sketchtool.</desc>
+   <g>
+    <title>Layer 1</title>
+    <use xlink:href="#svg_5" id="svg_6" transform="matrix(0.0312988, 0, 0, 0.0312988, 47.682, -40.5581)" y="1411.325046" x="-1384.948614" fill="#ffffff"/>
+   </g>
+  </svg>
+ </defs>
+ <title></title>
+ <desc>Created with sketchtool.</desc>
+ <g>
+  <title>Layer 1</title>
+  <use x="-25.431162" y="-28.925107" transform="matrix(0.80615, 0, 0, 0.80615, 22.7071, 25.9243)" id="svg_10" xlink:href="#svg_9"/>
+ </g>
+</svg>

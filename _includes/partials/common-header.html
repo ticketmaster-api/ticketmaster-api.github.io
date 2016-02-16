@@ -20,7 +20,37 @@
         </nav>
         <div class="col-xs-5 col-lg-2 gray">
             <a id="menu-btn" {% if page.category != "home" %} class="white"{% endif %}></a>
-            <a id="search" {% if page.category != "home" %} class="white"{% endif %}><span tabindex="-1" id="search-alert" style="display: none;">Whoa! Search isn't quite ready yet! We're still working on it.</span></a>
+            <div id="search" {% if page.category != "home" %} class="white"{% endif %}>
+                <div class="search-button"></div>
+                <script>
+                /*
+                    (function() {
+                        var cx = '005729231290321871364:pb-ym0dnvm4';
+                        var gcse = document.createElement('script');
+                        gcse.type = 'text/javascript';
+                        gcse.async = true;
+                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                '//cse.google.com/cse.js?cx=' + cx;
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(gcse, s);
+                    })();
+                */
+                </script>
+                <!-- <gcse:searchbox-only></gcse:searchbox-only> -->
+
+                <form action="/search/" id="cse-search-box">
+                    <div>
+                        <input type="hidden" name="cx" value="005729231290321871364:pb-ym0dnvm4" />
+                        <input type="hidden" name="ie" value="UTF-8" />
+                        <input class="q" type="text" name="q" size="14" placeholder="Search for ..."/>
+                        <input class="sa" type="submit" name="sa" value="" />
+                    </div>
+                </form>
+                <script type="text/javascript" src="//www.google.com/jsapi"></script>
+                <script type="text/javascript" src="//www.google.com.ua/cse/brand?form=cse-search-box&lang=en"></script>
+                <!-- <span tabindex="-1" id="search-alert" style="display: none;">Whoa! Search isn't quite ready yet! We're still working on it.</span> -->
+            </div>
+            <a class="apigee-login {% if page.category != "home" %} white{% endif %}" href="https://dev-livenation.devportal.apigee.com/user/login">Login</a>
         </div>
         <div id="rainbow">
             <span class="one"></span>

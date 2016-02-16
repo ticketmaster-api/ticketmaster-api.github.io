@@ -12,4 +12,4 @@
         visible
 
     global:
-        count any  menu-dropdown-item-* is 6
+        count any  menu-dropdown-item-* is 7

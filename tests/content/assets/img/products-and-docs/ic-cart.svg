@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48px" height="40px" viewBox="0 0 48 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.4.4 (395) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_cart</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="2.x-Products-Landing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="2.1.1-Products-Landing-Desktop" sketch:type="MSArtboardGroup" transform="translate(-796.000000, -956.000000)" stroke="#009CDE" stroke-width="2" stroke-linejoin="round">
+            <g id="APIs" sketch:type="MSLayerGroup" transform="translate(0.000000, 656.000000)">
+                <g id="Content" transform="translate(345.000000, 201.000000)" sketch:type="MSShapeGroup">
+                    <g id="Icons" transform="translate(170.000000, 96.000000)">
+                        <g id="ic_cart" transform="translate(282.000000, 4.000000)">
+                            <path d="M46.004,0 L40.87,0 C40.374,0 39.952,0.366 39.88,0.86 L36.126,27.14 C36.056,27.636 35.634,28 35.136,28 L6.004,28 C4.898,28 4.004,27.106 4.004,26 C4.004,24.894 4.898,24 6.004,24 L30.004,24 C31.108,24 32.004,23.106 32.004,22 C32.004,20.894 31.108,20 30.004,20 L4.004,20 C2.898,20 2.004,19.106 2.004,18 C2.004,16.894 2.898,16 4.004,16 L31.004,16 C32.108,16 33.004,15.106 33.004,14 C33.004,12.894 32.108,12 31.004,12 L2.004,12 C0.898,12 0.004,11.106 0.004,10 C0.004,8.894 0.898,8 2.004,8 L34.004,8" id="Stroke-1467" stroke-linecap="round"></path>
+                            <path d="M14.004,35 C14.004,36.656 12.66,38 11.004,38 C9.348,38 8.004,36.656 8.004,35 C8.004,33.344 9.348,32 11.004,32 C12.66,32 14.004,33.344 14.004,35 L14.004,35 Z" id="Stroke-1468"></path>
+                            <path d="M36.004,35 C36.004,36.656 34.66,38 33.004,38 C31.348,38 30.004,36.656 30.004,35 C30.004,33.344 31.348,32 33.004,32 C34.66,32 36.004,33.344 36.004,35 L36.004,35 Z" id="Stroke-1469"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

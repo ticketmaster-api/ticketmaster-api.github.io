@@ -329,28 +329,13 @@ body .top-bar.bg-header {
   margin-bottom: 96px;
   textarea {
     height: 96px;
+    resize: vertical;
   }
-  .col-full {
-    input {
-      width: 100%;
-    }
+  .col-sm-12,
+  .col-sm-6 {
+    padding-left: 0;
   }
-  .col-left {
-    float: left;
-    width: 47.5%;
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-  }
-  .col-right {
-    float: left;
-    margin-left: 5%;
-    width: 47.5%;
-    @media (max-width: 767px) {
-      margin-left: 0;
-      width: 100%;
-    }
-  }
+
   .label-radio-group{
     width: 100%;
   }
@@ -371,17 +356,21 @@ body .top-bar.bg-header {
       }
     }
   }
+  .label-required {
+    font-family: $font-body;
+  }
   .company-detail {
     font-family: $font-h5;
     font-size: $size-h6;
     line-height: $line-height-h6;
-    margin-top: 10px;
+    margin-top: $base-margin;
+    margin-bottom: $base-margin/2;
 
-    @media (max-width: 767px) {
+    @media (max-width: 1199px) {
       color: $n1;
       font-family: $font-h5;
       font-size: $size-h4;
-      line-height: $line-height-h6;
+      line-height: $line-height-h5;
     }
   }
   .button-blue {
@@ -401,21 +390,24 @@ body .top-bar.bg-header {
     &:active {
       outline: none;
       text-decoration: none;
+      background-color: $p1b;
     }
   }
 
   @media (min-width: 767px) {
-    margin-right: calc(25% - 15px);
-
-    /*75px - button height */
-    margin-bottom: calc(75px + 96px);
+    padding: 0 10%;
   }
   @media (min-width: 1199px) {
+    padding: 0 15px;
+    margin: 0;
     margin-bottom: 96px;
   }
   @media (max-width: 767px) {
-    /* 44px - footer top margin
-       75px - button height */
-    margin-bottom: calc(75px + 96px - 44px);
+    /* 44px - footer top margin */
+    margin-bottom: calc(96px - 44px);
+    .col-sm-6,
+    .col-sm-12 {
+      padding-right: 0;
+    }
   }
 }

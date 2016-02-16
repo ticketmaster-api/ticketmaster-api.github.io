@@ -31,7 +31,7 @@ iframe{
   position: relative;
 }
 
-a {
+a, input {
   &active, &:focus {
     outline: none;
   }
@@ -217,6 +217,7 @@ input, select {
   margin-bottom: 24px;
   border-radius: 4px;
   outline: none;
+  height: 48px;
   -webkit-appearance: none;
      -moz-appearance: none;
 }
@@ -228,6 +229,10 @@ input, select, textarea {
   border: 1px solid #CCCCCC;
   background-color: #FFFFFF;
   padding: 8px 16px;
+  &:focus {
+    border-color: $p1;
+    outline: 0px none;
+  }
 }
 /*
 * Custom checker
@@ -272,7 +277,6 @@ input[type=radio]:not(old):checked + label > span > span{
   border-radius    : 50%;
   background       : $p1;
 }
-
 /*Custom checker END*/
 
 /**

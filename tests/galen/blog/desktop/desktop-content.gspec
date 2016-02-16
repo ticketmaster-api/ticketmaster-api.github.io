@@ -34,7 +34,7 @@
 
         search-button:
             visible
-            inside menu-wrapper ~10 px right, 30 to 32px top
+            inside menu-wrapper ~88 px right, 20 to 25px top
 
         header-menu:
             visible
