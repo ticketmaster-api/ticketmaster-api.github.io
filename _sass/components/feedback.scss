@@ -55,7 +55,8 @@
       border: 0;
     }
     .modal-body {
-      overflow: hidden;
+      //overflow: hidden;
+      @include clearfix;
       textarea {
         resize: none;
       }
@@ -73,4 +74,24 @@
       }
     }
   }
+}
+
+// Validation highlight
+.feedback_form-validation {
+  textarea,
+  input {
+    &:invalid {
+      border-color: $red;
+    }
+  }
+}
+
+// Hide Qualaroo dialog
+body div#qual_ol.qual_ol {
+  width: 0;
+  height: 0!important; // Override inline style
+  overflow: hidden;
+  opacity: 0;
+  right: 0;
+  bottom: 0;
 }
