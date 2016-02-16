@@ -22,7 +22,7 @@ Whether you need a quick drop-in or are building a custom product, we have the [
 
 {: .body}
 Already doing business with Ticketmaster? <br>
-[Get in touch](mailto: distributedcommerce@ticketmaster.com) so we can hook you up.
+[Get in touch](mailto:distributedcommerce@ticketmaster.com) so we can hook you up.
 
 {% endcapture %}
 
