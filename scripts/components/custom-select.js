@@ -35,6 +35,8 @@
     });
 
     $feedbackModal.on('hide.bs.modal', hide);
-    $placeholder.on('blur', hide);
+    $placeholder.on('blur', function(){
+        setTimeout(hide, 100);
+    });
 
 })(jQuery);
