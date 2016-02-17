@@ -23,7 +23,7 @@
 
 = Blogs page footer at the bottom of the page =
         footer:
-            below top-content ~24 px
+            below top-content > ~20 px
 
 = Navigation test @desktop =
     @on desktop, tablet

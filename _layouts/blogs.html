@@ -2,50 +2,13 @@
 layout: default
 ---
 
-
 <div class="top-bar{% if page.category != "home" %} bg-header blogs slice-bottom-left{% endif %}">
-<div class="body-wrapper">
-    <div class="row">
-        <div class="col-xs-7 col-lg-2 gray">
-            <a id="header-logo" href="{{"/" | prepend: site.baseurl}}">
-            {% if page.category == "home" %}
-            <img src="/assets/img/header/tm-developer-logo-p-1.svg">
-            {% else %}
-            <img src="/assets/img/header/tm-developer-logo.svg">
-            {% endif %}
-            </a>
-        </div>
-        <nav id="menu" class="col-xs-12 col-lg-8">
-            <!-- links put into single line intentionally to avoid browser rendered spaces -->
-            <a {% if page.category == "home" or page.category == "documentation" or page.categories[0] == "documentation" or page.category == "products-and-docs" %} class="one nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a><a {% if page.category == "home" or page.category == "partners" or page.category == "under_development" %} class="two nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Partners</a><a {% if page.category == "home" or page.category == "support" or page.categories[0] == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="{{"/support/" | prepend: site.baseurl}}">Support</a><a {% if page.category == "home" or page.category == "blogs" or page.category == "blogs" %} class="four nav-item" {% else %} class="gray" {% endif %} href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a><a {% if page.category == "home" or page.category == "events" or page.category == "under_development" %} class="five nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Events</a><a {% if page.category == "home" or page.category == "opensource" or page.category == "under_development" %} class="six nav-item" {% else %} class="gray" {% endif %} href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Open Source</a>
-        </nav>
-        <div class="col-xs-5 col-lg-2 gray">
-            <a id="menu-btn" {% if page.category != "home" %} class="white"{% endif %}></a>
-            <a id="search" {% if page.category != "home" %} class="white"{% endif %}><span tabindex="-1" id="search-alert" style="display: none;">Whoa! Search isn't quite ready yet! We're still working on it.</span></a>
-        </div>
-        <div id="rainbow">
-            <span class="one"></span>
-            <span class="two"></span>
-            <span class="three"></span>
-            <span class="four"></span>
-            <span class="five"></span>
-            <span class="six"></span>
-        </div>
-    </div>
-</div>
-
+{% include partials/common-header.html %}
 {{content}}
-
 </div>
 
-<ul id="menu-dropdown" class="col-xs-12 col-sm-5 col-lg-3 closed" tabindex="-1">
-<li><a href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a></li>
-<li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Partners</a></li>
-<li><a href="{{"/support/" | prepend: site.baseurl}}">Support</a></li>
-<li><a href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a></li>
-<li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Events</a></li>
-<li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Open Source</a></li>
-</ul>
+{% include partials/common-header-small.html %}
+
 <div id="footer-blogs" class="xs-center{% if page.category == "under_development" or page.category == "documentation" or page.categories[0] == "documentation" %} slice-top-left{% else %} slice-top-right{% endif %}">
 <div class="row footer-nav">
     <div class="row-container">
@@ -80,14 +43,14 @@ layout: default
             <a href="{{"/blogs" | prepend: site.baseurl}}"><h4 class="blue">Blogs</h4></a>
             <ul>
                 <li><a href="http://tech.ticketmaster.com/">Ticketmaster Tech</a></li>
-                <li><a href="https://medium.com/ticketmaster-tech">Ticketmaster Medium Publication</a></li>
+                <li><a href="https://medium.com/ticketmaster-tech">Medium Publication</a></li>
             </ul>
         </div>
         <div class="col-xs-12 col-sm-2">
-            <a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}"><h4 class="blue">Events</h4></a>
+            <a href="{{"/events" | prepend: site.baseurl}}"><h4 class="blue">Events</h4></a>
             <ul>
-                <li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Hackatons</a></li>
-                <li><a href="{{"/products-and-docs/under-development" | prepend: site.baseurl}}">Meetups</a></li>
+                <li><a href="{{"/events/#devjam" | prepend: site.baseurl}}">devjam</a></li>
+                <li><a href="{{"/events/#hackathon" | prepend: site.baseurl}}">hackathon</a></li>
             </ul>
         </div>
         <div class="col-xs-12 col-sm-2">

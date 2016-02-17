@@ -22,7 +22,7 @@ Whether you need a quick drop-in or are building a custom product, we have the [
 
 {: .body}
 Already doing business with Ticketmaster? <br>
-[Get in touch](mailto: distributedcommerce@ticketmaster.com) so we can hook you up.
+[Get in touch](mailto:distributedcommerce@ticketmaster.com) so we can hook you up.
 
 {% endcapture %}
 
@@ -33,7 +33,7 @@ Already doing business with Ticketmaster? <br>
 [![Commerce API](/assets/img/products-and-docs/ic-commerce-api.svg)](/products-and-docs/apis/commerce/)
 [![Partner API](/assets/img/products-and-docs/ic-user.svg)](/products-and-docs/apis/partner/)
 [![Deals API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/deals-api/)
-![Icon5](/assets/img/products-and-docs/ic-flag.svg)
+[![International Discovery API](/assets/img/products-and-docs/ic-flag.svg)](/products-and-docs/apis/international-discovery/)
 
 {: .lead}
 Everything you need to handle event discovery,  commerce, accounts, orders, and fans.

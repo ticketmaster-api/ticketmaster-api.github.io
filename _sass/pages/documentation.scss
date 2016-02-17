@@ -167,7 +167,7 @@
 
           pre {
             overflow-x: auto;
-            padding-top: 50px;
+            padding-top: 10px;
             margin-bottom: 0;
             code {
               width: 980px;
@@ -200,10 +200,53 @@
           display: none;
         }
 
+        .active-lang {
+          display: inline;
+          clear: both;
+          font-size: 1.5em;
+          line-height: 2em;
+          padding-right: 2em;
+          padding-bottom: 0.37em;
+          padding-left: 1em;
+          background-image: url("/assets/img/products-and-docs/ic-chevron.svg");
+          background-repeat: no-repeat;
+          background-position: 90% 50%;
+          border-bottom: 2px solid #f1f5f7;
+          &.open {
+            background-image: url("/assets/img/products-and-docs/ic-chevron-open.svg");
+          }
+          &:focus {
+            outline:none;
+            text-decoration: none;
+            color: #2a7cc7;
+          }
+          &:active {
+            outline: none;
+            text-decoration: none;
+            color: #2a7cc7;
+          }
+        }
         .lang-selector {
-          width: 95%;
+          /* width: 95%;
           margin-left: auto;
           margin-right: auto;
+          */
+          display: none;
+          width: auto;
+          background: #b7c9d2;
+          position: absolute;
+          z-index:10;
+          border-radius: 0 0 4px 4px;
+
+          &:focus {
+            border: none;
+            outline: none;
+          }
+
+          &.show {
+            display: block;
+          }
+
           &.lang-small + .tab-content {
             pre {
               max-height: 250px;
@@ -218,15 +261,18 @@
             text-align: center;
           }
           a {
-            color: $n3;
+            color: #fff;
             font-size: $size-h3;
-            border-bottom: 2px solid $underline-border-grey;
+            /* border-bottom: 2px solid $underline-border-grey; */
             text-decoration: none;
             display: block;
-            padding: 0 2.5%;
-            float: left;
+            /* padding: 0 2.5% ; */
+            padding: 0 1.5em ;
+            box-sizing: content-box;
+            /* float: left; */
             margin: 0 1.3%;
-            text-align: center;
+            /* text-align: center; */
+            text-align: left;
             line-height: 2em;
             white-space: nowrap;
             min-width: 86px;
@@ -249,7 +295,7 @@
           }
           .active {
             color: $p1a;
-            border-bottom: 2px solid $p1a;
+            /* border-bottom: 2px solid $p1a; */
           }
         }
 
@@ -287,7 +333,7 @@
         margin-top: -50px;
 
         @media #{$max-1200} {
-          margin-top: 0;
+          margin-top: 24px;
         }
       }
 
@@ -306,16 +352,15 @@
           background-repeat: no-repeat;
           width: 20px;
           height: 20px;
-          top: 50%;
-          margin-top: -6px;
           right: 0;
           cursor: pointer;
+          bottom: 18px;
         }
       }
 
       code,
       .code {
-        word-break: break-all;
+        word-wrap: break-word;
       }
 
       table code {
@@ -410,43 +455,73 @@
   .copy-btn {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-copy-w.svg");
-    background-color: rgba(201,207,212,1);
+    background-image: url("/assets/img/products-and-docs/ic-copy.svg");
     background-repeat: no-repeat;
     width: 24px;
     height: 24px;
     border-radius: 3px;
-    margin-top: 10px;
-    right: 73px;
+    margin-top: -60px;
+    right: 85px;
     cursor: pointer;
     opacity: 1;
     -webkit-transition: opacity 0.5s ease-in-out;
     -moz-transition: opacity 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
 
+    @media (max-width: 767px) {
+      right: 15px;
+    }
+
     &:hover{
-      background-color: rgba(153, 216, 242, 1);
+      /* background-color: rgba(153, 216, 242, 1); */
     }
   }
-  .raw-btn {
+  .raw-btn, .raw-btn-w  {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-raw-w.svg");
-    background-color: rgba(201,207,212,1);
+    background-image: url("/assets/img/products-and-docs/ic-raw.svg");
     background-repeat: no-repeat;
     width: 24px;
     height: 24px;
     border-radius: 3px;
-    margin-top: 10px;
-    right: 40px;
+    margin-top: -60px;
+    right: 50px;
     cursor: pointer;
     opacity: 1;
     -webkit-transition: opacity 0.5s ease-in-out;
     -moz-transition: opacity 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
 
+    @media (max-width: 767px) {
+      display: none;
+    }
+
     &:hover{
-      background-color: rgba(153, 216, 242, 1);
+      /* background-color: rgba(153, 216, 242, 1); */
+    }
+  }
+  .screen-btn {
+    position: absolute;
+    display: block;
+    background-image: url("/assets/img/products-and-docs/ic-full-screen.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    margin-top: -60px;
+    right: 15px;
+    cursor: pointer;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    &:hover{
+      /* background-color: rgba(153, 216, 242, 1); */
     }
   }
 
@@ -458,10 +533,19 @@
     display: block;
   }
   .copy-btn {
-    right: 61px;
+    margin-top: -45px;
+    right: 67px;
+    @media (max-width: 767px) {
+      right: 0px;
+    }
   }
-  .raw-btn {
-    right: 28px;
+  .raw-btn, .raw-btn-w {
+    margin-top: -45px;
+    right: 35px;
+  }
+  .screen-btn {
+    margin-top: -45px;
+    right: 0;
   }
 }
 
@@ -470,17 +554,21 @@
   margin-bottom: 0;
 }
 
+.documentation .content .article-wrapper .reqres-wrapper {
+  margin-right: 0 !important;
+}
+
 .reqres-wrapper {
   /*margin-bottom: $base-margin;*/
   position: relative;
 
   .highlight {
     border: 2px solid #f1f5f7;
-    margin: 0;
+    margin: 0 !important;
     overflow: hidden;
     pre {
       margin: 0;
-      padding: 50px 30px 30px 30px!important;
+      padding: 30px!important;
       background: none;
       width: 100%;
       max-height: 550px;
@@ -489,7 +577,7 @@
         width: 1300px;
         display: block;
         span {
-          white-space: nowrap;
+        /* white-space: nowrap; */
         }
       }
     }
@@ -554,5 +642,173 @@
         }
       }
     }
+  }
+}
+
+.fs-modal {
+  text-align: center;
+  padding: 0!important;
+  #copy-clip {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .copy-btn-fs {
+    position: absolute;
+    display: block;
+    background-image: url("/assets/img/products-and-docs/ic-copy.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    margin-top: -45px;
+    right: 85px;
+    cursor: pointer;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover{
+      /* background-color: rgba(153, 216, 242, 1); */
+    }
+  }
+  .raw-btn, .raw-btn-w {
+    position: absolute;
+    display: block;
+    background-image: url("/assets/img/products-and-docs/ic-raw.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    margin-top: -45px;
+    right: 50px;
+    cursor: pointer;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover{
+      /* background-color: rgba(153, 216, 242, 1); */
+    }
+  }
+  .screen-btn {
+    position: absolute;
+    display: block;
+    background-image: url("/assets/img/products-and-docs/ic-screen.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    margin-top: -45px;
+    right: 15px;
+    cursor: pointer;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+
+    &:hover{
+      /* background-color: rgba(153, 216, 242, 1); */
+    }
+  }
+}
+
+.fs-modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.fs-modal .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  width: 98%;
+}
+
+.fs-modal .modal-header .close {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/img/products-and-docs/ic-close.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  &:focus, &:active {
+    outline: none;
+  }
+  span {
+    display: none;
+  }
+}
+
+.fs-modal .modal-content {
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.fs-modal .modal-header {
+  border-bottom: none;
+  padding-top: 40px;
+  h4 {
+    font-size: 2.25em;
+  }
+}
+.fs-modal .modal-body {
+  padding-top: 0;
+  blockquote {
+    border: none;
+    padding: 0;
+    margin: 0;
+    p {
+      margin: 0;
+    }
+  }
+  .lang-selector, .reqres {
+    width: 95%;
+    margin-bottom: 15px;
+    overflow:hidden;
+    a {
+      border-bottom: 2px solid #f1f5f7;
+      color: #b7c9d3;
+      display: block;
+      float: left;
+      font-size: 1.5em;
+      line-height: 2em;
+      font-style: normal;
+      margin: 0 0.3%;
+      min-width: 86px;
+      padding: 0 0.5%;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+      &:first-child {
+        margin-left: 0;
+      }
+      &.active {
+        border-bottom: 2px solid #00ade5;
+        color: #00ade5;
+      }
+    }
+  }
+  .highlight, pre {
+    clear: both;
+    margin: 0;
+  }
+  pre {
+    max-height: 550px;
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-active {
+    display: block;
   }
 }

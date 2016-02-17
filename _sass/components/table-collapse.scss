@@ -1,0 +1,71 @@
+
+.table_collapse {
+  position: relative;
+  margin-bottom: 5px;
+  padding-top: 24px;
+
+  &__inner {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    @include transition(0.5s);
+  }
+
+  &__btn {
+    position: absolute;
+    left: 50%;
+    bottom: -16px;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    cursor: pointer;
+
+    // Pseudo elements used only for background loading
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      @include transition(opacity 0.3s ease);
+    }
+
+    &:before {
+      opacity: 1;
+      background-image: url("/assets/img/products-and-docs/ic-chevron-open.svg")
+    }
+
+    &:after {
+      opacity: 0;
+      margin-top: -1px;
+      @include rotate(180deg);
+      background-image: url("/assets/img/products-and-docs/ic-shevron-down-blue.svg");
+    }
+
+    &:hover {
+      &:before {
+        opacity: 0;
+      }
+
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &-collapsed {
+    .table_collapse__btn {
+      @include rotate(180deg);
+    }
+    .table_collapse__inner {
+      overflow-y: auto;
+    }
+  }
+}
+
+.documentation .content .article-wrapper .table_collapse .table-wrapper{
+  margin-top: 0;
+}

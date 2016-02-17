@@ -3,12 +3,25 @@
   color: $white-70;
   a {
     color: $white-70;
+    &:hover,
+    &:active,
+    &:focus{
+      color: $white;
+    }
   }
   img{
     margin-right: 30px;
   }
   .footer-nav{
     margin-bottom: 70px;
+    a > h4{
+      &:hover,
+      &:active,
+      &:focus{
+        color: $white-70;
+        outline: none;
+      }
+    }
   }
   &.menu-bg{
     &:before{
@@ -51,6 +64,19 @@
         margin-bottom: -5px;
       }
     }
+  }
+}
+
+
+#footer-white.slice-top-right {
+  @media #{$max-1200} {
+    padding-top: 0;
+  }
+  @media #{$max-768} {
+    padding-top: 37px;
+  }
+  @media (max-width: 767px) {
+    padding-top: 0;
   }
 }
 

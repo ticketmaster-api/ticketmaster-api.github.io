@@ -1,0 +1,9 @@
+@objects
+    header              css     .top-bar
+
+    top-promo           css     #top-promo
+    columns-block       css     .columns
+    partners-block      id      bottom-promo
+    promo-social-left   css     #promo-social > div > div:nth-child(1)
+
+    footer              id      footer

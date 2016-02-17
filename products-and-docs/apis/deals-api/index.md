@@ -11,7 +11,7 @@ categories:
 Use the Deals API to find content that is interesting to your audience.
 {: .lead}
 
-##Overview
+## Overview
 {: ##overview}
 
 ### Authentication

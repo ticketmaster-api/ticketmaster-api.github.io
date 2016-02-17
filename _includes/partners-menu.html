@@ -1,0 +1,29 @@
+<h3 class="menu-header">
+    Partners
+    <span class="expanded" id="side-menu-btn"></span>
+</h3>
+<ul class="support-aside-menu" id="scrollable-element">
+    <li>
+        <ul class="categories">
+            <li><a href="#" >Channel Partners</a></li>
+            <li><a href="/partners/certified-partners/" class="{% if page.category == "partners" page.categories[0] == "partner" && page.categories[1] == "certified" %}active{% endif %}" >Certified Partners</a>
+                {% if page.category == "partners" page.categories[0] == "partner" && page.categories[1] == "certified" %}
+                    <ul class="sections menu-highlight">
+                        <li>
+                            <a href="/partners/certified-partners/nexus">Nexus</a>
+                        </li>
+                        {% for partner in site.pages %}
+                            {% if partner.available && partner.categories[0] == "partner" && partner.categories[1] == "certified" %}
+                                <li class="{% if partner.pname == page.pname %}active{% endif %}">
+                                    <a href="/partners/list/{{partner.name | replace:'.md',''}}">{{ partner.pname | capitalize }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+            <li><a href="#" >Affiliates</a></li>
+            <li><a href="#" >Startups & Developers</a></li>
+        </ul>
+    </li>
+</ul>

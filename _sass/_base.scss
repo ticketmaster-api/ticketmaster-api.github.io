@@ -31,6 +31,12 @@ iframe{
   position: relative;
 }
 
+a, input {
+  &active, &:focus {
+    outline: none;
+  }
+}
+
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
@@ -200,7 +206,78 @@ pre {
     }
 }
 
+/*Form elements*/
+label {
+  color: $n3;
+  margin-bottom: 8px;
+  font-family: $font-bold-p;
+  font-weight: normal;
+}
+input, select {
+  margin-bottom: 24px;
+  border-radius: 4px;
+  outline: none;
+  height: 48px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+}
+textarea {
+  border-radius: 4px;
+}
+input, select, textarea {
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  background-color: #FFFFFF;
+  padding: 8px 16px;
+  &:focus {
+    border-color: $p1;
+    outline: 0px none;
+  }
+}
+/*
+* Custom checker
+*/
+/*hide checker*/
+input[type=checkbox]:not(old),
+input[type=radio   ]:not(old){
+  width     : 20px;
+  height    : 20px;
+  margin    : 0;
+  padding   : 0;
+  font-size : 1em;
+  opacity   : 0;
+  &:hover {
+  cursor: pointer;
+}
+}
+/*clicked checker*/
+input[type=checkbox]:not(old) + label,
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -2em;
+  line-height  : 1.5em;
+}
 
+input[type=checkbox]:not(old) + label > span,
+input[type=radio   ]:not(old) + label > span{
+  display          : inline-block;
+  width            : 20px;
+  height           : 20px;
+  margin           : 11px 11px 8px;
+  border-radius    : 50%;
+  background       : $white;
+  border           : 1px solid #ccc   ;
+  vertical-align   : bottom;
+}
+input[type=radio]:not(old):checked + label > span > span{
+  display          : block;
+  width            : 8px;
+  height           : 8px;
+  margin           : 5px;
+  border-radius    : 50%;
+  background       : $p1;
+}
+/*Custom checker END*/
 
 /**
  * Wrapper
@@ -284,6 +361,9 @@ pre {
 @media (max-width: 1199px) {
   .row-container {
     padding: 0 23px;
+  }
+  .tooltip {
+    display: none!important;
   }
 }
 /**/
@@ -443,4 +523,12 @@ pre {
       max-height: 40px !important;
     }
   }
+}
+
+.documentation .copy-btn.copied,
+.modal-body .copy-btn-fs.copied {
+  background-color: #FFF;
+  background-position-x: -2px;
+  background-position-y: -2px;
+  background-image: url("/assets/img/products-and-docs/ic-copied.svg");
 }
