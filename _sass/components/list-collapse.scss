@@ -1,0 +1,36 @@
+.jstree-default .jstree-node, .jstree-default .jstree-icon {
+  background-image: url('../../assets/img/products-and-docs/list-collapse.png') !important;
+  background-color: transparent !important;
+}
+.jstree-default .jstree-last {
+  background: 0 0 !important;
+}
+.jstree-default .jstree-clicked {
+  box-shadow: none !important;
+  background: none !important;
+  text-decoration: underline !important;
+}
+
+ul.jstree-children:not(:first-child) {
+  margin-top: 0 !important;
+}
+
+.jstree-default .jstree-anchor {
+  height: 32px !important;
+}
+
+/*hover*/
+.jstree-hovered {
+  box-shadow: none !important;
+  background: none !important;
+  color: $p1b !important;
+}
+.jstree-default .jstree-closed>.jstree-ocl.hovered,
+.jstree-default .jstree-closed>.jstree-ocl:hover {
+  background-position: -37px -4px;
+}
+.jstree-default .jstree-open>.jstree-ocl:hover,
+.jstree-default .jstree-open>.jstree-ocl.hovered {
+  background-position: -3px -4px;
+}
+/*hover end*/
