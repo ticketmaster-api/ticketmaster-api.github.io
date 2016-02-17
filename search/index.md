@@ -1,5 +1,8 @@
 ---
 layout: search
+title: Search
+excerpt: Search Results Ticketmaster Developer Portal
+keywords: search
 ---
 
 <div class="row search">

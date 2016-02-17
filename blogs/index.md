@@ -1,6 +1,9 @@
 ---
 layout: blogs
 category: blogs
+title: Blogs
+excerpt: Our tech blog posts about technical challenges at Ticketmaster and how we go about solving them.
+keywords: tech blog, posts about technical challenges, Ticketmaster, events, tickets
 ---
 
 
