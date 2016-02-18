@@ -16,7 +16,7 @@ keywords: partners, certified partners, become an affilate
 ### Helping us reach the world
 
 {: .body .p}
-Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authe.
+Distribution partners deliver incremental audiences to help our clients sell more tickets
 
 [See all channel partners](/products-and-docs/under-development/)
 
