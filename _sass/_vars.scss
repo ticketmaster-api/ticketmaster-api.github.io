@@ -132,6 +132,10 @@ $line-height-code: 24px;
 $borderHeight: 8px;
 $maincontent-margin: 55px;
 
+// Animation
+$btn-transition-speed: 0.2s;
+$btn-transition-timing-function: ease-in-out;
+
 //Media queries params
 $max-1400: "(max-width: 1400px)";
 $max-1200: "(max-width: 1199px)";
