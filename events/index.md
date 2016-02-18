@@ -1,6 +1,9 @@
 ---
 layout: events
 category: events
+title: Events
+excerpt: Ticketmaster upcoming and past events
+keywords: events
 ---
 {: #event-header }
 ### Upcoming

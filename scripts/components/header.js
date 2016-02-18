@@ -82,17 +82,29 @@
 
                 // Search [START]
 
+                var smopen  = false;
                 $(".top-bar").on("click", "#search", function (e) {
-                  $(this).addClass("smopen");
-                  $("#cse-search-box").addClass("sopen");
-                  $("input.q").focus();
+                  if ( $(this).hasClass("smopen") ) {
+                      $(this).removeClass("smopen");
+                      $("#cse-search-box").removeClass("sopen");
+                      smopen  = false;
+                  }
+                  else {
+                      $(this).addClass("smopen");
+                      $("#cse-search-box").addClass("sopen");
+                      $("input.q").focus();
+                      smopen  = true;
+                  }
                 });
 
                 $("input.q").blur(function(e) {
-                    setTimeout(function () {
-                        $("#cse-search-box").removeClass("sopen");
-                        $("#search").removeClass("smopen");
-                    }, 127);
+                    if (smopen == true) {
+                        setTimeout(function () {
+                            $("#cse-search-box").removeClass("sopen");
+                            $("#search").removeClass("smopen");
+                            smopen = false;
+                        }, 127);
+                    }
                 });
 
                 $("#search").on("click", ".search-button", function (e) {

@@ -87,11 +87,15 @@
 }
 
 // Hide Qualaroo dialog
-body div#qual_ol.qual_ol {
-  width: 0;
-  height: 0!important; // Override inline style
-  overflow: hidden;
-  opacity: 0;
-  right: 0;
-  bottom: 0;
+body div{
+  &#ki-sv.ki-sv,
+  &#qual_ol.qual_ol{
+    // Override inline styles
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden;
+    opacity: 0;
+    right: 0;
+    bottom: 0;
+  }
 }

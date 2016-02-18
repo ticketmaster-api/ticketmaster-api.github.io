@@ -21,12 +21,9 @@
     }
 
     // Events
-    $placeholder.on({
-        click: function(){
-            if ($list.is(':visible')) hide();
-            else show();
-        },
-        blur: hide
+    $custom_select.on('click', function(){
+        if ($list.is(':visible')) hide();
+        else show();
     });
 
     $options.on('click', function(){
@@ -38,5 +35,8 @@
     });
 
     $feedbackModal.on('hide.bs.modal', hide);
+    $placeholder.on('blur', function(){
+        setTimeout(hide, 100);
+    });
 
 })(jQuery);

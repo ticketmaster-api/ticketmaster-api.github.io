@@ -22,23 +22,7 @@
             <a id="menu-btn" {% if page.category != "home" %} class="white"{% endif %}></a>
             <div id="search" {% if page.category != "home" %} class="white"{% endif %}>
                 <div class="search-button"></div>
-                <script>
-                /*
-                    (function() {
-                        var cx = '005729231290321871364:pb-ym0dnvm4';
-                        var gcse = document.createElement('script');
-                        gcse.type = 'text/javascript';
-                        gcse.async = true;
-                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                                '//cse.google.com/cse.js?cx=' + cx;
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(gcse, s);
-                    })();
-                */
-                </script>
-                <!-- <gcse:searchbox-only></gcse:searchbox-only> -->
-
-                <form action="/search/" id="cse-search-box">
+                <form action="/search/" id="cse-search-box" autocomplete="off">
                     <div>
                         <input type="hidden" name="cx" value="005729231290321871364:pb-ym0dnvm4" />
                         <input type="hidden" name="ie" value="UTF-8" />
