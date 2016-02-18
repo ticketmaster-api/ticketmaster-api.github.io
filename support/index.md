@@ -3,6 +3,9 @@ layout: base-content
 categories:
 - support
 - support
+title: Support
+excerpt: Answers to your most burning questions
+keywords: support, resources, forums, FAQ
 ---
 
 # ANSWERS TO YOUR MOST BURNING QUESTIONS.
