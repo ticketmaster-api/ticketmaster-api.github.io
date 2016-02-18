@@ -1,6 +1,9 @@
 ---
 layout: landing
 category: products-and-docs
+title: Products &amp; Docs
+excerpt: Whether you need a quick drop-in or are building a custom product, we have the APIs, SDKs, and Widgets you’re looking for
+keywords: API, SDK, widget, access api docs, become an affilate
 ---
 
 
@@ -22,7 +25,7 @@ Whether you need a quick drop-in or are building a custom product, we have the [
 
 {: .body}
 Already doing business with Ticketmaster? <br>
-[Get in touch](mailto: distributedcommerce@ticketmaster.com) so we can hook you up.
+[Get in touch](mailto:distributedcommerce@ticketmaster.com) so we can hook you up.
 
 {% endcapture %}
 

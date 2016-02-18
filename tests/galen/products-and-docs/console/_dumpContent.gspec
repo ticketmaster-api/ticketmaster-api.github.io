@@ -1,0 +1,8 @@
+@objects
+    header                  css     .top-bar
+
+    title                   css     #interactive-api-console
+    console-instructions    css     #console-instructions
+    get-key-callout         css     #get-key-callout
+
+    footer                  id      footer

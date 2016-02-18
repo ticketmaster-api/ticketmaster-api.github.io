@@ -260,6 +260,14 @@ nav{
       position: absolute;
       top: 0;
     }
+    &.header-curtain {
+      background-image: url('/assets/img/header/top-curtain.png');
+      background-position: center center;
+      background-size: cover;
+      position: relative;
+      padding-bottom: 0;
+      min-height: 82px;
+    }
     @media (min-width: 1201px){
       padding-bottom: 69px;
       margin-bottom: 24px;

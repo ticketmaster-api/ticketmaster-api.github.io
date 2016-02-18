@@ -1,0 +1,16 @@
+@objects
+    body                    css     body
+    header                  css     .top-bar
+    single-column           css     .documentation
+    footer                  id      footer
+
+= Support page content test =
+    single-column:
+        % image file etalonImg/dumpsTablet/objects/base-content-wrapper.png, error 2%
+
+
+= general layout Support page test =
+    header, footer:
+        visible
+    body:
+        width ~99% of screen/width

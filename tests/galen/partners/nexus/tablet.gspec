@@ -1,0 +1,6 @@
+@objects
+    base-content-wrapper    css     .base-content-wrapper
+
+= Events image test (tablet) =
+    base-content-wrapper:
+        % image file etalonImg/dumpsTablet/objects/base-content-wrapper.png, tolerance 40,  error 4%
