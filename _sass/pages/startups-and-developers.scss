@@ -1,0 +1,22 @@
+.sd-article {
+  .article-body{
+    overflow: auto;
+    margin: 0 -15px;
+  }
+
+  button.tag-btn {
+    color: $p1;
+    padding: 2px 8px;
+    border: 1px solid rgba(0, 155, 222, .2);
+    border-radius: 2px;
+    background-color: #fff;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 24px;
+    outline: none;
+    &.active{
+      background: #009cde;
+      color: #FFF;
+    }
+  }
+}

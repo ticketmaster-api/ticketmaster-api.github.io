@@ -23,7 +23,11 @@
                 {% endif %}
             </li>
             <li><a href="#" >Affiliates</a></li>
-            <li><a href="#" >Startups & Developers</a></li>
+            <li><a href="/partners/startups-and-developers/" class="{% if page.category == 'startup_and_development' %}active{% endif %}" >Startups & Developers</a>
+                {% if page.category == "startup_and_development" %}
+                <ul class="sections menu-highlight sd-tags-list"></ul>
+                {% endif %}
+            </li>
         </ul>
     </li>
 </ul>
