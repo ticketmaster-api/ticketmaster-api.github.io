@@ -417,19 +417,55 @@ body .top-bar.bg-header {
     position: relative;
     margin-left: 15px;
     margin-right: 15px;
+    @media #{$max-768} {
+      margin-left: 0;
+      margin-right: 0;
+      &:after,
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 15px;
+        height: 100%;
+        background: $code-background-color;
+        top: 0;
+      }
+      &:after{
+        right: -15px;
+      }
+      &:before{
+        left: -15px;
+      }
+    }
     &.after-phone {
       .phone {
         img {
-          position: absolute;
+          position: relative;
           top: -178px;
+          margin-bottom: -356px;
+        }
+        @media #{$max-768} {
+          text-align: center;
+          img {
+            top: 0;
+            margin-bottom: 0;
+          }
         }
       }
     }
   }
   .content-container {
     margin-top: 165px;
+    @media #{$max-768} {
+      margin-top: 0;
+    }
   }
   .pull-quote {
     line-height: 26px;
+  }
+  @media #{$max-768} {
+    .text-right{
+      text-align: center;
+    }
   }
 }
