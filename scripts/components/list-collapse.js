@@ -2,12 +2,8 @@
     $(document).ready(function () {
 
         $('.nested-list').wrap("<div class='nested-list-wrapper'></div>");
-        $('.jstree-themeicon').remove(); //remove needless icon element
 
         $('.nested-list-wrapper')
-            .on('before_open.jstree', function () {
-                $('.jstree-themeicon').remove(); //remove needless element
-            })
             .on('select_node.jstree', function (e, data) {
                 data.instance.toggle_node(data.node); //set open on one click
             })

@@ -4,7 +4,6 @@
     color: $p1b;
   }
 }
-
 .jstree-node {
   white-space: nowrap;
 }
@@ -109,8 +108,9 @@
   margin-left: 0;
   margin-right: 0;
 }
-
-
+i.jstree-icon.jstree-themeicon {
+  display: none;
+}
 
 /*hover*/
 .jstree-hovered {
