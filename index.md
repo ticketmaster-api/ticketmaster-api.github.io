@@ -120,7 +120,7 @@ Raw html goes here (uses liquid variabled defined above)
 <div class="col-xs-12 button-block">
     <a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent rightarrow">REVIEW DOCUMENTATION</a>
-    <a href="{{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE INTERACTIVE DOCS</a>
+    <a href="{{"http://vmenshutin.github.io/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE APIs</a>
 </div>
         </div>
         <div class="clearfix"></div>
