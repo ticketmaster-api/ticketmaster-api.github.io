@@ -23,9 +23,7 @@
   line-height: 32px;
   /*margin-left: 24px;*/
 }
-.jstree-default .jstree-anchor {
-  height: 32px;
-}
+
 .jstree-default .jstree-node,
 .jstree-default .jstree-icon {
   background-repeat: no-repeat;
@@ -33,7 +31,7 @@
 }
 
 .jstree-default .jstree-node {
-  background-position: -292px -4px;
+  background-position: -292px 0px;
   background-repeat: repeat-y;
 }
 
@@ -81,7 +79,7 @@
 }
 
 .jstree-default .jstree-open > .jstree-ocl {
-  background-position: -132px -4px;
+  background-position: -132px 0px;
 }
 
 .jstree-default .jstree-anchor, .jstree-default .jstree-wholerow {
@@ -120,18 +118,18 @@
 }
 
 .jstree-default .jstree-closed > .jstree-ocl {
-  background-position: -100px -4px;
+  background-position: -100px 0px;
 }
 
 .jstree-default .jstree-closed > .jstree-ocl.hovered,
 .jstree-default .jstree-closed > .jstree-ocl:hover {
-  background-position: -37px -4px;
+  background-position: -37px 0px;
   color: $p1b;
 }
 
 .jstree-default .jstree-open > .jstree-ocl:hover,
 .jstree-default .jstree-open > .jstree-ocl.hovered {
-  background-position: -3px -4px;
+  background-position: -3px 0px;
   color: $p1b;
 }
 
