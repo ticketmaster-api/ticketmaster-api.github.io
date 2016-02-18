@@ -1,6 +1,9 @@
 ---
 layout: home
 category: home
+title: Getting Started
+excerpt: Everything you need to start playing with the Ticketmaster APIs
+keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
 
 {::comment}
