@@ -13,7 +13,7 @@
   margin: auto;
   position: relative;
 
-  .col-lg-9 {
+  &>.col-lg-9 {
     float: right;
     @media #{$max-1200} {
       float: left;
