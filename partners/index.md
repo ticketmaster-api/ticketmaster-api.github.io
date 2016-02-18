@@ -2,7 +2,7 @@
 layout: partners
 category: partners
 title: Partners
-excerpt: Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag, ugh fashion axe.
+excerpt: Collaborating with partners, clients and the startup community to build experiences that delight fans everywhere.
 keywords: partners, certified partners, become an affilate
 ---
 
