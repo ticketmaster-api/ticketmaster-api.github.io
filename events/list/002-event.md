@@ -1,5 +1,4 @@
 ---
-prime: true
 
 title: "Ticketmaster at HackPoly"
 category: event
