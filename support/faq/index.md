@@ -130,10 +130,6 @@ Before signing up at Affiliate Window, please [reach out to us](mailto: distribu
 
 Our Discovery API will provide access to events for sale on Ticketmaster.com and Ticketweb. We can also grant access to our resale API which has all events from our secondary market suite of sites including NFL Ticket Exchange, NHL Ticket Exchange, NBA Tickets Resale Marketplace, and TicketsNow.com, which can also be listed and monetized. Talk to your account manager if you are interested.
 
-{: .double-margin-bottom}
-Over time, we will provide additional content tools such as data feeds and purchase widgets that publishers can leverage.  
-
-
 {: #q-12}
 ### Can my users transact on tickets through my site? 
 
