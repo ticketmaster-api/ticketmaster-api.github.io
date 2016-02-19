@@ -1,8 +1,26 @@
 
 .table_collapse {
   position: relative;
-  margin-bottom: 5px;
-  padding-top: 24px;
+  margin-bottom: 35px;
+  margin-top: 24px;
+
+  &:before,
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid $table-body-border; // We should use border because IE :)
+  }
+
+  &:before {
+    top: 0;
+  }
+
+  &:after {
+    bottom: 0;
+  }
 
   &__inner {
     overflow-x: hidden;
@@ -13,52 +31,59 @@
   &__btn {
     position: absolute;
     left: 50%;
-    bottom: -16px;
-    width: 20px;
+    bottom: -29px;
+    width: 60px;
     height: 20px;
-    margin-left: -10px;
+    margin-left: -30px;
+    padding-right: 10px;
     cursor: pointer;
+    font-size: 11px;
+    line-height: 20px;
+    color: $n3;
+    @include transition(color 0.2s ease-in-out);
 
-    // Pseudo elements used only for background loading
+    // Pseudo elements used for image loading
     &:before,
     &:after {
       position: absolute;
-      left: 0;
-      top: 0;
+      right: 0;
+      top: 50%;
       content: '';
-      width: 20px;
-      height: 20px;
+      width: 10px;
+      height: 6px;
+      margin-top: -2px;
       background-repeat: no-repeat;
       background-position: center center;
-      @include transition(opacity 0.3s ease);
+      @include transition(opacity 0.2s ease-in-out);
+      @include rotate(180deg);
     }
 
     &:before {
-      opacity: 1;
-      background-image: url("/assets/img/products-and-docs/ic-chevron-open.svg")
+      opacity: 0;
+      background-image: url("/assets/img/products-and-docs/small-shevron-blue.svg");
     }
 
     &:after {
-      opacity: 0;
-      margin-top: -1px;
-      @include rotate(180deg);
-      background-image: url("/assets/img/products-and-docs/ic-shevron-down-blue.svg");
+      background-image: url("/assets/img/products-and-docs/small-shevron.svg");
     }
 
     &:hover {
+      color: $blue;
       &:before {
-        opacity: 0;
-      }
-
-      &:after {
         opacity: 1;
+      }
+      &:after {
+        opacity: 0;
       }
     }
   }
 
   &-collapsed {
     .table_collapse__btn {
-      @include rotate(180deg);
+      &:before,
+      &:after{
+        @include rotate(0);
+      }
     }
     .table_collapse__inner {
       overflow-y: auto;

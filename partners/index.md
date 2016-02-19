@@ -2,7 +2,7 @@
 layout: partners
 category: partners
 title: Partners
-excerpt: Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag, ugh fashion axe.
+excerpt: Collaborating with partners, clients and the startup community to build experiences that delight fans everywhere.
 keywords: partners, certified partners, become an affilate
 ---
 
@@ -16,7 +16,7 @@ keywords: partners, certified partners, become an affilate
 ### Helping us reach the world
 
 {: .body .p}
-Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authe.
+Distribution partners deliver incremental audiences to help our clients sell more tickets
 
 [See all channel partners](/products-and-docs/under-development/)
 
