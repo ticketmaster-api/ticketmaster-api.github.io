@@ -28,11 +28,11 @@ At Ticketmaster, we are always looking for innovative products and services that
 {: .col-lg-8}
 We offer the support, knowledge and validation to make sure your solution is fully-compatible with Ticketmaster systems.  For vendors to access the Ticketmaster Ticketing System services, they must become a member of Ticketmaster’s Partner program, the costs of which help Ticketmaster offset its costs for vendor integration support.  If you are interested in finding out ways to integrate your product or service with Ticketmaster’s systems, please complete the form below: 
 
-<div class="col-sm-12 col-lg-8 nexus-form">
-<form accept-charset="UTF-8" action="#" method="POST">    
+<div class="col-sm-12 col-lg-8 nexus-form-wrapper">
+<form accept-charset="UTF-8" action="#" method="POST" class="js_nexus_form">    
     <div class="col-sm-6">
         <label for="name">First name</label>
-        <input type="text" id="first-name" name="name" maxlength="255" placeholder="" autofocus tabindex="1">
+        <input type="text" id="first-name" name="firstName" maxlength="255" placeholder="" autofocus tabindex="1">
     </div>
     <div class="col-sm-6">
         <label for="last-name">Last name</label>
@@ -65,8 +65,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="label-radio">
         <input type="radio" id="radio-no" name="productOffering" value="free" tabindex="9"/><label class="js-label-radio"><span><span></span></span>Free</label>
-    </div>
-    
+    </div>    
     <div class="col-sm-12">
         <label class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</label>
         <textarea name="companyDetail" id="company-detail-text" tabindex="10"></textarea>
@@ -79,18 +78,23 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
 </form>
 </div>
-<script type="text/javascript">    
-    $('.nexus-form').submit(function(){
+<script type="text/javascript">   
+    var $nexusForm = $('.js_nexus_form');
+    $nexusForm.submit(function(e){
+        e.preventDefault();
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=76ee6b36a22523d29942539c22273fd6",                   
-          data: $('.nexus-form').serialize()         
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=76ee6b36a22523d29942539c22273fd6",
+          data: $nexusForm.serialize() 
         }).done(function() {
           //callback which can be used to show a thank you message
-          //and reset the form          
-          $("#message-success").fadeIn( 400 ).delay( 4000 ).fadeOut( 400 );          
+          //and reset the form
+          showMsgSuccess('#message-success', 4000);
         });
-    return false; //to stop the form from submitting
-    });
-    
+        return false; //to stop the form from submitting
+    }); 
+    function showMsgSuccess(id, delay){
+        $(id).fadeIn( 400 ).delay( delay ).fadeOut( 400 );
+    }
 </script>
+
