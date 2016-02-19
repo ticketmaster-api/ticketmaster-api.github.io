@@ -3,7 +3,6 @@
     jQuery.fn.tableCollapse = function(options ){
 
         var defaults = {
-            bootstrapTooltip: true,
             scrollUpOnCollapse: true,
             fixedHeight: 400,
             scrollUpSpeed: 500,
@@ -13,8 +12,8 @@
             cssClassBtn: 'table_collapse__btn',
             cssClassInner: 'table_collapse__inner',
             cssClassCollapsed: 'table_collapse-collapsed',
-            tooltipTitle: 'Expand',
-            tooltipTitleCollapse: 'Collapse',
+            title: 'Expand',
+            titleCollapse: 'Collapse',
             tooltipPosition: 'top'
         },
         settings = $.extend( {}, defaults, options),
@@ -26,9 +25,6 @@
             $(element).hide(0).show(0);
         }
 
-        // Make shore that bootstrap tooltip available
-        settings.bootstrapTooltip = jQuery().tooltip && settings.bootstrapTooltip;
-
         return this.each(function() {
             var $this = $(this),
                 collapsed = true,
@@ -36,8 +32,8 @@
 
             if(originalHeight > settings.fixedHeight){
 
-                function setTooltipTitle(title){
-                    if(settings.bootstrapTooltip) $btn.attr('data-original-title', title);
+                function setTitle(title){
+                    $btn.text(title);
                 }
 
                 originalHeight += settings.separationLineHeight;
@@ -47,6 +43,7 @@
                 $this.wrap(wrapper);
 
                 var $btn = $('<div></div>', {
+                        text: settings.title,
                         'class': settings.cssClassBtn
                     }),
                     $tableCollapseInner = $this.parent(),
@@ -54,28 +51,19 @@
 
                 $tableCollapseInner.after($btn);
 
-                // Tooltip initialization
-                if(settings.bootstrapTooltip)
-                    $btn.tooltip({
-                        title: settings.tooltipTitle,
-                        'data-placement': settings.tooltipPosition
-                    });
-
                 // Events
                 (function setToggle(show){
                     $btn.one('click', function(){
                         collapsed = !collapsed;
 
-                        if(settings.bootstrapTooltip) $btn.tooltip('hide');
-
                         var newHeight = originalHeight;
                         if(show){
                             $tableCollapse.removeClass(settings.cssClassCollapsed);
-                            setTooltipTitle(settings.tooltipTitleCollapse);
+                            setTitle(settings.titleCollapse);
                         }else{
                             $tableCollapse.addClass(settings.cssClassCollapsed);
                             newHeight = settings.fixedHeight;
-                            setTooltipTitle(settings.tooltipTitle);
+                            setTitle(settings.title);
 
                             // Scroll up window if wrapper head invisible
                             if(settings.scrollUpOnCollapse){
