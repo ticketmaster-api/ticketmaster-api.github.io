@@ -1,6 +1,9 @@
 ---
 layout: interactive-console
 category: documentation
+title: Interactive API Console
+excerpt: Instructions. Get your API Key if you don’t have one. Enter your API Key. Log in with your credentials to authenticate.
+keywords: API, interactive console, get API Key, discovery API
 ---
 
 {::comment}
