@@ -415,20 +415,28 @@ body .top-bar.bg-header {
 .distribution {
   .grey-box {
     position: relative;
-    margin-left: 15px;
-    margin-right: 15px;
+    &:after,
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 15px;
+      height: 100%;
+      background: $white;
+      top: 0;
+    }
+    &:after{
+      right: 0px;
+    }
+    &:before{
+      left: 0px;
+    }
     @media #{$max-768} {
-      margin-left: 0;
-      margin-right: 0;
+      margin: 75px 0 0 0;
+      padding: 46px 0 0 0;
       &:after,
       &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        width: 15px;
-        height: 100%;
         background: $code-background-color;
-        top: 0;
       }
       &:after{
         right: -15px;
@@ -441,31 +449,67 @@ body .top-bar.bg-header {
       .phone {
         img {
           position: relative;
-          top: -178px;
-          margin-bottom: -356px;
+          top: -221px;
+          margin-bottom: -370px;
         }
         @media #{$max-768} {
-          text-align: center;
+          text-align: center !important;
           img {
             top: 0;
-            margin-bottom: 0;
+            margin-bottom: 20px;
           }
         }
+      }
+      .phone-right {
+        text-align: right;
+      }
+      .phone-left {
+        text-align: left;
       }
     }
   }
   .content-container {
-    margin-top: 165px;
+    margin-top: 140px;
     @media #{$max-768} {
-      margin-top: 0;
+      margin-top: 40px;
     }
   }
   .pull-quote {
     line-height: 26px;
+    margin-bottom: 0;
   }
   @media #{$max-768} {
-    .text-right{
+    .text-right,
+    .text-left {
       text-align: center;
     }
+  }
+  .no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .button:not(.button-blue) {
+    &:hover {
+      color: $p1a;
+      border-color: $p1a;
+      outline: none;
+      text-decoration: none;
+    }
+    border: 2px solid $n3;
+    border-radius: 4px;
+    font-family: $font-h2;
+    padding: 10px 40px;
+    color: $n3;
+    display: inline-block;
+  }
+  #bottom-partner {
+    text-align: center;
+    &>* {
+      float: none;
+      display: inline-block;
+    }
+  }
+  .button-blue {
+    margin-top: 0;
   }
 }

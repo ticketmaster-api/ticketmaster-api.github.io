@@ -48,6 +48,10 @@ ul, ol, dl, figure,
     margin-bottom: $base-margin;
 }
 
+.base-margin-top {
+  margin-top: $base-margin;
+}
+
 .double-margin {
   margin-top: $base-margin * 2;
   margin-bottom: $base-margin * 2;
