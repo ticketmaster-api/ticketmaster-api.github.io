@@ -16,6 +16,11 @@
 
   &:hover{
     background-color: $s1b;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
     color: $white;
   }
 
@@ -83,19 +88,5 @@
     &:invalid {
       border-color: $red;
     }
-  }
-}
-
-// Hide Qualaroo dialog
-body div{
-  &#ki-sv.ki-sv,
-  &#qual_ol.qual_ol{
-    // Override inline styles
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden;
-    opacity: 0;
-    right: 0;
-    bottom: 0;
   }
 }

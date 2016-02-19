@@ -20,23 +20,33 @@
         $custom_select.removeClass(openedCssClass);
     }
 
-    // Events
-    $custom_select.on('click', function(){
-        if ($list.is(':visible')) hide();
-        else show();
-    });
-
-    $options.on('click', function(){
+    function set(){
         var $self = $(this);
         $placeholder.val($self.text());
         $select.val($self.data('value'));
         $options.removeClass(activeItemCssClass);
         $self.addClass(activeItemCssClass);
-    });
+    }
 
-    $feedbackModal.on('hide.bs.modal', hide);
-    $placeholder.on('blur', function(){
+    function toggle(){
+        if ($list.is(':visible')) hide();
+        else show();
+    }
+
+    function blur(){
         setTimeout(hide, 100);
-    });
+    }
+
+    function reset(){
+        set.call($options.filter(':first'));
+    }
+
+    // Events
+    $options.on('click', set);
+    $placeholder.on('blur', blur);
+    $custom_select.on('click', toggle);
+    $feedbackModal.on('hide.bs.modal', reset);
+
+    reset();
 
 })(jQuery);
