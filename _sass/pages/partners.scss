@@ -324,7 +324,7 @@ body .top-bar.bg-header {
   }
 }
 
-.nexus-form {
+.nexus-form-wrapper {
   font-family: $font-body;
   margin-bottom: 96px;
   textarea {
@@ -335,7 +335,13 @@ body .top-bar.bg-header {
   .col-sm-6 {
     padding-left: 0;
   }
-
+  .message-green {
+    margin: 0;
+    padding: 0;
+    color: $apple-green;
+    position: absolute;
+    display: none;
+  }
   .label-radio-group{
     width: 100%;
   }
