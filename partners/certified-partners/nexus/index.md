@@ -68,26 +68,36 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     
     <div class="col-sm-12">
-        <p class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</p>
+        <label class="company-detail">Please provide some detail on your company’s expected integration with Ticketmaster (e.g. any specific type of data, frequency, flow of data)</label>
         <textarea name="companyDetail" id="company-detail-text" tabindex="10"></textarea>
     </div>
     <div class="col-sm-6">
         <button type="submit" class="button-blue">SEND</button>
     </div>
-</form>
+</form>    
+    <div class="col-sm-12">
+        <label id="message-success" class="message-green" >Thank you for contacting us. We will review and respond promptly.</label>
+        <input style="display:none" name="messageSuccess" />
+    </div>    
 </div>
 <script type="text/javascript">    
     $('.nexus-form').submit(function(){
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=76ee6b36a22523d29942539c22273fd6",
-          data: $('.nexus-form').serialize() 
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=892e0c5e4c169c6128c7342614608330",
+          /*
+          data: {
+            FirstName : $('.nexus-form #name')
+          }
+          */
+          data: $('.nexus-form').serialize()         
         }).done(function() {
           //callback which can be used to show a thank you message
-          //and reset the form
-          alert("Thank you for contacting us. We will review and respond promptly.");
+          //and reset the form          
+          $("#message-success").fadeIn( 400 ).delay( 4000 ).fadeOut( 400 );
+            //console.log( $('.nexus-form').serialize() );
         });
     return false; //to stop the form from submitting
-    });    
+    });
+    
 </script>
-
