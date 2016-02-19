@@ -282,6 +282,7 @@ input[type=radio]:not(old):checked + label > span > span{
 // Fixed Feedback button
 body,
 body.modal-open{
+  padding-right: 0!important;
   overflow-y: scroll;
 }
 
