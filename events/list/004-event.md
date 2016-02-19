@@ -7,6 +7,7 @@ date_title: "Thursday, February 25, 2016"
 date_start: "2016-02-25 17:00:00"
 date_end: "2016-02-25 18:30:00"
 
+img: "/assets/img/events/storm.jpeg"
 
 place: 
   - "Ticketmaster HQ"
