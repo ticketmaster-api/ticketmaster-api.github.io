@@ -5,7 +5,7 @@ categories:
 - international-discovery
 ---
 {: .article}
-# Ticketmaster International Discovery API 
+# International Discovery API 
 
 The Ticketmaster International Discovery API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
 {: .lead .article}
