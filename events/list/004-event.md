@@ -7,8 +7,6 @@ date_title: "Thursday, February 25, 2016"
 date_start: "2016-02-25 17:00:00"
 date_end: "2016-02-25 18:30:00"
 
-img: "/assets/img/events/storm.jpeg"
-
 place: 
   - "Ticketmaster HQ"
   - "https://www.google.com/maps/place/7060+Hollywood+Blvd,+Hollywood,+CA+90028/@34.1011635,-118.3459049,17z/data=!3m1!4b1!4m2!3m1!1s0x80c2bf20fc7f1f3d:0xaebc7fb4fe5179a4?f=q&hl=en&q=7060+Hollywood+Blvd,+Los+Angeles,+CA,+us"
