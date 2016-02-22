@@ -16,7 +16,7 @@ Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually be
     {% if article.category == "sd-article" %}
 <div class="sd-article">
     <div class="article-body">
-        {{ article.content }}
+{{ article.content | markdownify}}
     </div>
     <div class="article-tags">
         {% for tag in article.tags %}
