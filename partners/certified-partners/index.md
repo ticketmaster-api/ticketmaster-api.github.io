@@ -1,7 +1,9 @@
 ---
 layout: partners-doc
 logos_url: "/assets/img/partners/logos/"
-category: partners
+categories:
+  - partners
+  - certified
 title: Certified partners
 excerpt: Certified partners
 keywords: Certified partners

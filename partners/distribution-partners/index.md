@@ -2,8 +2,8 @@
 layout: partners-doc
 logos_url: "/assets/img/partners/logos/"
 categories:
-- partners
-- distribution
+  - partners
+  - distribution
 ---
 
 {: .col-xs-12}
