@@ -1,9 +1,12 @@
 ---
 layout: partners-doc
+title: Nexus
+excerpt: At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s Ticketing Services; that’s why we’ve created the Nexus Certified Partner Program.
+keywords: Nexus, certified partner program, ticketing Services, innovative products, 
 ---
 
 {: .col-lg-12 .partner-logo-fix}
-![gras](/assets/img/partners/logos/nexus-logo@2x.png)
+![Nexus](/assets/img/partners/logos/nexus-logo@2x.png)
 
 {: .lead .col-lg-12}
 At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s Ticketing Services; that’s why we’ve created the Nexus Certified Partner Program.  Our goal is to work with best in breed solution providers.  

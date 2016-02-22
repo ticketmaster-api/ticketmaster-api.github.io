@@ -56,16 +56,16 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 {% capture logos %}
 
 {: .image}
-![Groupon](/assets/img/partners/spinzo-logo.png)
+![Spinzo](/assets/img/partners/spinzo-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/tradablebits-logo.png)
+![Tradablebits](/assets/img/partners/tradablebits-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/pricemaster-logo.png)
+![Pricemaster](/assets/img/partners/pricemaster-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/reply-logo.png)
+![Reply](/assets/img/partners/reply-logo.png)
 
 {: .c}
 [See all 30+ affiliate partners](/products-and-docs/under-development/)
@@ -78,16 +78,16 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 #### Startups &amp; Developers
 
 {: .image}
-![Groupon](/assets/img/partners/pricemaster-logo.png)
+![Pricemaster](/assets/img/partners/pricemaster-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/reply-logo.png)
+![Reply](/assets/img/partners/reply-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/spinzo-logo.png)
+![Spinzo](/assets/img/partners/spinzo-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/tradablebits-logo.png)
+![Tradablebits](/assets/img/partners/tradablebits-logo.png)
 
 {: .c}
 [See all 50+ startup and developer partners](/products-and-docs/under-development/)
