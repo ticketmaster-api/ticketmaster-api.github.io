@@ -46,6 +46,9 @@
                 },
                 mouseleave: function (e) {
                     toggleIconClass.call(this, false);
+                },
+                touchend: function (e) {
+                    toggleIconClass.call(this, false);
                 }
             }, 'i');
 
@@ -57,6 +60,9 @@
                     toggleIconClass.call(this, true);
                 },
                 mouseleave: function (e) {
+                    toggleIconClass.call(this, false);
+                },
+                touchend: function (e) {
                     toggleIconClass.call(this, false);
                 }
             }, 'a');
