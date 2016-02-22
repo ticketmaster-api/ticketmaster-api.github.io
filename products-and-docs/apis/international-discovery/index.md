@@ -13,21 +13,21 @@ keywords: API, international discovery, event seatmap, event prices, countries l
 The Ticketmaster International Discovery API allows you to search for events, attractions, or venues, and get attraction, venue or event details including ticket information.
 {: .lead .article}
 
-## Overview
+### Overview
 {: .article #overview }
 
-### Discovery API Services
+#### Discovery API Services
 
 + See Events Service 
 + See Attraction Service
 + See Venue Service 
 + See Information Service 
 
-### Endpoint
+#### Endpoint
 
 The base URL for the Web API is `https://app.ticketmaster.eu/mfxapi/v1/`
 
-### Authentication
+#### Authentication
 You authenticate to the Ticketmaster International Discovery API using an API Key.
 
 + An API Key needs to be passed as a query parameter in all requests. 
@@ -39,35 +39,35 @@ For example:
 
 To request an API Key send an email to the [Ticketmaster Product Manager](mailto:carie.hughes@ticketmaster.co.uk).
 
-### Format
+#### Format
 You can set the output format from all API Services with an Accept header. The API supports:
 
 + `application/json`
 + `application/xml`
 
-### Markets
+#### Markets
 The Ticketmaster International Discovery API covers the following markets: Germany, Austria, Netherlands, Denmark, Belgium, Norway, Sweden, Finland, Poland, UK (Ticketweb.co.uk) and Canada (Admission.com). Please note that the UK and Ireland (Ticketmaster.co.uk, Ticketmaster.ie) and the USA and rest of Canada (Ticketmaster.com) are not available through the International Discovery API. Details will be available soon on how to request access to the Ticketmaster API for these markets.
 
 
 {: .article }
-# Event Service 
+## Event Service 
 The Event Service API allows you to search for events, get details of specific events, get updates for events, and details of ticket prices, and seats.
 {: .lead .article}
 
 {: .article }
-## Event Search 
+### Event Search 
 Find events and filter your search by event type, location, date, availability, and much more.
  
-### Event Dates
+#### Event Dates
 Ticketmaster events have multiple dates including eventdate (the actual date of the event) and onsale 
 (the date on which tickets go on sale) and offsale (the date on which tickets are removed from sale). The eventdate is not 
 always available - for example where dates have yet to be announced by the promoter. In addition some events may have a 
 date but no time, - for example events such as museum or art exhibitions with no fixed start time. Such events are 
 indicated by 'date' in the format field rather than the usual 'eventdate'.
  
-### Query Parameters
+#### Query Parameters
 
-#### Domain
+##### Domain
 Although not required, it's advisable to specify a domain or domains. The domain relates to the Ticketmaster website 
 through which tickets are listed and sold. (It differs from Country which is the geographical location). You can use the 
 Domains List Service for a list of domains and default URL, language, and currency. Use a comma separated list of values 
@@ -93,14 +93,14 @@ to search multiple domains. (A logical OR search is performed).
 | -------- | | ------------------ |
 |`domain_ids` | norway , sweden , finland , belgium, netherlands, denmark, germany, austria, unitedarabemirates, canada, poland | string |
 
-#### Pagination
+##### Pagination
 You can paginate the results by specifying the number of rows to return, and the start row. The default 
 start is 0 and the default rows is 10. There is a maximum of 500 
 
 + `rows.start` = `10` (optional, integer)
 + `rows` = `20` (optional, integer)
 
-#### Sorting
+##### Sorting
 You can specify a sorting method and order. Sorting methods include event name, event date, popularity 
 (based on ticket sales), and proximity (based on distance from the specified lat and long). Sorting order can be ascending 
 or descending. The default sort method is eventdate and order is ascending.
@@ -122,7 +122,7 @@ or descending. The default sort method is eventdate and order is ascending.
 |`sort_by` | eventname, populatity, eventdate, proximity | string |
 |`order` | asc, desc | string |
     
-#### Other Parameters
+##### Other Parameters
 There are multiple _additional parameters_ which allow you to filter the search by event name, category, 
 location, venue, date, availability, attraction (artist, sport, package, play and so on) and many more. See the 'Event Search' GET example for further details.
 
@@ -632,7 +632,7 @@ Via: 1.1 vegur
 {% endhighlight %}
 
 {: .article #event-details}
-## Event Details
+### Event Details
 Get details for a specific event using the unique identifer for the event. This includes the venue and location, ticket 
 availability and pricing, a description, and the Ticketmaster Website URL for purchasing tickets for the event.
 
@@ -1049,7 +1049,7 @@ Via: 1.1 vegur
 {% endhighlight %}
 
 {: .article #updated-events}
-## Updated Events 
+### Updated Events 
 Find the events which have been updated since a given timestamp. First call the service with the updated_since timestamp, 
 then process the response and call the service again with parameters provided in the next field. Finally continue until 
 the returned number of rows is less than the requested number - or until the response is an empty array. 
@@ -1587,7 +1587,7 @@ Via: 1.1 vegur
 
 
 {: .article #event-prices}
-## Event Prices 
+### Event Prices 
 Get information about the ticket price levels applicable for an specific event ID, the price range for each level and ticket availability.
 
 {: .code.red}
@@ -1988,7 +1988,7 @@ Via: 1.1 vegur
 
 
 {: .article #event-seatmap}
-## Event Seatmap 
+### Event Seatmap 
 Get a static map image of the venue for the event showing the location of seating or standing areas. Note that not all events will have a seatmap available - for example packages, festivals, many general admission music events, and so on. Interactive seatmaps are currently not available.
 
 {: .code.red}
@@ -2336,7 +2336,7 @@ Via: 1.1 vegur
 
 
 {: .article #event-areas}
-## Event Areas 
+### Event Areas 
 Get information on the seating areas available for an event and the prices for tickets.
 
 {: .code.red}
@@ -2694,22 +2694,22 @@ Via: 1.1 vegur
 
 
 {: .article}
-# Attractions Service 
+## Attractions Service 
 The Attractions Service API allows you to search for attractions, get details for specific attractions, and support for suggest as you type. 
 An attraction can be a music artist, a type of sport, a play or show, and so on.
 {: .lead.article}
 
 {: .article #attraction-search}
-## Attraction Search 
+### Attraction Search 
 
 Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.
  
 {: .code.red}
 https://app.ticketmaster.eu/mfxapi/v1/attractions
 
-### Query Parameters
+#### Query Parameters
 
-#### Domain (Market) 
+##### Domain (Market) 
 Although not required, it's advisable to specify a domain or domains. The domain relates to the Ticketmaster website 
 through which tickets are listed and sold. (It differs from Country which is the geographical location). You can use the 
 Domains List Service for a list of domains and default URL, language, and currency. Use a comma separated list of values 
@@ -2719,12 +2719,12 @@ to search multile domains. (A logical OR search is performed).
 | -------- | | ------------------ |
 |`domain_ids` | norway , sweden , finland , belgium, netherlands, denmark, germany, austria, unitedarabemirates, canada, poland | string |
 
-#### Pagination 
+##### Pagination 
 You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 500 
 
 + `rows.start` = `0` (optional, integer)
 
-#### Sorting 
+##### Sorting 
 You can specify a sorting method and order. Options include event name, event date, popularity, and proximity (based on 
 the lat and long) with ascending or descending order. The default is eventdate and ascending.
 
@@ -2735,7 +2735,7 @@ sort_by = attraction_name (optional, string)attraction_namepopulatityorder = asc
 |`sort_by` | attraction_name, populatity | string |
 |`order` | asc, desc | string |
 
-#### *Other Parameters*
+##### *Other Parameters*
 There are additional parameters which allow you to filter the search by attraction name, and attractions with events on sale.
 
 | Parameters | Optional values | Type | Required |
@@ -3099,7 +3099,7 @@ Via: 1.1 vegur
 
 
 {: .article #attraction-details}
-## Attraction Details 
+### Attraction Details 
 Get details for a specific event using the unique identifer for the event.
 
 {: .code.red}
@@ -3450,7 +3450,7 @@ Via: 1.1 vegur
 
 
 {: .article #attraction-suggestions}
-## Attraction Suggestions 
+### Attraction Suggestions 
 Get suggestions for attractions based on the first 2 characters of the name. The top matching attractions are returned 
 and sorted by popularity in descending order. Unlike the Attractions Search service, this service allows a degree of 
 partial and fuzzy matching and can therefore be used for a suggest-as-you type feature. The response provides limited 
@@ -3819,7 +3819,7 @@ Via: 1.1 vegur
 
 
 {: .article #similar-attractions}
-## Similar Attractions 
+### Similar Attractions 
 Get back other attractions which are similar to the attraction specified. This is based on a combination of factors 
 including category and sub-category, and ticket sales (users who purchased this attraction also purchased).
 
@@ -4220,12 +4220,12 @@ Via: 1.1 vegur
 
 
 {: .article}
-# Venue Service 
+## Venue Service 
 The Venue Service API allows you to search for event venues and get details for specific venues. Seatmaps for venues are available in the Event Service - See Event Seatmaps
 {: .lead.article}
 
 {: .article #venue-search}
-## Venue Search 
+### Venue Search 
 Find venues and filter your search by name, and much more.
 
 {: .code.red}
@@ -4248,15 +4248,15 @@ https://app.ticketmaster.eu/mfxapi/v1/venues
 |`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
 
 
-### Query Parameters
+#### Query Parameters
 
-#### Pagination 
+##### Pagination 
 You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 500 rows. 
 
 + `rows` = `10` (optional, integer) 
 + `start` = `0` (optional, integer)
 
-#### Sorting 
+##### Sorting 
 You can specify a sorting method and order. Options include event name, event date, popularity, and proximity (based on 
 the lat and long) with ascending or descending order. The default is eventdate and ascending.
 
@@ -4265,7 +4265,7 @@ the lat and long) with ascending or descending order. The default is eventdate a
 |`sort_by` | venuename, cityname | string |
 |`order` | asc, desc | string |
 
-#### Other Parameters 
+##### Other Parameters 
 There are additional parameters which allow you to filter the search by venue name, and location including proximity to a lat / long.
 
 {: .aside}
@@ -4613,7 +4613,7 @@ Via: 1.1 vegur
 {% endhighlight %}
 
 {: .article #venue-details}
-## Venue Details 
+### Venue Details 
 Get details for a specific event using the unique identifer for the event. Seatmaps for venues are available in the Event Service - See [Event Seatmaps](#event-seatmap)
 
 {: .code.red}
@@ -4964,12 +4964,12 @@ Via: 1.1 vegur
 {% endhighlight %}
 
 {: .article}
-# Information Service 
+## Information Service 
 A collection of services which provide information on supported countries, domains, languages, cities and categories.
 {: .lead.article}
 
 {: .article #countries-list}
-## Countries List 
+### Countries List 
 Get a list of countries and domains for each. Although not required, it is advisable to specify the domain. The domain 
 relates to the Ticketmaster website through which tickets are listed and sold, whereas the Country is a geographical location.
 
@@ -5426,7 +5426,7 @@ Via: 1.1 vegur
 {% endhighlight %}
 
 {: .article #domains-list}
-## Domains List 
+### Domains List 
 Get a list of domains (countries and markets) and the domain ID as well supported langauges.Although not required, it is advisable to specify the domain. The domain relates to the Ticketmaster website through which tickets are listed and sold. Domain_id differs from the Country_id which is the geographical location rather than the market.
 
 {: .code.red}
@@ -5992,7 +5992,7 @@ Via: 1.1 vegur
 
 
 {: .article #cities-list}
-## Cities List
+### Cities List
 Get a list of city names and city IDs.
 
 {: .code.red}
@@ -6474,7 +6474,7 @@ Via: 1.1 vegur
 
 
 {: .article #categories-list}
-## Categories List
+### Categories List
 Get a list of the categories of events available for a specific domain, or a list of subcategories for a major category.
 
 {: .code.red}
