@@ -4,6 +4,9 @@
   .article-body{
     overflow: auto;
     margin: 0 -15px;
+    & img {
+      width: 100%;
+    }
   }
 
   button.tag-btn {
