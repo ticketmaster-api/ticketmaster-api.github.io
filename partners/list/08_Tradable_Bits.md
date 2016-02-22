@@ -1,8 +1,7 @@
-
 ---
 layout: partners-doc
 
-pname: "tradable bits"
+pname: "tradable_bits"
 
 categories: 
   - partner
