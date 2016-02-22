@@ -16,57 +16,5 @@
                 "plugins" : ["state"] // activate the state plugin on this instance
             });
 
-
-        var hoveredCssClass = 'hovered',
-            listContainer = $('.jstree-container-ul');
-
-        function toggleIconClass(toggle) {
-            var iconElement,
-                me = $(this);
-
-            if (me.is('a')) {
-                iconElement = me.prev('i');
-            } else {
-                iconElement = me.next('a');
-            }
-
-            if (toggle) {
-                iconElement.addClass(hoveredCssClass);
-            } else {
-                iconElement.removeClass(hoveredCssClass);
-            }
-        };
-
-
-        //hover on a
-        listContainer
-            .on({
-                mouseenter: function (e) {
-                    toggleIconClass.call(this, true);
-                },
-                mouseleave: function (e) {
-                    toggleIconClass.call(this, false);
-                },
-                touchend: function (e) {
-                    toggleIconClass.call(this, false);
-                }
-            }, 'i');
-
-
-        //hover on icon
-        listContainer
-            .on({
-                mouseenter: function (e) {
-                    toggleIconClass.call(this, true);
-                },
-                mouseleave: function (e) {
-                    toggleIconClass.call(this, false);
-                },
-                touchend: function (e) {
-                    toggleIconClass.call(this, false);
-                }
-            }, 'a');
-
-
     });
 })();
