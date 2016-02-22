@@ -323,7 +323,6 @@ body .top-bar.bg-header {
     clear: both;
   }
 }
-
 .nexus-form-wrapper {
   font-family: $font-body;
   margin-bottom: 96px;
@@ -386,7 +385,6 @@ body .top-bar.bg-header {
     border-radius: 4px;
     font-family: $font-bold-p;
     font-size: $size-h4;
-    margin-top: 30px;
     margin-bottom: 0;
     padding: 10px 40px;
     color: $white;
@@ -519,5 +517,8 @@ body .top-bar.bg-header {
   }
   .button-blue {
     margin-top: 0;
+  }
+  .nexus-form-wrapper .button-blue {
+    margin-top: 30px;
   }
 }
