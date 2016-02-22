@@ -8,7 +8,7 @@ categories:
   - certified
 
 tile_logo: "tradablebits-logo.png"
-tile_description: "**Tradable bits** partner company, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage."
+tile_description: "Our Tradable Bits digital marketing platform helps sports and entertainment brands know their fans so they can market smarter. By combining engagement campaigns, user-generated content aggregation and integrated CRM, brands on our platform collect cross-network profiles of theirl fans that they can retarget in personalized social, email and ad campaigns."
 ---
 
 
