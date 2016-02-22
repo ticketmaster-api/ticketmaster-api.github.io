@@ -9,7 +9,7 @@ excerpt: At Ticketmaster, we are always looking for innovative products and serv
 keywords: Nexus, certified partner program, ticketing Services, innovative products, 
 ---
 
-{: .col-lg-12 .partner-logo-fix}
+{: .col-lg-12 .partner-logo}
 ![Nexus](/assets/img/partners/logos/nexus-logo@2x.png)
 
 {: .lead .col-lg-12}
