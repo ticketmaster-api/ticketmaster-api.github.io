@@ -32,7 +32,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 {: .body .p}
 Nexus Certified Partners are distinguished best-in-class solutions providers to the live events industry.
 
-[Get to know our Nexus partners](/partners/certified-partners/)
+[Get to know our Nexus partners](/products-and-docs/under-development/)
 [Join the Nexus program](/partners/certified-partners/nexus)
 
 {% endcapture %}
