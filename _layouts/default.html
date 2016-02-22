@@ -30,25 +30,5 @@
         {% include feedback.html %}
         <script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
-
-        <!-- Qualaroo feedback service initialization - https://app.qualaroo.com -->
-        <script type="text/javascript">
-
-            // localhost
-//            var qualarooAccountJs = '63095/et1';
-
-            // ticketmaster-api-staging.github.io
-            // user: roman.v.prytula@gmail.com  pwd: 123123123
-            var qualarooAccountJs = '63104/etg';
-
-            var _kiq = _kiq || [];
-            (function(){
-                setTimeout(function(){
-                    var d = document, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript';
-                    s.async = true; s.src = "//s3.amazonaws.com/ki.js/" + qualarooAccountJs + ".js"; f.parentNode.insertBefore(s, f);
-                }, 1);
-            })();
-        </script>
-
     </body>
 </html>

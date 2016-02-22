@@ -48,6 +48,10 @@ ul, ol, dl, figure,
     margin-bottom: $base-margin;
 }
 
+.base-margin-top {
+  margin-top: $base-margin;
+}
+
 .double-margin {
   margin-top: $base-margin * 2;
   margin-bottom: $base-margin * 2;
@@ -281,6 +285,17 @@ input[type=radio]:not(old):checked + label > span > span{
 }
 /*Custom checker END*/
 
+// Fixed Feedback button
+body,
+body.modal-open{
+  padding-right: 0!important;
+  overflow-y: scroll;
+}
+
+.modal-open .modal {
+  overflow-y: hidden;
+}
+
 /**
  * Wrapper
  */
@@ -390,8 +405,8 @@ input[type=radio]:not(old):checked + label > span > span{
   -ms-user-select: none;
   user-select: none; }
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: none;
+  //outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px; }
 .btn:hover, .btn:focus, .btn.focus {
   color: #333;
@@ -528,13 +543,20 @@ input[type=radio]:not(old):checked + label > span > span{
 }
 
 .documentation .copy-btn.copied,
-.modal-body .copy-btn-fs.copied {
-  background-color: #FFF;
-  background-position-x: -2px;
-  background-position-y: -2px;
-  background-image: url("/assets/img/products-and-docs/ic-copied.svg");
+.documentation .copy-btn.copied:hover,
+.modal-body .copy-btn-fs.copied,
+.modal-body .copy-btn-fs.copied:hover {
+  background-color: $white;
+  &:before {
+    opacity: 0;
+  }
+  &:after {
+    opacity: 1;
+    background-position-x: -2px;
+    background-position-y: -2px;
+    background-image: url("/assets/img/products-and-docs/ic-copied.svg");
+  }
 }
-
 
 .clear-margins{
   margin: 0; 

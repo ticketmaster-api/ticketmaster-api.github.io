@@ -83,8 +83,8 @@
                 // Search [START]
 
                 var smopen  = false;
-                $(".top-bar").on("click", "#search", function (e) {
-                  if ( $(this).hasClass("smopen") ) {
+                $(".top-bar").on("click", "#search .search-button", function (e) {
+                  if ( $(this).hasClass("smopen") && smopen == true) {
                       $(this).removeClass("smopen");
                       $("#cse-search-box").removeClass("sopen");
                       smopen  = false;

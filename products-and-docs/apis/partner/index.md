@@ -7,6 +7,9 @@ redirect_from:
 - "/apis/commerce/"
 - "/apis/partners/"
 - "/apis/partner/"
+title: Partner API
+excerpt: The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket and event informaton.
+keywords: Partner API, host and API, reserve tickets, create a cart, order management
 ---
 
 {: .article}
@@ -1489,10 +1492,10 @@ Status 200
 
 
 {: .article}
-## Post credit card information [PUT]
+## Add payment information [PUT]
 {: #post-card}
 
-Add customer billing and credit card information to the transaction. Set `encryption_key` with the `id` value from the output of /certificate.
+Add customer information and credit card or invoice data to the transaction. For credit cards, set `encryption_key` with the `id` value from the output of /certificate.
 
 Encrypt the credit card and cvv number using the following steps:
 
@@ -1523,52 +1526,6 @@ Sample credit-card information for use in the sandbox environment:
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-
-
-Sample Java code using a certificate (arg 1) to encrypt a credit card or cvv number (arg 2):
-
-{% highlight java %}
-import javax.xml.bind.DatatypeConverter;
-import javax.crypto.Cipher;
-
-import java.io.ByteArrayInputStream;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
-public class RSAEncrypt {
-    public static void main(String argv[]) {
-        try {
-            String certB64 = argv[0];
-            String inputData = argv[1];
-
-            /* Load cert
-               Cert should include begin and end cert, and be Base64 encoded, with line breaks.  For example:
------BEGIN CERTIFICATE-----
-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890AB
-CDEFGHIJK=
------END CERTIFICATE-----
-            */
-            String cleanCert = "-----BEGIN CERTIFICATE-----\n" + certB64.replaceAll("-----.*-----", "").replaceAll("[\\p{Space}]", "").replaceAll("(.{64})", "$1\n") + "\n-----END CERTIFICATE-----";
-
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            X509Certificate cert = (X509Certificate)cf.generateCertificate(new ByteArrayInputStream(cleanCert.getBytes()));
-
-            //set up Cipher (for RSA)
-            Cipher cipher = Cipher.getInstance("RSA");
-            cipher.init(Cipher.ENCRYPT_MODE, cert);
-
-            byte[] outputBytes = cipher.doFinal(inputData.getBytes());
-            String outputB64 = DatatypeConverter.printBase64Binary(outputBytes);
-            System.out.println(outputB64);
-        } catch(Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-    }
-}
-{% endhighlight %}
 
 
 >[Request](#req)
@@ -1627,6 +1584,54 @@ Status 200
     }
 }
 {% endhighlight %}
+
+Sample Java code using a certificate (arg 1) to encrypt a credit card or cvv number (arg 2):
+
+{% highlight java %}
+import javax.xml.bind.DatatypeConverter;
+import javax.crypto.Cipher;
+
+import java.io.ByteArrayInputStream;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class RSAEncrypt {
+    public static void main(String argv[]) {
+        try {
+            String certB64 = argv[0];
+            String inputData = argv[1];
+
+            /* Load cert
+               Cert should include begin and end cert, and be Base64 encoded, with line breaks.  For example:
+-----BEGIN CERTIFICATE-----
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890AB
+CDEFGHIJK=
+-----END CERTIFICATE-----
+            */
+            String cleanCert = "-----BEGIN CERTIFICATE-----\n" + certB64.replaceAll("-----.*-----", "").replaceAll("[\\p{Space}]", "").replaceAll("(.{64})", "$1\n") + "\n-----END CERTIFICATE-----";
+
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            X509Certificate cert = (X509Certificate)cf.generateCertificate(new ByteArrayInputStream(cleanCert.getBytes()));
+
+            //set up Cipher (for RSA)
+            Cipher cipher = Cipher.getInstance("RSA");
+            cipher.init(Cipher.ENCRYPT_MODE, cert);
+
+            byte[] outputBytes = cipher.doFinal(inputData.getBytes());
+            String outputB64 = DatatypeConverter.printBase64Binary(outputBytes);
+            System.out.println(outputB64);
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+}
+{% endhighlight %}
+
+
+
 
 
 {: .article}

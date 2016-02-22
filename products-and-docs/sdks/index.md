@@ -3,6 +3,9 @@ layout: documentation-single
 categories:
 - documentation
 - sdks
+title: SDKs
+excerpt: Easy integration for iOS and Android.
+keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 ---
 
 

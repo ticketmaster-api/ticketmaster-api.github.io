@@ -6,11 +6,12 @@
     <li>
         <ul class="categories">
             <li><a href="#" >Channel Partners</a></li>
+            <li><a href="/partners/distribution-partners/" class="{% if page.category == "partners" page.categories[0] == "partner" && page.categories[1] == "distribution" %}active{% endif %}" >Distribution Partners</a>
             <li><a href="/partners/certified-partners/" class="{% if page.category == "partners" page.categories[0] == "partner" && page.categories[1] == "certified" %}active{% endif %}" >Certified Partners</a>
                 {% if page.category == "partners" page.categories[0] == "partner" && page.categories[1] == "certified" %}
                     <ul class="sections menu-highlight">
                         <li>
-                            <a href="/partners/certified-partners/nexus">Nexus</a>
+                            <a href="/partners/certified-partners/nexus/">Nexus</a>
                         </li>
                         {% for partner in site.pages %}
                             {% if partner.available && partner.categories[0] == "partner" && partner.categories[1] == "certified" %}

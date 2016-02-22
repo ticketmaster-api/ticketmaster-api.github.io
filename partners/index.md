@@ -2,7 +2,7 @@
 layout: partners
 category: partners
 title: Partners
-excerpt: Portland ugh fashion axe Helvetica, YOLO Echo Park Austin gastropub roof party. Meggings cred before they sold out messenger bag, ugh fashion axe.
+excerpt: Collaborating with partners, clients and the startup community to build experiences that delight fans everywhere.
 keywords: partners, certified partners, become an affilate
 ---
 
@@ -16,7 +16,7 @@ keywords: partners, certified partners, become an affilate
 ### Helping us reach the world
 
 {: .body .p}
-Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authe.
+Distribution partners deliver incremental audiences to help our clients sell more tickets
 
 [See all channel partners](/products-and-docs/under-development/)
 
@@ -36,7 +36,7 @@ Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingers
 Nexus Certified Partners are distinguished best-in-class solutions providers to the live events industry.
 
 [Get to know our Nexus partners](/partners/certified-partners/)
-[Join the Nexus program](/partners/certified-partners/nexus)
+[Join the Nexus program](/products-and-docs/under-development/)
 
 {% endcapture %}
 
@@ -56,16 +56,16 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 {% capture logos %}
 
 {: .image}
-![Groupon](/assets/img/partners/spinzo-logo.png)
+![Spinzo](/assets/img/partners/spinzo-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/tradablebits-logo.png)
+![Tradablebits](/assets/img/partners/tradablebits-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/pricemaster-logo.png)
+![Pricemaster](/assets/img/partners/pricemaster-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/reply-logo.png)
+![Reply](/assets/img/partners/reply-logo.png)
 
 {: .c}
 [See all 30+ affiliate partners](/products-and-docs/under-development/)
@@ -78,16 +78,16 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 #### Startups &amp; Developers
 
 {: .image}
-![Groupon](/assets/img/partners/pricemaster-logo.png)
+![Pricemaster](/assets/img/partners/pricemaster-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/reply-logo.png)
+![Reply](/assets/img/partners/reply-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/spinzo-logo.png)
+![Spinzo](/assets/img/partners/spinzo-logo.png)
 
 {: .image}
-![Groupon](/assets/img/partners/tradablebits-logo.png)
+![Tradablebits](/assets/img/partners/tradablebits-logo.png)
 
 {: .c}
 [See all 50+ startup and developer partners](/products-and-docs/under-development/)

@@ -1,47 +1,50 @@
 (function($){
-    // Used Qualaroo form
 
-    var $feedbackOpenBtn = $('#js_feedback_open'),
-        $modal = $('#feedback-modal'),
+    var $modal = $('#feedback-modal'),
+        $feedbackOpenBtn = $('#js_feedback_open'),
         $form = $modal.find('#js_feedback_form'),
         $btn = $modal.find('#js_feedback_btn'),
         cssValidationClass = 'feedback_form-validation';
+
+    function resetForm(){
+        $form.find('textarea').val('');
+        $form.find('input').each(function(){
+            var $self = $(this);
+            if($self.attr('name')){
+                $self.val('');
+            }
+        });
+
+        // Clear highlight
+        $form.removeClass(cssValidationClass);
+    }
+
+    function submitForm(){
+        $.ajax({
+            dataType: 'jsonp',
+            url: $form.attr('action'),
+            data: $form.serialize()
+        }).done(function() {
+            //alert("Thank you.");
+        });
+
+        // Close dialog
+        $modal.modal('hide');
+    }
 
     // EVENTS
     $btn.on('click', function(){
         var form = $form.get(0);
 
         if(form.checkValidity()) {
-
-            var dataArray = $form.serializeArray(),
-                $qualarooForm = $('#qual_ol_ans_box');
-
-            // Copy values to Qualaroo form
-            for(var i in dataArray){
-                if(dataArray[i].name === 'description'){
-                    $qualarooForm.find('textarea').val(dataArray[i].value);
-                }else{
-                    $qualarooForm.find("input:eq(" + i +")").val(dataArray[i].value);
-                }
-
-                // TODO: Need to clear dialog form
-                // TODO: Need to unbind Qualaroo responseSent event. S3 response - 'try { KI.event.fire('responseSent'); } catch (e) {}'
-            }
-
-            // Submit Qualaroo form
-            $('#qual_ol_send').trigger('click');
-
-            // Close dialog
-            $modal.modal('hide');
-
-            // Hide feedback button
-            $feedbackOpenBtn.hide();
-
+            submitForm();
         }else{
             // Highlight errors
             if(form.reportValidity) form.reportValidity();
             $form.addClass(cssValidationClass);
         }
     });
+
+    $modal.on('hide.bs.modal', resetForm);
 
 })(jQuery);

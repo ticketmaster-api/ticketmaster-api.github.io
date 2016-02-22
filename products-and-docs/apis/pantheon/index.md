@@ -1,6 +1,9 @@
 ---
 layout: documentation
 category: documentation
+title: Partner-App API
+excerpt: The Ticketmaster Partner-App API lets users purchase tickets through your app's native experience.
+keywords: app native experience, reservation and purchasing, access token
 ---
 
 ## Ticketmaster Partner-App API
