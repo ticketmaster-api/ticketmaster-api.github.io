@@ -9,7 +9,7 @@ keywords: API, SDK, widget, access api docs, become an affilate
 
 {% capture content %}
 {::comment}
-![Icon](/assets/img/ic-under-development.svg)
+![Under development](/assets/img/ic-under-development.svg)
 {:/comment}
 
 {: .triple-margin-top}
