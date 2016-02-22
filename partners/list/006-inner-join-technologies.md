@@ -8,7 +8,7 @@ categories:
   - certified
 
 tile_logo: "inner-join-technologies-logo.png"
-tile_description: "**Inner join technologies** partner company, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage."
+tile_description: "Inner Join Technologies provides cost effective analytic and CRM integration solutions for Ticketmaster Teams and venues."
 ---
 
 
