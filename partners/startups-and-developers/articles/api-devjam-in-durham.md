@@ -20,7 +20,7 @@ Selvage jean shorts 90's, Vice American Apparel
 try-hard food truck Shoreditch fap lomo Wes Anderson.
 
 {% endcapture %}
-<div class="col-lg-8">{{ left | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
 
 {% capture left %}
 ###API explorer for Ticketmaster
@@ -47,8 +47,8 @@ Epam dev team
 
 {% endcapture %}
 
-<div class="col-lg-8">{{ left | markdownify }}</div>
-<div class="col-lg-4">{{ right | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
+<div class="col-lg-4 col-md-4 col-sm-4">{{ right | markdownify }}</div>
 
 {% capture left %}
 
@@ -63,22 +63,22 @@ Selvage jean shorts 90's, Vice American Apparel try-hard
 food truck Shoreditch fap lomo Wes Anderson.
 
 {% endcapture %}
-<div class="col-lg-8">{{ left | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
 
 
 {% capture left %}
 
-{: .col-lg-6}
+{: .col-lg-6 .col-md-6 .col-sm-6}
 ![](/assets/img/partners/startups-development/rectangle-333.png)
 
-{: .col-lg-6}
+{: .col-lg-6 .col-md-6 .col-sm-6}
 ![](/assets/img/partners/startups-development/rectangle-444.png)
 
-{: .col-lg-12}
+{: .col-lg-12 .col-md-12 .col-sm-12}
 ![](/assets/img/partners/startups-development/rectangle-175.png)
 
 {% endcapture %}
-<div class="col-lg-8" style="margin-left:-15px; margin-right:-15px;">{{ left | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8" style="margin-left:-15px; margin-right:-15px;">{{ left | markdownify }}</div>
 
 
 
