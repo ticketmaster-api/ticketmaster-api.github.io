@@ -186,7 +186,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="9">
         <a href="/products-and-docs/apis/discovery/">
-          <img src="/assets/img/getting-started/ic-search-big.svg" alt="search">
+          <img src="/assets/img/getting-started/ic-search-big.svg" alt="Discovery API">
         </a>
       <h4 style="margin-top:11px;">Discovery API</h4>
       </td>
@@ -255,7 +255,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center">
         <a href="/products-and-docs/apis/commerce/">
-          <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Icon1">
+          <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Commerce API">
         </a>
         <h4 style="margin-top:11px;text-">Commerce API</h4>
         </td>
@@ -269,7 +269,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="14">
         <a href="/products-and-docs/apis/partner/">
-          <img src="/assets/img/getting-started/ic-user.svg" alt="Icon1">
+          <img src="/assets/img/getting-started/ic-user.svg" alt="Partner API">
         </a>
         <h4 style="margin-top:11px;text-">Partner API</h4>
       </td>
@@ -374,7 +374,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="2">
         <a href="/products-and-docs/apis/deals-api/">
-          <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
+          <img src="/assets/img/getting-started/ic-cart.svg" alt="Deals API">
         </a>
         <h4 style="margin-top:11px;text-">Deals API</h4>
       </td>

@@ -32,7 +32,7 @@ sartorial try-hard freegan Portland ennui.
 
 Get the full scoop at [www.example.com/url]()
 
-![](/assets/img/partners/startups-development/bitmap.png)
+![Bitmap](/assets/img/partners/startups-development/bitmap.png)
 
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon.
 Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial
@@ -43,7 +43,7 @@ try-hard freegan Portland ennui.
 
 {% capture right %}
 
-![gras](/assets/img/partners/startups-development/rectangle-62.png)
+![Rectangle](/assets/img/partners/startups-development/rectangle-62.png)
 
 Epam dev team
 

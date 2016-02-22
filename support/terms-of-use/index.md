@@ -3,6 +3,9 @@ layout: base-content
 categories:
 - support
 - terms-of-use
+title: Terms of use
+excerpt: The following terms and conditions govern the use of the Ticketmaster application programming interfaces.
+keywords: Terms, conditions, licensed uses, restrictions, warranty disclaimer, ownership, relationship of parties
 ---
 
 # GENERAL TERMS OF USE

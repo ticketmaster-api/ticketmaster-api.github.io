@@ -7,6 +7,9 @@ redirect_from:
 - "/apis/commerce/"
 - "/apis/partners/"
 - "/apis/partner/"
+title: Partner API
+excerpt: The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket and event informaton.
+keywords: Partner API, host and API, reserve tickets, create a cart, order management
 ---
 
 {: .article}

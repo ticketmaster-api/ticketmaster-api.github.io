@@ -3,6 +3,9 @@ layout: documentation
 categories:
 - documentation
 - international-discovery
+title: International Discovery API 
+excerpt: The Ticketmaster International Discovery API allows you to search for events, attractions, or venues, and get attraction.
+keywords: API, international discovery, event seatmap, event prices, countries list, domains list, cities list
 ---
 {: .article}
 # International Discovery API 
