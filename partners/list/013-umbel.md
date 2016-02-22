@@ -8,7 +8,7 @@ categories:
   - certified
 
 tile_logo: "umbel-logo.png"
-tile_description: "**Umbel** partner company, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage."
+tile_description: "Umbel helps you securely collect first-party customer data, combine it with your TicketMaster data and leverage internal & external data sources to give you a truly complete view of your fans."
 ---
 
 
