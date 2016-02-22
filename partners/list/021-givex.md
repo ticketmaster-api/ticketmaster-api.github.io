@@ -8,7 +8,7 @@ categories:
   - certified
 
 tile_logo: "givex-logo.png"
-tile_description: "**Givex** partner company, lorem ipsum stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage."
+tile_description: "Uptix is an innovative platform product from Givex, designed for the sports and entertainment industries. The Uptix complete suite of services turns your existing tickets into stored value tickets also known as loaded tickets. They can serve as payment at concessions and merchandise throughout your venue; enhancing the fan experience. www.Givex.com/Uptix."
 ---
 
 
