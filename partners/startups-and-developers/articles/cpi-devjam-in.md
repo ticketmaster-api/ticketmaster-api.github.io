@@ -6,9 +6,15 @@ tags:
   - Android
   - Classes
 ---
- 
 
-##Ticketmaster at HackPoly
+{% capture left %}
+
+## Ticketmaster at HackPoly
+
+{% endcapture %}
+
+<div class="col-lg-8">{{ left | markdownify }}</div>
+
 
 {% capture left %}
 
@@ -25,7 +31,7 @@ try-hard food truck Shoreditch fap lomo Wes Anderson.
 
 {% capture right %}
 
-####Tousled food.
+#### Tousled food.
 
 Bushwick meh Blue Bottle pork 
 
@@ -48,7 +54,7 @@ belly mustache skateboard 3 wolf moon. Ac.
 
 {% capture left %}
 
-##Lorem ipsum dolor sit amet
+## Lorem ipsum dolor sit amet
 
 {% endcapture %}
 
