@@ -8,7 +8,7 @@ categories:
   - certified
 
 tile_logo: "loyaltree-logo.png"
-tile_description: "**Loyal tree** partner company, lorem ipsum stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage."
+tile_description: "LoyalTree is a guest intelligence software platform that deeply integrates into a venue and allows for big data capture of exact guest behaviors (attendance, history, itemized purchases, LTV, etc.) without the need for any new hardware."
 ---
 
 
