@@ -1,7 +1,7 @@
 ---
 layout: partners-doc
 
-pname: "loyal tree"
+pname: "loyal_tree"
 
 categories: 
   - partner
