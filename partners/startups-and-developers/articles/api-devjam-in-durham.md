@@ -9,7 +9,7 @@ tags:
  
 {% capture left %}
 
-##The Ticketmaster API Devjam in Durham, NC!
+## The Ticketmaster API Devjam in Durham, NC!
 
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon.
 Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial
@@ -23,7 +23,7 @@ try-hard food truck Shoreditch fap lomo Wes Anderson.
 <div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
 
 {% capture left %}
-###API explorer for Ticketmaster
+### API explorer for Ticketmaster
 
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon.
 Actually beard single-origin coffee, twee 90's PBR Echo Park
@@ -52,7 +52,7 @@ Epam dev team
 
 {% capture left %}
 
-##Development process
+## Development process
 
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. 
 Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial 
