@@ -1,7 +1,7 @@
 ---
 layout: partners-doc
 
-pname: "reply buy"
+pname: "Replybuy"
 
 categories: 
   - partner
