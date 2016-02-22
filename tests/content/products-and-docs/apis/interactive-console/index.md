@@ -60,7 +60,7 @@ page layout goes here
 <div markdown="1">
 {{api_callout_text}}
 </div>
-<a href="https://dev-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-transparent">{{api_callout_button_text}}</a>
+<a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-transparent">{{api_callout_button_text}}</a>
 </div>
 
 <iframe id="console-iframe" src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 3em;"></iframe>

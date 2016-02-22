@@ -1,7 +1,12 @@
 ---
 layout: partners-doc
 logos_url: "/assets/img/partners/logos/"
-category: partners
+categories:
+  - partners
+  - certified
+title: Certified partners
+excerpt: Certified partners
+keywords: Certified partners
 ---
 
 # CERTIFIED PARTNERS
@@ -21,7 +26,7 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
         <div class="front">
             {% capture fullpath %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
             <div class="img-wrapper">
-                <img src="{{fullpath}}">
+                <img src="{{fullpath}}" alt="{{partner.pname | capitalize }}">
             </div>
         </div>
         <div class="back">
@@ -43,7 +48,7 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
     <div class="content-box" style="background-image: url('{{bgimg}}');">
         <div class="logo-box col-sm-3 col-md-3 col-lg-3">
             <div class="img-wrapper ">
-                <img src="{{logo}}" style="width:200px;">
+                <img src="{{logo}}" style="width:200px;" alt="{{partner.pname | capitalize }}">
             </div>
         </div>
         <div class="description col-sm-7 col-md-7 col-lg-7">

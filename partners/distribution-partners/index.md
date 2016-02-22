@@ -2,8 +2,11 @@
 layout: partners-doc
 logos_url: "/assets/img/partners/logos/"
 categories:
-- partners
-- distribution
+  - partners
+  - distribution
+title: Distribution partners
+excerpt: Ticketmaster is dedicated to the mission to promote and sell client tickets through a variety of new storefronts.
+keywords: Affiliate partners, promote, sell client tickets
 ---
 
 {: .col-xs-12}

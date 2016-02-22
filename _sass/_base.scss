@@ -194,7 +194,9 @@ blockquote {
     }
 }
 
-
+.italic{
+  font-style: italic;
+}
 
 /**
  * Code formatting
@@ -574,4 +576,8 @@ body.modal-open{
     background-position-y: -2px;
     background-image: url("/assets/img/products-and-docs/ic-copied.svg");
   }
+}
+
+.clear-margins{
+  margin: 0; 
 }

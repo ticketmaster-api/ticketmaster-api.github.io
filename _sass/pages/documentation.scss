@@ -157,7 +157,7 @@
           }
 
           @media #{$max-1200} {
-            margin-top: $base-margin;
+            /*margin-top: $base-margin;*/
           }
         }
 
@@ -207,7 +207,6 @@
           font-size: 1.5em;
           line-height: 2em;
           padding-right: 2em;
-          padding-bottom: 0.37em;
           padding-left: 1em;
           color: $n3;
           border-bottom: 2px solid #f1f5f7;

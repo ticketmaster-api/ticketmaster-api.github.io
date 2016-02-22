@@ -1,8 +1,11 @@
 ---
 layout: partners-doc
 category: startup_and_development
+title: Startups &amp; developers
+excerpt: Startups and developers
+keywords: Startups and developers
 ---
-#STARTUPS & DEVELOPERS
+# STARTUPS & DEVELOPERS
 
 {: .lead}
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, dolor sit amet.
@@ -13,7 +16,7 @@ Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually be
     {% if article.category == "sd-article" %}
 <div class="sd-article">
     <div class="article-body">
-        {{ article.content }}
+{{ article.content | markdownify}}
     </div>
     <div class="article-tags">
         {% for tag in article.tags %}

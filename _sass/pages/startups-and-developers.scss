@@ -1,7 +1,12 @@
 .sd-article {
+  clear: both;
+
   .article-body{
     overflow: auto;
     margin: 0 -15px;
+    & img {
+      width: 100%;
+    }
   }
 
   button.tag-btn {
@@ -19,4 +24,16 @@
       color: #FFF;
     }
   }
+
+  .with-border {
+    border: solid 1px rgba(118, 134, 146, 0.2);
+    padding: 15px;
+    &>p{
+      margin: 0;
+    }
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6 {
+      margin-top: 0;
+    }
+  }
+
 }

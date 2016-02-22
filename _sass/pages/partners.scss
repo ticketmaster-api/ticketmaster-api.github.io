@@ -286,8 +286,10 @@ body .top-bar.bg-header {
     margin: 0;
     padding: 0;
     color: $apple-green;
-    position: absolute;
+    //position: absolute;
     display: none;
+    font-weight: normal;
+    font-family: $font-bold-p;
   }
   .label-radio-group{
     width: 100%;

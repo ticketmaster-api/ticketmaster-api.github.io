@@ -4,6 +4,9 @@ id: com1
 categories:
 - documentation
 - commerce
+title: Commerce API
+excerpt: Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive barcode and ticket information.
+keywords: API, commerce API, reserve tickets, retreive barcode
 ---
 
 # Commerce API

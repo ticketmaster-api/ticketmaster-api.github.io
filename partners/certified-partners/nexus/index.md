@@ -1,9 +1,16 @@
 ---
 layout: partners-doc
+title: Nexus
+categories:
+  - partners
+  - certified
+  - nexus
+excerpt: At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s Ticketing Services; that’s why we’ve created the Nexus Certified Partner Program.
+keywords: Nexus, certified partner program, ticketing Services, innovative products, 
 ---
 
 {: .col-lg-12 .partner-logo-fix}
-![gras](/assets/img/partners/logos/nexus-logo@2x.png)
+![Nexus](/assets/img/partners/logos/nexus-logo@2x.png)
 
 {: .lead .col-lg-12}
 At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s Ticketing Services; that’s why we’ve created the Nexus Certified Partner Program.  Our goal is to work with best in breed solution providers.  
@@ -71,7 +78,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <textarea name="companyDetail" id="company-detail-text" tabindex="10"></textarea>
     </div>
     <div class="col-sm-12">
-        <label id="message-success" class="message-green" >Thank you for contacting us. We will review and respond promptly.</label>
+        <p id="message-success" class="message-green" >Thank you for contacting us. We will review and respond promptly.</p>
     </div>
     <div class="col-sm-6">
         <button type="submit" class="button-blue">SEND</button>
@@ -84,7 +91,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
         e.preventDefault();
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=76ee6b36a22523d29942539c22273fd6",
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
           data: $nexusForm.serialize() 
         }).done(function() {
           //callback which can be used to show a thank you message
@@ -94,7 +101,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
         return false; //to stop the form from submitting
     }); 
     function showMsgSuccess(id, delay){
-        $(id).fadeIn( 400 ).delay( delay ).fadeOut( 400 );
+        $(id).slideDown(400).delay( delay ).slideUp(200);
     }
 </script>
 

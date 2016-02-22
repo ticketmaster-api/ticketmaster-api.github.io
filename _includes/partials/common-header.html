@@ -3,9 +3,9 @@
         <div class="col-xs-7 col-lg-2 gray">
             <a id="header-logo" href="{{"/" | prepend: site.baseurl}}">
             {% if page.category == "home" %}
-            <img src="/assets/img/header/tm-developer-logo-p-1.svg">
+            <img alt="Ticketmaster logo" src="/assets/img/header/tm-developer-logo-p-1.svg">
             {% else %}
-            <img src="/assets/img/header/tm-developer-logo.svg">
+            <img alt="Ticketmaster logo" src="/assets/img/header/tm-developer-logo.svg">
             {% endif %}
             </a>
         </div>
@@ -15,7 +15,7 @@
                 {% if page.category == "home" or page.category == "partners" or page.category == "null" %} class="two nav-item" {% else %} class="gray" {% endif %} href="{{"/partners/" | prepend: site.baseurl}}">Partners</a><a
                 {% if page.category == "home" or page.category == "support" or page.categories[0] == "support" %} class="three nav-item" {% else %} class="gray" {% endif %} href="{{"/support/" | prepend: site.baseurl}}">Support</a><a
                 {% if page.category == "home" or page.category == "blogs" or page.category == "blogs" %} class="four nav-item" {% else %} class="gray" {% endif %} href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a><a
-                {% if page.category == "home" or page.category == "events" or page.categories[0] == "events" %} class="five nav-item" {% else %} class="gray" {% endif %} href="{{"/events" | prepend: site.baseurl}}">Events</a><a
+                {% if page.category == "home" or page.category == "events" or page.categories[0] == "events" %} class="five nav-item" {% else %} class="gray" {% endif %} href="{{"/events/" | prepend: site.baseurl}}">Events</a><a
                 {% if page.category == "home" or page.category == "opensource" or page.category == "null" %} class="six nav-item" {% else %} class="gray" {% endif %} href="http://code.ticketmaster.com/">Open Source</a>
         </nav>
         <div class="col-xs-5 col-lg-2 gray">
@@ -34,7 +34,7 @@
                 <script type="text/javascript" src="//www.google.com.ua/cse/brand?form=cse-search-box&lang=en"></script>
                 <!-- <span tabindex="-1" id="search-alert" style="display: none;">Whoa! Search isn't quite ready yet! We're still working on it.</span> -->
             </div>
-            <a class="apigee-login {% if page.category != "home" %} white{% endif %}" href="https://dev-livenation.devportal.apigee.com/user/login">Login</a>
+            <a class="apigee-login {% if page.category != "home" %} white{% endif %}" href="https://live-livenation.devportal.apigee.com/user/login">Login</a>
         </div>
         <div id="rainbow">
             <span class="one"></span>
