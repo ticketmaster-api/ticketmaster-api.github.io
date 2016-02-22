@@ -5,6 +5,6 @@ pname: "nexustest"
 categories: 
   - partner
   - certified
-tile_logo: "nexus-logo.png"
+tile_logo: "nexus-logo1.png"
 tile_description: "This is a test…"
 ---
