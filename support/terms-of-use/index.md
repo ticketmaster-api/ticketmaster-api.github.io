@@ -4,7 +4,7 @@ categories:
 - support
 - terms-of-use
 title: Terms of use
-excerpt: The following terms and conditions govern the use of the Ticketmaster application programming interfaces.
+excerpt: The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldwide, non-exclusive, non-sublicenseable, non-transferable basis on the terms and conditions set forth herein.
 keywords: Terms, conditions, licensed uses, restrictions, warranty disclaimer, ownership, relationship of parties
 ---
 
