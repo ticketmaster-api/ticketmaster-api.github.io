@@ -177,7 +177,9 @@ blockquote {
     }
 }
 
-
+.italic{
+  font-style: italic;
+}
 
 /**
  * Code formatting
@@ -531,4 +533,9 @@ input[type=radio]:not(old):checked + label > span > span{
   background-position-x: -2px;
   background-position-y: -2px;
   background-image: url("/assets/img/products-and-docs/ic-copied.svg");
+}
+
+
+.clear-margins{
+  margin: 0; 
 }
