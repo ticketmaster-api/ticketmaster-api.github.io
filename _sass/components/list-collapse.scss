@@ -4,6 +4,7 @@
     color: $p1b;
   }
 }
+
 .jstree-node {
   white-space: nowrap;
 }
@@ -20,7 +21,6 @@
   min-height: 24px;
   min-width: 24px;
   line-height: 32px;
-  /*margin-left: 24px;*/
 }
 
 .jstree-default .jstree-node,
@@ -41,11 +41,6 @@
   background-position: 30px;
 }
 
-/*.jstree-default .jstree-node, .jstree-default .jstree-icon {
-  background-image: url('../../assets/img/products-and-docs/list-collapse.svg');
-  background-color: transparent;
-}*/
-
 .jstree-default .jstree-clicked {
   box-shadow: none;
   background: none;
@@ -65,7 +60,8 @@
 }
 
 .jstree-icon:empty {
-  display: inline-block;
+  display: block;
+  float: left;
   text-decoration: none;
   margin: 0;
   padding: 0;
@@ -86,7 +82,7 @@
 }
 
 .jstree-default .jstree-node, .jstree-default .jstree-icon {
-  background-image: url('../../assets/img/products-and-docs/list-collapse.png');
+  background-image: url('../../assets/img/products-and-docs/list-collapse.svg');
   background-color: transparent;
 }
 
@@ -100,14 +96,11 @@
   background: none;
 }
 
-/*.nested-list-wrapper ul.jstree-children:not(:first-child) {
-  margin-top: 0 ;
-}*/
-
 .jstree-default > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
 }
+
 i.jstree-icon.jstree-themeicon {
   display: none;
 }
@@ -140,6 +133,8 @@ i.jstree-icon.jstree-themeicon {
 .jstree-default {
   a {
     color: $n2-grey-color;
+    white-space: pre-line;
+    display: inline-block;
     &:focus {
       text-decoration: none;
     }

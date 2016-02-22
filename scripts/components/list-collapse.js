@@ -11,14 +11,14 @@
                 "core": {
                     "themes": {
                         "dots": true // no connecting dots between dots
-                    },
-                    "dblclick_toggle": false
+                    }
                 },
-                "plugins": ["state"] // activate the state plugin on this instance
+                "plugins" : ["state"] // activate the state plugin on this instance
             });
 
 
-        var hoveredCssClass = 'hovered';
+        var hoveredCssClass = 'hovered',
+            listContainer = $('.jstree-container-ul');
 
         function toggleIconClass(toggle) {
             var iconElement,
@@ -37,25 +37,26 @@
             }
         };
 
-        /*hover on a*/
-        $('.jstree-container-ul')
+
+        //hover on a
+        listContainer
             .on({
-                mouseenter: function () {
+                mouseenter: function (e) {
                     toggleIconClass.call(this, true);
                 },
-                mouseleave: function () {
+                mouseleave: function (e) {
                     toggleIconClass.call(this, false);
                 }
             }, 'i');
 
 
-        /*hover on icon*/
-        $('.jstree-container-ul')
+        //hover on icon
+        listContainer
             .on({
-                mouseenter: function () {
+                mouseenter: function (e) {
                     toggleIconClass.call(this, true);
                 },
-                mouseleave: function () {
+                mouseleave: function (e) {
                     toggleIconClass.call(this, false);
                 }
             }, 'a');
