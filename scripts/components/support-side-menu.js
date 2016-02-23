@@ -101,6 +101,10 @@
         }
     });
 
+    $(".base-content-wrapper").on("blur", ".menu", function(){
+        hideMenu();
+    });
+
     adjustMenuPosition();
 
 })();
