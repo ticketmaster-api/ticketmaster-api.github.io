@@ -101,8 +101,8 @@
         }
     });
 
-    $(".base-content-wrapper").on("blur", ".menu", function(){
-        hideMenu();
+    $(".base-content-wrapper").on("blur", ".menu.expanded", function(){
+        setTimeout(hideMenu, 200)
     });
 
     adjustMenuPosition();
