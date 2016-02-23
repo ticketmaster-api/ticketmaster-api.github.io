@@ -12,19 +12,19 @@ keywords: partners, certified partners, become an affilate
 
 {% capture distribution_logos %}
 {: .col-xs-4 .logo .logo-small}
-[![Groupon](/assets/img/partners/groupon-logo.png)](/products-and-docs/under-development/)
+[![Groupon](/assets/img/partners/groupon-logo.png)](#)
 
 {: .col-xs-4 .logo .logo-small}
-[![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](/products-and-docs/under-development/)
+[![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](#)
 
 {: .col-xs-4 .logo .logo-small}
-[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](/products-and-docs/under-development/)
+[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](#)
 
 {: .col-xs-6 .logo .text-right .logo-small}
-[![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](/products-and-docs/under-development/)
+[![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](#)
 
 {: .col-xs-6 .logo .text-left .logo-small}
-[![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](/products-and-docs/under-development/)
+[![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](#)
 {% endcapture %}
 
 {% capture distribution_more %}
@@ -32,7 +32,7 @@ keywords: partners, certified partners, become an affilate
 Description information about Distribution Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.
 
 {: .caption}
-For more information please [contact us](mailto: distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
+For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
 {% endcapture %}
 
 {% capture distribution_desc %}
@@ -41,7 +41,11 @@ For more information please [contact us](mailto: distributedcommerce@ticketmaste
 {: .body .p}
 Distribution partners deliver incremental audiences to help our clients sell more tickets
 
-[Talk to us about how to partner](mailto: distributedcommerce@ticketmaster.com)
+{: .no-margin-bottom}
+[Get to know our Distribution partners](/partners/distribution-partners/)
+
+{: .no-margin-top}
+[Talk to us about how to partner](mailto:distributedcommerce@ticketmaster.com)
 {% endcapture %}
 
 
@@ -51,7 +55,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 
 {% capture certified_logo %}
 {: .col-xs-12 .logo}
-[![Nexus](/assets/img/partners/nexus-logo.png)](/products-and-docs/under-development/)
+[![Nexus](/assets/img/partners/nexus-logo.png)](/certified-partners/nexus/)
 {% endcapture %}
 
 {% capture certified_more %}
@@ -59,7 +63,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.
 
 {: .caption}
-For more information please [contact us](mailto: distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
+For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
 {% endcapture %}
 
 {% capture certified_desc %}
@@ -78,12 +82,12 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 
 {% capture affilated %}
 
-## Get affiliated.
+## Get affiliated
 
 {: .body .p}
 If you are a current member of the Ticketmaster affiliate program, manage your account at Affiliate Window.
 
-[More information about being affiliated](/products-and-docs/under-development/)
+[More information about being affiliated](/support/faq/#affiliates-a)
 
 [GO TO LOGIN](https://darwin.affiliatewindow.com/login){: .button.button-blue}
 
