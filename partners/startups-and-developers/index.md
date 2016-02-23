@@ -1,6 +1,7 @@
 ---
 layout: partners-doc
-category: startup_and_development
+categories: 
+  - startup_and_development
 title: Startups &amp; developers
 excerpt: Startups and developers
 keywords: Startups and developers
