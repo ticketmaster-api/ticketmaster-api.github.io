@@ -26,7 +26,7 @@ solutions, building amazing user experiences with our partners to delight Fans a
 Partner with Ticketmaster, the global leader in live event ticketing!
 
 {: .col-xs-12 .col-sm-4 .text-left}
-[PARTNER WITH US](/products-and-docs/under-development/){: .button}
+[PARTNER WITH US](mailto:distributedcommerce@ticketmaster.com){: .button}
 {% endcapture %}
 
 {% capture headlines %}
@@ -118,7 +118,7 @@ Scorebig.com
 Do you have a site that attracts visitors who are interested in buying tickets? If so, we have an opportunity for you to monetize your site and make money through the ticketmaster Affiliate Program.
 
 {: .col-xs-12}
-[PARTNER WITH US](/products-and-docs/under-development/){: .button .button-blue}
+[PARTNER WITH US](mailto:distributedcommerce@ticketmaster.com){: .button .button-blue}
 
 {: .col-xs-12 .col-sm-9}
 Have questions about our affiliate program?<br>
