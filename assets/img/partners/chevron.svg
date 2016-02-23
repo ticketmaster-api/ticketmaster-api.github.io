@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="10px" height="7px" viewBox="0 0 10 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>Chevron</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="3.x-Partners" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="3.1.1-Partners-Desktop" sketch:type="MSArtboardGroup" transform="translate(-526.000000, -1024.000000)" fill="#B7C9D3">
+            <path d="M535.359577,1025.61575 L531,1029.96945 C530.925577,1030.04387 530.837447,1030.08108 530.735605,1030.08108 C530.633764,1030.08108 530.545633,1030.04387 530.47121,1029.96945 L526.111633,1025.61575 C526.037211,1025.54132 526,1025.45221 526,1025.34841 C526,1025.24461 526.037211,1025.1555 526.111633,1025.08108 L527.086957,1024.11163 C527.161379,1024.03721 527.24951,1024 527.351351,1024 C527.453193,1024 527.541324,1024.03721 527.615746,1024.11163 L530.735605,1027.23149 L533.855464,1024.11163 C533.929887,1024.03721 534.018018,1024 534.119859,1024 C534.2217,1024 534.309831,1024.03721 534.384254,1024.11163 L535.359577,1025.08108 C535.434,1025.1555 535.47121,1025.24461 535.47121,1025.34841 C535.47121,1025.45221 535.434,1025.54132 535.359577,1025.61575 L535.359577,1025.61575 Z" id="Chevron" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

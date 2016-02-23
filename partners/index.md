@@ -6,38 +6,73 @@ excerpt: Collaborating with partners, clients and the startup community to build
 keywords: partners, certified partners, become an affilate
 ---
 
-{% capture channel %}
+{% capture distribution_header %}
+## Distribution partners
+{% endcapture %}
 
-#### Channel partners
-
-{: .image}
+{% capture distribution_logos %}
+{: .col-xs-4 .logo .logo-small}
 [![Groupon](/assets/img/partners/groupon-logo.png)](/products-and-docs/under-development/)
 
+{: .col-xs-4 .logo .logo-small}
+[![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](/products-and-docs/under-development/)
+
+{: .col-xs-4 .logo .logo-small}
+[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](/products-and-docs/under-development/)
+
+{: .col-xs-6 .logo .text-right .logo-small}
+[![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](/products-and-docs/under-development/)
+
+{: .col-xs-6 .logo .text-left .logo-small}
+[![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](/products-and-docs/under-development/)
+{% endcapture %}
+
+{% capture distribution_more %}
+{: .caption}
+Description information about Distribution Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.
+
+{: .caption}
+For more information please [contact us](mailto: distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
+{% endcapture %}
+
+{% capture distribution_desc %}
 ### Helping us reach the world
 
 {: .body .p}
 Distribution partners deliver incremental audiences to help our clients sell more tickets
 
-[See all channel partners](/products-and-docs/under-development/)
-
+[Talk to us about how to partner](mailto: distributedcommerce@ticketmaster.com)
 {% endcapture %}
 
 
-{% capture certified %}
+{% capture certified_header %}
+## Cerfified partners
+{% endcapture %}
 
-#### Cerfified partners
-
-{: .image}
+{% capture certified_logo %}
+{: .col-xs-12 .logo}
 [![Nexus](/assets/img/partners/nexus-logo.png)](/products-and-docs/under-development/)
+{% endcapture %}
 
+{% capture certified_more %}
+{: .caption}
+Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.
+
+{: .caption}
+For more information please [contact us](mailto: distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
+{% endcapture %}
+
+{% capture certified_desc %}
 ### Supporting our clients
 
 {: .body .p}
 Nexus Certified Partners are distinguished best-in-class solutions providers to the live events industry.
 
+{: .no-margin-bottom}
 [Get to know our Nexus partners](/partners/certified-partners/)
-[Join the Nexus program](/products-and-docs/under-development/)
 
+{: .no-margin-top}
+[Join the Nexus program](/products-and-docs/under-development/)
 {% endcapture %}
 
 
@@ -46,9 +81,11 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 ## Get affiliated.
 
 {: .body .p}
-Do you have a site that attracts visitors who are interested in buying tickets? If so, we have an opportunity for you to monetize your site and make money through the Ticketmaster Affiliate Program.
+If you are a current member of the Ticketmaster affiliate program, manage your account at Affiliate Window.
 
-[BECOME AN AFFILIATE](/support/faq/#affiliates-a){: .button.button-blue}
+[More information about being affiliated](/products-and-docs/under-development/)
+
+[GO TO LOGIN](https://darwin.affiliatewindow.com/login){: .button.button-blue}
 
 {% endcapture %}
 
@@ -56,42 +93,31 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 {% capture logos %}
 
 {: .image}
-![Spinzo](/assets/img/partners/spinzo-logo.png)
-
-{: .image}
-![Tradablebits](/assets/img/partners/tradablebits-logo.png)
-
-{: .image}
-![Pricemaster](/assets/img/partners/pricemaster-logo.png)
-
-{: .image}
-![Reply](/assets/img/partners/reply-logo.png)
-
-{: .c}
-[See all 30+ affiliate partners](/products-and-docs/under-development/)
+![Hands](/assets/img/partners/ic-hands.svg)
 
 {% endcapture %}
 
 
-{% capture developers %}
+{% capture developers_header %}
+## Startups &amp; Developers
 
-#### Startups &amp; Developers
+----
+{% endcapture %}
+
+{% capture slider %}
+{: .image}
+![ApiExplorer](/assets/img/partners/bitmap.png)
 
 {: .image}
-![Pricemaster](/assets/img/partners/pricemaster-logo.png)
+![DevJam2](/assets/img/events/devjam2.jpg)
 
 {: .image}
-![Reply](/assets/img/partners/reply-logo.png)
+![DevJam1](/assets/img/events/devjam.jpg)
+{% endcapture %}
 
-{: .image}
-![Spinzo](/assets/img/partners/spinzo-logo.png)
-
-{: .image}
-![Tradablebits](/assets/img/partners/tradablebits-logo.png)
-
+{% capture developers_footer %}
 {: .c}
-[See all 50+ startup and developer partners](/products-and-docs/under-development/)
-
+[See all showcases](/partners/startups-and-developers/)
 {% endcapture %}
 
 
@@ -99,10 +125,34 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
   <div class="row-container row-partners">
     <div class="col-xs-12 col-md-12">
 <div class="col-xs-12 col-md-6" markdown="1">
-{{channel}}
+{{distribution_header}}
+<div class="image">
+<div class="logo-container" markdown="1">
+{{distribution_logos}}
+<div class="clearfix"></div>
+</div>
+</div>
+<div class="show-more" markdown="1">
+{{distribution_more}}
+</div>
+<a href="#" class="show-more-link">Show more information</a>
+{{distribution_desc}}
 </div>
 <div class="col-xs-12 col-md-6" markdown="1">
-{{certified}} 
+{{certified_header}}
+<div class="image">
+<div class="logo-container" markdown="1">
+{{certified_logo}}
+<div class="clearfix"></div>
+</div>
+</div>
+<div class="show-more">
+<div markdown="1">
+{{certified_more}}
+</div>
+</div>
+<a href="#" class="show-more-link">Show more information</a>
+{{certified_desc}}
 </div>
     </div>
   </div>
@@ -111,10 +161,10 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="slice-left partn slice-top-left slice-bottom-left xs-center">
     <div class="row">
         <div class="row-container row-affilate">
-<div class="col-xs-12 col-md-7" markdown="1">
+<div class="col-xs-12 col-sm-7" markdown="1">
 {{affilated}}
 </div>
-<div class="col-xs-12 col-md-5 pics" markdown="1">
+<div class="col-xs-12 col-sm-5 pics" markdown="1">
 {{logos}}
 </div>
         </div>
@@ -123,8 +173,14 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 
 <div class="row developers">
   <div class="row-container row-developers">
+<div class="x3-margin-bottom col-xs-12" markdown="1">
+{{developers_header}}
+</div>
+<div id="slider" class="col-xs-12" markdown="1">
+{{slider}}
+</div>
 <div class="col-xs-12 col-md-12" markdown="1">
-{{developers}}
+{{developers_footer}}
 </div>
   </div>
 </div>

@@ -26,7 +26,7 @@ solutions, building amazing user experiences with our partners to delight Fans a
 Partner with Ticketmaster, the global leader in live event ticketing!
 
 {: .col-xs-12 .col-sm-4 .text-left}
-[PARTNER WITH US](/partners/distribution-partners/){: .button}
+[PARTNER WITH US](/products-and-docs/under-development/){: .button}
 {% endcapture %}
 
 {% capture headlines %}
@@ -50,7 +50,7 @@ BandsinTown ensures that Fans always know when their favorite act is coming to t
 
 {% capture content2 %}
 {: .col-sm-8 .col-xs-12 .text-right}
-![laweekly](/assets/img/partners/distribution/l-a-weekly.png)
+![laweekly](/assets/img/partners/distribution/l-a-weekly@2x.png)
 
 {: .col-sm-4 .col-xs-12}
 ### Rich Event Data
@@ -106,7 +106,7 @@ Broadway.com
 "Ticketmaster's transactional APIs allow Clients to easily sell tickets through ScoreBig's Name a Ticket Price channel, while simultaneously ensuring that all customer data flows seamlessly back into client databases. With the APIs, ScoreBig can more fluidly optimize client yield, and clients can ensure continuity in customer relations and access management."
 
 {: .col-xs-6 .col-sm-3}
-Fernando Martinezz,
+George Waterstraat,
 Scorebig.com
 {% endcapture %}
 
@@ -118,11 +118,11 @@ Scorebig.com
 Do you have a site that attracts visitors who are interested in buying tickets? If so, we have an opportunity for you to monetize your site and make money through the ticketmaster Affiliate Program.
 
 {: .col-xs-12}
-[PARTNER WITH US](/partners/distribution-partners/){: .button .button-blue}
+[PARTNER WITH US](/products-and-docs/under-development/){: .button .button-blue}
 
 {: .col-xs-12 .col-sm-9}
 Have questions about our affiliate program?<br>
-[Check out our FAQs](/partners/distribution-partners/)
+[Check out our FAQs](/support/faq/)
 {% endcapture %}
 
 <!-- html goes here -->
