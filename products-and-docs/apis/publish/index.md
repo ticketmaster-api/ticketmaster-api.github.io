@@ -31,7 +31,7 @@ Example: `https://app.ticketmaster.com/publish/v2/events?apikey=3QIvq55bS608ai6r
 `https://app.ticketmaster.com/publish/{API version}`
 
 
-##Publish Events
+## Publish Events
 {: .article #publish-events }
 
 **Method:** POST.
