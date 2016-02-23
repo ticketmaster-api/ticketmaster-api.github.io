@@ -119,11 +119,17 @@ body .top-bar.bg-header {
     font-family: $font-h4;
     font-size: $font-size-h6;
     text-decoration: none !important;
+    &:hover {
+      color: $p1;
+      &:after {
+        background: url('../../assets/img/partners/small-shevron-blue.svg') no-repeat;
+      }
+    }
     &:after {
       content: '';
       position: absolute;
       display: block;
-      background: url('../../assets/img/partners/chevron.svg') no-repeat;
+      background: url('../../assets/img/partners/small-shevron.svg') no-repeat;
       width: 10px;
       height: 6px;
       right: 12px;
