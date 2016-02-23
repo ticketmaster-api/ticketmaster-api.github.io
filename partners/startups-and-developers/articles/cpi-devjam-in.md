@@ -13,7 +13,7 @@ tags:
 
 {% endcapture %}
 
-<div class="col-lg-8">{{ left | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
 
 
 {% capture left %}
@@ -39,8 +39,8 @@ belly mustache skateboard 3 wolf moon. Ac.
 
 {% endcapture %}
 
-<div class="col-lg-8">{{ left | markdownify }}</div>
-<div class="col-lg-4"><div class="with-border">{{ right | markdownify }}</div></div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
+<div class="col-lg-4 col-md-4 col-sm-4"><div class="with-border">{{ right | markdownify }}</div></div>
 
 {% capture left %}
 
@@ -48,7 +48,7 @@ belly mustache skateboard 3 wolf moon. Ac.
 
 {% endcapture %}
 
-<div class="col-lg-8">{{ left | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
 
 
 
@@ -58,7 +58,7 @@ belly mustache skateboard 3 wolf moon. Ac.
 
 {% endcapture %}
 
-<div class="col-lg-8">{{ left | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
 
 
 {% capture left %}
@@ -89,5 +89,5 @@ Website.com
 
 {% endcapture %}
 
-<div class="col-lg-8">{{ left | markdownify }}</div>
-<div class="col-lg-4">{{ right | markdownify }}</div>
+<div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
+<div class="col-lg-4 col-md-4 col-sm-4">{{ right | markdownify }}</div>
