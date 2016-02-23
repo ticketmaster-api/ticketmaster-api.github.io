@@ -55,7 +55,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 
 {% capture certified_logo %}
 {: .col-xs-12 .logo}
-[![Nexus](/assets/img/partners/nexus-logo.png)](/certified-partners/nexus/)
+[![Nexus](/assets/img/partners/nexus-logo.png)](/partners/certified-partners/nexus/)
 {% endcapture %}
 
 {% capture certified_more %}
