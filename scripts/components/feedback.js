@@ -1,8 +1,8 @@
 (function($){
 
     var $modal = $('#feedback-modal'),
-        $feedbackOpenBtn = $('#js_feedback_open'),
         $form = $modal.find('#js_feedback_form'),
+        $email = $form.find('#email'),
         $btn = $modal.find('#js_feedback_btn'),
         cssValidationClass = 'feedback_form-validation';
 
@@ -20,6 +20,8 @@
     }
 
     function submitForm(){
+
+        $email.val($email.val().toLocaleLowerCase());
         $.ajax({
             dataType: 'jsonp',
             url: $form.attr('action'),
