@@ -80,6 +80,11 @@ body .top-bar.bg-header {
     position: relative;
     .logo-container {
       @include vertical-align();
+      .logo-small {
+        img {
+          max-height: 50px;
+        }
+      }
     }
     img {
       vertical-align: middle;

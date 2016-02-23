@@ -11,20 +11,20 @@ keywords: partners, certified partners, become an affilate
 {% endcapture %}
 
 {% capture distribution_logos %}
-{: .col-xs-4 .logo}
+{: .col-xs-4 .logo .logo-small}
 [![Groupon](/assets/img/partners/groupon-logo.png)](/products-and-docs/under-development/)
 
-{: .col-xs-4 .logo}
+{: .col-xs-4 .logo .logo-small}
 [![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](/products-and-docs/under-development/)
 
-{: .col-xs-4 .logo}
+{: .col-xs-4 .logo .logo-small}
 [![Scorebig](/assets/img/partners/logos/score-big-logo.png)](/products-and-docs/under-development/)
 
-{: .col-xs-6 .logo .text-right}
+{: .col-xs-6 .logo .text-right .logo-small}
 [![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](/products-and-docs/under-development/)
 
-{: .col-xs-6 .logo .text-left}
-[![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box.png)](/products-and-docs/under-development/)
+{: .col-xs-6 .logo .text-left .logo-small}
+[![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](/products-and-docs/under-development/)
 {% endcapture %}
 
 {% capture distribution_more %}
