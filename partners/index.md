@@ -106,21 +106,18 @@ If you are a current member of the Ticketmaster affiliate program, manage your a
 
 {% capture slider %}
 {: .image}
-![Groupon](/assets/img/partners/pricemaster-logo.png)
+![ApiExplorer](/assets/img/partners/bitmap.png)
 
 {: .image}
-![Groupon](/assets/img/partners/reply-logo.png)
+![DevJam2](/assets/img/events/devjam2.jpg)
 
 {: .image}
-![Groupon](/assets/img/partners/spinzo-logo.png)
-
-{: .image}
-![Groupon](/assets/img/partners/tradablebits-logo.png)
+![DevJam1](/assets/img/events/devjam.jpg)
 {% endcapture %}
 
 {% capture developers_footer %}
 {: .c}
-[See all showcases](/products-and-docs/under-development/)
+[See all showcases](/partners/startups-and-developers/)
 {% endcapture %}
 
 
@@ -176,8 +173,10 @@ If you are a current member of the Ticketmaster affiliate program, manage your a
 
 <div class="row developers">
   <div class="row-container row-developers">
-
-<div id="slider" markdown="1">
+<div class="x3-margin-bottom col-xs-12" markdown="1">
+{{developers_header}}
+</div>
+<div id="slider" class="col-xs-12" markdown="1">
 {{slider}}
 </div>
 <div class="col-xs-12 col-md-12" markdown="1">

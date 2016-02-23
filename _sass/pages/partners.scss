@@ -246,10 +246,8 @@ body .top-bar.bg-header {
 }
 
 .row-developers {
-  max-width: 774px;
   text-align: center;
   margin: 75px auto;
-  overflow: hidden;
     @media (max-width: 767px) {
       margin: 75px auto 30px auto;
     }
@@ -264,12 +262,48 @@ body .top-bar.bg-header {
   }
   .image {
     display: block;
+    margin: 0 10px;
   }
   img {
-    width: 200px;
-    height: 200px;
+    max-height: 500px;
+    max-width: 700px;
+  }
+  #slider {
+    max-width: 774px;
+    display: inline-block;
+    float: none;
+    .slick-arrow {
+      @media #{$max-1200} {
+        display: none !important;
+      }
+      &:before {
+        content: '';
+      }
+      &.slick-prev {
+        left: -55px;
+      }
+      &.slick-next {
+        @include rotate(180deg);
+        right: -55px;
+      }
+      &:hover {
+        opacity: 1;
+      }
+      opacity: 0.7;
+      width: 23px;
+      height: 25px;
+      background: url('../../assets/img/partners/arrows.svg');
+    }
+    .slick-dots {
+      bottom: -60px;
+      left: 0;
+      @media (min-width: 1200px) {
+        display: none !important;
+      }
+    }
   }
 }
+
 .nexus-form-wrapper {
   font-family: $font-body;
   margin-bottom: 96px;
