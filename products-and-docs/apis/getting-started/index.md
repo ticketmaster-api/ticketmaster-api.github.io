@@ -390,7 +390,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="2">
         <a href="/products-and-docs/apis/publish/">
-          <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
+          <img src="/assets/img/getting-started/ic-publish.svg" alt="Icon1">
         </a>
         <h4 style="margin-top:11px;text-">Publish API</h4>
       </td>

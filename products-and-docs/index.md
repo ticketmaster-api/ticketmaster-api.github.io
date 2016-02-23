@@ -33,7 +33,7 @@ Already doing business with Ticketmaster? <br>
 [![Commerce API](/assets/img/products-and-docs/ic-commerce-api.svg)](/products-and-docs/apis/commerce/)
 [![Partner API](/assets/img/products-and-docs/ic-user.svg)](/products-and-docs/apis/partner/)
 [![Deals API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/deals-api/)
-[![Publish API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/publish/)
+[![Publish API](/assets/img/products-and-docs/ic-publish.svg)](/products-and-docs/apis/publish/)
 ![Icon5](/assets/img/products-and-docs/ic-flag.svg)
 
 {: .lead}
