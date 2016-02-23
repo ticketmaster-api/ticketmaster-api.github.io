@@ -8,8 +8,10 @@
         menuItems = topMenu.find("a"),
         // Anchors corresponding to menu items
         scrollItems = menuItems.map(function(){
-            var item = $($(this).attr("href"));
-            if (item.length) { return item; }
+            if($(this).attr("href")[0] === "#") { 
+                var item = $($(this).attr("href"));
+                if (item.length) { return item; }
+            }
         });
 
     $(window).scroll(function(){
