@@ -76,7 +76,7 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 [Get to know our Nexus partners](/partners/certified-partners/)
 
 {: .no-margin-top}
-[Join the Nexus program](/products-and-docs/under-development/)
+[Join the Nexus program](/partners/certified-partners/nexus/)
 {% endcapture %}
 
 
