@@ -21,9 +21,9 @@ No matter what question you have or help you need, we're here for you.
 [General Terms of Use](/support/terms-of-use/)
 [Partner API Terms of Use](/support/terms-of-use/partner)
 [Branding Guide](/support/branding-guide/)
-{:: comment}
+{::comment}
 [Contact Us](/products-and-docs/under-development/)
-{:: /comment}
+{:/comment}
 
 {% endcapture %}
 
