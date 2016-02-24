@@ -91,6 +91,9 @@
   }
   a {
     color: $n2-grey-color;
+    &:hover {
+      color: $p1a;
+    }
   }
   img{
     margin-right: 30px;
