@@ -80,9 +80,10 @@
                     }
                 });
 
+                // commented until the live is completely indexed
                 // Search [START]
 
-                var smopen  = false;
+                /*var smopen  = false;
                 $(".top-bar").on("click", "#search .search-button", function (e) {
                   if ( $(this).hasClass("smopen") && smopen == true) {
                       $(this).removeClass("smopen");
@@ -115,7 +116,7 @@
                   if ($("input[name='q']").val() == '') {
                       return false;
                   }
-                });
+                });*/
 
                 // Search [END]
             }
