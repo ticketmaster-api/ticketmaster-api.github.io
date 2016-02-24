@@ -122,7 +122,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 
 {: .col-xs-12 .col-sm-9}
 Have questions about our affiliate program?<br>
-[Check out our FAQs](/support/faq/)
+[Check out our FAQs](/support/faq/#affiliates-a)
 {% endcapture %}
 
 <!-- html goes here -->
