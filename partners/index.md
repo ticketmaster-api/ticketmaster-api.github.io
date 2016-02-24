@@ -29,7 +29,7 @@ keywords: partners, certified partners, become an affilate
 
 {% capture distribution_more %}
 {: .caption}
-Description information about Distribution Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.
+Dedicated to the mission to promote and sell client tickets through a variety of new storefronts. We enable this through content and transactional solutions, building amazing user experiences with our partners to delight Fans and drive sales.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
@@ -60,7 +60,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 
 {% capture certified_more %}
 {: .caption}
-Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.
+At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s ticketing services; that’s why we’ve created the Nexus Certified Partner Program. Our goal is to work with best in breed solution providers.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.

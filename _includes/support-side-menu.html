@@ -41,7 +41,15 @@
                 </ul>
                 {% endif %}
             </li>
-            <li><a href="/products-and-docs/under-development/">Branding Guide</a></li>
+            <li><a href="/support/branding-guide/">Branding Guide</a>
+                {% if page.categories[0] == "support" and page.categories[1] == "branding-guide" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#brand-logo">Logo</a></li>
+                    <li><a href="#verified-tickets">Verified Tickets</a></li>
+                    <li><a href="#legal-stuff">Legal Stuff</a></li>
+                </ul>
+                {% endif %}
+            </li>
         </ul>
     </li>
 </ul>

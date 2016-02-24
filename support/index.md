@@ -20,7 +20,7 @@ No matter what question you have or help you need, we're here for you.
 {: .link-inline }
 [General Terms of Use](/support/terms-of-use/)
 [Partner API Terms of Use](/support/terms-of-use/partner)
-[Branding Guide](/products-and-docs/under-development/)
+[Branding Guide](/support/branding-guide/)
 [Contact Us](/products-and-docs/under-development/)
 
 {% endcapture %}

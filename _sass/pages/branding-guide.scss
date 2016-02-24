@@ -1,0 +1,85 @@
+.page_center_content {
+  width: 556px;
+}
+.content {
+  ul,
+  ol {
+    &.outside_list {
+      padding-left: 20px;
+      &>li {
+        list-style-position: outside;
+      }
+    }
+  }
+}
+
+.branding_gallery {
+  @include clearfix();
+  margin-right: -45px;
+
+  &__item {
+    float: left;
+    text-align: center;
+    width: 263px;
+    height: 340px;
+    margin-right: 27px;
+    margin-bottom: 5px;
+    overflow: hidden;
+
+    &-linked {
+      height: 375px;
+    }
+
+    p {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1199px){
+  .page_center_content {
+    width: auto;
+  }
+
+  .branding_gallery {
+
+    &__item {
+      width: 220px;
+      height: 300px;
+
+      &-linked {
+        height: 330px;
+      }
+
+      &-verified_tickets {
+        width: 337px;
+        height: 415px;
+      }
+
+    }
+  }
+}
+
+@media (max-width: 767px){
+
+  .branding_gallery {
+    margin-right: -25px;
+
+    &__item {
+      width: 134px;
+      height: 225px;
+      margin-right: 21px;
+
+      &-linked{
+        height: 275px;
+      }
+    }
+  }
+}
+
+

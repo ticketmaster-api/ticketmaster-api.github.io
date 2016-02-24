@@ -1,5 +1,4 @@
 ---
-prime: true
 
 title: "Ticketmaster at HackPoly"
 category: event
@@ -8,6 +7,7 @@ date_title: "Sat-Sun, February 6-7, 2016"
 date_start: "2016-02-03 9:30:00"
 date_end: "2016-02-04 12:24:00"
 
+img: "/assets/img/events/hackpoly.jpg"
 
 place: 
   - "Bronco Student Center "
