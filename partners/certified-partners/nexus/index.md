@@ -53,18 +53,14 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <label for="phone">Contact number</label>
         <input type="tel" id="phone" name="phone" placeholder="" tabindex="4">
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <label for="organization">Organization name</label>
         <input type="text" id="organization" name="organization" placeholder="" tabindex="5">
     </div>
     <div class="col-sm-6">
     <label >Number of Ticketmaster clients</label>
     <input type="text" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="" tabindex="6">
-    </div>
-    <div class="col-sm-6">
-    <label >Company annual revenue ($)</label>
-    <input type="text" id="tickets-number" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="" tabindex="7">
-    </div>
+    </div>    
     
     <label class="label-radio-group">Is product offering free or paid? <span class="label-required">(required)</span></label>
     <div class="label-radio">
