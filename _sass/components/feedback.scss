@@ -13,6 +13,12 @@
   font-family: $font-lead-bold;
   background-color: $s1c;
   transition: background-color 0.2s ease;
+  z-index: 11;
+
+  @media (max-width: 767px) {
+    top: auto;
+    bottom: 3em;
+  }
 
   &:hover{
     background-color: $s1b;
@@ -23,7 +29,6 @@
   &:focus {
     color: $white;
   }
-
 }
 
 #feedback-modal {
