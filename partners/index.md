@@ -44,6 +44,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 {: .no-margin-bottom}
 [Get to know our Distribution partners](/partners/distribution-partners/)
 
+
 {: .no-margin-top}
 [Talk to us about how to partner](mailto:distributedcommerce@ticketmaster.com)
 {% endcapture %}
@@ -60,7 +61,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 
 {% capture certified_more %}
 {: .caption}
-At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s ticketing services; that’s why we’ve created the Nexus Certified Partner Program. Our goal is to work with best in breed solution providers.
+At Ticketmaster, we are always looking for innovative products and services that complement Ticketmasterâ€™s ticketing services; thatâ€™s why weâ€™ve created the Nexus Certified Partner Program. Our goal is to work with best in breed solution providers.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
