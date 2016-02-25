@@ -118,10 +118,13 @@
 #feedback-alert-modal {
   .modal-dialog {
     .modal-content {
-      margin-top: 30%;
       .modal-title {
         margin-top: 38px;
         margin-bottom: 16px;
+      }
+
+      @media (min-width: 768px){
+        margin-top: 30%;
       }
     }
 
