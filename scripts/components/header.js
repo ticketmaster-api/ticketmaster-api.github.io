@@ -8,6 +8,7 @@
             menuBtn: $('#menu-btn'),
             searchBtn: $('#search'),
             searchAlert: $('#search-alert'),
+            searchBox: $("#cse-search-box"),
             alertTimeout: null,
             hasBackground: $('.top-bar').hasClass('bg-header') ? true : false,
             logo: $('#header-logo img'),
@@ -87,14 +88,14 @@
 
                 var smopen  = false;
                 $(".top-bar").on("click", "#search .search-button", function (e) {
-                  if ( $(this).hasClass("smopen") && smopen == true) {
-                      $(this).removeClass("smopen");
-                      $("#cse-search-box").removeClass("sopen");
+                  if (self.searchBtn.hasClass("smopen") && smopen == true) {
+                      self.searchBtn.removeClass("smopen");
+                      self.searchBox.removeClass("sopen");
                       smopen  = false;
                   }
                   else {
-                      $(this).addClass("smopen");
-                      $("#cse-search-box").addClass("sopen");
+                      self.searchBtn.addClass("smopen");
+                      self.searchBox.addClass("sopen");
                       $("input.q").focus();
                       smopen  = true;
                   }
@@ -103,18 +104,18 @@
                 $("input.q").blur(function(e) {
                     if (smopen == true) {
                         setTimeout(function () {
-                            $("#cse-search-box").removeClass("sopen");
-                            $("#search").removeClass("smopen");
+                            self.searchBox.removeClass("sopen");
+                            self.searchBtn.removeClass("smopen");
                             smopen = false;
                         }, 127);
                     }
                 });
 
-                $("#search").on("click", ".search-button", function (e) {
-                    $("#cse-search-box").submit();
+                self.searchBtn.on("click", ".search-button", function (e) {
+                    self.searchBox.submit();
                 });
 
-                $("#search").on("submit", "#cse-search-box", function (e) {
+                self.searchBtn.on("submit", "#cse-search-box", function (e) {
                   if ($("input[name='q']").val() == '') {
                       return false;
                   }
