@@ -47,6 +47,142 @@ publish/{version}/events
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
+### Exemple of a minimal recommended request payload
+
+{
+    "source" : {
+        "id" : "test_id_0009",
+        "name" : "test-source"
+    },
+    "test": true,
+    "names": {
+        "en-us": "example test event tnt1"
+    },
+    "publicVisibility": {
+        "startDateTime": "2015-10-29T15:00:00Z",
+        "visible": true
+    },
+    "dates": {
+        "start": {
+            "dateTime": "2016-04-15T01:00:00Z",
+            "localDate": "2016-04-14",
+            "localTime": "19:00:00"
+        },
+        "timezone": "America/Edmonton"
+    },
+    "venue": {
+        "source" : {
+            "id" : "test_venue_id_0001",
+            "name" : "test-source"
+        },
+        "test": true,
+        "currency": "USD",
+        "country": {
+            "countryCode": "US"
+        }
+    }
+}
+
+### Full request payload documentation
+
+{: .nested-list}
+- `additionalInfos` (object) - map of locale to value for any additional informations on the event.
+- `attractions` (array) - list of attractions in the event.
+    * `additionalInfos` (object) - map of locale to value for any additional informations on the attraction.
+    * `descriptions` (object) - map of locale to value for the description of the attraction.
+    * `id` (string) - the id of the attraction as returned by the Discovery API. If specified, all the other fields of the attraction will be ignored. Otherwise, a new attraction is created and embedded into the event.
+    * `images` (array) - list of images of the attraction.
+        - `height` (number) - the height of the image.
+        - `ratio` (string) - the ratio of the image ex.: 3x2, 16x9, ...
+        - `url` (string) - the URL of the image.
+        - `width` (number) - the width of the image.
+    * `names` (object) - map of locale to value for the names of the attraction.
+    * `redirectUrl` (string) - the URL of the attraction on the publisher's site.
+    * `source` (object) - the id and source name of the attraction. Must be specified if `id` is not.
+        - `id` (string) - the publisher's id of the attraction.
+        - `name` (string) - the publisher's name.
+    * `test` (boolean) - true if this is a test attraction data, false otherwise (real attraction).
+    * `version` (number) - the publisher's version for this attraction.
+- `dates` (object) - all the dates related to the event.
+    * `start` (object) - the start date of the event.
+        - `localDate` (string) - the start date in the event timezone.
+        - `localTime` (string) - the start time in the event timezone.
+        - `dateTime` (string) - the start date and time of the event in UTC.
+        - `dateTBD` (boolean) - true if the date is to be determined, false otherwise.
+        - `dateTBA` (boolean) - true if the date is to be announced, false otherwise.
+        - `timeTBA` (boolean) - true if the time is to be announced, false otherwise.
+        - `noSpecificTime` (boolean) - true if the event starts at no specific time, false otherwise.
+    * `access` (object) - the access date of the event.
+        - `startDateTime` (string) - the start date and time of access to the event int UTC.
+        - `startApproximate` (boolean) - true if the start date and time is approximate, false otherwise.
+        - `endDateTime` (string) - the end date and time of access to the event int UTC.
+        - `endApproximate` (boolean) - true if the end date and time is approximate, false otherwise.
+    * `end` (object) - the end date of the event.
+        - `localTime` (string) -  the end time in the event timezone.
+        - `dateTime` (string) - the end date and time of the event in UTC.
+        - `approximate` (boolean) - true if the end date and time are approximate, false otherwise.
+    * `timezone` (string) - the timezone of the event.
+    * `status` (object) - the status of the date of the event.
+        - `code` (string) - the status code of the date of the event.
+- `descriptions` (object) - map of locale to value for the description of the event.
+- `images` (array) - list of images of the event.
+    * `height` (number) - the height of the image.
+    * `ratio` (string) - the ratio of the image ex.: 3x2, 16x9, ...
+    * `url` (string) - the URL of the image.
+    * `width` (number) - the width of the image.
+- `names` (object) - map of locale to value for the names of the event.
+- `publicVisibility` (object) - determine if the event is visible on the Discovery API.
+    * `startDateTime` (string) - the start date and time of visibility for this event on the Discovery API in UTC. 
+    * `endDateTime` (string) - the end date and time of visibility for this event on the Discovery API in UTC.
+    * `visible` (boolean) - true if the event should be visible on the Discovery API, false otherwise.
+- `redirectUrl` (string) - the URL of the event on the publisher's site.
+- `sales` (object) - sales dates information for the event.
+    * `public` (object) - the public sales dates information for the event.
+        - `endDateTime` (string) - the date and time of the end of the public sales period in UTC.
+        - `startDateTime` (string) - the date and time of the start of the public sales period in UTC.
+        - `startTBD` (boolean) - true if the public sale date start is to be determined, false otherwise.
+- `source` (object) -  the id and source name of the event. Must be specified.
+    * `id` (string) - the publisher's id of the event.
+    * `name` (string) - the publisher's name.
+- `test` (boolean) - true if this is a test event data, false otherwise (real event).
+- `venue` (object) - the venue of the event.
+    * `additionalInfos` (object) - map of locale to value for any additional informations on the venue.
+    * `address` (object) - the address of the venue.
+       - `line1s` (object) - map of locale to value of the first line of the address of the venue.
+       - `line2s` (object) - map of locale to value of the second line of the address of the venue.
+    * `city` (object) - the name of the city of the venue.
+       - `names` (object) - map of locale to value of the name of the city of the venue.
+    * `country` (object) - the country informations for the venue.
+       - `countryCode` (string) - the country code of the venue.
+       - `names` (object) - map of locale to value of the name of the country of the venue.
+    * `currency` (string) - the currency accepted at the venue.
+    * `descriptions` (object) - map of locale to value for the description of the venue.
+    * `id` (string) - the id of the venue as returned by the Discovery API. If specified, all the other fields of the venue will be ignored. Otherwise, a new venue is created and embedded into the event.
+    * `images` (array) - list of images of the venue.
+       - `height` (number) - the height of the image.
+       - `ratio` (string) - the ratio of the image ex.: 3x2, 16x9, ...
+       - `url` (string) - the URL of the image.
+       - `width` (number) - the width of the image.
+    * `location` (object) - the location of the venue.
+       - `latitude` (number) - the latitude of the venue.
+       - `longitude` (number) - the longitude of the venue.
+    * `markets` (array) - list of markets covered by the venue.
+       - `id` (string) - the id of the venue as specified in this documentation.
+    * `names` (object) - map of locale to value for the names of the venue.
+    * `postalCode` (string) - the postal code of the venue.
+    * `redirectUrl` (string) - the URL of the venue on the publisher's site.
+    * `source` (object) - the id and source name of the venue. Must be specified if `id` is not.
+        - `id` (string) - the publisher's id of the venue.
+        - `name` (string) - the publisher's name.
+    * `state` (object) - the state informations of the venue.
+        - `names` (object) - map of locale to value for the names of the state of the venue.
+        - `stateCode` (string) - the state code of the venue.
+    * `test` (boolean) - true if the venue is a test venue data, false otherwise (real venue).
+    * `timezone` (string) - the timezone of the venue.
+    * `version` (number) - the publisher's version for this venue.
+- `version` (number) - the publisher's version for this event.
+{: .aside}
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -58,35 +194,43 @@ X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 
 {
-  "additionalInfo": "string",
-  "additionalInfos": {},
+  "additionalInfos": {
+                       "en-us": "string",
+                       "fr-ca": "chaine",
+                       "es-mx": "cuerda" 
+  },
   "attractions": [
     {
-      "additionalInfo": "string",
-      "additionalInfos": {},
-      "description": "string",
-      "descriptions": {},
-      "extensions": {},
-      "id": "string",
+      "additionalInfos": {
+                       "en-us": "string",
+                       "fr-ca": "chaine",
+                       "es-mx": "cuerda" 
+      },
+      "descriptions": {
+                       "en-us": "string",
+                       "fr-ca": "chaine",
+                       "es-mx": "cuerda" 
+      },
+      "id": "",
       "images": [
         {
-          "fallback": true,
           "height": 0,
           "ratio": "string",
           "url": "string",
           "width": 0
         }
       ],
-      "locale": "string",
-      "name": "string",
-      "names": {},
+      "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda" 
+      },
       "redirectUrl": "string",
       "source": {
         "id": "string",
         "name": "string"
       },
       "test": true,
-      "type": "string",
       "version": 0
     }
   ],
@@ -112,33 +256,31 @@ Connection: Keep-Alive
       "approximate": true
     },
     "timezone": "America/Chicago",
-    "displayOptions": {
-      "displayMultipleDates": true,
-      "range": {
-        "localStartDate": "2015-01-02",
-        "localEndDate": "2015-01-02"
-      }
+    "status": {
+                "code": "string"
     }
   },
-  "description": "string",
-  "descriptions": {},
-  "id": "string",
+  "descriptions": {
+                   "en-us": "string",
+                   "fr-ca": "chaine",
+                   "es-mx": "cuerda" 
+  },
   "images": [
     {
-      "fallback": true,
       "height": 0,
       "ratio": "string",
       "url": "string",
       "width": 0
     }
   ],
-  "locale": "string",
-  "name": "string",
-  "names": {},
+  "names": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+  },
   "publicVisibility": {
     "startDateTime": "2014-12-03T01:59:00Z",
     "endDateTime": "2015-01-03T05:59:00Z",
-    "dateTBD": false,
     "visible": true
   },
   "redirectUrl": "string",
@@ -154,46 +296,70 @@ Connection: Keep-Alive
     "name": "string"
   },
   "test": true,
-  "type": "string",
   "venue": {
-    "additionalInfo": "string",
-    "additionalInfos": {},
+    "additionalInfos": {
+                        "en-us": "string",
+                        "fr-ca": "chaine",
+                        "es-mx": "cuerda" 
+    },
     "address": {
-      "line1": "string",
-      "line1s": {},
-      "line2": "string",
-      "line2s": {}
+      "line1s": {
+                 "en-us": "string",
+                 "fr-ca": "chaine",
+                 "es-mx": "cuerda" 
+      },
+      "line2s": {
+                 "en-us": "string",
+                 "fr-ca": "chaine",
+                 "es-mx": "cuerda" 
+      }
     },
     "city": {
-      "name": "string",
-      "names": {}
+      "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda" 
+      }
     },
     "country": {
       "countryCode": "string",
-      "name": "string",
-      "names": {}
+      "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda" 
+      }
     },
     "currency": "string",
-    "description": "string",
-    "descriptions": {},
-    "id": "string",
+    "descriptions": {
+                     "en-us": "string",
+                     "fr-ca": "chaine",
+                     "es-mx": "cuerda"
+    },
+    "id": "",
     "images": [
       {
-        "fallback": true,
         "height": 0,
         "ratio": "string",
         "url": "string",
         "width": 0
       }
     ],
-    "locale": "string",
     "location": {
       "latitude": 0,
       "longitude": 0
     },
-    "markets": {},
-    "name": "string",
-    "names": {},
+    "markets": [{
+                 "id": "101"
+                },
+                {
+                 "id": "120"
+                }
+    ],
+    "names": {
+              "en-us": "string",
+              "fr-ca": "chaine",
+              "es-mx": "cuerda" 
+    },
     "postalCode": "string",
     "redirectUrl": "string",
     "source": {
@@ -201,13 +367,15 @@ Connection: Keep-Alive
       "name": "string"
     },
     "state": {
-      "name": "string",
-      "names": {},
+      "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda" 
+      },
       "stateCode": "string"
     },
     "test": true,
     "timezone": "string",
-    "type": "string",
     "version": 0
   },
   "version": 0
@@ -221,8 +389,8 @@ Content-Type: application/json;charset=UTF-8
 Content-Length: 20
 
 {
-  "id": "ZkzyMmSie9",
-  "status": "Success" 
+  "status": "Success" ,
+  "id": "ZkzyMmSie9"
 }
 {% endhighlight %}
 
@@ -238,159 +406,37 @@ $.ajax({
   url:"https://app.ticketmaster.com/publish/v2/events?apikey={apikey}",
   async:true,
   data: JSON.stringify({
-  "additionalInfo": "string",
-  "additionalInfos": {},
-  "attractions": [
-    {
-      "additionalInfo": "string",
-      "additionalInfos": {},
-      "description": "string",
-      "descriptions": {},
-      "extensions": {},
-      "id": "string",
-      "images": [
-        {
-          "fallback": true,
-          "height": 0,
-          "ratio": "string",
-          "url": "string",
-          "width": 0
-        }
-      ],
-      "locale": "string",
-      "name": "string",
-      "names": {},
-      "redirectUrl": "string",
-      "source": {
-        "id": "string",
-        "name": "string"
-      },
-      "test": true,
-      "type": "string",
-      "version": 0
-    }
-  ],
-  "dates": {
-    "start": {
-      "localDate": "2015-01-02",
-      "localTime": "23:59:00",
-      "dateTime": "2015-01-03T05:59:00Z",
-      "dateTBD": true,
-      "dateTBA": true,
-      "timeTBA": true,
-      "noSpecificTime": true
-    },
-    "access":{
-      "startDateTime": "2015-01-03T05:59:00Z",
-      "startApproximate": true,
-      "endDateTime": "2015-01-03T05:59:00Z",
-      "endApproximate": true
-    },
-    "end":{
-      "localTime": "23:59:00",
-      "dateTime": "2015-01-03T05:59:00Z",
-      "approximate": true
-    },
-    "timezone": "America/Chicago",
-    "displayOptions": {
-      "displayMultipleDates": true,
-      "range": {
-        "localStartDate": "2015-01-02",
-        "localEndDate": "2015-01-02"
-      }
-    }
-  },
-  "description": "string",
-  "descriptions": {},
-  "id": "string",
-  "images": [
-    {
-      "fallback": true,
-      "height": 0,
-      "ratio": "string",
-      "url": "string",
-      "width": 0
-    }
-  ],
-  "locale": "string",
-  "name": "string",
-  "names": {},
-  "publicVisibility": {
-    "startDateTime": "2014-12-03T01:59:00Z",
-    "endDateTime": "2015-01-03T05:59:00Z",
-    "dateTBD": false,
-    "visible": true
-  },
-  "redirectUrl": "string",
-  "sales": {
-    "public": {
-      "endDateTime": "2015-01-03T05:59:00Z",
-      "startDateTime": "2014-12-03T01:59:00Z",
-      "startTBD": true
-    }
-  },
-  "source": {
-    "id": "string",
-    "name": "string"
-  },
-  "test": true,
-  "type": "string",
-  "venue": {
-    "additionalInfo": "string",
-    "additionalInfos": {},
-    "address": {
-      "line1": "string",
-      "line1s": {},
-      "line2": "string",
-      "line2s": {}
-    },
-    "city": {
-      "name": "string",
-      "names": {}
-    },
-    "country": {
-      "countryCode": "string",
-      "name": "string",
-      "names": {}
-    },
-    "currency": "string",
-    "description": "string",
-    "descriptions": {},
-    "id": "string",
-    "images": [
-      {
-        "fallback": true,
-        "height": 0,
-        "ratio": "string",
-        "url": "string",
-        "width": 0
-      }
-    ],
-    "locale": "string",
-    "location": {
-      "latitude": 0,
-      "longitude": 0
-    },
-    "markets": {},
-    "name": "string",
-    "names": {},
-    "postalCode": "string",
-    "redirectUrl": "string",
-    "source": {
-      "id": "string",
-      "name": "string"
-    },
-    "state": {
-      "name": "string",
-      "names": {},
-      "stateCode": "string"
+    "source" : {
+        "id" : "test_id_0009",
+        "name" : "test-source"
     },
     "test": true,
-    "timezone": "string",
-    "type": "string",
-    "version": 0
-  },
-  "version": 0
+    "names": {
+        "en-us": "example test event tnt1"
+    },
+    "publicVisibility": {
+        "startDateTime": "2015-10-29T15:00:00Z",
+        "visible": true
+    },
+    "dates": {
+        "start": {
+            "dateTime": "2016-04-15T01:00:00Z",
+            "localDate": "2016-04-14",
+            "localTime": "19:00:00"
+        },
+        "timezone": "America/Edmonton"
+    },
+    "venue": {
+        "source" : {
+            "id" : "test_venue_id_0001",
+            "name" : "test-source"
+        },
+        "test": true,
+        "currency": "USD",
+        "country": {
+            "countryCode": "US"
+        }
+    }
 }),
   dataType: "json",
   success: function(json) {
@@ -406,129 +452,37 @@ $.ajax({
 
 {% highlight bash %}
 curl -i -X POST --header "Content-Type: application/json" --header "Accept: application/json;charset=UTF-8" --header "TMPS-Correlation-Id: test1" -d "{
-  \"additionalInfo\": \"string\",
-  \"additionalInfos\": {},
-  \"attractions\": [
-    {
-      \"additionalInfo\": \"string\",
-      \"additionalInfos\": {},
-      \"description\": \"string\",
-      \"descriptions\": {},
-      \"extensions\": {},
-      \"id\": \"string\",
-      \"images\": [
-        {
-          \"fallback\": true,
-          \"height\": 0,
-          \"ratio\": \"string\",
-          \"url\": \"string\",
-          \"width\": 0
-        }
-      ],
-      \"locale\": \"string\",
-      \"name\": \"string\",
-      \"names\": {},
-      \"redirectUrl\": \"string\",
-      \"source\": {
-        \"id\": \"string\",
-        \"name\": \"string\"
-      },
-      \"test\": true,
-      \"type\": \"string\",
-      \"version\": 0
-    }
-  ],
-  \"description\": \"string\",
-  \"descriptions\": {},
-  \"id\": \"string\",
-  \"images\": [
-    {
-      \"fallback\": true,
-      \"height\": 0,
-      \"ratio\": \"string\",
-      \"url\": \"string\",
-      \"width\": 0
-    }
-  ],
-  \"locale\": \"string\",
-  \"name\": \"string\",
-  \"names\": {},
-  \"publicVisibility\": {
-    \"startDateTime\": \"2014-12-03T01:59:00Z\",
-    \"endDateTime\": \"2015-01-03T05:59:00Z\",
-    \"dateTBD\": false,
-    \"visible\": true
-  },
-  \"redirectUrl\": \"string\",
-  \"sales\": {
-    \"public\": {
-      \"endDateTime\": \"2100-09-12T01:00:00Z\",
-      \"startDateTime\": \"2010-09-12T01:00:00Z\",
-      \"startTBD\": true
-    }
-  },
-  \"source\": {
-    \"id\": \"string\",
-    \"name\": \"string\"
-  },
-  \"test\": true,
-  \"type\": \"string\",
-  \"venue\": {
-    \"additionalInfo\": \"string\",
-    \"additionalInfos\": {},
-    \"address\": {
-      \"line1\": \"string\",
-      \"line1s\": {},
-      \"line2\": \"string\",
-      \"line2s\": {}
-    },
-    \"city\": {
-      \"name\": \"string\",
-      \"names\": {}
-    },
-    \"country\": {
-      \"countryCode\": \"string\",
-      \"name\": \"string\",
-      \"names\": {}
-    },
-    \"currency\": \"string\",
-    \"description\": \"string\",
-    \"descriptions\": {},
-    \"id\": \"string\",
-    \"images\": [
-      {
-        \"fallback\": true,
-        \"height\": 0,
-        \"ratio\": \"string\",
-        \"url\": \"string\",
-        \"width\": 0
-      }
-    ],
-    \"locale\": \"string\",
-    \"location\": {
-      \"latitude\": 0,
-      \"longitude\": 0
-    },
-    \"markets\": {},
-    \"name\": \"string\",
-    \"names\": {},
-    \"postalCode\": \"string\",
-    \"redirectUrl\": \"string\",
-    \"source\": {
-      \"id\": \"string\",
-      \"name\": \"string\"
-    },
-    \"state\": {
-      \"name\": \"string\",
-      \"names\": {},
-      \"stateCode\": \"string\"
+    \"source\" : {
+        \"id\" : \"test_id_0009\",
+        \"name\" : \"test-source\"
     },
     \"test\": true,
-    \"timezone\": \"string\",
-    \"type\": \"string\",
-    \"version\": 0
-  },
-  \"version\": 0
+    \"names\": {
+        \"en-us\": \"example test event tnt1\"
+    },
+    \"publicVisibility\": {
+        \"startDateTime\": \"2015-10-29T15:00:00Z\",
+        \"visible\": true
+    },
+    \"dates\": {
+        \"start\": {
+            \"dateTime\": \"2016-04-15T01:00:00Z\",
+            \"localDate\": \"2016-04-14\",
+            \"localTime\": \"19:00:00\"
+        },
+        \"timezone\": \"America/Edmonton\"
+    },
+    \"venue\": {
+        \"source\" : {
+            \"id\" : \"test_venue_id_0001\",
+            \"name\" : \"test-source\"
+        },
+        \"test\": true,
+        \"currency\": \"USD\",
+        \"country\": {
+            \"countryCode\": \"US\"
+        }
+    }
 }" "http://app.ticketmaster.com/publish/v2/events"
 {% endhighlight %}
 
