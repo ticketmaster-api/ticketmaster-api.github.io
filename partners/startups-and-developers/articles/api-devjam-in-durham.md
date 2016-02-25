@@ -31,9 +31,9 @@ This is very cool open-source application that helps to understand
 API requests and responses instantly, thanks to the EPAM's team and 
 such a bright idea introduced for Ticketmaster's API.
 
-Get access to the [API Explorer](http://vmenshutin.github.io/).
+![APIExplorer](/assets/img/partners/startups-development/bitmap@2x.png)
 
-![Rectangle](/assets/img/partners/startups-development/bitmap@2x.png)
+Get access to the [API Explorer](http://vmenshutin.github.io/).
 
 {% endcapture %}
 
