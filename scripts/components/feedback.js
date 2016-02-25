@@ -5,11 +5,11 @@
         $form = $modal.find('#js_feedback_form'),
         $email = $form.find('#email'),
         $btn = $modal.find('#js_feedback_btn'),
-        $btnAlert = $modal.find('#js_feedback_btn_alert'), //tmp
-        $btnAlertOk = $modal.find('#js_feedback_btn_alert'),
+        $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
         cssValidationClass = 'feedback_form-validation';
 
     function resetForm(){
+        $btn.removeAttr('disabled');
         $form.find('textarea').val('');
         $form.find('input').each(function(){
             var $self = $(this);
@@ -30,42 +30,34 @@
             url: $form.attr('action'),
             data: $form.serialize()
         }).done(function() {
+
+            // Close dialog
+            $modal.modal('hide');
+
+            // Show message
             $modalAlert.modal();
-            //showErrorPopup('Thank you for contacting us!','We will review and respond promptly.');
         });
-
-        // Close dialog
-        $modal.modal('hide');
     }
-
-    var showErrorPopup = function(message,message2){
-        var alert = $('#alert-modal');
-        alert.find('#modal-body').text(message).text(message2);
-        alert.modal();
-    };
 
     // EVENTS
     $btn.on('click', function(){
         var form = $form.get(0);
-
-        if(form.checkValidity()) {
-            submitForm();
-        }else{
-            // Highlight errors
-            if(form.reportValidity) form.reportValidity();
-            $form.addClass(cssValidationClass);
+        if(!$btn.is(':disabled')){
+            if(form.checkValidity()) {
+                $btn.attr('disabled', true);
+                submitForm();
+            }else{
+                // Highlight errors
+                if(form.reportValidity) form.reportValidity();
+                $form.addClass(cssValidationClass);
+            }
         }
     });
+
     $btnAlertOk.on('click', function(){
         $modalAlert.modal('hide');
     });
 
-    //show test modal
-    $btnAlert.on('click', function(){
-        $modalAlert.modal(); //gray button
-    });
-
-
-    $modal.on('hide.bs.modal', resetForm);
+    $modal.on('hidden.bs.modal', resetForm);
 
 })(jQuery);
