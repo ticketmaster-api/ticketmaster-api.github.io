@@ -220,7 +220,10 @@ Server: Apache-Coyote/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 20
 
-{"status": "Success"}
+{
+  "id": "ZkzyMmSie9", 
+  "status": "Success"
+}
 {% endhighlight %}
 
 
