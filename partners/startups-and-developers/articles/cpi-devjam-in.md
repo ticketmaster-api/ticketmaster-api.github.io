@@ -1,12 +1,16 @@
 ---
 order: 2
 category: sd-article
+---
+
+{::comment}
 tags:
   - iOS
   - Android
   - Classes
----
+{:/comment}
 
+{::comment}
 {% capture left %}
 
 ## Ticketmaster at HackPoly
@@ -91,3 +95,5 @@ Website.com
 
 <div class="col-lg-8 col-md-8 col-sm-8">{{ left | markdownify }}</div>
 <div class="col-lg-4 col-md-4 col-sm-4">{{ right | markdownify }}</div>
+
+{:/comment}
