@@ -31,6 +31,7 @@
   }
 }
 
+#feedback-alert-modal,
 #feedback-modal {
   .modal-content {
     border-radius: 0;
@@ -111,6 +112,35 @@
   // Remove yellow background after auto-filling the email field
   input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
+  }
+}
+
+#feedback-alert-modal {
+  .modal-dialog {
+    width: 420px;
+    .modal-content {
+      margin-top: 30%;
+      .modal-title {
+        margin-top: 38px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+  .modal-body {
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.4);
+    .modal-footer {
+      margin-bottom: 10px;
+      .btn-submit {
+        display: block;
+        margin: 0 auto;
+        width: 165px;
+        height: 50px;
+        color: $white;
+        font-family: $font-lead-bold;;
+        text-transform: uppercase;
+        background-color: $blue;
+      }
+    }
   }
 }
 

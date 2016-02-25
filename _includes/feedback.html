@@ -1,4 +1,5 @@
 
+
 <div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -42,11 +43,36 @@
       </div>
       <div class="modal-footer">
         <button id="js_feedback_btn" type="button" class="btn btn-submit">send</button>
+        <button id="js_feedback_btn_alert" type="button" class="btn ">show alert</button>
       </div>
+
+
+
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
+
 <!-- Button trigger modal -->
 <button id="js_feedback_open" type="button" class="btn feedback-btn" data-toggle="modal" data-target="#feedback-modal">feedback</button>
+
+
+<!-- Modal alert-->
+<div id="feedback-alert-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Thank you for contacting us!</h3>
+        <p class="text-center">We will review and respond promptly.</p>
+        <div class="modal-footer">
+          <button id="js_feedback_btn_alert_ok" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal alert end-->
