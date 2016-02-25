@@ -122,7 +122,6 @@ Connection: Keep-Alive
   },
   "description": "string",
   "descriptions": {},
-  "extensions": {},
   "id": "string",
   "images": [
     {
@@ -136,6 +135,12 @@ Connection: Keep-Alive
   "locale": "string",
   "name": "string",
   "names": {},
+  "publicVisibility": {
+    "startDateTime": "2014-12-03T01:59:00Z",
+    "endDateTime": "2015-01-03T05:59:00Z",
+    "dateTBD": false,
+    "visible": true
+  },
   "redirectUrl": "string",
   "sales": {
     "public": {
@@ -171,7 +176,6 @@ Connection: Keep-Alive
     "currency": "string",
     "description": "string",
     "descriptions": {},
-    "extensions": {},
     "id": "string",
     "images": [
       {
@@ -216,7 +220,10 @@ Server: Apache-Coyote/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 20
 
-{"status": "Success"}
+{
+  "id": "ZkzyMmSie9",
+  "status": "Success" 
+}
 {% endhighlight %}
 
 
@@ -295,7 +302,6 @@ $.ajax({
   },
   "description": "string",
   "descriptions": {},
-  "extensions": {},
   "id": "string",
   "images": [
     {
@@ -309,6 +315,12 @@ $.ajax({
   "locale": "string",
   "name": "string",
   "names": {},
+  "publicVisibility": {
+    "startDateTime": "2014-12-03T01:59:00Z",
+    "endDateTime": "2015-01-03T05:59:00Z",
+    "dateTBD": false,
+    "visible": true
+  },
   "redirectUrl": "string",
   "sales": {
     "public": {
@@ -344,7 +356,6 @@ $.ajax({
     "currency": "string",
     "description": "string",
     "descriptions": {},
-    "extensions": {},
     "id": "string",
     "images": [
       {
@@ -429,7 +440,6 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
   ],
   \"description\": \"string\",
   \"descriptions\": {},
-  \"extensions\": {},
   \"id\": \"string\",
   \"images\": [
     {
@@ -443,6 +453,12 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
   \"locale\": \"string\",
   \"name\": \"string\",
   \"names\": {},
+  \"publicVisibility\": {
+    \"startDateTime\": \"2014-12-03T01:59:00Z\",
+    \"endDateTime\": \"2015-01-03T05:59:00Z\",
+    \"dateTBD\": false,
+    \"visible\": true
+  },
   \"redirectUrl\": \"string\",
   \"sales\": {
     \"public\": {
@@ -478,7 +494,6 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
     \"currency\": \"string\",
     \"description\": \"string\",
     \"descriptions\": {},
-    \"extensions\": {},
     \"id\": \"string\",
     \"images\": [
       {
