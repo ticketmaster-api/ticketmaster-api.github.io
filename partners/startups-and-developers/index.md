@@ -8,8 +8,10 @@ keywords: Startups and developers
 ---
 # STARTUPS & DEVELOPERS
 
+{::comment}
 {: .lead}
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, dolor sit amet.
+{:/comment}
 
 {% assign sorted_article = (site.pages | sort: 'order') %}
 
