@@ -1,6 +1,9 @@
 #footer{
   background-image: url('/assets/img/footer/bg-die-antwoord-p-1.png');
   color: $white-70;
+  .bottom-logo a {
+    margin-right: 30px;
+  }
   a {
     color: $white-70;
     &:hover,
@@ -9,8 +12,11 @@
       color: $white;
     }
   }
-  img{
-    margin-right: 30px;
+  span {
+    font-family: $font-body;
+    font-size: $size-body;
+    color: $white-70;
+    line-height: $font-body;
   }
   .footer-nav{
     margin-bottom: 70px;
@@ -85,6 +91,7 @@
   color: $white-70;
   .bottom-logo a {
     color: $n3;
+    margin-right: 30px;
   }
   @media #{$max-768} {
     background-position: right 60% center;
@@ -95,8 +102,12 @@
       color: $p1a;
     }
   }
-  img{
-    margin-right: 30px;
+
+  span {
+    font-family: $font-body;
+    font-size: $size-body;
+    color: $n3;
+    line-height: $font-body;
   }
   .footer-nav{
     margin: -33px 0 70px;
