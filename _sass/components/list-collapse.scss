@@ -1,0 +1,139 @@
+.content .nested-list-wrapper ul > li {
+  margin-left: 24px;
+  a + .hovered {
+    color: $p1b;
+  }
+}
+
+.jstree-node {
+  white-space: nowrap;
+}
+
+.jstree-node, .jstree-children, .jstree-container-ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
+}
+
+.jstree-default .jstree-node {
+  min-height: 24px;
+  min-width: 24px;
+  line-height: 32px;
+}
+
+.jstree-default .jstree-node,
+.jstree-default .jstree-icon {
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.jstree-default .jstree-node {
+  background-position: -292px 0px;
+  background-repeat: repeat-y;
+}
+
+.jstree-default .jstree-icon:empty {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  background-position: 30px;
+}
+
+.nested-list-wrapper ul.jstree-children:not(:first-child) {
+  margin-top: 0;
+}
+
+.jstree-icon {
+  display: inline-block;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  text-align: center;
+}
+
+.jstree-icon:empty {
+  display: block;
+  float: left;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  text-align: center;
+}
+
+.jstree-ocl {
+  cursor: pointer;
+}
+
+.jstree-default .jstree-open > .jstree-ocl {
+  background-position: -132px 0px;
+}
+
+.jstree-default .jstree-anchor, .jstree-default .jstree-wholerow {
+  transition: background-color .15s, box-shadow .15s;
+}
+
+.jstree-default .jstree-node, .jstree-default .jstree-icon {
+  background-image: url('../../assets/img/products-and-docs/list-collapse.svg');
+  background-color: transparent;
+}
+
+.jstree-default .jstree-hovered,
+.jstree-default .jstree-clicked {
+  box-shadow: none;
+  background: none;
+  color: $p1b;
+}
+
+.jstree-default > .jstree-container-ul > .jstree-node {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+i.jstree-icon.jstree-themeicon {
+  display: none;
+}
+
+/*hover*/
+.jstree-hovered {
+  color: $p1b;
+}
+
+.jstree-default .jstree-closed > .jstree-ocl {
+  background-position: -100px 0px;
+}
+
+.jstree-default .jstree-closed > .jstree-ocl.hovered,
+.jstree-default .jstree-closed > .jstree-ocl:hover {
+  background-position: -37px 0px;
+  color: $p1b;
+}
+
+.jstree-default .jstree-open > .jstree-ocl:hover,
+.jstree-default .jstree-open > .jstree-ocl.hovered {
+  background-position: -3px 0px;
+  color: $p1b;
+}
+
+.jstree-default .hovered {
+  color: $p1b;
+}
+
+.jstree-default {
+  a {
+    color: $n2-grey-color;
+    white-space: pre-line;
+    display: inline-block;
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.hovered {
+  color: $p1b;
+}
+/*hover end*/

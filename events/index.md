@@ -1,6 +1,9 @@
 ---
 layout: events
 category: events
+title: Events
+excerpt: Ticketmaster upcoming and past events
+keywords: events
 ---
 {: #event-header }
 ### Upcoming
@@ -11,7 +14,7 @@ category: events
     {% if event.category == "event" %}
 <div class="event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}">
     {% if event.img %}
-        <img src="{{ event.img }}" class="image"/>
+        <img src="{{ event.img }}" class="image" alt="{{event.title}}"/>
     {% endif %}
     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 comntent">
         <h2>{{ event.title }}</h2>

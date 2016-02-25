@@ -33,6 +33,10 @@
     padding: 12px 16px;
     margin: 0;
     font-family: $font-lead-regular;
+
+    @media (max-width: 767px){
+      display: none !important; // reset inline style
+    }
   }
 
   &__item {

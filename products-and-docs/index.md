@@ -1,12 +1,15 @@
 ---
 layout: landing
 category: products-and-docs
+title: Products &amp; Docs
+excerpt: Whether you need a quick drop-in or are building a custom product, we have the APIs, SDKs, and Widgets you’re looking for
+keywords: API, SDK, widget, access api docs, become an affilate
 ---
 
 
 {% capture content %}
 {::comment}
-![Icon](/assets/img/ic-under-development.svg)
+![Under development](/assets/img/ic-under-development.svg)
 {:/comment}
 
 {: .triple-margin-top}
@@ -51,7 +54,7 @@ Easy integration? No sweat.
 {% endcapture %}
 
 {% capture sdk_left %}
-[![Icon1](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmastertech)
+[![Account Manager](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmastertech)
 
 ### Account Manager
 
@@ -63,7 +66,7 @@ Enable fans to manage their tickets within your app using the AccountManager SDK
 {% endcapture %}
 
 {% capture sdk_right %}
-[![Icon2](/assets/img/products-and-docs/sdk-right.png)](https://www.universe.com/)
+[![Direct Payments](/assets/img/products-and-docs/sdk-right.png)](https://www.universe.com/)
 
 ### Direct Payments
 

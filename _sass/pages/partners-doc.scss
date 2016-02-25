@@ -8,7 +8,7 @@
   transform: rotateY(180deg);
 }
 
-.partner-logo-fix img{
+.partner-logo img{
   width: 100%;
   max-width: 450px;
 }
@@ -57,6 +57,9 @@
   height: 100%;
   background: #FFF;
   transform: rotateY(180deg);
+  overflow: hidden;
+  font-size: $small-font-size;
+  max-height: 95%;
 }
 
 

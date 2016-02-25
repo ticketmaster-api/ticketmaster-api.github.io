@@ -48,6 +48,10 @@ ul, ol, dl, figure,
     margin-bottom: $base-margin;
 }
 
+.base-margin-top {
+  margin-top: $base-margin;
+}
+
 .double-margin {
   margin-top: $base-margin * 2;
   margin-bottom: $base-margin * 2;
@@ -72,6 +76,19 @@ ul, ol, dl, figure,
 
 .x3-margin-bottom {
   margin-bottom: $base-margin * 2;
+}
+
+.no-margin {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.no-margin-top {
+  margin-top: 0;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
 }
 
 .black{
@@ -177,7 +194,9 @@ blockquote {
     }
 }
 
-
+.italic{
+  font-style: italic;
+}
 
 /**
  * Code formatting
@@ -278,6 +297,19 @@ input[type=radio]:not(old):checked + label > span > span{
   background       : $p1;
 }
 /*Custom checker END*/
+
+// Fixed Feedback button
+@media (min-width: 1199px){
+  body,
+  body.modal-open{
+    padding-right: 0!important;
+    overflow-y: scroll;
+  }
+
+  .modal-open .modal {
+    overflow-y: hidden;
+  }
+}
 
 /**
  * Wrapper
@@ -388,8 +420,8 @@ input[type=radio]:not(old):checked + label > span > span{
   -ms-user-select: none;
   user-select: none; }
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: none;
+  //outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px; }
 .btn:hover, .btn:focus, .btn.focus {
   color: #333;
@@ -439,6 +471,13 @@ input[type=radio]:not(old):checked + label > span > span{
   color: $apple-green;
 }
 
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 
 @mixin inline-list($top){
   position: relative;
@@ -526,9 +565,21 @@ input[type=radio]:not(old):checked + label > span > span{
 }
 
 .documentation .copy-btn.copied,
-.modal-body .copy-btn-fs.copied {
-  background-color: #FFF;
-  background-position-x: -2px;
-  background-position-y: -2px;
-  background-image: url("/assets/img/products-and-docs/ic-copied.svg");
+.documentation .copy-btn.copied:hover,
+.modal-body .copy-btn-fs.copied,
+.modal-body .copy-btn-fs.copied:hover {
+  background-color: $white;
+  &:before {
+    opacity: 0;
+  }
+  &:after {
+    opacity: 1;
+    background-position-x: -2px;
+    background-position-y: -2px;
+    background-image: url("/assets/img/products-and-docs/ic-copied.svg");
+  }
+}
+
+.clear-margins{
+  margin: 0; 
 }

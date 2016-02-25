@@ -3,6 +3,9 @@ layout: base-content
 categories:
 - support
 - faq
+title: FAQ
+excerpt: At Ticketmaster, we see ourselves as the engine that powers unforgetable moments of joy for fans everywhere.
+keywords: FAQ, Ticketmaster affiliate program, datasets API cover
 ---
 
 # FAQ
@@ -53,7 +56,7 @@ At Ticketmaster, we see ourselves as the engine that powers unforgetable moments
 ### How can I reach out to Ticketmaster to discuss a potential partnership opportunity?
 
 {: .double-margin-bottom}
-Exciting! Please [contact us](mailto: distributedcommerce@ticketmaster.com) and try to be as specific as you can so we can bring in the right people to have a follow-up discussion regarding this potential opportunity. We should get back to you by email within 48 hours.
+Exciting! Please [contact us](mailto:distributedcommerce@ticketmaster.com) and try to be as specific as you can so we can bring in the right people to have a follow-up discussion regarding this potential opportunity. We should get back to you by email within 48 hours.
 
 {: #q-3}
 ### How might I use the content that’s made available via the Ticketmaster API?
@@ -110,7 +113,7 @@ The program compensates partners based on sales delivered (not traffic sent), bo
 ### Is the Ticketmaster affiliate program right for me?
 
 {: .double-margin-bottom}
-The affiliate program is best-suited for websites and apps that can deliver unique buyers to Ticketmaster’s clients, who are looking to drive incremental sales beyond what takes place on Ticketmaster or client websites. If you think you fit the mold, please reach out to [distributedcommerce@ticketmaster.com](mailto: distributedcommerce@ticketmaster.com).
+The affiliate program is best-suited for websites and apps that can deliver unique buyers to Ticketmaster’s clients, who are looking to drive incremental sales beyond what takes place on Ticketmaster or client websites. If you think you fit the mold, please reach out to [distributedcommerce@ticketmaster.com](mailto:distributedcommerce@ticketmaster.com).
 
 
 {: #q-10}
@@ -122,17 +125,13 @@ Ticketmaster will provide appropriate publishers an API key, or other content to
 Once you have an affiliate publisher ID, you will wrap destination URLs in an Affiliate Window wrapper to ensure proper tracking, so that when you deliver a sale to Ticketmaster or Ticketsnow, you’ll be credited for the purchase. You will be able to receive reporting through the Affiliate Window interface, as well as custom reports that can be sent on a daily basis. 
 
 {: .double-margin-bottom}
-Before signing up at Affiliate Window, please [reach out to us](mailto: distributedcommerce@ticketmaster.com) about whether you’re appropriate for the program!
+Before signing up at Affiliate Window, please [reach out to us](mailto:distributedcommerce@ticketmaster.com) about whether you’re appropriate for the program!
 
 
 {: #q-11}
 ### What content and tools will be available to me?
 
-Our Discovery API will provide access to events for sale on Ticketmaster.com and Ticketweb, as well as our secondary market suite of sites including NFL Ticket Exchange, NHL Ticket Exchange, NBA Tickets Resale Marketplace, and TicketsNow.com, which can also be listed and monetized. 
-
-{: .double-margin-bottom}
-Over time, we will provide additional content tools such as data feeds and purchase widgets that publishers can leverage.  
-
+Our Discovery API will provide access to events for sale on Ticketmaster.com and Ticketweb. We can also grant access to our resale API which has all events from our secondary market suite of sites including NFL Ticket Exchange, NHL Ticket Exchange, NBA Tickets Resale Marketplace, and TicketsNow.com, which can also be listed and monetized. Talk to your account manager if you are interested.
 
 {: #q-12}
 ### Can my users transact on tickets through my site? 
@@ -143,7 +142,7 @@ Later this year, you will be able to leverage our purchase widget to sell ticket
 {: #q-13}
 ### But I’d like to actually sell tickets in my own shopping cart. Can I do that? 
 
-In most cases, no. Our program largely serves affiliates who can create unique content experiences that complement our clients’ aims and drive incremental traffic to Ticketmaster.com for conversion. Ticketmaster will grant access to our Partner Commerce API for a limited number of partners. Please contact [distributedcommerce@ticketmaster.com](mailto: distributedcommerce@ticketmaster.com) if you have any questions. 
+In most cases, no. Our program largely serves affiliates who can create unique content experiences that complement our clients’ aims and drive incremental traffic to Ticketmaster.com for conversion. Ticketmaster will grant access to our Partner Commerce API for a limited number of partners. Please contact [distributedcommerce@ticketmaster.com](mailto:distributedcommerce@ticketmaster.com) if you have any questions. 
 
 
 {: #q-14}

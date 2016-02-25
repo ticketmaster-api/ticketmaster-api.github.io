@@ -1,0 +1,43 @@
+.sd-article {
+  clear: both;
+
+  .article-body{
+    overflow: auto;
+    margin: 0 -15px;
+    & img {
+      width: 100%;
+    }
+  }
+  .add-img-border {
+    border: solid 1px $borderGrayColor;
+    padding: $base-margin;
+  }
+
+  button.tag-btn {
+    color: $p1;
+    padding: 2px 8px;
+    border: 1px solid rgba(0, 155, 222, .2);
+    border-radius: 2px;
+    background-color: #fff;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 24px;
+    outline: none;
+    &.active{
+      background: #009cde;
+      color: #FFF;
+    }
+  }
+
+  .with-border {
+    border: solid 1px rgba(118, 134, 146, 0.2);
+    padding: 15px;
+    &>p{
+      margin: 0;
+    }
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6 {
+      margin-top: 0;
+    }
+  }
+
+}

@@ -157,7 +157,7 @@
           }
 
           @media #{$max-1200} {
-            margin-top: $base-margin;
+            /*margin-top: $base-margin;*/
           }
         }
 
@@ -201,29 +201,62 @@
         }
 
         .active-lang {
-          display: inline;
+          display: inline-block;
+          position: relative;
           clear: both;
           font-size: 1.5em;
           line-height: 2em;
           padding-right: 2em;
-          padding-bottom: 0.37em;
           padding-left: 1em;
-          background-image: url("/assets/img/products-and-docs/ic-chevron.svg");
-          background-repeat: no-repeat;
-          background-position: 90% 50%;
+          color: $n3;
           border-bottom: 2px solid #f1f5f7;
+          @include transition(color $btn-transition-speed $btn-transition-timing-function);
+
+          &:before,
+          &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 15px;
+            height: 10px;
+            margin-top: -5px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+          }
+
+          &:before {
+            opacity: 0;
+            background-image: url("/assets/img/products-and-docs/ic-shevron-down-active.svg");
+          }
+
+          &:after {
+            background-image: url("/assets/img/products-and-docs/ic-chevron.svg");
+          }
+
+          &:hover{
+            color: $blue;
+            &:before {
+              opacity: 1;
+            }
+            &:after {
+              opacity: 0;
+            }
+          }
+
           &.open {
-            background-image: url("/assets/img/products-and-docs/ic-chevron-open.svg");
+            &:before,
+            &:after {
+              @include rotate(180deg);
+            }
           }
-          &:focus {
-            outline:none;
-            text-decoration: none;
-            color: #2a7cc7;
-          }
+
+          &:focus,
           &:active {
             outline: none;
             text-decoration: none;
-            color: #2a7cc7;
+            color: $blue;
           }
         }
         .lang-selector {
@@ -348,13 +381,50 @@
         .console-btn {
           position: absolute;
           display: block;
-          background-image: url("/assets/img/products-and-docs/ic-console.svg");
-          background-repeat: no-repeat;
-          width: 20px;
-          height: 20px;
           right: 0;
           cursor: pointer;
-          bottom: 18px;
+          bottom: 12px;
+          width: 24px;
+          height: 24px;
+          border-radius: 2px;
+          margin-top: -45px;
+          @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
+
+          &:before,
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-position: center center;
+            background-repeat: no-repeat;
+            @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+          }
+
+          &:before {
+            opacity: 0;
+            background-image: url("/assets/img/products-and-docs/ic_console-active.svg");
+          }
+
+          &:after {
+            background-image: url("/assets/img/products-and-docs/ic-console.svg");
+          }
+
+          &:hover{
+            background-color: $p1b;
+
+            &:before {
+              opacity: 1;
+            }
+            &:after {
+              opacity: 0;
+            }
+          }
+
+
+
         }
       }
 
@@ -413,22 +483,7 @@
     }
 
     .nested-list {
-      margin-top: 10px;
-      padding: 0;
-      ul {
-        margin-top: 10px;
-      }
-
-      li {
-        padding-top: 10px;
-        padding-left: 10px;
-        border-left: 2px solid #f0f0f0;
-        list-style-type: none;
-      }
-
-      li:first-child {
-        padding-top: 0;
-      }
+      display: none;
     }
 
   }
@@ -455,73 +510,146 @@
   .copy-btn {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-copy.svg");
-    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
-    border-radius: 3px;
+    border-radius: 2px;
     margin-top: -60px;
     right: 85px;
     cursor: pointer;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
 
-    @media (max-width: 767px) {
-      right: 15px;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/products-and-docs/ic_copy-active.svg");
+    }
+
+    &:after {
+      opacity: 1;
+      background-image: url("/assets/img/products-and-docs/ic-copy.svg");
     }
 
     &:hover{
-      /* background-color: rgba(153, 216, 242, 1); */
+      background-color: $p1b;
+
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 767px) {
+      right: 15px;
     }
   }
   .raw-btn, .raw-btn-w  {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-raw.svg");
-    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
-    border-radius: 3px;
+    border-radius: 2px;
     margin-top: -60px;
     right: 50px;
     cursor: pointer;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
 
-    @media (max-width: 767px) {
-      display: none;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/products-and-docs/ic_view_in_raw.svg");
+    }
+
+    &:after {
+      background-image:  url("/assets/img/products-and-docs/ic-raw.svg");
     }
 
     &:hover{
-      /* background-color: rgba(153, 216, 242, 1); */
+      background-color: $p1b;
+
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 767px) {
+      display: none;
     }
   }
   .screen-btn {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-full-screen.svg");
-    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
-    border-radius: 3px;
+    border-radius: 2px;
     margin-top: -60px;
     right: 15px;
     cursor: pointer;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
 
-    @media (max-width: 767px) {
-      display: none;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+    }
+
+    &:before {
+      opacity: 0;
+      background-image:  url("/assets/img/products-and-docs/ic_full_screen-active.svg");
+    }
+
+    &:after {
+      background-image: url("/assets/img/products-and-docs/ic-full-screen.svg");
     }
 
     &:hover{
-      /* background-color: rgba(153, 216, 242, 1); */
+      background-color: $p1b;
+
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 767px) {
+      display: none;
     }
   }
 
@@ -656,61 +784,133 @@
   .copy-btn-fs {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-copy.svg");
-    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
-    border-radius: 3px;
+    border-radius: 2px;
     margin-top: -45px;
     right: 85px;
     cursor: pointer;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/products-and-docs/ic_copy-active.svg");
+    }
+
+    &:after {
+      background-image: url("/assets/img/products-and-docs/ic-copy.svg");
+    }
 
     &:hover{
-      /* background-color: rgba(153, 216, 242, 1); */
+      background-color: $p1b;
+
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
     }
   }
   .raw-btn, .raw-btn-w {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-raw.svg");
-    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
-    border-radius: 3px;
+    border-radius: 2px;
     margin-top: -45px;
     right: 50px;
     cursor: pointer;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/products-and-docs/ic_view_in_raw.svg");
+    }
+
+    &:after {
+      background-image: url("/assets/img/products-and-docs/ic-raw.svg");
+    }
 
     &:hover{
-      /* background-color: rgba(153, 216, 242, 1); */
+      background-color: $p1b;
+
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
     }
   }
   .screen-btn {
     position: absolute;
     display: block;
-    background-image: url("/assets/img/products-and-docs/ic-screen.svg");
-    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
-    border-radius: 3px;
+    border-radius: 2px;
     margin-top: -45px;
     right: 15px;
     cursor: pointer;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/products-and-docs/ic_full_screen_back.svg");
+    }
+
+    &:after {
+      background-image: url("/assets/img/products-and-docs/ic-screen.svg");
+    }
 
     &:hover{
-      /* background-color: rgba(153, 216, 242, 1); */
+      background-color: $p1b;
+
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
     }
   }
 }
@@ -736,10 +936,41 @@
   top: 20px;
   width: 24px;
   height: 24px;
-  background-image: url("/assets/img/products-and-docs/ic-close.svg");
   background-color: transparent;
-  background-repeat: no-repeat;
   border: none;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    content: '';
+    background-repeat: no-repeat;
+    background-position: center center;
+    @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+  }
+
+  &:before {
+    background-image: url("/assets/controls/ic-close-grey.svg");
+  }
+
+  &:after {
+    opacity: 0;
+    background-image: url("/assets/controls/ic-close-grey-hover.svg");
+  }
+
+  &:hover {
+    &:before {
+      opacity: 0;
+    }
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
   &:focus, &:active {
     outline: none;
   }

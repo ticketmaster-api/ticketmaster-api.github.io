@@ -1,47 +1,63 @@
 (function($){
-    // Used Qualaroo form
 
-    var $feedbackOpenBtn = $('#js_feedback_open'),
-        $modal = $('#feedback-modal'),
+    var $modal = $('#feedback-modal'),
+        $modalAlert = $('#feedback-alert-modal'),
         $form = $modal.find('#js_feedback_form'),
+        $email = $form.find('#email'),
         $btn = $modal.find('#js_feedback_btn'),
+        $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
         cssValidationClass = 'feedback_form-validation';
 
-    // EVENTS
-    $btn.on('click', function(){
-        var form = $form.get(0);
-
-        if(form.checkValidity()) {
-
-            var dataArray = $form.serializeArray(),
-                $qualarooForm = $('#qual_ol_ans_box');
-
-            // Copy values to Qualaroo form
-            for(var i in dataArray){
-                if(dataArray[i].name === 'description'){
-                    $qualarooForm.find('textarea').val(dataArray[i].value);
-                }else{
-                    $qualarooForm.find("input:eq(" + i +")").val(dataArray[i].value);
-                }
-
-                // TODO: Need to clear dialog form
-                // TODO: Need to unbind Qualaroo responseSent event. S3 response - 'try { KI.event.fire('responseSent'); } catch (e) {}'
+    function resetForm(){
+        $btn.removeAttr('disabled');
+        $form.find('textarea').val('');
+        $form.find('input').each(function(){
+            var $self = $(this);
+            if($self.attr('name')){
+                $self.val('');
             }
+        });
 
-            // Submit Qualaroo form
-            $('#qual_ol_send').trigger('click');
+        // Clear highlight
+        $form.removeClass(cssValidationClass);
+    }
+
+    function submitForm(){
+
+        $email.val($email.val().toLocaleLowerCase());
+        $.ajax({
+            dataType: 'jsonp',
+            url: $form.attr('action'),
+            data: $form.serialize()
+        }).done(function() {
 
             // Close dialog
             $modal.modal('hide');
 
-            // Hide feedback button
-            $feedbackOpenBtn.hide();
+            // Show message
+            $modalAlert.modal();
+        });
+    }
 
-        }else{
-            // Highlight errors
-            if(form.reportValidity) form.reportValidity();
-            $form.addClass(cssValidationClass);
+    // EVENTS
+    $btn.on('click', function(){
+        var form = $form.get(0);
+        if(!$btn.is(':disabled')){
+            if(form.checkValidity()) {
+                $btn.attr('disabled', true);
+                submitForm();
+            }else{
+                // Highlight errors
+                if(form.reportValidity) form.reportValidity();
+                $form.addClass(cssValidationClass);
+            }
         }
     });
+
+    $btnAlertOk.on('click', function(){
+        $modalAlert.modal('hide');
+    });
+
+    $modal.on('hidden.bs.modal', resetForm);
 
 })(jQuery);

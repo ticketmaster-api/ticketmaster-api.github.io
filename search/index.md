@@ -1,5 +1,8 @@
 ---
 layout: search
+title: Search
+excerpt: Search Results Ticketmaster Developer Portal
+keywords: search
 ---
 
 <div class="row search">
@@ -15,7 +18,7 @@ layout: search
               }
             };
           
-            var cx = '005729231290321871364:pb-ym0dnvm4';
+            var cx = '000111791941460729347:zmu0d7yvkfq';
             var gcse = document.createElement('script');
             gcse.type = 'text/javascript';
             gcse.async = true;

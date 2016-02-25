@@ -13,7 +13,7 @@
   margin: auto;
   position: relative;
 
-  .col-lg-9 {
+  &>.col-lg-9 {
     float: right;
     @media #{$max-1200} {
       float: left;
@@ -29,17 +29,18 @@
   }
 
   .menu {
-
+    outline: none;
     @media #{$max-1200} {
       z-index: 1;
       left: 0;
-      width: 50%;
+      width: 100%;
       position: absolute;
       padding-top: 10px;
       background-color: rgba(255, 255, 255, 0.9);
       &.expanded {
         background-color: $aside-menu-background;
         height: 100%;
+        width:50%;
         overflow-y: scroll;
       }
     }

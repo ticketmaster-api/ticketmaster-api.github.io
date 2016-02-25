@@ -57,8 +57,8 @@ $font-h6: "TMSans-Lighter",$base-font-family;
 
 
 $font-lead: "TMSans-Light",$base-font-family;
-$font-lead-bold: "TMSansLEADINGFIXED-Bold",$base-font-family;
-$font-lead-regular: "TMSansLEADINGFIXED-Regular",$base-font-family;
+$font-lead-bold: "TMSans-Bold",$base-font-family;
+$font-lead-regular: "TMSans-Regular",$base-font-family;
 $font-body: "TMSans-Regular",$base-font-family;
 $font-code: "SourceCodePro-Regular",$base-font-family;
 $font-pull-q: "TMSans-Italic",$base-font-family;
@@ -131,6 +131,10 @@ $line-height-code: 24px;
 
 $borderHeight: 8px;
 $maincontent-margin: 55px;
+
+// Animation
+$btn-transition-speed: 0.2s;
+$btn-transition-timing-function: ease-in-out;
 
 //Media queries params
 $max-1400: "(max-width: 1400px)";
