@@ -1,6 +1,6 @@
 ---
 order: 2
-category: sd-article
+category: sd-article-
 tags:
   - iOS
   - Android
