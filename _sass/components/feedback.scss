@@ -117,16 +117,20 @@
 
 #feedback-alert-modal {
   .modal-dialog {
+
+    @media (min-width: 768px){
+      width: 420px;
+    }
     .modal-content {
+
       margin-top: 30%;
+      @media (max-width: 768px) and (orientation: landscape) {
+        margin-top: 10%;
+      }
       .modal-title {
         margin-top: 38px;
         margin-bottom: 16px;
       }
-    }
-
-    @media (min-width: 768px){
-      width: 420px;
     }
   }
   .modal-body {
@@ -136,16 +140,12 @@
       .btn-submit {
         display: block;
         margin: 0 auto;
-        width: 100%;
         height: 50px;
+        width: 165px;
         color: $white;
         font-family: $font-lead-bold;;
         text-transform: uppercase;
         background-color: $blue;
-
-        @media (min-width: 768px){
-          width: 165px;
-        }
       }
     }
   }
