@@ -114,7 +114,7 @@ layout: default
           toShow = isUP ? present : past,
           toHide = isUP ? past : present;
 
-      $(".bg-header-events").addClass("small");
+      $(".bg-header-events").addClass("small-h");
       $(".events-wrapper").hide();
       window.scrollTo(0,0);
 
@@ -130,7 +130,7 @@ layout: default
         toHide.hide();
 
         $(".events-wrapper").show();
-        $(".bg-header-events").removeClass("small");
+        $(".bg-header-events").removeClass("small-h");
         $(this).addClass("active");
         return;
       }
