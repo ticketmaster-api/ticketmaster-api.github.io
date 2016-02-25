@@ -143,6 +143,7 @@
   }
   .bottom-logo a {
     color: $n3;
+    margin-right: 30px;
   }
   @media #{$max-768} {
     background-position: right 60% center;
@@ -156,8 +157,11 @@
       outline: none;
     }
   }
-  img{
-    margin-right: 30px;
+  span {
+    font-family: $font-body;
+    font-size: $size-body;
+    color: $n3;
+    line-height: $font-body;
   }
   .footer-nav{
     margin: 0 0 70px;
