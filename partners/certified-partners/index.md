@@ -11,9 +11,11 @@ keywords: Certified partners
 
 # CERTIFIED PARTNERS
 
+{::comment}
 {: .lead .double-margin}
 Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh 
 aesthetic food truck sriracha cornhole single-origin coffee chu.
+{:/comment}
 
 <div class="tiles-wrapper ">
 {% for partner in site.pages %}
