@@ -10,6 +10,7 @@ keywords: Certified partners
 ---
 
 # CERTIFIED PARTNERS
+{: .double-margin-bottom}
 
 {::comment}
 {: .lead .double-margin}
