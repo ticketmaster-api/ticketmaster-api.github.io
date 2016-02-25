@@ -50,7 +50,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 
 
 {% capture certified_header %}
-## Cerfified partners
+## Certified partners
 {% endcapture %}
 
 {% capture certified_logo %}

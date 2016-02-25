@@ -46,19 +46,22 @@
                         self.hide();
                 });
 
-                self.searchAlert.on("blur", function(){
+                // search alert tooltip commented out since search is now working
+                /*self.searchAlert.on("blur", function(){
                     self.searchAlert.hide();
                     clearTimeout(self.alertTimeout);
-                });
+                });*/
 
                 self.searchBtn.on("click", function(){
-                    self.searchAlert.toggle();
+                    // search alert tooltip commented out since search is now working
+                    /*self.searchAlert.toggle();
                     if (self.searchAlert.is(':visible')){
                         self.searchAlert.focus();
                         self.alertTimeout = setTimeout(function() {
                             self.searchAlert.hide();
                         }, 4000);
-                    }
+                    }*/
+
                     //Send custom event to Google Analytic
                     ga('send', {
                         hitType: 'event',
@@ -80,10 +83,9 @@
                     }
                 });
 
-                // commented until the live is completely indexed
                 // Search [START]
 
-                /*var smopen  = false;
+                var smopen  = false;
                 $(".top-bar").on("click", "#search .search-button", function (e) {
                   if ( $(this).hasClass("smopen") && smopen == true) {
                       $(this).removeClass("smopen");
@@ -116,7 +118,7 @@
                   if ($("input[name='q']").val() == '') {
                       return false;
                   }
-                });*/
+                });
 
                 // Search [END]
             }
