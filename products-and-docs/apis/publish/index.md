@@ -5,12 +5,12 @@ categories:
 - publish
 ---
 
-#Publish API
+# Publish API
 
 Use the Publish API to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.
 {: .lead .article}
 
-####Developer Console
+#### Developer Console
 {: .aside .gray}
 
 Make live API calls right now in the interactive docs:
@@ -41,14 +41,14 @@ Publish events accessible within the Discovery API.
 publish/{version}/events
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
 ### Exemple of a minimal recommended request payload
-
+{% highlight http %}
 {
     "source" : {
         "id" : "test_id_0009",
@@ -82,6 +82,7 @@ publish/{version}/events
         }
     }
 }
+{% endhighlight %}
 
 ### Full request payload documentation
 
@@ -181,7 +182,6 @@ publish/{version}/events
     * `timezone` (string) - the timezone of the venue.
     * `version` (number) - the publisher's version for this venue.
 - `version` (number) - the publisher's version for this event.
-{: .aside}
 
 >[Request](#req)
 >[Response](#res)
@@ -389,7 +389,7 @@ Content-Type: application/json;charset=UTF-8
 Content-Length: 20
 
 {
-  "status": "Success" ,
+  "status": "Success",
   "id": "ZkzyMmSie9"
 }
 {% endhighlight %}
