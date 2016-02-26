@@ -299,14 +299,16 @@ input[type=radio]:not(old):checked + label > span > span{
 /*Custom checker END*/
 
 // Fixed Feedback button
-body,
-body.modal-open{
-  padding-right: 0!important;
-  overflow-y: scroll;
-}
+@media (min-width: 1199px){
+  body,
+  body.modal-open{
+    padding-right: 0!important;
+    overflow-y: scroll;
+  }
 
-.modal-open .modal {
-  overflow-y: hidden;
+  .modal-open .modal {
+    overflow-y: hidden;
+  }
 }
 
 /**
