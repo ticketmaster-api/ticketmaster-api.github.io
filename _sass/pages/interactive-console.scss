@@ -50,5 +50,9 @@
   .tm-btn{
     color: $n3;
     border: 2px solid $n3;
+    &:hover {
+      color: $p1;
+      border-color: $p1;
+    }
   }
 }
