@@ -239,21 +239,21 @@ Connection: Keep-Alive
       "localDate": "2015-01-02",
       "localTime": "23:59:00",
       "dateTime": "2015-01-03T05:59:00Z",
-      "dateTBD": true,
-      "dateTBA": true,
-      "timeTBA": true,
-      "noSpecificTime": true
+      "dateTBD": false,
+      "dateTBA": false,
+      "timeTBA": false,
+      "noSpecificTime": false
     },
     "access":{
       "startDateTime": "2015-01-03T05:59:00Z",
-      "startApproximate": true,
+      "startApproximate": false,
       "endDateTime": "2015-01-03T05:59:00Z",
-      "endApproximate": true
+      "endApproximate": false
     },
     "end":{
       "localTime": "23:59:00",
       "dateTime": "2015-01-03T05:59:00Z",
-      "approximate": true
+      "approximate": false
     },
     "timezone": "America/Chicago",
     "status": {
@@ -288,7 +288,7 @@ Connection: Keep-Alive
     "public": {
       "endDateTime": "2015-01-03T05:59:00Z",
       "startDateTime": "2014-12-03T01:59:00Z",
-      "startTBD": true
+      "startTBD": false
     }
   },
   "source": {
@@ -386,11 +386,11 @@ Connection: Keep-Alive
 HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 20
+Content-Length: 43
 
 {
   "status": "Success",
-  "id": "ZkzyMmSie9"
+  "id": "ZuzyMmSiZzyMmSi"
 }
 {% endhighlight %}
 
