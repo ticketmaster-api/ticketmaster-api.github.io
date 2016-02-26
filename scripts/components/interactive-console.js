@@ -24,9 +24,30 @@
     };
 
     $(document).ready(function(){
+        var header = $('#instructions-header'),
+            instructions = $('#console-instructions'),
+            iframe = $('#console-iframe');
+
         if (getQueryVariable('id') && consoleUrls[getQueryVariable('id')]){
-            $('#console-iframe').attr('src', $('#console-iframe').attr('src') + consoleUrls[getQueryVariable('id')]);
+            iframe.attr('src', iframe.attr('src') + consoleUrls[getQueryVariable('id')]);
         }
+
+        if (!sessionStorage.getItem('console_visited')){
+            instructions.show();
+            header.addClass('expanded');
+            sessionStorage.setItem('console_visited', 'true');
+        }
+
+        header.on('click', function(){
+            if (!$(this).hasClass('expanded')){
+                $(this).addClass('expanded');
+                instructions.slideDown(500)
+            }
+            else {
+                $(this).removeClass('expanded');
+                instructions.slideUp(500)
+            }
+        });
     });
 
 })();
