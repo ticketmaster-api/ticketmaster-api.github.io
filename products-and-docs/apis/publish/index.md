@@ -5,12 +5,12 @@ categories:
 - publish
 ---
 
-#Publish API
+# Publish API
 
 Use the Publish API to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.
 {: .lead .article}
 
-####Developer Console
+#### Developer Console
 {: .aside .gray}
 
 Make live API calls right now in the interactive docs:
@@ -41,14 +41,14 @@ Publish events accessible within the Discovery API.
 publish/{version}/events
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
 ### Exemple of a minimal recommended request payload
-
+{% highlight http %}
 {
     "source" : {
         "id" : "test_id_0009",
@@ -82,6 +82,7 @@ publish/{version}/events
         }
     }
 }
+{% endhighlight %}
 
 ### Full request payload documentation
 
@@ -181,7 +182,6 @@ publish/{version}/events
     * `timezone` (string) - the timezone of the venue.
     * `version` (number) - the publisher's version for this venue.
 - `version` (number) - the publisher's version for this event.
-{: .aside}
 
 >[Request](#req)
 >[Response](#res)
@@ -239,21 +239,21 @@ Connection: Keep-Alive
       "localDate": "2015-01-02",
       "localTime": "23:59:00",
       "dateTime": "2015-01-03T05:59:00Z",
-      "dateTBD": true,
-      "dateTBA": true,
-      "timeTBA": true,
-      "noSpecificTime": true
+      "dateTBD": false,
+      "dateTBA": false,
+      "timeTBA": false,
+      "noSpecificTime": false
     },
     "access":{
       "startDateTime": "2015-01-03T05:59:00Z",
-      "startApproximate": true,
+      "startApproximate": false,
       "endDateTime": "2015-01-03T05:59:00Z",
-      "endApproximate": true
+      "endApproximate": false
     },
     "end":{
       "localTime": "23:59:00",
       "dateTime": "2015-01-03T05:59:00Z",
-      "approximate": true
+      "approximate": false
     },
     "timezone": "America/Chicago",
     "status": {
@@ -288,7 +288,7 @@ Connection: Keep-Alive
     "public": {
       "endDateTime": "2015-01-03T05:59:00Z",
       "startDateTime": "2014-12-03T01:59:00Z",
-      "startTBD": true
+      "startTBD": false
     }
   },
   "source": {
@@ -386,11 +386,11 @@ Connection: Keep-Alive
 HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 20
+Content-Length: 43
 
 {
-  "status": "Success" ,
-  "id": "ZkzyMmSie9"
+  "status": "Success",
+  "id": "ZuzyMmSiZzyMmSi"
 }
 {% endhighlight %}
 
