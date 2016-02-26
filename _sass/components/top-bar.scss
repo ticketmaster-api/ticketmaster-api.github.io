@@ -7,8 +7,7 @@
   left: 0;
 }
 
-#menu-btn,
-#search{
+#menu-btn {
   float: right;
   width: 26px;
   height: 26px;
@@ -16,7 +15,7 @@
   position: relative;
   top: 23px;
   left: 6px;
-  z-index: 3;
+  z-index: 13;
 }
 
 #menu-btn{
@@ -37,20 +36,84 @@
   }
 }
 
-#search{
-  cursor: pointer;
-  background-image: url('/assets/img/header/ic-search-p-1.svg');
-  &.white{
-    background-image: url('/assets/img/header/ic-search-white.svg');
+.apigee-login {
+  position: absolute;
+  right: 0;
+  top: 17px;
+  display: block;
+  float: left;
+  font-size: 16px;
+  line-height: 32px;
+  height:32px;
+  background-image: url('/assets/img/header/ic-user.svg');
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 32px;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+    color: #009cde;
   }
-  #search-alert{
+  @media #{$max-1200} {
+    display: none;
+  }
+  @media #{$max-768} {
+    display: none;
+  }
+  &.white {
+    background-image: url('/assets/img/header/ic-user-white.svg');
+    &:hover, &:focus, &:active, &:visited {
+      opacity: 1;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+#search{
+  position: absolute;
+  cursor: pointer;
+  /* background-image: url('/assets/img/header/ic-search-p-1.svg'); */
+  background-position: right center;
+  background-repeat: no-repeat;
+  top: 12px;
+  left: -80px;
+  margin-right: 100px;
+  width: 225px;
+  height: 48px;
+  text-align: right;
+  z-index: 10;
+  &.smopen {
+    opacity: 1;
+    .search-button {
+      opacity: 1;
+    }
+  }
+  &:hover {
+    .search-button {
+      opacity: 1;
+    }
+  }
+  @media #{$max-1200} {
+    left: 0;
+    right:40px;
+    right: 45;
+    margin-right: 0;
+  }
+  @media #{$max-768} {
+    width: 25px;
+  }
+  &.white{
+    /* background-image: url('/assets/img/header/ic-search-white.svg'); */
+  }
+  /*#search-alert{
     display: inline-block;
     outline: none;
     background-color: #768692;
     position: absolute;
     padding: 13px 12px;
-    left: -435px;
-    top: -14px;
+    left: -270px;
+    top: -5px;
     border-radius: 5px;
     color: $white;
     -webkit-user-select: none;
@@ -58,13 +121,14 @@
     -ms-user-select: none;
     user-select: none;
     @media #{$max-1200}{
-      top: -17px;
+      top: -4px;
     }
     @media #{$max-768} {
       font-size: 12px;
       left: -225px;
-      top: -23px;
-      right: 45px;
+      top: -10px;
+      right: 48px;
+      text-align: left;
       &:after{
         top: 21px !important;
       }
@@ -81,7 +145,7 @@
       right: -10px;
       top: 15px;
     }
-  }
+  }*/
 }
 
 #rainbow{
@@ -114,9 +178,9 @@
   min-height: 0;
   max-height: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 12;
   top: $borderHeight;
-  padding-top: 70px;
+  padding-top: 15px;
   margin: 0;
   right: 0px;
   outline: none;
@@ -135,6 +199,17 @@
       color: $n3;
       text-transform: uppercase;
       font-family: $font-bold-p;
+      &.apgee-login {
+        display: block;
+        height: 27px;
+        text-transform: none;
+        font-family: "TMSans-Regular",​Helvetica,​Arial,​sans-serif;
+        font-weight: 400;
+        color: #009cde;
+        background: url('/assets/img/header/ic-user.svg') 0 0 no-repeat;
+        padding-left: 35px;
+        margin-bottom: 5px;
+      }
     }
   }
 }
@@ -185,6 +260,14 @@ nav{
       background-color: $n2-grey-color;
       position: absolute;
       top: 0;
+    }
+    &.header-curtain {
+      background-image: url('/assets/img/header/top-curtain.png');
+      background-position: center center;
+      background-size: cover;
+      position: relative;
+      padding-bottom: 0;
+      min-height: 82px;
     }
     @media (min-width: 1201px){
       padding-bottom: 69px;
@@ -295,11 +378,9 @@ nav{
     top: 24px !important;
   }
   #search{
-    top: 26px !important;
-    left: -11px !important;
-    background-image: url('/assets/img/header/ic-search-mobile.svg') !important;
+    /* background-image: url('/assets/img/header/ic-search-mobile.svg') !important; */
     &.white{
-      background-image: url('/assets/img/header/ic-search-mobile-white.svg') !important;
+      /* background-image: url('/assets/img/header/ic-search-mobile-white.svg') !important; */
     }
   }
 }

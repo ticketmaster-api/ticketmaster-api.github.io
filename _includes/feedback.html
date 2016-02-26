@@ -1,0 +1,77 @@
+
+
+<div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <h3 class="modal-title col-lg-12">Leave Your Feedback</h3>
+      </div>
+      <div class="modal-body">
+
+        <form id="js_feedback_form" accept-charset="UTF-8" action="http://getsimpleform.com/messages/ajax?form_api_token=d9878ccc8e22c7253d057015617f82cd" method="POST">
+          <div class="col-lg-6">
+            <label for="name">Your name</label>
+            <input required type="text" id="name" name="name" maxlength="255" autofocus >
+          </div>
+          <div class="col-lg-6">
+            <label for="email">Your email</label>
+            <input type="email" id="email" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$">
+          </div>
+          <div class="col-lg-12">
+            <label for="subject">Subject</label>
+            <div class="js_custom_select custom_select">
+              <select required class="custom_select__field" name="subject" id="subject">
+                <option value="General feedback">General feedback</option>
+                <option value="Current workflow of the portal">Current workflow of the portal</option>
+                <option value="Technical issues">Technical issues</option>
+              </select>
+              <input class="custom_select__placeholder" type="text" value="General feedback" readonly>
+              <ul class="custom_select__list">
+                <li class="custom_select__item" data-value="General feedback">General feedback</li>
+                <li class="custom_select__item" data-value="Current workflow of the portal">Current workflow of the portal</li>
+                <li class="custom_select__item" data-value="Technical issues">Technical issues</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <label for="description">Description</label>
+            <textarea required rows="3" name="description" id="description"></textarea>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button id="js_feedback_btn" type="button" class="btn btn-submit">send</button>
+      </div>
+
+
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!-- Button trigger modal -->
+<button id="js_feedback_open" type="button" class="btn feedback-btn" data-toggle="modal" data-target="#feedback-modal">feedback</button>
+
+
+<!-- Modal alert-->
+<div id="feedback-alert-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Thank you for contacting us!</h3>
+        <p class="text-center">We will review and respond promptly.</p>
+        <div class="modal-footer">
+          <button id="js_feedback_btn_alert_ok" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal alert end-->

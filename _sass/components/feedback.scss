@@ -1,0 +1,160 @@
+.feedback-btn{
+  width: 110px;
+  height: 45px;
+  position: fixed;
+  top: 50%;
+  right: -33px;
+  margin-top: -55px;
+  border-radius: 4px 4px 0 0;
+  @include rotate(270deg);
+  font-size: $small-font-size;
+  text-transform: uppercase;
+  color: $white;
+  font-family: $font-lead-bold;
+  background-color: $s1c;
+  transition: background-color 0.2s ease;
+  z-index: 11;
+
+  @media (max-width: 767px) {
+    top: auto;
+    bottom: 3em;
+  }
+
+  &:hover{
+    background-color: $s1b;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $white;
+  }
+}
+
+#feedback-alert-modal,
+#feedback-modal {
+  .modal-content {
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    .modal-header {
+      .close {
+        position: absolute;
+        top: 14px;
+        right: 12px;
+        border: 0;
+        background-color: $white;
+        height: 24px;
+        width: 24px;
+        &:before,
+        &:after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 24px;
+          height: 24px;
+          content: '';
+          background-repeat: no-repeat;
+          background-position: center center;
+          @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+        }
+
+        &:before {
+          background-image: url("/assets/controls/ic-close-grey.svg");
+        }
+
+        &:after {
+          opacity: 0;
+          background-image: url("/assets/controls/ic-close-grey-hover.svg");
+        }
+
+        &:hover {
+          &:before {
+            opacity: 0;
+          }
+
+          &:after {
+            opacity: 1;
+          }
+        }
+
+      }
+      .modal-title {
+        color: $n1;
+        margin: 30px 0 0 0;
+      }
+    }
+    .modal-header,
+    .modal-footer {
+      border: 0;
+    }
+    .modal-body {
+      //overflow: hidden;
+      @include clearfix;
+      textarea {
+        resize: none;
+      }
+    }
+    .modal-footer {
+      margin-bottom: 38px;
+      padding: 10px 29px;
+      .btn-submit {
+        width: 165px;
+        height: 50px;
+        color: $white;
+        font-family: $font-lead-bold;;
+        text-transform: uppercase;
+        background-color: $blue;
+      }
+    }
+  }
+
+  // Remove yellow background after auto-filling the email field
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+  }
+}
+
+#feedback-alert-modal {
+  .modal-dialog {
+
+    @media (min-width: 768px){
+      width: 420px;
+    }
+    .modal-content {
+      @media (min-width: 768px){
+        margin-top: 30%;
+      }
+      .modal-title {
+        margin-top: 38px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+  .modal-body {
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.4);
+    .modal-footer {
+      margin-bottom: 10px;
+      .btn-submit {
+        display: block;
+        margin: 0 auto;
+        height: 50px;
+        width: 165px;
+        color: $white;
+        font-family: $font-lead-bold;;
+        text-transform: uppercase;
+        background-color: $blue;
+      }
+    }
+  }
+}
+
+// Validation highlight
+.feedback_form-validation {
+  textarea,
+  input {
+    &:invalid {
+      border-color: $red;
+    }
+  }
+}

@@ -19,14 +19,17 @@ $n2-grey-color: #768692;
 $p1-border-grey: rgba(183, 201, 211, 0.2);
 $underline-border-grey: #F1F5F7;
 $n1: #414141;
+$n2: #768692;
 $n3: #b7c9d3;
 $p1a: #00ade5;
 $p1b: #2a7cc7;
 $p1c: #2b8ecf;
 $s1b: #a61f84;
 $s1a: #ba1079;
+$s1c: #6165B0;
 $white: #ffffff;
 $blue: #009cde;
+$red: #D0021B;
 $apple-green: #7ed321;
 $white-70: rgba(255, 255, 255, 0.7);
 $white-90: rgba(255, 255, 255, 0.9);
@@ -42,6 +45,7 @@ $code-background-color: #f1f4f6;
 $aside-menu-background: #F7F9FA;
 $support-aside-menu-background: #FFFFFF;
 
+$steel-20: rgba(118, 134, 146, .2);
 
 /*Fonts*/
 $font-h1: "InterstateWGL-Black",$base-font-family;
@@ -53,6 +57,8 @@ $font-h6: "TMSans-Lighter",$base-font-family;
 
 
 $font-lead: "TMSans-Light",$base-font-family;
+$font-lead-bold: "TMSans-Bold",$base-font-family;
+$font-lead-regular: "TMSans-Regular",$base-font-family;
 $font-body: "TMSans-Regular",$base-font-family;
 $font-code: "SourceCodePro-Regular",$base-font-family;
 $font-pull-q: "TMSans-Italic",$base-font-family;
@@ -125,6 +131,10 @@ $line-height-code: 24px;
 
 $borderHeight: 8px;
 $maincontent-margin: 55px;
+
+// Animation
+$btn-transition-speed: 0.2s;
+$btn-transition-timing-function: ease-in-out;
 
 //Media queries params
 $max-1400: "(max-width: 1400px)";

@@ -14,12 +14,28 @@
     columns-container css .columns .row-container
     column-item-*     css .columns .row-container>div
     partners-block    id bottom-promo
+    promo-social      id promo-social
+    promo-social-left css #promo-social > div > div:nth-child(1)
     footer            id footer
 
 
 = image test =
-    body:
-    ### image file img/scr-home1200.png, tolerance 4000, map-filter denoise 10
+    top-promo:
+        % image file etalonImg/dumpsDesktop/objects/top-promo.png, tolerance 40, analyze-offset 2, error 4%
+        % width 1440 px
+        % height 868 px
+    columns-block:
+        image file etalonImg/dumpsDesktop/objects/columns-block.png, tolerance 40, error 4%
+        % width 1440 px
+        % height 421 px
+    partners-block:
+        image file etalonImg/dumpsDesktop/objects/partners-block.png, tolerance 40, error 4%
+        % width 1440 px
+        % height 1151px
+    promo-social-left:
+        image file etalonImg/dumpsDesktop/objects/promo-social-left.png, tolerance 40, error 4%
+        % width 585 px
+        % height 212px
 
 
 = Navigation test =
@@ -57,19 +73,19 @@
         columns-block:
             below top-promo 35 to 45px
         partners-block:
-            below columns-block 20 to 25px
+            below columns-block 0 to 5px
         social:
             below partners-block 65 to 75px
         footer:
             below social 100 to 105px
         main-desc:
-            below main-header 55 to 65px
+            below main-header 40 to 50px
         get-api-btn:
             near explore-btn 55 to 65px left
             width 195 to 200px
             height 45 to 50px
         explore-btn:
-            width 315 to 325px
+            width 255 to 275px
             height 45 to 50px
             visible
 

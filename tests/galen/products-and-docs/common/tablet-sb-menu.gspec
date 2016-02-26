@@ -16,18 +16,17 @@
     scrollable-element              css     #scrollable-element
     side-menu-btn                   css     #side-menu-btn
 
-
-= count and text sb-menu @tablet=
+=count and text sb-menu @tablet(tablet-sb-menu.gspec)=
     @on tablet
         global:
             count any aside-menu-block-* is 3
-            count any aside-menu-categories-first-* is 8
+            % count any aside-menu-categories-first-* is 12
             #count any aside-menu-categories-second-* is 4
             #count any aside-menu-categories-second-* is 4
 
     @on tablet
         aside-menu-header:
-            text is "Products & Docs"
+            % text is "Products & Docs"
 
         aside-menu-categories-first-1, aside-menu-categories-first-2, aside-menu-categories-first-3, aside-menu-categories-first-4:
             absent

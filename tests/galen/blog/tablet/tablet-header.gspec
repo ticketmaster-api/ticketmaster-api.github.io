@@ -20,7 +20,7 @@
 
         search-button:
             visible
-            inside partly menu-wrapper ~52 px right, 30 to 34px top
+            inside partly menu-wrapper ~40 px right, 20 to 25px top
 
         menu-btn:
             visible

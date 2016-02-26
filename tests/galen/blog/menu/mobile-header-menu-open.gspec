@@ -1,0 +1,15 @@
+@objects
+    header                      css  .top-bar
+    logo                        css  #header-logo img
+    nav-item-pd-*               css  #menu a
+    menu-btn                    css  #menu-btn
+    menu-btn-close              css  #menu-btn.tm-close
+    menu-dropdown               css  #menu-dropdown.expanded
+    menu-dropdown-item-*        css  #menu-dropdown > li > a
+
+= Blogs page tablet and mobile header menu open @mobile=
+    logo, menu-btn-close, menu-dropdown:
+        visible
+
+    global:
+        count any  menu-dropdown-item-* is 7

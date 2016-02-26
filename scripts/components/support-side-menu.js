@@ -9,7 +9,7 @@
 
     var showMenu = function(){
         if ( window.innerWidth < 1200 ) {
-            $(".bg-header").addClass("menu-bg");
+            $(".bg-header").add("body").addClass("menu-bg");
         }
 
         menu.addClass("expanded").find("ul").show();
@@ -18,29 +18,59 @@
     };
 
     var hideMenu = function(){
-        $(".bg-header").removeClass("menu-bg");
+        $(".bg-header").add("body").removeClass("menu-bg");
         menu.removeClass("expanded").find("ul").hide();
         sideBtn.addClass("closed").removeClass("expanded");
     };
     var menu = $('.menu'),
         sideBtn = $("#side-menu-btn"),
-        stickyHeaderTop = $('.menu').offset().top + calculate_offset();
+        stickyHeaderTop = $('.menu').offset().top + calculate_offset(),
+        belowFooter = false;
 
     if ( window.innerWidth < 1200 ) {
         hideMenu();
     }
 
+    var adjustMenuPosition = function(){
+
+        var menuTop = menu.offset().top,
+            menuHeight = menu.height(),
+            bottomBarOffset = $('#footer').offset().top,
+            windowScrollTop = $(window).scrollTop();
+
+        //set menu position to absolute when footer is reached
+        if (window.innerWidth >= 1200){
+            if (!belowFooter){
+                if ((menuTop + menuHeight >= bottomBarOffset)){
+                    belowFooter = true;
+                    menu.addClass("below-footer").css({
+                        'top': $('.base-content-wrapper').height() - $(menu).height()
+                    });
+                }
+            }
+
+            if (windowScrollTop <= menu.offset().top){
+                belowFooter = false;
+                menu.removeClass("below-footer").css({
+                    'top': ''
+                });
+            }
+        }
+        else {
+            menu.removeClass("below-footer").css({
+                'top': ''
+            });
+        }
+    };
+
     // Check the initial Poistion of the Sticky Header
     $(window).scroll(function(){
-
-        console.log();
-        console.log($(window).scrollTop());
         if( $(window).scrollTop() >= stickyHeaderTop ) {
-            console.warn(stickyHeaderTop);
             menu.addClass("fixed");
         } else {
             menu.removeClass("fixed")
         }
+        adjustMenuPosition();
     });
 
     window.onresize = function(event) {
@@ -50,6 +80,7 @@
         }else{
             showMenu();
         }
+        adjustMenuPosition();
     };
 
 
@@ -69,5 +100,11 @@
             hideMenu();
         }
     });
+
+    $(".base-content-wrapper").on("blur", ".menu.expanded", function(){
+        setTimeout(hideMenu, 200)
+    });
+
+    adjustMenuPosition();
 
 })();

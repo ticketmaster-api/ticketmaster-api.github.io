@@ -3,22 +3,25 @@ layout: documentation-single
 categories:
 - documentation
 - getting-started
+title: Getting Started
+excerpt: Everything you need to start playing with the Ticketmaster APIs
+keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
 
 
-#GETTING STARTED
+# GETTING STARTED
 
 
 {: .lead .double-margin}
 Everything you need to start playing with the Ticketmaster APIs.
 
 {: #introduction}
-##Introduction
+## Introduction
 
 
 {: .body}
 Welcome to the Ticketmaster API! To get you started, we'll go over the **live events core datasets** we’ve made
-available to you. Once you [register for a key](https://dev-livenation.devportal.apigee.com/user/login), you will
+available to you. Once you [register for a key](https://live-livenation.devportal.apigee.com/user/login), you will
 be able to access the following datasets:
 
 {: .double-margin}
@@ -48,6 +51,7 @@ All API calls follow this format:
 _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API key}_
 {: .code .red}
 
+<div class="table-wrapper">
 <table class="tableParametrs">
 	<tr>
 		<th>Name</th>
@@ -96,11 +100,12 @@ _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API 
 		<td>Authorized API Key</td>
 		<td><strong>Yes</strong></td>
 		<td>
-			<a class="standart-btn" href="https://dev-livenation.devportal.apigee.com/user/login" title="Get your API key">Get your API key</a> 
+			<a class="standart-btn" href="https://live-livenation.devportal.apigee.com/user/login" title="Get your API key">Get your API key</a> 
 		</td>
 	</tr>
 
 </table>
+</div>
 
 ### URI Examples
 
@@ -160,7 +165,7 @@ When you do go over your quota, you will get an HTTP status code 429 indicating 
 The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing){:target="_blank"} which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy){:target="_blank"}. CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors){:target="_blank"}.
 
 {: .double-margin #available-resources .no-mobile}
-##Available Resources
+## Available Resources
 
 <div class="table-wrapper no-mobile">
 <table class="article double-margin">
@@ -181,7 +186,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="9">
         <a href="/products-and-docs/apis/discovery/">
-          <img src="/assets/img/getting-started/ic-search-big.svg" alt="search">
+          <img src="/assets/img/getting-started/ic-search-big.svg" alt="Discovery API">
         </a>
       <h4 style="margin-top:11px;">Discovery API</h4>
       </td>
@@ -250,7 +255,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center">
         <a href="/products-and-docs/apis/commerce/">deals
-          <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Icon1">
+          <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Commerce API">
         </a>
         <h4 style="margin-top:11px;text-">Commerce API</h4>
         </td>
@@ -264,7 +269,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="14">
         <a href="/products-and-docs/apis/partner/">
-          <img src="/assets/img/getting-started/ic-user.svg" alt="Icon1">
+          <img src="/assets/img/getting-started/ic-user.svg" alt="Partner API">
         </a>
         <h4 style="margin-top:11px;text-">Partner API</h4>
       </td>
@@ -369,7 +374,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="2">
         <a href="/products-and-docs/apis/deals-api/">
-          <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
+          <img src="/assets/img/getting-started/ic-cart.svg" alt="Deals API">
         </a>
         <h4 style="margin-top:11px;text-">Deals API</h4>
       </td>

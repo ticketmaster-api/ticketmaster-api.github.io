@@ -3,10 +3,13 @@ layout: documentation-single
 categories:
 - documentation
 - widgets
+title: Widgets
+excerpt: Visit Universe’s site to get everything you need to sell tickets directly on your website at no additional cost.
+keywords: widget, sell tickets, direct payments
 ---
 
 
-#WIDGETS
+# WIDGETS
 
 
 {: .lead .double-margin}

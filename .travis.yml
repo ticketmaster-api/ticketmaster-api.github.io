@@ -23,12 +23,20 @@ before_script:
 script:
   - ./node_modules/karma/bin/karma start karma.conf.js
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
-  - jekyll serve &
-  - sleep 20 # give jekyll some time to start
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
+# - jekyll serve &
+# - sleep 20 # give jekyll some time to start
+# - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
+# - jekyll serve & #refresh jekyll
+# - sleep 5
+# - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2
+
+#  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
+#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,BlogsPage,Events,PartnersNexus,PartnersLanding,PD-getting-started-Page #generate comparing images
+#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PartnersNexus,PartnersLanding #generate comparing images
 
 after_script:
   - rake travis:deploy --trace --verbose
+  - rake travis:report --trace --verbose
 
 cache:
   directories:
@@ -39,7 +47,12 @@ notifications:
   email: false
 
 before_install:
-  - cp ./tests/content/ ./ -r
+  - ls ./
+  - rm ./_site/* -rf #remove directory _site
+  - rm ./events/* -rf #remove directory events
+  - rm ./partners/* -rf #remove directory partners
+  - \cp -avrf ./tests/content/*/ ./ #copy test content
+  - ls ./events/list
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer

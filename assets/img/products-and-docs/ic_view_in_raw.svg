@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_view_in_raw</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-386.000000, -594.000000)" fill="#FFFFFF">
+            <g id="ic_view_in_raw_hover" sketch:type="MSLayerGroup" transform="translate(386.000000, 594.000000)">
+                <g id="ic_view_in_raw" sketch:type="MSShapeGroup">
+                    <path d="M9.444109,8 C8.64607524,8 8,8.64602523 8,9.44399721 L8,12.3329979 L9.444109,12.3329979 L9.444109,9.44399721 L19.555891,9.44399721 L19.555891,19.5549965 L9.444109,19.5549965 L9.444109,16.6659958 L8,16.6659958 L8,19.5549965 C8,20.3529685 8.64607524,21 9.444109,21 L19.555891,21 C20.3539248,21 21,20.3529685 21,19.5549965 L21,9.44399721 C21,8.64602523 20.3539248,8 19.555891,8 L9.444109,8 Z M12.7236414,16.722734 L13.6665118,17.6664603 L17.0004645,14.3327657 L13.6665118,11 L12.7236414,11.9427974 L14.4468184,13.6667699 L8,13.6667699 L8,14.9996904 L14.4468184,14.9996904 L12.7236414,16.722734 Z" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
