@@ -7,7 +7,7 @@
       case "width":
         config.t.w = event.target.value;break;
       case "radius":
-        break;
+        config.t.br = event.target.value;break;
     }
     var encoded = widget.encConfig(JSON.stringify(config));
     document.getElementById("ticketmaster-config").dataset.config = encoded;

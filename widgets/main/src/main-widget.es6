@@ -1,5 +1,5 @@
 /*
- {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zztop","t":{"b":"t1","h":200,"w":150}}
+ {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zztop","t":{"b":"t1","h":200,"w":150,"br":4}}
  {
  "ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", #ApiKey
  "kw":"zztop", #KeyWords
@@ -49,6 +49,7 @@ class TicketmasterWidget {
 
     this.widgetRoot.style.height = `${this.config.t.h}px`;
     this.widgetRoot.style.width  = `${this.config.t.w}px`;
+    this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
   }
@@ -66,6 +67,7 @@ class TicketmasterWidget {
 
     this.widgetRoot.style.height = `${this.config.t.h}px`;
     this.widgetRoot.style.width  = `${this.config.t.w}px`;
+    this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
 
     var events = document.getElementsByClassName("event-wrapper");
     for(event in events){

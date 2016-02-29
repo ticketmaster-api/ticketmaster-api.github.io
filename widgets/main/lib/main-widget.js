@@ -5,7 +5,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /*
- {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zztop","t":{"b":"t1","h":200,"w":150}}
+ {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zztop","t":{"b":"t1","h":200,"w":150,"br":4}}
  {
  "ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", #ApiKey
  "kw":"zztop", #KeyWords
@@ -76,6 +76,7 @@ var TicketmasterWidget = function () {
 
     this.widgetRoot.style.height = this.config.t.h + "px";
     this.widgetRoot.style.width = this.config.t.w + "px";
+    this.widgetRoot.style.borderRadius = this.config.t.br + "px";
 
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.ak, keyword: this.config.kw });
   }
@@ -96,6 +97,7 @@ var TicketmasterWidget = function () {
 
       this.widgetRoot.style.height = this.config.t.h + "px";
       this.widgetRoot.style.width = this.config.t.w + "px";
+      this.widgetRoot.style.borderRadius = this.config.t.br + "px";
 
       var events = document.getElementsByClassName("event-wrapper");
       for (event in events) {
