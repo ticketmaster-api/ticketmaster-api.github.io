@@ -124,7 +124,7 @@ Attn: Trademark Department, Legal 
 {{map}}
 <div class="col-xs-12 col-sm-6 city-select">
     <div class="js_custom_select custom_select">
-      <select required="" class="custom_select__field" name="subject" id="subject">        
+      <select required="" class="custom_select__field" name="subject" id="address-office">        
         <option value="los angeles, ca">Los Angeles</option>
         <option value="phoenix, ca">Phoenix</option>        
       </select>
@@ -146,8 +146,8 @@ Attn: Trademark Department, Legal 
     $(document).ready( function(){
 
         var map,
-            phoenix = { lat:33.60567105541837, lng:-112.40523352818464 };
-            losAngeles = { lat:34.0207504, lng:-118.6919149 };
+            phoenix = { lat:33.533482, lng:-112.107254 };
+            losAngeles = { lat:34.052235, lng:-118.243683 };
             markers =[ phoenix, losAngeles ],
             centerMap = {
                 lat: 33.520,
@@ -171,6 +171,10 @@ Attn: Trademark Department, Legal 
                 center: center,
                 zoom: zoom 
             });
+            var onChangeHandler = function() {
+                markers = 
+              };
+            document.getElementById('address-office').addEventListener('change', onChangeHandler);
             
             // This event listener calls addMarker() when the map is clicked.
             google.maps.event.addListener(map, 'click', function(event) {
@@ -183,7 +187,7 @@ Attn: Trademark Department, Legal 
                     new google.maps.Marker({
                         position: {
                             lat: markers[i].lat,
-                            lng: markers[i].lng+0.5
+                            lng: markers[i].lng
                         },
                         map: map
                     });
