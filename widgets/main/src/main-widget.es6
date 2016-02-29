@@ -28,7 +28,7 @@ class TicketmasterWidget {
 
   set config(config) { this.widgetConfig = this.decConfig(config); }
   get config() { return this.widgetConfig; }
-  set events(responce){ this.eventsList = this.parseEvents(responce); this.update();}
+  set events(responce){ this.eventsList = this.parseEvents(responce);}
   get events(){ return this.eventsList;}
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v1/events.json"; }
   get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
@@ -52,6 +52,15 @@ class TicketmasterWidget {
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
   }
+
+  clear(){
+    this.widgetRoot.innerHTML = "";
+  }
+
+  update() {
+    this.clear();
+  }
+
 
   loadConfig(){
     return this.widgetRoot.dataset.config ? this.widgetRoot.dataset.config : null;
@@ -185,11 +194,6 @@ class TicketmasterWidget {
     this.xmlHTTP.send();
   }
 
-  update(){
-    console.log(this.events);
-    return;
-  }
-
   createDOMItem(itemConfig){
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
@@ -212,9 +216,15 @@ class TicketmasterWidget {
     time.classList.add("event-date");
     time.appendChild(timeContent);
 
-    event.appendChild(name);
-    event.appendChild(date);
-    event.appendChild(time);
+
+    var medWrapper = document.createElement("div");
+    medWrapper.classList.add("event-content-wraper");
+
+    medWrapper.appendChild(name);
+    medWrapper.appendChild(date);
+    medWrapper.appendChild(time);
+
+    event.appendChild(medWrapper);
 
     return event;
   }
