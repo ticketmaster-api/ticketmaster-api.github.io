@@ -40,7 +40,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "events",
     set: function set(responce) {
-      this.eventsList = this.parseEvents(responce);this.update();
+      this.eventsList = this.parseEvents(responce);
     },
     get: function get() {
       return this.eventsList;
@@ -81,6 +81,16 @@ var TicketmasterWidget = function () {
   }
 
   _createClass(TicketmasterWidget, [{
+    key: "clear",
+    value: function clear() {
+      this.widgetRoot.innerHTML = "";
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      this.clear();
+    }
+  }, {
     key: "loadConfig",
     value: function loadConfig() {
       return this.widgetRoot.dataset.config ? this.widgetRoot.dataset.config : null;
@@ -221,12 +231,6 @@ var TicketmasterWidget = function () {
       this.xmlHTTP.send();
     }
   }, {
-    key: "update",
-    value: function update() {
-      console.log(this.events);
-      return;
-    }
-  }, {
     key: "createDOMItem",
     value: function createDOMItem(itemConfig) {
       var event = document.createElement("li");
@@ -250,9 +254,14 @@ var TicketmasterWidget = function () {
       time.classList.add("event-date");
       time.appendChild(timeContent);
 
-      event.appendChild(name);
-      event.appendChild(date);
-      event.appendChild(time);
+      var medWrapper = document.createElement("div");
+      medWrapper.classList.add("event-content-wraper");
+
+      medWrapper.appendChild(name);
+      medWrapper.appendChild(date);
+      medWrapper.appendChild(time);
+
+      event.appendChild(medWrapper);
 
       return event;
     }
