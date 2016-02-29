@@ -68,7 +68,7 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
-    this.slideSpeed = 5000;
+    this.sliderSpeed = 5000;
     this.widgetRoot = document.querySelectorAll(selector)[0];
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
@@ -84,7 +84,7 @@ var TicketmasterWidget = function () {
     this.widgetRoot.style.width = this.config.t.w + "px";
 
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.ak, keyword: this.config.kw });
-    this.initSlider();
+    this.eventProcessed = 0;
   }
 
   _createClass(TicketmasterWidget, [{
@@ -104,9 +104,9 @@ var TicketmasterWidget = function () {
             } else {
               currentEvent = 0;
             }
-          }, _this.slideSpeed);
+          }, _this.sliderSpeed);
         }
-      }, 5000);
+      }, 1);
     }
   }, {
     key: "clear",
@@ -188,6 +188,7 @@ var TicketmasterWidget = function () {
         } else {
           console.error('Fail to load IMG for event');
         }
+        this.widget.eventProcessed++;
       }
     }
   }, {
@@ -195,6 +196,9 @@ var TicketmasterWidget = function () {
     value: function publishEvent(event) {
       var DOMElement = this.createDOMItem(event);
       this.eventsRoot.appendChild(DOMElement);
+      if (this.eventProcessed === this.events.length - 1) {
+        this.initSlider();
+      }
     }
   }, {
     key: "getEventByID",

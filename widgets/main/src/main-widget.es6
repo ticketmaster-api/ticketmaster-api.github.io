@@ -37,7 +37,7 @@ class TicketmasterWidget {
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
   constructor(selector) {
-    this.slideSpeed = 5000;
+    this.sliderSpeed = 5000;
     this.widgetRoot = document.querySelectorAll(selector)[0];
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
@@ -53,7 +53,7 @@ class TicketmasterWidget {
     this.widgetRoot.style.width  = `${this.config.t.w}px`;
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
-    this.initSlider();
+    this.eventProcessed = 0;
   }
 
 
@@ -70,9 +70,9 @@ class TicketmasterWidget {
           }else{
             currentEvent = 0;
           }
-        }, this.slideSpeed);
+        }, this.sliderSpeed);
       }
-    }, 5000);
+    }, 1);
   }
 
   clear(){
@@ -153,12 +153,16 @@ class TicketmasterWidget {
       else {
         console.error('Fail to load IMG for event');
       }
+      this.widget.eventProcessed ++;
     }
   }
 
   publishEvent(event){
     let DOMElement = this.createDOMItem(event);
     this.eventsRoot.appendChild(DOMElement);
+    if(this.eventProcessed === this.events.length - 1){
+      this.initSlider();
+    }
   }
 
   getEventByID(id){
