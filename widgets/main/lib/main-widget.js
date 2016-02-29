@@ -55,6 +55,11 @@ var TicketmasterWidget = function () {
     get: function get() {
       return "http://localhost:4000/widgets/main/theme/";
     }
+  }, {
+    key: "logoUrl",
+    get: function get() {
+      return "http://developer.ticketmaster.com/";
+    }
 
     //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
@@ -63,6 +68,7 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
+    this.slideSpeed = 5000;
     this.widgetRoot = document.querySelectorAll(selector)[0];
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
@@ -79,9 +85,31 @@ var TicketmasterWidget = function () {
     this.widgetRoot.style.borderRadius = this.config.t.br + "px";
 
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.ak, keyword: this.config.kw });
+    this.initSlider();
   }
 
   _createClass(TicketmasterWidget, [{
+    key: "initSlider",
+    value: function initSlider() {
+      var _this = this;
+
+      setTimeout(function () {
+        var eventCount = _this.eventsRoot.getElementsByClassName("event-wrapper").length;
+        if (eventCount > 1) {
+          _this.eventsRoot.style.width = eventCount * 100 + "%";
+          var currentEvent = 1;
+          setInterval(function () {
+            _this.eventsRoot.style.marginLeft = "-" + currentEvent * 100 + "%";
+            if (eventCount - 1 > currentEvent) {
+              currentEvent++;
+            } else {
+              currentEvent = 0;
+            }
+          }, _this.slideSpeed);
+        }
+      }, 5000);
+    }
+  }, {
     key: "clear",
     value: function clear() {
       this.widgetRoot.innerHTML = "";
@@ -271,17 +299,29 @@ var TicketmasterWidget = function () {
       time.classList.add("event-date");
       time.appendChild(timeContent);
 
+      var legalNoticeContent = document.createTextNode('Legal Notice'),
+          legalNotice = document.createElement("div");
+      legalNotice.classList.add("legal-notice");
+      legalNotice.appendChild(legalNoticeContent);
+
       var dateWraper = document.createElement("div");
       dateWraper.classList.add("event-date-wraper");
 
       dateWraper.appendChild(date);
       dateWraper.appendChild(time);
 
+      var logo = document.createElement('a');
+      logo.classList.add("event-logo");
+      logo.target = '_blank';
+      logo.href = this.logoUrl;
+
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
 
       medWrapper.appendChild(name);
       medWrapper.appendChild(dateWraper);
+      medWrapper.appendChild(legalNotice);
+      medWrapper.appendChild(logo);
 
       event.appendChild(medWrapper);
 

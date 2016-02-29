@@ -32,10 +32,12 @@ class TicketmasterWidget {
   get events(){ return this.eventsList;}
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v1/events.json"; }
   get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
   constructor(selector) {
+    this.slideSpeed = 5000;
     this.widgetRoot = document.querySelectorAll(selector)[0];
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
@@ -52,6 +54,26 @@ class TicketmasterWidget {
     this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
+    this.initSlider();
+  }
+
+
+  initSlider(){
+    setTimeout(()=> {
+      var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+      if(eventCount > 1){
+        this.eventsRoot.style.width  = `${eventCount * 100}%`;
+        var currentEvent = 1;
+        setInterval(()=> {
+          this.eventsRoot.style.marginLeft   = `-${currentEvent * 100}%`;
+          if(eventCount - 1 > currentEvent){
+            currentEvent ++;
+          }else{
+            currentEvent = 0;
+          }
+        }, this.slideSpeed);
+      }
+    }, 5000);
   }
 
   clear(){
@@ -233,6 +255,10 @@ class TicketmasterWidget {
     time.classList.add("event-date");
     time.appendChild(timeContent);
 
+    var legalNoticeContent = document.createTextNode('Legal Notice'),
+        legalNotice = document.createElement("div");
+    legalNotice.classList.add("legal-notice");
+    legalNotice.appendChild(legalNoticeContent);
 
     var dateWraper = document.createElement("div");
     dateWraper.classList.add("event-date-wraper");
@@ -240,11 +266,18 @@ class TicketmasterWidget {
     dateWraper.appendChild(date);
     dateWraper.appendChild(time);
 
+    var logo = document.createElement('a');
+    logo.classList.add("event-logo");
+    logo.target = '_blank';
+    logo.href = this.logoUrl;
+
     var medWrapper = document.createElement("div");
     medWrapper.classList.add("event-content-wraper");
 
     medWrapper.appendChild(name);
     medWrapper.appendChild(dateWraper);
+    medWrapper.appendChild(legalNotice);
+    medWrapper.appendChild(logo);
 
     event.appendChild(medWrapper);
 
