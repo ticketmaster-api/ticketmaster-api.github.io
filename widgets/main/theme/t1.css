@@ -11,30 +11,40 @@
 }
 
 #ticketmaster-config .event-wrapper {
+    position: relative;
     height: 200px;
     width:150px;
     float: left;
-    padding: 28px 28px 0;
     overflow: hidden;
     background-size: cover;
     background-position: center;
     font-size: 16px;
     line-height: 1.2;
     color: #fff;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
+#ticketmaster-config .event-content-wraper,
 #ticketmaster-config .event-wrapper:before {
-    content: '';
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
+}
+
+#ticketmaster-config .event-wrapper:before {
+    content: '';
     background-color: rgba(0, 0, 0, 0.2);
 }
+
+
+#ticketmaster-config .event-content-wraper {
+    padding: 28px 28px 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 
 #ticketmaster-config .event-name{
     text-transform: uppercase;
@@ -44,6 +54,7 @@
 
 }
 
-#ticketmaster-config .event-date{
+#ticketmaster-config .event-date-wraper{
     font-weight: bold;
+    margin-bottom: 15px;
 }

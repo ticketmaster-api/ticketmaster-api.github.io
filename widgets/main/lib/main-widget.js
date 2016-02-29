@@ -254,12 +254,17 @@ var TicketmasterWidget = function () {
       time.classList.add("event-date");
       time.appendChild(timeContent);
 
+      var dateWraper = document.createElement("div");
+      dateWraper.classList.add("event-date-wraper");
+
+      dateWraper.appendChild(date);
+      dateWraper.appendChild(time);
+
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
 
       medWrapper.appendChild(name);
-      medWrapper.appendChild(date);
-      medWrapper.appendChild(time);
+      medWrapper.appendChild(dateWraper);
 
       event.appendChild(medWrapper);
 
