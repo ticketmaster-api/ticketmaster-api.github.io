@@ -257,7 +257,6 @@ input, select, textarea {
 * Custom checker
 */
 /*hide checker*/
-/*input[type=checkbox]:not(old),*/
 input[type=radio   ]:not(old){
   width     : 20px;
   height    : 20px;
@@ -270,14 +269,12 @@ input[type=radio   ]:not(old){
 }
 }
 /*clicked checker*/
-/*input[type=checkbox]:not(old) + label,*/
 input[type=radio   ]:not(old) + label{
   display      : inline-block;
   margin-left  : -2em;
   line-height  : 1.5em;
 }
 
-/*input[type=checkbox]:not(old) + label > span,*/
 input[type=radio   ]:not(old) + label > span{
   display          : inline-block;
   width            : 20px;
@@ -288,10 +285,7 @@ input[type=radio   ]:not(old) + label > span{
   border           : 1px solid #ccc;
   vertical-align   : bottom;
 }
-/*input[type=checkbox]:not(old) + label > span {
-  border-radius    : 2px;
-  margin: 2px 5px;
-}*/
+
 input[type=radio]:not(old):checked + label > span > span{
   display          : block;
   width            : 8px;
@@ -300,18 +294,6 @@ input[type=radio]:not(old):checked + label > span > span{
   border-radius    : 50%;
   background       : $p1;
 }
-/*
-input[type=checkbox]:not(old):checked + label > span:before{
-  content     : '+';
-  background  : url("./../assets/controls/ic-shevron-down.svg") no-repeat 2px;
-  display     : block;
-  width       : 19px;
-  height      : 19px;
-  color       : $p1;
-  font-size   : 0;
-  line-height : 1em;
-  text-align  : center;
-}*/
 
 /* Base for label styling */
 input[type=checkbox]:not(:checked),
@@ -366,7 +348,6 @@ input[type="checkbox"]:not(:checked) + label:after {
   opacity: 0;
   transform: scale(0);
 }
-/*label:after + input[type=checkbox]:checked,*/
 input[type=checkbox]:checked + label:after {
   opacity: 1;
 }
@@ -399,6 +380,8 @@ label:hover:before {
 }
 
 /*Custom checker END*/
+
+
 
 // Fixed Feedback button
 @media (min-width: 1199px){
