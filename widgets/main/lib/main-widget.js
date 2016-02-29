@@ -68,7 +68,7 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
-    this.slideSpeed = 5000;
+    this.sliderSpeed = 5000;
     this.widgetRoot = document.querySelectorAll(selector)[0];
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
@@ -90,10 +90,27 @@ var TicketmasterWidget = function () {
     this.widgetRoot.style.borderRadius = this.config.t.br + "px";
 
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.ak, keyword: this.config.kw });
-    this.initSlider();
+    this.eventProcessed = 0;
+    this.addWidgetRootLinks();
   }
 
   _createClass(TicketmasterWidget, [{
+    key: "addWidgetRootLinks",
+    value: function addWidgetRootLinks() {
+      var legalNoticeContent = document.createTextNode('Legal Notice'),
+          legalNotice = document.createElement("div");
+      legalNotice.classList.add("legal-notice");
+      legalNotice.appendChild(legalNoticeContent);
+
+      var logo = document.createElement('a');
+      logo.classList.add("event-logo");
+      logo.target = '_blank';
+      logo.href = this.logoUrl;
+
+      this.widgetRoot.appendChild(legalNotice);
+      this.widgetRoot.appendChild(logo);
+    }
+  }, {
     key: "initSlider",
     value: function initSlider() {
       var _this = this;
@@ -110,9 +127,9 @@ var TicketmasterWidget = function () {
             } else {
               currentEvent = 0;
             }
-          }, _this.slideSpeed);
+          }, _this.sliderSpeed);
         }
-      }, 5000);
+      }, 1);
     }
   }, {
     key: "clear",
@@ -211,6 +228,7 @@ var TicketmasterWidget = function () {
         } else {
           console.error('Fail to load IMG for event');
         }
+        this.widget.eventProcessed++;
       }
     }
   }, {
@@ -218,6 +236,9 @@ var TicketmasterWidget = function () {
     value: function publishEvent(event) {
       var DOMElement = this.createDOMItem(event);
       this.eventsRoot.appendChild(DOMElement);
+      if (this.eventProcessed === this.events.length - 1) {
+        this.initSlider();
+      }
     }
   }, {
     key: "getEventByID",
@@ -320,32 +341,19 @@ var TicketmasterWidget = function () {
       time.classList.add("event-date");
       time.appendChild(timeContent);
 
-      var legalNoticeContent = document.createTextNode('Legal Notice'),
-          legalNotice = document.createElement("div");
-      legalNotice.classList.add("legal-notice");
-      legalNotice.appendChild(legalNoticeContent);
-
       var dateWraper = document.createElement("div");
       dateWraper.classList.add("event-date-wraper");
 
       dateWraper.appendChild(date);
       dateWraper.appendChild(time);
 
-      var logo = document.createElement('a');
-      logo.classList.add("event-logo");
-      logo.target = '_blank';
-      logo.href = this.logoUrl;
-
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
 
       medWrapper.appendChild(name);
       medWrapper.appendChild(dateWraper);
-      medWrapper.appendChild(legalNotice);
-      medWrapper.appendChild(logo);
 
       event.appendChild(medWrapper);
-
       return event;
     }
   }, {
