@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="top-bar bg-header bg-header-partners slice-bottom-left">
+  {% include partials/common-header.html %}
+</div>
+
+{% include partials/common-header-small.html %}
+
+<div class="base-content-wrapper">
+  <div class="col-lg-4 col-md-4 col-sm-12">
+    {% include widget-config.html %}
+  </div>
+  <div class="col-lg-8 col-md-8 col-sm-12">
+    <div id="ticketmaster-config" data-config="eyJhayI6IktSVW5qcTh5OFNnNWVEcFA5MGROek9LNzBkNFdpVXN0Iiwia3ciOiJ6enRvcCIsInQiOnsiYiI6InQxIiwiaCI6NTQwLCJ3IjozNjB9fQ=="></div>
+  </div>
+</div>
+
+<div id="footer" class="xs-center slice-top-left">
+  {% include partials/footer.html %}
+</div>
+<script src="{{"/widgets/main/lib/main-widget.js" | prepend: site.baseurl }}"></script>
+

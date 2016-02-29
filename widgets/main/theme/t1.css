@@ -1,0 +1,19 @@
+#ticketmaster-config{
+    height: 200px;
+    width: 150px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+#ticketmaster-config ul{
+    margin: 0;
+    padding: 0;
+}
+
+#ticketmaster-config .event-wrapper{
+    height: 200px;
+    width:150px;
+    float: left;
+    background-size: cover;
+    background-position: center;
+}
