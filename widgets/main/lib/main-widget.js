@@ -81,7 +81,9 @@ var TicketmasterWidget = function () {
     }
 
     this.widgetRoot.classList.remove("border");
-    this.widgetRoot.classList.add(this.config.t.b ? "border" : "");
+    if (this.config.t.b) {
+      this.widgetRoot.classList.add("border");
+    }
 
     this.widgetRoot.style.height = this.config.t.h + "px";
     this.widgetRoot.style.width = this.config.t.w + "px";
@@ -137,7 +139,9 @@ var TicketmasterWidget = function () {
       this.widgetRoot.style.borderRadius = this.config.t.br + "px";
 
       this.widgetRoot.classList.remove("border");
-      this.widgetRoot.classList.add(this.config.t.b ? "border" : "");
+      if (this.config.t.b) {
+        this.widgetRoot.classList.add("border");
+      }
 
       if (oldTheme.keywods !== this.config.kw) {
         this.clear();
