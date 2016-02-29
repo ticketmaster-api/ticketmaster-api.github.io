@@ -32,6 +32,7 @@ class TicketmasterWidget {
   get events(){ return this.eventsList;}
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v1/events.json"; }
   get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
@@ -242,12 +243,18 @@ class TicketmasterWidget {
     dateWraper.appendChild(date);
     dateWraper.appendChild(time);
 
+    var logo = document.createElement('a');
+    logo.classList.add("event-logo");
+    logo.target = '_blank';
+    logo.href = this.logoUrl;
+
     var medWrapper = document.createElement("div");
     medWrapper.classList.add("event-content-wraper");
 
     medWrapper.appendChild(name);
     medWrapper.appendChild(dateWraper);
     medWrapper.appendChild(legalNotice);
+    medWrapper.appendChild(logo);
 
     event.appendChild(medWrapper);
 

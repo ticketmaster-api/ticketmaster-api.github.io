@@ -3,6 +3,9 @@
     width: 150px;
     border: 1px solid black;
     overflow: hidden;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 }
 
 #ticketmaster-config ul{
@@ -45,6 +48,14 @@
     box-sizing: border-box;
 }
 
+#ticketmaster-config .event-logo {
+    position: absolute;
+    right: 25px;
+    bottom: 23px;
+    width: 127px;
+    height: 17px;
+    background: url("http://developer.ticketmaster.com/assets/img/footer/ticketmaster-logo-white.svg") no-repeat;
+}
 
 #ticketmaster-config .event-name{
     text-transform: uppercase;
