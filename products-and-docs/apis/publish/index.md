@@ -24,7 +24,7 @@ Make live API calls right now in the interactive docs:
 
 To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
 
-Example: `https://app.ticketmaster.com/publish/v2/events?apikey=3QIvq55bS608ai6r8moig1WdW57bONry`
+Example: `https://app.ticketmaster.com/publish/v2/events?apikey=[Your API key goes here]`
 
 ### Root URL
 
