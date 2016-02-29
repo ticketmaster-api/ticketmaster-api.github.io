@@ -141,81 +141,23 @@ Attn: Trademark Department, Legal 
     </div>
 </div>
 
-<!--google map -->
+<!--contact us form -->
 <script>
-    $(document).ready( function(){
-
-        var map,
-            phoenix = { lat:33.533482, lng:-112.107254 };
-            losAngeles = { lat:34.052235, lng:-118.243683 };
-            markers =[ phoenix, losAngeles ],
-            centerMap = {
-                lat: 33.520,
-                lng: -116.410
-            };
-        // Adds a marker to the map.
-          function addMarker(location, map) {
-            // Add the marker at the clicked location, and add the next-available label
-            // from the array of alphabetical characters.
-            var marker = new google.maps.Marker({
-              position: location,
-              label: labels[labelIndex++ % labels.length],
-              map: map
-            });
-          }
-                  
-        (function initMap(elementId, elementHeight, center, zoom, markers) {
-            console.log('start initMap');
-            var element = document.getElementById(elementId);
-            map = new google.maps.Map(element, {
-                center: center,
-                zoom: zoom 
-            });
-            var onChangeHandler = function() {
-                markers = 
-              };
-            document.getElementById('address-office').addEventListener('change', onChangeHandler);
-            
-            // This event listener calls addMarker() when the map is clicked.
-            google.maps.event.addListener(map, 'click', function(event) {
-              
-              addMarker(event.latLng, map);
-            });
-                        
-            if(markers.length>0) {
-                for (var i in markers) {
-                    new google.maps.Marker({
-                        position: {
-                            lat: markers[i].lat,
-                            lng: markers[i].lng
-                        },
-                        map: map
-                    });
-                }
-            }
-            
-            element.style.height = elementHeight+"px";
-
-        })('js_google_map' , 240 , centerMap, 6, markers);
-        
-        var $contactForm = $('.js_contact_form');
-            $contactForm.submit(function(e){
-                e.preventDefault();
-                $.ajax({
-                  dataType: 'jsonp',
-                  url: "https://getsimpleform.com/messages/ajax?form_api_token=892e0c5e4c169c6128c7342614608330",
-                  data: $contactForm.serialize() 
-                }).done(function() {
-                  //callback which can be used to show a thank you message
-                  //and reset the form
-                  showMsgSuccess('#message-success', 4000);
-                });
-                return false; //to stop the form from submitting
-            }); 
-            function showMsgSuccess(id, delay){
-                $(id).slideDown(400).delay( delay ).slideUp(200);
-            }
-    });
+var $contactForm = $('.js_contact_form');
+    $contactForm.submit(function(e){
+        e.preventDefault();
+        $.ajax({
+          dataType: 'jsonp',
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=892e0c5e4c169c6128c7342614608330",
+          data: $contactForm.serialize() 
+        }).done(function() {
+          //callback which can be used to show a thank you message
+          //and reset the form
+          showMsgSuccess('#message-success', 4000);
+        });
+        return false; //to stop the form from submitting
+    }); 
+    function showMsgSuccess(id, delay){
+        $(id).slideDown(400).delay( delay ).slideUp(200);
+    }
 </script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
