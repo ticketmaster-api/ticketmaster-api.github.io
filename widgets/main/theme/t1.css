@@ -58,3 +58,10 @@
     font-weight: bold;
     margin-bottom: 15px;
 }
+
+#ticketmaster-config .legal-notice{
+    position: absolute;
+    left: 28px;
+    bottom: 21px;
+    color: #019cde;
+}

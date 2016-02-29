@@ -216,6 +216,10 @@ class TicketmasterWidget {
     time.classList.add("event-date");
     time.appendChild(timeContent);
 
+    var legalNoticeContent = document.createTextNode('Legal Notice'),
+        legalNotice = document.createElement("div");
+    legalNotice.classList.add("legal-notice");
+    legalNotice.appendChild(legalNoticeContent);
 
     var dateWraper = document.createElement("div");
     dateWraper.classList.add("event-date-wraper");
@@ -228,6 +232,7 @@ class TicketmasterWidget {
 
     medWrapper.appendChild(name);
     medWrapper.appendChild(dateWraper);
+    medWrapper.appendChild(legalNotice);
 
     event.appendChild(medWrapper);
 
