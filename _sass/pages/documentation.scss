@@ -936,10 +936,41 @@
   top: 20px;
   width: 24px;
   height: 24px;
-  background-image: url("/assets/img/products-and-docs/ic-close.svg");
   background-color: transparent;
-  background-repeat: no-repeat;
   border: none;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    content: '';
+    background-repeat: no-repeat;
+    background-position: center center;
+    @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+  }
+
+  &:before {
+    background-image: url("/assets/controls/ic-close-grey.svg");
+  }
+
+  &:after {
+    opacity: 0;
+    background-image: url("/assets/controls/ic-close-grey-hover.svg");
+  }
+
+  &:hover {
+    &:before {
+      opacity: 0;
+    }
+
+    &:after {
+      opacity: 1;
+    }
+  }
+
   &:focus, &:active {
     outline: none;
   }
