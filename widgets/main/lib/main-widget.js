@@ -112,11 +112,17 @@ var TicketmasterWidget = function () {
   }, {
     key: "clear",
     value: function clear() {
-      this.widgetRoot.innerHTML = "";
+      this.eventsRoot.innerHTML = "";
     }
   }, {
     key: "update",
     value: function update() {
+
+      var oldTheme = {
+        keywods: this.config.kw,
+        theme: this.config.t.b
+      };
+
       this.config = this.loadConfig();
 
       /*if(this.config.t.b !== null){
@@ -127,11 +133,16 @@ var TicketmasterWidget = function () {
       this.widgetRoot.style.width = this.config.t.w + "px";
       this.widgetRoot.style.borderRadius = this.config.t.br + "px";
 
-      var events = document.getElementsByClassName("event-wrapper");
-      for (event in events) {
-        if (events[event].style !== undefined) {
-          events[event].style.width = this.config.t.w + "px";
-          events[event].style.height = this.config.t.h + "px";
+      if (oldTheme.keywods !== this.config.kw) {
+        this.clear();
+        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.ak, keyword: this.config.kw });
+      } else {
+        var events = document.getElementsByClassName("event-wrapper");
+        for (event in events) {
+          if (events[event].style !== undefined) {
+            events[event].style.width = this.config.t.w + "px";
+            events[event].style.height = this.config.t.h + "px";
+          }
         }
       }
     }

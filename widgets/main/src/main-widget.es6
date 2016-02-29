@@ -77,10 +77,16 @@ class TicketmasterWidget {
   }
 
   clear(){
-    this.widgetRoot.innerHTML = "";
+    this.eventsRoot.innerHTML = "";
   }
 
   update() {
+
+    let oldTheme = {
+      keywods: this.config.kw,
+      theme: this.config.t.b
+    };
+
     this.config = this.loadConfig();
 
     /*if(this.config.t.b !== null){
@@ -91,11 +97,17 @@ class TicketmasterWidget {
     this.widgetRoot.style.width  = `${this.config.t.w}px`;
     this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
 
-    var events = document.getElementsByClassName("event-wrapper");
-    for(event in events){
-      if(events[event].style !== undefined){
-        events[event].style.width = `${this.config.t.w}px`;
-        events[event].style.height = `${this.config.t.h}px`;
+    if(oldTheme.keywods !== this.config.kw){
+      this.clear();
+      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
+    }
+    else{
+      var events = document.getElementsByClassName("event-wrapper");
+      for(event in events){
+        if(events[event].style !== undefined){
+          events[event].style.width = `${this.config.t.w}px`;
+          events[event].style.height = `${this.config.t.h}px`;
+        }
       }
     }
   }
