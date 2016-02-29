@@ -88,7 +88,22 @@ var TicketmasterWidget = function () {
   }, {
     key: "update",
     value: function update() {
-      this.clear();
+      this.config = this.loadConfig();
+
+      /*if(this.config.t.b !== null){
+        this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.b + ".css" );
+      }*/
+
+      this.widgetRoot.style.height = this.config.t.h + "px";
+      this.widgetRoot.style.width = this.config.t.w + "px";
+
+      var events = document.getElementsByClassName("event-wrapper");
+      for (event in events) {
+        if (events[event].style !== undefined) {
+          events[event].style.width = this.config.t.w + "px";
+          events[event].style.height = this.config.t.h + "px";
+        }
+      }
     }
   }, {
     key: "loadConfig",
@@ -139,9 +154,9 @@ var TicketmasterWidget = function () {
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           var response = JSON.parse(this.responseText);
-          var event = this.widget.getEventByID(response.id);
-          event.img = this.widget.getImageForEvent(response.images);
-          this.widget.publishEvent(event);
+          var _event = this.widget.getEventByID(response.id);
+          _event.img = this.widget.getImageForEvent(response.images);
+          this.widget.publishEvent(_event);
         } else {
           console.error('Fail to load IMG for event');
         }

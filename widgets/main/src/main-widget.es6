@@ -58,7 +58,22 @@ class TicketmasterWidget {
   }
 
   update() {
-    this.clear();
+    this.config = this.loadConfig();
+
+    /*if(this.config.t.b !== null){
+      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.b + ".css" );
+    }*/
+
+    this.widgetRoot.style.height = `${this.config.t.h}px`;
+    this.widgetRoot.style.width  = `${this.config.t.w}px`;
+
+    var events = document.getElementsByClassName("event-wrapper");
+    for(event in events){
+      if(events[event].style !== undefined){
+        events[event].style.width = `${this.config.t.w}px`;
+        events[event].style.height = `${this.config.t.h}px`;
+      }
+    }
   }
 
 

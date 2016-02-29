@@ -10,7 +10,8 @@
         break;
     }
     var encoded = widget.encConfig(JSON.stringify(config));
-    $(".main-widget-config-form").data("config", encoded);
+    document.getElementById("ticketmaster-config").dataset.config = encoded;
+    widget.update();
   });
 })();
 //# sourceMappingURL=main-widget-config.js.map
