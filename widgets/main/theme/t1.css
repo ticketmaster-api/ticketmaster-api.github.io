@@ -1,11 +1,14 @@
 #ticketmaster-config{
     height: 200px;
     width: 150px;
-    border: 1px solid black;
     overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
+}
+
+#ticketmaster-config.border{
+    border: 1px solid #768692;
 }
 
 #ticketmaster-config ul{

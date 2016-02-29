@@ -5,7 +5,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /*
- {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zztop","t":{"b":"t1","h":200,"w":150,"br":4}}
+ {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zz top","t":{"n":"t1","b":true,"h":200,"w":150,"br":4}}
  {
  "ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", #ApiKey
  "kw":"zztop", #KeyWords
@@ -76,9 +76,12 @@ var TicketmasterWidget = function () {
 
     this.config = this.loadConfig();
 
-    if (this.config.t.b !== null) {
-      this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.t.b + ".css");
+    if (this.config.t.n !== null) {
+      this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.t.n + ".css");
     }
+
+    this.widgetRoot.classList.remove("border");
+    this.widgetRoot.classList.add(this.config.t.b ? "border" : "");
 
     this.widgetRoot.style.height = this.config.t.h + "px";
     this.widgetRoot.style.width = this.config.t.w + "px";
@@ -132,6 +135,9 @@ var TicketmasterWidget = function () {
       this.widgetRoot.style.height = this.config.t.h + "px";
       this.widgetRoot.style.width = this.config.t.w + "px";
       this.widgetRoot.style.borderRadius = this.config.t.br + "px";
+
+      this.widgetRoot.classList.remove("border");
+      this.widgetRoot.classList.add(this.config.t.b ? "border" : "");
 
       if (oldTheme.keywods !== this.config.kw) {
         this.clear();

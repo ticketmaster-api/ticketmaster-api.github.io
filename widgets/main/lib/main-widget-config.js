@@ -12,6 +12,8 @@
         config.t.w = event.target.value;break;
       case "radius":
         config.t.br = event.target.value;break;
+      case "has-border":
+        config.t.b = event.target.value === "on" ? true : false;break;
     }
     var encoded = widget.encConfig(JSON.stringify(config));
     document.getElementById("ticketmaster-config").dataset.config = encoded;
