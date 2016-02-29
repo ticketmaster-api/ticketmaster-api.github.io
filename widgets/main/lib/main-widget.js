@@ -68,6 +68,7 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
+    this.slideSpeed = 5000;
     this.widgetRoot = document.querySelectorAll(selector)[0];
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
@@ -83,9 +84,31 @@ var TicketmasterWidget = function () {
     this.widgetRoot.style.width = this.config.t.w + "px";
 
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.ak, keyword: this.config.kw });
+    this.initSlider();
   }
 
   _createClass(TicketmasterWidget, [{
+    key: "initSlider",
+    value: function initSlider() {
+      var _this = this;
+
+      setTimeout(function () {
+        var eventCount = _this.eventsRoot.getElementsByClassName("event-wrapper").length;
+        if (eventCount > 1) {
+          _this.eventsRoot.style.width = eventCount * 100 + "%";
+          var currentEvent = 1;
+          setInterval(function () {
+            _this.eventsRoot.style.marginLeft = "-" + currentEvent * 100 + "%";
+            if (eventCount - 1 > currentEvent) {
+              currentEvent++;
+            } else {
+              currentEvent = 0;
+            }
+          }, _this.slideSpeed);
+        }
+      }, 5000);
+    }
+  }, {
     key: "clear",
     value: function clear() {
       this.widgetRoot.innerHTML = "";

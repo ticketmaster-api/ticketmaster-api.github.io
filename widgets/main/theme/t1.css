@@ -11,6 +11,9 @@
 #ticketmaster-config ul{
     margin: 0;
     padding: 0;
+    -webkit-transition: margin-left 0.5s ease-in-out;
+    -moz-transition: margin-left 0.5s ease-in-out;
+    transition: margin-left 0.5s ease-in-out;
 }
 
 #ticketmaster-config .event-wrapper {
