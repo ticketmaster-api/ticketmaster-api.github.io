@@ -1,0 +1,64 @@
+.contact-us {
+  margin-bottom: $base-margin*4;
+
+  /*override*/
+  .custom_select__item {
+    list-style: none;
+  }
+  .contact-form-wrapper {
+    margin-bottom: $base-margin*2;
+    .col-sm-4,
+    .col-sm-6,
+    .col-sm-12 {
+      padding-left: 0;
+
+      @media (max-width: 767px){
+        padding-right: 0;
+      }
+    }
+    textarea {
+      height: 96px;
+      resize: vertical;
+    }
+    .button-blue {
+      margin-top: $base-margin;
+      width: 100%;
+      font-family: $font-h2;
+      text-transform: uppercase;
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
+        text-decoration: none;
+        background-color: $p1b;
+      }
+    }
+  }
+  .city-select.col-sm-6 {
+    padding-left: 0;
+
+    @media (max-width: 767px){
+      padding-right: 0;
+    }
+  }
+  .social-icons {
+    border: 1px solid $border-color;
+    padding: 5px 15px;
+    .gray {
+      color: $n3;
+    }
+    li {
+      position: relative;
+      display: inline-block;
+      height: $base-margin;
+      margin: 0 7%;
+    }
+
+    @media (max-width: 767px){
+      margin: 0 15%;
+      width: 70%;
+    }
+  }
+
+
+}
