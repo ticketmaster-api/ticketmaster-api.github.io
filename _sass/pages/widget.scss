@@ -5,6 +5,9 @@
       color: #019cde;
       border-bottom: 2px solid #019cde;
     }
+    &[disabled] {
+      opacity: .2;
+    }
     border: 0;
     border-bottom: 2px solid #b7c9d3;
     background-color: #FFF;
