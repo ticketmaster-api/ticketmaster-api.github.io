@@ -73,11 +73,11 @@ Attn: Trademark Department, Legal 
 <form accept-charset="UTF-8" action="#" method="POST" class="js_contact_form">    
     <div class="col-sm-6">
         <label for="name">Your name</label>
-        <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" autofocus tabindex="1">
+        <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" autofocus tabindex="1" required>
     </div>    
     <div class="col-sm-6">
         <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="" required tabindex="2">
+        <input type="email" id="email" name="email" placeholder="" required tabindex="2" required>
     </div>    
     <div class="col-sm-12">
         <label for="subject">Subject</label>
@@ -100,7 +100,7 @@ Attn: Trademark Department, Legal 
        
     <div class="col-sm-12">
         <label for="descriptions">Descriptions</label>
-        <textarea name="descriptions" id="company-detail-text" tabindex="10"></textarea>
+        <textarea name="descriptions" id="company-detail-text" tabindex="3" required></textarea>
     </div>
     <div class="col-sm-12">
         <p id="message-success" class="message-green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
@@ -125,13 +125,13 @@ Attn: Trademark Department, Legal 
 <div class="col-xs-12 col-sm-6 city-select">
     <div class="js_custom_select custom_select">
       <select required="" class="custom_select__field" name="subject" id="address-office">        
-        <option value="los angeles, ca">Los Angeles</option>
-        <option value="phoenix, ca">Phoenix</option>        
+        <option value="losAngeles" selected>Los Angeles</option>
+        <option value="phoenix">Phoenix</option>        
       </select>
       <input class="custom_select__placeholder" type="text" value="Los Angeles" readonly="">
       <ul class="custom_select__list">
-        <li class="custom_select__item" data-value="los angeles, ca">Los Angeles</li>
-        <li class="custom_select__item" data-value="phoenix, ca">Phoenix</li>
+        <li class="custom_select__item" data-value="losAngeles">Los Angeles</li>
+        <li class="custom_select__item" data-value="phoenix">Phoenix</li>
       </ul>
     </div>
 </div>
@@ -164,95 +164,62 @@ var $contactForm = $('.js_contact_form');
 
 <!--google map -->
 <script>
-    $(document).ready( function(){
-
-        var map,
-            cities = {
-                phoenix : {
-                    position: {lat: 33.533482, lng: -112.107254},
-                    tooltip: "1375 N Scottsdale Rd, Scottsdale, AZ 85257, US"
-                },
-                losAngeles : {
-                    position: {lat: 34.052235, lng: -118.243683},
-                    tooltip: "7060 Hollywood Blvd, Los Angeles, California, 90028, US"
-                }
+    // When the user change city, an info window opens above selected item.
+    var map,
+        cities = {
+            phoenix : {
+                position: {lat: 33.533482, lng: -112.107254},
+                tooltip: "1375 N Scottsdale Rd, Scottsdale, AZ 85257, US"
             },
-            markers =[ cities.losAngeles, cities.phoenix ],
-            centerMap = {
-                lat: 33.520,
-                lng: -116.410
-            };
-        // Adds a marker to the map.
-        function addMarker(location, map) {
-            var name = document.getElementById('address-office').value;
-
-            console.log('**** ', location);
-
-            if(location === 'los angeles, ca'){
-                console.log('true ', location);
-                location = cities.losAngeles.position;
+            losAngeles : {
+                position: {lat: 34.052235, lng: -118.243683},
+                tooltip: "7060 Hollywood Blvd, Los Angeles, California, 90028, US"
             }
-            else {
-                console.log('else ', name);
-                location = cities.phoenix.position;
-            }
-            // Add the marker at the clicked location, and add the next-available label
-            // from the array of alphabetical characters.
-            var marker = new google.maps.Marker({
-                position: location,
-                label: name,
-                map: map
-            });
-            console.log('addMarker',name);
-        }
-
-        var onChangeHandler = function(val) {
-            console.log('onChangeHandler:', val);
-            addMarker(val);
         };
-        document.getElementById('address-office').addEventListener('change', onChangeHandler);
-        $('#address-office').on('change', function(e){
-//            console.log( $(this).val() );
-            onChangeHandler($(this).val());
+    var markers = [];
+    var infowindows = [];
+
+    function initMap() {
+        var mapElement = document.getElementById('js_google_map');
+        map = new google.maps.Map(mapElement, {
+            zoom: 8,
+            center: cities.losAngeles.position //default center
         });
+        //first init
+        var defaultCity = document.getElementById('address-office').value;
+        mapElement.style.height = 240 + "px";
+        addOneMarker( defaultCity );
+    }
 
-        function setMarker(name, position){
-            console.log('selectedVal',document.getElementById('address-office').value);
+    function addOneMarker(city) {
+        deleteMarkers();
+        var infowindow = new google.maps.InfoWindow({ map: map });
+        map.setCenter(cities[city].position);
+        infowindow.setContent('<div><strong>' + cities[city].tooltip + '</strong></div>' );
+        infowindow.setPosition(cities[city].position);
+        infowindows.push(infowindow);
+    }
+
+    // Deletes all markers in the array by removing references to them.
+    function deleteMarkers() {
+        for (var i = 0; i < infowindows.length; i++) {
+            infowindows[i].close();
         }
+        infowindows = [];
+    }
 
-        (function initMap(elementId, elementHeight, center, zoom, markers) {
-            console.log('start initMap');
-            var element = document.getElementById(elementId);
-            map = new google.maps.Map(element, {
-                center: center,
-                zoom: zoom
-            });
+    // Listener for <select> cities
+    var onChangeHandler = function(val) {
+        addOneMarker(val);
+    };
 
-
-            // This event listener calls addMarker() when the map is clicked.
-            google.maps.event.addListener(map, 'click', function(event) {
-                addMarker(event.latLng, map);
-            });
-
-            if(markers.length>0) {
-                for (var i in markers) {
-                    addMarker(markers[i], map);
-                    /*
-                    new google.maps.Marker({
-                        position: {
-                            lat: markers[i].lat,
-                            lng: markers[i].lng
-                        },
-                        map: map
-                    });
-                    */
-                }
-            }
-
-
-            element.style.height = elementHeight+"px";
-
-        })('js_google_map' , 240 , centerMap, 6, markers);
+    $('#address-office').on('change', function(){
+        //should send 'val' since using cutom select
+        onChangeHandler($(this).val());
     });
+
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&callback=initMap">
+</script>
