@@ -32,6 +32,29 @@ layout: default
 <div id="footer" class="xs-center slice-top-left">
   {% include partials/footer.html %}
 </div>
+
+<!-- Modal widget-->
+<div id="js_widget_modal" class="modal modal-common fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Title</h3>
+        <h5>Sub title</h5>
+        <p>In turpis. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci.</p>
+        <h5>Sub title</h5>
+        <p>In turpis. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci.</p>
+        <div class="modal-footer">
+          <button id="js_widget_modal__close" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal widget end-->
+
 <script src="{{"/widgets/main/lib/main-widget.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/widgets/main/lib/main-widget-config.js" | prepend: site.baseurl }}"></script>
 

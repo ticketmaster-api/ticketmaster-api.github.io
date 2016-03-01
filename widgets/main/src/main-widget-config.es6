@@ -12,4 +12,15 @@
     document.getElementById("ticketmaster-config").dataset.config = encoded;
     widget.update();
   });
+
+
+  var $widgetModal = $('#js_widget_modal');
+  $('#js_get_widget_code').on('click', function(){
+    $widgetModal.modal();
+  });
+
+  $('#js_widget_modal__close').on('click', function(){
+    $widgetModal.modal('hide');
+  });
+
 })();
