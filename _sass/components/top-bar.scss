@@ -242,6 +242,13 @@ nav{
     &>.body-wrapper{
       margin-bottom: 58px;
     }
+    .expandable {
+      &:hover{
+        .header-chevron {
+          background: url('../../assets/img/partners/small-shevron-white.svg') no-repeat !important;
+        }
+      }
+    }
     nav{
       &>a {
         color: $white-70;
@@ -319,6 +326,30 @@ nav{
         color: $p1;
       }
     }
+    .expandable {
+      .header-chevron {
+        position: absolute;
+        display: inline-block;
+        right: -5px;
+        top: 34px;
+        width: 15px;
+        height: 10px;
+        background: url('../../assets/img/products-and-docs/small-shevron.svg') no-repeat;
+        @include tm-transition();
+      }
+      &.expanded {
+        .header-chevron {
+          @include rotate(180deg);
+          top: 30px;
+          right: 0;
+        }
+      }
+      &:hover{
+        .header-chevron {
+          background: url('../../assets/img/products-and-docs/small-shevron-blue.svg') no-repeat;
+        }
+      }
+    }
     .nav-item{
       &:after{
         @include rainbowAfter();
@@ -354,6 +385,53 @@ nav{
   }
   .six {
     border-top: $borderHeight solid $secondary-color1;
+  }
+}
+
+#expand-menu {
+  position: absolute;
+  z-index: 1;
+  background-color: $n2-grey-color;
+  width: 100%;
+  overflow: hidden;
+  outline: none;
+  @include tm-transition();
+  top: 79px;
+  max-height: 0;
+  &.expanded {
+    max-height: 400px !important;
+    padding: 24px 0;
+  }
+  &>.row-container {
+    &>div {
+      text-align: center;
+      .expand-column {
+        float: none;
+        vertical-align: top;
+        display: inline-block;
+        h4,
+        a {
+          color: $n3;
+          margin-top: 0;
+          font-family: $font-h4;
+          &:hover {
+            color: $white;
+          }
+        }
+        h4,
+        li {
+          text-align: left;
+        }
+        ul {
+          margin-bottom: 0;
+          border-left: 2px solid $p1-border-grey;
+          padding-left: 13px;
+          li {
+            font-size: 14px;
+          }
+        }
+      }
+    }
   }
 }
 

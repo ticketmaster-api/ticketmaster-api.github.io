@@ -11,6 +11,8 @@
             searchBox: $("#cse-search-box"),
             alertTimeout: null,
             hasBackground: $('.top-bar').hasClass('bg-header') ? true : false,
+            expandMenuBar: $('#expand-menu'),
+            expandSections: $('.expand-section'),
             logo: $('#header-logo img'),
             show: function(){
                 var self = this;
@@ -122,6 +124,20 @@
                 });
 
                 // Search [END]
+
+                $('.expandable').on('mouseenter', function(){
+                    $(this).addClass('expanded');
+                    self.expandSections.hide();
+                    self.expandMenuBar.find('#expand-' + $(this).attr('data-expands-to')).show();
+                    self.expandMenuBar.addClass('expanded').focus();
+                }).on('mouseleave', function(){
+                    $(this).removeClass('expanded');
+                });
+
+                self.expandMenuBar.on('blur', function(){
+                    $(this).removeClass('expanded');
+                });
+
             }
         };
 
