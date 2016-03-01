@@ -116,6 +116,11 @@
   position: fixed;
   right: 0;
   z-index: 10;
+
+  @media (max-width: 767px) {
+    margin-right: 4em;
+  }
+
   a {
     background: none;
     border-radius: 50%;

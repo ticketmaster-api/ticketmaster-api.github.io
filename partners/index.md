@@ -44,13 +44,14 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 {: .no-margin-bottom}
 [Get to know our Distribution partners](/partners/distribution-partners/)
 
+
 {: .no-margin-top}
 [Talk to us about how to partner](mailto:distributedcommerce@ticketmaster.com)
 {% endcapture %}
 
 
 {% capture certified_header %}
-## Cerfified partners
+## Certified partners
 {% endcapture %}
 
 {% capture certified_logo %}
@@ -76,7 +77,7 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 [Get to know our Nexus partners](/partners/certified-partners/)
 
 {: .no-margin-top}
-[Join the Nexus program](/products-and-docs/under-development/)
+[Join the Nexus program](/partners/certified-partners/nexus/)
 {% endcapture %}
 
 

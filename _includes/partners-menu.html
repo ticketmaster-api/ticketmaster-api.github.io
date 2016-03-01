@@ -10,7 +10,7 @@
                 {% if page.categories[0] == "partners" and page.categories[1] == "certified" %}
                     <ul class="sections menu-highlight">
                         <li>
-                            <a href="/partners/certified-partners/nexus/" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" and page.categories[2] == "nexus" %}active{% endif %}">Nexus</a>
+                            <a href="/partners/certified-partners/nexus/" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" and page.categories[2] == "nexus" %}active{% endif %}">Join the Nexus program</a>
                         </li>
                         {% for partner in site.pages %}
                             {% if partner.available AND partner.categories[0] == "partner" AND partner.categories[1] == "certified" %}

@@ -1,5 +1,5 @@
 /*
- {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zztop","t":{"b":"t1","h":200,"w":150}}
+ {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zz top","t":{"n":"t1","b":true,"h":200,"w":150,"br":4}}
  {
  "ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", #ApiKey
  "kw":"zztop", #KeyWords
@@ -45,12 +45,18 @@ class TicketmasterWidget {
 
     this.config = this.loadConfig();
 
-    if(this.config.t.b !== null){
-      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.b + ".css" );
+    if(this.config.t.n !== null){
+      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.n + ".css" );
+    }
+
+    this.widgetRoot.classList.remove("border")
+    if(this.config.t.b){
+      this.widgetRoot.classList.add("border");
     }
 
     this.widgetRoot.style.height = `${this.config.t.h}px`;
     this.widgetRoot.style.width  = `${this.config.t.w}px`;
+    this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
     this.eventProcessed = 0;
@@ -95,10 +101,16 @@ class TicketmasterWidget {
   }
 
   clear(){
-    this.widgetRoot.innerHTML = "";
+    this.eventsRoot.innerHTML = "";
   }
 
   update() {
+
+    let oldTheme = {
+      keywods: this.config.kw,
+      theme: this.config.t.b
+    };
+
     this.config = this.loadConfig();
 
     /*if(this.config.t.b !== null){
@@ -107,12 +119,24 @@ class TicketmasterWidget {
 
     this.widgetRoot.style.height = `${this.config.t.h}px`;
     this.widgetRoot.style.width  = `${this.config.t.w}px`;
+    this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
 
-    var events = document.getElementsByClassName("event-wrapper");
-    for(event in events){
-      if(events[event].style !== undefined){
-        events[event].style.width = `${this.config.t.w}px`;
-        events[event].style.height = `${this.config.t.h}px`;
+    this.widgetRoot.classList.remove("border")
+    if(this.config.t.b ){
+      this.widgetRoot.classList.add("border");
+    }
+
+    if(oldTheme.keywods !== this.config.kw){
+      this.clear();
+      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
+    }
+    else{
+      var events = document.getElementsByClassName("event-wrapper");
+      for(event in events){
+        if(events[event].style !== undefined){
+          events[event].style.width = `${this.config.t.w}px`;
+          events[event].style.height = `${this.config.t.h}px`;
+        }
       }
     }
   }
