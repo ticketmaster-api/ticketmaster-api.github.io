@@ -59,6 +59,14 @@
       width: 70%;
     }
   }
+  .message-green {
+    margin: 0;
+    padding: 0;
+    color: $apple-green;
+    display: none;
+    font-weight: normal;
+    font-family: $font-bold-p;
+  }
 
 
 }

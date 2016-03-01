@@ -161,3 +161,98 @@ var $contactForm = $('.js_contact_form');
         $(id).slideDown(400).delay( delay ).slideUp(200);
     }
 </script>
+
+<!--google map -->
+<script>
+    $(document).ready( function(){
+
+        var map,
+            cities = {
+                phoenix : {
+                    position: {lat: 33.533482, lng: -112.107254},
+                    tooltip: "1375 N Scottsdale Rd, Scottsdale, AZ 85257, US"
+                },
+                losAngeles : {
+                    position: {lat: 34.052235, lng: -118.243683},
+                    tooltip: "7060 Hollywood Blvd, Los Angeles, California, 90028, US"
+                }
+            },
+            markers =[ cities.losAngeles, cities.phoenix ],
+            centerMap = {
+                lat: 33.520,
+                lng: -116.410
+            };
+        // Adds a marker to the map.
+        function addMarker(location, map) {
+            var name = document.getElementById('address-office').value;
+
+            console.log('**** ', location);
+
+            if(location === 'los angeles, ca'){
+                console.log('true ', location);
+                location = cities.losAngeles.position;
+            }
+            else {
+                console.log('else ', name);
+                location = cities.phoenix.position;
+            }
+            // Add the marker at the clicked location, and add the next-available label
+            // from the array of alphabetical characters.
+            var marker = new google.maps.Marker({
+                position: location,
+                label: name,
+                map: map
+            });
+            console.log('addMarker',name);
+        }
+
+        var onChangeHandler = function(val) {
+            console.log('onChangeHandler:', val);
+            addMarker(val);
+        };
+        document.getElementById('address-office').addEventListener('change', onChangeHandler);
+        $('#address-office').on('change', function(e){
+//            console.log( $(this).val() );
+            onChangeHandler($(this).val());
+        });
+
+        function setMarker(name, position){
+            console.log('selectedVal',document.getElementById('address-office').value);
+        }
+
+        (function initMap(elementId, elementHeight, center, zoom, markers) {
+            console.log('start initMap');
+            var element = document.getElementById(elementId);
+            map = new google.maps.Map(element, {
+                center: center,
+                zoom: zoom
+            });
+
+
+            // This event listener calls addMarker() when the map is clicked.
+            google.maps.event.addListener(map, 'click', function(event) {
+                addMarker(event.latLng, map);
+            });
+
+            if(markers.length>0) {
+                for (var i in markers) {
+                    addMarker(markers[i], map);
+                    /*
+                    new google.maps.Marker({
+                        position: {
+                            lat: markers[i].lat,
+                            lng: markers[i].lng
+                        },
+                        map: map
+                    });
+                    */
+                }
+            }
+
+
+            element.style.height = elementHeight+"px";
+
+        })('js_google_map' , 240 , centerMap, 6, markers);
+    });
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
