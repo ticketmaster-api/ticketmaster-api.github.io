@@ -49,7 +49,7 @@ class TicketmasterWidget {
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.n + ".css" );
     }
 
-    this.widgetRoot.classList.remove("border")
+    this.widgetRoot.classList.remove("border");
     if(this.config.t.b){
       this.widgetRoot.classList.add("border");
     }
@@ -119,7 +119,7 @@ class TicketmasterWidget {
     this.widgetRoot.style.width  = `${this.config.t.w}px`;
     this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
 
-    this.widgetRoot.classList.remove("border")
+    this.widgetRoot.classList.remove("border");
     if(this.config.t.b ){
       this.widgetRoot.classList.add("border");
     }
@@ -131,7 +131,7 @@ class TicketmasterWidget {
     else{
       var events = document.getElementsByClassName("event-wrapper");
       for(event in events){
-        if(events[event].style !== undefined){
+        if(events.hasOwnProperty(event) && events[event].style !== undefined){
           events[event].style.width = `${this.config.t.w}px`;
           events[event].style.height = `${this.config.t.h}px`;
         }
@@ -208,7 +208,7 @@ class TicketmasterWidget {
 
   getEventByID(id){
     for(let index in this.events){
-      if(this.events[index].id === id){
+      if(this.events.hasOwnProperty(index) && this.events[index].id === id){
         return this.events[index]
       }
     }
@@ -227,13 +227,13 @@ class TicketmasterWidget {
         return 0;
     });
 
-    var myimg;
-    images.forEach(function(element, index, array){
-      if(element.width >= width && element.height >= height && !myimg){
-        myimg = element.url;
+    var myImg = "";
+    images.forEach(function(element){
+      if(element.width >= width && element.height >= height && !myImg){
+        myImg = element.url;
       }
     });
-    return myimg;
+    return myImg;
   }
 
   parseEvents(eventsSet){
@@ -243,23 +243,25 @@ class TicketmasterWidget {
     eventsSet = eventsSet._embedded.events;
     var tmpEventSet = [];
     for(var key in eventsSet){
-      let currentEvent = {};
-      currentEvent.id = eventsSet[key].id;
-      currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
-      currentEvent.name = eventsSet[key].name;
-      currentEvent.date = {
-        day: eventsSet[key].dates.start.localDate,
-        time: eventsSet[key].dates.start.localTime
-      };
+      if(eventsSet.hasOwnProperty(key)){
+        let currentEvent = {};
+        currentEvent.id = eventsSet[key].id;
+        currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
+        currentEvent.name = eventsSet[key].name;
+        currentEvent.date = {
+          day: eventsSet[key].dates.start.localDate,
+          time: eventsSet[key].dates.start.localTime
+        };
 
-      currentEvent.address = eventsSet[key]._embedded.venue[0].address;
+        currentEvent.address = eventsSet[key]._embedded.venue[0].address;
 
-      let eventCategories = eventsSet[key]._embedded.categories;
-      currentEvent.categories = Object.keys(eventCategories).map(function(category){
-        return eventCategories[category].name
-      });
+        let eventCategories = eventsSet[key]._embedded.categories;
+        currentEvent.categories = Object.keys(eventCategories).map(function(category){
+          return eventCategories[category].name
+        });
 
-      tmpEventSet.push(currentEvent);
+        tmpEventSet.push(currentEvent);
+      }
     }
     return tmpEventSet;
   }

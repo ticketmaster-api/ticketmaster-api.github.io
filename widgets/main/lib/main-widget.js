@@ -168,7 +168,7 @@ var TicketmasterWidget = function () {
       } else {
         var events = document.getElementsByClassName("event-wrapper");
         for (event in events) {
-          if (events[event].style !== undefined) {
+          if (events.hasOwnProperty(event) && events[event].style !== undefined) {
             events[event].style.width = this.config.t.w + "px";
             events[event].style.height = this.config.t.h + "px";
           }
@@ -246,7 +246,7 @@ var TicketmasterWidget = function () {
     key: "getEventByID",
     value: function getEventByID(id) {
       for (var index in this.events) {
-        if (this.events[index].id === id) {
+        if (this.events.hasOwnProperty(index) && this.events[index].id === id) {
           return this.events[index];
         }
       }
@@ -261,13 +261,13 @@ var TicketmasterWidget = function () {
         if (a.width < b.width) return -1;else if (a.width > b.width) return 1;else return 0;
       });
 
-      var myimg;
-      images.forEach(function (element, index, array) {
-        if (element.width >= width && element.height >= height && !myimg) {
-          myimg = element.url;
+      var myImg = "";
+      images.forEach(function (element) {
+        if (element.width >= width && element.height >= height && !myImg) {
+          myImg = element.url;
         }
       });
-      return myimg;
+      return myImg;
     }
   }, {
     key: "parseEvents",
@@ -277,29 +277,28 @@ var TicketmasterWidget = function () {
       }
       eventsSet = eventsSet._embedded.events;
       var tmpEventSet = [];
-
-      var _loop = function _loop() {
-        var currentEvent = {};
-        currentEvent.id = eventsSet[key].id;
-        currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
-        currentEvent.name = eventsSet[key].name;
-        currentEvent.date = {
-          day: eventsSet[key].dates.start.localDate,
-          time: eventsSet[key].dates.start.localTime
-        };
-
-        currentEvent.address = eventsSet[key]._embedded.venue[0].address;
-
-        var eventCategories = eventsSet[key]._embedded.categories;
-        currentEvent.categories = Object.keys(eventCategories).map(function (category) {
-          return eventCategories[category].name;
-        });
-
-        tmpEventSet.push(currentEvent);
-      };
-
       for (var key in eventsSet) {
-        _loop();
+        if (eventsSet.hasOwnProperty(key)) {
+          (function () {
+            var currentEvent = {};
+            currentEvent.id = eventsSet[key].id;
+            currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
+            currentEvent.name = eventsSet[key].name;
+            currentEvent.date = {
+              day: eventsSet[key].dates.start.localDate,
+              time: eventsSet[key].dates.start.localTime
+            };
+
+            currentEvent.address = eventsSet[key]._embedded.venue[0].address;
+
+            var eventCategories = eventsSet[key]._embedded.categories;
+            currentEvent.categories = Object.keys(eventCategories).map(function (category) {
+              return eventCategories[category].name;
+            });
+
+            tmpEventSet.push(currentEvent);
+          })();
+        }
       }
       return tmpEventSet;
     }
