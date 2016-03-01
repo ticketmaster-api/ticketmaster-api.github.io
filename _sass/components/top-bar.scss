@@ -396,7 +396,7 @@ nav{
   overflow: hidden;
   outline: none;
   @include tm-transition();
-  top: 82px;
+  top: 79px;
   max-height: 0;
   &.expanded {
     max-height: 400px !important;

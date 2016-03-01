@@ -4,10 +4,10 @@ layout: default
 
 <div class="top-bar{% if page.category != "home" %} bg-header blogs slice-bottom-left{% endif %}">
 {% include partials/common-header.html %}
-{% include partials/expanded-menu-header.html %}
 {{content}}
 </div>
 
+{% include partials/expanded-menu-header.html %}
 {% include partials/common-header-small.html %}
 
 <div id="footer-blogs" class="xs-center{% if page.category == "under_development" or page.category == "documentation" or page.categories[0] == "documentation" %} slice-top-left{% else %} slice-top-right{% endif %}">
