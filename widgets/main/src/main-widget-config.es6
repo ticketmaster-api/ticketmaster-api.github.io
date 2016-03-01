@@ -1,3 +1,6 @@
+var $widgetModal = $('#js_widget_modal'),
+    $widgetModalNoCode = $('#js_widget_modal_no_code');
+
 (function(){
   var config =  {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zztop","t":{"b":"t1","h":540,"w":360}};
   $(".main-widget-config-form").on("change",function(){
@@ -17,8 +20,8 @@
   var $widgetModal = $('#js_widget_modal'),
       $widgetModalNoCode = $('#js_widget_modal_no_code');
   $('#js_get_widget_code').on('click', function(){
+    document.getElementById("config-hash").textContent = widget.encConfig(JSON.stringify(widget.config));
     $widgetModal.modal();
-    $widgetModalNoCode.modal();
   });
 
   $('#js_widget_modal__close').on('click', function(){

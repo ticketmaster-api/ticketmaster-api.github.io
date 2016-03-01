@@ -50,14 +50,11 @@ layout: default
           <div class="col-lg-12">
             <h5>Js</h5>
             <code class="language-js widget_dialog__code" data-lang="js">
-              var $widgetModal = $('#js_widget_modal');
-              $('#js_get_widget_code').on('click', function(){
-              $widgetModal.modal();
-              });
+              &lt;script src="http://developer.ticketmaster.com/widgets/main/lib/main-widget.js"&gt;&lt;/script&gt;
             </code>
             <h5>HTML</h5>
             <code class="language-html widget_dialog__code" data-lang="html">
-              &lt;div class="test"&gt;test&lt;/div&gt;
+              &lt;div id="ticketmaster-config" data-config="<span id="config-hash">eyJhayI6IktSVW5qcTh5OFNnNWVEcFA5MGROek9LNzBkNFdpVXN0Iiwia3ciOiJ6eiB0b3AiLCJ0Ijp7Im4iOiJ0MSIsImIiOmZhbHNlLCJoIjo1NTAsInciOjM1MCwiYnIiOjR9fQ</span>"&gt;&lt;/div&gt;
             </code>
           </div>
         </div>
@@ -79,8 +76,8 @@ layout: default
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body">
-        <h3 class="modal-title col-lg-12 text-center">Phasellus blandit leo ut</h3>
-        <p class="text-center">Donec id justo.</p>
+        <h3 class="modal-title col-lg-12 text-center">Warning</h3>
+        <p class="text-center">There are no such events</p>
         <div class="modal-footer">
           <button id="js_widget_modal_no_code__close" type="button" class="btn btn-submit text-center">Ok</button>
         </div>

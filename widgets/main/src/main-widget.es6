@@ -238,6 +238,9 @@ class TicketmasterWidget {
 
   parseEvents(eventsSet){
     if(!eventsSet._embedded){
+      if(typeof($widgetModalNoCode) !== "undefined"){
+        $widgetModalNoCode.modal();
+      }
       return [];
     }
     eventsSet = eventsSet._embedded.events;
