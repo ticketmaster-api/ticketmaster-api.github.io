@@ -36,6 +36,10 @@
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 #ticketmaster-config.border{
