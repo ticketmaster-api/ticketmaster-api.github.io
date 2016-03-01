@@ -14,13 +14,19 @@
   });
 
 
-  var $widgetModal = $('#js_widget_modal');
+  var $widgetModal = $('#js_widget_modal'),
+      $widgetModalNoCode = $('#js_widget_modal_no_code');
   $('#js_get_widget_code').on('click', function(){
     $widgetModal.modal();
+    $widgetModalNoCode.modal();
   });
 
   $('#js_widget_modal__close').on('click', function(){
     $widgetModal.modal('hide');
+  });
+
+  $('#js_widget_modal_no_code__close').on('click', function(){
+    $widgetModalNoCode.modal('hide');
   });
 
 })();

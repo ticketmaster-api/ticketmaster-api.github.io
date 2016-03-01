@@ -61,4 +61,35 @@
       }
     }
   }
+
+  &-sm {
+   .modal-dialog {
+     .modal-content {
+       .modal-title {
+         margin-top: 38px;
+         margin-bottom: 16px;
+       }
+     }
+   }
+
+    .modal-body {
+      .modal-footer {
+        margin-bottom: 10px;
+        .btn-submit {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+
+
+    @media (min-width: 768px){
+      .modal-dialog{
+        width: 420px;
+        .modal-content {
+            margin-top: 30%;
+        }
+      }
+    }
+  }
 }
