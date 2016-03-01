@@ -237,6 +237,9 @@ class TicketmasterWidget {
   }
 
   parseEvents(eventsSet){
+    if(!eventsSet._embedded){
+      return [];
+    }
     eventsSet = eventsSet._embedded.events;
     var tmpEventSet = [];
     for(var key in eventsSet){

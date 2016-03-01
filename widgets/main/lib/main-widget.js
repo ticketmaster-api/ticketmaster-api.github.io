@@ -272,6 +272,9 @@ var TicketmasterWidget = function () {
   }, {
     key: "parseEvents",
     value: function parseEvents(eventsSet) {
+      if (!eventsSet._embedded) {
+        return [];
+      }
       eventsSet = eventsSet._embedded.events;
       var tmpEventSet = [];
 
