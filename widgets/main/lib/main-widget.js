@@ -282,6 +282,9 @@ var TicketmasterWidget = function () {
           day: eventsSet[key].dates.start.localDate,
           time: eventsSet[key].dates.start.localTime
         };
+
+        currentEvent.address = eventsSet[key]._embedded.venue[0].address;
+
         var eventCategories = eventsSet[key]._embedded.categories;
         currentEvent.categories = Object.keys(eventCategories).map(function (category) {
           return eventCategories[category].name;
@@ -347,11 +350,54 @@ var TicketmasterWidget = function () {
       dateWraper.appendChild(date);
       dateWraper.appendChild(time);
 
+      var addressWrapper = document.createElement("div");
+      addressWrapper.classList.add("address-wrapper");
+
+      if (itemConfig.address.line1) {
+        var addressOneText = document.createTextNode(itemConfig.address.line1),
+            addressOne = document.createElement("div");
+        addressOne.classList.add("event-address");
+        addressOne.appendChild(addressOneText);
+        addressWrapper.appendChild(addressOne);
+      }
+
+      if (itemConfig.address.line2) {
+        var addressTwoText = document.createTextNode(itemConfig.address.line2),
+            addressTwo = document.createElement("div");
+        addressTwo.classList.add("event-address");
+        addressTwo.appendChild(addressTwoText);
+        addressWrapper.appendChild(addressTwo);
+      }
+
+      var addressWrapper = document.createElement("div");
+      addressWrapper.classList.add("address-wrapper");
+
+      if (itemConfig.address.line1) {
+        var addressOneText = document.createTextNode(itemConfig.address.line1),
+            addressOne = document.createElement("div");
+        addressOne.classList.add("event-address");
+        addressOne.appendChild(addressOneText);
+        addressWrapper.appendChild(addressOne);
+      }
+
+      var categoriesWrapper = document.createElement("div");
+      categoriesWrapper.classList.add("category-wrapper");
+
+      itemConfig.categories.forEach(function (element) {
+        var categoryText = document.createTextNode(element),
+            category = document.createElement("span");
+        category.classList.add("event-category");
+        category.appendChild(categoryText);
+        categoriesWrapper.appendChild(category);
+      });
+
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
 
       medWrapper.appendChild(name);
       medWrapper.appendChild(dateWraper);
+      medWrapper.appendChild(addressWrapper);
+      medWrapper.appendChild(categoriesWrapper);
 
       event.appendChild(medWrapper);
       return event;
