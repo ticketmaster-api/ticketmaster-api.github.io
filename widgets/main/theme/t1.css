@@ -78,7 +78,7 @@
 
 #ticketmaster-config .event-wrapper:before {
     content: '';
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -105,6 +105,15 @@
 #ticketmaster-config .address-wrapper{
     font-family: "TMSans-Light";
     margin-bottom: 42px;
+}
+
+#ticketmaster-config .category-wrapper{
+    font-family: "TMSans-Bold";
+}
+
+#ticketmaster-config .address-wrapper,
+#ticketmaster-config .category-wrapper{
+    color: #bebfc5;
 }
 
 #ticketmaster-config .event-date:before,
