@@ -1,3 +1,32 @@
+/* FONTS */
+/*TMSans*/
+@font-face {
+    font-family: "TMSans-Regular";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Light";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Italic";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Bold";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+
+
+
 #ticketmaster-config{
     position: relative;
     height: 200px;
@@ -6,6 +35,7 @@
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
+    font-family: 'TMSans-Regular';
 }
 
 #ticketmaster-config.border{
@@ -59,26 +89,32 @@
     box-sizing: border-box;
 }
 
-#ticketmaster-config .event-logo {
-    position: absolute;
-    right: 25px;
-    bottom: 23px;
-    width: 127px;
-    height: 17px;
-    background: url("http://developer.ticketmaster.com/assets/img/footer/ticketmaster-logo-white.svg") no-repeat;
-}
-
 #ticketmaster-config .event-name{
     text-transform: uppercase;
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 25px;
+    font-size: 24px;
+    font-family: "TMSans-Bold";
+    margin-bottom: 24px;
 
 }
 
 #ticketmaster-config .event-date-wraper{
-    font-weight: bold;
-    margin-bottom: 15px;
+    font-family: "TMSans-Bold";
+    margin-bottom: 22px;
+}
+
+#ticketmaster-config .address-wrapper{
+    font-family: "TMSans-Light";
+    margin-bottom: 42px;
+}
+
+#ticketmaster-config .event-date:before,
+#ticketmaster-config .event-category:before{
+    content: ', ';
+}
+
+#ticketmaster-config .event-date:first-child:before,
+#ticketmaster-config .event-category:first-child:before{
+    content: '';
 }
 
 #ticketmaster-config .legal-notice{
@@ -86,4 +122,13 @@
     left: 28px;
     bottom: 21px;
     color: #019cde;
+}
+
+#ticketmaster-config .event-logo {
+    position: absolute;
+    right: 25px;
+    bottom: 23px;
+    width: 127px;
+    height: 17px;
+    background: url("http://developer.ticketmaster.com/assets/img/footer/ticketmaster-logo-white.svg") no-repeat;
 }

@@ -337,12 +337,12 @@ var TicketmasterWidget = function () {
       name.appendChild(nameContent);
 
       var dateContent = document.createTextNode(itemConfig.date.day),
-          date = document.createElement("div");
+          date = document.createElement("span");
       date.classList.add("event-date");
       date.appendChild(dateContent);
 
       var timeContent = document.createTextNode(itemConfig.date.time),
-          time = document.createElement("div");
+          time = document.createElement("span");
       time.classList.add("event-date");
       time.appendChild(timeContent);
 
@@ -369,17 +369,6 @@ var TicketmasterWidget = function () {
         addressTwo.classList.add("event-address");
         addressTwo.appendChild(addressTwoText);
         addressWrapper.appendChild(addressTwo);
-      }
-
-      var addressWrapper = document.createElement("div");
-      addressWrapper.classList.add("address-wrapper");
-
-      if (itemConfig.address.line1) {
-        var addressOneText = document.createTextNode(itemConfig.address.line1),
-            addressOne = document.createElement("div");
-        addressOne.classList.add("event-address");
-        addressOne.appendChild(addressOneText);
-        addressWrapper.appendChild(addressOne);
       }
 
       var categoriesWrapper = document.createElement("div");
