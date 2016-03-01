@@ -1,6 +1,5 @@
 ---
 layout: base-content
-logos_url: "/assets/img/partners/logos/"
 categories:
 - support
 - contact-us
