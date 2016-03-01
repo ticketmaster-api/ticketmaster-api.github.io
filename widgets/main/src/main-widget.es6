@@ -79,25 +79,21 @@ class TicketmasterWidget {
   }
 
   initSlider(){
-    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
     if(this.sliderInterval) clearInterval(this.sliderInterval);
-
-    this.sliderTimeout = setTimeout(()=> {
-      var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
-      this.eventsRoot.style.marginLeft = '0%';
-      this.eventsRoot.style.width = `${eventCount * 100}%`;
-      if(eventCount > 1){
-        var currentEvent = 1;
-        this.sliderInterval = setInterval(()=> {
-          this.eventsRoot.style.marginLeft = `-${currentEvent * 100}%`;
-          if(eventCount - 1 > currentEvent){
-            currentEvent ++;
-          }else{
-            currentEvent = 0;
-          }
-        }, this.sliderSpeed);
-      }
-    }, 1);
+    var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+    this.eventsRoot.style.marginLeft = '0%';
+    this.eventsRoot.style.width = `${eventCount * 100}%`;
+    if(eventCount > 1){
+      var currentEvent = 1;
+      this.sliderInterval = setInterval(()=> {
+        this.eventsRoot.style.marginLeft = `-${currentEvent * 100}%`;
+        if(eventCount - 1 > currentEvent){
+          currentEvent ++;
+        }else{
+          currentEvent = 0;
+        }
+      }, this.sliderSpeed);
+    }
   }
 
   clear(){

@@ -115,25 +115,21 @@ var TicketmasterWidget = function () {
     value: function initSlider() {
       var _this = this;
 
-      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
       if (this.sliderInterval) clearInterval(this.sliderInterval);
-
-      this.sliderTimeout = setTimeout(function () {
-        var eventCount = _this.eventsRoot.getElementsByClassName("event-wrapper").length;
-        _this.eventsRoot.style.marginLeft = '0%';
-        _this.eventsRoot.style.width = eventCount * 100 + "%";
-        if (eventCount > 1) {
-          var currentEvent = 1;
-          _this.sliderInterval = setInterval(function () {
-            _this.eventsRoot.style.marginLeft = "-" + currentEvent * 100 + "%";
-            if (eventCount - 1 > currentEvent) {
-              currentEvent++;
-            } else {
-              currentEvent = 0;
-            }
-          }, _this.sliderSpeed);
-        }
-      }, 1);
+      var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+      this.eventsRoot.style.marginLeft = '0%';
+      this.eventsRoot.style.width = eventCount * 100 + "%";
+      if (eventCount > 1) {
+        var currentEvent = 1;
+        this.sliderInterval = setInterval(function () {
+          _this.eventsRoot.style.marginLeft = "-" + currentEvent * 100 + "%";
+          if (eventCount - 1 > currentEvent) {
+            currentEvent++;
+          } else {
+            currentEvent = 0;
+          }
+        }, this.sliderSpeed);
+      }
     }
   }, {
     key: "clear",
