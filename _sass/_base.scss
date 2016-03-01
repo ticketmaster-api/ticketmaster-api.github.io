@@ -48,6 +48,11 @@ ul, ol, dl, figure,
     margin-bottom: $base-margin;
 }
 
+
+.base-margin{
+  margin: $base-margin 0;
+}
+
 .base-margin-top {
   margin-top: $base-margin;
 }
@@ -382,6 +387,102 @@ label:hover:before {
 /*Custom checker END*/
 
 
+/*Rage*/
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  border: 0;
+  padding: 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: $gray-50;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 15px;
+  border-radius: 4px;
+  background: $gray-70;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: $gray-50;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #b7c9d3;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 15px;
+  border-radius: 4px;
+  background: $gray-70;
+  cursor: pointer;
+}
+input[type=range]::-moz-focus-outer {
+  border: 0;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 39px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #b7c9d3;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #b7c9d3;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 15px;
+  border-radius: 4px;
+  background: $gray-70;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #b7c9d3;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #b7c9d3;
+}
+/*Rage END*/
 
 // Fixed Feedback button
 @media (min-width: 1199px){
@@ -666,5 +767,22 @@ label:hover:before {
 }
 
 .clear-margins{
-  margin: 0; 
+  margin: 0;
 }
+
+
+/*Buttons*/
+.button-white-gray-border {
+  border: 2px solid $gray-70;
+  font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+  color: $gray-70;
+  padding: 12px 34px 9px;
+  background-color: white;
+  &:hover{
+    color: $p1a;
+    border-color: $p1a;
+  }
+}
+
+
+/*Buttons END*/

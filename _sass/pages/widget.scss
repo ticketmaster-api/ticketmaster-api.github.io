@@ -1,0 +1,30 @@
+.tab-buttons {
+  margin-bottom: 30px;
+  button {
+    &.active{
+      color: #019cde;
+      border-bottom: 2px solid #019cde;
+    }
+    &[disabled] {
+      opacity: .2;
+    }
+    border: 0;
+    border-bottom: 2px solid #b7c9d3;
+    background-color: #FFF;
+    padding: 5px 15px;
+    margin-right: 2px;
+  }
+}
+
+.config-block{
+  border-right: 1px solid #b7c9d3;
+  margin: 0 -15px;
+  .button-blue {
+    margin-top: 0;
+  }
+  margin-bottom: 60px;
+}
+
+.widget-container{
+  margin-left: 200px;
+}
