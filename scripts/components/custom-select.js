@@ -31,10 +31,11 @@ jQuery.fn.customSelect = function(options ) {
             $custom_select.removeClass(openedCssClass);
         }
 
-        function set() {
+        function set(isInit) {
             var $self = $(this);
             $placeholder.val($self.text());
             $select.val($self.data('value'));
+            if(!isInit) $select.trigger('change');
             $options.removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
         }
@@ -49,11 +50,13 @@ jQuery.fn.customSelect = function(options ) {
         }
 
         function reset() {
-            set.call($options.filter(':first'));
+            set.call($options.filter(':first'), true);
         }
 
         // Events
-        $options.on('click', set);
+        $options.on('click', function(){
+            set.call(this, false);
+        });
         $placeholder.on('blur', blur);
         $custom_select.on('click', toggle);
         $feedbackModal.on('hide.bs.modal', reset);
