@@ -115,12 +115,16 @@ var TicketmasterWidget = function () {
     value: function initSlider() {
       var _this = this;
 
-      setTimeout(function () {
+      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      if (this.sliderInterval) clearInterval(this.sliderInterval);
+
+      this.sliderTimeout = setTimeout(function () {
         var eventCount = _this.eventsRoot.getElementsByClassName("event-wrapper").length;
+        _this.eventsRoot.style.marginLeft = '0%';
+        _this.eventsRoot.style.width = eventCount * 100 + "%";
         if (eventCount > 1) {
-          _this.eventsRoot.style.width = eventCount * 100 + "%";
           var currentEvent = 1;
-          setInterval(function () {
+          _this.sliderInterval = setInterval(function () {
             _this.eventsRoot.style.marginLeft = "-" + currentEvent * 100 + "%";
             if (eventCount - 1 > currentEvent) {
               currentEvent++;
@@ -146,6 +150,8 @@ var TicketmasterWidget = function () {
       };
 
       this.config = this.loadConfig();
+
+      this.eventProcessed = 0;
 
       /*if(this.config.t.b !== null){
         this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.b + ".css" );

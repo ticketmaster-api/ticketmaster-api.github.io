@@ -79,13 +79,17 @@ class TicketmasterWidget {
   }
 
   initSlider(){
-    setTimeout(()=> {
+    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
+    if(this.sliderInterval) clearInterval(this.sliderInterval);
+
+    this.sliderTimeout = setTimeout(()=> {
       var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+      this.eventsRoot.style.marginLeft = '0%';
+      this.eventsRoot.style.width = `${eventCount * 100}%`;
       if(eventCount > 1){
-        this.eventsRoot.style.width  = `${eventCount * 100}%`;
         var currentEvent = 1;
-        setInterval(()=> {
-          this.eventsRoot.style.marginLeft   = `-${currentEvent * 100}%`;
+        this.sliderInterval = setInterval(()=> {
+          this.eventsRoot.style.marginLeft = `-${currentEvent * 100}%`;
           if(eventCount - 1 > currentEvent){
             currentEvent ++;
           }else{
@@ -108,6 +112,8 @@ class TicketmasterWidget {
     };
 
     this.config = this.loadConfig();
+
+    this.eventProcessed = 0;
 
     /*if(this.config.t.b !== null){
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.b + ".css" );
