@@ -5,9 +5,34 @@
   }
 }
 
+#instructions-header {
+  width: 40%;
+  cursor: pointer;
+  h3 {
+    margin-bottom: 0;
+  }
+  .instructions-chevron {
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 10px;
+    background: url('../../assets/controls/ic-shevron-down.svg') no-repeat;
+    margin: 12px 12px 0 4px;
+    @include tm-transition();
+    @media #{$max-768} {
+      margin-top: 6px;
+    }
+  }
+  &.expanded {
+    .instructions-chevron {
+      @include rotate(180deg);
+    }
+  }
+}
+
 #console-instructions{
   ol{
-    margin-left: 20px;
+    margin-left: 47px;
     li{
       list-style: inherit;
       padding-left: 0.5em;
@@ -17,19 +42,17 @@
 
 #get-key-callout{
   position: absolute;
-  top: 65px;
+  top: 110px;
   right: 0;
-  text-align: center;
-  border: 2px solid $border-color;
-  padding: 5px 30px 30px;
   @media #{$max-1200}{
     display: none;
-  }
-  h3{
-    color: $blue;
   }
   .tm-btn{
     color: $n3;
     border: 2px solid $n3;
+    &:hover {
+      color: $p1;
+      border-color: $p1;
+    }
   }
 }
