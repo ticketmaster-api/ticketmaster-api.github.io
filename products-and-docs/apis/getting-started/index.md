@@ -35,7 +35,7 @@ be able to access the following datasets:
 |Cart               |A cart can hold any transactable item, like tickets, merchandize, parking, etc.                         |
 
 
-These datasets are distributed across four distinct APIs: Discovery API, Commerce API, Accounts API and Orders API.
+These datasets are distributed across five distinct APIs: Discovery API, Commerce API, Accounts API, Orders API and Publish API.
 
 {: .body .double-margin-bottom}
 This overview covers the core concepts that you need to know before you could 
@@ -254,7 +254,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     </tr>
     <tr>
       <td style="text-align: center">
-        <a href="/products-and-docs/apis/commerce/">
+        <a href="/products-and-docs/apis/commerce/">deals
           <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Commerce API">
         </a>
         <h4 style="margin-top:11px;text-">Commerce API</h4>
@@ -391,6 +391,19 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
+    <tr>
+       <td style="text-align: center" rowspan="2">
+         <a href="/products-and-docs/apis/publish/">
+           <img src="/assets/img/getting-started/ic-cart.svg" alt="Icon1">
+         </a>
+         <h4 style="margin-top:11px;text-">Publish API</h4>
+       </td>
+       <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish event</a></td>
+       <td style="text-align: center;border-right: 0px;"></td>
+       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+     </tr>
     
   </tbody>
 </table>
