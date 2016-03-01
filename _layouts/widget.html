@@ -39,12 +39,28 @@ layout: default
 
     <!-- Modal content-->
     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <div class="row">
+          <h3 class="modal-title col-lg-12">Title</h3>
+        </div>
+      </div>
       <div class="modal-body">
-        <h3 class="modal-title col-lg-12 text-center">Title</h3>
-        <h5>Sub title</h5>
-        <p>In turpis. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci.</p>
-        <h5>Sub title</h5>
-        <p>In turpis. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci.</p>
+        <div class="row">
+          <div class="col-lg-12">
+            <h5>Js</h5>
+            <code class="language-js" data-lang="js">
+              var $widgetModal = $('#js_widget_modal');
+              $('#js_get_widget_code').on('click', function(){
+              $widgetModal.modal();
+              });
+            </code>
+            <h5>HTML</h5>
+            <code class="language-html" data-lang="html">
+              &lt;div class="test"&gt;test&lt;/div&gt;
+            </code>
+          </div>
+        </div>
         <div class="modal-footer">
           <button id="js_widget_modal__close" type="button" class="btn btn-submit text-center">Ok</button>
         </div>
