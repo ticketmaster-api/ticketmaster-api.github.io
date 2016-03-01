@@ -13,7 +13,7 @@ category: partners
     <div class="col-lg-3 menu" tabindex="-1">
         {% include partners-menu.html %}
     </div>
-    <div class="col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == "partners" && page.categories[1] == "distribution" %} distribution{% endif %}">
+    <div class="col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == "partners" and page.categories[1] == "distribution" %} distribution{% endif %}">
         {{ content }}
     </div>
 </div>
