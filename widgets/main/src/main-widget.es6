@@ -31,7 +31,7 @@ class TicketmasterWidget {
   set events(responce){ this.eventsList = this.parseEvents(responce);}
   get events(){ return this.eventsList;}
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v1/events.json"; }
-  get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
