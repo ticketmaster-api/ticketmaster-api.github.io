@@ -1,7 +1,7 @@
 ---
 layout: events
 category: events
-title: Events
+title: Events | The Ticketmaster Developer Network
 excerpt: Ticketmaster upcoming and past events
 keywords: events
 ---
