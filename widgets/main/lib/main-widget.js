@@ -53,7 +53,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://localhost:4000/widgets/main/theme/";
+      return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
     }
   }, {
     key: "logoUrl",
@@ -282,25 +282,27 @@ var TicketmasterWidget = function () {
       var tmpEventSet = [];
       for (var key in eventsSet) {
         if (eventsSet.hasOwnProperty(key)) {
-          (function () {
-            var currentEvent = {};
-            currentEvent.id = eventsSet[key].id;
-            currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
-            currentEvent.name = eventsSet[key].name;
-            currentEvent.date = {
-              day: eventsSet[key].dates.start.localDate,
-              time: eventsSet[key].dates.start.localTime
-            };
+          var currentEvent = {};
+          currentEvent.id = eventsSet[key].id;
+          currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
+          currentEvent.name = eventsSet[key].name;
+          currentEvent.date = {
+            day: eventsSet[key].dates.start.localDate,
+            time: eventsSet[key].dates.start.localTime
+          };
 
-            currentEvent.address = eventsSet[key]._embedded.venue[0].address;
+          currentEvent.address = eventsSet[key]._embedded.venue[0].address;
 
-            var eventCategories = eventsSet[key]._embedded.categories;
-            currentEvent.categories = Object.keys(eventCategories).map(function (category) {
-              return eventCategories[category].name;
-            });
-
-            tmpEventSet.push(currentEvent);
-          })();
+          currentEvent.categories = [];
+          if (eventsSet[key]._embedded.hasOwnProperty('categories')) {
+            (function () {
+              var eventCategories = eventsSet[key]._embedded.categories;
+              currentEvent.categories = Object.keys(eventCategories).map(function (category) {
+                return eventCategories[category].name;
+              });
+            })();
+          }
+          tmpEventSet.push(currentEvent);
         }
       }
       return tmpEventSet;
