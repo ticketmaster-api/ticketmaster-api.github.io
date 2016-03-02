@@ -4,8 +4,8 @@ categories:
 - support
 - contact-us
 title: Contact us
-excerpt: Contact us excerpt.
-keywords: Contact us keywords.
+excerpt: Contact us
+keywords: Contact us
 ---
 
 {: .col-xs-12}
@@ -76,7 +76,7 @@ Attn: Trademark Department, Legal 
     </div>    
     <div class="col-sm-6">
         <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="" required tabindex="2" required>
+        <input type="email" id="email" name="email" placeholder="" required pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"  tabindex="2" required>
     </div>    
     <div class="col-sm-12">
         <label for="subject">Subject</label>

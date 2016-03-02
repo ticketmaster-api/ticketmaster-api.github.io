@@ -47,7 +47,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="col-sm-6">
         <label for="email">Email address <span class="label-required">(required)</span></label>
-        <input type="email" id="email" name="email" placeholder="" required tabindex="3">
+        <input type="email" id="email" name="email" placeholder="" required pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" tabindex="3">
     </div>
     <div class="col-sm-6">
         <label for="phone">Contact number</label>
