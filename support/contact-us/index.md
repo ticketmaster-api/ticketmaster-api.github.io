@@ -71,12 +71,12 @@ Attn: Trademark Department, Legal 
 <div class="col-xs-12 col-sm-8 contact-form-wrapper">
 <form accept-charset="UTF-8" action="#" method="POST" class="js_contact_form">    
     <div class="col-sm-6">
-        <label for="name">Your name</label>
+        <label for="first-name">Your name</label>
         <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" autofocus tabindex="1" required>
     </div>    
     <div class="col-sm-6">
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="" required pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"  tabindex="2" required>
+        <label for="email-contact">Email address</label>        
+        <input type="email" id="email-contact" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" tabindex="2">
     </div>    
     <div class="col-sm-12">
         <label for="subject">Subject</label>
@@ -99,7 +99,7 @@ Attn: Trademark Department, Legal 
        
     <div class="col-sm-12">
         <label for="descriptions">Descriptions</label>
-        <textarea name="descriptions" id="company-detail-text" tabindex="3" required></textarea>
+        <textarea name="descriptions" id="message-detail-text" tabindex="3" required></textarea>
     </div>
     <div class="col-sm-12">
         <p id="message-success" class="message-green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
