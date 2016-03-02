@@ -15,7 +15,7 @@ place:
 
 city: "Austin, TX"
 
-rsvp: "http://universe.com/tmdevjam-austin"
+rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-austin-tx-tickets-austin-5GZP0R"
 
 tags: 
   - devjam
