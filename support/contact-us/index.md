@@ -76,7 +76,7 @@ Attn: Trademark Department, Legal 
     </div>    
     <div class="col-sm-6">
         <label for="email-contact">Email address</label>        
-        <input type="email" id="email-contact" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" tabindex="2">
+        <input type="email" id="email-contact" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" title="Use the following format '-@-.--' " tabindex="2">
     </div>    
     <div class="col-sm-12">
         <label for="subject">Subject</label>
