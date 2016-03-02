@@ -129,13 +129,16 @@
                     $(this).addClass('expanded');
                     self.expandSections.hide();
                     self.expandMenuBar.find('#expand-' + $(this).attr('data-expands-to')).show();
-                    self.expandMenuBar.addClass('expanded').focus();
+                    self.expandMenuBar.addClass('expanded');
                 }).on('mouseleave', function(){
                     $(this).removeClass('expanded');
+                    self.expandMenuBar.removeClass('expanded');
                 });
 
-                self.expandMenuBar.on('blur', function(){
+                self.expandMenuBar.on('mouseleave', function(){
                     $(this).removeClass('expanded');
+                }).on('mouseenter', function(){
+                    $(this).addClass('expanded');
                 });
 
             }
