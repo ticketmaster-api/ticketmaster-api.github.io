@@ -258,11 +258,13 @@ class TicketmasterWidget {
 
         currentEvent.address = eventsSet[key]._embedded.venue[0].address;
 
-        let eventCategories = eventsSet[key]._embedded.categories;
-        currentEvent.categories = Object.keys(eventCategories).map(function(category){
-          return eventCategories[category].name
-        });
-
+        currentEvent.categories = [];
+        if(eventsSet[key]._embedded.hasOwnProperty('categories')){
+          let eventCategories = eventsSet[key]._embedded.categories;
+          currentEvent.categories = Object.keys(eventCategories).map(function(category){
+            return eventCategories[category].name
+          });
+        }
         tmpEventSet.push(currentEvent);
       }
     }
