@@ -95,6 +95,10 @@
   }
   @media #{$max-768} {
     background-position: right 60% center;
+    img {
+      display: block;
+      margin: 0 auto 10px;
+    }
   }
   a {
     color: $n2-grey-color;
