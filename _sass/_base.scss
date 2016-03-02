@@ -667,7 +667,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 @mixin inline-list($top){
   position: relative;
-  display: inline;
+  display: inline-block;
   &:not(:last-child){
     margin-right: 15px;
     &:after{
