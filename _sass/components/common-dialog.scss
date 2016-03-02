@@ -6,6 +6,11 @@
     border-color: transparent;
     .modal-header {
       border: none;
+      padding-top: 40px;
+      .modal-title {
+        color: $n1;
+      }
+
       .close {
         position: absolute;
         top: 14px;
