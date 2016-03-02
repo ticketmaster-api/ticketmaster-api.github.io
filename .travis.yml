@@ -21,7 +21,7 @@ before_script:
   - sleep 20 # give xvfb some time to start
 
 script:
-  - ./node_modules/karma/bin/karma start karma.conf.js
+#  - ./node_modules/karma/bin/karma start karma.conf.js
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
 # - jekyll serve &
 # - sleep 20 # give jekyll some time to start
@@ -47,13 +47,12 @@ notifications:
   email: false
 
 before_install:
-  - ls ./
   - rm ./_site/* -rf #remove directory _site
   - rm ./events/* -rf #remove directory events
   - rm ./partners/* -rf #remove directory partners
   - \cp -avrf ./tests/content/*/ ./ #copy test content
-  - ls ./events/list
+#  - ls ./events/list
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
-  - npm install -g galenframework-cli
+#  - npm install -g galenframework-cli

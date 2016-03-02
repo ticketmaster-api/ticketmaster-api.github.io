@@ -47,7 +47,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="col-sm-6">
         <label for="email">Email address <span class="label-required">(required)</span></label>
-        <input type="email" id="email-nexus" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" title="This field should be email, like '-@-.--' " tabindex="3">
+        <input type="email" id="email-nexus" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" title="Use the following format '-@-.--' " tabindex="3">
     </div>
     <div class="col-sm-6">
         <label for="phone">Contact number</label>
