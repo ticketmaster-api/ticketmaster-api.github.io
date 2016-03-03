@@ -32,7 +32,7 @@ Example: `https://app.ticketmaster.com/publish/v2/events?apikey=[Your API key go
 
 
 ## Publish Events
-{: .article #publish-events }
+{: .article .console-link #publish-events }
 
 **Method:** POST.
 Authentication required.
@@ -47,7 +47,7 @@ publish/{version}/events
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
-### Exemple of a minimal recommended request payload
+### Minimal recommended request payload:
 {% highlight http %}
 {
     "source" : {
@@ -84,7 +84,7 @@ publish/{version}/events
 }
 {% endhighlight %}
 
-### Full request payload documentation
+### Response structure:
 
 {: .nested-list}
 - `additionalInfos` (object) - map of locale to value for any additional informations on the event.
@@ -183,6 +183,98 @@ publish/{version}/events
     * `version` (number) - the publisher's version for this venue.
 - `version` (number) - the publisher's version for this event.
 
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"POST",
+  url:"https://app.ticketmaster.com/publish/v2/events?apikey={apikey}",
+  async:true,
+  data: JSON.stringify({
+    "source" : {
+        "id" : "test_id_0009",
+        "name" : "test-source"
+    },
+    "test": true,
+    "names": {
+        "en-us": "example test event tnt1"
+    },
+    "publicVisibility": {
+        "startDateTime": "2015-10-29T15:00:00Z",
+        "visible": true
+    },
+    "dates": {
+        "start": {
+            "dateTime": "2016-04-15T01:00:00Z",
+            "localDate": "2016-04-14",
+            "localTime": "19:00:00"
+        },
+        "timezone": "America/Edmonton"
+    },
+    "venue": {
+        "source" : {
+            "id" : "test_venue_id_0001",
+            "name" : "test-source"
+        },
+        "test": true,
+        "currency": "USD",
+        "country": {
+            "countryCode": "US"
+        }
+    }
+}),
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // Manage exception
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl -i -X POST --header "Content-Type: application/json" --header "Accept: application/json;charset=UTF-8" --header "TMPS-Correlation-Id: test1" -d "{
+    \"source\" : {
+        \"id\" : \"test_id_0009\",
+        \"name\" : \"test-source\"
+    },
+    \"test\": true,
+    \"names\": {
+        \"en-us\": \"example test event tnt1\"
+    },
+    \"publicVisibility\": {
+        \"startDateTime\": \"2015-10-29T15:00:00Z\",
+        \"visible\": true
+    },
+    \"dates\": {
+        \"start\": {
+            \"dateTime\": \"2016-04-15T01:00:00Z\",
+            \"localDate\": \"2016-04-14\",
+            \"localTime\": \"19:00:00\"
+        },
+        \"timezone\": \"America/Edmonton\"
+    },
+    \"venue\": {
+        \"source\" : {
+            \"id\" : \"test_venue_id_0001\",
+            \"name\" : \"test-source\"
+        },
+        \"test\": true,
+        \"currency\": \"USD\",
+        \"country\": {
+            \"countryCode\": \"US\"
+        }
+    }
+}" "http://app.ticketmaster.com/publish/v2/events"
+{% endhighlight %}
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -393,99 +485,6 @@ Content-Length: 43
   "id": "ZuzyMmSiZzyMmSi"
 }
 {% endhighlight %}
-
-
-{: .aside}
->[JS](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"POST",
-  url:"https://app.ticketmaster.com/publish/v2/events?apikey={apikey}",
-  async:true,
-  data: JSON.stringify({
-    "source" : {
-        "id" : "test_id_0009",
-        "name" : "test-source"
-    },
-    "test": true,
-    "names": {
-        "en-us": "example test event tnt1"
-    },
-    "publicVisibility": {
-        "startDateTime": "2015-10-29T15:00:00Z",
-        "visible": true
-    },
-    "dates": {
-        "start": {
-            "dateTime": "2016-04-15T01:00:00Z",
-            "localDate": "2016-04-14",
-            "localTime": "19:00:00"
-        },
-        "timezone": "America/Edmonton"
-    },
-    "venue": {
-        "source" : {
-            "id" : "test_venue_id_0001",
-            "name" : "test-source"
-        },
-        "test": true,
-        "currency": "USD",
-        "country": {
-            "countryCode": "US"
-        }
-    }
-}),
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // Manage exception
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl -i -X POST --header "Content-Type: application/json" --header "Accept: application/json;charset=UTF-8" --header "TMPS-Correlation-Id: test1" -d "{
-    \"source\" : {
-        \"id\" : \"test_id_0009\",
-        \"name\" : \"test-source\"
-    },
-    \"test\": true,
-    \"names\": {
-        \"en-us\": \"example test event tnt1\"
-    },
-    \"publicVisibility\": {
-        \"startDateTime\": \"2015-10-29T15:00:00Z\",
-        \"visible\": true
-    },
-    \"dates\": {
-        \"start\": {
-            \"dateTime\": \"2016-04-15T01:00:00Z\",
-            \"localDate\": \"2016-04-14\",
-            \"localTime\": \"19:00:00\"
-        },
-        \"timezone\": \"America/Edmonton\"
-    },
-    \"venue\": {
-        \"source\" : {
-            \"id\" : \"test_venue_id_0001\",
-            \"name\" : \"test-source\"
-        },
-        \"test\": true,
-        \"currency\": \"USD\",
-        \"country\": {
-            \"countryCode\": \"US\"
-        }
-    }
-}" "http://app.ticketmaster.com/publish/v2/events"
-{% endhighlight %}
-
 
 ## Supported Markets
 {: .article #supported-markets}
