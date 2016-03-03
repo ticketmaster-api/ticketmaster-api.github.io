@@ -48,39 +48,59 @@ publish/{version}/events
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
 ### Exemple of a minimal recommended request payload
-{% highlight http %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+
 {
+  "url": "/Madonna-tickets/artist/768011",
+  "image":  {
+    "url": "/dbimages/213810a.jpg"
+  },
+  "name": "Madonna",
+  "locale": "en-us",
+  "_links":  {
+    "self":  {
+      "href": "/discovery/v1/attractions/768011?locale=en-us&domain=ticketmaster.com"
+    }
+  },
+  "id": "768011",
+  "type": "attraction"
+}
+
+{
+  "source" : {
+    "id" : "test_id_0009",
+    "name" : "test-source"
+  },
+  "test": true,
+  "names": {
+    "en-us": "example test event tnt1"
+  },
+  "publicVisibility": {
+    "startDateTime": "2015-10-29T15:00:00Z",
+    "visible": true
+  },
+  "dates": {
+    "start": {
+      "dateTime": "2016-04-15T01:00:00Z",
+      "localDate": "2016-04-14",
+      "localTime": "19:00:00"
+    },
+    "timezone": "America/Edmonton"
+  },
+  "venue": {
     "source" : {
-        "id" : "test_id_0009",
-        "name" : "test-source"
+      "id" : "test_venue_id_0001",
+      "name" : "test-source"
     },
     "test": true,
-    "names": {
-        "en-us": "example test event tnt1"
-    },
-    "publicVisibility": {
-        "startDateTime": "2015-10-29T15:00:00Z",
-        "visible": true
-    },
-    "dates": {
-        "start": {
-            "dateTime": "2016-04-15T01:00:00Z",
-            "localDate": "2016-04-14",
-            "localTime": "19:00:00"
-        },
-        "timezone": "America/Edmonton"
-    },
-    "venue": {
-        "source" : {
-            "id" : "test_venue_id_0001",
-            "name" : "test-source"
-        },
-        "test": true,
-        "currency": "USD",
-        "country": {
-            "countryCode": "US"
-        }
+    "currency": "USD",
+    "country": {
+      "countryCode": "US"
     }
+  }
 }
 {% endhighlight %}
 
