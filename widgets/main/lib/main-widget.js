@@ -19,7 +19,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 "w":150
 }
 })
- -API key       # input
+
+-API key       # input
 -Key word      # input
 -Postal Code   # input
 -Theme         # Buttons
@@ -29,7 +30,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 -Width         # Slider
 -Border Radius # Slider
 
-  border: ""
+
+
+ border: ""
  borderradius: "4"
  height: "550"
  keyword: "metal"
@@ -39,7 +42,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  theme: "t1"
  tmapikey: "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst"
  width: "350"
- */
+
+*/
 
 var TicketmasterWidget = function () {
   _createClass(TicketmasterWidget, [{
@@ -57,6 +61,11 @@ var TicketmasterWidget = function () {
     },
     get: function get() {
       return this.eventsList;
+    }
+  }, {
+    key: "eventUrl",
+    get: function get() {
+      return "http://www.ticketmaster.com/event/";
     }
   }, {
     key: "apiUrl",
@@ -334,7 +343,7 @@ var TicketmasterWidget = function () {
         if (eventsSet.hasOwnProperty(key)) {
           var currentEvent = {};
           currentEvent.id = eventsSet[key].id;
-          currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
+          currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : this.eventUrl + currentEvent.id;
           currentEvent.name = eventsSet[key].name;
           currentEvent.date = {
             day: eventsSet[key].dates.start.localDate,
@@ -390,7 +399,7 @@ var TicketmasterWidget = function () {
       event.style.width = this.config.width + "px";
 
       var nameContent = document.createTextNode(itemConfig.name),
-          name = document.createElement("div");
+          name = document.createElement("span");
       name.classList.add("event-name");
       name.appendChild(nameContent);
 
@@ -399,17 +408,17 @@ var TicketmasterWidget = function () {
       dateTime.classList.add("event-date");
       dateTime.appendChild(dateTimeContent);
 
-      var dateWraper = document.createElement("div");
+      var dateWraper = document.createElement("span");
       dateWraper.classList.add("event-date-wraper");
 
       dateWraper.appendChild(dateTime);
 
-      var addressWrapper = document.createElement("div");
+      var addressWrapper = document.createElement("span");
       addressWrapper.classList.add("address-wrapper");
 
       if (itemConfig.address.line1) {
         var addressOneText = document.createTextNode(itemConfig.address.line1),
-            addressOne = document.createElement("div");
+            addressOne = document.createElement("span");
         addressOne.classList.add("event-address");
         addressOne.appendChild(addressOneText);
         addressWrapper.appendChild(addressOne);
@@ -417,13 +426,13 @@ var TicketmasterWidget = function () {
 
       if (itemConfig.address.line2) {
         var addressTwoText = document.createTextNode(itemConfig.address.line2),
-            addressTwo = document.createElement("div");
+            addressTwo = document.createElement("span");
         addressTwo.classList.add("event-address");
         addressTwo.appendChild(addressTwoText);
         addressWrapper.appendChild(addressTwo);
       }
 
-      var categoriesWrapper = document.createElement("div");
+      var categoriesWrapper = document.createElement("span");
       categoriesWrapper.classList.add("category-wrapper");
 
       itemConfig.categories.forEach(function (element) {
@@ -434,8 +443,10 @@ var TicketmasterWidget = function () {
         categoriesWrapper.appendChild(category);
       });
 
-      var medWrapper = document.createElement("div");
+      var medWrapper = document.createElement("a");
       medWrapper.classList.add("event-content-wraper");
+      medWrapper.target = '_blank';
+      medWrapper.href = itemConfig.url;
 
       medWrapper.appendChild(name);
       medWrapper.appendChild(dateWraper);
