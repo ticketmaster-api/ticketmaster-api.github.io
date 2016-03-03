@@ -55,6 +55,17 @@ Attn: Trademark Department, Legal 
 {% capture map %}
 {: .double-margin-top}
 ### Find us on the map
+
+<div class="col-xs-12 col-sm-6 city-select">
+    <div class="js_custom_select custom_select" id="city-list">
+      <select required="" class="custom_select__field" name="subject" id="address-office">        
+        <option value="losAngeles" data-ltd="34.052235" data-lng="-118.243683" data-tooltip="7060 Hollywood Blvd, Los Angeles, California, 90028, US" selected>Los Angeles</option>
+        <option value="phoenix" data-ltd="33.533482" data-lng="-112.107254" data-tooltip="1375 N Scottsdale Rd, Scottsdale, AZ 85257, US">Phoenix</option>        
+      </select>
+      <input class="custom_select__placeholder" type="text" value="Los Angeles" readonly="">      
+    </div>
+</div>
+
 {% endcapture %}
 
 <!-- html goes here -->
@@ -121,19 +132,6 @@ Attn: Trademark Department, Legal 
 
 <div markdown="1" class="col-xs-12 col-sm-8">
 {{map}}
-<div class="col-xs-12 col-sm-6 city-select">
-    <div class="js_custom_select custom_select">
-      <select required="" class="custom_select__field" name="subject" id="address-office">        
-        <option value="losAngeles" selected>Los Angeles</option>
-        <option value="phoenix">Phoenix</option>        
-      </select>
-      <input class="custom_select__placeholder" type="text" value="Los Angeles" readonly="">
-      <ul class="custom_select__list">
-        <li class="custom_select__item" data-value="losAngeles">Los Angeles</li>
-        <li class="custom_select__item" data-value="phoenix">Phoenix</li>
-      </ul>
-    </div>
-</div>
 </div>
 <div class="google_map col-xs-12">
     <div id="js_google_map">
@@ -161,62 +159,101 @@ var $contactForm = $('.js_contact_form');
     }
 </script>
 
+<script>
+(function ($) {
+    var $cityWrapper = $('#city-list'),
+        $listWrapper = $cityWrapper.find('#address-office'),
+        $listOption = $listWrapper.find('option');
+
+    function addCustomList() {
+        //create ul
+        var $ul = $('<ul class="custom_select__list" id="js_address_office_generated">').appendTo($cityWrapper);
+
+        //put li inside ul
+        $listOption.each(function () {
+            var data = {
+                value: $(this).val()                
+            };
+            $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>")
+        });
+    }
+
+    addCustomList();
+
+})(jQuery);
+</script>
+
 <!--google map -->
 <script>
-    // When the user change city, an info window opens above selected item.
-    var map,
-        cities = {
-            phoenix : {
-                position: {lat: 33.533482, lng: -112.107254},
-                tooltip: "1375 N Scottsdale Rd, Scottsdale, AZ 85257, US"
+// When the user change city, an info window opens above selected item.
+var map,
+    cities = citiesGenerate();
+var markers = [];
+var infowindows = [];
+
+function citiesGenerate(){
+    var obj={};
+    var $cityWrapper = $('#city-list'),
+        $listWrapper = $cityWrapper.find('#address-office'),
+        $list = $listWrapper.find('option');
+
+    $list.each(function () {
+        var key = $(this).val();
+        var dataItem = {
+            position:{
+                lat: parseFloat( $(this).data('ltd') ),
+                lng: parseFloat( $(this).data('lng') )
             },
-            losAngeles : {
-                position: {lat: 34.052235, lng: -118.243683},
-                tooltip: "7060 Hollywood Blvd, Los Angeles, California, 90028, US"
-            }
+            tooltip: $(this).data('tooltip')
         };
-    var markers = [];
-    var infowindows = [];
-
-    function initMap() {
-        var mapElement = document.getElementById('js_google_map');
-        map = new google.maps.Map(mapElement, {
-            zoom: 8,
-            center: cities.losAngeles.position //default center
-        });
-        //first init
-        var defaultCity = document.getElementById('address-office').value;
-        mapElement.style.height = 240 + "px";
-        addOneMarker( defaultCity );
-    }
-
-    function addOneMarker(city) {
-        deleteMarkers();
-        var infowindow = new google.maps.InfoWindow({ map: map });
-        map.setCenter(cities[city].position);
-        infowindow.setContent('<div><strong>' + cities[city].tooltip + '</strong></div>' );
-        infowindow.setPosition(cities[city].position);
-        infowindows.push(infowindow);
-    }
-
-    // Deletes all markers in the array by removing references to them.
-    function deleteMarkers() {
-        for (var i = 0; i < infowindows.length; i++) {
-            infowindows[i].close();
-        }
-        infowindows = [];
-    }
-
-    // Listener for <select> cities
-    var onChangeHandler = function(val) {
-        addOneMarker(val);
-    };
-
-    $('#address-office').on('change', function(){
-        //should send 'val' since using cutom select
-        onChangeHandler($(this).val());
+        obj[key] = dataItem;
     });
+    return obj;
+}
 
+
+function initMap() {
+    var mapElement = document.getElementById('js_google_map');
+    var centerDefault = {
+        lat: parseFloat( $('#address-office option').eq(0).data('ltd') ),
+        lng: parseFloat( $('#address-office option').eq(0).data('lng') )
+        }
+    map = new google.maps.Map(mapElement, {
+        zoom: 8,
+        center: centerDefault //default center set as an first item in list
+    });
+    //first init
+    var defaultCity = document.getElementById('address-office').value;
+    mapElement.style.height = 240 + "px";
+    addOneMarker(defaultCity);
+}
+
+function addOneMarker(city) {
+    deleteMarkers();
+    var infowindow = new google.maps.InfoWindow({map: map});
+    map.setCenter(cities[city].position);
+    infowindow.setContent('<div><strong>' + cities[city].tooltip + '</strong></div>');
+    infowindow.setPosition(cities[city].position);
+    infowindows.push(infowindow);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+    for (var i = 0; i < infowindows.length; i++) {
+        infowindows[i].close();
+    }
+    infowindows = [];
+}
+
+// Listener for <select> cities
+var onChangeHandler = function (val) {
+    addOneMarker(val);
+};
+
+$('#address-office').on('change', function () {
+    //should send 'val' since using cutom select
+    onChangeHandler($(this).val());
+});
 </script>
 
 <script async defer
