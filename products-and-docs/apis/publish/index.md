@@ -54,22 +54,6 @@ HTTP/1.1 200 OK
 Content-Type: application/json;charset=utf-8
 
 {
-  "url": "/Madonna-tickets/artist/768011",
-  "image":  {
-    "url": "/dbimages/213810a.jpg"
-  },
-  "name": "Madonna",
-  "locale": "en-us",
-  "_links":  {
-    "self":  {
-      "href": "/discovery/v1/attractions/768011?locale=en-us&domain=ticketmaster.com"
-    }
-  },
-  "id": "768011",
-  "type": "attraction"
-}
-
-{
   "source" : {
     "id" : "test_id_0009",
     "name" : "test-source"
