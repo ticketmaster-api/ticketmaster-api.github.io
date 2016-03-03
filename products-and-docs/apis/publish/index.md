@@ -192,10 +192,11 @@ Content-Type: application/json;charset=utf-8
 {: .reqres}
 
 {% highlight http %}
-HTTP/1.1 200 OK
-Server: Apache-Coyote/1.1
+POST /publish/v2/events?apikey=**** HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 Content-Type: application/json;charset=UTF-8
-Content-Length: 43
 
 {
   "additionalInfos": {
