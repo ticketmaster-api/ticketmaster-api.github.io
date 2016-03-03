@@ -52,8 +52,8 @@ class TicketmasterWidget {
   get events(){ return this.eventsList;}
   get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v1/events.json"; }
-  get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-  //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
@@ -82,7 +82,7 @@ class TicketmasterWidget {
     this.widgetRoot.style.width  = `${this.config.width}px`;
     this.widgetRoot.style.borderRadius =  `${this.config.borderradius}px`;
 
-    this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.tmapikey, keyword: this.config.keyword} );
+    this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.tmapikey, keyword: this.config.keyword, radius: this.config.radius, latlong: [this.config.latitude,this.config.longitude].join(",")} );
     this.eventProcessed = 0;
     this.addWidgetRootLinks();
   }
@@ -157,7 +157,10 @@ class TicketmasterWidget {
 
     let oldTheme = {
       keywods: this.config.keyword,
-      theme: this.config.border
+      theme: this.config.border,
+      radius: this.config.radius,
+      latitude: this.config.latitude,
+      longitude: this.config.longitude
     };
 
     this.config = this.widgetRoot.attributes;
@@ -177,9 +180,27 @@ class TicketmasterWidget {
       this.widgetRoot.classList.add("border");
     }
 
-    if(oldTheme.keywods !== this.config.keyword){
+
+    if(oldTheme.keywods !== this.config.keyword ||
+       oldTheme.radius !== this.config.radius ||
+       oldTheme.latitude !== this.config.latitude ||
+       oldTheme.longitude !== this.config.longitude){
+
+      let attrs = {};
+
+      if(this.config.tmapikey !== "")
+        attrs.apikey = this.config.tmapikey;
+      if(this.config.tmapkeywordikey !== "")
+        attrs.keyword = this.config.keyword;
+      if(this.config.radius !== "")
+        attrs.radius = this.config.radius;
+      if(this.config.latitude !== "" && this.config.longitude !== "")
+        attrs.latlong =[this.config.latitude,this.config.longitude].join(",");
+
+
+
       this.clear();
-      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.tmapikey, keyword: this.config.keyword} );
+      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, attrs );
     }
     else{
       var events = document.getElementsByClassName("event-wrapper");
