@@ -96,22 +96,21 @@ class TicketmasterWidget {
     }
   }
 
-  formatDate(day, time) {
+  formatDate(date, localTime) {
     function LZ(x) {
       return (x < 0 || x > 9 ? "" : "0") + x
     }
 
-    var dayArray = day.split('-');
-    var timeArray = time.split(':');
+    date.setHours(localTime.split(':')[0]);
 
     var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-        y = dayArray[0],
-        M = parseInt(dayArray[1]),
-        E = parseInt(dayArray[2]),
-        d = dayArray[2],
-        H = parseInt(timeArray[0]),
-        m = timeArray[2],
+        y = date.getYear() + "",
+        M = date.getMonth() + 1,
+        d = date.getDate(),
+        E = date.getDay(),
+        H = date.getHours(),
+        m = date.getMinutes(),
         a = "AM";
 
     if (H > 11) a = "PM";
@@ -122,7 +121,7 @@ class TicketmasterWidget {
     }
     if (y.length < 4) y = "" + (y - 0 + 1900);
 
-    return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + y + ' ' + LZ(H) + ':' + m + ' ' + a;
+    return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + y + ' ' + LZ(H) + ':' + LZ(m) + ' ' + a;
   }
 
   clear(){
@@ -282,7 +281,8 @@ class TicketmasterWidget {
         currentEvent.name = eventsSet[key].name;
         currentEvent.date = {
           day: eventsSet[key].dates.start.localDate,
-          time: eventsSet[key].dates.start.localTime
+          time: eventsSet[key].dates.start.localTime,
+          dateTime: eventsSet[key].dates.start.dateTime
         };
 
         currentEvent.address = eventsSet[key]._embedded.venue[0].address;
@@ -330,7 +330,7 @@ class TicketmasterWidget {
     name.classList.add("event-name");
     name.appendChild(nameContent);
 
-    var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date.day, itemConfig.date.time)),
+    var dateTimeContent = document.createTextNode(this.formatDate(new Date(itemConfig.date.dateTime), itemConfig.date.time)),
         dateTime = document.createElement("span");
     dateTime.classList.add("event-date");
     dateTime.appendChild(dateTimeContent);
