@@ -1,6 +1,13 @@
 /*
  {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zz top","t":{"n":"t1","b":true,"h":200,"w":150,"br":4}}
- {
+
+
+*/
+
+
+
+
+ /*{
  "ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", #ApiKey
  "kw":"zztop", #KeyWords
  "t":{ #Theme
@@ -20,45 +27,62 @@
  -Width         # Slider
  -Border Radius # Slider
 
+
+
+  border: ""
+  borderradius: "4"
+  height: "550"
+  keyword: "metal"
+  latitude: ""
+  longitude: ""
+  radius: ""
+  theme: "t1"
+  tmapikey: "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst"
+  width: "350"
+
  */
 
 
 
 class TicketmasterWidget {
 
-  set config(config) { this.widgetConfig = this.decConfig(config); }
+  set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
   get config() { return this.widgetConfig; }
   set events(responce){ this.eventsList = this.parseEvents(responce);}
   get events(){ return this.eventsList;}
+  get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v1/events.json"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
   constructor(selector) {
     this.sliderSpeed = 5000;
-    this.widgetRoot = document.querySelectorAll(selector)[0];
+    this.widgetRoot = document.querySelector("div[tm-api-key]");
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.widgetRoot.appendChild(this.eventsRoot);
 
-    this.config = this.loadConfig();
+    this.config = this.widgetRoot.attributes;
 
-    if(this.config.t.n !== null){
-      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.n + ".css" );
+
+
+    if(this.config.theme !== null){
+      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
     }
 
     this.widgetRoot.classList.remove("border");
-    if(this.config.t.b){
+    if(this.config.border){
       this.widgetRoot.classList.add("border");
     }
 
-    this.widgetRoot.style.height = `${this.config.t.h}px`;
-    this.widgetRoot.style.width  = `${this.config.t.w}px`;
-    this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
+    this.widgetRoot.style.height = `${this.config.height}px`;
+    this.widgetRoot.style.width  = `${this.config.width}px`;
+    this.widgetRoot.style.borderRadius =  `${this.config.borderradius}px`;
 
-    this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
+    this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.tmapikey, keyword: this.config.keyword, radius: this.config.radius, latlong: [this.config.latitude,this.config.longitude].join(",")} );
     this.eventProcessed = 0;
     this.addWidgetRootLinks();
   }
@@ -96,6 +120,34 @@ class TicketmasterWidget {
     }
   }
 
+  formatDate(date, localTime) {
+    function LZ(x) {
+      return (x < 0 || x > 9 ? "" : "0") + x
+    }
+
+    date.setHours(localTime.split(':')[0]);
+
+    var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+        y = date.getYear() + "",
+        M = date.getMonth() + 1,
+        d = date.getDate(),
+        E = date.getDay(),
+        H = date.getHours(),
+        m = date.getMinutes(),
+        a = "AM";
+
+    if (H > 11) a = "PM";
+    if (H == 0) {
+      H = 12;
+    } else if (H > 12) {
+      H = H - 12;
+    }
+    if (y.length < 4) y = "" + (y - 0 + 1900);
+
+    return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + y + ' ' + LZ(H) + ':' + LZ(m) + ' ' + a;
+  }
+
   clear(){
     this.eventsRoot.innerHTML = "";
   }
@@ -103,45 +155,72 @@ class TicketmasterWidget {
   update() {
 
     let oldTheme = {
-      keywods: this.config.kw,
-      theme: this.config.t.b
+      keywods: this.config.keyword,
+      theme: this.config.border,
+      radius: this.config.radius,
+      latitude: this.config.latitude,
+      longitude: this.config.longitude
     };
 
-    this.config = this.loadConfig();
+    this.config = this.widgetRoot.attributes;
 
     this.eventProcessed = 0;
 
-    /*if(this.config.t.b !== null){
-      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.t.b + ".css" );
+    /*if(this.config.border !== null){
+      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.border + ".css" );
     }*/
 
-    this.widgetRoot.style.height = `${this.config.t.h}px`;
-    this.widgetRoot.style.width  = `${this.config.t.w}px`;
-    this.widgetRoot.style.borderRadius =  `${this.config.t.br}px`;
+    this.widgetRoot.style.height = `${this.config.height}px`;
+    this.widgetRoot.style.width  = `${this.config.width}px`;
+    this.widgetRoot.style.borderRadius =  `${this.config.borderradius}px`;
 
     this.widgetRoot.classList.remove("border");
-    if(this.config.t.b ){
+    if( this.config.hasOwnProperty("border") ){
       this.widgetRoot.classList.add("border");
     }
 
-    if(oldTheme.keywods !== this.config.kw){
+
+    if(oldTheme.keywods !== this.config.keyword ||
+       oldTheme.radius !== this.config.radius ||
+       oldTheme.latitude !== this.config.latitude ||
+       oldTheme.longitude !== this.config.longitude){
+
+      let attrs = {};
+
+      if(this.config.tmapikey !== "")
+        attrs.apikey = this.config.tmapikey;
+      if(this.config.tmapkeywordikey !== "")
+        attrs.keyword = this.config.keyword;
+      if(this.config.radius !== "")
+        attrs.radius = this.config.radius;
+      if(this.config.latitude !== "" && this.config.longitude !== "")
+        attrs.latlong =[this.config.latitude,this.config.longitude].join(",");
+
+
+
       this.clear();
-      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, {apikey: this.config.ak, keyword: this.config.kw} );
+      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, attrs );
     }
     else{
       var events = document.getElementsByClassName("event-wrapper");
       for(event in events){
         if(events.hasOwnProperty(event) && events[event].style !== undefined){
-          events[event].style.width = `${this.config.t.w}px`;
-          events[event].style.height = `${this.config.t.h}px`;
+          events[event].style.width = `${this.config.width}px`;
+          events[event].style.height = `${this.config.height}px`;
         }
       }
     }
   }
 
 
-  loadConfig(){
-    return this.widgetRoot.dataset.config ? this.widgetRoot.dataset.config : null;
+  loadConfig(NamedNodeMap){
+      var config = {};
+      Object.keys(NamedNodeMap).map(function(value){
+        if( typeof(NamedNodeMap[value].name) !== "undefined" ){
+          config[ NamedNodeMap[value].name.replace(/-/g, "") ] = NamedNodeMap[value].value;
+        }
+      });
+      return config;
   }
 
   styleLoadingHandler(){
@@ -179,7 +258,7 @@ class TicketmasterWidget {
     var self = this;
     this.events.forEach(function(event){
       var url = self.makeImageUrl(event.id);
-      self.makeRequest(self.loadImagesHandler ,url, {apikey: self.config.ak});
+      self.makeRequest(self.loadImagesHandler ,url, {apikey: self.config.tmapikey});
     })
   }
 
@@ -215,8 +294,8 @@ class TicketmasterWidget {
   }
 
   getImageForEvent(images){
-    var width = this.config.t.w,
-      height = this.config.t.h;
+    var width = this.config.width,
+      height = this.config.height;
 
     images.sort(function(a,b) {
       if (a.width < b.width)
@@ -249,11 +328,12 @@ class TicketmasterWidget {
       if(eventsSet.hasOwnProperty(key)){
         let currentEvent = {};
         currentEvent.id = eventsSet[key].id;
-        currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
+        currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : this.eventUrl + currentEvent.id;
         currentEvent.name = eventsSet[key].name;
         currentEvent.date = {
           day: eventsSet[key].dates.start.localDate,
-          time: eventsSet[key].dates.start.localTime
+          time: eventsSet[key].dates.start.localTime,
+          dateTime: eventsSet[key].dates.start.dateTime
         };
 
         currentEvent.address = eventsSet[key]._embedded.venue[0].address;
@@ -293,36 +373,30 @@ class TicketmasterWidget {
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
     event.style.backgroundImage = `url('${itemConfig.img}')`;
-    event.style.height = `${this.config.t.h}px`;
-    event.style.width  = `${this.config.t.w}px`;
+    event.style.height = `${this.config.height}px`;
+    event.style.width  = `${this.config.width}px`;
 
     var nameContent = document.createTextNode(itemConfig.name),
-      name =  document.createElement("div");
+      name =  document.createElement("span");
     name.classList.add("event-name");
     name.appendChild(nameContent);
 
-    var dateContent = document.createTextNode(itemConfig.date.day),
-    date = document.createElement("span");
-    date.classList.add("event-date");
-    date.appendChild(dateContent);
+    var dateTimeContent = document.createTextNode(this.formatDate(new Date(itemConfig.date.dateTime), itemConfig.date.time)),
+        dateTime = document.createElement("span");
+    dateTime.classList.add("event-date");
+    dateTime.appendChild(dateTimeContent);
 
-    var timeContent = document.createTextNode(itemConfig.date.time),
-      time = document.createElement("span");
-    time.classList.add("event-date");
-    time.appendChild(timeContent);
-
-    var dateWraper = document.createElement("div");
+    var dateWraper = document.createElement("span");
     dateWraper.classList.add("event-date-wraper");
 
-    dateWraper.appendChild(date);
-    dateWraper.appendChild(time);
+    dateWraper.appendChild(dateTime);
 
-    var addressWrapper = document.createElement("div");
+    var addressWrapper = document.createElement("span");
     addressWrapper.classList.add("address-wrapper");
 
     if(itemConfig.address.line1){
       var addressOneText = document.createTextNode(itemConfig.address.line1),
-      addressOne =  document.createElement("div");
+      addressOne =  document.createElement("span");
       addressOne.classList.add("event-address");
       addressOne.appendChild(addressOneText);
       addressWrapper.appendChild(addressOne);
@@ -330,13 +404,13 @@ class TicketmasterWidget {
 
     if(itemConfig.address.line2){
       var addressTwoText = document.createTextNode(itemConfig.address.line2),
-      addressTwo =  document.createElement("div");
+      addressTwo =  document.createElement("span");
       addressTwo.classList.add("event-address");
       addressTwo.appendChild(addressTwoText);
       addressWrapper.appendChild(addressTwo);
     }
 
-    var categoriesWrapper = document.createElement("div");
+    var categoriesWrapper = document.createElement("span");
     categoriesWrapper.classList.add("category-wrapper");
 
     itemConfig.categories.forEach(function(element){
@@ -347,8 +421,10 @@ class TicketmasterWidget {
         categoriesWrapper.appendChild(category);
     });
 
-    var medWrapper = document.createElement("div");
+    var medWrapper = document.createElement("a");
     medWrapper.classList.add("event-content-wraper");
+    medWrapper.target = '_blank';
+    medWrapper.href = itemConfig.url;
 
     medWrapper.appendChild(name);
     medWrapper.appendChild(dateWraper);

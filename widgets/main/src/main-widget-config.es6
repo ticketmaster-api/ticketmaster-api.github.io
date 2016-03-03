@@ -6,15 +6,21 @@ var $widgetModal = $('#js_widget_modal'),
 
   var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
 
-  $(".main-widget-config-form").on("change",function(){
-    switch (event.target.id) {
-      case "api-key" : config.ak = event.target.value; break;
-      case "key-word": config.kw = event.target.value; break;
-      case "width"   : config.t.w = event.target.value; break;
-      case "radius"  : config.t.br = event.target.value;  break;
-      case "has-border" : config.t.b = event.target.checked; break;
+  $(".main-widget-config-form").on("change", function(event){
+    let widgetNode = document.querySelector("div[tm-api-key]");
+
+    if(event.target.id === "border"){
+      if(event.target.checked){
+        widgetNode.setAttribute(event.target.id, "");
+      }
+      else{
+        widgetNode.removeAttribute(event.target.id);
+      }
     }
-    document.getElementById("ticketmaster-config").dataset.config = widget.encConfig(JSON.stringify(config));
+    else {
+      widgetNode.setAttribute(event.target.id, event.target.value);
+    }
+
     widget.update();
   });
 
