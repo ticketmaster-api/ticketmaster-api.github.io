@@ -167,7 +167,7 @@ var $contactForm = $('.js_contact_form');
 
     function addCustomList() {
         //create ul
-        var $ul = $('<ul class="custom_select__list" id="js_address_office_generated">').appendTo($cityWrapper);
+        var $ul = $('<ul class="custom_select__list">').appendTo($cityWrapper);
 
         //put li inside ul
         $listOption.each(function () {
