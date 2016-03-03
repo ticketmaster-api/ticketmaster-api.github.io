@@ -3,7 +3,7 @@
 date: "Saturday, February 27, 2016"
 category: event
 title: "The Ticketmaster API Devjam in Hollywood, CA!"
-img: "/assets/img/events/devjam2.jpg"
+img: "/assets/img/events/devjam2.png"
 place: 
   - "Ticketmaster HQ"
   - "https://www.google.com/maps/place/Ticketmaster/@34.1011643,-118.3457179,17z/data=!3m1!4b1!4m2!3m1!1s0x80c2bf20fddbeff5:0x39a16a8bedc69237"

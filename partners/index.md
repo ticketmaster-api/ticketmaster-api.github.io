@@ -114,7 +114,7 @@ If you are a current member of the Ticketmaster affiliate program, manage your a
 ![ApiExplorer](/assets/img/partners/bitmap.png)
 
 {: .image}
-![DevJam2](/assets/img/events/devjam2.jpg)
+![DevJam2](/assets/img/events/devjam2.png)
 
 {: .image}
 ![DevJam1](/assets/img/events/devjam.jpg)
