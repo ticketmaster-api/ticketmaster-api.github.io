@@ -14,6 +14,7 @@ place:
   - "https://www.google.com/maps/place/Bronco+Student+Center/@34.0563994,-117.8235895,17z/data=!3m1!4b1!4m2!3m1!1s0x80c32eafe97cfa0f:0x4b135e36979ae41"
 city: "Pomona, CA"
 rsvp: "http://hackpoly.com/"
+link: "http://hackpoly.com/"
 tags: 
   - hackathon
  
