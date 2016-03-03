@@ -15,7 +15,8 @@ place:
 
 city: "San Francisco, CA"
 
-rsvp: "http://universe.com/tmdevjam-sf"
+rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-san-francisco-ca-tickets-san-francisco-N35CPS"
+link: "https://www.universe.com/tmdevjam-sf"
 
 tags: 
   - devjam
