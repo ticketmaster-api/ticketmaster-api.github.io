@@ -15,7 +15,8 @@ place:
 
 city: "Santa Monica, CA"
 
-rsvp: "http://universe.com/tmdevjam-santamonica"
+rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-santa-monica-ca-tickets-santa-monica-0BW3MX"
+link: "https://www.universe.com/tmdevjam-santamonica"
 
 tags: 
   - devjam

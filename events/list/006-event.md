@@ -16,7 +16,8 @@ place:
 
 city: "Los Angeles, CA"
 
-rsvp: "http://universe.com/tmdevjam-hollywood"
+rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-hollywood-ca-tickets-los-angeles-LHNFTJ"
+link: "https://www.universe.com/tmdevjam-hollywood"
 
 tags: 
   - devjam

@@ -15,7 +15,8 @@ place:
 
 city: "Chantilly, VA"
 
-rsvp: "http://universe.com/tmdevjam-chantilly"
+rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-chantilly-va-tickets-chantilly-6XK53N"
+link: "https://www.universe.com/tmdevjam-chantilly"
 
 tags: 
   - devjam
