@@ -8,7 +8,7 @@ var $widgetModal = $('#js_widget_modal'),
 
   var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
 
-  $(".main-widget-config-form").on("change", function () {
+  $(".main-widget-config-form").on("change", function (event) {
     switch (event.target.id) {
       case "api-key":
         config.ak = event.target.value;break;
