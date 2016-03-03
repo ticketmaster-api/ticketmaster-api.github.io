@@ -120,22 +120,26 @@ class TicketmasterWidget {
     }
   }
 
-  formatDate(date, localTime) {
+  formatDate(date, localDay, localTime) {
     function LZ(x) {
       return (x < 0 || x > 9 ? "" : "0") + x
     }
 
-    date.setHours(localTime.split(':')[0]);
+    localDay = localDay.split('-');
+    localTime = localTime.split(':');
 
     var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-        y = date.getYear() + "",
-        M = date.getMonth() + 1,
-        d = date.getDate(),
-        E = date.getDay(),
-        H = date.getHours(),
-        m = date.getMinutes(),
+        H = parseInt(localTime[0]),
+        m = localTime[1],
+        d = parseInt(localDay[2]),
+        M = parseInt(localDay[1]),
         a = "AM";
+
+    date.setMonth(M - 1);
+    date.setDate(d);
+    date.setHours(H);
+    var E = date.getDay();
 
     if (H > 11) a = "PM";
     if (H == 0) {
@@ -143,9 +147,8 @@ class TicketmasterWidget {
     } else if (H > 12) {
       H = H - 12;
     }
-    if (y.length < 4) y = "" + (y - 0 + 1900);
 
-    return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + y + ' ' + LZ(H) + ':' + LZ(m) + ' ' + a;
+    return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + localDay[0] + ' ' + LZ(H) + ':' + m + ' ' + a;
   }
 
   clear(){
@@ -381,7 +384,7 @@ class TicketmasterWidget {
     name.classList.add("event-name");
     name.appendChild(nameContent);
 
-    var dateTimeContent = document.createTextNode(this.formatDate(new Date(itemConfig.date.dateTime), itemConfig.date.time)),
+    var dateTimeContent = document.createTextNode(this.formatDate(new Date(itemConfig.date.dateTime), itemConfig.date.day, itemConfig.date.time)),
         dateTime = document.createElement("span");
     dateTime.classList.add("event-date");
     dateTime.appendChild(dateTimeContent);
