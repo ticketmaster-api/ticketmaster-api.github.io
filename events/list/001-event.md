@@ -16,6 +16,7 @@ place:
 city: " Durham, NC"
 
 rsvp: "http://universe.com/tmdevjam-durham"
+link: "http://universe.com/tmdevjam-durham"
 
 tags: 
   - devjam

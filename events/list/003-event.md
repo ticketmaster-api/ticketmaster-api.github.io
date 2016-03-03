@@ -15,6 +15,7 @@ place:
 city: " Scottsdale, AZ"
 
 rsvp: "http://universe.com/tmdevjam"
+link: "http://universe.com/tmdevjam"
 
 tags: 
   - devjam
