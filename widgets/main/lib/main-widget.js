@@ -132,6 +132,33 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "formatDate",
+    value: function formatDate(date) {
+      function LZ(x) {
+        return (x < 0 || x > 9 ? "" : "0") + x;
+      }
+
+      var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+          y = date.getYear() + "",
+          M = date.getMonth() + 1,
+          d = date.getDate(),
+          E = date.getDay(),
+          H = date.getHours(),
+          m = date.getMinutes(),
+          a = "AM";
+
+      if (H == 0) {
+        H = 12;
+      } else if (H > 12) {
+        H = H - 12;
+      }
+      if (y.length < 4) y = "" + (y - 0 + 1900);
+      if (H > 11) a = "PM";
+
+      return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + y + ' ' + LZ(H) + ':' + LZ(m) + ' ' + a;
+    }
+  }, {
     key: "clear",
     value: function clear() {
       this.eventsRoot.innerHTML = "";
@@ -287,8 +314,7 @@ var TicketmasterWidget = function () {
           currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
           currentEvent.name = eventsSet[key].name;
           currentEvent.date = {
-            day: eventsSet[key].dates.start.localDate,
-            time: eventsSet[key].dates.start.localTime
+            dateTime: eventsSet[key].dates.start.dateTime
           };
 
           currentEvent.address = eventsSet[key]._embedded.venue[0].address;
@@ -343,21 +369,15 @@ var TicketmasterWidget = function () {
       name.classList.add("event-name");
       name.appendChild(nameContent);
 
-      var dateContent = document.createTextNode(itemConfig.date.day),
-          date = document.createElement("span");
-      date.classList.add("event-date");
-      date.appendChild(dateContent);
-
-      var timeContent = document.createTextNode(itemConfig.date.time),
-          time = document.createElement("span");
-      time.classList.add("event-date");
-      time.appendChild(timeContent);
+      var dateTimeContent = document.createTextNode(this.formatDate(new Date(itemConfig.date.dateTime))),
+          dateTime = document.createElement("span");
+      dateTime.classList.add("event-date");
+      dateTime.appendChild(dateTimeContent);
 
       var dateWraper = document.createElement("div");
       dateWraper.classList.add("event-date-wraper");
 
-      dateWraper.appendChild(date);
-      dateWraper.appendChild(time);
+      dateWraper.appendChild(dateTime);
 
       var addressWrapper = document.createElement("div");
       addressWrapper.classList.add("address-wrapper");
