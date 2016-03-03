@@ -111,13 +111,14 @@ class TicketmasterWidget {
         m = date.getMinutes(),
         a = "AM";
 
+    if (H > 11) a = "PM";
     if (H == 0) {
       H = 12;
     } else if (H > 12) {
       H = H - 12;
     }
     if (y.length < 4) y = "" + (y - 0 + 1900);
-    if (H > 11) a = "PM";
+
 
     return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + y + ' ' + LZ(H) + ':' + LZ(m) + ' ' + a;
   }
