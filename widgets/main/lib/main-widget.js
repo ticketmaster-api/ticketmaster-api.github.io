@@ -19,7 +19,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 "w":150
 }
 })
- -API key       # input
+
+-API key       # input
 -Key word      # input
 -Postal Code   # input
 -Theme         # Buttons
@@ -29,7 +30,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 -Width         # Slider
 -Border Radius # Slider
 
-  border: ""
+
+
+ border: ""
  borderradius: "4"
  height: "550"
  keyword: "metal"
@@ -39,7 +42,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  theme: "t1"
  tmapikey: "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst"
  width: "350"
- */
+
+*/
 
 var TicketmasterWidget = function () {
   _createClass(TicketmasterWidget, [{
