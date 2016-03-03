@@ -104,7 +104,7 @@ var TicketmasterWidget = function () {
     this.widgetRoot.style.width = this.config.width + "px";
     this.widgetRoot.style.borderRadius = this.config.borderradius + "px";
 
-    this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.tmapikey, keyword: this.config.keyword });
+    this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.tmapikey, keyword: this.config.keyword, radius: this.config.radius, latlong: [this.config.latitude, this.config.longitude].join(",") });
     this.eventProcessed = 0;
     this.addWidgetRootLinks();
   }
@@ -186,7 +186,10 @@ var TicketmasterWidget = function () {
 
       var oldTheme = {
         keywods: this.config.keyword,
-        theme: this.config.border
+        theme: this.config.border,
+        radius: this.config.radius,
+        latitude: this.config.latitude,
+        longitude: this.config.longitude
       };
 
       this.config = this.widgetRoot.attributes;
@@ -206,9 +209,17 @@ var TicketmasterWidget = function () {
         this.widgetRoot.classList.add("border");
       }
 
-      if (oldTheme.keywods !== this.config.keyword) {
+      if (oldTheme.keywods !== this.config.keyword || oldTheme.radius !== this.config.radius || oldTheme.latitude !== this.config.latitude || oldTheme.longitude !== this.config.longitude) {
+
+        var attrs = {};
+
+        if (this.config.tmapikey !== "") attrs.apikey = this.config.tmapikey;
+        if (this.config.tmapkeywordikey !== "") attrs.keyword = this.config.keyword;
+        if (this.config.radius !== "") attrs.radius = this.config.radius;
+        if (this.config.latitude !== "" && this.config.longitude !== "") attrs.latlong = [this.config.latitude, this.config.longitude].join(",");
+
         this.clear();
-        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.tmapikey, keyword: this.config.keyword });
+        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, attrs);
       } else {
         var events = document.getElementsByClassName("event-wrapper");
         for (event in events) {
