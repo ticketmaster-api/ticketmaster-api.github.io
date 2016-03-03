@@ -50,6 +50,7 @@ class TicketmasterWidget {
   get config() { return this.widgetConfig; }
   set events(responce){ this.eventsList = this.parseEvents(responce);}
   get events(){ return this.eventsList;}
+  get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v1/events.json"; }
   get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
   //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
@@ -327,7 +328,7 @@ class TicketmasterWidget {
       if(eventsSet.hasOwnProperty(key)){
         let currentEvent = {};
         currentEvent.id = eventsSet[key].id;
-        currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : "";
+        currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : this.eventUrl + currentEvent.id;
         currentEvent.name = eventsSet[key].name;
         currentEvent.date = {
           day: eventsSet[key].dates.start.localDate,
@@ -376,7 +377,7 @@ class TicketmasterWidget {
     event.style.width  = `${this.config.width}px`;
 
     var nameContent = document.createTextNode(itemConfig.name),
-      name =  document.createElement("div");
+      name =  document.createElement("span");
     name.classList.add("event-name");
     name.appendChild(nameContent);
 
@@ -385,17 +386,17 @@ class TicketmasterWidget {
     dateTime.classList.add("event-date");
     dateTime.appendChild(dateTimeContent);
 
-    var dateWraper = document.createElement("div");
+    var dateWraper = document.createElement("span");
     dateWraper.classList.add("event-date-wraper");
 
     dateWraper.appendChild(dateTime);
 
-    var addressWrapper = document.createElement("div");
+    var addressWrapper = document.createElement("span");
     addressWrapper.classList.add("address-wrapper");
 
     if(itemConfig.address.line1){
       var addressOneText = document.createTextNode(itemConfig.address.line1),
-      addressOne =  document.createElement("div");
+      addressOne =  document.createElement("span");
       addressOne.classList.add("event-address");
       addressOne.appendChild(addressOneText);
       addressWrapper.appendChild(addressOne);
@@ -403,13 +404,13 @@ class TicketmasterWidget {
 
     if(itemConfig.address.line2){
       var addressTwoText = document.createTextNode(itemConfig.address.line2),
-      addressTwo =  document.createElement("div");
+      addressTwo =  document.createElement("span");
       addressTwo.classList.add("event-address");
       addressTwo.appendChild(addressTwoText);
       addressWrapper.appendChild(addressTwo);
     }
 
-    var categoriesWrapper = document.createElement("div");
+    var categoriesWrapper = document.createElement("span");
     categoriesWrapper.classList.add("category-wrapper");
 
     itemConfig.categories.forEach(function(element){
@@ -420,8 +421,10 @@ class TicketmasterWidget {
         categoriesWrapper.appendChild(category);
     });
 
-    var medWrapper = document.createElement("div");
+    var medWrapper = document.createElement("a");
     medWrapper.classList.add("event-content-wraper");
+    medWrapper.target = '_blank';
+    medWrapper.href = itemConfig.url;
 
     medWrapper.appendChild(name);
     medWrapper.appendChild(dateWraper);
