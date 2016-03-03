@@ -14,7 +14,7 @@ place:
   - "Ticketmaster // Two Toasters"
   - "https://www.google.com/maps/place/318+Blackwell+St,+Durham,+NC+27701/@35.9932503,-78.9066525,17z/data=!3m1!4b1!4m2!3m1!1s0x89ace46cc0e5f9dd:0x3df231f8fbd83002"
 
-city: " Durham, NC"
+city: "Durham, NC"
 
 rsvp: "http://universe.com/tmdevjam-durham"
 

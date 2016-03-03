@@ -258,6 +258,10 @@ input, select, textarea {
     outline: 0px none;
   }
 }
+textarea:-webkit-autofill,
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $white inset;
+}
 /*
 * Custom checker
 */
@@ -667,7 +671,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 @mixin inline-list($top){
   position: relative;
-  display: inline;
+  display: inline-block;
   &:not(:last-child){
     margin-right: 15px;
     &:after{
