@@ -29,7 +29,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "apiUrl",
     get: function get() {
-      return "https://app.ticketmaster.com/discovery/v1/events.json";
+      return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
     //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
 
@@ -72,7 +72,7 @@ var TicketmasterWidget = function () {
     this.widgetRoot.style.width = this.config.width + "px";
     this.widgetRoot.style.borderRadius = this.config.borderradius + "px";
 
-    this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.tmapikey, keyword: this.config.keyword, radius: this.config.radius, latlong: [this.config.latitude, this.config.longitude].join(",") });
+    this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.tmapikey, keyword: this.config.keyword, radius: this.config.radius, postalcode: this.config.postalcode });
     this.eventProcessed = 0;
     this.addWidgetRootLinks();
   }
@@ -187,7 +187,7 @@ var TicketmasterWidget = function () {
         if (this.config.tmapikey !== "") attrs.apikey = this.config.tmapikey;
         if (this.config.tmapkeywordikey !== "") attrs.keyword = this.config.keyword;
         if (this.config.radius !== "") attrs.radius = this.config.radius;
-        if (this.config.latitude !== "" && this.config.longitude !== "") attrs.latlong = [this.config.latitude, this.config.longitude].join(",");
+        if (this.config.postalcode !== "") attrs.postalcode = this.config.postalcode;
 
         this.clear();
         this.makeRequest(this.eventsLoadingHandler, this.apiUrl, attrs);
@@ -229,11 +229,20 @@ var TicketmasterWidget = function () {
   }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
+      var _this2 = this;
+
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
-          this.widget.events = JSON.parse(this.responseText);
-          //this.widget.build();
-          this.widget.loadImages();
+          (function () {
+            var widget = _this2.widget;
+
+            widget.events = JSON.parse(_this2.responseText);
+            widget.events.map(function (event) {
+              widget.publishEvent(event);
+            });
+
+            widget.initSlider();
+          })();
         } else if (this.status == 400) {
           alert('There was an error 400');
         } else {
@@ -271,7 +280,7 @@ var TicketmasterWidget = function () {
       var DOMElement = this.createDOMItem(event);
       this.eventsRoot.appendChild(DOMElement);
       if (this.eventProcessed === this.events.length - 1) {
-        this.initSlider();
+        //this.initSlider();
       }
     }
   }, {
@@ -315,26 +324,33 @@ var TicketmasterWidget = function () {
       for (var key in eventsSet) {
         if (eventsSet.hasOwnProperty(key)) {
           var currentEvent = {};
+
           currentEvent.id = eventsSet[key].id;
           currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : this.eventUrl + currentEvent.id;
           currentEvent.name = eventsSet[key].name;
+
           currentEvent.date = {
             day: eventsSet[key].dates.start.localDate,
             time: eventsSet[key].dates.start.localTime,
             dateTime: eventsSet[key].dates.start.dateTime
           };
 
-          currentEvent.address = eventsSet[key]._embedded.venue[0].address;
+          if (eventsSet[key]._embedded.venues[0].address) {
+            currentEvent.address = eventsSet[key]._embedded.venues[0].address;
+          }
 
-          currentEvent.categories = [];
           if (eventsSet[key]._embedded.hasOwnProperty('categories')) {
             (function () {
+              currentEvent.categories = [];
               var eventCategories = eventsSet[key]._embedded.categories;
               currentEvent.categories = Object.keys(eventCategories).map(function (category) {
                 return eventCategories[category].name;
               });
             })();
           }
+
+          currentEvent.img = this.getImageForEvent(eventsSet[key].images);
+
           tmpEventSet.push(currentEvent);
         }
       }
@@ -365,6 +381,12 @@ var TicketmasterWidget = function () {
   }, {
     key: "createDOMItem",
     value: function createDOMItem(itemConfig) {
+
+      var medWrapper = document.createElement("a");
+      medWrapper.classList.add("event-content-wraper");
+      medWrapper.target = '_blank';
+      medWrapper.href = itemConfig.url;
+
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
       event.style.backgroundImage = "url('" + itemConfig.img + "')";
@@ -375,6 +397,7 @@ var TicketmasterWidget = function () {
           name = document.createElement("span");
       name.classList.add("event-name");
       name.appendChild(nameContent);
+      medWrapper.appendChild(name);
 
       var dateTimeContent = document.createTextNode(this.formatDate(new Date(itemConfig.date.dateTime), itemConfig.date.day, itemConfig.date.time)),
           dateTime = document.createElement("span");
@@ -383,48 +406,45 @@ var TicketmasterWidget = function () {
 
       var dateWraper = document.createElement("span");
       dateWraper.classList.add("event-date-wraper");
-
       dateWraper.appendChild(dateTime);
-
-      var addressWrapper = document.createElement("span");
-      addressWrapper.classList.add("address-wrapper");
-
-      if (itemConfig.address.line1) {
-        var addressOneText = document.createTextNode(itemConfig.address.line1),
-            addressOne = document.createElement("span");
-        addressOne.classList.add("event-address");
-        addressOne.appendChild(addressOneText);
-        addressWrapper.appendChild(addressOne);
-      }
-
-      if (itemConfig.address.line2) {
-        var addressTwoText = document.createTextNode(itemConfig.address.line2),
-            addressTwo = document.createElement("span");
-        addressTwo.classList.add("event-address");
-        addressTwo.appendChild(addressTwoText);
-        addressWrapper.appendChild(addressTwo);
-      }
-
-      var categoriesWrapper = document.createElement("span");
-      categoriesWrapper.classList.add("category-wrapper");
-
-      itemConfig.categories.forEach(function (element) {
-        var categoryText = document.createTextNode(element),
-            category = document.createElement("span");
-        category.classList.add("event-category");
-        category.appendChild(categoryText);
-        categoriesWrapper.appendChild(category);
-      });
-
-      var medWrapper = document.createElement("a");
-      medWrapper.classList.add("event-content-wraper");
-      medWrapper.target = '_blank';
-      medWrapper.href = itemConfig.url;
-
-      medWrapper.appendChild(name);
       medWrapper.appendChild(dateWraper);
-      medWrapper.appendChild(addressWrapper);
-      medWrapper.appendChild(categoriesWrapper);
+
+      if (itemConfig.hasOwnProperty("address")) {
+        var addressWrapper = document.createElement("span");
+        addressWrapper.classList.add("address-wrapper");
+
+        if (itemConfig.address.hasOwnProperty("line1")) {
+          var addressOneText = document.createTextNode(itemConfig.address.line1),
+              addressOne = document.createElement("span");
+          addressOne.classList.add("event-address");
+          addressOne.appendChild(addressOneText);
+          addressWrapper.appendChild(addressOne);
+        }
+
+        if (itemConfig.address.hasOwnProperty("line2")) {
+          var addressTwoText = document.createTextNode(itemConfig.address.line2),
+              addressTwo = document.createElement("span");
+          addressTwo.classList.add("event-address");
+          addressTwo.appendChild(addressTwoText);
+          addressWrapper.appendChild(addressTwo);
+        }
+
+        medWrapper.appendChild(addressWrapper);
+      }
+
+      if (itemConfig.hasOwnProperty("categories")) {
+        var categoriesWrapper = document.createElement("span");
+        categoriesWrapper.classList.add("category-wrapper");
+
+        itemConfig.categories.forEach(function (element) {
+          var categoryText = document.createTextNode(element),
+              category = document.createElement("span");
+          category.classList.add("event-category");
+          category.appendChild(categoryText);
+          categoriesWrapper.appendChild(category);
+        });
+        medWrapper.appendChild(categoriesWrapper);
+      }
 
       event.appendChild(medWrapper);
       return event;
@@ -432,7 +452,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "makeImageUrl",
     value: function makeImageUrl(id) {
-      return "https://app.ticketmaster.com/discovery/v1/events/" + id + "/images.json";
+      return "https://app.ticketmaster.com/discovery/v2/events/" + id + "/images.json";
     }
 
     /*
