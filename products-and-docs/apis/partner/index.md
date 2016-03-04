@@ -1713,6 +1713,63 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 Status 204
 {% endhighlight %}
 
+{: .article}
+## Polling [GET]
+{: #poll}
+
+Resource endpoints that have polling enabled may alternatively return a json response with a polling url and wait time, along with http status code=202.  This is used to inform client applications of long-waiting operations and queuing restrictions for particular actions in the Ticketmaster system.
+
+Client applications may receive the following json response for any resource marked "Polling: Yes".
+
+{% highlight js %}
+{
+    "polling_url": "https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D",
+    "wait": 4
+}
+{% endhighlight %}
+
+Client applications should call *polling_url* with a GET request after waiting 4
+seconds.  It is possible that this request may also result in another polling response.
+
+Clients can test polling by issuing the following header: `X-TM-FORCE-POLLING: true` to any of the endpoints marked "Polling: Yes".
+
+The output of the original action will eventually be returned in the body of the response.
+
+
+/partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
+{: .code .red}
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+{% endhighlight %}
+
+
+{% highlight js %}
+Status 202
+{
+    "polling_url": "https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D",
+    "wait": 4
+}
+
+Status 200
+{
+    // json payload from originally requested response (status code = 200)
+}
+
+{% endhighlight %}
 
 {: .article}
 ## Order management [GET]
@@ -1890,66 +1947,6 @@ Status 200
     ]
 }
 {% endhighlight %}
-
-
-{: .article}
-## Polling [GET]
-{: #poll}
-
-Resource endpoints that have polling enabled may alternatively return a json response with a polling url and wait time, along with http status code=202.  This is used to inform client applications of long-waiting operations and queuing restrictions for particular actions in the Ticketmaster system.
-
-Client applications may receive the following json response for any resource marked "Polling: Yes".
-
-{% highlight js %}
-{
-    "polling_url": "https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D",
-    "wait": 4
-}
-{% endhighlight %}
-
-Client applications should call *polling_url* with a GET request after waiting 4 
-seconds.  It is possible that this request may also result in another polling response.
-
-Clients can test polling by issuing the following header: `X-TM-FORCE-POLLING: true` to any of the endpoints marked "Polling: Yes".
-
-The output of the original action will eventually be returned in the body of the response.
-
-
-/partners/v1/polling/.../?apikey={apikey}&cart_id={cart_id}
-{: .code .red}
-
-### Parameters
-
-| Parameter  | Description          | Type              | Example      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
-
-
->[Request](#req)
->[Response](#res)
-{: .reqres}
-
-
-{% highlight bash %}
-https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
-{% endhighlight %}
-
-
-{% highlight js %}
-Status 202
-{
-    "polling_url": "https://app.ticketmaster.com/partners/v1/polling/cart/tickets/PUT/00000001080E06000000006BB7C4A8C0?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D",
-    "wait": 4
-}
-
-Status 200
-{
-    // json payload from originally requested response (status code = 200)
-}
-
-{% endhighlight %}
-
 
 {: .article}
 ## Error Responses

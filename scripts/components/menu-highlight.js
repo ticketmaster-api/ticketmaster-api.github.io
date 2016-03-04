@@ -3,7 +3,7 @@
  **/
 (function(){
     var topMenu = $(".menu-highlight"),
-        topMenuHeight = topMenu.outerHeight(),
+        //topMenuHeight = topMenu.outerHeight(),
         // All list items
         menuItems = topMenu.find("a"),
         // Anchors corresponding to menu items
@@ -15,8 +15,8 @@
         });
 
     $(window).scroll(function(){
-        // Get container scroll position
-        var fromTop = $(this).scrollTop()+topMenuHeight;
+        // Get container scroll position (100 px of backup)
+        var fromTop = $(this).scrollTop()+100/*+topMenuHeight-200*/;
 
         // Get id of current scroll item
         var cur = scrollItems.map(function(){
