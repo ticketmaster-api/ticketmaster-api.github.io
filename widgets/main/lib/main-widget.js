@@ -116,26 +116,28 @@ var TicketmasterWidget = function () {
     }
   }, {
     key: "formatDate",
-    value: function formatDate(date, localDay, localTime) {
+    value: function formatDate(date) {
+      var result = '';
+      if (!date.day) return result; // Day is required
+
       function LZ(x) {
         return (x < 0 || x > 9 ? "" : "0") + x;
       }
-
-      localDay = localDay.split('-');
-      localTime = localTime.split(':');
-
       var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-          H = parseInt(localTime[0]),
-          m = localTime[1],
-          d = parseInt(localDay[2]),
-          M = parseInt(localDay[1]),
-          a = "AM";
+          dayArray = date.day.split('-'),
+          d = parseInt(dayArray[2]),
+          M = parseInt(dayArray[1]);
 
-      date.setMonth(M - 1);
-      date.setDate(d);
-      date.setHours(H);
-      var E = date.getDay();
+      var E = new Date(date.day).getDay();
+      result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
+
+      if (!date.time) return result;
+
+      var timeArray = date.time.split(':'),
+          H = parseInt(timeArray[0]),
+          m = timeArray[1],
+          a = "AM";
 
       if (H > 11) a = "PM";
       if (H == 0) {
@@ -144,7 +146,7 @@ var TicketmasterWidget = function () {
         H = H - 12;
       }
 
-      return DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + localDay[0] + ' ' + LZ(H) + ':' + m + ' ' + a;
+      return result + ' ' + LZ(H) + ':' + m + ' ' + a;
     }
   }, {
     key: "clear",
@@ -331,8 +333,7 @@ var TicketmasterWidget = function () {
 
           currentEvent.date = {
             day: eventsSet[key].dates.start.localDate,
-            time: eventsSet[key].dates.start.localTime,
-            dateTime: eventsSet[key].dates.start.dateTime
+            time: eventsSet[key].dates.start.localTime
           };
 
           if (eventsSet[key]._embedded.venues[0].address) {
@@ -399,7 +400,7 @@ var TicketmasterWidget = function () {
       name.appendChild(nameContent);
       medWrapper.appendChild(name);
 
-      var dateTimeContent = document.createTextNode(this.formatDate(new Date(itemConfig.date.dateTime), itemConfig.date.day, itemConfig.date.time)),
+      var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
           dateTime = document.createElement("span");
       dateTime.classList.add("event-date");
       dateTime.appendChild(dateTimeContent);
