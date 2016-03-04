@@ -48,39 +48,43 @@ publish/{version}/events
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
 ### Exemple of a minimal recommended request payload
-{% highlight http %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+
 {
+  "source" : {
+    "id" : "test_id_0009",
+    "name" : "test-source"
+  },
+  "test": true,
+  "names": {
+    "en-us": "example test event tnt1"
+  },
+  "publicVisibility": {
+    "startDateTime": "2015-10-29T15:00:00Z",
+    "visible": true
+  },
+  "dates": {
+    "start": {
+      "dateTime": "2016-04-15T01:00:00Z",
+      "localDate": "2016-04-14",
+      "localTime": "19:00:00"
+    },
+    "timezone": "America/Edmonton"
+  },
+  "venue": {
     "source" : {
-        "id" : "test_id_0009",
-        "name" : "test-source"
+      "id" : "test_venue_id_0001",
+      "name" : "test-source"
     },
     "test": true,
-    "names": {
-        "en-us": "example test event tnt1"
-    },
-    "publicVisibility": {
-        "startDateTime": "2015-10-29T15:00:00Z",
-        "visible": true
-    },
-    "dates": {
-        "start": {
-            "dateTime": "2016-04-15T01:00:00Z",
-            "localDate": "2016-04-14",
-            "localTime": "19:00:00"
-        },
-        "timezone": "America/Edmonton"
-    },
-    "venue": {
-        "source" : {
-            "id" : "test_venue_id_0001",
-            "name" : "test-source"
-        },
-        "test": true,
-        "currency": "USD",
-        "country": {
-            "countryCode": "US"
-        }
+    "currency": "USD",
+    "country": {
+      "countryCode": "US"
     }
+  }
 }
 {% endhighlight %}
 
@@ -192,24 +196,25 @@ POST /publish/v2/events?apikey=**** HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
 
 {
   "additionalInfos": {
-                       "en-us": "string",
-                       "fr-ca": "chaine",
-                       "es-mx": "cuerda" 
-  },
+       "en-us": "string",
+       "fr-ca": "chaine",
+       "es-mx": "cuerda" 
+    },
   "attractions": [
     {
       "additionalInfos": {
-                       "en-us": "string",
-                       "fr-ca": "chaine",
-                       "es-mx": "cuerda" 
+         "en-us": "string",
+         "fr-ca": "chaine",
+         "es-mx": "cuerda" 
       },
       "descriptions": {
-                       "en-us": "string",
-                       "fr-ca": "chaine",
-                       "es-mx": "cuerda" 
+         "en-us": "string",
+         "fr-ca": "chaine",
+         "es-mx": "cuerda" 
       },
       "id": "",
       "images": [
@@ -221,9 +226,9 @@ Connection: Keep-Alive
         }
       ],
       "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda" 
       },
       "redirectUrl": "string",
       "source": {
@@ -257,13 +262,13 @@ Connection: Keep-Alive
     },
     "timezone": "America/Chicago",
     "status": {
-                "code": "string"
+      "code": "string"
     }
   },
   "descriptions": {
-                   "en-us": "string",
-                   "fr-ca": "chaine",
-                   "es-mx": "cuerda" 
+    "en-us": "string",
+    "fr-ca": "chaine",
+    "es-mx": "cuerda" 
   },
   "images": [
     {
@@ -274,9 +279,9 @@ Connection: Keep-Alive
     }
   ],
   "names": {
-            "en-us": "string",
-            "fr-ca": "chaine",
-            "es-mx": "cuerda" 
+    "en-us": "string",
+    "fr-ca": "chaine",
+    "es-mx": "cuerda" 
   },
   "publicVisibility": {
     "startDateTime": "2014-12-03T01:59:00Z",
@@ -298,42 +303,42 @@ Connection: Keep-Alive
   "test": true,
   "venue": {
     "additionalInfos": {
-                        "en-us": "string",
-                        "fr-ca": "chaine",
-                        "es-mx": "cuerda" 
+      "en-us": "string",
+      "fr-ca": "chaine",
+      "es-mx": "cuerda" 
     },
     "address": {
       "line1s": {
-                 "en-us": "string",
-                 "fr-ca": "chaine",
-                 "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda" 
       },
       "line2s": {
-                 "en-us": "string",
-                 "fr-ca": "chaine",
-                 "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda" 
       }
     },
     "city": {
       "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda" 
       }
     },
     "country": {
       "countryCode": "string",
       "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda" 
       }
     },
     "currency": "string",
     "descriptions": {
-                     "en-us": "string",
-                     "fr-ca": "chaine",
-                     "es-mx": "cuerda"
+      "en-us": "string",
+      "fr-ca": "chaine",
+      "es-mx": "cuerda"
     },
     "id": "",
     "images": [
@@ -348,17 +353,18 @@ Connection: Keep-Alive
       "latitude": 0,
       "longitude": 0
     },
-    "markets": [{
-                 "id": "101"
-                },
-                {
-                 "id": "120"
-                }
+    "markets": [
+      {
+       "id": "101"
+      },
+      {
+       "id": "120"
+      }
     ],
     "names": {
-              "en-us": "string",
-              "fr-ca": "chaine",
-              "es-mx": "cuerda" 
+      "en-us": "string",
+      "fr-ca": "chaine",
+      "es-mx": "cuerda" 
     },
     "postalCode": "string",
     "redirectUrl": "string",
@@ -368,9 +374,9 @@ Connection: Keep-Alive
     },
     "state": {
       "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda" 
       },
       "stateCode": "string"
     },
@@ -451,39 +457,43 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl -i -X POST --header "Content-Type: application/json" --header "Accept: application/json;charset=UTF-8" --header "TMPS-Correlation-Id: test1" -d "{
-    \"source\" : {
-        \"id\" : \"test_id_0009\",
-        \"name\" : \"test-source\"
-    },
-    \"test\": true,
-    \"names\": {
-        \"en-us\": \"example test event tnt1\"
-    },
-    \"publicVisibility\": {
-        \"startDateTime\": \"2015-10-29T15:00:00Z\",
-        \"visible\": true
-    },
-    \"dates\": {
-        \"start\": {
-            \"dateTime\": \"2016-04-15T01:00:00Z\",
-            \"localDate\": \"2016-04-14\",
-            \"localTime\": \"19:00:00\"
-        },
-        \"timezone\": \"America/Edmonton\"
-    },
-    \"venue\": {
-        \"source\" : {
-            \"id\" : \"test_venue_id_0001\",
-            \"name\" : \"test-source\"
-        },
-        \"test\": true,
-        \"currency\": \"USD\",
-        \"country\": {
-            \"countryCode\": \"US\"
-        }
-    }
-}" "http://app.ticketmaster.com/publish/v2/events"
+curl -i -X POST 
+--header "Content-Type: application/json" 
+--header "Accept: application/json;charset=UTF-8" 
+--header "TMPS-Correlation-Id: test1" 
+-d "{
+      \"source\" : {
+          \"id\" : \"test_id_0009\",
+          \"name\" : \"test-source\"
+      },
+      \"test\": true,
+      \"names\": {
+          \"en-us\": \"example test event tnt1\"
+      },
+      \"publicVisibility\": {
+          \"startDateTime\": \"2015-10-29T15:00:00Z\",
+          \"visible\": true
+      },
+      \"dates\": {
+          \"start\": {
+              \"dateTime\": \"2016-04-15T01:00:00Z\",
+              \"localDate\": \"2016-04-14\",
+              \"localTime\": \"19:00:00\"
+          },
+          \"timezone\": \"America/Edmonton\"
+      },
+      \"venue\": {
+          \"source\" : {
+              \"id\" : \"test_venue_id_0001\",
+              \"name\" : \"test-source\"
+          },
+          \"test\": true,
+          \"currency\": \"USD\",
+          \"country\": {
+              \"countryCode\": \"US\"
+          }
+      }
+    }" "http://app.ticketmaster.com/publish/v2/events"
 {% endhighlight %}
 
 
