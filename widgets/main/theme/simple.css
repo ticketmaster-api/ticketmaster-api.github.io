@@ -27,7 +27,7 @@
 
 
 
-div[theme="simple"]{
+div[w-theme="simple"]{
     position: relative;
     height: 200px;
     width: 150px;
@@ -42,11 +42,11 @@ div[theme="simple"]{
     transform: translate3d(0, 0, 0);
 }
 
-div[theme="simple"].border{
+div[w-theme="simple"].border{
     border: 1px solid #768692;
 }
 
-div[theme="simple"] ul{
+div[w-theme="simple"] ul{
     margin: 0;
     padding: 0;
     -webkit-transition: margin-left 0.5s ease-in-out;
@@ -58,7 +58,7 @@ div[theme="simple"] ul{
     transform: translate3d(0, 0, 0);
 }
 
-div[theme="simple"] .event-wrapper {
+div[w-theme="simple"] .event-wrapper {
     position: relative;
     height: 200px;
     width:150px;
@@ -71,8 +71,8 @@ div[theme="simple"] .event-wrapper {
     color: #fff;
 }
 
-div[theme="simple"] .event-content-wraper,
-div[theme="simple"] .event-wrapper:before {
+div[w-theme="simple"] .event-content-wraper,
+div[w-theme="simple"] .event-wrapper:before {
     position: absolute;
     left: 0;
     right: 0;
@@ -80,13 +80,13 @@ div[theme="simple"] .event-wrapper:before {
     bottom: 0;
 }
 
-div[theme="simple"] .event-wrapper:before {
+div[w-theme="simple"] .event-wrapper:before {
     content: '';
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 
-div[theme="simple"] .event-content-wraper {
+div[w-theme="simple"] .event-content-wraper {
     display: block;
     width: 100%;
     padding: 28px 28px 0;
@@ -97,7 +97,7 @@ div[theme="simple"] .event-content-wraper {
     text-decoration: none;
 }
 
-div[theme="simple"] .event-name{
+div[w-theme="simple"] .event-name{
     display: block;
     text-transform: uppercase;
     font-size: 24px;
@@ -106,48 +106,48 @@ div[theme="simple"] .event-name{
 
 }
 
-div[theme="simple"] .event-date-wraper{
+div[w-theme="simple"] .event-date-wraper{
     display: block;
     font-family: "TMSans-Bold";
     margin-bottom: 22px;
 }
 
-div[theme="simple"] .address-wrapper{
+div[w-theme="simple"] .address-wrapper{
     display: block;
     font-family: "TMSans-Light";
     margin-bottom: 42px;
 }
 
-div[theme="simple"] .event-address{
+div[w-theme="simple"] .event-address{
     display: block;
 }
 
-div[theme="simple"] .category-wrapper{
+div[w-theme="simple"] .category-wrapper{
     display: block;
     font-family: "TMSans-Bold";
 }
 
-div[theme="simple"] .address-wrapper,
-div[theme="simple"] .category-wrapper{
+div[w-theme="simple"] .address-wrapper,
+div[w-theme="simple"] .category-wrapper{
     color: #bebfc5;
 }
 
-div[theme="simple"] .event-category:before{
+div[w-theme="simple"] .event-category:before{
     content: ', ';
 }
 
-div[theme="simple"] .event-category:first-child:before{
+div[w-theme="simple"] .event-category:first-child:before{
     content: '';
 }
 
-div[theme="simple"] .legal-notice{
+div[w-theme="simple"] .legal-notice{
     position: absolute;
     left: 28px;
     bottom: 21px;
     color: #019cde;
 }
 
-div[theme="simple"] .event-logo {
+div[w-theme="simple"] .event-logo {
     position: absolute;
     right: 25px;
     bottom: 23px;

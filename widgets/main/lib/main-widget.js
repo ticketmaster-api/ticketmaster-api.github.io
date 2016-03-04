@@ -6,6 +6,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var TicketmasterWidget = function () {
   _createClass(TicketmasterWidget, [{
+    key: "isConfigAttrEmpty",
+    value: function isConfigAttrEmpty(attr) {
+      if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
+        return false;
+      } else if (this.config[attr] === "") {
+        return false;
+      }
+      return true;
+    }
+  }, {
     key: "config",
     set: function set(attrs) {
       this.widgetConfig = this.loadConfig(attrs);
@@ -31,17 +41,36 @@ var TicketmasterWidget = function () {
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
-    //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
+      return "http://localhost:4000/widgets/main/theme/";
     }
+    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+
   }, {
     key: "logoUrl",
     get: function get() {
       return "http://developer.ticketmaster.com/";
+    }
+  }, {
+    key: "updateExceptions",
+    get: function get() {
+      return ["width", "border", "borderradius", "colorscheme", "Layout"];
+    }
+  }, {
+    key: "eventReqAttrs",
+    get: function get() {
+      var attrs = {};
+
+      if (this.isConfigAttrEmpty("tmapikey")) attrs.apikey = this.config.tmapikey;
+      if (this.isConfigAttrEmpty("keyword")) attrs.keyword = this.config.keyword;
+      if (this.isConfigAttrEmpty("radius")) attrs.radius = this.config.radius;
+      if (this.isConfigAttrEmpty("postalcode")) attrs.postalcode = this.config.postalcode;
+      if (this.isConfigAttrEmpty("attractionid")) attrs.attractionid = this.config.attractionid;
+      if (this.isConfigAttrEmpty("promoterid")) attrs.promoterid = this.config.promoterid;
+
+      return attrs;
     }
 
     //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
@@ -52,7 +81,7 @@ var TicketmasterWidget = function () {
     _classCallCheck(this, TicketmasterWidget);
 
     this.sliderSpeed = 5000;
-    this.widgetRoot = document.querySelector("div[tm-api-key]");
+    this.widgetRoot = document.querySelector("div[w-tm-api-key]");
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.widgetRoot.appendChild(this.eventsRoot);
@@ -72,8 +101,10 @@ var TicketmasterWidget = function () {
     this.widgetRoot.style.width = this.config.width + "px";
     this.widgetRoot.style.borderRadius = this.config.borderradius + "px";
 
-    this.makeRequest(this.eventsLoadingHandler, this.apiUrl, { apikey: this.config.tmapikey, keyword: this.config.keyword, radius: this.config.radius, postalcode: this.config.postalcode });
-    this.eventProcessed = 0;
+    this.clear();
+
+    this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
+
     this.addWidgetRootLinks();
   }
 
@@ -157,20 +188,24 @@ var TicketmasterWidget = function () {
     key: "update",
     value: function update() {
 
-      var oldTheme = {
-        keywods: this.config.keyword,
-        theme: this.config.border,
+      var oldTheme = this.config.constructor();
+      for (var attr in this.config) {
+        if (this.config.hasOwnProperty(attr)) oldTheme[attr] = this.config[attr];
+      }
+
+      /*let oldTheme = {
+        keyword: this.config.keyword,
+        theme: this.config.theme,
         radius: this.config.radius,
-        latitude: this.config.latitude,
-        longitude: this.config.longitude
-      };
+        postalcode: this.config.postalcode,
+        attractionid: this.config.attractionid,
+        promoterid: this.config.attractionid
+      };*/
 
       this.config = this.widgetRoot.attributes;
 
-      this.eventProcessed = 0;
-
-      /*if(this.config.border !== null){
-        this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.border + ".css" );
+      /*if(this.config.theme !== null){
+        this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
       }*/
 
       this.widgetRoot.style.height = this.config.height + "px";
@@ -182,17 +217,15 @@ var TicketmasterWidget = function () {
         this.widgetRoot.classList.add("border");
       }
 
-      if (oldTheme.keywods !== this.config.keyword || oldTheme.radius !== this.config.radius || oldTheme.latitude !== this.config.latitude || oldTheme.longitude !== this.config.longitude) {
+      /*var newTheme = this.config;
+      Object.keys(newTheme).map(function(key){
+        console.log([key,newTheme[key]]);
+        return newTheme[key] === oldTheme[key] ;
+      }).indexOf(false) === -1*/
 
-        var attrs = {};
-
-        if (this.config.tmapikey !== "") attrs.apikey = this.config.tmapikey;
-        if (this.config.tmapkeywordikey !== "") attrs.keyword = this.config.keyword;
-        if (this.config.radius !== "") attrs.radius = this.config.radius;
-        if (this.config.postalcode !== "") attrs.postalcode = this.config.postalcode;
-
+      if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
         this.clear();
-        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, attrs);
+        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
       } else {
         var events = document.getElementsByClassName("event-wrapper");
         for (event in events) {
@@ -204,12 +237,23 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "needToUpdate",
+    value: function needToUpdate(newTheme, oldTheme) {
+      var forCheck = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+
+      return Object.keys(newTheme).map(function (key) {
+        if (forCheck.indexOf(key) > -1) return true;
+        //console.warn([key, newTheme[key], oldTheme[key], newTheme[key] === oldTheme[key]])
+        return newTheme[key] === oldTheme[key];
+      }).indexOf(false) > -1;
+    }
+  }, {
     key: "loadConfig",
     value: function loadConfig(NamedNodeMap) {
       var config = {};
       Object.keys(NamedNodeMap).map(function (value) {
-        if (typeof NamedNodeMap[value].name !== "undefined") {
-          config[NamedNodeMap[value].name.replace(/-/g, "")] = NamedNodeMap[value].value;
+        if (typeof NamedNodeMap[value].name !== "undefined" && NamedNodeMap[value].name.indexOf("w-") !== -1) {
+          config[NamedNodeMap[value].name.replace(/w-/g, "").replace(/-/g, "")] = NamedNodeMap[value].value;
         }
       });
       return config;
@@ -253,37 +297,10 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
-    key: "loadImages",
-    value: function loadImages() {
-      var self = this;
-      this.events.forEach(function (event) {
-        var url = self.makeImageUrl(event.id);
-        self.makeRequest(self.loadImagesHandler, url, { apikey: self.config.tmapikey });
-      });
-    }
-  }, {
-    key: "loadImagesHandler",
-    value: function loadImagesHandler() {
-      if (this && this.readyState == XMLHttpRequest.DONE) {
-        if (this.status == 200) {
-          var response = JSON.parse(this.responseText);
-          var _event = this.widget.getEventByID(response.id);
-          _event.img = this.widget.getImageForEvent(response.images);
-          this.widget.publishEvent(_event);
-        } else {
-          console.error('Fail to load IMG for event');
-        }
-        this.widget.eventProcessed++;
-      }
-    }
-  }, {
     key: "publishEvent",
     value: function publishEvent(event) {
       var DOMElement = this.createDOMItem(event);
       this.eventsRoot.appendChild(DOMElement);
-      if (this.eventProcessed === this.events.length - 1) {
-        //this.initSlider();
-      }
     }
   }, {
     key: "getEventByID",
