@@ -2,15 +2,21 @@ class TicketmasterWidget {
 
   set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
   get config() { return this.widgetConfig; }
+
   set events(responce){ this.eventsList = this.parseEvents(responce);}
   get events(){ return this.eventsList;}
+
   get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
+
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
+
   get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
   //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
+
   get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
 
+  get sliderSpeed(){ return 5000; }
 
   isConfigAttrEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
@@ -43,7 +49,7 @@ class TicketmasterWidget {
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
   constructor(selector) {
-    this.sliderSpeed = 5000;
+
     this.widgetRoot = document.querySelector("div[w-tm-api-key]");
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");

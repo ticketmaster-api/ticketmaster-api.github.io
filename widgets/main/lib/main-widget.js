@@ -59,6 +59,11 @@ var TicketmasterWidget = function () {
       return ["width", "border", "borderradius", "colorscheme", "Layout"];
     }
   }, {
+    key: "sliderSpeed",
+    get: function get() {
+      return 5000;
+    }
+  }, {
     key: "eventReqAttrs",
     get: function get() {
       var attrs = {};
@@ -80,7 +85,6 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
-    this.sliderSpeed = 5000;
     this.widgetRoot = document.querySelector("div[w-tm-api-key]");
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
