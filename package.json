@@ -4,9 +4,8 @@
   "description": "Hello",
   "main": "_site/index.html",
   "scripts": {
-    "test": "",
-    "build": "babel widgets/main/src -d widgets/main/lib --source-maps",
-    "build:watch": "npm run build -- -w"
+    "widgets-once": "babel widgets/main/src -d widgets/main/lib --source-maps",
+    "widgets": "npm run widgets-once -- -w"
   },
   "repository": {
     "type": "git",
@@ -20,14 +19,6 @@
   "homepage": "https://github.com/RaNKaR/rankar.github.io#readme",
   "devDependencies": {
     "babel-cli": "^6.5.1",
-    "babel-preset-es2015": "^6.5.0",
-    "jasmine-core": "^2.3.4",
-    "karma": "^0.13.15",
-    "karma-chrome-launcher": "^0.2.1",
-    "karma-jasmine": "^0.3.6",
-    "karma-mocha-reporter": "^1.1.1",
-    "karma-phantomjs-launcher": "^0.2.1",
-    "karma-tape-reporter": "^1.0.3",
-    "phantomjs": "^1.9.18"
+    "babel-preset-es2015": "^6.5.0"
   }
 }

@@ -4,43 +4,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/*
- {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"zz top","t":{"n":"t1","b":true,"h":200,"w":150,"br":4}}
-
-
-*/
-
-/*{
-"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", #ApiKey
-"kw":"zztop", #KeyWords
-"t":{ #Theme
-"b":"t1", #baseTheme - if null do not load theme
-"h":300,
-"w":150
-}
-})
- -API key       # input
--Key word      # input
--Postal Code   # input
--Theme         # Buttons
--Color Scheme  # Buttons
--Layout        # Buttons
--Height        # Slider
--Width         # Slider
--Border Radius # Slider
-
-  border: ""
- borderradius: "4"
- height: "550"
- keyword: "metal"
- latitude: ""
- longitude: ""
- radius: ""
- theme: "t1"
- tmapikey: "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst"
- width: "350"
- */
-
 var TicketmasterWidget = function () {
   _createClass(TicketmasterWidget, [{
     key: "config",
