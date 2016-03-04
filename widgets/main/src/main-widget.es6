@@ -87,10 +87,7 @@ class TicketmasterWidget {
         d = parseInt(dayArray[2]),
         M = parseInt(dayArray[1]);
 
-    var jsDate = new Date(date.day);
-    jsDate.setMonth(M - 1);
-    jsDate.setDate(d);
-    var E = jsDate.getDay();
+    var E = new Date(date.day).getDay();
     result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
     if(!date.time) return result;
