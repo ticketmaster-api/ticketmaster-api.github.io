@@ -10,7 +10,7 @@ keywords: API, search events, attraction details, event images, category details
 
 # Discovery API
 
-Use the Discovery API to search, look up and find events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.
+Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to all Ticketmaster events, as well as Universe and TicketWeb events.
 {: .lead .article}
 
 #### Developer Console
@@ -48,7 +48,7 @@ discovery/{version}/events.{format}
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `version`  | The API Version.     | string            |       "v1"         | Yes      |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
 ### Query parameters:
@@ -56,19 +56,25 @@ discovery/{version}/events.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
-| `attractionId`   | Attraction ID(s) separated by comma. | string            |       "768011"       | No      |
-| `venueId`   | Venue ID(s) separated by comma. | string            |       "115378"       | No      |
+| `attractionId`   | Attraction ID(s) separated by comma. | string            |       "K8vZ91713eV"       | No      |
+| `venueId`   | Venue ID(s) separated by comma. | string            |       "KovZpZAEdFtJ"       | No      |
 | `promoterId`   | Promoter ID(s) separated by comma. | string            |       "494"       | No      |
 | `postalCode`   | Zipcode or Postal Code of the venue in which the event is taking place. | string            |       "90069"       | No      |
-| `latlong`   | The longitude/Latitude coordinates for the venue in which this event is taking place. | string            |       "34.0928090,-118.3286610"       | No      |
+| `latlong`   | The Latitude, Longitude coordinates for the venue in which this event is taking place. | string            |       "34.0928090,-118.3286610"       | No      |
 | `radius`   | The radius of the area in which we want to search for events. | string            |       "25"       | No      |
+| `unit`   | The radius distance unit. Possible values: miles, km. | string            |       "miles"       | No      |
+| `source`   | Source of the event. Possible values are '', 'ticketmaster', 'ticketweb', 'universe'. | string            |       "ticketmaster"       | No      |
+| `locale`   | The event locale, including country and localization. Values: “”, “en-us”, “en-gb”, “en-ca”, “es-us”, “en-mx”, “es-mx”, “en-au”, “en-nz”, “fr-fr”, “fr-ca”. | string            |              | No      |
+| `marketId`   | The city/area in which this event takes place. | string            |       "27"       | No      |
+| `startDateTime`   | Include events happening after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
+| `endDateTime`   | Include events happening before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
+| `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes|no|only"       | No      |
+| `includeTBD`   | Whether or not to return events with dates to be determined (TBD). Default is 'no', TBD events are not returned. | string            |       "yes|no|only"       | No      |
+| `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes|no|only"       | No      |
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "eventDate,desc", "eventDate,asc", "name,desc", "name,asc". | string            |              | No      |
-| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
-| `marketId`   | The city/area in which this event takes place. | string            |       "27"       | No      |
-| `deviceId`   | The device making the API call. | string            |       "1"       | No      |
-| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
+
 
 ### Response structure:
 
@@ -77,17 +83,34 @@ discovery/{version}/events.{format}
     * `events` (array) - events.
         - `{array item object}` - event.
             * `name` (string) - name of event.
+            * `type` (string) - type of event.
+            * `id` (string) - id of event.
+            * `test` (boolean) - is test.
             * `locale` (string) - locale of event.
             * `eventUrl` (string) - links to event detail page.
+            * `promoterId` (array) - promoter ids of event.
+                - `{array item numbers}` - promoter id.
+            * `images` (array) - images.
+                - `{array item object}` - image.
+                    * `ratio` (string) - image ratio.
+                    * `url` (string) - image url.
+                    * `width` (number) - image width.
+                    * `height` (number) - image height.
+                    * `fallback` (boolean) - image fallback availability.
+            * `sales` (object) - sales.
+                - `public` (object) - public sales.
+                    * `startDateTime` (string) - date and time start of public sales.
+                    * `startTBD` (boolean) - is start TBD.
+                    * `endDateTime` (string) - date and time end of public sales.
             * `dates` (object) - dates of event.
                 - `start` (object) - start of event.
                     * `dateTime` (string) - date and time start of event.
                     * `localDate` (string) - local date start of event.
                     * `localTime` (string) - local time start of event.
-                - `end` (object) - end of event.
-                    * `dateTime` (string) - date and time end of event.
-                    * `localDate` (string) - local date end of event.
-                    * `localTime` (string) - local time end of event.
+                    * `dateTBD` (boolean) - is date TBD.
+                    * `dateTBA` (boolean) - is date TBA.
+                    * `timeTBA` (boolean) - is time TBA.
+                    * `noSpecificTime` (boolean) - is no specific time.
                 - `timezone` (string) - time zone of event.
                 - `displayOptions` (object) - display options of event.
                     * `range` (object) - range of event displayed.
@@ -95,14 +118,21 @@ discovery/{version}/events.{format}
                         - `localEndDate` (string) - local end date of event displayed.
                 - `status` (object) - status of event.
                     * `code` (string) - code of status.
-            * `test` (boolean) - is test.
-            * `id` (string) - id of event.
+            * `classifications` (array) - classifications.
+                - `{array item object}` - classification.
+                    * `primary` (boolean) - is primary.
+                    * `segment` (object) - segment.
+                        - `id` (string) - segment id.
+                        - `name` (string) - segment name.
+                    * `genre` (object) - genre.
+                        - `id` (string) - genre id.
+                        - `name` (string) - genre name.
+                    * `subGenre` (object) - subgenre.
+                        - `id` (string) - subgenre id.
+                        - `name` (string) - subgenre name.
             * `_links` (object) - links to event.
                 - `self` (object) - link to this event.
                     + `href` (string) - reference.
-                - `categories` (array) - links to event categories.    
-                    * `{array item object}` - link.
-                        - `href` (string) - reference to event category.
                 - `attractions` (object) - links to event attractions.
                     * `{array item object}` - link.
                         * `href` (string) - reference to event attraction.
@@ -113,8 +143,15 @@ discovery/{version}/events.{format}
                 - `venue` (array) - related venues.
                     * `{array item object}` - venue.
                         * `name` (string) - name of event venue.
-                        * `marketId` (array) - id of venue markets.
-                            - `{array item numbers}` - promoter id.
+                        * `type` (string) - type of current venue.
+                        * `id` (string) - id of current venue.
+                        * `test` (boolean) - is test.
+                        * `locale` (string) - locale of event.
+                        * `postalCode` (string) - postal code of venue.
+                        * `timeZone` (string) - time zone of event.
+                        * `markets` (array) - markets.
+                            - `{array item object}` - market.
+                                * `id` (string) - market id.
                         * `country` (object) - country of venue.
                             - `countryCode` (string) - country code of venue.
                         * `state` (object) - state of venue.
@@ -124,25 +161,12 @@ discovery/{version}/events.{format}
                         * `location` (object) - location of venue.
                             - `latitude` (string) - latitude of venue.
                             - `longitude` (string) - longitude of venue.
-                        * `postalCode` (string) - postal code of venue.
                         * `address` (object) - address of venue.
                             - `line1` (string) - street name.
                             - `line2` (string) - city and state code where event happen.
-                        * `timeZone` (string) - time zone of event.
                         * `_links` (object) - links.
                             - `self` (object) - link to this venue.
-                                * `href` (string) - reference.
-                        * `id` (string) - id of current venue.
-                        * `type` (string) - type of current venue.
-                - `categories` (array) - related categories.
-                    + `{array item object}` - categories.
-                        * `name` (string) - name of event category.
-                        * `level` (number) - level of event category.
-                        * `_links` (object) - links to categories.
-                            - `self` (object) - link to this category.
-                                * `href` (string) - reference.
-                    * `id` (string) - id of current category.
-                    * `type` (string) - type of current category.     
+                                * `href` (string) - reference. 
                 - `attractions` (array) - related attractions.
                     + `{array item object}` - event attractions.
                         * `url` (string) - url to event attraction.
@@ -154,7 +178,28 @@ discovery/{version}/events.{format}
                                 * `href` (string) - reference.
                         * `id` (string) - id of current attraction.
                         * `type` (string) - type of current attraction.
-            * `type` (string) - type of event.
+                        * `test` (boolean) - is test.
+                        * `locale` (string) - locale of event.
+                        * `images` (array) - images.
+                            - `{array item object}` - image.
+                                * `ratio` (string) - image ratio.
+                                * `url` (string) - image url.
+                                * `width` (number) - image width.
+                                * `height` (number) - image height.
+                                * `fallback` (boolean) - image fallback availability.
+                        * `classifications` (array) - classifications.
+                            - `{array item object}` - classification.
+                                * `primary` (boolean) - is primary.
+                                * `segment` (object) - segment.
+                                    - `id` (string) - segment id.
+                                    - `name` (string) - segment name.
+                                * `genre` (object) - genre.
+                                    - `id` (string) - genre id.
+                                    - `name` (string) - genre name.
+                                * `subGenre` (object) - subgenre.
+                                    - `id` (string) - subgenre id.
+                                    - `name` (string) - subgenre name.
+            
 - `_links` (object) - links to data sets.
     * `self` (object) - link to this data set.
         - `href` (string) - reference.
