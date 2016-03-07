@@ -6,6 +6,8 @@ categories:
 title: Discovery API
 excerpt: Use the Discovery API to search, look up and find events, attractions and venues.
 keywords: API, search events, attraction details, event images, category details, venue details, support
+redirect_from: 
+- "/apis/discovery/"
 ---
 
 # Discovery API
@@ -35,7 +37,7 @@ Example: `https://app.ticketmaster.com/discovery/v1/events.json?apikey=3QIvq55bS
 
 
 ## Search Events
-{: .article .console-link #srch-events }
+{: .article .console-link #srch-events-v2 }
 
 **Method:** GET.
 Authentication required.
@@ -594,7 +596,7 @@ Rate-Limit:
 {% endhighlight %}
 
 ## Get Event Details
-{: .article .console-link #event-details }
+{: .article .console-link #event-details-v2 }
 
 **Method:** GET.
 Authentication required.
@@ -1137,7 +1139,7 @@ Rate-Limit:
 
 
 ## Search Event Images
-{: .article .console-link #event-img}
+{: .article .console-link #event-img-v2}
 
 **Method:** GET.
 Authentication required.
@@ -1330,7 +1332,7 @@ Rate-Limit:
 }
 {% endhighlight %}
 
-{: .article .console-link #search-attractions}
+{: .article .console-link #search-attractions-v2}
 ## Search Attractions
 
 **Method:** GET.
@@ -1530,7 +1532,7 @@ Rate-Limit:
 }
 {% endhighlight %}
 
-{: .article .console-link #attraction-details}
+{: .article .console-link #attraction-details-v2}
 ## Get Attraction Details
 
 **Method:** GET.
@@ -1770,7 +1772,7 @@ Rate-Limit:
 {% endhighlight %}
 
 
-{: .article .console-link #search-categories}
+{: .article .console-link #search-classifications-v2}
 ## Search Classifications
 
 **Method:** GET.
@@ -1975,7 +1977,7 @@ Rate-Limit:
 {% endhighlight %}
 
 
-{: .article .console-link #category-details}
+{: .article .console-link #classifications-details-v2}
 ## Get Classification Details
 
 **Method:** GET.
@@ -2100,7 +2102,7 @@ Rate-Limit:
 {% endhighlight %}
 
 
-{: .article .console-link #search-venues}
+{: .article .console-link #search-venues-v2}
 ## Search Venues
 
 **Method:** GET.
@@ -2345,7 +2347,7 @@ Rate-Limit:
 {% endhighlight %}
 
 
-{: .article .console-link #venue-details}
+{: .article .console-link #venue-details-v2}
 ## Get Venue Details
 
 **Method:** GET.
