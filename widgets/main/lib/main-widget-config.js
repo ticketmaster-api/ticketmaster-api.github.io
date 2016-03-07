@@ -38,5 +38,19 @@ var $widgetModal = $('#js_widget_modal'),
   $('#js_widget_modal_no_code__close').on('click', function () {
     $widgetModalNoCode.modal('hide');
   });
+
+  $("#w-size").on("keydown", function (event) {
+    var kchar = String.fromCharCode(event.keyCode);
+    if (/[\w\d]/.test(kchar)) {
+      if (/\d/.test(kchar)) {
+        var newVal = (this.value.substring(0, this.selectionStart) + this.value.substring(this.selectionEnd) + kchar) * 1;
+        if (newVal > 100 || newVal < 0) {
+          event.preventDefault();
+        }
+      } else {
+        event.preventDefault();
+      }
+    }
+  });
 })();
 //# sourceMappingURL=main-widget-config.js.map

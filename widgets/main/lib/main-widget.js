@@ -70,6 +70,7 @@ var TicketmasterWidget = function () {
 
       if (this.isConfigAttrEmpty("tmapikey")) attrs.apikey = this.config.tmapikey;
       if (this.isConfigAttrEmpty("keyword")) attrs.keyword = this.config.keyword;
+      if (this.isConfigAttrEmpty("size")) attrs.size = this.config.size;
       if (this.isConfigAttrEmpty("radius")) attrs.radius = this.config.radius;
       if (this.isConfigAttrEmpty("postalcode")) attrs.postalcode = this.config.postalcode;
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionid = this.config.attractionid;

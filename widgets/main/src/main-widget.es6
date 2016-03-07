@@ -34,6 +34,8 @@ class TicketmasterWidget {
       attrs.apikey = this.config.tmapikey;
     if(this.isConfigAttrEmpty("keyword"))
       attrs.keyword = this.config.keyword;
+    if(this.isConfigAttrEmpty("size"))
+      attrs.size = this.config.size;
     if(this.isConfigAttrEmpty("radius"))
       attrs.radius = this.config.radius;
     if(this.isConfigAttrEmpty("postalcode"))
