@@ -129,6 +129,16 @@
                 </ul>
                 {% endif %}
             </li>
+            <li><a href="/products-and-docs/apis/archtics/">Archtics API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "archtics" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#customer-add">Customer Add</a></li>
+                    <li><a href="#customer-update">Customer Update</a></li>
+                    <li><a href="#customer-query">Customer Query</a></li>
+                </ul>
+                {% endif %}
+            </li>
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>
             <li><a href="http://vmenshutin.github.io/">API Explorer</a></li>
         </ul>
