@@ -3,11 +3,12 @@ layout: documentation
 categories:
 - documentation
 - discovery
+- v2
 title: Discovery API
 excerpt: Use the Discovery API to search, look up and find events, attractions and venues.
 keywords: API, search events, attraction details, event images, category details, venue details, support
 redirect_from: 
-- "/apis/discovery/"
+- "/products-and-docs/apis/discovery/"
 ---
 
 # Discovery API
@@ -258,41 +259,23 @@ Connection: Keep-Alive
 
 {% highlight http %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-5360
-Rate-Limit-Available:
-4723
-Set-Cookie:
-CMPS=0ytJbt229sTM7UXhHxC5IEvVNguFRwkBBUZ76aK9bmvRvAWZwe/RjM5TSH0yOXNFGd+urQFTC6o=; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 10:09:51 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jphx1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 5360
+Rate-Limit-Available: 4723
+Set-Cookie: CMPS=0ytJbt229sTM7UXhHxC5IEvVNguFRwkBBUZ76aK9bmvRvAWZwe/RjM5TSH0yOXNFGd+urQFTC6o=; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 10:09:51 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jphx1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "_links":  {
     "self":  {
@@ -781,41 +764,23 @@ Connection: Keep-Alive
 
 {% highlight http %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-5555
-Rate-Limit-Available:
-4722
-Set-Cookie:
-CMPS=cE7N5yujrQNGYWvJF3bAH6iRNHwAv0FDp5i1VDetaW6+WW5OZTOBve6ZQCpN9qCv; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 10:12:45 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jphx1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 5555
+Rate-Limit-Available: 4722
+Set-Cookie: CMPS=cE7N5yujrQNGYWvJF3bAH6iRNHwAv0FDp5i1VDetaW6+WW5OZTOBve6ZQCpN9qCv; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 10:12:45 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jphx1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "name": "RNDM",
   "type": "event",
@@ -1214,41 +1179,23 @@ Connection: Keep-Alive
 
 {% highlight http %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-1791
-Rate-Limit-Available:
-4721
-Set-Cookie:
-CMPS=JZE+KB6vdvAgtu5+7+q5LjU8d3RbODYo2jv3r5+vwk0BcMxjtg3kAFdo3D2gFulS; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 10:15:18 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jphx1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 1791
+Rate-Limit-Available: 4721
+Set-Cookie: CMPS=JZE+KB6vdvAgtu5+7+q5LjU8d3RbODYo2jv3r5+vwk0BcMxjtg3kAFdo3D2gFulS; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 10:15:18 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jphx1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "type": "event",
   "id": "k7vGFKzleBdwS",
@@ -1452,41 +1399,23 @@ Connection: Keep-Alive
 
 {% highlight http %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-2306
-Rate-Limit-Available:
-4719
-Set-Cookie:
-CMPS=twsJFiJCd9puX3QeIpWdz1Co+AFBb0GGb2S5IpJoKGFAy6VVeUUgAfUsgfrWYV89; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 10:17:30 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jphx1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 2306
+Rate-Limit-Available: 4719
+Set-Cookie: CMPS=twsJFiJCd9puX3QeIpWdz1Co+AFBb0GGb2S5IpJoKGFAy6VVeUUgAfUsgfrWYV89; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 10:17:30 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jphx1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "_links":  {},
   "_embedded":  {
@@ -1633,41 +1562,23 @@ Connection: Keep-Alive
 
 {% highlight HTTP %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-2019
-Rate-Limit-Available:
-4715
-Set-Cookie:
-CMPS=5vv+AGPecM7pv5Q4MmLBniGH0DBXyfh68w9nYydgerFjBhsCrQs1DbTINMWnUgrDL0UGMYDHSDc=; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 10:21:02 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jash1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 2019
+Rate-Limit-Available: 4715
+Set-Cookie: CMPS=5vv+AGPecM7pv5Q4MmLBniGH0DBXyfh68w9nYydgerFjBhsCrQs1DbTINMWnUgrDL0UGMYDHSDc=; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 10:21:02 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jash1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "name": "!!!",
   "type": "attraction",
@@ -1865,41 +1776,23 @@ Connection: Keep-Alive
 
 {% highlight HTTP %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-1093
-Rate-Limit-Available:
-4714
-Set-Cookie:
-CMPS=X+EBiEvRM0syS+stL/cX/gsj/b+Ekp+ax1Y1UXwHF4W4DqB22Y2rXsf00GJCnetC; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 10:23:47 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jphx1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 1093
+Rate-Limit-Available: 4714
+Set-Cookie: CMPS=X+EBiEvRM0syS+stL/cX/gsj/b+Ekp+ax1Y1UXwHF4W4DqB22Y2rXsf00GJCnetC; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 10:23:47 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jphx1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "_links":  {
     "self":  {
@@ -2053,41 +1946,23 @@ Connection: Keep-Alive
 
 {% highlight HTTP %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-146
-Rate-Limit-Available:
-4704
-Set-Cookie:
-CMPS=knuzxOVcqdhMvUWKhD1HJcR5XXSZVELJc0IG2tQ2a6fPIMvDGc3jQaIZwf8n3jmw; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 10:33:15 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jphx1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 146
+Rate-Limit-Available: 4704
+Set-Cookie: CMPS=knuzxOVcqdhMvUWKhD1HJcR5XXSZVELJc0IG2tQ2a6fPIMvDGc3jQaIZwf8n3jmw; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 10:33:15 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jphx1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "segment":  {
     "id": "KZFzniwnSyZfZ7v7nE",
@@ -2217,41 +2092,23 @@ Connection: Keep-Alive
 
 {% highlight HTTP %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-1241
-Rate-Limit-Available:
-4646
-Set-Cookie:
-CMPS=5Gk5wt8nfXBXXBiKtbkBiPSHgfZp9zC9Gv5MPAEcFsr5g6kwuwchDenPMUm/k7jxtKdE9AU0WRI=; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 12:07:21 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jash1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 1241
+Rate-Limit-Available: 4646
+Set-Cookie: CMPS=5Gk5wt8nfXBXXBiKtbkBiPSHgfZp9zC9Gv5MPAEcFsr5g6kwuwchDenPMUm/k7jxtKdE9AU0WRI=; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 12:07:21 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jash1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "_links":  {
     "self":  {
@@ -2443,41 +2300,23 @@ Connection: Keep-Alive
 
 {% highlight HTTP %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-534
-Rate-Limit-Available:
-4641
-Set-Cookie:
-CMPS=EVPIT1pv8wWL7BwB100rEn1yhwBpj7YSqibbjeotIHcpnB/odVGK9VdPBPm3dTrr; path=/
-Access-Control-Max-Age:
-3628800
-Access-Control-Allow-Methods:
-GET, PUT, POST, DELETE
-Connection:
-keep-alive
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1457417554290
-Access-Control-Allow-Headers:
-origin, x-requested-with, accept
-Date:
-Mon, 07 Mar 2016 12:10:53 GMT
-Access-Control-Allow-Origin:
-*
-X-Application-Context:
-application:local,default,jphx1:8080
-Content-Type:
-application/json;charset=utf-8
-X-Unknown-Params:
-apikey
-X-Unknown-Params:
-api-key
-Rate-Limit:
-5000
-
+Rate-Limit-Over: 0
+Content-Length: 534
+Rate-Limit-Available: 4641
+Set-Cookie: CMPS=EVPIT1pv8wWL7BwB100rEn1yhwBpj7YSqibbjeotIHcpnB/odVGK9VdPBPm3dTrr; path=/
+Access-Control-Max-Age: 3628800
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE
+Connection: keep-alive
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1457417554290
+Access-Control-Allow-Headers: origin, x-requested-with, accept
+Date: Mon, 07 Mar 2016 12:10:53 GMT
+Access-Control-Allow-Origin: *
+X-Application-Context: application:local,default,jphx1:8080
+Content-Type: application/json;charset=utf-8
+X-Unknown-Params: apikey
+X-Unknown-Params: api-key
+Rate-Limit: 5000
 {
   "name": "#1 Please do not use, left over from UCV initial acct set up",
   "type": "venue",
