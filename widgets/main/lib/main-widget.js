@@ -86,9 +86,14 @@ var TicketmasterWidget = function () {
     _classCallCheck(this, TicketmasterWidget);
 
     this.widgetRoot = document.querySelector("div[w-tm-api-key]");
+
+    this.eventsRootContainer = document.createElement("div");
+    this.eventsRootContainer.classList.add("events-root-container");
+    this.widgetRoot.appendChild(this.eventsRootContainer);
+
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
-    this.widgetRoot.appendChild(this.eventsRoot);
+    this.eventsRootContainer.appendChild(this.eventsRoot);
 
     this.config = this.widgetRoot.attributes;
 
@@ -96,14 +101,17 @@ var TicketmasterWidget = function () {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
     }
 
-    this.widgetRoot.classList.remove("border");
+    this.eventsRootContainer.classList.remove("border");
     if (this.config.border) {
-      this.widgetRoot.classList.add("border");
+      this.eventsRootContainer.classList.add("border");
     }
 
     this.widgetRoot.style.height = this.config.height + "px";
     this.widgetRoot.style.width = this.config.width + "px";
-    this.widgetRoot.style.borderRadius = this.config.borderradius + "px";
+
+    this.eventsRootContainer.style.height = this.config.height + "px";
+    this.eventsRootContainer.style.width = this.config.width + "px";
+    this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
 
     this.clear();
 
@@ -214,11 +222,13 @@ var TicketmasterWidget = function () {
 
       this.widgetRoot.style.height = this.config.height + "px";
       this.widgetRoot.style.width = this.config.width + "px";
-      this.widgetRoot.style.borderRadius = this.config.borderradius + "px";
+      this.eventsRootContainer.style.height = this.config.height + "px";
+      this.eventsRootContainer.style.width = this.config.width + "px";
+      this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
 
-      this.widgetRoot.classList.remove("border");
+      this.eventsRootContainer.classList.remove("border");
       if (this.config.hasOwnProperty("border")) {
-        this.widgetRoot.classList.add("border");
+        this.eventsRootContainer.classList.add("border");
       }
 
       /*var newTheme = this.config;

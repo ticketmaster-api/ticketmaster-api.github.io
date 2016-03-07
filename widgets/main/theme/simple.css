@@ -31,22 +31,29 @@ div[w-theme="simple"]{
     position: relative;
     height: 200px;
     width: 150px;
-    overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
+    padding-bottom: 25px;
+}
+
+div[w-theme="simple"] .events-root-container{
+    overflow: hidden;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 }
 
-div[w-theme="simple"].border{
+div[w-theme="simple"] .events-root-container.border{
     border: 1px solid #768692;
 }
 
-div[w-theme="simple"] ul{
+div[w-theme="simple"] .events-root{
     margin: 0;
     padding: 0;
     -webkit-transition: margin-left 0.5s ease-in-out;
@@ -142,15 +149,16 @@ div[w-theme="simple"] .event-category:first-child:before{
 
 div[w-theme="simple"] .legal-notice{
     position: absolute;
-    left: 28px;
-    bottom: 21px;
+    left: 0;
+    bottom: 0;
     color: #019cde;
+    font-size: 12px;
 }
 
 div[w-theme="simple"] .event-logo {
     position: absolute;
     right: 25px;
-    bottom: 23px;
+    bottom: 48px;
     width: 127px;
     height: 17px;
     background: url("http://developer.ticketmaster.com/assets/img/footer/ticketmaster-logo-white.svg") no-repeat;
