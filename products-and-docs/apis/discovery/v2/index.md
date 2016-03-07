@@ -276,6 +276,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "_links":  {
     "self":  {
@@ -781,6 +782,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "name": "RNDM",
   "type": "event",
@@ -1196,6 +1198,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "type": "event",
   "id": "k7vGFKzleBdwS",
@@ -1416,6 +1419,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "_links":  {},
   "_embedded":  {
@@ -1579,6 +1583,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "name": "!!!",
   "type": "attraction",
@@ -1793,6 +1798,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "_links":  {
     "self":  {
@@ -1963,6 +1969,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "segment":  {
     "id": "KZFzniwnSyZfZ7v7nE",
@@ -2109,6 +2116,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "_links":  {
     "self":  {
@@ -2317,6 +2325,7 @@ Content-Type: application/json;charset=utf-8
 X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
+
 {
   "name": "#1 Please do not use, left over from UCV initial acct set up",
   "type": "venue",
