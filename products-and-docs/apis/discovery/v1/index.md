@@ -3,6 +3,7 @@ layout: documentation
 categories:
 - documentation
 - discovery
+- v1
 title: Discovery API
 excerpt: Use the Discovery API to search, look up and find events, attractions and venues.
 keywords: API, search events, attraction details, event images, category details, venue details, support
