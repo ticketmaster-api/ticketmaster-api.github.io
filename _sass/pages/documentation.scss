@@ -53,6 +53,13 @@
       }
       /*apigee wrapper END*/
 
+      li > ul {
+        margin: 0 0 0 $base-margin;
+      }
+      .nested-list-wrapper ul.jstree-children:not(:first-child) {
+        margin: 0;
+      }
+
       h1 {
         margin: 96px 0px 24px 0px;
       }
