@@ -39,7 +39,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
 <form accept-charset="UTF-8" action="#" method="POST" class="js_nexus_form">    
     <div class="col-sm-6">
         <label for="name-nexus">First name</label>
-        <input type="text" id="first-name" name="firstName" maxlength="255" placeholder="" autofocus tabindex="1">
+        <input type="text" id="first-name" name="firstName" maxlength="255" placeholder="" tabindex="1">
     </div>
     <div class="col-sm-6">
         <label for="last-name-nexus">Last name</label>
