@@ -326,13 +326,14 @@ class TicketmasterWidget {
           currentEvent.address = eventsSet[key]._embedded.venues[0].address;
         }
 
-        if(eventsSet[key]._embedded.hasOwnProperty('categories')){
+        // Remove this comment to get categories
+        /*if(eventsSet[key]._embedded.hasOwnProperty('categories')){
           currentEvent.categories = [];
           let eventCategories = eventsSet[key]._embedded.categories;
           currentEvent.categories = Object.keys(eventCategories).map(function(category){
             return eventCategories[category].name
           });
-        }
+        }*/
 
         currentEvent.img = this.getImageForEvent(eventsSet[key].images);
 
