@@ -1,62 +1,99 @@
-<form accept-charset="UTF-8" class="main-widget-config-form">
-  <div class="col-lg-12">
-    <label for="tm-api-key">API Key</label>
-    <input type="text" id="tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
-  </div>
-  <div class="col-lg-12">
-    <label for="keyword">Keyword</label>
-    <input type="text" id="keyword" value="">
+
+<form accept-charset="UTF-8" class="main-widget-config-form common_tabs">
+
+
+  <ul class="nav nav-tabs" data-tabs="tabs">
+    <li class="active">
+      <a href="#widget-config-setup" data-toggle="tab">Setup</a>
+    </li>
+    <li>
+      <a href="#widget-config-styling" data-toggle="tab">Styling</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade active" id="widget-config-setup">
+      <div class="row">
+        <div class="col-lg-12">
+          <label for="w-tm-api-key">API Key</label>
+          <input type="text" id="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+        </div>
+        <div class="col-lg-12">
+          <label for="w-keyword">Keyword</label>
+          <input type="text" id="w-keyword" value="">
+        </div>
+
+        <div class="col-lg-6">
+          <label for="w-postal-code">ZIP Code</label>
+          <input type="text" id="w-postal-code" value="90210">
+        </div>
+        <div class="col-lg-6">
+          <label for="w-size">Event Count</label>
+          <input type="text" id="w-size" value="25">
+        </div>
+
+        <div class="col-lg-12">
+          <label for="w-attraction-id">Attraction ID</label>
+          <input type="text" id="w-attraction-id" value="">
+        </div>
+
+        <div class="col-lg-12">
+          <label for="w-promoter-id">Promoter ID</label>
+          <input type="text" id="w-promoter-id" value="">
+        </div>
+
+        <div class="col-lg-12">
+          <label for="w-radius">Radius</label>
+          <input type="text" id="w-radius" value="2">
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="widget-config-styling">
+      <div class="row">
+        <div class="col-lg-12">
+          <label>Themes</label>
+          <div class="tab-buttons">
+            <button type="button" class="active">1</button>
+            <button type="button" disabled>2</button>
+            <button type="button" disabled>3</button>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <label>Color Scheme</label>
+          <div class="tab-buttons">
+            <button type="button" class="active">Light</button>
+            <button type="button" disabled>Dark</button>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <label>Layout</label>
+          <div class="tab-buttons">
+            <button type="button" class="active">Vertical</button>
+            <button type="button" disabled>Horizontal</button>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <label for="w-width">Width (px)</label>
+          <input type="range" id="w-width" max="500" min="360" value="360">
+        </div>
+        <!--<div class="col-lg-12 base-margin">
+          <input type="checkbox" id="w-border">
+          <label for="w-border"><span></span>Include Border</label>
+        </div>-->
+        <div class="col-lg-12">
+          <label for="w-border-radius">Corner Radius (px)</label>
+          <input type="range" id="w-border-radius" max="20" min="0" value="4">
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="col-lg-12">
-    <label for="latitude">Latitude</label>
-    <input type="text" id="latitude" value="42.341760232">
-  </div>
-  <div class="col-lg-12">
-    <label for="longitude">Longitude</label>
-    <input type="text" id="longitude" value="-83.060021877">
-  </div>
-  <div class="col-lg-12">
-    <label for="radius">Radius</label>
-    <input type="text" id="radius" value="2">
+  <div class="row">
+    <div class="col-lg-12">
+      <button id="js_get_widget_code" type="button" class="btn btn-submit button-blue">GET CODE</button>
+      <button type="button" class="btn button-white-gray-border">RESET</button>
+    </div>
   </div>
 
-  <div class="col-lg-12">
-    <label>Themes</label>
-    <div class="tab-buttons">
-      <button type="button" class="active">1</button>
-      <button type="button" disabled>2</button>
-      <button type="button" disabled>3</button>
-    </div>
-  </div>
-  <div class="col-lg-12">
-    <label>Color Scheme</label>
-    <div class="tab-buttons">
-      <button type="button" class="active">Light</button>
-      <button type="button" disabled>Dark</button>
-    </div>
-  </div>
-  <div class="col-lg-12">
-    <label>Layout</label>
-    <div class="tab-buttons">
-      <button type="button" class="active">Vertical</button>
-      <button type="button" disabled>Horizontal</button>
-    </div>
-  </div>
-  <div class="col-lg-12">
-    <label for="width">Width (px)</label>
-    <input type="range" id="width" max="500" min="360" value="360">
-  </div>
-  <div class="col-lg-12 base-margin">
-    <input type="checkbox" id="border">
-    <label for="border"><span></span>Include Border</label>
-  </div>
-  <div class="col-lg-12">
-    <label for="border-radius">Corner Radius (px)</label>
-    <input type="range" id="border-radius" max="20" min="0" value="4">
-  </div>
-  <div class="col-lg-12">
-    <button id="js_get_widget_code" type="button" class="btn btn-submit button-blue">GET CODE</button>
-    <button type="button" class="btn button-white-gray-border">RESET</button>
-  </div>
 </form>
