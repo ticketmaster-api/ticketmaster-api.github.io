@@ -1,0 +1,72 @@
+.common_tabs{
+  .nav-tabs{
+    margin: 0 0 0 22px;
+    @include clearfix();
+    li {
+      float: left;
+      a {
+        display: block;
+        position: relative;
+        font-size: 1.4em;
+        line-height: 2em;
+        font-style: normal;
+        margin: 0;
+        padding: 0 30px;
+        text-align: center;
+        text-decoration: none;
+        white-space: nowrap;
+        color: #b7c9d3;
+        outline: none;
+        margin-left: -8px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          border-bottom: 2px solid #fff;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 8px;
+          right: 8px;
+          border-bottom: 2px solid #f1f5f7;
+        }
+      }
+
+      &:first-child {
+        a {
+          margin-left: 0;
+        }
+      }
+
+      &.active {
+        a {
+          color: #009cde;
+          &:after {
+            border-color: #009cde;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-pane{
+    display: none;
+    border: 2px solid #f1f5f7;
+    padding-top: 20px;
+    margin-bottom: 15px;
+
+    &.active{
+      display: block;
+    }
+  }
+
+
+
+
+
+}
