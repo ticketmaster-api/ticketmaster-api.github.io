@@ -27,8 +27,18 @@ var $widgetModal = $('#js_widget_modal'),
 
   var $widgetModal = $('#js_widget_modal'),
       $widgetModalNoCode = $('#js_widget_modal_no_code');
+
   $('#js_get_widget_code').on('click', function(){
-    //document.getElementById("config-hash").textContent = widget.encConfig(JSON.stringify(widget.config));
+    var codeCont = document.querySelector(".language-html.widget_dialog__code");
+
+    var htmlCode = document.createElement("div");
+    for(var key in widget.config){
+      htmlCode.setAttribute("w-"+key,widget.config[key])
+    }
+    var tmp = document.createElement("div");
+    tmp.appendChild(htmlCode);
+    codeCont.textContent = tmp.innerHTML;
+
     $widgetModal.modal();
   });
 
@@ -48,7 +58,7 @@ var $widgetModal = $('#js_widget_modal'),
         var newVal = (this.value.substring(0, this.selectionStart)
           + this.value.substring(this.selectionEnd)
           + kchar)*1;
-        if(newVal > 100 || newVal < 0){
+        if(newVal > 100 || newVal < 1){
           event.preventDefault();
         }
       }
