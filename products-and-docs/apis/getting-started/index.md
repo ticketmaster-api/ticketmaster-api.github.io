@@ -407,7 +407,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
      <td style="text-align: center" rowspan="3">
        <a href="/products-and-docs/apis/archtics/">
-         <img src="/assets/img/getting-started/ic-user.svg" alt="Archtics API">
+         <img src="/assets/img/getting-started/ic-archtic.svg" alt="Archtics API">
        </a>
        <h4 style="margin-top:11px;text-">Archtics API</h4>
      </td>
