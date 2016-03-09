@@ -4,9 +4,9 @@ prime: true
 category: event
 title: "The Ticketmaster API Devjam in Hollywood, CA!"
 
-date_title: "Saturday, May 21, 2016 @ 9am"
-date_start: "2016-05-21 17:30:00"
-date_end: "2016-05-21 23:59:00"
+date_title: "Saturday, June 25, 2016 @ 9am"
+date_start: "2016-06-25 17:30:00"
+date_end: "2016-06-251 23:59:00"
 
 img: "/assets/img/events/devjam3.png"
 
