@@ -38,7 +38,7 @@ directly on your website at no additional cost.
 Informational text about the widget and it abilities, functions and other information.
 
 {: .button_set}
-[CONFIGURE NOW](#){:target="_blank" .button.button-blue}  
+[CONFIGURE NOW](#){: .button.button-blue}  
 {::comment}
 [LEARN MORE](#){: .button .button-default}
 {:/comment}
