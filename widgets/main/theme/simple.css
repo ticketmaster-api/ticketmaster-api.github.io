@@ -49,10 +49,6 @@ div[w-theme="simple"] .events-root-container{
     box-sizing: content-box;
 }
 
-div[w-theme="simple"] .events-root-container.border{
-    border: 1px solid #768692;
-}
-
 div[w-theme="simple"] .events-root{
     margin: 0;
     padding: 0;
@@ -157,9 +153,90 @@ div[w-theme="simple"] .legal-notice{
 
 div[w-theme="simple"] .event-logo {
     position: absolute;
-    right: 25px;
+    right: 27px;
     bottom: 48px;
     width: 127px;
     height: 17px;
     background: url("http://developer.ticketmaster.com/assets/img/footer/ticketmaster-logo-white.svg") no-repeat;
 }
+
+/* slider controls */
+div[w-theme="simple"] .events_control {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 40px;
+    padding: 0 5px;
+    margin-top: -20px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.6;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple"] .events_control:hover {
+    opacity: 1;
+}
+
+div[w-theme="simple"] .events_control:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+div[w-theme="simple"] .events_control-hidden {
+    display: none;
+}
+
+div[w-theme="simple"] .events_control-prev {
+    left: 0;
+}
+
+div[w-theme="simple"] .events_control-prev:before {
+    border-width: 20px 10px 20px 0;
+    border-color: transparent #ffffff transparent transparent;
+}
+
+div[w-theme="simple"] .events_control-next {
+    right: 0;
+}
+
+div[w-theme="simple"] .events_control-next:before {
+    border-width: 20px 0 20px 10px;
+    border-color: transparent transparent transparent #ffffff;
+}
+
+
+div[w-theme="simple"] .events_dots {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+div[w-theme="simple"] .events_dots__item {
+    display: inline-block;
+    background-color: #fff;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 2px;
+    cursor: pointer;
+    opacity: 0.6;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple"] .events_dots__item:hover,
+div[w-theme="simple"] .events_dots__item-active {
+    opacity: 1;
+}
+
+div[w-theme="simple"] .events_dots__item-active {
+    cursor: default;
+}
+

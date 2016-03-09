@@ -41,14 +41,13 @@ var TicketmasterWidget = function () {
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
-
-    //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
+      return "http://localhost:4000/widgets/main/theme/";
     }
+    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+
   }, {
     key: "logoUrl",
     get: function get() {
@@ -60,9 +59,19 @@ var TicketmasterWidget = function () {
       return ["width", "border", "borderradius", "colorscheme", "Layout"];
     }
   }, {
-    key: "sliderSpeed",
+    key: "sliderDelay",
     get: function get() {
       return 5000;
+    }
+  }, {
+    key: "sliderRestartDelay",
+    get: function get() {
+      return 10000;
+    }
+  }, {
+    key: "controlHiddenClass",
+    get: function get() {
+      return "events_control-hidden";
     }
   }, {
     key: "eventReqAttrs",
@@ -92,6 +101,9 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
+    this.currentSlide = 0;
+    this.slideCount = 0;
+
     this.widgetRoot = document.querySelector("div[w-tm-api-key]");
 
     this.eventsRootContainer = document.createElement("div");
@@ -101,6 +113,22 @@ var TicketmasterWidget = function () {
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
+    // prev btn
+    this.eventsPrev = document.createElement("div");
+    this.eventsPrev.classList.add("events_control", "events_control-prev", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.eventsPrev);
+
+    // next btn
+    this.eventsNext = document.createElement("div");
+    this.eventsNext.classList.add("events_control", "events_control-next", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.eventsNext);
+
+    this.initSliderControls();
+
+    // dots container
+    this.dotsContainer = document.createElement("div");
+    this.dotsContainer.classList.add("events_dots");
+    this.eventsRootContainer.appendChild(this.dotsContainer);
 
     this.config = this.widgetRoot.attributes;
 
@@ -144,24 +172,116 @@ var TicketmasterWidget = function () {
       this.widgetRoot.appendChild(logo);
     }
   }, {
-    key: "initSlider",
-    value: function initSlider() {
+    key: "toggleControlsVisibility",
+    value: function toggleControlsVisibility() {
+      if (this.slideCount > 1) {
+        this.eventsPrev.classList.remove(this.controlHiddenClass);
+        this.eventsNext.classList.remove(this.controlHiddenClass);
+        if (this.currentSlide === 0) {
+          this.eventsPrev.classList.add(this.controlHiddenClass);
+        } else if (this.currentSlide === this.slideCount - 1) {
+          this.eventsNext.classList.add(this.controlHiddenClass);
+        }
+      } else {
+        this.eventsPrev.classList.add(this.controlHiddenClass);
+        this.eventsNext.classList.add(this.controlHiddenClass);
+      }
+    }
+  }, {
+    key: "prevSlide",
+    value: function prevSlide() {
+      if (this.currentSlide > 0) {
+        this.setSlideManually(this.currentSlide - 1);
+      }
+    }
+  }, {
+    key: "nextSlide",
+    value: function nextSlide() {
+      if (this.slideCount - 1 > this.currentSlide) {
+        this.setSlideManually(this.currentSlide + 1);
+      }
+    }
+  }, {
+    key: "setSlideManually",
+    value: function setSlideManually(slideIndex) {
       var _this = this;
 
-      if (this.sliderInterval) clearInterval(this.sliderInterval);
-      var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
-      this.eventsRoot.style.marginLeft = '0%';
-      this.eventsRoot.style.width = eventCount * 100 + "%";
-      if (eventCount > 1) {
-        var currentEvent = 1;
+      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      this.sliderTimeout = setTimeout(function () {
+        _this.runAutoSlide();
+      }, this.sliderRestartDelay);
+      clearInterval(this.sliderInterval);
+      this.goToSlide(slideIndex);
+    }
+  }, {
+    key: "goToSlide",
+    value: function goToSlide(slideIndex) {
+      if (this.currentSlide === slideIndex) return;
+      this.currentSlide = slideIndex;
+      this.eventsRoot.style.marginLeft = "-" + this.currentSlide * 100 + "%";
+      this.toggleControlsVisibility();
+      var dots = this.dotsContainer.getElementsByClassName("events_dots__item");
+      for (var i = 0; dots.length > i; i++) {
+        if (i === slideIndex) {
+          dots[i].classList.add("events_dots__item-active");
+        } else {
+          dots[i].classList.remove("events_dots__item-active");
+        }
+      }
+    }
+  }, {
+    key: "runAutoSlide",
+    value: function runAutoSlide() {
+      var _this2 = this;
+
+      if (this.slideCount > 1) {
         this.sliderInterval = setInterval(function () {
-          _this.eventsRoot.style.marginLeft = "-" + currentEvent * 100 + "%";
-          if (eventCount - 1 > currentEvent) {
-            currentEvent++;
-          } else {
-            currentEvent = 0;
-          }
-        }, this.sliderSpeed);
+          var slideIndex = 0;
+          if (_this2.slideCount - 1 > _this2.currentSlide) slideIndex = _this2.currentSlide + 1;
+          _this2.goToSlide(slideIndex);
+        }, this.sliderDelay);
+      }
+    }
+  }, {
+    key: "initSliderControls",
+    value: function initSliderControls() {
+      var _this3 = this;
+
+      this.eventsPrev.addEventListener("click", function () {
+        _this3.prevSlide();
+      });
+
+      this.eventsNext.addEventListener("click", function () {
+        _this3.nextSlide();
+      });
+    }
+  }, {
+    key: "initDot",
+    value: function initDot(i) {
+      var _this4 = this;
+
+      var dot = document.createElement("span");
+      dot.classList.add("events_dots__item", "events_dots__item-" + i);
+      if (i === 0) dot.classList.add("events_dots__item-active");
+      this.dotsContainer.appendChild(dot);
+      dot.addEventListener("click", function () {
+        _this4.setSlideManually(i);
+      });
+    }
+  }, {
+    key: "initSlider",
+    value: function initSlider() {
+      if (this.sliderInterval) clearInterval(this.sliderInterval);
+      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      this.slideCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+      this.eventsRoot.style.marginLeft = '0%';
+      this.eventsRoot.style.width = this.slideCount * 100 + "%";
+      this.currentSlide = 0;
+      this.runAutoSlide();
+      this.toggleControlsVisibility();
+
+      if (this.slideCount > 1) for (var i = 0; this.slideCount > i; i++) {
+        this.initDot(i);
       }
     }
   }, {
@@ -202,6 +322,7 @@ var TicketmasterWidget = function () {
     key: "clear",
     value: function clear() {
       this.eventsRoot.innerHTML = "";
+      this.dotsContainer.innerHTML = "";
     }
   }, {
     key: "update",
@@ -296,14 +417,14 @@ var TicketmasterWidget = function () {
   }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
-      var _this2 = this;
+      var _this5 = this;
 
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           (function () {
-            var widget = _this2.widget;
+            var widget = _this5.widget;
 
-            widget.events = JSON.parse(_this2.responseText);
+            widget.events = JSON.parse(_this5.responseText);
             widget.events.map(function (event) {
               widget.publishEvent(event);
             });
