@@ -11,6 +11,9 @@
     &.lead {
       width: 100%;
     }
+    &.medium {
+      width: 40.5%;
+    }
   }
   table {
     width: 85%;
@@ -24,6 +27,9 @@
       width: 70%;
       &.lead {
         width: 100%;
+      }
+      &.medium {
+        width: auto;
       }
     }
     table {
@@ -131,8 +137,10 @@
     background-position: right bottom;
     background-repeat: no-repeat;
     padding-bottom: 70px;
+    margin-bottom: 118px;
     @media #{$max-1200} {
       padding-bottom: 26px;
+      margin-bottom: 40px;
     }
     @media #{$max-768} {
       background-image: none;
@@ -157,6 +165,53 @@
     margin-top: 27px;
     @media #{$max-768} {
       margin: 27px auto;
+    }
+  }
+}
+
+
+.discovery_widget_box {
+  width: 847px;
+  min-height: 262px;
+  background-repeat: no-repeat;
+  background-position: right top;
+  @include img-retina("/assets/img/products-and-docs/event-discovery-img.png", "/assets/img/products-and-docs/event-discovery-img@2x.png", 362px, 262px);
+
+  @media #{$max-1200} {
+    width: auto;
+  }
+
+  @media #{$max-768} {
+    background-image: none;
+    min-height: 0;
+  }
+
+
+  h2{
+    margin-top: 0;
+  }
+  .button_set {
+    .button {
+      min-width: 166px;
+      text-align: center;
+      padding-right: 10px;
+      padding-left: 10px;
+      @media #{$max-1200} {
+        min-width: 150px;
+      }
+
+      @media #{$max-768} and (orientation: portrait) {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  p,
+  h2 {
+    width: 48%;
+    @media #{$max-768} {
+      width: auto;
     }
   }
 }

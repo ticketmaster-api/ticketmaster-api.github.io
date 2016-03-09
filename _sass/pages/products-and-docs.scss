@@ -173,3 +173,34 @@
     margin-top: 17px;
     padding: 12px 26px;
 }
+
+.button-default{
+    color: $n3;
+    border: solid 2px $n3;
+    text-decoration: none;
+    margin-top: 27px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    &:hover{
+        color: $p1a;
+        border-color: $p1a;
+    }
+}
+
+.button_set{
+    margin-bottom: 0;
+    br {
+        display: none;
+    }
+    @media #{$max-768} {
+        text-align: center;
+    }
+    .button {
+        margin-left: 30px;
+        margin-top: 10px;
+        margin-bottom: 24px;
+        &:first-child{
+            margin-left: 0;
+        }
+    }
+}
