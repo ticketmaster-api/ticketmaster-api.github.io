@@ -83,7 +83,7 @@ Attn: Trademark Department, Legal 
 <form accept-charset="UTF-8" action="#" method="POST" class="js_contact_form">    
     <div class="col-sm-6">
         <label for="first-name">Your name</label>
-        <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" autofocus tabindex="1" required>
+        <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" tabindex="1" required>
     </div>    
     <div class="col-sm-6">
         <label for="email-contact">Email address</label>        

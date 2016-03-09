@@ -3,6 +3,10 @@
   padding-right: 0;
   margin-bottom: $base-margin*4;
 
+  @media (min-width: 767px) and (max-width: 1199px){
+    padding-right: 15px;
+  }
+
   /*override*/
   .custom_select__item {
     list-style: none;
