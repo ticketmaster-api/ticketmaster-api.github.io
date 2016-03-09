@@ -3,7 +3,7 @@
 category: event
 title: "The Ticketmaster API Devjam in Santa Monica, CA!"
 
-date_title: "Saturday, October 29, 2016"
+date_title: "Saturday, October 29, 2016 @ 9am"
 date_start: "2016-10-29 17:30:00"
 date_end: "2016-10-29 23:59:00"
 

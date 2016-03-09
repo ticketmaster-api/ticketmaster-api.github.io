@@ -3,7 +3,7 @@ category: event
 
 title: "The Ticketmaster API Devjam in Scottsdale, AZ!"
 
-date_title: "Saturday, January 16, 2016"
+date_title: "Saturday, January 16, 2016 @ 9am"
 date_start: "2016-01-05 9:30:00"
 date_end: "2016-01-06 12:24:00"
 

@@ -3,7 +3,7 @@
 category: event
 title: "The Ticketmaster API Devjam in Chantilly, VA!"
 
-date_title: "Saturday, August 27, 2016"
+date_title: "Saturday, August 27, 2016 @ 9am"
 date_start: "2016-08-27 17:30:00"
 date_end: "2016-08-27 23:59:00"
 
