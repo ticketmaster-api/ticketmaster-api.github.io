@@ -76,6 +76,11 @@ var TicketmasterWidget = function () {
       if (this.isConfigAttrEmpty("postalcode")) attrs.postalcode = this.config.postalcode;
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionid = this.config.attractionid;
       if (this.isConfigAttrEmpty("promoterid")) attrs.promoterid = this.config.promoterid;
+      if (this.isConfigAttrEmpty("period")) {
+        var period = this.getDateFromPeriod(this.config.period);
+        attrs.startDateTime = period[0];
+        attrs.endDateTime = period[1];
+      }
 
       return attrs;
     }
@@ -501,6 +506,38 @@ var TicketmasterWidget = function () {
     key: "encConfig",
     value: function encConfig(config) {
       return window.btoa(config);
+    }
+  }, {
+    key: "toShortISOString",
+    value: function toShortISOString(dateObj) {
+      return dateObj.getFullYear() + "-" + (dateObj.getMonth() + 1 < 10 ? "0" + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + "-" + (dateObj.getDate() < 10 ? "0" + dateObj.getDate() : dateObj.getDate()) + "T" + (dateObj.getHours() < 10 ? "0" + dateObj.getHours() : dateObj.getHours()) + ":" + (dateObj.getMinutes() < 10 ? "0" + dateObj.getMinutes() : dateObj.getMinutes()) + ":" + (dateObj.getSeconds() < 10 ? "0" + dateObj.getSeconds() : dateObj.getSeconds()) + "Z";
+    }
+  }, {
+    key: "getDateFromPeriod",
+    value: function getDateFromPeriod(period) {
+
+      var date = new Date(),
+          period = period.toLowerCase(),
+          firstDay,
+          lastDay;
+
+      if (period == "year") {
+        firstDay = new Date(date.getFullYear(), 0, 1), lastDay = new Date(date.getFullYear(), 12, 0);
+      } else if (period == "month") {
+        firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      } else {
+        var first = date.getDate() - date.getDay();
+        var last = first + 6;
+        firstDay = new Date(date.setDate(first));
+        lastDay = new Date(date.setDate(last));
+      }
+
+      firstDay.setHours(0);lastDay.setHours(23);
+      firstDay.setMinutes(0);lastDay.setMinutes(59);
+      firstDay.setSeconds(0);lastDay.setSeconds(59);
+
+      return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
     }
   }]);
 

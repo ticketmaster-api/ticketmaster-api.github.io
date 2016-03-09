@@ -1,11 +1,4 @@
-"use strict";
-
-//TMP function update to pattern
-if (!Date.prototype.toShortISOString) {
-  Date.prototype.toShortISOString = function () {
-    return this.getFullYear() + "-" + (this.getMonth() + 1 < 10 ? "0" + (this.getMonth() + 1) : this.getMonth() + 1) + "-" + (this.getDate() < 10 ? "0" + this.getDate() : this.getDate()) + "T" + (this.getHours() < 10 ? "0" + this.getHours() : this.getHours()) + ":" + (this.getMinutes() < 10 ? "0" + this.getMinutes() : this.getMinutes()) + ":" + (this.getSeconds() < 10 ? "0" + this.getSeconds() : this.getSeconds()) + "Z";
-  };
-}
+'use strict';
 
 var $widgetModal = $('#js_widget_modal'),
     $widgetModalNoCode = $('#js_widget_modal_no_code');
@@ -15,7 +8,7 @@ var $widgetModal = $('#js_widget_modal'),
 
   var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
 
-  $(".main-widget-config-form").on("change", function (event) {
+  var changeState = function changeState(event) {
     var widgetNode = document.querySelector("div[w-tm-api-key]");
 
     if (event.target.id === "border") {
@@ -29,7 +22,9 @@ var $widgetModal = $('#js_widget_modal'),
     }
 
     widget.update();
-  });
+  };
+
+  $(".main-widget-config-form").on("change", changeState);
 
   var $widgetModal = $('#js_widget_modal'),
       $widgetModalNoCode = $('#js_widget_modal_no_code');
@@ -57,32 +52,11 @@ var $widgetModal = $('#js_widget_modal'),
   });
 
   $("#period").on("click", function (event) {
-
     $("#period").children().removeClass("active");
     $(event.target).addClass("active");
-
-    var date = new Date(),
-        period = event.target.getAttribute("period").toLowerCase(),
-        firstDay,
-        lastDay;
-
-    if (period == "year") {
-      firstDay = new Date(date.getFullYear(), 0, 1), lastDay = new Date(date.getFullYear(), 12, 0);
-    } else if (period == "month") {
-      firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-      lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    } else {
-      var first = date.getDate() - date.getDay();
-      var last = first + 6;
-      firstDay = new Date(date.setDate(first));
-      lastDay = new Date(date.setDate(last));
-    }
-
-    firstDay.setHours(0);lastDay.setHours(23);
-    firstDay.setMinutes(0);lastDay.setMinutes(59);
-    firstDay.setSeconds(0);lastDay.setSeconds(59);
-
-    console.log([firstDay.toShortISOString(), lastDay.toShortISOString()]);
+    event.target.id = "w-period";
+    event.target.value = event.target.textContent.toLowerCase();
+    changeState.call(this, event);
   });
 
   $("#w-size").on("keydown", function (event) {
