@@ -10,8 +10,8 @@ date_end: "2016-05-21 23:59:00"
 img: "/assets/img/events/devjam5.png"
 
 place: 
-  - "Front Gate"
-  - "https://www.google.com/maps/place/Front+Gate+Tickets/@30.2462221,-97.7527807,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b4fb652cb7b1:0x9b78fae188444181"
+  - "Front Gate Tickets HQ"
+  - "https://www.google.com/maps/place/1617+E+6th+St,+Austin,+TX+78702/@30.2621423,-97.7275144,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b5b6d347907b:0x3afe93d344fb7c93"
 
 city: "Austin, TX"
 
