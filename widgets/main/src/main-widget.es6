@@ -16,7 +16,11 @@ class TicketmasterWidget {
 
   get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
 
-  get sliderSpeed(){ return 5000; }
+  get sliderDelay(){ return 5000; }
+
+  get sliderRestartDelay(){ return 10000; }
+
+  get controlHiddenClass(){ return "events_control-hidden"; }
 
   isConfigAttrEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
@@ -44,6 +48,11 @@ class TicketmasterWidget {
       attrs.attractionid = this.config.attractionid;
     if(this.isConfigAttrEmpty("promoterid"))
       attrs.promoterid = this.config.promoterid;
+    if(this.isConfigAttrEmpty("period")){
+      let period = this.getDateFromPeriod(this.config.period);
+      attrs.startDateTime = period[0];
+      attrs.endDateTime = period[1];
+    }
 
     return attrs;
   }
@@ -52,7 +61,10 @@ class TicketmasterWidget {
 
   constructor(selector) {
 
-    this.widgetRoot = document.querySelector("div[w-tm-api-key]");
+    this.currentSlide = 0;
+    this.slideCount = 0;
+
+    this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
     this.eventsRootContainer = document.createElement("div");
     this.eventsRootContainer.classList.add("events-root-container");
@@ -61,6 +73,22 @@ class TicketmasterWidget {
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
+    // prev btn
+    this.eventsPrev = document.createElement("div");
+    this.eventsPrev.classList.add("events_control", "events_control-prev", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.eventsPrev);
+
+    // next btn
+    this.eventsNext = document.createElement("div");
+    this.eventsNext.classList.add("events_control", "events_control-next", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.eventsNext);
+
+    this.initSliderControls();
+
+    // dots container
+    this.dotsContainer = document.createElement("div");
+    this.dotsContainer.classList.add("events_dots");
+    this.eventsRootContainer.appendChild(this.dotsContainer);
 
     this.config = this.widgetRoot.attributes;
 
@@ -102,22 +130,101 @@ class TicketmasterWidget {
     this.widgetRoot.appendChild(logo);
   }
 
+  toggleControlsVisibility(){
+    if(this.slideCount > 1){
+      this.eventsPrev.classList.remove(this.controlHiddenClass);
+      this.eventsNext.classList.remove(this.controlHiddenClass);
+      if(this.currentSlide === 0){
+        this.eventsPrev.classList.add(this.controlHiddenClass);
+      }else if(this.currentSlide === this.slideCount - 1){
+        this.eventsNext.classList.add(this.controlHiddenClass);
+      }
+    }else{
+      this.eventsPrev.classList.add(this.controlHiddenClass);
+      this.eventsNext.classList.add(this.controlHiddenClass);
+    }
+  }
+
+  prevSlide(){
+    if(this.currentSlide > 0){
+      this.setSlideManually(this.currentSlide - 1);
+    }
+  }
+
+  nextSlide(){
+    if(this.slideCount - 1 > this.currentSlide) {
+      this.setSlideManually(this.currentSlide + 1);
+    }
+  }
+
+  setSlideManually(slideIndex){
+    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
+    this.sliderTimeout = setTimeout(()=>{
+      this.runAutoSlide();
+    }, this.sliderRestartDelay);
+    clearInterval(this.sliderInterval);
+    this.goToSlide(slideIndex);
+  }
+
+  goToSlide(slideIndex){
+    if(this.currentSlide === slideIndex) return;
+    this.currentSlide = slideIndex;
+    this.eventsRoot.style.marginLeft = `-${this.currentSlide * 100}%`;
+    this.toggleControlsVisibility();
+    let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
+    for(let i = 0; dots.length > i; i++){
+      if(i === slideIndex){
+        dots[i].classList.add("events_dots__item-active");
+      }else{
+        dots[i].classList.remove("events_dots__item-active");
+      }
+    }
+  }
+
+  runAutoSlide(){
+    if(this.slideCount > 1) {
+      this.sliderInterval = setInterval(()=> {
+        var slideIndex = 0;
+        if (this.slideCount - 1 > this.currentSlide) slideIndex = this.currentSlide + 1;
+        this.goToSlide(slideIndex);
+      }, this.sliderDelay);
+    }
+  }
+
+  initSliderControls(){
+    this.eventsPrev.addEventListener("click", ()=> {
+      this.prevSlide();
+    });
+
+    this.eventsNext.addEventListener("click", ()=> {
+      this.nextSlide();
+    });
+  }
+
+  initDot(i){
+    var dot = document.createElement("span");
+    dot.classList.add("events_dots__item", "events_dots__item-" + i);
+    if(i === 0) dot.classList.add("events_dots__item-active");
+    this.dotsContainer.appendChild(dot);
+    dot.addEventListener("click", ()=> {
+      this.setSlideManually(i);
+    });
+  }
+
   initSlider(){
     if(this.sliderInterval) clearInterval(this.sliderInterval);
-    var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
+    this.slideCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
     this.eventsRoot.style.marginLeft = '0%';
-    this.eventsRoot.style.width = `${eventCount * 100}%`;
-    if(eventCount > 1){
-      var currentEvent = 1;
-      this.sliderInterval = setInterval(()=> {
-        this.eventsRoot.style.marginLeft = `-${currentEvent * 100}%`;
-        if(eventCount - 1 > currentEvent){
-          currentEvent ++;
-        }else{
-          currentEvent = 0;
-        }
-      }, this.sliderSpeed);
-    }
+    this.eventsRoot.style.width = `${this.slideCount * 100}%`;
+    this.currentSlide = 0;
+    this.runAutoSlide();
+    this.toggleControlsVisibility();
+
+    if(this.slideCount > 1)
+      for(var i = 0; this.slideCount > i; i++){
+        this.initDot(i);
+      }
   }
 
   formatDate(date) {
@@ -155,6 +262,7 @@ class TicketmasterWidget {
 
   clear(){
     this.eventsRoot.innerHTML = "";
+    this.dotsContainer.innerHTML = "";
   }
 
   update() {
@@ -435,7 +543,6 @@ class TicketmasterWidget {
   }
 
 
-
   makeImageUrl(id){
     return `https://app.ticketmaster.com/discovery/v2/events/${id}/images.json`;
   }
@@ -453,7 +560,43 @@ class TicketmasterWidget {
     return window.btoa(config);
   }
 
+  toShortISOString(dateObj){
+    return dateObj.getFullYear() +
+      "-" + (dateObj.getMonth() + 1 < 10 ? "0"+ (dateObj.getMonth()+ 1): dateObj.getMonth() + 1) +
+      "-" + (dateObj.getDate() < 10 ? "0"+ dateObj.getDate(): dateObj.getDate()) +
+      "T" + (dateObj.getHours() < 10 ? "0"+dateObj.getHours(): dateObj.getHours()) +
+      ":" + (dateObj.getMinutes() < 10 ? "0"+dateObj.getMinutes(): dateObj.getMinutes()) +
+      ":" + (dateObj.getSeconds() < 10 ? "0"+dateObj.getSeconds(): dateObj.getSeconds()) +
+      "Z";
+  }
 
+  getDateFromPeriod(period){
+
+    var date = new Date(),
+      period = period.toLowerCase(),
+      firstDay, lastDay;
+
+    if(period == "year" ){
+      firstDay = new Date(date.getFullYear(),0,1),
+        lastDay = new Date(date.getFullYear(),12,0);
+    }
+    else if(period == "month"){
+      firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+      lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    }
+    else {
+      var first = date.getDate() - date.getDay();
+      var last = first + 6;
+      firstDay = new Date(date.setDate(first));
+      lastDay = new Date(date.setDate(last));
+    }
+
+    firstDay.setHours(0);   lastDay.setHours(23);
+    firstDay.setMinutes(0); lastDay.setMinutes(59);
+    firstDay.setSeconds(0); lastDay.setSeconds(59);
+
+    return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
+  }
 
 }
 

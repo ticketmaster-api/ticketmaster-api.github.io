@@ -60,9 +60,19 @@ var TicketmasterWidget = function () {
       return ["width", "border", "borderradius", "colorscheme", "Layout"];
     }
   }, {
-    key: "sliderSpeed",
+    key: "sliderDelay",
     get: function get() {
       return 5000;
+    }
+  }, {
+    key: "sliderRestartDelay",
+    get: function get() {
+      return 10000;
+    }
+  }, {
+    key: "controlHiddenClass",
+    get: function get() {
+      return "events_control-hidden";
     }
   }, {
     key: "eventReqAttrs",
@@ -76,6 +86,11 @@ var TicketmasterWidget = function () {
       if (this.isConfigAttrEmpty("postalcode")) attrs.postalcode = this.config.postalcode;
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionid = this.config.attractionid;
       if (this.isConfigAttrEmpty("promoterid")) attrs.promoterid = this.config.promoterid;
+      if (this.isConfigAttrEmpty("period")) {
+        var period = this.getDateFromPeriod(this.config.period);
+        attrs.startDateTime = period[0];
+        attrs.endDateTime = period[1];
+      }
 
       return attrs;
     }
@@ -87,7 +102,10 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
-    this.widgetRoot = document.querySelector("div[w-tm-api-key]");
+    this.currentSlide = 0;
+    this.slideCount = 0;
+
+    this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
     this.eventsRootContainer = document.createElement("div");
     this.eventsRootContainer.classList.add("events-root-container");
@@ -96,6 +114,22 @@ var TicketmasterWidget = function () {
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
+    // prev btn
+    this.eventsPrev = document.createElement("div");
+    this.eventsPrev.classList.add("events_control", "events_control-prev", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.eventsPrev);
+
+    // next btn
+    this.eventsNext = document.createElement("div");
+    this.eventsNext.classList.add("events_control", "events_control-next", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.eventsNext);
+
+    this.initSliderControls();
+
+    // dots container
+    this.dotsContainer = document.createElement("div");
+    this.dotsContainer.classList.add("events_dots");
+    this.eventsRootContainer.appendChild(this.dotsContainer);
 
     this.config = this.widgetRoot.attributes;
 
@@ -139,24 +173,116 @@ var TicketmasterWidget = function () {
       this.widgetRoot.appendChild(logo);
     }
   }, {
-    key: "initSlider",
-    value: function initSlider() {
+    key: "toggleControlsVisibility",
+    value: function toggleControlsVisibility() {
+      if (this.slideCount > 1) {
+        this.eventsPrev.classList.remove(this.controlHiddenClass);
+        this.eventsNext.classList.remove(this.controlHiddenClass);
+        if (this.currentSlide === 0) {
+          this.eventsPrev.classList.add(this.controlHiddenClass);
+        } else if (this.currentSlide === this.slideCount - 1) {
+          this.eventsNext.classList.add(this.controlHiddenClass);
+        }
+      } else {
+        this.eventsPrev.classList.add(this.controlHiddenClass);
+        this.eventsNext.classList.add(this.controlHiddenClass);
+      }
+    }
+  }, {
+    key: "prevSlide",
+    value: function prevSlide() {
+      if (this.currentSlide > 0) {
+        this.setSlideManually(this.currentSlide - 1);
+      }
+    }
+  }, {
+    key: "nextSlide",
+    value: function nextSlide() {
+      if (this.slideCount - 1 > this.currentSlide) {
+        this.setSlideManually(this.currentSlide + 1);
+      }
+    }
+  }, {
+    key: "setSlideManually",
+    value: function setSlideManually(slideIndex) {
       var _this = this;
 
-      if (this.sliderInterval) clearInterval(this.sliderInterval);
-      var eventCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
-      this.eventsRoot.style.marginLeft = '0%';
-      this.eventsRoot.style.width = eventCount * 100 + "%";
-      if (eventCount > 1) {
-        var currentEvent = 1;
+      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      this.sliderTimeout = setTimeout(function () {
+        _this.runAutoSlide();
+      }, this.sliderRestartDelay);
+      clearInterval(this.sliderInterval);
+      this.goToSlide(slideIndex);
+    }
+  }, {
+    key: "goToSlide",
+    value: function goToSlide(slideIndex) {
+      if (this.currentSlide === slideIndex) return;
+      this.currentSlide = slideIndex;
+      this.eventsRoot.style.marginLeft = "-" + this.currentSlide * 100 + "%";
+      this.toggleControlsVisibility();
+      var dots = this.dotsContainer.getElementsByClassName("events_dots__item");
+      for (var i = 0; dots.length > i; i++) {
+        if (i === slideIndex) {
+          dots[i].classList.add("events_dots__item-active");
+        } else {
+          dots[i].classList.remove("events_dots__item-active");
+        }
+      }
+    }
+  }, {
+    key: "runAutoSlide",
+    value: function runAutoSlide() {
+      var _this2 = this;
+
+      if (this.slideCount > 1) {
         this.sliderInterval = setInterval(function () {
-          _this.eventsRoot.style.marginLeft = "-" + currentEvent * 100 + "%";
-          if (eventCount - 1 > currentEvent) {
-            currentEvent++;
-          } else {
-            currentEvent = 0;
-          }
-        }, this.sliderSpeed);
+          var slideIndex = 0;
+          if (_this2.slideCount - 1 > _this2.currentSlide) slideIndex = _this2.currentSlide + 1;
+          _this2.goToSlide(slideIndex);
+        }, this.sliderDelay);
+      }
+    }
+  }, {
+    key: "initSliderControls",
+    value: function initSliderControls() {
+      var _this3 = this;
+
+      this.eventsPrev.addEventListener("click", function () {
+        _this3.prevSlide();
+      });
+
+      this.eventsNext.addEventListener("click", function () {
+        _this3.nextSlide();
+      });
+    }
+  }, {
+    key: "initDot",
+    value: function initDot(i) {
+      var _this4 = this;
+
+      var dot = document.createElement("span");
+      dot.classList.add("events_dots__item", "events_dots__item-" + i);
+      if (i === 0) dot.classList.add("events_dots__item-active");
+      this.dotsContainer.appendChild(dot);
+      dot.addEventListener("click", function () {
+        _this4.setSlideManually(i);
+      });
+    }
+  }, {
+    key: "initSlider",
+    value: function initSlider() {
+      if (this.sliderInterval) clearInterval(this.sliderInterval);
+      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      this.slideCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+      this.eventsRoot.style.marginLeft = '0%';
+      this.eventsRoot.style.width = this.slideCount * 100 + "%";
+      this.currentSlide = 0;
+      this.runAutoSlide();
+      this.toggleControlsVisibility();
+
+      if (this.slideCount > 1) for (var i = 0; this.slideCount > i; i++) {
+        this.initDot(i);
       }
     }
   }, {
@@ -197,6 +323,7 @@ var TicketmasterWidget = function () {
     key: "clear",
     value: function clear() {
       this.eventsRoot.innerHTML = "";
+      this.dotsContainer.innerHTML = "";
     }
   }, {
     key: "update",
@@ -291,14 +418,14 @@ var TicketmasterWidget = function () {
   }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
-      var _this2 = this;
+      var _this5 = this;
 
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           (function () {
-            var widget = _this2.widget;
+            var widget = _this5.widget;
 
-            widget.events = JSON.parse(_this2.responseText);
+            widget.events = JSON.parse(_this5.responseText);
             widget.events.map(function (event) {
               widget.publishEvent(event);
             });
@@ -501,6 +628,38 @@ var TicketmasterWidget = function () {
     key: "encConfig",
     value: function encConfig(config) {
       return window.btoa(config);
+    }
+  }, {
+    key: "toShortISOString",
+    value: function toShortISOString(dateObj) {
+      return dateObj.getFullYear() + "-" + (dateObj.getMonth() + 1 < 10 ? "0" + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + "-" + (dateObj.getDate() < 10 ? "0" + dateObj.getDate() : dateObj.getDate()) + "T" + (dateObj.getHours() < 10 ? "0" + dateObj.getHours() : dateObj.getHours()) + ":" + (dateObj.getMinutes() < 10 ? "0" + dateObj.getMinutes() : dateObj.getMinutes()) + ":" + (dateObj.getSeconds() < 10 ? "0" + dateObj.getSeconds() : dateObj.getSeconds()) + "Z";
+    }
+  }, {
+    key: "getDateFromPeriod",
+    value: function getDateFromPeriod(period) {
+
+      var date = new Date(),
+          period = period.toLowerCase(),
+          firstDay,
+          lastDay;
+
+      if (period == "year") {
+        firstDay = new Date(date.getFullYear(), 0, 1), lastDay = new Date(date.getFullYear(), 12, 0);
+      } else if (period == "month") {
+        firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      } else {
+        var first = date.getDate() - date.getDay();
+        var last = first + 6;
+        firstDay = new Date(date.setDate(first));
+        lastDay = new Date(date.setDate(last));
+      }
+
+      firstDay.setHours(0);lastDay.setHours(23);
+      firstDay.setMinutes(0);lastDay.setMinutes(59);
+      firstDay.setSeconds(0);lastDay.setSeconds(59);
+
+      return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
     }
   }]);
 

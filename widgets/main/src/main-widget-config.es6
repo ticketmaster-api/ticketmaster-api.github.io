@@ -6,8 +6,8 @@ var $widgetModal = $('#js_widget_modal'),
 
   var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
 
-  $(".main-widget-config-form").on("change", function(event){
-    let widgetNode = document.querySelector("div[w-tm-api-key]");
+  var changeState = function(event){
+    let widgetNode = document.querySelector("div[w-tmapikey]");
 
     if(event.target.id === "border"){
       if(event.target.checked){
@@ -22,7 +22,9 @@ var $widgetModal = $('#js_widget_modal'),
     }
 
     widget.update();
-  });
+  };
+
+  $(".main-widget-config-form").on("change", changeState);
 
 
   var $widgetModal = $('#js_widget_modal'),
@@ -50,6 +52,14 @@ var $widgetModal = $('#js_widget_modal'),
     $widgetModalNoCode.modal('hide');
   });
 
+
+  $("#period").on("click",function(event){
+    $("#period").children().removeClass("active");
+    $(event.target).addClass("active");
+    event.target.id = "w-period";
+    event.target.value = event.target.textContent.toLowerCase();
+    changeState.call(this,event);
+  });
 
   $("#w-size").on("keydown",function(event){
     var kchar = String.fromCharCode(event.keyCode);
