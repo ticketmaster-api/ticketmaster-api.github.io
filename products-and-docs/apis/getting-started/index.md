@@ -393,6 +393,20 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     </tr>
     
     <tr>
+      <td style="text-align: center" rowspan="1">
+       <a href="/products-and-docs/apis/publish/">
+         <img src="/assets/img/getting-started/ic-publish.svg" alt="Publish API">
+       </a>
+       <h4 style="margin-top:11px;text-">Publish API</h4>
+      </td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish event</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    
+    <tr>
       <td style="text-align: center" rowspan="16">
         <a href="/products-and-docs/apis/international-discovery/">
           <img src="/assets/img/getting-started/ic-flag.svg" alt="International Discovery API">
@@ -512,19 +526,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     </tr>
     <tr>
     
-    <tr>
-     <td style="text-align: center" rowspan="1">
-       <a href="/products-and-docs/apis/publish/">
-         <img src="/assets/img/getting-started/ic-publish.svg" alt="Publish API">
-       </a>
-       <h4 style="margin-top:11px;text-">Publish API</h4>
-     </td>
-     <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish event</a></td>
-     <td style="text-align: center;border-right: 0px;"></td>
-     <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-     <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-     <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
-    </tr>
+    
     <tr>
      <td style="text-align: center" rowspan="3">
        <a href="/products-and-docs/apis/archtics/">
