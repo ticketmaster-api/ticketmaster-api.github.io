@@ -3,7 +3,7 @@
 category: event
 title: "The Ticketmaster API Devjam in Seattle, WA!"
 
-date_title: "Saturday, September 24, 2016"
+date_title: "Saturday, September 24, 2016 @ 9am"
 date_start: "2016-09-24 17:30:00"
 date_end: "2016-09-24 23:59:00"
 

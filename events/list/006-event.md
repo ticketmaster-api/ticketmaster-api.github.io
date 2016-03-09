@@ -4,7 +4,7 @@ prime: true
 category: event
 title: "The Ticketmaster API Devjam in Hollywood, CA!"
 
-date_title: "Saturday, June 25, 2016"
+date_title: "Saturday, June 25, 2016 @ 9am"
 date_start: "2016-06-25 17:30:00"
 date_end: "2016-06-25 23:59:00"
 
