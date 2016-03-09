@@ -37,13 +37,15 @@ API Specification for add/update and receive an Archtics account, or add a name 
 
 ### Web Page from public internet (caller must use a TM-issued client-side certificate):
 
-`https://ws.ticketmaster.com/archtics/ats/ticketing_services.aspx?dsn={TBD}`
+https://ws.ticketmaster.com/archtics/ats/ticketing_services.aspx?dsn=`{TBD}`
+{: .code .red}
 
 `{TBD}` = client DSN; will vary for each client.
 
 ### Web Page from client's network:
 
-`https://{IP address}:5002/ats/ticketing_services.aspx`
+https://`{IP address}`:5002/ats/ticketing_services.aspx
+{: .code .red}
 
 `{IP address}` - may use machine name instead of IP address.
 
@@ -324,12 +326,16 @@ Content-Type: application/json;charset=UTF-8
 +	All updates will be made to the primary customer on the account unless `cust_name_id` is specified and different than the primary `cust_name_id`.
 
 ### Web Page from public internet (caller must use a TM-issued client-side certificate):
-`https://ws.ticketmaster.com/archtics/ats/ticketing_services.aspx?dsn={TBD}`
+
+https://ws.ticketmaster.com/archtics/ats/ticketing_services.aspx?dsn=`{TBD}`
+{: .code .red}
 
 `{TBD}` = client DSN; will vary for each client.
 
 ### Web Page from client's network:
-`https://{IP address}:5002/ats/ticketing_services.aspx`
+
+https://`{IP address}`:5002/ats/ticketing_services.aspx
+{: .code .red}
 
 `{IP address}` - may use machine name instead of IP address.
 

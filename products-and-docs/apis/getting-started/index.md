@@ -185,68 +185,68 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
   <tbody>
     <tr>
       <td style="text-align: center" rowspan="9">
-        <a href="/products-and-docs/apis/discovery/">
+        <a href="/products-and-docs/apis/discovery/v1/">
           <img src="/assets/img/getting-started/ic-search-big.svg" alt="Discovery API">
         </a>
       <h4 style="margin-top:11px;">Discovery API</h4>
       </td>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#srch-events">Search Events</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#srch-events">Search Events</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#event-details">Event Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#event-details">Event Details</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#event-img">Search Event Images</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#event-img">Search Event Images</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-attractions">Search Attractions</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#search-attractions">Search Attractions</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#attraction-details">Attraction Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#attraction-details">Attraction Details</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-categories">Search Categories</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#search-categories">Search Categories</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#category-details">Category Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#category-details">Category Details</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#search-venues">Search Venues</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#search-venues">Search Venues</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/#venue-details">Venue Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#venue-details">Venue Details</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
@@ -391,19 +391,167 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
+    
     <tr>
-       <td style="text-align: center" rowspan="1">
-         <a href="/products-and-docs/apis/publish/">
-           <img src="/assets/img/getting-started/ic-publish.svg" alt="Publish API">
-         </a>
-         <h4 style="margin-top:11px;text-">Publish API</h4>
-       </td>
-       <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish event</a></td>
-       <td style="text-align: center;border-right: 0px;"></td>
-       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
-       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center" rowspan="16">
+        <a href="/products-and-docs/apis/international-discovery/">
+          <img src="/assets/img/getting-started/ic-flag.svg" alt="International Discovery API">
+        </a>
+        <h4 style="margin-top:11px;text-">International Discovery API</h4>
+      </td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#event-search">Event Search</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#event-details">Event Details</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#updated-events">Updated Events</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#event-prices">Event Prices</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#event-seatmap">Event Seatmap</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#event-areas">Event Areas</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#attraction-areas">Attraction Search</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#attraction-details">Attraction Details</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#attraction-suggestions">Attraction Suggestions</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#similar-attractions">Similar Attractions</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#venue-search">Venue Search</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#venue-details">Venue Details</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#countries-list">Countries List</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#domains-list">Domains List</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#cities-list">Cities List</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#categories-list">Categories List</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+    
+    <tr>
+     <td style="text-align: center" rowspan="1">
+       <a href="/products-and-docs/apis/publish/">
+         <img src="/assets/img/getting-started/ic-publish.svg" alt="Publish API">
+       </a>
+       <h4 style="margin-top:11px;text-">Publish API</h4>
+     </td>
+     <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish event</a></td>
+     <td style="text-align: center;border-right: 0px;"></td>
+     <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+     <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+     <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+     <td style="text-align: center" rowspan="3">
+       <a href="/products-and-docs/apis/archtics/">
+         <img src="/assets/img/getting-started/ic-archtic.svg" alt="Archtics API">
+       </a>
+       <h4 style="margin-top:11px;text-">Archtics API</h4>
+     </td>
+     <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#customer-add">Customer add</a></td>
+     <td style="text-align: center;border-right: 0px;"></td>
+     <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+     <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+     <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
      </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#customer-update">Customer Update</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#customer-query">Customer Query</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
     
   </tbody>
 </table>
