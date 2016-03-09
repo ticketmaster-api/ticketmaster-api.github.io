@@ -4,9 +4,9 @@ prime: true
 category: event
 title: "The Ticketmaster API Devjam in Hollywood, CA!"
 
-date_title: "Saturday, April 2, 2016"
-date_start: "2016-04-02 17:30:00"
-date_end: "2016-04-02 23:59:00"
+date_title: "Saturday, June 25, 2016"
+date_start: "2016-06-25 17:30:00"
+date_end: "2016-06-25 23:59:00"
 
 img: "/assets/img/events/devjam3.png"
 
@@ -16,8 +16,8 @@ place:
 
 city: "Los Angeles, CA"
 
-rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-hollywood-ca-tickets-los-angeles-LHNFTJ"
-link: "https://www.universe.com/tmdevjam-hollywood"
+rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-hollywood-ca-tickets-los-angeles-75LGFX"
+link: "https://www.universe.com/tmdevjam-la"
 
 tags: 
   - devjam

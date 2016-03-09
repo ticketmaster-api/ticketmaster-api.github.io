@@ -3,9 +3,9 @@
 category: event
 title: "The Ticketmaster API Devjam in Santa Monica, CA!"
 
-date_title: "Saturday, June 25, 2016"
-date_start: "2016-06-25 17:30:00"
-date_end: "2016-06-25 23:59:00"
+date_title: "Saturday, October 29, 2016"
+date_start: "2016-10-29 17:30:00"
+date_end: "2016-10-29 23:59:00"
 
 img: "/assets/img/events/devjam6.png"
 
