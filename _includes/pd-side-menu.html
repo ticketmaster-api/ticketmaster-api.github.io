@@ -13,9 +13,9 @@
                 </ul>
                 {% endif %}
             </li>
-            {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
-            <li><a href="/products-and-docs/apis/discovery/">Discovery API</a>
-                
+           
+            <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
                     <li><a href="#srch-events-v2">Search Events</a></li>
@@ -31,12 +31,10 @@
                     <li><a href="#supported-sources">Supported Sources</a></li>
                     <li><a href="#supported-locales">Supported Locales</a></li>
                 </ul>
-                
-            </li>
-            {% endif %}
-            {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v1" %}
-            <li><a href="/products-and-docs/apis/discovery/v1/">Discovery API</a>
-                
+                {% endif %}
+            
+                {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v1" %}
+            
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
                     <li><a href="#srch-events">Search Events</a></li>
@@ -54,8 +52,9 @@
                     <li><a href="#supported-locales">Supported Locales</a></li>
                 </ul>
                 
+                {% endif %}
             </li>
-            {% endif %}
+           
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
