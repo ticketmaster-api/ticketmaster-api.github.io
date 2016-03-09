@@ -7,7 +7,7 @@ var $widgetModal = $('#js_widget_modal'),
   var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
 
   var changeState = function(event){
-    let widgetNode = document.querySelector("div[w-tm-api-key]");
+    let widgetNode = document.querySelector("div[w-tmapikey]");
 
     if(event.target.id === "border"){
       if(event.target.checked){

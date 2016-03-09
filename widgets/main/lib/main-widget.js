@@ -105,7 +105,7 @@ var TicketmasterWidget = function () {
     this.currentSlide = 0;
     this.slideCount = 0;
 
-    this.widgetRoot = document.querySelector("div[w-tm-api-key]");
+    this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
     this.eventsRootContainer = document.createElement("div");
     this.eventsRootContainer.classList.add("events-root-container");
