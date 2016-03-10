@@ -1,0 +1,784 @@
+<html>
+    <head>
+        <title>Galen Reports</title>
+        <link rel="stylesheet" type="text/css" href="report.css"></link>
+        <script src="jquery-1.11.2.min.js"></script>
+        <script src="handlebars-v2.0.0.js"></script>
+        <script src="galen-report.js"></script>
+        <script>
+var reportData = {
+  "testId" : "1-home-page-on-desktop",
+  "name" : "Home page on desktop",
+  "report" : {
+    "nodes" : [ {
+      "name" : "http://127.0.0.1:4000/ 1456x1220",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "wait 1m until visible \"id: timeline\"",
+        "status" : "info",
+        "time" : 1456937006034,
+        "type" : "node"
+      }, {
+        "name" : "check tests/galen/home/desktop.gspec --include \"desktop\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: tests/galen/home/desktop.gspec included tags: desktop",
+          "status" : "error",
+          "time" : 1456937020608,
+          "includedTags" : [ "desktop" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "image test",
+            "objects" : [ {
+              "name" : "top-promo",
+              "specs" : [ {
+                "status" : "warn",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 24
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/top-promo.png, tolerance 40, analyze-offset 2, error 4%",
+                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsDesktop/objects/top-promo.png\". There are 4.26% mismatching pixels but max allowed is 4%" ],
+                "highlight" : [ "top-promo" ],
+                "imageComparison" : {
+                  "actualImage" : "layout-2-top-promo-actual.png",
+                  "expectedImage" : "layout-3-top-promo-expected.png",
+                  "comparisonMapImage" : "layout-4-top-promo-map.png"
+                }
+              }, {
+                "status" : "warn",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 25
+                },
+                "name" : "width 1440 px",
+                "errors" : [ "\"top-promo\" width is 1427px instead of 1440px" ],
+                "highlight" : [ "top-promo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "height 868 px",
+                "highlight" : [ "top-promo" ]
+              } ]
+            }, {
+              "name" : "columns-block",
+              "specs" : [ {
+                "status" : "error",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 28
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/columns-block.png, tolerance 40, error 4%",
+                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsDesktop/objects/columns-block.png\". There are 6.92% mismatching pixels but max allowed is 4%" ],
+                "highlight" : [ "columns-block" ],
+                "imageComparison" : {
+                  "actualImage" : "layout-5-columns-block-actual.png",
+                  "expectedImage" : "layout-6-columns-block-expected.png",
+                  "comparisonMapImage" : "layout-7-columns-block-map.png"
+                }
+              }, {
+                "status" : "warn",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "width 1440 px",
+                "errors" : [ "\"columns-block\" width is 1427px instead of 1440px" ],
+                "highlight" : [ "columns-block" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "height 421 px",
+                "highlight" : [ "columns-block" ]
+              } ]
+            }, {
+              "name" : "partners-block",
+              "specs" : [ {
+                "status" : "error",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 32
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/partners-block.png, tolerance 40, error 4%",
+                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsDesktop/objects/partners-block.png\". There are 7.8% mismatching pixels but max allowed is 4%" ],
+                "highlight" : [ "partners-block" ],
+                "imageComparison" : {
+                  "actualImage" : "layout-8-partners-block-actual.png",
+                  "expectedImage" : "layout-9-partners-block-expected.png",
+                  "comparisonMapImage" : "layout-10-partners-block-map.png"
+                }
+              }, {
+                "status" : "warn",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 33
+                },
+                "name" : "width 1440 px",
+                "errors" : [ "\"partners-block\" width is 1427px instead of 1440px" ],
+                "highlight" : [ "partners-block" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 34
+                },
+                "name" : "height 1151px",
+                "highlight" : [ "partners-block" ]
+              } ]
+            }, {
+              "name" : "promo-social-left",
+              "specs" : [ {
+                "status" : "error",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 36
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/promo-social-left.png, tolerance 40, error 4%",
+                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsDesktop/objects/promo-social-left.png\". There are 11.79% mismatching pixels but max allowed is 4%" ],
+                "highlight" : [ "promo-social-left" ],
+                "imageComparison" : {
+                  "actualImage" : "layout-11-promo-social-left-actual.png",
+                  "expectedImage" : "layout-12-promo-social-left-expected.png",
+                  "comparisonMapImage" : "layout-13-promo-social-left-map.png"
+                }
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 37
+                },
+                "name" : "width 585 px",
+                "highlight" : [ "promo-social-left" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 38
+                },
+                "name" : "height 212px",
+                "highlight" : [ "promo-social-left" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Navigation test",
+            "objects" : [ {
+              "name" : "logo",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 44
+                },
+                "name" : "visible",
+                "highlight" : [ "logo" ]
+              } ]
+            }, {
+              "name" : "global",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 48
+                },
+                "name" : "count any nav-item-* is 6",
+                "highlight" : [ "nav-item-6", "nav-item-4", "nav-item-5", "nav-item-2", "nav-item-3", "nav-item-1" ]
+              } ]
+            }, {
+              "name" : "nav-item-1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 52
+                },
+                "name" : "text is \"PRODUCTS & DOCS\"",
+                "highlight" : [ "nav-item-1" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 53
+                },
+                "name" : "aligned horizontally all nav-item-2",
+                "highlight" : [ "nav-item-1", "nav-item-2" ]
+              } ]
+            }, {
+              "name" : "nav-item-2",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 55
+                },
+                "name" : "text is \"PARTNERS\"",
+                "highlight" : [ "nav-item-2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 56
+                },
+                "name" : "aligned horizontally all nav-item-3",
+                "highlight" : [ "nav-item-2", "nav-item-3" ]
+              } ]
+            }, {
+              "name" : "nav-item-3",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 58
+                },
+                "name" : "text is \"SUPPORT\"",
+                "highlight" : [ "nav-item-3" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 59
+                },
+                "name" : "aligned horizontally all nav-item-4",
+                "highlight" : [ "nav-item-3", "nav-item-4" ]
+              } ]
+            }, {
+              "name" : "nav-item-4",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 61
+                },
+                "name" : "text is \"BLOGS\"",
+                "highlight" : [ "nav-item-4" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 62
+                },
+                "name" : "aligned horizontally all nav-item-5",
+                "highlight" : [ "nav-item-4", "nav-item-5" ]
+              } ]
+            }, {
+              "name" : "nav-item-5",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 64
+                },
+                "name" : "text is \"EVENTS\"",
+                "highlight" : [ "nav-item-5" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 65
+                },
+                "name" : "aligned horizontally all nav-item-6",
+                "highlight" : [ "nav-item-5", "nav-item-6" ]
+              } ]
+            }, {
+              "name" : "nav-item-6",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 67
+                },
+                "name" : "text is \"OPEN SOURCE\"",
+                "highlight" : [ "nav-item-6" ]
+              } ]
+            } ]
+          }, {
+            "name" : "general layout test",
+            "objects" : [ {
+              "name" : "column-item-1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-1" ]
+              } ]
+            }, {
+              "name" : "column-item-2",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-2" ]
+              } ]
+            }, {
+              "name" : "column-item-3",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-3" ]
+              } ]
+            }, {
+              "name" : "column-item-4",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-4" ]
+              } ]
+            }, {
+              "name" : "columns-block",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 74
+                },
+                "name" : "below top-promo 35 to 45px",
+                "highlight" : [ "columns-block", "top-promo" ]
+              } ]
+            }, {
+              "name" : "partners-block",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 76
+                },
+                "name" : "below columns-block 0 to 5px",
+                "highlight" : [ "partners-block", "columns-block" ]
+              } ]
+            }, {
+              "name" : "social",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 78
+                },
+                "name" : "below partners-block 65 to 75px",
+                "highlight" : [ "social", "partners-block" ]
+              } ]
+            }, {
+              "name" : "footer",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 80
+                },
+                "name" : "below social 100 to 105px",
+                "highlight" : [ "footer", "social" ]
+              } ]
+            }, {
+              "name" : "main-desc",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 82
+                },
+                "name" : "below main-header 40 to 50px",
+                "highlight" : [ "main-desc", "main-header" ]
+              } ]
+            }, {
+              "name" : "get-api-btn",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 84
+                },
+                "name" : "near explore-btn 55 to 65px left",
+                "highlight" : [ "get-api-btn", "explore-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 85
+                },
+                "name" : "width 195 to 200px",
+                "highlight" : [ "get-api-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 86
+                },
+                "name" : "height 45 to 50px",
+                "highlight" : [ "get-api-btn" ]
+              } ]
+            }, {
+              "name" : "explore-btn",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 88
+                },
+                "name" : "width 255 to 275px",
+                "highlight" : [ "explore-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 89
+                },
+                "name" : "height 45 to 50px",
+                "highlight" : [ "explore-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 90
+                },
+                "name" : "visible",
+                "highlight" : [ "explore-btn" ]
+              } ]
+            } ]
+          }, {
+            "name" : "twitter card",
+            "objects" : [ {
+              "name" : "twitter",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 95
+                },
+                "name" : "inside social",
+                "highlight" : [ "twitter", "social" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "main-desc" : {
+              "area" : [ 144, 598, 945, 64 ]
+            },
+            "social" : {
+              "area" : [ 0, 2627, 1427, 427 ]
+            },
+            "footer" : {
+              "area" : [ 0, 3155, 1427, 475 ]
+            },
+            "partners-block" : {
+              "area" : [ 0, 1407, 1427, 1151 ]
+            },
+            "column-item-3" : {
+              "area" : [ 714, 986, 293, 389 ]
+            },
+            "column-item-4" : {
+              "area" : [ 1006, 986, 293, 322 ]
+            },
+            "columns-block" : {
+              "area" : [ 0, 986, 1427, 421 ]
+            },
+            "twitter" : {
+              "area" : [ 729, 2627, 550, 420 ]
+            },
+            "promo-social-left" : {
+              "area" : [ 129, 2627, 585, 212 ]
+            },
+            "column-item-1" : {
+              "area" : [ 129, 986, 293, 421 ]
+            },
+            "column-item-2" : {
+              "area" : [ 421, 986, 293, 381 ]
+            },
+            "main-header" : {
+              "area" : [ 144, 293, 1140, 264 ]
+            },
+            "nav-item-6" : {
+              "area" : [ 927, 0, 145, 82 ]
+            },
+            "logo" : {
+              "area" : [ 24, 23, 181, 42 ]
+            },
+            "nav-item-4" : {
+              "area" : [ 753, 0, 85, 82 ]
+            },
+            "explore-btn" : {
+              "area" : [ 406, 712, 263, 49 ]
+            },
+            "nav-item-5" : {
+              "area" : [ 837, 0, 90, 82 ]
+            },
+            "nav-item-2" : {
+              "area" : [ 539, 0, 111, 82 ]
+            },
+            "nav-item-3" : {
+              "area" : [ 650, 0, 103, 82 ]
+            },
+            "top-promo" : {
+              "area" : [ 0, 82, 1427, 868 ]
+            },
+            "nav-item-1" : {
+              "area" : [ 355, 0, 184, 82 ]
+            },
+            "get-api-btn" : {
+              "area" : [ 144, 712, 198, 48 ]
+            }
+          },
+          "screenshot" : "layout-1-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1456937008158,
+        "type" : "node"
+      } ],
+      "time" : 1456936999522,
+      "type" : "node"
+    } ]
+  }
+};
+        </script>
+        <script>
+
+            $(function () {
+                var galenReport = createGalenReport();
+                galenReport.render("main", reportData);
+            });
+        </script>
+    </head>
+    <body>
+        <script id="report-tpl" type="text/x-handlebars-template">
+            <ul class="report-nodes">
+            {{#each report.nodes}}
+                {{renderNode this}}
+            {{/each}}
+            </ul>
+        </script>
+        <script id="report-node-tpl" type="text/x-handlebars-template">
+            <li>
+                <span class="report-time">{{formatReportTime time}}</span>
+                <a class="expand-link node-expand-button node-status-{{status}} contains-children-{{hasChildElements nodes}} collapsed" href="#">{{status}}</a>
+                <div class="node-name node-status-{{status}}">{{name}}</div>
+                {{#if extras}}
+                    {{renderNodeExtras extras}}
+                {{/if}}
+                {{#if stacktrace}}
+                    <div class="stacktrace">{{stacktrace}}</div>
+                {{/if}}
+                {{#if attachments}}
+                    <ul class="report-node-attachments">
+                        {{#each attachments}}
+                            <li>
+                                <a class="icon-sprite-before node-attachment" href="{{this}}">{{this}}</a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+                <div class="node-details expand-container">
+                    {{#if nodes}}
+                        <ul class="report-nodes">
+                            {{#each nodes}}
+                                {{renderNode this}}
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+            </li>
+        </script>
+        <script id="report-node-text-tpl" type="text/x-handlebars-template">
+            <li>
+                <div class="node-simple-text">
+                    {{name}}
+                </div>
+            </li>
+        </script>
+        <script id="report-layout-tpl" type="text/x-handlebars-template">
+            <li>
+                <span class="report-time">{{formatReportTime time}}</span>
+                <a class="expand-link node-expand-button node-status-label node-status-info contains-children-true collapsed" href="#">LAYOUT</a>
+                <div class="node-name">{{name}}</div>
+                <div class="node-horizontal-menu" data-layout-id="{{layoutId}}"><a class="layout-heatmap-link" href="#">Heat Map</a></div>
+                <div class="node-details expand-container">
+                    {{renderSublayout this}}
+                </div>
+            </li>
+        </script>
+        <script id="report-layout-sublayout-tpl" type="text/x-handlebars-template">
+            <div class="layout-report" data-layout-id="{{layoutId}}" data-screenshot="{{screenshot}}">
+                <ul class="layout-sections">
+                    {{#each sections}}
+                        {{renderLayoutSection this}}
+                    {{/each}}
+                </ul>
+            </div>
+        </script>
+        <script id="report-layout-section-tpl" type="text/x-handlebars-template">
+            <li>
+                <a class="layout-section icon-sprite-before expand-link contains-children-true" href="#">{{name}}</a>
+                <div class="layout-details expand-container">
+                    {{#if sections}}
+                        <ul class="layout-sections">
+                        {{#each sections}}
+                            {{renderLayoutSection this}}
+                        {{/each}}
+                        </ul>
+                    {{/if}}
+                    {{#if objects}}
+                        <ul class="layout-objects">
+                            {{#each objects}}
+                                {{renderLayoutObject this}}
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+            </li>
+        </script>
+
+        <script id="report-layout-object-tpl" type="text/x-handlebars-template">
+            <li>
+                <a class="layout-object icon-sprite-before expand-link contains-children-true" href="#">{{name}}</a>
+                <ul class="layout-checks expand-container">
+                    {{#each specs}}
+                        {{renderLayoutCheck this}}
+                    {{/each}}
+                    {{#each specGroups}}
+                    <li>
+                        <a class="layout-specgroup icon-sprite-before expand-link contains-children-true" href="#">{{name}}</a>
+                        <ul class="layout-checks expand-container">
+                            {{#each specs}}
+                                {{renderLayoutCheck this}}
+                            {{/each}}
+                        </ul>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+        </script>
+        <script id="report-layout-check-tpl" type="text/x-handlebars-template">
+            <li>
+            <a class="layout-check icon-sprite-before layout-check-status-{{status}}" href="#"
+                data-highlight-objects="{{commaSeparated highlight}}"
+                title="{{place.filePath}}#{{place.lineNumber}}"
+                >{{name}}</a>
+
+                {{#if errors}}
+                    <div class="layout-check-error-message">
+                        {{#if imageComparison}}
+                        <a class="image-comparison-link"
+                            data-actual-image="{{imageComparison.actualImage}}"
+                            data-expected-image="{{imageComparison.expectedImage}}"
+                            data-map-image="{{imageComparison.comparisonMapImage}}"
+                            href="#">Show image comparison</a>
+                        {{/if}}
+                        <div class="layout-check-error-message-text">
+                            <ul>
+                            {{#each errors}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if subLayout}}
+                {{renderSublayout subLayout}}
+                {{/if}}
+            </li>
+        </script>
+        <script id="screenshot-popup-tpl" type="text/x-handlebars-template">
+            <div class="screenshot-canvas">
+                {{#if screenshot}}
+                <img src="{{screenshot}}"/>
+                {{else}}
+                <div class="empty-screenshot" style="width: {{width}}; height: {{height}};"></div>
+                {{/if}}
+                {{#each objects}}
+                <div class="canvas-rect" style="left: {{area.left}}px; top: {{area.top}}px; width: {{area.width}}px; height: {{area.height}}px; {{#if drawBorder}}border-color: {{color}};{{else}}border:none;{{/if}}{{#if fillBackground}}background: {{color}};{{else}}background:none;{{/if}}">
+                    <div class="canvas-rect-wrapper">
+                        <div class="canvas-rect-hint" style="background: {{color}};">{{name}}</div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </script>
+        <script id="image-comparison-tpl" type="text/x-handlebars-template">
+            <div class="image-comparison image-comparison-layout-{{layout}}">
+                <div class="actual-image">
+                    <h5>Actual</h5>
+                    <img src="{{actual}}"/>
+                </div>
+
+                <div class="expected-image">
+                    <h5>Expected</h5>
+                    <img src="{{expected}}"/>
+                </div>
+
+                <div class="comparison-map">
+                    <h5>Comparison map</h5>
+                    <img src="{{map}}"/>
+                </div>
+            </div>
+        </script>
+        <script id="node-extras-tpl" type="text/x-handlebars-template">
+            <div class="node-extras">
+                <a class="node-extras" href="#">extras</a>
+                <div class="node-extras-content">
+                    <table class="node-extras-table">
+                        <tbody>
+                        {{#each this}}
+                        <tr>
+                            <td><label>{{@key}}</label></td>
+                            {{#ifCond type 'text'}}
+                            <td>{{value}}</td>
+                            {{/ifCond}}
+                            {{#ifCond type 'link'}}
+                            <td><a href="{{value}}">{{value}}</a></td>
+                            {{/ifCond}}
+                            {{#ifCond type 'image'}}
+                            <td><a href="{{value}}"><img src="{{value}}"/></a></td>
+                            {{/ifCond}}
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>
+
+
+
+        <div id="menu">
+            <ul>
+                <li><a href="report.html">Back to Test Overview</a></li>
+                <li><a class="menu-op-expand-all" href="#">Expand All</a></li>
+                <li><a class="menu-op-collapse-all" href="#">Collapse All</a></li>
+                <li><a class="menu-op-expand-errors" href="#">Expand Errors</a></li>
+            </ul>
+        </div>
+        <h2>Home page on desktop</h2>
+        <div id="main"></div>
+        <div id="screen-shadow"></div>
+        <div id="popup" class="popup">
+            <div class="popup-wrapper">
+                <a class="popup-close-link" href="#">close</a>
+                <div class="popup-content"></div>
+            </div>
+        </div>
+        <div id="notification" class="notification">
+            <div class="notification-wrapper">
+                <a class="notification-close-link" href="#">close</a>
+                <div class="notification-summary"></div>
+                <div class="notification-message"></div>
+            </div>
+        </div>
+    </body>
+</html>
