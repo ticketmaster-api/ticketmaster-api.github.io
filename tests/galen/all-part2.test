@@ -1,6 +1,7 @@
 @@ set
-    domain       127.0.0.1:4000
-    base_url    http://${domain}/
+    domain            127.0.0.1:4000
+    base_url          http://${domain}/
+    apiExplorer_url   http://vmenshutin.github.io/
 
     mobile_size     336x480
         ## gen local 320px + 16px= 336
