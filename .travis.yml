@@ -28,7 +28,8 @@ script:
 # - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 # - jekyll serve & #refresh jekyll
 # - sleep 5
-  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2
+#  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3
 
 
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
