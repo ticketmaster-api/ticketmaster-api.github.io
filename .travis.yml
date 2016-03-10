@@ -23,7 +23,7 @@ before_script:
 script:
 #  - ./node_modules/karma/bin/karma start karma.conf.js
 #  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
-# - jekyll serve &
+  - jekyll serve &
 # - sleep 20 # give jekyll some time to start
 # - galen test tests/galen/all.test --htmlreport tests/galen/reports/all
 # - jekyll serve & #refresh jekyll
