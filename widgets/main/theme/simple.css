@@ -178,7 +178,7 @@ div[w-theme="simple"] .event-logo {
     width: 144px;
     height: 20px;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background: url("/assets/img/widgets/ticketmaster-logo-blue.svg") no-repeat;
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg") no-repeat;
 }
 
 /* slider controls */
@@ -231,7 +231,7 @@ div[w-theme="simple"] .events_control:before {
     height: 56px;
     border-radius: 28px;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background: rgba(255, 255, 255, 0.8) url("/assets/img/widgets/arrows-small.svg") no-repeat 13px 50%/12px 12px;
+    background: rgba(255, 255, 255, 0.8) url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small.svg") no-repeat 13px 50%/12px 12px;
 }
 
 div[w-theme="simple"] .events_control-left {
