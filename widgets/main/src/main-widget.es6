@@ -10,15 +10,15 @@ class TicketmasterWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
   get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
 
-  get sliderDelay(){ return 5000; }
+  get sliderDelay(){ return 10000; }
 
-  get sliderRestartDelay(){ return 10000; }
+  get sliderRestartDelay(){ return 30000; }
 
   get controlHiddenClass(){ return "events_control-hidden"; }
 
@@ -61,8 +61,9 @@ class TicketmasterWidget {
 
   constructor(selector) {
 
-    this.currentSlide = 0;
-    this.slideCount = 0;
+    this.currentSlideX = 0;
+    this.currentSlideY = 0;
+    this.slideCountX = 0;
 
     this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
@@ -74,21 +75,31 @@ class TicketmasterWidget {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
     // prev btn
-    this.eventsPrev = document.createElement("div");
-    this.eventsPrev.classList.add("events_control", "events_control-prev", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.eventsPrev);
+    this.prevEventX = document.createElement("div");
+    this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.prevEventX);
 
     // next btn
-    this.eventsNext = document.createElement("div");
-    this.eventsNext.classList.add("events_control", "events_control-next", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.eventsNext);
+    this.nextEventX = document.createElement("div");
+    this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.nextEventX);
+
+    // prev btn
+    this.prevEventY = document.createElement("div");
+    this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.prevEventY);
+
+    // next btn
+    this.nextEventY = document.createElement("div");
+    this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.nextEventY);
 
     this.initSliderControls();
 
     // dots container
-    this.dotsContainer = document.createElement("div");
-    this.dotsContainer.classList.add("events_dots");
-    this.eventsRootContainer.appendChild(this.dotsContainer);
+    //this.dotsContainer = document.createElement("div");
+    //this.dotsContainer.classList.add("events_dots");
+    //this.eventsRootContainer.appendChild(this.dotsContainer);
 
     this.config = this.widgetRoot.attributes;
 
@@ -120,111 +131,176 @@ class TicketmasterWidget {
         legalNotice = document.createElement("div");
     legalNotice.classList.add("legal-notice");
     legalNotice.appendChild(legalNoticeContent);
+    this.widgetRoot.appendChild(legalNotice);
 
     var logo = document.createElement('a');
     logo.classList.add("event-logo");
     logo.target = '_blank';
     logo.href = this.logoUrl;
 
-    this.widgetRoot.appendChild(legalNotice);
-    this.widgetRoot.appendChild(logo);
+    var logoBox = document.createElement('div');
+    logoBox.classList.add("event-logo-box");
+    logoBox.appendChild(logo);
+    this.eventsRootContainer.appendChild(logoBox);
   }
 
-  toggleControlsVisibility(){
-    if(this.slideCount > 1){
-      this.eventsPrev.classList.remove(this.controlHiddenClass);
-      this.eventsNext.classList.remove(this.controlHiddenClass);
-      if(this.currentSlide === 0){
-        this.eventsPrev.classList.add(this.controlHiddenClass);
-      }else if(this.currentSlide === this.slideCount - 1){
-        this.eventsNext.classList.add(this.controlHiddenClass);
+  toggleControlsVisibilityX(){
+    // Horizontal
+    if(this.slideCountX > 1){
+      this.prevEventX.classList.remove(this.controlHiddenClass);
+      this.nextEventX.classList.remove(this.controlHiddenClass);
+      if(this.currentSlideX === 0){
+        this.prevEventX.classList.add(this.controlHiddenClass);
+      }else if(this.currentSlideX === this.slideCountX - 1){
+        this.nextEventX.classList.add(this.controlHiddenClass);
       }
     }else{
-      this.eventsPrev.classList.add(this.controlHiddenClass);
-      this.eventsNext.classList.add(this.controlHiddenClass);
+      this.prevEventX.classList.add(this.controlHiddenClass);
+      this.nextEventX.classList.add(this.controlHiddenClass);
+    }
+
+    // Vertical
+    if(this.eventsGroups[this.currentSlideX].length > 1){
+      this.prevEventY.classList.remove(this.controlHiddenClass);
+      this.nextEventY.classList.remove(this.controlHiddenClass);
+      if(this.currentSlideY === 0){
+        this.prevEventY.classList.add(this.controlHiddenClass);
+      }else if(this.currentSlideY === this.eventsGroups[this.currentSlideX].length - 1){
+        this.nextEventY.classList.add(this.controlHiddenClass);
+      }
+    }else{
+      this.prevEventY.classList.add(this.controlHiddenClass);
+      this.nextEventY.classList.add(this.controlHiddenClass);
     }
   }
 
-  prevSlide(){
-    if(this.currentSlide > 0){
-      this.setSlideManually(this.currentSlide - 1);
+  prevSlideX(){
+    if(this.currentSlideX > 0){
+      this.setSlideManuallyX(this.currentSlideX - 1);
     }
   }
 
-  nextSlide(){
-    if(this.slideCount - 1 > this.currentSlide) {
-      this.setSlideManually(this.currentSlide + 1);
+  nextSlideX(){
+    if(this.slideCountX - 1 > this.currentSlideX) {
+      this.setSlideManuallyX(this.currentSlideX + 1);
     }
   }
 
-  setSlideManually(slideIndex){
+  prevSlideY(){
+    if(this.currentSlideY > 0){
+      this.setSlideManuallyY(this.currentSlideY - 1);
+    }
+  }
+
+  nextSlideY(){
+    if(this.eventsGroups[this.currentSlideX].length - 1 > this.currentSlideY) {
+      this.setSlideManuallyY(this.currentSlideY + 1);
+    }
+  }
+
+  setSlideManuallyX(slideIndex){
     if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
     this.sliderTimeout = setTimeout(()=>{
-      this.runAutoSlide();
+      this.runAutoSlideX();
     }, this.sliderRestartDelay);
     clearInterval(this.sliderInterval);
-    this.goToSlide(slideIndex);
+    this.goToSlideX(slideIndex);
   }
 
-  goToSlide(slideIndex){
-    if(this.currentSlide === slideIndex) return;
-    this.currentSlide = slideIndex;
-    this.eventsRoot.style.marginLeft = `-${this.currentSlide * 100}%`;
-    this.toggleControlsVisibility();
-    let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
-    for(let i = 0; dots.length > i; i++){
-      if(i === slideIndex){
-        dots[i].classList.add("events_dots__item-active");
-      }else{
-        dots[i].classList.remove("events_dots__item-active");
-      }
+  setSlideManuallyY(slideIndex){
+    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
+    this.sliderTimeout = setTimeout(()=>{
+      this.runAutoSlideX();
+    }, this.sliderRestartDelay);
+    clearInterval(this.sliderInterval);
+    this.goToSlideY(slideIndex);
+  }
+
+
+  goToSlideX(slideIndex){
+    if(this.currentSlideX === slideIndex) return;
+    this.currentSlideY = 0;
+    this.currentSlideX = slideIndex;
+    this.eventsRoot.style.marginLeft = `-${this.currentSlideX * 100}%`;
+    this.toggleControlsVisibilityX();
+    //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
+    //for(let i = 0; dots.length > i; i++){
+    //  if(i === slideIndex){
+    //    dots[i].classList.add("events_dots__item-active");
+    //  }else{
+    //    dots[i].classList.remove("events_dots__item-active");
+    //  }
+    //}
+
+    let eventGroup = this.eventsRoot.getElementsByClassName("event-group");
+    for(let i = 0; eventGroup.length > i; i++){
+        eventGroup[i].style.marginTop = 0;
     }
   }
 
-  runAutoSlide(){
-    if(this.slideCount > 1) {
+  goToSlideY(slideIndex){
+    if(this.currentSlideY === slideIndex) return;
+    this.currentSlideY = slideIndex;
+    let eventGroup = this.eventsRoot.getElementsByClassName("event-group-" + this.currentSlideX);
+    if(eventGroup.length){
+      eventGroup = eventGroup[0];
+      eventGroup.style.marginTop = `-${this.currentSlideY * this.config.height}px`;
+      this.toggleControlsVisibilityX();
+    }
+  }
+
+  runAutoSlideX(){
+    if(this.slideCountX > 1) {
       this.sliderInterval = setInterval(()=> {
         var slideIndex = 0;
-        if (this.slideCount - 1 > this.currentSlide) slideIndex = this.currentSlide + 1;
-        this.goToSlide(slideIndex);
+        if (this.slideCountX - 1 > this.currentSlideX) slideIndex = this.currentSlideX + 1;
+        this.goToSlideX(slideIndex);
       }, this.sliderDelay);
     }
   }
 
   initSliderControls(){
-    this.eventsPrev.addEventListener("click", ()=> {
-      this.prevSlide();
+    this.prevEventX.addEventListener("click", ()=> {
+      this.prevSlideX();
     });
 
-    this.eventsNext.addEventListener("click", ()=> {
-      this.nextSlide();
+    this.nextEventX.addEventListener("click", ()=> {
+      this.nextSlideX();
+    });
+
+    this.prevEventY.addEventListener("click", ()=> {
+      this.prevSlideY();
+    });
+
+    this.nextEventY.addEventListener("click", ()=> {
+      this.nextSlideY();
     });
   }
 
-  initDot(i){
-    var dot = document.createElement("span");
-    dot.classList.add("events_dots__item", "events_dots__item-" + i);
-    if(i === 0) dot.classList.add("events_dots__item-active");
-    this.dotsContainer.appendChild(dot);
-    dot.addEventListener("click", ()=> {
-      this.setSlideManually(i);
-    });
-  }
+  //initDot(i){
+  //  var dot = document.createElement("span");
+  //  dot.classList.add("events_dots__item", "events_dots__item-" + i);
+  //  if(i === 0) dot.classList.add("events_dots__item-active");
+  //  this.dotsContainer.appendChild(dot);
+  //  dot.addEventListener("click", ()=> {
+  //    this.setSlideManuallyX(i);
+  //  });
+  //}
 
   initSlider(){
     if(this.sliderInterval) clearInterval(this.sliderInterval);
     if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
-    this.slideCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+    this.slideCountX = this.eventsGroups.length;
     this.eventsRoot.style.marginLeft = '0%';
-    this.eventsRoot.style.width = `${this.slideCount * 100}%`;
-    this.currentSlide = 0;
-    this.runAutoSlide();
-    this.toggleControlsVisibility();
+    this.eventsRoot.style.width = `${this.slideCountX * 100}%`;
+    this.currentSlideX = 0;
+    this.runAutoSlideX();
+    this.toggleControlsVisibilityX();
 
-    if(this.slideCount > 1)
-      for(var i = 0; this.slideCount > i; i++){
-        this.initDot(i);
-      }
+    //if(this.slideCountX > 1)
+    //  for(var i = 0; this.slideCountX > i; i++){
+    //    this.initDot(i);
+    //  }
   }
 
   formatDate(date) {
@@ -262,7 +338,7 @@ class TicketmasterWidget {
 
   clear(){
     this.eventsRoot.innerHTML = "";
-    this.dotsContainer.innerHTML = "";
+    //this.dotsContainer.innerHTML = "";
   }
 
   update() {
@@ -351,14 +427,31 @@ class TicketmasterWidget {
     }
   }
 
+  groupEventsByName(){
+    let groups = {};
+    this.events.map(function(event){
+      if (groups[event.name] === undefined) groups[event.name] = [];
+      groups[event.name].push(event);
+    });
+
+    this.eventsGroups = [];
+    for (let groupName in groups) {
+      this.eventsGroups.push(groups[groupName]);
+    }
+  }
+
   eventsLoadingHandler(){
     if (this && this.readyState == XMLHttpRequest.DONE ) {
       if(this.status == 200){
         let widget = this.widget;
-
         widget.events = JSON.parse(this.responseText);
-        widget.events.map(function(event){
-          widget.publishEvent(event);
+        widget.groupEventsByName.call(widget);
+
+        widget.eventsGroups.map(function(group, i){
+          if(group.length === 1)
+            widget.publishEvent(group[0]);
+          else
+            widget.publishEventsGroup.call(widget, group, i);
         });
 
         widget.initSlider();
@@ -373,9 +466,28 @@ class TicketmasterWidget {
   }
 
 
-  publishEvent(event){
+  publishEventsGroup(group, index){
+    let groupNodeWrapper = document.createElement("li");
+    groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
+    groupNodeWrapper.style.width  = `${this.config.width}px`;
+    groupNodeWrapper.style.height = `${this.config.height}px`;
+
+    let groupNode = document.createElement("ul");
+    groupNode.classList.add("event-group", "event-group-" + index);
+    groupNode.style.height  = `${this.config.width * group.length}px`;
+
+    group.map((event)=> {
+      this.publishEvent(event, groupNode)
+    });
+
+    groupNodeWrapper.appendChild(groupNode);
+    this.eventsRoot.appendChild(groupNodeWrapper);
+  }
+
+  publishEvent(event, parentNode){
+    parentNode = parentNode || this.eventsRoot;
     let DOMElement = this.createDOMItem(event);
-    this.eventsRoot.appendChild(DOMElement);
+    parentNode.appendChild(DOMElement);
   }
 
   getEventByID(id){
