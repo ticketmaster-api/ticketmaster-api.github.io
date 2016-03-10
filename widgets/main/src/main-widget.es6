@@ -260,6 +260,7 @@ class TicketmasterWidget {
   }
 
   initSliderControls(){
+
     this.prevEventX.addEventListener("click", ()=> {
       this.prevSlideX();
     });
@@ -275,6 +276,47 @@ class TicketmasterWidget {
     this.nextEventY.addEventListener("click", ()=> {
       this.nextSlideY();
     });
+
+    // Tough devices
+    let xDown = null,
+        yDown = null;
+
+    function handleTouchStart(evt) {
+      xDown = evt.touches[0].clientX;
+      yDown = evt.touches[0].clientY;
+    }
+
+    function handleTouchMove(evt) {
+      if ( ! xDown || ! yDown ) return;
+
+      let xUp = evt.touches[0].clientX,
+          yUp = evt.touches[0].clientY,
+          xDiff = xDown - xUp,
+          yDiff = yDown - yUp;
+
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 )
+          this.nextSlideX(); // left swipe
+        else
+          this.prevSlideX(); // right swipe
+      } else {
+        if ( yDiff > 0 )
+          this.nextSlideY(); // up swipe
+        else
+          this.prevSlideY(); // down swipe
+      }
+
+      /* reset values */
+      xDown = null;
+      yDown = null;
+    }
+
+    this.eventsRootContainer.addEventListener('touchstart', (e)=> {
+      handleTouchStart.call(this, e);
+    }, false);
+    this.eventsRootContainer.addEventListener('touchmove', (e)=> {
+      handleTouchMove.call(this, e);
+    }, false);
   }
 
   //initDot(i){

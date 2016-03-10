@@ -282,6 +282,12 @@ div[w-theme="simple"] .events_control-bottom:before {
     transform: rotate(90deg);
 }
 
+@media (max-width: 1024px) {
+    div[w-theme="simple"] .events_control{
+        display: none;
+    }
+}
+
 /*dots*/
 /*div[w-theme="simple"] .events_dots {*/
     /*position: absolute;*/
