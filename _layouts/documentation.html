@@ -58,4 +58,5 @@ layout: default
 
 <script>
     new Clipboard('.copy-btn');
+    document.body.innerHTML = document.body.innerHTML.replace(/\{apikey=\}/g, "apikey="+sessionStorage.getItem('tk-api-key'));
 </script>
