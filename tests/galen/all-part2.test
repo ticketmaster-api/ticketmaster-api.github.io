@@ -10,15 +10,22 @@
         ## gen local 1440px + 16px= 1456
 
 ##path to gspec files
-    home            tests/galen/home
-    prDocs          tests/galen/products-and-docs
-    prDocsSlate     tests/galen/products-and-docs/slate
-    prDocsWidjets   tests/galen/products-and-docs/widgets
-    prDocsConsole   tests/galen/products-and-docs/console
-    blog            tests/galen/blog
-    support         tests/galen/support/landing
-    events          tests/galen/events
-    partnersLanding tests/galen/partners/landing
+    home                    tests/galen/home
+    partnersLanding         tests/galen/partners/landing
+    partnersNexus           tests/galen/partners/nexus
+    partnersCertified       tests/galen/partners/landing
+    PartnersDistribution    tests/galen/partners/distribution
+    prDocs                  tests/galen/products-and-docs
+    prDocsSlate             tests/galen/products-and-docs/slate
+    prDocsWidjets           tests/galen/products-and-docs/widgets
+    prDocsConsole           tests/galen/products-and-docs/console
+    support                 tests/galen/support/landing
+    SupportContactUs        tests/galen/support/contact-us
+    SupportBrandingGuide    tests/galen/support/branding-guide
+    blog                    tests/galen/blog
+    events                  tests/galen/events
+    search                  tests/galen/search
+    api-explorer            tests/galen/api-explorer
 
 ########################################################################################################################
 ## size takes from "window.innerWidth" but comparing with "document.body.clientWidth"
