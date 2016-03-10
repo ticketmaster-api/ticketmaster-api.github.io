@@ -217,6 +217,7 @@ class TicketmasterWidget {
   }
 
 
+  // TODO: combine with goToSlideY
   goToSlideX(slideIndex){
     if(this.currentSlideX === slideIndex) return;
     this.currentSlideY = 0;
@@ -231,11 +232,6 @@ class TicketmasterWidget {
     //    dots[i].classList.remove("events_dots__item-active");
     //  }
     //}
-
-    let eventGroup = this.eventsRoot.getElementsByClassName("event-group");
-    for(let i = 0; eventGroup.length > i; i++){
-        eventGroup[i].style.marginTop = 0;
-    }
   }
 
   goToSlideY(slideIndex){
@@ -260,7 +256,31 @@ class TicketmasterWidget {
   }
 
   initSliderControls(){
+    // Restore events group position
+    function whichTransitionEvent(){
+      let el = document.createElement('fakeelement'),
+        transitions = {
+          'transition':'transitionend',
+          'OTransition':'oTransitionEnd',
+          'MozTransition':'transitionend',
+          'WebkitTransition':'webkitTransitionEnd'
+        };
 
+      for(let event in transitions){
+        if( el.style[event] !== undefined ) return transitions[event];
+      }
+    }
+
+    var transitionEvent = whichTransitionEvent();
+    transitionEvent && this.eventsRoot.addEventListener(transitionEvent, (e)=> {
+      if (this.eventsRoot !== e.target) return;
+      let eventGroup = this.eventsRoot.getElementsByClassName("event-group");
+      for(let i = 0; eventGroup.length > i; i++){
+        eventGroup[i].style.marginTop = 0;
+      }
+    });
+
+    // Arrows
     this.prevEventX.addEventListener("click", ()=> {
       this.prevSlideX();
     });
@@ -294,7 +314,7 @@ class TicketmasterWidget {
           xDiff = xDown - xUp,
           yDiff = yDown - yUp;
 
-      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
         if ( xDiff > 0 )
           this.nextSlideX(); // left swipe
         else

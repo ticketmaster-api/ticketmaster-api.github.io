@@ -268,6 +268,9 @@ var TicketmasterWidget = function () {
       clearInterval(this.sliderInterval);
       this.goToSlideY(slideIndex);
     }
+
+    // TODO: combine with goToSlideY
+
   }, {
     key: "goToSlideX",
     value: function goToSlideX(slideIndex) {
@@ -284,11 +287,6 @@ var TicketmasterWidget = function () {
       //    dots[i].classList.remove("events_dots__item-active");
       //  }
       //}
-
-      var eventGroup = this.eventsRoot.getElementsByClassName("event-group");
-      for (var i = 0; eventGroup.length > i; i++) {
-        eventGroup[i].style.marginTop = 0;
-      }
     }
   }, {
     key: "goToSlideY",
@@ -320,6 +318,31 @@ var TicketmasterWidget = function () {
     value: function initSliderControls() {
       var _this4 = this;
 
+      // Restore events group position
+      function whichTransitionEvent() {
+        var el = document.createElement('fakeelement'),
+            transitions = {
+          'transition': 'transitionend',
+          'OTransition': 'oTransitionEnd',
+          'MozTransition': 'transitionend',
+          'WebkitTransition': 'webkitTransitionEnd'
+        };
+
+        for (var _event in transitions) {
+          if (el.style[_event] !== undefined) return transitions[_event];
+        }
+      }
+
+      var transitionEvent = whichTransitionEvent();
+      transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
+        if (_this4.eventsRoot !== e.target) return;
+        var eventGroup = _this4.eventsRoot.getElementsByClassName("event-group");
+        for (var i = 0; eventGroup.length > i; i++) {
+          eventGroup[i].style.marginTop = 0;
+        }
+      });
+
+      // Arrows
       this.prevEventX.addEventListener("click", function () {
         _this4.prevSlideX();
       });
@@ -354,7 +377,6 @@ var TicketmasterWidget = function () {
             yDiff = yDown - yUp;
 
         if (Math.abs(xDiff) > Math.abs(yDiff)) {
-          /*most significant*/
           if (xDiff > 0) this.nextSlideX(); // left swipe
           else this.prevSlideX(); // right swipe
         } else {
