@@ -159,3 +159,146 @@ PartnersLanding page on mobile ${mobile_size}
     ${base_url}/partners/ ${mobile_size}
         #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsMobile/
         check ${partnersLanding}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### Partners Nexus ###########################################################################
+
+@@ groups PartnersNexus
+PartnersNexus page on desktop ${desktop_size}
+    ${base_url}/partners/ ${desktop_size}
+        dump ${partnersNexus}/_dumpContent.gspec --name "dump Events desktop" --export ${partnersNexus}/etalonImg/dumpsDesktop/
+        check ${partnersNexus}/desktop.gspec --include "desktop"
+
+@@ groups PartnersNexus
+PartnersNexus page on tablet ${tablet_size}
+    ${base_url}/partners/ ${tablet_size}
+        dump ${partnersNexus}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersNexus}/etalonImg/dumpsTablet/
+        check ${partnersNexus}/tablet.gspec --include "tablet"
+
+@@ groups PartnersNexus
+PartnersNexus page on mobile ${mobile_size}
+    ${base_url}/partners/ ${mobile_size}
+        dump ${partnersNexus}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersNexus}/etalonImg/dumpsMobile/
+        check ${partnersNexus}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+########
+### Partners certified ###########################################################################
+
+@@ groups PartnersCertified
+PartnersCertified page on desktop ${desktop_size}
+    ${base_url}/certified-partners/ ${desktop_size}
+        dump ${partnersCertified}/_dumpContent.gspec --name "dump Events desktop" --export ${partnersCertified}/etalonImg/dumpsDesktop/
+        check ${partnersCertified}/desktop.gspec --include "desktop"
+
+@@ groups PartnersCertified
+PartnersCertified page on tablet ${tablet_size}
+    ${base_url}/certified-partners/ ${tablet_size}
+        dump ${partnersCertified}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersCertified}/etalonImg/dumpsTablet/
+        check ${partnersCertified}/tablet.gspec --include "tablet"
+
+@@ groups PartnersCertified
+PartnersCertified page on mobile ${mobile_size}
+    ${base_url}/certified-partners/ ${mobile_size}
+        dump ${partnersCertified}/_dumpContent.gspec --name "dump Events mob" --export ${partnersCertified}/etalonImg/dumpsMobile/
+        check ${partnersCertified}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### Partners Distribution ###########################################################################
+
+@@ groups PartnersDistribution
+Partners(Distribution) page on desktop ${desktop_size}
+    ${base_url}/distribution-partners/ ${desktop_size}
+        dump ${PartnersDistribution}/_dumpContent.gspec --name "dump Partners-Distribution desktop" --export ${PartnersDistribution}/etalonImg/dumpsDesktop/
+        check ${PartnersDistribution}/desktop.gspec --include "desktop"
+
+@@ groups PartnersDistribution
+Partners(Distribution) page on tablet ${tablet_size}
+    ${base_url}/distribution-partners/ ${tablet_size}
+        dump ${PartnersDistribution}/_dumpContent.gspec --name "dump Partners-Distribution tablet" --export ${PartnersDistribution}/etalonImg/dumpsTablet/
+        check ${PartnersDistribution}/tablet.gspec --include "tablet"
+
+@@ groups PartnersDistribution
+Partners(Distribution) page on mobile ${mobile_size}
+    ${base_url}/distribution-partners/ ${mobile_size}
+        dump ${PartnersDistribution}/_dumpContent.gspec --name "dump Partners-Distribution mob" --export ${PartnersDistribution}/etalonImg/dumpsMobile/
+        check ${PartnersDistribution}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+
+### Support contact-us ###########################################################################
+
+@@ groups SupportContactUs
+Support(ContactUs) page on desktop ${desktop_size}
+    ${base_url}/support/contact-us/ ${desktop_size}
+        dump ${SupportContactUs}/_dumpContent.gspec --name "dump SupportContactUs desktop" --export ${SupportContactUs}/etalonImg/dumpsDesktop/
+        check ${SupportContactUs}/desktop.gspec --include "desktop"
+
+@@ groups SupportContactUs
+Support(ContactUs) page on tablet ${tablet_size}
+    ${base_url}/support/contact-us/ ${tablet_size}
+        dump ${SupportContactUs}/_dumpContent.gspec --name "dump SupportContactUs tablet" --export ${SupportContactUs}/etalonImg/dumpsTablet/
+        check ${SupportContactUs}/tablet.gspec --include "tablet"
+
+@@ groups SupportContactUs
+Support(ContactUs) page on mobile ${mobile_size}
+    ${base_url}/support/contact-us/ ${mobile_size}
+        dump ${SupportContactUs}/_dumpContent.gspec --name "dump SupportContactUs mob" --export ${SupportContactUs}/etalonImg/dumpsMobile/
+        check ${SupportContactUs}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+
+### Support branding-guide ###########################################################################
+
+@@ groups SupportBrandingGuide
+Support(BrandingGuide) page on desktop ${desktop_size}
+    ${base_url}/support/branding-guide/ ${desktop_size}
+        dump ${SupportBrandingGuide}/_dumpContent.gspec --name "dump Support Branding Guide desktop" --export ${SupportBrandingGuide}/etalonImg/dumpsDesktop/
+        check ${SupportBrandingGuide}/desktop.gspec --include "desktop"
+
+@@ groups SupportBrandingGuide
+Support(BrandingGuide) page on tablet ${tablet_size}
+    ${base_url}/support/branding-guide/ ${tablet_size}
+        dump ${SupportBrandingGuide}/_dumpContent.gspec --name "dump Support Branding Guide tablet" --export ${SupportBrandingGuide}/etalonImg/dumpsTablet/
+        check ${SupportBrandingGuide}/tablet.gspec --include "tablet"
+
+@@ groups SupportBrandingGuide
+Support(BrandingGuide) page on mobile ${mobile_size}
+    ${base_url}/support/branding-guide/ ${mobile_size}
+        dump ${SupportBrandingGuide}/_dumpContent.gspec --name "dump Support Branding Guide mob" --export ${SupportBrandingGuide}/etalonImg/dumpsMobile/
+        check ${SupportBrandingGuide}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### Search page ###########################################################################
+
+@@ groups Search
+Search page on desktop ${desktop_size}
+    ${base_url}/search/ ${desktop_size}
+        dump ${search}/_dumpContent.gspec --name "dump Search desktop" --export ${search}/etalonImg/dumpsDesktop/
+        check ${search}/desktop.gspec --include "desktop"
+
+@@ groups Search
+Search page on tablet ${tablet_size}
+    ${base_url}/search/ ${tablet_size}
+        dump ${search}/_dumpContent.gspec --name "dump Search tablet" --export ${search}/etalonImg/dumpsTablet/
+        check ${search}/tablet.gspec --include "tablet"
+
+@@ groups Search
+Search page on mobile ${mobile_size}
+    ${base_url}/search/ ${mobile_size}
+        dump ${search}/_dumpContent.gspec --name "dump Search mob" --export ${search}/etalonImg/dumpsMobile/
+        check ${search}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### api-explorer page ###########################################################################
+
+@@ groups APIExplorer
+API EXPLORER page on desktop ${desktop_size}
+    ${apiExplorer_url} ${desktop_size}
+        dump ${api-explorer}/_dumpContent.gspec --name "dump APIExplorer desktop" --export ${api-explorer}/etalonImg/dumpsDesktop/
+        check ${api-explorer}/desktop.gspec --include "desktop"
+
+@@ groups APIExplorer
+API EXPLORER page on tablet ${tablet_size}
+    ${apiExplorer_url} ${tablet_size}
+        dump ${api-explorer}/_dumpContent.gspec --name "dump APIExplorer tablet" --export ${api-explorer}/etalonImg/dumpsTablet/
+        check ${api-explorer}/tablet.gspec --include "tablet"
+
+@@ groups APIExplorer
+API EXPLORER page on mobile ${mobile_size}
+    ${apiExplorer_url} ${mobile_size}
+        dump ${api-explorer}/_dumpContent.gspec --name "dump APIExplorer mob" --export ${api-explorer}/etalonImg/dumpsMobile/
+        check ${api-explorer}/mobile.gspec --include "mobile" --exclude "nomobile"
