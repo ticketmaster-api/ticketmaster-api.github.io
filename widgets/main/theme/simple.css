@@ -35,7 +35,7 @@ div[w-theme="simple"]{
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 44px;
+    padding-bottom: 35px;
 }
 
 div[w-theme="simple"] .events-root-container{
@@ -149,7 +149,7 @@ div[w-theme="simple"] .legal-notice:focus,
 div[w-theme="simple"] .legal-notice:active{
     position: absolute;
     left: 0;
-    bottom: 10px;
+    bottom: 0;
     color: #019cde;
     font-size: 16px;
     line-height: 24px;
