@@ -222,7 +222,7 @@ nav{
     letter-spacing: 0.8px;
     text-transform: uppercase;
     text-align: center;
-    padding: 25px 15px;
+    padding: 25px 19px;
     white-space: nowrap;
     display: inline-block;
   }
@@ -330,7 +330,7 @@ nav{
       .header-chevron {
         position: absolute;
         display: inline-block;
-        right: -5px;
+        right: 0;
         top: 34px;
         width: 15px;
         height: 10px;
@@ -413,22 +413,22 @@ nav{
         a {
           color: $n3;
           margin-top: 0;
-          font-family: $font-h4;
           &:hover {
             color: $white;
           }
         }
+        h4 {
+          font-family: $font-h4;
+        }
         h4,
         li {
           text-align: left;
+          font-size: 14px;
         }
         ul {
           margin-bottom: 0;
           border-left: 2px solid $p1-border-grey;
           padding-left: 13px;
-          li {
-            font-size: 14px;
-          }
         }
       }
     }

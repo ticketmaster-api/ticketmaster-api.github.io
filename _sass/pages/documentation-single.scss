@@ -230,3 +230,13 @@
     word-wrap: break-word;
   }
 }
+
+.changelog {
+  margin-bottom: 1.2em;
+  overflow: hidden;
+  strong {
+    font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+    color: #d0006f;
+    font-weight: normal;
+  }
+}
