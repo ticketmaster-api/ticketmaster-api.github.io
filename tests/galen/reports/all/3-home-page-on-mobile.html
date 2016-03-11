@@ -14,12 +14,17 @@ var reportData = {
       "name" : "http://127.0.0.1:4000/ 336x480",
       "status" : "info",
       "nodes" : [ {
+        "name" : "dump tests/galen/home/_dumpContent.gspec --name \"dump Home page tablet\" --export tests/galen/home/etalonImg/dumpsMobile/",
+        "status" : "info",
+        "time" : 1457698957091,
+        "type" : "node"
+      }, {
         "name" : "check tests/galen/home/mobile.gspec --include \"mobile,all\" --exclude \"nomobile\"",
         "status" : "info",
         "nodes" : [ {
           "name" : "Check layout: tests/galen/home/mobile.gspec included tags: mobile,all",
-          "status" : "error",
-          "time" : 1456937046666,
+          "status" : "info",
+          "time" : 1457698962418,
           "includedTags" : [ "mobile", "all" ],
           "excludedTags" : [ "nomobile" ],
           "sections" : [ {
@@ -27,53 +32,39 @@ var reportData = {
             "objects" : [ {
               "name" : "top-promo",
               "specs" : [ {
-                "status" : "warn",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/mobile.gspec",
                   "lineNumber" : 29
                 },
                 "name" : "image file etalonImg/dumpsMobile/objects/top-promo.png, error 4%",
-                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsMobile/objects/top-promo.png\". There are 16.44% mismatching pixels but max allowed is 4%" ],
-                "highlight" : [ "top-promo" ],
-                "imageComparison" : {
-                  "actualImage" : "layout-25-top-promo-actual.png",
-                  "expectedImage" : "layout-26-top-promo-expected.png",
-                  "comparisonMapImage" : "layout-27-top-promo-map.png"
-                }
+                "highlight" : [ "top-promo" ]
               }, {
-                "status" : "warn",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/mobile.gspec",
                   "lineNumber" : 30
                 },
                 "name" : "width 320 px",
-                "errors" : [ "\"top-promo\" width is 307px instead of 320px" ],
                 "highlight" : [ "top-promo" ]
               } ]
             }, {
               "name" : "columns-block",
               "specs" : [ {
-                "status" : "error",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/mobile.gspec",
                   "lineNumber" : 33
                 },
                 "name" : "image file etalonImg/dumpsMobile/objects/columns-block.png, error 4%",
-                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsMobile/objects/columns-block.png\". There are 9.76% mismatching pixels but max allowed is 4%" ],
-                "highlight" : [ "columns-block" ],
-                "imageComparison" : {
-                  "actualImage" : "layout-28-columns-block-actual.png",
-                  "expectedImage" : "layout-29-columns-block-expected.png",
-                  "comparisonMapImage" : "layout-30-columns-block-map.png"
-                }
+                "highlight" : [ "columns-block" ]
               }, {
-                "status" : "warn",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/mobile.gspec",
                   "lineNumber" : 34
                 },
                 "name" : "width 320 px",
-                "errors" : [ "\"columns-block\" width is 307px instead of 320px" ],
                 "highlight" : [ "columns-block" ]
               } ]
             }, {
@@ -258,47 +249,47 @@ var reportData = {
             } ]
           } ],
           "objects" : {
-            "column-item-1" : {
-              "area" : [ 0, 582, 307, 248 ]
-            },
-            "main-desc" : {
-              "area" : [ 15, 271, 277, 120 ]
-            },
-            "column-item-2" : {
-              "area" : [ 0, 853, 307, 272 ]
-            },
             "footer" : {
-              "area" : [ 0, 1738, 307, 926 ]
+              "area" : [ 0, 1762, 320, 926 ]
             },
-            "main-header" : {
-              "area" : [ 15, 143, 277, 104 ]
+            "column-item-3" : {
+              "area" : [ 0, 1164, 320, 256 ]
+            },
+            "column-item-4" : {
+              "area" : [ 0, 1443, 320, 253 ]
             },
             "logo" : {
               "area" : [ 15, 23, 181, 42 ]
             },
-            "column-item-3" : {
-              "area" : [ 0, 1148, 307, 248 ]
+            "top-promo" : {
+              "area" : [ 0, 77, 320, 461 ]
             },
-            "column-item-4" : {
-              "area" : [ 0, 1419, 307, 253 ]
+            "main-header" : {
+              "area" : [ 15, 143, 290, 104 ]
+            },
+            "main-desc" : {
+              "area" : [ 15, 271, 290, 120 ]
             },
             "columns-block" : {
-              "area" : [ 0, 582, 307, 1113 ]
-            },
-            "top-promo" : {
-              "area" : [ 0, 77, 307, 461 ]
+              "area" : [ 0, 582, 320, 1137 ]
             },
             "get-api-btn" : {
-              "area" : [ 55, 417, 198, 48 ]
+              "area" : [ 61, 417, 199, 48 ]
+            },
+            "column-item-2" : {
+              "area" : [ 0, 861, 320, 280 ]
+            },
+            "column-item-1" : {
+              "area" : [ 0, 582, 320, 256 ]
             }
           },
-          "screenshot" : "layout-24-screenshot.png",
+          "screenshot" : "layout-3-screenshot.png",
           "type" : "layout"
         } ],
-        "time" : 1456937043011,
+        "time" : 1457698960210,
         "type" : "node"
       } ],
-      "time" : 1456937036377,
+      "time" : 1457698947224,
       "type" : "node"
     } ]
   }

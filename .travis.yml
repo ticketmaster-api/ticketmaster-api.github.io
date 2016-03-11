@@ -29,7 +29,12 @@ script:
 # - jekyll serve & #refresh jekyll
 # - sleep 5
 #  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportContactUs
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportBrandingGuide
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups Search
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersDistribution
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersCertified
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups APIExplorer
 
 
 #  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events

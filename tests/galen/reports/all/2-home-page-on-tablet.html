@@ -16,7 +16,12 @@ var reportData = {
       "nodes" : [ {
         "name" : "wait 1m until visible \"id: timeline\"",
         "status" : "info",
-        "time" : 1456937028446,
+        "time" : 1457698927254,
+        "type" : "node"
+      }, {
+        "name" : "dump tests/galen/home/_dumpContent.gspec --name \"dump Home page tablet\" --export tests/galen/home/etalonImg/dumpsTablet/",
+        "status" : "info",
+        "time" : 1457698927826,
         "type" : "node"
       }, {
         "name" : "check tests/galen/home/tablet.gspec --include \"tablet,all\" --exclude \"nomobile\"",
@@ -24,7 +29,7 @@ var reportData = {
         "nodes" : [ {
           "name" : "Check layout: tests/galen/home/tablet.gspec included tags: tablet,all",
           "status" : "info",
-          "time" : 1456937036061,
+          "time" : 1457698947115,
           "includedTags" : [ "tablet", "all" ],
           "excludedTags" : [ "nomobile" ],
           "sections" : [ {
@@ -38,16 +43,15 @@ var reportData = {
                   "lineNumber" : 28
                 },
                 "name" : "image file etalonImg/dumpsTablet/objects/top-promo.png error 2%",
-                "errors" : [ "Couldn't load image: tests\\galen\\home\\etalonImg/dumpsTablet/objects/top-promo.png error 2%" ],
+                "errors" : [ "Couldn't load image: tests/galen/home/etalonImg/dumpsTablet/objects/top-promo.png error 2%" ],
                 "highlight" : [ "top-promo" ]
               }, {
-                "status" : "warn",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/tablet.gspec",
                   "lineNumber" : 29
                 },
                 "name" : "width 768 px",
-                "errors" : [ "\"top-promo\" width is 755px instead of 768px" ],
                 "highlight" : [ "top-promo" ]
               }, {
                 "status" : "info",
@@ -61,53 +65,35 @@ var reportData = {
             }, {
               "name" : "columns-block",
               "specs" : [ {
-                "status" : "warn",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/tablet.gspec",
                   "lineNumber" : 32
                 },
                 "name" : "image file etalonImg/dumpsTablet/objects/columns-block.png, error 4%",
-                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsTablet/objects/columns-block.png\". There are 7.49% mismatching pixels but max allowed is 4%" ],
-                "highlight" : [ "columns-block" ],
-                "imageComparison" : {
-                  "actualImage" : "layout-15-columns-block-actual.png",
-                  "expectedImage" : "layout-16-columns-block-expected.png",
-                  "comparisonMapImage" : "layout-17-columns-block-map.png"
-                }
+                "highlight" : [ "columns-block" ]
               } ]
             }, {
               "name" : "partners-block",
               "specs" : [ {
-                "status" : "warn",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/tablet.gspec",
                   "lineNumber" : 34
                 },
                 "name" : "image file etalonImg/dumpsTablet/objects/partners-block.png, tolerance 40",
-                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsTablet/objects/partners-block.png\". There are 127334 mismatching pixels but max allowed is 0" ],
-                "highlight" : [ "partners-block" ],
-                "imageComparison" : {
-                  "actualImage" : "layout-18-partners-block-actual.png",
-                  "expectedImage" : "layout-19-partners-block-expected.png",
-                  "comparisonMapImage" : "layout-20-partners-block-map.png"
-                }
+                "highlight" : [ "partners-block" ]
               } ]
             }, {
               "name" : "promo-social-left",
               "specs" : [ {
-                "status" : "warn",
+                "status" : "info",
                 "place" : {
                   "filePath" : "tests/galen/home/tablet.gspec",
                   "lineNumber" : 36
                 },
                 "name" : "image file etalonImg/dumpsTablet/objects/promo-social-left.png, tolerance 40",
-                "errors" : [ "Element does not look like \"tests\\galen\\home\\etalonImg/dumpsTablet/objects/promo-social-left.png\". There are 13055 mismatching pixels but max allowed is 0" ],
-                "highlight" : [ "promo-social-left" ],
-                "imageComparison" : {
-                  "actualImage" : "layout-21-promo-social-left-actual.png",
-                  "expectedImage" : "layout-22-promo-social-left-expected.png",
-                  "comparisonMapImage" : "layout-23-promo-social-left-map.png"
-                }
+                "highlight" : [ "promo-social-left" ]
               } ]
             } ]
           }, {
@@ -342,68 +328,68 @@ var reportData = {
             } ]
           } ],
           "objects" : {
-            "main-desc" : {
-              "area" : [ 15, 438, 662, 96 ]
-            },
-            "social" : {
-              "area" : [ 0, 3670, 755, 719 ]
-            },
-            "footer" : {
-              "area" : [ 0, 4441, 755, 464 ]
-            },
-            "partners-block" : {
-              "area" : [ 0, 1780, 755, 1829 ]
-            },
-            "column-item-3" : {
-              "area" : [ 18, 1388, 720, 160 ]
-            },
-            "column-item-4" : {
-              "area" : [ 18, 1571, 720, 165 ]
-            },
-            "columns-block" : {
-              "area" : [ 0, 998, 755, 761 ]
-            },
-            "body" : {
-              "area" : [ 0, 0, 755, 4905 ]
-            },
-            "twitter" : {
-              "area" : [ 123, 3922, 510, 427 ]
-            },
-            "promo-social-left" : {
-              "area" : [ 108, 3670, 540, 212 ]
-            },
-            "column-item-1" : {
-              "area" : [ 18, 998, 720, 160 ]
-            },
-            "column-item-2" : {
-              "area" : [ 18, 1181, 720, 184 ]
-            },
-            "main-header" : {
-              "area" : [ 15, 188, 725, 213 ]
-            },
-            "review-doc-btn" : {
-              "area" : [ 203, 688, 350, 49 ]
-            },
             "logo" : {
               "area" : [ 15, 23, 181, 42 ]
             },
-            "explore-btn" : {
-              "area" : [ 203, 785, 350, 49 ]
+            "body" : {
+              "area" : [ 0, 0, 768, 4953 ]
             },
             "top-promo" : {
-              "area" : [ 0, 82, 755, 857 ]
+              "area" : [ 0, 82, 768, 857 ]
+            },
+            "main-header" : {
+              "area" : [ 15, 188, 738, 213 ]
+            },
+            "main-desc" : {
+              "area" : [ 15, 438, 674, 96 ]
+            },
+            "columns-block" : {
+              "area" : [ 0, 998, 768, 785 ]
+            },
+            "promo-social-left" : {
+              "area" : [ 114, 3694, 540, 212 ]
+            },
+            "column-item-2" : {
+              "area" : [ 24, 1189, 720, 192 ]
+            },
+            "column-item-1" : {
+              "area" : [ 24, 998, 720, 168 ]
+            },
+            "explore-btn" : {
+              "area" : [ 209, 785, 350, 49 ]
+            },
+            "column-item-3" : {
+              "area" : [ 24, 1404, 720, 168 ]
+            },
+            "footer" : {
+              "area" : [ 0, 4465, 768, 488 ]
+            },
+            "twitter" : {
+              "area" : [ 129, 3946, 510, 427 ]
+            },
+            "column-item-4" : {
+              "area" : [ 24, 1595, 720, 165 ]
+            },
+            "partners-block" : {
+              "area" : [ 0, 1804, 768, 1829 ]
+            },
+            "social" : {
+              "area" : [ 0, 3694, 768, 719 ]
             },
             "get-api-btn" : {
-              "area" : [ 203, 592, 350, 48 ]
+              "area" : [ 209, 592, 350, 48 ]
+            },
+            "review-doc-btn" : {
+              "area" : [ 209, 688, 350, 49 ]
             }
           },
-          "screenshot" : "layout-14-screenshot.png",
+          "screenshot" : "layout-2-screenshot.png",
           "type" : "layout"
         } ],
-        "time" : 1456937029090,
+        "time" : 1457698939934,
         "type" : "node"
       } ],
-      "time" : 1456937021085,
+      "time" : 1457698923019,
       "type" : "node"
     } ]
   }

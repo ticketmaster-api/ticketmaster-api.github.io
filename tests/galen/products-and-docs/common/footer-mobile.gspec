@@ -18,7 +18,7 @@
     nav-all-item-footer-*       css  #footer > div.row.footer-nav > div > div > ul > li > a
 
     logo-bottom-img             css  #footer > div.row.bottom-logo > div > div > a > img
-    logo-bottom-text            css  #footer > div.row.bottom-logo > div > div > a > span
+    logo-bottom-text            css  #footer > div.row.bottom-logo > div > div > span
 
 = Navigation test @mobile =
     @on mobile
@@ -115,7 +115,7 @@
 
 = colors, height =
         footer-container:
-            height  892 to 902 px
+            height  920 to 930 px
             # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
 
         nav-all-item-footer-*:

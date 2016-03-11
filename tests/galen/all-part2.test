@@ -1,7 +1,6 @@
 @@ set
-    domain            127.0.0.1:4000
-    base_url          http://${domain}/
-    apiExplorer_url   http://vmenshutin.github.io/
+    domain       127.0.0.1:4000
+    base_url    http://${domain}/
 
     mobile_size     336x480
         ## gen local 320px + 16px= 336
@@ -11,22 +10,15 @@
         ## gen local 1440px + 16px= 1456
 
 ##path to gspec files
-    home                    tests/galen/home
-    partnersLanding         tests/galen/partners/landing
-    partnersNexus           tests/galen/partners/nexus
-    partnersCertified       tests/galen/partners/certified
-    PartnersDistribution    tests/galen/partners/distribution
-    prDocs                  tests/galen/products-and-docs
-    prDocsSlate             tests/galen/products-and-docs/slate
-    prDocsWidjets           tests/galen/products-and-docs/widgets
-    prDocsConsole           tests/galen/products-and-docs/console
-    support                 tests/galen/support/landing
-    SupportContactUs        tests/galen/support/contact-us
-    SupportBrandingGuide    tests/galen/support/branding-guide
-    blog                    tests/galen/blog
-    events                  tests/galen/events
-    search                  tests/galen/search
-    api-explorer            tests/galen/api-explorer
+    home            tests/galen/home
+    prDocs          tests/galen/products-and-docs
+    prDocsSlate     tests/galen/products-and-docs/slate
+    prDocsWidjets   tests/galen/products-and-docs/widgets
+    prDocsConsole   tests/galen/products-and-docs/console
+    blog            tests/galen/blog
+    support         tests/galen/support/landing
+    events          tests/galen/events
+    partnersLanding tests/galen/partners/landing
 
 ########################################################################################################################
 ## size takes from "window.innerWidth" but comparing with "document.body.clientWidth"
@@ -44,18 +36,21 @@ ProductsDocsSlate page on desktop ${desktop_size}
         #wait 1m until visible "id: qual_ol"
         #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${prDocsSlate}/etalonImg/dumpsDesktop/
         check ${prDocsSlate}/desktop.gspec --include "desktop"
+        wait 10s
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on tablet ${tablet_size}
     ${base_url}/products-and-docs/apis/discovery/ ${tablet_size}
         #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsTablet/
         check ${prDocsSlate}/tablet.gspec --include "tablet"
+        wait 10s
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on mobile ${mobile_size}
     ${base_url}/products-and-docs/apis/discovery/ ${mobile_size}
         #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsMobile/
         check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
+        wait 10s
 
 ### prDocsConsole ###########################################################################
 
@@ -167,23 +162,3 @@ PartnersLanding page on mobile ${mobile_size}
     ${base_url}/partners/ ${mobile_size}
         #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsMobile/
         check ${partnersLanding}/mobile.gspec --include "mobile" --exclude "nomobile"
-
-### Partners Nexus ###########################################################################
-
-@@ groups PartnersNexus
-PartnersNexus page on desktop ${desktop_size}
-    ${base_url}/partners/ ${desktop_size}
-        #dump ${partnersNexus}/_dumpContent.gspec --name "dump Events desktop" --export ${partnersNexus}/etalonImg/dumpsDesktop/
-        check ${partnersNexus}/desktop.gspec --include "desktop"
-
-@@ groups PartnersNexus
-PartnersNexus page on tablet ${tablet_size}
-    ${base_url}/partners/ ${tablet_size}
-        #dump ${partnersNexus}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersNexus}/etalonImg/dumpsTablet/
-        check ${partnersNexus}/tablet.gspec --include "tablet"
-
-@@ groups PartnersNexus
-PartnersNexus page on mobile ${mobile_size}
-    ${base_url}/partners/ ${mobile_size}
-        #dump ${partnersNexus}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersNexus}/etalonImg/dumpsMobile/
-        check ${partnersNexus}/mobile.gspec --include "mobile" --exclude "nomobile"

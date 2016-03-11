@@ -10,50 +10,425 @@
         <script>
 var reportData = {
   "tests" : [ {
-    "name" : "Home page on desktop",
-    "startedAt" : 1456936999521,
-    "endedAt" : 1456937021084,
-    "failed" : true,
-    "statistic" : {
-      "passed" : 35,
-      "errors" : 3,
-      "warnings" : 4,
-      "total" : 42
-    },
-    "testId" : "1-home-page-on-desktop",
-    "groups" : [ "HomePage" ],
-    "failed" : true,
-    "duration" : 21563
-  }, {
-    "name" : "Home page on tablet",
-    "startedAt" : 1456937021085,
-    "endedAt" : 1456937036376,
+    "name" : "Prod-and-Docs page on desktop",
+    "startedAt" : 1457707228126,
+    "endedAt" : 1457707247208,
     "failed" : false,
     "statistic" : {
-      "passed" : 24,
+      "passed" : 1,
       "errors" : 0,
-      "warnings" : 5,
-      "total" : 29
+      "warnings" : 0,
+      "total" : 1
     },
-    "testId" : "2-home-page-on-tablet",
-    "groups" : [ "HomePage" ],
+    "testId" : "1-prod-and-docs-page-on-desktop",
+    "groups" : [ "PD-getting-started-Page" ],
     "failed" : false,
-    "duration" : 15291
+    "duration" : 19082
   }, {
-    "name" : "Home page on mobile",
-    "startedAt" : 1456937036376,
-    "endedAt" : 1456937046971,
+    "name" : "Prod-and-Docs page on tablet",
+    "startedAt" : 1457707247209,
+    "endedAt" : 1457707260624,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "2-prod-and-docs-page-on-tablet",
+    "groups" : [ "PD-getting-started-Page" ],
+    "failed" : false,
+    "duration" : 13415
+  }, {
+    "name" : "Prod-and-Docs page on mobile",
+    "startedAt" : 1457707260624,
+    "endedAt" : 1457707275951,
     "failed" : true,
     "statistic" : {
-      "passed" : 16,
+      "passed" : 80,
       "errors" : 1,
-      "warnings" : 3,
-      "total" : 20
+      "warnings" : 6,
+      "total" : 87
     },
-    "testId" : "3-home-page-on-mobile",
-    "groups" : [ "HomePage" ],
+    "testId" : "3-prod-and-docs-page-on-mobile",
+    "groups" : [ "PD-getting-started-Page" ],
     "failed" : true,
-    "duration" : 10595
+    "duration" : 15327
+  }, {
+    "name" : "PD-WidgetsPage page on desktop 1456x1220",
+    "startedAt" : 1457707275951,
+    "endedAt" : 1457707290548,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 4,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 4
+    },
+    "testId" : "4-pd-widgetspage-page-on-desktop-1456x1220",
+    "groups" : [ "PD-WidgetsPage" ],
+    "failed" : false,
+    "duration" : 14597
+  }, {
+    "name" : "PD-WidgetsPage page on tablet 784x1024",
+    "startedAt" : 1457707290548,
+    "endedAt" : 1457707300848,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 5,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 5
+    },
+    "testId" : "5-pd-widgetspage-page-on-tablet-784x1024",
+    "groups" : [ "PD-WidgetsPage" ],
+    "failed" : false,
+    "duration" : 10300
+  }, {
+    "name" : "PD-WidgetsPage page on mobile 336x480",
+    "startedAt" : 1457707300848,
+    "endedAt" : 1457707308949,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 4,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 4
+    },
+    "testId" : "6-pd-widgetspage-page-on-mobile-336x480",
+    "groups" : [ "PD-WidgetsPage" ],
+    "failed" : false,
+    "duration" : 8101
+  }, {
+    "name" : "ProductsDocsSlate page on desktop 1456x1220",
+    "startedAt" : 1457707308949,
+    "endedAt" : 1457707325521,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 4,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 4
+    },
+    "testId" : "7-productsdocsslate-page-on-desktop-1456x1220",
+    "groups" : [ "ProductsDocsSlate" ],
+    "failed" : false,
+    "duration" : 16572
+  }, {
+    "name" : "ProductsDocsSlate page on tablet 784x1024",
+    "startedAt" : 1457707325521,
+    "endedAt" : 1457707337676,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 5,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 5
+    },
+    "testId" : "8-productsdocsslate-page-on-tablet-784x1024",
+    "groups" : [ "ProductsDocsSlate" ],
+    "failed" : false,
+    "duration" : 12155
+  }, {
+    "name" : "ProductsDocsSlate page on mobile 336x480",
+    "startedAt" : 1457707337676,
+    "endedAt" : 1457707346776,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 4,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 4
+    },
+    "testId" : "9-productsdocsslate-page-on-mobile-336x480",
+    "groups" : [ "ProductsDocsSlate" ],
+    "failed" : false,
+    "duration" : 9100
+  }, {
+    "name" : "ProductsDocsConsole page on desktop 1456x1220",
+    "startedAt" : 1457707346776,
+    "endedAt" : 1457707357613,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "10-productsdocsconsole-page-on-desktop-1456x1220",
+    "groups" : [ "ProductsDocsConsole" ],
+    "failed" : false,
+    "duration" : 10837
+  }, {
+    "name" : "ProductsDocsConsole page on tablet 784x1024",
+    "startedAt" : 1457707357613,
+    "endedAt" : 1457707367202,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "11-productsdocsconsole-page-on-tablet-784x1024",
+    "groups" : [ "ProductsDocsConsole" ],
+    "failed" : false,
+    "duration" : 9589
+  }, {
+    "name" : "ProductsDocsConsole page on mobile 336x480",
+    "startedAt" : 1457707367202,
+    "endedAt" : 1457707372992,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "12-productsdocsconsole-page-on-mobile-336x480",
+    "groups" : [ "ProductsDocsConsole" ],
+    "failed" : false,
+    "duration" : 5790
+  }, {
+    "name" : "Blogs page on desktop",
+    "startedAt" : 1457707372992,
+    "endedAt" : 1457707383888,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "13-blogs-page-on-desktop",
+    "groups" : [ "BlogsPage" ],
+    "failed" : false,
+    "duration" : 10896
+  }, {
+    "name" : "Blogs page on tablet",
+    "startedAt" : 1457707383888,
+    "endedAt" : 1457707391302,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "14-blogs-page-on-tablet",
+    "groups" : [ "BlogsPage" ],
+    "failed" : false,
+    "duration" : 7414
+  }, {
+    "name" : "Blogs page on mobile",
+    "startedAt" : 1457707391302,
+    "endedAt" : 1457707397491,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "15-blogs-page-on-mobile",
+    "groups" : [ "BlogsPage" ],
+    "failed" : false,
+    "duration" : 6189
+  }, {
+    "name" : "Blogs page on mobile open-menu",
+    "startedAt" : 1457707397491,
+    "endedAt" : 1457707401141,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "16-blogs-page-on-mobile-open-menu",
+    "groups" : [ "BlogsPage" ],
+    "failed" : false,
+    "duration" : 3650
+  }, {
+    "name" : "SupportPage page on desktop 1456x1220",
+    "startedAt" : 1457707401141,
+    "endedAt" : 1457707411756,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "17-supportpage-page-on-desktop-1456x1220",
+    "groups" : [ "SupportPage" ],
+    "failed" : false,
+    "duration" : 10615
+  }, {
+    "name" : "SupportPage page on tablet 784x1024",
+    "startedAt" : 1457707411756,
+    "endedAt" : 1457707421240,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "18-supportpage-page-on-tablet-784x1024",
+    "groups" : [ "SupportPage" ],
+    "failed" : false,
+    "duration" : 9484
+  }, {
+    "name" : "SupportPage page on mobile 336x480",
+    "startedAt" : 1457707421241,
+    "endedAt" : 1457707427113,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "19-supportpage-page-on-mobile-336x480",
+    "groups" : [ "SupportPage" ],
+    "failed" : false,
+    "duration" : 5872
+  }, {
+    "name" : "Events page on desktop 1456x1220",
+    "startedAt" : 1457707427113,
+    "endedAt" : 1457707440129,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "20-events-page-on-desktop-1456x1220",
+    "groups" : [ "Events" ],
+    "failed" : false,
+    "duration" : 13016
+  }, {
+    "name" : "Events page on tablet 784x1024",
+    "startedAt" : 1457707440129,
+    "endedAt" : 1457707451520,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "21-events-page-on-tablet-784x1024",
+    "groups" : [ "Events" ],
+    "failed" : false,
+    "duration" : 11391
+  }, {
+    "name" : "Events page on mobile 336x480",
+    "startedAt" : 1457707451520,
+    "endedAt" : 1457707459818,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "22-events-page-on-mobile-336x480",
+    "groups" : [ "Events" ],
+    "failed" : false,
+    "duration" : 8298
+  }, {
+    "name" : "PartnersLanding page on desktop 1456x1220",
+    "startedAt" : 1457707459818,
+    "endedAt" : 1457707492153,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "23-partnerslanding-page-on-desktop-1456x1220",
+    "groups" : [ "PartnersLanding" ],
+    "failed" : false,
+    "duration" : 32335
+  }, {
+    "name" : "PartnersLanding page on tablet 784x1024",
+    "startedAt" : 1457707492153,
+    "endedAt" : 1457707511967,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "24-partnerslanding-page-on-tablet-784x1024",
+    "groups" : [ "PartnersLanding" ],
+    "failed" : false,
+    "duration" : 19814
+  }, {
+    "name" : "PartnersLanding page on mobile 336x480",
+    "startedAt" : 1457707511967,
+    "endedAt" : 1457707524613,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "25-partnerslanding-page-on-mobile-336x480",
+    "groups" : [ "PartnersLanding" ],
+    "failed" : false,
+    "duration" : 12646
+  }, {
+    "name" : "PartnersNexus page on desktop 1456x1220",
+    "startedAt" : 1457707524613,
+    "endedAt" : 1457707558213,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "26-partnersnexus-page-on-desktop-1456x1220",
+    "groups" : [ "PartnersNexus" ],
+    "failed" : false,
+    "duration" : 33600
+  }, {
+    "name" : "PartnersNexus page on tablet 784x1024",
+    "startedAt" : 1457707558213,
+    "endedAt" : 1457707576727,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "27-partnersnexus-page-on-tablet-784x1024",
+    "groups" : [ "PartnersNexus" ],
+    "failed" : false,
+    "duration" : 18514
+  }, {
+    "name" : "PartnersNexus page on mobile 336x480",
+    "startedAt" : 1457707576727,
+    "endedAt" : 1457707591121,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 2,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 2
+    },
+    "testId" : "28-partnersnexus-page-on-mobile-336x480",
+    "groups" : [ "PartnersNexus" ],
+    "failed" : false,
+    "duration" : 14394
   } ]
 };
 

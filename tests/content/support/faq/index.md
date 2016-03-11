@@ -3,11 +3,14 @@ layout: base-content
 categories:
 - support
 - faq
+title: FAQ
+excerpt: At Ticketmaster, we see ourselves as the engine that powers unforgetable moments of joy for fans everywhere.
+keywords: FAQ, Ticketmaster affiliate program, datasets API cover
 ---
 
-#FAQ
+# FAQ
 
-####General
+#### General
 
 {: .link-inline .double-margin-bottom}
 [Why has Ticketmaster decided to open up its API?](#q-1)
@@ -17,7 +20,7 @@ categories:
 
 
 
-####Data
+#### Data
 
 {: .link-inline .double-margin-bottom}
 [What datasets does the API cover?](#q-5)
@@ -25,7 +28,7 @@ categories:
 
 
 
-####Affiliates
+#### Affiliates
 
 {: .link-inline .double-margin-bottom}
 [Why should I join the Ticketmaster Affiliate Program?](#q-7)
@@ -40,7 +43,7 @@ categories:
 
 
 {: #general-a .double-margin}
-##General
+## General
 
 
 {: #q-1}
@@ -69,7 +72,7 @@ The default access all applications get is to our **Public** APIs with a quota o
 
 
 {: #account-a .double-margin}
-##Data
+## Data
 
 
 {: #q-5}
@@ -88,7 +91,7 @@ The Ticketmaster API supports the JSON format only at this time.
 
 
 {: #affiliates-a .double-margin}
-##Affiliates
+## Affiliates
 
 {: #q-7}
 ### Why should I join the Ticketmaster Affiliate Program?
@@ -128,11 +131,7 @@ Before signing up at Affiliate Window, please [reach out to us](mailto:distribut
 {: #q-11}
 ### What content and tools will be available to me?
 
-Our Discovery API will provide access to events for sale on Ticketmaster.com and Ticketweb, as well as our secondary market suite of sites including NFL Ticket Exchange, NHL Ticket Exchange, NBA Tickets Resale Marketplace, and TicketsNow.com, which can also be listed and monetized. 
-
-{: .double-margin-bottom}
-Over time, we will provide additional content tools such as data feeds and purchase widgets that publishers can leverage.  
-
+Our Discovery API will provide access to events for sale on Ticketmaster.com and Ticketweb. We can also grant access to our resale API which has all events from our secondary market suite of sites including NFL Ticket Exchange, NHL Ticket Exchange, NBA Tickets Resale Marketplace, and TicketsNow.com, which can also be listed and monetized. Talk to your account manager if you are interested.
 
 {: #q-12}
 ### Can my users transact on tickets through my site? 
