@@ -17,6 +17,8 @@ class TicketmasterWidget {
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
+  get questionUrl() { return "http://developer.ticketmaster.com/support/"; }
+
   get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
 
   get sliderDelay(){ return 10000; }
@@ -148,6 +150,12 @@ class TicketmasterWidget {
     logoBox.classList.add("event-logo-box");
     logoBox.appendChild(logo);
     this.eventsRootContainer.appendChild(logoBox);
+
+    let question = document.createElement('a');
+    question.classList.add("event-question");
+    question.target = '_blank';
+    question.href = this.questionUrl;
+    this.eventsRootContainer.appendChild(question);
   }
 
   toggleControlsVisibilityX(){

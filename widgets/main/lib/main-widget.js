@@ -60,6 +60,11 @@ var TicketmasterWidget = function () {
       return "http://developer.ticketmaster.com/support/terms-of-use/";
     }
   }, {
+    key: "questionUrl",
+    get: function get() {
+      return "http://developer.ticketmaster.com/support/";
+    }
+  }, {
     key: "updateExceptions",
     get: function get() {
       return ["width", "border", "borderradius", "colorscheme", "Layout"];
@@ -193,6 +198,12 @@ var TicketmasterWidget = function () {
       logoBox.classList.add("event-logo-box");
       logoBox.appendChild(logo);
       this.eventsRootContainer.appendChild(logoBox);
+
+      var question = document.createElement('a');
+      question.classList.add("event-question");
+      question.target = '_blank';
+      question.href = this.questionUrl;
+      this.eventsRootContainer.appendChild(question);
     }
   }, {
     key: "toggleControlsVisibilityX",

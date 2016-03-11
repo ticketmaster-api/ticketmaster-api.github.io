@@ -92,7 +92,7 @@ div[w-theme="simple"] .event-wrapper:before {
 div[w-theme="simple"] .event-content-wraper {
     display: block;
     width: 100%;
-    padding: 28px 28px 0;
+    padding: 78px 28px 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -103,7 +103,7 @@ div[w-theme="simple"] .event-content-wraper {
 div[w-theme="simple"] .event-name{
     display: block;
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 32px;
     font-family: "TMSans-Bold";
     margin-bottom: 24px;
 
@@ -183,6 +183,16 @@ div[w-theme="simple"] .event-logo {
     height: 20px;
     /* TODO: add http://developer.ticketmaster.com/*/
     background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg") no-repeat;
+}
+
+div[w-theme="simple"] .event-question {
+    position: absolute;
+    top: 21px;
+    right: 17px;
+    width: 15px;
+    height: 15px;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic.svg") no-repeat;
 }
 
 /* slider controls */
