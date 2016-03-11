@@ -47,19 +47,6 @@
         nav-item-block-1-footer-3:
             % text is "Widgets"
 
-= block-2 (Partners) text, align check @tablet=
-        nav-item-block-2-footer-1:
-            % text is "Clients & vendors"
-            aligned vertically left nav-item-block-2-footer-2
-        nav-item-block-2-footer-2:
-            text is "Other partners"
-            aligned vertically left nav-item-block-2-footer-3
-        nav-item-block-2-footer-3:
-            % text is "Developers"
-            aligned vertically left nav-item-block-2-footer-4
-        nav-item-block-2-footer-4:
-            % text is "Affiliates"
-
 = block-3 (Support) text, align check @tablet=
         nav-item-block-3-footer-1:
             % text is "FAQ"
@@ -82,10 +69,8 @@
 
 = block-5 (Events) text, align check @tablet=
         nav-item-block-5-footer-1:
-            % text is "devjam"
-            aligned vertically left nav-item-block-5-footer-2
-        nav-item-block-5-footer-2:
             % text is "hackathon"
+            aligned vertically left nav-item-block-5-footer-2
 
 = block-6 (Open Source) text, align check @tablet=
         nav-item-block-6-footer-1:
