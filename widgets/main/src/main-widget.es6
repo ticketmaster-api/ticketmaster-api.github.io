@@ -494,7 +494,8 @@ class TicketmasterWidget {
         document.getElementsByTagName("head")[0].appendChild(style);
       }
       else {
-        alert("theme wasn't loaded")
+        //alert("theme wasn't loaded");
+        console.log("theme wasn't loaded");
       }
     }
   }
@@ -550,10 +551,12 @@ class TicketmasterWidget {
         widget.setEventsCounter();
       }
       else if(this.status == 400) {
-        alert('There was an error 400')
+        //alert('There was an error 400');
+        console.log('There was an error 400');
       }
       else {
-        alert('something else other than 200 was returned')
+        //alert('something else other than 200 was returned');
+        console.log('something else other than 200 was returned');
       }
     }
   }
