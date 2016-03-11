@@ -519,6 +519,7 @@ class TicketmasterWidget {
   }
 
   eventsLoadingHandler(){
+    this.widget.clear(); // Additional clearing after each loading
     if (this && this.readyState == XMLHttpRequest.DONE ) {
       if(this.status == 200){
         let widget = this.widget;

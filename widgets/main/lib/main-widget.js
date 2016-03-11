@@ -482,15 +482,6 @@ var TicketmasterWidget = function () {
         if (this.config.hasOwnProperty(attr)) oldTheme[attr] = this.config[attr];
       }
 
-      /*let oldTheme = {
-        keyword: this.config.keyword,
-        theme: this.config.theme,
-        radius: this.config.radius,
-        postalcode: this.config.postalcode,
-        attractionid: this.config.attractionid,
-        promoterid: this.config.attractionid
-      };*/
-
       this.config = this.widgetRoot.attributes;
 
       /*if(this.config.theme !== null){
@@ -507,12 +498,6 @@ var TicketmasterWidget = function () {
       if (this.config.hasOwnProperty("border")) {
         this.eventsRootContainer.classList.add("border");
       }
-
-      /*var newTheme = this.config;
-      Object.keys(newTheme).map(function(key){
-        console.log([key,newTheme[key]]);
-        return newTheme[key] === oldTheme[key] ;
-      }).indexOf(false) === -1*/
 
       if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
         this.clear();
@@ -605,6 +590,7 @@ var TicketmasterWidget = function () {
     value: function eventsLoadingHandler() {
       var _this4 = this;
 
+      this.widget.clear(); // Additional clearing after each loading
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           (function () {
