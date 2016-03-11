@@ -114,27 +114,26 @@ var TicketmasterWidget = function () {
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
-    // prev btn
+
+    // left btn
     this.prevEventX = document.createElement("div");
     this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.prevEventX);
 
-    // next btn
+    // right btn
     this.nextEventX = document.createElement("div");
     this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.nextEventX);
 
-    // prev btn
+    // top btn
     this.prevEventY = document.createElement("div");
     this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.prevEventY);
 
-    // next btn
+    // bottom btn
     this.nextEventY = document.createElement("div");
     this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.nextEventY);
-
-    this.initSliderControls();
 
     // dots container
     //this.dotsContainer = document.createElement("div");
@@ -164,6 +163,8 @@ var TicketmasterWidget = function () {
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
 
     this.addWidgetRootLinks();
+
+    this.initSliderControls();
   }
 
   _createClass(TicketmasterWidget, [{
@@ -203,7 +204,7 @@ var TicketmasterWidget = function () {
       }
 
       // Vertical
-      if (this.eventsGroups[this.currentSlideX].length > 1) {
+      if (this.eventsGroups.length) if (this.eventsGroups[this.currentSlideX].length > 1) {
         this.prevEventY.classList.remove(this.controlHiddenClass);
         this.nextEventY.classList.remove(this.controlHiddenClass);
         if (this.currentSlideY === 0) {
@@ -220,33 +221,33 @@ var TicketmasterWidget = function () {
     key: "prevSlideX",
     value: function prevSlideX() {
       if (this.currentSlideX > 0) {
-        this.setSlideManuallyX(this.currentSlideX - 1);
+        this.setSlideManually(this.currentSlideX - 1, true);
       }
     }
   }, {
     key: "nextSlideX",
     value: function nextSlideX() {
       if (this.slideCountX - 1 > this.currentSlideX) {
-        this.setSlideManuallyX(this.currentSlideX + 1);
+        this.setSlideManually(this.currentSlideX + 1, true);
       }
     }
   }, {
     key: "prevSlideY",
     value: function prevSlideY() {
       if (this.currentSlideY > 0) {
-        this.setSlideManuallyY(this.currentSlideY - 1);
+        this.setSlideManually(this.currentSlideY - 1, false);
       }
     }
   }, {
     key: "nextSlideY",
     value: function nextSlideY() {
       if (this.eventsGroups[this.currentSlideX].length - 1 > this.currentSlideY) {
-        this.setSlideManuallyY(this.currentSlideY + 1);
+        this.setSlideManually(this.currentSlideY + 1, false);
       }
     }
   }, {
-    key: "setSlideManuallyX",
-    value: function setSlideManuallyX(slideIndex) {
+    key: "setSlideManually",
+    value: function setSlideManually(slideIndex, isDirectionX) {
       var _this = this;
 
       if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
@@ -254,23 +255,8 @@ var TicketmasterWidget = function () {
         _this.runAutoSlideX();
       }, this.sliderRestartDelay);
       clearInterval(this.sliderInterval);
-      this.goToSlideX(slideIndex);
+      if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
     }
-  }, {
-    key: "setSlideManuallyY",
-    value: function setSlideManuallyY(slideIndex) {
-      var _this2 = this;
-
-      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
-      this.sliderTimeout = setTimeout(function () {
-        _this2.runAutoSlideX();
-      }, this.sliderRestartDelay);
-      clearInterval(this.sliderInterval);
-      this.goToSlideY(slideIndex);
-    }
-
-    // TODO: combine with goToSlideY
-
   }, {
     key: "goToSlideX",
     value: function goToSlideX(slideIndex) {
@@ -303,21 +289,22 @@ var TicketmasterWidget = function () {
   }, {
     key: "runAutoSlideX",
     value: function runAutoSlideX() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.slideCountX > 1) {
         this.sliderInterval = setInterval(function () {
           var slideIndex = 0;
-          if (_this3.slideCountX - 1 > _this3.currentSlideX) slideIndex = _this3.currentSlideX + 1;
-          _this3.goToSlideX(slideIndex);
+          if (_this2.slideCountX - 1 > _this2.currentSlideX) slideIndex = _this2.currentSlideX + 1;
+          _this2.goToSlideX(slideIndex);
         }, this.sliderDelay);
       }
     }
   }, {
     key: "initSliderControls",
     value: function initSliderControls() {
-      var _this4 = this;
+      var _this3 = this;
 
+      // TODO: need to update and move in separate method
       // Restore events group position
       function whichTransitionEvent() {
         var el = document.createElement('fakeelement'),
@@ -335,8 +322,9 @@ var TicketmasterWidget = function () {
 
       var transitionEvent = whichTransitionEvent();
       transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
-        if (_this4.eventsRoot !== e.target) return;
-        var eventGroup = _this4.eventsRoot.getElementsByClassName("event-group");
+        if (_this3.eventsRoot !== e.target) return;
+        var eventGroup = _this3.eventsRoot.getElementsByClassName("event-group");
+        // Reset all groups. We don't know what event group was visible before.
         for (var i = 0; eventGroup.length > i; i++) {
           eventGroup[i].style.marginTop = 0;
         }
@@ -344,22 +332,22 @@ var TicketmasterWidget = function () {
 
       // Arrows
       this.prevEventX.addEventListener("click", function () {
-        _this4.prevSlideX();
+        _this3.prevSlideX();
       });
 
       this.nextEventX.addEventListener("click", function () {
-        _this4.nextSlideX();
+        _this3.nextSlideX();
       });
 
       this.prevEventY.addEventListener("click", function () {
-        _this4.prevSlideY();
+        _this3.prevSlideY();
       });
 
       this.nextEventY.addEventListener("click", function () {
-        _this4.nextSlideY();
+        _this3.nextSlideY();
       });
 
-      // Tough devices
+      // Tough device swipes
       var xDown = null,
           yDown = null;
 
@@ -384,16 +372,15 @@ var TicketmasterWidget = function () {
             else this.prevSlideY(); // down swipe
           }
 
-        /* reset values */
         xDown = null;
         yDown = null;
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        handleTouchStart.call(_this4, e);
+        handleTouchStart.call(_this3, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        handleTouchMove.call(_this4, e);
+        handleTouchMove.call(_this3, e);
       }, false);
     }
 
@@ -403,7 +390,7 @@ var TicketmasterWidget = function () {
     //  if(i === 0) dot.classList.add("events_dots__item-active");
     //  this.dotsContainer.appendChild(dot);
     //  dot.addEventListener("click", ()=> {
-    //    this.setSlideManuallyX(i);
+    //    this.setSlideManually(i, true);
     //  });
     //}
 
@@ -416,6 +403,7 @@ var TicketmasterWidget = function () {
       this.eventsRoot.style.marginLeft = '0%';
       this.eventsRoot.style.width = this.slideCountX * 100 + "%";
       this.currentSlideX = 0;
+      this.currentSlideY = 0;
       this.runAutoSlideX();
       this.toggleControlsVisibilityX();
 
@@ -571,13 +559,13 @@ var TicketmasterWidget = function () {
   }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
-      var _this5 = this;
+      var _this4 = this;
 
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           (function () {
-            var widget = _this5.widget;
-            widget.events = JSON.parse(_this5.responseText);
+            var widget = _this4.widget;
+            widget.events = JSON.parse(_this4.responseText);
             widget.groupEventsByName.call(widget);
 
             widget.eventsGroups.map(function (group, i) {
@@ -596,7 +584,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "publishEventsGroup",
     value: function publishEventsGroup(group, index) {
-      var _this6 = this;
+      var _this5 = this;
 
       var groupNodeWrapper = document.createElement("li");
       groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
@@ -608,7 +596,7 @@ var TicketmasterWidget = function () {
       groupNode.style.height = this.config.width * group.length + "px";
 
       group.map(function (event) {
-        _this6.publishEvent(event, groupNode);
+        _this5.publishEvent(event, groupNode);
       });
 
       groupNodeWrapper.appendChild(groupNode);

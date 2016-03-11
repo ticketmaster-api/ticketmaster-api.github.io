@@ -74,27 +74,26 @@ class TicketmasterWidget {
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
-    // prev btn
+
+    // left btn
     this.prevEventX = document.createElement("div");
     this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.prevEventX);
 
-    // next btn
+    // right btn
     this.nextEventX = document.createElement("div");
     this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.nextEventX);
 
-    // prev btn
+    // top btn
     this.prevEventY = document.createElement("div");
     this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.prevEventY);
 
-    // next btn
+    // bottom btn
     this.nextEventY = document.createElement("div");
     this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
     this.eventsRootContainer.appendChild(this.nextEventY);
-
-    this.initSliderControls();
 
     // dots container
     //this.dotsContainer = document.createElement("div");
@@ -124,6 +123,8 @@ class TicketmasterWidget {
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
 
     this.addWidgetRootLinks();
+
+    this.initSliderControls();
   }
 
   addWidgetRootLinks(){
@@ -160,64 +161,57 @@ class TicketmasterWidget {
     }
 
     // Vertical
-    if(this.eventsGroups[this.currentSlideX].length > 1){
-      this.prevEventY.classList.remove(this.controlHiddenClass);
-      this.nextEventY.classList.remove(this.controlHiddenClass);
-      if(this.currentSlideY === 0){
+    if(this.eventsGroups.length)
+      if(this.eventsGroups[this.currentSlideX].length > 1){
+        this.prevEventY.classList.remove(this.controlHiddenClass);
+        this.nextEventY.classList.remove(this.controlHiddenClass);
+        if(this.currentSlideY === 0){
+          this.prevEventY.classList.add(this.controlHiddenClass);
+        }else if(this.currentSlideY === this.eventsGroups[this.currentSlideX].length - 1){
+          this.nextEventY.classList.add(this.controlHiddenClass);
+        }
+      }else{
         this.prevEventY.classList.add(this.controlHiddenClass);
-      }else if(this.currentSlideY === this.eventsGroups[this.currentSlideX].length - 1){
         this.nextEventY.classList.add(this.controlHiddenClass);
       }
-    }else{
-      this.prevEventY.classList.add(this.controlHiddenClass);
-      this.nextEventY.classList.add(this.controlHiddenClass);
-    }
   }
 
   prevSlideX(){
     if(this.currentSlideX > 0){
-      this.setSlideManuallyX(this.currentSlideX - 1);
+      this.setSlideManually(this.currentSlideX - 1, true);
     }
   }
 
   nextSlideX(){
     if(this.slideCountX - 1 > this.currentSlideX) {
-      this.setSlideManuallyX(this.currentSlideX + 1);
+      this.setSlideManually(this.currentSlideX + 1, true);
     }
   }
 
   prevSlideY(){
     if(this.currentSlideY > 0){
-      this.setSlideManuallyY(this.currentSlideY - 1);
+      this.setSlideManually(this.currentSlideY - 1, false);
     }
   }
 
   nextSlideY(){
     if(this.eventsGroups[this.currentSlideX].length - 1 > this.currentSlideY) {
-      this.setSlideManuallyY(this.currentSlideY + 1);
+      this.setSlideManually(this.currentSlideY + 1, false);
     }
   }
 
-  setSlideManuallyX(slideIndex){
+  setSlideManually(slideIndex, isDirectionX){
     if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
     this.sliderTimeout = setTimeout(()=>{
       this.runAutoSlideX();
     }, this.sliderRestartDelay);
     clearInterval(this.sliderInterval);
-    this.goToSlideX(slideIndex);
+    if(isDirectionX)
+      this.goToSlideX(slideIndex);
+    else
+      this.goToSlideY(slideIndex);
   }
 
-  setSlideManuallyY(slideIndex){
-    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
-    this.sliderTimeout = setTimeout(()=>{
-      this.runAutoSlideX();
-    }, this.sliderRestartDelay);
-    clearInterval(this.sliderInterval);
-    this.goToSlideY(slideIndex);
-  }
-
-
-  // TODO: combine with goToSlideY
   goToSlideX(slideIndex){
     if(this.currentSlideX === slideIndex) return;
     this.currentSlideY = 0;
@@ -256,6 +250,7 @@ class TicketmasterWidget {
   }
 
   initSliderControls(){
+    // TODO: need to update and move in separate method
     // Restore events group position
     function whichTransitionEvent(){
       let el = document.createElement('fakeelement'),
@@ -275,6 +270,7 @@ class TicketmasterWidget {
     transitionEvent && this.eventsRoot.addEventListener(transitionEvent, (e)=> {
       if (this.eventsRoot !== e.target) return;
       let eventGroup = this.eventsRoot.getElementsByClassName("event-group");
+      // Reset all groups. We don't know what event group was visible before.
       for(let i = 0; eventGroup.length > i; i++){
         eventGroup[i].style.marginTop = 0;
       }
@@ -297,7 +293,7 @@ class TicketmasterWidget {
       this.nextSlideY();
     });
 
-    // Tough devices
+    // Tough device swipes
     let xDown = null,
         yDown = null;
 
@@ -326,7 +322,6 @@ class TicketmasterWidget {
           this.prevSlideY(); // down swipe
       }
 
-      /* reset values */
       xDown = null;
       yDown = null;
     }
@@ -345,7 +340,7 @@ class TicketmasterWidget {
   //  if(i === 0) dot.classList.add("events_dots__item-active");
   //  this.dotsContainer.appendChild(dot);
   //  dot.addEventListener("click", ()=> {
-  //    this.setSlideManuallyX(i);
+  //    this.setSlideManually(i, true);
   //  });
   //}
 
@@ -356,6 +351,7 @@ class TicketmasterWidget {
     this.eventsRoot.style.marginLeft = '0%';
     this.eventsRoot.style.width = `${this.slideCountX * 100}%`;
     this.currentSlideX = 0;
+    this.currentSlideY = 0;
     this.runAutoSlideX();
     this.toggleControlsVisibilityX();
 
