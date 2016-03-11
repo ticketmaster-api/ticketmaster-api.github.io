@@ -14,7 +14,7 @@ namespace 'travis' do
 
   desc 'Publish site to GitHub Pages from Travis'
   task :deploy do
-    
+    puts "GH_TOKEN #{ENV['GH_TOKEN']}"
     if ENV['TRAVIS_TEST_RESULT'].to_i != 0
       puts "Skipping deployment due to test failure"
       next
