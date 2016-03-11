@@ -41,14 +41,13 @@ var TicketmasterWidget = function () {
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
-
-    //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
+      return "http://localhost:4000/widgets/main/theme/";
     }
+    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+
   }, {
     key: "logoUrl",
     get: function get() {
@@ -112,10 +111,6 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
-    this.currentSlideX = 0;
-    this.currentSlideY = 0;
-    this.slideCountX = 0;
-
     this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
     this.eventsRootContainer = document.createElement("div");
@@ -126,35 +121,10 @@ var TicketmasterWidget = function () {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
-    // left btn
-    this.prevEventX = document.createElement("div");
-    this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.prevEventX);
-
-    // right btn
-    this.nextEventX = document.createElement("div");
-    this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.nextEventX);
-
-    // top btn
-    this.prevEventY = document.createElement("div");
-    this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.prevEventY);
-
-    // bottom btn
-    this.nextEventY = document.createElement("div");
-    this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.nextEventY);
-
     // dots container
     //this.dotsContainer = document.createElement("div");
     //this.dotsContainer.classList.add("events_dots");
     //this.eventsRootContainer.appendChild(this.dotsContainer);
-
-    // events counter
-    this.eventsCounter = document.createElement("div");
-    this.eventsCounter.classList.add("events-counter");
-    this.widgetRoot.appendChild(this.eventsCounter);
 
     this.config = this.widgetRoot.attributes;
 
@@ -181,6 +151,8 @@ var TicketmasterWidget = function () {
     this.addWidgetRootLinks();
 
     this.initSliderControls();
+
+    this.initEventCounter();
   }
 
   _createClass(TicketmasterWidget, [{
@@ -329,7 +301,30 @@ var TicketmasterWidget = function () {
     value: function initSliderControls() {
       var _this3 = this;
 
-      // TODO: need to update and move in separate method
+      this.currentSlideX = 0;
+      this.currentSlideY = 0;
+      this.slideCountX = 0;
+
+      // left btn
+      this.prevEventX = document.createElement("div");
+      this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.prevEventX);
+
+      // right btn
+      this.nextEventX = document.createElement("div");
+      this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.nextEventX);
+
+      // top btn
+      this.prevEventY = document.createElement("div");
+      this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.prevEventY);
+
+      // bottom btn
+      this.nextEventY = document.createElement("div");
+      this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.nextEventY);
+
       // Restore events group position
       function whichTransitionEvent() {
         var el = document.createElement('fakeelement'),
@@ -582,17 +577,26 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "initEventCounter",
+    value: function initEventCounter() {
+      this.eventsCounter = document.createElement("div");
+      this.eventsCounter.classList.add("events-counter");
+      this.widgetRoot.appendChild(this.eventsCounter);
+    }
+  }, {
     key: "setEventsCounter",
     value: function setEventsCounter() {
-      var text = '';
-      if (this.eventsGroups.length) {
-        if (this.eventsGroups.length > 1) {
-          text = this.currentSlideX + 1 + " of " + this.eventsGroups.length + " events";
-        } else {
-          text = '1 event';
+      if (this.eventsCounter) {
+        var text = '';
+        if (this.eventsGroups.length) {
+          if (this.eventsGroups.length > 1) {
+            text = this.currentSlideX + 1 + " of " + this.eventsGroups.length + " events";
+          } else {
+            text = '1 event';
+          }
         }
+        this.eventsCounter.innerHTML = text;
       }
-      this.eventsCounter.innerHTML = text;
     }
   }, {
     key: "eventsLoadingHandler",

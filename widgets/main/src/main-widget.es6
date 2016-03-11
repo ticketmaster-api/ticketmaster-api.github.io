@@ -10,8 +10,8 @@ class TicketmasterWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
 
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
@@ -65,11 +65,6 @@ class TicketmasterWidget {
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
   constructor(selector) {
-
-    this.currentSlideX = 0;
-    this.currentSlideY = 0;
-    this.slideCountX = 0;
-
     this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
     this.eventsRootContainer = document.createElement("div");
@@ -80,35 +75,10 @@ class TicketmasterWidget {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
-    // left btn
-    this.prevEventX = document.createElement("div");
-    this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.prevEventX);
-
-    // right btn
-    this.nextEventX = document.createElement("div");
-    this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.nextEventX);
-
-    // top btn
-    this.prevEventY = document.createElement("div");
-    this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.prevEventY);
-
-    // bottom btn
-    this.nextEventY = document.createElement("div");
-    this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.nextEventY);
-
     // dots container
     //this.dotsContainer = document.createElement("div");
     //this.dotsContainer.classList.add("events_dots");
     //this.eventsRootContainer.appendChild(this.dotsContainer);
-
-    // events counter
-    this.eventsCounter = document.createElement("div");
-    this.eventsCounter.classList.add("events-counter");
-    this.widgetRoot.appendChild(this.eventsCounter);
 
     this.config = this.widgetRoot.attributes;
 
@@ -135,6 +105,8 @@ class TicketmasterWidget {
     this.addWidgetRootLinks();
 
     this.initSliderControls();
+
+    this.initEventCounter();
   }
 
   addWidgetRootLinks(){
@@ -269,7 +241,30 @@ class TicketmasterWidget {
   }
 
   initSliderControls(){
-    // TODO: need to update and move in separate method
+    this.currentSlideX = 0;
+    this.currentSlideY = 0;
+    this.slideCountX = 0;
+
+    // left btn
+    this.prevEventX = document.createElement("div");
+    this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.prevEventX);
+
+    // right btn
+    this.nextEventX = document.createElement("div");
+    this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.nextEventX);
+
+    // top btn
+    this.prevEventY = document.createElement("div");
+    this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.prevEventY);
+
+    // bottom btn
+    this.nextEventY = document.createElement("div");
+    this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
+    this.eventsRootContainer.appendChild(this.nextEventY);
+
     // Restore events group position
     function whichTransitionEvent(){
       let el = document.createElement('fakeelement'),
@@ -517,16 +512,24 @@ class TicketmasterWidget {
     }
   }
 
+  initEventCounter(){
+    this.eventsCounter = document.createElement("div");
+    this.eventsCounter.classList.add("events-counter");
+    this.widgetRoot.appendChild(this.eventsCounter);
+  }
+
   setEventsCounter(){
-    let text = '';
-    if(this.eventsGroups.length){
-      if(this.eventsGroups.length > 1){
-        text = (this.currentSlideX + 1) + " of " + this.eventsGroups.length +  " events";
-      } else {
-        text = '1 event';
+    if(this.eventsCounter){
+      let text = '';
+      if(this.eventsGroups.length){
+        if(this.eventsGroups.length > 1){
+          text = (this.currentSlideX + 1) + " of " + this.eventsGroups.length +  " events";
+        } else {
+          text = '1 event';
+        }
       }
+      this.eventsCounter.innerHTML = text;
     }
-    this.eventsCounter.innerHTML = text;
   }
 
   eventsLoadingHandler(){
