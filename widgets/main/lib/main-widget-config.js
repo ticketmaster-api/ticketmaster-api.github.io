@@ -1,10 +1,6 @@
-'use strict';
-
-var $widgetModal = $('#js_widget_modal'),
-    $widgetModalNoCode = $('#js_widget_modal_no_code');
+"use strict";
 
 (function () {
-  //
 
   var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
 
@@ -12,22 +8,54 @@ var $widgetModal = $('#js_widget_modal'),
     var widgetNode = document.querySelector("div[w-tmapikey]");
 
     if (event.target.id === "border") {
-      if (event.target.checked) {
-        widgetNode.setAttribute(event.target.id, "");
-      } else {
-        widgetNode.removeAttribute(event.target.id);
-      }
+      //if(event.target.checked){
+      //  widgetNode.setAttribute(event.target.id, "");
+      //}
+      //else{
+      //  widgetNode.removeAttribute(event.target.id);
+      //}
     } else {
-      widgetNode.setAttribute(event.target.id, event.target.value);
-    }
+        widgetNode.setAttribute(event.target.name, event.target.value);
+      }
 
     widget.update();
   };
 
-  $(".main-widget-config-form").on("change", changeState);
+  var resetWidget = function resetWidget(configForm) {
+    var widgetNode = document.querySelector("div[w-tmapikey]");
+    configForm.find("input[type='text'], input[type='range']").each(function () {
+      var $self = $(this),
+          value = $self.data('default-value');
+      $self.val(value);
+      widgetNode.setAttribute($self.attr('name'), value);
+    });
 
-  var $widgetModal = $('#js_widget_modal'),
+    configForm.find("input[type='radio']").each(function () {
+      var $self = $(this);
+      if ($self.data('is-checked')) {
+        $self.prop('checked', true);
+        widgetNode.setAttribute($self.attr('name'), $self.val());
+      }
+    });
+
+    widget.update();
+  };
+
+  var $configForm = $(".main-widget-config-form"),
+      $widgetModal = $('#js_widget_modal'),
       $widgetModalNoCode = $('#js_widget_modal_no_code');
+
+  $configForm.on("change", changeState);
+
+  $configForm.find("input[type='text'], input[type='range']").each(function () {
+    var $self = $(this);
+    $self.data('default-value', $self.val());
+  });
+
+  $configForm.find("input[type='radio']").each(function () {
+    var $self = $(this);
+    if ($self.is(':checked')) $self.data('is-checked', 'checked');
+  });
 
   $('#js_get_widget_code').on('click', function () {
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
@@ -43,20 +71,16 @@ var $widgetModal = $('#js_widget_modal'),
     $widgetModal.modal();
   });
 
+  $('#js_reset_widget').on('click', function () {
+    resetWidget($configForm);
+  });
+
   $('#js_widget_modal__close').on('click', function () {
     $widgetModal.modal('hide');
   });
 
   $('#js_widget_modal_no_code__close').on('click', function () {
     $widgetModalNoCode.modal('hide');
-  });
-
-  $("#period").on("click", function (event) {
-    $("#period").children().removeClass("active");
-    $(event.target).addClass("active");
-    event.target.id = "w-period";
-    event.target.value = event.target.textContent.toLowerCase();
-    changeState.call(this, event);
   });
 
   $("#w-size").on("keydown", function (event) {
