@@ -16,42 +16,46 @@
       <div class="row">
         <div class="col-lg-12">
           <label for="w-tm-api-key">API Key</label>
-          <input type="text" id="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+          <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
         </div>
         <div class="col-lg-12">
           <label for="w-keyword">Keyword</label>
-          <input type="text" id="w-keyword" value="">
+          <input type="text" id="w-keyword" name="w-keyword" value="">
         </div>
         <div class="col-lg-12">
           <label>Period</label>
-          <div class="tab-buttons" id="period">
-            <button type="button" period="week" class="active">Week</button>
-            <button type="button" period="month" >Month</button>
-            <button type="button" period="year" >Year</button>
+          <div class="tab-buttons">
+            <input checked id="w-period-week" type="radio" value="week" name="w-period">
+            <label for="w-period-week">Week</label>
+            <input id="w-period-month" type="radio" value="month" name="w-period">
+            <label for="w-period-month">Month</label>
+            <input id="w-period-year" type="radio" value="year" name="w-period">
+            <label for="w-period-year">Year</label>
+
           </div>
         </div>
         <div class="col-lg-6">
           <label for="w-postal-code">ZIP Code</label>
-          <input type="text" id="w-postal-code" value="90210">
+          <input type="text" id="w-postal-code" name="w-postal-code" value="90210">
         </div>
         <div class="col-lg-6">
           <label for="w-size">Event Count</label>
-          <input type="text" id="w-size" value="25">
+          <input type="text" id="w-size" name="w-size" value="25">
         </div>
 
         <div class="col-lg-12">
           <label for="w-attraction-id">Attraction ID</label>
-          <input type="text" id="w-attraction-id" value="">
+          <input type="text" id="w-attraction-id" name="w-attraction-id" value="">
         </div>
 
         <div class="col-lg-12">
           <label for="w-promoter-id">Promoter ID</label>
-          <input type="text" id="w-promoter-id" value="">
+          <input type="text" id="w-promoter-id" name="w-promoter-id" value="">
         </div>
 
         <div class="col-lg-12">
           <label for="w-radius">Radius</label>
-          <input type="text" id="w-radius" value="2">
+          <input type="text" id="w-radius" name="w-radius" value="2">
         </div>
       </div>
     </div>
@@ -82,7 +86,7 @@
         </div>
         <div class="col-lg-12">
           <label for="w-width">Width (px)</label>
-          <input type="range" id="w-width" max="500" min="360" value="360">
+          <input type="range" id="w-width" name="w-width" max="500" min="360" value="360">
         </div>
         <!--<div class="col-lg-12 base-margin">
           <input type="checkbox" id="w-border">
@@ -90,7 +94,7 @@
         </div>-->
         <div class="col-lg-12">
           <label for="w-border-radius">Corner Radius (px)</label>
-          <input type="range" id="w-border-radius" max="20" min="0" value="4">
+          <input type="range" id="w-border-radius" name="w-border-radius" max="20" min="0" value="4">
         </div>
       </div>
     </div>
@@ -99,7 +103,7 @@
   <div class="row">
     <div class="col-lg-12">
       <button id="js_get_widget_code" type="button" class="btn btn-submit button-blue">GET CODE</button>
-      <button type="button" class="btn button-white-gray-border">RESET</button>
+      <button id="js_reset_widget" type="button" class="btn button-white-gray-border">RESET</button>
     </div>
   </div>
 
