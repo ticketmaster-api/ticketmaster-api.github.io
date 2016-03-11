@@ -59,6 +59,6 @@ layout: default
 <script>
     new Clipboard('.copy-btn');
     if(sessionStorage.getItem('tk-api-key') !== null){
-        document.body.innerHTML = document.body.innerHTML.replace(/\{apikey=\}/g, "apikey="+sessionStorage.getItem('tk-api-key'));
+        document.body.innerHTML = document.body.innerHTML.replace(/\{apikey\}/g, "apikey="+sessionStorage.getItem('tk-api-key'));
     }
 </script>
