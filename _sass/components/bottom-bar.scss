@@ -10,6 +10,7 @@
     &:active,
     &:focus{
       color: $white;
+      text-decoration: none;
     }
   }
   span {
