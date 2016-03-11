@@ -149,11 +149,21 @@ div[w-theme="simple"] .legal-notice:focus,
 div[w-theme="simple"] .legal-notice:active{
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 2px;
     color: #019cde;
     font-size: 16px;
     line-height: 24px;
     text-decoration: none;
+}
+
+div[w-theme="simple"] .events-counter {
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #b7c9d3;
+    font-family: "TMSans-Bold";
 }
 
 div[w-theme="simple"] .event-logo-box {
@@ -223,14 +233,6 @@ div[w-theme="simple"] .events_control-vertical {
     /*opacity: 1;*/
 /*}*/
 
-div[w-theme="simple"] .events_control-vertical.events_control-hidden {
-    height: 0;
-}
-
-div[w-theme="simple"] .events_control-horizontal.events_control-hidden {
-    width: 0;
-}
-
 div[w-theme="simple"] .events_control:before {
     content: '';
     position: absolute;
@@ -299,6 +301,15 @@ div[w-theme="simple"] .events_control-vertical:hover {
 
 div[w-theme="simple"] .events_control-horizontal:hover {
     width: 28px;
+}
+
+
+div[w-theme="simple"] .events_control-vertical.events_control-hidden {
+    height: 0;
+}
+
+div[w-theme="simple"] .events_control-horizontal.events_control-hidden {
+    width: 0;
 }
 
 /*@media (max-width: 1024px) {*/

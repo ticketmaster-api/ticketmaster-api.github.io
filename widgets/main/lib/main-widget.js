@@ -151,6 +151,11 @@ var TicketmasterWidget = function () {
     //this.dotsContainer.classList.add("events_dots");
     //this.eventsRootContainer.appendChild(this.dotsContainer);
 
+    // events counter
+    this.eventsCounter = document.createElement("div");
+    this.eventsCounter.classList.add("events-counter");
+    this.widgetRoot.appendChild(this.eventsCounter);
+
     this.config = this.widgetRoot.attributes;
 
     if (this.config.theme !== null) {
@@ -284,6 +289,7 @@ var TicketmasterWidget = function () {
       this.currentSlideX = slideIndex;
       this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
       this.toggleControlsVisibilityX();
+      this.setEventsCounter();
       //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
       //for(let i = 0; dots.length > i; i++){
       //  if(i === slideIndex){
@@ -576,6 +582,19 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "setEventsCounter",
+    value: function setEventsCounter() {
+      var text = '';
+      if (this.eventsGroups.length) {
+        if (this.eventsGroups.length > 1) {
+          text = this.currentSlideX + 1 + " of " + this.eventsGroups.length + " events";
+        } else {
+          text = '1 event';
+        }
+      }
+      this.eventsCounter.innerHTML = text;
+    }
+  }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
       var _this4 = this;
@@ -592,6 +611,7 @@ var TicketmasterWidget = function () {
             });
 
             widget.initSlider();
+            widget.setEventsCounter();
           })();
         } else if (this.status == 400) {
           alert('There was an error 400');
