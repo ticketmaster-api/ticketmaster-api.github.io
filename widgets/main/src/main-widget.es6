@@ -12,7 +12,10 @@ class TicketmasterWidget {
 
   //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
   get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
+
+  get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
   get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
 
@@ -129,9 +132,11 @@ class TicketmasterWidget {
 
   addWidgetRootLinks(){
     var legalNoticeContent = document.createTextNode('Legal Notice'),
-        legalNotice = document.createElement("div");
-    legalNotice.classList.add("legal-notice");
+      legalNotice = document.createElement("a");
     legalNotice.appendChild(legalNoticeContent);
+    legalNotice.classList.add("legal-notice");
+    legalNotice.target = '_blank';
+    legalNotice.href = this.legalNoticeUrl;
     this.widgetRoot.appendChild(legalNotice);
 
     var logo = document.createElement('a');

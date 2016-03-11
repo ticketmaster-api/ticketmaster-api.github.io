@@ -54,6 +54,11 @@ var TicketmasterWidget = function () {
       return "http://developer.ticketmaster.com/";
     }
   }, {
+    key: "legalNoticeUrl",
+    get: function get() {
+      return "http://developer.ticketmaster.com/support/terms-of-use/";
+    }
+  }, {
     key: "updateExceptions",
     get: function get() {
       return ["width", "border", "borderradius", "colorscheme", "Layout"];
@@ -171,9 +176,11 @@ var TicketmasterWidget = function () {
     key: "addWidgetRootLinks",
     value: function addWidgetRootLinks() {
       var legalNoticeContent = document.createTextNode('Legal Notice'),
-          legalNotice = document.createElement("div");
-      legalNotice.classList.add("legal-notice");
+          legalNotice = document.createElement("a");
       legalNotice.appendChild(legalNoticeContent);
+      legalNotice.classList.add("legal-notice");
+      legalNotice.target = '_blank';
+      legalNotice.href = this.legalNoticeUrl;
       this.widgetRoot.appendChild(legalNotice);
 
       var logo = document.createElement('a');

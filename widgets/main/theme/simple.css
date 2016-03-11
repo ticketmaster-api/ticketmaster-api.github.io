@@ -143,13 +143,17 @@ div[w-theme="simple"] .event-category:first-child:before{
     content: '';
 }
 
-div[w-theme="simple"] .legal-notice{
+div[w-theme="simple"] .legal-notice,
+div[w-theme="simple"] .legal-notice:hover,
+div[w-theme="simple"] .legal-notice:focus,
+div[w-theme="simple"] .legal-notice:active{
     position: absolute;
     left: 0;
     bottom: 10px;
     color: #019cde;
     font-size: 16px;
     line-height: 24px;
+    text-decoration: none;
 }
 
 div[w-theme="simple"] .event-logo-box {
@@ -185,9 +189,10 @@ div[w-theme="simple"] .event-logo {
 div[w-theme="simple"] .events_control {
     position: absolute;
     cursor: pointer;
-    -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
-    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+    -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     overflow: hidden;
+    opacity: 0.3;
 }
 
 div[w-theme="simple"] .events_control-horizontal {
@@ -208,14 +213,6 @@ div[w-theme="simple"] .events_control-vertical {
     /*opacity: 1;*/
 /*}*/
 
-div[w-theme="simple"] .events_control-vertical:hover {
-    height: 28px;
-}
-
-div[w-theme="simple"] .events_control-horizontal:hover {
-    width: 28px;
-}
-
 div[w-theme="simple"] .events_control-vertical.events_control-hidden {
     height: 0;
 }
@@ -231,7 +228,7 @@ div[w-theme="simple"] .events_control:before {
     height: 56px;
     border-radius: 28px;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background: rgba(255, 255, 255, 0.8) url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small.svg") no-repeat 13px 50%/12px 12px;
+    background: #fff url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small.svg") no-repeat 13px 50%/12px 12px;
 }
 
 div[w-theme="simple"] .events_control-left {
@@ -280,6 +277,18 @@ div[w-theme="simple"] .events_control-bottom:before {
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
+}
+
+div[w-theme="simple"] .events_control:hover {
+    opacity: 0.8;
+}
+
+div[w-theme="simple"] .events_control-vertical:hover {
+    height: 28px;
+}
+
+div[w-theme="simple"] .events_control-horizontal:hover {
+    width: 28px;
 }
 
 /*@media (max-width: 1024px) {*/
