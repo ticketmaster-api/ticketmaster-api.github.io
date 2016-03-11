@@ -3,12 +3,12 @@
   if(apiKey === null){
     var onLoadHandler = function() {
       var win = window.frames.target;
-      win.postMessage("сообщение", "https://dev-livenation.devportal.apigee.com");
+      win.postMessage("", "https://live-livenation.devportal.apigee.com");
     };
 
     var iframe = document.createElement("iframe");
     iframe.style.display = "none";
-    iframe.setAttribute("src","https://dev-livenation.devportal.apigee.com/user/");
+    iframe.setAttribute("src","https://live-livenation.devportal.apigee.com/user/");
     iframe.setAttribute("name","target");
     iframe.addEventListener("load",onLoadHandler);
 
@@ -20,7 +20,7 @@
   // Wait for response
   // TODO: update links to live
   checkResponse = function(event){
-    if( event.origin = "https://dev-livenation.devportal.apigee.com") {
+    if( event.origin = "https://live-livenation.devportal.apigee.com") {
       sessionStorage.setItem('tk-api-key', event.data);
     }
     else{
