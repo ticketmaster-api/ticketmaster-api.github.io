@@ -13,7 +13,7 @@
     nav-all-item-footer-*       css  #footer > div.row.footer-nav > div > div > ul > li > a
 
     logo-bottom-img             css  #footer > div.row.bottom-logo > div > div > a > img
-    logo-bottom-text            css  #footer > div.row.bottom-logo > div > div > a > span
+    logo-bottom-text            css  #footer > div.row.bottom-logo > div > div > span
 
 = Navigation test footer @tablet (footer-tablet.gspec)=
         nav-item-heading-footer-*:
@@ -102,7 +102,7 @@
 
 = colors, height @tablet=
         footer-container:
-            height  450 to 475 px
+            height  480 to 500 px
             # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
 
         nav-all-item-footer-*:

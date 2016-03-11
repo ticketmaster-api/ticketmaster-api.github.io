@@ -108,7 +108,7 @@
 
 = colors, height =
         footer-container:
-            height 430 to 475px
+            % height 430 to 499px
 
         nav-all-item-footer-*:
             ${color} "rgba(255, 255, 255, 0.7)"
