@@ -45,7 +45,7 @@ cache:
     - bundler
 
 notifications:
-  email: false #
+  slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
 
 before_install:
   - rm ./_site/* -rf #remove directory _site
