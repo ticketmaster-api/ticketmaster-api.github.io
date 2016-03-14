@@ -148,11 +148,14 @@
 .tm-btn-white {
   background-color: $white;
   font-family: $font-h4;
-  &:hover {
+  &:hover,
+  &:focus {
     color: $brand-color;
+    background-color: $white-70;
   }
   &:visited {
     color: $brand-color;
+    background-color: $white-70;
   }
 }
 
@@ -161,11 +164,13 @@
   font-family: $font-h4;
   color: $white-70;
   padding: 12px 34px 9px;
-  &:hover{
-    color: $white-70;
+  &:hover,
+  &:focus {
+    color: $white;
+    border-color: $white;
   }
   &:visited{
-    color: $white-70;
+    color: $white;
   }
 }
 
