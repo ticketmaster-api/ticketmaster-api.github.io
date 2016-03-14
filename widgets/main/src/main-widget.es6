@@ -518,29 +518,78 @@ class TicketmasterWidget {
     }
   }
 
+  showMessage(message){
+    console.log(message);
+  }
+
+  resetReduceParamsOrder(){
+    this.reduceParamsOrder = 0;
+  }
+
+  reduceParamsAndReloadEvents(){
+    let eventReqAttrs = {},
+      reduceParamsList = [
+          ['postalcode'],
+          ['attractionid'],
+          ['promoterid'],
+          ['startDateTime', 'endDateTime'],
+          ['keyword'],
+          ['size']
+      ];
+
+    // make copy of params
+    for(let key in this.eventReqAttrs){
+      eventReqAttrs[key] = this.eventReqAttrs[key]
+    }
+
+    if(!this.reduceParamsOrder) this.reduceParamsOrder = 0;
+    if(reduceParamsList.length > this.reduceParamsOrder){
+      for(let item in reduceParamsList){
+        if(this.reduceParamsOrder >= item){
+          for(let i in reduceParamsList[item]){
+            delete eventReqAttrs[reduceParamsList[item][i]];
+          }
+        }
+      }
+
+      if(this.reduceParamsOrder === 0) this.showMessage('Match not found');
+      this.reduceParamsOrder++;
+      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, eventReqAttrs );
+    }
+  }
+
   eventsLoadingHandler(){
-    this.widget.clear(); // Additional clearing after each loading
+    let widget = this.widget;
+    widget.clear(); // Additional clearing after each loading
     if (this && this.readyState == XMLHttpRequest.DONE ) {
       if(this.status == 200){
-        let widget = this.widget;
         widget.events = JSON.parse(this.responseText);
-        widget.groupEventsByName.call(widget);
 
-        widget.eventsGroups.map(function(group, i){
-          if(group.length === 1)
-            widget.publishEvent(group[0]);
-          else
-            widget.publishEventsGroup.call(widget, group, i);
-        });
+        if(widget.events.length){
+          widget.groupEventsByName.call(widget);
 
-        widget.initSlider();
-        widget.setEventsCounter();
+          widget.eventsGroups.map(function(group, i){
+            if(group.length === 1)
+              widget.publishEvent(group[0]);
+            else
+              widget.publishEventsGroup.call(widget, group, i);
+          });
+
+          widget.initSlider();
+          widget.setEventsCounter();
+          widget.resetReduceParamsOrder();
+
+        }else{
+          widget.reduceParamsAndReloadEvents.call(widget);
+        }
       }
       else if(this.status == 400) {
+        widget.reduceParamsAndReloadEvents.call(widget);
         //alert('There was an error 400');
         console.log('There was an error 400');
       }
       else {
+        widget.reduceParamsAndReloadEvents.call(widget);
         //alert('something else other than 200 was returned');
         console.log('something else other than 200 was returned');
       }

@@ -586,16 +586,51 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "showMessage",
+    value: function showMessage(message) {
+      console.log(message);
+    }
+  }, {
+    key: "resetReduceParamsOrder",
+    value: function resetReduceParamsOrder() {
+      this.reduceParamsOrder = 0;
+    }
+  }, {
+    key: "reduceParamsAndReloadEvents",
+    value: function reduceParamsAndReloadEvents() {
+      var eventReqAttrs = {},
+          reduceParamsList = [['postalcode'], ['attractionid'], ['promoterid'], ['startDateTime', 'endDateTime'], ['keyword'], ['size']];
+
+      // make copy of params
+      for (var key in this.eventReqAttrs) {
+        eventReqAttrs[key] = this.eventReqAttrs[key];
+      }
+
+      if (!this.reduceParamsOrder) this.reduceParamsOrder = 0;
+      if (reduceParamsList.length > this.reduceParamsOrder) {
+        for (var item in reduceParamsList) {
+          if (this.reduceParamsOrder >= item) {
+            for (var i in reduceParamsList[item]) {
+              delete eventReqAttrs[reduceParamsList[item][i]];
+            }
+          }
+        }
+
+        if (this.reduceParamsOrder === 0) this.showMessage('Match not found');
+        this.reduceParamsOrder++;
+        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, eventReqAttrs);
+      }
+    }
+  }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
-      var _this4 = this;
-
-      this.widget.clear(); // Additional clearing after each loading
+      var widget = this.widget;
+      widget.clear(); // Additional clearing after each loading
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
-          (function () {
-            var widget = _this4.widget;
-            widget.events = JSON.parse(_this4.responseText);
+          widget.events = JSON.parse(this.responseText);
+
+          if (widget.events.length) {
             widget.groupEventsByName.call(widget);
 
             widget.eventsGroups.map(function (group, i) {
@@ -604,11 +639,16 @@ var TicketmasterWidget = function () {
 
             widget.initSlider();
             widget.setEventsCounter();
-          })();
+            widget.resetReduceParamsOrder();
+          } else {
+            widget.reduceParamsAndReloadEvents.call(widget);
+          }
         } else if (this.status == 400) {
+          widget.reduceParamsAndReloadEvents.call(widget);
           //alert('There was an error 400');
           console.log('There was an error 400');
         } else {
+          widget.reduceParamsAndReloadEvents.call(widget);
           //alert('something else other than 200 was returned');
           console.log('something else other than 200 was returned');
         }
@@ -617,7 +657,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "publishEventsGroup",
     value: function publishEventsGroup(group, index) {
-      var _this5 = this;
+      var _this4 = this;
 
       var groupNodeWrapper = document.createElement("li");
       groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
@@ -629,7 +669,7 @@ var TicketmasterWidget = function () {
       groupNode.style.height = this.config.width * group.length + "px";
 
       group.map(function (event) {
-        _this5.publishEvent(event, groupNode);
+        _this4.publishEvent(event, groupNode);
       });
 
       groupNodeWrapper.appendChild(groupNode);
