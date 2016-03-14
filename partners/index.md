@@ -1,7 +1,7 @@
 ---
 layout: partners
 category: partners
-title: Partners
+title: Partners, Clients and Startup Showcases | The Ticketmaster Developer Network
 excerpt: Collaborating with partners, clients and the startup community to build experiences that delight fans everywhere.
 keywords: partners, certified partners, become an affilate
 ---
@@ -117,7 +117,7 @@ If you are a current member of the Ticketmaster affiliate program, manage your a
 ![ApiExplorer](/assets/img/partners/bitmap.png)
 
 {: .image}
-![DevJam2](/assets/img/events/devjam2.jpg)
+![DevJam2](/assets/img/events/devjam2.png)
 
 {: .image}
 ![DevJam1](/assets/img/events/devjam.jpg)

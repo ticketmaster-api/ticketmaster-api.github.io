@@ -6,10 +6,10 @@
   }
   a {
     color: $white-70;
-    &:hover,
-    &:active,
-    &:focus{
+    text-decoration: none;
+    &:hover{
       color: $white;
+      text-decoration: none;
     }
   }
   span {
@@ -102,6 +102,7 @@
   }
   a {
     color: $n2-grey-color;
+    text-decoration: none;
     &:hover {
       color: $p1a;
     }

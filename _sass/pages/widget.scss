@@ -1,20 +1,36 @@
 .tab-buttons {
   margin-bottom: 30px;
-  button {
-    &.active{
-      color: #019cde;
-      border-bottom: 2px solid #019cde;
-    }
-    &[disabled] {
-      opacity: .2;
-    }
+
+  button,
+  input[type="radio"]+label {
     border: 0;
     outline: none;
     border-bottom: 2px solid #b7c9d3;
     background-color: #FFF;
     padding: 5px 15px;
     margin-right: 2px;
+    margin-left: 0;
+    cursor: pointer;
+    font-family: Helvetica, Arial, sans-serif;
+
+    &[disabled] {
+      opacity: .2;
+      cursor: default;
+    }
   }
+
+  button.active,
+  input[type="radio"]:checked+label {
+    color: #019cde;
+    border-bottom: 2px solid #019cde;
+  }
+
+  input[type="radio"]{
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
 }
 
 .config-block{
@@ -26,6 +42,8 @@
   margin-bottom: 60px;
 }
 
-.widget-container{
-  margin-left: 200px;
+.widget-container {
+  float: left;
+  padding: 10px;
+  border: 1px dashed #ccc;
 }

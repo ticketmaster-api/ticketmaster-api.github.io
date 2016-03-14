@@ -20,9 +20,7 @@
     @on tablet
         global:
             count any aside-menu-block-* is 3
-            % count any aside-menu-categories-first-* is 12
-            #count any aside-menu-categories-second-* is 4
-            #count any aside-menu-categories-second-* is 4
+            % count any aside-menu-categories-first-* is 17
 
     @on tablet
         aside-menu-header:

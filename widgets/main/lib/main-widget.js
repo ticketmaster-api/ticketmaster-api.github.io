@@ -55,6 +55,16 @@ var TicketmasterWidget = function () {
       return "http://developer.ticketmaster.com/";
     }
   }, {
+    key: "legalNoticeUrl",
+    get: function get() {
+      return "http://developer.ticketmaster.com/support/terms-of-use/";
+    }
+  }, {
+    key: "questionUrl",
+    get: function get() {
+      return "http://developer.ticketmaster.com/support/";
+    }
+  }, {
     key: "updateExceptions",
     get: function get() {
       return ["width", "border", "borderradius", "colorscheme", "Layout"];
@@ -62,12 +72,12 @@ var TicketmasterWidget = function () {
   }, {
     key: "sliderDelay",
     get: function get() {
-      return 5000;
+      return 10000;
     }
   }, {
     key: "sliderRestartDelay",
     get: function get() {
-      return 10000;
+      return 30000;
     }
   }, {
     key: "controlHiddenClass",
@@ -102,9 +112,6 @@ var TicketmasterWidget = function () {
   function TicketmasterWidget(selector) {
     _classCallCheck(this, TicketmasterWidget);
 
-    this.currentSlide = 0;
-    this.slideCount = 0;
-
     this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
     this.eventsRootContainer = document.createElement("div");
@@ -114,22 +121,11 @@ var TicketmasterWidget = function () {
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
-    // prev btn
-    this.eventsPrev = document.createElement("div");
-    this.eventsPrev.classList.add("events_control", "events_control-prev", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.eventsPrev);
-
-    // next btn
-    this.eventsNext = document.createElement("div");
-    this.eventsNext.classList.add("events_control", "events_control-next", this.controlHiddenClass);
-    this.eventsRootContainer.appendChild(this.eventsNext);
-
-    this.initSliderControls();
 
     // dots container
-    this.dotsContainer = document.createElement("div");
-    this.dotsContainer.classList.add("events_dots");
-    this.eventsRootContainer.appendChild(this.dotsContainer);
+    //this.dotsContainer = document.createElement("div");
+    //this.dotsContainer.classList.add("events_dots");
+    //this.eventsRootContainer.appendChild(this.dotsContainer);
 
     this.config = this.widgetRoot.attributes;
 
@@ -154,92 +150,150 @@ var TicketmasterWidget = function () {
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
 
     this.addWidgetRootLinks();
+
+    this.initSliderControls();
+
+    this.initEventCounter();
   }
 
   _createClass(TicketmasterWidget, [{
     key: "addWidgetRootLinks",
     value: function addWidgetRootLinks() {
       var legalNoticeContent = document.createTextNode('Legal Notice'),
-          legalNotice = document.createElement("div");
-      legalNotice.classList.add("legal-notice");
+          legalNotice = document.createElement("a");
       legalNotice.appendChild(legalNoticeContent);
+      legalNotice.classList.add("legal-notice");
+      legalNotice.target = '_blank';
+      legalNotice.href = this.legalNoticeUrl;
+      this.widgetRoot.appendChild(legalNotice);
 
       var logo = document.createElement('a');
       logo.classList.add("event-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
 
-      this.widgetRoot.appendChild(legalNotice);
-      this.widgetRoot.appendChild(logo);
+      var logoBox = document.createElement('div');
+      logoBox.classList.add("event-logo-box");
+      logoBox.appendChild(logo);
+      this.eventsRootContainer.appendChild(logoBox);
+
+      var question = document.createElement('a');
+      question.classList.add("event-question");
+      question.target = '_blank';
+      question.href = this.questionUrl;
+      this.eventsRootContainer.appendChild(question);
     }
   }, {
-    key: "toggleControlsVisibility",
-    value: function toggleControlsVisibility() {
-      if (this.slideCount > 1) {
-        this.eventsPrev.classList.remove(this.controlHiddenClass);
-        this.eventsNext.classList.remove(this.controlHiddenClass);
-        if (this.currentSlide === 0) {
-          this.eventsPrev.classList.add(this.controlHiddenClass);
-        } else if (this.currentSlide === this.slideCount - 1) {
-          this.eventsNext.classList.add(this.controlHiddenClass);
+    key: "toggleControlsVisibilityX",
+    value: function toggleControlsVisibilityX() {
+      // Horizontal
+      if (this.slideCountX > 1) {
+        this.prevEventX.classList.remove(this.controlHiddenClass);
+        this.nextEventX.classList.remove(this.controlHiddenClass);
+        if (this.currentSlideX === 0) {
+          this.prevEventX.classList.add(this.controlHiddenClass);
+        } else if (this.currentSlideX === this.slideCountX - 1) {
+          this.nextEventX.classList.add(this.controlHiddenClass);
         }
       } else {
-        this.eventsPrev.classList.add(this.controlHiddenClass);
-        this.eventsNext.classList.add(this.controlHiddenClass);
+        this.prevEventX.classList.add(this.controlHiddenClass);
+        this.nextEventX.classList.add(this.controlHiddenClass);
+      }
+
+      // Vertical
+      if (this.eventsGroups.length) if (this.eventsGroups[this.currentSlideX].length > 1) {
+        this.prevEventY.classList.remove(this.controlHiddenClass);
+        this.nextEventY.classList.remove(this.controlHiddenClass);
+        if (this.currentSlideY === 0) {
+          this.prevEventY.classList.add(this.controlHiddenClass);
+        } else if (this.currentSlideY === this.eventsGroups[this.currentSlideX].length - 1) {
+          this.nextEventY.classList.add(this.controlHiddenClass);
+        }
+      } else {
+        this.prevEventY.classList.add(this.controlHiddenClass);
+        this.nextEventY.classList.add(this.controlHiddenClass);
       }
     }
   }, {
-    key: "prevSlide",
-    value: function prevSlide() {
-      if (this.currentSlide > 0) {
-        this.setSlideManually(this.currentSlide - 1);
+    key: "prevSlideX",
+    value: function prevSlideX() {
+      if (this.currentSlideX > 0) {
+        this.setSlideManually(this.currentSlideX - 1, true);
       }
     }
   }, {
-    key: "nextSlide",
-    value: function nextSlide() {
-      if (this.slideCount - 1 > this.currentSlide) {
-        this.setSlideManually(this.currentSlide + 1);
+    key: "nextSlideX",
+    value: function nextSlideX() {
+      if (this.slideCountX - 1 > this.currentSlideX) {
+        this.setSlideManually(this.currentSlideX + 1, true);
+      }
+    }
+  }, {
+    key: "prevSlideY",
+    value: function prevSlideY() {
+      if (this.currentSlideY > 0) {
+        this.setSlideManually(this.currentSlideY - 1, false);
+      }
+    }
+  }, {
+    key: "nextSlideY",
+    value: function nextSlideY() {
+      if (this.eventsGroups[this.currentSlideX].length - 1 > this.currentSlideY) {
+        this.setSlideManually(this.currentSlideY + 1, false);
       }
     }
   }, {
     key: "setSlideManually",
-    value: function setSlideManually(slideIndex) {
+    value: function setSlideManually(slideIndex, isDirectionX) {
       var _this = this;
 
       if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
       this.sliderTimeout = setTimeout(function () {
-        _this.runAutoSlide();
+        _this.runAutoSlideX();
       }, this.sliderRestartDelay);
       clearInterval(this.sliderInterval);
-      this.goToSlide(slideIndex);
+      if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
     }
   }, {
-    key: "goToSlide",
-    value: function goToSlide(slideIndex) {
-      if (this.currentSlide === slideIndex) return;
-      this.currentSlide = slideIndex;
-      this.eventsRoot.style.marginLeft = "-" + this.currentSlide * 100 + "%";
-      this.toggleControlsVisibility();
-      var dots = this.dotsContainer.getElementsByClassName("events_dots__item");
-      for (var i = 0; dots.length > i; i++) {
-        if (i === slideIndex) {
-          dots[i].classList.add("events_dots__item-active");
-        } else {
-          dots[i].classList.remove("events_dots__item-active");
-        }
+    key: "goToSlideX",
+    value: function goToSlideX(slideIndex) {
+      if (this.currentSlideX === slideIndex) return;
+      this.currentSlideY = 0;
+      this.currentSlideX = slideIndex;
+      this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
+      this.toggleControlsVisibilityX();
+      this.setEventsCounter();
+      //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
+      //for(let i = 0; dots.length > i; i++){
+      //  if(i === slideIndex){
+      //    dots[i].classList.add("events_dots__item-active");
+      //  }else{
+      //    dots[i].classList.remove("events_dots__item-active");
+      //  }
+      //}
+    }
+  }, {
+    key: "goToSlideY",
+    value: function goToSlideY(slideIndex) {
+      if (this.currentSlideY === slideIndex) return;
+      this.currentSlideY = slideIndex;
+      var eventGroup = this.eventsRoot.getElementsByClassName("event-group-" + this.currentSlideX);
+      if (eventGroup.length) {
+        eventGroup = eventGroup[0];
+        eventGroup.style.marginTop = "-" + this.currentSlideY * this.config.height + "px";
+        this.toggleControlsVisibilityX();
       }
     }
   }, {
-    key: "runAutoSlide",
-    value: function runAutoSlide() {
+    key: "runAutoSlideX",
+    value: function runAutoSlideX() {
       var _this2 = this;
 
-      if (this.slideCount > 1) {
+      if (this.slideCountX > 1) {
         this.sliderInterval = setInterval(function () {
           var slideIndex = 0;
-          if (_this2.slideCount - 1 > _this2.currentSlide) slideIndex = _this2.currentSlide + 1;
-          _this2.goToSlide(slideIndex);
+          if (_this2.slideCountX - 1 > _this2.currentSlideX) slideIndex = _this2.currentSlideX + 1;
+          _this2.goToSlideX(slideIndex);
         }, this.sliderDelay);
       }
     }
@@ -248,42 +302,136 @@ var TicketmasterWidget = function () {
     value: function initSliderControls() {
       var _this3 = this;
 
-      this.eventsPrev.addEventListener("click", function () {
-        _this3.prevSlide();
+      this.currentSlideX = 0;
+      this.currentSlideY = 0;
+      this.slideCountX = 0;
+
+      // left btn
+      this.prevEventX = document.createElement("div");
+      this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.prevEventX);
+
+      // right btn
+      this.nextEventX = document.createElement("div");
+      this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.nextEventX);
+
+      // top btn
+      this.prevEventY = document.createElement("div");
+      this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.prevEventY);
+
+      // bottom btn
+      this.nextEventY = document.createElement("div");
+      this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
+      this.eventsRootContainer.appendChild(this.nextEventY);
+
+      // Restore events group position
+      function whichTransitionEvent() {
+        var el = document.createElement('fakeelement'),
+            transitions = {
+          'transition': 'transitionend',
+          'OTransition': 'oTransitionEnd',
+          'MozTransition': 'transitionend',
+          'WebkitTransition': 'webkitTransitionEnd'
+        };
+
+        for (var _event in transitions) {
+          if (el.style[_event] !== undefined) return transitions[_event];
+        }
+      }
+
+      var transitionEvent = whichTransitionEvent();
+      transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
+        if (_this3.eventsRoot !== e.target) return;
+        var eventGroup = _this3.eventsRoot.getElementsByClassName("event-group");
+        // Reset all groups. We don't know what event group was visible before.
+        for (var i = 0; eventGroup.length > i; i++) {
+          eventGroup[i].style.marginTop = 0;
+        }
       });
 
-      this.eventsNext.addEventListener("click", function () {
-        _this3.nextSlide();
+      // Arrows
+      this.prevEventX.addEventListener("click", function () {
+        _this3.prevSlideX();
       });
-    }
-  }, {
-    key: "initDot",
-    value: function initDot(i) {
-      var _this4 = this;
 
-      var dot = document.createElement("span");
-      dot.classList.add("events_dots__item", "events_dots__item-" + i);
-      if (i === 0) dot.classList.add("events_dots__item-active");
-      this.dotsContainer.appendChild(dot);
-      dot.addEventListener("click", function () {
-        _this4.setSlideManually(i);
+      this.nextEventX.addEventListener("click", function () {
+        _this3.nextSlideX();
       });
+
+      this.prevEventY.addEventListener("click", function () {
+        _this3.prevSlideY();
+      });
+
+      this.nextEventY.addEventListener("click", function () {
+        _this3.nextSlideY();
+      });
+
+      // Tough device swipes
+      var xDown = null,
+          yDown = null;
+
+      function handleTouchStart(evt) {
+        xDown = evt.touches[0].clientX;
+        yDown = evt.touches[0].clientY;
+      }
+
+      function handleTouchMove(evt) {
+        if (!xDown || !yDown) return;
+
+        var xUp = evt.touches[0].clientX,
+            yUp = evt.touches[0].clientY,
+            xDiff = xDown - xUp,
+            yDiff = yDown - yUp;
+
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+          if (xDiff > 0) this.nextSlideX(); // left swipe
+          else this.prevSlideX(); // right swipe
+        } else {
+            if (yDiff > 0) this.nextSlideY(); // up swipe
+            else this.prevSlideY(); // down swipe
+          }
+
+        xDown = null;
+        yDown = null;
+      }
+
+      this.eventsRootContainer.addEventListener('touchstart', function (e) {
+        handleTouchStart.call(_this3, e);
+      }, false);
+      this.eventsRootContainer.addEventListener('touchmove', function (e) {
+        handleTouchMove.call(_this3, e);
+      }, false);
     }
+
+    //initDot(i){
+    //  var dot = document.createElement("span");
+    //  dot.classList.add("events_dots__item", "events_dots__item-" + i);
+    //  if(i === 0) dot.classList.add("events_dots__item-active");
+    //  this.dotsContainer.appendChild(dot);
+    //  dot.addEventListener("click", ()=> {
+    //    this.setSlideManually(i, true);
+    //  });
+    //}
+
   }, {
     key: "initSlider",
     value: function initSlider() {
       if (this.sliderInterval) clearInterval(this.sliderInterval);
       if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
-      this.slideCount = this.eventsRoot.getElementsByClassName("event-wrapper").length;
+      this.slideCountX = this.eventsGroups.length;
       this.eventsRoot.style.marginLeft = '0%';
-      this.eventsRoot.style.width = this.slideCount * 100 + "%";
-      this.currentSlide = 0;
-      this.runAutoSlide();
-      this.toggleControlsVisibility();
+      this.eventsRoot.style.width = this.slideCountX * 100 + "%";
+      this.currentSlideX = 0;
+      this.currentSlideY = 0;
+      this.runAutoSlideX();
+      this.toggleControlsVisibilityX();
 
-      if (this.slideCount > 1) for (var i = 0; this.slideCount > i; i++) {
-        this.initDot(i);
-      }
+      //if(this.slideCountX > 1)
+      //  for(var i = 0; this.slideCountX > i; i++){
+      //    this.initDot(i);
+      //  }
     }
   }, {
     key: "formatDate",
@@ -323,7 +471,7 @@ var TicketmasterWidget = function () {
     key: "clear",
     value: function clear() {
       this.eventsRoot.innerHTML = "";
-      this.dotsContainer.innerHTML = "";
+      //this.dotsContainer.innerHTML = "";
     }
   }, {
     key: "update",
@@ -333,15 +481,6 @@ var TicketmasterWidget = function () {
       for (var attr in this.config) {
         if (this.config.hasOwnProperty(attr)) oldTheme[attr] = this.config[attr];
       }
-
-      /*let oldTheme = {
-        keyword: this.config.keyword,
-        theme: this.config.theme,
-        radius: this.config.radius,
-        postalcode: this.config.postalcode,
-        attractionid: this.config.attractionid,
-        promoterid: this.config.attractionid
-      };*/
 
       this.config = this.widgetRoot.attributes;
 
@@ -359,12 +498,6 @@ var TicketmasterWidget = function () {
       if (this.config.hasOwnProperty("border")) {
         this.eventsRootContainer.classList.add("border");
       }
-
-      /*var newTheme = this.config;
-      Object.keys(newTheme).map(function(key){
-        console.log([key,newTheme[key]]);
-        return newTheme[key] === oldTheme[key] ;
-      }).indexOf(false) === -1*/
 
       if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
         this.clear();
@@ -411,39 +544,103 @@ var TicketmasterWidget = function () {
           style.textContent = this.responseText;
           document.getElementsByTagName("head")[0].appendChild(style);
         } else {
-          alert("theme wasn't loaded");
+          //alert("theme wasn't loaded");
+          console.log("theme wasn't loaded");
         }
+      }
+    }
+  }, {
+    key: "groupEventsByName",
+    value: function groupEventsByName() {
+      var groups = {};
+      this.events.map(function (event) {
+        if (groups[event.name] === undefined) groups[event.name] = [];
+        groups[event.name].push(event);
+      });
+
+      this.eventsGroups = [];
+      for (var groupName in groups) {
+        this.eventsGroups.push(groups[groupName]);
+      }
+    }
+  }, {
+    key: "initEventCounter",
+    value: function initEventCounter() {
+      this.eventsCounter = document.createElement("div");
+      this.eventsCounter.classList.add("events-counter");
+      this.widgetRoot.appendChild(this.eventsCounter);
+    }
+  }, {
+    key: "setEventsCounter",
+    value: function setEventsCounter() {
+      if (this.eventsCounter) {
+        var text = '';
+        if (this.eventsGroups.length) {
+          if (this.eventsGroups.length > 1) {
+            text = this.currentSlideX + 1 + " of " + this.eventsGroups.length + " events";
+          } else {
+            text = '1 event';
+          }
+        }
+        this.eventsCounter.innerHTML = text;
       }
     }
   }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
-      var _this5 = this;
+      var _this4 = this;
 
+      this.widget.clear(); // Additional clearing after each loading
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           (function () {
-            var widget = _this5.widget;
+            var widget = _this4.widget;
+            widget.events = JSON.parse(_this4.responseText);
+            widget.groupEventsByName.call(widget);
 
-            widget.events = JSON.parse(_this5.responseText);
-            widget.events.map(function (event) {
-              widget.publishEvent(event);
+            widget.eventsGroups.map(function (group, i) {
+              if (group.length === 1) widget.publishEvent(group[0]);else widget.publishEventsGroup.call(widget, group, i);
             });
 
             widget.initSlider();
+            widget.setEventsCounter();
           })();
         } else if (this.status == 400) {
-          alert('There was an error 400');
+          //alert('There was an error 400');
+          console.log('There was an error 400');
         } else {
-          alert('something else other than 200 was returned');
+          //alert('something else other than 200 was returned');
+          console.log('something else other than 200 was returned');
         }
       }
     }
   }, {
+    key: "publishEventsGroup",
+    value: function publishEventsGroup(group, index) {
+      var _this5 = this;
+
+      var groupNodeWrapper = document.createElement("li");
+      groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
+      groupNodeWrapper.style.width = this.config.width + "px";
+      groupNodeWrapper.style.height = this.config.height + "px";
+
+      var groupNode = document.createElement("ul");
+      groupNode.classList.add("event-group", "event-group-" + index);
+      groupNode.style.height = this.config.width * group.length + "px";
+
+      group.map(function (event) {
+        _this5.publishEvent(event, groupNode);
+      });
+
+      groupNodeWrapper.appendChild(groupNode);
+      this.eventsRoot.appendChild(groupNodeWrapper);
+    }
+  }, {
     key: "publishEvent",
-    value: function publishEvent(event) {
+    value: function publishEvent(event, parentNode) {
+      parentNode = parentNode || this.eventsRoot;
       var DOMElement = this.createDOMItem(event);
-      this.eventsRoot.appendChild(DOMElement);
+      parentNode.appendChild(DOMElement);
     }
   }, {
     key: "getEventByID",

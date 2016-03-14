@@ -36,7 +36,7 @@ Make live API calls right now in the interactive docs:
 
 To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
 
-Example: `https://app.ticketmaster.com/discovery/v1/events.json?{apikey=}`
+Example: `https://app.ticketmaster.com/discovery/v1/events.json?{apikey}`
 
 ### Root URL
 
@@ -231,7 +231,7 @@ discovery/{version}/events.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/events.json?size=1&{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/events.json?size=1&{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -247,7 +247,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/events.json?size=1&{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/events.json?size=1&{apikey}'
 {% endhighlight %}
 
     
@@ -257,7 +257,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v2/events.json?{apikey=}&size=1 HTTP/1.1
+GET /discovery/v2/events.json?{apikey}&size=1 HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -738,7 +738,7 @@ discovery/{version}/events/{id}.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -754,7 +754,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -763,7 +763,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v2/events/k7vGFKzleBdwS.json?{apikey=} HTTP/1.1
+GET /discovery/v2/events/k7vGFKzleBdwS.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -1154,7 +1154,7 @@ discovery/{version}/events/{id}/images.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -1170,7 +1170,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -1179,7 +1179,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v1/events/0B004F0401BD55E5/images.json?{apikey=} HTTP/1.1
+GET /discovery/v1/events/0B004F0401BD55E5/images.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -1375,7 +1375,7 @@ discovery/{version}/attractions.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/attractions.json?{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/attractions.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -1391,7 +1391,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/attractions.json?{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/attractions.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -1400,7 +1400,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v1/attractions.json?size=1&{apikey=} HTTP/1.1
+GET /discovery/v1/attractions.json?size=1&{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -1539,7 +1539,7 @@ discovery/{version}/attractions/{id}.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/attractions/K8vZ9175BhV.json?{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/attractions/K8vZ9175BhV.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -1555,7 +1555,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/attractions/K8vZ9175BhV.json?{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/attractions/K8vZ9175BhV.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -1564,7 +1564,7 @@ curl \
 {: .reqres}
 
 {% highlight HTTP %}
-GET /discovery/v2/attractions/K8vZ9175BhV.json?{apikey=} HTTP/1.1
+GET /discovery/v2/attractions/K8vZ9175BhV.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -1754,7 +1754,7 @@ discovery/{version}/classifications.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/classifications.json?{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/classifications.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -1770,7 +1770,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/classifications.json?{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/classifications.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -1779,7 +1779,7 @@ curl \
 {: .reqres}
 
 {% highlight HTTP %}
-GET /discovery/v2/classifications.json?{apikey=} HTTP/1.1
+GET /discovery/v2/classifications.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -1925,7 +1925,7 @@ discovery/{version}/classifications/{id}.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -1941,7 +1941,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -1950,7 +1950,7 @@ curl \
 {: .reqres}
 
 {% highlight HTTP %}
-GET /discovery/v2/classifications/KZFzniwnSyZfZ7v7nE?{apikey=} HTTP/1.1
+GET /discovery/v2/classifications/KZFzniwnSyZfZ7v7nE?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -2072,7 +2072,7 @@ discovery/{version}/venues.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -2088,7 +2088,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -2097,7 +2097,7 @@ curl \
 {: .reqres}
 
 {% highlight HTTP %}
-GET /discovery/v2/venues.json?{apikey=}&keyword=UCV HTTP/1.1
+GET /discovery/v2/venues.json?{apikey}&keyword=UCV HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: http://app.ticketmaster.com
 Connection: Keep-Alive
@@ -2281,7 +2281,7 @@ discovery/{version}/venues/{id}.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/venues/KovZpZAFnIEA.json?{apikey=}",
+  url:"https://app.ticketmaster.com/discovery/v2/venues/KovZpZAFnIEA.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -2297,7 +2297,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/venues/KovZpZAFnIEA.json?{apikey=}'
+--include 'https://app.ticketmaster.com/discovery/v2/venues/KovZpZAFnIEA.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -2306,7 +2306,7 @@ curl \
 {: .reqres}
 
 {% highlight HTTP %}
-GET /discovery/v2/venues/KovZpZAFnIEA.json?{apikey=} HTTP/1.1
+GET /discovery/v2/venues/KovZpZAFnIEA.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive

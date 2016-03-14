@@ -1,0 +1,4 @@
+@objects
+    header                  css     .top-bar
+    base-content-wrapper    css     .base-content-wrapper
+    footer                  id      footer
