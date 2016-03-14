@@ -426,6 +426,7 @@ class TicketmasterWidget {
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
     }*/
 
+
     this.widgetRoot.style.height = `${this.config.height}px`;
     this.widgetRoot.style.width  = `${this.config.width}px`;
     this.eventsRootContainer.style.height = `${this.config.height}px`;

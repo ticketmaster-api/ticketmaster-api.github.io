@@ -71,6 +71,7 @@
     $widgetModal.modal();
   });
 
+
   $('#js_reset_widget').on('click', function(){
     resetWidget($configForm);
   });
