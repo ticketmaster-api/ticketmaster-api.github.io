@@ -3,6 +3,9 @@ layout: documentation
 categories:
 - documentation
 - deals-api
+title: Deals API
+excerpt: Use the Deals API to find content that is interesting to your audience.
+keywords: API, deals, search for events, specified deal, group ticket deals
 ---
 
 {: .article}
@@ -11,7 +14,7 @@ categories:
 Use the Deals API to find content that is interesting to your audience.
 {: .lead}
 
-##Overview
+## Overview
 {: ##overview}
 
 ### Authentication

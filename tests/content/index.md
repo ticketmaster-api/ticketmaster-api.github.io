@@ -1,6 +1,8 @@
 ---
 layout: home
 category: home
+excerpt: Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
+keywords: fan-centric, developer network, build innovative applications
 ---
 
 {::comment}
@@ -46,7 +48,7 @@ Social promo, rendered left to the twitter card
 Four columns, displayed between top promo and partners blocks at home page
 {:/comment}
 {% capture column1_asset %}
-![Icon1](/assets/img/home/ic-brick-lg-p-2.svg)
+![Open Source](/assets/img/home/ic-brick-lg-p-2.svg)
 {% endcapture %}
 
 {% capture column1 %}
@@ -62,7 +64,7 @@ While we finish up the official APIs, SDKs, and widgets, check out the open sour
 {% endcapture %}
 
 {% capture column2_asset %}
-![Icon2](/assets/img/home/ic-scroll-lg-p-2-b.svg)
+![Blog](/assets/img/home/ic-scroll-lg-p-2-b.svg)
 {% endcapture %}
 
 {% capture column2 %}
@@ -76,7 +78,7 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 {% endcapture %}
 
 {% capture column3_asset %}
-![Icon3](/assets/img/home/ic-helmet-lg-p-1-a.svg)
+![Existing Partners](/assets/img/home/ic-helmet-lg-p-1-a.svg)
 {% endcapture %}
 
 {% capture column3 %}
@@ -91,7 +93,7 @@ Are you an existing partner looking for current developer resources? Look no fur
 {% endcapture %}
 
 {% capture column4_asset %}
-![Icon4](/assets/img/home/ic-blocks-lg-p-1-b.svg)
+![Social](/assets/img/home/ic-blocks-lg-p-1-b.svg)
 {% endcapture %}
 
 {% capture column4 %}
@@ -100,9 +102,9 @@ Are you an existing partner looking for current developer resources? Look no fur
 
 Follow us on our exciting journey as we open up the Ticketmaster ticketing platform.
 
-* [![Icon4](/assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
-* [![Icon4](/assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
-* [![Icon4](/assets/img/ic-medium.svg)](https://medium.com/ticketmaster-tech)
+* [![Twitter](/assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
+* [![Facebook](/assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
+* [![Medium](/assets/img/ic-medium.svg)](https://medium.com/ticketmaster-tech)
 {% endcapture %}
 
 {::comment}
@@ -120,7 +122,7 @@ Raw html goes here (uses liquid variabled defined above)
 <div class="col-xs-12 button-block">
     <a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent rightarrow">REVIEW DOCUMENTATION</a>
-    <a href="{{"/products-and-docs/apis/interactive-console/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE INTERACTIVE DOCS</a>
+    <a href="{{"http://vmenshutin.github.io/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE APIs</a>
 </div>
         </div>
         <div class="clearfix"></div>
@@ -184,17 +186,17 @@ Raw html goes here (uses liquid variabled defined above)
         <div class="row-container">
 <div class="col-xs-12" markdown="1" style="padding-top: 24px;">
 {{partners_heading}}
-<img src="/assets/img/home/discovery-partner.png" style="margin-left: 8px;" /><img src="/assets/img/home/commerce-partner.png" style="margin-left: 8px;"/>
+<img src="/assets/img/home/discovery-partner.png" style="margin-left: 8px;" alt="Discovery partner"/><img src="/assets/img/home/commerce-partner.png" style="margin-left: 8px;" alt="Commerce partner"/>
 </div>
         </div>
 <div class="social-buttons col-xs-12" style="visibility: hidden;">
-    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_ret.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_groupon.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_ret.png"></a>
-    <a href="#"><img src="/assets/img/home/ic_fb.png"></a>
+    <a href="#"><img src="/assets/img/home/ic_fb.png" alt="Facebook"></a>
+    <a href="#"><img src="/assets/img/home/ic_groupon.png" alt="Groupon"></a>
+    <a href="#"><img src="/assets/img/home/ic_ret.png" alt="Retailmenot"></a>
+    <a href="#"><img src="/assets/img/home/ic_fb.png" alt="Facebook"></a>
+    <a href="#"><img src="/assets/img/home/ic_groupon.png" alt="Groupon"></a>
+    <a href="#"><img src="/assets/img/home/ic_ret.png" alt="Retailmenot"></a>
+    <a href="#"><img src="/assets/img/home/ic_fb.png" alt="Facebook"></a>
 </div>
     </div>
 </div>

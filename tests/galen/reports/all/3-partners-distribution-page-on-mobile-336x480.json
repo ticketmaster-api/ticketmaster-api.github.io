@@ -1,0 +1,52 @@
+{
+  "testId" : "3-partners-distribution-page-on-mobile-336x480",
+  "name" : "Partners(Distribution) page on mobile 336x480",
+  "report" : {
+    "nodes" : [ {
+      "name" : "http://127.0.0.1:4000//partners/distribution-partners/ 336x480",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "dump tests/galen/partners/distribution/_dumpContent.gspec --name \"dump Partners-Distribution mob\" --export tests/galen/partners/distribution/etalonImg/dumpsMobile/",
+        "status" : "info",
+        "time" : 1456936877030,
+        "type" : "node"
+      }, {
+        "name" : "check tests/galen/partners/distribution/mobile.gspec --include \"mobile\" --exclude \"nomobile\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: tests/galen/partners/distribution/mobile.gspec included tags: mobile",
+          "status" : "info",
+          "time" : 1456936883162,
+          "includedTags" : [ "mobile" ],
+          "excludedTags" : [ "nomobile" ],
+          "sections" : [ {
+            "name" : "Events image test (mobile)",
+            "objects" : [ {
+              "name" : "base-content-wrapper",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/partners/distribution/mobile.gspec",
+                  "lineNumber" : 6
+                },
+                "name" : "image file etalonImg/dumpsMobile/objects/base-content-wrapper.png, tolerance 40, error 4%",
+                "highlight" : [ "base-content-wrapper" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "base-content-wrapper" : {
+              "area" : [ 0, 164, 307, 6237 ]
+            }
+          },
+          "screenshot" : "layout-3-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1456936881778,
+        "type" : "node"
+      } ],
+      "time" : 1456936872038,
+      "type" : "node"
+    } ]
+  }
+}
