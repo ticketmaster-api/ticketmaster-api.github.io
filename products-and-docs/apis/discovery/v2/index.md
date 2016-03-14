@@ -17,7 +17,7 @@ redirect_from:
 [V 2.0]({{"/products-and-docs/apis/discovery/v2/" | prepend: site.baseurl}})
 
 {: .version-button }
-[V 1.0]({{"/products-and-docs/apis/discovery/v1/" | prepend: site.baseurl}})
+[V 1.0]({{"/products-and-docs/apis/discovery/v2/" | prepend: site.baseurl}})
 
 Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to all Ticketmaster events, as well as Universe and TicketWeb events.
 {: .lead .article}
@@ -36,7 +36,7 @@ Make live API calls right now in the interactive docs:
 
 To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
 
-Example: `https://app.ticketmaster.com/discovery/v1/events.json?{apikey}`
+Example: `https://app.ticketmaster.com/discovery/v2/events.json?{apikey}`
 
 ### Root URL
 
@@ -1179,7 +1179,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v1/events/0B004F0401BD55E5/images.json?{apikey} HTTP/1.1
+GET /discovery/v2/events/0B004F0401BD55E5/images.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -1302,7 +1302,7 @@ discovery/{version}/attractions.{format}
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `version`  | The API Version.     | string            |       "v1"         | Yes      |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
 ### Query parameters:
@@ -1400,7 +1400,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v1/attractions.json?size=1&{apikey} HTTP/1.1
+GET /discovery/v2/attractions.json?size=1&{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -1708,7 +1708,7 @@ discovery/{version}/classifications.{format}
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `version`  | The API Version.     | string            |     "v1"           | Yes      |
+| `version`  | The API Version.     | string            |     "v2"           | Yes      |
 | `format`   | API Response Format. | string            |     "json"         | Yes      |
 
 ### Query parameters:
