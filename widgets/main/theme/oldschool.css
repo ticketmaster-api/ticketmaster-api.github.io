@@ -24,7 +24,13 @@
     src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
-
+/* TODO: change ../../.. to http://developer.ticketmaster.com*/
+@font-face {
+    font-family: "Ticketing-Regular";
+    src: url("../../../assets/fonts/Widgets/ticketing.regular.otf"),
+         url("../../../assets/fonts/Widgets/ticketing.regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
 
 
 div[w-theme="oldschool"]{
@@ -104,7 +110,9 @@ div[w-theme="oldschool"] .event-name{
     display: block;
     text-transform: uppercase;
     font-size: 32px;
-    font-family: "TMSans-Bold";
+    line-height: 38px;
+    text-align: center;
+    font-family: "Ticketing-Regular";
     margin-bottom: 24px;
 
 }
