@@ -91,14 +91,16 @@
     margin-bottom: 24px;
     outline: none;
     &.active,
+    &.active:hover,
     &:focus {
-      background: $p1b;
+      background: $p1;
       color: $white;
+      cursor: inherit;
     }
     &:hover {
       outline: none;
       text-decoration: none;
-      background-color: $p1;
+      background-color: $p1b;
       color: $white;
     }
   }
