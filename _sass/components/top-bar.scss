@@ -94,6 +94,11 @@
       opacity: 1;
     }
   }
+  @media (min-width: 1200px) {
+    left: inherit;
+    margin-right: 0;
+    right: 80px;
+  }
   @media #{$max-1200} {
     left: 0;
     right:40px;
