@@ -89,11 +89,14 @@ var TicketmasterWidget = function () {
     get: function get() {
       var attrs = {};
 
+      console.log('this.config', this.config);
+      console.log('is postalCode', this.isConfigAttrEmpty("postalCode"));
+
       if (this.isConfigAttrEmpty("tmapikey")) attrs.apikey = this.config.tmapikey;
       if (this.isConfigAttrEmpty("keyword")) attrs.keyword = this.config.keyword;
       if (this.isConfigAttrEmpty("size")) attrs.size = this.config.size;
       if (this.isConfigAttrEmpty("radius")) attrs.radius = this.config.radius;
-      if (this.isConfigAttrEmpty("postalcode")) attrs.postalcode = this.config.postalcode;
+      if (this.isConfigAttrEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionid = this.config.attractionid;
       if (this.isConfigAttrEmpty("promoterid")) attrs.promoterid = this.config.promoterid;
       if (this.isConfigAttrEmpty("period")) {
@@ -102,6 +105,7 @@ var TicketmasterWidget = function () {
         attrs.endDateTime = period[1];
       }
 
+      console.log('attrs', attrs);
       return attrs;
     }
 
@@ -529,7 +533,9 @@ var TicketmasterWidget = function () {
       var config = {};
       Object.keys(NamedNodeMap).map(function (value) {
         if (typeof NamedNodeMap[value].name !== "undefined" && NamedNodeMap[value].name.indexOf("w-") !== -1) {
-          config[NamedNodeMap[value].name.replace(/w-/g, "").replace(/-/g, "")] = NamedNodeMap[value].value;
+          var name = NamedNodeMap[value].name.replace(/w-/g, "").replace(/-/g, "");
+          //if(name === 'postalcode') name = 'postalCode';
+          config[name] = NamedNodeMap[value].value;
         }
       });
       return config;
