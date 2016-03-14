@@ -150,9 +150,8 @@
   }
   a {
     color: $n2-grey-color;
-    &:hover,
-    &:active,
-    &:focus{
+    text-decoration: none;
+    &:hover{
       color: $p1a;
       outline: none;
     }

@@ -252,6 +252,7 @@ nav{
     nav{
       &>a {
         color: $white-70;
+        text-decoration: none;
         &:hover{
           color: $white;
         }

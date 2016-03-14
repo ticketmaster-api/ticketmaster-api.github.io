@@ -32,22 +32,25 @@
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on desktop ${desktop_size}
-    ${base_url}/products-and-docs/apis/discovery/ ${desktop_size}
+    ${base_url}/products-and-docs/apis/commerce/ ${desktop_size}
         #wait 1m until visible "id: qual_ol"
         #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${prDocsSlate}/etalonImg/dumpsDesktop/
         check ${prDocsSlate}/desktop.gspec --include "desktop"
+        wait 10s
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/discovery/ ${tablet_size}
+    ${base_url}/products-and-docs/apis/commerce/ ${tablet_size}
         #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsTablet/
         check ${prDocsSlate}/tablet.gspec --include "tablet"
+        wait 10s
 
 @@ groups ProductsDocsSlate
 ProductsDocsSlate page on mobile ${mobile_size}
-    ${base_url}/products-and-docs/apis/discovery/ ${mobile_size}
+    ${base_url}/products-and-docs/apis/commerce/ ${mobile_size}
         #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsMobile/
         check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
+        wait 10s
 
 ### prDocsConsole ###########################################################################
 

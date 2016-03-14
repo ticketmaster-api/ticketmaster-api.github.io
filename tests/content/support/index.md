@@ -3,9 +3,12 @@ layout: base-content
 categories:
 - support
 - support
+title: Support
+excerpt: Answers to your most burning questions
+keywords: support, resources, forums, FAQ
 ---
 
-#ANSWERS TO YOUR MOST BURNING QUESTIONS.
+# ANSWERS TO YOUR MOST BURNING QUESTIONS
 
 {: .lead .double-margin-top}
 No matter what question you have or help you need, we're here for you.
@@ -17,8 +20,8 @@ No matter what question you have or help you need, we're here for you.
 {: .link-inline }
 [General Terms of Use](/support/terms-of-use/)
 [Partner API Terms of Use](/support/terms-of-use/partner)
-[Branding Guide](/products-and-docs/under-development/)
-[Contact Us](/products-and-docs/under-development/)
+[Branding Guide](/support/branding-guide/)
+[Contact Us](/support/contact-us/)
 
 {% endcapture %}
 
@@ -28,11 +31,11 @@ No matter what question you have or help you need, we're here for you.
 ### Forums
 
 {: .link-inline }
-[General Discussion](/products-and-docs/under-development/)
-[API Forums](/products-and-docs/under-development/)
-[SDK Forums](/products-and-docs/under-development/)
-[Widget Forums](/products-and-docs/under-development/)
-[Affiliate Topics](/products-and-docs/under-development/)
+[General Discussion](http://stackoverflow.com/questions/tagged/ticketmaster-api)
+[API Forums](http://stackoverflow.com/questions/tagged/ticketmaster-api)
+[SDK Forums](http://stackoverflow.com/questions/tagged/ticketmaster-api)
+[Widget Forums](http://stackoverflow.com/questions/tagged/ticketmaster-api)
+[Affiliate Topics](http://stackoverflow.com/questions/tagged/ticketmaster-api)
 
 {% endcapture %}
 
