@@ -13,7 +13,7 @@ keywords: Startups and developers
 Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, dolor sit amet.
 {:/comment}
 
-{% assign sorted_article = (site.pages | sort: 'order') %}
+{% assign sorted_article = (site.pages | sort: 'order', 'last') %}
 
 {% for article in sorted_article %}
     {% if article.category == "sd-article" %}
