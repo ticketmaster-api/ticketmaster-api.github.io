@@ -107,8 +107,6 @@ publish/{version}/events
         - `dateTime` (string) - the end date and time of the event in UTC.
         - `approximate` (boolean) - true if the end date and time are approximate, false otherwise.
     * `timezone` (string) - the timezone of the event.
-    * `status` (object) - the status of the date of the event.
-        - `code` (string) - the status code of the date of the event.
 - `descriptions` (object) - map of locale to value for the description of the event.
 - `images` (array) - list of images of the event.
     * `height` (number) - the height of the image.
@@ -264,10 +262,7 @@ Connection: Keep-Alive
       "dateTime": "2015-01-03T05:59:00Z",
       "approximate": false
     },
-    "timezone": "America/Chicago",
-    "status": {
-                "code": "string"
-    }
+    "timezone": "America/Chicago"
   },
   "descriptions": {
                    "en-us": "string",
