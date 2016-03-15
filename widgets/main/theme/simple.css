@@ -105,30 +105,9 @@ div[w-tmapikey] .event-question {
     right: 17px;
     width: 16px;
     height: 16px;
-}
-
-div[w-tmapikey] .event-question:before,
-div[w-tmapikey] .event-question:after {
-    display: none;
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-}
-
-div[w-tmapikey] .event-question:before {
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic.svg");
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic.svg") no-repeat 50% 50%;
 }
-div[w-tmapikey] .event-question:after {
-    /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-gray.svg");
-}
-
 
 /* slider controls */
 div[w-tmapikey] .events_control {
@@ -385,7 +364,7 @@ div[w-theme="simple"] .event-group {
 /* Color schemes  */
 
 div[w-theme="simple"][w-colorscheme="light"] .event-wrapper:before {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(227, 227, 227, 0.9);
 }
 div[w-theme="simple"][w-colorscheme="dark"] .event-wrapper:before {
     background-color: rgba(65, 65, 65, 0.9);
@@ -411,15 +390,6 @@ div[w-theme="simple"][w-colorscheme="light"] .event-logo:before,
 div[w-theme="simple"][w-colorscheme="dark"] .event-logo:after {
     display: block;
 }
-
-div[w-tmapikey][w-colorscheme="light"] .event-question:after,
-div[w-tmapikey][w-colorscheme="dark"] .event-question:before {
-    display: block;
-}
-
-
-
-
 
 
 
