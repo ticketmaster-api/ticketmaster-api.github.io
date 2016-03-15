@@ -550,6 +550,7 @@ var TicketmasterWidget = function () {
       this.widgetRoot.style.width = this.config.width + "px";
       this.eventsRootContainer.style.height = this.config.height + "px";
       this.eventsRootContainer.style.width = this.config.width + "px";
+      console.log('this.config.borderradius', this.config.borderradius);
       this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
 
       this.eventsRootContainer.classList.remove("border");
