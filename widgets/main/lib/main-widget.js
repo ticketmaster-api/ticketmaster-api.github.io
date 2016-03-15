@@ -155,6 +155,9 @@ var TicketmasterWidget = function () {
     this.initEventCounter();
   }
 
+  // OLDSCHOOL theme method - to be renamed and maped
+
+
   _createClass(TicketmasterWidget, [{
     key: "addWidgetRootLinks",
     value: function addWidgetRootLinks() {
@@ -182,6 +185,31 @@ var TicketmasterWidget = function () {
       question.href = this.questionUrl;
       this.eventsRootContainer.appendChild(question);
     }
+
+    // default method - to be renamed and maped
+    /*addWidgetRootLinks(){
+      var legalNoticeContent = document.createTextNode('Legal Notice'),
+        legalNotice = document.createElement("a");
+      legalNotice.appendChild(legalNoticeContent);
+      legalNotice.classList.add("legal-notice");
+      legalNotice.target = '_blank';
+      legalNotice.href = this.legalNoticeUrl;
+      this.widgetRoot.appendChild(legalNotice);
+        var logo = document.createElement('a');
+      logo.classList.add("event-logo");
+      logo.target = '_blank';
+      logo.href = this.logoUrl;
+        var logoBox = document.createElement('div');
+      logoBox.classList.add("event-logo-box");
+      logoBox.appendChild(logo);
+      this.eventsRootContainer.appendChild(logoBox);
+        let question = document.createElement('a');
+      question.classList.add("event-question");
+      question.target = '_blank';
+      question.href = this.questionUrl;
+      this.eventsRootContainer.appendChild(question);
+    }*/
+
   }, {
     key: "toggleControlsVisibilityX",
     value: function toggleControlsVisibilityX() {
