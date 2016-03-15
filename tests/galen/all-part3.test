@@ -132,7 +132,7 @@ API EXPLORER page on desktop ${desktop_size}
 @@ groups APIExplorer
 API EXPLORER page on tablet ${tablet_size}
     ${apiExplorer_url} ${tablet_size}
-        wait 3s
+        wait 2s
         #dump ${api-explorer}/_dumpContent.gspec --name "dump APIExplorer tablet" --export ${api-explorer}/etalonImg/dumpsTablet/
         check ${api-explorer}/tablet.gspec --include "tablet"
 
@@ -142,7 +142,6 @@ API EXPLORER page on mobile ${mobile_size}
         wait 3s
         #dump ${api-explorer}/_dumpContent.gspec --name "dump APIExplorer mob" --export ${api-explorer}/etalonImg/dumpsMobile/
         check ${api-explorer}/mobile.gspec --include "mobile" --exclude "nomobile"
-
 
 ### Support contact-us ###########################################################################
 
