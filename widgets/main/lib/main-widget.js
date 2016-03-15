@@ -195,15 +195,15 @@ var TicketmasterWidget = function () {
       legalNotice.target = '_blank';
       legalNotice.href = this.legalNoticeUrl;
       this.widgetRoot.appendChild(legalNotice);
-        var logo = document.createElement('a');
+       var logo = document.createElement('a');
       logo.classList.add("event-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
-        var logoBox = document.createElement('div');
+       var logoBox = document.createElement('div');
       logoBox.classList.add("event-logo-box");
       logoBox.appendChild(logo);
       this.eventsRootContainer.appendChild(logoBox);
-        let question = document.createElement('a');
+       let question = document.createElement('a');
       question.classList.add("event-question");
       question.target = '_blank';
       question.href = this.questionUrl;
@@ -773,9 +773,14 @@ var TicketmasterWidget = function () {
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
-      event.style.backgroundImage = "url('" + itemConfig.img + "')";
+      //event.style.backgroundImage = `url('${itemConfig.img}')`;
       event.style.height = this.config.height + "px";
       event.style.width = this.config.width + "px";
+
+      var image = document.createElement("span");
+      image.classList.add("bg-cover");
+      image.style.backgroundImage = "url('" + itemConfig.img + "')";
+      event.appendChild(image);
 
       var nameContent = document.createTextNode(itemConfig.name),
           name = document.createElement("span");

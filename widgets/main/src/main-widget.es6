@@ -702,9 +702,14 @@ class TicketmasterWidget {
 
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
-    event.style.backgroundImage = `url('${itemConfig.img}')`;
+    //event.style.backgroundImage = `url('${itemConfig.img}')`;
     event.style.height = `${this.config.height}px`;
     event.style.width  = `${this.config.width}px`;
+
+    var image = document.createElement("span");
+    image.classList.add("bg-cover");
+    image.style.backgroundImage = `url('${itemConfig.img}')`;
+    event.appendChild(image);
 
     var nameContent = document.createTextNode(itemConfig.name),
     name =  document.createElement("span");
