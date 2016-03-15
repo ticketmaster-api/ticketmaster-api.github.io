@@ -121,6 +121,12 @@ var TicketmasterWidget = function () {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
+    // Set theme modificators
+    var themeModificators = {
+      "oldschool": this.oldSchoolModificator.bind(this),
+      "newschool": this.newSchoolModificator.bind(this)
+    };
+
     // dots container
     //this.dotsContainer = document.createElement("div");
     //this.dotsContainer.classList.add("events_dots");
@@ -149,6 +155,10 @@ var TicketmasterWidget = function () {
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
 
     this.addWidgetRootLinks();
+
+    if (themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
+      themeModificators[this.widgetConfig.theme]();
+    }
 
     this.initSliderControls();
 
@@ -186,30 +196,23 @@ var TicketmasterWidget = function () {
       this.eventsRootContainer.appendChild(question);
     }
 
-    // default method - to be renamed and maped
-    /*addWidgetRootLinks(){
-      var legalNoticeContent = document.createTextNode('Legal Notice'),
-        legalNotice = document.createElement("a");
-      legalNotice.appendChild(legalNoticeContent);
-      legalNotice.classList.add("legal-notice");
-      legalNotice.target = '_blank';
-      legalNotice.href = this.legalNoticeUrl;
-      this.widgetRoot.appendChild(legalNotice);
-       var logo = document.createElement('a');
-      logo.classList.add("event-logo");
-      logo.target = '_blank';
-      logo.href = this.logoUrl;
-       var logoBox = document.createElement('div');
-      logoBox.classList.add("event-logo-box");
-      logoBox.appendChild(logo);
-      this.eventsRootContainer.appendChild(logoBox);
-       let question = document.createElement('a');
-      question.classList.add("event-question");
-      question.target = '_blank';
-      question.href = this.questionUrl;
-      this.eventsRootContainer.appendChild(question);
-    }*/
+    //adds general admission element for OLDSCHOOL theme
 
+  }, {
+    key: "oldSchoolModificator",
+    value: function oldSchoolModificator() {
+      var generalAdmission = document.createElement("div"),
+          generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
+      generalAdmission.classList.add("general-admission");
+      generalAdmission.appendChild(generalAdmissionText);
+      this.widgetRoot.appendChild(generalAdmission);
+    }
+  }, {
+    key: "newSchoolModificator",
+    value: function newSchoolModificator() {
+      // Write here!
+      console.log("check");
+    }
   }, {
     key: "toggleControlsVisibilityX",
     value: function toggleControlsVisibilityX() {

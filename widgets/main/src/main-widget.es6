@@ -75,6 +75,12 @@ class TicketmasterWidget {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
+    // Set theme modificators
+    let themeModificators = {
+      "oldschool" : this.oldSchoolModificator.bind(this),
+      "newschool" : this.newSchoolModificator.bind(this)
+    };
+
     // dots container
     //this.dotsContainer = document.createElement("div");
     //this.dotsContainer.classList.add("events_dots");
@@ -104,10 +110,9 @@ class TicketmasterWidget {
 
     this.addWidgetRootLinks();
 
-    //if theme is OLDSCHOOL
-    if (this.widgetConfig.theme === "oldschool")
-      //add general admission element for OLDSCHOOL theme
-      this.addGeneralAdmission();
+    if( themeModificators.hasOwnProperty( this.widgetConfig.theme ) ){
+      themeModificators[ this.widgetConfig.theme ]();
+    }
 
     this.initSliderControls();
 
@@ -142,12 +147,17 @@ class TicketmasterWidget {
   }
 
   //adds general admission element for OLDSCHOOL theme
-  addGeneralAdmission(){
+  oldSchoolModificator(){
     var generalAdmission = document.createElement("div"),
         generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
     generalAdmission.classList.add("general-admission");
     generalAdmission.appendChild(generalAdmissionText);
     this.widgetRoot.appendChild(generalAdmission);
+  }
+
+  newSchoolModificator(){
+    // Write here!
+    console.log("check");
   }
 
   toggleControlsVisibilityX(){
