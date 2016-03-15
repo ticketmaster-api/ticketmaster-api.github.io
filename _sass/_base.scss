@@ -34,6 +34,7 @@ iframe{
 a, input {
   &active, &:focus {
     outline: none;
+    text-decoration: none;
   }
 }
 
@@ -795,7 +796,6 @@ input[type=range]:focus::-ms-fill-upper {
 
 .version-button {
     display: inline-block;
-    padding: 7px 15px;
     border-radius: 2px;
     border: solid 1px rgba(0, 155, 222, 0.2);
     margin-right: 15px !important;
@@ -803,10 +803,32 @@ input[type=range]:focus::-ms-fill-upper {
     line-height: 1;
     color: #009cde;
     margin-bottom: 35px !important;
+    a {
+      padding: 7px 15px;
+      display: block;
+      &:hover {
+        outline: none;
+        text-decoration: none;
+        background-color: $p1;
+        color: $white;
+      }
+    }
     &.active {
       background-color: #009cde;
       &>a{
         color: #FFFFFF;
+        &:hover {
+          outline: none;
+          text-decoration: none;
+          background-color: $p1;
+          color: $white;
+        }
+        &:hover {
+          cursor: default;
+        }
+      }
+      &:hover {
+        cursor: default;
       }
     }
 }

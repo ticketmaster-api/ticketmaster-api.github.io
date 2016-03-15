@@ -84,7 +84,7 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $("#w-size").on("keydown",function(event){
+  $("#w-size").on("keypress",function(event){
     var kchar = String.fromCharCode(event.keyCode);
     if(/[\w\d]/.test(kchar)){
       if(/\d/.test(kchar)){

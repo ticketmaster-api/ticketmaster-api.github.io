@@ -44,6 +44,9 @@
 
 .widget-container {
   float: left;
-  padding: 10px;
   border: 1px dashed #ccc;
+  margin: 20px 1px 0 1px;
+  div[w-tmapikey] {
+    margin: -20px -1px 0 -1px;
+  }
 }

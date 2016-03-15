@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>!</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Pop-Ups-&amp;-Pop-overs-&amp;-Notifications" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Popups-style" sketch:type="MSArtboardGroup" transform="translate(-653.000000, -337.000000)">
+            <g id="Info-Message-big" sketch:type="MSLayerGroup" transform="translate(637.000000, 314.000000)">
+                <g id="!" transform="translate(17.000000, 24.000000)" sketch:type="MSShapeGroup">
+                    <circle id="Oval-1" stroke="#FFFFFF" stroke-width="2" cx="10" cy="10" r="10"></circle>
+                    <path d="M9.042,14.94 L11.156,14.94 L11.156,8.01 L9.042,8.01 L9.042,14.94 Z M9,6.75 L11.198,6.75 L11.198,5 L9,5 L9,6.75 Z" id="SIGN-IN-Copy-2" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
