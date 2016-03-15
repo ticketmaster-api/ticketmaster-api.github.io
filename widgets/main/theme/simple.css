@@ -51,7 +51,7 @@ div[w-tmapikey] .event-message {
     line-height: 1.6;
     color: #ffffff;
     opacity: 0;
-    /* TODO: add http://developer.ticketmaster.com/*/
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
     -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -70,7 +70,7 @@ div[w-tmapikey] .event-message__btn {
     right: 15px;
     top: 15px;
     cursor: pointer;
-    /* TODO: add http://developer.ticketmaster.com/*/
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ic-close-small-white.svg") no-repeat 50% 50%;
 }
 
@@ -121,11 +121,11 @@ div[w-tmapikey] .event-question:after {
 }
 
 div[w-tmapikey] .event-question:before {
-    /* TODO: add http://developer.ticketmaster.com/*/
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic.svg");
 }
 div[w-tmapikey] .event-question:after {
-    /* TODO: add http://developer.ticketmaster.com/*/
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-gray.svg");
 }
 
@@ -160,7 +160,7 @@ div[w-tmapikey] .events_control:before {
     width: 56px;
     height: 56px;
     border-radius: 28px;
-    /* TODO: add http://developer.ticketmaster.com/*/
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background: #b7c9d3 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
 }
 
@@ -368,13 +368,12 @@ div[w-theme="simple"] .event-logo:after {
 }
 
 div[w-theme="simple"] .event-logo:before{
-    /* TODO: add http://developer.ticketmaster.com/*/
-    /*background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");*/
-    background-image: url("/assets/img/widgets/tm-logo-white.svg");
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-white.svg");
 }
 
 div[w-theme="simple"] .event-logo:after {
-    background-image: url("/assets/img/widgets/tm-logo-blue.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-blue.svg");
 }
 
 /*group*/
