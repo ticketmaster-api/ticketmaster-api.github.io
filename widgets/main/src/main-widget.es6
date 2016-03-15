@@ -23,7 +23,9 @@ class TicketmasterWidget {
 
   get sliderDelay(){ return 10000; }
 
-  get sliderRestartDelay(){ return 30000; }
+  get sliderRestartDelay(){ return 20000; }
+
+  get hideMessageDelay(){ return 8000; }
 
   get controlHiddenClass(){ return "events_control-hidden"; }
 
@@ -45,8 +47,8 @@ class TicketmasterWidget {
       attrs.keyword = this.config.keyword;
     if(this.isConfigAttrEmpty("size"))
       attrs.size = this.config.size;
-    if(this.isConfigAttrEmpty("radius"))
-      attrs.radius = this.config.radius;
+    //if(this.isConfigAttrEmpty("radius"))
+    //  attrs.radius = this.config.radius;
     if(this.isConfigAttrEmpty("postalcode"))
       attrs.postalcode = this.config.postalcode;
     if(this.isConfigAttrEmpty("attractionid"))
@@ -102,14 +104,56 @@ class TicketmasterWidget {
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
 
-    this.addWidgetRootLinks();
+    this.addWidgetRootElements();
+
+    this.initMessage();
 
     this.initSliderControls();
 
     this.initEventCounter();
   }
 
-  addWidgetRootLinks(){
+  // Message
+  initMessage(){
+    this.messageDialog = document.createElement('div');
+    this.messageDialog.classList.add("event-message");
+    this.messageContent = document.createElement('div');
+    this.messageContent.classList.add("event-message__content");
+
+    let messageClose = document.createElement('div');
+    messageClose.classList.add("event-message__btn");
+    messageClose.addEventListener("click", ()=> {
+      this.hideMessage();
+    });
+
+    this.messageDialog.appendChild(this.messageContent);
+    this.messageDialog.appendChild(messageClose);
+    this.eventsRootContainer.appendChild(this.messageDialog);
+  }
+
+  showMessage(message, hideMessageWithoutDelay){
+    if(message.length){
+      this.hideMessageWithoutDelay = hideMessageWithoutDelay;
+      this.messageContent.innerHTML = message;
+      this.messageDialog.classList.add("event-message-visible");
+      if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+    }
+  }
+
+  hideMessageWithDelay(delay){
+    if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
+    this.messageTimeout = setTimeout(()=>{
+      this.hideMessage();
+    }, delay);
+  }
+
+  hideMessage(){
+    if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
+    this.messageDialog.classList.remove("event-message-visible");
+  }
+  // End message
+
+  addWidgetRootElements(){
     var legalNoticeContent = document.createTextNode('Legal Notice'),
       legalNotice = document.createElement("a");
     legalNotice.appendChild(legalNoticeContent);
@@ -518,30 +562,82 @@ class TicketmasterWidget {
     }
   }
 
+  resetReduceParamsOrder(){
+    this.reduceParamsOrder = 0;
+  }
+
+  reduceParamsAndReloadEvents(){
+    console.log('reduceParamsAndReloadEvents');
+    let eventReqAttrs = {},
+      reduceParamsList = [
+          ['postalcode'], // TODO: need to change to 'postalCode'
+          ['attractionid'],
+          ['promoterid'],
+          ['startDateTime', 'endDateTime'],
+          ['keyword'],
+          ['size']
+      ];
+
+    // make copy of params
+    for(let key in this.eventReqAttrs){
+      eventReqAttrs[key] = this.eventReqAttrs[key]
+    }
+
+    if(!this.reduceParamsOrder) this.reduceParamsOrder = 0;
+    if(reduceParamsList.length > this.reduceParamsOrder){
+      for(let item in reduceParamsList){
+        if(this.reduceParamsOrder >= item){
+          for(let i in reduceParamsList[item]){
+            delete eventReqAttrs[reduceParamsList[item][i]];
+          }
+        }
+      }
+
+      if(this.reduceParamsOrder === 0) this.showMessage("No results were found.<br/>Here other options for you.");
+      this.reduceParamsOrder++;
+      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, eventReqAttrs );
+    }else{
+      // We haven't any results
+      this.showMessage("No results were found.", true);
+      this.reduceParamsOrder = 0;
+    }
+  }
+
   eventsLoadingHandler(){
-    this.widget.clear(); // Additional clearing after each loading
+    let widget = this.widget;
+    widget.clear(); // Additional clearing after each loading
     if (this && this.readyState == XMLHttpRequest.DONE ) {
       if(this.status == 200){
-        let widget = this.widget;
         widget.events = JSON.parse(this.responseText);
-        widget.groupEventsByName.call(widget);
 
-        widget.eventsGroups.map(function(group, i){
-          if(group.length === 1)
-            widget.publishEvent(group[0]);
+        if(widget.events.length){
+          widget.groupEventsByName.call(widget);
+
+          widget.eventsGroups.map(function(group, i){
+            if(group.length === 1)
+              widget.publishEvent(group[0]);
+            else
+              widget.publishEventsGroup.call(widget, group, i);
+          });
+
+          widget.initSlider();
+          widget.setEventsCounter();
+          widget.resetReduceParamsOrder();
+          if(widget.hideMessageWithoutDelay)
+            widget.hideMessage();
           else
-            widget.publishEventsGroup.call(widget, group, i);
-        });
+            widget.hideMessageWithDelay(widget.hideMessageDelay);
 
-        widget.initSlider();
-        widget.setEventsCounter();
+        }else{
+          widget.reduceParamsAndReloadEvents.call(widget);
+        }
       }
       else if(this.status == 400) {
-        //alert('There was an error 400');
+        widget.reduceParamsAndReloadEvents.call(widget);
         console.log('There was an error 400');
       }
       else {
-        //alert('something else other than 200 was returned');
+        widget.reduceParamsAndReloadEvents.call(widget);
         console.log('something else other than 200 was returned');
       }
     }
