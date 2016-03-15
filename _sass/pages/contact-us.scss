@@ -58,6 +58,10 @@
       display: inline-block;
       height: $base-margin;
       margin: 0 7%;
+
+      a > img:hover {
+        opacity: 0.7;
+      }
     }
 
     @media (max-width: 767px){
