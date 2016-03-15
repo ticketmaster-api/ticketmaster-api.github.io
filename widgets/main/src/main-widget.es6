@@ -487,7 +487,7 @@ class TicketmasterWidget {
     }
     else{
       var events = document.getElementsByClassName("event-wrapper");
-      for(event in events){
+      for(let event in events){
         if(events.hasOwnProperty(event) && events[event].style !== undefined){
           events[event].style.width = `${this.config.width}px`;
           events[event].style.height = `${this.config.height}px`;
@@ -567,10 +567,9 @@ class TicketmasterWidget {
   }
 
   reduceParamsAndReloadEvents(){
-    console.log('reduceParamsAndReloadEvents');
     let eventReqAttrs = {},
       reduceParamsList = [
-          ['postalcode'], // TODO: need to change to 'postalCode'
+          ['postalCode'],
           ['attractionid'],
           ['promoterid'],
           ['startDateTime', 'endDateTime'],

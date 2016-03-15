@@ -395,8 +395,8 @@ var TicketmasterWidget = function () {
           'WebkitTransition': 'webkitTransitionEnd'
         };
 
-        for (var _event in transitions) {
-          if (el.style[_event] !== undefined) return transitions[_event];
+        for (var event in transitions) {
+          if (el.style[event] !== undefined) return transitions[event];
         }
       }
 
@@ -563,7 +563,7 @@ var TicketmasterWidget = function () {
         this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
       } else {
         var events = document.getElementsByClassName("event-wrapper");
-        for (event in events) {
+        for (var event in events) {
           if (events.hasOwnProperty(event) && events[event].style !== undefined) {
             events[event].style.width = this.config.width + "px";
             events[event].style.height = this.config.height + "px";
@@ -652,10 +652,8 @@ var TicketmasterWidget = function () {
   }, {
     key: "reduceParamsAndReloadEvents",
     value: function reduceParamsAndReloadEvents() {
-      console.log('reduceParamsAndReloadEvents');
       var eventReqAttrs = {},
-          reduceParamsList = [['postalcode'], // TODO: need to change to 'postalCode'
-      ['attractionid'], ['promoterid'], ['startDateTime', 'endDateTime'], ['keyword'], ['size']];
+          reduceParamsList = [['postalCode'], ['attractionid'], ['promoterid'], ['startDateTime', 'endDateTime'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
