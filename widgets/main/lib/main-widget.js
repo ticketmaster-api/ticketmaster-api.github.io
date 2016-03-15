@@ -210,8 +210,30 @@ var TicketmasterWidget = function () {
   }, {
     key: "newSchoolModificator",
     value: function newSchoolModificator() {
-      // Write here!
-      console.log("check");
+      var ticketLogo = document.createElement("div");
+      ticketLogo.classList.add("ticket-logo");
+
+      var headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      this.widgetRoot.appendChild(ticketLogo);
     }
   }, {
     key: "toggleControlsVisibilityX",
