@@ -99,7 +99,7 @@ var TicketmasterWidget = function () {
       if (this.isConfigAttrEmpty("size")) attrs.size = this.config.size;
       //if(this.isConfigAttrEmpty("radius"))
       //  attrs.radius = this.config.radius;
-      if (this.isConfigAttrEmpty("postalcode")) attrs.postalcode = this.config.postalcode;
+      if (this.isConfigAttrEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionid = this.config.attractionid;
       if (this.isConfigAttrEmpty("promoterid")) attrs.promoterid = this.config.promoterid;
       if (this.isConfigAttrEmpty("period")) {
