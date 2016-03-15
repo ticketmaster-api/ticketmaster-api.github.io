@@ -604,7 +604,7 @@ class TicketmasterWidget {
 
     let groupNode = document.createElement("ul");
     groupNode.classList.add("event-group", "event-group-" + index);
-    groupNode.style.height  = `${this.config.width * group.length}px`;
+    groupNode.style.height  = `${this.config.height * group.length}px`;
 
     group.map((event)=> {
       this.publishEvent(event, groupNode)
