@@ -41,13 +41,14 @@ var TicketmasterWidget = function () {
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
+
+    //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://localhost:4000/widgets/main/theme/";
+      return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
     }
-    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
-
   }, {
     key: "logoUrl",
     get: function get() {
@@ -550,7 +551,6 @@ var TicketmasterWidget = function () {
       this.widgetRoot.style.width = this.config.width + "px";
       this.eventsRootContainer.style.height = this.config.height + "px";
       this.eventsRootContainer.style.width = this.config.width + "px";
-      console.log('this.config.borderradius', this.config.borderradius);
       this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
 
       this.eventsRootContainer.classList.remove("border");
