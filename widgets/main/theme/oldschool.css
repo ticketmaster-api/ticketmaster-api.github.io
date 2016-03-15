@@ -33,6 +33,43 @@
     font-weight: normal; }
 
 
+/* Common styles for all themes  */
+div[w-tmapikey] .event-message {
+    position: absolute;
+    padding: 16px 46px 16px 52px;
+    left: 10px;
+    right: 10px;
+    top: -50%;
+    border-radius: 4px;
+    font-family: "TMSans-Bold";
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ffffff;
+    opacity: 0;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
+    -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+div[w-tmapikey] .event-message-visible {
+    top: 10px;
+    opacity: 1;
+}
+
+div[w-tmapikey] .event-message__btn {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ic-close-small-white.svg") no-repeat 50% 50%;
+}
+
+
 div[w-theme="oldschool"]{
     position: relative;
     height: 200px;
