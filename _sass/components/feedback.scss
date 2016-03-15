@@ -67,6 +67,14 @@
         font-family: $font-lead-bold;;
         text-transform: uppercase;
         background-color: $blue;
+        &:hover,
+        &:focus,
+        &:active {
+          outline: none;
+          text-decoration: none;
+          background-color: $p1b;
+          color: $white;
+        }
       }
     }
   }
