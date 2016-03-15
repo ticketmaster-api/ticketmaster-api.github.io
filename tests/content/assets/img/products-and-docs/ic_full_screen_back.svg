@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_full_screen</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-462.000000, -594.000000)" fill="#FFFFFF">
+            <g id="ic_full_screen_exit-copy" sketch:type="MSLayerGroup" transform="translate(462.000000, 594.000000)">
+                <g id="ic_full_screen" sketch:type="MSShapeGroup">
+                    <path d="M19.7419559,13.9569092 L19.7456633,12.5531757 L17.1802193,12.5599513 L21.2847578,8.45541274 L20.2943945,7.46504945 L16.189856,11.569588 L16.1966316,9.00414396 L14.7922084,9.0071617 L14.7797925,13.9700147 L19.7419559,13.9569092 Z M13.7060267,19.9928383 L12.3022932,19.9965457 L12.3090688,17.4311017 L8.20453029,21.5356402 L7.214167,20.5452769 C7.214167,20.5452769 7.90969008,19.8497538 8.27482717,19.4846168 L11.3187055,16.4407384 L8.75326151,16.447514 L8.75627924,15.0430908 L13.7191323,15.0306749 L13.7060267,19.9928383 Z" id="Page-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

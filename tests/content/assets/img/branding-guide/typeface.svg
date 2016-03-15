@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="264px" height="264px" viewBox="0 0 264 264" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>typeface</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="262" height="262"></rect>
+    </defs>
+    <g id="4.x-Support---Responsive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="4.5.1-Branding-Guide-Desktop" sketch:type="MSArtboardGroup" transform="translate(-1026.000000, -1718.000000)">
+            <g id="typeface" sketch:type="MSLayerGroup" transform="translate(1027.000000, 1719.000000)">
+                <g id="Rectangle-90-+-ticketmaster_logo_white">
+                    <mask id="mask-2" sketch:name="Mask" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Mask">
+                        <use stroke="#FFFFFF" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                        <use stroke-opacity="0.200000003" stroke="#768692" stroke-width="2" fill="none" xlink:href="#path-1"></use>
+                    </g>
+                    <text id="ticketmaster" sketch:type="MSTextLayer" mask="url(#mask-2)" font-family="Comic Sans MS" font-size="34" font-weight="normal" sketch:alignment="middle" line-spacing="24" fill="#009CDE">
+                        <tspan x="27.4980989" y="168.498099">ticketmaster</tspan>
+                    </text>
+                </g>
+                <path d="M56.2851711,205.714829 L206.046525,55.9534734" id="Line" stroke="#D0011B" stroke-width="4" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>
