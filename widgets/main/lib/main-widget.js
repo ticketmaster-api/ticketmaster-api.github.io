@@ -77,7 +77,12 @@ var TicketmasterWidget = function () {
   }, {
     key: "sliderRestartDelay",
     get: function get() {
-      return 30000;
+      return 20000;
+    }
+  }, {
+    key: "hideMessageDelay",
+    get: function get() {
+      return 8000;
     }
   }, {
     key: "controlHiddenClass",
@@ -149,16 +154,69 @@ var TicketmasterWidget = function () {
 
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
 
-    this.addWidgetRootLinks();
+    this.addWidgetRootElements();
+
+    this.initMessage();
 
     this.initSliderControls();
 
     this.initEventCounter();
   }
 
+  // Message
+
+
   _createClass(TicketmasterWidget, [{
-    key: "addWidgetRootLinks",
-    value: function addWidgetRootLinks() {
+    key: "initMessage",
+    value: function initMessage() {
+      var _this = this;
+
+      this.messageDialog = document.createElement('div');
+      this.messageDialog.classList.add("event-message");
+      this.messageContent = document.createElement('div');
+      this.messageContent.classList.add("event-message__content");
+
+      var messageClose = document.createElement('div');
+      messageClose.classList.add("event-message__btn");
+      messageClose.addEventListener("click", function () {
+        _this.hideMessage();
+      });
+
+      this.messageDialog.appendChild(this.messageContent);
+      this.messageDialog.appendChild(messageClose);
+      this.eventsRootContainer.appendChild(this.messageDialog);
+    }
+  }, {
+    key: "showMessage",
+    value: function showMessage(message, hideMessageWithoutDelay) {
+      if (message.length) {
+        this.hideMessageWithoutDelay = hideMessageWithoutDelay;
+        this.messageContent.innerHTML = message;
+        this.messageDialog.classList.add("event-message-visible");
+        if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+      }
+    }
+  }, {
+    key: "hideMessageWithDelay",
+    value: function hideMessageWithDelay(delay) {
+      var _this2 = this;
+
+      if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
+      this.messageTimeout = setTimeout(function () {
+        _this2.hideMessage();
+      }, delay);
+    }
+  }, {
+    key: "hideMessage",
+    value: function hideMessage() {
+      if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
+      this.messageDialog.classList.remove("event-message-visible");
+    }
+    // End message
+
+  }, {
+    key: "addWidgetRootElements",
+    value: function addWidgetRootElements() {
       var legalNoticeContent = document.createTextNode('Legal Notice'),
           legalNotice = document.createElement("a");
       legalNotice.appendChild(legalNoticeContent);
@@ -245,11 +303,11 @@ var TicketmasterWidget = function () {
   }, {
     key: "setSlideManually",
     value: function setSlideManually(slideIndex, isDirectionX) {
-      var _this = this;
+      var _this3 = this;
 
       if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
       this.sliderTimeout = setTimeout(function () {
-        _this.runAutoSlideX();
+        _this3.runAutoSlideX();
       }, this.sliderRestartDelay);
       clearInterval(this.sliderInterval);
       if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
@@ -287,20 +345,20 @@ var TicketmasterWidget = function () {
   }, {
     key: "runAutoSlideX",
     value: function runAutoSlideX() {
-      var _this2 = this;
+      var _this4 = this;
 
       if (this.slideCountX > 1) {
         this.sliderInterval = setInterval(function () {
           var slideIndex = 0;
-          if (_this2.slideCountX - 1 > _this2.currentSlideX) slideIndex = _this2.currentSlideX + 1;
-          _this2.goToSlideX(slideIndex);
+          if (_this4.slideCountX - 1 > _this4.currentSlideX) slideIndex = _this4.currentSlideX + 1;
+          _this4.goToSlideX(slideIndex);
         }, this.sliderDelay);
       }
     }
   }, {
     key: "initSliderControls",
     value: function initSliderControls() {
-      var _this3 = this;
+      var _this5 = this;
 
       this.currentSlideX = 0;
       this.currentSlideY = 0;
@@ -343,8 +401,8 @@ var TicketmasterWidget = function () {
 
       var transitionEvent = whichTransitionEvent();
       transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
-        if (_this3.eventsRoot !== e.target) return;
-        var eventGroup = _this3.eventsRoot.getElementsByClassName("event-group");
+        if (_this5.eventsRoot !== e.target) return;
+        var eventGroup = _this5.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
         for (var i = 0; eventGroup.length > i; i++) {
           eventGroup[i].style.marginTop = 0;
@@ -353,19 +411,19 @@ var TicketmasterWidget = function () {
 
       // Arrows
       this.prevEventX.addEventListener("click", function () {
-        _this3.prevSlideX();
+        _this5.prevSlideX();
       });
 
       this.nextEventX.addEventListener("click", function () {
-        _this3.nextSlideX();
+        _this5.nextSlideX();
       });
 
       this.prevEventY.addEventListener("click", function () {
-        _this3.prevSlideY();
+        _this5.prevSlideY();
       });
 
       this.nextEventY.addEventListener("click", function () {
-        _this3.nextSlideY();
+        _this5.nextSlideY();
       });
 
       // Tough device swipes
@@ -398,10 +456,10 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        handleTouchStart.call(_this3, e);
+        handleTouchStart.call(_this5, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        handleTouchMove.call(_this3, e);
+        handleTouchMove.call(_this5, e);
       }, false);
     }
 
@@ -586,11 +644,6 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
-    key: "showMessage",
-    value: function showMessage(message) {
-      console.log(message);
-    }
-  }, {
     key: "resetReduceParamsOrder",
     value: function resetReduceParamsOrder() {
       this.reduceParamsOrder = 0;
@@ -598,8 +651,10 @@ var TicketmasterWidget = function () {
   }, {
     key: "reduceParamsAndReloadEvents",
     value: function reduceParamsAndReloadEvents() {
+      console.log('reduceParamsAndReloadEvents');
       var eventReqAttrs = {},
-          reduceParamsList = [['postalcode'], ['attractionid'], ['promoterid'], ['startDateTime', 'endDateTime'], ['keyword'], ['size']];
+          reduceParamsList = [['postalcode'], // TODO: need to change to 'postalCode'
+      ['attractionid'], ['promoterid'], ['startDateTime', 'endDateTime'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
@@ -616,9 +671,13 @@ var TicketmasterWidget = function () {
           }
         }
 
-        if (this.reduceParamsOrder === 0) this.showMessage('Match not found');
+        if (this.reduceParamsOrder === 0) this.showMessage("No results were found.<br/>Here other options for you.");
         this.reduceParamsOrder++;
         this.makeRequest(this.eventsLoadingHandler, this.apiUrl, eventReqAttrs);
+      } else {
+        // We haven't any results
+        this.showMessage("No results were found.", true);
+        this.reduceParamsOrder = 0;
       }
     }
   }, {
@@ -640,16 +699,15 @@ var TicketmasterWidget = function () {
             widget.initSlider();
             widget.setEventsCounter();
             widget.resetReduceParamsOrder();
+            if (widget.hideMessageWithoutDelay) widget.hideMessage();else widget.hideMessageWithDelay(widget.hideMessageDelay);
           } else {
             widget.reduceParamsAndReloadEvents.call(widget);
           }
         } else if (this.status == 400) {
           widget.reduceParamsAndReloadEvents.call(widget);
-          //alert('There was an error 400');
           console.log('There was an error 400');
         } else {
           widget.reduceParamsAndReloadEvents.call(widget);
-          //alert('something else other than 200 was returned');
           console.log('something else other than 200 was returned');
         }
       }
@@ -657,7 +715,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "publishEventsGroup",
     value: function publishEventsGroup(group, index) {
-      var _this4 = this;
+      var _this6 = this;
 
       var groupNodeWrapper = document.createElement("li");
       groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
@@ -669,7 +727,7 @@ var TicketmasterWidget = function () {
       groupNode.style.height = this.config.width * group.length + "px";
 
       group.map(function (event) {
-        _this4.publishEvent(event, groupNode);
+        _this6.publishEvent(event, groupNode);
       });
 
       groupNodeWrapper.appendChild(groupNode);

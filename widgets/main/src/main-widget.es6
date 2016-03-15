@@ -23,7 +23,9 @@ class TicketmasterWidget {
 
   get sliderDelay(){ return 10000; }
 
-  get sliderRestartDelay(){ return 30000; }
+  get sliderRestartDelay(){ return 20000; }
+
+  get hideMessageDelay(){ return 8000; }
 
   get controlHiddenClass(){ return "events_control-hidden"; }
 
@@ -102,14 +104,56 @@ class TicketmasterWidget {
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
 
-    this.addWidgetRootLinks();
+    this.addWidgetRootElements();
+
+    this.initMessage();
 
     this.initSliderControls();
 
     this.initEventCounter();
   }
 
-  addWidgetRootLinks(){
+  // Message
+  initMessage(){
+    this.messageDialog = document.createElement('div');
+    this.messageDialog.classList.add("event-message");
+    this.messageContent = document.createElement('div');
+    this.messageContent.classList.add("event-message__content");
+
+    let messageClose = document.createElement('div');
+    messageClose.classList.add("event-message__btn");
+    messageClose.addEventListener("click", ()=> {
+      this.hideMessage();
+    });
+
+    this.messageDialog.appendChild(this.messageContent);
+    this.messageDialog.appendChild(messageClose);
+    this.eventsRootContainer.appendChild(this.messageDialog);
+  }
+
+  showMessage(message, hideMessageWithoutDelay){
+    if(message.length){
+      this.hideMessageWithoutDelay = hideMessageWithoutDelay;
+      this.messageContent.innerHTML = message;
+      this.messageDialog.classList.add("event-message-visible");
+      if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+    }
+  }
+
+  hideMessageWithDelay(delay){
+    if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
+    this.messageTimeout = setTimeout(()=>{
+      this.hideMessage();
+    }, delay);
+  }
+
+  hideMessage(){
+    if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
+    this.messageDialog.classList.remove("event-message-visible");
+  }
+  // End message
+
+  addWidgetRootElements(){
     var legalNoticeContent = document.createTextNode('Legal Notice'),
       legalNotice = document.createElement("a");
     legalNotice.appendChild(legalNoticeContent);
@@ -518,18 +562,15 @@ class TicketmasterWidget {
     }
   }
 
-  showMessage(message){
-    console.log(message);
-  }
-
   resetReduceParamsOrder(){
     this.reduceParamsOrder = 0;
   }
 
   reduceParamsAndReloadEvents(){
+    console.log('reduceParamsAndReloadEvents');
     let eventReqAttrs = {},
       reduceParamsList = [
-          ['postalcode'],
+          ['postalcode'], // TODO: need to change to 'postalCode'
           ['attractionid'],
           ['promoterid'],
           ['startDateTime', 'endDateTime'],
@@ -552,9 +593,13 @@ class TicketmasterWidget {
         }
       }
 
-      if(this.reduceParamsOrder === 0) this.showMessage('Match not found');
+      if(this.reduceParamsOrder === 0) this.showMessage("No results were found.<br/>Here other options for you.");
       this.reduceParamsOrder++;
       this.makeRequest( this.eventsLoadingHandler, this.apiUrl, eventReqAttrs );
+    }else{
+      // We haven't any results
+      this.showMessage("No results were found.", true);
+      this.reduceParamsOrder = 0;
     }
   }
 
@@ -578,6 +623,10 @@ class TicketmasterWidget {
           widget.initSlider();
           widget.setEventsCounter();
           widget.resetReduceParamsOrder();
+          if(widget.hideMessageWithoutDelay)
+            widget.hideMessage();
+          else
+            widget.hideMessageWithDelay(widget.hideMessageDelay);
 
         }else{
           widget.reduceParamsAndReloadEvents.call(widget);
@@ -585,12 +634,10 @@ class TicketmasterWidget {
       }
       else if(this.status == 400) {
         widget.reduceParamsAndReloadEvents.call(widget);
-        //alert('There was an error 400');
         console.log('There was an error 400');
       }
       else {
         widget.reduceParamsAndReloadEvents.call(widget);
-        //alert('something else other than 200 was returned');
         console.log('something else other than 200 was returned');
       }
     }
