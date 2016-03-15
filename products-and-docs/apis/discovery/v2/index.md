@@ -96,7 +96,7 @@ discovery/{version}/events.{format}
             * `id` (string) - id of event.
             * `test` (boolean) - is test.
             * `locale` (string) - locale of event.
-            * `eventUrl` (string) - links to event detail page.
+            * `url` (string) - links to event detail page.
             * `promoterId` (array) - promoter ids of event.
                 - `{array item numbers}` - promoter id.
             * `images` (array) - images.
@@ -301,6 +301,7 @@ Rate-Limit: 5000
         "type": "event",
         "id": "vvG1VZKS5pr1qy",
         "test": false,
+        "url": "http://ticketmaster.com/event/0E0050681F51BA4C",
         "locale": "en-us",
         "images":  [
            {
@@ -617,7 +618,7 @@ discovery/{version}/events/{id}.{format}
 * `id` (string) - id of event.
 * `test` (boolean) - is test.
 * `locale` (string) - locale of event.
-* `eventUrl` (string) - links to event detail page.
+* `url` (string) - links to event detail page.
 * `promoterId` (array) - promoter ids of event.
     - `{array item numbers}` - promoter id.
 * `images` (array) - images.
@@ -794,6 +795,7 @@ Rate-Limit: 5000
   "type": "event",
   "id": "k7vGFKzleBdwS",
   "test": false,
+  "url": "http://ticketmaster.com/event/0E0050681F51BA4C",
   "locale": "en-us",
   "images":  [
      {
