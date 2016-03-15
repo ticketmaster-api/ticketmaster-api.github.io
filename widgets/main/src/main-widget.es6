@@ -104,6 +104,11 @@ class TicketmasterWidget {
 
     this.addWidgetRootLinks();
 
+    //if theme is OLDSCHOOL
+    if (this.widgetConfig.theme === "oldschool")
+      //add general admission element for OLDSCHOOL theme
+      this.addGeneralAdmission();
+
     this.initSliderControls();
 
     this.initEventCounter();
@@ -136,32 +141,14 @@ class TicketmasterWidget {
     this.eventsRootContainer.appendChild(question);
   }
 
-  // default method - to be renamed and maped
-  /*addWidgetRootLinks(){
-    var legalNoticeContent = document.createTextNode('Legal Notice'),
-      legalNotice = document.createElement("a");
-    legalNotice.appendChild(legalNoticeContent);
-    legalNotice.classList.add("legal-notice");
-    legalNotice.target = '_blank';
-    legalNotice.href = this.legalNoticeUrl;
-    this.widgetRoot.appendChild(legalNotice);
-
-    var logo = document.createElement('a');
-    logo.classList.add("event-logo");
-    logo.target = '_blank';
-    logo.href = this.logoUrl;
-
-    var logoBox = document.createElement('div');
-    logoBox.classList.add("event-logo-box");
-    logoBox.appendChild(logo);
-    this.eventsRootContainer.appendChild(logoBox);
-
-    let question = document.createElement('a');
-    question.classList.add("event-question");
-    question.target = '_blank';
-    question.href = this.questionUrl;
-    this.eventsRootContainer.appendChild(question);
-  }*/
+  //adds general admission element for OLDSCHOOL theme
+  addGeneralAdmission(){
+    var generalAdmission = document.createElement("div"),
+        generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
+    generalAdmission.classList.add("general-admission");
+    generalAdmission.appendChild(generalAdmissionText);
+    this.widgetRoot.appendChild(generalAdmission);
+  }
 
   toggleControlsVisibilityX(){
     // Horizontal
