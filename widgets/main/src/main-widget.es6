@@ -711,7 +711,7 @@ class TicketmasterWidget {
         let currentEvent = {};
 
         currentEvent.id = eventsSet[key].id;
-        currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : this.eventUrl + currentEvent.id;
+        currentEvent.url = eventsSet[key].url;
         currentEvent.name = eventsSet[key].name;
 
         currentEvent.date = {
