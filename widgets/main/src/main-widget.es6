@@ -78,7 +78,8 @@ class TicketmasterWidget {
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
     // Set theme modificators
-    let themeModificators = {
+    this.themeModificators = {
+      "simple"    : this.defaultModificator.bind(this),
       "oldschool" : this.oldSchoolModificator.bind(this),
       "newschool" : this.newSchoolModificator.bind(this)
     };
@@ -90,7 +91,7 @@ class TicketmasterWidget {
 
     this.config = this.widgetRoot.attributes;
 
-    if(this.config.theme !== null){
+    if(this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)){
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
     }
 
@@ -110,13 +111,11 @@ class TicketmasterWidget {
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
 
-    this.addWidgetRootElements();
+    if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+      this.themeModificators[ this.widgetConfig.theme ]();
+    }
 
     this.initMessage();
-
-    if( themeModificators.hasOwnProperty( this.widgetConfig.theme ) ){
-      themeModificators[ this.widgetConfig.theme ]();
-    }
 
     this.initSliderControls();
 
@@ -146,7 +145,12 @@ class TicketmasterWidget {
       this.hideMessageWithoutDelay = hideMessageWithoutDelay;
       this.messageContent.innerHTML = message;
       this.messageDialog.classList.add("event-message-visible");
-      if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+      if(this.messageTimeout) clear
+      this.clear();
+
+      if( themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+        themeModificators[ this.widgetConfig.theme ]();
+      }Timeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
     }
   }
 
@@ -163,7 +167,7 @@ class TicketmasterWidget {
   }
   // End message
 
-  addWidgetRootElements(){
+  defaultModificator(){
     var legalNoticeContent = document.createTextNode('Legal Notice'),
         legalNotice = document.createElement("a");
     legalNotice.appendChild(legalNoticeContent);
@@ -512,9 +516,11 @@ class TicketmasterWidget {
 
     this.config = this.widgetRoot.attributes;
 
-    /*if(this.config.theme !== null){
-      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-    }*/
+    if( this.config.theme !== oldTheme.theme ){
+      if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+        this.themeModificators[ this.widgetConfig.theme ]();
+      }
+    }
 
     this.widgetRoot.style.height = `${this.config.height}px`;
     this.widgetRoot.style.width  = `${this.config.width}px`;
@@ -565,6 +571,7 @@ class TicketmasterWidget {
       if(this.status == 200){
         var style = document.createElement("style");
         style.setAttribute("type","text/css");
+        style.setAttribute("id",`widget-theme-${this.widget.config.theme}`);
         style.textContent = this.responseText;
         document.getElementsByTagName("head")[0].appendChild(style);
       }
