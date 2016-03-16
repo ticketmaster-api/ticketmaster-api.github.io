@@ -79,6 +79,7 @@ div[w-theme="oldschool"]{
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
     padding-bottom: 41px;
+    padding-right: 4px;
 }
 
 div[w-theme="oldschool"] .events-root-container{

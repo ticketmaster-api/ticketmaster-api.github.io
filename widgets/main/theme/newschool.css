@@ -79,6 +79,7 @@ div[w-theme="newschool"]{
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
     padding-bottom: 41px;
+    padding-right: 2px;
 }
 
 div[w-theme="newschool"] .events-root-container{
