@@ -233,6 +233,13 @@ div[w-tmapikey] .events_control-horizontal.events_control-hidden {
     width: 0;
 }
 
+div[w-tmapikey] .bg-cover {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+}
+
 
 
 /* Theme special styles */
