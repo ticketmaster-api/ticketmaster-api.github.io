@@ -35,20 +35,6 @@ API Specification for add/update and receive an Archtics account, or add a name 
     *	You can use the `customer_add` call to add a `NAME` to an existing `ACCOUNT` – see the comments on the `acct_id` input parameter (“`acct_id` is NOT required on *Customer_Add.* If `acct_id` is provided, and that `acct_id` already exists on the database, the new customer name is added to the existing account.”)
 +	`last_name` is required for a personal account (`name_type` = 'I'), and `company_name` is required for a company account (`name_type` = 'C').
 
-### Web Page from public internet (caller must use a TM-issued client-side certificate):
-
-https://ws.ticketmaster.com/archtics/ats/ticketing_services.aspx?dsn=`{TBD}`
-{: .code .red}
-
-`{TBD}` = client DSN; will vary for each client.
-
-### Web Page from client's network:
-
-https://`{IP address}`:5002/ats/ticketing_services.aspx
-{: .code .red}
-
-`{IP address}` - may use machine name instead of IP address.
-
 ### Requirements:
 See required input parameters below.
     
@@ -325,17 +311,7 @@ Content-Type: application/json;charset=UTF-8
 +	Important:  All existing updatable base customer fields with data must be provided to maintain the values.   Not providing the field is the same as providing a blank value.  It is used to clear an existing field.
 +	All updates will be made to the primary customer on the account unless `cust_name_id` is specified and different than the primary `cust_name_id`.
 
-### Web Page from public internet (caller must use a TM-issued client-side certificate):
 
-https://ws.ticketmaster.com/archtics/ats/ticketing_services.aspx?dsn=`{TBD}`
-{: .code .red}
-
-`{TBD}` = client DSN; will vary for each client.
-
-### Web Page from client's network:
-
-https://`{IP address}`:5002/ats/ticketing_services.aspx
-{: .code .red}
 
 `{IP address}` - may use machine name instead of IP address.
 
