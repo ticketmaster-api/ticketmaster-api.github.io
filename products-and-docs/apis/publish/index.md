@@ -24,7 +24,7 @@ Make live API calls right now in the interactive docs:
 
 To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
 
-Example: `https://app.ticketmaster.com/publish/v2/events?apikey=[Your API key goes here]`
+Example: `https://app.ticketmaster.com/publish/v2/events?apikey={apikey}`
 
 ### Root URL
 
@@ -48,43 +48,45 @@ publish/{version}/events
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
 ### Minimal recommended request payload:
-{% highlight http %}
+
+{% highlight ruby %}
+
 {
+  "source" : {
+    "id" : "test_id_0009",
+    "name" : "test-source"
+  },
+  "test": true,
+  "names": {
+    "en-us": "example test event tnt1"
+  },
+  "publicVisibility": {
+    "startDateTime": "2015-10-29T15:00:00Z",
+    "visible": true
+  },
+  "dates": {
+    "start": {
+      "dateTime": "2016-04-15T01:00:00Z",
+      "localDate": "2016-04-14",
+      "localTime": "19:00:00"
+    },
+    "timezone": "America/Edmonton"
+  },
+  "venue": {
     "source" : {
-        "id" : "test_id_0009",
-        "name" : "test-source"
+      "id" : "test_venue_id_0001",
+      "name" : "test-source"
     },
     "test": true,
-    "names": {
-        "en-us": "example test event tnt1"
-    },
-    "publicVisibility": {
-        "startDateTime": "2015-10-29T15:00:00Z",
-        "visible": true
-    },
-    "dates": {
-        "start": {
-            "dateTime": "2016-04-15T01:00:00Z",
-            "localDate": "2016-04-14",
-            "localTime": "19:00:00"
-        },
-        "timezone": "America/Edmonton"
-    },
-    "venue": {
-        "source" : {
-            "id" : "test_venue_id_0001",
-            "name" : "test-source"
-        },
-        "test": true,
-        "currency": "USD",
-        "country": {
-            "countryCode": "US"
-        }
+    "currency": "USD",
+    "country": {
+      "countryCode": "US"
     }
+  }
 }
 {% endhighlight %}
 
-### Response structure:
+### Request structure:
 
 {: .nested-list}
 - `additionalInfos` (object) - map of locale to value for any additional informations on the event.
@@ -280,197 +282,197 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
 {: .reqres}
 
 {% highlight http %}
-POST /publish/v2/events?apikey=**** HTTP/1.1
+POST /publish/v2/events?apikey={apikey} HTTP/1.1
 Host: app.ticketmaster.com
-X-Target-URI: https://app.ticketmaster.com
-Connection: Keep-Alive
+Content-Type: application/json;
 
 {
-  "additionalInfos": {
-                       "en-us": "string",
-                       "fr-ca": "chaine",
-                       "es-mx": "cuerda" 
-  },
-  "attractions": [
-    {
-      "additionalInfos": {
-                       "en-us": "string",
-                       "fr-ca": "chaine",
-                       "es-mx": "cuerda" 
-      },
-      "descriptions": {
-                       "en-us": "string",
-                       "fr-ca": "chaine",
-                       "es-mx": "cuerda" 
-      },
-      "id": "",
-      "images": [
-        {
-          "height": 0,
-          "ratio": "string",
-          "url": "string",
-          "width": 0
-        }
-      ],
-      "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda" 
-      },
-      "redirectUrl": "string",
-      "source": {
-        "id": "string",
-        "name": "string"
-      },
-      "test": true,
-      "version": 0
-    }
-  ],
-  "dates": {
-    "start": {
-      "localDate": "2015-01-02",
-      "localTime": "23:59:00",
-      "dateTime": "2015-01-03T05:59:00Z",
-      "dateTBD": false,
-      "dateTBA": false,
-      "timeTBA": false,
-      "noSpecificTime": false
-    },
-    "access":{
-      "startDateTime": "2015-01-03T05:59:00Z",
-      "startApproximate": false,
-      "endDateTime": "2015-01-03T05:59:00Z",
-      "endApproximate": false
-    },
-    "end":{
-      "localTime": "23:59:00",
-      "dateTime": "2015-01-03T05:59:00Z",
-      "approximate": false
-    },
-    "timezone": "America/Chicago",
-    "status": {
-                "code": "string"
-    }
-  },
-  "descriptions": {
-                   "en-us": "string",
-                   "fr-ca": "chaine",
-                   "es-mx": "cuerda" 
-  },
-  "images": [
-    {
-      "height": 0,
-      "ratio": "string",
-      "url": "string",
-      "width": 0
-    }
-  ],
-  "names": {
-            "en-us": "string",
-            "fr-ca": "chaine",
-            "es-mx": "cuerda" 
-  },
-  "publicVisibility": {
-    "startDateTime": "2014-12-03T01:59:00Z",
-    "endDateTime": "2015-01-03T05:59:00Z",
-    "visible": true
-  },
-  "redirectUrl": "string",
-  "sales": {
-    "public": {
-      "endDateTime": "2015-01-03T05:59:00Z",
-      "startDateTime": "2014-12-03T01:59:00Z",
-      "startTBD": false
-    }
-  },
-  "source": {
-    "id": "string",
-    "name": "string"
-  },
-  "test": true,
-  "venue": {
     "additionalInfos": {
-                        "en-us": "string",
-                        "fr-ca": "chaine",
-                        "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda"
     },
-    "address": {
-      "line1s": {
-                 "en-us": "string",
-                 "fr-ca": "chaine",
-                 "es-mx": "cuerda" 
-      },
-      "line2s": {
-                 "en-us": "string",
-                 "fr-ca": "chaine",
-                 "es-mx": "cuerda" 
-      }
-    },
-    "city": {
-      "names": {
+    "attractions": [
+        {
+            "additionalInfos": {
                 "en-us": "string",
                 "fr-ca": "chaine",
-                "es-mx": "cuerda" 
-      }
-    },
-    "country": {
-      "countryCode": "string",
-      "names": {
+                "es-mx": "cuerda"
+            },
+            "descriptions": {
                 "en-us": "string",
                 "fr-ca": "chaine",
-                "es-mx": "cuerda" 
-      }
-    },
-    "currency": "string",
-    "descriptions": {
-                     "en-us": "string",
-                     "fr-ca": "chaine",
-                     "es-mx": "cuerda"
-    },
-    "id": "",
-    "images": [
-      {
-        "height": 0,
-        "ratio": "string",
-        "url": "string",
-        "width": 0
-      }
-    ],
-    "location": {
-      "latitude": 0,
-      "longitude": 0
-    },
-    "markets": [{
-                 "id": "101"
-                },
+                "es-mx": "cuerda"
+            },
+            "id": "",
+            "images": [
                 {
-                 "id": "120"
+                    "height": 0,
+                    "ratio": "string",
+                    "url": "string",
+                    "width": 0
                 }
+            ],
+            "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda"
+            },
+            "redirectUrl": "string",
+            "source": {
+                "id": "string",
+                "name": "string"
+            },
+            "test": true,
+            "version": 0
+        }
+    ],
+    "dates": {
+        "start": {
+            "localDate": "2015-01-02",
+            "localTime": "23:59:00",
+            "dateTime": "2015-01-03T05:59:00Z",
+            "dateTBD": false,
+            "dateTBA": false,
+            "timeTBA": false,
+            "noSpecificTime": false
+        },
+        "access": {
+            "startDateTime": "2015-01-03T05:59:00Z",
+            "startApproximate": false,
+            "endDateTime": "2015-01-03T05:59:00Z",
+            "endApproximate": false
+        },
+        "end": {
+            "localTime": "23:59:00",
+            "dateTime": "2015-01-03T05:59:00Z",
+            "approximate": false
+        },
+        "timezone": "America/Chicago",
+        "status": {
+            "code": "string"
+        }
+    },
+    "descriptions": {
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda"
+    },
+    "images": [
+        {
+            "height": 0,
+            "ratio": "string",
+            "url": "string",
+            "width": 0
+        }
     ],
     "names": {
-              "en-us": "string",
-              "fr-ca": "chaine",
-              "es-mx": "cuerda" 
+        "en-us": "string",
+        "fr-ca": "chaine",
+        "es-mx": "cuerda"
     },
-    "postalCode": "string",
+    "publicVisibility": {
+        "startDateTime": "2014-12-03T01:59:00Z",
+        "endDateTime": "2015-01-03T05:59:00Z",
+        "visible": true
+    },
     "redirectUrl": "string",
-    "source": {
-      "id": "string",
-      "name": "string"
+    "sales": {
+        "public": {
+            "endDateTime": "2015-01-03T05:59:00Z",
+            "startDateTime": "2014-12-03T01:59:00Z",
+            "startTBD": false
+        }
     },
-    "state": {
-      "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda" 
-      },
-      "stateCode": "string"
+    "source": {
+        "id": "string",
+        "name": "string"
     },
     "test": true,
-    "timezone": "string",
+    "venue": {
+        "additionalInfos": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda"
+        },
+        "address": {
+            "line1s": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda"
+            },
+            "line2s": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda"
+            }
+        },
+        "city": {
+            "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda"
+            }
+        },
+        "country": {
+            "countryCode": "string",
+            "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda"
+            }
+        },
+        "currency": "string",
+        "descriptions": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda"
+        },
+        "id": "",
+        "images": [
+            {
+                "height": 0,
+                "ratio": "string",
+                "url": "string",
+                "width": 0
+            }
+        ],
+        "location": {
+            "latitude": 0,
+            "longitude": 0
+        },
+        "markets": [
+            {
+                "id": "101"
+            },
+            {
+                "id": "120"
+            }
+        ],
+        "names": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda"
+        },
+        "postalCode": "string",
+        "redirectUrl": "string",
+        "source": {
+            "id": "string",
+            "name": "string"
+        },
+        "state": {
+            "names": {
+                "en-us": "string",
+                "fr-ca": "chaine",
+                "es-mx": "cuerda"
+            },
+            "stateCode": "string"
+        },
+        "test": true,
+        "timezone": "string",
+        "version": 0
+    },
     "version": 0
-  },
-  "version": 0
 }
 {% endhighlight %}
 
