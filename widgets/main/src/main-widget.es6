@@ -224,7 +224,7 @@ class TicketmasterWidget {
     headLogo.setAttribute("height", "11");
     ticketLogo.appendChild(headLogo);
 
-    this.widgetRoot.appendChild(ticketLogo);
+    this.eventsRootContainer.appendChild(ticketLogo);
   }
 
   hideSliderControls(){
