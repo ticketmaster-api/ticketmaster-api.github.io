@@ -78,7 +78,7 @@ div[w-theme="oldschool"]{
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 35px;
+    padding-bottom: 41px;
 }
 
 div[w-theme="oldschool"] .events-root-container{
@@ -259,19 +259,19 @@ div[w-theme="oldschool"] .legal-notice:focus,
 div[w-theme="oldschool"] .legal-notice:active{
     position: absolute;
     left: 10px;
-    bottom: 9px;
+    bottom: 8px;
     color: #019cde;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 24px;
     text-decoration: none;
 }
 
 div[w-theme="oldschool"] .events-counter {
     position: absolute;
     right: 10px;
-    bottom: 4px;
-    font-size: 12px;
-    line-height: 1.8;
+    bottom: 8px;
+    font-size: 14px;
+    line-height: 1.6;
     color: #b7c9d3;
     font-family: "TMSans-Bold";
 }
