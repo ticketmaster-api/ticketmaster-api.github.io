@@ -311,10 +311,6 @@ Content-Type: application/json;charset=UTF-8
 +	Important:  All existing updatable base customer fields with data must be provided to maintain the values.   Not providing the field is the same as providing a blank value.  It is used to clear an existing field.
 +	All updates will be made to the primary customer on the account unless `cust_name_id` is specified and different than the primary `cust_name_id`.
 
-
-
-`{IP address}` - may use machine name instead of IP address.
-
 ### Requirements:
 See required input parameters below.
 
