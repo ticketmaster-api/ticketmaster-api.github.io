@@ -10,8 +10,8 @@ class TicketmasterWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
 
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
@@ -179,7 +179,15 @@ class TicketmasterWidget {
     this.eventsRootContainer.appendChild(question);
   }
 
-  toggleControlsVisibilityX(){
+  hideSliderControls(){
+    this.prevEventX.classList.add(this.controlHiddenClass);
+    this.nextEventX.classList.add(this.controlHiddenClass);
+    this.prevEventY.classList.add(this.controlHiddenClass);
+    this.nextEventY.classList.add(this.controlHiddenClass);
+  }
+
+
+  toggleControlsVisibility(){
     // Horizontal
     if(this.slideCountX > 1){
       this.prevEventX.classList.remove(this.controlHiddenClass);
@@ -195,7 +203,7 @@ class TicketmasterWidget {
     }
 
     // Vertical
-    if(this.eventsGroups.length)
+    if(this.eventsGroups.length){
       if(this.eventsGroups[this.currentSlideX].length > 1){
         this.prevEventY.classList.remove(this.controlHiddenClass);
         this.nextEventY.classList.remove(this.controlHiddenClass);
@@ -208,6 +216,10 @@ class TicketmasterWidget {
         this.prevEventY.classList.add(this.controlHiddenClass);
         this.nextEventY.classList.add(this.controlHiddenClass);
       }
+    }else{
+      this.prevEventY.classList.add(this.controlHiddenClass);
+      this.nextEventY.classList.add(this.controlHiddenClass);
+    }
   }
 
   prevSlideX(){
@@ -251,7 +263,7 @@ class TicketmasterWidget {
     this.currentSlideY = 0;
     this.currentSlideX = slideIndex;
     this.eventsRoot.style.marginLeft = `-${this.currentSlideX * 100}%`;
-    this.toggleControlsVisibilityX();
+    this.toggleControlsVisibility();
     this.setEventsCounter();
     //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
     //for(let i = 0; dots.length > i; i++){
@@ -270,7 +282,7 @@ class TicketmasterWidget {
     if(eventGroup.length){
       eventGroup = eventGroup[0];
       eventGroup.style.marginTop = `-${this.currentSlideY * this.config.height}px`;
-      this.toggleControlsVisibilityX();
+      this.toggleControlsVisibility();
     }
   }
 
@@ -411,7 +423,7 @@ class TicketmasterWidget {
     this.currentSlideX = 0;
     this.currentSlideY = 0;
     this.runAutoSlideX();
-    this.toggleControlsVisibilityX();
+    this.toggleControlsVisibility();
 
     //if(this.slideCountX > 1)
     //  for(var i = 0; this.slideCountX > i; i++){
@@ -599,6 +611,7 @@ class TicketmasterWidget {
       // We haven't any results
       this.showMessage("No results were found.", true);
       this.reduceParamsOrder = 0;
+      this.hideSliderControls();
     }
   }
 

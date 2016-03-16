@@ -383,14 +383,20 @@ div[w-theme="simple"] .event-group {
 
 
 /* Color schemes  */
-
 div[w-theme="simple"][w-colorscheme="light"] .event-wrapper:before {
     background-color: rgba(255, 255, 255, 0.9);
 }
+
 div[w-theme="simple"][w-colorscheme="dark"] .event-wrapper:before {
     background-color: rgba(65, 65, 65, 0.9);
 }
 
+div[w-theme="simple"][w-colorscheme="light"] .events-root-container {
+    background-color: #e5e5e5;
+}
+div[w-theme="simple"][w-colorscheme="dark"] .events-root-container {
+    background-color: #535353;
+}
 
 div[w-theme="simple"][w-colorscheme="light"] .event-content-wraper {
     color: #414141;
@@ -416,8 +422,6 @@ div[w-tmapikey][w-colorscheme="light"] .event-question:after,
 div[w-tmapikey][w-colorscheme="dark"] .event-question:before {
     display: block;
 }
-
-
 
 
 
