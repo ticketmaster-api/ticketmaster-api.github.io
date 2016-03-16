@@ -351,7 +351,7 @@ nav{
         .header-chevron {
           @include rotate(180deg);
           top: 30px;
-          right: 0;
+          right: 5px;
         }
       }
       &:hover{

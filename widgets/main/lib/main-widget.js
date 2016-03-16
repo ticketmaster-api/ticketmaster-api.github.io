@@ -71,7 +71,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "sliderDelay",
     get: function get() {
-      return 10000;
+      return 1000000;
     }
   }, {
     key: "sliderRestartDelay",
@@ -127,6 +127,12 @@ var TicketmasterWidget = function () {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
+    // Set theme modificators
+    this.themeModificators = {
+      "oldschool": this.oldSchoolModificator.bind(this),
+      "newschool": this.newSchoolModificator.bind(this)
+    };
+
     // dots container
     //this.dotsContainer = document.createElement("div");
     //this.dotsContainer.classList.add("events_dots");
@@ -134,7 +140,7 @@ var TicketmasterWidget = function () {
 
     this.config = this.widgetRoot.attributes;
 
-    if (this.config.theme !== null) {
+    if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
     }
 
@@ -150,11 +156,15 @@ var TicketmasterWidget = function () {
     this.eventsRootContainer.style.width = this.config.width + "px";
     this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
 
-    this.clear();
+    //this.clear();
+
+    this.AdditionalElements();
 
     this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
 
-    this.addWidgetRootElements();
+    if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
+      this.themeModificators[this.widgetConfig.theme]();
+    }
 
     this.initMessage();
 
@@ -193,7 +203,9 @@ var TicketmasterWidget = function () {
         this.hideMessageWithoutDelay = hideMessageWithoutDelay;
         this.messageContent.innerHTML = message;
         this.messageDialog.classList.add("event-message-visible");
-        if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+        if (this.messageTimeout) {
+          clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+        }
       }
     }
   }, {
@@ -215,8 +227,8 @@ var TicketmasterWidget = function () {
     // End message
 
   }, {
-    key: "addWidgetRootElements",
-    value: function addWidgetRootElements() {
+    key: "AdditionalElements",
+    value: function AdditionalElements() {
       var legalNoticeContent = document.createTextNode('Legal Notice'),
           legalNotice = document.createElement("a");
       legalNotice.appendChild(legalNoticeContent);
@@ -240,6 +252,46 @@ var TicketmasterWidget = function () {
       question.target = '_blank';
       question.href = this.questionUrl;
       this.eventsRootContainer.appendChild(question);
+    }
+
+    //adds general admission element for OLDSCHOOL theme
+
+  }, {
+    key: "oldSchoolModificator",
+    value: function oldSchoolModificator() {
+      var generalAdmission = document.createElement("div"),
+          generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
+      generalAdmission.classList.add("general-admission", "modificator");
+      generalAdmission.appendChild(generalAdmissionText);
+      this.eventsRootContainer.appendChild(generalAdmission);
+    }
+  }, {
+    key: "newSchoolModificator",
+    value: function newSchoolModificator() {
+      var ticketLogo = document.createElement("div");
+      ticketLogo.classList.add("ticket-logo", "modificator");
+
+      var headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      headLogo = document.createElement("img");
+      headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("height", "11");
+      ticketLogo.appendChild(headLogo);
+
+      this.widgetRoot.appendChild(ticketLogo);
     }
   }, {
     key: "hideSliderControls",
@@ -539,10 +591,20 @@ var TicketmasterWidget = function () {
       return result + ' ' + LZ(H) + ':' + m + ' ' + a;
     }
   }, {
+    key: "clearEvents",
+    value: function clearEvents() {
+      this.eventsRoot.innerHTML = "";
+    }
+  }, {
     key: "clear",
     value: function clear() {
-      this.eventsRoot.innerHTML = "";
-      //this.dotsContainer.innerHTML = "";
+      var modificatorList = this.widgetRoot.getElementsByClassName('modificator');
+      while (modificatorList.length) {
+        var el = modificatorList[0],
+            parent = el.parentNode;
+        parent.removeChild(el);
+      }
+      this.clearEvents();
     }
   }, {
     key: "update",
@@ -554,10 +616,6 @@ var TicketmasterWidget = function () {
       }
 
       this.config = this.widgetRoot.attributes;
-
-      /*if(this.config.theme !== null){
-        this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-      }*/
 
       this.widgetRoot.style.height = this.config.height + "px";
       this.widgetRoot.style.width = this.config.width + "px";
@@ -572,6 +630,11 @@ var TicketmasterWidget = function () {
 
       if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
         this.clear();
+
+        if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
+          this.themeModificators[this.widgetConfig.theme]();
+        }
+
         this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
       } else {
         var events = document.getElementsByClassName("event-wrapper");
@@ -612,6 +675,7 @@ var TicketmasterWidget = function () {
         if (this.status == 200) {
           var style = document.createElement("style");
           style.setAttribute("type", "text/css");
+          style.setAttribute("id", "widget-theme-" + this.widget.config.theme);
           style.textContent = this.responseText;
           document.getElementsByTagName("head")[0].appendChild(style);
         } else {
@@ -696,7 +760,7 @@ var TicketmasterWidget = function () {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
       var widget = this.widget;
-      widget.clear(); // Additional clearing after each loading
+      widget.clearEvents(); // Additional clearing after each loading
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           widget.events = JSON.parse(this.responseText);
@@ -736,7 +800,7 @@ var TicketmasterWidget = function () {
 
       var groupNode = document.createElement("ul");
       groupNode.classList.add("event-group", "event-group-" + index);
-      groupNode.style.height = this.config.width * group.length + "px";
+      groupNode.style.height = this.config.height * group.length + "px";
 
       group.map(function (event) {
         _this6.publishEvent(event, groupNode);
@@ -856,9 +920,14 @@ var TicketmasterWidget = function () {
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
-      event.style.backgroundImage = "url('" + itemConfig.img + "')";
+      //event.style.backgroundImage = `url('${itemConfig.img}')`;
       event.style.height = this.config.height + "px";
       event.style.width = this.config.width + "px";
+
+      var image = document.createElement("span");
+      image.classList.add("bg-cover");
+      image.style.backgroundImage = "url('" + itemConfig.img + "')";
+      event.appendChild(image);
 
       var nameContent = document.createTextNode(itemConfig.name),
           name = document.createElement("span");

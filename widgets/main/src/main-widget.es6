@@ -10,8 +10,8 @@ class TicketmasterWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-  //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
 
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
@@ -77,6 +77,12 @@ class TicketmasterWidget {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
+    // Set theme modificators
+    this.themeModificators = {
+      "oldschool" : this.oldSchoolModificator.bind(this),
+      "newschool" : this.newSchoolModificator.bind(this)
+    };
+
     // dots container
     //this.dotsContainer = document.createElement("div");
     //this.dotsContainer.classList.add("events_dots");
@@ -84,7 +90,7 @@ class TicketmasterWidget {
 
     this.config = this.widgetRoot.attributes;
 
-    if(this.config.theme !== null){
+    if(this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)){
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
     }
 
@@ -100,11 +106,15 @@ class TicketmasterWidget {
     this.eventsRootContainer.style.width  = `${this.config.width}px`;
     this.eventsRootContainer.style.borderRadius =  `${this.config.borderradius}px`;
 
-    this.clear();
+    //this.clear();
+
+    this.AdditionalElements();
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
 
-    this.addWidgetRootElements();
+    if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+      this.themeModificators[ this.widgetConfig.theme ]();
+    }
 
     this.initMessage();
 
@@ -136,7 +146,9 @@ class TicketmasterWidget {
       this.hideMessageWithoutDelay = hideMessageWithoutDelay;
       this.messageContent.innerHTML = message;
       this.messageDialog.classList.add("event-message-visible");
-      if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+      if (this.messageTimeout) {
+        clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+      }
     }
   }
 
@@ -153,9 +165,9 @@ class TicketmasterWidget {
   }
   // End message
 
-  addWidgetRootElements(){
+  AdditionalElements(){
     var legalNoticeContent = document.createTextNode('Legal Notice'),
-      legalNotice = document.createElement("a");
+        legalNotice = document.createElement("a");
     legalNotice.appendChild(legalNoticeContent);
     legalNotice.classList.add("legal-notice");
     legalNotice.target = '_blank';
@@ -179,6 +191,42 @@ class TicketmasterWidget {
     this.eventsRootContainer.appendChild(question);
   }
 
+  //adds general admission element for OLDSCHOOL theme
+  oldSchoolModificator(){
+    var generalAdmission = document.createElement("div"),
+        generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
+    generalAdmission.classList.add("general-admission", "modificator");
+    generalAdmission.appendChild(generalAdmissionText);
+    this.eventsRootContainer.appendChild(generalAdmission);
+  }
+
+  newSchoolModificator(){
+    var ticketLogo = document.createElement("div");
+    ticketLogo.classList.add("ticket-logo", "modificator");
+
+    var headLogo = document.createElement("img");
+    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("height", "11");
+    ticketLogo.appendChild(headLogo);
+
+    headLogo = document.createElement("img");
+    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("height", "11");
+    ticketLogo.appendChild(headLogo);
+
+    headLogo = document.createElement("img");
+    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("height", "11");
+    ticketLogo.appendChild(headLogo);
+
+    headLogo = document.createElement("img");
+    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("height", "11");
+    ticketLogo.appendChild(headLogo);
+
+    this.widgetRoot.appendChild(ticketLogo);
+  }
+
   hideSliderControls(){
     this.prevEventX.classList.add(this.controlHiddenClass);
     this.nextEventX.classList.add(this.controlHiddenClass);
@@ -187,7 +235,7 @@ class TicketmasterWidget {
   }
 
 
-  toggleControlsVisibility(){
+  toggleControlsVisibilityX(){
     // Horizontal
     if(this.slideCountX > 1){
       this.prevEventX.classList.remove(this.controlHiddenClass);
@@ -464,9 +512,18 @@ class TicketmasterWidget {
     return result + ' ' + LZ(H) + ':' + m + ' ' + a;
   }
 
-  clear(){
+  clearEvents(){
     this.eventsRoot.innerHTML = "";
-    //this.dotsContainer.innerHTML = "";
+  }
+
+  clear(){
+    var modificatorList = this.widgetRoot.getElementsByClassName('modificator');
+    while (modificatorList.length) {
+      let el = modificatorList[0],
+          parent = el.parentNode;
+      parent.removeChild(el);
+    }
+    this.clearEvents();
   }
 
   update() {
@@ -495,6 +552,11 @@ class TicketmasterWidget {
 
     if(this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
       this.clear();
+
+      if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+        this.themeModificators[ this.widgetConfig.theme ]();
+      }
+
       this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
     }
     else{
@@ -531,6 +593,7 @@ class TicketmasterWidget {
       if(this.status == 200){
         var style = document.createElement("style");
         style.setAttribute("type","text/css");
+        style.setAttribute("id",`widget-theme-${this.widget.config.theme}`);
         style.textContent = this.responseText;
         document.getElementsByTagName("head")[0].appendChild(style);
       }
@@ -617,7 +680,7 @@ class TicketmasterWidget {
 
   eventsLoadingHandler(){
     let widget = this.widget;
-    widget.clear(); // Additional clearing after each loading
+    widget.clearEvents(); // Additional clearing after each loading
     if (this && this.readyState == XMLHttpRequest.DONE ) {
       if(this.status == 200){
         widget.events = JSON.parse(this.responseText);
@@ -664,7 +727,7 @@ class TicketmasterWidget {
 
     let groupNode = document.createElement("ul");
     groupNode.classList.add("event-group", "event-group-" + index);
-    groupNode.style.height  = `${this.config.width * group.length}px`;
+    groupNode.style.height  = `${this.config.height * group.length}px`;
 
     group.map((event)=> {
       this.publishEvent(event, groupNode)
@@ -781,9 +844,14 @@ class TicketmasterWidget {
 
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
-    event.style.backgroundImage = `url('${itemConfig.img}')`;
+    //event.style.backgroundImage = `url('${itemConfig.img}')`;
     event.style.height = `${this.config.height}px`;
     event.style.width  = `${this.config.width}px`;
+
+    var image = document.createElement("span");
+    image.classList.add("bg-cover");
+    image.style.backgroundImage = `url('${itemConfig.img}')`;
+    event.appendChild(image);
 
     var nameContent = document.createTextNode(itemConfig.name),
     name =  document.createElement("span");
