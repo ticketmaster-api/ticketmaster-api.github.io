@@ -218,6 +218,7 @@ div[w-tmapikey] .bg-cover {
     height: 100%;
     display: block;
     overflow: hidden;
+    background-position: center center;
 }
 
 

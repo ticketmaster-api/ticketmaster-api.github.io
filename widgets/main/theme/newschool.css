@@ -148,6 +148,7 @@ div[w-theme="newschool"] .bg-cover {
     -moz-opacity: 0.25;
     -khtml-opacity: 0.25;
     opacity: 0.25;
+    background-position: center center;
 }
 
 div[w-theme="newschool"] .bg-cover:before {
