@@ -115,6 +115,9 @@ div[w-theme="oldschool"] .event-wrapper {
     font-size: 16px;
     line-height: 1.2;
     color: #fff;
+}
+
+div[w-theme="oldschool"] .bg-cover {
     background: url('http://ticketmaster-api-staging.github.io/assets/img/widgets/paper_@2X.png') no-repeat !important;
 }
 

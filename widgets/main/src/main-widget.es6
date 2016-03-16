@@ -21,7 +21,7 @@ class TicketmasterWidget {
 
   get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
 
-  get sliderDelay(){ return 10000; }
+  get sliderDelay(){ return 1000000; }
 
   get sliderRestartDelay(){ return 20000; }
 
@@ -79,7 +79,6 @@ class TicketmasterWidget {
 
     // Set theme modificators
     this.themeModificators = {
-      "simple"    : this.defaultModificator.bind(this),
       "oldschool" : this.oldSchoolModificator.bind(this),
       "newschool" : this.newSchoolModificator.bind(this)
     };
@@ -107,7 +106,9 @@ class TicketmasterWidget {
     this.eventsRootContainer.style.width  = `${this.config.width}px`;
     this.eventsRootContainer.style.borderRadius =  `${this.config.borderradius}px`;
 
-    this.clear();
+    //this.clear();
+
+    this.AdditionalElements();
 
     this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
 
@@ -145,12 +146,9 @@ class TicketmasterWidget {
       this.hideMessageWithoutDelay = hideMessageWithoutDelay;
       this.messageContent.innerHTML = message;
       this.messageDialog.classList.add("event-message-visible");
-      if(this.messageTimeout) clear
-      this.clear();
-
-      if( themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-        themeModificators[ this.widgetConfig.theme ]();
-      }Timeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+      if (this.messageTimeout) {
+        clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+      }
     }
   }
 
@@ -167,7 +165,7 @@ class TicketmasterWidget {
   }
   // End message
 
-  defaultModificator(){
+  AdditionalElements(){
     var legalNoticeContent = document.createTextNode('Legal Notice'),
         legalNotice = document.createElement("a");
     legalNotice.appendChild(legalNoticeContent);
@@ -197,14 +195,14 @@ class TicketmasterWidget {
   oldSchoolModificator(){
     var generalAdmission = document.createElement("div"),
         generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-    generalAdmission.classList.add("general-admission");
+    generalAdmission.classList.add("general-admission", "modificator");
     generalAdmission.appendChild(generalAdmissionText);
-    this.widgetRoot.appendChild(generalAdmission);
+    this.eventsRootContainer.appendChild(generalAdmission);
   }
 
   newSchoolModificator(){
     var ticketLogo = document.createElement("div");
-    ticketLogo.classList.add("ticket-logo");
+    ticketLogo.classList.add("ticket-logo", "modificator");
 
     var headLogo = document.createElement("img");
     headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
@@ -502,9 +500,18 @@ class TicketmasterWidget {
     return result + ' ' + LZ(H) + ':' + m + ' ' + a;
   }
 
-  clear(){
+  clearEvents(){
     this.eventsRoot.innerHTML = "";
-    //this.dotsContainer.innerHTML = "";
+  }
+
+  clear(){
+    var modificatorList = this.widgetRoot.getElementsByClassName('modificator');
+    while (modificatorList.length) {
+      let el = modificatorList[0],
+          parent = el.parentNode;
+      parent.removeChild(el);
+    }
+    this.clearEvents();
   }
 
   update() {
@@ -515,12 +522,6 @@ class TicketmasterWidget {
     }
 
     this.config = this.widgetRoot.attributes;
-
-    if( this.config.theme !== oldTheme.theme ){
-      if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-        this.themeModificators[ this.widgetConfig.theme ]();
-      }
-    }
 
     this.widgetRoot.style.height = `${this.config.height}px`;
     this.widgetRoot.style.width  = `${this.config.width}px`;
@@ -535,6 +536,11 @@ class TicketmasterWidget {
 
     if(this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
       this.clear();
+
+      if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+        this.themeModificators[ this.widgetConfig.theme ]();
+      }
+
       this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
     }
     else{
@@ -657,7 +663,7 @@ class TicketmasterWidget {
 
   eventsLoadingHandler(){
     let widget = this.widget;
-    widget.clear(); // Additional clearing after each loading
+    widget.clearEvents(); // Additional clearing after each loading
     if (this && this.readyState == XMLHttpRequest.DONE ) {
       if(this.status == 200){
         widget.events = JSON.parse(this.responseText);

@@ -92,7 +92,7 @@ div[w-theme="newschool"] .events-root-container{
     box-sizing: content-box;
 }
 
-div[w-theme="newschool"] ul{
+div[w-theme="newschool"] ul.events-root {
     margin: 60px 0 0 0;
     padding: 0;
     -webkit-transition: margin 0.5s ease-in-out;
@@ -391,7 +391,8 @@ div[w-theme="newschool"] .events_control:before {
     height: 56px;
     border-radius: 28px;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background: #b7c9d3 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
+    background: #17A7F7 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
+    /*background: #b7c9d3 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;*/
 }
 
 div[w-theme="newschool"] .events_control-left {
@@ -504,4 +505,3 @@ div[w-theme="newschool"] .events_control-horizontal.events_control-hidden {
 div[w-theme="newschool"] .event-group {
     width: 100%;
 }
-
