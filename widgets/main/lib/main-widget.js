@@ -41,13 +41,14 @@ var TicketmasterWidget = function () {
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
+
+    //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
+
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://localhost:4000/widgets/main/theme/";
+      return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
     }
-    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
-
   }, {
     key: "logoUrl",
     get: function get() {
@@ -71,7 +72,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "sliderDelay",
     get: function get() {
-      return 1000000;
+      return 10000;
     }
   }, {
     key: "sliderRestartDelay",
@@ -294,8 +295,16 @@ var TicketmasterWidget = function () {
       this.widgetRoot.appendChild(ticketLogo);
     }
   }, {
-    key: "toggleControlsVisibilityX",
-    value: function toggleControlsVisibilityX() {
+    key: "hideSliderControls",
+    value: function hideSliderControls() {
+      this.prevEventX.classList.add(this.controlHiddenClass);
+      this.nextEventX.classList.add(this.controlHiddenClass);
+      this.prevEventY.classList.add(this.controlHiddenClass);
+      this.nextEventY.classList.add(this.controlHiddenClass);
+    }
+  }, {
+    key: "toggleControlsVisibility",
+    value: function toggleControlsVisibility() {
       // Horizontal
       if (this.slideCountX > 1) {
         this.prevEventX.classList.remove(this.controlHiddenClass);
@@ -311,12 +320,17 @@ var TicketmasterWidget = function () {
       }
 
       // Vertical
-      if (this.eventsGroups.length) if (this.eventsGroups[this.currentSlideX].length > 1) {
-        this.prevEventY.classList.remove(this.controlHiddenClass);
-        this.nextEventY.classList.remove(this.controlHiddenClass);
-        if (this.currentSlideY === 0) {
+      if (this.eventsGroups.length) {
+        if (this.eventsGroups[this.currentSlideX].length > 1) {
+          this.prevEventY.classList.remove(this.controlHiddenClass);
+          this.nextEventY.classList.remove(this.controlHiddenClass);
+          if (this.currentSlideY === 0) {
+            this.prevEventY.classList.add(this.controlHiddenClass);
+          } else if (this.currentSlideY === this.eventsGroups[this.currentSlideX].length - 1) {
+            this.nextEventY.classList.add(this.controlHiddenClass);
+          }
+        } else {
           this.prevEventY.classList.add(this.controlHiddenClass);
-        } else if (this.currentSlideY === this.eventsGroups[this.currentSlideX].length - 1) {
           this.nextEventY.classList.add(this.controlHiddenClass);
         }
       } else {
@@ -371,7 +385,7 @@ var TicketmasterWidget = function () {
       this.currentSlideY = 0;
       this.currentSlideX = slideIndex;
       this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
-      this.toggleControlsVisibilityX();
+      this.toggleControlsVisibility();
       this.setEventsCounter();
       //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
       //for(let i = 0; dots.length > i; i++){
@@ -391,7 +405,7 @@ var TicketmasterWidget = function () {
       if (eventGroup.length) {
         eventGroup = eventGroup[0];
         eventGroup.style.marginTop = "-" + this.currentSlideY * this.config.height + "px";
-        this.toggleControlsVisibilityX();
+        this.toggleControlsVisibility();
       }
     }
   }, {
@@ -536,7 +550,7 @@ var TicketmasterWidget = function () {
       this.currentSlideX = 0;
       this.currentSlideY = 0;
       this.runAutoSlideX();
-      this.toggleControlsVisibilityX();
+      this.toggleControlsVisibility();
 
       //if(this.slideCountX > 1)
       //  for(var i = 0; this.slideCountX > i; i++){
@@ -603,6 +617,10 @@ var TicketmasterWidget = function () {
       }
 
       this.config = this.widgetRoot.attributes;
+
+      /*if(this.config.theme !== null){
+        this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
+      }*/
 
       this.widgetRoot.style.height = this.config.height + "px";
       this.widgetRoot.style.width = this.config.width + "px";
@@ -740,6 +758,7 @@ var TicketmasterWidget = function () {
         // We haven't any results
         this.showMessage("No results were found.", true);
         this.reduceParamsOrder = 0;
+        this.hideSliderControls();
       }
     }
   }, {
@@ -845,7 +864,7 @@ var TicketmasterWidget = function () {
           var currentEvent = {};
 
           currentEvent.id = eventsSet[key].id;
-          currentEvent.url = eventsSet[key].eventUrl ? eventsSet[key].eventUrl : this.eventUrl + currentEvent.id;
+          currentEvent.url = eventsSet[key].url;
           currentEvent.name = eventsSet[key].name;
 
           currentEvent.date = {

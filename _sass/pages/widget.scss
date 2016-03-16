@@ -44,9 +44,28 @@
 
 .widget-container {
   float: left;
-  border: 1px dashed #ccc;
-  margin: 20px 1px 0 1px;
+  position: relative;
+  border-bottom: 1px dashed #ccc;
+
+  &:before,
+  &:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 0;
+    border-left: 1px dashed #ccc;
+  }
+
+  &:before{
+    left: 0;
+  }
+
+  &:after{
+    right: 0;
+  }
+
   div[w-tmapikey] {
-    margin: -20px -1px 0 -1px;
+    z-index: 1;
   }
 }
