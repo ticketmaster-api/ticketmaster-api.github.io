@@ -17,7 +17,7 @@ redirect_from:
 [V 2.0]({{"/products-and-docs/apis/discovery/v2/" | prepend: site.baseurl}})
 
 {: .version-button }
-[V 1.0]({{"/products-and-docs/apis/discovery/v2/" | prepend: site.baseurl}})
+[V 1.0]({{"/products-and-docs/apis/discovery/v1/" | prepend: site.baseurl}})
 
 Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to all Ticketmaster events, as well as Universe and TicketWeb events.
 {: .lead .article}
