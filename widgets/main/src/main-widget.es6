@@ -197,14 +197,14 @@ class TicketmasterWidget {
   oldSchoolModificator(){
     var generalAdmission = document.createElement("div"),
         generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-    generalAdmission.classList.add("general-admission");
+    generalAdmission.classList.add("general-admission", "modificator");
     generalAdmission.appendChild(generalAdmissionText);
-    this.widgetRoot.appendChild(generalAdmission);
+    this.eventsRootContainer.appendChild(generalAdmission);
   }
 
   newSchoolModificator(){
     var ticketLogo = document.createElement("div");
-    ticketLogo.classList.add("ticket-logo");
+    ticketLogo.classList.add("ticket-logo", "modificator");
 
     var headLogo = document.createElement("img");
     headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
@@ -503,6 +503,12 @@ class TicketmasterWidget {
   }
 
   clear(){
+    var modificatorList = this.eventsRootContainer.getElementsByClassName('modificator');
+    while (modificatorList.length) {
+      let el = modificatorList[0],
+          parent = el.parentNode;
+      parent.removeChild(el);
+    }
     this.eventsRoot.innerHTML = "";
     //this.dotsContainer.innerHTML = "";
   }
