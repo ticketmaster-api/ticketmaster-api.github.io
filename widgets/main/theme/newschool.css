@@ -90,6 +90,7 @@ div[w-theme="newschool"] .events-root-container{
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
+    border: solid 1px #cccccc;
 }
 
 div[w-theme="newschool"] ul.events-root {

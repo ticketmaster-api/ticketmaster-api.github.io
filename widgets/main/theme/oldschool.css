@@ -90,6 +90,7 @@ div[w-theme="oldschool"] .events-root-container{
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
+    border: 2px solid #f7ec7a;
 }
 
 div[w-theme="oldschool"] ul{
@@ -470,4 +471,3 @@ div[w-theme="oldschool"] .events_control-horizontal.events_control-hidden {
 div[w-theme="oldschool"] .event-group {
     width: 100%;
 }
-
