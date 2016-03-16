@@ -235,7 +235,7 @@ class TicketmasterWidget {
   }
 
 
-  toggleControlsVisibilityX(){
+  toggleControlsVisibility(){
     // Horizontal
     if(this.slideCountX > 1){
       this.prevEventX.classList.remove(this.controlHiddenClass);
