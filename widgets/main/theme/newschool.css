@@ -188,6 +188,18 @@ div[w-theme="newschool"] .event-wrapper:nth-child(2n+3):before {
     position: absolute;
 }
 
+div[w-theme="newschool"] .event-wrapper:nth-child(2n+4):before {
+    content: '';
+    background-color: rgba(79, 24, 220, 0.6);
+    position: absolute;
+}
+
+div[w-theme="newschool"] .event-wrapper:nth-child(2n+5):before {
+    content: '';
+    background-color: rgba(220, 24, 24, 0.6);
+    position: absolute;
+}
+
 div[w-theme="newschool"] .event-content-wraper {
     display: block;
     width: 100%;
@@ -203,10 +215,10 @@ div[w-theme="newschool"] .ticket-logo{
     background: #d03200;
     color: #ffffff;
     position: absolute;
-    width: 100%;
+    width: 100.3%;
     height: 24px;
     text-align: center;
-    top: 36px;
+    top: 37px;
 }
 
 div[w-theme="newschool"] .ticket-logo img {
