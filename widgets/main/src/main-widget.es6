@@ -954,11 +954,14 @@ class TicketmasterWidget {
       firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
       lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     }
-    else {
+    else if(period == "week"){
       var first = date.getDate() - date.getDay();
       var last = first + 6;
       firstDay = new Date(date.setDate(first));
       lastDay = new Date(date.setDate(last));
+    } else {
+      firstDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      lastDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     }
 
     firstDay.setHours(0);   lastDay.setHours(23);
