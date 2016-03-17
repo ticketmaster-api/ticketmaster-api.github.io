@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>pattern_lines</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-676.000000, -478.000000)" fill="#FFFFFF">
+            <g id="pattern_lines" transform="translate(676.000000, 478.000000)">
+                <path d="M0,0.0001 L0,2.3281 L2.328,0.0001 L0,0.0001 Z" id="Fill-1"></path>
+                <path d="M96.6717,0.0001 L-0.0003,96.6721 L-0.0003,100.0001 L2.3277,100.0001 L99.9997,2.3281 L99.9997,0.0001 L96.6717,0.0001 Z" id="Fill-2"></path>
+                <path d="M81.5985,0.0001 L0.0005,81.5981 L0.0005,87.2541 L87.2545,0.0001 L81.5985,0.0001 Z" id="Fill-3"></path>
+                <path d="M67.6197,0.0001 L-0.0003,67.6201 L-0.0003,73.2761 L73.2757,0.0001 L67.6197,0.0001 Z" id="Fill-4"></path>
+                <path d="M53.7345,0.0001 L0.0005,53.7351 L0.0005,59.3911 L59.3915,0.0001 L53.7345,0.0001 Z" id="Fill-5"></path>
+                <path d="M39.7719,0.0001 L-0.0001,39.7721 L-0.0001,45.4281 L45.4289,0.0001 L39.7719,0.0001 Z" id="Fill-6"></path>
+                <path d="M25.6563,0.0001 L0.0003,25.6551 L0.0003,31.3121 L31.3123,0.0001 L25.6563,0.0001 Z" id="Fill-7"></path>
+                <path d="M11.7495,0.0001 L0.0005,11.7501 L0.0005,17.4061 L17.4065,0.0001 L11.7495,0.0001 Z" id="Fill-8"></path>
+                <path d="M81.5787,100 L87.2347,100 L99.9997,87.235 L99.9997,81.579 L81.5787,100 Z" id="Fill-9"></path>
+                <path d="M67.6116,100 L73.2676,100 L99.9996,73.268 L99.9996,67.612 L67.6116,100 Z" id="Fill-10"></path>
+                <path d="M53.6616,100 L59.3176,100 L99.9996,59.318 L99.9996,53.662 L53.6616,100 Z" id="Fill-11"></path>
+                <path d="M39.6945,100 L45.3505,100 L99.9995,45.351 L99.9995,39.695 L39.6945,100 Z" id="Fill-12"></path>
+                <path d="M25.5888,100 L31.2448,100 L99.9998,31.244 L99.9998,25.588 L25.5888,100 Z" id="Fill-13"></path>
+                <path d="M11.6415,100 L17.2985,100 L99.9995,17.298 L99.9995,11.642 L11.6415,100 Z" id="Fill-14"></path>
+                <path d="M96.6717,100 L99.9997,100 L99.9997,96.672 L96.6717,100 Z" id="Fill-15"></path>
+            </g>
+        </g>
+    </g>
+</svg>
