@@ -143,11 +143,11 @@ div[w-theme="newschool"] .bg-cover {
     -webkit-filter: grayscale(100%);
     filter: gray;
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
-    filter: alpha(opacity=25);
-    -moz-opacity: 0.25;
-    -khtml-opacity: 0.25;
-    opacity: 0.25;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    filter: alpha(opacity=10);
+    -moz-opacity: 0.10;
+    -khtml-opacity: 0.10;
+    opacity: 0.10;
     background-position: center center;
 }
 
@@ -160,7 +160,9 @@ div[w-theme="newschool"] .bg-cover:before {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/assets/img/widgets/widget-bg.png");
+    /* background-image: url("/assets/img/widgets/widget-bg.png"); */
+    background-image: url("/assets/img/widgets/pattern_lines.svg");
+    opacity: 0.5;
     display: block;
 }
 
@@ -175,31 +177,31 @@ div[w-theme="newschool"] .event-wrapper:before {
 
 div[w-theme="newschool"] .event-wrapper:nth-child(2n+1):before {
     content: '';
-    background-color: rgba(148, 204, 165, 0.6);
+    background-color: rgba(148, 204, 165, 0.15);
     position: absolute;
 }
 
 div[w-theme="newschool"] .event-wrapper:nth-child(2n+2):before {
     content: '';
-    background-color: rgba(123, 204, 198, 0.6);
+    background-color: rgba(123, 204, 198, 0.15);
     position: absolute;
 }
 
 div[w-theme="newschool"] .event-wrapper:nth-child(2n+3):before {
     content: '';
-    background-color: rgba(24, 157, 220, 0.6);
+    background-color: rgba(24, 157, 220, 0.15);
     position: absolute;
 }
 
 div[w-theme="newschool"] .event-wrapper:nth-child(2n+4):before {
     content: '';
-    background-color: rgba(79, 24, 220, 0.6);
+    background-color: rgba(79, 24, 220, 0.15);
     position: absolute;
 }
 
 div[w-theme="newschool"] .event-wrapper:nth-child(2n+5):before {
     content: '';
-    background-color: rgba(220, 24, 24, 0.6);
+    background-color: rgba(220, 24, 24, 0.15);
     position: absolute;
 }
 
