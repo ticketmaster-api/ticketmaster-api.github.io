@@ -482,44 +482,12 @@ div[w-theme="newschool"] .events_control-horizontal.events_control-hidden {
     width: 0;
 }
 
-/*@media (max-width: 1024px) {*/
-/*div[w-theme="newschool"] .events_control{*/
-/*display: none;*/
-/*}*/
-/*}*/
-
-/*dots*/
-/*div[w-theme="newschool"] .events_dots {*/
-/*position: absolute;*/
-/*bottom: 0;*/
-/*left: 0;*/
-/*width: 100%;*/
-/*text-align: center;*/
-/*}*/
-
-/*div[w-theme="newschool"] .events_dots__item {*/
-/*display: inline-block;*/
-/*background-color: #fff;*/
-/*width: 8px;*/
-/*height: 8px;*/
-/*border-radius: 50%;*/
-/*margin: 0 2px;*/
-/*cursor: pointer;*/
-/*opacity: 0.6;*/
-/*-webkit-transition: opacity 0.2s ease-in-out;*/
-/*transition: opacity 0.2s ease-in-out;*/
-/*}*/
-
-/*div[w-theme="newschool"] .events_dots__item:hover,*/
-/*div[w-theme="newschool"] .events_dots__item-active {*/
-/*opacity: 1;*/
-/*}*/
-
-/*div[w-theme="newschool"] .events_dots__item-active {*/
-/*cursor: default;*/
-/*}*/
-
 /*group*/
 div[w-theme="newschool"] .event-group {
     width: 100%;
+}
+
+/*  Hide button before design implemented */
+div[w-theme="newschool"] .event-buy-btn {
+    display: none;
 }

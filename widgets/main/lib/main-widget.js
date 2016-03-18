@@ -62,7 +62,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "questionUrl",
     get: function get() {
-      return "http://developer.ticketmaster.com/support/";
+      return "http://developer.ticketmaster.com/support/faq/";
     }
   }, {
     key: "updateExceptions",
@@ -134,11 +134,6 @@ var TicketmasterWidget = function () {
       "newschool": this.newSchoolModificator.bind(this)
     };
 
-    // dots container
-    //this.dotsContainer = document.createElement("div");
-    //this.dotsContainer.classList.add("events_dots");
-    //this.eventsRootContainer.appendChild(this.dotsContainer);
-
     this.config = this.widgetRoot.attributes;
 
     if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
@@ -165,6 +160,7 @@ var TicketmasterWidget = function () {
 
     if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
       this.themeModificators[this.widgetConfig.theme]();
+      this.embedUniversePlugin();
     }
 
     this.initMessage();
@@ -172,8 +168,6 @@ var TicketmasterWidget = function () {
     this.initSliderControls();
 
     this.initEventCounter();
-
-    this.embedUniversePlugin();
   }
 
   _createClass(TicketmasterWidget, [{
@@ -382,11 +376,10 @@ var TicketmasterWidget = function () {
     value: function setSlideManually(slideIndex, isDirectionX) {
       var _this3 = this;
 
-      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      this.stopAutoSlideX();
       this.sliderTimeout = setTimeout(function () {
         _this3.runAutoSlideX();
       }, this.sliderRestartDelay);
-      clearInterval(this.sliderInterval);
       if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
     }
   }, {
@@ -398,14 +391,6 @@ var TicketmasterWidget = function () {
       this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
       this.toggleControlsVisibility();
       this.setEventsCounter();
-      //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
-      //for(let i = 0; dots.length > i; i++){
-      //  if(i === slideIndex){
-      //    dots[i].classList.add("events_dots__item-active");
-      //  }else{
-      //    dots[i].classList.remove("events_dots__item-active");
-      //  }
-      //}
     }
   }, {
     key: "goToSlideY",
@@ -431,6 +416,12 @@ var TicketmasterWidget = function () {
           _this4.goToSlideX(slideIndex);
         }, this.sliderDelay);
       }
+    }
+  }, {
+    key: "stopAutoSlideX",
+    value: function stopAutoSlideX() {
+      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      if (this.sliderInterval) clearInterval(this.sliderInterval);
     }
   }, {
     key: "initSliderControls",
@@ -539,17 +530,6 @@ var TicketmasterWidget = function () {
         handleTouchMove.call(_this5, e);
       }, false);
     }
-
-    //initDot(i){
-    //  var dot = document.createElement("span");
-    //  dot.classList.add("events_dots__item", "events_dots__item-" + i);
-    //  if(i === 0) dot.classList.add("events_dots__item-active");
-    //  this.dotsContainer.appendChild(dot);
-    //  dot.addEventListener("click", ()=> {
-    //    this.setSlideManually(i, true);
-    //  });
-    //}
-
   }, {
     key: "initSlider",
     value: function initSlider() {
@@ -562,11 +542,6 @@ var TicketmasterWidget = function () {
       this.currentSlideY = 0;
       this.runAutoSlideX();
       this.toggleControlsVisibility();
-
-      //if(this.slideCountX > 1)
-      //  for(var i = 0; this.slideCountX > i; i++){
-      //    this.initDot(i);
-      //  }
     }
   }, {
     key: "formatDate",
@@ -932,13 +907,13 @@ var TicketmasterWidget = function () {
     }
   }, {
     key: "initPretendedLink",
-    value: function initPretendedLink(el, url) {
+    value: function initPretendedLink(el, url, isBlank) {
       if (el && url) {
         el.setAttribute('data-url', url);
         el.addEventListener('click', function () {
           var url = this.getAttribute('data-url');
           if (url) {
-            var win = window.open(url, '_blank');
+            var win = window.open(url, isBlank ? '_blank' : '_self');
             win.focus();
           }
         });
@@ -948,11 +923,12 @@ var TicketmasterWidget = function () {
   }, {
     key: "createDOMItem",
     value: function createDOMItem(itemConfig) {
+      var _this7 = this;
 
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
-      itemConfig.url = 'https://www.universe.com/events/get-your-chicago-blogapolooza-meetup-pass-now-tickets-chicago-ZDQMNH?ref=ticketmaster';
-      this.initPretendedLink(medWrapper, itemConfig.url);
+      //itemConfig.url = 'https://www.universe.com/events/get-your-chicago-blogapolooza-meetup-pass-now-tickets-chicago-ZDQMNH?ref=ticketmaster';
+      this.initPretendedLink(medWrapper, itemConfig.url, true);
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
@@ -1026,6 +1002,9 @@ var TicketmasterWidget = function () {
         buyBtn.classList.add("event-buy-btn");
         buyBtn.target = '_blank';
         buyBtn.href = itemConfig.url;
+        buyBtn.addEventListener('click', function () {
+          _this7.stopAutoSlideX();
+        });
         event.appendChild(buyBtn);
       }
 
