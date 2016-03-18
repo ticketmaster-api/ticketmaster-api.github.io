@@ -121,6 +121,16 @@ class TicketmasterWidget {
     this.initSliderControls();
 
     this.initEventCounter();
+
+    this.embedUniversePlugin();
+  }
+
+  embedUniversePlugin(){
+    let script = document.createElement('script');
+    script.setAttribute('src', 'https://www.universe.com/embed.js');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('charset', 'UTF-8');
+    (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
   }
 
   // Message
@@ -637,6 +647,10 @@ class TicketmasterWidget {
     }
   }
 
+  isUniverseUrl(url){
+    return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
+  }
+
   resetReduceParamsOrder(){
     this.reduceParamsOrder = 0;
   }
@@ -835,16 +849,31 @@ class TicketmasterWidget {
     this.xmlHTTP.send();
   }
 
+
+  initPretendedLink(el, url){
+    if(el && url){
+      el.setAttribute('data-url', url);
+      el.addEventListener('click', function(){
+        let url = this.getAttribute('data-url');
+        if(url){
+          let win = window.open(url, '_blank');
+          win.focus();
+        }
+      });
+    }
+    return el;
+  }
+
+
   createDOMItem(itemConfig){
 
-    var medWrapper = document.createElement("a");
+    var medWrapper = document.createElement("div");
     medWrapper.classList.add("event-content-wraper");
-    medWrapper.target = '_blank';
-    medWrapper.href = itemConfig.url;
+    itemConfig.url = 'https://www.universe.com/events/get-your-chicago-blogapolooza-meetup-pass-now-tickets-chicago-ZDQMNH?ref=ticketmaster';
+    this.initPretendedLink(medWrapper, itemConfig.url);
 
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
-    //event.style.backgroundImage = `url('${itemConfig.img}')`;
     event.style.height = `${this.config.height}px`;
     event.style.width  = `${this.config.width}px`;
 
@@ -909,6 +938,17 @@ class TicketmasterWidget {
     }
 
     event.appendChild(medWrapper);
+
+    if(this.isUniverseUrl(itemConfig.url)){
+      let buyBtn = document.createElement("a"),
+          buyBtnText = document.createTextNode('BUY NOW');
+      buyBtn.appendChild(buyBtnText);
+      buyBtn.classList.add("event-buy-btn");
+      buyBtn.target = '_blank';
+      buyBtn.href = itemConfig.url;
+      event.appendChild(buyBtn);
+    }
+
     return event;
   }
 

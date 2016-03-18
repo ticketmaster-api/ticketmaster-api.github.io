@@ -252,13 +252,13 @@ div[w-theme="simple"] .event-wrapper:before {
 
 
 div[w-theme="simple"] .event-content-wraper {
-    display: block;
     width: 100%;
     padding: 48px 28px 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     text-decoration: none;
+    cursor: pointer;
 }
 
 div[w-theme="simple"] .event-name{
@@ -367,6 +367,26 @@ div[w-theme="simple"] .event-logo:after {
 /*group*/
 div[w-theme="simple"] .event-group {
     width: 100%;
+}
+
+/* BUY NOW */
+div[w-theme="simple"] .event-buy-btn {
+    position: absolute;
+    left: 20px;
+    bottom: 150px;
+    width: 74px;
+    height: 24px;
+    padding-top: 5px;
+    border-radius: 4px;
+    background-color: #009cde;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 16px;
+    color: #ffffff;
+    text-align: center;
 }
 
 

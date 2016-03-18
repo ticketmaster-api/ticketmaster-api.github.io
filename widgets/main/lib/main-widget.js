@@ -172,12 +172,23 @@ var TicketmasterWidget = function () {
     this.initSliderControls();
 
     this.initEventCounter();
+
+    this.embedUniversePlugin();
   }
 
-  // Message
-
-
   _createClass(TicketmasterWidget, [{
+    key: "embedUniversePlugin",
+    value: function embedUniversePlugin() {
+      var script = document.createElement('script');
+      script.setAttribute('src', 'https://www.universe.com/embed.js');
+      script.setAttribute('type', 'text/javascript');
+      script.setAttribute('charset', 'UTF-8');
+      (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+    }
+
+    // Message
+
+  }, {
     key: "initMessage",
     value: function initMessage() {
       var _this = this;
@@ -726,6 +737,11 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "isUniverseUrl",
+    value: function isUniverseUrl(url) {
+      return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
+    }
+  }, {
     key: "resetReduceParamsOrder",
     value: function resetReduceParamsOrder() {
       this.reduceParamsOrder = 0;
@@ -915,17 +931,31 @@ var TicketmasterWidget = function () {
       this.xmlHTTP.send();
     }
   }, {
+    key: "initPretendedLink",
+    value: function initPretendedLink(el, url) {
+      if (el && url) {
+        el.setAttribute('data-url', url);
+        el.addEventListener('click', function () {
+          var url = this.getAttribute('data-url');
+          if (url) {
+            var win = window.open(url, '_blank');
+            win.focus();
+          }
+        });
+      }
+      return el;
+    }
+  }, {
     key: "createDOMItem",
     value: function createDOMItem(itemConfig) {
 
-      var medWrapper = document.createElement("a");
+      var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
-      medWrapper.target = '_blank';
-      medWrapper.href = itemConfig.url;
+      itemConfig.url = 'https://www.universe.com/events/get-your-chicago-blogapolooza-meetup-pass-now-tickets-chicago-ZDQMNH?ref=ticketmaster';
+      this.initPretendedLink(medWrapper, itemConfig.url);
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
-      //event.style.backgroundImage = `url('${itemConfig.img}')`;
       event.style.height = this.config.height + "px";
       event.style.width = this.config.width + "px";
 
@@ -988,6 +1018,17 @@ var TicketmasterWidget = function () {
       }
 
       event.appendChild(medWrapper);
+
+      if (this.isUniverseUrl(itemConfig.url)) {
+        var buyBtn = document.createElement("a"),
+            buyBtnText = document.createTextNode('BUY NOW');
+        buyBtn.appendChild(buyBtnText);
+        buyBtn.classList.add("event-buy-btn");
+        buyBtn.target = '_blank';
+        buyBtn.href = itemConfig.url;
+        event.appendChild(buyBtn);
+      }
+
       return event;
     }
   }, {
