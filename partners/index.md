@@ -6,6 +6,39 @@ excerpt: Collaborating with partners, clients and the startup community to build
 keywords: partners, certified partners, become an affilate
 ---
 
+{% capture distribution_partners_block %}
+[![Distribution Partners](/assets/img/partners/distribution-ic.svg)](#)
+
+### Distribution Partners
+
+{: .descr}
+Distribution partners deliver incremental audiences to help our clients sell more tickets
+
+[Get to know our Distribution partners](/partners/)
+{% endcapture %}
+
+{% capture certified_partners_block %}
+[![Certified Partners](/assets/img/partners/certified-ic.svg)](#)
+
+### Certified Partners
+
+{: .descr}
+Nexus Certified Partners are distinguished best-in-class solutions providers to the live events industry
+
+[Get to know our Nexus partners](/partners/)
+{% endcapture %}
+
+{% capture startups_block %}
+[![Startups &amp; Developers](/assets/img/partners/startups-ic.svg)](#)
+
+### Startups &amp; Developers
+
+{: .descr}
+Several words about startups and developers section. Main function and so on information
+
+[See all showcases](/partners/)
+{% endcapture %}
+
 {% capture distribution_header %}
 ## Distribution Partners
 {% endcapture %}
@@ -14,14 +47,14 @@ keywords: partners, certified partners, become an affilate
 {: .col-xs-4 .logo .logo-small}
 [![Groupon](/assets/img/partners/groupon-logo.png)](#)
 
+{: .col-xs-6 .logo .text-right .logo-small}
+[![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](#)
+
 {: .col-xs-4 .logo .logo-small}
 [![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](#)
 
 {: .col-xs-4 .logo .logo-small}
 [![Scorebig](/assets/img/partners/logos/score-big-logo.png)](#)
-
-{: .col-xs-6 .logo .text-right .logo-small}
-[![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](#)
 
 {: .col-xs-6 .logo .text-left .logo-small}
 [![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](#)
@@ -29,25 +62,11 @@ keywords: partners, certified partners, become an affilate
 
 {% capture distribution_more %}
 {: .caption}
-Dedicated to the mission to promote and sell client tickets through a variety of new storefronts. We enable this through content and transactional solutions, building amazing user experiences with our partners to delight Fans and drive sales.
+Description information about Distribution Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
 {% endcapture %}
-
-{% capture distribution_desc %}
-### Helping us reach the world
-
-{: .body .p}
-Distribution partners deliver incremental audiences to help our clients sell more tickets
-
-{: .no-margin-bottom}
-[Get to know our Distribution partners](/partners/distribution-partners/)
-
-{: .no-margin-top}
-[Talk to us about how to partner](mailto:distributedcommerce@ticketmaster.com)
-{% endcapture %}
-
 
 {% capture certified_header %}
 ## Certified Partners
@@ -132,19 +151,30 @@ If you are a current member of the Ticketmaster affiliate program, manage your a
 <div class="row parnters">
   <div class="row-container row-partners">
     <div class="col-xs-12 col-md-12">
-<div class="col-xs-12 col-md-6" markdown="1">
+
+<div class="col-xs-12 col-md-4" markdown="1">
+{{distribution_partners_block}}
+</div>
+
+<div class="col-xs-12 col-md-4" markdown="1">
+{{certified_partners_block}}
+</div>
+
+<div class="col-xs-12 col-md-4" markdown="1">
+{{startups_block}}
+</div>
+
+<div class="col-xs-12 col-md-12" markdown="1">
 {{distribution_header}}
-<div class="image">
+<div class="image col-xs-12 col-md-6">
 <div class="logo-container" markdown="1">
 {{distribution_logos}}
 <div class="clearfix"></div>
 </div>
 </div>
-<div class="show-more" markdown="1">
+<div class="show-more-right col-xs-12 col-md-6" markdown="1">
 {{distribution_more}}
 </div>
-<a href="#" class="show-more-link">Show more information</a>
-{{distribution_desc}}
 </div>
 <div class="col-xs-12 col-md-6" markdown="1">
 {{certified_header}}

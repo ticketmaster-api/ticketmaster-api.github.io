@@ -72,12 +72,11 @@ body .top-bar.bg-header {
     text-align: center;
   }
   .image {
-    width: 458px;
+    width: 50%;
     height: 232px;
-    border: 1px solid $white;
-    border-top: 1px solid $borderGrayColor;
     margin: 0 auto;
     position: relative;
+    float: left;
     .logo-container {
       @include vertical-align();
       .logo-small {
@@ -410,6 +409,10 @@ body .top-bar.bg-header {
   }
 }
 
+.descr {
+  width: 85%;
+  margin: 0 auto;
+}
 .distribution {
   padding-left: 0;
   padding-right: 0;
