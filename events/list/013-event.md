@@ -1,7 +1,5 @@
 ---
 
-prime: true
-
 category: event
 title: "React Los Angeles Monthly Meetup"
 
