@@ -213,7 +213,7 @@ div[w-theme="newschool"] .event-content-wraper {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: #fff;
-    text-decoration: none;
+    cursor: pointer;
 }
 
 div[w-theme="newschool"] .ticket-logo{

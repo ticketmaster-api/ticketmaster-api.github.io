@@ -143,14 +143,13 @@ div[w-theme="oldschool"] .event-wrapper:before {
 }
 
 div[w-theme="oldschool"] .event-content-wraper {
-    display: block;
     width: 100%;
     padding: 110px 28px 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: #fff;
-    text-decoration: none;
+    cursor: pointer;
 }
 
 div[w-theme="oldschool"] .general-admission{
