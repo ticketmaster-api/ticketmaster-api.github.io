@@ -186,7 +186,7 @@ div[w-theme="oldschool"] .event-date-wraper{
     background: #f7ec7a;
     position: absolute;
     left: 0;
-    top: 364px;
+    top: 325px;
     text-align: center;
     width: 100%;
     color: #414141;
@@ -202,7 +202,7 @@ div[w-theme="oldschool"] .event-date-wraper:after{
     width: 100%;
     height: 3px;
     border-top: 2px dashed #cccccc;
-    bottom: -30px;
+    bottom: -70px;
 }
 
 div[w-theme="oldschool"] .address-wrapper{
@@ -441,7 +441,7 @@ div[w-theme="oldschool"] .event-group {
 div[w-theme="oldschool"] .event-buy-btn {
     position: absolute;
     left: 50%;
-    bottom: 150px;
+    bottom: 145px;
     width: 74px;
     height: 24px;
     margin-left: -37px;
@@ -534,4 +534,18 @@ div[w-theme="oldschool"][w-layout="horizontal"] .events-counter{
     position: static;
     text-align: center;
     margin-top: 10px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"]  .event-name{
+    -webkit-line-clamp: 2;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-date-wraper:after {
+    bottom: -30px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-buy-btn {
+    left: 135px;
+    right: auto;
+    bottom: 20px;
 }
