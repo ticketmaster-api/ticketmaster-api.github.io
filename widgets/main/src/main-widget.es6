@@ -21,7 +21,7 @@ class TicketmasterWidget {
 
   get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout"]}
 
-  get sliderDelay(){ return 10000; }
+  get sliderDelay(){ return 10000000; }
 
   get sliderRestartDelay(){ return 20000; }
 
@@ -228,11 +228,16 @@ class TicketmasterWidget {
 
   //adds general admission element for OLDSCHOOL theme
   oldSchoolModificator(){
+
+    var generalAdmissionWrapper = document.createElement("div");
+        generalAdmissionWrapper.classList.add("general-admission", "modificator");
+
     var generalAdmission = document.createElement("div"),
         generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-    generalAdmission.classList.add("general-admission", "modificator");
-    generalAdmission.appendChild(generalAdmissionText);
-    this.eventsRootContainer.appendChild(generalAdmission);
+        generalAdmission.appendChild(generalAdmissionText);
+        generalAdmissionWrapper.appendChild(generalAdmission);
+
+    this.eventsRootContainer.appendChild(generalAdmissionWrapper);
   }
 
   newSchoolModificator(){
