@@ -78,12 +78,17 @@ body .top-bar.bg-header {
     position: relative;
     float: left;
     .logo-container {
+      border-right: 1px solid $borderGrayColor;
+      margin-top: 35px;
       @include vertical-align();
       .logo-small {
         img {
           max-height: 50px;
         }
       }
+     &.one {
+       margin-top: 0;
+     }
     }
     img {
       vertical-align: middle;
@@ -108,6 +113,22 @@ body .top-bar.bg-header {
       width: 458px;
     }
   }
+
+  .show-more-right {
+    overflow: hidden;
+    margin: 85px auto 0 auto;
+    .caption {
+      font-size: 14px;
+      line-height: 18px;
+      text-align: left;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    &.one {
+      margin-top: 55px;
+    }
+  }
+
   .show-more-link {
     position: relative;
     background: $white;
@@ -156,14 +177,19 @@ body .top-bar.bg-header {
   }
   p {
     &.logo {
-      margin: 0;
+      margin: 27px 12px 10px 12px;
+      float: none;
+      display: inline-block;
+      max-width: 104px;
       a {
         line-height: 60px;
       }
-      &:after {
-        content: '';
-        display: table;
-        clear: both;
+      &.logo-bottom {
+        margin-bottom: 20px;
+      }
+      &.logo-one {
+        max-width: 283px;
+        margin: 50px auto;
       }
     }
   }
@@ -172,6 +198,24 @@ body .top-bar.bg-header {
   }
   .no-margin-top {
     margin-top: 10px;
+  }
+}
+
+.underlined {
+  margin-top: 68px;
+  margin-bottom:0px;
+  padding-bottom: 27px;
+  border-bottom: 1px solid $borderGrayColor;
+}
+
+.affilated {
+  background: rgba(183, 201, 211, 0.2);
+  text-align: center;
+  margin: 70px auto 96px auto;
+  padding: 23px;
+  .button {
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 }
 
@@ -247,6 +291,7 @@ body .top-bar.bg-header {
         position: relative;
         top: 50%;
         margin-top: -45px;
+        max-height: 47px;
       }
       @media #{$max-768} {
         display: none;
