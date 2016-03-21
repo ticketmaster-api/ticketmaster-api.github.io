@@ -14,7 +14,51 @@
         }
         /*Normalize END*/
 
-        var tabsCount = 0;
+        var tabsCount = 0,
+            $htmlBody = $('body, html'),
+            $window = $(window);
+        var drawHideCodeBtn = false;
+
+        function toggleCodePanel(targetElement){
+            var $textBtns = $('.toggle-code-btn'),
+                headers = $('.underline'),
+                leftPanels = $('.documentation .content .article-wrapper .left-wrapper'),
+                //codePanel = $(targetElement).closest('.article').siblings(".tab-panel-offset"), //clicked 'code panel'
+                codePanels = $(".tab-panel-offset"),
+                expandCssClass = 'expand',
+                collapseCssClass = 'collapse-code-column',
+                excludeElemList = $('.left-wrapper').contents('.lead'); //exclude collapse elememt if it contain '.lead'
+
+            if( codePanels.hasClass('collapse-code-column') ){
+                 /*leftPanels.animate({width: '55%'}, "fast");
+                 headers.animate({width: '55%'}, "fast");
+                 codePanels.animate({width: '45%'}, "fast").removeClass(collapseCssClass);*/
+                codePanels.removeClass(collapseCssClass);
+                leftPanels.removeClass(expandCssClass);
+                headers.removeClass(expandCssClass);
+                $textBtns.text('hide code');
+            }else {
+                codePanels.addClass(collapseCssClass);
+                leftPanels.addClass(expandCssClass);
+                headers.addClass(expandCssClass);
+                $textBtns.text('show code');
+            }
+            excludeElemList.parent('.left-wrapper').removeClass(expandCssClass);
+
+            $(window).trigger('resize');// update tables size
+
+            function autoScroll(topPadding, delay) {
+                //if btn will be near header $(targetElement).offset().top
+                var dif = $window.scrollTop() - $('.toggle-code-btn').offset().top;
+                if (dif != 0) {
+                    $htmlBody.animate({
+                        scrollTop: $window.scrollTop() - dif - topPadding
+                    }, delay);
+                }
+            }
+            //autoScroll(50, 330);
+
+        }
 
         main.find('.article').each(
             function () {
@@ -28,19 +72,30 @@
             var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
             var firstElemGroupLeft = groupLeft.parent().children().first();
             var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
+            var toggleCodeBtn = $(document.createElement("a")).addClass("button toggle-code-btn");
+                toggleCodeBtn.text('hide code');
+
+
 
             group.wrapAll('<div class="aside-wrapper"></div>');
 
             groupLeft.wrapAll('<div class="left-wrapper"></div>');
 
             //add link to console button
-            if (firstElemGroupLeft.hasClass("console-link"))
+            if (firstElemGroupLeft.hasClass("console-link")){
                 firstElemGroupLeft.append(consoleBtn);
+            }
 
             //add underline
             if (me.hasClass('lang-selector')) {
 
                 firstElemGroupLeft.addClass('underline');
+                //firstElemGroupLeft.append(toggleCodeBtn);
+
+                if( !drawHideCodeBtn ){
+                    $('.content').append(toggleCodeBtn);
+                    drawHideCodeBtn = true;
+                }
 
                 //move first element to class="aside-wrapper"
                 firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
@@ -211,6 +266,11 @@
             var id = $(this).parent().attr("id"),
                 urlParam = id ? "?id=" + id : "";
             window.location.href = '/products-and-docs/apis/interactive-console' + urlParam;
+        });
+
+        $(".toggle-code-btn").on("click", function(e){
+            e.preventDefault();
+            toggleCodePanel(this);
         });
 
         // Lang selector submenu show
