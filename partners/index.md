@@ -83,7 +83,7 @@ Have questions about our affiliate program? [Check out our FAQs!](/support/faq/#
 {% endcapture %}
 
 {% capture certified_header %}
-{: .underlined}
+{: .underlined .nex}
 ## Certified Partners
 {% endcapture %}
 
@@ -128,15 +128,15 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
   <div class="row-container row-partners">
     <div class="col-xs-12 col-md-12">
 
-<div class="col-xs-12 col-md-4" markdown="1">
+<div class="col-xs-12 col-sm-4 col-md-4" markdown="1">
 {{distribution_partners_block}}
 </div>
 
-<div class="col-xs-12 col-md-4" markdown="1">
+<div class="col-xs-12 col-sm-4 col-md-4" markdown="1">
 {{certified_partners_block}}
 </div>
 
-<div class="col-xs-12 col-md-4" markdown="1">
+<div class="col-xs-12 col-sm-4 col-md-4" markdown="1">
 {{startups_block}}
 </div>
 
@@ -148,7 +148,7 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 <div class="clearfix"></div>
 </div>
 </div>
-<div class="show-more-right col-xs-12 col-md-6" markdown="1">
+<div class="show-more-right col-xs-12 col-sm-6 col-md-6" markdown="1">
 {{distribution_more}}
 </div>
 </div>
@@ -174,7 +174,7 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 <div class="clearfix"></div>
 </div>
 </div>
-<div class="show-more-right one col-xs-12 col-md-6" markdown="1">
+<div class="show-more-right one col-xs-12 col-sm-6 col-md-6" markdown="1">
 {{certified_more}}
 </div>
 </div>

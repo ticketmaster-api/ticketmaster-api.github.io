@@ -181,15 +181,21 @@ body .top-bar.bg-header {
       float: none;
       display: inline-block;
       max-width: 104px;
+      @media (max-width: 768px) {
+        max-width: 80px;
+      }
       a {
         line-height: 60px;
       }
       &.logo-bottom {
         margin-bottom: 20px;
+        @media (max-width: 768px) {
+          margin-top: 10px;
+        }
       }
       &.logo-one {
         max-width: 283px;
-        margin: 50px auto;
+        margin: 38px auto;
       }
     }
   }
@@ -206,6 +212,9 @@ body .top-bar.bg-header {
   margin-bottom:0px;
   padding-bottom: 27px;
   border-bottom: 1px solid $borderGrayColor;
+  &.nex {
+    margin-bottom: 20px;
+  }
 }
 
 .affilated {
