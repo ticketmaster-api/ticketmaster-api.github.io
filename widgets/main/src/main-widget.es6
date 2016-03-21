@@ -17,7 +17,7 @@ class TicketmasterWidget {
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
-  get questionUrl() { return "http://developer.ticketmaster.com/support/"; }
+  get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
   get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
 
@@ -83,11 +83,6 @@ class TicketmasterWidget {
       "newschool" : this.newSchoolModificator.bind(this)
     };
 
-    // dots container
-    //this.dotsContainer = document.createElement("div");
-    //this.dotsContainer.classList.add("events_dots");
-    //this.eventsRootContainer.appendChild(this.dotsContainer);
-
     this.config = this.widgetRoot.attributes;
 
     if(this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)){
@@ -114,13 +109,53 @@ class TicketmasterWidget {
 
     if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
       this.themeModificators[ this.widgetConfig.theme ]();
+      this.embedUniversePlugin();
     }
+
+    this.initBuyBtn();
 
     this.initMessage();
 
     this.initSliderControls();
 
     this.initEventCounter();
+
+  }
+
+  initBuyBtn(){
+    this.buyBtn = document.createElement("a");
+    this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
+    this.buyBtn.classList.add("event-buy-btn");
+    this.buyBtn.target = '_blank';
+    this.buyBtn.href = '';
+    this.buyBtn.addEventListener('click', (e)=> {
+      e.preventDefault();
+      this.stopAutoSlideX();
+    });
+    this.eventsRootContainer.appendChild(this.buyBtn);
+  }
+
+  setBuyBtnUrl(){
+    if(this.buyBtn){
+      let event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
+          url = '';
+      if(event){
+        if(event.url){
+          if(this.isUniverseUrl(event.url)){
+            url = event.url;
+          }
+        }
+      }
+      this.buyBtn.href = url;
+    }
+  }
+
+  embedUniversePlugin(){
+    let script = document.createElement('script');
+    script.setAttribute('src', 'https://www.universe.com/embed.js');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('charset', 'UTF-8');
+    (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
   }
 
   // Message
@@ -295,11 +330,10 @@ class TicketmasterWidget {
   }
 
   setSlideManually(slideIndex, isDirectionX){
-    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
+    this.stopAutoSlideX();
     this.sliderTimeout = setTimeout(()=>{
       this.runAutoSlideX();
     }, this.sliderRestartDelay);
-    clearInterval(this.sliderInterval);
     if(isDirectionX)
       this.goToSlideX(slideIndex);
     else
@@ -313,14 +347,7 @@ class TicketmasterWidget {
     this.eventsRoot.style.marginLeft = `-${this.currentSlideX * 100}%`;
     this.toggleControlsVisibility();
     this.setEventsCounter();
-    //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
-    //for(let i = 0; dots.length > i; i++){
-    //  if(i === slideIndex){
-    //    dots[i].classList.add("events_dots__item-active");
-    //  }else{
-    //    dots[i].classList.remove("events_dots__item-active");
-    //  }
-    //}
+    this.setBuyBtnUrl();
   }
 
   goToSlideY(slideIndex){
@@ -331,6 +358,7 @@ class TicketmasterWidget {
       eventGroup = eventGroup[0];
       eventGroup.style.marginTop = `-${this.currentSlideY * this.config.height}px`;
       this.toggleControlsVisibility();
+      this.setBuyBtnUrl();
     }
   }
 
@@ -342,6 +370,11 @@ class TicketmasterWidget {
         this.goToSlideX(slideIndex);
       }, this.sliderDelay);
     }
+  }
+
+  stopAutoSlideX(){
+    if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
+    if(this.sliderInterval) clearInterval(this.sliderInterval);
   }
 
   initSliderControls(){
@@ -452,16 +485,6 @@ class TicketmasterWidget {
     }, false);
   }
 
-  //initDot(i){
-  //  var dot = document.createElement("span");
-  //  dot.classList.add("events_dots__item", "events_dots__item-" + i);
-  //  if(i === 0) dot.classList.add("events_dots__item-active");
-  //  this.dotsContainer.appendChild(dot);
-  //  dot.addEventListener("click", ()=> {
-  //    this.setSlideManually(i, true);
-  //  });
-  //}
-
   initSlider(){
     if(this.sliderInterval) clearInterval(this.sliderInterval);
     if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
@@ -472,11 +495,7 @@ class TicketmasterWidget {
     this.currentSlideY = 0;
     this.runAutoSlideX();
     this.toggleControlsVisibility();
-
-    //if(this.slideCountX > 1)
-    //  for(var i = 0; this.slideCountX > i; i++){
-    //    this.initDot(i);
-    //  }
+    this.setBuyBtnUrl();
   }
 
   formatDate(date) {
@@ -635,6 +654,10 @@ class TicketmasterWidget {
       }
       this.eventsCounter.innerHTML = text;
     }
+  }
+
+  isUniverseUrl(url){
+    return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
   }
 
   resetReduceParamsOrder(){
@@ -835,16 +858,29 @@ class TicketmasterWidget {
     this.xmlHTTP.send();
   }
 
-  createDOMItem(itemConfig){
 
-    var medWrapper = document.createElement("a");
+  initPretendedLink(el, url, isBlank){
+    if(el && url){
+      el.setAttribute('data-url', url);
+      el.addEventListener('click', function(){
+        let url = this.getAttribute('data-url');
+        if(url){
+          let win = window.open(url, (isBlank ? '_blank' : '_self'));
+          win.focus();
+        }
+      });
+    }
+    return el;
+  }
+
+
+  createDOMItem(itemConfig){
+    var medWrapper = document.createElement("div");
     medWrapper.classList.add("event-content-wraper");
-    medWrapper.target = '_blank';
-    medWrapper.href = itemConfig.url;
+    this.initPretendedLink(medWrapper, itemConfig.url, true);
 
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
-    //event.style.backgroundImage = `url('${itemConfig.img}')`;
     event.style.height = `${this.config.height}px`;
     event.style.width  = `${this.config.width}px`;
 
@@ -909,6 +945,7 @@ class TicketmasterWidget {
     }
 
     event.appendChild(medWrapper);
+
     return event;
   }
 
