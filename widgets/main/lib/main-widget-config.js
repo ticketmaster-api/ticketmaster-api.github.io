@@ -32,10 +32,10 @@
         };
       }
 
-      $("#w-width").val(sizeConfig.width).attr({
+      $("#w-width").attr({
         max: sizeConfig.maxWidth,
         min: sizeConfig.minWidth
-      });
+      }).val(sizeConfig.width);
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
