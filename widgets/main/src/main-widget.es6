@@ -112,12 +112,42 @@ class TicketmasterWidget {
       this.embedUniversePlugin();
     }
 
+    this.initBuyBtn();
+
     this.initMessage();
 
     this.initSliderControls();
 
     this.initEventCounter();
 
+  }
+
+  initBuyBtn(){
+    this.buyBtn = document.createElement("a");
+    this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
+    this.buyBtn.classList.add("event-buy-btn");
+    this.buyBtn.target = '_blank';
+    this.buyBtn.href = '';
+    this.buyBtn.addEventListener('click', (e)=> {
+      e.preventDefault();
+      this.stopAutoSlideX();
+    });
+    this.eventsRootContainer.appendChild(this.buyBtn);
+  }
+
+  setBuyBtnUrl(){
+    if(this.buyBtn){
+      let event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
+          url = '';
+      if(event){
+        if(event.url){
+          if(this.isUniverseUrl(event.url)){
+            url = event.url;
+          }
+        }
+      }
+      this.buyBtn.href = url;
+    }
   }
 
   embedUniversePlugin(){
@@ -317,6 +347,7 @@ class TicketmasterWidget {
     this.eventsRoot.style.marginLeft = `-${this.currentSlideX * 100}%`;
     this.toggleControlsVisibility();
     this.setEventsCounter();
+    this.setBuyBtnUrl();
   }
 
   goToSlideY(slideIndex){
@@ -327,6 +358,7 @@ class TicketmasterWidget {
       eventGroup = eventGroup[0];
       eventGroup.style.marginTop = `-${this.currentSlideY * this.config.height}px`;
       this.toggleControlsVisibility();
+      this.setBuyBtnUrl();
     }
   }
 
@@ -463,6 +495,7 @@ class TicketmasterWidget {
     this.currentSlideY = 0;
     this.runAutoSlideX();
     this.toggleControlsVisibility();
+    this.setBuyBtnUrl();
   }
 
   formatDate(date) {
@@ -842,10 +875,8 @@ class TicketmasterWidget {
 
 
   createDOMItem(itemConfig){
-
     var medWrapper = document.createElement("div");
     medWrapper.classList.add("event-content-wraper");
-    //itemConfig.url = 'https://www.universe.com/events/get-your-chicago-blogapolooza-meetup-pass-now-tickets-chicago-ZDQMNH?ref=ticketmaster';
     this.initPretendedLink(medWrapper, itemConfig.url, true);
 
     var event = document.createElement("li");
@@ -914,19 +945,6 @@ class TicketmasterWidget {
     }
 
     event.appendChild(medWrapper);
-
-    if(this.isUniverseUrl(itemConfig.url)){
-      let buyBtn = document.createElement("a"),
-          buyBtnText = document.createTextNode('BUY NOW');
-      buyBtn.appendChild(buyBtnText);
-      buyBtn.classList.add("event-buy-btn");
-      buyBtn.target = '_blank';
-      buyBtn.href = itemConfig.url;
-      buyBtn.addEventListener('click', ()=> {
-        this.stopAutoSlideX();
-      });
-      event.appendChild(buyBtn);
-    }
 
     return event;
   }

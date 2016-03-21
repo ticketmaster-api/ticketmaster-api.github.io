@@ -364,7 +364,7 @@ div[w-theme="simple"] .event-buy-btn {
     bottom: 96px;
     width: 74px;
     height: 24px;
-    padding-top: 6px;
+    padding-top: 5px;
     border-radius: 4px;
     background-color: #009cde;
     -moz-box-sizing: border-box;
@@ -375,5 +375,13 @@ div[w-theme="simple"] .event-buy-btn {
     line-height: 16px;
     color: #ffffff;
     text-align: center;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+div[w-theme="simple"] .event-buy-btn[href=''] {
+    background-color: #ccc;
+    cursor: default;
+    color: #eee;
 }
 

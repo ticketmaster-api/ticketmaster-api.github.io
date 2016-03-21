@@ -163,6 +163,8 @@ var TicketmasterWidget = function () {
       this.embedUniversePlugin();
     }
 
+    this.initBuyBtn();
+
     this.initMessage();
 
     this.initSliderControls();
@@ -171,6 +173,38 @@ var TicketmasterWidget = function () {
   }
 
   _createClass(TicketmasterWidget, [{
+    key: "initBuyBtn",
+    value: function initBuyBtn() {
+      var _this = this;
+
+      this.buyBtn = document.createElement("a");
+      this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
+      this.buyBtn.classList.add("event-buy-btn");
+      this.buyBtn.target = '_blank';
+      this.buyBtn.href = '';
+      this.buyBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        _this.stopAutoSlideX();
+      });
+      this.eventsRootContainer.appendChild(this.buyBtn);
+    }
+  }, {
+    key: "setBuyBtnUrl",
+    value: function setBuyBtnUrl() {
+      if (this.buyBtn) {
+        var event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
+            url = '';
+        if (event) {
+          if (event.url) {
+            if (this.isUniverseUrl(event.url)) {
+              url = event.url;
+            }
+          }
+        }
+        this.buyBtn.href = url;
+      }
+    }
+  }, {
     key: "embedUniversePlugin",
     value: function embedUniversePlugin() {
       var script = document.createElement('script');
@@ -185,7 +219,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "initMessage",
     value: function initMessage() {
-      var _this = this;
+      var _this2 = this;
 
       this.messageDialog = document.createElement('div');
       this.messageDialog.classList.add("event-message");
@@ -195,7 +229,7 @@ var TicketmasterWidget = function () {
       var messageClose = document.createElement('div');
       messageClose.classList.add("event-message__btn");
       messageClose.addEventListener("click", function () {
-        _this.hideMessage();
+        _this2.hideMessage();
       });
 
       this.messageDialog.appendChild(this.messageContent);
@@ -217,11 +251,11 @@ var TicketmasterWidget = function () {
   }, {
     key: "hideMessageWithDelay",
     value: function hideMessageWithDelay(delay) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
       this.messageTimeout = setTimeout(function () {
-        _this2.hideMessage();
+        _this3.hideMessage();
       }, delay);
     }
   }, {
@@ -374,11 +408,11 @@ var TicketmasterWidget = function () {
   }, {
     key: "setSlideManually",
     value: function setSlideManually(slideIndex, isDirectionX) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.stopAutoSlideX();
       this.sliderTimeout = setTimeout(function () {
-        _this3.runAutoSlideX();
+        _this4.runAutoSlideX();
       }, this.sliderRestartDelay);
       if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
     }
@@ -391,6 +425,7 @@ var TicketmasterWidget = function () {
       this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
       this.toggleControlsVisibility();
       this.setEventsCounter();
+      this.setBuyBtnUrl();
     }
   }, {
     key: "goToSlideY",
@@ -402,18 +437,19 @@ var TicketmasterWidget = function () {
         eventGroup = eventGroup[0];
         eventGroup.style.marginTop = "-" + this.currentSlideY * this.config.height + "px";
         this.toggleControlsVisibility();
+        this.setBuyBtnUrl();
       }
     }
   }, {
     key: "runAutoSlideX",
     value: function runAutoSlideX() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.slideCountX > 1) {
         this.sliderInterval = setInterval(function () {
           var slideIndex = 0;
-          if (_this4.slideCountX - 1 > _this4.currentSlideX) slideIndex = _this4.currentSlideX + 1;
-          _this4.goToSlideX(slideIndex);
+          if (_this5.slideCountX - 1 > _this5.currentSlideX) slideIndex = _this5.currentSlideX + 1;
+          _this5.goToSlideX(slideIndex);
         }, this.sliderDelay);
       }
     }
@@ -426,7 +462,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "initSliderControls",
     value: function initSliderControls() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.currentSlideX = 0;
       this.currentSlideY = 0;
@@ -469,8 +505,8 @@ var TicketmasterWidget = function () {
 
       var transitionEvent = whichTransitionEvent();
       transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
-        if (_this5.eventsRoot !== e.target) return;
-        var eventGroup = _this5.eventsRoot.getElementsByClassName("event-group");
+        if (_this6.eventsRoot !== e.target) return;
+        var eventGroup = _this6.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
         for (var i = 0; eventGroup.length > i; i++) {
           eventGroup[i].style.marginTop = 0;
@@ -479,19 +515,19 @@ var TicketmasterWidget = function () {
 
       // Arrows
       this.prevEventX.addEventListener("click", function () {
-        _this5.prevSlideX();
+        _this6.prevSlideX();
       });
 
       this.nextEventX.addEventListener("click", function () {
-        _this5.nextSlideX();
+        _this6.nextSlideX();
       });
 
       this.prevEventY.addEventListener("click", function () {
-        _this5.prevSlideY();
+        _this6.prevSlideY();
       });
 
       this.nextEventY.addEventListener("click", function () {
-        _this5.nextSlideY();
+        _this6.nextSlideY();
       });
 
       // Tough device swipes
@@ -524,10 +560,10 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        handleTouchStart.call(_this5, e);
+        handleTouchStart.call(_this6, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        handleTouchMove.call(_this5, e);
+        handleTouchMove.call(_this6, e);
       }, false);
     }
   }, {
@@ -542,6 +578,7 @@ var TicketmasterWidget = function () {
       this.currentSlideY = 0;
       this.runAutoSlideX();
       this.toggleControlsVisibility();
+      this.setBuyBtnUrl();
     }
   }, {
     key: "formatDate",
@@ -787,7 +824,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "publishEventsGroup",
     value: function publishEventsGroup(group, index) {
-      var _this6 = this;
+      var _this7 = this;
 
       var groupNodeWrapper = document.createElement("li");
       groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
@@ -799,7 +836,7 @@ var TicketmasterWidget = function () {
       groupNode.style.height = this.config.height * group.length + "px";
 
       group.map(function (event) {
-        _this6.publishEvent(event, groupNode);
+        _this7.publishEvent(event, groupNode);
       });
 
       groupNodeWrapper.appendChild(groupNode);
@@ -923,11 +960,8 @@ var TicketmasterWidget = function () {
   }, {
     key: "createDOMItem",
     value: function createDOMItem(itemConfig) {
-      var _this7 = this;
-
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
-      //itemConfig.url = 'https://www.universe.com/events/get-your-chicago-blogapolooza-meetup-pass-now-tickets-chicago-ZDQMNH?ref=ticketmaster';
       this.initPretendedLink(medWrapper, itemConfig.url, true);
 
       var event = document.createElement("li");
@@ -994,19 +1028,6 @@ var TicketmasterWidget = function () {
       }
 
       event.appendChild(medWrapper);
-
-      if (this.isUniverseUrl(itemConfig.url)) {
-        var buyBtn = document.createElement("a"),
-            buyBtnText = document.createTextNode('BUY NOW');
-        buyBtn.appendChild(buyBtnText);
-        buyBtn.classList.add("event-buy-btn");
-        buyBtn.target = '_blank';
-        buyBtn.href = itemConfig.url;
-        buyBtn.addEventListener('click', function () {
-          _this7.stopAutoSlideX();
-        });
-        event.appendChild(buyBtn);
-      }
 
       return event;
     }
