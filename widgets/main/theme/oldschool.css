@@ -473,17 +473,41 @@ div[w-theme="oldschool"][w-layout="horizontal"] .event-logo-box:before{
 }
 div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper{
     padding: 40px 0 0 100px;
-    width: 65%;
+    width: 100%;
 }
 
 div[w-theme="oldschool"][w-layout="horizontal"] .event-date-wraper {
     transform: rotate(-90deg);
     top: 133px;
     width: 300px;
-    left: 80%;
+    right: 35px;
+    left: auto;
 }
 
 div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper .event-name,
-div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper .event-address{
+div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper .address-wrapper{
     text-align: left;
+    width: 60%;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .address-wrapper:before {
+    text-align: center;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-logo{
+    margin-left: 105px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .legal-notice{
+    left: auto;
+    bottom: auto;
+    transform: rotate(-90deg);
+    top: 220px;
+    right: 8px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .events-counter{
+    position: static;
+    text-align: center;
+    margin-top: 10px;
 }
