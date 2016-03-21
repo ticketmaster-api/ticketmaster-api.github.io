@@ -29,7 +29,7 @@
           minWidth: 620
         };
       }
-
+      
       $("#w-width")
         .val(sizeConfig.width)
         .attr({

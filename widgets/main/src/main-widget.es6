@@ -37,7 +37,7 @@ class TicketmasterWidget {
     }
     return true;
   }
-
+  
   get eventReqAttrs(){
     let attrs = {};
 
