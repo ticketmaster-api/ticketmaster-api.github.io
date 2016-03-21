@@ -14,22 +14,29 @@ layout: default
 {% include partials/common-header-small.html %}
 {% include partials/expanded-menu-header.html %}
 
-<div class="base-content-wrapper">
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <h1>WIDGETS</h1>
-    <p class="lead">The TM Widgets allow partners to setup particular widgets and provide enhanced discovery experience for consumers within copy/paste distance.</p>
-    <h2>Widget: Keyword search</h2>
-    <p>You can use the widget configurator below to customize the layout of the widget, and grab a small code snippet to insert into your website.</p>
+<div class="base-content-wrapper widget-content-wrapper">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h1>WIDGETS</h1>
+      <p class="lead">The TM Widgets allow partners to setup particular widgets and provide enhanced discovery experience for consumers within copy/paste distance.</p>
+      <h2>Widget: Keyword search</h2>
+      <p>You can use the widget configurator below to customize the layout of the widget, and grab a small code snippet to insert into your website.</p>
+    </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-12 config-block">
-    {% include widget-config.html %}
-  </div>
-  <div class="col-lg-8 col-md-8 col-sm-12">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="widget-container">
-          <!-- <div id="ticketmaster-config" data-config="eyJhayI6IktSVW5qcTh5OFNnNWVEcFA5MGROek9LNzBkNFdpVXN0Iiwia3ciOiJtZXRhbCIsInQiOnsibiI6InQxIiwiYiI6ZmFsc2UsImgiOjU1MCwidyI6MzUwLCJiciI6NH19"></div> -->
-          <div w-tmapikey="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-size="25" w-height="550" w-borderradius="4" w-postalcode="90015" w-period="week" w-layout="vertical"></div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12 config-block">
+      {% include widget-config.html %}
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="widget-container-wrapper">
+            <div class="widget-container">
+              <!-- <div id="ticketmaster-config" data-config="eyJhayI6IktSVW5qcTh5OFNnNWVEcFA5MGROek9LNzBkNFdpVXN0Iiwia3ciOiJtZXRhbCIsInQiOnsibiI6InQxIiwiYiI6ZmFsc2UsImgiOjU1MCwidyI6MzUwLCJiciI6NH19"></div> -->
+              <div w-tmapikey="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-size="25" w-height="550" w-borderradius="4" w-postalcode="90015" w-period="week" w-layout="vertical"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

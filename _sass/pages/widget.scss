@@ -69,3 +69,15 @@
     z-index: 1;
   }
 }
+
+.widget-content-wrapper{
+  overflow: visible;
+  @include clearfix();
+}
+
+.widget-container-wrapper {
+  width: 900px;
+  @media (min-width: 992px){
+    width: auto;
+  }
+}
