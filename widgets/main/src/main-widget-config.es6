@@ -5,7 +5,40 @@
   var changeState = function(event){
     let widgetNode = document.querySelector("div[w-tmapikey]");
 
-    if(event.target.id === "border"){
+    if(event.target.name === "w-theme" && widgetNode.getAttribute('w-layout') === 'horizontal'){
+      widgetNode.setAttribute('w-height', (event.target.value === 'simple' ? 238 : 300));
+    }
+
+    if(event.target.name === "w-layout"){
+      let isSimpleTheme = (widgetNode.getAttribute('w-theme') === 'simple'),
+        sizeConfig = {
+          width: 350,
+          height: 550,
+          maxWidth: 500,
+          minWidth: 350
+        };
+
+      if(event.target.value === 'horizontal'){
+        sizeConfig = {
+          width: 620,
+          height: (isSimpleTheme ? 238 : 300),
+          maxWidth: 700,
+          minWidth: 620
+        };
+      }
+
+      $("#w-width")
+        .val(sizeConfig.width)
+        .attr({
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        });
+
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
+    }
+
+    if(event.target.name === "border"){
       //if(event.target.checked){
       //  widgetNode.setAttribute(event.target.id, "");
       //}

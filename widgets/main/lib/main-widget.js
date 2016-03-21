@@ -67,7 +67,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "border", "borderradius", "colorscheme", "Layout"];
+      return ["width", "height", "borderradius", "colorscheme", "layout"];
     }
   }, {
     key: "sliderDelay",
@@ -666,12 +666,13 @@ var TicketmasterWidget = function () {
         this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
       } else {
         var events = document.getElementsByClassName("event-wrapper");
-        for (var event in events) {
-          if (events.hasOwnProperty(event) && events[event].style !== undefined) {
-            events[event].style.width = this.config.width + "px";
-            events[event].style.height = this.config.height + "px";
+        for (var i in events) {
+          if (events.hasOwnProperty(i) && events[i].style !== undefined) {
+            events[i].style.width = this.config.width + "px";
+            events[i].style.height = this.config.height + "px";
           }
         }
+        this.goToSlideY(0);
       }
     }
   }, {
@@ -833,7 +834,7 @@ var TicketmasterWidget = function () {
 
       var groupNode = document.createElement("ul");
       groupNode.classList.add("event-group", "event-group-" + index);
-      groupNode.style.height = this.config.height * group.length + "px";
+      //groupNode.style.height  = `${this.config.height * group.length}px`;
 
       group.map(function (event) {
         _this7.publishEvent(event, groupNode);
