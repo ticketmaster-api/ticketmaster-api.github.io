@@ -25,7 +25,7 @@
         sizeConfig = {
           width: 620,
           height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
-          maxWidth: 700,
+          maxWidth: 900,
           minWidth: 620
         };
       }

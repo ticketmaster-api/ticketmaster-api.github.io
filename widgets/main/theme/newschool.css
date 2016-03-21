@@ -487,7 +487,30 @@ div[w-theme="newschool"] .event-group {
     width: 100%;
 }
 
-/*  Hide button before design implemented */
+/* BUY NOW */
 div[w-theme="newschool"] .event-buy-btn {
-    display: none;
+    position: absolute;
+    left: 30px;
+    bottom: 96px;
+    width: 74px;
+    height: 24px;
+    padding-top: 5px;
+    border-radius: 4px;
+    background-color: #009cde;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 16px;
+    color: #ffffff;
+    text-align: center;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="newschool"] .event-buy-btn[href=''] {
+    background-color: #ccc;
+    cursor: default;
+    opacity: 0.5;
 }
