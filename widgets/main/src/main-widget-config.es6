@@ -5,13 +5,16 @@
   var changeState = function(event){
     let widgetNode = document.querySelector("div[w-tmapikey]");
 
+    function getHeightByTheme(theme){
+      return (theme === 'simple' ? 238 : 300);
+    }
+
     if(event.target.name === "w-theme" && widgetNode.getAttribute('w-layout') === 'horizontal'){
-      widgetNode.setAttribute('w-height', (event.target.value === 'simple' ? 238 : 300));
+      widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
     }
 
     if(event.target.name === "w-layout"){
-      let isSimpleTheme = (widgetNode.getAttribute('w-theme') === 'simple'),
-        sizeConfig = {
+      let sizeConfig = {
           width: 350,
           height: 550,
           maxWidth: 500,
@@ -21,7 +24,7 @@
       if(event.target.value === 'horizontal'){
         sizeConfig = {
           width: 620,
-          height: (isSimpleTheme ? 238 : 300),
+          height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
           maxWidth: 700,
           minWidth: 620
         };
