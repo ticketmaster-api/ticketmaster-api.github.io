@@ -24,7 +24,7 @@ Make live API calls right now in the interactive docs:
 
 To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
 
-Example: `https://app.ticketmaster.com/publish/v2/events?apikey={apikey}`
+Example: `https://app.ticketmaster.com/publish/v2/events?apikey=[Your API key goes here]`
 
 ### Root URL
 
@@ -48,64 +48,46 @@ publish/{version}/events
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
 ### Minimal recommended request payload:
-
-{% highlight ruby %}
-
+{% highlight http %}
 {
-  "source" : {
-    "id" : "test_id_0009",
-    "name" : "test-source"
-  },
-  "test": true,
-  "names": {
-    "en-us": "example test event tnt1"
-  },
-  "publicVisibility": {
-    "startDateTime": "2015-10-29T15:00:00Z",
-    "visible": true
-  },
-  "dates": {
-    "start": {
-      "dateTime": "2016-04-15T01:00:00Z",
-      "localDate": "2016-04-14",
-      "localTime": "19:00:00"
-    },
-    "timezone": "America/Edmonton"
-  },
-  "venue": {
     "source" : {
-      "id" : "test_venue_id_0001",
-      "name" : "test-source"
+        "id" : "test_id_0009",
+        "name" : "test-source"
     },
     "test": true,
-    "currency": "USD",
-    "country": {
-      "countryCode": "US"
+    "names": {
+        "en-us": "example test event tnt1"
+    },
+    "publicVisibility": {
+        "startDateTime": "2015-10-29T15:00:00Z",
+        "visible": true
+    },
+    "dates": {
+        "start": {
+            "dateTime": "2016-04-15T01:00:00Z",
+            "localDate": "2016-04-14",
+            "localTime": "19:00:00"
+        },
+        "timezone": "America/Edmonton"
+    },
+    "venue": {
+        "source" : {
+            "id" : "test_venue_id_0001",
+            "name" : "test-source"
+        }
     }
-  }
 }
 {% endhighlight %}
 
-### Request structure:
+### Response structure:
 
 {: .nested-list}
 - `additionalInfos` (object) - map of locale to value for any additional informations on the event.
 - `attractions` (array) - list of attractions in the event.
-    * `additionalInfos` (object) - map of locale to value for any additional informations on the attraction.
-    * `descriptions` (object) - map of locale to value for the description of the attraction.
-    * `id` (string) - the id of the attraction as returned by the Discovery API. If specified, all the other fields of the attraction will be ignored. Otherwise, a new attraction is created and embedded into the event.
-    * `images` (array) - list of images of the attraction.
-        - `height` (number) - the height of the image.
-        - `ratio` (string) - the ratio of the image ex.: 3x2, 16x9, ...
-        - `url` (string) - the URL of the image.
-        - `width` (number) - the width of the image.
-    * `names` (object) - map of locale to value for the names of the attraction.
-    * `redirectUrl` (string) - the URL of the attraction on the publisher's site.
-    * `source` (object) - the id and source name of the attraction. Must be specified if `id` is not.
+    * `id` (string) - the id of the attraction as returned by the Discovery API.  If specified, then the `source` element should not be set. Either `id` or `source` must be specified.
+    * `source` (object) - the id and source name of the attraction. Must be specified if `id` is not. Either `id` or `source` must be specified.
         - `id` (string) - the publisher's id of the attraction.
         - `name` (string) - the publisher's name.
-    * `test` (boolean) - true if this is a test attraction data, false otherwise (real attraction).
-    * `version` (number) - the publisher's version for this attraction.
 - `dates` (object) - all the dates related to the event.
     * `start` (object) - the start date of the event.
         - `localDate` (string) - the start date in the event timezone.
@@ -125,8 +107,6 @@ publish/{version}/events
         - `dateTime` (string) - the end date and time of the event in UTC.
         - `approximate` (boolean) - true if the end date and time are approximate, false otherwise.
     * `timezone` (string) - the timezone of the event.
-    * `status` (object) - the status of the date of the event.
-        - `code` (string) - the status code of the date of the event.
 - `descriptions` (object) - map of locale to value for the description of the event.
 - `images` (array) - list of images of the event.
     * `height` (number) - the height of the image.
@@ -138,7 +118,6 @@ publish/{version}/events
     * `startDateTime` (string) - the start date and time of visibility for this event on the Discovery API in UTC. 
     * `endDateTime` (string) - the end date and time of visibility for this event on the Discovery API in UTC.
     * `visible` (boolean) - true if the event should be visible on the Discovery API, false otherwise.
-- `redirectUrl` (string) - the URL of the event on the publisher's site.
 - `sales` (object) - sales dates information for the event.
     * `public` (object) - the public sales dates information for the event.
         - `endDateTime` (string) - the date and time of the end of the public sales period in UTC.
@@ -149,40 +128,11 @@ publish/{version}/events
     * `name` (string) - the publisher's name.
 - `test` (boolean) - true if this is a test event data, false otherwise (real event).
 - `venue` (object) - the venue of the event.
-    * `additionalInfos` (object) - map of locale to value for any additional informations on the venue.
-    * `address` (object) - the address of the venue.
-       - `line1s` (object) - map of locale to value of the first line of the address of the venue.
-       - `line2s` (object) - map of locale to value of the second line of the address of the venue.
-    * `city` (object) - the name of the city of the venue.
-       - `names` (object) - map of locale to value of the name of the city of the venue.
-    * `country` (object) - the country informations for the venue.
-       - `countryCode` (string) - the country code of the venue.
-       - `names` (object) - map of locale to value of the name of the country of the venue.
-    * `currency` (string) - the currency accepted at the venue.
-    * `descriptions` (object) - map of locale to value for the description of the venue.
-    * `id` (string) - the id of the venue as returned by the Discovery API. If specified, all the other fields of the venue will be ignored. Otherwise, a new venue is created and embedded into the event.
-    * `images` (array) - list of images of the venue.
-       - `height` (number) - the height of the image.
-       - `ratio` (string) - the ratio of the image ex.: 3x2, 16x9, ...
-       - `url` (string) - the URL of the image.
-       - `width` (number) - the width of the image.
-    * `location` (object) - the location of the venue.
-       - `latitude` (number) - the latitude of the venue.
-       - `longitude` (number) - the longitude of the venue.
-    * `markets` (array) - list of markets covered by the venue.
-       - `id` (string) - the id of the venue as specified in this documentation.
-    * `names` (object) - map of locale to value for the names of the venue.
-    * `postalCode` (string) - the postal code of the venue.
-    * `redirectUrl` (string) - the URL of the venue on the publisher's site.
-    * `source` (object) - the id and source name of the venue. Must be specified if `id` is not.
+    * `id` (string) - the id of the venue as returned by the Discovery API. If specified, then the `source` element should not be set. Either `id` or `source` must be specified.
+    * `source` (object) - the id and source name of the venue. Must be specified only if `id` is not. Either `id` or `source` must be specified.
         - `id` (string) - the publisher's id of the venue.
         - `name` (string) - the publisher's name.
-    * `state` (object) - the state informations of the venue.
-        - `names` (object) - map of locale to value for the names of the state of the venue.
-        - `stateCode` (string) - the state code of the venue.
-    * `test` (boolean) - true if the venue is a test venue data, false otherwise (real venue).
-    * `timezone` (string) - the timezone of the venue.
-    * `version` (number) - the publisher's version for this venue.
+- `url` (string) - the URL of the event on the publisher's site.        
 - `version` (number) - the publisher's version for this event.
 
 {: .aside}
@@ -220,11 +170,6 @@ $.ajax({
         "source" : {
             "id" : "test_venue_id_0001",
             "name" : "test-source"
-        },
-        "test": true,
-        "currency": "USD",
-        "country": {
-            "countryCode": "US"
         }
     }
 }),
@@ -266,11 +211,6 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
         \"source\" : {
             \"id\" : \"test_venue_id_0001\",
             \"name\" : \"test-source\"
-        },
-        \"test\": true,
-        \"currency\": \"USD\",
-        \"country\": {
-            \"countryCode\": \"US\"
         }
     }
 }" "http://app.ticketmaster.com/publish/v2/events"
@@ -282,197 +222,91 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
 {: .reqres}
 
 {% highlight http %}
-POST /publish/v2/events?apikey={apikey} HTTP/1.1
+POST /publish/v2/events?apikey=**** HTTP/1.1
 Host: app.ticketmaster.com
-Content-Type: application/json;
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
 
 {
-    "additionalInfos": {
-        "en-us": "string",
-        "fr-ca": "chaine",
-        "es-mx": "cuerda"
-    },
-    "attractions": [
-        {
-            "additionalInfos": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            },
-            "descriptions": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            },
-            "id": "",
-            "images": [
-                {
-                    "height": 0,
-                    "ratio": "string",
-                    "url": "string",
-                    "width": 0
-                }
-            ],
-            "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            },
-            "redirectUrl": "string",
-            "source": {
-                "id": "string",
-                "name": "string"
-            },
-            "test": true,
-            "version": 0
-        }
-    ],
-    "dates": {
-        "start": {
-            "localDate": "2015-01-02",
-            "localTime": "23:59:00",
-            "dateTime": "2015-01-03T05:59:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-        },
-        "access": {
-            "startDateTime": "2015-01-03T05:59:00Z",
-            "startApproximate": false,
-            "endDateTime": "2015-01-03T05:59:00Z",
-            "endApproximate": false
-        },
-        "end": {
-            "localTime": "23:59:00",
-            "dateTime": "2015-01-03T05:59:00Z",
-            "approximate": false
-        },
-        "timezone": "America/Chicago",
-        "status": {
-            "code": "string"
-        }
-    },
-    "descriptions": {
-        "en-us": "string",
-        "fr-ca": "chaine",
-        "es-mx": "cuerda"
-    },
-    "images": [
-        {
-            "height": 0,
-            "ratio": "string",
-            "url": "string",
-            "width": 0
-        }
-    ],
-    "names": {
-        "en-us": "string",
-        "fr-ca": "chaine",
-        "es-mx": "cuerda"
-    },
-    "publicVisibility": {
-        "startDateTime": "2014-12-03T01:59:00Z",
-        "endDateTime": "2015-01-03T05:59:00Z",
-        "visible": true
-    },
-    "redirectUrl": "string",
-    "sales": {
-        "public": {
-            "endDateTime": "2015-01-03T05:59:00Z",
-            "startDateTime": "2014-12-03T01:59:00Z",
-            "startTBD": false
-        }
-    },
-    "source": {
+  "additionalInfos": {
+                       "en-us": "string",
+                       "fr-ca": "chaine",
+                       "es-mx": "cuerda" 
+  },
+  "attractions": [
+    {
+      "source": {
         "id": "string",
         "name": "string"
+      }
+    }
+  ],
+  "dates": {
+    "start": {
+      "localDate": "2015-01-02",
+      "localTime": "23:59:00",
+      "dateTime": "2015-01-03T05:59:00Z",
+      "dateTBD": false,
+      "dateTBA": false,
+      "timeTBA": false,
+      "noSpecificTime": false
     },
-    "test": true,
-    "venue": {
-        "additionalInfos": {
-            "en-us": "string",
-            "fr-ca": "chaine",
-            "es-mx": "cuerda"
-        },
-        "address": {
-            "line1s": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            },
-            "line2s": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            }
-        },
-        "city": {
-            "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            }
-        },
-        "country": {
-            "countryCode": "string",
-            "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            }
-        },
-        "currency": "string",
-        "descriptions": {
-            "en-us": "string",
-            "fr-ca": "chaine",
-            "es-mx": "cuerda"
-        },
-        "id": "",
-        "images": [
-            {
-                "height": 0,
-                "ratio": "string",
-                "url": "string",
-                "width": 0
-            }
-        ],
-        "location": {
-            "latitude": 0,
-            "longitude": 0
-        },
-        "markets": [
-            {
-                "id": "101"
-            },
-            {
-                "id": "120"
-            }
-        ],
-        "names": {
-            "en-us": "string",
-            "fr-ca": "chaine",
-            "es-mx": "cuerda"
-        },
-        "postalCode": "string",
-        "redirectUrl": "string",
-        "source": {
-            "id": "string",
-            "name": "string"
-        },
-        "state": {
-            "names": {
-                "en-us": "string",
-                "fr-ca": "chaine",
-                "es-mx": "cuerda"
-            },
-            "stateCode": "string"
-        },
-        "test": true,
-        "timezone": "string",
-        "version": 0
+    "access":{
+      "startDateTime": "2015-01-03T05:59:00Z",
+      "startApproximate": false,
+      "endDateTime": "2015-01-03T05:59:00Z",
+      "endApproximate": false
     },
-    "version": 0
+    "end":{
+      "localTime": "23:59:00",
+      "dateTime": "2015-01-03T05:59:00Z",
+      "approximate": false
+    },
+    "timezone": "America/Chicago"
+  },
+  "descriptions": {
+                   "en-us": "string",
+                   "fr-ca": "chaine",
+                   "es-mx": "cuerda" 
+  },
+  "images": [
+    {
+      "height": 0,
+      "ratio": "string",
+      "url": "string",
+      "width": 0
+    }
+  ],
+  "names": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+  },
+  "publicVisibility": {
+    "startDateTime": "2014-12-03T01:59:00Z",
+    "endDateTime": "2015-01-03T05:59:00Z",
+    "visible": true
+  },
+  "sales": {
+    "public": {
+      "endDateTime": "2015-01-03T05:59:00Z",
+      "startDateTime": "2014-12-03T01:59:00Z",
+      "startTBD": false
+    }
+  },
+  "source": {
+    "id": "string",
+    "name": "string"
+  },
+  "test": true,
+  "venue": {
+    "source": {
+      "id": "string",
+      "name": "string"
+    }
+  },
+  "url": "string",
+  "version": 0
 }
 {% endhighlight %}
 

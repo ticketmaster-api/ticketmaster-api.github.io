@@ -15,6 +15,7 @@ Home to the [Ticketmaster Developer Portal](http://developer.ticketmaster.com/).
 ## Contributions
 To contribute to the dev portal, please make sure you fork your changes and submit a pull request and we'll be happy to consider it for merge. Here are the areas in which we welcome contributions:
 
+
 * Documentation
 * Events
 * Copy typos and bugs
