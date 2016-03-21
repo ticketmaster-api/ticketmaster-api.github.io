@@ -213,9 +213,10 @@ div[w-tmapikey] .bg-cover {
     height: 100%;
     display: block;
     overflow: hidden;
-    background-position: center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
 
 
 /* Theme special styles */
@@ -225,8 +226,6 @@ div[w-theme="simple"] .event-wrapper {
     width:150px;
     float: left;
     overflow: hidden;
-    background-size: cover;
-    background-position: center;
     font-size: 12px;
     line-height: 1.3;
     color: #fff;
@@ -375,13 +374,13 @@ div[w-theme="simple"] .event-buy-btn {
     line-height: 16px;
     color: #ffffff;
     text-align: center;
-    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 div[w-theme="simple"] .event-buy-btn[href=''] {
     background-color: #ccc;
     cursor: default;
-    color: #eee;
+    opacity: 0.5;
 }
 
