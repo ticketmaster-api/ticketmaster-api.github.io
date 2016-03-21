@@ -305,16 +305,19 @@ div[w-theme="simple"] .event-category:first-child:before{
     content: '';
 }
 
+div[w-theme="simple"] .legal-notice {
+    position: absolute;
+    left: 30px;
+    bottom: 83px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
 div[w-theme="simple"] .legal-notice,
 div[w-theme="simple"] .legal-notice:hover,
 div[w-theme="simple"] .legal-notice:focus,
 div[w-theme="simple"] .legal-notice:active{
-    position: absolute;
-    left: 30px;
-    bottom: 81px;
     color: #019cde;
-    font-size: 16px;
-    line-height: 24px;
     text-decoration: none;
 }
 
@@ -347,8 +350,7 @@ div[w-theme="simple"] .event-logo {
     width: 129px;
     height: 18px;
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    /*background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg") no-repeat;*/
-    background: url("/assets/img/widgets/tm-logo-gray.svg") no-repeat;
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg") no-repeat;
 }
 
 /*group*/
@@ -382,5 +384,30 @@ div[w-theme="simple"] .event-buy-btn[href=''] {
     background-color: #ccc;
     cursor: default;
     opacity: 0.5;
+}
+
+/*  LAYOUT  */
+div[w-theme="simple"][w-layout="horizontal"] .event-content-wraper {
+    padding-top: 29px;
+}
+
+div[w-theme="simple"][w-layout="horizontal"] .event-name{
+    margin-bottom: 17px;
+    padding-right: 64px;
+    max-width: 560px;
+}
+
+div[w-theme="simple"][w-layout="horizontal"] .legal-notice {
+    left: 119px;
+}
+
+div[w-theme="simple"][w-layout="horizontal"] .event-buy-btn {
+    bottom: 42px;
+}
+
+div[w-theme="simple"][w-layout="horizontal"] .event-wrapper:before {
+    background: -moz-linear-gradient(right, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 15%);
+    background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 15%);
+    background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 15%);
 }
 
