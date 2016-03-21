@@ -72,7 +72,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "sliderDelay",
     get: function get() {
-      return 10000;
+      return 10000000;
     }
   }, {
     key: "sliderRestartDelay",
@@ -299,11 +299,16 @@ var TicketmasterWidget = function () {
   }, {
     key: "oldSchoolModificator",
     value: function oldSchoolModificator() {
+
+      var generalAdmissionWrapper = document.createElement("div");
+      generalAdmissionWrapper.classList.add("general-admission", "modificator");
+
       var generalAdmission = document.createElement("div"),
           generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-      generalAdmission.classList.add("general-admission", "modificator");
       generalAdmission.appendChild(generalAdmissionText);
-      this.eventsRootContainer.appendChild(generalAdmission);
+      generalAdmissionWrapper.appendChild(generalAdmission);
+
+      this.eventsRootContainer.appendChild(generalAdmissionWrapper);
     }
   }, {
     key: "newSchoolModificator",
