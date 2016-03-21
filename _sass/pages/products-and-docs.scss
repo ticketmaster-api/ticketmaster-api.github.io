@@ -146,28 +146,73 @@
 }
 
 .button {
-    border-radius: 5px;
+    border-radius: 4px;
     display: inline-block;
     padding: 14px 30px;
     font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
 }
 
-.button-blue,
-.button-blue:hover,
-.button-blue:focus {
-    color: #fff;
-    background: #019cde;
+.button-blue {
+    color: $white;
+    background: $p1;
     text-decoration: none;
     padding: 12px 26px;
     margin-top: 27px;
+    border: 0;
+    border-radius: 4px;
+
+    &:hover,
+    &:focus,
+    &:active {
+        outline: none;
+        text-decoration: none;
+        background-color: $p1b;
+        color: $white;
+    }
 }
 
-.button-white,
-.button-white:hover,
-.button-white:focus {
+.button-white {
     color: #6165b0;
     background: $white;
     text-decoration: none;
     margin-top: 17px;
     padding: 12px 26px;
+    &:hover,
+    &:focus,
+    &:active {
+        outline: none;
+        text-decoration: none;
+        background-color: $white-70;
+    }
+}
+
+.button-default{
+    color: $n3;
+    border: solid 2px $n3;
+    text-decoration: none;
+    margin-top: 27px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    &:hover{
+        color: $p1a;
+        border-color: $p1a;
+    }
+}
+
+.button_set{
+    margin-bottom: 0;
+    br {
+        display: none;
+    }
+    @media #{$max-768} {
+        text-align: center;
+    }
+    .button {
+        margin-left: 30px;
+        margin-top: 10px;
+        margin-bottom: 24px;
+        &:first-child{
+            margin-left: 0;
+        }
+    }
 }

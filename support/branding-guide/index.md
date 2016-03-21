@@ -34,7 +34,7 @@ Available as [PNG](/assets/img/branding-guide/blue-logo@3x.png) or [SVG](/assets
 {% endcapture %}
 
 {% capture logo-gray %}
-![Ticketmaster logo blue](/assets/img/branding-guide/gray-logo.svg)
+![Ticketmaster logo gray](/assets/img/branding-guide/gray-logo.svg)
 
 **Gray**
 
@@ -43,7 +43,7 @@ Available as [PNG](/assets/img/branding-guide/gray-logo@3x.png) or [SVG](/assets
 
 
 {% capture logo-white %}
-![Ticketmaster logo blue](/assets/img/branding-guide/white-logo.svg)
+![Ticketmaster logo white](/assets/img/branding-guide/white-logo.svg)
 
 **White**
 
@@ -74,31 +74,31 @@ These are the kinds of things we definitely don’t want you to do with the logo
 {% endcapture %}
 
 {% capture logo-distorted %}
-![Ticketmaster logo blue](/assets/img/branding-guide/distorted.svg)
+![Don’t stretch or distort](/assets/img/branding-guide/distorted.svg)
 
 Don’t stretch or distort
 {% endcapture %}
 
 {% capture logo-croped %}
-![Ticketmaster logo blue](/assets/img/branding-guide/croped.svg)
+![Don’t crop or obscure](/assets/img/branding-guide/croped.svg)
 
 Don’t crop or obscure
 {% endcapture %}
 
 {% capture logo-typeface %}
-![Ticketmaster logo blue](/assets/img/branding-guide/typeface@3x.png)
+![Don’t change the typeface](/assets/img/branding-guide/typeface@3x.png)
 
 Don’t change the typeface
 {% endcapture %}
 
 {% capture logo-modified %}
-![Ticketmaster logo blue](/assets/img/branding-guide/modified.svg)
+![Don’t modify](/assets/img/branding-guide/modified.svg)
 
 Don’t modify
 {% endcapture %}
 
 {% capture logo-colored %}
-![Ticketmaster logo blue](/assets/img/branding-guide/colored.svg)
+![Don’t change the color](/assets/img/branding-guide/colored.svg)
 
 Don’t change the color
 {% endcapture %}
@@ -113,7 +113,7 @@ Advertisements, web pages, and partner sites with primary and resale ticketing a
 {% endcapture %}
 
 {% capture logo-english %}
-![Ticketmaster logo blue](/assets/img/branding-guide/eng-logo.svg)
+![English logo](/assets/img/branding-guide/eng-logo.svg)
 
 **English**
 
@@ -121,7 +121,7 @@ Available as [PNG](/assets/img/branding-guide/eng-logo@3x.png) or [SVG](/assets/
 {% endcapture %}
 
 {% capture logo-french %}
-![Ticketmaster logo blue](/assets/img/branding-guide/french-logo@3x.png)
+![French logo](/assets/img/branding-guide/french-logo@3x.png)
 
 **French**
 

@@ -3,7 +3,7 @@
 Home to the [Ticketmaster Developer Portal](http://developer.ticketmaster.com/).
 
 ## Build Status
-![Build Status Images](https://travis-ci.org/ticketmaster-api/ticketmaster-api.github.io.svg)
+![Build Status Images](https://travis-ci.org/ticketmaster-api-staging/ticketmaster-api-staging.github.io.svg)
 
 ## Installation
 

@@ -6,10 +6,10 @@
   }
   a {
     color: $white-70;
-    &:hover,
-    &:active,
-    &:focus{
+    text-decoration: none;
+    &:hover{
       color: $white;
+      text-decoration: none;
     }
   }
   span {
@@ -95,9 +95,14 @@
   }
   @media #{$max-768} {
     background-position: right 60% center;
+    img {
+      display: block;
+      margin: 0 auto 10px;
+    }
   }
   a {
     color: $n2-grey-color;
+    text-decoration: none;
     &:hover {
       color: $p1a;
     }

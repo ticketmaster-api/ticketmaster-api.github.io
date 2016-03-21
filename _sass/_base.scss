@@ -34,6 +34,7 @@ iframe{
 a, input {
   &active, &:focus {
     outline: none;
+    text-decoration: none;
   }
 }
 
@@ -48,8 +49,17 @@ ul, ol, dl, figure,
     margin-bottom: $base-margin;
 }
 
+
+.base-margin{
+  margin: $base-margin 0;
+}
+
 .base-margin-top {
   margin-top: $base-margin;
+}
+
+.base-margin-bottom {
+  margin-bottom: $base-margin;
 }
 
 .double-margin {
@@ -228,7 +238,7 @@ pre {
 /*Form elements*/
 label {
   color: $n3;
-  margin-bottom: 8px;
+  /*margin-bottom: 8px;*/
   font-family: $font-bold-p;
   font-weight: normal;
 }
@@ -253,11 +263,14 @@ input, select, textarea {
     outline: 0px none;
   }
 }
+textarea:-webkit-autofill,
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $white inset;
+}
 /*
 * Custom checker
 */
 /*hide checker*/
-input[type=checkbox]:not(old),
 input[type=radio   ]:not(old){
   width     : 20px;
   height    : 20px;
@@ -270,14 +283,12 @@ input[type=radio   ]:not(old){
 }
 }
 /*clicked checker*/
-input[type=checkbox]:not(old) + label,
 input[type=radio   ]:not(old) + label{
   display      : inline-block;
   margin-left  : -2em;
   line-height  : 1.5em;
 }
 
-input[type=checkbox]:not(old) + label > span,
 input[type=radio   ]:not(old) + label > span{
   display          : inline-block;
   width            : 20px;
@@ -285,9 +296,10 @@ input[type=radio   ]:not(old) + label > span{
   margin           : 11px 11px 8px;
   border-radius    : 50%;
   background       : $white;
-  border           : 1px solid #ccc   ;
+  border           : 1px solid #ccc;
   vertical-align   : bottom;
 }
+
 input[type=radio]:not(old):checked + label > span > span{
   display          : block;
   width            : 8px;
@@ -296,7 +308,190 @@ input[type=radio]:not(old):checked + label > span > span{
   border-radius    : 50%;
   background       : $p1;
 }
+
+/* Base for label styling */
+input[type=checkbox]:not(:checked),
+input[type=checkbox]:checked {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=checkbox]:not(:checked) + label,
+input[type=checkbox]:checked + label {
+  position: relative;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+input[type="checkbox"]:not(:checked) + label:before,
+input[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  right: -20px; top: 2px;
+  width: 17px; height: 17px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+  border-radius: 3px;
+}
+/* checked mark aspect */
+input[type="checkbox"]:not(:checked) + label:after,
+input[type="checkbox"]:checked + label:after {
+  content: '✔';
+  font-size: 0;
+  background  : url("./../assets/controls/ic-shevron-down.svg") no-repeat 2px;
+  position: absolute;
+  top: 2px;
+  right: -22px;
+  line-height: 0.8;
+  color: #09ad7e;
+  width: 20px;
+  height: 20px;
+
+  /*flip*/
+  /*-moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";*/
+}
+/* checked mark aspect changes */
+input[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+/* disabled checkbox */
+input[type="checkbox"]:disabled:not(:checked) + label:before,
+input[type="checkbox"]:disabled:checked + label:before
+{
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+input[type="checkbox"]:disabled:checked + label:after
+{
+  color: #999;
+}
+label +input[type="checkbox"]:disabled
+{
+  color: #aaa;
+}
+/* accessibility */
+input[type="checkbox"]:checked:focus + label:before,
+input[type="checkbox"]:not(:checked):focus + label:before
+{
+  border: 1px dotted blue;
+}
+
+/* hover style just for information */
+label:hover:before {
+  border: 1px solid #4778d9!important;
+}
+
 /*Custom checker END*/
+
+
+/*Rage*/
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  border: 0;
+  padding: 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: $gray-50;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 15px;
+  border-radius: 4px;
+  background: $gray-70;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: $gray-50;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #b7c9d3;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 15px;
+  border-radius: 4px;
+  background: $gray-70;
+  cursor: pointer;
+}
+input[type=range]::-moz-focus-outer {
+  border: 0;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 39px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #b7c9d3;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #b7c9d3;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 15px;
+  border-radius: 4px;
+  background: $gray-70;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #b7c9d3;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #b7c9d3;
+}
+/*Rage END*/
 
 // Fixed Feedback button
 @media (min-width: 1199px){
@@ -481,7 +676,7 @@ input[type=radio]:not(old):checked + label > span > span{
 
 @mixin inline-list($top){
   position: relative;
-  display: inline;
+  display: inline-block;
   &:not(:last-child){
     margin-right: 15px;
     &:after{
@@ -581,5 +776,61 @@ input[type=radio]:not(old):checked + label > span > span{
 }
 
 .clear-margins{
-  margin: 0; 
+  margin: 0;
 }
+
+
+/*Buttons*/
+.button-white-gray-border {
+  border: 2px solid $gray-70;
+  font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+  color: $gray-70;
+  padding: 12px 34px 9px;
+  background-color: white;
+  &:hover{
+    color: $p1a;
+    border-color: $p1a;
+  }
+}
+
+
+.version-button {
+    display: inline-block;
+    border-radius: 2px;
+    border: solid 1px rgba(0, 155, 222, 0.2);
+    margin-right: 15px !important;
+    font-size: 16px;
+    line-height: 1;
+    color: #009cde;
+    margin-bottom: 35px !important;
+    a {
+      padding: 7px 15px;
+      display: block;
+      &:hover {
+        outline: none;
+        text-decoration: none;
+        background-color: $p1;
+        color: $white;
+      }
+    }
+    &.active {
+      background-color: #009cde;
+      &>a{
+        color: #FFFFFF;
+        &:hover {
+          outline: none;
+          text-decoration: none;
+          background-color: $p1;
+          color: $white;
+        }
+        &:hover {
+          cursor: default;
+        }
+      }
+      &:hover {
+        cursor: default;
+      }
+    }
+}
+
+/*Buttons END*/

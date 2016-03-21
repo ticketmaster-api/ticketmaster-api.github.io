@@ -13,8 +13,28 @@
                 </ul>
                 {% endif %}
             </li>
-            <li><a href="/products-and-docs/apis/discovery/">Discovery API</a>
-                {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" %}
+           
+            <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#srch-events-v2">Search Events</a></li>
+                    <li><a href="#event-details-v2">Get Event Details</a></li>
+                    <li><a href="#event-img-v2">Search Event Images</a></li>
+                    <li><a href="#search-attractions-v2">Search Attractions</a></li>
+                    <li><a href="#attraction-details-v2">Get Attraction Details</a></li>
+                    <li><a href="#search-classifications-v2">Search Classifications</a></li>
+                    <li><a href="#classifications-details-v2">Get Classification Details</a></li>
+                    <li><a href="#search-venues-v2">Search Venues</a></li>
+                    <li><a href="#venue-details-v2">Get Venue Details</a></li>
+                    <li><a href="#supported-markets">Supported Markets</a></li>
+                    <li><a href="#supported-sources">Supported Sources</a></li>
+                    <li><a href="#supported-locales">Supported Locales</a></li>
+                </ul>
+                {% endif %}
+            
+                {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v1" %}
+            
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
                     <li><a href="#srch-events">Search Events</a></li>
@@ -31,8 +51,10 @@
                     <li><a href="#supported-sources">Supported Sources</a></li>
                     <li><a href="#supported-locales">Supported Locales</a></li>
                 </ul>
+                
                 {% endif %}
             </li>
+           
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
@@ -131,6 +153,7 @@
             </li>
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>
             <li><a href="http://vmenshutin.github.io/">API Explorer</a></li>
+            <li><a href="/products-and-docs/apis/changelog/">Changelog</a></li>
         </ul>
     </li>
     <li>
@@ -144,6 +167,14 @@
     </li>
     <li>
         <h4><a href="/products-and-docs/widgets/" {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %} class="active" {% endif %} >Widgets</a></h4>
+        {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %}
+            <ul class="sections menu-highlight">
+                <li><a href="https://www.universe.com/directpayments">Direct Payments</a></li>
+                <li><a href="/products-and-docs/under-development/">Event Discovery Widget</a></li>
+            </ul>
+        {% endif %}
+
+
         <!--<ul class="categories">
             <li><a href="/products-and-docs/under-development/">Getting started</a></li>
             <li><a href="/products-and-docs/under-development/">Configuration Docs</a></li>

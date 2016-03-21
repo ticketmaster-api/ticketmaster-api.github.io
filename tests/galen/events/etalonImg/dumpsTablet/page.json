@@ -1,5 +1,1 @@
-<<<<<<< b946e78f48503192864e9a858e0464442c37a622
-{"title":"Ticketmaster Developer Portal","items":{"footer":{"area":[0,2845,768,464],"hasImage":true},"screen":{"area":[0,0,768,3309],"hasImage":true},"viewport":{"area":[0,0,768,953],"hasImage":true},"base-content-wrapper":{"area":[0,593,768,2253],"hasImage":true},"header":{"area":[0,0,768,497],"hasImage":true}},"pageName":"dump Events tablet"}
-=======
-{"title":"Ticketmaster Developer Portal","items":{"footer":{"area":[0,5294,768,464],"hasImage":true},"screen":{"area":[0,0,768,5758],"hasImage":true},"viewport":{"area":[0,0,768,953],"hasImage":true},"base-content-wrapper":{"area":[0,939,768,4356],"hasImage":true},"header":{"area":[0,0,768,843],"hasImage":true}},"pageName":"dump Events tablet"}
->>>>>>> Auto-Report from Travis
+{"title":"Events","items":{"footer":{"area":[0,6523,768,488],"hasImage":true},"screen":{"area":[0,0,768,7011],"hasImage":true},"viewport":{"area":[0,0,768,953],"hasImage":true},"base-content-wrapper":{"area":[0,1047,768,5476],"hasImage":true},"header":{"area":[0,0,768,951],"hasImage":true}},"pageName":"dump Events tablet"}

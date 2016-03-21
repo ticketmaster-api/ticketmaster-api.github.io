@@ -5,8 +5,6 @@ layout: default
 <div class="top-bar bg-header bg-header-events slice-bottom-left">
 {% include partials/common-header.html %}
 
-
-
 {% for event in site.pages %}
     {% if event.prime %}
     <div class="events-wrapper top-event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}" >
@@ -32,6 +30,7 @@ layout: default
 {% endfor %}
 </div>
 
+{% include partials/expanded-menu-header.html %}
 {% include partials/common-header-small.html %}
 
 <div class="base-content-wrapper">

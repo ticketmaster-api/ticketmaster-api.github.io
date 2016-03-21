@@ -43,7 +43,8 @@ $(document).ready(function() {
             $(".fs-modal #modal-title").html(title);
             $(".fs-modal .modal-body").html(content);
 
-            $(".fs-modal .modal-body").delegate(".reqres a", "click", function() {
+            $(".fs-modal .modal-body").delegate(".reqres a", "click", function(event) {
+                event.preventDefault();
                 $(this).parent().children().removeClass("active");
                 $(this).addClass("active");
                 $(this).parents().closest(".modal-body").children().removeClass("active");
@@ -155,6 +156,7 @@ $(document).ready(function() {
         });
 
         $(".reqres a").click(function(event) {
+            event.preventDefault();
             $(this).parent().find(".active").removeClass("active");
             $(this).parent().parent().parent().find(".r-tab.active").removeClass("active");
             $(this).parent().parent().parent().find(".r-tab").eq($(this).index()).addClass("active");

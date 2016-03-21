@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_user</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="1.x-Home---Responsive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="1.1.1-Home" sketch:type="MSArtboardGroup" transform="translate(-1335.000000, -31.000000)" stroke-width="2" stroke="#009CDE" stroke-linejoin="round">
+            <g id="Masthead" sketch:type="MSLayerGroup">
+                <g id="Sign-In-button" transform="translate(1336.000000, 32.000000)" sketch:type="MSShapeGroup">
+                    <g id="ic_user">
+                        <path d="M10.4166667,15.625 C10.4166667,15.625 8.85416667,15.1041667 8.85416667,12.5 C7.99375,12.5 7.99375,10.4166667 8.85416667,10.4166667 C8.85416667,10.0677083 7.29166667,6.25 9.89583333,6.77083333 C10.4166667,4.6875 16.1458333,4.6875 16.6666667,6.77083333 C17.028125,8.21666667 16.1458333,10.1604167 16.1458333,10.4166667 C17.00625,10.4166667 17.00625,12.5 16.1458333,12.5 C16.1458333,15.1041667 14.5833333,15.625 14.5833333,15.625 L14.5833333,18.2291667 C17.1635417,19.196875 19.71875,19.996875 21.0270833,20.9114583 C23.1604167,18.7489583 24.4791667,15.7791667 24.4791667,12.5 C24.4791667,5.88333333 19.1166667,0.520833333 12.5,0.520833333 C5.88333333,0.520833333 0.520833333,5.88333333 0.520833333,12.5 C0.520833333,15.784375 1.84375,18.759375 3.984375,20.9239583 C5.36979167,19.965625 8.10104167,19.1052083 10.4166667,18.2291667 L10.4166667,15.625 L10.4166667,15.625 Z" id="Stroke-528"></path>
+                        <path d="M3.98458333,20.9238542 C6.15645833,23.1186458 9.16895833,24.4790625 12.5002083,24.4790625 C15.8366667,24.4790625 18.8533333,23.1144792 21.02625,20.9113542" id="Stroke-529"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

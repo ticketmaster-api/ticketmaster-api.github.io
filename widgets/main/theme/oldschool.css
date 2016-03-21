@@ -1,0 +1,551 @@
+/* FONTS */
+/*TMSans*/
+@font-face {
+    font-family: "TMSans-Regular";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Light";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Italic";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Bold";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+/* TODO: change to http://developer.ticketmaster.com*/
+@font-face {
+    font-family: "Ticketing-Regular";
+    src: url("http://ticketmaster-api-staging.github.io/assets/fonts/Widgets/ticketing.regular.otf"),
+         url("http://ticketmaster-api-staging.github.io/assets/fonts/Widgets/ticketing.regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+
+
+/* Common styles for all themes  */
+div[w-tmapikey] .event-message {
+    position: absolute;
+    padding: 16px 46px 16px 52px;
+    left: 10px;
+    right: 10px;
+    top: -50%;
+    border-radius: 4px;
+    font-family: "TMSans-Bold";
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ffffff;
+    opacity: 0;
+    z-index: 10;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
+    -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+div[w-tmapikey] .event-message-visible {
+    top: 10px;
+    opacity: 1;
+}
+
+div[w-tmapikey] .event-message__btn {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ic-close-small-white.svg") no-repeat 50% 50%;
+}
+
+
+div[w-theme="oldschool"]{
+    position: relative;
+    height: 200px;
+    width: 150px;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    font-family: 'TMSans-Regular';
+    padding-bottom: 41px;
+    padding-right: 4px;
+}
+
+div[w-theme="oldschool"] .events-root-container{
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    border: 2px solid #f7ec7a;
+}
+
+div[w-theme="oldschool"] ul{
+    margin: 0;
+    padding: 0;
+    -webkit-transition: margin 0.5s ease-in-out;
+    -moz-transition: margin 0.5s ease-in-out;
+    transition: margin 0.5s ease-in-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+div[w-theme="oldschool"] .event-wrapper {
+    position: relative;
+    height: 200px;
+    width:150px;
+    float: left;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #fff;
+}
+
+div[w-theme="oldschool"] .bg-cover {
+    background: url('http://ticketmaster-api-staging.github.io/assets/img/widgets/paper_@2X.png') no-repeat !important;
+}
+
+div[w-theme="oldschool"] .event-wrapper:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+div[w-theme="oldschool"] .event-content-wraper,
+div[w-theme="oldschool"] .event-wrapper:before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+div[w-theme="oldschool"] .event-content-wraper {
+    width: 100%;
+    padding: 110px 28px 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+}
+
+div[w-theme="oldschool"] .general-admission{
+    background: #009cde;
+    color: #ffffff;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-family: "Ticketing-Regular";
+    padding: 12px 0 8px;
+    top: 36px;
+}
+
+div[w-theme="oldschool"] .event-name{
+    display: block;
+    display: -webkit-box;
+    text-transform: uppercase;
+    font-size: 32px;
+    line-height: 38px;
+    max-height: 114px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-align: center;
+    font-family: "Ticketing-Regular";
+    color: #414141;
+}
+
+div[w-theme="oldschool"] .event-date-wraper{
+    display: block;
+    font-family: "Ticketing-Regular";
+    background: #f7ec7a;
+    position: absolute;
+    left: 0;
+    top: 325px;
+    text-align: center;
+    width: 100%;
+    color: #414141;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 7px 0 3px;
+}
+
+div[w-theme="oldschool"] .event-date-wraper:after{
+    content: '';
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 3px;
+    border-top: 2px dashed #cccccc;
+    bottom: -70px;
+}
+
+div[w-theme="oldschool"] .address-wrapper{
+    display: block;
+    position: relative;
+    font-family: "Ticketing-Regular";
+    font-size: 24px;
+    color: #414141;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 24px;
+}
+
+div[w-theme="oldschool"] .address-wrapper:before{
+    content: '* * *';
+    position: relative;
+    display: block;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+div[w-theme="oldschool"] .address-wrapper:after{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 254px;
+    height: 35px;
+    background: url('http://ticketmaster-api-staging.github.io/assets/img/widgets/t-m-logo-watermark.svg') no-repeat !important;
+    top: -12px;
+    left: 50%;
+    margin-left: -127px;
+}
+
+div[w-theme="oldschool"] .event-address{
+    display: block;
+}
+
+div[w-theme="oldschool"] .category-wrapper{
+    display: block;
+    font-family: "TMSans-Bold";
+}
+
+div[w-theme="oldschool"] .event-category:before{
+    content: ', ';
+}
+
+div[w-theme="oldschool"] .event-category:first-child:before{
+    content: '';
+}
+
+div[w-theme="oldschool"] .legal-notice,
+div[w-theme="oldschool"] .legal-notice:hover,
+div[w-theme="oldschool"] .legal-notice:focus,
+div[w-theme="oldschool"] .legal-notice:active{
+    position: absolute;
+    left: 10px;
+    bottom: 8px;
+    color: #019cde;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+div[w-theme="oldschool"] .events-counter {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #b7c9d3;
+    font-family: "TMSans-Bold";
+}
+
+div[w-theme="oldschool"] .event-logo-box {
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    width: 100%;
+    height: 46px;
+    padding: 13px 25px 0 30px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold";
+    color: rgba(65, 65, 65, 0.4);
+    font-size: 14px;
+    line-height: 26px;
+    text-align: center;
+}
+
+div[w-theme="oldschool"] .event-logo-box:before{
+    content: '';
+    display: block;
+    position: relative;
+    width: 300px;
+    height: 40px;
+    background: url('http://ticketmaster-api-staging.github.io/assets/img/widgets/barcode.svg') no-repeat;
+    top: -20px;
+    left: 50%;
+    margin-left: -150px;
+}
+
+div[w-theme="oldschool"] .event-logo {
+    display: inline-block;
+    width: 144px;
+    height: 20px;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg") no-repeat;
+}
+
+div[w-theme="oldschool"] .event-question {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-gray.svg") no-repeat;
+}
+
+/* slider controls */
+div[w-theme="oldschool"] .events_control {
+    position: absolute;
+    cursor: pointer;
+    -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    overflow: hidden;
+    opacity: 0.3;
+}
+
+div[w-theme="oldschool"] .events_control-horizontal {
+    top: 50%;
+    width: 13px;
+    height: 56px;
+    margin-top: -28px;
+}
+
+div[w-theme="oldschool"] .events_control-vertical {
+    left: 50%;
+    width: 56px;
+    height: 13px;
+    margin-left: -28px;
+}
+
+/*div[w-theme="oldschool"] .events_control:hover {*/
+    /*opacity: 1;*/
+/*}*/
+
+div[w-theme="oldschool"] .events_control:before {
+    content: '';
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background: #b7c9d3 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
+}
+
+div[w-theme="oldschool"] .events_control-left {
+    left: 0;
+}
+
+div[w-theme="oldschool"] .events_control-left:before {
+    right: 0;
+    top: 0;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+div[w-theme="oldschool"] .events_control-right {
+    right: 0;
+}
+
+div[w-theme="oldschool"] .events_control-right:before {
+    left: 0;
+    top: 0;
+}
+
+div[w-theme="oldschool"] .events_control-top {
+    top: 0;
+}
+
+div[w-theme="oldschool"] .events_control-top:before {
+    left: 0;
+    bottom: 0;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+div[w-theme="oldschool"] .events_control-bottom {
+    bottom: 0;
+}
+
+div[w-theme="oldschool"] .events_control-bottom:before {
+    left: 0;
+    top: 0;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+div[w-theme="oldschool"] .events_control:hover {
+    opacity: 0.8;
+}
+
+div[w-theme="oldschool"] .events_control-vertical:hover {
+    height: 28px;
+}
+
+div[w-theme="oldschool"] .events_control-horizontal:hover {
+    width: 28px;
+}
+
+
+div[w-theme="oldschool"] .events_control-vertical.events_control-hidden {
+    height: 0;
+}
+
+div[w-theme="oldschool"] .events_control-horizontal.events_control-hidden {
+    width: 0;
+}
+
+
+/*group*/
+div[w-theme="oldschool"] .event-group {
+    width: 100%;
+}
+
+/* BUY NOW */
+div[w-theme="oldschool"] .event-buy-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 145px;
+    width: 74px;
+    height: 24px;
+    margin-left: -37px;
+    padding-top: 5px;
+    border-radius: 4px;
+    background-color: #009cde;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 16px;
+    color: #ffffff;
+    text-align: center;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="oldschool"] .event-buy-btn[href=''] {
+    background-color: #ccc;
+    cursor: default;
+    opacity: 0.5;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .general-admission {
+    height: 100%;
+    width: 35px;
+    top: 0;
+    left: 35px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .general-admission>div {
+    transform: rotate(-90deg);
+    height: 32px;
+    width: 850%;
+    margin-top: 122px;
+    margin-left: -130px;
+    position: static;
+    transform-origin: center center 0;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-logo-box {
+    transform: rotate(-90deg);
+    width: 300px;
+    bottom: 125px;
+    right: -60px;
+    left: inherit;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-logo-box:before{
+    width: 250px;
+    left: 150px;
+}
+div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper{
+    padding: 40px 0 0 100px;
+    width: 100%;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-date-wraper {
+    transform: rotate(-90deg);
+    top: 133px;
+    width: 300px;
+    right: 35px;
+    left: auto;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper .event-name,
+div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper .address-wrapper{
+    text-align: left;
+    width: 60%;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .address-wrapper:before {
+    text-align: center;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-logo{
+    margin-left: 105px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .legal-notice{
+    left: auto;
+    bottom: auto;
+    transform: rotate(-90deg);
+    top: 220px;
+    right: 8px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .events-counter{
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"]  .event-name{
+    -webkit-line-clamp: 2;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-date-wraper:after {
+    bottom: -30px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-buy-btn {
+    left: 135px;
+    right: auto;
+    bottom: 20px;
+}

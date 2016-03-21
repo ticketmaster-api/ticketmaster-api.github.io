@@ -18,7 +18,7 @@
     nav-all-item-footer-*       css  #footer > div.row.footer-nav > div > div > ul > li > a
 
     logo-bottom-img             css  #footer > div.row.bottom-logo > div > div > a > img
-    logo-bottom-text            css  #footer > div.row.bottom-logo > div > div > a > span
+    logo-bottom-text            css  #footer > div.row.bottom-logo > div > div > span
 
 = Navigation test @mobile =
     @on mobile
@@ -60,19 +60,6 @@
         nav-item-block-1-footer-3:
             % text is "Widgets"
 
-= block-2 (Partners) text, align check =
-        nav-item-block-2-footer-1:
-            % text is "Clients & vendors"
-        #    aligned horizontally centered nav-item-block-2-footer-2
-        nav-item-block-2-footer-2:
-            % text is "Other partners"
-
-        nav-item-block-2-footer-3:
-            % text is "Developers"
-        #    aligned horizontally centered nav-item-block-2-footer-4
-        nav-item-block-2-footer-4:
-            % text is "Affiliates"
-
 = block-3 (Support) text, align check =
         nav-item-block-3-footer-1:
             % text is "FAQ"
@@ -95,10 +82,10 @@
 
 = block-5 (Events) text, align check =
         nav-item-block-5-footer-1:
-            % text is "devjam"
+            % text is "hackathon"
             aligned horizontally all nav-item-block-5-footer-2
         nav-item-block-5-footer-2:
-            % text is "hackathon"
+            % text is "devjam"
 
 = block-6 (Open Source) text, align check =
         nav-item-block-6-footer-1:
@@ -115,7 +102,7 @@
 
 = colors, height =
         footer-container:
-            height  892 to 902 px
+            height  920 to 930 px
             # css background-image is "url(/assets/img/footer/bg-die-antwoord-p-1.png)";
 
         nav-all-item-footer-*:
@@ -123,9 +110,6 @@
 
         nav-item-heading-footer-*:
             ${color} "rgba(255, 255, 255, 1)"
-
-        logo-bottom-img:
-            aligned vertically centered logo-bottom-text
 
 ### run me local (FF)
 ### galen check tests/galen/products-and-docs/common/footer-mobile.gspec --url 127.0.0.1:4000/products-and-docs/apis/getting-started/ --size 320x1080 --htmlreport tests/galen/reports/mobNew

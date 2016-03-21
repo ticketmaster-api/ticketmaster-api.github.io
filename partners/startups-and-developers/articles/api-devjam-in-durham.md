@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 2
 category: sd-article
 tags:
   - web
@@ -43,7 +43,7 @@ Get access to the [API Explorer](http://vmenshutin.github.io/).
 
 ![Rectangle](/assets/img/partners/startups-development/epam-team-web.jpg)
 
-Epam team
+EPAM team
 
 {% endcapture %}
 

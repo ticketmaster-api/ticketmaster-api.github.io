@@ -1,12 +1,15 @@
 ---
 layout: blogs
 category: blogs
+title: Blogs
+excerpt: Our tech blog posts about technical challenges at Ticketmaster and how we go about solving them.
+keywords: tech blog, posts about technical challenges, Ticketmaster, events, tickets
 ---
 
 
 {% capture left_box %}
 
-[![Icon1](/assets/img/blogs/tm-tech-logo.svg)](http://tech.ticketmaster.com)
+[![Tm Tech logo](/assets/img/blogs/tm-tech-logo.svg)](http://tech.ticketmaster.com)
 
 {: .lead}
 Our tech blog posts about technical challenges at Ticketmaster and how we go about solving them.
@@ -18,7 +21,7 @@ Our tech blog posts about technical challenges at Ticketmaster and how we go abo
 
 {% capture right_box %}
 
-[![Icon1](/assets/img/blogs/ticketmaster-insider-logo.svg)](http://insider.ticketmaster.com)
+[![Ticketmaster Insider logo](/assets/img/blogs/ticketmaster-insider-logo.svg)](http://insider.ticketmaster.com)
 
 {: .right-lead}
 Get the scoop on events, tickets, and everything else going on in our wonderful world of live event ticketing on our company blog.

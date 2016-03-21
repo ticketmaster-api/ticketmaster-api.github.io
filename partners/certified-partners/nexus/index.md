@@ -38,28 +38,28 @@ We offer the support, knowledge and validation to make sure your solution is ful
 <div class="col-sm-12 col-lg-8 nexus-form-wrapper">
 <form accept-charset="UTF-8" action="#" method="POST" class="js_nexus_form">    
     <div class="col-sm-6">
-        <label for="name">First name</label>
-        <input type="text" id="first-name" name="firstName" maxlength="255" placeholder="" autofocus tabindex="1">
+        <label for="name-nexus">First name</label>
+        <input type="text" id="first-name" name="firstName" maxlength="255" placeholder="" tabindex="1">
     </div>
     <div class="col-sm-6">
-        <label for="last-name">Last name</label>
-        <input type="text" id="last-name" name="lastName" maxlength="255" placeholder="" tabindex="2">
+        <label for="last-name-nexus">Last name</label>
+        <input type="text" id="last-name-nexus" name="lastName" maxlength="255" placeholder="" tabindex="2">
     </div>
     <div class="col-sm-6">
         <label for="email">Email address <span class="label-required">(required)</span></label>
-        <input type="email" id="email" name="email" placeholder="" required tabindex="3">
+        <input type="email" id="email-nexus" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" title="Use the following format '-@-.--' " tabindex="3">
     </div>
     <div class="col-sm-6">
         <label for="phone">Contact number</label>
-        <input type="tel" id="phone" name="phone" placeholder="" tabindex="4">
+        <input type="tel" id="phone-nexus" name="phone" tabindex="4">
     </div>
     <div class="col-sm-6">
         <label for="organization">Organization name</label>
-        <input type="text" id="organization" name="organization" placeholder="" tabindex="5">
+        <input type="text" id="organization-nexus" name="organization" placeholder="" tabindex="5">
     </div>
     <div class="col-sm-6">
     <label >Number of Ticketmaster clients</label>
-    <input type="text" min="0" name="ticketsNumber" pattern="[0-9]*" placeholder="" tabindex="6">
+    <input type="number-nexus" min="0" name="ticketsNumber" pattern="[0-9]*" title="This field may only contain alpha-numeric characters" tabindex="6">
     </div>    
     
     <label class="label-radio-group">Is product offering free or paid? <span class="label-required">(required)</span></label>

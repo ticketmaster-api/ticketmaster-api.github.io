@@ -7,7 +7,7 @@ keywords: partners, certified partners, become an affilate
 ---
 
 {% capture distribution_header %}
-## Distribution partners
+## Distribution Partners
 {% endcapture %}
 
 {% capture distribution_logos %}
@@ -44,14 +44,13 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 {: .no-margin-bottom}
 [Get to know our Distribution partners](/partners/distribution-partners/)
 
-
 {: .no-margin-top}
 [Talk to us about how to partner](mailto:distributedcommerce@ticketmaster.com)
 {% endcapture %}
 
 
 {% capture certified_header %}
-## Certified partners
+## Certified Partners
 {% endcapture %}
 
 {% capture certified_logo %}
@@ -83,14 +82,18 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 
 {% capture affilated %}
 
-## Get affiliated
+## Already affiliated?
 
 {: .body .p}
 If you are a current member of the Ticketmaster affiliate program, manage your account at Affiliate Window.
 
-[More information about being affiliated](/support/faq/#affiliates-a)
+[GO TO LOGIN](https://darwin.affiliatewindow.com/login){: .button.button-blue .base-margin-bottom}
 
-[GO TO LOGIN](https://darwin.affiliatewindow.com/login){: .button.button-blue}
+{: .gray}
+#### Have questions about our affiliate program?
+
+{: .no-margin-top}
+[Check out our FAQs!](/support/faq/#affiliates-a)
 
 {% endcapture %}
 

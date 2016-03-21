@@ -14,9 +14,11 @@
     background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
   }
 
-  &-opened {
-    &:after {
-      @include rotate(180deg)
+  @media (min-width: 767px){
+    &-opened {
+      &:after {
+        @include rotate(180deg)
+      }
     }
   }
 
@@ -42,6 +44,7 @@
   &__item {
     padding: 12px 0;
     cursor: pointer;
+    list-style: none;
     @include transition(color 0.1s ease);
     &:hover,
     &-active{
@@ -51,6 +54,7 @@
 
   &__placeholder {
     margin-bottom: 0;
+    cursor: pointer;
     @media (max-width: 767px){
       display: none;
     }
@@ -58,6 +62,7 @@
 
   &__field {
     margin-bottom: 0;
+    padding-right: 50px;
     @media (min-width: 767px){
       // make select invisible
       border: 0 !important;

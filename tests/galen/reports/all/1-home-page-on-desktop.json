@@ -1,0 +1,518 @@
+{
+  "testId" : "1-home-page-on-desktop",
+  "name" : "Home page on desktop",
+  "report" : {
+    "nodes" : [ {
+      "name" : "http://127.0.0.1:4000/ 1456x1220",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "wait 1m until visible \"id: timeline\"",
+        "status" : "info",
+        "time" : 1457698891829,
+        "type" : "node"
+      }, {
+        "name" : "dump tests/galen/home/_dumpContent.gspec --name \"dump Home page desktop\" --export tests/galen/home/etalonImg/dumpsDesktop/",
+        "status" : "info",
+        "time" : 1457698892426,
+        "type" : "node"
+      }, {
+        "name" : "check tests/galen/home/desktop.gspec --include \"desktop\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: tests/galen/home/desktop.gspec included tags: desktop",
+          "status" : "info",
+          "time" : 1457698922818,
+          "includedTags" : [ "desktop" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "image test",
+            "objects" : [ {
+              "name" : "top-promo",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 24
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/top-promo.png, tolerance 40, analyze-offset 2, error 4%",
+                "highlight" : [ "top-promo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 25
+                },
+                "name" : "width 1440 px",
+                "highlight" : [ "top-promo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "height 868 px",
+                "highlight" : [ "top-promo" ]
+              } ]
+            }, {
+              "name" : "columns-block",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 28
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/columns-block.png, tolerance 40, error 4%",
+                "highlight" : [ "columns-block" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "width 1440 px",
+                "highlight" : [ "columns-block" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "height 421 px",
+                "highlight" : [ "columns-block" ]
+              } ]
+            }, {
+              "name" : "partners-block",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 32
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/partners-block.png, tolerance 40, error 4%",
+                "highlight" : [ "partners-block" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 33
+                },
+                "name" : "width 1440 px",
+                "highlight" : [ "partners-block" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 34
+                },
+                "name" : "height 1151px",
+                "highlight" : [ "partners-block" ]
+              } ]
+            }, {
+              "name" : "promo-social-left",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 36
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/promo-social-left.png, tolerance 40, error 4%",
+                "highlight" : [ "promo-social-left" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 37
+                },
+                "name" : "width 585 px",
+                "highlight" : [ "promo-social-left" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 38
+                },
+                "name" : "height 212px",
+                "highlight" : [ "promo-social-left" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Navigation test",
+            "objects" : [ {
+              "name" : "logo",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 44
+                },
+                "name" : "visible",
+                "highlight" : [ "logo" ]
+              } ]
+            }, {
+              "name" : "global",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 48
+                },
+                "name" : "count any nav-item-* is 6",
+                "highlight" : [ "nav-item-6", "nav-item-5", "nav-item-4", "nav-item-3", "nav-item-2", "nav-item-1" ]
+              } ]
+            }, {
+              "name" : "nav-item-1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 52
+                },
+                "name" : "text is \"PRODUCTS & DOCS\"",
+                "highlight" : [ "nav-item-1" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 53
+                },
+                "name" : "aligned horizontally all nav-item-2",
+                "highlight" : [ "nav-item-1", "nav-item-2" ]
+              } ]
+            }, {
+              "name" : "nav-item-2",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 55
+                },
+                "name" : "text is \"PARTNERS\"",
+                "highlight" : [ "nav-item-2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 56
+                },
+                "name" : "aligned horizontally all nav-item-3",
+                "highlight" : [ "nav-item-2", "nav-item-3" ]
+              } ]
+            }, {
+              "name" : "nav-item-3",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 58
+                },
+                "name" : "text is \"SUPPORT\"",
+                "highlight" : [ "nav-item-3" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 59
+                },
+                "name" : "aligned horizontally all nav-item-4",
+                "highlight" : [ "nav-item-3", "nav-item-4" ]
+              } ]
+            }, {
+              "name" : "nav-item-4",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 61
+                },
+                "name" : "text is \"BLOGS\"",
+                "highlight" : [ "nav-item-4" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 62
+                },
+                "name" : "aligned horizontally all nav-item-5",
+                "highlight" : [ "nav-item-4", "nav-item-5" ]
+              } ]
+            }, {
+              "name" : "nav-item-5",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 64
+                },
+                "name" : "text is \"EVENTS\"",
+                "highlight" : [ "nav-item-5" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 65
+                },
+                "name" : "aligned horizontally all nav-item-6",
+                "highlight" : [ "nav-item-5", "nav-item-6" ]
+              } ]
+            }, {
+              "name" : "nav-item-6",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 67
+                },
+                "name" : "text is \"OPEN SOURCE\"",
+                "highlight" : [ "nav-item-6" ]
+              } ]
+            } ]
+          }, {
+            "name" : "general layout test",
+            "objects" : [ {
+              "name" : "column-item-1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-1" ]
+              } ]
+            }, {
+              "name" : "column-item-2",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-2" ]
+              } ]
+            }, {
+              "name" : "column-item-3",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-3" ]
+              } ]
+            }, {
+              "name" : "column-item-4",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 72
+                },
+                "name" : "width ~ 25 % of columns-container/width",
+                "highlight" : [ "column-item-4" ]
+              } ]
+            }, {
+              "name" : "columns-block",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 74
+                },
+                "name" : "below top-promo 35 to 45px",
+                "highlight" : [ "columns-block", "top-promo" ]
+              } ]
+            }, {
+              "name" : "partners-block",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 76
+                },
+                "name" : "below columns-block 0 to 5px",
+                "highlight" : [ "partners-block", "columns-block" ]
+              } ]
+            }, {
+              "name" : "social",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 78
+                },
+                "name" : "below partners-block 65 to 75px",
+                "highlight" : [ "social", "partners-block" ]
+              } ]
+            }, {
+              "name" : "footer",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 80
+                },
+                "name" : "below social 100 to 105px",
+                "highlight" : [ "footer", "social" ]
+              } ]
+            }, {
+              "name" : "main-desc",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 82
+                },
+                "name" : "below main-header 40 to 50px",
+                "highlight" : [ "main-desc", "main-header" ]
+              } ]
+            }, {
+              "name" : "get-api-btn",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 84
+                },
+                "name" : "near explore-btn 55 to 65px left",
+                "highlight" : [ "get-api-btn", "explore-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 85
+                },
+                "name" : "width 195 to 200px",
+                "highlight" : [ "get-api-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 86
+                },
+                "name" : "height 45 to 50px",
+                "highlight" : [ "get-api-btn" ]
+              } ]
+            }, {
+              "name" : "explore-btn",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 88
+                },
+                "name" : "width 255 to 275px",
+                "highlight" : [ "explore-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 89
+                },
+                "name" : "height 45 to 50px",
+                "highlight" : [ "explore-btn" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 90
+                },
+                "name" : "visible",
+                "highlight" : [ "explore-btn" ]
+              } ]
+            } ]
+          }, {
+            "name" : "twitter card",
+            "objects" : [ {
+              "name" : "twitter",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/home/desktop.gspec",
+                  "lineNumber" : 95
+                },
+                "name" : "inside social",
+                "highlight" : [ "twitter", "social" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "logo" : {
+              "area" : [ 30, 23, 181, 42 ]
+            },
+            "top-promo" : {
+              "area" : [ 0, 82, 1440, 868 ]
+            },
+            "main-header" : {
+              "area" : [ 150, 293, 1140, 264 ]
+            },
+            "main-desc" : {
+              "area" : [ 150, 598, 945, 64 ]
+            },
+            "nav-item-6" : {
+              "area" : [ 935, 0, 147, 82 ]
+            },
+            "columns-block" : {
+              "area" : [ 0, 986, 1440, 421 ]
+            },
+            "nav-item-5" : {
+              "area" : [ 844, 0, 91, 82 ]
+            },
+            "nav-item-4" : {
+              "area" : [ 759, 0, 85, 82 ]
+            },
+            "promo-social-left" : {
+              "area" : [ 135, 2627, 585, 212 ]
+            },
+            "nav-item-3" : {
+              "area" : [ 656, 0, 104, 82 ]
+            },
+            "nav-item-2" : {
+              "area" : [ 543, 0, 112, 82 ]
+            },
+            "column-item-2" : {
+              "area" : [ 428, 986, 293, 381 ]
+            },
+            "nav-item-1" : {
+              "area" : [ 358, 0, 185, 82 ]
+            },
+            "column-item-1" : {
+              "area" : [ 135, 986, 293, 421 ]
+            },
+            "explore-btn" : {
+              "area" : [ 413, 712, 265, 49 ]
+            },
+            "footer" : {
+              "area" : [ 0, 3155, 1440, 499 ]
+            },
+            "column-item-3" : {
+              "area" : [ 720, 986, 293, 389 ]
+            },
+            "twitter" : {
+              "area" : [ 735, 2627, 550, 420 ]
+            },
+            "column-item-4" : {
+              "area" : [ 1013, 986, 293, 322 ]
+            },
+            "partners-block" : {
+              "area" : [ 0, 1407, 1440, 1151 ]
+            },
+            "social" : {
+              "area" : [ 0, 2627, 1440, 427 ]
+            },
+            "get-api-btn" : {
+              "area" : [ 150, 712, 199, 48 ]
+            }
+          },
+          "screenshot" : "layout-1-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1457698909131,
+        "type" : "node"
+      } ],
+      "time" : 1457698885858,
+      "type" : "node"
+    } ]
+  }
+}

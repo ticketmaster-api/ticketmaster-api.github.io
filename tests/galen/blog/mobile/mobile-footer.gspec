@@ -24,6 +24,7 @@
         footer:
             below top-content  ~30 px
 
+
 = Blog page navigation test @mobile =
         nav-item-heading-footer-1:
             % text is "Products & Docs"

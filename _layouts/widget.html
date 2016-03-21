@@ -1,0 +1,105 @@
+---
+layout: default
+---
+
+<link id="widget-theme-simple" rel="stylesheet" href="{{ "/widgets/main/theme/simple.css" | prepend: site.baseurl }}">
+<link id="widget-theme-oldschool" rel="stylesheet" href="{{ "/widgets/main/theme/oldschool.css" | prepend: site.baseurl }}">
+<link id="widget-theme-newschool" rel="stylesheet" href="{{ "/widgets/main/theme/newschool.css" | prepend: site.baseurl }}">
+
+
+<div class="top-bar bg-header bg-header-partners slice-bottom-left">
+  {% include partials/common-header.html %}
+</div>
+
+{% include partials/common-header-small.html %}
+{% include partials/expanded-menu-header.html %}
+
+<div class="base-content-wrapper widget-content-wrapper">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h1>WIDGETS</h1>
+      <p class="lead">The TM Widgets allow partners to setup particular widgets and provide enhanced discovery experience for consumers within copy/paste distance.</p>
+      <h2>Widget: Keyword search</h2>
+      <p>You can use the widget configurator below to customize the layout of the widget, and grab a small code snippet to insert into your website.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12 config-block">
+      {% include widget-config.html %}
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="widget-container-wrapper">
+            <div class="widget-container">
+              <!-- <div id="ticketmaster-config" data-config="eyJhayI6IktSVW5qcTh5OFNnNWVEcFA5MGROek9LNzBkNFdpVXN0Iiwia3ciOiJtZXRhbCIsInQiOnsibiI6InQxIiwiYiI6ZmFsc2UsImgiOjU1MCwidyI6MzUwLCJiciI6NH19"></div> -->
+              <div w-tmapikey="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-size="25" w-height="550" w-borderradius="4" w-postalcode="90015" w-period="week" w-layout="vertical"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer" class="xs-center slice-top-left">
+  {% include partials/footer.html %}
+</div>
+
+<!-- Modal widget-->
+<div id="js_widget_modal" class="modal modal-common fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <div class="row">
+          <h3 class="modal-title col-lg-12">Embedded code</h3>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <h4>JavaScript</h4>
+            <code class="language-js widget_dialog__code" data-lang="js">
+              &lt;script src="http://ticketmaster-api-staging.github.io/widgets/main/lib/main-widget.js"&gt;&lt;/script&gt;
+            </code>
+            <h4>HTML</h4>
+            <code class="language-html widget_dialog__code" data-lang="html"></code>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="js_widget_modal__close" type="button" class="btn btn-submit text-center">Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal widget end-->
+
+
+<!-- Modal has no code-->
+<div id="js_widget_modal_no_code" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Warning</h3>
+        <p class="text-center">There are no such events</p>
+        <div class="modal-footer">
+          <button id="js_widget_modal_no_code__close" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal has no code end-->
+
+
+<script src="{{"/widgets/main/lib/main-widget.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/widgets/main/lib/main-widget-config.js" | prepend: site.baseurl }}"></script>

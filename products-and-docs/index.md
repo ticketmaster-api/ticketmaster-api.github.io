@@ -32,7 +32,7 @@ Already doing business with Ticketmaster? <br>
 {% capture api %}
 ## APIs
 
-[![Discovery API](/assets/img/products-and-docs/ic-search-big.svg)](/products-and-docs/apis/discovery/)
+[![Discovery API](/assets/img/products-and-docs/ic-search-big.svg)](/products-and-docs/apis/discovery/v1/)
 [![Commerce API](/assets/img/products-and-docs/ic-commerce-api.svg)](/products-and-docs/apis/commerce/)
 [![Partner API](/assets/img/products-and-docs/ic-user.svg)](/products-and-docs/apis/partner/)
 [![Deals API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/deals-api/)

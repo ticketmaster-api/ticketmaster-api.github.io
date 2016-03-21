@@ -1,0 +1,52 @@
+{
+  "testId" : "1-partners-distribution-page-on-desktop-1456x1220",
+  "name" : "Partners(Distribution) page on desktop 1456x1220",
+  "report" : {
+    "nodes" : [ {
+      "name" : "http://127.0.0.1:4000//partners/distribution-partners/ 1456x1220",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "dump tests/galen/partners/distribution/_dumpContent.gspec --name \"dump Partners-Distribution desktop\" --export tests/galen/partners/distribution/etalonImg/dumpsDesktop/",
+        "status" : "info",
+        "time" : 1456936842015,
+        "type" : "node"
+      }, {
+        "name" : "check tests/galen/partners/distribution/desktop.gspec --include \"desktop\"",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: tests/galen/partners/distribution/desktop.gspec included tags: desktop",
+          "status" : "info",
+          "time" : 1456936854919,
+          "includedTags" : [ "desktop" ],
+          "excludedTags" : [ ],
+          "sections" : [ {
+            "name" : "Events image test (desktop)",
+            "objects" : [ {
+              "name" : "base-content-wrapper",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "tests/galen/partners/distribution/desktop.gspec",
+                  "lineNumber" : 6
+                },
+                "name" : "image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, tolerance 40",
+                "highlight" : [ "base-content-wrapper" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "base-content-wrapper" : {
+              "area" : [ 141, 233, 1146, 4605 ]
+            }
+          },
+          "screenshot" : "layout-1-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1456936850231,
+        "type" : "node"
+      } ],
+      "time" : 1456936837262,
+      "type" : "node"
+    } ]
+  }
+}
