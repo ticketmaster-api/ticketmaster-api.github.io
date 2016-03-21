@@ -440,10 +440,11 @@ div[w-theme="oldschool"] .event-group {
 /* BUY NOW */
 div[w-theme="oldschool"] .event-buy-btn {
     position: absolute;
-    left: 30px;
-    bottom: 96px;
+    left: 50%;
+    bottom: 150px;
     width: 74px;
     height: 24px;
+    margin-left: -37px;
     padding-top: 5px;
     border-radius: 4px;
     background-color: #009cde;
