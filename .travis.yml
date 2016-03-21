@@ -21,10 +21,10 @@ before_script:
   - sleep 20 # give xvfb some time to start
 
 script:
-  - ./node_modules/karma/bin/karma start karma.conf.js
-  - htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
-  - jekyll serve &
-  - sleep 15 # give jekyll some time to start
+  #- ./node_modules/karma/bin/karma start karma.conf.js
+  #- htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
+  #- jekyll serve &
+  #- sleep 15 # give jekyll some time to start
   #part1
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups HomePage
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups PD-getting-started-Page
