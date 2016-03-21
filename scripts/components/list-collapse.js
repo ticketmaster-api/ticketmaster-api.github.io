@@ -13,7 +13,7 @@
                         "dots": true // no connecting dots between dots
                     }
                 },
-                "plugins" : ["state"] // activate the state plugin on this instance
+                "plugins" : [] // activate the state plugin on this instance
             });
 
     });

@@ -137,3 +137,15 @@ i.jstree-icon.jstree-themeicon {
   color: $p1b;
 }
 /*hover end*/
+
+.single-column .nested-list-wrapper {
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 12px;
+
+    &:hover {
+      color: #2a7cc7;
+      text-decoration: none;
+    }
+  }
+}
