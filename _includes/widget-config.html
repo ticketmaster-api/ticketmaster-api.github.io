@@ -81,10 +81,6 @@
         </div>
         <div class="col-lg-12">
           <label>Color Scheme</label>
-          <!--<div class="tab-buttons">-->
-            <!--<button type="button" class="active">Light</button>-->
-            <!--<button type="button" disabled>Dark</button>-->
-          <!--</div>-->
           <div class="tab-buttons">
             <input checked id="w-colorscheme-light" type="radio" value="light" name="w-colorscheme">
             <label for="w-colorscheme-light">Light</label>
@@ -95,13 +91,15 @@
         <div class="col-lg-12">
           <label>Layout</label>
           <div class="tab-buttons">
-            <button type="button" class="active">Vertical</button>
-            <button type="button" disabled>Horizontal</button>
+            <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
+            <label for="w-layout-vertical">Vertical</label>
+            <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
+            <label for="w-layout-horizontal">Horizontal</label>
           </div>
         </div>
         <div class="col-lg-12">
           <label for="w-width">Width (px)</label>
-          <input type="range" id="w-width" name="w-width" max="500" min="360" value="360">
+          <input type="range" id="w-width" name="w-width" max="500" min="350" value="350">
         </div>
         <!--<div class="col-lg-12 base-margin">
           <input type="checkbox" id="w-border">

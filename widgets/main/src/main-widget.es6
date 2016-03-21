@@ -19,7 +19,7 @@ class TicketmasterWidget {
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-  get updateExceptions() { return ["width","border","borderradius","colorscheme","Layout"]}
+  get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout"]}
 
   get sliderDelay(){ return 10000; }
 
@@ -579,13 +579,14 @@ class TicketmasterWidget {
       this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
     }
     else{
-      var events = document.getElementsByClassName("event-wrapper");
-      for(let event in events){
-        if(events.hasOwnProperty(event) && events[event].style !== undefined){
-          events[event].style.width = `${this.config.width}px`;
-          events[event].style.height = `${this.config.height}px`;
+      let events = document.getElementsByClassName("event-wrapper");
+      for(let i in events){
+        if(events.hasOwnProperty(i) && events[i].style !== undefined){
+          events[i].style.width = `${this.config.width}px`;
+          events[i].style.height = `${this.config.height}px`;
         }
       }
+      this.goToSlideY(0);
     }
   }
 
@@ -750,7 +751,7 @@ class TicketmasterWidget {
 
     let groupNode = document.createElement("ul");
     groupNode.classList.add("event-group", "event-group-" + index);
-    groupNode.style.height  = `${this.config.height * group.length}px`;
+    //groupNode.style.height  = `${this.config.height * group.length}px`;
 
     group.map((event)=> {
       this.publishEvent(event, groupNode)
