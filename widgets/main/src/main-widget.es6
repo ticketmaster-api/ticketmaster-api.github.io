@@ -29,6 +29,8 @@ class TicketmasterWidget {
 
   get controlHiddenClass(){ return "events_control-hidden"; }
 
+  get tmWidgetWhiteList(){ return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"]; }
+
   isConfigAttrEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
       return false; }
@@ -109,8 +111,10 @@ class TicketmasterWidget {
 
     if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
       this.themeModificators[ this.widgetConfig.theme ]();
-      this.embedUniversePlugin();
     }
+
+    this.embedUniversePlugin();
+    this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -141,7 +145,7 @@ class TicketmasterWidget {
           url = '';
       if(event){
         if(event.url){
-          if(this.isUniverseUrl(event.url)){
+          if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
             url = event.url;
           }
         }
@@ -150,12 +154,32 @@ class TicketmasterWidget {
     }
   }
 
+  isUniverseUrl(url){
+    return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
+  }
+
+  isAllowedTMEvent(url){
+    for (var t = [/(?:ticketmaster\.com)\/(.*\/)?event\/([^\/?#]+)/, /(?:concerts\.livenation\.com)\/(.*\/)?event\/([^\/?#]+)/], n = null, r = 0; r < t.length && (n = url.match(t[r]), null === n); r++);
+    let id = (null !== n ? n[2] : void 0);
+    return (this.tmWidgetWhiteList.indexOf(id) > -1);
+  }
+
+  embedTMPlugin(){
+    let script = document.createElement('script');
+    script.setAttribute('src', '/scripts/vendors/tm.js');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('charset', 'UTF-8');
+    (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+    this.isTMPluginInitialized = true;
+  }
+
   embedUniversePlugin(){
     let script = document.createElement('script');
     script.setAttribute('src', 'https://www.universe.com/embed.js');
     script.setAttribute('type', 'text/javascript');
     script.setAttribute('charset', 'UTF-8');
     (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+    this.isUniversePluginInitialized = true;
   }
 
   // Message
@@ -660,10 +684,6 @@ class TicketmasterWidget {
       }
       this.eventsCounter.innerHTML = text;
     }
-  }
-
-  isUniverseUrl(url){
-    return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
   }
 
   resetReduceParamsOrder(){
