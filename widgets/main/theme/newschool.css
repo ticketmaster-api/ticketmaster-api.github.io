@@ -83,7 +83,7 @@ div[w-theme="newschool"]{
     padding-right: 2px;
 }
 
-div[w-theme="newschool"] .events-root-container{
+div[w-theme="newschool"] .events-root-container {
     overflow: hidden;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
@@ -93,6 +93,9 @@ div[w-theme="newschool"] .events-root-container{
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     border: solid 1px #cccccc;
+}
+
+div[w-theme="newschool"][w-colorscheme="light"] .events-root-container {
     background: #fff;
 }
 
@@ -176,31 +179,31 @@ div[w-theme="newschool"] .event-wrapper:before {
     bottom: 0;
 }
 
-div[w-theme="newschool"] .event-wrapper:nth-child(2n+1):before {
+div[w-theme="newschool"][w-colorscheme="light"] .event-wrapper:nth-child(2n+1):before {
     content: '';
     background-color: rgba(148, 204, 165, 0.15);
     position: absolute;
 }
 
-div[w-theme="newschool"] .event-wrapper:nth-child(2n+2):before {
+div[w-theme="newschool"][w-colorscheme="light"] .event-wrapper:nth-child(2n+2):before {
     content: '';
     background-color: rgba(123, 204, 198, 0.15);
     position: absolute;
 }
 
-div[w-theme="newschool"] .event-wrapper:nth-child(2n+3):before {
+div[w-theme="newschool"][w-colorscheme="light"] .event-wrapper:nth-child(2n+3):before {
     content: '';
     background-color: rgba(24, 157, 220, 0.15);
     position: absolute;
 }
 
-div[w-theme="newschool"] .event-wrapper:nth-child(2n+4):before {
+div[w-theme="newschool"][w-colorscheme="light"].event-wrapper:nth-child(2n+4):before {
     content: '';
     background-color: rgba(79, 24, 220, 0.15);
     position: absolute;
 }
 
-div[w-theme="newschool"] .event-wrapper:nth-child(2n+5):before {
+div[w-theme="newschool"][w-colorscheme="light"] .event-wrapper:nth-child(2n+5):before {
     content: '';
     background-color: rgba(220, 24, 24, 0.15);
     position: absolute;
@@ -291,8 +294,8 @@ div[w-theme="newschool"] .legal-notice:hover,
 div[w-theme="newschool"] .legal-notice:focus,
 div[w-theme="newschool"] .legal-notice:active{
     position: absolute;
-    left: 10px;
-    bottom: 8px;
+    left: 25px;
+    bottom: 55px;
     color: #019cde;
     font-size: 16px;
     line-height: 24px;
@@ -301,12 +304,13 @@ div[w-theme="newschool"] .legal-notice:active{
 
 div[w-theme="newschool"] .events-counter {
     position: absolute;
-    right: 10px;
     bottom: 8px;
     font-size: 14px;
     line-height: 1.6;
     color: #b7c9d3;
     font-family: "TMSans-Bold";
+    width: 100%;
+    text-align: center;
 }
 
 div[w-theme="newschool"] .event-logo-box {
@@ -345,7 +349,7 @@ div[w-theme="newschool"] .event-logo-box:after{
     width: 100%;
     height: 3px;
     border-top: 2px dashed #cccccc;
-    top: -365%;
+    bottom: 92px;
 }
 
 /*
@@ -368,6 +372,8 @@ div[w-theme="newschool"] .event-logo {
     height: 20px;
     /* TODO: add http://developer.ticketmaster.com/*/
     background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg") no-repeat;
+    float: right;
+    margin-right: 25px;
 }
 
 div[w-theme="newschool"] .event-question {
@@ -388,7 +394,7 @@ div[w-theme="newschool"] .events_control {
     -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     overflow: hidden;
-    opacity: 0.3;
+    opacity: 0.7;
     z-index: 30;
 }
 
@@ -417,7 +423,7 @@ div[w-theme="newschool"] .events_control:before {
     height: 56px;
     border-radius: 28px;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background: #17A7F7 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
+    background: #b7c9d3 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
     /*background: #b7c9d3 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;*/
 }
 
@@ -604,10 +610,6 @@ div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper .event-nam
     -webkit-box-orient: vertical;
 }
 
-div[w-theme="newschool"][w-layout="horizontal"] .event-logo {
-    margin-right: -110px;
-}
-
 div[w-theme="newschool"][w-layout="horizontal"] .legal-notice {
     right: 5px;
     left: auto;
@@ -625,3 +627,37 @@ div[w-theme="newschool"][w-layout="horizontal"] .event-buy-btn {
     bottom: 20px;
 
 }
+
+/* Dark Theme */
+
+div[w-theme="newschool"][w-layout="horizontal"][w-colorscheme="dark"] .events-root-container:before,
+div[w-theme="newschool"][w-layout="horizontal"][w-colorscheme="dark"] .events-root-container:after {
+    background: #e5e5e5;
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .ticket-logo {
+    background: #4f72b9;
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .event-wrapper:before {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"]  .bg-cover {
+    opacity: 0.10;
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .bg-cover:before {
+    opacity: 1;
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .events_control:before {
+    background-color: rgba(146,146,146,0.9);
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .event-buy-btn {
+    background-color: #009cde;
+    color: #fff;
+    border: none;
+}
+
