@@ -163,7 +163,7 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 
 
 <div class="row parnters">
-  <div class="row-container row-partners">
+  <div class="row-container row-partners nex">
     <div class="col-xs-12 col-md-12">
 
 <div class="col-xs-12 col-md-12" markdown="1">
