@@ -229,8 +229,7 @@ curl -i -X POST
 {% highlight http %}
 POST /publish/v2/events?apikey={apikey} HTTP/1.1
 Host: app.ticketmaster.com
-X-Target-URI: https://app.ticketmaster.com
-Connection: Keep-Alive
+Content-Type: application/json;
 
 {
   "additionalInfos": {
