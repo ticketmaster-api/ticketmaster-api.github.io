@@ -24,7 +24,7 @@ Make live API calls right now in the interactive docs:
 
 To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
 
-Example: `https://app.ticketmaster.com/publish/v2/events?apikey=[Your API key goes here]`
+Example: `https://app.ticketmaster.com/publish/v2/events?apikey={apikey}`
 
 ### Root URL
 
@@ -48,7 +48,8 @@ publish/{version}/events
 | `version` | The API Version.     | string            |       "v2"         | Yes      |
 
 ### Minimal recommended request payload:
-{% highlight http %}
+
+{% highlight ruby %}
 {
     "source" : {
         "id" : "test_id_0009",
@@ -186,7 +187,11 @@ $.ajax({
 {% endhighlight %}
 
 {% highlight bash %}
-curl -i -X POST --header "Content-Type: application/json" --header "Accept: application/json;charset=UTF-8" --header "TMPS-Correlation-Id: test1" -d "{
+curl -i -X POST 
+--header "Content-Type: application/json" 
+--header "Accept: application/json;charset=UTF-8" 
+--header "TMPS-Correlation-Id: test1" 
+-d "{
     \"source\" : {
         \"id\" : \"test_id_0009\",
         \"name\" : \"test-source\"
@@ -222,16 +227,16 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
 {: .reqres}
 
 {% highlight http %}
-POST /publish/v2/events?apikey=**** HTTP/1.1
+POST /publish/v2/events?apikey={apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 
 {
   "additionalInfos": {
-                       "en-us": "string",
-                       "fr-ca": "chaine",
-                       "es-mx": "cuerda" 
+    "en-us": "string",
+    "fr-ca": "chaine",
+    "es-mx": "cuerda" 
   },
   "attractions": [
     {
@@ -265,9 +270,9 @@ Connection: Keep-Alive
     "timezone": "America/Chicago"
   },
   "descriptions": {
-                   "en-us": "string",
-                   "fr-ca": "chaine",
-                   "es-mx": "cuerda" 
+    "en-us": "string",
+    "fr-ca": "chaine",
+    "es-mx": "cuerda" 
   },
   "images": [
     {
@@ -278,9 +283,9 @@ Connection: Keep-Alive
     }
   ],
   "names": {
-            "en-us": "string",
-            "fr-ca": "chaine",
-            "es-mx": "cuerda" 
+    "en-us": "string",
+    "fr-ca": "chaine",
+    "es-mx": "cuerda" 
   },
   "publicVisibility": {
     "startDateTime": "2014-12-03T01:59:00Z",
