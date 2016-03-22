@@ -259,8 +259,8 @@ div[w-theme="oldschool"] .legal-notice:hover,
 div[w-theme="oldschool"] .legal-notice:focus,
 div[w-theme="oldschool"] .legal-notice:active{
     position: absolute;
-    left: 10px;
-    bottom: 8px;
+    left: 30px;
+    bottom: 55px;
     color: #019cde;
     font-size: 16px;
     line-height: 24px;
@@ -268,13 +268,12 @@ div[w-theme="oldschool"] .legal-notice:active{
 }
 
 div[w-theme="oldschool"] .events-counter {
-    position: absolute;
-    right: 10px;
-    bottom: 8px;
     font-size: 14px;
     line-height: 1.6;
     color: #b7c9d3;
     font-family: "TMSans-Bold";
+    text-align: center;
+    margin-top: 10px;
 }
 
 div[w-theme="oldschool"] .event-logo-box {
@@ -308,6 +307,8 @@ div[w-theme="oldschool"] .event-logo-box:before{
 
 div[w-theme="oldschool"] .event-logo {
     display: inline-block;
+    position: absolute;
+    right: 25px;
     width: 144px;
     height: 20px;
     /* TODO: add http://developer.ticketmaster.com/*/
@@ -466,6 +467,26 @@ div[w-theme="oldschool"] .event-buy-btn[href=''] {
     opacity: 0.5;
 }
 
+
+/*div[w-theme="oldschool"][w-colorscheme="dark"] */
+
+div[w-theme="oldschool"][w-colorscheme="dark"] .bg-cover {
+    background: #e9eef1 !important;
+}
+
+div[w-theme="oldschool"][w-colorscheme="dark"] .general-admission {
+  background-color: #768692;
+}
+
+div[w-theme="oldschool"][w-colorscheme="dark"] .events-root-container {
+  border-color: #768692;
+}
+
+div[w-theme="oldschool"][w-colorscheme="dark"] .event-date-wraper {
+  background: #b7c9d3;
+}
+
+
 div[w-theme="oldschool"][w-layout="horizontal"] .general-admission {
     height: 100%;
     width: 35px;
@@ -548,4 +569,10 @@ div[w-theme="oldschool"][w-layout="horizontal"] .event-buy-btn {
     left: 135px;
     right: auto;
     bottom: 20px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .address-wrapper:before{
+  content: '* * * * * * * * * *';
+  letter-spacing: 1px;
+  margin-left: -22px;
 }
