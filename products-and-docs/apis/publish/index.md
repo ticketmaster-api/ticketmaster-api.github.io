@@ -79,7 +79,7 @@ publish/{version}/events
 }
 {% endhighlight %}
 
-### Response structure:
+### Request structure:
 
 {: .nested-list}
 - `additionalInfos` (object) - map of locale to value for any additional informations on the event.
@@ -152,6 +152,26 @@ publish/{version}/events
         - `name` (string) - the publisher's name.
 - `url` (string) - the URL of the event on the publisher's site.        
 - `version` (number) - the publisher's version for this event.
+
+
+### Response structure:
+
+#### Success:
+
+{: .nested-list}
+- `status` (string) - status of the publication. Either `Success` or `SuccessWarning`(if there are any missing or unknown properties).
+- `id` (string) - the generated public id
+- `missingProperties` (map) - list of missing `Preferred` properties, if any.
+- `unknownProperties` (map) - list of unknown properties and their data, if any. Those properties won't be visible in Discovery API.
+
+#### Error:
+- `errors` (array) - list of errors.
+    * `status` (string) - nature of the error. Either `Error` or `Rejected`(if there are any missing or unknown properties).
+    * `code` (string) - the error code
+    * `detail` (string) - the error message
+    * `invalidProperties` (map) - list of invalid properties and their validation messages, if any
+    * `missingProperties` (map) - list of missing `Mandatory` properties, if any
+
 
 {: .aside}
 >[JavaScript](#js)
