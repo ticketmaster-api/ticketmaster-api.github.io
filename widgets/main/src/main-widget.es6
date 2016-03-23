@@ -57,6 +57,8 @@ class TicketmasterWidget {
       attrs.attractionId = this.config.attractionid;
     if(this.isConfigAttrEmpty("promoterid"))
       attrs.promoterId = this.config.promoterid;
+    if(this.isConfigAttrEmpty("venueid"))
+      attrs.venueId = this.config.venueid;
     if(this.isConfigAttrEmpty("period")){
       let period = this.getDateFromPeriod(this.config.period);
       attrs.startDateTime = period[0];
@@ -844,8 +846,15 @@ class TicketmasterWidget {
           time: eventsSet[key].dates.start.localTime
         };
 
-        if(eventsSet[key]._embedded.venues[0].address){
-          currentEvent.address = eventsSet[key]._embedded.venues[0].address;
+        let venue = eventsSet[key]._embedded.venues[0];
+        if(venue){
+          if(venue.address)
+            currentEvent.address = venue.address;
+
+          if(venue.name){
+            if(!currentEvent.address) currentEvent.address = {};
+            currentEvent.address.name = venue.name;
+          }
         }
 
         // Remove this comment to get categories
@@ -936,6 +945,14 @@ class TicketmasterWidget {
     if(itemConfig.hasOwnProperty("address")){
       var addressWrapper = document.createElement("span");
       addressWrapper.classList.add("address-wrapper");
+
+      if( itemConfig.address.hasOwnProperty("name") ){
+        var addressNameText = document.createTextNode(itemConfig.address.name),
+            addressName =  document.createElement("span");
+        addressName.classList.add("event-address", "event-address-name");
+        addressName.appendChild(addressNameText);
+        addressWrapper.appendChild(addressName);
+      }
 
       if( itemConfig.address.hasOwnProperty("line1") ){
         var addressOneText = document.createTextNode(itemConfig.address.line1),
