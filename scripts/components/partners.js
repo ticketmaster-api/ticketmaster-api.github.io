@@ -1,6 +1,7 @@
 (function(){
     $(document).ready(function(){
 
+        /*
         var slider = $('#slider');
 
         $('.show-more-link').on('click', function(e){
@@ -30,6 +31,24 @@
         };
 
         initSlider();
+        */
+
+        var carousel = $("#carousel").waterwheelCarousel({
+            separation: 250,
+            flankingItems: 1,
+            sizeMultiplier: 0.5,
+            // autoPlay: 5500,
+            // speed: 700
+        });
+
+        $(".carousel-controls .carousel-prev").on("click", function() {
+            carousel.prev();
+        });
+
+        $(".carousel-controls .carousel-next").on("click", function() {
+            carousel.next();
+        });
+
 
     });
 })();

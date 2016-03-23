@@ -598,3 +598,51 @@ body .top-bar.bg-header {
     margin-top: 30px;
   }
 }
+
+#carousel {
+  width: 100%;
+  height: 550px;
+  margin-top: -100px;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    box-shadow: 0 0 7px rgba(0,0,0,0.3);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .carousel-controls {
+    .carousel-prev {
+      bottom: 265px;
+      cursor: pointer;
+      position: absolute;
+      left: 150px;
+      width: 23px;
+      height: 25px;
+      background: url('../../assets/img/partners/arrows.svg');
+
+    }
+    .carousel-next {
+      @include rotate(180deg);
+      bottom: 265px;
+      cursor: pointer;
+      position: absolute;
+      right: 180px;
+      width: 23px;
+      height: 25px;
+      background: url('../../assets/img/partners/arrows.svg');
+    }
+  }
+}
+
+.developers {
+  a {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
