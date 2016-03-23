@@ -19,7 +19,7 @@ class TicketmasterWidget {
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-  get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout"]}
+  get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout", "affiliateid"]}
 
   get sliderDelay(){ return 10000000; }
 
@@ -137,6 +137,7 @@ class TicketmasterWidget {
     this.buyBtn.addEventListener('click', (e)=> {
       e.preventDefault();
       this.stopAutoSlideX();
+      //console.log(this.config.affiliateid)
     });
     this.eventsRootContainer.appendChild(this.buyBtn);
   }

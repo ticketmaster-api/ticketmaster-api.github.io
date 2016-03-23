@@ -67,7 +67,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "height", "borderradius", "colorscheme", "layout"];
+      return ["width", "height", "borderradius", "colorscheme", "layout", "affiliateid"];
     }
   }, {
     key: "sliderDelay",
@@ -193,6 +193,7 @@ var TicketmasterWidget = function () {
       this.buyBtn.addEventListener('click', function (e) {
         e.preventDefault();
         _this.stopAutoSlideX();
+        console.log(_this.config.affiliateid);
       });
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
