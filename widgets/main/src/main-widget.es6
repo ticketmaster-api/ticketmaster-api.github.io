@@ -59,6 +59,8 @@ class TicketmasterWidget {
       attrs.promoterId = this.config.promoterid;
     if(this.isConfigAttrEmpty("venueid"))
       attrs.venueId = this.config.venueid;
+    if(this.isConfigAttrEmpty("segmentid"))
+      attrs.segmentId = this.config.segmentid;
     if(this.isConfigAttrEmpty("period")){
       let period = this.getDateFromPeriod(this.config.period);
       attrs.startDateTime = period[0];
@@ -700,6 +702,7 @@ class TicketmasterWidget {
         ['postalCode'],
         ['attractionId'],
         ['promoterId'],
+        ['segmentId'],
         ['keyword'],
         ['size']
       ];

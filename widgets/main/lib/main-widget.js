@@ -108,6 +108,7 @@ var TicketmasterWidget = function () {
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionId = this.config.attractionid;
       if (this.isConfigAttrEmpty("promoterid")) attrs.promoterId = this.config.promoterid;
       if (this.isConfigAttrEmpty("venueid")) attrs.venueId = this.config.venueid;
+      if (this.isConfigAttrEmpty("segmentid")) attrs.segmentId = this.config.segmentid;
       if (this.isConfigAttrEmpty("period")) {
         var period = this.getDateFromPeriod(this.config.period);
         attrs.startDateTime = period[0];
@@ -193,7 +194,7 @@ var TicketmasterWidget = function () {
       this.buyBtn.addEventListener('click', function (e) {
         e.preventDefault();
         _this.stopAutoSlideX();
-        console.log(_this.config.affiliateid);
+        //console.log(this.config.affiliateid)
       });
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
@@ -795,7 +796,7 @@ var TicketmasterWidget = function () {
     key: "reduceParamsAndReloadEvents",
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
-          reduceParamsList = [['startDateTime', 'endDateTime'], ['postalCode'], ['attractionId'], ['promoterId'], ['keyword'], ['size']];
+          reduceParamsList = [['startDateTime', 'endDateTime'], ['postalCode'], ['attractionId'], ['promoterId'], ['segmentId'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
