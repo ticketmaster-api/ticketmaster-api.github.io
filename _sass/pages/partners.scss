@@ -55,8 +55,7 @@ body .top-bar.bg-header {
   h3 {
     margin-bottom: 14px;
     @media (max-width: 767px) {
-      font-size: 1.5em;
-      line-height: 1.2em;
+
     }
 
   }
@@ -71,20 +70,34 @@ body .top-bar.bg-header {
   div {
     text-align: center;
   }
+  &.nex {
+    .image {
+      @media (max-width: 767px) {
+        height: 100px;
+      }
+    }
+  }
   .image {
-    width: 458px;
+    width: 50%;
     height: 232px;
-    border: 1px solid $white;
-    border-top: 1px solid $borderGrayColor;
     margin: 0 auto;
     position: relative;
+    float: left;
     .logo-container {
+      border-right: 1px solid $borderGrayColor;
+      margin-top: 35px;
+      @media (max-width: 767px) {
+        border: none;
+      }
       @include vertical-align();
       .logo-small {
         img {
           max-height: 50px;
         }
       }
+     &.one {
+       margin-top: 0;
+     }
     }
     img {
       vertical-align: middle;
@@ -109,6 +122,31 @@ body .top-bar.bg-header {
       width: 458px;
     }
   }
+
+  .show-more-right {
+    overflow: hidden;
+    margin: 85px auto 0 auto;
+    @media (max-width: 767px) {
+      padding: 0;
+    }
+    .caption {
+      font-size: 14px;
+      line-height: 18px;
+      text-align: left;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      @media (max-width: 767px) {
+        text-align: center;
+      }
+    }
+    &.one {
+      margin-top: 55px;
+      @media (max-width: 767px) {
+        margin-top: 30px;
+      }
+    }
+  }
+
   .show-more-link {
     position: relative;
     background: $white;
@@ -157,14 +195,29 @@ body .top-bar.bg-header {
   }
   p {
     &.logo {
-      margin: 0;
+      margin: 27px 12px 10px 12px;
+      float: none;
+      display: inline-block;
+      max-width: 104px;
+      @media (max-width: 768px) {
+        max-width: 80px;
+      }
       a {
         line-height: 60px;
       }
-      &:after {
-        content: '';
-        display: table;
-        clear: both;
+      &.logo-bottom {
+        margin-bottom: 20px;
+        @media (max-width: 768px) {
+          margin-top: 10px;
+        }
+      }
+      &.logo-one {
+        max-width: 283px;
+        margin: 38px auto;
+        @media (max-width: 767px) {
+          max-width: 233px;
+          margin: 40px auto 0 auto;
+        }
       }
     }
   }
@@ -173,6 +226,34 @@ body .top-bar.bg-header {
   }
   .no-margin-top {
     margin-top: 10px;
+  }
+}
+
+.underlined {
+  margin-top: 68px;
+  margin-bottom:0px;
+  padding-bottom: 27px;
+  border-bottom: 1px solid $borderGrayColor;
+  &.nex {
+    margin-bottom: 20px;
+  }
+}
+
+.affilated {
+  background: rgba(183, 201, 211, 0.2);
+  text-align: center;
+  margin: 70px auto 96px auto;
+  padding: 23px;
+  @media (max-width: 768px) {
+    margin-bottom: 40px;
+  }
+  @media (max-width: 767px) {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .button {
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 }
 
@@ -248,6 +329,7 @@ body .top-bar.bg-header {
         position: relative;
         top: 50%;
         margin-top: -45px;
+        max-height: 47px;
       }
       @media #{$max-768} {
         display: none;
@@ -410,6 +492,10 @@ body .top-bar.bg-header {
   }
 }
 
+.descr {
+  width: 85%;
+  margin: 0 auto;
+}
 .distribution {
   padding-left: 0;
   padding-right: 0;
