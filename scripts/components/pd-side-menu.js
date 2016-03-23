@@ -57,16 +57,16 @@
 
             //fix side menu position on scroll
             asideBlock.addClass("is-fixed");
-            /*
+
             if (windowScrollTop > offset) {
                 if (!asideBlock.hasClass("is-fixed")){
                     asideBlock.addClass("is-fixed");
                     scrollMenu("top");
                 }
             } else {
-                asideBlock.removeClass("is-fixed");
+                //asideBlock.removeClass("is-fixed");
             }
-            */
+
 
             //set menu position to absolute when footer is reached
             if (screenWidth >= 1200 || force){
