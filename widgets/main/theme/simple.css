@@ -296,10 +296,6 @@ div[w-theme="simple"] .address-wrapper .event-address:last-child:after{
     display: none;
 }
 
-div[w-theme="simple"] .event-address-name{
-    font-family: "TMSans-Bold";
-}
-
 div[w-theme="simple"] .category-wrapper{
     display: block;
     font-family: "TMSans-Bold";
