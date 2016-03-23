@@ -1,4 +1,7 @@
 .documentation {
+  padding-top: $fixed-header-height; /*header height*/
+  position: relative;
+
   .content {
     &:last-child {
       margin-bottom: $base-margin;
