@@ -7,7 +7,41 @@
   var changeState = function changeState(event) {
     var widgetNode = document.querySelector("div[w-tmapikey]");
 
-    if (event.target.id === "border") {
+    function getHeightByTheme(theme) {
+      return theme === 'simple' ? 238 : 300;
+    }
+
+    if (event.target.name === "w-theme" && widgetNode.getAttribute('w-layout') === 'horizontal') {
+      widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
+    }
+
+    if (event.target.name === "w-layout") {
+      var sizeConfig = {
+        width: 350,
+        height: 550,
+        maxWidth: 500,
+        minWidth: 350
+      };
+
+      if (event.target.value === 'horizontal') {
+        sizeConfig = {
+          width: 620,
+          height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
+          maxWidth: 900,
+          minWidth: 620
+        };
+      }
+
+      $("#w-width").attr({
+        max: sizeConfig.maxWidth,
+        min: sizeConfig.minWidth
+      }).val(sizeConfig.width);
+
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
+    }
+
+    if (event.target.name === "border") {
       //if(event.target.checked){
       //  widgetNode.setAttribute(event.target.id, "");
       //}

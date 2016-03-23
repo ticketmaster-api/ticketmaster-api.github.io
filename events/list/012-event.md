@@ -12,7 +12,7 @@ date_end: "2016-04-30 23:59:00"
 img: "/assets/img/events/devjam11.png"
 
 place: 
-  - "Ticketmaster Québec"
+  - "Ticketmaster Québec City"
   - "https://www.google.com/maps/place/Microflex+2001+LLC/@46.7733978,-71.2775943,17z/data=!4m2!3m1!1s0x4cb896c900131d57:0xe1139a8a64072b1b"
 
 city: "Québec City, Canada"

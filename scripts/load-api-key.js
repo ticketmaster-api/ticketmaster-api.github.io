@@ -21,7 +21,9 @@
   // TODO: update links to live
   checkResponse = function(event){
     if( event.origin = "https://live-livenation.devportal.apigee.com") {
-      sessionStorage.setItem('tk-api-key', event.data);
+      sessionStorage.setItem('tk-api-key', event.data.key);
+      sessionStorage.setItem('tk-api-email', event.data.email);
+      //document.getElementsByClassName("apigee-login")[0].textContent = event.data.email;
     }
     else{
       console.error(event.origin + " is not allowed");

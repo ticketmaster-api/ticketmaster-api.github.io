@@ -4,10 +4,10 @@
 
   <ul class="nav nav-tabs" data-tabs="tabs">
     <li class="active">
-      <a href="#widget-config-setup" data-toggle="tab">Setup</a>
+      <a href="#widget-config-setup" data-toggle="tab">Technical</a>
     </li>
     <li>
-      <a href="#widget-config-styling" data-toggle="tab">Styling</a>
+      <a href="#widget-config-styling" data-toggle="tab">Visual</a>
     </li>
   </ul>
 
@@ -36,8 +36,8 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <label for="w-postal-code">ZIP Code</label>
-          <input type="text" id="w-postal-code" name="w-postal-code" value="90210">
+          <label for="w-postalcode">ZIP Code</label>
+          <input type="text" id="w-postalcode" name="w-postalcode" value="90015">
         </div>
         <div class="col-lg-6">
           <label for="w-size">Event Count</label>
@@ -45,13 +45,13 @@
         </div>
 
         <div class="col-lg-12">
-          <label for="w-attraction-id">Attraction ID</label>
-          <input type="text" id="w-attraction-id" name="w-attraction-id" value="">
+          <label for="w-attractionid">Attraction ID</label>
+          <input type="text" id="w-attractionid" name="w-attractionid" value="">
         </div>
 
         <div class="col-lg-12">
-          <label for="w-promoter-id">Promoter ID</label>
-          <input type="text" id="w-promoter-id" name="w-promoter-id" value="">
+          <label for="w-promoterid">Promoter ID</label>
+          <input type="text" id="w-promoterid" name="w-promoterid" value="">
         </div>
 
         <!--<div class="col-lg-12">-->
@@ -81,27 +81,25 @@
         </div>
         <div class="col-lg-12">
           <label>Color Scheme</label>
-          <!--<div class="tab-buttons">-->
-            <!--<button type="button" class="active">Light</button>-->
-            <!--<button type="button" disabled>Dark</button>-->
-          <!--</div>-->
           <div class="tab-buttons">
-            <input checked id="w-colorscheme-light" type="radio" value="light" name="w-colorscheme">
+            <input checked disabled id="w-colorscheme-light" type="radio" value="light" name="w-colorscheme">
             <label for="w-colorscheme-light">Light</label>
-            <input id="w-colorscheme-dark" type="radio" value="dark" name="w-colorscheme">
+            <input disabled id="w-colorscheme-dark" type="radio" value="dark" name="w-colorscheme">
             <label for="w-colorscheme-dark">Dark</label>
           </div>
         </div>
         <div class="col-lg-12">
           <label>Layout</label>
           <div class="tab-buttons">
-            <button type="button" class="active">Vertical</button>
-            <button type="button" disabled>Horizontal</button>
+            <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
+            <label for="w-layout-vertical">Vertical</label>
+            <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
+            <label for="w-layout-horizontal">Horizontal</label>
           </div>
         </div>
         <div class="col-lg-12">
           <label for="w-width">Width (px)</label>
-          <input type="range" id="w-width" name="w-width" max="500" min="360" value="360">
+          <input type="range" id="w-width" name="w-width" max="500" min="350" value="350">
         </div>
         <!--<div class="col-lg-12 base-margin">
           <input type="checkbox" id="w-border">

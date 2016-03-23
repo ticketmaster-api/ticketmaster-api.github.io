@@ -62,17 +62,17 @@ var TicketmasterWidget = function () {
   }, {
     key: "questionUrl",
     get: function get() {
-      return "http://developer.ticketmaster.com/support/";
+      return "http://developer.ticketmaster.com/support/faq/";
     }
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "border", "borderradius", "colorscheme", "Layout"];
+      return ["width", "height", "borderradius", "colorscheme", "layout"];
     }
   }, {
     key: "sliderDelay",
     get: function get() {
-      return 10000;
+      return 10000000;
     }
   }, {
     key: "sliderRestartDelay",
@@ -134,11 +134,6 @@ var TicketmasterWidget = function () {
       "newschool": this.newSchoolModificator.bind(this)
     };
 
-    // dots container
-    //this.dotsContainer = document.createElement("div");
-    //this.dotsContainer.classList.add("events_dots");
-    //this.eventsRootContainer.appendChild(this.dotsContainer);
-
     this.config = this.widgetRoot.attributes;
 
     if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
@@ -165,7 +160,10 @@ var TicketmasterWidget = function () {
 
     if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
       this.themeModificators[this.widgetConfig.theme]();
+      this.embedUniversePlugin();
     }
+
+    this.initBuyBtn();
 
     this.initMessage();
 
@@ -174,13 +172,54 @@ var TicketmasterWidget = function () {
     this.initEventCounter();
   }
 
-  // Message
-
-
   _createClass(TicketmasterWidget, [{
+    key: "initBuyBtn",
+    value: function initBuyBtn() {
+      var _this = this;
+
+      this.buyBtn = document.createElement("a");
+      this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
+      this.buyBtn.classList.add("event-buy-btn");
+      this.buyBtn.target = '_blank';
+      this.buyBtn.href = '';
+      this.buyBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        _this.stopAutoSlideX();
+      });
+      this.eventsRootContainer.appendChild(this.buyBtn);
+    }
+  }, {
+    key: "setBuyBtnUrl",
+    value: function setBuyBtnUrl() {
+      if (this.buyBtn) {
+        var event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
+            url = '';
+        if (event) {
+          if (event.url) {
+            if (this.isUniverseUrl(event.url)) {
+              url = event.url;
+            }
+          }
+        }
+        this.buyBtn.href = url;
+      }
+    }
+  }, {
+    key: "embedUniversePlugin",
+    value: function embedUniversePlugin() {
+      var script = document.createElement('script');
+      script.setAttribute('src', 'https://www.universe.com/embed.js');
+      script.setAttribute('type', 'text/javascript');
+      script.setAttribute('charset', 'UTF-8');
+      (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+    }
+
+    // Message
+
+  }, {
     key: "initMessage",
     value: function initMessage() {
-      var _this = this;
+      var _this2 = this;
 
       this.messageDialog = document.createElement('div');
       this.messageDialog.classList.add("event-message");
@@ -190,7 +229,7 @@ var TicketmasterWidget = function () {
       var messageClose = document.createElement('div');
       messageClose.classList.add("event-message__btn");
       messageClose.addEventListener("click", function () {
-        _this.hideMessage();
+        _this2.hideMessage();
       });
 
       this.messageDialog.appendChild(this.messageContent);
@@ -212,11 +251,11 @@ var TicketmasterWidget = function () {
   }, {
     key: "hideMessageWithDelay",
     value: function hideMessageWithDelay(delay) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
       this.messageTimeout = setTimeout(function () {
-        _this2.hideMessage();
+        _this3.hideMessage();
       }, delay);
     }
   }, {
@@ -260,11 +299,16 @@ var TicketmasterWidget = function () {
   }, {
     key: "oldSchoolModificator",
     value: function oldSchoolModificator() {
+
+      var generalAdmissionWrapper = document.createElement("div");
+      generalAdmissionWrapper.classList.add("general-admission", "modificator");
+
       var generalAdmission = document.createElement("div"),
           generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-      generalAdmission.classList.add("general-admission", "modificator");
       generalAdmission.appendChild(generalAdmissionText);
-      this.eventsRootContainer.appendChild(generalAdmission);
+      generalAdmissionWrapper.appendChild(generalAdmission);
+
+      this.eventsRootContainer.appendChild(generalAdmissionWrapper);
     }
   }, {
     key: "newSchoolModificator",
@@ -369,13 +413,12 @@ var TicketmasterWidget = function () {
   }, {
     key: "setSlideManually",
     value: function setSlideManually(slideIndex, isDirectionX) {
-      var _this3 = this;
+      var _this4 = this;
 
-      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      this.stopAutoSlideX();
       this.sliderTimeout = setTimeout(function () {
-        _this3.runAutoSlideX();
+        _this4.runAutoSlideX();
       }, this.sliderRestartDelay);
-      clearInterval(this.sliderInterval);
       if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
     }
   }, {
@@ -387,14 +430,7 @@ var TicketmasterWidget = function () {
       this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
       this.toggleControlsVisibility();
       this.setEventsCounter();
-      //let dots = this.dotsContainer.getElementsByClassName("events_dots__item");
-      //for(let i = 0; dots.length > i; i++){
-      //  if(i === slideIndex){
-      //    dots[i].classList.add("events_dots__item-active");
-      //  }else{
-      //    dots[i].classList.remove("events_dots__item-active");
-      //  }
-      //}
+      this.setBuyBtnUrl();
     }
   }, {
     key: "goToSlideY",
@@ -406,25 +442,32 @@ var TicketmasterWidget = function () {
         eventGroup = eventGroup[0];
         eventGroup.style.marginTop = "-" + this.currentSlideY * this.config.height + "px";
         this.toggleControlsVisibility();
+        this.setBuyBtnUrl();
       }
     }
   }, {
     key: "runAutoSlideX",
     value: function runAutoSlideX() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.slideCountX > 1) {
         this.sliderInterval = setInterval(function () {
           var slideIndex = 0;
-          if (_this4.slideCountX - 1 > _this4.currentSlideX) slideIndex = _this4.currentSlideX + 1;
-          _this4.goToSlideX(slideIndex);
+          if (_this5.slideCountX - 1 > _this5.currentSlideX) slideIndex = _this5.currentSlideX + 1;
+          _this5.goToSlideX(slideIndex);
         }, this.sliderDelay);
       }
     }
   }, {
+    key: "stopAutoSlideX",
+    value: function stopAutoSlideX() {
+      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
+      if (this.sliderInterval) clearInterval(this.sliderInterval);
+    }
+  }, {
     key: "initSliderControls",
     value: function initSliderControls() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.currentSlideX = 0;
       this.currentSlideY = 0;
@@ -467,8 +510,8 @@ var TicketmasterWidget = function () {
 
       var transitionEvent = whichTransitionEvent();
       transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
-        if (_this5.eventsRoot !== e.target) return;
-        var eventGroup = _this5.eventsRoot.getElementsByClassName("event-group");
+        if (_this6.eventsRoot !== e.target) return;
+        var eventGroup = _this6.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
         for (var i = 0; eventGroup.length > i; i++) {
           eventGroup[i].style.marginTop = 0;
@@ -477,19 +520,19 @@ var TicketmasterWidget = function () {
 
       // Arrows
       this.prevEventX.addEventListener("click", function () {
-        _this5.prevSlideX();
+        _this6.prevSlideX();
       });
 
       this.nextEventX.addEventListener("click", function () {
-        _this5.nextSlideX();
+        _this6.nextSlideX();
       });
 
       this.prevEventY.addEventListener("click", function () {
-        _this5.prevSlideY();
+        _this6.prevSlideY();
       });
 
       this.nextEventY.addEventListener("click", function () {
-        _this5.nextSlideY();
+        _this6.nextSlideY();
       });
 
       // Tough device swipes
@@ -522,23 +565,12 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        handleTouchStart.call(_this5, e);
+        handleTouchStart.call(_this6, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        handleTouchMove.call(_this5, e);
+        handleTouchMove.call(_this6, e);
       }, false);
     }
-
-    //initDot(i){
-    //  var dot = document.createElement("span");
-    //  dot.classList.add("events_dots__item", "events_dots__item-" + i);
-    //  if(i === 0) dot.classList.add("events_dots__item-active");
-    //  this.dotsContainer.appendChild(dot);
-    //  dot.addEventListener("click", ()=> {
-    //    this.setSlideManually(i, true);
-    //  });
-    //}
-
   }, {
     key: "initSlider",
     value: function initSlider() {
@@ -551,11 +583,7 @@ var TicketmasterWidget = function () {
       this.currentSlideY = 0;
       this.runAutoSlideX();
       this.toggleControlsVisibility();
-
-      //if(this.slideCountX > 1)
-      //  for(var i = 0; this.slideCountX > i; i++){
-      //    this.initDot(i);
-      //  }
+      this.setBuyBtnUrl();
     }
   }, {
     key: "formatDate",
@@ -643,12 +671,13 @@ var TicketmasterWidget = function () {
         this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
       } else {
         var events = document.getElementsByClassName("event-wrapper");
-        for (var event in events) {
-          if (events.hasOwnProperty(event) && events[event].style !== undefined) {
-            events[event].style.width = this.config.width + "px";
-            events[event].style.height = this.config.height + "px";
+        for (var i in events) {
+          if (events.hasOwnProperty(i) && events[i].style !== undefined) {
+            events[i].style.width = this.config.width + "px";
+            events[i].style.height = this.config.height + "px";
           }
         }
+        this.goToSlideY(0);
       }
     }
   }, {
@@ -726,6 +755,11 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "isUniverseUrl",
+    value: function isUniverseUrl(url) {
+      return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
+    }
+  }, {
     key: "resetReduceParamsOrder",
     value: function resetReduceParamsOrder() {
       this.reduceParamsOrder = 0;
@@ -796,7 +830,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "publishEventsGroup",
     value: function publishEventsGroup(group, index) {
-      var _this6 = this;
+      var _this7 = this;
 
       var groupNodeWrapper = document.createElement("li");
       groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
@@ -805,10 +839,10 @@ var TicketmasterWidget = function () {
 
       var groupNode = document.createElement("ul");
       groupNode.classList.add("event-group", "event-group-" + index);
-      groupNode.style.height = this.config.height * group.length + "px";
+      //groupNode.style.height  = `${this.config.height * group.length}px`;
 
       group.map(function (event) {
-        _this6.publishEvent(event, groupNode);
+        _this7.publishEvent(event, groupNode);
       });
 
       groupNodeWrapper.appendChild(groupNode);
@@ -915,17 +949,29 @@ var TicketmasterWidget = function () {
       this.xmlHTTP.send();
     }
   }, {
+    key: "initPretendedLink",
+    value: function initPretendedLink(el, url, isBlank) {
+      if (el && url) {
+        el.setAttribute('data-url', url);
+        el.addEventListener('click', function () {
+          var url = this.getAttribute('data-url');
+          if (url) {
+            var win = window.open(url, isBlank ? '_blank' : '_self');
+            win.focus();
+          }
+        });
+      }
+      return el;
+    }
+  }, {
     key: "createDOMItem",
     value: function createDOMItem(itemConfig) {
-
-      var medWrapper = document.createElement("a");
+      var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
-      medWrapper.target = '_blank';
-      medWrapper.href = itemConfig.url;
+      this.initPretendedLink(medWrapper, itemConfig.url, true);
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
-      //event.style.backgroundImage = `url('${itemConfig.img}')`;
       event.style.height = this.config.height + "px";
       event.style.width = this.config.width + "px";
 
@@ -988,6 +1034,7 @@ var TicketmasterWidget = function () {
       }
 
       event.appendChild(medWrapper);
+
       return event;
     }
   }, {

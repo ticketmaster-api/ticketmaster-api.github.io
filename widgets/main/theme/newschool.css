@@ -93,6 +93,7 @@ div[w-theme="newschool"] .events-root-container{
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     border: solid 1px #cccccc;
+    background: #fff;
 }
 
 div[w-theme="newschool"] ul.events-root {
@@ -213,10 +214,10 @@ div[w-theme="newschool"] .event-content-wraper {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: #fff;
-    text-decoration: none;
+    cursor: pointer;
 }
 
-div[w-theme="newschool"] .ticket-logo{
+div[w-theme="newschool"] .ticket-logo {
     background: #d03200;
     color: #ffffff;
     position: absolute;
@@ -239,6 +240,13 @@ div[w-theme="newschool"] .event-name{
     font-family: "TMSans-Bold";
     margin-bottom: 24px;
     color: #414141;
+    max-height: 150px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 div[w-theme="newschool"] .event-date-wraper{
@@ -482,44 +490,138 @@ div[w-theme="newschool"] .events_control-horizontal.events_control-hidden {
     width: 0;
 }
 
-/*@media (max-width: 1024px) {*/
-/*div[w-theme="newschool"] .events_control{*/
-/*display: none;*/
-/*}*/
-/*}*/
-
-/*dots*/
-/*div[w-theme="newschool"] .events_dots {*/
-/*position: absolute;*/
-/*bottom: 0;*/
-/*left: 0;*/
-/*width: 100%;*/
-/*text-align: center;*/
-/*}*/
-
-/*div[w-theme="newschool"] .events_dots__item {*/
-/*display: inline-block;*/
-/*background-color: #fff;*/
-/*width: 8px;*/
-/*height: 8px;*/
-/*border-radius: 50%;*/
-/*margin: 0 2px;*/
-/*cursor: pointer;*/
-/*opacity: 0.6;*/
-/*-webkit-transition: opacity 0.2s ease-in-out;*/
-/*transition: opacity 0.2s ease-in-out;*/
-/*}*/
-
-/*div[w-theme="newschool"] .events_dots__item:hover,*/
-/*div[w-theme="newschool"] .events_dots__item-active {*/
-/*opacity: 1;*/
-/*}*/
-
-/*div[w-theme="newschool"] .events_dots__item-active {*/
-/*cursor: default;*/
-/*}*/
-
 /*group*/
 div[w-theme="newschool"] .event-group {
     width: 100%;
+}
+
+/* BUY NOW */
+div[w-theme="newschool"] .event-buy-btn {
+    position: absolute;
+    left: 30px;
+    bottom: 156px;
+    width: 74px;
+    height: 24px;
+    padding-top: 5px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #009cde;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 16px;
+    color: #009cde;
+    text-align: center;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="newschool"] .event-buy-btn[href=''] {
+    background-color: #ccc;
+    cursor: default;
+    opacity: 0.5;
+}
+
+/* Horizontal theme */
+
+div[w-theme="newschool"][w-layout="horizontal"] .ticket-logo {
+    transform: rotate(-90deg);
+    height: 24px;
+    width: 300px;
+    margin-left: 35px;
+    position: static;
+    transform-origin: left top 0;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .events-root-container:after {
+    content: '';
+    display: block;
+    background: #fff;
+    width: 35px;
+    height:300px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .ticket-logo img:first-child {
+    display: none;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] ul.events-root {
+    height: 100%;
+    margin: 0px;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .event-logo-box {
+    transform: rotate(-90deg);
+    width: 300px;
+    bottom: 125px;
+    right: -60px;
+    left: inherit;
+    z-index: 10;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .events-root-container:before {
+    content: '';
+    display: block;
+    background: #fff;
+    width: 150px;
+    height:300px;
+    position: absolute;
+    right: 0;
+    z-index: 5;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .event-logo-box::before {
+    margin-left: -122px;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .event-logo-box:before{
+    width: 250px;
+    left: 150px;
+}
+div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper{
+    padding: 80px 0 0 100px;
+    width: 65%;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper .event-name,
+div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper .event-address{
+    text-align: left;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper .event-name {
+    max-height: 68px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .event-logo {
+    margin-right: -110px;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .legal-notice {
+    right: 5px;
+    left: auto;
+    bottom: 95px;
+    transform: rotate(-90deg);
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .events-counter {
+    width: 100%;
+    text-align: center;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .event-buy-btn {
+    left: 105px;
+    bottom: 20px;
+
 }

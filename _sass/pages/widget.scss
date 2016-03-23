@@ -2,19 +2,20 @@
   margin-bottom: 30px;
 
   button,
-  input[type="radio"]+label {
-    border: 0;
-    outline: none;
-    border-bottom: 2px solid #b7c9d3;
-    background-color: #FFF;
-    padding: 5px 15px;
-    margin-right: 2px;
-    margin-left: 0;
-    cursor: pointer;
-    font-family: Helvetica, Arial, sans-serif;
-
-    &[disabled] {
-      opacity: .2;
+  input[type="radio"]{
+    &+label {
+      border: 0;
+      outline: none;
+      border-bottom: 2px solid $n3;
+      background-color: $white;
+      padding: 5px 15px;
+      margin-right: 2px;
+      margin-left: 0;
+      cursor: pointer;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    &[disabled]+label {
+      opacity: .4;
       cursor: default;
     }
   }
@@ -34,7 +35,7 @@
 }
 
 .config-block{
-  border-right: 1px solid #b7c9d3;
+  border-right: 1px solid $n3;
   margin: 0 -15px;
   .button-blue {
     margin-top: 0;
@@ -67,5 +68,17 @@
 
   div[w-tmapikey] {
     z-index: 1;
+  }
+}
+
+.widget-content-wrapper{
+  overflow: visible;
+  @include clearfix();
+}
+
+.widget-container-wrapper {
+  width: 900px;
+  @media (min-width: 992px){
+    width: auto;
   }
 }

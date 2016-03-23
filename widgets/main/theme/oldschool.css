@@ -143,14 +143,13 @@ div[w-theme="oldschool"] .event-wrapper:before {
 }
 
 div[w-theme="oldschool"] .event-content-wraper {
-    display: block;
     width: 100%;
     padding: 110px 28px 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: #fff;
-    text-decoration: none;
+    cursor: pointer;
 }
 
 div[w-theme="oldschool"] .general-admission{
@@ -187,7 +186,7 @@ div[w-theme="oldschool"] .event-date-wraper{
     background: #f7ec7a;
     position: absolute;
     left: 0;
-    top: 364px;
+    top: 325px;
     text-align: center;
     width: 100%;
     color: #414141;
@@ -203,7 +202,7 @@ div[w-theme="oldschool"] .event-date-wraper:after{
     width: 100%;
     height: 3px;
     border-top: 2px dashed #cccccc;
-    bottom: -30px;
+    bottom: -70px;
 }
 
 div[w-theme="oldschool"] .address-wrapper{
@@ -432,44 +431,121 @@ div[w-theme="oldschool"] .events_control-horizontal.events_control-hidden {
     width: 0;
 }
 
-/*@media (max-width: 1024px) {*/
-    /*div[w-theme="oldschool"] .events_control{*/
-        /*display: none;*/
-    /*}*/
-/*}*/
-
-/*dots*/
-/*div[w-theme="oldschool"] .events_dots {*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*width: 100%;*/
-    /*text-align: center;*/
-/*}*/
-
-/*div[w-theme="oldschool"] .events_dots__item {*/
-    /*display: inline-block;*/
-    /*background-color: #fff;*/
-    /*width: 8px;*/
-    /*height: 8px;*/
-    /*border-radius: 50%;*/
-    /*margin: 0 2px;*/
-    /*cursor: pointer;*/
-    /*opacity: 0.6;*/
-    /*-webkit-transition: opacity 0.2s ease-in-out;*/
-    /*transition: opacity 0.2s ease-in-out;*/
-/*}*/
-
-/*div[w-theme="oldschool"] .events_dots__item:hover,*/
-/*div[w-theme="oldschool"] .events_dots__item-active {*/
-    /*opacity: 1;*/
-/*}*/
-
-/*div[w-theme="oldschool"] .events_dots__item-active {*/
-    /*cursor: default;*/
-/*}*/
 
 /*group*/
 div[w-theme="oldschool"] .event-group {
     width: 100%;
+}
+
+/* BUY NOW */
+div[w-theme="oldschool"] .event-buy-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 145px;
+    width: 74px;
+    height: 24px;
+    margin-left: -37px;
+    padding-top: 5px;
+    border-radius: 4px;
+    background-color: #009cde;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 16px;
+    color: #ffffff;
+    text-align: center;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="oldschool"] .event-buy-btn[href=''] {
+    background-color: #ccc;
+    cursor: default;
+    opacity: 0.5;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .general-admission {
+    height: 100%;
+    width: 35px;
+    top: 0;
+    left: 35px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .general-admission>div {
+    transform: rotate(-90deg);
+    height: 32px;
+    width: 850%;
+    margin-top: 122px;
+    margin-left: -130px;
+    position: static;
+    transform-origin: center center 0;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-logo-box {
+    transform: rotate(-90deg);
+    width: 300px;
+    bottom: 125px;
+    right: -60px;
+    left: inherit;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-logo-box:before{
+    width: 250px;
+    left: 150px;
+}
+div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper{
+    padding: 40px 0 0 100px;
+    width: 100%;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-date-wraper {
+    transform: rotate(-90deg);
+    top: 133px;
+    width: 300px;
+    right: 35px;
+    left: auto;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper .event-name,
+div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper .address-wrapper{
+    text-align: left;
+    width: 60%;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .address-wrapper:before {
+    text-align: center;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-logo{
+    margin-left: 105px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .legal-notice{
+    left: auto;
+    bottom: auto;
+    transform: rotate(-90deg);
+    top: 220px;
+    right: 8px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .events-counter{
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"]  .event-name{
+    -webkit-line-clamp: 2;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-date-wraper:after {
+    bottom: -30px;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .event-buy-btn {
+    left: 135px;
+    right: auto;
+    bottom: 20px;
 }
