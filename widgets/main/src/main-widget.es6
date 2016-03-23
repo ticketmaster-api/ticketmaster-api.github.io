@@ -54,9 +54,9 @@ class TicketmasterWidget {
     if(this.isConfigAttrEmpty("postalcode"))
       attrs.postalCode = this.config.postalcode;
     if(this.isConfigAttrEmpty("attractionid"))
-      attrs.attractionid = this.config.attractionid;
+      attrs.attractionId = this.config.attractionid;
     if(this.isConfigAttrEmpty("promoterid"))
-      attrs.promoterid = this.config.promoterid;
+      attrs.promoterId = this.config.promoterid;
     if(this.isConfigAttrEmpty("period")){
       let period = this.getDateFromPeriod(this.config.period);
       attrs.startDateTime = period[0];
@@ -693,12 +693,12 @@ class TicketmasterWidget {
   reduceParamsAndReloadEvents(){
     let eventReqAttrs = {},
       reduceParamsList = [
-          ['postalCode'],
-          ['attractionid'],
-          ['promoterid'],
-          ['startDateTime', 'endDateTime'],
-          ['keyword'],
-          ['size']
+        ['startDateTime', 'endDateTime'],
+        ['postalCode'],
+        ['attractionId'],
+        ['promoterId'],
+        ['keyword'],
+        ['size']
       ];
 
     // make copy of params
