@@ -108,14 +108,15 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 {% endcapture %}
 
 {% capture slider %}
-{: .image}
-![ApiExplorer](/assets/img/partners/bitmap.png)
 
-{: .image}
-![DevJam2](/assets/img/events/devjam2.png)
+[![ApiExplorer](/assets/img/partners/startups-development/bitmap.png)](http://vmenshutin.github.io/)
 
-{: .image}
-![DevJam1](/assets/img/events/devjam.jpg)
+[![DevJam2](/assets/img/partners/startups-development/bitmap1.png)](/events/#past)
+
+[![DevJam1](/assets/img/partners/startups-development/bitmap2.png)](/events/#past)
+
+[![DevJam0](/assets/img/partners/startups-development/bitmap3.png)](/events/#past)
+
 {% endcapture %}
 
 {% capture developers_footer %}
@@ -157,7 +158,7 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
   </div>
 </div>
 
-<div class="affilated col-xs-12 col-sm-12" markdown="1">
+<div class="affilated-block col-xs-12 col-sm-12" markdown="1">
 {{affilated}}
 </div>
 
@@ -189,7 +190,11 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 <div class="x3-margin-bottom col-xs-12" markdown="1">
 {{developers_header}}
 </div>
-<div id="slider" class="col-xs-12" markdown="1">
+<div id="carousel" class="col-xs-12" markdown="1">
+  <div class="carousel-controls">
+    <div class="carousel-prev"></div>
+	<div class="carousel-next"></div>
+  </div>
 {{slider}}
 </div>
 <div class="col-xs-12 col-md-12" markdown="1">
