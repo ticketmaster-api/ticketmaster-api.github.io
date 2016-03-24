@@ -72,17 +72,17 @@ var TicketmasterWidget = function () {
   }, {
     key: "sliderDelay",
     get: function get() {
-      return 10000000;
+      return 5000;
     }
   }, {
     key: "sliderRestartDelay",
     get: function get() {
-      return 20000;
+      return 5000;
     }
   }, {
     key: "hideMessageDelay",
     get: function get() {
-      return 8000;
+      return 5000;
     }
   }, {
     key: "controlHiddenClass",
