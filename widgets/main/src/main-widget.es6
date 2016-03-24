@@ -682,7 +682,7 @@ class TicketmasterWidget {
       let text = '';
       if(this.eventsGroups.length){
         if(this.eventsGroups.length > 1){
-          text = (this.currentSlideX + 1) + " of " + this.eventsGroups.length +  " events";
+          text = `${this.currentSlideX + 1} of ${this.eventsGroups.length} events`;
         } else {
           text = '1 event';
         }

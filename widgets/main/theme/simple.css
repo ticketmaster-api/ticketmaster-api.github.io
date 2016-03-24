@@ -27,7 +27,7 @@
 
 
 /* Common styles for all themes  */
-div[w-tmapikey]{
+div[w-theme="simple"]{
     position: relative;
     height: 200px;
     width: 150px;
@@ -39,7 +39,7 @@ div[w-tmapikey]{
 }
 
 
-div[w-tmapikey] .event-message {
+div[w-theme="simple"] .event-message {
     position: absolute;
     padding: 16px 46px 16px 52px;
     left: 10px;
@@ -59,12 +59,12 @@ div[w-tmapikey] .event-message {
     transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-div[w-tmapikey] .event-message-visible {
+div[w-theme="simple"] .event-message-visible {
     top: 10px;
     opacity: 1;
 }
 
-div[w-tmapikey] .event-message__btn {
+div[w-theme="simple"] .event-message__btn {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -75,7 +75,7 @@ div[w-tmapikey] .event-message__btn {
     background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ic-close-small-white.svg") no-repeat 50% 50%;
 }
 
-div[w-tmapikey] .events-root-container{
+div[w-theme="simple"] .events-root-container{
     overflow: hidden;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
@@ -87,7 +87,7 @@ div[w-tmapikey] .events-root-container{
     background-color: #e5e5e5;
 }
 
-div[w-tmapikey] ul{
+div[w-theme="simple"] ul{
     margin: 0;
     padding: 0;
     -webkit-transition: margin 0.5s ease-in-out;
@@ -99,41 +99,51 @@ div[w-tmapikey] ul{
     transform: translate3d(0, 0, 0);
 }
 
-
-div[w-tmapikey] .event-question {
+/*  question  */
+div[w-theme="simple"] .event-question {
     position: absolute;
     top: 10px;
     right: 10px;
     width: 16px;
     height: 16px;
-    /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic.svg") no-repeat 50% 50%;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic.svg")  no-repeat center;
 }
 
+div[w-theme="simple"] .event-question:hover {
+    opacity: 1;
+}
+
+
 /* slider controls */
-div[w-tmapikey] .events_control {
+div[w-theme="simple"] .events_control {
     position: absolute;
     cursor: pointer;
+    -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     overflow: hidden;
 }
 
-div[w-tmapikey] .events_control-horizontal {
+div[w-theme="simple"] .events_control-horizontal {
     top: 50%;
     width: 13px;
     height: 56px;
     margin-top: -28px;
 }
 
-div[w-tmapikey] .events_control-vertical {
+div[w-theme="simple"] .events_control-vertical {
     left: 50%;
     width: 56px;
     height: 13px;
     margin-left: -28px;
 }
 
-div[w-tmapikey] .events_control:before {
+div[w-theme="simple"] .events_control:before {
     content: '';
     position: absolute;
     width: 56px;
@@ -143,11 +153,11 @@ div[w-tmapikey] .events_control:before {
     background: rgba(146, 146, 146, 0.5) url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
 }
 
-div[w-tmapikey] .events_control-left {
+div[w-theme="simple"] .events_control-left {
     left: 0;
 }
 
-div[w-tmapikey] .events_control-left:before {
+div[w-theme="simple"] .events_control-left:before {
     right: 0;
     top: 0;
     -webkit-transform: rotate(180deg);
@@ -156,20 +166,20 @@ div[w-tmapikey] .events_control-left:before {
     transform: rotate(180deg);
 }
 
-div[w-tmapikey] .events_control-right {
+div[w-theme="simple"] .events_control-right {
     right: 0;
 }
 
-div[w-tmapikey] .events_control-right:before {
+div[w-theme="simple"] .events_control-right:before {
     left: 0;
     top: 0;
 }
 
-div[w-tmapikey] .events_control-top {
+div[w-theme="simple"] .events_control-top {
     top: 0;
 }
 
-div[w-tmapikey] .events_control-top:before {
+div[w-theme="simple"] .events_control-top:before {
     left: 0;
     bottom: 0;
     -webkit-transform: rotate(-90deg);
@@ -178,11 +188,11 @@ div[w-tmapikey] .events_control-top:before {
     transform: rotate(-90deg);
 }
 
-div[w-tmapikey] .events_control-bottom {
+div[w-theme="simple"] .events_control-bottom {
     bottom: 0;
 }
 
-div[w-tmapikey] .events_control-bottom:before {
+div[w-theme="simple"] .events_control-bottom:before {
     left: 0;
     top: 0;
     -webkit-transform: rotate(90deg);
@@ -191,24 +201,24 @@ div[w-tmapikey] .events_control-bottom:before {
     transform: rotate(90deg);
 }
 
-div[w-tmapikey] .events_control-vertical:hover {
+div[w-theme="simple"] .events_control-vertical:hover {
     height: 28px;
 }
 
-div[w-tmapikey] .events_control-horizontal:hover {
+div[w-theme="simple"] .events_control-horizontal:hover {
     width: 28px;
 }
 
 
-div[w-tmapikey] .events_control-vertical.events_control-hidden {
+div[w-theme="simple"] .events_control-vertical.events_control-hidden {
     height: 0;
 }
 
-div[w-tmapikey] .events_control-horizontal.events_control-hidden {
+div[w-theme="simple"] .events_control-horizontal.events_control-hidden {
     width: 0;
 }
 
-div[w-tmapikey] .bg-cover {
+div[w-theme="simple"] .bg-cover {
     width: 100%;
     height: 100%;
     display: block;
@@ -322,12 +332,16 @@ div[w-theme="simple"] .legal-notice {
     line-height: 24px;
 }
 
-div[w-theme="simple"] .legal-notice,
+div[w-theme="simple"] .legal-notice{
+    color: #019cde;
+    text-decoration: none;
+}
+
 div[w-theme="simple"] .legal-notice:hover,
 div[w-theme="simple"] .legal-notice:focus,
 div[w-theme="simple"] .legal-notice:active{
-    color: #019cde;
     text-decoration: none;
+    color: #2A7CC7;
 }
 
 div[w-theme="simple"] .events-counter {
@@ -358,8 +372,39 @@ div[w-theme="simple"] .event-logo {
     right: 10px;
     width: 129px;
     height: 18px;
-    /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg") no-repeat;
+}
+
+div[w-theme="simple"] .event-logo:before,
+div[w-theme="simple"] .event-logo:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple"] .event-logo:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+}
+
+div[w-theme="simple"] .event-logo:after {
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+}
+
+div[w-theme="simple"] .event-logo:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="simple"] .event-logo:hover:after {
+    opacity: 0;
 }
 
 /*group*/
@@ -389,7 +434,12 @@ div[w-theme="simple"] .event-buy-btn {
     transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-div[w-theme="simple"] .event-buy-btn[href=''] {
+div[w-theme="simple"] .event-buy-btn:hover {
+    background-color: #2A7CC7;
+}
+
+div[w-theme="simple"] .event-buy-btn[href=''],
+div[w-theme="simple"] .event-buy-btn[href='']:hover {
     background-color: #ccc;
     cursor: default;
     opacity: 0.5;

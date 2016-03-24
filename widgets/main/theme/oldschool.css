@@ -254,16 +254,20 @@ div[w-theme="oldschool"] .event-category:first-child:before{
     content: '';
 }
 
-div[w-theme="oldschool"] .legal-notice,
-div[w-theme="oldschool"] .legal-notice:hover,
-div[w-theme="oldschool"] .legal-notice:focus,
-div[w-theme="oldschool"] .legal-notice:active{
+div[w-theme="oldschool"] .legal-notice {
     position: absolute;
     left: 30px;
     bottom: 55px;
     color: #019cde;
     font-size: 16px;
     line-height: 24px;
+    text-decoration: none;
+}
+
+div[w-theme="oldschool"] .legal-notice:hover,
+div[w-theme="oldschool"] .legal-notice:focus,
+div[w-theme="oldschool"] .legal-notice:active{
+    color: #2A7CC7;
     text-decoration: none;
 }
 
@@ -311,19 +315,60 @@ div[w-theme="oldschool"] .event-logo {
     right: 25px;
     width: 144px;
     height: 20px;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg") no-repeat;
 }
 
+div[w-theme="oldschool"] .event-logo:before,
+div[w-theme="oldschool"] .event-logo:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="oldschool"] .event-logo:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+}
+
+div[w-theme="oldschool"] .event-logo:after {
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+}
+
+div[w-theme="oldschool"] .event-logo:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="oldschool"] .event-logo:hover:after {
+    opacity: 0;
+}
+
+/*  question  */
 div[w-theme="oldschool"] .event-question {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.2;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-gray.svg") no-repeat;
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-gray.svg")  no-repeat center;
 }
+
+div[w-theme="oldschool"] .event-question:hover {
+    opacity: 1;
+}
+
 
 /* slider controls */
 div[w-theme="oldschool"] .events_control {
@@ -461,7 +506,12 @@ div[w-theme="oldschool"] .event-buy-btn {
     transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-div[w-theme="oldschool"] .event-buy-btn[href=''] {
+div[w-theme="oldschool"] .event-buy-btn:hover {
+    background-color: #2A7CC7;
+}
+
+div[w-theme="oldschool"] .event-buy-btn[href=''],
+div[w-theme="oldschool"] .event-buy-btn[href='']:hover {
     background-color: #ccc;
     cursor: default;
     opacity: 0.5;
