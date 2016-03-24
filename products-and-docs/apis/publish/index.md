@@ -158,20 +158,20 @@ publish/{version}/events
 
 #### Success:
 
-{: .nested-list}
 - `status` (string) - status of the publication. Either `Success` or `SuccessWarning`(if there are any missing or unknown properties).
+- `message` (string) - warning message, if any
 - `id` (string) - the generated public id
 - `missingProperties` (map) - list of missing `Preferred` properties, if any.
 - `unknownProperties` (map) - list of unknown properties and their data, if any. Those properties won't be visible in Discovery API.
 
 #### Error:
+
 - `errors` (array) - list of errors.
     * `status` (string) - nature of the error. Either `Error` or `Rejected`(if there are any missing or unknown properties).
     * `code` (string) - the error code
     * `detail` (string) - the error message
     * `invalidProperties` (map) - list of invalid properties and their validation messages, if any
     * `missingProperties` (map) - list of missing `Mandatory` properties, if any
-
 
 {: .aside}
 >[JavaScript](#js)
@@ -253,6 +253,33 @@ curl -i -X POST --header "Content-Type: application/json" --header "Accept: appl
     }
 }" "http://app.ticketmaster.com/publish/v2/events"
 {% endhighlight %}
+
+{: .article}
+### Http Response Codes
+
+{: .nested-list}
+- `200` - Success (may contain warnings)
+    * Publication successful
+    * Warnings, if any: 
+        - unknown properties - any properties unknown to Publish API.
+        - missing properties - expected non-mandatory properties:
+            * `Venue` or `Place` is preferred.
+- `400` - Rejected
+    * Publication rejected due to missing/invalid properties or malformed request
+    * Validation rules:
+        - `Id` is generated and must not be provided
+        - `Venue` and `Place` are mutually exclusive, only one should be provided.
+        - `Source` is Mandatory
+        - `Source Name` and `Source Id` are Mandatory and must contains only alphanumeric characters, dashes or underscores.
+        - When `Venue` is provided, `Venue Id` and `Venue Source` are mandatory and mutually exclusive, either one must be provided.
+            * No other properties are allowed for `Venue`.
+            * When `Venue Source` is provided,  `Venue Source Name` and `Venue Source Id` are Mandatory and must contains only alphanumeric characters, dashes or underscores.
+        - When any `Attraction` is provided, `Attraction Id` and `Attraction Source` are mandatory and mutually exclusive, either one must be provided for each `Attraction`.
+            * No other properties are allowed for `Attraction`.
+            * When `Attraction Source` is provided,  `Attraction Source Name` and `Attraction Source Id` are Mandatory and must contains only alphanumeric characters, dashes or underscores.
+- `500` - Error
+    * Publication unsuccessful.
+    * Internal Server Error.
 
 {: .article}
 >[Request](#req)
