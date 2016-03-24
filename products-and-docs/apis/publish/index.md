@@ -80,7 +80,7 @@ publish/{version}/events
 }
 {% endhighlight %}
 
-### Response structure:
+### Request structure:
 
 {: .nested-list}
 - `additionalInfos` (object) - map of locale to value for any additional informations on the event.
@@ -115,6 +115,24 @@ publish/{version}/events
     * `url` (string) - the URL of the image.
     * `width` (number) - the width of the image.
 - `names` (object) - map of locale to value for the names of the event.
+- `place` (object) - the place where the event occurs.
+    * `address` (object) - the address of the place of the event.
+       - `line1s` (object) - map of locale to value for the first line of the address.
+       - `line2s` (object) - map of locale to value for the second line of the address.
+    * `area` (object) - the neighborhood where the event takes place, e.g. "Little Italy".   
+       - `names` (object) - map of locale to value for the names of the area.
+    * `city` (object) - the city where the event takes place.   
+       - `names` (object) - map of locale to value for the names of the city.
+    * `country` (object) - the country where the event takes place.
+       - `countryCode` (string) - the code of the country of the event.    
+       - `names` (object) - map of locale to value for the names of the country.
+    * `location` (object) - the event location's latitude and longitude.
+       - `latitude` (number) - the latitude of the event location.
+       - `longitude` (number) - the longitude of the event location.
+    * `postalCode` (string) - the postal code of the place of the event.
+    * `state` (object) - the state (or region) where the event takes place.
+       - `names` (object) - map of locale to value for the names of the state.
+       - `stateCode` (string) - the code of the state of the event.         
 - `publicVisibility` (object) - determine if the event is visible on the Discovery API.
     * `startDateTime` (string) - the start date and time of visibility for this event on the Discovery API in UTC. 
     * `endDateTime` (string) - the end date and time of visibility for this event on the Discovery API in UTC.
@@ -135,6 +153,26 @@ publish/{version}/events
         - `name` (string) - the publisher's name.
 - `url` (string) - the URL of the event on the publisher's site.        
 - `version` (number) - the publisher's version for this event.
+
+
+### Response structure:
+
+#### Success:
+
+{: .nested-list}
+- `status` (string) - status of the publication. Either `Success` or `SuccessWarning`(if there are any missing or unknown properties).
+- `id` (string) - the generated public id
+- `missingProperties` (map) - list of missing `Preferred` properties, if any.
+- `unknownProperties` (map) - list of unknown properties and their data, if any. Those properties won't be visible in Discovery API.
+
+#### Error:
+- `errors` (array) - list of errors.
+    * `status` (string) - nature of the error. Either `Error` or `Rejected`(if there are any missing or unknown properties).
+    * `code` (string) - the error code
+    * `detail` (string) - the error message
+    * `invalidProperties` (map) - list of invalid properties and their validation messages, if any
+    * `missingProperties` (map) - list of missing `Mandatory` properties, if any
+
 
 {: .aside}
 >[JavaScript](#js)
@@ -286,6 +324,55 @@ Content-Type: application/json;
     "fr-ca": "chaine",
     "es-mx": "cuerda" 
   },
+  "place": {
+    "address": {
+      "line1s": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+      },
+      "line2s": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+      }
+    },
+    "area": {
+      "names": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+      }
+    },
+    "city": {
+      "names": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+      }
+    },
+    "country": {
+      "countryCode": "string",
+      "names": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+      }
+    },
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "postalCode": "string",
+    "state": {
+      "names": {
+            "en-us": "string",
+            "fr-ca": "chaine",
+            "es-mx": "cuerda" 
+      },
+      "stateCode": "string"
+    }
+  },  
   "publicVisibility": {
     "startDateTime": "2014-12-03T01:59:00Z",
     "endDateTime": "2015-01-03T05:59:00Z",
