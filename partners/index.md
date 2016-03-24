@@ -109,13 +109,13 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 
 {% capture slider %}
 
-![ApiExplorer](/assets/img/partners/startups-development/bitmap.png)
+[![ApiExplorer](/assets/img/partners/startups-development/bitmap.png)](http://vmenshutin.github.io/)
 
-![DevJam2](/assets/img/partners/startups-development/bitmap1.png)
+[![DevJam2](/assets/img/partners/startups-development/bitmap1.png)](/events/#past)
 
-![DevJam1](/assets/img/partners/startups-development/bitmap2.png)
+[![DevJam1](/assets/img/partners/startups-development/bitmap2.png)](/events/#past)
 
-![DevJam0](/assets/img/partners/startups-development/bitmap3.png)
+[![DevJam0](/assets/img/partners/startups-development/bitmap3.png)](/events/#past)
 
 {% endcapture %}
 
@@ -158,7 +158,7 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
   </div>
 </div>
 
-<div class="affilated col-xs-12 col-sm-12" markdown="1">
+<div class="affilated-block col-xs-12 col-sm-12" markdown="1">
 {{affilated}}
 </div>
 
