@@ -14,20 +14,20 @@
         }
         /*Normalize END*/
 
-        var tabsCount = 0,
-            $htmlBody = $('body, html'),
-            $window = $(window);
+        var tabsCount = 0;
         var drawHideCodeBtn = false;
 
         function toggleCodePanel(targetElement){
             var $textBtns = $('.toggle-code-btn'),
                 headers = $('.underline'),
-                leftPanels = $('.documentation .content .article-wrapper .left-wrapper'),
+                leftPanels = $('.left-wrapper'),
                 //codePanel = $(targetElement).closest('.article').siblings(".tab-panel-offset"), //clicked 'code panel'
                 codePanels = $(".tab-panel-offset"),
                 expandCssClass = 'expand',
                 collapseCssClass = 'collapse-code-column',
-                excludeElemList = $('.left-wrapper').contents('.lead'); //exclude collapse elememt if it contain '.lead'
+                textHide = 'HIDE CODE',
+                textShow = 'SHOW CODE',
+                excludeElemList = leftPanels.contents('.lead'); //exclude collapse elememt if it contain '.lead'
 
             if( codePanels.hasClass('collapse-code-column') ){
                  /*leftPanels.animate({width: '55%'}, "fast");
@@ -36,18 +36,21 @@
                 codePanels.removeClass(collapseCssClass);
                 leftPanels.removeClass(expandCssClass);
                 headers.removeClass(expandCssClass);
-                $textBtns.text('hide code');
+                $textBtns.html(textHide + '<span></span>');
             }else {
                 codePanels.addClass(collapseCssClass);
                 leftPanels.addClass(expandCssClass);
                 headers.addClass(expandCssClass);
-                $textBtns.text('show code');
+                $textBtns.html(textShow + '<span class="icon-arrow-down"></span>');
             }
             excludeElemList.parent('.left-wrapper').removeClass(expandCssClass);
 
             $(window).trigger('resize');// update tables size
 
+            /*
             function autoScroll(topPadding, delay) {
+                var $htmlBody = $('body, html'),
+                    $window = $(window);
                 //if btn will be near header $(targetElement).offset().top
                 var dif = $window.scrollTop() - $('.toggle-code-btn').offset().top;
                 if (dif != 0) {
@@ -55,7 +58,7 @@
                         scrollTop: $window.scrollTop() - dif - topPadding
                     }, delay);
                 }
-            }
+            }*/
             //autoScroll(50, 330);
 
         }
@@ -67,15 +70,12 @@
             });
 
         main.find('.aside').each(function () {
-            var me = $(this);
-            var group = me.nextUntil('.article').addBack();
-            var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
-            var firstElemGroupLeft = groupLeft.parent().children().first();
-            var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
-            var toggleCodeBtn = $(document.createElement("a")).addClass("button toggle-code-btn");
-                toggleCodeBtn.text('hide code');
-
-
+            var me = $(this),
+                group = me.nextUntil('.article').addBack(),
+                groupLeft = me.parent().children().first().nextUntil('.aside').addBack(),
+                firstElemGroupLeft = groupLeft.parent().children().first(),
+                consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#"),
+                toggleCodeBtn = $(document.createElement("a")).addClass("button toggle-code-btn")
 
             group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -90,9 +90,10 @@
             if (me.hasClass('lang-selector')) {
 
                 firstElemGroupLeft.addClass('underline');
-                //firstElemGroupLeft.append(toggleCodeBtn);
 
                 if( !drawHideCodeBtn ){
+                    toggleCodeBtn.html('HIDE CODE' + '<span></span>');
+                    //$('<span></span>').appendTo(toggleCodeBtn);
                     $('.content').append(toggleCodeBtn);
                     drawHideCodeBtn = true;
                 }
@@ -101,7 +102,7 @@
                 firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
 
                 /*parse tabs*/
-                me.children().children().first().addClass('active')//set first button active
+                me.children().children().first().addClass('active');//set first button active
 
                 tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('p').length+1;
 
@@ -257,8 +258,6 @@
             $(this).parents().find('.active-lang').removeClass('open');
             $(this).parents().find('.lang-selector').removeClass('show');
             $(this).focus();
-
-
         });
 
         $(".console-btn").on("click", function(e){

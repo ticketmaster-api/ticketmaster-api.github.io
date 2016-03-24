@@ -514,10 +514,57 @@
       }
     }
     .toggle-code-btn {
-      background-color: $white;
+      background-color: $n3;
+      color: $white;
+      border-radius: 0 0 2px 2px;
+      border: none;
       position: fixed;
-      top: 0px;
+      top: 82px;
       right: 80px;
+      text-decoration: none;
+      font-family: $font-h4;
+      /*padding: 12px 50px 12px 32px;*/
+      width: 166px;
+      line-height: 48px;
+      padding-left: 12px;
+      &:hover {
+        //hover on 'hide' icon
+        span {
+        background-image: url("../../assets/img/header/ic-arrow-down-white.svg");
+        }
+
+        //hover on 'show' icon
+        span.icon-arrow-down {
+          background-image: url("../../assets/img/header/ic-arrow-down-white.svg");
+          top: 22px;
+          right: 10px;
+          &:hover {
+            background-image: url("../../assets/img/header/ic-close-small-white.svg");
+          }
+        }
+      }
+      //default icon X
+      span {
+        background-image: url("../../assets/img/header/ic-close-small-white.svg");
+        background-repeat: no-repeat;
+        display: block;
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 17px;
+        right: 16px;
+        &:hover {
+          background-image: url("../../assets/img/header/ic-close-small-white.svg");
+        }
+        /*&.icon-arrow-down {
+          background-image: url("../../assets/img/header/ic-arrow-down-white.svg");
+          top: 22px;
+          right: 10px;
+          &:hover {
+            background-image: url("../../assets/img/header/ic-close-small-white.svg");
+          }
+        }*/
+      }
     }
   }
 
