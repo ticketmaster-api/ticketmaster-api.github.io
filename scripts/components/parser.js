@@ -27,7 +27,7 @@
                 collapseCssClass = 'collapse-code-column',
                 textHide = 'HIDE CODE',
                 textShow = 'SHOW CODE',
-                excludeElemList = leftPanels.contents('.lead'); //exclude collapse elememt if it contain '.lead'
+                excludeElemList = leftPanels.contents('.lead'); //exclude collapse element if it contain '.lead'
 
             if( codePanels.hasClass('collapse-code-column') ){
                  /*leftPanels.animate({width: '55%'}, "fast");
@@ -75,7 +75,7 @@
                 groupLeft = me.parent().children().first().nextUntil('.aside').addBack(),
                 firstElemGroupLeft = groupLeft.parent().children().first(),
                 consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#"),
-                toggleCodeBtn = $(document.createElement("a")).addClass("button toggle-code-btn")
+                toggleCodeBtn = $(document.createElement("button")).addClass("toggle-code-btn")
 
             group.wrapAll('<div class="aside-wrapper"></div>');
 
