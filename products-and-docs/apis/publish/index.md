@@ -263,14 +263,14 @@ curl -i -X POST
 ### Http Response Codes
 
 {: .nested-list}
-- `200` - Success or SuccessWarning
+- `200` - Success (may contain warnings)
     * Publication successful
-    * May contain warnings: 
+    * Warnings, if any: 
         - unknown properties - any properties unknown to Publish API.
         - missing properties - expected non-mandatory properties:
             * `Venue` or `Place` is preferred.
 - `400` - Rejected
-    * Publication rejected due to missing/invalid properties or malformated request
+    * Publication rejected due to missing/invalid properties or malformed request
     * Validation rules:
         - `Id` is generated and must not be provided
         - `Venue` and `Place` are mutually exclusive, only one should be provided.
@@ -283,6 +283,7 @@ curl -i -X POST
             * No other properties are allowed for `Attraction`.
             * When `Attraction Source` is provided,  `Attraction Source Name` and `Attraction Source Id` are Mandatory and must contains only alphanumeric characters, dashes or underscores.
 - `500` - Error
+    * Publication unsuccessful.
     * Internal Server Error.
 
 {: .article}
