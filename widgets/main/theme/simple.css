@@ -284,7 +284,16 @@ div[w-theme="simple"] .address-wrapper{
 }
 
 div[w-theme="simple"] .event-address{
-    display: block;
+    display: inline-block;
+}
+
+div[w-theme="simple"] .event-address:after{
+    content: ',\00a0';
+    display: inline-block;
+}
+
+div[w-theme="simple"] .address-wrapper .event-address:last-child:after{
+    display: none;
 }
 
 div[w-theme="simple"] .category-wrapper{

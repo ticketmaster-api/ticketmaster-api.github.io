@@ -67,7 +67,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "height", "borderradius", "colorscheme", "layout"];
+      return ["width", "height", "borderradius", "colorscheme", "layout", "affiliateid"];
     }
   }, {
     key: "sliderDelay",
@@ -90,6 +90,11 @@ var TicketmasterWidget = function () {
       return "events_control-hidden";
     }
   }, {
+    key: "tmWidgetWhiteList",
+    get: function get() {
+      return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"];
+    }
+  }, {
     key: "eventReqAttrs",
     get: function get() {
       var attrs = {};
@@ -100,8 +105,10 @@ var TicketmasterWidget = function () {
       //if(this.isConfigAttrEmpty("radius"))
       //  attrs.radius = this.config.radius;
       if (this.isConfigAttrEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
-      if (this.isConfigAttrEmpty("attractionid")) attrs.attractionid = this.config.attractionid;
-      if (this.isConfigAttrEmpty("promoterid")) attrs.promoterid = this.config.promoterid;
+      if (this.isConfigAttrEmpty("attractionid")) attrs.attractionId = this.config.attractionid;
+      if (this.isConfigAttrEmpty("promoterid")) attrs.promoterId = this.config.promoterid;
+      if (this.isConfigAttrEmpty("venueid")) attrs.venueId = this.config.venueid;
+      if (this.isConfigAttrEmpty("segmentid")) attrs.segmentId = this.config.segmentid;
       if (this.isConfigAttrEmpty("period")) {
         var period = this.getDateFromPeriod(this.config.period);
         attrs.startDateTime = period[0];
@@ -160,8 +167,10 @@ var TicketmasterWidget = function () {
 
     if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
       this.themeModificators[this.widgetConfig.theme]();
-      this.embedUniversePlugin();
     }
+
+    this.embedUniversePlugin();
+    this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -185,6 +194,7 @@ var TicketmasterWidget = function () {
       this.buyBtn.addEventListener('click', function (e) {
         e.preventDefault();
         _this.stopAutoSlideX();
+        //console.log(this.config.affiliateid)
       });
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
@@ -196,13 +206,35 @@ var TicketmasterWidget = function () {
             url = '';
         if (event) {
           if (event.url) {
-            if (this.isUniverseUrl(event.url)) {
+            if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
               url = event.url;
             }
           }
         }
         this.buyBtn.href = url;
       }
+    }
+  }, {
+    key: "isUniverseUrl",
+    value: function isUniverseUrl(url) {
+      return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
+    }
+  }, {
+    key: "isAllowedTMEvent",
+    value: function isAllowedTMEvent(url) {
+      for (var t = [/(?:ticketmaster\.com)\/(.*\/)?event\/([^\/?#]+)/, /(?:concerts\.livenation\.com)\/(.*\/)?event\/([^\/?#]+)/], n = null, r = 0; r < t.length && (n = url.match(t[r]), null === n); r++) {}
+      var id = null !== n ? n[2] : void 0;
+      return this.tmWidgetWhiteList.indexOf(id) > -1;
+    }
+  }, {
+    key: "embedTMPlugin",
+    value: function embedTMPlugin() {
+      var script = document.createElement('script');
+      script.setAttribute('src', '/scripts/vendors/tm.js');
+      script.setAttribute('type', 'text/javascript');
+      script.setAttribute('charset', 'UTF-8');
+      (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+      this.isTMPluginInitialized = true;
     }
   }, {
     key: "embedUniversePlugin",
@@ -212,6 +244,7 @@ var TicketmasterWidget = function () {
       script.setAttribute('type', 'text/javascript');
       script.setAttribute('charset', 'UTF-8');
       (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+      this.isUniversePluginInitialized = true;
     }
 
     // Message
@@ -755,11 +788,6 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
-    key: "isUniverseUrl",
-    value: function isUniverseUrl(url) {
-      return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
-    }
-  }, {
     key: "resetReduceParamsOrder",
     value: function resetReduceParamsOrder() {
       this.reduceParamsOrder = 0;
@@ -768,7 +796,7 @@ var TicketmasterWidget = function () {
     key: "reduceParamsAndReloadEvents",
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
-          reduceParamsList = [['postalCode'], ['attractionid'], ['promoterid'], ['startDateTime', 'endDateTime'], ['keyword'], ['size']];
+          reduceParamsList = [['startDateTime', 'endDateTime'], ['postalCode'], ['attractionId'], ['promoterId'], ['segmentId'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
@@ -906,8 +934,14 @@ var TicketmasterWidget = function () {
             time: eventsSet[key].dates.start.localTime
           };
 
-          if (eventsSet[key]._embedded.venues[0].address) {
-            currentEvent.address = eventsSet[key]._embedded.venues[0].address;
+          var venue = eventsSet[key]._embedded.venues[0];
+          if (venue) {
+            if (venue.address) currentEvent.address = venue.address;
+
+            if (venue.name) {
+              if (!currentEvent.address) currentEvent.address = {};
+              currentEvent.address.name = venue.name;
+            }
           }
 
           // Remove this comment to get categories
@@ -999,6 +1033,14 @@ var TicketmasterWidget = function () {
       if (itemConfig.hasOwnProperty("address")) {
         var addressWrapper = document.createElement("span");
         addressWrapper.classList.add("address-wrapper");
+
+        if (itemConfig.address.hasOwnProperty("name")) {
+          var addressNameText = document.createTextNode(itemConfig.address.name),
+              addressName = document.createElement("span");
+          addressName.classList.add("event-address", "event-address-name");
+          addressName.appendChild(addressNameText);
+          addressWrapper.appendChild(addressName);
+        }
 
         if (itemConfig.address.hasOwnProperty("line1")) {
           var addressOneText = document.createTextNode(itemConfig.address.line1),

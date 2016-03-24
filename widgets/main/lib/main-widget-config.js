@@ -11,8 +11,17 @@
       return theme === 'simple' ? 238 : 300;
     }
 
-    if (event.target.name === "w-theme" && widgetNode.getAttribute('w-layout') === 'horizontal') {
-      widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
+    if (event.target.name === "w-theme") {
+      var $layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark');
+      if (event.target.value === 'simple') {
+        $layoutSelectors.prop('disabled', true);
+      } else {
+        $layoutSelectors.prop('disabled', false);
+      }
+
+      if (widgetNode.getAttribute('w-layout') === 'horizontal') {
+        widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
+      }
     }
 
     if (event.target.name === "w-layout") {

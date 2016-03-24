@@ -19,7 +19,7 @@ class TicketmasterWidget {
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-  get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout"]}
+  get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout", "affiliateid"]}
 
   get sliderDelay(){ return 10000000; }
 
@@ -28,6 +28,8 @@ class TicketmasterWidget {
   get hideMessageDelay(){ return 8000; }
 
   get controlHiddenClass(){ return "events_control-hidden"; }
+
+  get tmWidgetWhiteList(){ return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"]; }
 
   isConfigAttrEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
@@ -52,9 +54,13 @@ class TicketmasterWidget {
     if(this.isConfigAttrEmpty("postalcode"))
       attrs.postalCode = this.config.postalcode;
     if(this.isConfigAttrEmpty("attractionid"))
-      attrs.attractionid = this.config.attractionid;
+      attrs.attractionId = this.config.attractionid;
     if(this.isConfigAttrEmpty("promoterid"))
-      attrs.promoterid = this.config.promoterid;
+      attrs.promoterId = this.config.promoterid;
+    if(this.isConfigAttrEmpty("venueid"))
+      attrs.venueId = this.config.venueid;
+    if(this.isConfigAttrEmpty("segmentid"))
+      attrs.segmentId = this.config.segmentid;
     if(this.isConfigAttrEmpty("period")){
       let period = this.getDateFromPeriod(this.config.period);
       attrs.startDateTime = period[0];
@@ -109,8 +115,10 @@ class TicketmasterWidget {
 
     if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
       this.themeModificators[ this.widgetConfig.theme ]();
-      this.embedUniversePlugin();
     }
+
+    this.embedUniversePlugin();
+    this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -131,6 +139,7 @@ class TicketmasterWidget {
     this.buyBtn.addEventListener('click', (e)=> {
       e.preventDefault();
       this.stopAutoSlideX();
+      //console.log(this.config.affiliateid)
     });
     this.eventsRootContainer.appendChild(this.buyBtn);
   }
@@ -141,7 +150,7 @@ class TicketmasterWidget {
           url = '';
       if(event){
         if(event.url){
-          if(this.isUniverseUrl(event.url)){
+          if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
             url = event.url;
           }
         }
@@ -150,12 +159,32 @@ class TicketmasterWidget {
     }
   }
 
+  isUniverseUrl(url){
+    return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
+  }
+
+  isAllowedTMEvent(url){
+    for (var t = [/(?:ticketmaster\.com)\/(.*\/)?event\/([^\/?#]+)/, /(?:concerts\.livenation\.com)\/(.*\/)?event\/([^\/?#]+)/], n = null, r = 0; r < t.length && (n = url.match(t[r]), null === n); r++);
+    let id = (null !== n ? n[2] : void 0);
+    return (this.tmWidgetWhiteList.indexOf(id) > -1);
+  }
+
+  embedTMPlugin(){
+    let script = document.createElement('script');
+    script.setAttribute('src', '/scripts/vendors/tm.js');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('charset', 'UTF-8');
+    (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+    this.isTMPluginInitialized = true;
+  }
+
   embedUniversePlugin(){
     let script = document.createElement('script');
     script.setAttribute('src', 'https://www.universe.com/embed.js');
     script.setAttribute('type', 'text/javascript');
     script.setAttribute('charset', 'UTF-8');
     (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+    this.isUniversePluginInitialized = true;
   }
 
   // Message
@@ -662,10 +691,6 @@ class TicketmasterWidget {
     }
   }
 
-  isUniverseUrl(url){
-    return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
-  }
-
   resetReduceParamsOrder(){
     this.reduceParamsOrder = 0;
   }
@@ -673,12 +698,13 @@ class TicketmasterWidget {
   reduceParamsAndReloadEvents(){
     let eventReqAttrs = {},
       reduceParamsList = [
-          ['postalCode'],
-          ['attractionid'],
-          ['promoterid'],
-          ['startDateTime', 'endDateTime'],
-          ['keyword'],
-          ['size']
+        ['startDateTime', 'endDateTime'],
+        ['postalCode'],
+        ['attractionId'],
+        ['promoterId'],
+        ['segmentId'],
+        ['keyword'],
+        ['size']
       ];
 
     // make copy of params
@@ -824,8 +850,15 @@ class TicketmasterWidget {
           time: eventsSet[key].dates.start.localTime
         };
 
-        if(eventsSet[key]._embedded.venues[0].address){
-          currentEvent.address = eventsSet[key]._embedded.venues[0].address;
+        let venue = eventsSet[key]._embedded.venues[0];
+        if(venue){
+          if(venue.address)
+            currentEvent.address = venue.address;
+
+          if(venue.name){
+            if(!currentEvent.address) currentEvent.address = {};
+            currentEvent.address.name = venue.name;
+          }
         }
 
         // Remove this comment to get categories
@@ -916,6 +949,14 @@ class TicketmasterWidget {
     if(itemConfig.hasOwnProperty("address")){
       var addressWrapper = document.createElement("span");
       addressWrapper.classList.add("address-wrapper");
+
+      if( itemConfig.address.hasOwnProperty("name") ){
+        var addressNameText = document.createTextNode(itemConfig.address.name),
+            addressName =  document.createElement("span");
+        addressName.classList.add("event-address", "event-address-name");
+        addressName.appendChild(addressNameText);
+        addressWrapper.appendChild(addressName);
+      }
 
       if( itemConfig.address.hasOwnProperty("line1") ){
         var addressOneText = document.createTextNode(itemConfig.address.line1),

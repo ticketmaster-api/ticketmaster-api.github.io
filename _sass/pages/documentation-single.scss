@@ -6,6 +6,8 @@
   Desktop
 */
 .single-column {
+  padding-top: $fixed-header-height - $base-margin; /*header height*/
+
   p {
     width: 50%;
     &.lead {
@@ -232,11 +234,11 @@
 }
 
 .changelog {
-  margin-bottom: 1.2em;
+  margin-bottom: $base-margin;
   overflow: hidden;
   strong {
-    font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
-    color: #d0006f;
+    font-family: $font-body;
+    color: $secondary-color1;
     font-weight: normal;
   }
 }

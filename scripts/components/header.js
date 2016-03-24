@@ -6,6 +6,7 @@
             test: true,
             menuDropdown: $('#menu-dropdown'),
             menuBtn: $('#menu-btn'),
+            menuBtnFixed: $('#menu-btn-fixed'),
             searchBtn: $('#search'),
             searchAlert: $('#search-alert'),
             searchBox: $("#cse-search-box"),
@@ -44,6 +45,12 @@
                 var self = this;
                 self.menuBtn.on("click", function(){
                     if (!self.menuBtn.hasClass("tm-close"))
+                        self.show();
+                    else
+                        self.hide();
+                });
+                self.menuBtnFixed.on("click", function(){
+                    if (!self.menuBtnFixed.hasClass("tm-close"))
                         self.show();
                     else
                         self.hide();
