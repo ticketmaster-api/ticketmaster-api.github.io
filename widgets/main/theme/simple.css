@@ -280,11 +280,18 @@ div[w-theme="simple"] .event-date-wraper{
 
 div[w-theme="simple"] .address-wrapper{
     display: block;
+    display: -webkit-box;
+    height: 30px;
     font-family: "TMSans-Light";
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 div[w-theme="simple"] .event-address{
-    display: inline-block;
+    display: inline;
 }
 
 div[w-theme="simple"] .event-address:after{
@@ -405,6 +412,11 @@ div[w-theme="simple"][w-layout="horizontal"] .event-name{
     padding-right: 64px;
     max-width: 560px;
 }
+div[w-theme="simple"][w-layout="horizontal"] .address-wrapper {
+    padding-right: 64px;
+    max-width: 560px;
+}
+
 
 div[w-theme="simple"][w-layout="horizontal"] .legal-notice {
     left: 119px;
