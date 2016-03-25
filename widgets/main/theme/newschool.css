@@ -292,17 +292,17 @@ div[w-theme="newschool"] .event-category:first-child:before{
 div[w-theme="newschool"] .legal-notice{
     position: absolute;
     left: 25px;
-    bottom: 55px;
-    color: #019cde;
-    font-size: 16px;
-    line-height: 24px;
+    bottom: 63px;
+    color: #b7c9d3;
+    font-size: 14px;
+    line-height: 16px;
     text-decoration: none;
 }
 
 div[w-theme="newschool"]  .legal-notice:hover,
 div[w-theme="newschool"]  .legal-notice:focus,
 div[w-theme="newschool"]  .legal-notice:active{
-    color: #2A7CC7;
+    color: #019cde;
     text-decoration: none;
 }
 
@@ -359,7 +359,7 @@ div[w-theme="newschool"] .event-logo-box:after{
 div[w-theme="newschool"] .event-logo {
     position: relative;
     display: inline-block;
-    width: 144px;
+    width: 129px;
     height: 20px;
     float: right;
     margin-right: 25px;

@@ -327,13 +327,10 @@ div[w-theme="simple"] .event-category:first-child:before{
 div[w-theme="simple"] .legal-notice {
     position: absolute;
     left: 30px;
-    bottom: 83px;
-    font-size: 16px;
-    line-height: 24px;
-}
-
-div[w-theme="simple"] .legal-notice{
-    color: #019cde;
+    bottom: 85px;
+    font-size: 14px;
+    line-height: 16px;
+    color: #768692;
     text-decoration: none;
 }
 
@@ -341,7 +338,7 @@ div[w-theme="simple"] .legal-notice:hover,
 div[w-theme="simple"] .legal-notice:focus,
 div[w-theme="simple"] .legal-notice:active{
     text-decoration: none;
-    color: #2A7CC7;
+    color: #019cde;
 }
 
 div[w-theme="simple"] .events-counter {

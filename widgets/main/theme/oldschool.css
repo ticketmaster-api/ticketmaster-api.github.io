@@ -257,17 +257,17 @@ div[w-theme="oldschool"] .event-category:first-child:before{
 div[w-theme="oldschool"] .legal-notice {
     position: absolute;
     left: 30px;
-    bottom: 55px;
-    color: #019cde;
-    font-size: 16px;
-    line-height: 24px;
+    bottom: 63px;
+    color: #b7c9d3;
+    font-size: 14px;
+    line-height: 16px;
     text-decoration: none;
 }
 
 div[w-theme="oldschool"] .legal-notice:hover,
 div[w-theme="oldschool"] .legal-notice:focus,
 div[w-theme="oldschool"] .legal-notice:active{
-    color: #2A7CC7;
+    color: #019cde;
     text-decoration: none;
 }
 
@@ -313,7 +313,7 @@ div[w-theme="oldschool"] .event-logo {
     display: inline-block;
     position: absolute;
     right: 25px;
-    width: 144px;
+    width: 129px;
     height: 20px;
 }
 
@@ -594,11 +594,10 @@ div[w-theme="oldschool"][w-layout="horizontal"] .event-logo{
 }
 
 div[w-theme="oldschool"][w-layout="horizontal"] .legal-notice{
-    left: auto;
-    bottom: auto;
     transform: rotate(-90deg);
-    top: 220px;
-    right: 8px;
+    right: 5px;
+    left: auto;
+    bottom: 95px;
 }
 
 div[w-theme="oldschool"][w-layout="horizontal"] .events-counter{
