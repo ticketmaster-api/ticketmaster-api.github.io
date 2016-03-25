@@ -21,11 +21,11 @@ class TicketmasterWidget {
 
   get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout", "affiliateid"]}
 
-  get sliderDelay(){ return 10000000; }
+  get sliderDelay(){ return 5000; }
 
-  get sliderRestartDelay(){ return 20000; }
+  get sliderRestartDelay(){ return 5000; }
 
-  get hideMessageDelay(){ return 8000; }
+  get hideMessageDelay(){ return 5000; }
 
   get controlHiddenClass(){ return "events_control-hidden"; }
 

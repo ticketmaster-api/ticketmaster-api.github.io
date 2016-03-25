@@ -106,7 +106,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="slice-left slice-top-left slice-bottom-left xs-center">
     <div class="row">
         <div class="row-container">
-<div class="col-xs-12 col-md-6" markdown="1">
+<div class="col-xs-12 col-md-12" markdown="1">
 {{api}}
 </div>
         </div>

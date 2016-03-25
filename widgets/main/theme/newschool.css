@@ -231,7 +231,7 @@ div[w-theme="newschool"] .ticket-logo {
 }
 
 div[w-theme="newschool"] .ticket-logo img {
-    max-width auto!important;
+    max-width: none!important;
     height: 10px!important;
     margin: 0 3px;
 }
