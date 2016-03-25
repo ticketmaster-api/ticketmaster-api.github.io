@@ -357,16 +357,45 @@ div[w-theme="oldschool"] .event-question {
     right: 10px;
     width: 16px;
     height: 16px;
-    opacity: 0.2;
+    opacity: 0.7;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-gray.svg")  no-repeat center;
 }
 
-div[w-theme="oldschool"] .event-question:hover {
+div[w-theme="oldschool"] .event-question:before,
+div[w-theme="oldschool"] .event-question:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="oldschool"] .event-question:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-blue.svg");
+}
+
+div[w-theme="oldschool"] .event-question:after {
+    opacity: 0.7;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-grey.svg");
+}
+
+div[w-theme="oldschool"] .event-question:hover:before {
     opacity: 1;
+}
+
+div[w-theme="oldschool"] .event-question:hover:after {
+    opacity: 0;
 }
 
 
