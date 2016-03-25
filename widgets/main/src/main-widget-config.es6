@@ -1,16 +1,31 @@
 (function(){
 
+
+  function getHeightByTheme(theme){
+    return (theme === 'simple' ? 238 : 300);
+  }
+
   var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
+
+  var $layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
+  $widthController = $('#w-width').slider({
+    tooltip: 'always',
+    handle: 'square'
+  }),
+  $borderRadiusController = $('#w-borderradius').slider({
+    tooltip: 'always',
+    handle: 'square'
+  });
+
+  $('#js_styling_nav_tab').one('shown.bs.tab', function (e) {
+    $widthController.slider('refresh');
+    $borderRadiusController.slider('refresh');
+  });
 
   var changeState = function(event){
     let widgetNode = document.querySelector("div[w-tmapikey]");
 
-    function getHeightByTheme(theme){
-      return (theme === 'simple' ? 238 : 300);
-    }
-
     if(event.target.name === "w-theme"){
-      var $layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark');
       if(event.target.value === 'simple'){
         $layoutSelectors.prop('disabled', true);
       }else{
@@ -39,12 +54,12 @@
         };
       }
 
-      $("#w-width")
-        .attr({
-          max: sizeConfig.maxWidth,
-          min: sizeConfig.minWidth
-        })
-        .val(sizeConfig.width);
+      $widthController.slider({
+        setValue: sizeConfig.width,
+        max: sizeConfig.maxWidth,
+        min: sizeConfig.minWidth
+      })
+      .slider('refresh');
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
@@ -59,28 +74,59 @@
       //}
     }
     else {
-      widgetNode.setAttribute(event.target.name, event.target.value);
+      if(event.target.name && event.target.value){
+        widgetNode.setAttribute(event.target.name, event.target.value);
+      }
     }
 
     widget.update();
   };
 
   var resetWidget = function(configForm) {
-    let widgetNode = document.querySelector("div[w-tmapikey]");
-    configForm.find("input[type='text'], input[type='range']").each(function(){
+    let widgetNode = document.querySelector("div[w-tmapikey]"),
+        height = 550,
+        theme,
+        layout;
+
+    configForm.find("input[type='text']").each(function(){
       let $self = $(this),
-        value = $self.data('default-value');
-      $self.val(value);
+          data = $self.data(),
+          value = data.defaultValue;
+
+      if(data.sliderValue){
+        value = data.sliderValue;
+        $self.slider({
+          setValue: value,
+          max: data.sliderMax,
+          min: data.sliderMin
+        })
+        .slider('refresh');
+      }else{
+        $self.val(value);
+      }
+
       widgetNode.setAttribute($self.attr('name'), value);
     });
 
     configForm.find("input[type='radio']").each(function(){
       var $self = $(this);
       if($self.data('is-checked')){
+        let name = $self.attr('name'),
+            val = $self.val();
+        if(name === 'w-theme'){
+          theme = val;
+        }else if(name === 'w-layout'){
+          layout = val;
+        }
         $self.prop('checked', true);
-        widgetNode.setAttribute($self.attr('name'), $self.val());
+        widgetNode.setAttribute($self.attr('name'), val);
       }
     });
+
+    if(layout === 'horizontal'){
+      height = getHeightByTheme(theme);
+    }
+    widgetNode.setAttribute('w-height', height);
 
     widget.update();
   };
@@ -91,7 +137,7 @@
 
   $configForm.on("change", changeState);
 
-  $configForm.find("input[type='text'], input[type='range']").each(function(){
+  $configForm.find("input[type='text']").each(function(){
     var $self = $(this);
     $self.data('default-value', $self.val());
   });
