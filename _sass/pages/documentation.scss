@@ -539,18 +539,19 @@
         height: 44px;
         font-size: 1em;
         span {
+          -ms-transform: scale(1); /*IE-9*/
           transform: scale(1);
           top: 35.3%; /*for animation*/
           right: 16px;
         }
         span.icon-arrow-down {
+          -ms-transform: scale(1); /*IE-9*/
           transform: scale(1);
           top: 35.3%;
           right: 15px;
         }
       }
       span {
-        //background: url("../../assets/img/header/ic-close-small-white.svg") no-repeat;
         background: url("../../assets/img/header/arrow_close_sprite.svg") 0 -20px no-repeat; //'hide-code' icon
         display: block;
         width: 12px;
@@ -558,11 +559,13 @@
         position: absolute;
         top: 20%;
         right: 16px;
+        -ms-transform: scale(0.75); /*IE-9*/
         transform: scale(0.75);
         @include transition(0.3s);
       }
       span.icon-arrow-down {
         background: url("../../assets/img/header/arrow_close_sprite.svg") no-repeat; //'show-code' icon
+        -ms-transform: scale(0.75); /*IE-9*/
         transform: scale(0.75);
         margin-top: 2px; //icon height offset
         top: 26.3%;
