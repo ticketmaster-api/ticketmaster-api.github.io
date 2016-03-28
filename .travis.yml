@@ -66,7 +66,7 @@ before_install:
   - rm ./events/* -rf #remove directory events
   - rm ./partners/* -rf #remove directory partners
   - \cp -avrf ./tests/content/* ./ #copy test content
-#  - ls ./events/list
+  - ls ./index.md
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
