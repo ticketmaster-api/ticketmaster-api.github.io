@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+<div id="spinner" style="display: none;"></div>
+{% include home-header.html %}
+{{content}}
+{% include home-footer.html %}
+<div id="back-top">
+  <a href="javascript:void(0)"><span></span></a>
+</div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+<script src="{{ "/config.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/scripts/vendors/jquery-1.11.3.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/scripts/vendors/jquery-migrate-1.3.0.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/scripts/vendors/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/scripts/vendors/slick.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/scripts/components/header.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/scripts/api-explorer.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/scroll-top.js" | prepend: site.baseurl }}"></script>
+{% include feedback.html %}
+<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+</body>
+</html>
