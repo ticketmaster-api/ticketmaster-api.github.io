@@ -16,12 +16,12 @@ var reportData = {
       "nodes" : [ {
         "name" : "wait 1m until visible \"id: timeline\"",
         "status" : "info",
-        "time" : 1457698891829,
+        "time" : 1459157632585,
         "type" : "node"
       }, {
         "name" : "dump tests/galen/home/_dumpContent.gspec --name \"dump Home page desktop\" --export tests/galen/home/etalonImg/dumpsDesktop/",
         "status" : "info",
-        "time" : 1457698892426,
+        "time" : 1459157637991,
         "type" : "node"
       }, {
         "name" : "check tests/galen/home/desktop.gspec --include \"desktop\"",
@@ -29,7 +29,7 @@ var reportData = {
         "nodes" : [ {
           "name" : "Check layout: tests/galen/home/desktop.gspec included tags: desktop",
           "status" : "info",
-          "time" : 1457698922818,
+          "time" : 1459157654347,
           "includedTags" : [ "desktop" ],
           "excludedTags" : [ ],
           "sections" : [ {
@@ -45,12 +45,13 @@ var reportData = {
                 "name" : "image file etalonImg/dumpsDesktop/objects/top-promo.png, tolerance 40, analyze-offset 2, error 4%",
                 "highlight" : [ "top-promo" ]
               }, {
-                "status" : "info",
+                "status" : "warn",
                 "place" : {
                   "filePath" : "tests/galen/home/desktop.gspec",
                   "lineNumber" : 25
                 },
                 "name" : "width 1440 px",
+                "errors" : [ "\"top-promo\" width is 1427px instead of 1440px" ],
                 "highlight" : [ "top-promo" ]
               }, {
                 "status" : "info",
@@ -72,12 +73,13 @@ var reportData = {
                 "name" : "image file etalonImg/dumpsDesktop/objects/columns-block.png, tolerance 40, error 4%",
                 "highlight" : [ "columns-block" ]
               }, {
-                "status" : "info",
+                "status" : "warn",
                 "place" : {
                   "filePath" : "tests/galen/home/desktop.gspec",
                   "lineNumber" : 29
                 },
                 "name" : "width 1440 px",
+                "errors" : [ "\"columns-block\" width is 1427px instead of 1440px" ],
                 "highlight" : [ "columns-block" ]
               }, {
                 "status" : "info",
@@ -99,12 +101,13 @@ var reportData = {
                 "name" : "image file etalonImg/dumpsDesktop/objects/partners-block.png, tolerance 40, error 4%",
                 "highlight" : [ "partners-block" ]
               }, {
-                "status" : "info",
+                "status" : "warn",
                 "place" : {
                   "filePath" : "tests/galen/home/desktop.gspec",
                   "lineNumber" : 33
                 },
                 "name" : "width 1440 px",
+                "errors" : [ "\"partners-block\" width is 1427px instead of 1440px" ],
                 "highlight" : [ "partners-block" ]
               }, {
                 "status" : "info",
@@ -134,12 +137,13 @@ var reportData = {
                 "name" : "width 585 px",
                 "highlight" : [ "promo-social-left" ]
               }, {
-                "status" : "info",
+                "status" : "warn",
                 "place" : {
                   "filePath" : "tests/galen/home/desktop.gspec",
                   "lineNumber" : 38
                 },
                 "name" : "height 212px",
+                "errors" : [ "\"promo-social-left\" height is 484px instead of 212px" ],
                 "highlight" : [ "promo-social-left" ]
               } ]
             } ]
@@ -165,7 +169,7 @@ var reportData = {
                   "lineNumber" : 48
                 },
                 "name" : "count any nav-item-* is 6",
-                "highlight" : [ "nav-item-6", "nav-item-5", "nav-item-4", "nav-item-3", "nav-item-2", "nav-item-1" ]
+                "highlight" : [ "nav-item-6", "nav-item-4", "nav-item-5", "nav-item-2", "nav-item-3", "nav-item-1" ]
               } ]
             }, {
               "name" : "nav-item-1",
@@ -446,80 +450,80 @@ var reportData = {
             } ]
           } ],
           "objects" : {
-            "logo" : {
-              "area" : [ 30, 23, 181, 42 ]
-            },
-            "top-promo" : {
-              "area" : [ 0, 82, 1440, 868 ]
-            },
-            "main-header" : {
-              "area" : [ 150, 293, 1140, 264 ]
-            },
             "main-desc" : {
-              "area" : [ 150, 598, 945, 64 ]
-            },
-            "nav-item-6" : {
-              "area" : [ 935, 0, 147, 82 ]
-            },
-            "columns-block" : {
-              "area" : [ 0, 986, 1440, 421 ]
-            },
-            "nav-item-5" : {
-              "area" : [ 844, 0, 91, 82 ]
-            },
-            "nav-item-4" : {
-              "area" : [ 759, 0, 85, 82 ]
-            },
-            "promo-social-left" : {
-              "area" : [ 135, 2627, 585, 212 ]
-            },
-            "nav-item-3" : {
-              "area" : [ 656, 0, 104, 82 ]
-            },
-            "nav-item-2" : {
-              "area" : [ 543, 0, 112, 82 ]
-            },
-            "column-item-2" : {
-              "area" : [ 428, 986, 293, 381 ]
-            },
-            "nav-item-1" : {
-              "area" : [ 358, 0, 185, 82 ]
-            },
-            "column-item-1" : {
-              "area" : [ 135, 986, 293, 421 ]
-            },
-            "explore-btn" : {
-              "area" : [ 413, 712, 265, 49 ]
-            },
-            "footer" : {
-              "area" : [ 0, 3155, 1440, 499 ]
-            },
-            "column-item-3" : {
-              "area" : [ 720, 986, 293, 389 ]
-            },
-            "twitter" : {
-              "area" : [ 735, 2627, 550, 420 ]
-            },
-            "column-item-4" : {
-              "area" : [ 1013, 986, 293, 322 ]
-            },
-            "partners-block" : {
-              "area" : [ 0, 1407, 1440, 1151 ]
+              "area" : [ 144, 598, 945, 64 ]
             },
             "social" : {
-              "area" : [ 0, 2627, 1440, 427 ]
+              "area" : [ 0, 2627, 1427, 484 ]
+            },
+            "footer" : {
+              "area" : [ 0, 3213, 1427, 499 ]
+            },
+            "partners-block" : {
+              "area" : [ 0, 1407, 1427, 1151 ]
+            },
+            "column-item-3" : {
+              "area" : [ 714, 986, 293, 389 ]
+            },
+            "column-item-4" : {
+              "area" : [ 1006, 986, 293, 322 ]
+            },
+            "columns-block" : {
+              "area" : [ 0, 986, 1427, 421 ]
+            },
+            "twitter" : {
+              "area" : [ 729, 2627, 550, 420 ]
+            },
+            "promo-social-left" : {
+              "area" : [ 129, 2627, 585, 484 ]
+            },
+            "column-item-1" : {
+              "area" : [ 129, 986, 293, 421 ]
+            },
+            "column-item-2" : {
+              "area" : [ 421, 986, 293, 381 ]
+            },
+            "main-header" : {
+              "area" : [ 144, 293, 1140, 264 ]
+            },
+            "nav-item-6" : {
+              "area" : [ 943, 0, 153, 82 ]
+            },
+            "logo" : {
+              "area" : [ 24, 23, 181, 42 ]
+            },
+            "nav-item-4" : {
+              "area" : [ 753, 0, 93, 82 ]
+            },
+            "explore-btn" : {
+              "area" : [ 406, 712, 263, 49 ]
+            },
+            "nav-item-5" : {
+              "area" : [ 845, 0, 98, 82 ]
+            },
+            "nav-item-2" : {
+              "area" : [ 523, 0, 119, 82 ]
+            },
+            "nav-item-3" : {
+              "area" : [ 642, 0, 111, 82 ]
+            },
+            "top-promo" : {
+              "area" : [ 0, 82, 1427, 868 ]
+            },
+            "nav-item-1" : {
+              "area" : [ 331, 0, 192, 82 ]
             },
             "get-api-btn" : {
-              "area" : [ 150, 712, 199, 48 ]
+              "area" : [ 144, 712, 198, 48 ]
             }
           },
           "screenshot" : "layout-1-screenshot.png",
           "type" : "layout"
         } ],
-        "time" : 1457698909131,
+        "time" : 1459157647405,
         "type" : "node"
       } ],
-      "time" : 1457698885858,
+      "time" : 1459157623058,
       "type" : "node"
     } ]
   }

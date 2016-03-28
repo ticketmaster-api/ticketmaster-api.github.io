@@ -16,7 +16,7 @@ var reportData = {
       "nodes" : [ {
         "name" : "dump tests/galen/home/_dumpContent.gspec --name \"dump Home page tablet\" --export tests/galen/home/etalonImg/dumpsMobile/",
         "status" : "info",
-        "time" : 1457698957091,
+        "time" : 1459157684989,
         "type" : "node"
       }, {
         "name" : "check tests/galen/home/mobile.gspec --include \"mobile,all\" --exclude \"nomobile\"",
@@ -24,7 +24,7 @@ var reportData = {
         "nodes" : [ {
           "name" : "Check layout: tests/galen/home/mobile.gspec included tags: mobile,all",
           "status" : "info",
-          "time" : 1457698962418,
+          "time" : 1459157691300,
           "includedTags" : [ "mobile", "all" ],
           "excludedTags" : [ "nomobile" ],
           "sections" : [ {
@@ -40,12 +40,13 @@ var reportData = {
                 "name" : "image file etalonImg/dumpsMobile/objects/top-promo.png, error 4%",
                 "highlight" : [ "top-promo" ]
               }, {
-                "status" : "info",
+                "status" : "warn",
                 "place" : {
                   "filePath" : "tests/galen/home/mobile.gspec",
                   "lineNumber" : 30
                 },
                 "name" : "width 320 px",
+                "errors" : [ "\"top-promo\" width is 307px instead of 320px" ],
                 "highlight" : [ "top-promo" ]
               } ]
             }, {
@@ -59,12 +60,13 @@ var reportData = {
                 "name" : "image file etalonImg/dumpsMobile/objects/columns-block.png, error 4%",
                 "highlight" : [ "columns-block" ]
               }, {
-                "status" : "info",
+                "status" : "warn",
                 "place" : {
                   "filePath" : "tests/galen/home/mobile.gspec",
                   "lineNumber" : 34
                 },
                 "name" : "width 320 px",
+                "errors" : [ "\"columns-block\" width is 307px instead of 320px" ],
                 "highlight" : [ "columns-block" ]
               } ]
             }, {
@@ -249,47 +251,47 @@ var reportData = {
             } ]
           } ],
           "objects" : {
+            "column-item-1" : {
+              "area" : [ 0, 582, 307, 256 ]
+            },
+            "main-desc" : {
+              "area" : [ 15, 271, 277, 120 ]
+            },
+            "column-item-2" : {
+              "area" : [ 0, 861, 307, 280 ]
+            },
             "footer" : {
-              "area" : [ 0, 1762, 320, 926 ]
+              "area" : [ 0, 1762, 307, 950 ]
             },
-            "column-item-3" : {
-              "area" : [ 0, 1164, 320, 256 ]
-            },
-            "column-item-4" : {
-              "area" : [ 0, 1443, 320, 253 ]
+            "main-header" : {
+              "area" : [ 15, 143, 277, 104 ]
             },
             "logo" : {
               "area" : [ 15, 23, 181, 42 ]
             },
-            "top-promo" : {
-              "area" : [ 0, 77, 320, 461 ]
+            "column-item-3" : {
+              "area" : [ 0, 1164, 307, 256 ]
             },
-            "main-header" : {
-              "area" : [ 15, 143, 290, 104 ]
-            },
-            "main-desc" : {
-              "area" : [ 15, 271, 290, 120 ]
+            "column-item-4" : {
+              "area" : [ 0, 1443, 307, 253 ]
             },
             "columns-block" : {
-              "area" : [ 0, 582, 320, 1137 ]
+              "area" : [ 0, 582, 307, 1137 ]
+            },
+            "top-promo" : {
+              "area" : [ 0, 77, 307, 461 ]
             },
             "get-api-btn" : {
-              "area" : [ 61, 417, 199, 48 ]
-            },
-            "column-item-2" : {
-              "area" : [ 0, 861, 320, 280 ]
-            },
-            "column-item-1" : {
-              "area" : [ 0, 582, 320, 256 ]
+              "area" : [ 55, 417, 198, 48 ]
             }
           },
           "screenshot" : "layout-3-screenshot.png",
           "type" : "layout"
         } ],
-        "time" : 1457698960210,
+        "time" : 1459157689646,
         "type" : "node"
       } ],
-      "time" : 1457698947224,
+      "time" : 1459157676790,
       "type" : "node"
     } ]
   }
