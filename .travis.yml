@@ -26,7 +26,7 @@ script:
   - jekyll serve &
   - sleep 15 # give jekyll some time to start
   #part1
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups HomePage
+  #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups HomePage
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups PD-getting-started-Page
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups PD-WidgetsPage
   #part2
@@ -37,7 +37,7 @@ script:
   #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups Events
   #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups PartnersLanding
   #part3
-  #- galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportContactUs
+  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportContactUs
   #- galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportBrandingGuide
   #- galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups Search
   #- galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersDistribution
@@ -65,8 +65,8 @@ before_install:
   - rm ./_site/* -rf #remove directory _site
   - rm ./events/* -rf #remove directory events
   - rm ./partners/* -rf #remove directory partners
-  - \cp -avrf ./tests/content/* ./ #copy test content
-  - ls ./index.md
+  - \cp -avrf ./tests/content/* ./ #copy test content folders
+  - \cp -avrf ./tests/content/ ./ #copy homePage content
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
