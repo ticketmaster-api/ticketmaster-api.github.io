@@ -1,9 +1,11 @@
 .common_tabs{
   .nav-tabs{
     margin: 0 0 0 22px;
+    border: none;
     @include clearfix();
     li {
       float: left;
+      margin-bottom: 0;
       a {
         display: block;
         position: relative;
@@ -16,7 +18,11 @@
         text-decoration: none;
         white-space: nowrap;
         color: #b7c9d3;
+        background: transparent;
         outline: none;
+        border: none;
+        -webkit-border-radius: 0;
+        border-radius: 0;
         margin-left: -8px;
 
         &:before {
@@ -26,6 +32,7 @@
           left: 0;
           width: 100%;
           border-bottom: 2px solid #fff;
+          z-index: 1;
         }
         &:after {
           content: "";
@@ -34,6 +41,7 @@
           left: 8px;
           right: 8px;
           border-bottom: 2px solid #f1f5f7;
+          z-index: 2;
         }
       }
 
@@ -51,6 +59,14 @@
           }
         }
       }
+
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus {
+        border: none;
+        background: transparent;
+      }
+
     }
   }
 
