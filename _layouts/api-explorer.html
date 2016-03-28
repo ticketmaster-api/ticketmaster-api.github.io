@@ -21,5 +21,11 @@
 {% include feedback.html %}
 <script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
+<script>
+  if(sessionStorage.getItem('tk-api-key') !== null){
+    document.querySelector("input#api-key").value = sessionStorage.getItem('tk-api-key');
+  }
+</script>
 </body>
 </html>
