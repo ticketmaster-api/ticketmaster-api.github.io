@@ -49,8 +49,8 @@ class TicketmasterWidget {
       attrs.keyword = this.config.keyword;
     if(this.isConfigAttrEmpty("size"))
       attrs.size = this.config.size;
-    //if(this.isConfigAttrEmpty("radius"))
-    //  attrs.radius = this.config.radius;
+    if(this.isConfigAttrEmpty("radius"))
+     attrs.radius = this.config.radius;
     if(this.isConfigAttrEmpty("postalcode"))
       attrs.postalCode = this.config.postalcode;
     if(this.isConfigAttrEmpty("attractionid"))
@@ -699,10 +699,12 @@ class TicketmasterWidget {
     let eventReqAttrs = {},
       reduceParamsList = [
         ['startDateTime', 'endDateTime'],
+        ['radius'],
         ['postalCode'],
         ['attractionId'],
         ['promoterId'],
         ['segmentId'],
+        ['venueId'],
         ['keyword'],
         ['size']
       ];
