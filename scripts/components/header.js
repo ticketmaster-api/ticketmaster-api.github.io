@@ -32,7 +32,7 @@
             hide: function(){
                 var self = this;
                 setTimeout(function(){
-                    self.menuBtn.removeClass('tm-close')
+                    self.menuBtn.removeClass('tm-close');
                     if (self.hasBackground){
                         self.menuBtn.addClass('white');
                         self.searchBtn.addClass('white');

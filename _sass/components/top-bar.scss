@@ -35,6 +35,9 @@
     &.white{
       background-image: url('/assets/img/header/ic-close-white.svg');
     }
+    &:hover {
+      background-image: url('/assets/img/header/ic-close-grey-hover.svg');
+    }
   }
 }
 #menu-btn-fixed {
