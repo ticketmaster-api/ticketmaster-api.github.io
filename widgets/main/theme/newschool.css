@@ -164,8 +164,8 @@ div[w-theme="newschool"] .bg-cover:before {
     bottom: 0;
     width: 100%;
     height: 100%;
-    /* background-image: url("/assets/img/widgets/widget-bg.png"); */
-    background-image: url("/assets/img/widgets/pattern_lines.svg");
+    /* background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/widget-bg.png"); */
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/pattern_lines.svg");
     opacity: 0.5;
     display: block;
 }
@@ -289,16 +289,20 @@ div[w-theme="newschool"] .event-category:first-child:before{
     content: '';
 }
 
-div[w-theme="newschool"] .legal-notice,
-div[w-theme="newschool"] .legal-notice:hover,
-div[w-theme="newschool"] .legal-notice:focus,
-div[w-theme="newschool"] .legal-notice:active{
+div[w-theme="newschool"] .legal-notice{
     position: absolute;
     left: 25px;
-    bottom: 55px;
+    bottom: 63px;
+    color: #b7c9d3;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration: none;
+}
+
+div[w-theme="newschool"]  .legal-notice:hover,
+div[w-theme="newschool"]  .legal-notice:focus,
+div[w-theme="newschool"]  .legal-notice:active{
     color: #019cde;
-    font-size: 16px;
-    line-height: 24px;
     text-decoration: none;
 }
 
@@ -352,40 +356,97 @@ div[w-theme="newschool"] .event-logo-box:after{
     bottom: 92px;
 }
 
-/*
-div[w-theme="newschool"] .event-logo-box:after{
-    content: '';
-    display: block;
-    position: absolute;
-    top: -66px;
-    left: 0;
-    width: 100%;
-    height: 162px;
-    background: #fff;
-    z-index: 10;
-}
-*/
-
 div[w-theme="newschool"] .event-logo {
+    position: relative;
     display: inline-block;
-    width: 144px;
+    width: 129px;
     height: 20px;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg") no-repeat;
     float: right;
     margin-right: 25px;
 }
 
-div[w-theme="newschool"] .event-question {
+div[w-theme="newschool"] .event-logo:before,
+div[w-theme="newschool"] .event-logo:after {
+    content: '';
     position: absolute;
-    z-index: 50;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="newschool"] .event-logo:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+}
+
+div[w-theme="newschool"] .event-logo:after {
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+}
+
+div[w-theme="newschool"] .event-logo:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="newschool"] .event-logo:hover:after {
+    opacity: 0;
+}
+
+/*  question  */
+div[w-theme="newschool"]  .event-question {
+    position: absolute;
     top: 10px;
     right: 10px;
-    width: 15px;
-    height: 15px;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-gray.svg") no-repeat;
+    z-index: 50;
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
+
+div[w-theme="newschool"]  .event-question:before,
+div[w-theme="newschool"]  .event-question:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="newschool"]  .event-question:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-blue.svg");
+}
+
+div[w-theme="newschool"]  .event-question:after {
+    opacity: 0.7;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-grey.svg");
+}
+
+div[w-theme="newschool"]  .event-question:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="newschool"]  .event-question:hover:after {
+    opacity: 0;
+}
+
 
 /* slider controls */
 div[w-theme="newschool"] .events_control {
@@ -520,14 +581,20 @@ div[w-theme="newschool"] .event-buy-btn {
     line-height: 16px;
     color: #009cde;
     text-align: center;
-    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+div[w-theme="newschool"] .event-buy-btn:hover {
+    background-color: #009cde;
+    color: #fff;
 }
 
-div[w-theme="newschool"] .event-buy-btn[href=''] {
+div[w-theme="newschool"] .event-buy-btn[href=''],
+div[w-theme="newschool"] .event-buy-btn[href='']:hover {
     background-color: #ccc;
     cursor: default;
     opacity: 0.5;
+    color: #009cde;
 }
 
 /* Horizontal theme */
@@ -659,5 +726,17 @@ div[w-theme="newschool"][w-colorscheme="dark"] .event-buy-btn {
     background-color: #009cde;
     color: #fff;
     border: none;
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .event-buy-btn:hover {
+    background-color: #2A7CC7;
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .event-buy-btn[href=''],
+div[w-theme="newschool"][w-colorscheme="dark"]  .event-buy-btn[href='']:hover {
+    background-color: #ccc;
+    cursor: default;
+    opacity: 0.5;
+    color: #fff;
 }
 
