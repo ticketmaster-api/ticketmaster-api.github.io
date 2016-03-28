@@ -58,6 +58,7 @@
 
     .modal-body {
       @include clearfix;
+      text-align: left;
       textarea {
         resize: none;
       }
