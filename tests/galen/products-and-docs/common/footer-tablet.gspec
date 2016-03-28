@@ -69,7 +69,7 @@
 
 = block-5 (Events) text, align check @tablet=
         nav-item-block-5-footer-1:
-            % text is "hackathon"
+            % text is "hackathons"
             aligned vertically left nav-item-block-5-footer-2
 
 = block-6 (Open Source) text, align check @tablet=
