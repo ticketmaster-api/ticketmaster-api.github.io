@@ -40,7 +40,7 @@ script:
   - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportContactUs
   - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportBrandingGuide
   - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups Search
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersDistribution
+  #- galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersDistribution #not correct
   - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersCertified
   - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups APIExplorer
 
