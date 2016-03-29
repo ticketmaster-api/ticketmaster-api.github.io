@@ -95,7 +95,7 @@
         }
     });
 
-    $(".sections").on("click", "a", function(){
+    $(".sections, .categories").on("click", "a", function(){
         if ( window.innerWidth < 1200 ) {
             hideMenu();
         }

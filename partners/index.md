@@ -109,7 +109,7 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 
 {% capture slider %}
 
-[![ApiExplorer](/assets/img/partners/startups-development/bitmap.png)](http://vmenshutin.github.io/)
+[![ApiExplorer](/assets/img/partners/startups-development/bitmap.png)](/api-explorer/)
 
 [![DevJam2](/assets/img/partners/startups-development/bitmap1.png)](/events/#past)
 

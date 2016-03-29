@@ -63,7 +63,7 @@ jQuery.fn.customSelect = function(options ) {
 
         reset();
         });
-    }
+    };
 })(jQuery);
 
 $(document).on('ready', function () {
