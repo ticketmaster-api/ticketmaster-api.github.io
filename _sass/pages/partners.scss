@@ -24,6 +24,9 @@ body .top-bar.bg-header {
   }
   &.partners-content {
     height: 290px;
+    @media (max-width: 768px) {
+      height: auto;
+    }
     .col-xs-10.white {
       margin-top: -30px;
     }

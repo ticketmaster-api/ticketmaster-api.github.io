@@ -37,13 +37,12 @@
 }
 
 .apigee-login {
-  /*
-  position: absolute;
-  right: 0;
-  top: 17px;
-  */
   display: block;
   float: left;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-size: 16px;
   line-height: 32px;
   height:32px;
@@ -81,19 +80,6 @@
 }
 
 #search{
-  /* background-image: url('/assets/img/header/ic-search-p-1.svg');
-  position: absolute;
-  cursor: pointer;
-  background-position: right center;
-  background-repeat: no-repeat;
-  top: 12px;
-  left: -80px;
-  margin-right: 100px;
-  width: 225px;
-  height: 48px;
-  text-align: right;
-  z-index: 10;
-  */
   position: relative;
   cursor: pointer;
   width: 225px;
@@ -125,49 +111,6 @@
   @media (max-width: 767px) {
     margin-top: 12px;
   }
-  &.white{
-    /* background-image: url('/assets/img/header/ic-search-white.svg'); */
-  }
-  /*#search-alert{
-    display: inline-block;
-    outline: none;
-    background-color: #768692;
-    position: absolute;
-    padding: 13px 12px;
-    left: -270px;
-    top: -5px;
-    border-radius: 5px;
-    color: $white;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    @media #{$max-1200}{
-      top: -4px;
-    }
-    @media #{$max-768} {
-      font-size: 12px;
-      left: -225px;
-      top: -10px;
-      right: 48px;
-      text-align: left;
-      &:after{
-        top: 21px !important;
-      }
-    }
-    &:after{
-      content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 10px solid $n2-grey-color;
-      position: absolute;
-      right: -10px;
-      top: 15px;
-    }
-  }*/
 }
 
 #rainbow{
@@ -224,6 +167,10 @@
       &.apgee-login {
         display: block;
         height: 27px;
+        max-width: 280px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         text-transform: none;
         font-family: "TMSans-Regular",​Helvetica,​Arial,​sans-serif;
         font-weight: 400;
@@ -231,11 +178,6 @@
         background: url('/assets/img/header/ic-user.svg') 0 0 no-repeat;
         padding-left: 35px;
         margin-bottom: 5px;
-        max-width: 150px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-
         &:hover {
           opacity: 0.7;
         }
@@ -485,11 +427,5 @@ nav{
   #menu-btn{
     left: 9px !important;
     top: 24px !important;
-  }
-  #search{
-    /* background-image: url('/assets/img/header/ic-search-mobile.svg') !important; */
-    &.white{
-      /* background-image: url('/assets/img/header/ic-search-mobile-white.svg') !important; */
-    }
   }
 }
