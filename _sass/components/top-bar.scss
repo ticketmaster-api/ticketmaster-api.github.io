@@ -47,14 +47,16 @@
 }
 
 .apigee-login {
-  position: absolute;
-  right: 0;
-  top: 17px;
   display: block;
   float: left;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-size: 16px;
   line-height: 32px;
   height:32px;
+  margin-top: 16px;
   background-image: url('/assets/img/header/ic-user.svg');
   background-position: left center;
   background-repeat: no-repeat;
@@ -80,19 +82,20 @@
   }
 }
 
-#search{
+.search-container {
   position: absolute;
+  width: 410px;
+  height:60px;
+  right: 10px;
+}
+
+#search{
+  position: relative;
   cursor: pointer;
-  /* background-image: url('/assets/img/header/ic-search-p-1.svg'); */
-  background-position: right center;
-  background-repeat: no-repeat;
-  top: 12px;
-  left: -80px;
-  margin-right: 100px;
   width: 225px;
-  height: 48px;
-  text-align: right;
-  z-index: 10;
+  height: 60px;
+  float: left;
+  margin-top: 10px;
   &.smopen {
     opacity: 1;
     .search-button {
@@ -106,61 +109,18 @@
   }
   @media (min-width: 1200px) {
     left: inherit;
-    margin-right: 0;
-    right: 80px;
+    margin-right: 10px;
+    /* right: 80px; */
   }
-  @media #{$max-1200} {
-    left: 0;
-    right:40px;
-    right: 45;
-    margin-right: 0;
-  }
-  @media #{$max-768} {
-    width: 25px;
-  }
-  &.white{
-    /* background-image: url('/assets/img/header/ic-search-white.svg'); */
-  }
-  /*#search-alert{
-    display: inline-block;
-    outline: none;
-    background-color: #768692;
+  @media (max-width: 768px) {
     position: absolute;
-    padding: 13px 12px;
-    left: -270px;
-    top: -5px;
-    border-radius: 5px;
-    color: $white;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    @media #{$max-1200}{
-      top: -4px;
-    }
-    @media #{$max-768} {
-      font-size: 12px;
-      left: -225px;
-      top: -10px;
-      right: 48px;
-      text-align: left;
-      &:after{
-        top: 21px !important;
-      }
-    }
-    &:after{
-      content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 10px solid $n2-grey-color;
-      position: absolute;
-      right: -10px;
-      top: 15px;
-    }
-  }*/
+    right: 30px;
+    z-index: 10;
+    margin-top: 12px;
+  }
+  @media (max-width: 767px) {
+    margin-top: 12px;
+  }
 }
 
 #rainbow{
@@ -220,6 +180,10 @@
       &.apgee-login {
         display: block;
         height: 27px;
+        max-width: 280px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         text-transform: none;
         font-family: "TMSans-Regular",​Helvetica,​Arial,​sans-serif;
         font-weight: 400;
@@ -227,7 +191,6 @@
         background: url('/assets/img/header/ic-user.svg') 0 0 no-repeat;
         padding-left: 35px;
         margin-bottom: 5px;
-
         &:hover {
           opacity: 0.7;
         }
@@ -482,11 +445,5 @@ nav{
   #menu-btn{
     left: 9px !important;
     top: 24px !important;
-  }
-  #search{
-    /* background-image: url('/assets/img/header/ic-search-mobile.svg') !important; */
-    &.white{
-      /* background-image: url('/assets/img/header/ic-search-mobile-white.svg') !important; */
-    }
   }
 }
