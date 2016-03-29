@@ -50,6 +50,11 @@ var TicketmasterWidget = function () {
       return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
     }
   }, {
+    key: "portalUrl",
+    get: function get() {
+      return "http://ticketmaster-api-staging.github.io/";
+    }
+  }, {
     key: "logoUrl",
     get: function get() {
       return "http://developer.ticketmaster.com/";
@@ -63,6 +68,11 @@ var TicketmasterWidget = function () {
     key: "questionUrl",
     get: function get() {
       return "http://developer.ticketmaster.com/support/faq/";
+    }
+  }, {
+    key: "geocodeUrl",
+    get: function get() {
+      return "https://maps.googleapis.com/maps/api/geocode/json";
     }
   }, {
     key: "updateExceptions",
@@ -103,7 +113,13 @@ var TicketmasterWidget = function () {
       if (this.isConfigAttrEmpty("keyword")) attrs.keyword = this.config.keyword;
       if (this.isConfigAttrEmpty("size")) attrs.size = this.config.size;
       if (this.isConfigAttrEmpty("radius")) attrs.radius = this.config.radius;
-      if (this.isConfigAttrEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
+
+      if (this.config.latlong) {
+        attrs.latlong = this.config.latlong;
+      } else {
+        if (this.isConfigAttrEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
+      }
+
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionId = this.config.attractionid;
       if (this.isConfigAttrEmpty("promoterid")) attrs.promoterId = this.config.promoterid;
       if (this.isConfigAttrEmpty("venueid")) attrs.venueId = this.config.venueid;
@@ -121,7 +137,9 @@ var TicketmasterWidget = function () {
 
   }]);
 
-  function TicketmasterWidget(selector) {
+  function TicketmasterWidget() {
+    var _this = this;
+
     _classCallCheck(this, TicketmasterWidget);
 
     this.widgetRoot = document.querySelector("div[w-tmapikey]");
@@ -162,7 +180,9 @@ var TicketmasterWidget = function () {
 
     this.AdditionalElements();
 
-    this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
+    this.getCoordinates(function () {
+      _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
+    });
 
     if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
       this.themeModificators[this.widgetConfig.theme]();
@@ -181,9 +201,41 @@ var TicketmasterWidget = function () {
   }
 
   _createClass(TicketmasterWidget, [{
+    key: "getCoordinates",
+    value: function getCoordinates(cb) {
+      var widget = this;
+
+      function parseGoogleGeocodeResponse() {
+        if (this && this.readyState === XMLHttpRequest.DONE) {
+          var latlong = null;
+          if (this.status === 200) {
+            var response = JSON.parse(this.responseText);
+            if (response.status === 'OK' && response.results.length) {
+              var geometry = response.results[0].geometry;
+              if (geometry) {
+                if (geometry.location) {
+                  latlong = geometry.location.lat + "," + geometry.location.lng;
+                }
+              }
+            }
+          }
+          widget.config.latlong = latlong;
+          cb(widget.config.latlong);
+        }
+      }
+
+      if (this.config.postalcode) {
+        var args = { components: "country:" + (this.config.country || 'US') + "|postal_code:" + widget.config.postalcode };
+        this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
+      } else {
+        widget.config.latlong = null;
+        cb(widget.config.latlong);
+      }
+    }
+  }, {
     key: "initBuyBtn",
     value: function initBuyBtn() {
-      var _this = this;
+      var _this2 = this;
 
       this.buyBtn = document.createElement("a");
       this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
@@ -192,7 +244,7 @@ var TicketmasterWidget = function () {
       this.buyBtn.href = '';
       this.buyBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        _this.stopAutoSlideX();
+        _this2.stopAutoSlideX();
         //console.log(this.config.affiliateid)
       });
       this.eventsRootContainer.appendChild(this.buyBtn);
@@ -229,7 +281,7 @@ var TicketmasterWidget = function () {
     key: "embedTMPlugin",
     value: function embedTMPlugin() {
       var script = document.createElement('script');
-      script.setAttribute('src', '/scripts/vendors/tm.js');
+      script.setAttribute('src', this.portalUrl + 'scripts/vendors/tm.js');
       script.setAttribute('type', 'text/javascript');
       script.setAttribute('charset', 'UTF-8');
       (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
@@ -251,7 +303,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "initMessage",
     value: function initMessage() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.messageDialog = document.createElement('div');
       this.messageDialog.classList.add("event-message");
@@ -261,7 +313,7 @@ var TicketmasterWidget = function () {
       var messageClose = document.createElement('div');
       messageClose.classList.add("event-message__btn");
       messageClose.addEventListener("click", function () {
-        _this2.hideMessage();
+        _this3.hideMessage();
       });
 
       this.messageDialog.appendChild(this.messageContent);
@@ -283,11 +335,11 @@ var TicketmasterWidget = function () {
   }, {
     key: "hideMessageWithDelay",
     value: function hideMessageWithDelay(delay) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
       this.messageTimeout = setTimeout(function () {
-        _this3.hideMessage();
+        _this4.hideMessage();
       }, delay);
     }
   }, {
@@ -445,11 +497,11 @@ var TicketmasterWidget = function () {
   }, {
     key: "setSlideManually",
     value: function setSlideManually(slideIndex, isDirectionX) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.stopAutoSlideX();
       this.sliderTimeout = setTimeout(function () {
-        _this4.runAutoSlideX();
+        _this5.runAutoSlideX();
       }, this.sliderRestartDelay);
       if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
     }
@@ -480,13 +532,13 @@ var TicketmasterWidget = function () {
   }, {
     key: "runAutoSlideX",
     value: function runAutoSlideX() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (this.slideCountX > 1) {
         this.sliderInterval = setInterval(function () {
           var slideIndex = 0;
-          if (_this5.slideCountX - 1 > _this5.currentSlideX) slideIndex = _this5.currentSlideX + 1;
-          _this5.goToSlideX(slideIndex);
+          if (_this6.slideCountX - 1 > _this6.currentSlideX) slideIndex = _this6.currentSlideX + 1;
+          _this6.goToSlideX(slideIndex);
         }, this.sliderDelay);
       }
     }
@@ -499,30 +551,47 @@ var TicketmasterWidget = function () {
   }, {
     key: "initSliderControls",
     value: function initSliderControls() {
-      var _this6 = this;
+      var _this7 = this;
 
       this.currentSlideX = 0;
       this.currentSlideY = 0;
       this.slideCountX = 0;
+      var coreCssClass = 'events_control';
 
       // left btn
       this.prevEventX = document.createElement("div");
-      this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
+      var _arr = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-left', this.controlHiddenClass];
+      for (var _i = 0; _i < _arr.length; _i++) {
+        var cssClass = _arr[_i];
+        this.prevEventX.classList.add(cssClass);
+      }
       this.eventsRootContainer.appendChild(this.prevEventX);
 
       // right btn
       this.nextEventX = document.createElement("div");
-      this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
+      var _arr2 = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
+      for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
+        var cssClass = _arr2[_i2];
+        this.nextEventX.classList.add(cssClass);
+      }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
-      this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
+      var _arr3 = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
+      for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
+        var cssClass = _arr3[_i3];
+        this.prevEventY.classList.add(cssClass);
+      }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
-      this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
+      var _arr4 = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
+      for (var _i4 = 0; _i4 < _arr4.length; _i4++) {
+        var cssClass = _arr4[_i4];
+        this.nextEventY.classList.add(cssClass);
+      }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
       // Restore events group position
@@ -542,8 +611,8 @@ var TicketmasterWidget = function () {
 
       var transitionEvent = whichTransitionEvent();
       transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
-        if (_this6.eventsRoot !== e.target) return;
-        var eventGroup = _this6.eventsRoot.getElementsByClassName("event-group");
+        if (_this7.eventsRoot !== e.target) return;
+        var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
         for (var i = 0; eventGroup.length > i; i++) {
           eventGroup[i].style.marginTop = 0;
@@ -552,19 +621,19 @@ var TicketmasterWidget = function () {
 
       // Arrows
       this.prevEventX.addEventListener("click", function () {
-        _this6.prevSlideX();
+        _this7.prevSlideX();
       });
 
       this.nextEventX.addEventListener("click", function () {
-        _this6.nextSlideX();
+        _this7.nextSlideX();
       });
 
       this.prevEventY.addEventListener("click", function () {
-        _this6.prevSlideY();
+        _this7.prevSlideY();
       });
 
       this.nextEventY.addEventListener("click", function () {
-        _this6.nextSlideY();
+        _this7.nextSlideY();
       });
 
       // Tough device swipes
@@ -597,10 +666,10 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        handleTouchStart.call(_this6, e);
+        handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        handleTouchMove.call(_this6, e);
+        handleTouchMove.call(_this7, e);
       }, false);
     }
   }, {
@@ -670,6 +739,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "update",
     value: function update() {
+      var _this8 = this;
 
       var oldTheme = this.config.constructor();
       for (var attr in this.config) {
@@ -700,7 +770,9 @@ var TicketmasterWidget = function () {
           this.themeModificators[this.widgetConfig.theme]();
         }
 
-        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
+        this.getCoordinates(function () {
+          _this8.makeRequest(_this8.eventsLoadingHandler, _this8.apiUrl, _this8.eventReqAttrs);
+        });
       } else {
         var events = document.getElementsByClassName("event-wrapper");
         for (var i in events) {
@@ -795,7 +867,7 @@ var TicketmasterWidget = function () {
     key: "reduceParamsAndReloadEvents",
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
-          reduceParamsList = [['startDateTime', 'endDateTime'], ['radius'], ['postalCode'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
+          reduceParamsList = [['startDateTime', 'endDateTime'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
@@ -857,19 +929,21 @@ var TicketmasterWidget = function () {
   }, {
     key: "publishEventsGroup",
     value: function publishEventsGroup(group, index) {
-      var _this7 = this;
+      var _this9 = this;
 
       var groupNodeWrapper = document.createElement("li");
-      groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
+      groupNodeWrapper.classList.add("event-wrapper");
+      groupNodeWrapper.classList.add("event-group-wrapper");
       groupNodeWrapper.style.width = this.config.width + "px";
       groupNodeWrapper.style.height = this.config.height + "px";
 
       var groupNode = document.createElement("ul");
-      groupNode.classList.add("event-group", "event-group-" + index);
+      groupNode.classList.add("event-group");
+      groupNode.classList.add("event-group-" + index);
       //groupNode.style.height  = `${this.config.height * group.length}px`;
 
       group.map(function (event) {
-        _this7.publishEvent(event, groupNode);
+        _this9.publishEvent(event, groupNode);
       });
 
       groupNodeWrapper.appendChild(groupNode);
@@ -1036,7 +1110,8 @@ var TicketmasterWidget = function () {
         if (itemConfig.address.hasOwnProperty("name")) {
           var addressNameText = document.createTextNode(itemConfig.address.name),
               addressName = document.createElement("span");
-          addressName.classList.add("event-address", "event-address-name");
+          addressName.classList.add("event-address");
+          addressName.classList.add("event-address-name");
           addressName.appendChild(addressNameText);
           addressWrapper.appendChild(addressName);
         }
@@ -1138,5 +1213,5 @@ var TicketmasterWidget = function () {
   return TicketmasterWidget;
 }();
 
-var widget = new TicketmasterWidget("#ticketmaster-config");
+var widget = new TicketmasterWidget();
 //# sourceMappingURL=main-widget.js.map

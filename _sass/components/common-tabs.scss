@@ -1,6 +1,11 @@
 .common_tabs{
+
+  .tab-content {
+    padding-top: 20px;
+  }
+
   .nav-tabs{
-    margin: 0 0 0 22px;
+    margin: 0 0 0 -8px;
     border: none;
     @include clearfix();
     li {
@@ -69,20 +74,4 @@
 
     }
   }
-
-  .tab-pane{
-    display: none;
-    border: 2px solid #f1f5f7;
-    padding-top: 20px;
-    margin-bottom: 15px;
-
-    &.active{
-      display: block;
-    }
-  }
-
-
-
-
-
 }
