@@ -23,8 +23,8 @@ before_script:
 script:
   #- ./node_modules/karma/bin/karma start karma.conf.js
   #- htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
-  #- jekyll serve &
-  #- sleep 15 # give jekyll some time to start
+  - jekyll serve &
+  - sleep 15 # give jekyll some time to start
   #part1
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups HomePage
   #- galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups PD-getting-started-Page
@@ -34,8 +34,8 @@ script:
   #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups ProductsDocsConsole
   #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups BlogsPage
   #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups SupportPage
-  #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups Events
-  #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups PartnersLanding
+  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups Events
+  #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups PartnersLanding #not correct
   #part3
   #- galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportContactUs
   #- galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportBrandingGuide
@@ -65,9 +65,9 @@ before_install:
   - rm ./_site/* -rf #remove directory _site
   - rm ./events/* -rf #remove directory events
   - rm ./partners/* -rf #remove directory partners
-  - \cp -avrf ./tests/content/*/ ./ #copy test content
-#  - ls ./events/list
+  - \cp -avrf ./tests/content/* ./ #copy test content folders
+  - ls ./partners/list
   - rvm install 2.1.5
   - gem install github-pages
   - gem install html-proofer
-  #- npm install -g galenframework-cli
+  - npm install -g galenframework-cli

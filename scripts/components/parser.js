@@ -75,7 +75,7 @@
                 groupLeft = me.parent().children().first().nextUntil('.aside').addBack(),
                 firstElemGroupLeft = groupLeft.parent().children().first(),
                 consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#"),
-                toggleCodeBtn = $(document.createElement("button")).addClass("toggle-code-btn")
+                toggleCodeBtn = $(document.createElement("button")).addClass("toggle-code-btn");
 
             group.wrapAll('<div class="aside-wrapper"></div>');
 
@@ -110,7 +110,7 @@
                   .addClass('tab-content')
                   .addClass(function (index) {
                     if (index > tabsCount) {
-                        index = [index % (tabsCount + 1)]
+                        index = [index % (tabsCount + 1)];
                     }
                     return "tab-" + index;
                   }).each(function(){
@@ -335,5 +335,5 @@
             win.focus();
         });
 
-    })
+    });
 })();
