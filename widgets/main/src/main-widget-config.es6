@@ -25,6 +25,13 @@
   var changeState = function(event){
     let widgetNode = document.querySelector("div[w-tmapikey]");
 
+    if(event.target.name === "w-postalcode"){
+      widgetNode.setAttribute('w-country', '');
+      $('#w-country').prop('disabled', true)
+        .data('cleared', true)
+        .html('');
+    }
+
     if(event.target.name === "w-theme"){
       if(event.target.value === 'simple'){
         $layoutSelectors.prop('disabled', true);
@@ -153,7 +160,9 @@
 
     var htmlCode = document.createElement("div");
     for(var key in widget.config){
-      htmlCode.setAttribute("w-"+key,widget.config[key])
+      if(key !== 'latlong'){
+        htmlCode.setAttribute("w-"+key,widget.config[key]);
+      }
     }
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
@@ -191,5 +200,33 @@
       }
     }
   });
+
+  widget.onLoadCoordinate = function (response, countryShortName) {
+    widget.config['country'] = countryShortName;
+    let $countrySelect = $('#w-country');
+
+    if(response){
+      if(response.status === 'OK'){
+        if(response.results){
+          $countrySelect.prop('disabled', !response.results.length);
+
+          if($countrySelect.data('cleared')){
+            $countrySelect.data('cleared', false);
+            let options = '';
+            for(let result of response.results){
+              if(result.address_components){
+                let country = result.address_components[result.address_components.length - 1];
+                if(country){
+                  let isSelected = country.short_name === countryShortName ? 'selected' : '';
+                  options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
+                }
+              }
+            }
+            $countrySelect.append(options);
+          }
+        }
+      }
+    }
+  }
 
 })();

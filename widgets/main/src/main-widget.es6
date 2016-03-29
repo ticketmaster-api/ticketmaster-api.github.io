@@ -55,7 +55,11 @@ class TicketmasterWidget {
       attrs.size = this.config.size;
     if(this.isConfigAttrEmpty("radius"))
      attrs.radius = this.config.radius;
+    // Use only for geocode
+    if(this.isConfigAttrEmpty("country"))
+     attrs.country = this.config.country;
 
+    // Only one allowed at the same time
     if(this.config.latlong){
       attrs.latlong = this.config.latlong;
     }else{
@@ -147,11 +151,31 @@ class TicketmasterWidget {
 
     function parseGoogleGeocodeResponse(){
       if (this && this.readyState === XMLHttpRequest.DONE ) {
-        let latlong = null;
+        let latlong = '',
+            response = null,
+            countryShortName = '';
         if(this.status === 200) {
-          let response = JSON.parse(this.responseText);
+          response = JSON.parse(this.responseText);
           if(response.status === 'OK' && response.results.length){
+            // Use first item if multiple results was found in one country or in different
             let geometry = response.results[0].geometry;
+            countryShortName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
+
+            // If multiple results without country try to find USA as prefer value
+            if(!widget.config.country){
+              for(let result of response.results){
+                if(result.address_components){
+                  let country = result.address_components[result.address_components.length - 1];
+                  if(country){
+                    if(country.short_name === 'US'){
+                      countryShortName = 'US';
+                      geometry = result.geometry;
+                    }
+                  }
+                }
+              }
+            }
+
             if(geometry){
               if(geometry.location){
                 latlong = `${geometry.location.lat},${geometry.location.lng}`;
@@ -159,15 +183,20 @@ class TicketmasterWidget {
             }
           }
         }
+        if(widget.onLoadCoordinate) widget.onLoadCoordinate(response, countryShortName);
         widget.config.latlong = latlong;
         cb(widget.config.latlong);
       }
     }
 
     if(this.config.postalcode){
-      let args = {components: `country:${this.config.country || 'US'}|postal_code:${widget.config.postalcode}`};
+      let args = {components: `postal_code:${widget.config.postalcode}`};
+      if(this.config.country){
+        args.components += `|country:${this.config.country}`;
+      }
       this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
     }else{
+      // if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
       widget.config.latlong = null;
       cb(widget.config.latlong);
     }
@@ -753,7 +782,7 @@ class TicketmasterWidget {
   reduceParamsAndReloadEvents(){
     let eventReqAttrs = {},
       reduceParamsList = [
-        ['startDateTime', 'endDateTime'],
+        ['startDateTime', 'endDateTime', 'country'],
         ['radius'],
         ['postalCode', 'latlong'],
         ['attractionId'],
