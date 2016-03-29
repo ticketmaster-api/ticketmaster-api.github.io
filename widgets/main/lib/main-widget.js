@@ -50,6 +50,11 @@ var TicketmasterWidget = function () {
       return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
     }
   }, {
+    key: "portalUrl",
+    get: function get() {
+      return "http://ticketmaster-api-staging.github.io/";
+    }
+  }, {
     key: "logoUrl",
     get: function get() {
       return "http://developer.ticketmaster.com/";
@@ -132,7 +137,7 @@ var TicketmasterWidget = function () {
 
   }]);
 
-  function TicketmasterWidget(selector) {
+  function TicketmasterWidget() {
     var _this = this;
 
     _classCallCheck(this, TicketmasterWidget);
@@ -276,7 +281,7 @@ var TicketmasterWidget = function () {
     key: "embedTMPlugin",
     value: function embedTMPlugin() {
       var script = document.createElement('script');
-      script.setAttribute('src', '/scripts/vendors/tm.js');
+      script.setAttribute('src', this.portalUrl + 'scripts/vendors/tm.js');
       script.setAttribute('type', 'text/javascript');
       script.setAttribute('charset', 'UTF-8');
       (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
@@ -1208,5 +1213,5 @@ var TicketmasterWidget = function () {
   return TicketmasterWidget;
 }();
 
-var widget = new TicketmasterWidget("#ticketmaster-config");
+var widget = new TicketmasterWidget();
 //# sourceMappingURL=main-widget.js.map

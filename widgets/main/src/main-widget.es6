@@ -13,6 +13,8 @@ class TicketmasterWidget {
   //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
   get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
 
+  get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
+
   get logoUrl() { return "http://developer.ticketmaster.com/"; }
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
@@ -80,7 +82,7 @@ class TicketmasterWidget {
 
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
-  constructor(selector) {
+  constructor() {
     this.widgetRoot = document.querySelector("div[w-tmapikey]");
 
     this.eventsRootContainer = document.createElement("div");
@@ -212,7 +214,7 @@ class TicketmasterWidget {
 
   embedTMPlugin(){
     let script = document.createElement('script');
-    script.setAttribute('src', '/scripts/vendors/tm.js');
+    script.setAttribute('src', this.portalUrl + 'scripts/vendors/tm.js');
     script.setAttribute('type', 'text/javascript');
     script.setAttribute('charset', 'UTF-8');
     (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
@@ -1115,4 +1117,4 @@ class TicketmasterWidget {
 
 }
 
-const widget = new TicketmasterWidget("#ticketmaster-config");
+const widget = new TicketmasterWidget();
