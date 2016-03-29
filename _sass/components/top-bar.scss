@@ -231,6 +231,10 @@
         background: url('/assets/img/header/ic-user.svg') 0 0 no-repeat;
         padding-left: 35px;
         margin-bottom: 5px;
+        max-width: 150px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
         &:hover {
           opacity: 0.7;
