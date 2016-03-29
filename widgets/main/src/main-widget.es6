@@ -19,6 +19,8 @@ class TicketmasterWidget {
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
+  get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
+
   get updateExceptions() { return ["width", "height", "borderradius", "colorscheme", "layout", "affiliateid"]}
 
   get sliderDelay(){ return 5000; }
@@ -51,8 +53,14 @@ class TicketmasterWidget {
       attrs.size = this.config.size;
     if(this.isConfigAttrEmpty("radius"))
      attrs.radius = this.config.radius;
-    if(this.isConfigAttrEmpty("postalcode"))
-      attrs.postalCode = this.config.postalcode;
+
+    if(this.config.latlong){
+      attrs.latlong = this.config.latlong;
+    }else{
+      if(this.isConfigAttrEmpty("postalcode"))
+        attrs.postalCode = this.config.postalcode;
+    }
+
     if(this.isConfigAttrEmpty("attractionid"))
       attrs.attractionId = this.config.attractionid;
     if(this.isConfigAttrEmpty("promoterid"))
@@ -111,7 +119,9 @@ class TicketmasterWidget {
 
     this.AdditionalElements();
 
-    this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
+    this.getCoordinates(() => {
+      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
+    });
 
     if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
       this.themeModificators[ this.widgetConfig.theme ]();
@@ -128,6 +138,37 @@ class TicketmasterWidget {
 
     this.initEventCounter();
 
+  }
+  
+  getCoordinates(cb){
+    let widget = this;
+
+    function parseGoogleGeocodeResponse(){
+      if (this && this.readyState === XMLHttpRequest.DONE ) {
+        let latlong = null;
+        if(this.status === 200) {
+          let response = JSON.parse(this.responseText);
+          if(response.status === 'OK' && response.results.length){
+            let geometry = response.results[0].geometry;
+            if(geometry){
+              if(geometry.location){
+                latlong = `${geometry.location.lat},${geometry.location.lng}`;
+              }
+            }
+          }
+        }
+        widget.config.latlong = latlong;
+        cb(widget.config.latlong);
+      }
+    }
+
+    if(this.config.postalcode){
+      let args = {components: `country:${this.config.country || 'US'}|postal_code:${widget.config.postalcode}`};
+      this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
+    }else{
+      widget.config.latlong = null;
+      cb(widget.config.latlong);
+    }
   }
 
   initBuyBtn(){
@@ -415,25 +456,34 @@ class TicketmasterWidget {
     this.currentSlideX = 0;
     this.currentSlideY = 0;
     this.slideCountX = 0;
+    let coreCssClass = 'events_control';
 
     // left btn
     this.prevEventX = document.createElement("div");
-    this.prevEventX.classList.add("events_control", "events_control-horizontal", "events_control-left", this.controlHiddenClass);
+    for(let cssClass of [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-left', this.controlHiddenClass]){
+      this.prevEventX.classList.add(cssClass);
+    }
     this.eventsRootContainer.appendChild(this.prevEventX);
 
     // right btn
     this.nextEventX = document.createElement("div");
-    this.nextEventX.classList.add("events_control", "events_control-horizontal", "events_control-right", this.controlHiddenClass);
+    for(let cssClass of [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass]){
+      this.nextEventX.classList.add(cssClass);
+    }
     this.eventsRootContainer.appendChild(this.nextEventX);
 
     // top btn
     this.prevEventY = document.createElement("div");
-    this.prevEventY.classList.add("events_control", "events_control-vertical", "events_control-top", this.controlHiddenClass);
+    for(let cssClass of [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass]){
+      this.prevEventY.classList.add(cssClass);
+    }
     this.eventsRootContainer.appendChild(this.prevEventY);
 
     // bottom btn
     this.nextEventY = document.createElement("div");
-    this.nextEventY.classList.add("events_control", "events_control-vertical", "events_control-bottom", this.controlHiddenClass);
+    for(let cssClass of [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass]){
+      this.nextEventY.classList.add(cssClass);
+    }
     this.eventsRootContainer.appendChild(this.nextEventY);
 
     // Restore events group position
@@ -610,7 +660,10 @@ class TicketmasterWidget {
         this.themeModificators[ this.widgetConfig.theme ]();
       }
 
-      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
+      this.getCoordinates(() => {
+        this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
+      });
+
     }
     else{
       let events = document.getElementsByClassName("event-wrapper");
@@ -700,7 +753,7 @@ class TicketmasterWidget {
       reduceParamsList = [
         ['startDateTime', 'endDateTime'],
         ['radius'],
-        ['postalCode'],
+        ['postalCode', 'latlong'],
         ['attractionId'],
         ['promoterId'],
         ['segmentId'],
@@ -778,12 +831,14 @@ class TicketmasterWidget {
 
   publishEventsGroup(group, index){
     let groupNodeWrapper = document.createElement("li");
-    groupNodeWrapper.classList.add("event-wrapper", "event-group-wrapper");
+    groupNodeWrapper.classList.add("event-wrapper");
+    groupNodeWrapper.classList.add("event-group-wrapper");
     groupNodeWrapper.style.width  = `${this.config.width}px`;
     groupNodeWrapper.style.height = `${this.config.height}px`;
 
     let groupNode = document.createElement("ul");
-    groupNode.classList.add("event-group", "event-group-" + index);
+    groupNode.classList.add("event-group");
+    groupNode.classList.add("event-group-" + index);
     //groupNode.style.height  = `${this.config.height * group.length}px`;
 
     group.map((event)=> {
@@ -955,7 +1010,8 @@ class TicketmasterWidget {
       if( itemConfig.address.hasOwnProperty("name") ){
         var addressNameText = document.createTextNode(itemConfig.address.name),
             addressName =  document.createElement("span");
-        addressName.classList.add("event-address", "event-address-name");
+        addressName.classList.add("event-address");
+        addressName.classList.add("event-address-name");
         addressName.appendChild(addressNameText);
         addressWrapper.appendChild(addressName);
       }

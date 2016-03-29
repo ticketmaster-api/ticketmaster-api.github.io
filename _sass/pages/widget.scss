@@ -36,9 +36,22 @@
 
 .config-block{
   border-right: 1px solid $n3;
-  margin: 0 -15px 60px;
-  .button-blue {
-    margin-top: 0;
+  margin-bottom: 60px;
+  @media (max-width: 1200px){
+    border-right: none;
+    padding-top: 30px;
+  }
+
+  @media (min-width: 1200px){
+    padding-right: 20px;
+  }
+
+  .main-widget-config-form {
+    display: block;
+    @media (max-width: 1200px){
+      padding-top: 20px;
+      border-top: solid 1px #b7c9d3;
+    }
   }
 
   label {
@@ -82,8 +95,29 @@
 }
 
 .widget-container-wrapper {
+  display: inline-block;
   width: 900px;
-  @media (min-width: 992px){
+  @media (min-width: 1200px){
     width: auto;
+    margin-left: 10px;
   }
 }
+
+.widget_config__btn {
+  margin-top: 0;
+  @media (max-width: 768px) {
+    margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 1200px){
+  .col-widget {
+    float: right;
+  }
+}
+
+.row-native {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
