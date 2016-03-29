@@ -36,11 +36,16 @@
 
 .config-block{
   border-right: 1px solid $n3;
-  margin: 0 -15px;
+  margin: 0 -15px 60px;
   .button-blue {
     margin-top: 0;
   }
-  margin-bottom: 60px;
+
+  label {
+    .config_field__description {
+      font-family: $font-lead-regular;
+    }
+  }
 }
 
 .widget-container {

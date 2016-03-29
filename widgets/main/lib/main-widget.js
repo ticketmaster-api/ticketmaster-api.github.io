@@ -102,8 +102,7 @@ var TicketmasterWidget = function () {
       if (this.isConfigAttrEmpty("tmapikey")) attrs.apikey = this.config.tmapikey;
       if (this.isConfigAttrEmpty("keyword")) attrs.keyword = this.config.keyword;
       if (this.isConfigAttrEmpty("size")) attrs.size = this.config.size;
-      //if(this.isConfigAttrEmpty("radius"))
-      //  attrs.radius = this.config.radius;
+      if (this.isConfigAttrEmpty("radius")) attrs.radius = this.config.radius;
       if (this.isConfigAttrEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
       if (this.isConfigAttrEmpty("attractionid")) attrs.attractionId = this.config.attractionid;
       if (this.isConfigAttrEmpty("promoterid")) attrs.promoterId = this.config.promoterid;
@@ -796,7 +795,7 @@ var TicketmasterWidget = function () {
     key: "reduceParamsAndReloadEvents",
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
-          reduceParamsList = [['startDateTime', 'endDateTime'], ['postalCode'], ['attractionId'], ['promoterId'], ['segmentId'], ['keyword'], ['size']];
+          reduceParamsList = [['startDateTime', 'endDateTime'], ['radius'], ['postalCode'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
