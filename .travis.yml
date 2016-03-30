@@ -44,6 +44,5 @@ notifications:
 before_install:
   - '[ "${TEST_SEVERITY}" = "OFF" ] && ruby -v || true'
   - '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages || true'
-  - '[ "${TEST_SEVERITY}" = "MEDIUM" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
-  - '[ "${TEST_SEVERITY}" = "HIGH" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
-  - '[ "${TEST_SEVERITY}" = "CRITICAL" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
+  - '[ ${TEST_SEVERITY} = "MEDIUM" ] || [${TEST_SEVERITY} = "HIGH" ] || [ ${TEST_SEVERITY} = "CRITICAL" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
+
