@@ -6,6 +6,7 @@
     return theme === 'simple' ? 238 : 300;
   }
 
+  // TODO: do we need 'config' variable ?
   var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
 
   var $layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
@@ -70,18 +71,18 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    if (event.target.name === "border") {
-      //if(event.target.checked){
-      //  widgetNode.setAttribute(event.target.id, "");
-      //}
-      //else{
-      //  widgetNode.removeAttribute(event.target.id);
-      //}
-    } else {
-        if (event.target.name && event.target.value) {
-          widgetNode.setAttribute(event.target.name, event.target.value);
-        }
-      }
+    // if(event.target.name === "border"){
+    //if(event.target.checked){
+    //  widgetNode.setAttribute(event.target.id, "");
+    //}
+    //else{
+    //  widgetNode.removeAttribute(event.target.id);
+    //}
+    // }
+    // else {}
+    if (event.target.name) {
+      widgetNode.setAttribute(event.target.name, event.target.value);
+    }
 
     widget.update();
   };

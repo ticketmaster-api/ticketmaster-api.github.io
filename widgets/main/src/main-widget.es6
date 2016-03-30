@@ -35,47 +35,66 @@ class TicketmasterWidget {
 
   get tmWidgetWhiteList(){ return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"]; }
 
-  isConfigAttrEmpty(attr) {
+  isConfigAttrExistAndNotEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
-      return false; }
-    else if( this.config[attr] === ""){
+      return false;
+    }else if( this.config[attr] === ""){
       return false;
     }
     return true;
   }
   
   get eventReqAttrs(){
-    let attrs = {};
+    let attrs = {},
+    params = [
+      {
+        attr: 'tmapikey',
+        verboseName: 'apikey'
+      },
+      {
+        attr: 'keyword',
+        verboseName: 'keyword'
+      },
+      {
+        attr: 'size',
+        verboseName: 'size'
+      },
+      {
+        attr: 'radius',
+        verboseName: 'radius'
+      },
+      {
+        attr: 'attractionid',
+        verboseName: 'attractionId'
+      },
+      {
+        attr: 'promoterid',
+        verboseName: 'promoterId'
+      },
+      {
+        attr: 'venueid',
+        verboseName: 'venueId'
+      },
+      {
+        attr: 'segmentid',
+        verboseName: 'segmentId'
+      }
+    ];
 
-    if(this.isConfigAttrEmpty("tmapikey"))
-      attrs.apikey = this.config.tmapikey;
-    if(this.isConfigAttrEmpty("keyword"))
-      attrs.keyword = this.config.keyword;
-    if(this.isConfigAttrEmpty("size"))
-      attrs.size = this.config.size;
-    if(this.isConfigAttrEmpty("radius"))
-     attrs.radius = this.config.radius;
-    // Use only for geocode
-    if(this.isConfigAttrEmpty("country"))
-     attrs.country = this.config.country;
+    for(let item of params){
+      if(this.isConfigAttrExistAndNotEmpty(item.attr))
+        attrs[item.verboseName] = this.config[item.attr];
+    }
 
     // Only one allowed at the same time
     if(this.config.latlong){
       attrs.latlong = this.config.latlong;
     }else{
-      if(this.isConfigAttrEmpty("postalcode"))
+      if(this.isConfigAttrExistAndNotEmpty("postalcode"))
         attrs.postalCode = this.config.postalcode;
     }
 
-    if(this.isConfigAttrEmpty("attractionid"))
-      attrs.attractionId = this.config.attractionid;
-    if(this.isConfigAttrEmpty("promoterid"))
-      attrs.promoterId = this.config.promoterid;
-    if(this.isConfigAttrEmpty("venueid"))
-      attrs.venueId = this.config.venueid;
-    if(this.isConfigAttrEmpty("segmentid"))
-      attrs.segmentId = this.config.segmentid;
-    if(this.isConfigAttrEmpty("period")){
+    if(this.isConfigAttrExistAndNotEmpty("period")){
       let period = this.getDateFromPeriod(this.config.period);
       attrs.startDateTime = period[0];
       attrs.endDateTime = period[1];
@@ -189,15 +208,15 @@ class TicketmasterWidget {
       }
     }
 
-    if(this.config.postalcode){
+    if(this.isConfigAttrExistAndNotEmpty('postalcode')){
       let args = {components: `postal_code:${widget.config.postalcode}`};
       if(this.config.country){
         args.components += `|country:${this.config.country}`;
       }
       this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
     }else{
-      // if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
-      widget.config.latlong = null;
+      widget.config.latlong = '';
+      widget.config.country = '';
       cb(widget.config.latlong);
     }
   }
