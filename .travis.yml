@@ -5,6 +5,7 @@ node_js:
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+  - TEST_SEVERITY=OFF
   - secure: "S0LPAFWXDLDDDzBLh2ptfxUNUvE4q6gEWTuS2TCiq8ZAoeR9jwMKQuT5scAKqQeKSjEWfTXdNJRKuvwKsruWfYLtXz4yoMjPz7/WMmJLedRLp9nh7lIJP7/p/Fs3zJwMYE/twvOlnNUXCSQaL7FMefrvXf52Tn34i3edRTsx2x0ALGHEcj+nv7ISCN7+IAOC4C2Fyc0UXZ8KQECtHIJ94ZXrbMRWKR2tYeVsa9Z4QVIXBzQ+ku64t4ccQvw/mFAj/qqrys0+ayF1sWjvU3Nn8mfiuB1OZdrpJ5dwNE5LEm/CbJIl2hYbwhGXa23FtZr1mLQeNChzcKffk9TR+xYk6s2ndYkLdgeSX9GM71DPk0d3NEXWfugL2Hcf585W5gjdY2WIoJO6cHGrcsGmJ7dHAr2XwDD0wuO7Vqdkk6rCxLjFnJ3MJtGNwjDujxtrlXTuR/K4vI+sMB4fKCfIFZfDJHYCqh2bcQnOQJchlWR80AAkbJ1ApbE3uuFS7sgCHjyqJI49MyWAjCRTfyhtLvj37KaCEZTZht2Ye27sR/6P4qruPfHCU8DbH5bAYd4IZ5QPWzsSgO3Y9y6yUh5k21fcIjfQ+CR+Sjp1D5Ck8ycwNJcHiUVX0yjLjK4ZJT/zJ8A87hNACyjKJMtyer7DqW2d9cmACPBqHT4lMOdaTKEz/sU="
 
 # whitelist
@@ -18,36 +19,14 @@ before_script:
   - jekyll build
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - sleep 20 # give xvfb some time to start
+  - sleep 10 # give xvfb some time to start
 
 script:
-  #- ./node_modules/karma/bin/karma start karma.conf.js
-  #- htmlproof ./_site --verbose --href-ignore "#" --disable-external --file-ignore './_site/node_modules/*'
   - jekyll serve &
   - sleep 15 # give jekyll some time to start
-  #part1
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups HomePage
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups PD-getting-started-Page
-  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups PD-WidgetsPage
-  #part2
-  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups ProductsDocsSlate
-  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups ProductsDocsConsole
-  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups BlogsPage
-  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups SupportPage
-  - galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups Events
-  #- galen test tests/galen/all-part2.test --htmlreport tests/galen/reports/all-part2 --groups PartnersLanding #in progress
-  #part3
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportContactUs
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups SupportBrandingGuide
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups Search
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersDistribution
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups PartnersCertified
-  - galen test tests/galen/all-part3.test --htmlreport tests/galen/reports/all-part3 --groups APIExplorer
-
-
-#  - galen test tests/galen/all.test --htmlreport tests/galen/reports/all -groups SupportPage,ProductsDocsConsole,PD-WidgetsPage,Events
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups SupportPage,ProductsDocsConsole,ProductsDocsSlate,PD-WidgetsPage,BlogsPage,Events,PartnersNexus,PartnersLanding,PD-getting-started-Page #generate comparing images
-#  - galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups PartnersNexus,PartnersLanding #generate comparing images
+  - '[ "${TEST_SEVERITY}" = "MEDIUM" ] && sh ./tests/levels/run-test-medium.sh || true'
+  - '[ "${TEST_SEVERITY}" = "HIGH" ] && sh ./tests/levels/run-test-high.sh || true'
+  - '[ "${TEST_SEVERITY}" = "CRITICAL" ] && sh ./tests/levels/run-test-critical.sh || true'
 
 after_script:
   - rake travis:deploy --trace --verbose
@@ -59,15 +38,12 @@ cache:
     - bundler
 
 notifications:
-  slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
+  #slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
+  email: false
 
 before_install:
-  - rm ./_site/* -rf #remove directory _site
-  - rm ./events/* -rf #remove directory events
-  - rm ./partners/* -rf #remove directory partners
-  - \cp -avrf ./tests/content/* ./ #copy test content folders
-  - ls ./partners/list
-  - rvm install 2.1.5
-  - gem install github-pages
-  - gem install html-proofer
-  - npm install -g galenframework-cli
+  - '[ "${TEST_SEVERITY}" = "OFF" ] && ruby -v || true'
+  - '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages || true'
+  - '[ "${TEST_SEVERITY}" = "MEDIUM" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
+  - '[ "${TEST_SEVERITY}" = "HIGH" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
+  - '[ "${TEST_SEVERITY}" = "CRITICAL" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
