@@ -90,8 +90,8 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 550,
-        theme = undefined,
-        layout = undefined;
+        theme = void 0,
+        layout = void 0;
 
     configForm.find("input[type='text']").each(function () {
       var $self = $(this),

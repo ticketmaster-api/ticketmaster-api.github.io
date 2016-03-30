@@ -6,6 +6,7 @@ body .top-bar.bg-header {
   max-width: 100%;
   .row-partners {
     padding-top: 0px;
+    margin-top: -20px;
   }
   .content {
     padding: 0;
@@ -23,12 +24,12 @@ body .top-bar.bg-header {
 
   }
   &.partners-content {
-    height: 290px;
+    height: 230px;
     @media (max-width: 768px) {
       height: auto;
     }
     .col-xs-10.white {
-      margin-top: -30px;
+      margin-top: -60px;
     }
   }
   .white {
@@ -40,7 +41,7 @@ body .top-bar.bg-header {
     line-height: 32px;
     color: rgba(255,255,255,0.7);
     float: none;
-    margin: 50px auto 150px auto;
+    margin: 20px auto 150px auto;
     @media #{$max-1200} {
       width: 80%;
       margin-bottom: 100px;
