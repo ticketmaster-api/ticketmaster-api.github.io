@@ -34,7 +34,14 @@
 
 
 /* Common styles for all themes  */
-div[w-tmapikey] .event-message {
+div[w-theme="oldschool"] a,
+div[w-theme="oldschool"] a:hover,
+div[w-theme="oldschool"] a:focus,
+div[w-theme="oldschool"] a:active{
+    text-decoration: none;
+}
+
+div[w-theme="oldschool"] .event-message {
     position: absolute;
     padding: 16px 46px 16px 52px;
     left: 10px;
@@ -54,12 +61,12 @@ div[w-tmapikey] .event-message {
     transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-div[w-tmapikey] .event-message-visible {
+div[w-theme="oldschool"] .event-message-visible {
     top: 10px;
     opacity: 1;
 }
 
-div[w-tmapikey] .event-message__btn {
+div[w-theme="oldschool"] .event-message__btn {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -262,14 +269,12 @@ div[w-theme="oldschool"] .legal-notice {
     color: #b7c9d3;
     font-size: 14px;
     line-height: 16px;
-    text-decoration: none;
 }
 
 div[w-theme="oldschool"] .legal-notice:hover,
 div[w-theme="oldschool"] .legal-notice:focus,
 div[w-theme="oldschool"] .legal-notice:active{
     color: #019cde;
-    text-decoration: none;
 }
 
 div[w-theme="oldschool"] .events-counter {

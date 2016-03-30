@@ -34,7 +34,14 @@
 
 
 /* Common styles for all themes  */
-div[w-tmapikey] .event-message {
+div[w-theme="newschool"] a,
+div[w-theme="newschool"] a:hover,
+div[w-theme="newschool"] a:focus,
+div[w-theme="newschool"] a:active{
+    text-decoration: none;
+}
+
+div[w-theme="newschool"] .event-message {
     position: absolute;
     padding: 16px 46px 16px 52px;
     left: 10px;
@@ -54,12 +61,12 @@ div[w-tmapikey] .event-message {
     transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-div[w-tmapikey] .event-message-visible {
+div[w-theme="newschool"] .event-message-visible {
     top: 10px;
     opacity: 1;
 }
 
-div[w-tmapikey] .event-message__btn {
+div[w-theme="newschool"] .event-message__btn {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -297,14 +304,12 @@ div[w-theme="newschool"] .legal-notice{
     color: #b7c9d3;
     font-size: 14px;
     line-height: 16px;
-    text-decoration: none;
 }
 
 div[w-theme="newschool"]  .legal-notice:hover,
 div[w-theme="newschool"]  .legal-notice:focus,
 div[w-theme="newschool"]  .legal-notice:active{
     color: #019cde;
-    text-decoration: none;
 }
 
 div[w-theme="newschool"] .events-counter {

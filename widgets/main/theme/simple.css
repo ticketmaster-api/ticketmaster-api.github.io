@@ -38,6 +38,12 @@ div[w-theme="simple"]{
     padding-bottom: 41px;
 }
 
+div[w-theme="simple"] a,
+div[w-theme="simple"] a:hover,
+div[w-theme="simple"] a:focus,
+div[w-theme="simple"] a:active{
+    text-decoration: none;
+}
 
 div[w-theme="simple"] .event-message {
     position: absolute;
@@ -368,13 +374,11 @@ div[w-theme="simple"] .legal-notice {
     font-size: 14px;
     line-height: 16px;
     color: #768692;
-    text-decoration: none;
 }
 
 div[w-theme="simple"] .legal-notice:hover,
 div[w-theme="simple"] .legal-notice:focus,
 div[w-theme="simple"] .legal-notice:active{
-    text-decoration: none;
     color: #019cde;
 }
 
