@@ -193,18 +193,19 @@
     }
   });
 
-  widget.onLoadCoordinate = function (response, countryShortName) {
+  widget.onLoadCoordinate = function (response) {
+    var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
     widget.config['country'] = countryShortName;
-    var $countrySelect = $('#w-country');
+    var $countrySelect = $('#w-country'),
+        options = '';
 
     if (response) {
       if (response.status === 'OK') {
         if (response.results) {
           $countrySelect.prop('disabled', !response.results.length);
-
           if ($countrySelect.data('cleared')) {
             $countrySelect.data('cleared', false);
-            var options = '';
             for (var i in response.results) {
               var result = response.results[i];
               if (result.address_components) {
@@ -219,6 +220,10 @@
           }
         }
       }
+    }
+
+    if (!options) {
+      $countrySelect.append("<option>All</option>");
     }
   };
 })();
