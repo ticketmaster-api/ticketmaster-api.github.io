@@ -565,12 +565,18 @@ div[w-theme="newschool"] .events_control-horizontal:hover {
 }
 
 
-div[w-theme="newschool"] .events_control-vertical.events_control-hidden {
-    height: 0;
-}
+/*div[w-theme="newschool"] .events_control-vertical.events_control-hidden {*/
+    /*height: 0;*/
+/*}*/
 
-div[w-theme="newschool"] .events_control-horizontal.events_control-hidden {
-    width: 0;
+/*div[w-theme="newschool"] .events_control-horizontal.events_control-hidden {*/
+    /*width: 0;*/
+/*}*/
+
+div[w-theme="newschool"] .events_control-hidden,
+div[w-theme="newschool"] .events_control-hidden:hover {
+    opacity: 0;
+    cursor: default;
 }
 
 /*group*/
