@@ -262,6 +262,7 @@ var TicketmasterWidget = function () {
               }
             }
           }
+          // Used in builder
           if (widget.onLoadCoordinate) widget.onLoadCoordinate(response, countryShortName);
           widget.config.latlong = latlong;
           cb(widget.config.latlong);
@@ -275,6 +276,8 @@ var TicketmasterWidget = function () {
         }
         this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
       } else {
+        // Used in builder
+        if (widget.onLoadCoordinate) widget.onLoadCoordinate(null);
         widget.config.latlong = '';
         widget.config.country = '';
         cb(widget.config.latlong);

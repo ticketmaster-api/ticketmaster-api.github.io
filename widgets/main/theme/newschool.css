@@ -53,7 +53,7 @@ div[w-theme="newschool"] .event-message {
     line-height: 1.6;
     color: #ffffff;
     opacity: 0;
-    z-index: 10;
+    z-index: 60;
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
     -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
