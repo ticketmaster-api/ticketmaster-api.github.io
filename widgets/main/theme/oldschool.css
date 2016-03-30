@@ -108,6 +108,7 @@ div[w-theme="oldschool"] ul{
 }
 
 div[w-theme="oldschool"] .event-wrapper {
+    display: block;
     position: relative;
     height: 200px;
     width:150px;
