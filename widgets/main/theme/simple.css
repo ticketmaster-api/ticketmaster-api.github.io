@@ -236,6 +236,14 @@ div[w-theme="simple"] .events_control-bottom:before {
     transform: rotate(90deg);
 }
 
+div[w-theme="simple"] .events_control-vertical.events_control-hidden {
+height: 0;
+}
+
+div[w-theme="simple"] .events_control-horizontal.events_control-hidden {
+width: 0;
+}
+
 div[w-theme="simple"] .events_control-vertical:hover {
     height: 28px;
 }
@@ -243,15 +251,6 @@ div[w-theme="simple"] .events_control-vertical:hover {
 div[w-theme="simple"] .events_control-horizontal:hover {
     width: 28px;
 }
-
-
-/*div[w-theme="simple"] .events_control-vertical.events_control-hidden {*/
-    /*height: 0;*/
-/*}*/
-
-/*div[w-theme="simple"] .events_control-horizontal.events_control-hidden {*/
-    /*width: 0;*/
-/*}*/
 
 div[w-theme="simple"] .events_control-hidden {
     opacity: 0;
