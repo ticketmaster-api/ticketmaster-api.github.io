@@ -109,13 +109,9 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 
 {% capture slider %}
 
-[![ApiExplorer](/assets/img/partners/startups-development/bitmap.png)](/api-explorer/)
+[![ApiExplorer](/assets/img/partners/startups-development/bitmap.png)](/partners/startups-and-developers#the-ticketmaster-api-devjam-in-durham-nc)
 
-[![DevJam2](/assets/img/partners/startups-development/bitmap1.png)](/events/#past)
-
-[![DevJam1](/assets/img/partners/startups-development/bitmap2.png)](/events/#past)
-
-[![DevJam0](/assets/img/partners/startups-development/bitmap3.png)](/events/#past)
+[![DevJam2](/assets/img/partners/startups-development/bitmap1.png)](/partners/startups-and-developers#enhanced-discovery-experience-with-epam)
 
 {% endcapture %}
 

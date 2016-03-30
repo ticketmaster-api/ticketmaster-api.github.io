@@ -367,22 +367,22 @@ class TicketmasterWidget {
     ticketLogo.classList.add("ticket-logo", "modificator");
 
     var headLogo = document.createElement("img");
-    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
     headLogo.setAttribute("height", "11");
     ticketLogo.appendChild(headLogo);
 
     headLogo = document.createElement("img");
-    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
     headLogo.setAttribute("height", "11");
     ticketLogo.appendChild(headLogo);
 
     headLogo = document.createElement("img");
-    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
     headLogo.setAttribute("height", "11");
     ticketLogo.appendChild(headLogo);
 
     headLogo = document.createElement("img");
-    headLogo.setAttribute("src", "/assets/img/footer/ticketmaster-logo-white.svg");
+    headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
     headLogo.setAttribute("height", "11");
     ticketLogo.appendChild(headLogo);
 
