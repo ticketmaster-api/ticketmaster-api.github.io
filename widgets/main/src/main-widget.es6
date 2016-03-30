@@ -204,6 +204,7 @@ class TicketmasterWidget {
             }
           }
         }
+        // Used in builder
         if(widget.onLoadCoordinate) widget.onLoadCoordinate(response, countryShortName);
         widget.config.latlong = latlong;
         cb(widget.config.latlong);
@@ -217,6 +218,8 @@ class TicketmasterWidget {
       }
       this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
     }else{
+      // Used in builder
+      if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
       widget.config.latlong = '';
       widget.config.country = '';
       cb(widget.config.latlong);

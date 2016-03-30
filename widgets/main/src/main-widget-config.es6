@@ -201,18 +201,17 @@
     }
   });
 
-  widget.onLoadCoordinate = function (response, countryShortName) {
+  widget.onLoadCoordinate = function (response, countryShortName = '') {
     widget.config['country'] = countryShortName;
-    let $countrySelect = $('#w-country');
+    let $countrySelect = $('#w-country'),
+      options = '';
 
     if(response){
       if(response.status === 'OK'){
         if(response.results){
           $countrySelect.prop('disabled', !response.results.length);
-
           if($countrySelect.data('cleared')){
             $countrySelect.data('cleared', false);
-            let options = '';
             for(let i in response.results){
               let result = response.results[i];
               if(result.address_components){
@@ -227,6 +226,10 @@
           }
         }
       }
+    }
+
+    if(!options){
+      $countrySelect.append(`<option>All</option>`);
     }
   }
 
