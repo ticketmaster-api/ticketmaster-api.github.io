@@ -6,6 +6,7 @@
     return theme === 'simple' ? 238 : 300;
   }
 
+  // TODO: do we need 'config' variable ?
   var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
 
   var $layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
@@ -25,6 +26,11 @@
 
   var changeState = function changeState(event) {
     var widgetNode = document.querySelector("div[w-tmapikey]");
+
+    if (event.target.name === "w-postalcode") {
+      widgetNode.setAttribute('w-country', '');
+      $('#w-country').prop('disabled', true).data('cleared', true).html('');
+    }
 
     if (event.target.name === "w-theme") {
       if (event.target.value === 'simple') {
@@ -65,18 +71,18 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    if (event.target.name === "border") {
-      //if(event.target.checked){
-      //  widgetNode.setAttribute(event.target.id, "");
-      //}
-      //else{
-      //  widgetNode.removeAttribute(event.target.id);
-      //}
-    } else {
-        if (event.target.name && event.target.value) {
-          widgetNode.setAttribute(event.target.name, event.target.value);
-        }
-      }
+    // if(event.target.name === "border"){
+    //if(event.target.checked){
+    //  widgetNode.setAttribute(event.target.id, "");
+    //}
+    //else{
+    //  widgetNode.removeAttribute(event.target.id);
+    //}
+    // }
+    // else {}
+    if (event.target.name) {
+      widgetNode.setAttribute(event.target.name, event.target.value);
+    }
 
     widget.update();
   };
@@ -150,7 +156,9 @@
 
     var htmlCode = document.createElement("div");
     for (var key in widget.config) {
-      htmlCode.setAttribute("w-" + key, widget.config[key]);
+      if (key !== 'latlong') {
+        htmlCode.setAttribute("w-" + key, widget.config[key]);
+      }
     }
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
@@ -184,5 +192,55 @@
       }
     }
   });
+
+  widget.onLoadCoordinate = function (response, countryShortName) {
+    widget.config['country'] = countryShortName;
+    var $countrySelect = $('#w-country');
+
+    if (response) {
+      if (response.status === 'OK') {
+        if (response.results) {
+          $countrySelect.prop('disabled', !response.results.length);
+
+          if ($countrySelect.data('cleared')) {
+            $countrySelect.data('cleared', false);
+            var options = '';
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+              for (var _iterator = response.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var result = _step.value;
+
+                if (result.address_components) {
+                  var country = result.address_components[result.address_components.length - 1];
+                  if (country) {
+                    var isSelected = country.short_name === countryShortName ? 'selected' : '';
+                    options += "<option " + isSelected + " value=\"" + country.short_name + "\">" + country.long_name + "</option>";
+                  }
+                }
+              }
+            } catch (err) {
+              _didIteratorError = true;
+              _iteratorError = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
+              } finally {
+                if (_didIteratorError) {
+                  throw _iteratorError;
+                }
+              }
+            }
+
+            $countrySelect.append(options);
+          }
+        }
+      }
+    }
+  };
 })();
 //# sourceMappingURL=main-widget-config.js.map

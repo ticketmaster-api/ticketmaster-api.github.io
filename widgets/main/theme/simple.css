@@ -260,6 +260,7 @@ div[w-theme="simple"] .bg-cover {
 
 /* Theme special styles */
 div[w-theme="simple"] .event-wrapper {
+    display: block;
     position: relative;
     height: 200px;
     width:150px;

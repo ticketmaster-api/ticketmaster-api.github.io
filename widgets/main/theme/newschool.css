@@ -115,6 +115,7 @@ div[w-theme="newschool"] ul.events-root {
 }
 
 div[w-theme="newschool"] .event-wrapper {
+    display: block;
     position: relative;
     height: 200px;
     width:150px;

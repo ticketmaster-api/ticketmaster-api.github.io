@@ -6,8 +6,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var TicketmasterWidget = function () {
   _createClass(TicketmasterWidget, [{
-    key: "isConfigAttrEmpty",
-    value: function isConfigAttrEmpty(attr) {
+    key: "isConfigAttrExistAndNotEmpty",
+    value: function isConfigAttrExistAndNotEmpty(attr) {
       if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
         return false;
       } else if (this.config[attr] === "") {
@@ -107,24 +107,67 @@ var TicketmasterWidget = function () {
   }, {
     key: "eventReqAttrs",
     get: function get() {
-      var attrs = {};
+      var attrs = {},
+          params = [{
+        attr: 'tmapikey',
+        verboseName: 'apikey'
+      }, {
+        attr: 'keyword',
+        verboseName: 'keyword'
+      }, {
+        attr: 'size',
+        verboseName: 'size'
+      }, {
+        attr: 'radius',
+        verboseName: 'radius'
+      }, {
+        attr: 'attractionid',
+        verboseName: 'attractionId'
+      }, {
+        attr: 'promoterid',
+        verboseName: 'promoterId'
+      }, {
+        attr: 'venueid',
+        verboseName: 'venueId'
+      }, {
+        attr: 'segmentid',
+        verboseName: 'segmentId'
+      }];
 
-      if (this.isConfigAttrEmpty("tmapikey")) attrs.apikey = this.config.tmapikey;
-      if (this.isConfigAttrEmpty("keyword")) attrs.keyword = this.config.keyword;
-      if (this.isConfigAttrEmpty("size")) attrs.size = this.config.size;
-      if (this.isConfigAttrEmpty("radius")) attrs.radius = this.config.radius;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = params[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var item = _step.value;
+
+          if (this.isConfigAttrExistAndNotEmpty(item.attr)) attrs[item.verboseName] = this.config[item.attr];
+        }
+
+        // Only one allowed at the same time
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
 
       if (this.config.latlong) {
         attrs.latlong = this.config.latlong;
       } else {
-        if (this.isConfigAttrEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
+        if (this.isConfigAttrExistAndNotEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
       }
 
-      if (this.isConfigAttrEmpty("attractionid")) attrs.attractionId = this.config.attractionid;
-      if (this.isConfigAttrEmpty("promoterid")) attrs.promoterId = this.config.promoterid;
-      if (this.isConfigAttrEmpty("venueid")) attrs.venueId = this.config.venueid;
-      if (this.isConfigAttrEmpty("segmentid")) attrs.segmentId = this.config.segmentid;
-      if (this.isConfigAttrEmpty("period")) {
+      if (this.isConfigAttrExistAndNotEmpty("period")) {
         var period = this.getDateFromPeriod(this.config.period);
         attrs.startDateTime = period[0];
         attrs.endDateTime = period[1];
@@ -207,11 +250,52 @@ var TicketmasterWidget = function () {
 
       function parseGoogleGeocodeResponse() {
         if (this && this.readyState === XMLHttpRequest.DONE) {
-          var latlong = null;
+          var latlong = '',
+              response = null,
+              countryShortName = '';
           if (this.status === 200) {
-            var response = JSON.parse(this.responseText);
+            response = JSON.parse(this.responseText);
             if (response.status === 'OK' && response.results.length) {
+              // Use first item if multiple results was found in one country or in different
               var geometry = response.results[0].geometry;
+              countryShortName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
+
+              // If multiple results without country try to find USA as prefer value
+              if (!widget.config.country) {
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                  for (var _iterator2 = response.results[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var result = _step2.value;
+
+                    if (result.address_components) {
+                      var country = result.address_components[result.address_components.length - 1];
+                      if (country) {
+                        if (country.short_name === 'US') {
+                          countryShortName = 'US';
+                          geometry = result.geometry;
+                        }
+                      }
+                    }
+                  }
+                } catch (err) {
+                  _didIteratorError2 = true;
+                  _iteratorError2 = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                      _iterator2.return();
+                    }
+                  } finally {
+                    if (_didIteratorError2) {
+                      throw _iteratorError2;
+                    }
+                  }
+                }
+              }
+
               if (geometry) {
                 if (geometry.location) {
                   latlong = geometry.location.lat + "," + geometry.location.lng;
@@ -219,16 +303,21 @@ var TicketmasterWidget = function () {
               }
             }
           }
+          if (widget.onLoadCoordinate) widget.onLoadCoordinate(response, countryShortName);
           widget.config.latlong = latlong;
           cb(widget.config.latlong);
         }
       }
 
-      if (this.config.postalcode) {
-        var args = { components: "country:" + (this.config.country || 'US') + "|postal_code:" + widget.config.postalcode };
+      if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
+        var args = { components: "postal_code:" + widget.config.postalcode };
+        if (this.config.country) {
+          args.components += "|country:" + this.config.country;
+        }
         this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
       } else {
-        widget.config.latlong = null;
+        widget.config.latlong = '';
+        widget.config.country = '';
         cb(widget.config.latlong);
       }
     }
@@ -867,7 +956,7 @@ var TicketmasterWidget = function () {
     key: "reduceParamsAndReloadEvents",
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
-          reduceParamsList = [['startDateTime', 'endDateTime'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
+          reduceParamsList = [['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
