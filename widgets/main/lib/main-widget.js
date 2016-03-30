@@ -134,33 +134,12 @@ var TicketmasterWidget = function () {
         verboseName: 'segmentId'
       }];
 
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = params[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var item = _step.value;
-
-          if (this.isConfigAttrExistAndNotEmpty(item.attr)) attrs[item.verboseName] = this.config[item.attr];
-        }
-
-        // Only one allowed at the same time
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
+      for (var i in params) {
+        var item = params[i];
+        if (this.isConfigAttrExistAndNotEmpty(item.attr)) attrs[item.verboseName] = this.config[item.attr];
       }
 
+      // Only one allowed at the same time
       if (this.config.latlong) {
         attrs.latlong = this.config.latlong;
       } else {
@@ -262,35 +241,15 @@ var TicketmasterWidget = function () {
 
               // If multiple results without country try to find USA as prefer value
               if (!widget.config.country) {
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                  for (var _iterator2 = response.results[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var result = _step2.value;
-
-                    if (result.address_components) {
-                      var country = result.address_components[result.address_components.length - 1];
-                      if (country) {
-                        if (country.short_name === 'US') {
-                          countryShortName = 'US';
-                          geometry = result.geometry;
-                        }
+                for (var i in response.results) {
+                  var result = response.results[i];
+                  if (result.address_components) {
+                    var country = result.address_components[result.address_components.length - 1];
+                    if (country) {
+                      if (country.short_name === 'US') {
+                        countryShortName = 'US';
+                        geometry = result.geometry;
                       }
-                    }
-                  }
-                } catch (err) {
-                  _didIteratorError2 = true;
-                  _iteratorError2 = err;
-                } finally {
-                  try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                      _iterator2.return();
-                    }
-                  } finally {
-                    if (_didIteratorError2) {
-                      throw _iteratorError2;
                     }
                   }
                 }
@@ -649,37 +608,33 @@ var TicketmasterWidget = function () {
 
       // left btn
       this.prevEventX = document.createElement("div");
-      var _arr = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-left', this.controlHiddenClass];
-      for (var _i = 0; _i < _arr.length; _i++) {
-        var cssClass = _arr[_i];
-        this.prevEventX.classList.add(cssClass);
+      var prevEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-left', this.controlHiddenClass];
+      for (var i in prevEventXClass) {
+        this.prevEventX.classList.add(prevEventXClass[i]);
       }
       this.eventsRootContainer.appendChild(this.prevEventX);
 
       // right btn
       this.nextEventX = document.createElement("div");
-      var _arr2 = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-        var cssClass = _arr2[_i2];
-        this.nextEventX.classList.add(cssClass);
+      var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
+      for (var i in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
-      var _arr3 = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
-        var cssClass = _arr3[_i3];
-        this.prevEventY.classList.add(cssClass);
+      var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
+      for (var i in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[i]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
-      var _arr4 = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var _i4 = 0; _i4 < _arr4.length; _i4++) {
-        var cssClass = _arr4[_i4];
-        this.nextEventY.classList.add(cssClass);
+      var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
+      for (var i in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 

@@ -205,37 +205,16 @@
           if ($countrySelect.data('cleared')) {
             $countrySelect.data('cleared', false);
             var options = '';
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-              for (var _iterator = response.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var result = _step.value;
-
-                if (result.address_components) {
-                  var country = result.address_components[result.address_components.length - 1];
-                  if (country) {
-                    var isSelected = country.short_name === countryShortName ? 'selected' : '';
-                    options += "<option " + isSelected + " value=\"" + country.short_name + "\">" + country.long_name + "</option>";
-                  }
-                }
-              }
-            } catch (err) {
-              _didIteratorError = true;
-              _iteratorError = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                  _iterator.return();
-                }
-              } finally {
-                if (_didIteratorError) {
-                  throw _iteratorError;
+            for (var i in response.results) {
+              var result = response.results[i];
+              if (result.address_components) {
+                var country = result.address_components[result.address_components.length - 1];
+                if (country) {
+                  var isSelected = country.short_name === countryShortName ? 'selected' : '';
+                  options += "<option " + isSelected + " value=\"" + country.short_name + "\">" + country.long_name + "</option>";
                 }
               }
             }
-
             $countrySelect.append(options);
           }
         }

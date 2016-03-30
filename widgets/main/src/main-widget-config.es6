@@ -213,7 +213,8 @@
           if($countrySelect.data('cleared')){
             $countrySelect.data('cleared', false);
             let options = '';
-            for(let result of response.results){
+            for(let i in response.results){
+              let result = response.results[i];
               if(result.address_components){
                 let country = result.address_components[result.address_components.length - 1];
                 if(country){

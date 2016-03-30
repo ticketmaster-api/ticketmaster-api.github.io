@@ -81,7 +81,8 @@ class TicketmasterWidget {
       }
     ];
 
-    for(let item of params){
+    for(let i in params){
+      let item = params[i];
       if(this.isConfigAttrExistAndNotEmpty(item.attr))
         attrs[item.verboseName] = this.config[item.attr];
     }
@@ -182,7 +183,8 @@ class TicketmasterWidget {
 
             // If multiple results without country try to find USA as prefer value
             if(!widget.config.country){
-              for(let result of response.results){
+              for(let i in response.results){
+                let result = response.results[i];
                 if(result.address_components){
                   let country = result.address_components[result.address_components.length - 1];
                   if(country){
@@ -510,29 +512,33 @@ class TicketmasterWidget {
 
     // left btn
     this.prevEventX = document.createElement("div");
-    for(let cssClass of [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-left', this.controlHiddenClass]){
-      this.prevEventX.classList.add(cssClass);
+    let prevEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-left', this.controlHiddenClass];
+    for(let i in prevEventXClass){
+      this.prevEventX.classList.add(prevEventXClass[i]);
     }
     this.eventsRootContainer.appendChild(this.prevEventX);
 
     // right btn
     this.nextEventX = document.createElement("div");
-    for(let cssClass of [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass]){
-      this.nextEventX.classList.add(cssClass);
+    let nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
+    for(let i in nextEventXClass){
+      this.nextEventX.classList.add(nextEventXClass[i]);
     }
     this.eventsRootContainer.appendChild(this.nextEventX);
 
     // top btn
     this.prevEventY = document.createElement("div");
-    for(let cssClass of [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass]){
-      this.prevEventY.classList.add(cssClass);
+    let prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
+    for(let i in prevEventYClass ){
+      this.prevEventY.classList.add(prevEventYClass[i]);
     }
     this.eventsRootContainer.appendChild(this.prevEventY);
 
     // bottom btn
     this.nextEventY = document.createElement("div");
-    for(let cssClass of [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass]){
-      this.nextEventY.classList.add(cssClass);
+    let nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
+    for(let i in nextEventYClass){
+      this.nextEventY.classList.add(nextEventYClass[i]);
     }
     this.eventsRootContainer.appendChild(this.nextEventY);
 

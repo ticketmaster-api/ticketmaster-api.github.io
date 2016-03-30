@@ -69,6 +69,10 @@
     }
   }
 
+  select::-ms-expand {
+    display: none;
+  }
+
 }
 
 .widget-container {
