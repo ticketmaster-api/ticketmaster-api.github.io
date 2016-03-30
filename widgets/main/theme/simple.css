@@ -245,12 +245,17 @@ div[w-theme="simple"] .events_control-horizontal:hover {
 }
 
 
-div[w-theme="simple"] .events_control-vertical.events_control-hidden {
-    height: 0;
-}
+/*div[w-theme="simple"] .events_control-vertical.events_control-hidden {*/
+    /*height: 0;*/
+/*}*/
 
-div[w-theme="simple"] .events_control-horizontal.events_control-hidden {
-    width: 0;
+/*div[w-theme="simple"] .events_control-horizontal.events_control-hidden {*/
+    /*width: 0;*/
+/*}*/
+
+div[w-theme="simple"] .events_control-hidden {
+    opacity: 0;
+    cursor: default;
 }
 
 div[w-theme="simple"] .bg-cover {
