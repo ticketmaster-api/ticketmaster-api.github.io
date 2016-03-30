@@ -25,9 +25,10 @@
             ga('create', 'UA-72344127-1', 'auto');
             ga('send', 'pageview');
 
-            if(sessionStorage.getItem('tk-api-email')){
+            if( sessionStorage.getItem('tk-api-email') && typeof sessionStorage.getItem('tk-api-email') === "string" ) {
               document.getElementsByClassName("apigee-login")[0].textContent = sessionStorage.getItem('tk-api-email');
             }
+
         </script>
         <script src="{{"/scripts/components/scroll-top.js" | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
