@@ -287,16 +287,8 @@ div[w-theme="newschool"] .address-wrapper{
 
 div[w-theme="newschool"] .event-address{
     display: block;
-    display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    max-height: 50px;
-}
-
-div[w-theme="newschool"]  .event-address-name{
-    display: block;
     white-space: nowrap;
 }
 
@@ -695,7 +687,7 @@ div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper .event-add
 }
 
 div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper .event-name {
-    max-height: 68px;
+    max-height: 72px;
     overflow: hidden;
     display: block;
     display: -webkit-box;
