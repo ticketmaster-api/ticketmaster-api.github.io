@@ -53,7 +53,7 @@ div[w-theme="newschool"] .event-message {
     line-height: 1.6;
     color: #ffffff;
     opacity: 0;
-    z-index: 10;
+    z-index: 60;
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
     -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -106,8 +106,8 @@ div[w-theme="newschool"][w-colorscheme="light"] .events-root-container {
     background: #fff;
 }
 
-div[w-theme="newschool"] ul.events-root {
-    margin: 60px 0 0 0;
+div[w-theme="newschool"] ul{
+    margin: 0;
     padding: 0;
     -webkit-transition: margin 0.5s ease-in-out;
     -moz-transition: margin 0.5s ease-in-out;
@@ -116,6 +116,10 @@ div[w-theme="newschool"] ul.events-root {
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+}
+
+div[w-theme="newschool"] ul.events-root {
+    margin: 60px 0 0 0;
     height: 65%;
     display: block;
     overflow: hidden;
@@ -160,7 +164,9 @@ div[w-theme="newschool"] .bg-cover {
     -moz-opacity: 0.10;
     -khtml-opacity: 0.10;
     opacity: 0.10;
-    background-position: center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 div[w-theme="newschool"] .bg-cover:before {

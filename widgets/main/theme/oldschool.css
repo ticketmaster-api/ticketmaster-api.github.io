@@ -53,7 +53,7 @@ div[w-theme="oldschool"] .event-message {
     line-height: 1.6;
     color: #ffffff;
     opacity: 0;
-    z-index: 10;
+    z-index: 60;
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
     -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -100,6 +100,31 @@ div[w-theme="oldschool"] .events-root-container{
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     border: 2px solid #f7ec7a;
+}
+
+div[w-theme="oldschool"] .events-root-container:after {
+    content: '';
+    display: block;
+    background: #fff;
+    height: 125px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-top: 2px dashed #ccc;
+    z-index: 5;
+}
+
+div[w-theme="oldschool"] .events-root-container:before {
+    content: '';
+    display: block;
+    background: #fff;
+    height: 36px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 5;
 }
 
 div[w-theme="oldschool"] ul{
@@ -203,15 +228,15 @@ div[w-theme="oldschool"] .event-date-wraper{
     padding: 7px 0 3px;
 }
 
-div[w-theme="oldschool"] .event-date-wraper:after{
-    content: '';
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 3px;
-    border-top: 2px dashed #cccccc;
-    bottom: -70px;
-}
+/*div[w-theme="oldschool"] .event-date-wraper:after{*/
+    /*content: '';*/
+    /*display: block;*/
+    /*position: relative;*/
+    /*width: 100%;*/
+    /*height: 3px;*/
+    /*border-top: 2px dashed #cccccc;*/
+    /*bottom: -70px;*/
+/*}*/
 
 div[w-theme="oldschool"] .address-wrapper{
     display: block;
@@ -312,6 +337,7 @@ div[w-theme="oldschool"] .event-logo-box {
     font-size: 14px;
     line-height: 26px;
     text-align: center;
+    z-index: 10;
 }
 
 div[w-theme="oldschool"] .event-logo-box:before{
@@ -378,6 +404,7 @@ div[w-theme="oldschool"] .event-question {
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
+    z-index: 50;
 }
 
 div[w-theme="oldschool"] .event-question:before,
@@ -424,6 +451,7 @@ div[w-theme="oldschool"] .events_control {
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     overflow: hidden;
     opacity: 0.3;
+    z-index: 30;
 }
 
 div[w-theme="oldschool"] .events_control-horizontal {
@@ -681,4 +709,20 @@ div[w-theme="oldschool"][w-layout="horizontal"] .address-wrapper:before{
 div[w-theme="oldschool"][w-layout="horizontal"] .event-address{
     display: block;
     white-space: nowrap;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .events-root-container:after {
+    width: 150px;
+    height: 300px;
+    left: auto;
+    right: 0;
+    top: 0;
+    border-top: none;
+    border-left: 2px dashed #ccc;
+}
+
+div[w-theme="oldschool"][w-layout="horizontal"] .events-root-container:before {
+    height: 300px;
+    width: 36px;
+    right: auto;
 }
