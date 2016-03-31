@@ -19,9 +19,9 @@
     handle: 'square'
   });
 
-  $('#js_styling_nav_tab').one('shown.bs.tab', function (e) {
-    $widthController.slider('refresh');
-    $borderRadiusController.slider('refresh');
+  $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
+    $widthController.slider('relayout');
+    $borderRadiusController.slider('relayout');
   });
 
   var changeState = function changeState(event) {
@@ -90,8 +90,8 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 550,
-        theme = void 0,
-        layout = void 0;
+        theme = undefined,
+        layout = undefined;
 
     configForm.find("input[type='text']").each(function () {
       var $self = $(this),
@@ -193,6 +193,7 @@
     }
   });
 
+  $('#w-country').data('cleared', true);
   widget.onLoadCoordinate = function (response) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
@@ -205,7 +206,7 @@
         if (response.results) {
           $countrySelect.prop('disabled', !response.results.length);
           if ($countrySelect.data('cleared')) {
-            $countrySelect.data('cleared', false);
+            $countrySelect.data('cleared', false).html('');
             for (var i in response.results) {
               var result = response.results[i];
               if (result.address_components) {
@@ -223,7 +224,7 @@
     }
 
     if (!options) {
-      $countrySelect.append("<option>All</option>");
+      $countrySelect.html("<option>All</option>");
     }
   };
 })();

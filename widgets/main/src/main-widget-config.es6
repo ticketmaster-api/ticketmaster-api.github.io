@@ -18,9 +18,9 @@
     handle: 'square'
   });
 
-  $('#js_styling_nav_tab').one('shown.bs.tab', function (e) {
-    $widthController.slider('refresh');
-    $borderRadiusController.slider('refresh');
+  $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
+    $widthController.slider('relayout');
+    $borderRadiusController.slider('relayout');
   });
 
   var changeState = function(event){
