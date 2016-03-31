@@ -18,9 +18,9 @@
     handle: 'square'
   });
 
-  $('#js_styling_nav_tab').one('shown.bs.tab', function (e) {
-    $widthController.slider('refresh');
-    $borderRadiusController.slider('refresh');
+  $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
+    $widthController.slider('relayout');
+    $borderRadiusController.slider('relayout');
   });
 
   var changeState = function(event){
@@ -201,6 +201,7 @@
     }
   });
 
+  $('#w-country').data('cleared', true);
   widget.onLoadCoordinate = function (response, countryShortName = '') {
     widget.config['country'] = countryShortName;
     let $countrySelect = $('#w-country'),
@@ -211,7 +212,9 @@
         if(response.results){
           $countrySelect.prop('disabled', !response.results.length);
           if($countrySelect.data('cleared')){
-            $countrySelect.data('cleared', false);
+            $countrySelect
+              .data('cleared', false)
+              .html('');
             for(let i in response.results){
               let result = response.results[i];
               if(result.address_components){
@@ -229,7 +232,7 @@
     }
 
     if(!options){
-      $countrySelect.append(`<option>All</option>`);
+      $countrySelect.html(`<option>All</option>`);
     }
   }
 
