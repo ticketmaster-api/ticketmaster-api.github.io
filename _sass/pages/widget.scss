@@ -38,22 +38,18 @@
 }
 
 .config-block{
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 
-  @media (max-width: 1200px){
+  @media (max-width: 1199px){
     padding-right: 24px;
     padding-left: 24px;
-  }
-
-  .common_tabs{
-    display: block;
-    @media (max-width: 1199px){
-      border-top: 1px solid $n3;
-      padding-top: 20px;
+    .common_tabs{
+      border-bottom: 1px solid $n3;
     }
   }
 
   @media (min-width: 1200px){
+    margin-bottom: 60px;
     border-right: 1px solid $n3;
     padding-right: 20px;
     padding-left: 15px;
@@ -116,7 +112,7 @@
 .widget-container-wrapper {
   text-align: left;
   display: inline-block;
-  margin-bottom: 48px;
+  margin-bottom: 35px;
   @media (min-width: 1200px){
     width: auto;
     margin-left: 10px;
@@ -139,7 +135,6 @@
   text-align: center;
   @media (min-width: 1200px){
     text-align: left;
-    float: right;
   }
 
   @media (max-width: 1199px){
@@ -197,6 +192,5 @@
     display: block;
   }
 }
-
 
 

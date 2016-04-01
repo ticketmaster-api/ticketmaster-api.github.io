@@ -151,7 +151,7 @@
     if ($self.is(':checked')) $self.data('is-checked', 'checked');
   });
 
-  $('#js_get_widget_code').on('click', function () {
+  $('.js_get_widget_code').on('click', function () {
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
 
     var htmlCode = document.createElement("div");
@@ -167,7 +167,7 @@
     $widgetModal.modal();
   });
 
-  $('#js_reset_widget').on('click', function () {
+  $('.js_reset_widget').on('click', function () {
     resetWidget($configForm);
   });
 
