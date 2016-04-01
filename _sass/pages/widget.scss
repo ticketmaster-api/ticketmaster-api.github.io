@@ -141,6 +141,12 @@
     text-align: left;
     float: right;
   }
+
+  @media (max-width: 1199px){
+    padding-right: 0;
+    padding-left: 0;
+    overflow: hidden;
+  }
 }
 
 .widget__color_scheme_control{
