@@ -140,6 +140,11 @@
       $widgetModalNoCode = $('#js_widget_modal_no_code');
 
   $configForm.on("change", changeState);
+  // Mobile devices. Force 'change' by 'Go' press
+  $configForm.on("submit", function (e) {
+    $configForm.find('input:focus').trigger('blur');
+    e.preventDefault();
+  });
 
   $configForm.find("input[type='text']").each(function () {
     var $self = $(this);
