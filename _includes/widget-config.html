@@ -1,5 +1,9 @@
 
-<form accept-charset="UTF-8" class="main-widget-config-form common_tabs" method="post">
+<form accept-charset="UTF-8" class="main-widget-config-form common_tabs" method="post" autocomplete="off">
+
+  <!--Use for mobile devices 'Go' button-->
+  <button type="submit" class="hidden"></button>
+
   <ul class="nav nav-tabs" data-tabs="tabs">
     <li class="active">
       <a href="#widget-config-setup" data-toggle="tab">Technical</a>
@@ -49,7 +53,7 @@
           <label for="w-radius">
             Radius <span class="config_field__description">(miles)</span>
           </label>
-          <input class="text-center" type="text" id="w-radius" name="w-radius" value="25">
+          <input class="js_widget__number text-center" type="number" id="w-radius" name="w-radius" value="25">
         </div>
       </div>
 
@@ -100,7 +104,7 @@
       </div>
       <div class="row row-native">
         <div class="col-lg-3 col-md-2 col-sm-2">
-          <input class="text-center" type="text" id="w-size" name="w-size" value="25">
+          <input class="js_widget__number text-center" type="number" id="w-size" name="w-size" value="25" max="100" min="1" required>
         </div>
       </div>
     </div>
@@ -179,6 +183,5 @@
       </div>
     </div>
   </div>
-  <!--Use for mobile devices 'Go' button-->
-  <button type="submit" class="hidden"></button>
+
 </form>

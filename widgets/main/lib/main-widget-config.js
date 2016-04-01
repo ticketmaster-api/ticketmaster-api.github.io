@@ -25,6 +25,10 @@
   });
 
   var changeState = function changeState(event) {
+    if (!event.target.name) {
+      return;
+    }
+
     var widgetNode = document.querySelector("div[w-tmapikey]");
 
     if (event.target.name === "w-postalcode") {
@@ -80,9 +84,8 @@
     //}
     // }
     // else {}
-    if (event.target.name) {
-      widgetNode.setAttribute(event.target.name, event.target.value);
-    }
+
+    widgetNode.setAttribute(event.target.name, event.target.value);
 
     widget.update();
   };
@@ -93,7 +96,7 @@
         theme = undefined,
         layout = undefined;
 
-    configForm.find("input[type='text']").each(function () {
+    configForm.find("input[type='text'], input[type='number']").each(function () {
       var $self = $(this),
           data = $self.data(),
           value = data.defaultValue;
@@ -146,7 +149,7 @@
     e.preventDefault();
   });
 
-  $configForm.find("input[type='text']").each(function () {
+  $configForm.find("input[type='text'], input[type='number']").each(function () {
     var $self = $(this);
     $self.data('default-value', $self.val());
   });
@@ -168,7 +171,6 @@
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
-
     $widgetModal.modal();
   });
 
@@ -184,17 +186,20 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $("#w-size").on("keypress", function (event) {
-    var kchar = String.fromCharCode(event.keyCode);
-    if (/[\w\d]/.test(kchar)) {
-      if (/\d/.test(kchar)) {
-        var newVal = (this.value.substring(0, this.selectionStart) + this.value.substring(this.selectionEnd) + kchar) * 1;
-        if (newVal > 100 || newVal < 1) {
-          event.preventDefault();
-        }
-      } else {
-        event.preventDefault();
-      }
+  $('.js_widget__number').on('change', function (e) {
+    var $self = $(this),
+        val = $self.val(),
+        max = parseInt($self.attr('max')),
+        min = parseInt($self.attr('min')),
+        required = !!$self.attr('required'),
+        errorCssClass = 'error';
+
+    if (max && val > max || min && val < min || required && val === '' || !/[\d]/.test(val) && val !== '') {
+      $self.addClass(errorCssClass);
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      $self.removeClass(errorCssClass);
     }
   });
 
