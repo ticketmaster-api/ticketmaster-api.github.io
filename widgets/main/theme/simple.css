@@ -512,8 +512,12 @@ div[w-theme="simple"][w-layout="horizontal"] .event-buy-btn {
 }
 
 div[w-theme="simple"][w-layout="horizontal"] .event-wrapper:before {
-    background: -moz-linear-gradient(right, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
-    background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 20%);
-    background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
+background: -moz-linear-gradient(right, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
+background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 20%);
+background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
 }
 
+/**/
+div[w-theme="simple"][w-proportion="3x6"]  {
+    width: 300px;
+}

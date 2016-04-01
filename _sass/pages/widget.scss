@@ -26,15 +26,82 @@
   button.active,
   input[type="radio"]:checked+label {
     color: #019cde;
-    border-bottom: 2px solid #019cde;
+    border-bottom: 2px solid $p1;
   }
 
   input[type="radio"]{
     position: absolute;
     width: 0;
     height: 0;
+    border: 0;
   }
 
+}
+
+.radio-buttons {
+  input[type=radio]:not(old){
+    vertical-align: middle;
+    border-radius: 50%;
+    opacity: 1;
+    &:hover {
+      cursor: pointer;
+    }
+    & + label > span {
+      display: none;
+    }
+  }
+
+  input[type="radio"] {
+    & + label {
+      line-height: 1.5em;
+      margin: 10px 0 10px 0;
+      padding-right: 7%;
+      font-family: $font-body;
+    }
+  }
+/*
+  input[type=radio]:not(old):checked + label > span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 5px;
+    border-radius: 50%;
+    background: #009cde;
+  }
+*/
+  input[type=radio]:not(old) + label:before {
+    content: "";
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+
+    margin-left: -24px;
+    margin-top: 3px;
+    position: absolute;
+    /*left: 0;
+    bottom: 1px;
+    background-color: #aaa;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
+    &:focus {
+      outline: none;
+    }
+  }
+  input[type=radio]:checked + label:before {
+    content: "\2022";
+    color: $p1;
+    font-size: 30px;
+    text-align: center;
+    line-height: 18px;
+  }
+  label:hover:before {
+    border: 0 !important;
+    cursor: pointer;
+  }
+  /*turn of standart focus*/
+  input[type=radio]:focus {
+    outline: none;
+  }
 }
 
 .config-block{
