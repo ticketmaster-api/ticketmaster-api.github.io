@@ -755,6 +755,7 @@ div[w-theme="newschool"][w-colorscheme="dark"] .event-buy-btn {
     background-color: #009cde;
     color: #fff;
     border: none;
+    padding-top: 6px;
 }
 
 div[w-theme="newschool"][w-colorscheme="dark"] .event-buy-btn:hover {

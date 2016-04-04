@@ -153,8 +153,8 @@ class TicketmasterWidget {
       this.themeModificators[ this.widgetConfig.theme ]();
     }
 
-    this.embedUniversePlugin();
-    this.embedTMPlugin();
+    // this.embedUniversePlugin();
+    // this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -233,7 +233,7 @@ class TicketmasterWidget {
     this.buyBtn.target = '_blank';
     this.buyBtn.href = '';
     this.buyBtn.addEventListener('click', (e)=> {
-      e.preventDefault();
+      // e.preventDefault();
       this.stopAutoSlideX();
       //console.log(this.config.affiliateid)
     });
@@ -246,9 +246,10 @@ class TicketmasterWidget {
           url = '';
       if(event){
         if(event.url){
-          if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
-            url = event.url;
-          }
+          // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
+          //   url = event.url;
+          // }
+          url = event.url;
         }
       }
       this.buyBtn.href = url;
@@ -621,9 +622,11 @@ class TicketmasterWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
+      e.preventDefault();
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
+      e.preventDefault();
       handleTouchMove.call(this, e);
     }, false);
   }
