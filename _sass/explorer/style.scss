@@ -472,6 +472,9 @@
   }
 
   #req-res-container{
+    height: 180px;
+    overflow: auto;
+    padding-right: 10px;
     .req-resp-temp{
       border: none;
       border-bottom: 1px solid $silver;
@@ -512,11 +515,11 @@
           height: 16px;
           position: absolute;
           left: 0;
-          top: 17px;
+          top: 8px;
         }
         &[aria-expanded='true']{
           .caret{
-            top: 10px;
+            top: 1px;
             @include rotate-180();
           }
         }

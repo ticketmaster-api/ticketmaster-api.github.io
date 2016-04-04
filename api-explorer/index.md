@@ -3,6 +3,43 @@ layout: api-explorer
 ---
 
 <div id="api-explorer">
+    <!--hints-->
+    <button id="cd-tour-trigger" class="btn feedback-btn">Show hints</button>
+	<ul class="cd-tour-wrapper">
+		<li class="cd-single-step">
+			<span>Step 1</span>
+
+			<div class="cd-more-info bottom">
+				<h2>Step Number 1</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+			</div>
+		</li> <!-- .cd-single-step -->
+		<li class="cd-single-step">
+			<span>Step 2</span>
+
+			<div class="cd-more-info top">
+				<h2>Step Number 2</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quasi in quisquam.</p>
+			</div>
+		</li> <!-- .cd-single-step -->
+		<li class="cd-single-step">
+			<span>Step 3</span>
+
+			<div class="cd-more-info top">
+				<h2>Step Number 3</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio illo non enim ut necessitatibus perspiciatis, dignissimos.</p>
+			</div>
+		</li> <!-- .cd-single-step -->
+        <li class="cd-single-step">
+            <span>Step 4</span>
+
+            <div class="cd-more-info top">
+                <h2>Step Number 4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio illo non enim ut necessitatibus perspiciatis, dignissimos.</p>
+            </div>
+        </li> <!-- .cd-single-step -->
+	</ul> <!-- .cd-tour-wrapper -->
+	<div class="cd-cover-layer"></div>
     <!--bootstrap error popup-->
     <div id="error-alert" class="modal fade" role="dialog">
         <div class="vertical-alignment-helper">
@@ -154,10 +191,6 @@ layout: api-explorer
             </div>
         </div>
     </div>
-    <!--slider-->
-    <div class="row-container">
-        <div id="columns"></div>
-    </div>
     <!--response list header-->
     <div class="row">
         <div class="row-container">
@@ -174,5 +207,9 @@ layout: api-explorer
                 <div class="panel-group" id="req-res-container"></div>
             </div>
         </div>
+    </div>
+    <!--slider-->
+    <div class="row-container">
+        <div id="columns"></div>
     </div>
 </div>
