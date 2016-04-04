@@ -1107,6 +1107,7 @@ var TicketmasterWidget = function () {
     value: function initPretendedLink(el, url, isBlank) {
       if (el && url) {
         el.setAttribute('data-url', url);
+        el.classList.add("event-pretended-link");
         el.addEventListener('click', function () {
           var url = this.getAttribute('data-url');
           if (url) {
@@ -1122,7 +1123,6 @@ var TicketmasterWidget = function () {
     value: function createDOMItem(itemConfig) {
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
-      this.initPretendedLink(medWrapper, itemConfig.url, true);
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
@@ -1138,6 +1138,7 @@ var TicketmasterWidget = function () {
           name = document.createElement("span");
       name.classList.add("event-name");
       name.appendChild(nameContent);
+      this.initPretendedLink(name, itemConfig.url, true);
       medWrapper.appendChild(name);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
