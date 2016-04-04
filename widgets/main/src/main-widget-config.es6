@@ -86,7 +86,7 @@
     if(targetName === "w-theme"){
       if(targetValue === 'simple'){
         $layoutSelectors.prop('disabled', true);
-        $fixedSizeButtons.show(); 
+        $fixedSizeButtons.show();
       }else{
         $layoutSelectors.prop('disabled', false);
         $fixedSizeButtons.hide();
@@ -98,13 +98,7 @@
     }
 
     if(targetName === "w-layout"){
-      let sizeConfig = { //default size
-        width: themeConfig.simple.initSliderSize.width,  //350
-        height: themeConfig.simple.initSliderSize.height,  //550
-        maxWidth: themeConfig.simple.initSliderSize.maxWidth,  //500
-        minWidth: themeConfig.simple.initSliderSize.minWidth // 350
-      };
-      sizeConfig = themeConfig.simple.initSliderSize;
+      let sizeConfig = themeConfig.simple.initSliderSize;
       if(targetValue === 'horizontal'){
         sizeConfig = {
           width: 620,
