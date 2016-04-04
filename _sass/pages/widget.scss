@@ -110,9 +110,6 @@
   @media (max-width: 1199px){
     padding-right: 24px;
     padding-left: 24px;
-    .common_tabs{
-      border-bottom: 1px solid $n3;
-    }
   }
 
   @media (min-width: 1200px){
@@ -179,7 +176,7 @@
 .widget-container-wrapper {
   text-align: left;
   display: inline-block;
-  margin-bottom: 35px;
+  margin-bottom: 34px;
   @media (min-width: 1200px){
     width: auto;
     margin-left: 10px;
@@ -209,6 +206,14 @@
     padding-left: 0;
     overflow: hidden;
   }
+}
+
+.row-mobile-control{
+  padding-top: 23px;
+  margin-right: 24px;
+  margin-left: 24px;
+  margin-bottom: 30px;
+  border-top: solid 2px $n3;
 }
 
 .widget__color_scheme_control{
