@@ -1,5 +1,6 @@
 (function(){
 
+
   var themeConfig = {
       simple: {
         name: 'Poster',
