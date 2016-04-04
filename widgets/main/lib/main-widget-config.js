@@ -2,29 +2,29 @@
 
 (function () {
 
-  var themeMatrix = {
+  var themeConfig = {
     simple: {
       name: 'Poster',
       sizes: {
         s: {
           width: 160,
           height: 300,
-          layout: 'horisontal'
+          layout: 'horizontal'
         },
         m: {
           width: 160,
           height: 300,
-          layout: 'horisontal'
+          layout: 'horizontal'
         },
         l: {
           width: 160,
           height: 300,
-          layout: 'horisontal'
+          layout: 'horizontal'
         },
         xl: {
           width: 160,
           height: 300,
-          layout: 'horisontal'
+          layout: 'horizontal'
         },
         xxl: {
           width: 300,
@@ -36,6 +36,12 @@
           height: 550,
           layout: 'vertical'
         }
+      },
+      initSliderSize: {
+        width: 350,
+        height: 550,
+        maxWidth: 500,
+        minWidth: 350
       }
     },
     oldskool: {},
@@ -65,37 +71,40 @@
   });
 
   var changeState = function changeState(event) {
-    var widgetNode = document.querySelector("div[w-tmapikey]");
+    var widgetNode = document.querySelector("div[w-tmapikey]"),
+        targetValue = event.target.value,
+        targetName = event.target.name,
+        $tabButtons = $('.widget__layout_control .js-tab-buttons'),
+        $fixedSizeButtons = $('.widget__layout_control .js-fixed-size-buttons'); //to hide in other themes except 'simple'
 
-    if (event.target.name === "w-postalcode") {
+    if (targetName === "w-postalcode") {
       widgetNode.setAttribute('w-country', '');
       $('#w-country').prop('disabled', true).data('cleared', true).html('');
     }
 
-    if (event.target.name === "w-theme") {
-      if (event.target.value === 'simple') {
+    if (targetName === "w-theme") {
+      if (targetValue === 'simple') {
         $layoutSelectors.prop('disabled', true);
+        $fixedSizeButtons.show();
       } else {
         $layoutSelectors.prop('disabled', false);
+        $fixedSizeButtons.hide();
       }
 
       if (widgetNode.getAttribute('w-layout') === 'horizontal') {
-        widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
+        widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
       }
     }
 
-    //FixMe
-    if (event.target.name === "w-layout" || event.target.name === "w-proportion") {
-      var widthSlider = $('#widget-config-styling > div:nth-child(2) > div:nth-child(1)');
-      var tabBurrons = $('#widget-config-styling > div:nth-child(1) > div.col-lg-12.col-md-4.col-sm-4.col-sm-layout > div > div.tab-buttons');
-      var sizeConfig = {
-        width: 350,
-        height: 550,
-        maxWidth: 500,
-        minWidth: 350
+    if (targetName === "w-layout") {
+      var sizeConfig = { //default size
+        width: themeConfig.simple.initSliderSize.width, //350
+        height: themeConfig.simple.initSliderSize.height, //550
+        maxWidth: themeConfig.simple.initSliderSize.maxWidth, //500
+        minWidth: themeConfig.simple.initSliderSize.minWidth // 350
       };
-
-      if (event.target.value === 'horizontal') {
+      sizeConfig = themeConfig.simple.initSliderSize;
+      if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
           height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
@@ -103,87 +112,54 @@
           minWidth: 620
         };
       }
-      var tValue = event.target.value;
-      console.log('tValue', tValue);
-      console.log('themeMatrix.simple.sizes.tValue', themeMatrix.simple.sizes[tValue]);
-      sizeConfig = {
-        width: themeMatrix.simple.sizes[tValue].width,
-        height: themeMatrix.simple.sizes[tValue].height,
+
+      $widthController.slider({
+        setValue: sizeConfig.width,
+        max: sizeConfig.maxWidth,
+        min: sizeConfig.minWidth
+      }).slider('refresh');
+
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
+    }
+
+    //Check fixed sizes for 'simple' theme
+    if (targetName === "w-proportion") {
+      var widthSlider = $('.js_widget_width_slider');
+      var _sizeConfig = {
+        width: themeConfig.simple.sizes[targetValue].width,
+        height: themeConfig.simple.sizes[targetValue].height,
         maxWidth: 600,
         minWidth: 350
       };
-      if (event.target.value !== 'custom') {
-        tabBurrons.hide();
+
+      //set layout
+      widgetNode.setAttribute('w-layout', themeConfig.simple.sizes[targetValue].layout);
+
+      if (targetValue !== 'custom') {
+        $tabButtons.hide();
         widthSlider.hide();
       } else {
-        tabBurrons.show();
+        $tabButtons.show();
         widthSlider.show();
-      }
+        $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-      $widthController.slider({
-        setValue: sizeConfig.width,
-        max: sizeConfig.maxWidth,
-        min: sizeConfig.minWidth
-      }).slider('refresh');
-
-      widgetNode.setAttribute('w-width', sizeConfig.width);
-      widgetNode.setAttribute('w-height', sizeConfig.height);
-    }
-
-    /**
-     *
-     * @param radioValue = value from radio button
-     * @param params = additional options for style customization
-     */
-    function SetFixedSize(radioValue, params) {
-      //console.log(radioValue, 'radioValue');
-
-      var sizeConfig = {
-        width: 300,
-        height: 600,
-        maxWidth: 600,
-        minWidth: 300
-      };
-      switch (radioValue) {
-        case 'xxl':
-          sizeConfig = {
-            width: 300,
-            height: 600,
-            maxWidth: 600,
-            minWidth: 300
-          };
-          break;
-        case 'm':
-          sizeConfig = {
-            width: 300,
-            height: 600,
-            maxWidth: 600,
-            minWidth: 300
-          };
-          break;
-      }
-
-      if (event.target.value === 'horizontal') {
-        sizeConfig = {
-          width: 620,
-          height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
-          maxWidth: 900,
-          minWidth: 620
+        _sizeConfig = { //default size
+          width: themeConfig.simple.initSliderSize.width, //350
+          height: themeConfig.simple.initSliderSize.height, //550
+          maxWidth: themeConfig.simple.initSliderSize.maxWidth, //500
+          minWidth: themeConfig.simple.initSliderSize.minWidth // 350
         };
+        $widthController.slider({
+          setValue: _sizeConfig.width,
+          max: _sizeConfig.maxWidth,
+          min: _sizeConfig.minWidth
+        }).slider('refresh');
       }
 
-      //console.log(sizeConfig);
-
-      $widthController.slider({
-        setValue: sizeConfig.width,
-        max: sizeConfig.maxWidth,
-        min: sizeConfig.minWidth
-      }).slider('refresh');
-
-      widgetNode.setAttribute('w-width', sizeConfig.width);
-      widgetNode.setAttribute('w-height', sizeConfig.height);
+      widgetNode.setAttribute('w-width', _sizeConfig.width);
+      widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
-    //SetFixedSize(event.target.value, null);
 
     // if(event.target.name === "border"){
     //if(event.target.checked){
@@ -235,7 +211,6 @@
           theme = val;
         } else if (name === 'w-layout') {
           layout = val;
-          console.log('layout', layout);
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
