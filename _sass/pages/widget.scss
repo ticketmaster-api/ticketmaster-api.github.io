@@ -265,4 +265,75 @@
   }
 }
 
+//  API Key
+.widget_api_key {
+  padding-right: 16px;
+  &__field{
+    position: relative;
+  }
+
+  &__question {
+    position: absolute;
+    top: 16px;
+    right: -24px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      -webkit-transition: opacity 0.2s ease-in-out;
+      -moz-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/widgets/question-ic-blue.svg");
+    }
+
+    &:after {
+      opacity: 0.7;
+      background-image: url("/assets/img/widgets/question-ic-grey.svg");
+    }
+
+    &:hover{
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
