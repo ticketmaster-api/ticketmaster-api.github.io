@@ -1,6 +1,5 @@
 
-<form accept-charset="UTF-8" class="main-widget-config-form common_tabs">
-
+<form accept-charset="UTF-8" class="main-widget-config-form common_tabs" method="post">
   <ul class="nav nav-tabs" data-tabs="tabs">
     <li class="active">
       <a href="#widget-config-setup" data-toggle="tab">Technical</a>
@@ -194,13 +193,15 @@
       </div>
     </div>
 
-    <div class="row row-native">
+    <div class="row row-native visible-lg">
       <div class="col-lg-6 col-md-3 col-sm-3">
-        <button id="js_get_widget_code" type="button" class="btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
+        <button type="button" class="js_get_widget_code btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
       </div>
       <div class="col-lg-6 col-md-3 col-sm-3">
-        <button id="js_reset_widget" type="button" class="btn btn-block button-white-gray-border widget_config__btn">RESET</button>
+        <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
       </div>
     </div>
   </div>
+  <!--Use for mobile devices 'Go' button-->
+  <button type="submit" class="hidden"></button>
 </form>
