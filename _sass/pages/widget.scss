@@ -141,6 +141,21 @@
     display: none;
   }
 
+  input[type=number] {
+    -moz-appearance:textfield;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    &.error{
+      border-color: $red;
+    }
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
 }
 
 .widget-container {
