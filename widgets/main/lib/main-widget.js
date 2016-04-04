@@ -210,8 +210,8 @@ var TicketmasterWidget = function () {
       this.themeModificators[this.widgetConfig.theme]();
     }
 
-    this.embedUniversePlugin();
-    this.embedTMPlugin();
+    // this.embedUniversePlugin();
+    // this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -294,7 +294,7 @@ var TicketmasterWidget = function () {
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
       this.buyBtn.addEventListener('click', function (e) {
-        e.preventDefault();
+        // e.preventDefault();
         _this2.stopAutoSlideX();
         //console.log(this.config.affiliateid)
       });
@@ -308,9 +308,10 @@ var TicketmasterWidget = function () {
             url = '';
         if (event) {
           if (event.url) {
-            if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
-              url = event.url;
-            }
+            // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
+            //   url = event.url;
+            // }
+            url = event.url;
           }
         }
         this.buyBtn.href = url;
@@ -713,9 +714,11 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
+        e.preventDefault();
         handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
+        e.preventDefault();
         handleTouchMove.call(_this7, e);
       }, false);
     }
@@ -1107,6 +1110,7 @@ var TicketmasterWidget = function () {
     value: function initPretendedLink(el, url, isBlank) {
       if (el && url) {
         el.setAttribute('data-url', url);
+        el.classList.add("event-pretended-link");
         el.addEventListener('click', function () {
           var url = this.getAttribute('data-url');
           if (url) {
@@ -1122,7 +1126,6 @@ var TicketmasterWidget = function () {
     value: function createDOMItem(itemConfig) {
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
-      this.initPretendedLink(medWrapper, itemConfig.url, true);
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
@@ -1138,6 +1141,7 @@ var TicketmasterWidget = function () {
           name = document.createElement("span");
       name.classList.add("event-name");
       name.appendChild(nameContent);
+      this.initPretendedLink(name, itemConfig.url, true);
       medWrapper.appendChild(name);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),

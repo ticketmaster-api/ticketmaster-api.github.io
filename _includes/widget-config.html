@@ -17,10 +17,16 @@
     <div class="tab-pane fade in active" id="widget-config-setup">
       <div class="row row-native">
         <div class="col-lg-12 col-md-6 col-sm-6">
-          <label for="w-tm-api-key">
-            API Key <span class="config_field__description">(Required)</span>
-          </label>
-          <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+          <div class="widget_api_key">
+            <label for="w-tm-api-key">
+              API Key <span class="config_field__description">(Required)</span>
+            </label>
+            <a href="https://live-livenation.devportal.apigee.com/user/login" class="pull-right">Get your own</a>
+            <div class="widget_api_key__field">
+              <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+              <a href="http://developer.ticketmaster.com/support/faq/" class="widget_api_key__question"></a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-12 col-md-6 col-sm-6">
           <label for="w-keyword">Keyword</label>

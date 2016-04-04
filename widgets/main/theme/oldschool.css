@@ -41,6 +41,17 @@ div[w-theme="oldschool"] a:active{
     text-decoration: none;
 }
 
+div[w-theme="oldschool"] .event-pretended-link {
+    cursor: pointer;
+    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="oldschool"] .event-pretended-link:hover {
+    color: #019cde;
+}
+
 div[w-theme="oldschool"] .event-message {
     position: absolute;
     padding: 16px 46px 16px 52px;
@@ -182,7 +193,6 @@ div[w-theme="oldschool"] .event-content-wraper {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: #fff;
-    cursor: pointer;
 }
 
 div[w-theme="oldschool"] .general-admission{
