@@ -74,8 +74,7 @@
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
         targetName = event.target.name,
-        $tabButtons = $('.widget__layout_control .js-tab-buttons'),
-        $fixedSizeButtons = $('.widget__layout_control .js-fixed-size-buttons'); //to hide in other themes except 'simple'
+        $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
     if (targetName === "w-postalcode") {
       widgetNode.setAttribute('w-country', '');
@@ -85,10 +84,8 @@
     if (targetName === "w-theme") {
       if (targetValue === 'simple') {
         $layoutSelectors.prop('disabled', true);
-        $fixedSizeButtons.show();
       } else {
         $layoutSelectors.prop('disabled', false);
-        $fixedSizeButtons.hide();
       }
 
       if (widgetNode.getAttribute('w-layout') === 'horizontal') {
@@ -97,13 +94,7 @@
     }
 
     if (targetName === "w-layout") {
-      var sizeConfig = { //default size
-        width: themeConfig.simple.initSliderSize.width, //350
-        height: themeConfig.simple.initSliderSize.height, //550
-        maxWidth: themeConfig.simple.initSliderSize.maxWidth, //500
-        minWidth: themeConfig.simple.initSliderSize.minWidth // 350
-      };
-      sizeConfig = themeConfig.simple.initSliderSize;
+      var sizeConfig = themeConfig.simple.initSliderSize;
       if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,

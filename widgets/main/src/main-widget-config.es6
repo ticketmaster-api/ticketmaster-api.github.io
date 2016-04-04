@@ -73,8 +73,7 @@
     let widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
         targetName = event.target.name,
-        $tabButtons = $('.widget__layout_control .js-tab-buttons'),
-        $fixedSizeButtons = $('.widget__layout_control .js-fixed-size-buttons');//to hide in other themes except 'simple'
+        $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
     if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
@@ -86,10 +85,8 @@
     if(targetName === "w-theme"){
       if(targetValue === 'simple'){
         $layoutSelectors.prop('disabled', true);
-        $fixedSizeButtons.show();
       }else{
         $layoutSelectors.prop('disabled', false);
-        $fixedSizeButtons.hide();
       }
 
       if(widgetNode.getAttribute('w-layout') === 'horizontal'){
