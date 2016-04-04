@@ -87,10 +87,12 @@ div[w-theme="simple"] .events-root-container{
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     background-color: #e5e5e5;
+    border-style: solid;
+    border-color: #ccc;
 }
 
 div[w-theme="simple"] ul{
