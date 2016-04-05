@@ -5,7 +5,9 @@
   "main": "_site/index.html",
   "scripts": {
     "widgets-once": "babel widgets/main/src -d widgets/main/lib --source-maps",
-    "widgets": "npm run widgets-once -- -w"
+    "widgets": "npm run widgets-once -- -w",
+    "countdown-widget-once": "babel products-and-docs/widgets/countdown/main/src -d products-and-docs/widgets/countdown/main/lib --source-maps",
+    "countdown-widget": "npm run countdown-widget-once -- -w"
   },
   "repository": {
     "type": "git",
