@@ -25,7 +25,7 @@ class TicketmasterWidget {
 
   get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
-  get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid"]}
+  get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion"]}  
 
   get sliderDelay(){ return 5000; }
 

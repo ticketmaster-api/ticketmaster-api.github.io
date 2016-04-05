@@ -1,6 +1,51 @@
 (function(){
 
 
+  var themeConfig = {
+      simple: {
+        name: 'Poster',
+        sizes: {
+          s: {
+            width: 160,
+            height: 300,
+            layout: 'horizontal'
+          },
+          m: {
+            width: 160,
+            height: 300,
+            layout: 'horizontal'
+          },
+          l: {
+            width: 160,
+            height: 300,
+            layout: 'horizontal'
+          },
+          xl: {
+            width: 160,
+            height: 300,
+            layout: 'horizontal'
+          },
+          xxl: {
+            width: 300,
+            height: 600,
+            layout: 'vertical'
+          },
+          custom: {
+            width: 350,
+            height: 550,
+            layout: 'vertical'
+          }
+        },
+        initSliderSize: {
+          width: 350,
+          height: 550,
+          maxWidth: 500,
+          minWidth: 350
+        }
+      }
+  };
+
+
   function getHeightByTheme(theme){
     return (theme === 'simple' ? 238 : 300);
   }
@@ -40,38 +85,34 @@
     if(!event.target.name){
       return;
     }
+    let widgetNode = document.querySelector("div[w-tmapikey]"),
+        targetValue = event.target.value,
+        targetName = event.target.name,
+        $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
-    let widgetNode = document.querySelector("div[w-tmapikey]");
-
-    if(event.target.name === "w-postalcode"){
+    if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
       $('#w-country').prop('disabled', true)
         .data('cleared', true)
         .html('');
     }
 
-    if(event.target.name === "w-theme"){
-      if(event.target.value === 'simple'){
+    if(targetName === "w-theme"){
+      if(targetValue === 'simple'){
         $layoutSelectors.prop('disabled', true);
       }else{
         $layoutSelectors.prop('disabled', false);
       }
 
       if(widgetNode.getAttribute('w-layout') === 'horizontal'){
-        widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
+        widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
       }
-      widgetNode.setAttribute('w-border', getBorderByTheme(event.target.value));
+      widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
     }
 
-    if(event.target.name === "w-layout"){
-      let sizeConfig = {
-          width: 350,
-          height: 550,
-          maxWidth: 500,
-          minWidth: 350
-        };
-
-      if(event.target.value === 'horizontal'){
+    if(targetName === "w-layout"){
+      let sizeConfig = themeConfig.simple.initSliderSize;
+      if(targetValue === 'horizontal'){
         sizeConfig = {
           width: 620,
           height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
@@ -81,11 +122,51 @@
       }
 
       $widthController.slider({
-        setValue: sizeConfig.width,
-        max: sizeConfig.maxWidth,
-        min: sizeConfig.minWidth
-      })
-      .slider('refresh');
+          setValue: sizeConfig.width ,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        })
+        .slider('refresh');
+
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
+    }
+
+    //Check fixed sizes for 'simple' theme
+    if(targetName === "w-proportion") {
+      let widthSlider = $('.js_widget_width_slider');
+      let sizeConfig = {
+        width: themeConfig.simple.sizes[targetValue].width,
+        height: themeConfig.simple.sizes[targetValue].height,
+        maxWidth: 600,
+        minWidth: 350
+      };
+
+      //set layout
+      widgetNode.setAttribute('w-layout', themeConfig.simple.sizes[targetValue].layout);
+
+      if (targetValue !== 'custom') {
+        $tabButtons.hide();
+        widthSlider.hide();
+      }else{
+        $tabButtons.show();
+        widthSlider.show();
+        $('input:radio[name="w-layout"][value="vertical"]',$tabButtons).prop('checked', true);
+
+        sizeConfig = { //default size
+          width: themeConfig.simple.initSliderSize.width,  //350
+          height: themeConfig.simple.initSliderSize.height,  //550
+          maxWidth: themeConfig.simple.initSliderSize.maxWidth,  //500
+          minWidth: themeConfig.simple.initSliderSize.minWidth // 350
+        };
+        $widthController.slider({
+            setValue: sizeConfig.width,
+            max: sizeConfig.maxWidth,
+            min: sizeConfig.minWidth
+          })
+          .slider('refresh');
+
+      }
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
