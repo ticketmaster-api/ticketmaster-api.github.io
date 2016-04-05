@@ -52,6 +52,19 @@
     return (theme === 'simple' ? 238 : 300);
   }
 
+  function getBorderByTheme(theme) {
+    switch (theme) {
+      case "oldschool":
+        return 2;
+        break;
+      case "newschool":
+        return 1;
+        break;
+      default:
+        return 0;
+    }
+  }
+
   // TODO: do we need 'config' variable ?
   var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
 
@@ -71,10 +84,15 @@
   });
 
   var changeState = function(event){
+    if(!event.target.name){
+      return;
+    }
     let widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
         targetName = event.target.name,
         $tabButtons = $('.widget__layout_control .js-tab-buttons');
+
+    let widgetNode = document.querySelector("div[w-tmapikey]");
 
     if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
@@ -93,6 +111,7 @@
       if(widgetNode.getAttribute('w-layout') === 'horizontal'){
         widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
       }
+      widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
     }
 
     if(targetName === "w-layout"){
@@ -166,9 +185,8 @@
       //}
     // }
     // else {}
-    if(event.target.name){
-      widgetNode.setAttribute(event.target.name, event.target.value);
-    }
+
+    widgetNode.setAttribute(event.target.name, event.target.value);
 
     widget.update();
   };
@@ -179,7 +197,7 @@
         theme,
         layout;
 
-    configForm.find("input[type='text']").each(function(){
+    configForm.find("input[type='text'], input[type='number']").each(function(){
       let $self = $(this),
           data = $self.data(),
           value = data.defaultValue;
@@ -233,7 +251,7 @@
     e.preventDefault();
   });
 
-  $configForm.find("input[type='text']").each(function(){
+  $configForm.find("input[type='text'], input[type='number']").each(function(){
     var $self = $(this);
     $self.data('default-value', $self.val());
   });
@@ -256,7 +274,6 @@
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
-
     $widgetModal.modal();
   });
 
@@ -273,20 +290,23 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $("#w-size").on("keypress",function(event){
-    var kchar = String.fromCharCode(event.keyCode);
-    if(/[\w\d]/.test(kchar)){
-      if(/\d/.test(kchar)){
-        var newVal = (this.value.substring(0, this.selectionStart)
-          + this.value.substring(this.selectionEnd)
-          + kchar)*1;
-        if(newVal > 100 || newVal < 1){
-          event.preventDefault();
-        }
-      }
-      else{
-        event.preventDefault();
-      }
+  $('.js_widget__number').on('change', function (e) {
+    let $self = $(this),
+      val = $self.val().trim(),
+      max = parseInt($self.attr('max')),
+      min = parseInt($self.attr('min')),
+      required = !!$self.attr('required'),
+      regNumberOrEmpty = /^(\s*|\d+)$/,
+      errorCssClass = 'error';
+
+    // if(val === '') $self.val('');
+
+    if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
+      $self.addClass(errorCssClass);
+      e.preventDefault();
+      e.stopPropagation();
+    }else{
+      $self.removeClass(errorCssClass);
     }
   });
 

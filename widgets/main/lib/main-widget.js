@@ -32,6 +32,11 @@ var TicketmasterWidget = function () {
       return this.eventsList;
     }
   }, {
+    key: "borderSize",
+    get: function get() {
+      return this.config.border || 0;
+    }
+  }, {
     key: "eventUrl",
     get: function get() {
       return "http://www.ticketmaster.com/event/";
@@ -77,7 +82,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "height", "borderradius", "colorscheme", "layout", "affiliateid", "propotion"];
+      return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid"];
     }
   }, {
     key: "sliderDelay",
@@ -197,6 +202,7 @@ var TicketmasterWidget = function () {
     this.eventsRootContainer.style.height = this.config.height + "px";
     this.eventsRootContainer.style.width = this.config.width + "px";
     this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
+    this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
     //this.clear();
 
@@ -210,8 +216,8 @@ var TicketmasterWidget = function () {
       this.themeModificators[this.widgetConfig.theme]();
     }
 
-    this.embedUniversePlugin();
-    this.embedTMPlugin();
+    // this.embedUniversePlugin();
+    // this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -294,7 +300,7 @@ var TicketmasterWidget = function () {
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
       this.buyBtn.addEventListener('click', function (e) {
-        e.preventDefault();
+        // e.preventDefault();
         _this2.stopAutoSlideX();
         //console.log(this.config.affiliateid)
       });
@@ -308,9 +314,10 @@ var TicketmasterWidget = function () {
             url = '';
         if (event) {
           if (event.url) {
-            if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
-              url = event.url;
-            }
+            // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
+            //   url = event.url;
+            // }
+            url = event.url;
           }
         }
         this.buyBtn.href = url;
@@ -575,7 +582,7 @@ var TicketmasterWidget = function () {
       var eventGroup = this.eventsRoot.getElementsByClassName("event-group-" + this.currentSlideX);
       if (eventGroup.length) {
         eventGroup = eventGroup[0];
-        eventGroup.style.marginTop = "-" + this.currentSlideY * this.config.height + "px";
+        eventGroup.style.marginTop = "-" + this.currentSlideY * (this.config.height - this.borderSize * 2) + "px";
         this.toggleControlsVisibility();
         this.setBuyBtnUrl();
       }
@@ -620,24 +627,24 @@ var TicketmasterWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var _i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[_i]);
+      for (var i in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var _i2 in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[_i2]);
+      for (var i in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[i]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var _i3 in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[_i3]);
+      for (var i in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -661,8 +668,8 @@ var TicketmasterWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var _i4 = 0; eventGroup.length > _i4; _i4++) {
-          eventGroup[_i4].style.marginTop = 0;
+        for (var i = 0; eventGroup.length > i; i++) {
+          eventGroup[i].style.marginTop = 0;
         }
       });
 
@@ -713,9 +720,11 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
+        e.preventDefault();
         handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
+        e.preventDefault();
         handleTouchMove.call(_this7, e);
       }, false);
     }
@@ -804,6 +813,7 @@ var TicketmasterWidget = function () {
       this.eventsRootContainer.style.height = this.config.height + "px";
       this.eventsRootContainer.style.width = this.config.width + "px";
       this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
+      this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
       this.eventsRootContainer.classList.remove("border");
       if (this.config.hasOwnProperty("border")) {
@@ -824,8 +834,8 @@ var TicketmasterWidget = function () {
         var events = document.getElementsByClassName("event-wrapper");
         for (var i in events) {
           if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-            events[i].style.width = this.config.width + "px";
-            events[i].style.height = this.config.height + "px";
+            events[i].style.width = this.config.width - this.borderSize * 2 + "px";
+            events[i].style.height = this.config.height - this.borderSize * 2 + "px";
           }
         }
         this.goToSlideY(0);
@@ -981,8 +991,8 @@ var TicketmasterWidget = function () {
       var groupNodeWrapper = document.createElement("li");
       groupNodeWrapper.classList.add("event-wrapper");
       groupNodeWrapper.classList.add("event-group-wrapper");
-      groupNodeWrapper.style.width = this.config.width + "px";
-      groupNodeWrapper.style.height = this.config.height + "px";
+      groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + "px";
+      groupNodeWrapper.style.height = this.config.height - this.borderSize * 2 + "px";
 
       var groupNode = document.createElement("ul");
       groupNode.classList.add("event-group");
@@ -1107,6 +1117,7 @@ var TicketmasterWidget = function () {
     value: function initPretendedLink(el, url, isBlank) {
       if (el && url) {
         el.setAttribute('data-url', url);
+        el.classList.add("event-pretended-link");
         el.addEventListener('click', function () {
           var url = this.getAttribute('data-url');
           if (url) {
@@ -1122,12 +1133,11 @@ var TicketmasterWidget = function () {
     value: function createDOMItem(itemConfig) {
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
-      this.initPretendedLink(medWrapper, itemConfig.url, true);
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
-      event.style.height = this.config.height + "px";
-      event.style.width = this.config.width + "px";
+      event.style.height = this.config.height - this.borderSize * 2 + "px";
+      event.style.width = this.config.width - this.borderSize * 2 + "px";
 
       var image = document.createElement("span");
       image.classList.add("bg-cover");
@@ -1138,6 +1148,7 @@ var TicketmasterWidget = function () {
           name = document.createElement("span");
       name.classList.add("event-name");
       name.appendChild(nameContent);
+      this.initPretendedLink(name, itemConfig.url, true);
       medWrapper.appendChild(name);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
