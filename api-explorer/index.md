@@ -5,40 +5,6 @@ layout: api-explorer
 <div id="api-explorer">
     <!--hints-->
     <button id="cd-tour-trigger" class="btn feedback-btn">Show hints</button>
-	<ul class="cd-tour-wrapper">
-		<li class="cd-single-step">
-			<span>Step 1</span>
-
-			<div class="cd-more-info bottom">
-				<h2>Step Number 1</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
-			</div>
-		</li> <!-- .cd-single-step -->
-		<li class="cd-single-step">
-			<span>Step 2</span>
-
-			<div class="cd-more-info top">
-				<h2>Step Number 2</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quasi in quisquam.</p>
-			</div>
-		</li> <!-- .cd-single-step -->
-		<li class="cd-single-step">
-			<span>Step 3</span>
-
-			<div class="cd-more-info top">
-				<h2>Step Number 3</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio illo non enim ut necessitatibus perspiciatis, dignissimos.</p>
-			</div>
-		</li> <!-- .cd-single-step -->
-        <li class="cd-single-step">
-            <span>Step 4</span>
-
-            <div class="cd-more-info top">
-                <h2>Step Number 4</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio illo non enim ut necessitatibus perspiciatis, dignissimos.</p>
-            </div>
-        </li> <!-- .cd-single-step -->
-	</ul> <!-- .cd-tour-wrapper -->
 	<div class="cd-cover-layer"></div>
     <!--bootstrap error popup-->
     <div id="error-alert" class="modal fade" role="dialog">
@@ -120,7 +86,18 @@ layout: api-explorer
     </div>
     <!--navigation bar-->
     <div class="row">
-        <div class="row-container">
+        <div class="row-container" style="position: relative;">
+            <ul class="cd-tour-wrapper">
+        		<li class="cd-single-step" style="left: 65%; top: 7%;">
+        			<span>Navigation Menu</span>
+
+        			<div class="cd-more-info bottom">
+        				<h2>Navigation Menu</h2>
+        				<p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+        				<img src="/assets/img/api-explorer/step-1.png">
+        			</div>
+        		</li> <!-- .cd-single-step -->
+            </ul>
             <div class="col-xs-12">
                 <nav class="nav navbar-nav"></nav>
             </div>
@@ -136,7 +113,18 @@ layout: api-explorer
     </div>
     <!--get button + api key-->
     <div class="row group-start">
-        <div class="row-container">
+        <div class="row-container" style="position: relative;">
+            <ul class="cd-tour-wrapper">
+                <li class="cd-single-step" style="left: 35%; top: -6%;">
+                    <span>Api Key</span>
+
+                    <div class="cd-more-info bottom">
+                        <h2>Api Key</h2>
+                        <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                        <img src="/assets/img/api-explorer/step-2.png">
+                    </div>
+                </li> <!-- .cd-single-step -->
+            </ul>
             <div class="col-sm-3 col-xs-12">
                 <a class="button button-blue" style="width: 100%; text-align: center; margin-top:auto;" href="#" role="button" id="primary-btn">GET</a>
             </div>
@@ -156,7 +144,18 @@ layout: api-explorer
         </div>
     </div>
     <!--parameter fields-->
-    <div class="row">
+    <div class="row" style="position: relative;">
+        <ul class="cd-tour-wrapper">
+            <li class="cd-single-step" style="left: 60%; top: -1%;">
+                <span>Request Parameters</span>
+
+                <div class="cd-more-info bottom">
+                    <h2>Request Parameters</h2>
+                    <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                    <img src="/assets/img/api-explorer/step-3.png">
+                </div>
+            </li> <!-- .cd-single-step -->
+        </ul>
         <div class="row-container" id="primary-column"></div>
         <div class="row-container">
             <div class="col-xs-12">
@@ -202,14 +201,36 @@ layout: api-explorer
     </div>
     <!--response list-->
     <div class="row">
-        <div class="row-container">
+        <div class="row-container" style="position: relative;">
+            <ul class="cd-tour-wrapper">
+                <li class="cd-single-step" style="right: 20%; top: -1%;">
+                    <span>Request Log</span>
+
+                    <div class="cd-more-info top">
+                        <h2>Request Log</h2>
+                        <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                        <img src="/assets/img/api-explorer/step-4.png">
+                    </div>
+                </li> <!-- .cd-single-step -->
+            </ul>
             <div class="col-xs-12">
                 <div class="panel-group" id="req-res-container"></div>
             </div>
         </div>
     </div>
     <!--slider-->
-    <div class="row-container">
+    <div class="row-container" style="position: relative;">
+        <ul class="cd-tour-wrapper">
+            <li class="cd-single-step" style="left: 17%; top: 73px;">
+                <span>Response Items</span>
+
+                <div class="cd-more-info top">
+                    <h2>Response Items</h2>
+                    <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                    <img src="/assets/img/api-explorer/step-5.png">
+                </div>
+            </li> <!-- .cd-single-step -->
+        </ul>
         <div id="columns"></div>
     </div>
 </div>

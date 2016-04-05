@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
 			//start tour
 			if(!tourWrapper.hasClass('active')) {
 				//in that case, the tour has not been started yet
-				tourWrapper.addClass('active');
+				$(tourWrapper[0]).addClass('active');
 				showStep(tourSteps.eq(0), coverLayer);
 			}
 		});
@@ -35,6 +35,7 @@ jQuery(document).ready(function($){
 		//close tour
 		tourStepInfo.on('click', '.cd-close', function(event){
 			closeTour(tourSteps, tourWrapper, coverLayer);
+			tourTrigger.removeClass('already-activated');
 		});
 
 		//detect swipe event on mobile - change visible step
@@ -72,6 +73,7 @@ jQuery(document).ready(function($){
 	}
 
 	function showStep(step, layer) {
+		step.parent().addClass('active');
 		step.addClass('is-selected').removeClass('move-left');
 		smoothScroll(step.children('.cd-more-info'));
 		showLayer(layer);
@@ -89,16 +91,26 @@ jQuery(document).ready(function($){
 	}
 
 	function changeStep(steps, layer, bool) {
-		var visibleStep = steps.filter('.is-selected'),
-			delay = (viewportSize() == 'desktop') ? 300: 0; 
+		var visibleStep = $(steps[0]),
+			index = 0,
+			delay = (viewportSize() == 'desktop') ? 300: 0;
+
+		$.grep(steps,function( n, i ) {
+			if ($(n).hasClass('is-selected')){
+				visibleStep = $(n);
+				index = i;
+			}
+		});
+
 		visibleStep.removeClass('is-selected');
+		visibleStep.parent().removeClass('active');
 
 		(bool == 'next') && visibleStep.addClass('move-left');
 
 		setTimeout(function(){
 			( bool == 'next' )
-				? showStep(visibleStep.next(), layer)
-				: showStep(visibleStep.prev(), layer);
+				? showStep($(steps[index+1]), layer)
+				: showStep($(steps[index-1]), layer);
 		}, delay);
 	}
 

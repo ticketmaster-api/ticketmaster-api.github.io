@@ -472,9 +472,10 @@
   }
 
   #req-res-container{
-    height: 180px;
+    height: 210px;
     overflow: auto;
     padding-right: 10px;
+    margin-bottom: -25px;
     .req-resp-temp{
       border: none;
       border-bottom: 1px solid $silver;
