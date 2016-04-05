@@ -1503,7 +1503,7 @@ Encrypt the credit card and cvv number using the following steps:
     <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
     <li>Before encrypting the sensitive data, salt it with 16 random bytes. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
     <li>When encrypting data, use RSA encryption with pkcs1 padding. Use the certificate value from step 1 as the public key.</li>
-    <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
+    oli>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
 
 Sample credit-card information for use in the sandbox environment:
@@ -1980,6 +1980,7 @@ Example:
 | Invalid cart | 90003 | 400 | cart_id parameter is invalid or stale |
 | Invalid Delivery Method ID | 10104 | 400 ||
 | Event had no visible/usable ticket types for the current channel | 20046 | 400 | API user is not configured to sell the specified ticket types |
+| Payment method has no funds available | 20129 | 400| |
 
 
 ---
