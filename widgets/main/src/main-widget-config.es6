@@ -92,8 +92,6 @@
         targetName = event.target.name,
         $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
-    let widgetNode = document.querySelector("div[w-tmapikey]");
-
     if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
       $('#w-country').prop('disabled', true)
