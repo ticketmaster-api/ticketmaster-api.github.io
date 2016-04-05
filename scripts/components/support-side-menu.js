@@ -99,6 +99,11 @@
         if ( window.innerWidth < 1200 ) {
             hideMenu();
         }
+
+        setTimeout(function () {
+            stickyHeaderTop = $('.menu').offset().top + calculate_offset();
+        },100);
+
     });
 
     $(".base-content-wrapper").on("blur", ".menu.expanded", function(){
