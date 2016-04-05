@@ -45,6 +45,17 @@ div[w-theme="simple"] a:active{
     text-decoration: none;
 }
 
+div[w-theme="simple"] .event-pretended-link {
+    cursor: pointer;
+    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple"] .event-pretended-link:hover {
+    opacity: 0.7;
+}
+
 div[w-theme="simple"] .event-message {
     position: absolute;
     padding: 16px 46px 16px 52px;
@@ -87,10 +98,12 @@ div[w-theme="simple"] .events-root-container{
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     background-color: #e5e5e5;
+    border-style: solid;
+    border-color: #ccc;
 }
 
 div[w-theme="simple"] ul{
@@ -166,26 +179,29 @@ div[w-theme="simple"] .events_control {
 
 div[w-theme="simple"] .events_control-horizontal {
     top: 50%;
-    width: 13px;
-    height: 56px;
-    margin-top: -28px;
+    width: 12px;
+    height: 44px;
+    margin-top: -24px;
 }
 
 div[w-theme="simple"] .events_control-vertical {
     left: 50%;
-    width: 56px;
-    height: 13px;
-    margin-left: -28px;
+    width: 44px;
+    height: 12px;
+    margin-left: -22px;
 }
 
 div[w-theme="simple"] .events_control:before {
     content: '';
     position: absolute;
-    width: 56px;
-    height: 56px;
-    border-radius: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    -webkit-transition: background 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    background: rgba(146, 146, 146, 0.5) url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
+    background: rgba(146, 146, 146, 0.5) url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 22px 50%/12px 12px;
 }
 
 div[w-theme="simple"] .events_control-left {
@@ -244,12 +260,17 @@ div[w-theme="simple"] .events_control-horizontal.events_control-hidden {
 width: 0;
 }
 
+div[w-theme="simple"] .events_control:hover:before {
+    background-color: rgba(0, 156, 222, 0.7);
+    background-position: 7px 50%;
+}
+
 div[w-theme="simple"] .events_control-vertical:hover {
-    height: 28px;
+    height: 22px;
 }
 
 div[w-theme="simple"] .events_control-horizontal:hover {
-    width: 28px;
+    width: 22px;
 }
 
 div[w-theme="simple"] .events_control-hidden {
@@ -304,7 +325,6 @@ div[w-theme="simple"] .event-content-wraper {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: #fff;
-    cursor: pointer;
 }
 
 div[w-theme="simple"] .event-name{
@@ -315,7 +335,7 @@ div[w-theme="simple"] .event-name{
     font-family: "TMSans-Bold";
     margin-bottom: 20px;
     line-height: 31px;
-    height: 62px;
+    max-height: 62px;
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;

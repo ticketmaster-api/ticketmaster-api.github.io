@@ -1,5 +1,9 @@
 
-<form accept-charset="UTF-8" class="main-widget-config-form common_tabs" method="post">
+<form accept-charset="UTF-8" class="main-widget-config-form common_tabs" method="post" autocomplete="off">
+
+  <!--Use for mobile devices 'Go' button-->
+  <button type="submit" class="hidden"></button>
+
   <ul class="nav nav-tabs" data-tabs="tabs">
     <li class="active">
       <a href="#widget-config-setup" data-toggle="tab">Technical</a>
@@ -13,10 +17,16 @@
     <div class="tab-pane fade in active" id="widget-config-setup">
       <div class="row row-native">
         <div class="col-lg-12 col-md-6 col-sm-6">
-          <label for="w-tm-api-key">
-            API Key <span class="config_field__description">(Required)</span>
-          </label>
-          <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+          <div class="widget_api_key">
+            <label for="w-tm-api-key">
+              API Key <span class="config_field__description">(Required)</span>
+            </label>
+            <a href="https://live-livenation.devportal.apigee.com/user/login" class="pull-right">Get your own</a>
+            <div class="widget_api_key__field">
+              <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+              <a href="http://developer.ticketmaster.com/support/faq/" class="widget_api_key__question"></a>
+            </div>
+          </div>
         </div>
         <div class="col-lg-12 col-md-6 col-sm-6">
           <label for="w-keyword">Keyword</label>
@@ -49,7 +59,7 @@
           <label for="w-radius">
             Radius <span class="config_field__description">(miles)</span>
           </label>
-          <input class="text-center" type="text" id="w-radius" name="w-radius" value="25">
+          <input class="js_widget__number text-center" type="number" id="w-radius" name="w-radius" value="25">
         </div>
       </div>
 
@@ -100,7 +110,7 @@
       </div>
       <div class="row row-native">
         <div class="col-lg-3 col-md-2 col-sm-2">
-          <input class="text-center" type="text" id="w-size" name="w-size" value="25">
+          <input class="js_widget__number text-center" type="number" id="w-size" name="w-size" value="25" max="100" min="1" required>
         </div>
       </div>
     </div>
@@ -132,34 +142,43 @@
         </div>
 
         <div class="col-lg-12 col-md-4 col-sm-4 col-sm-layout">
-          <div class="widget__layout_control">
+          <div class="row widget__layout_control">
             <label>Layout</label>
-            <div class="radio-buttons">
-              <input checked id="w-fixed-300x600" type="radio" value="vertical" name="w-layout">
-              <label for="w-fixed-300x600">300x600</label>
-              <input id="w-fixed-300x250" type="radio" value="horizontal" name="w-layout">
+            <div class="col-lg-12 js-fixed-size-buttons radio-buttons">
+              <div class="col-md-4">
+                <input id="w-fixed-300x600" type="radio" value="xxl" name="w-proportion">
+                <label for="w-fixed-300x600">300x600</label>
+              </div>
+              <!--<input id="w-fixed-300x250" type="radio" value="l" name="w-proportion">
               <label for="w-fixed-300x250">300x250</label>
-              <input id="w-fixed-728x90" type="radio" value="horizontal" name="w-layout">
+              <input id="w-fixed-728x90" type="radio" value="xl" name="w-proportion">
               <label for="w-fixed-728x90">728x90</label>
-              <input checked id="w-fixed-160x600" type="radio" value="vertical" name="w-layout">
+              <input id="w-fixed-160x600" type="radio" value="m" name="w-proportion">
               <label for="w-fixed-160x600">160x600</label>
-              <input id="w-fixed-180x150" type="radio" value="" name="w-layout">
-              <label for="w-fixed-180x150">180x150</label>
-              <input id="w-custom" type="radio" value="" name="w-layout">
-              <label for="w-custom">custom</label>
+              <input id="w-fixed-180x150" type="radio" value="s" name="w-proportion">
+              <label for="w-fixed-180x150">180x150</label>-->
+              <div class="col-md-4">
+                <input checked id="w-custom" type="radio" value="custom" name="w-proportion">
+                <label for="w-custom">Custom</label>
+              </div>
+              <div class="col-lg-12 line"></div>
             </div>
-            <div class="tab-buttons">
-              <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
-              <label for="w-layout-vertical">Vertical</label>
-              <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
-              <label for="w-layout-horizontal">Horizontal</label>
+            <div class="col-lg-12 js-tab-buttons radio-buttons">
+              <div class="col-md-4">
+                <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
+                <label for="w-layout-vertical">Vertical</label>
+              </div>
+              <div class="col-md-4">
+                <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
+                <label for="w-layout-horizontal">Horizontal</label>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="row row-native">
-        <div class="col-lg-12 col-md-6 col-sm-6">
+        <div class="col-lg-12 col-md-6 col-sm-6 js_widget_width_slider">
           <label for="w-width">
             Width <span class="config_field__description">(px)</span>
           </label>
@@ -193,6 +212,5 @@
       </div>
     </div>
   </div>
-  <!--Use for mobile devices 'Go' button-->
-  <button type="submit" class="hidden"></button>
+
 </form>

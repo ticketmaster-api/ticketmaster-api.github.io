@@ -25,7 +25,7 @@
 
   button.active,
   input[type="radio"]:checked+label {
-    color: #019cde;
+    color: $p1;
     border-bottom: 2px solid $p1;
   }
 
@@ -39,36 +39,19 @@
 }
 
 .radio-buttons {
-  input[type=radio]:not(old){
-    vertical-align: middle;
-    border-radius: 50%;
-    opacity: 1;
-    &:hover {
-      cursor: pointer;
-    }
-    & + label > span {
-      display: none;
-    }
-  }
-
+  padding: 0;
   input[type="radio"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0;
     & + label {
       line-height: 1.5em;
-      margin: 10px 0 10px 0;
-      padding-right: 7%;
+      margin: 8px 0 8px 10px;
       font-family: $font-body;
+      color: #768692;
     }
   }
-/*
-  input[type=radio]:not(old):checked + label > span {
-    display: block;
-    width: 8px;
-    height: 8px;
-    margin: 5px;
-    border-radius: 50%;
-    background: #009cde;
-  }
-*/
   input[type=radio]:not(old) + label:before {
     content: "";
     display: inline-block;
@@ -79,28 +62,42 @@
     margin-left: -24px;
     margin-top: 3px;
     position: absolute;
-    /*left: 0;
-    bottom: 1px;
-    background-color: #aaa;
-    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
+    border: 1px solid $n3;
+    border-radius: 50%;
     &:focus {
       outline: none;
     }
   }
-  input[type=radio]:checked + label:before {
-    content: "\2022";
-    color: $p1;
-    font-size: 30px;
-    text-align: center;
-    line-height: 18px;
+  input[type=radio]:not(old) + label:after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
   }
+  input[type=radio]:checked + label:after {
+    height: 8px;
+    width: 8px;
+    text-align: center;
+    background-color: $p1;
+    border-radius: 50%;
+    margin-top: -15px;
+    margin-left: -18px;
+  }
+
   label:hover:before {
-    border: 0 !important;
+    border: 1px solid $n3 !important;
     cursor: pointer;
   }
   /*turn of standart focus*/
   input[type=radio]:focus {
     outline: none;
+  }
+  .line {
+    height: 0;
+    opacity: 0.5;
+    border: dashed 1px #b7c9d3;
+    margin: 10px 0;
   }
 }
 
@@ -110,9 +107,6 @@
   @media (max-width: 1199px){
     padding-right: 24px;
     padding-left: 24px;
-    .common_tabs{
-      border-bottom: 1px solid $n3;
-    }
   }
 
   @media (min-width: 1200px){
@@ -141,6 +135,21 @@
     display: none;
   }
 
+  input[type=number] {
+    -moz-appearance:textfield;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    &.error{
+      border-color: $red;
+    }
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
 }
 
 .widget-container {
@@ -179,7 +188,7 @@
 .widget-container-wrapper {
   text-align: left;
   display: inline-block;
-  margin-bottom: 35px;
+  margin-bottom: 34px;
   @media (min-width: 1200px){
     width: auto;
     margin-left: 10px;
@@ -211,6 +220,14 @@
   }
 }
 
+.row-mobile-control{
+  padding-top: 23px;
+  margin-right: 24px;
+  margin-left: 24px;
+  margin-bottom: 30px;
+  border-top: solid 2px $n3;
+}
+
 .widget__color_scheme_control{
   text-align: left;
 }
@@ -219,6 +236,9 @@
   display: block;
 }
 
+.widget__layout_control {
+  margin-bottom: 24px;
+}
 @media (min-width: 768px){
   .col-sm-theme{
     width: 44.66667%;
@@ -259,5 +279,76 @@
     display: block;
   }
 }
+
+//  API Key
+.widget_api_key {
+  padding-right: 16px;
+  &__field{
+    position: relative;
+  }
+
+  &__question {
+    position: absolute;
+    top: 16px;
+    right: -24px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      -webkit-transition: opacity 0.2s ease-in-out;
+      -moz-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/widgets/question-ic-blue.svg");
+    }
+
+    &:after {
+      opacity: 0.7;
+      background-image: url("/assets/img/widgets/question-ic-grey.svg");
+    }
+
+    &:hover{
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
