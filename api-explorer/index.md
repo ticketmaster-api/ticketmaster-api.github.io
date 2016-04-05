@@ -13,7 +13,6 @@ layout: api-explorer
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="error-message">Whoa! Method returned an error. :(</h4>
                     </div>
                     <div class="modal-footer">
@@ -30,7 +29,6 @@ layout: api-explorer
                 <!-- Modal content-->
                 <div class="modal-content success">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="success-message">Data posted successfully :)</h4>
                     </div>
                     <div class="modal-footer">
@@ -46,7 +44,6 @@ layout: api-explorer
             <div class="modal-dialog modal-lg vertical-align-center">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Image preview</h4>
                     </div>
                     <div class="modal-body">
@@ -65,7 +62,6 @@ layout: api-explorer
             <div class="modal-dialog modal-lg vertical-align-center">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Location</h4>
                     </div>
                     <div class="modal-body" id="map" style="width: 100%; height: 500px;"></div>
@@ -93,7 +89,7 @@ layout: api-explorer
 
         			<div class="cd-more-info bottom">
         				<h2>Navigation Menu</h2>
-        				<p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+        				<p class="caption">Select API and method to explore</p>
         				<img src="/assets/img/api-explorer/step-1.png">
         			</div>
         		</li> <!-- .cd-single-step -->
@@ -120,7 +116,7 @@ layout: api-explorer
 
                     <div class="cd-more-info bottom">
                         <h2>Api Key</h2>
-                        <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                        <p class="caption">Enter your API Key</p>
                         <img src="/assets/img/api-explorer/step-2.png">
                     </div>
                 </li> <!-- .cd-single-step -->
@@ -151,7 +147,7 @@ layout: api-explorer
 
                 <div class="cd-more-info bottom">
                     <h2>Request Parameters</h2>
-                    <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                    <p class="caption">Fill in query parameters</p>
                     <img src="/assets/img/api-explorer/step-3.png">
                 </div>
             </li> <!-- .cd-single-step -->
@@ -208,7 +204,7 @@ layout: api-explorer
 
                     <div class="cd-more-info top">
                         <h2>Request Log</h2>
-                        <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                        <p class="caption">View your requests log with raw URL and response</p>
                         <img src="/assets/img/api-explorer/step-4.png">
                     </div>
                 </li> <!-- .cd-single-step -->
@@ -226,7 +222,7 @@ layout: api-explorer
 
                 <div class="cd-more-info top">
                     <h2>Response Items</h2>
-                    <p class="caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi alias animi molestias in, aperiam.</p>
+                    <p class="caption">Explore the response :)</p>
                     <img src="/assets/img/api-explorer/step-5.png">
                 </div>
             </li> <!-- .cd-single-step -->

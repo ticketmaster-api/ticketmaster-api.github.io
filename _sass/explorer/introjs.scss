@@ -644,7 +644,10 @@
 
   #cd-tour-trigger {
     margin-top: -180px;
-    background: #7356a5 !important;
+    background-color: #7356a5;
+    &:hover {
+      background-color: #a61f84;
+    }
     @media (max-width: 767px){
       margin-bottom: 120px;
     }
