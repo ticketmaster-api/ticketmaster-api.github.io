@@ -42,9 +42,7 @@
           maxWidth: 500,
           minWidth: 350
         }
-      },
-      oldskool : {},
-      ColocolorBlock: {}
+      }
   };
 
 
