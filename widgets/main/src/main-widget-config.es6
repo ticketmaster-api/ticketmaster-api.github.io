@@ -37,6 +37,10 @@
   });
 
   var changeState = function(event){
+    if(!event.target.name){
+      return;
+    }
+
     let widgetNode = document.querySelector("div[w-tmapikey]");
 
     if(event.target.name === "w-postalcode"){
@@ -87,9 +91,17 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    if(event.target.name){
-      widgetNode.setAttribute(event.target.name, event.target.value);
-    }
+    // if(event.target.name === "border"){
+      //if(event.target.checked){
+      //  widgetNode.setAttribute(event.target.id, "");
+      //}
+      //else{
+      //  widgetNode.removeAttribute(event.target.id);
+      //}
+    // }
+    // else {}
+
+    widgetNode.setAttribute(event.target.name, event.target.value);
 
     widget.update();
   };
@@ -100,7 +112,7 @@
         theme,
         layout;
 
-    configForm.find("input[type='text']").each(function(){
+    configForm.find("input[type='text'], input[type='number']").each(function(){
       let $self = $(this),
           data = $self.data(),
           value = data.defaultValue;
@@ -154,7 +166,7 @@
     e.preventDefault();
   });
 
-  $configForm.find("input[type='text']").each(function(){
+  $configForm.find("input[type='text'], input[type='number']").each(function(){
     var $self = $(this);
     $self.data('default-value', $self.val());
   });
@@ -177,7 +189,6 @@
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
-
     $widgetModal.modal();
   });
 
@@ -194,20 +205,23 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $("#w-size").on("keypress",function(event){
-    var kchar = String.fromCharCode(event.keyCode);
-    if(/[\w\d]/.test(kchar)){
-      if(/\d/.test(kchar)){
-        var newVal = (this.value.substring(0, this.selectionStart)
-          + this.value.substring(this.selectionEnd)
-          + kchar)*1;
-        if(newVal > 100 || newVal < 1){
-          event.preventDefault();
-        }
-      }
-      else{
-        event.preventDefault();
-      }
+  $('.js_widget__number').on('change', function (e) {
+    let $self = $(this),
+      val = $self.val().trim(),
+      max = parseInt($self.attr('max')),
+      min = parseInt($self.attr('min')),
+      required = !!$self.attr('required'),
+      regNumberOrEmpty = /^(\s*|\d+)$/,
+      errorCssClass = 'error';
+
+    // if(val === '') $self.val('');
+
+    if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
+      $self.addClass(errorCssClass);
+      e.preventDefault();
+      e.stopPropagation();
+    }else{
+      $self.removeClass(errorCssClass);
     }
   });
 

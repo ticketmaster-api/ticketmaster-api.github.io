@@ -156,8 +156,8 @@ class TicketmasterWidget {
       this.themeModificators[ this.widgetConfig.theme ]();
     }
 
-    this.embedUniversePlugin();
-    this.embedTMPlugin();
+    // this.embedUniversePlugin();
+    // this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -236,7 +236,7 @@ class TicketmasterWidget {
     this.buyBtn.target = '_blank';
     this.buyBtn.href = '';
     this.buyBtn.addEventListener('click', (e)=> {
-      e.preventDefault();
+      // e.preventDefault();
       this.stopAutoSlideX();
       //console.log(this.config.affiliateid)
     });
@@ -249,9 +249,10 @@ class TicketmasterWidget {
           url = '';
       if(event){
         if(event.url){
-          if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
-            url = event.url;
-          }
+          // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
+          //   url = event.url;
+          // }
+          url = event.url;
         }
       }
       this.buyBtn.href = url;
@@ -624,9 +625,11 @@ class TicketmasterWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
+      e.preventDefault();
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
+      e.preventDefault();
       handleTouchMove.call(this, e);
     }, false);
   }
@@ -1021,6 +1024,7 @@ class TicketmasterWidget {
   initPretendedLink(el, url, isBlank){
     if(el && url){
       el.setAttribute('data-url', url);
+      el.classList.add("event-pretended-link");
       el.addEventListener('click', function(){
         let url = this.getAttribute('data-url');
         if(url){
@@ -1036,7 +1040,6 @@ class TicketmasterWidget {
   createDOMItem(itemConfig){
     var medWrapper = document.createElement("div");
     medWrapper.classList.add("event-content-wraper");
-    this.initPretendedLink(medWrapper, itemConfig.url, true);
 
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
@@ -1052,6 +1055,7 @@ class TicketmasterWidget {
     name =  document.createElement("span");
     name.classList.add("event-name");
     name.appendChild(nameContent);
+    this.initPretendedLink(name, itemConfig.url, true);
     medWrapper.appendChild(name);
 
 

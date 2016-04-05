@@ -6,19 +6,6 @@
     return theme === 'simple' ? 238 : 300;
   }
 
-  function getBorderByTheme(theme) {
-    switch (theme) {
-      case "oldschool":
-        return 2;
-        break;
-      case "newschool":
-        return 1;
-        break;
-      default:
-        return 0;
-    }
-  }
-
   // TODO: do we need 'config' variable ?
   var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
 
@@ -38,6 +25,10 @@
   });
 
   var changeState = function changeState(event) {
+    if (!event.target.name) {
+      return;
+    }
+
     var widgetNode = document.querySelector("div[w-tmapikey]");
 
     if (event.target.name === "w-postalcode") {
@@ -55,7 +46,6 @@
       if (widgetNode.getAttribute('w-layout') === 'horizontal') {
         widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
       }
-      widgetNode.setAttribute('w-border', getBorderByTheme(event.target.value));
     }
 
     if (event.target.name === "w-layout") {
@@ -85,9 +75,17 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    if (event.target.name) {
-      widgetNode.setAttribute(event.target.name, event.target.value);
-    }
+    // if(event.target.name === "border"){
+    //if(event.target.checked){
+    //  widgetNode.setAttribute(event.target.id, "");
+    //}
+    //else{
+    //  widgetNode.removeAttribute(event.target.id);
+    //}
+    // }
+    // else {}
+
+    widgetNode.setAttribute(event.target.name, event.target.value);
 
     widget.update();
   };
@@ -98,7 +96,7 @@
         theme = undefined,
         layout = undefined;
 
-    configForm.find("input[type='text']").each(function () {
+    configForm.find("input[type='text'], input[type='number']").each(function () {
       var $self = $(this),
           data = $self.data(),
           value = data.defaultValue;
@@ -151,7 +149,7 @@
     e.preventDefault();
   });
 
-  $configForm.find("input[type='text']").each(function () {
+  $configForm.find("input[type='text'], input[type='number']").each(function () {
     var $self = $(this);
     $self.data('default-value', $self.val());
   });
@@ -173,7 +171,6 @@
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
-
     $widgetModal.modal();
   });
 
@@ -189,17 +186,23 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $("#w-size").on("keypress", function (event) {
-    var kchar = String.fromCharCode(event.keyCode);
-    if (/[\w\d]/.test(kchar)) {
-      if (/\d/.test(kchar)) {
-        var newVal = (this.value.substring(0, this.selectionStart) + this.value.substring(this.selectionEnd) + kchar) * 1;
-        if (newVal > 100 || newVal < 1) {
-          event.preventDefault();
-        }
-      } else {
-        event.preventDefault();
-      }
+  $('.js_widget__number').on('change', function (e) {
+    var $self = $(this),
+        val = $self.val().trim(),
+        max = parseInt($self.attr('max')),
+        min = parseInt($self.attr('min')),
+        required = !!$self.attr('required'),
+        regNumberOrEmpty = /^(\s*|\d+)$/,
+        errorCssClass = 'error';
+
+    // if(val === '') $self.val('');
+
+    if (max && val > max || min && val < min || required && val === '' || !regNumberOrEmpty.test(val)) {
+      $self.addClass(errorCssClass);
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      $self.removeClass(errorCssClass);
     }
   });
 
