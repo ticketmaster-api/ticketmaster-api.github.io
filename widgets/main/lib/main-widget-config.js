@@ -132,7 +132,7 @@
     //Check fixed sizes for 'simple' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var _sizeConfig = {
+      var sizeConfig = {
         width: themeConfig.simple.sizes[targetValue].width,
         height: themeConfig.simple.sizes[targetValue].height,
         maxWidth: 600,
@@ -150,21 +150,21 @@
         widthSlider.show();
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
+        sizeConfig = { //default size
           width: themeConfig.simple.initSliderSize.width, //350
           height: themeConfig.simple.initSliderSize.height, //550
           maxWidth: themeConfig.simple.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     // if(event.target.name === "border"){
@@ -185,8 +185,8 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 550,
-        theme = void 0,
-        layout = void 0;
+        theme = undefined,
+        layout = undefined;
 
     configForm.find("input[type='text'], input[type='number']").each(function () {
       var $self = $(this),
