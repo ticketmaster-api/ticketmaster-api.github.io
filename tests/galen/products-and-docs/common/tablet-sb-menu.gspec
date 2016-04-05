@@ -20,9 +20,7 @@
     @on tablet
         global:
             count any aside-menu-block-* is 3
-            % count any aside-menu-categories-first-* is 12
-            #count any aside-menu-categories-second-* is 4
-            #count any aside-menu-categories-second-* is 4
+            % count any aside-menu-categories-first-* is > 10
 
     @on tablet
         aside-menu-header:
@@ -39,14 +37,11 @@
         content:
             width 100 % of screen/width
             width 752 to 768px
-            below side-panel ~ -66px
+            below side-panel ~ -16px
 
         side-panel:
             width > 20 % of screen/width
-            #below main-content 0 px
-            #inside screen -18 px left
-            # near content ~ 20 px right
-            css position is "absolute"
+            css position is "fixed"
 
         side-menu-btn:
             css display is "inline-block"

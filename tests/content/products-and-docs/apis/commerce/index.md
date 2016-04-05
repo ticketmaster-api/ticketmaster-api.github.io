@@ -4,22 +4,25 @@ id: com1
 categories:
 - documentation
 - commerce
+title: Commerce API
+excerpt: Use the Ticketmaster Commerce API to reserve tickets, purchase, and retrieve barcode and ticket information.
+keywords: API, commerce API, reserve tickets, retrieve barcode
 ---
 
-#Commerce API
+# Commerce API
 {: .article}
 
-Use the Ticketmaster Commerce API to reserve tickets, purchase, and retreive barcode and ticket information. Ticket inventory for each event must be established beforehand with Ticketmaster, venues, and ticketing partners. Only this held inventory will be made available through the API.
+Use the Ticketmaster Commerce API to reserve tickets, purchase, and retrieve barcode and ticket information. Ticket inventory for each event must be established beforehand with Ticketmaster, venues, and ticketing partners. Only this held inventory will be made available through the API.
 {: .article .lead}
 
-####Developer Console
+#### Developer Console
 {: .aside .gray}
 
 Test this endpoint right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
-##Event Offers
+## Event Offers
 {: .article .console-link #event-offers}
 
 **Method:** GET.
@@ -29,7 +32,7 @@ Returns Event Offers.
 commerce/{version}/events/{id}/offers.{format}
 {: .code .red}
 
-###URL parameters:
+### URL parameters:
 
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
@@ -37,7 +40,165 @@ commerce/{version}/events/{id}/offers.{format}
 | `id`       | Event ID. Required.  | string            | "05004F24E0B864B3" | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
+### Response structure:
 
+{: .nested-list}
+- `limits` (object) - limits for event.
+    * `max` (object) - max limit.
+- `prices` (object) - prices.
+    * `_embedded` (array) - container for prices data.
+        + `{array item object}` - price.
+            - `type` (string) - type of price.
+            - `attributes` (object) - attributes of price.
+                * `currency` (string) - currency of price.
+            - `relationships` (object) - available relationships.
+                * `offers` (object) - related offers.
+                    - `_embedded` (array) - container for offers.
+                        + `{array item object}` - offer.
+                            * `id` (string) - id of offer.
+                            * `type` (string) - type of offer.
+                * `price-zones` (object) - related price zones.
+                    - `_embedded` (array) - container for price zones.
+                        + `{array item object}` - price zone.
+                            * `id` (string) - id of price zone.
+                            * `type` (string) - type of price zone.                 
+- `areas` (object) - event areas.
+    - `_embedded` (array) - container for areas.
+        + `{array item object}` - area.
+            * `id` (string) - id of area.
+            * `type` (string) - type of area.
+            * `attributes` (object) - attributes of areas.
+                - `rank` (string) - rank of area.
+                - `name` (string) - name of area.
+                - `area-type` (string) - type of area.
+            * `relationships` (object) - available relationships.
+                - `areas` (object) - related areas.
+                    * `_embedded` (array) - areas.
+                        + `{array item object}` - container for areas.
+                            - `id` (string) - id of area.
+                            - `type` (string) - type of area.
+                - `offers` (object) - related offers.
+                    * `_embedded` (array) - container for offers.
+                        + `{array item object}` - offer.
+                            - `id` (string) - id of offer.
+                            - `type` (string) - type of offer.
+                - `price-zones` (object) - related price zones.
+                    * `_embedded` (array) - container for price zones.
+                        + `{array item object}` - price zone.
+                            - `id` (string) - id of price zone.
+                            - `type` (string) - type of price zone.
+- `passwords` (object) - passwords.
+    - `_embedded` (array) - container for passwords.
+        + `{array item object}` - password.
+            * `id` (string) - password id.
+            * `type` (string) - password type.
+            * `attributes` (object) - attributes of passwords.
+                - `name` (string) - name.
+                - `exclusive` (boolean) - is exclusive.
+                - `prompts` (array) - prompts.
+                    + `{array item object}` - prompt.
+                        * `text` (string) - text of prompt.
+                - `text-label` (string) - text label.
+            * `relationships` (object) - available relationships.
+                - `offers` (object) - related offers.
+                    * `_embedded` (array) - container for offers.
+                        + `{array item object}` - offer.
+                            - `id` (string) - id of offer.
+                            - `type` (string) - type of offer.
+- `_embedded` (array) - container for offers.
+    + `{array item object}` - offer.
+        * `id` (string) - id.
+        * `type` (string) - type.
+        * `attributes` (object) - attributes of offer.
+            - `name` (string) - name.
+            - `description` (string) - description.
+            - `rank` (number) - rank.
+            - `currency` (string) - currency.            
+            - `prices` (array) - prices.
+                + `{array item object}` - price.
+                    * `value` (string) - price value.        
+                    * `total` (string) - total price.         
+                    * `fees` (array) - fees.
+                        + `{array item object}` - fee.
+                            - `value` (string) - fee value.
+                            - `label` (string) - fee label.
+                            - `type` (string) - fee type.
+                    * `taxes` (array) - taxes.
+                        + `{array item object}` - tax.
+                            - `value` (string) - tax value.
+                            - `label` (string) - tax label.
+                            - `type` (string) - tax type.
+                    * `price-zone` (string) - price zone.                    
+            - `limit` (object) - limit.
+                - `min` (number) - min.
+                - `max` (number) - max.
+                - `multiplies` (number) - multiplies.
+            - `offer-type` (string) - offer type.       
+        * `relationships` (object) - available relationships.
+            * `areas` (object) - related areas.
+                - `_embedded` (array) - container for areas.
+                    + `{array item object}` - area.
+                        * `id` (string) - id of area.
+                        * `type` (string) - type of area.            
+            * `products` (object) - related products.
+                * `_embedded` (array) - container for products.
+                    + `{array item object}` - product.
+                        - `id` (string) - id of product.
+                        - `type` (string) - type of product.
+            * `price-zones` (object) - related price zones.
+                * `_embedded` (array) - container for price zones.
+                    + `{array item object}` - price zone.
+                        - `id` (string) - id of price zone.
+                        - `type` (string) - type of price zone.
+- `price-zones` (object) - price zones.
+    - `_embedded` (array) - container for price zones.
+        + `{array item object}` - price zone.
+            * `id` (string) - price zone id.
+            * `type` (string) - price zone type.
+            * `attributes` (object) - attributes of price zone.
+                - `currency` (string) - currency of price zone.
+                - `name` (string) - name of price zone.
+            * `relationships` (object) - available relationships.
+                - `offers` (object) - related offers.
+                    * `_embedded` (array) - container for offers.
+                        + `{array item object}` - offer.
+                            - `id` (string) - id of offer.
+                            - `type` (string) - type of offer.
+                - `areas` (object) - related areas.
+                    - `_embedded` (array) - container for areas.
+                        + `{array item object}` - area.
+                            * `id` (string) - id of area.
+                            * `type` (string) - type of area.
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
+{% endhighlight %}
+
+
+{: .article}
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -828,30 +989,4 @@ Set-Cookie: ****
     ]
   }
 }
-{% endhighlight %}
-
-{: .aside}
->[JS](#js)
->[cURL](#curl)
-{: .lang-selector}
-
-{% highlight js %}
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?apikey={apikey}
 {% endhighlight %}

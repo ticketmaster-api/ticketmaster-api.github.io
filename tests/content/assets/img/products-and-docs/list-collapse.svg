@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="320px" height="23px" viewBox="0 0 320 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>list collapse</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Assets" transform="translate(-39.000000, -768.000000)" sketch:type="MSArtboardGroup">
+            <g id="_x2B_--SWG" transform="translate(39.000000, 768.000000)" sketch:type="MSLayerGroup">
+                <g id="_x2D_Stylesheet-_x2B_-Mobile_1_" sketch:type="MSPage">
+                    <g id="Assets_1_" transform="translate(-39.000000, -768.000000)" sketch:type="MSArtboardGroup">
+                        <g id="_x2B_--SWG_1_" transform="translate(39.000000, 768.000000)" sketch:type="MSLayerGroup">
+                            <g id="_x2B_-hover_2_" transform="translate(34.000000, 8.000000)" sketch:type="MSShapeGroup">
+                                <path id="Rectangle-537_2_" fill="#FFFFFF" d="M72.875-0.423h9c1.104,0,2,0.896,2,2v9c0,1.104-0.896,2-2,2h-9
+                                    c-1.104,0-2-0.896-2-2v-9C70.875,0.473,71.771-0.423,72.875-0.423z"/>
+                            </g>
+                            <g id="_x2B_-hover_4_" transform="translate(34.000000, 8.000000)" sketch:type="MSShapeGroup">
+                                <path id="Rectangle-537_4_" fill="#FFFFFF" d="M104.891-0.423h9c1.104,0,2,0.896,2,2v9c0,1.104-0.896,2-2,2h-9
+                                    c-1.104,0-2-0.896-2-2v-9C102.891,0.473,103.787-0.423,104.891-0.423z"/>
+                            </g>
+                            <rect x="43.832" y="5.974" fill="#FFFFFF" width="8.749" height="16.901"/>
+                            <rect x="9.832" y="6.099" fill="#FFFFFF" width="8.749" height="16.901"/>
+                        </g>
+                    </g>
+                </g>
+                <g id="_x2B_-hover" transform="translate(0.000000, 8.000000)" sketch:type="MSShapeGroup">
+                    <path id="Rectangle-537" fill="#2A7CC7" d="M9.832,0h9c1.104,0,2,0.896,2,2v9c0,1.104-0.896,2-2,2h-9c-1.104,0-2-0.896-2-2V2
+                        C7.832,0.896,8.728,0,9.832,0z"/>
+                    <path id="Line-Copy-7" fill="none" stroke="#FFFFFF" d="M10.832,6.5h7H10.832z"/>
+                    <path id="Line-Copy-7_6_" fill="none" stroke="#FFFFFF" d="M0,14h1.665H0z"/>
+                    <path id="Line-Copy-7_9_" fill="none" stroke="#FFFFFF" d="M318,14h2H318z"/>
+                </g>
+                <g id="_x2B_-hover_1_" transform="translate(34.000000, 8.000000)" sketch:type="MSShapeGroup">
+                    <path id="Rectangle-537_1_" fill="#2A7CC7" d="M9.832,0h9c1.104,0,2,0.896,2,2v9c0,1.104-0.896,2-2,2h-9c-1.104,0-2-0.896-2-2V2
+                        C7.832,0.896,8.728,0,9.832,0z"/>
+                    <path id="Shape" fill="#FFFFFF" d="M14.832,3.318V3h-1v0.318v6.364V10h1V9.682V3.318z"/>
+                    <path id="Line-Copy-7_1_" fill="none" stroke="#FFFFFF" d="M10.832,6.5h7H10.832z"/>
+                </g>
+                <rect id="Rectangle-94" x="78.832" sketch:type="MSShapeGroup" fill="#DBE4E9" width="1" height="23">
+                </rect>
+                <rect id="Rectangle-94-Copy" x="302.832" sketch:type="MSShapeGroup" fill="#DBE4E9" width="1" height="23">
+                </rect>
+                <g id="_x2B_" transform="translate(100.000000, 11.000000)" sketch:type="MSShapeGroup">
+                    <path id="Shape_1_" fill="#414141" d="M11.832,6.682V0.318V0h-1v0.318v6.364V7h1V6.682L11.832,6.682z"/>
+                    <path id="Line-Copy-7_2_" fill="none" stroke="#414141" d="M7.832,3.5h7H7.832z"/>
+                </g>
+                <g id="_x2D_" transform="translate(132.000000, 13.000000)" sketch:type="MSShapeGroup">
+                    <path id="Line-Copy-7_3_" fill="none" stroke="#414141" d="M7.832,1.5h7H7.832z"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

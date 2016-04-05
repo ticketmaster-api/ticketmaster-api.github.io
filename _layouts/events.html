@@ -5,11 +5,9 @@ layout: default
 <div class="top-bar bg-header bg-header-events slice-bottom-left">
 {% include partials/common-header.html %}
 
-
-
 {% for event in site.pages %}
     {% if event.prime %}
-    <div class="events-wrapper">
+    <div class="events-wrapper top-event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}" >
         <h1>{{ event.title }}</h1>
         <div class="description col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <p>{{ event.content | markdownify }}</p>
@@ -24,7 +22,7 @@ layout: default
             <a href="{{ event.place[1] }}"><h5>{{ event.place[0] }}</h5></a>
             <p>{{ event.city }}</p>
             {% if event.rsvp %}
-                <a href="{{ event.rsvp }}" class="blue-btn">RSVP</a>
+                <a href="{{ event.rsvp }}" class="blue-btn rsvp">RSVP</a>
             {% endif %}
         </div>
     </div>
@@ -32,6 +30,7 @@ layout: default
 {% endfor %}
 </div>
 
+{% include partials/expanded-menu-header.html %}
 {% include partials/common-header-small.html %}
 
 <div class="base-content-wrapper">
@@ -42,9 +41,7 @@ layout: default
         </h3>
         <ul class="support-aside-menu" id="scrollable-element">
             <li>
-                <ul class="categories">
-                    <li><a href="#all" class="active">All</a></li>
-                </ul>
+                <ul class="categories"></ul>
             </li>
         </ul>
     </div>
@@ -60,38 +57,91 @@ layout: default
 <script src="{{"/scripts/components/support-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
 <script>
-    var unique = [].map.call(document.getElementsByClassName("tag-btn"),function(item){
-        return '<li><a href="#' + item.textContent + '">' + item.textContent + '</a></li>';;
+
+    // Hide Past events and Remove of RSVP
+    $(".event").add(".top-event").each(function(){
+        var date = new Date();
+        var eventDate = new Date($(this).data("eventEnd").replace(" ", "T"));
+        if( eventDate.getTime() < date.getTime() ){
+            if($(this).hasClass("event")){
+              $(this).addClass("past").hide();
+            }
+            $(this).find(".rsvp").remove();
+        }
+    });
+
+    // Get list of upcoming events
+    var uniqueUpcoming = [].map.call($(".event").not(".past").find(".tag-btn"),function(item){
+        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
     }).filter( function(value, index, self) {
         return self.indexOf(value) === index;
     }).join("");
 
-    $(".categories").append(unique);
+    if(uniqueUpcoming !== ""){
+      $(".categories").append('<li class="tag-group upcoming" data-type="upcoming" ><a href="#upcoming" class="group-title">Upcoming</a><ul class="sections menu-highlight">'+uniqueUpcoming+'</ul></li>');
+    }
+
+    // Get list of past events
+    var uniquePast =[].map.call($(".event.past").find(".tag-btn"),function(item){
+        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
+    }).filter( function(value, index, self) {
+        return self.indexOf(value) === index;
+    }).join("");
+
+    if(uniquePast !== ""){
+      $(".categories").append('<li class="tag-group past" data-type="past" ><a href="#past" class="group-title">Past</a><ul class="sections menu-highlight">'+uniquePast+'</ul></li>');
+    }
+
+
+    var getActiveEvents = function(element) {
+      if( $(element).hasClass("tag-menu-btn") ){
+        return $(element).parents(".tag-group").data("type")
+      }
+      else if($(element).hasClass("tag-btn")){
+        return $(element).parents(".event").hasClass("past") ? "past" : "upcoming";
+      }else if($(element).hasClass("group-title")){
+        return $(element).parent().data("type");
+      }
+    };
 
     var tagClickHandler = function(){
 
-        $(".bg-header-events").addClass("small");
+      var past = $(".event.past"),
+          present = $(".event").not(".past"),
+          currentEventType = getActiveEvents(this),
+          isUP = currentEventType === "upcoming",
+          toShow = isUP ? present : past,
+          toHide = isUP ? past : present;
 
-        $(".events-wrapper").hide();
-        window.scrollTo(0,0);
+      $(".bg-header-events").addClass("small-h");
+      $(".events-wrapper").hide();
+      window.scrollTo(0,0);
 
-        var tag = this.textContent;
+      var tag = this.textContent;
 
-        $(".tag-btn").add(".categories a").removeClass("active");
-        $(".tag-btn[tag="+tag+"]").add(".categories a[href=#"+tag+"]").addClass("active");
+      $(".tag-btn").add(".categories a").removeClass("active");
+      $(".tag-btn[tag="+tag+"]").add(".categories ." + currentEventType + " a[href=#"+tag+"]").addClass("active");
 
-        if ( tag.toLowerCase() == "all" ) {
-            $(".event").show();
-            $(".events-wrapper").show();
-            $(".bg-header-events").removeClass("small");
-            $(".categories a[href=#all]").addClass("active");
-            return;
-        }
+      $("#event-header").html(currentEventType);
 
-        $(".event").hide().filter(function() {
-            return $(this).find("[tag="+tag+"]").size() !== 0;
-        }).show();
+      if($(this).hasClass("group-title")) {
+        toShow.show();
+        toHide.hide();
+
+        $(".events-wrapper").show();
+        $(".bg-header-events").removeClass("small-h");
+        $(this).addClass("active");
+        return;
+      }
+
+
+      toHide.hide();
+      toShow.hide().filter(function() {
+          return $(this).find("[tag="+tag+"]").size() !== 0;
+      }).show();
     };
+
+
 
     $(".categories").on("click", "a", tagClickHandler);
     $(".tags").on("click", ".tag-btn", tagClickHandler);

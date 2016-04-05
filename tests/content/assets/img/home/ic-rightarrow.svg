@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.4 (381) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_rightarrow</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="1.x-Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="1.1.1-Home" sketch:type="MSArtboardGroup" transform="translate(-372.000000, -729.000000)" fill-opacity="0.7" fill="#FFFFFF">
+            <g id="Mask-+-Imported-Layers-+-Hero-content" sketch:type="MSLayerGroup" transform="translate(0.000000, 80.000000)">
+                <g id="Hero-content" transform="translate(150.000000, 208.000000)" sketch:type="MSShapeGroup">
+                    <g id="Rectangle-1-+-GET-STARTED-+-Rectangle-1-+-GET-STARTED-+-Fill-261" transform="translate(0.000000, 424.000000)">
+                        <path d="M230.620166,17.3636503 C230.490184,17.2327226 230.278879,17.2327226 230.148897,17.3636503 L227.849208,19.6793925 C227.722558,19.808306 227.718559,20.0137618 227.840542,20.1467038 L230.416194,22.9418428 L222.333955,22.9317715 C222.2453,22.9317715 222.160645,22.967357 222.097987,23.0304708 C222.034662,23.0929133 222,23.1781842 222,23.2674836 L222,26.6246047 C222,26.8105892 222.148647,26.9603169 222.333288,26.9603169 L230.384865,26.9603169 L227.840542,29.7259133 C227.718559,29.8588552 227.722558,30.0643111 227.849208,30.1932245 L230.148897,32.5089667 C230.214221,32.5740948 230.299543,32.6069946 230.384865,32.6069946 C230.470186,32.6069946 230.555508,32.5740948 230.620166,32.5089667 L237.902513,25.173657 C238.032496,25.0427293 238.032496,24.8298878 237.902513,24.69896 L230.620166,17.3636503 Z" id="ic_rightarrow"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

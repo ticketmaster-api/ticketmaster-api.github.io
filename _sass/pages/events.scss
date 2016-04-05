@@ -2,10 +2,15 @@
   margin-top: 30px;
 }
 
+#event-header {
+  text-transform: capitalize;
+}
+
+
 .bg-header-events {
 
   background-image: url("/assets/img/events/banner.jpeg") !important;
-  &.small {
+  &.small-h {
     background-image: url("/assets/img/events/top-curtain.png") !important;
   }
 
@@ -32,11 +37,20 @@
     .trans-btn {
       color: #FFF;
       padding: 2px 8px;
-      border: 1px solid rgba(250,250,250,.7);
+      border: 1px solid $white-70;
       border-radius: 2px;
       background-color: transparent;
       outline: none;
       margin-right: 20px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
+        text-decoration: none;
+        border-color: $white-70;
+        color: $white-70;
+      }
     }
     .des-address {
       padding-right: 0;
@@ -71,14 +85,23 @@
     padding: 2px 8px;
     border: 1px solid rgba(0, 155, 222, .2);
     border-radius: 2px;
-    background-color: #fff;
+    background-color: $white;
     float: left;
     margin-right: 20px;
     margin-bottom: 24px;
     outline: none;
-    &.active{
-      background: #009cde;
-      color: #FFF;
+    &.active,
+    &.active:hover,
+    &:focus {
+      background: $p1;
+      color: $white;
+      cursor: inherit;
+    }
+    &:hover {
+      outline: none;
+      text-decoration: none;
+      background-color: $p1b;
+      color: $white;
     }
   }
   .comntent {
@@ -114,11 +137,21 @@
 }
 
 .blue-btn {
-  color: #FFF;
+  color: $white;
   border-radius: 4px;
-  padding: 14px 24px;
+  padding: 12px 24px;
   background-color: $p1;
   display: inline-block;
+  font-family: $font-bold-p;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    text-decoration: none;
+    background-color: $p1b;
+    color: $white;
+  }
 }
 
 

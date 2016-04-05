@@ -1,12 +1,15 @@
 ---
 layout: landing
 category: products-and-docs
+title: Products &amp; Docs
+excerpt: Whether you need a quick drop-in or are building a custom product, we have the APIs, SDKs, and Widgets you’re looking for
+keywords: API, SDK, widget, access api docs, become an affilate
 ---
 
 
 {% capture content %}
 {::comment}
-![Icon](/assets/img/ic-under-development.svg)
+![Under development](/assets/img/ic-under-development.svg)
 {:/comment}
 
 {: .triple-margin-top}
@@ -22,18 +25,20 @@ Whether you need a quick drop-in or are building a custom product, we have the [
 
 {: .body}
 Already doing business with Ticketmaster? <br>
-[Get in touch](mailto: distributedcommerce@ticketmaster.com) so we can hook you up.
+[Get in touch](mailto:distributedcommerce@ticketmaster.com) so we can hook you up.
 
 {% endcapture %}
 
 {% capture api %}
 ## APIs
 
-[![Discovery API](/assets/img/products-and-docs/ic-search-big.svg)](/products-and-docs/apis/discovery/)
+[![Discovery API](/assets/img/products-and-docs/ic-search-big.svg)](/products-and-docs/apis/discovery/v1/)
 [![Commerce API](/assets/img/products-and-docs/ic-commerce-api.svg)](/products-and-docs/apis/commerce/)
 [![Partner API](/assets/img/products-and-docs/ic-user.svg)](/products-and-docs/apis/partner/)
 [![Deals API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/deals-api/)
-![Icon5](/assets/img/products-and-docs/ic-flag.svg)
+[![Publish API](/assets/img/products-and-docs/ic-publish.svg)](/products-and-docs/apis/publish/)
+[![International Discovery API](/assets/img/products-and-docs/ic-flag.svg)](/products-and-docs/apis/international-discovery/)
+[![Partner API](/assets/img/products-and-docs/ic-archtic.svg)](/products-and-docs/apis/archtics/)
 
 {: .lead}
 Everything you need to handle event discovery,  commerce, accounts, orders, and fans.
@@ -51,7 +56,7 @@ Easy integration? No sweat.
 {% endcapture %}
 
 {% capture sdk_left %}
-[![Icon1](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmastertech)
+[![Account Manager](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmastertech)
 
 ### Account Manager
 
@@ -63,7 +68,7 @@ Enable fans to manage their tickets within your app using the AccountManager SDK
 {% endcapture %}
 
 {% capture sdk_right %}
-[![Icon2](/assets/img/products-and-docs/sdk-right.png)](https://www.universe.com/)
+[![Direct Payments](/assets/img/products-and-docs/sdk-right.png)](https://www.universe.com/)
 
 ### Direct Payments
 

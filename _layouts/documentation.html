@@ -30,7 +30,7 @@ layout: default
 
 {% include home-footer.html %}
 
-<div class="modal modal-langs" tabindex="-1" role="dialog" aria-labelledby="search-events">
+<div class="modal modal-common fs-modal modal-langs" tabindex="-1" role="dialog" aria-labelledby="search-events">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,11 +48,17 @@ layout: default
 <script src="{{site.baseurl }}/scripts/components/parser.js"></script>
 <script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/vendors/user-scroll-disabler.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/vendors/bootstrap.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/request-response.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/table-collapse.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/vendors/jstree.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/list-collapse.js" | prepend: site.baseurl }}"></script>
+
 
 <script>
     new Clipboard('.copy-btn');
+    if(sessionStorage.getItem('tk-api-key') !== null) {
+        document.body.innerHTML = document.body.innerHTML.replace(/\{apikey\}/g, "apikey=" + sessionStorage.getItem('tk-api-key'));
+    }
 </script>

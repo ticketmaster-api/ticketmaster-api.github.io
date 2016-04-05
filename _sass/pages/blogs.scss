@@ -135,6 +135,7 @@
 #footer-blogs {
   background-image: none;
   color: $white-70;
+  padding-top: 48px;
   &.slice-top-right{
     &:before {
       margin: -140px 0;
@@ -142,18 +143,27 @@
   }
   .bottom-logo a {
     color: $n3;
+    margin-right: 30px;
   }
   @media #{$max-768} {
     background-position: right 60% center;
   }
   a {
     color: $n2-grey-color;
+    text-decoration: none;
+    &:hover{
+      color: $p1a;
+      outline: none;
+    }
   }
-  img{
-    margin-right: 30px;
+  span {
+    font-family: $font-body;
+    font-size: $size-body;
+    color: $n3;
+    line-height: $font-body;
   }
   .footer-nav{
-    margin: 25px 0 70px;
+    margin: 0 0 70px;
     @media #{$max-1200} {
       margin-top: 23px;
     }
@@ -163,8 +173,14 @@
     ul {
       margin-top: 17px;
     }
-    h5 {
+    h4 {
       margin-bottom: 8px;
+      &:hover,
+      &:active,
+      &:focus{
+        color: $p1b;
+        outline: none;
+      }
     }
   }
   &.menu-bg{
@@ -180,8 +196,8 @@
     }
   #footer-blogs {
     .footer-nav {
-      margin: 218px 0 50px;
-      h5 {
+      margin: 48px 0 50px;
+      h4 {
         margin-top: 0;
         margin-bottom: 9px;
       }

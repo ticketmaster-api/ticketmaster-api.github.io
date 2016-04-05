@@ -1,0 +1,77 @@
+.common_tabs{
+
+  .tab-content {
+    padding-top: 20px;
+  }
+
+  .nav-tabs{
+    margin: 0 0 0 -8px;
+    border: none;
+    @include clearfix();
+    li {
+      float: left;
+      margin-bottom: 0;
+      a {
+        display: block;
+        position: relative;
+        font-size: 1.4em;
+        line-height: 2em;
+        font-style: normal;
+        margin: 0;
+        padding: 0 30px;
+        text-align: center;
+        text-decoration: none;
+        white-space: nowrap;
+        color: #b7c9d3;
+        background: transparent;
+        outline: none;
+        border: none;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        margin-left: -8px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          border-bottom: 2px solid #fff;
+          z-index: 1;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 8px;
+          right: 8px;
+          border-bottom: 2px solid #f1f5f7;
+          z-index: 2;
+        }
+      }
+
+      &:first-child {
+        a {
+          margin-left: 0;
+        }
+      }
+
+      &.active {
+        a {
+          color: #009cde;
+          &:after {
+            border-color: #009cde;
+          }
+        }
+      }
+
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus {
+        border: none;
+        background: transparent;
+      }
+
+    }
+  }
+}

@@ -1,0 +1,164 @@
+@@ set
+    domain       127.0.0.1:4000
+    base_url    http://${domain}/
+
+    mobile_size     336x480
+        ## gen local 320px + 16px= 336
+    tablet_size     784x1024
+        ## gen local 768px + 16px= 784
+    desktop_size    1456x1220
+        ## gen local 1440px + 16px= 1456
+
+##path to gspec files
+    home            tests/galen/home
+    prDocs          tests/galen/products-and-docs
+    prDocsSlate     tests/galen/products-and-docs/slate
+    prDocsWidjets   tests/galen/products-and-docs/widgets
+    prDocsConsole   tests/galen/products-and-docs/console
+    blog            tests/galen/blog
+    support         tests/galen/support/landing
+    events          tests/galen/events
+    partnersLanding tests/galen/partners/landing
+
+########################################################################################################################
+## size takes from "window.innerWidth" but comparing with "document.body.clientWidth"
+## create images by dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
+##
+## run command:
+## galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups HomePage
+
+
+### prDocsSlate(discoveryAPI) ###########################################################################
+
+@@ groups ProductsDocsSlate
+ProductsDocsSlate page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/commerce/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate desktop" --export ${prDocsSlate}/etalonImg/dumpsDesktop/
+        check ${prDocsSlate}/desktop.gspec --include "desktop"
+        wait 10s
+
+@@ groups ProductsDocsSlate
+ProductsDocsSlate page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/commerce/ ${tablet_size}
+        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsTablet/
+        check ${prDocsSlate}/tablet.gspec --include "tablet"
+        wait 10s
+
+@@ groups ProductsDocsSlate
+ProductsDocsSlate page on mobile ${mobile_size}
+    ${base_url}/products-and-docs/apis/commerce/ ${mobile_size}
+        #dump ${prDocsSlate}/_dumpContent.gspec --name "dump ProductsDocsSlate tablet" --export ${prDocsSlate}/etalonImg/dumpsMobile/
+        check ${prDocsSlate}/mobile.gspec --include "mobile" --exclude "nomobile"
+        wait 10s
+
+### prDocsConsole ###########################################################################
+
+@@ groups ProductsDocsConsole
+ProductsDocsConsole page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole desktop" --export ${prDocsConsole}/etalonImg/dumpsDesktop/
+        check ${prDocsConsole}/desktop.gspec --include "desktop"
+
+@@ groups ProductsDocsConsole
+ProductsDocsConsole page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${tablet_size}
+        #dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole tablet" --export ${prDocsConsole}/etalonImg/dumpsTablet/
+        check ${prDocsConsole}/tablet.gspec --include "tablet"
+
+@@ groups ProductsDocsConsole
+ProductsDocsConsole page on mobile ${mobile_size}
+    ${base_url}/products-and-docs/apis/interactive-console/ ${mobile_size}
+        #dump ${prDocsConsole}/_dumpContent.gspec --name "dump ProductsDocsConsole tablet" --export ${prDocsConsole}/etalonImg/dumpsMobile/
+        check ${prDocsConsole}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### BlogsPage ###########################################################################
+
+@@ groups BlogsPage
+Blogs page on desktop
+    ${base_url}/blogs/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${blog}/_dumpContent.gspec --name "dump Blogs page desktop" --export ${blog}/etalonImg/dumpsDesktop/
+        check ${blog}/desktop-blog.gspec --include "desktop"
+
+@@ groups BlogsPage
+Blogs page on tablet
+    ${base_url}/blogs/ ${tablet_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${blog}/_dumpContent.gspec --name "dump Blogs page tablet" --export ${blog}/etalonImg/dumpsTablet/
+        check ${blog}/tablet-blog.gspec --include "tablet"
+
+@@ groups BlogsPage
+Blogs page on mobile
+    ${base_url}/blogs/ ${mobile_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${blog}/_dumpContent.gspec --name "dump Blogs page mobile" --export ${blog}/etalonImg/dumpsMobile/
+        check ${blog}/mobile-blog.gspec --include "mobile" --exclude "nomobile"
+
+@@ groups BlogsPage
+Blogs page on mobile open-menu
+    ${base_url}/blogs/ ${mobile_size}
+        inject ./tests/galen/blog/menu/menu-top-trigger.js
+        check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
+
+### SupportPage ###########################################################################
+@@ groups SupportPage
+SupportPage page on desktop ${desktop_size}
+    ${base_url}/support/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${support}/_dumpContent.gspec --name "dump Support page desktop" --export ${support}/etalonImg/dumpsDesktop/
+        check ${support}/desktop.gspec --include "desktop"
+
+@@ groups SupportPage
+SupportPage page on tablet ${tablet_size}
+    ${base_url}/support/ ${tablet_size}
+        #dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsTablet/
+        check ${support}/tablet.gspec --include "tablet"
+
+@@ groups SupportPage
+SupportPage page on mobile ${mobile_size}
+    ${base_url}/support/ ${mobile_size}
+        #dump ${support}/_dumpContent.gspec --name "dump Support page tablet" --export ${support}/etalonImg/dumpsMobile/
+        check ${support}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### Events ###########################################################################
+
+@@ groups Events
+Events page on desktop ${desktop_size}
+    ${base_url}/events/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${events}/_dumpContent.gspec --name "dump Events desktop" --export ${events}/etalonImg/dumpsDesktop/
+        check ${events}/desktop.gspec --include "desktop"
+
+@@ groups Events
+Events page on tablet ${tablet_size}
+    ${base_url}/events/ ${tablet_size}
+        #dump ${events}/_dumpContent.gspec --name "dump Events tablet" --export ${events}/etalonImg/dumpsTablet/
+        check ${events}/tablet.gspec --include "tablet"
+
+@@ groups Events
+Events page on mobile ${mobile_size}
+    ${base_url}/events/ ${mobile_size}
+        #dump ${events}/_dumpContent.gspec --name "dump Events tablet" --export ${events}/etalonImg/dumpsMobile/
+        check ${events}/mobile.gspec --include "mobile" --exclude "nomobile"
+
+### PartnersLanding ###########################################################################
+
+@@ groups PartnersLanding
+PartnersLanding page on desktop ${desktop_size}
+    ${base_url}/partners/ ${desktop_size}
+        #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events desktop" --export ${partnersLanding}/etalonImg/dumpsDesktop/
+        check ${partnersLanding}/desktop.gspec --include "desktop"
+
+@@ groups PartnersLanding
+PartnersLanding page on tablet ${tablet_size}
+    ${base_url}/partners/ ${tablet_size}
+        #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsTablet/
+        check ${partnersLanding}/tablet.gspec --include "tablet"
+
+@@ groups PartnersLanding
+PartnersLanding page on mobile ${mobile_size}
+    ${base_url}/partners/ ${mobile_size}
+        #dump ${partnersLanding}/_dumpContent.gspec --name "dump Events tablet" --export ${partnersLanding}/etalonImg/dumpsMobile/
+        check ${partnersLanding}/mobile.gspec --include "mobile" --exclude "nomobile"

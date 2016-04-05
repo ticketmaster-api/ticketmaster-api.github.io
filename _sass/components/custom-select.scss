@@ -1,0 +1,79 @@
+
+.custom_select {
+  position: relative;
+  margin-bottom: 24px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 15px;
+    height: 10px;
+    margin-top: -5px;
+    background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+  }
+
+  @media (min-width: 767px){
+    &-opened {
+      &:after {
+        @include rotate(180deg)
+      }
+    }
+  }
+
+  &__list {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    line-height: 24px;
+    color: $white;
+    z-index: 1051; // bigger then on dialog
+    background: $n3;
+    padding: 12px 16px;
+    margin: 0;
+    font-family: $font-lead-regular;
+
+    @media (max-width: 767px){
+      display: none !important; // reset inline style
+    }
+  }
+
+  &__item {
+    padding: 12px 0;
+    cursor: pointer;
+    list-style: none;
+    @include transition(color 0.1s ease);
+    &:hover,
+    &-active{
+      color: $blue;
+    }
+  }
+
+  &__placeholder {
+    margin-bottom: 0;
+    cursor: pointer;
+    @media (max-width: 767px){
+      display: none;
+    }
+  }
+
+  &__field {
+    margin-bottom: 0;
+    padding-right: 50px;
+    @media (min-width: 767px){
+      // make select invisible
+      border: 0 !important;
+      clip: rect(0 0 0 0) !important;
+      height: 1px !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important;
+      width: 1px !important;
+    }
+  }
+
+}

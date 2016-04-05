@@ -1,5 +1,5 @@
 @@ set
-    domain      127.0.0.1:4000
+    domain       127.0.0.1:4000
     base_url    http://${domain}/
 
     mobile_size     336x480
@@ -9,67 +9,91 @@
     desktop_size    1456x1220
         ## gen local 1440px + 16px= 1456
 
-    home        tests/galen/home
-    prDocs      tests/galen/products-and-docs
-    blog        tests/galen/blog
+##path to gspec files
+    home            tests/galen/home
+    prDocs          tests/galen/products-and-docs
+    prDocsSlate     tests/galen/products-and-docs/slate
+    prDocsWidjets   tests/galen/products-and-docs/widgets
+    prDocsConsole   tests/galen/products-and-docs/console
+    blog            tests/galen/blog
+    support         tests/galen/support/landing
+    events          tests/galen/events
+    partnersLanding tests/galen/partners/landing
 
-##############################################################################
+########################################################################################################################
+## size takes from "window.innerWidth" but comparing with "document.body.clientWidth"
 ## create images by dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
+##
+## run command:
+## galen test tests/galen/generate-img-all.test --htmlreport tests/galen/reports/all --groups HomePage
 
 @@ groups HomePage
-Home page on desktop ${desktop_size}
+Home page on desktop
     ${base_url} ${desktop_size}
         wait 1m until visible "id: timeline"
         # wait 1m until visible "id: qual_ol"
-        #dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export tests/galen/home/dumpsDesktop/
+        #dump ${home}/_dumpContent.gspec --name "dump Home page desktop" --export ${home}/etalonImg/dumpsDesktop/
         check ${home}/desktop.gspec --include "desktop"
 
-@@ groups HomePage
-Home page on tablet ${tablet_size}
-    ${base_url} ${tablet_size}
-        wait 1m until visible "id: timeline"
-        # wait 1m until visible "id: qual_ol"
-        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsTablet/
-        check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
 
 @@ groups HomePage
-Home page on mobile ${mobile_size}
+Home page on tablet
+    ${base_url} ${tablet_size}
+        # wait 1m until visible "id: qual_ol"
+        wait 1m until visible "id: timeline"
+        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export ${home}/etalonImg/dumpsTablet/
+        check ${home}/tablet.gspec --include "tablet,all" --exclude "nomobile"
+
+
+@@ groups HomePage
+Home page on mobile
     ${base_url} ${mobile_size}
         # wait 1m until visible "id: qual_ol"
-        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export tests/galen/home/dumpsMobile/
+        #dump ${home}/_dumpContent.gspec --name "dump Home page tablet" --export ${home}/etalonImg/dumpsMobile/
         check ${home}/mobile.gspec --include "mobile,all" --exclude "nomobile"
 
 ##############################################################################
+
 @@ groups PD-getting-started-Page
-Prod-and-Docs page on desktop ${desktop_size}
+Prod-and-Docs page on desktop
     ${base_url}/products-and-docs/apis/getting-started/ ${desktop_size}
+        # wait 1m until visible "id: qual_ol"
+        #dump ${prDocs}/_dumpContent.gspec --name "dump PD page desktop" --export ${prDocs}/etalonImg/dumpsDesktop/
         check ${prDocs}/desktop-getting-started.gspec --include "desktop"
 
-@@ groups PD-getting-started-Page
-Prod-and-Docs page on tablet ${tablet_size}
-    ${base_url}/products-and-docs/apis/getting-started/ ${tablet_size}
-        check ${prDocs}/tablet-getting-started.gspec --include "tablet"
-@@ groups PD-getting-started-Page
 
-Prod-and-Docs page on mobile ${mobile_size}
+@@ groups PD-getting-started-Page
+Prod-and-Docs page on tablet
+    ${base_url}/products-and-docs/apis/getting-started/ ${tablet_size}
+        # wait 1m until visible "id: qual_ol"
+        #dump ${prDocs}/_dumpContent.gspec --name "dump PD page tablet" --export ${prDocs}/etalonImg/dumpsTablet/
+        check ${prDocs}/tablet-getting-started.gspec --include "tablet"
+
+
+@@ groups PD-getting-started-Page
+Prod-and-Docs page on mobile
     ${base_url}/products-and-docs/apis/getting-started/ ${mobile_size}
+        # wait 1m until visible "id: qual_ol"
+        #dump ${prDocs}/_dumpContent.gspec --name "dump PD page mobile" --export ${prDocs}/etalonImg/dumpsMobile/
         check ${prDocs}/mobile-getting-started.gspec --include "mobile" --exclude "nomobile"
 
-##############################################################################
-@@ groups BlogsPage
-Blogs page on desktop ${desktop_size}
-    ${base_url}/blogs/ ${desktop_size}
-        check ${blog}/desktop-blog.gspec --include "desktop"
-@@ groups BlogsPage
-Blogs page on tablet ${tablet_size}
-    ${base_url}/blogs/ ${tablet_size}
-        check ${blog}/tablet-blog.gspec --include "tablet"
-@@ groups BlogsPage
-Blogs page on mobile
-    ${base_url}/blogs/ ${mobile_size}
-        check ${blog}/mobile-blog.gspec --include "mobile" --exclude "nomobile"
-@@ groups BlogsPage
-Blogs page on mobile open-menu
-    ${base_url}/blogs/ ${mobile_size}
-        inject ./tests/galen/blog/menu/menu-top-trigger.js
-        check  ${blog}/menu/mobile-header-menu-open.gspec --include "mobile" --exclude "nomobile"
+### WidgetsPage ###########################################################################
+
+@@ groups PD-WidgetsPage
+PD-WidgetsPage page on desktop ${desktop_size}
+    ${base_url}/products-and-docs/widgets/ ${desktop_size}
+        #wait 1m until visible "id: qual_ol"
+        #dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage desktop" --export ${prDocsWidjets}/etalonImg/dumpsDesktop/
+        check ${prDocsWidjets}/desktop.gspec --include "desktop"
+
+@@ groups PD-WidgetsPage
+PD-WidgetsPage page on tablet ${tablet_size}
+    ${base_url}/products-and-docs/widgets/ ${tablet_size}
+        #dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsTablet/
+        check ${prDocsWidjets}/tablet.gspec --include "tablet"
+
+@@ groups PD-WidgetsPage
+PD-WidgetsPage page on mobile ${mobile_size}
+    ${base_url}/products-and-docs/widgets/ ${mobile_size}
+        #dump ${prDocsWidjets}/_dumpContent.gspec --name "dump PD-WidgetsPage tablet" --export ${prDocsWidjets}/etalonImg/dumpsMobile/
+        check ${prDocsWidjets}/mobile.gspec --include "mobile" --exclude "nomobile"

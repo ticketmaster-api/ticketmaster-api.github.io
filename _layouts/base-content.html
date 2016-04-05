@@ -5,10 +5,10 @@ layout: default
 {% include home-header.html %}
 
 <div class="base-content-wrapper">
-    <div class="col-lg-3 menu">
+    <div class="col-lg-3 menu" tabindex="-1">
         {% include support-side-menu.html %}
     </div>
-    <div class="col-lg-9 col-md-12 col-sm-12 content">
+    <div class='col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == "support" and page.categories[1] == "contact-us" %} contact-us{% endif %}'>
         {{ content }}
     </div>
 </div>

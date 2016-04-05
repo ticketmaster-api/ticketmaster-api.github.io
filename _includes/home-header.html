@@ -1,4 +1,5 @@
-<div class="top-bar{% if page.category != "home" %} bg-header slice-bottom-left{% endif %}">
+<div class="top-bar{% if page.category != "home" %} bg-header{% if page.category == "documentation" or page.categories[0] == "documentation" %} header-curtain{% else %} slice-bottom-left{% endif %}{% endif %}">
 {% include partials/common-header.html %}
 </div>
+{% include partials/expanded-menu-header.html %}
 {% include partials/common-header-small.html %}

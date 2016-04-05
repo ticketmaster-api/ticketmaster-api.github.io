@@ -1,0 +1,13 @@
+@objects
+    body                    css     body
+    header                  css     .top-bar
+    base-content-wrapper    css     .base-content-wrapper
+    footer                  id      footer
+
+= Support page content test =
+    base-content-wrapper:
+        % image file etalonImg/dumpsDesktop/objects/base-content-wrapper.png, error 6%, area 0 0 1146 1280
+
+= Navigation test =
+    header, footer:
+        visible

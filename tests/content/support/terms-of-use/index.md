@@ -3,9 +3,12 @@ layout: base-content
 categories:
 - support
 - terms-of-use
+title: Terms of use
+excerpt: The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldwide, non-exclusive, non-sublicenseable, non-transferable basis on the terms and conditions set forth herein.
+keywords: Terms, conditions, licensed uses, restrictions, warranty disclaimer, ownership, relationship of parties
 ---
 
-#GENERAL TERMS OF USE
+# GENERAL TERMS OF USE
 
 {: .body .double-margin}
 _Last Updated: September 28, 2015_
@@ -17,7 +20,7 @@ The following terms and conditions govern the use of the Ticketmaster applicatio
 Your license to the Ticketmaster API under these terms continues until it is terminated by either party. You may terminate the license by discontinuing use of all or any of the Ticketmaster API. Ticketmaster may terminate the license at any time for any reason. Your rights to use the Ticketmaster API terminate automatically if (i) you violate any of these terms, (ii) Ticketmaster sends a written notice of termination to you, or (iii) Ticketmaster disables your access to the Ticketmaster API.
 
 {: .x3-margin-top #license}
-##Licensed Uses and Restrictions
+## Licensed Uses and Restrictions
 
 {: .body}
 The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldwide (except as limited below), non-exclusive, non-sublicenseable, non-transferable basis on the terms and conditions set forth herein. These terms define legal use of the Ticketmaster API, including all ticket purchases, updates, revisions, substitutions, and any copies of the Ticketmaster API made by or for you. Ticketmaster content (event name, dates, times, venue name, and additional information such as Tickets, Attendees, Orders ("Event Content") are owned by the organizers and/or Ticketmaster.  Any purchase of tickets through the Ticketmaster API will be governed by Ticketmaster’s Terms of Use, located at www.ticketmaster.com.  All rights not expressly granted to you are reserved by Ticketmaster.
@@ -45,19 +48,19 @@ The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldw
 14.	Sell, lease, or sublicense the Ticketmaster API or access thereto or derive revenues from the use or provision of the Ticketmaster API, whether for direct commercial or monetary gain or otherwise, except as set forth below.
 
 {: .x3-margin-top #ownership}
-##Ownership and Relationship of Parties
+## Ownership and Relationship of Parties
 
 {: .body}
 The Ticketmaster API may be protected by copyrights, trademarks, service marks, international treaties, and/or other proprietary rights and laws of the U.S. and other countries. Ticketmaster's rights apply to the Ticketmaster API and all output and executables of the Ticketmaster API, excluding any software components developed by you which do not themselves incorporate the Ticketmaster API or any output or executables of the Ticketmaster API. You agree to abide by all applicable proprietary rights laws and other laws, as well as any additional copyright notices or restrictions contained in these terms. Ticketmaster owns all rights, title, and interest in and to the Ticketmaster API. These terms grant you no right, title, or interest in any intellectual property owned or licensed by Ticketmaster, including (but not limited to) the Ticketmaster API and Ticketmaster trademarks.
 
 {: .x3-margin-top #support}
-##Support
+## Support
 
 {: .body}
 Ticketmaster may elect to provide you with support or modifications for the Ticketmaster API (collectively, "Support"), in its sole discretion, and may terminate such Support at any time without notice to you. Ticketmaster may change, suspend, or discontinue any aspect of the Ticketmaster API at any time, including the availability of any Ticketmaster API. Ticketmaster may also impose limits on certain features and services or restrict your access to parts or all of the Ticketmaster API or the Ticketmaster Web site without notice or liability.
 
 {: .x3-margin-top #warranty}
-##Warranty Disclaimer
+## Warranty Disclaimer
 
 **THE API, API-WEBSITE AND ASSOCIATED MATERIALS ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. TO THE FULL EXTENT PERMISSIBLE BY APPLICABLE LAW, TICKETMASTER DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT OF INTELLECTUAL PROPERTY. THE OPERATORS MAKE NO REPRESENTATIONS OR WARRANTY THAT THE WEBSITE WILL MEET YOUR REQUIREMENTS, OR THAT YOUR USE OF THE WEBSITE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR FREE; NOR DOES TICKETMASTER MAKE ANY REPRESENTATION OR WARRANTY AS TO THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE API . THE OPERATORS MAKE NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF THE API  OR THE INFORMATION, TICKETMASTER CONTENT, MATERIALS, OR PRODUCTS INCLUDED ON THE API WEBSITE.**
 
@@ -70,19 +73,19 @@ Ticketmaster may elect to provide you with support or modifications for the Tick
 **THE OPERATORS TOTAL CUMULATIVE LIABILITY FOR ANY AND ALL CLAIMS IN CONNECTION WITH THE API  WILL NOT EXCEED ONE HUNDRED DOLLARS ($100.00).  YOU ACKNOWLEDGE AND AGREE THAT THE FOREGOING LIMITATIONS ON LIABILITY ARE AN ESSENTIAL BASIS OF THE BARGAIN AND THAT TICKETMASTER WOULD NOT PROVIDE THE WEBSITE ABSENT SUCH LIMITATION.**
 
 {: .x3-margin-top #release}
-##Release and Waiver
+## Release and Waiver
 
 {: .body}
 To the maximum extent permitted by applicable law, you hereby release and waive all claims against Ticketmaster, and its subsidiaries, affiliates, officers, agents, licensors, co-branders or other partners, and employees from any and all liability for claims, damages (actual and/or consequential), costs and expenses (including litigation costs and attorneys' fees) of every kind and nature, arising from or in any way related to your use of the Ticketmaster API. If you are a California resident, you waive your rights under California Civil Code 1542, which states, "A general release does not extend to claims which the creditor does not know or suspect to exist in his favor at the time of executing the release, which if known by him must have materially affected his settlement with the debtor." You understand that any fact relating to any matter covered by this release may be found to be other than now believed to be true and you accept and assume the risk of such possible differences in fact. In addition, you expressly waive and relinquish any and all rights and benefits which you may have under any other state or federal statute or common law principle of similar effect, to the fullest extent permitted by law.
 
 {: .x3-margin-top #indemnity}
-##Hold Harmless and Indemnity
+## Hold Harmless and Indemnity
 
 {: .body}
 To the maximum extent permitted by applicable law, you agree to hold harmless and indemnify Ticketmaster and its subsidiaries, affiliates, officers, agents, licensors, co-branders or other partners, and employees from and against any third-party claim arising from or in any way related to your use of the Ticketmaster API, including any liability or expense arising from all claims, losses, damages (actual and/or consequential), suits, judgments, litigation costs and attorneys' fees, of every kind and nature.
 
 {: .x3-margin-top #terms}
-##General Terms
+## General Terms
 
 {: .body}
 Relationship of the Parties. Notwithstanding any provision hereof, for all purposes of the API Terms of Use, you and Ticketmaster shall be and act independently and not as partner, joint venturer, agent, employee or employer of the other. You shall not have any authority to assume or create any obligation for or on behalf of Ticketmaster, express or implied, and you shall not attempt to bind Ticketmaster to any contract.

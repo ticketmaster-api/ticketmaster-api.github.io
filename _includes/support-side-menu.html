@@ -5,7 +5,7 @@
 <ul class="support-aside-menu" id="scrollable-element">
     <li>
         <ul class="categories">
-            <li><a href="/support/faq">FAQ</a>
+            <li><a href="/support/faq/">FAQ</a>
                 {% if page.categories[0] == "support" and page.categories[1] == "faq" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#general-a">General</a></li>
@@ -14,7 +14,7 @@
                 </ul>
                 {% endif %}
             </li>
-            <li><a href="/products-and-docs/under-development/">Forums</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/ticketmaster-api">Forums</a></li>
             <li><a href="/support/terms-of-use/">General Terms of Use</a>
                 {% if page.categories[0] == "support" and page.categories[1] == "terms-of-use" %}
                 <ul class="sections menu-highlight">
@@ -41,7 +41,16 @@
                 </ul>
                 {% endif %}
             </li>
-            <li><a href="/products-and-docs/under-development/">Branding Guide</a></li>
+            <li><a href="/support/branding-guide/">Branding Guide</a>
+                {% if page.categories[0] == "support" and page.categories[1] == "branding-guide" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#brand-logo">Logo</a></li>
+                    <li><a href="#verified-tickets">Verified Tickets</a></li>
+                    <li><a href="#legal-stuff">Legal Stuff</a></li>
+                </ul>
+                {% endif %}
+            </li>
+            <li><a href="/support/contact-us/">Contact Us</a>
         </ul>
     </li>
 </ul>

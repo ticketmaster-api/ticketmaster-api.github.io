@@ -7,13 +7,14 @@ category: partners
     {% include partials/common-header.html %}
 </div>
 
+{% include partials/expanded-menu-header.html %}
 {% include partials/common-header-small.html %}
 
 <div class="base-content-wrapper">
-    <div class="col-lg-3 menu">
+    <div class="col-lg-3 menu" tabindex="-1">
         {% include partners-menu.html %}
     </div>
-    <div class="col-lg-9 col-md-12 col-sm-12 content">
+    <div class="col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == "partners" and page.categories[1] == "distribution" %} distribution{% endif %}">
         {{ content }}
     </div>
 </div>
