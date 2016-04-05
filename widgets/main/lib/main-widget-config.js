@@ -3,43 +3,46 @@
 (function () {
 
   var themeConfig = {
-    sizes: {
-      s: {
-        width: 160,
-        height: 300,
-        layout: 'horizontal'
+    simple: {
+      name: 'Poster',
+      sizes: {
+        s: {
+          width: 160,
+          height: 300,
+          layout: 'horizontal'
+        },
+        m: {
+          width: 160,
+          height: 300,
+          layout: 'horizontal'
+        },
+        l: {
+          width: 160,
+          height: 300,
+          layout: 'horizontal'
+        },
+        xl: {
+          width: 160,
+          height: 300,
+          layout: 'horizontal'
+        },
+        xxl: {
+          width: 300,
+          height: 600,
+          layout: 'vertical'
+        },
+        custom: {
+          width: 350,
+          height: 550,
+          layout: 'vertical'
+        }
       },
-      m: {
-        width: 160,
-        height: 300,
-        layout: 'horizontal'
-      },
-      l: {
-        width: 160,
-        height: 300,
-        layout: 'horizontal'
-      },
-      xl: {
-        width: 160,
-        height: 300,
-        layout: 'horizontal'
-      },
-      xxl: {
-        width: 300,
-        height: 600,
-        layout: 'vertical'
-      },
-      custom: {
+      initSliderSize: {
         width: 350,
         height: 550,
-        layout: 'vertical'
+        maxWidth: 500,
+        minWidth: 350
       }
-    },
-    initSliderSize: {
-      width: 350,
-      height: 550,
-      maxWidth: 500,
-      minWidth: 350
     }
   };
 
@@ -85,7 +88,7 @@
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
         targetName = event.target.name,
-        $tabButtons = $('.js-tab-buttons');
+        $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
     if (targetName === "w-postalcode") {
       widgetNode.setAttribute('w-country', '');
@@ -106,7 +109,7 @@
     }
 
     if (targetName === "w-layout") {
-      var sizeConfig = themeConfig.initSliderSize;
+      var sizeConfig = themeConfig.simple.initSliderSize;
       if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
@@ -129,15 +132,15 @@
     //Check fixed sizes for 'simple' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var _sizeConfig = {
-        width: themeConfig.sizes[targetValue].width,
-        height: themeConfig.sizes[targetValue].height,
+      var sizeConfig = {
+        width: themeConfig.simple.sizes[targetValue].width,
+        height: themeConfig.simple.sizes[targetValue].height,
         maxWidth: 600,
         minWidth: 350
       };
 
       //set layout
-      widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
+      widgetNode.setAttribute('w-layout', themeConfig.simple.sizes[targetValue].layout);
 
       if (targetValue !== 'custom') {
         $tabButtons.hide();
@@ -147,21 +150,21 @@
         widthSlider.show();
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
-          width: themeConfig.initSliderSize.width, //350
-          height: themeConfig.initSliderSize.height, //550
-          maxWidth: themeConfig.initSliderSize.maxWidth, //500
-          minWidth: themeConfig.initSliderSize.minWidth // 350
+        sizeConfig = { //default size
+          width: themeConfig.simple.initSliderSize.width, //350
+          height: themeConfig.simple.initSliderSize.height, //550
+          maxWidth: themeConfig.simple.initSliderSize.maxWidth, //500
+          minWidth: themeConfig.simple.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     // if(event.target.name === "border"){
@@ -182,8 +185,8 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 550,
-        theme = void 0,
-        layout = void 0;
+        theme = undefined,
+        layout = undefined;
 
     configForm.find("input[type='text'], input[type='number']").each(function () {
       var $self = $(this),

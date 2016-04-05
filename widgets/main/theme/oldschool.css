@@ -444,44 +444,42 @@ div[w-theme="oldschool"] .event-question:hover:after {
     opacity: 0;
 }
 
-
 /* slider controls */
 div[w-theme="oldschool"] .events_control {
     position: absolute;
     cursor: pointer;
     -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    -webkit-transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out;
     overflow: hidden;
-    opacity: 0.3;
     z-index: 30;
 }
 
 div[w-theme="oldschool"] .events_control-horizontal {
     top: 50%;
-    width: 13px;
-    height: 56px;
-    margin-top: -28px;
+    width: 12px;
+    height: 44px;
+    margin-top: -24px;
 }
 
 div[w-theme="oldschool"] .events_control-vertical {
     left: 50%;
-    width: 56px;
-    height: 13px;
-    margin-left: -28px;
+    width: 44px;
+    height: 12px;
+    margin-left: -22px;
 }
-
-/*div[w-theme="oldschool"] .events_control:hover {*/
-    /*opacity: 1;*/
-/*}*/
 
 div[w-theme="oldschool"] .events_control:before {
     content: '';
     position: absolute;
-    width: 56px;
-    height: 56px;
-    border-radius: 28px;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background: #b7c9d3 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 13px 50%/12px 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    -webkit-transition: background 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: rgba(183, 201, 211, 0.6) url("http://ticketmaster-api-staging.github.io/assets/img/widgets/arrows-small-white.svg") no-repeat 22px 50%/12px 12px;
 }
 
 div[w-theme="oldschool"] .events_control-left {
@@ -532,10 +530,6 @@ div[w-theme="oldschool"] .events_control-bottom:before {
     transform: rotate(90deg);
 }
 
-div[w-theme="oldschool"] .events_control:hover {
-    opacity: 0.8;
-}
-
 div[w-theme="oldschool"] .events_control-vertical.events_control-hidden {
     height: 0;
 }
@@ -544,16 +538,20 @@ div[w-theme="oldschool"] .events_control-horizontal.events_control-hidden {
     width: 0;
 }
 
+div[w-theme="oldschool"] .events_control:hover:before {
+    background-color: rgba(0, 156, 222, 0.7);
+    background-position: 7px 50%;
+}
+
 div[w-theme="oldschool"] .events_control-vertical:hover {
-    height: 28px;
+    height: 22px;
 }
 
 div[w-theme="oldschool"] .events_control-horizontal:hover {
-    width: 28px;
+    width: 22px;
 }
 
-div[w-theme="oldschool"] .events_control-hidden,
-div[w-theme="oldschool"] .events_control-hidden:hover {
+div[w-theme="oldschool"] .events_control-hidden {
     opacity: 0;
     cursor: default;
 }
