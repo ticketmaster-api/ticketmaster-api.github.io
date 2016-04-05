@@ -43,9 +43,7 @@
         maxWidth: 500,
         minWidth: 350
       }
-    },
-    oldskool: {},
-    ColocolorBlock: {}
+    }
   };
 
   function getHeightByTheme(theme) {
@@ -58,7 +56,7 @@
         return 2;
         break;
       case "newschool":
-        return 1;
+        return 2;
         break;
       default:
         return 0;

@@ -384,12 +384,12 @@ div[w-theme="simple"] .event-category:first-child:before{
 }
 
 div[w-theme="simple"] .legal-notice {
-    position: absolute;
-    left: 30px;
-    bottom: 85px;
+    display: block;
+    float: left;
+    margin: 0 0 0 15px;
+    color: #b7c9d3;
     font-size: 14px;
-    line-height: 16px;
-    color: #768692;
+    line-height: 2.8;
 }
 
 div[w-theme="simple"] .legal-notice:hover,
@@ -399,15 +399,14 @@ div[w-theme="simple"] .legal-notice:active{
 }
 
 div[w-theme="simple"] .events-counter {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    bottom: 9px;
-    font-size: 16px;
-    line-height: 19px;
+    display: block;
+    float: right;
+    margin: 0 15px 0 0;
+    font-size: 14px;
+    line-height: 2.8;
     color: #b7c9d3;
-    text-align: center;
     font-family: "TMSans-Bold";
+    text-align: right;
 }
 
 div[w-theme="simple"] .event-logo-box {
@@ -422,10 +421,10 @@ div[w-theme="simple"] .event-logo-box {
 div[w-theme="simple"] .event-logo {
     display: block;
     position: absolute;
-    top: 8px;
+    top: 6px;
     right: 10px;
-    width: 129px;
-    height: 18px;
+    width: 159px;
+    height: 25px;
 }
 
 div[w-theme="simple"] .event-logo:before,
@@ -445,14 +444,15 @@ div[w-theme="simple"] .event-logo:after {
 div[w-theme="simple"] .event-logo:before {
     opacity: 0;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
 div[w-theme="simple"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
+/*
 div[w-theme="simple"] .event-logo:hover:before {
     opacity: 1;
 }
@@ -460,6 +460,7 @@ div[w-theme="simple"] .event-logo:hover:before {
 div[w-theme="simple"] .event-logo:hover:after {
     opacity: 0;
 }
+*/
 
 /*group*/
 div[w-theme="simple"] .event-group {
@@ -470,7 +471,7 @@ div[w-theme="simple"] .event-group {
 div[w-theme="simple"] .event-buy-btn {
     position: absolute;
     left: 30px;
-    bottom: 96px;
+    bottom: 42px;
     width: 74px;
     height: 24px;
     padding-top: 5px;
