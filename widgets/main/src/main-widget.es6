@@ -625,7 +625,6 @@ class TicketmasterWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
-      e.preventDefault();
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
