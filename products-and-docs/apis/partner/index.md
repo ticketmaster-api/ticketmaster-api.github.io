@@ -1503,7 +1503,7 @@ Encrypt the credit card and cvv number using the following steps:
     <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
     <li>Before encrypting the sensitive data, salt it with 16 random bytes. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
     <li>When encrypting data, use RSA encryption with pkcs1 padding. Use the certificate value from step 1 as the public key.</li>
-    oli>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
+    <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
 
 Sample credit-card information for use in the sandbox environment:
