@@ -98,7 +98,6 @@ div[w-theme="newschool"]{
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
     padding-bottom: 41px;
-    padding-right: 2px;
 }
 
 div[w-theme="newschool"] .events-root-container {
@@ -107,10 +106,11 @@ div[w-theme="newschool"] .events-root-container {
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    border: solid 1px #cccccc;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: #ccc;
 }
 
 div[w-theme="newschool"][w-colorscheme="light"] .events-root-container {

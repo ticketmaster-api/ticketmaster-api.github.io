@@ -5,6 +5,19 @@
     return (theme === 'simple' ? 238 : 300);
   }
 
+  function getBorderByTheme(theme) {
+    switch (theme) {
+      case "oldschool":
+        return 2;
+        break;
+      case "newschool":
+        return 1;
+        break;
+      default:
+        return 0;
+    }
+  }
+
   // TODO: do we need 'config' variable ?
   var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
 
@@ -47,6 +60,7 @@
       if(widgetNode.getAttribute('w-layout') === 'horizontal'){
         widgetNode.setAttribute('w-height', getHeightByTheme(event.target.value));
       }
+      widgetNode.setAttribute('w-border', getBorderByTheme(event.target.value));
     }
 
     if(event.target.name === "w-layout"){
