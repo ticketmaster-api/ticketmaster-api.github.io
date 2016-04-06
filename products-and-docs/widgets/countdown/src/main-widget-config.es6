@@ -66,7 +66,8 @@
   $borderRadiusController = $('#w-borderradius').slider({
     tooltip: 'always',
     handle: 'square'
-  });
+  }),
+  $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
@@ -77,10 +78,10 @@
     if(!event.target.name){
       return;
     }
-    let widgetNode = document.querySelector("div[w-tmapikey]"),
+    const widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
-        targetName = event.target.name,
-        $tabButtons = $('.widget__layout_control .js-tab-buttons');
+        targetName = event.target.name;
+
 
     // if(targetName === "w-theme"){
     //   if(widgetNode.getAttribute('w-layout') === 'horizontal'){
@@ -126,11 +127,11 @@
       widgetNode.setAttribute('w-layout', themeConfig.simple_countdown.sizes[targetValue].layout);
 
       if (targetValue !== 'custom') {
-        $tabButtons.hide();
-        widthSlider.hide();
+        $tabButtons.slideUp("fast");
+        widthSlider.slideUp("fast");
       }else{
-        $tabButtons.show();
-        widthSlider.show();
+        $tabButtons.slideDown("fast");
+        widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]',$tabButtons).prop('checked', true);
 
         sizeConfig = { //default size
@@ -159,6 +160,7 @@
 
   var resetWidget = function(configForm) {
     let widgetNode = document.querySelector("div[w-tmapikey]"),
+        widthSlider = $('.js_widget_width_slider'),
         height = 550,
         theme,
         layout;
@@ -197,6 +199,9 @@
         widgetNode.setAttribute($self.attr('name'), val);
       }
     });
+
+    $tabButtons.slideDown("fast");
+    widthSlider.slideDown("fast");
 
     if(layout === 'horizontal'){
       height = getHeightByTheme(theme);
