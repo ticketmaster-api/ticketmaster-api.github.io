@@ -75,7 +75,7 @@
                 groupLeft = me.parent().children().first().nextUntil('.aside').addBack(),
                 firstElemGroupLeft = groupLeft.parent().children().first(),
                 consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#"),
-                toggleCodeBtn = $(document.createElement("button")).addClass("toggle-code-btn");
+                toggleCodeBtn = $(document.createElement("button")).addClass("toggle-code-btn scale-on-hover");
 
             group.wrapAll('<div class="aside-wrapper"></div>');
 
