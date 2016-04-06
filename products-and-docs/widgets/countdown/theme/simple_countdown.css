@@ -1,0 +1,414 @@
+/* FONTS */
+/*TMSans*/
+@font-face {
+    font-family: "TMSans-Regular";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Light";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Italic";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Bold";
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+
+
+/* Common styles for all themes  */
+div[w-theme="simple_countdown"]{
+    position: relative;
+    height: 200px;
+    width: 150px;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    font-family: 'TMSans-Regular';
+    padding-bottom: 41px;
+}
+
+div[w-theme="simple_countdown"] a,
+div[w-theme="simple_countdown"] a:hover,
+div[w-theme="simple_countdown"] a:focus,
+div[w-theme="simple_countdown"] a:active{
+    text-decoration: none;
+}
+
+div[w-theme="simple_countdown"] .event-pretended-link {
+    cursor: pointer;
+    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple_countdown"] .event-pretended-link:hover {
+    opacity: 0.7;
+}
+
+div[w-theme="simple_countdown"] .event-message {
+    position: absolute;
+    padding: 16px 46px 16px 52px;
+    left: 10px;
+    right: 10px;
+    top: -50%;
+    border-radius: 4px;
+    font-family: "TMSans-Bold";
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ffffff;
+    opacity: 0;
+    z-index: 10;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
+    -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+div[w-theme="simple_countdown"] .event-message-visible {
+    top: 10px;
+    opacity: 1;
+}
+
+div[w-theme="simple_countdown"] .event-message__btn {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ic-close-small-white.svg") no-repeat 50% 50%;
+}
+
+div[w-theme="simple_countdown"] .events-root-container{
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #e5e5e5;
+    border-style: solid;
+    border-color: #ccc;
+}
+
+div[w-theme="simple_countdown"] ul{
+    margin: 0;
+    padding: 0;
+    -webkit-transition: margin 0.5s ease-in-out;
+    -moz-transition: margin 0.5s ease-in-out;
+    transition: margin 0.5s ease-in-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/*  question  */
+div[w-theme="simple_countdown"] .event-question {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple_countdown"] .event-question:before,
+div[w-theme="simple_countdown"] .event-question:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple_countdown"] .event-question:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-blue.svg");
+}
+
+div[w-theme="simple_countdown"] .event-question:after {
+    opacity: 0.7;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-white.svg");
+}
+
+div[w-theme="simple_countdown"] .event-question:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="simple_countdown"] .event-question:hover:after {
+    opacity: 0;
+}
+
+div[w-theme="simple_countdown"] .bg-cover {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Theme special styles */
+div[w-theme="simple_countdown"] .event-wrapper {
+    display: block;
+    position: relative;
+    height: 200px;
+    width:150px;
+    float: left;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 1.3;
+    color: #fff;
+}
+
+div[w-theme="simple_countdown"] .event-content-wraper,
+div[w-theme="simple_countdown"] .event-wrapper:before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+div[w-theme="simple_countdown"] .event-wrapper:before {
+    content: '';
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 15%);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 15%);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 15%);
+}
+
+div[w-theme="simple_countdown"] .event-content-wraper {
+    width: 100%;
+    padding: 287px 30px 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+div[w-theme="simple_countdown"] .event-name{
+    display: block;
+    display: -webkit-box;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-family: "TMSans-Bold";
+    margin-bottom: 20px;
+    line-height: 31px;
+    max-height: 62px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+div[w-theme="simple_countdown"] .event-date-wraper{
+    display: block;
+    font-family: "TMSans-Bold";
+    margin-bottom: 11px;
+}
+
+div[w-theme="simple_countdown"] .address-wrapper{
+    display: block;
+    display: -webkit-box;
+    height: 30px;
+    font-family: "TMSans-Light";
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+div[w-theme="simple_countdown"] .event-address{
+    display: inline;
+}
+
+div[w-theme="simple_countdown"] .event-address:after{
+    content: ',\00a0';
+    display: inline-block;
+}
+
+div[w-theme="simple_countdown"] .address-wrapper .event-address:last-child:after{
+    display: none;
+}
+
+div[w-theme="simple_countdown"] .category-wrapper{
+    display: block;
+    font-family: "TMSans-Bold";
+}
+
+div[w-theme="simple_countdown"] .address-wrapper,
+div[w-theme="simple_countdown"] .category-wrapper{
+    opacity: 0.7;
+}
+
+div[w-theme="simple_countdown"] .event-category:before{
+    content: ', ';
+}
+
+div[w-theme="simple_countdown"] .event-category:first-child:before{
+    content: '';
+}
+
+div[w-theme="simple_countdown"] .legal-notice {
+    position: absolute;
+    left: 30px;
+    bottom: 85px;
+    font-size: 14px;
+    line-height: 16px;
+    color: #768692;
+}
+
+div[w-theme="simple_countdown"] .legal-notice:hover,
+div[w-theme="simple_countdown"] .legal-notice:focus,
+div[w-theme="simple_countdown"] .legal-notice:active{
+    color: #019cde;
+}
+
+div[w-theme="simple_countdown"] .event-logo-box {
+    position: absolute;
+    bottom: 36px;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+div[w-theme="simple_countdown"] .event-logo {
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 129px;
+    height: 18px;
+}
+
+div[w-theme="simple_countdown"] .event-logo:before,
+div[w-theme="simple_countdown"] .event-logo:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple_countdown"] .event-logo:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+}
+
+div[w-theme="simple_countdown"] .event-logo:after {
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+}
+
+div[w-theme="simple_countdown"] .event-logo:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="simple_countdown"] .event-logo:hover:after {
+    opacity: 0;
+}
+
+/* BUY NOW */
+div[w-theme="simple_countdown"] .event-buy-btn {
+    position: absolute;
+    left: 30px;
+    bottom: 96px;
+    width: 74px;
+    height: 24px;
+    padding-top: 5px;
+    border-radius: 4px;
+    background-color: #009cde;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 16px;
+    color: #ffffff;
+    text-align: center;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="simple_countdown"] .event-buy-btn:hover {
+    background-color: #2A7CC7;
+}
+
+div[w-theme="simple_countdown"] .event-buy-btn[href=''],
+div[w-theme="simple_countdown"] .event-buy-btn[href='']:hover {
+    background-color: #ccc;
+    cursor: default;
+    opacity: 0.5;
+}
+
+/*  LAYOUT  */
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-content-wraper {
+    padding-top: 29px;
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-name{
+    margin-bottom: 17px;
+    padding-right: 64px;
+    max-width: 560px;
+}
+div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper {
+    padding-right: 64px;
+    max-width: 560px;
+}
+
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .legal-notice {
+    left: 119px;
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-buy-btn {
+    bottom: 42px;
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-wrapper:before {
+background: -moz-linear-gradient(right, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
+background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 20%);
+background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
+}
+
+/**/
+div[w-theme="simple_countdown"][w-proportion="3x6"]  {
+    width: 300px;
+}

@@ -143,11 +143,11 @@
       widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
 
       if (targetValue !== 'custom') {
-        $tabButtons.hide();
-        widthSlider.hide();
+        $tabButtons.slideUp("fast");
+        widthSlider.slideUp("fast");
       }else{
-        $tabButtons.show();
-        widthSlider.show();
+        $tabButtons.slideDown("fast");
+        widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]',$tabButtons).prop('checked', true);
 
         sizeConfig = { //default size

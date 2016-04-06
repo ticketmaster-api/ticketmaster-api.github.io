@@ -12,8 +12,8 @@ class TicketmasterWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
+  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
