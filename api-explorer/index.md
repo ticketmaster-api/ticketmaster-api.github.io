@@ -3,6 +3,9 @@ layout: api-explorer
 ---
 
 <div id="api-explorer">
+    <!--hints-->
+    <button id="cd-tour-trigger" class="btn feedback-btn">Show hints</button>
+	<div class="cd-cover-layer"></div>
     <!--bootstrap error popup-->
     <div id="error-alert" class="modal fade" role="dialog">
         <div class="vertical-alignment-helper">
@@ -10,7 +13,6 @@ layout: api-explorer
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="error-message">Whoa! Method returned an error. :(</h4>
                     </div>
                     <div class="modal-footer">
@@ -27,7 +29,6 @@ layout: api-explorer
                 <!-- Modal content-->
                 <div class="modal-content success">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="success-message">Data posted successfully :)</h4>
                     </div>
                     <div class="modal-footer">
@@ -43,7 +44,6 @@ layout: api-explorer
             <div class="modal-dialog modal-lg vertical-align-center">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Image preview</h4>
                     </div>
                     <div class="modal-body">
@@ -62,7 +62,6 @@ layout: api-explorer
             <div class="modal-dialog modal-lg vertical-align-center">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Location</h4>
                     </div>
                     <div class="modal-body" id="map" style="width: 100%; height: 500px;"></div>
@@ -83,7 +82,18 @@ layout: api-explorer
     </div>
     <!--navigation bar-->
     <div class="row">
-        <div class="row-container">
+        <div class="row-container" style="position: relative;">
+            <ul class="cd-tour-wrapper">
+        		<li class="cd-single-step" style="left: 65%; top: 7%;">
+        			<span>Navigation Menu</span>
+
+        			<div class="cd-more-info bottom">
+        				<h2>Navigation Menu</h2>
+        				<p class="caption">Select API and method to explore</p>
+        				<img src="/assets/img/api-explorer/step-1.png">
+        			</div>
+        		</li> <!-- .cd-single-step -->
+            </ul>
             <div class="col-xs-12">
                 <nav class="nav navbar-nav"></nav>
             </div>
@@ -99,7 +109,18 @@ layout: api-explorer
     </div>
     <!--get button + api key-->
     <div class="row group-start">
-        <div class="row-container">
+        <div class="row-container" style="position: relative;">
+            <ul class="cd-tour-wrapper">
+                <li class="cd-single-step" style="left: 35%; top: -6%;">
+                    <span>Api Key</span>
+
+                    <div class="cd-more-info bottom">
+                        <h2>Api Key</h2>
+                        <p class="caption">Enter your API Key</p>
+                        <img src="/assets/img/api-explorer/step-2.png">
+                    </div>
+                </li> <!-- .cd-single-step -->
+            </ul>
             <div class="col-sm-3 col-xs-12">
                 <a class="button button-blue" style="width: 100%; text-align: center; margin-top:auto;" href="#" role="button" id="primary-btn">GET</a>
             </div>
@@ -119,7 +140,18 @@ layout: api-explorer
         </div>
     </div>
     <!--parameter fields-->
-    <div class="row">
+    <div class="row" style="position: relative;">
+        <ul class="cd-tour-wrapper">
+            <li class="cd-single-step" style="left: 60%; top: -1%;">
+                <span>Request Parameters</span>
+
+                <div class="cd-more-info bottom">
+                    <h2>Request Parameters</h2>
+                    <p class="caption">Fill in query parameters</p>
+                    <img src="/assets/img/api-explorer/step-3.png">
+                </div>
+            </li> <!-- .cd-single-step -->
+        </ul>
         <div class="row-container" id="primary-column"></div>
         <div class="row-container">
             <div class="col-xs-12">
@@ -154,10 +186,6 @@ layout: api-explorer
             </div>
         </div>
     </div>
-    <!--slider-->
-    <div class="row-container">
-        <div id="columns"></div>
-    </div>
     <!--response list header-->
     <div class="row">
         <div class="row-container">
@@ -169,10 +197,36 @@ layout: api-explorer
     </div>
     <!--response list-->
     <div class="row">
-        <div class="row-container">
+        <div class="row-container" style="position: relative;">
+            <ul class="cd-tour-wrapper">
+                <li class="cd-single-step" style="right: 20%; top: -1%;">
+                    <span>Request Log</span>
+
+                    <div class="cd-more-info top">
+                        <h2>Request Log</h2>
+                        <p class="caption">View your requests log with raw URL and response</p>
+                        <img src="/assets/img/api-explorer/step-4.png">
+                    </div>
+                </li> <!-- .cd-single-step -->
+            </ul>
             <div class="col-xs-12">
                 <div class="panel-group" id="req-res-container"></div>
             </div>
         </div>
+    </div>
+    <!--slider-->
+    <div class="row-container" style="position: relative;">
+        <ul class="cd-tour-wrapper">
+            <li class="cd-single-step" style="left: 17%; top: 73px;">
+                <span>Response Items</span>
+
+                <div class="cd-more-info top">
+                    <h2>Response Items</h2>
+                    <p class="caption">Explore the response :)</p>
+                    <img src="/assets/img/api-explorer/step-5.png">
+                </div>
+            </li> <!-- .cd-single-step -->
+        </ul>
+        <div id="columns"></div>
     </div>
 </div>
