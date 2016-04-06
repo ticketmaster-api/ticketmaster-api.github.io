@@ -150,12 +150,12 @@ Object.byString = function(o, s) {
         });
         $('#clear-req-resp').on('click', function(e){
             e.preventDefault();
-            var container = $('#req-res-container');
-            container.slideUp(500);
+            var container = $('#req-res-container'),
+                items = container.find('.req-resp-temp');
+            items.fadeOut(300);
             setTimeout(function(){
-                container.find('.req-resp-temp').remove();
-                container.slideDown(1);
-            }, 500);
+                items.remove();
+            }, 300);
         });
         $('#api-key').change(function(){
             apiKey = $(this).val();
@@ -200,6 +200,11 @@ Object.byString = function(o, s) {
             }
             else {
                 dataJSONSlideUp();
+            }
+        });
+        $('#cd-tour-trigger').on('click', function(){
+            if (slider.find('.api-column').length == 0){
+                sendPrimaryRequest(true);
             }
         });
     };
@@ -751,10 +756,11 @@ Object.byString = function(o, s) {
     };
 
     // sends request to get the second column
-    var sendPrimaryRequest = function(){
+    var sendPrimaryRequest = function(visible){
         currentColumnColorIndex = getNextColorIndex();
         var url = formPrimaryURL(selectedMethod);
-        spinner.show();
+        if (!visible)
+            spinner.show();
         sendRequest(url, selectedMethod.method, function(response, guid){
             slider.slick('slickGoTo', 0);
             setTimeout(function(){
@@ -762,7 +768,8 @@ Object.byString = function(o, s) {
                     slider.slick("slickRemove", 0);
                 }
                 new Column(CONFIG[selectedMethod.id], response, null, guid);
-                scrollToSlider();
+                if (!visible)
+                    scrollToSlider();
             }, 1000);
         });
     };
