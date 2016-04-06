@@ -53,7 +53,7 @@
         return 2;
         break;
       case "newschool":
-        return 1;
+        return 2;
         break;
       default:
         return 0;
