@@ -3,8 +3,8 @@ class TicketmasterWidget {
   set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
   get config() { return this.widgetConfig; }
 
-  set events(responce){ this.eventsList = this.parseEvents(responce);}
-  get events(){ return this.eventsList;}
+  set event(responce){ this.eventResponce = this.parseEvent(responce);}
+  get event(){ return this.eventResponce;}
 
   get borderSize(){ return this.config.border || 0;}
 
@@ -12,8 +12,9 @@ class TicketmasterWidget {
 
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : false; }
 
-  get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
-  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
+  // get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
+  // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
@@ -95,7 +96,7 @@ class TicketmasterWidget {
     if(this.apiUrl){
       this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
     }else{
-      this.showMessage("No results were found.", true);
+      this.showMessage("Please enter event ID.", true);
     }
 
     // if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
@@ -122,7 +123,7 @@ class TicketmasterWidget {
 
   setBuyBtnUrl(){
     if(this.buyBtn){
-      let event = this.events[0],
+      let event = this.event,
           url = '';
       if(event){
         if(event.url){
@@ -187,18 +188,18 @@ class TicketmasterWidget {
       this.hideMessageWithoutDelay = hideMessageWithoutDelay;
       this.messageContent.innerHTML = message;
       this.messageDialog.classList.add("event-message-visible");
-      if (this.messageTimeout) {
-        clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
-      }
+      // if (this.messageTimeout) {
+      //   clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+      // }
     }
   }
 
-  hideMessageWithDelay(delay){
-    if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
-    this.messageTimeout = setTimeout(()=>{
-      this.hideMessage();
-    }, delay);
-  }
+  // hideMessageWithDelay(delay){
+  //   if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
+  //   this.messageTimeout = setTimeout(()=>{
+  //     this.hideMessage();
+  //   }, delay);
+  // }
 
   hideMessage(){
     if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
@@ -310,6 +311,14 @@ class TicketmasterWidget {
       }else{
         this.showMessage("No results were found.", true);
       }
+    }else{
+      let events = document.getElementsByClassName("event-wrapper");
+      for(let i in events){
+        if(events.hasOwnProperty(i) && events[i].style !== undefined){
+          events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
+          events[i].style.height = `${this.config.height - this.borderSize * 2}px`;
+        }
+      }
     }
   }
 
@@ -352,29 +361,24 @@ class TicketmasterWidget {
     widget.clearEvents(); // Additional clearing after each loading
     if (this && this.readyState == XMLHttpRequest.DONE ) {
       if(this.status == 200){
-        widget.events = JSON.parse(this.responseText);
-
-        console.log(widget.events , 'widget.events ');
-
-        if(widget.events.length){
-          widget.events.map(function(event, i){
-              widget.publishEvent(event);
-          });
-
-          if(widget.hideMessageWithoutDelay)
-            widget.hideMessage();
-          else
-            widget.hideMessageWithDelay(widget.hideMessageDelay);
-
+        widget.event = JSON.parse(this.responseText);
+        if(widget.event){
+          widget.publishEvent(widget.event);
+          widget.hideMessage();
         }
       }
       else if(this.status == 400) {
+        widget.event = false;
+        widget.showMessage("No results were found.", true);
         console.log('There was an error 400');
       }
       else {
+        widget.event = false;
+        widget.showMessage("No results were found.", true);
         console.log('something else other than 200 was returned');
       }
     }
+    widget.setBuyBtnUrl();
   }
 
   publishEvent(event, parentNode){
@@ -405,48 +409,38 @@ class TicketmasterWidget {
     return myImg;
   }
 
-  parseEvents(eventsSet){
-    console.log(eventsSet);
-
-    if(!eventsSet._embedded){
+  parseEvent(eventSet){
+    if(!eventSet.id){
       if(typeof($widgetModalNoCode) !== "undefined"){
         $widgetModalNoCode.modal();
       }
-      return [];
+      return false;
     }
-    eventsSet = eventsSet._embedded.events;
-    var tmpEventSet = [];
-    for(var key in eventsSet){
-      if(eventsSet.hasOwnProperty(key)){
-        let currentEvent = {};
 
-        currentEvent.id = eventsSet[key].id;
-        currentEvent.url = eventsSet[key].url;
-        currentEvent.name = eventsSet[key].name;
+    let currentEvent = {};
 
-        currentEvent.date = {
-          day: eventsSet[key].dates.start.localDate,
-          time: eventsSet[key].dates.start.localTime
-        };
+    currentEvent.id = eventSet.id;
+    currentEvent.url = eventSet.url;
+    currentEvent.name = eventSet.name;
 
-        let venue = eventsSet[key]._embedded.venues[0];
-        if(venue){
-          if(venue.address)
-            currentEvent.address = venue.address;
+    currentEvent.date = {
+      day: eventSet.dates.start.localDate,
+      time: eventSet.dates.start.localTime
+    };
 
-          if(venue.name){
-            if(!currentEvent.address) currentEvent.address = {};
-            currentEvent.address.name = venue.name;
-          }
-        }
+    let venue = eventSet._embedded.venues[0];
+    if(venue){
+      if(venue.address)
+        currentEvent.address = venue.address;
 
-        currentEvent.img = this.getImageForEvent(eventsSet[key].images);
-
-        tmpEventSet.push(currentEvent);
-
+      if(venue.name){
+        if(!currentEvent.address) currentEvent.address = {};
+        currentEvent.address.name = venue.name;
       }
     }
-    return tmpEventSet;
+
+    currentEvent.img = this.getImageForEvent(eventSet.images);
+    return currentEvent;
   }
 
 

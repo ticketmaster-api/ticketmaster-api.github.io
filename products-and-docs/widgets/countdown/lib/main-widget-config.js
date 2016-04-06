@@ -3,7 +3,7 @@
 (function () {
 
   var themeConfig = {
-    simple: {
+    simple_countdown: {
       name: 'Poster',
       sizes: {
         s: {
@@ -47,7 +47,7 @@
   };
 
   // function getHeightByTheme(theme){
-  //   return (theme === 'simple' ? 238 : 300);
+  //   return (theme === 'simple_countdown' ? 238 : 300);
   // }
 
   // function getBorderByTheme(theme) {
@@ -91,7 +91,7 @@
     // }
 
     if (targetName === "w-layout") {
-      var sizeConfig = themeConfig.simple.initSliderSize;
+      var sizeConfig = themeConfig.simple_countdown.initSliderSize;
       if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
@@ -112,18 +112,18 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    //Check fixed sizes for 'simple' theme
+    //Check fixed sizes for 'simple_countdown' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
       var sizeConfig = {
-        width: themeConfig.simple.sizes[targetValue].width,
-        height: themeConfig.simple.sizes[targetValue].height,
+        width: themeConfig.simple_countdown.sizes[targetValue].width,
+        height: themeConfig.simple_countdown.sizes[targetValue].height,
         maxWidth: 600,
         minWidth: 350
       };
 
       //set layout
-      widgetNode.setAttribute('w-layout', themeConfig.simple.sizes[targetValue].layout);
+      widgetNode.setAttribute('w-layout', themeConfig.simple_countdown.sizes[targetValue].layout);
 
       if (targetValue !== 'custom') {
         $tabButtons.hide();
@@ -134,10 +134,10 @@
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
         sizeConfig = { //default size
-          width: themeConfig.simple.initSliderSize.width, //350
-          height: themeConfig.simple.initSliderSize.height, //550
-          maxWidth: themeConfig.simple.initSliderSize.maxWidth, //500
-          minWidth: themeConfig.simple.initSliderSize.minWidth // 350
+          width: themeConfig.simple_countdown.initSliderSize.width, //350
+          height: themeConfig.simple_countdown.initSliderSize.height, //550
+          maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
+          minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
         $widthController.slider({
           setValue: sizeConfig.width,
