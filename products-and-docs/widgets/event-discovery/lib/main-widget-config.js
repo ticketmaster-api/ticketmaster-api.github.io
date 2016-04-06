@@ -89,7 +89,10 @@
 
     if (targetName === "w-postalcode") {
       widgetNode.setAttribute('w-country', '');
-      $('#w-country').prop('disabled', true).data('cleared', true).html('');
+      $('#w-country').prop('disabled', true)
+      // .data('cleared', true)
+      // .html('')
+      ;
     }
 
     if (targetName === "w-theme") {
@@ -129,7 +132,7 @@
     //Check fixed sizes for 'simple' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var _sizeConfig = {
+      var sizeConfig = {
         width: themeConfig.sizes[targetValue].width,
         height: themeConfig.sizes[targetValue].height,
         maxWidth: 600,
@@ -147,21 +150,21 @@
         widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
+        sizeConfig = { //default size
           width: themeConfig.initSliderSize.width, //350
           height: themeConfig.initSliderSize.height, //550
           maxWidth: themeConfig.initSliderSize.maxWidth, //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     // if(event.target.name === "border"){
@@ -182,8 +185,8 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 550,
-        theme = void 0,
-        layout = void 0;
+        theme = undefined,
+        layout = undefined;
 
     configForm.find("input[type='text'], input[type='number']").each(function () {
       var $self = $(this),
@@ -299,16 +302,21 @@
   widget.onLoadCoordinate = function (response) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
+
+    console.log('onLoadCoordinate', response);
+
     widget.config['country'] = countryShortName;
     var $countrySelect = $('#w-country'),
         options = '';
+
+    $countrySelect.html('<option>All</option>');
 
     if (response) {
       if (response.status === 'OK') {
         if (response.results) {
           $countrySelect.prop('disabled', !response.results.length);
           if ($countrySelect.data('cleared')) {
-            $countrySelect.data('cleared', false).html('');
+            $countrySelect.html('');
             for (var i in response.results) {
               var result = response.results[i];
               if (result.address_components) {
@@ -319,14 +327,13 @@
                 }
               }
             }
-            $countrySelect.append(options);
+            if (options) {
+              $countrySelect.append(options);
+              $countrySelect.prop('disabled', false);
+            }
           }
         }
       }
-    }
-
-    if (!options) {
-      $countrySelect.html('<option>All</option>');
     }
   };
 })();
