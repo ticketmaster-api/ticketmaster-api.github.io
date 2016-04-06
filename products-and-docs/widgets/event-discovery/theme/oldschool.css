@@ -111,12 +111,12 @@ div[w-theme="oldschool"] .events-root-container{
     box-sizing: border-box;
     border-style: solid;
     border-color: #f7ec7a;
+    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/paper_@2X.png");
 }
 
 div[w-theme="oldschool"] .events-root-container:after {
     content: '';
     display: block;
-    background: #fff;
     height: 125px;
     position: absolute;
     right: 0;
@@ -129,7 +129,6 @@ div[w-theme="oldschool"] .events-root-container:after {
 div[w-theme="oldschool"] .events-root-container:before {
     content: '';
     display: block;
-    background: #fff;
     height: 36px;
     position: absolute;
     right: 0;
@@ -168,7 +167,7 @@ div[w-theme="oldschool"] .bg-cover {
     background: url('http://ticketmaster-api-staging.github.io/assets/img/widgets/paper_@2X.png') no-repeat !important;
 }
 
-div[w-theme="oldschool"] .event-wrapper:before {
+div[w-theme="oldschool"] .bg-cover:before {
     content: '';
     position: absolute;
     display: block;
@@ -301,12 +300,12 @@ div[w-theme="oldschool"] .event-category:first-child:before{
 }
 
 div[w-theme="oldschool"] .legal-notice {
-    position: absolute;
-    left: 30px;
-    bottom: 63px;
+    display: block;
+    float: left;
+    margin: 0 0 0 15px;
     color: #b7c9d3;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 2.8;
 }
 
 div[w-theme="oldschool"] .legal-notice:hover,
@@ -316,12 +315,14 @@ div[w-theme="oldschool"] .legal-notice:active{
 }
 
 div[w-theme="oldschool"] .events-counter {
+    display: block;
+    float: right;
+    margin: 0 15px 0 0;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 2.8;
     color: #b7c9d3;
     font-family: "TMSans-Bold";
-    text-align: center;
-    margin-top: 10px;
+    text-align: right;
 }
 
 div[w-theme="oldschool"] .event-logo-box {
@@ -330,7 +331,7 @@ div[w-theme="oldschool"] .event-logo-box {
     left: 0;
     width: 100%;
     height: 46px;
-    padding: 13px 25px 0 30px;
+    padding: 13px 0 0 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -349,17 +350,17 @@ div[w-theme="oldschool"] .event-logo-box:before{
     width: 300px;
     height: 40px;
     background: url('http://ticketmaster-api-staging.github.io/assets/img/widgets/barcode.svg') no-repeat;
-    top: -20px;
+    top: -24px;
     left: 50%;
     margin-left: -150px;
 }
 
 div[w-theme="oldschool"] .event-logo {
+    position: relative;
     display: inline-block;
-    position: absolute;
-    right: 25px;
-    width: 129px;
-    height: 20px;
+    width: 100%;
+    height: 25px;
+    float: left;
 }
 
 div[w-theme="oldschool"] .event-logo:before,
@@ -368,9 +369,10 @@ div[w-theme="oldschool"] .event-logo:after {
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
+    top: -17px;
     bottom: 0;
     background-repeat: no-repeat;
+    background-position: center center;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
@@ -379,14 +381,15 @@ div[w-theme="oldschool"] .event-logo:after {
 div[w-theme="oldschool"] .event-logo:before {
     opacity: 0;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
 div[w-theme="oldschool"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
+/*
 div[w-theme="oldschool"] .event-logo:hover:before {
     opacity: 1;
 }
@@ -394,6 +397,7 @@ div[w-theme="oldschool"] .event-logo:hover:before {
 div[w-theme="oldschool"] .event-logo:hover:after {
     opacity: 0;
 }
+*/
 
 /*  question  */
 div[w-theme="oldschool"] .event-question {
@@ -644,7 +648,9 @@ div[w-theme="oldschool"][w-layout="horizontal"] .event-logo-box {
 div[w-theme="oldschool"][w-layout="horizontal"] .event-logo-box:before{
     width: 250px;
     left: 150px;
+    margin-left: -122px;
 }
+
 div[w-theme="oldschool"][w-layout="horizontal"] .event-content-wraper{
     padding: 40px 0 0 100px;
     width: 100%;
@@ -668,12 +674,7 @@ div[w-theme="oldschool"][w-layout="horizontal"] .address-wrapper:before {
     text-align: center;
 }
 
-div[w-theme="oldschool"][w-layout="horizontal"] .event-logo{
-    margin-left: 105px;
-}
-
 div[w-theme="oldschool"][w-layout="horizontal"] .legal-notice{
-    transform: rotate(-90deg);
     right: 5px;
     left: auto;
     bottom: 95px;
@@ -719,4 +720,40 @@ div[w-theme="oldschool"][w-layout="horizontal"] .events-root-container:before {
     height: 300px;
     width: 36px;
     right: auto;
+}
+
+/* 300x600 */
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"],
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root-container {}
+
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root,
+div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .events-root {
+    height: 68%;
+}
+
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .ticket-logo img:last-child,
+div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .ticket-logo img:last-child {
+    display: none;
+}
+
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .event-logo-box:before,
+div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-logo-box:before {
+    width: 250px;
+    height: 40px;
+    left: 58%;
+}
+
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .events_control-horizontal,
+div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .events_control-horizontal {
+    margin-top: -68px;
+}
+
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .event-date-wraper,
+div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-date-wraper {
+    top: 375px;
+}
+
+div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .event-content-wraper,
+div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-content-wraper {
+    padding-top: 110px;
 }

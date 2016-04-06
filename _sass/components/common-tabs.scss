@@ -37,7 +37,6 @@
           left: 0;
           width: 100%;
           border-bottom: 2px solid #fff;
-          z-index: 1;
         }
         &:after {
           content: "";
@@ -46,7 +45,6 @@
           left: 8px;
           right: 8px;
           border-bottom: 2px solid #f1f5f7;
-          z-index: 2;
         }
       }
 

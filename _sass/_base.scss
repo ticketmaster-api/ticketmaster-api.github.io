@@ -849,6 +849,20 @@ input[type=range]:focus::-ms-fill-upper {
     }
 }
 
+.scale-on-hover {
+  border: none;
+  outline: none;
+  margin-top: 0;
+  @include transition(0.3s);
+  height: 24px;
+  font-size: 0.6875em;
+    &:hover {
+      height: 44px;
+      font-size: 1em;
+    }
+
+
+}
 /*Buttons END*/
 
 

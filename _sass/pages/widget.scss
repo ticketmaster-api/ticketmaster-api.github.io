@@ -4,9 +4,8 @@
   button,
   input[type="radio"]{
     &+label {
-      border: 0;
       outline: none;
-      border-bottom: 2px solid $n3;
+      border-bottom: 2px solid rgba(183, 201, 211, .2);
       background-color: $white;
       padding: 5px 15px;
       margin-right: 2px;
@@ -165,6 +164,7 @@
     height: 60px;
     width: 0;
     border-left: 1px dashed #ccc;
+    z-index: -1;
   }
 
   &:before{
@@ -173,10 +173,6 @@
 
   &:after{
     right: 0;
-  }
-
-  div[w-tmapikey] {
-    z-index: 1;
   }
 }
 
@@ -245,15 +241,15 @@
   }
 
   .col-sm-layout{
-    width: 30.33333%;
+    //width: 30.33333%;
   }
 
   .widget__layout_control {
-    float: right;
+    //float: right;
   }
 
   .col-sm-color_scheme{
-    text-align: center;
+    //text-align: center;
   }
 
   .widget__color_scheme_control{

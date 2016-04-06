@@ -3,46 +3,43 @@
 (function () {
 
   var themeConfig = {
-    simple: {
-      name: 'Poster',
-      sizes: {
-        s: {
-          width: 160,
-          height: 300,
-          layout: 'horizontal'
-        },
-        m: {
-          width: 160,
-          height: 300,
-          layout: 'horizontal'
-        },
-        l: {
-          width: 160,
-          height: 300,
-          layout: 'horizontal'
-        },
-        xl: {
-          width: 160,
-          height: 300,
-          layout: 'horizontal'
-        },
-        xxl: {
-          width: 300,
-          height: 600,
-          layout: 'vertical'
-        },
-        custom: {
-          width: 350,
-          height: 550,
-          layout: 'vertical'
-        }
+    sizes: {
+      s: {
+        width: 160,
+        height: 300,
+        layout: 'horizontal'
       },
-      initSliderSize: {
+      m: {
+        width: 160,
+        height: 300,
+        layout: 'horizontal'
+      },
+      l: {
+        width: 160,
+        height: 300,
+        layout: 'horizontal'
+      },
+      xl: {
+        width: 160,
+        height: 300,
+        layout: 'horizontal'
+      },
+      xxl: {
+        width: 300,
+        height: 600,
+        layout: 'vertical'
+      },
+      custom: {
         width: 350,
         height: 550,
-        maxWidth: 500,
-        minWidth: 350
+        layout: 'vertical'
       }
+    },
+    initSliderSize: {
+      width: 350,
+      height: 550,
+      maxWidth: 500,
+      minWidth: 350
     }
   };
 
@@ -56,9 +53,6 @@
         return 2;
         break;
       case "newschool":
-        return 1;
-        break;
-      case "listview":
         return 2;
         break;
       default:
@@ -91,7 +85,7 @@
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
         targetName = event.target.name,
-        $tabButtons = $('.widget__layout_control .js-tab-buttons');
+        $tabButtons = $('.js-tab-buttons');
 
     if (targetName === "w-postalcode") {
       widgetNode.setAttribute('w-country', '');
@@ -112,7 +106,7 @@
     }
 
     if (targetName === "w-layout") {
-      var sizeConfig = themeConfig.simple.initSliderSize;
+      var sizeConfig = themeConfig.initSliderSize;
       if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
@@ -136,28 +130,28 @@
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
       var _sizeConfig = {
-        width: themeConfig.simple.sizes[targetValue].width,
-        height: themeConfig.simple.sizes[targetValue].height,
+        width: themeConfig.sizes[targetValue].width,
+        height: themeConfig.sizes[targetValue].height,
         maxWidth: 600,
         minWidth: 350
       };
 
       //set layout
-      widgetNode.setAttribute('w-layout', themeConfig.simple.sizes[targetValue].layout);
+      widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
 
       if (targetValue !== 'custom') {
-        $tabButtons.hide();
-        widthSlider.hide();
+        $tabButtons.slideUp("fast");
+        widthSlider.slideUp("fast");
       } else {
-        $tabButtons.show();
-        widthSlider.show();
+        $tabButtons.slideDown("fast");
+        widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
         _sizeConfig = { //default size
-          width: themeConfig.simple.initSliderSize.width, //350
-          height: themeConfig.simple.initSliderSize.height, //550
-          maxWidth: themeConfig.simple.initSliderSize.maxWidth, //500
-          minWidth: themeConfig.simple.initSliderSize.minWidth // 350
+          width: themeConfig.initSliderSize.width, //350
+          height: themeConfig.initSliderSize.height, //550
+          maxWidth: themeConfig.initSliderSize.maxWidth, //500
+          minWidth: themeConfig.initSliderSize.minWidth // 350
         };
         $widthController.slider({
           setValue: _sizeConfig.width,
