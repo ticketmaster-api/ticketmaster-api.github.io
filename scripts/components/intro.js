@@ -35,7 +35,6 @@ jQuery(document).ready(function($){
 		//close tour
 		tourStepInfo.on('click', '.cd-close', function(event){
 			closeTour(tourSteps, tourWrapper, coverLayer);
-			tourTrigger.removeClass('already-activated');
 		});
 
 		//detect swipe event on mobile - change visible step

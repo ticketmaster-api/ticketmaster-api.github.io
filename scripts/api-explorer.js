@@ -203,8 +203,7 @@ Object.byString = function(o, s) {
             }
         });
         $('#cd-tour-trigger').on('click', function(){
-            if (!$(this).hasClass('already-activated')){
-                $(this).addClass('already-activated');
+            if (slider.find('.api-column').length == 0){
                 sendPrimaryRequest(true);
             }
         });
