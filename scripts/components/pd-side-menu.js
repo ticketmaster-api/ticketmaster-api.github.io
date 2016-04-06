@@ -81,15 +81,15 @@
                         belowFooter = true;
                         menuWraper.addClass("below-footer").css({
                             'position': 'absolute',
-                            'top': $('.maincontent').parent().height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44,
-                            'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44,
+                            'top': $('.maincontent').parent().height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44 - /*top margin*/72,
+                            'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44 + /*top margin + top menu*/145,
                             'width': 100 + '%'
                         });
                         scrollMenu("bottom");
                     }
                 }
 
-                if (windowScrollTop <= menuWraper.offset().top){
+                if (windowScrollTop <= (menuWraper.offset().top - /*top margin + top menu*/145) ){
                     belowFooter = false;
                     menuWraper.removeClass("below-footer").css({
                         'position': '',
