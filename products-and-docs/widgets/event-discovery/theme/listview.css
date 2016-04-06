@@ -312,7 +312,7 @@ div[w-theme="listview"] .event-category:first-child:before{
 div[w-theme="listview"] .legal-notice {
     position: absolute;
     left: 30px;
-    bottom: 85px;
+    bottom: 77px;
     font-size: 14px;
     line-height: 16px;
     color: #768692;
@@ -340,10 +340,10 @@ div[w-theme="listview"] .event-logo-box {
 div[w-theme="listview"] .event-logo {
     display: block;
     position: absolute;
-    top: 8px;
+    top: 6px;
     right: 10px;
-    width: 129px;
-    height: 18px;
+    width: 159px;
+    height: 25px;
 }
 
 div[w-theme="listview"] .event-logo:before,
@@ -363,12 +363,12 @@ div[w-theme="listview"] .event-logo:after {
 div[w-theme="listview"] .event-logo:before {
     opacity: 0;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
 div[w-theme="listview"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
 div[w-theme="listview"] .event-logo:hover:before {
