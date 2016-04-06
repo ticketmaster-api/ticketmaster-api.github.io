@@ -1552,7 +1552,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
             "line2": "",                // Field required, but empty allowed
             "unit": "1h"                // Optional
             "city": "Los Angeles",      // Optional 
-            "country": {                // Required, use 840 for United States or 36 for Canada
+            "country": {                // Required, use 840 for United States. See Appendix for other supported country codes
                 "id": 840
             },
             "region": {                 // Optional
@@ -1674,9 +1674,10 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 Status 200
 {
     "redemption_url" : "https://myorder.ticketmaster.com/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
-    "tm_app_url" : "ticketmaster:///partners/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
+    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "grand_total" : 57.39,
-    "order_token" : "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"
+    "order_token" : "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
+    "order_number" : "35-46145/LA1"
 }
 {% endhighlight %}
 
@@ -1980,6 +1981,7 @@ Example:
 | Invalid cart | 90003 | 400 | cart_id parameter is invalid or stale |
 | Invalid Delivery Method ID | 10104 | 400 ||
 | Event had no visible/usable ticket types for the current channel | 20046 | 400 | API user is not configured to sell the specified ticket types |
+| Payment method has no funds available | 20129 | 400| |
 
 
 ---
@@ -2100,7 +2102,7 @@ Response:
 {% highlight js %}
 {
     "redemption_url" : "http://myorder-qa.ticketmaster.net/redeem?event_id=3F004EC9D1EBBC76&token=d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
-    "tm_app_url" : "ticketmaster:///partners/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
+    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "order_token" : "d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
     "grand_total":68.74
 }

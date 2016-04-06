@@ -38,7 +38,7 @@ directly on your website at no additional cost.
 Informational text about the widget and it abilities, functions and other information.
 
 {: .button_set}
-[CONFIGURE NOW](/products-and-docs/under-development/){: .button.button-blue}  
+[CONFIGURE NOW](/products-and-docs/widgets/event-discovery/){: .button.button-blue}  
 {::comment}
 [LEARN MORE](#){: .button .button-default}
 {:/comment}
