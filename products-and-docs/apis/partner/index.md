@@ -1109,8 +1109,6 @@ If your integration requires captcha, use this endpoint to retreive a basic Goog
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 
-
-
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1144,7 +1142,7 @@ Header: X-TM-CAPTCHA-V2-STOKEN: <secure token>
 
 {: .article}
 ## Reserve tickets and create a Cart [POST]
-{: #post-captcha}
+{: #reserve-tickets}
 
 Reserves the specified tickets. For integrations requiring captcha, send the captcha solution token in the json body.  A hold time will be returned in the cart response that will indicate, in seconds, how long the cart is available for.  This value may increase if the user moves through the cart process.<br/>
 
