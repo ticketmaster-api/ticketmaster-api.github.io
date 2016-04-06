@@ -4,7 +4,7 @@
   "description": "Hello",
   "main": "_site/index.html",
   "scripts": {
-    "widgets-once": "babel widgets/main/src -d widgets/main/lib --source-maps",
+    "widgets-once": "babel products-and-docs/widgets/event-discovery/src -d products-and-docs/widgets/event-discovery/lib --source-maps",
     "widgets": "npm run widgets-once -- -w"
   },
   "repository": {
