@@ -45,28 +45,21 @@
   };
 
 
-  function getHeightByTheme(theme){
-    return (theme === 'simple' ? 238 : 300);
-  }
+  // function getHeightByTheme(theme){
+  //   return (theme === 'simple' ? 238 : 300);
+  // }
 
-  function getBorderByTheme(theme) {
-    switch (theme) {
-      case "oldschool":
-        return 2;
-        break;
-      case "newschool":
-        return 1;
-        break;
-      default:
-        return 0;
-    }
-  }
+  // function getBorderByTheme(theme) {
+  //   switch (theme) {
+  //     case "oldschool":
+  //       return 2;
+  //       break;
+  //     default:
+  //       return 0;
+  //   }
+  // }
 
-  // TODO: do we need 'config' variable ?
-  var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
-
-  var $layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
-  $widthController = $('#w-width').slider({
+  var $widthController = $('#w-width').slider({
     tooltip: 'always',
     handle: 'square'
   }),
@@ -89,32 +82,20 @@
         targetName = event.target.name,
         $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
-    if(targetName === "w-postalcode"){
-      widgetNode.setAttribute('w-country', '');
-      $('#w-country').prop('disabled', true)
-        .data('cleared', true)
-        .html('');
-    }
-
-    if(targetName === "w-theme"){
-      if(targetValue === 'simple'){
-        $layoutSelectors.prop('disabled', true);
-      }else{
-        $layoutSelectors.prop('disabled', false);
-      }
-
-      if(widgetNode.getAttribute('w-layout') === 'horizontal'){
-        widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
-      }
-      widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
-    }
+    // if(targetName === "w-theme"){
+    //   if(widgetNode.getAttribute('w-layout') === 'horizontal'){
+    //     widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
+    //   }
+    //   widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
+    // }
 
     if(targetName === "w-layout"){
       let sizeConfig = themeConfig.simple.initSliderSize;
       if(targetValue === 'horizontal'){
         sizeConfig = {
           width: 620,
-          height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
+          // height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
+          height: 300,
           maxWidth: 900,
           minWidth: 620
         };
@@ -171,19 +152,9 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    // if(event.target.name === "border"){
-      //if(event.target.checked){
-      //  widgetNode.setAttribute(event.target.id, "");
-      //}
-      //else{
-      //  widgetNode.removeAttribute(event.target.id);
-      //}
-    // }
-    // else {}
-
     widgetNode.setAttribute(event.target.name, event.target.value);
 
-    widget.update();
+    widgetCountdown.update();
   };
 
   var resetWidget = function(configForm) {
@@ -192,7 +163,7 @@
         theme,
         layout;
 
-    configForm.find("input[type='text'], input[type='number']").each(function(){
+    configForm.find("input[type='text']").each(function(){
       let $self = $(this),
           data = $self.data(),
           value = data.defaultValue;
@@ -232,7 +203,7 @@
     }
     widgetNode.setAttribute('w-height', height);
 
-    widget.update();
+    widgetCountdown.update();
   };
 
   var $configForm = $(".main-widget-config-form"),
@@ -246,7 +217,7 @@
     e.preventDefault();
   });
 
-  $configForm.find("input[type='text'], input[type='number']").each(function(){
+  $configForm.find("input[type='text']").each(function(){
     var $self = $(this);
     $self.data('default-value', $self.val());
   });
@@ -261,10 +232,8 @@
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
 
     var htmlCode = document.createElement("div");
-    for(var key in widget.config){
-      if(key !== 'latlong'){
-        htmlCode.setAttribute("w-"+key,widget.config[key]);
-      }
+    for(var key in widgetCountdown.config){
+      htmlCode.setAttribute("w-"+key,widgetCountdown.config[key]);
     }
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
@@ -284,60 +253,5 @@
   $('#js_widget_modal_no_code__close').on('click', function(){
     $widgetModalNoCode.modal('hide');
   });
-
-  $('.js_widget__number').on('change', function (e) {
-    let $self = $(this),
-      val = $self.val().trim(),
-      max = parseInt($self.attr('max')),
-      min = parseInt($self.attr('min')),
-      required = !!$self.attr('required'),
-      regNumberOrEmpty = /^(\s*|\d+)$/,
-      errorCssClass = 'error';
-
-    // if(val === '') $self.val('');
-
-    if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
-      $self.addClass(errorCssClass);
-      e.preventDefault();
-      e.stopPropagation();
-    }else{
-      $self.removeClass(errorCssClass);
-    }
-  });
-
-  $('#w-country').data('cleared', true);
-  widget.onLoadCoordinate = function (response, countryShortName = '') {
-    widget.config['country'] = countryShortName;
-    let $countrySelect = $('#w-country'),
-      options = '';
-
-    if(response){
-      if(response.status === 'OK'){
-        if(response.results){
-          $countrySelect.prop('disabled', !response.results.length);
-          if($countrySelect.data('cleared')){
-            $countrySelect
-              .data('cleared', false)
-              .html('');
-            for(let i in response.results){
-              let result = response.results[i];
-              if(result.address_components){
-                let country = result.address_components[result.address_components.length - 1];
-                if(country){
-                  let isSelected = country.short_name === countryShortName ? 'selected' : '';
-                  options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
-                }
-              }
-            }
-            $countrySelect.append(options);
-          }
-        }
-      }
-    }
-
-    if(!options){
-      $countrySelect.html(`<option>All</option>`);
-    }
-  }
 
 })();

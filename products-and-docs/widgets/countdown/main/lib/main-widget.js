@@ -44,16 +44,15 @@ var TicketmasterWidget = function () {
   }, {
     key: "apiUrl",
     get: function get() {
-      return "https://app.ticketmaster.com/discovery/v2/events.json";
+      return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : false;
     }
-
-    //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/widgets/main/theme/";
+      return "http://localhost:4000/products-and-docs/widgets/countdown/main/theme/";
     }
+    // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/main/theme/"; }
+
   }, {
     key: "portalUrl",
     get: function get() {
@@ -75,34 +74,14 @@ var TicketmasterWidget = function () {
       return "http://developer.ticketmaster.com/support/faq/";
     }
   }, {
-    key: "geocodeUrl",
-    get: function get() {
-      return "https://maps.googleapis.com/maps/api/geocode/json";
-    }
-  }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion"];
-    }
-  }, {
-    key: "sliderDelay",
-    get: function get() {
-      return 5000;
-    }
-  }, {
-    key: "sliderRestartDelay",
-    get: function get() {
-      return 5000;
+      return ["width", "height", "border", "borderradius", "colorscheme", "layout", "propotion"];
     }
   }, {
     key: "hideMessageDelay",
     get: function get() {
       return 5000;
-    }
-  }, {
-    key: "controlHiddenClass",
-    get: function get() {
-      return "events_control-hidden";
     }
   }, {
     key: "tmWidgetWhiteList",
@@ -116,27 +95,6 @@ var TicketmasterWidget = function () {
           params = [{
         attr: 'tmapikey',
         verboseName: 'apikey'
-      }, {
-        attr: 'keyword',
-        verboseName: 'keyword'
-      }, {
-        attr: 'size',
-        verboseName: 'size'
-      }, {
-        attr: 'radius',
-        verboseName: 'radius'
-      }, {
-        attr: 'attractionid',
-        verboseName: 'attractionId'
-      }, {
-        attr: 'promoterid',
-        verboseName: 'promoterId'
-      }, {
-        attr: 'venueid',
-        verboseName: 'venueId'
-      }, {
-        attr: 'segmentid',
-        verboseName: 'segmentId'
       }];
 
       for (var i in params) {
@@ -144,29 +102,11 @@ var TicketmasterWidget = function () {
         if (this.isConfigAttrExistAndNotEmpty(item.attr)) attrs[item.verboseName] = this.config[item.attr];
       }
 
-      // Only one allowed at the same time
-      if (this.config.latlong) {
-        attrs.latlong = this.config.latlong;
-      } else {
-        if (this.isConfigAttrExistAndNotEmpty("postalcode")) attrs.postalCode = this.config.postalcode;
-      }
-
-      if (this.isConfigAttrExistAndNotEmpty("period")) {
-        var period = this.getDateFromPeriod(this.config.period);
-        attrs.startDateTime = period[0];
-        attrs.endDateTime = period[1];
-      }
-
       return attrs;
     }
-
-    //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
-
   }]);
 
   function TicketmasterWidget() {
-    var _this = this;
-
     _classCallCheck(this, TicketmasterWidget);
 
     this.widgetRoot = document.querySelector("div[w-tmapikey]");
@@ -180,20 +120,14 @@ var TicketmasterWidget = function () {
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
     // Set theme modificators
-    this.themeModificators = {
-      "oldschool": this.oldSchoolModificator.bind(this),
-      "newschool": this.newSchoolModificator.bind(this)
-    };
+    // this.themeModificators = {
+    //   "oldschool" : this.oldSchoolModificator.bind(this)
+    // };
 
     this.config = this.widgetRoot.attributes;
 
     if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
-    }
-
-    this.eventsRootContainer.classList.remove("border");
-    if (this.config.border) {
-      this.eventsRootContainer.classList.add("border");
     }
 
     this.widgetRoot.style.height = this.config.height + "px";
@@ -204,113 +138,44 @@ var TicketmasterWidget = function () {
     this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
     this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
-    //this.clear();
-
     this.AdditionalElements();
-
-    this.getCoordinates(function () {
-      _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
-    });
-
-    if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
-      this.themeModificators[this.widgetConfig.theme]();
-    }
-
-    // this.embedUniversePlugin();
-    // this.embedTMPlugin();
-
-    this.initBuyBtn();
 
     this.initMessage();
 
-    this.initSliderControls();
+    this.initBuyBtn();
 
-    this.initEventCounter();
+    if (this.apiUrl) {
+      this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
+    } else {
+      this.showMessage("No results were found.", true);
+    }
+
+    // if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+    //   this.themeModificators[ this.widgetConfig.theme ]();
+    // }
+
+    // this.embedUniversePlugin();
+    // this.embedTMPlugin();
   }
 
   _createClass(TicketmasterWidget, [{
-    key: "getCoordinates",
-    value: function getCoordinates(cb) {
-      var widget = this;
-
-      function parseGoogleGeocodeResponse() {
-        if (this && this.readyState === XMLHttpRequest.DONE) {
-          var latlong = '',
-              response = null,
-              countryShortName = '';
-          if (this.status === 200) {
-            response = JSON.parse(this.responseText);
-            if (response.status === 'OK' && response.results.length) {
-              // Use first item if multiple results was found in one country or in different
-              var geometry = response.results[0].geometry;
-              countryShortName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
-
-              // If multiple results without country try to find USA as prefer value
-              if (!widget.config.country) {
-                for (var i in response.results) {
-                  var result = response.results[i];
-                  if (result.address_components) {
-                    var country = result.address_components[result.address_components.length - 1];
-                    if (country) {
-                      if (country.short_name === 'US') {
-                        countryShortName = 'US';
-                        geometry = result.geometry;
-                      }
-                    }
-                  }
-                }
-              }
-
-              if (geometry) {
-                if (geometry.location) {
-                  latlong = geometry.location.lat + "," + geometry.location.lng;
-                }
-              }
-            }
-          }
-          // Used in builder
-          if (widget.onLoadCoordinate) widget.onLoadCoordinate(response, countryShortName);
-          widget.config.latlong = latlong;
-          cb(widget.config.latlong);
-        }
-      }
-
-      if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
-        var args = { components: "postal_code:" + widget.config.postalcode };
-        if (this.config.country) {
-          args.components += "|country:" + this.config.country;
-        }
-        this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
-      } else {
-        // Used in builder
-        if (widget.onLoadCoordinate) widget.onLoadCoordinate(null);
-        widget.config.latlong = '';
-        widget.config.country = '';
-        cb(widget.config.latlong);
-      }
-    }
-  }, {
     key: "initBuyBtn",
     value: function initBuyBtn() {
-      var _this2 = this;
-
       this.buyBtn = document.createElement("a");
       this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
       this.buyBtn.classList.add("event-buy-btn");
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
-      this.buyBtn.addEventListener('click', function (e) {
-        // e.preventDefault();
-        _this2.stopAutoSlideX();
-        //console.log(this.config.affiliateid)
-      });
+      // this.buyBtn.addEventListener('click', (e)=> {
+      //   e.preventDefault();
+      // });
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
   }, {
     key: "setBuyBtnUrl",
     value: function setBuyBtnUrl() {
       if (this.buyBtn) {
-        var event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
+        var event = this.events[0],
             url = '';
         if (event) {
           if (event.url) {
@@ -361,7 +226,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "initMessage",
     value: function initMessage() {
-      var _this3 = this;
+      var _this = this;
 
       this.messageDialog = document.createElement('div');
       this.messageDialog.classList.add("event-message");
@@ -371,7 +236,7 @@ var TicketmasterWidget = function () {
       var messageClose = document.createElement('div');
       messageClose.classList.add("event-message__btn");
       messageClose.addEventListener("click", function () {
-        _this3.hideMessage();
+        _this.hideMessage();
       });
 
       this.messageDialog.appendChild(this.messageContent);
@@ -393,11 +258,11 @@ var TicketmasterWidget = function () {
   }, {
     key: "hideMessageWithDelay",
     value: function hideMessageWithDelay(delay) {
-      var _this4 = this;
+      var _this2 = this;
 
       if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
       this.messageTimeout = setTimeout(function () {
-        _this4.hideMessage();
+        _this2.hideMessage();
       }, delay);
     }
   }, {
@@ -437,311 +302,9 @@ var TicketmasterWidget = function () {
     }
 
     //adds general admission element for OLDSCHOOL theme
+    // oldSchoolModificator(){
+    // }
 
-  }, {
-    key: "oldSchoolModificator",
-    value: function oldSchoolModificator() {
-
-      var generalAdmissionWrapper = document.createElement("div");
-      generalAdmissionWrapper.classList.add("general-admission", "modificator");
-
-      var generalAdmission = document.createElement("div"),
-          generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-      generalAdmission.appendChild(generalAdmissionText);
-      generalAdmissionWrapper.appendChild(generalAdmission);
-
-      this.eventsRootContainer.appendChild(generalAdmissionWrapper);
-    }
-  }, {
-    key: "newSchoolModificator",
-    value: function newSchoolModificator() {
-      var ticketLogo = document.createElement("div");
-      ticketLogo.classList.add("ticket-logo", "modificator");
-
-      var headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
-
-      headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
-
-      headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
-
-      headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
-
-      this.eventsRootContainer.appendChild(ticketLogo);
-    }
-  }, {
-    key: "hideSliderControls",
-    value: function hideSliderControls() {
-      this.prevEventX.classList.add(this.controlHiddenClass);
-      this.nextEventX.classList.add(this.controlHiddenClass);
-      this.prevEventY.classList.add(this.controlHiddenClass);
-      this.nextEventY.classList.add(this.controlHiddenClass);
-    }
-  }, {
-    key: "toggleControlsVisibility",
-    value: function toggleControlsVisibility() {
-      // Horizontal
-      if (this.slideCountX > 1) {
-        this.prevEventX.classList.remove(this.controlHiddenClass);
-        this.nextEventX.classList.remove(this.controlHiddenClass);
-        if (this.currentSlideX === 0) {
-          this.prevEventX.classList.add(this.controlHiddenClass);
-        } else if (this.currentSlideX === this.slideCountX - 1) {
-          this.nextEventX.classList.add(this.controlHiddenClass);
-        }
-      } else {
-        this.prevEventX.classList.add(this.controlHiddenClass);
-        this.nextEventX.classList.add(this.controlHiddenClass);
-      }
-
-      // Vertical
-      if (this.eventsGroups.length) {
-        if (this.eventsGroups[this.currentSlideX].length > 1) {
-          this.prevEventY.classList.remove(this.controlHiddenClass);
-          this.nextEventY.classList.remove(this.controlHiddenClass);
-          if (this.currentSlideY === 0) {
-            this.prevEventY.classList.add(this.controlHiddenClass);
-          } else if (this.currentSlideY === this.eventsGroups[this.currentSlideX].length - 1) {
-            this.nextEventY.classList.add(this.controlHiddenClass);
-          }
-        } else {
-          this.prevEventY.classList.add(this.controlHiddenClass);
-          this.nextEventY.classList.add(this.controlHiddenClass);
-        }
-      } else {
-        this.prevEventY.classList.add(this.controlHiddenClass);
-        this.nextEventY.classList.add(this.controlHiddenClass);
-      }
-    }
-  }, {
-    key: "prevSlideX",
-    value: function prevSlideX() {
-      if (this.currentSlideX > 0) {
-        this.setSlideManually(this.currentSlideX - 1, true);
-      }
-    }
-  }, {
-    key: "nextSlideX",
-    value: function nextSlideX() {
-      if (this.slideCountX - 1 > this.currentSlideX) {
-        this.setSlideManually(this.currentSlideX + 1, true);
-      }
-    }
-  }, {
-    key: "prevSlideY",
-    value: function prevSlideY() {
-      if (this.currentSlideY > 0) {
-        this.setSlideManually(this.currentSlideY - 1, false);
-      }
-    }
-  }, {
-    key: "nextSlideY",
-    value: function nextSlideY() {
-      if (this.eventsGroups[this.currentSlideX].length - 1 > this.currentSlideY) {
-        this.setSlideManually(this.currentSlideY + 1, false);
-      }
-    }
-  }, {
-    key: "setSlideManually",
-    value: function setSlideManually(slideIndex, isDirectionX) {
-      var _this5 = this;
-
-      this.stopAutoSlideX();
-      this.sliderTimeout = setTimeout(function () {
-        _this5.runAutoSlideX();
-      }, this.sliderRestartDelay);
-      if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
-    }
-  }, {
-    key: "goToSlideX",
-    value: function goToSlideX(slideIndex) {
-      if (this.currentSlideX === slideIndex) return;
-      this.currentSlideY = 0;
-      this.currentSlideX = slideIndex;
-      this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
-      this.toggleControlsVisibility();
-      this.setEventsCounter();
-      this.setBuyBtnUrl();
-    }
-  }, {
-    key: "goToSlideY",
-    value: function goToSlideY(slideIndex) {
-      if (this.currentSlideY === slideIndex) return;
-      this.currentSlideY = slideIndex;
-      var eventGroup = this.eventsRoot.getElementsByClassName("event-group-" + this.currentSlideX);
-      if (eventGroup.length) {
-        eventGroup = eventGroup[0];
-        eventGroup.style.marginTop = "-" + this.currentSlideY * (this.config.height - this.borderSize * 2) + "px";
-        this.toggleControlsVisibility();
-        this.setBuyBtnUrl();
-      }
-    }
-  }, {
-    key: "runAutoSlideX",
-    value: function runAutoSlideX() {
-      var _this6 = this;
-
-      if (this.slideCountX > 1) {
-        this.sliderInterval = setInterval(function () {
-          var slideIndex = 0;
-          if (_this6.slideCountX - 1 > _this6.currentSlideX) slideIndex = _this6.currentSlideX + 1;
-          _this6.goToSlideX(slideIndex);
-        }, this.sliderDelay);
-      }
-    }
-  }, {
-    key: "stopAutoSlideX",
-    value: function stopAutoSlideX() {
-      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
-      if (this.sliderInterval) clearInterval(this.sliderInterval);
-    }
-  }, {
-    key: "initSliderControls",
-    value: function initSliderControls() {
-      var _this7 = this;
-
-      this.currentSlideX = 0;
-      this.currentSlideY = 0;
-      this.slideCountX = 0;
-      var coreCssClass = 'events_control';
-
-      // left btn
-      this.prevEventX = document.createElement("div");
-      var prevEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-left', this.controlHiddenClass];
-      for (var i in prevEventXClass) {
-        this.prevEventX.classList.add(prevEventXClass[i]);
-      }
-      this.eventsRootContainer.appendChild(this.prevEventX);
-
-      // right btn
-      this.nextEventX = document.createElement("div");
-      var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[i]);
-      }
-      this.eventsRootContainer.appendChild(this.nextEventX);
-
-      // top btn
-      this.prevEventY = document.createElement("div");
-      var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var i in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[i]);
-      }
-      this.eventsRootContainer.appendChild(this.prevEventY);
-
-      // bottom btn
-      this.nextEventY = document.createElement("div");
-      var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var i in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[i]);
-      }
-      this.eventsRootContainer.appendChild(this.nextEventY);
-
-      // Restore events group position
-      function whichTransitionEvent() {
-        var el = document.createElement('fakeelement'),
-            transitions = {
-          'transition': 'transitionend',
-          'OTransition': 'oTransitionEnd',
-          'MozTransition': 'transitionend',
-          'WebkitTransition': 'webkitTransitionEnd'
-        };
-
-        for (var event in transitions) {
-          if (el.style[event] !== undefined) return transitions[event];
-        }
-      }
-
-      var transitionEvent = whichTransitionEvent();
-      transitionEvent && this.eventsRoot.addEventListener(transitionEvent, function (e) {
-        if (_this7.eventsRoot !== e.target) return;
-        var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
-        // Reset all groups. We don't know what event group was visible before.
-        for (var i = 0; eventGroup.length > i; i++) {
-          eventGroup[i].style.marginTop = 0;
-        }
-      });
-
-      // Arrows
-      this.prevEventX.addEventListener("click", function () {
-        _this7.prevSlideX();
-      });
-
-      this.nextEventX.addEventListener("click", function () {
-        _this7.nextSlideX();
-      });
-
-      this.prevEventY.addEventListener("click", function () {
-        _this7.prevSlideY();
-      });
-
-      this.nextEventY.addEventListener("click", function () {
-        _this7.nextSlideY();
-      });
-
-      // Tough device swipes
-      var xDown = null,
-          yDown = null;
-
-      function handleTouchStart(evt) {
-        xDown = evt.touches[0].clientX;
-        yDown = evt.touches[0].clientY;
-      }
-
-      function handleTouchMove(evt) {
-        if (!xDown || !yDown) return;
-
-        var xUp = evt.touches[0].clientX,
-            yUp = evt.touches[0].clientY,
-            xDiff = xDown - xUp,
-            yDiff = yDown - yUp;
-
-        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-          if (xDiff > 0) this.nextSlideX(); // left swipe
-          else this.prevSlideX(); // right swipe
-        } else {
-            if (yDiff > 0) this.nextSlideY(); // up swipe
-            else this.prevSlideY(); // down swipe
-          }
-
-        xDown = null;
-        yDown = null;
-      }
-
-      this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        e.preventDefault();
-        handleTouchStart.call(_this7, e);
-      }, false);
-      this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-        handleTouchMove.call(_this7, e);
-      }, false);
-    }
-  }, {
-    key: "initSlider",
-    value: function initSlider() {
-      if (this.sliderInterval) clearInterval(this.sliderInterval);
-      if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
-      this.slideCountX = this.eventsGroups.length;
-      this.eventsRoot.style.marginLeft = '0%';
-      this.eventsRoot.style.width = this.slideCountX * 100 + "%";
-      this.currentSlideX = 0;
-      this.currentSlideY = 0;
-      this.runAutoSlideX();
-      this.toggleControlsVisibility();
-      this.setBuyBtnUrl();
-    }
   }, {
     key: "formatDate",
     value: function formatDate(date) {
@@ -795,7 +358,6 @@ var TicketmasterWidget = function () {
   }, {
     key: "update",
     value: function update() {
-      var _this8 = this;
 
       var oldTheme = this.config.constructor();
       for (var attr in this.config) {
@@ -803,11 +365,6 @@ var TicketmasterWidget = function () {
       }
 
       this.config = this.widgetRoot.attributes;
-
-      /*if(this.config.theme !== null){
-        this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-      }*/
-
       this.widgetRoot.style.height = this.config.height + "px";
       this.widgetRoot.style.width = this.config.width + "px";
       this.eventsRootContainer.style.height = this.config.height + "px";
@@ -815,30 +372,18 @@ var TicketmasterWidget = function () {
       this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
       this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
-      this.eventsRootContainer.classList.remove("border");
-      if (this.config.hasOwnProperty("border")) {
-        this.eventsRootContainer.classList.add("border");
-      }
-
       if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
         this.clear();
 
-        if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
-          this.themeModificators[this.widgetConfig.theme]();
-        }
+        // if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+        //   this.themeModificators[ this.widgetConfig.theme ]();
+        // }
 
-        this.getCoordinates(function () {
-          _this8.makeRequest(_this8.eventsLoadingHandler, _this8.apiUrl, _this8.eventReqAttrs);
-        });
-      } else {
-        var events = document.getElementsByClassName("event-wrapper");
-        for (var i in events) {
-          if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-            events[i].style.width = this.config.width - this.borderSize * 2 + "px";
-            events[i].style.height = this.config.height - this.borderSize * 2 + "px";
-          }
+        if (this.apiUrl) {
+          this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
+        } else {
+          this.showMessage("No results were found.", true);
         }
-        this.goToSlideY(0);
       }
     }
   }, {
@@ -880,78 +425,6 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
-    key: "groupEventsByName",
-    value: function groupEventsByName() {
-      var groups = {};
-      this.events.map(function (event) {
-        if (groups[event.name] === undefined) groups[event.name] = [];
-        groups[event.name].push(event);
-      });
-
-      this.eventsGroups = [];
-      for (var groupName in groups) {
-        this.eventsGroups.push(groups[groupName]);
-      }
-    }
-  }, {
-    key: "initEventCounter",
-    value: function initEventCounter() {
-      this.eventsCounter = document.createElement("div");
-      this.eventsCounter.classList.add("events-counter");
-      this.widgetRoot.appendChild(this.eventsCounter);
-    }
-  }, {
-    key: "setEventsCounter",
-    value: function setEventsCounter() {
-      if (this.eventsCounter) {
-        var text = '';
-        if (this.eventsGroups.length) {
-          if (this.eventsGroups.length > 1) {
-            text = this.currentSlideX + 1 + " of " + this.eventsGroups.length + " events";
-          } else {
-            text = '1 event';
-          }
-        }
-        this.eventsCounter.innerHTML = text;
-      }
-    }
-  }, {
-    key: "resetReduceParamsOrder",
-    value: function resetReduceParamsOrder() {
-      this.reduceParamsOrder = 0;
-    }
-  }, {
-    key: "reduceParamsAndReloadEvents",
-    value: function reduceParamsAndReloadEvents() {
-      var eventReqAttrs = {},
-          reduceParamsList = [['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
-
-      // make copy of params
-      for (var key in this.eventReqAttrs) {
-        eventReqAttrs[key] = this.eventReqAttrs[key];
-      }
-
-      if (!this.reduceParamsOrder) this.reduceParamsOrder = 0;
-      if (reduceParamsList.length > this.reduceParamsOrder) {
-        for (var item in reduceParamsList) {
-          if (this.reduceParamsOrder >= item) {
-            for (var i in reduceParamsList[item]) {
-              delete eventReqAttrs[reduceParamsList[item][i]];
-            }
-          }
-        }
-
-        if (this.reduceParamsOrder === 0) this.showMessage("No results were found.<br/>Here other options for you.");
-        this.reduceParamsOrder++;
-        this.makeRequest(this.eventsLoadingHandler, this.apiUrl, eventReqAttrs);
-      } else {
-        // We haven't any results
-        this.showMessage("No results were found.", true);
-        this.reduceParamsOrder = 0;
-        this.hideSliderControls();
-      }
-    }
-  }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
       var widget = this.widget;
@@ -960,51 +433,21 @@ var TicketmasterWidget = function () {
         if (this.status == 200) {
           widget.events = JSON.parse(this.responseText);
 
-          if (widget.events.length) {
-            widget.groupEventsByName.call(widget);
+          console.log(widget.events, 'widget.events ');
 
-            widget.eventsGroups.map(function (group, i) {
-              if (group.length === 1) widget.publishEvent(group[0]);else widget.publishEventsGroup.call(widget, group, i);
+          if (widget.events.length) {
+            widget.events.map(function (event, i) {
+              widget.publishEvent(event);
             });
 
-            widget.initSlider();
-            widget.setEventsCounter();
-            widget.resetReduceParamsOrder();
             if (widget.hideMessageWithoutDelay) widget.hideMessage();else widget.hideMessageWithDelay(widget.hideMessageDelay);
-          } else {
-            widget.reduceParamsAndReloadEvents.call(widget);
           }
         } else if (this.status == 400) {
-          widget.reduceParamsAndReloadEvents.call(widget);
           console.log('There was an error 400');
         } else {
-          widget.reduceParamsAndReloadEvents.call(widget);
           console.log('something else other than 200 was returned');
         }
       }
-    }
-  }, {
-    key: "publishEventsGroup",
-    value: function publishEventsGroup(group, index) {
-      var _this9 = this;
-
-      var groupNodeWrapper = document.createElement("li");
-      groupNodeWrapper.classList.add("event-wrapper");
-      groupNodeWrapper.classList.add("event-group-wrapper");
-      groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + "px";
-      groupNodeWrapper.style.height = this.config.height - this.borderSize * 2 + "px";
-
-      var groupNode = document.createElement("ul");
-      groupNode.classList.add("event-group");
-      groupNode.classList.add("event-group-" + index);
-      //groupNode.style.height  = `${this.config.height * group.length}px`;
-
-      group.map(function (event) {
-        _this9.publishEvent(event, groupNode);
-      });
-
-      groupNodeWrapper.appendChild(groupNode);
-      this.eventsRoot.appendChild(groupNodeWrapper);
     }
   }, {
     key: "publishEvent",
@@ -1012,15 +455,6 @@ var TicketmasterWidget = function () {
       parentNode = parentNode || this.eventsRoot;
       var DOMElement = this.createDOMItem(event);
       parentNode.appendChild(DOMElement);
-    }
-  }, {
-    key: "getEventByID",
-    value: function getEventByID(id) {
-      for (var index in this.events) {
-        if (this.events.hasOwnProperty(index) && this.events[index].id === id) {
-          return this.events[index];
-        }
-      }
     }
   }, {
     key: "getImageForEvent",
@@ -1043,6 +477,8 @@ var TicketmasterWidget = function () {
   }, {
     key: "parseEvents",
     value: function parseEvents(eventsSet) {
+      console.log(eventsSet);
+
       if (!eventsSet._embedded) {
         if (typeof $widgetModalNoCode !== "undefined") {
           $widgetModalNoCode.modal();
@@ -1073,15 +509,6 @@ var TicketmasterWidget = function () {
               currentEvent.address.name = venue.name;
             }
           }
-
-          // Remove this comment to get categories
-          /*if(eventsSet[key]._embedded.hasOwnProperty('categories')){
-            currentEvent.categories = [];
-            let eventCategories = eventsSet[key]._embedded.categories;
-            currentEvent.categories = Object.keys(eventCategories).map(function(category){
-              return eventCategories[category].name
-            });
-          }*/
 
           currentEvent.img = this.getImageForEvent(eventsSet[key].images);
 
@@ -1211,11 +638,6 @@ var TicketmasterWidget = function () {
 
       return event;
     }
-  }, {
-    key: "makeImageUrl",
-    value: function makeImageUrl(id) {
-      return "https://app.ticketmaster.com/discovery/v2/events/" + id + "/images.json";
-    }
 
     /*
      * Config block
@@ -1231,45 +653,10 @@ var TicketmasterWidget = function () {
     value: function encConfig(config) {
       return window.btoa(config);
     }
-  }, {
-    key: "toShortISOString",
-    value: function toShortISOString(dateObj) {
-      return dateObj.getFullYear() + "-" + (dateObj.getMonth() + 1 < 10 ? "0" + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + "-" + (dateObj.getDate() < 10 ? "0" + dateObj.getDate() : dateObj.getDate()) + "T" + (dateObj.getHours() < 10 ? "0" + dateObj.getHours() : dateObj.getHours()) + ":" + (dateObj.getMinutes() < 10 ? "0" + dateObj.getMinutes() : dateObj.getMinutes()) + ":" + (dateObj.getSeconds() < 10 ? "0" + dateObj.getSeconds() : dateObj.getSeconds()) + "Z";
-    }
-  }, {
-    key: "getDateFromPeriod",
-    value: function getDateFromPeriod(period) {
-
-      var date = new Date(),
-          period = period.toLowerCase(),
-          firstDay,
-          lastDay;
-
-      if (period == "year") {
-        firstDay = new Date(date.getFullYear(), 0, 1), lastDay = new Date(date.getFullYear(), 12, 0);
-      } else if (period == "month") {
-        firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-      } else if (period == "week") {
-        var first = date.getDate() - date.getDay();
-        var last = first + 6;
-        firstDay = new Date(date.setDate(first));
-        lastDay = new Date(date.setDate(last));
-      } else {
-        firstDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        lastDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-      }
-
-      firstDay.setHours(0);lastDay.setHours(23);
-      firstDay.setMinutes(0);lastDay.setMinutes(59);
-      firstDay.setSeconds(0);lastDay.setSeconds(59);
-
-      return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
-    }
   }]);
 
   return TicketmasterWidget;
 }();
 
-var widget = new TicketmasterWidget();
+var widgetCountdown = new TicketmasterWidget();
 //# sourceMappingURL=main-widget.js.map
