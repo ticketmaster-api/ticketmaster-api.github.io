@@ -67,7 +67,8 @@
       $borderRadiusController = $('#w-borderradius').slider({
     tooltip: 'always',
     handle: 'square'
-  });
+  }),
+      $tabButtons = $('.widget__layout_control .js-tab-buttons');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
@@ -80,8 +81,7 @@
     }
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
-        targetName = event.target.name,
-        $tabButtons = $('.widget__layout_control .js-tab-buttons');
+        targetName = event.target.name;
 
     // if(targetName === "w-theme"){
     //   if(widgetNode.getAttribute('w-layout') === 'horizontal'){
@@ -115,7 +115,7 @@
     //Check fixed sizes for 'simple_countdown' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var sizeConfig = {
+      var _sizeConfig = {
         width: themeConfig.simple_countdown.sizes[targetValue].width,
         height: themeConfig.simple_countdown.sizes[targetValue].height,
         maxWidth: 600,
@@ -126,28 +126,28 @@
       widgetNode.setAttribute('w-layout', themeConfig.simple_countdown.sizes[targetValue].layout);
 
       if (targetValue !== 'custom') {
-        $tabButtons.hide();
-        widthSlider.hide();
+        $tabButtons.slideUp("fast");
+        widthSlider.slideUp("fast");
       } else {
-        $tabButtons.show();
-        widthSlider.show();
+        $tabButtons.slideDown("fast");
+        widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        sizeConfig = { //default size
+        _sizeConfig = { //default size
           width: themeConfig.simple_countdown.initSliderSize.width, //350
           height: themeConfig.simple_countdown.initSliderSize.height, //550
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: sizeConfig.width,
-          max: sizeConfig.maxWidth,
-          min: sizeConfig.minWidth
+          setValue: _sizeConfig.width,
+          max: _sizeConfig.maxWidth,
+          min: _sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', sizeConfig.width);
-      widgetNode.setAttribute('w-height', sizeConfig.height);
+      widgetNode.setAttribute('w-width', _sizeConfig.width);
+      widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value);
@@ -157,9 +157,10 @@
 
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
+        widthSlider = $('.js_widget_width_slider'),
         height = 550,
-        theme = undefined,
-        layout = undefined;
+        theme = void 0,
+        layout = void 0;
 
     configForm.find("input[type='text']").each(function () {
       var $self = $(this),
@@ -194,6 +195,9 @@
         widgetNode.setAttribute($self.attr('name'), val);
       }
     });
+
+    $tabButtons.slideDown("fast");
+    widthSlider.slideDown("fast");
 
     if (layout === 'horizontal') {
       height = getHeightByTheme(theme);
