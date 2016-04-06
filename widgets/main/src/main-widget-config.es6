@@ -58,6 +58,9 @@
       case "newschool":
         return 1;
         break;
+      case "listview":
+        return 2;
+        break;
       default:
         return 0;
     }

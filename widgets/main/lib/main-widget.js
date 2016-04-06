@@ -182,7 +182,8 @@ var TicketmasterWidget = function () {
     // Set theme modificators
     this.themeModificators = {
       "oldschool": this.oldSchoolModificator.bind(this),
-      "newschool": this.newSchoolModificator.bind(this)
+      "newschool": this.newSchoolModificator.bind(this),
+      "listview": this.listViewModificator.bind(this)
     };
 
     this.config = this.widgetRoot.attributes;
@@ -223,9 +224,9 @@ var TicketmasterWidget = function () {
 
     this.initMessage();
 
-    this.initSliderControls();
+    if (this.config.theme !== "listview") this.initSliderControls();
 
-    this.initEventCounter();
+    if (this.config.theme !== "listview") this.initEventCounter();
   }
 
   _createClass(TicketmasterWidget, [{
@@ -481,6 +482,9 @@ var TicketmasterWidget = function () {
       this.eventsRootContainer.appendChild(ticketLogo);
     }
   }, {
+    key: "listViewModificator",
+    value: function listViewModificator() {}
+  }, {
     key: "hideSliderControls",
     value: function hideSliderControls() {
       this.prevEventX.classList.add(this.controlHiddenClass);
@@ -627,24 +631,24 @@ var TicketmasterWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[i]);
+      for (var _i in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[_i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var i in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[i]);
+      for (var _i2 in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[_i2]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var i in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[i]);
+      for (var _i3 in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[_i3]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -668,8 +672,8 @@ var TicketmasterWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var i = 0; eventGroup.length > i; i++) {
-          eventGroup[i].style.marginTop = 0;
+        for (var _i4 = 0; eventGroup.length > _i4; _i4++) {
+          eventGroup[_i4].style.marginTop = 0;
         }
       });
 
@@ -720,7 +724,6 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        // e.preventDefault();
         handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
@@ -804,6 +807,10 @@ var TicketmasterWidget = function () {
 
       this.config = this.widgetRoot.attributes;
 
+      if (this.config.theme === "listview") {
+        this.stopAutoSlideX();
+      }
+
       /*if(this.config.theme !== null){
         this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
       }*/
@@ -838,7 +845,9 @@ var TicketmasterWidget = function () {
             events[i].style.height = this.config.height - this.borderSize * 2 + "px";
           }
         }
-        this.goToSlideY(0);
+        if (this.config.theme !== "listview") {
+          this.goToSlideY(0);
+        }
       }
     }
   }, {
@@ -967,7 +976,7 @@ var TicketmasterWidget = function () {
               if (group.length === 1) widget.publishEvent(group[0]);else widget.publishEventsGroup.call(widget, group, i);
             });
 
-            widget.initSlider();
+            if (widget.config.theme !== "listview") widget.initSlider();
             widget.setEventsCounter();
             widget.resetReduceParamsOrder();
             if (widget.hideMessageWithoutDelay) widget.hideMessage();else widget.hideMessageWithDelay(widget.hideMessageDelay);
@@ -1129,6 +1138,28 @@ var TicketmasterWidget = function () {
       return el;
     }
   }, {
+    key: "createBackgroundImage",
+    value: function createBackgroundImage(event, img) {
+      if (this.config.theme !== "listview") {
+        var image = document.createElement("span");
+        image.classList.add("bg-cover");
+        image.style.backgroundImage = "url('" + img + "')";
+        event.appendChild(image);
+      }
+    }
+  }, {
+    key: "addBuyButton",
+    value: function addBuyButton(domNode, url) {
+      if (this.config.theme === "listview") {
+        var buyBtn = document.createElement("a");
+        buyBtn.appendChild(document.createTextNode('BUY NOW'));
+        buyBtn.classList.add("event-buy-btn");
+        buyBtn.target = '_blank';
+        buyBtn.href = url;
+        domNode.appendChild(buyBtn);
+      }
+    }
+  }, {
     key: "createDOMItem",
     value: function createDOMItem(itemConfig) {
       var medWrapper = document.createElement("div");
@@ -1139,10 +1170,7 @@ var TicketmasterWidget = function () {
       event.style.height = this.config.height - this.borderSize * 2 + "px";
       event.style.width = this.config.width - this.borderSize * 2 + "px";
 
-      var image = document.createElement("span");
-      image.classList.add("bg-cover");
-      image.style.backgroundImage = "url('" + itemConfig.img + "')";
-      event.appendChild(image);
+      this.createBackgroundImage(event, itemConfig.img);
 
       var nameContent = document.createTextNode(itemConfig.name),
           name = document.createElement("span");
@@ -1150,6 +1178,8 @@ var TicketmasterWidget = function () {
       name.appendChild(nameContent);
       this.initPretendedLink(name, itemConfig.url, true);
       medWrapper.appendChild(name);
+
+      this.addBuyButton(medWrapper, itemConfig.url);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
           dateTime = document.createElement("span");
