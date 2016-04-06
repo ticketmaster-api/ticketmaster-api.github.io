@@ -6,7 +6,7 @@
   "scripts": {
     "widgets-once": "babel products-and-docs/widgets/event-discovery/src -d products-and-docs/widgets/event-discovery/lib --source-maps",
     "widgets": "npm run widgets-once -- -w",
-    "countdown-widget-once": "babel products-and-docs/widgets/countdown/main/src -d products-and-docs/widgets/countdown/main/lib --source-maps",
+    "countdown-widget-once": "babel products-and-docs/widgets/countdown/src -d products-and-docs/widgets/countdown/lib --source-maps",
     "countdown-widget": "npm run countdown-widget-once -- -w"
   },
   "repository": {

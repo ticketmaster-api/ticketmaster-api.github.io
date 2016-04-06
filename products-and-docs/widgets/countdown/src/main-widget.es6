@@ -12,8 +12,8 @@ class TicketmasterWidget {
 
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : false; }
 
-  get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/main/theme/"; }
-  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/main/theme/"; }
+  get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
+  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 

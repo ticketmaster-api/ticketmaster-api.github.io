@@ -2,44 +2,45 @@
 layout: documentation-single
 ---
 
-<link id="widget-theme-simple" rel="stylesheet" href="{{ "/products-and-docs/widgets/countdown/main/theme/simple.css" | prepend: site.baseurl }}">
-<link id="widget-theme-oldschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/countdown/main/theme/oldschool.css" | prepend: site.baseurl }}">
+<link id="widget-theme-simple" rel="stylesheet" href="{{ "/products-and-docs/widgets/countdown/theme/simple.css" | prepend: site.baseurl }}">
+<link id="widget-theme-oldschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/countdown/theme/oldschool.css" | prepend: site.baseurl }}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.min.css">
 
-<div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <h1>WIDGETS</h1>
-    <p class="lead">The TM Widgets allow partners to setup particular widgets and provide enhanced discovery experience for consumers within copy/paste distance.</p>
-    <h2>Widget: Keyword search</h2>
-    <p>You can use the widget configurator below to customize the layout of the widget, and grab a small code snippet to insert into your website.</p>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-4 config-block">
-    {% include widget-countdown-config.html %}
-  </div>
-
-  <div class="col-lg-8 col-lg-widget">
-    <div class="widget-container-wrapper">
-      <div class="widget-container">
-        <div w-tmapikey="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst" w-id="" w-theme="simple" w-colorscheme="light" w-width="350" w-height="550" w-borderradius="4" w-layout="vertical" w-proportion="3x6"></div>
-      </div>
-    </div>
-
-    <div class="row hidden-lg row-mobile-control">
-      <div class="row row-native">
-        <div class="col-md-3 col-sm-3">
-          <button type="button" class="js_get_widget_code btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
-        </div>
-        <div class="col-md-3 col-sm-3">
-          <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
-        </div>
-      </div>
+<div class="widget-content-wrapper">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h1>WIDGETS</h1>
+      <p class="lead">The TM Widgets allow partners to setup particular widgets and provide enhanced discovery experience for consumers within copy/paste distance.</p>
+      <h2>Widget: Keyword search</h2>
+      <p>You can use the widget configurator below to customize the layout of the widget, and grab a small code snippet to insert into your website.</p>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-lg-4 config-block">
+      {% include widget-countdown-config.html %}
+    </div>
+
+    <div class="col-lg-8 col-lg-widget">
+      <div class="widget-container-wrapper">
+        <div class="widget-container">
+          <div w-tmapikey="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst" w-id="" w-theme="simple" w-colorscheme="light" w-width="350" w-height="550" w-borderradius="4" w-layout="vertical" w-proportion="3x6"></div>
+        </div>
+      </div>
+
+      <div class="row hidden-lg row-mobile-control">
+        <div class="row row-native">
+          <div class="col-md-3 col-sm-3">
+            <button type="button" class="js_get_widget_code btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal widget-->
@@ -61,7 +62,7 @@ layout: documentation-single
             <code class="language-html widget_dialog__code" data-lang="html"></code>
             <h4>JavaScript</h4>
             <code class="language-js widget_dialog__code" data-lang="js">
-              &lt;script src="http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/main/lib/main-widget.js"&gt;&lt;/script&gt;
+              &lt;script src="http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/lib/main-widget.js"&gt;&lt;/script&gt;
             </code>
           </div>
         </div>
@@ -96,8 +97,8 @@ layout: documentation-single
 <!-- Modal has no code end-->
 
 
-<script src="{{"/products-and-docs/widgets/countdown/main/lib/main-widget.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/products-and-docs/widgets/countdown/lib/main-widget.js" | prepend: site.baseurl }}"></script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
-<script src="{{"/products-and-docs/widgets/countdown/main/lib/main-widget-config.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/products-and-docs/widgets/countdown/lib/main-widget-config.js" | prepend: site.baseurl }}"></script>
