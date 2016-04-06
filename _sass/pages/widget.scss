@@ -330,6 +330,14 @@
   }
 }
 
+.widget-no-border {
+  border: 0;
+  &:before,
+  &:after {
+    border: 0;
+  }
+}
+
 
 
 
