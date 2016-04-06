@@ -1980,6 +1980,7 @@ Example:
 | Invalid cart | 90003 | 400 | cart_id parameter is invalid or stale |
 | Invalid Delivery Method ID | 10104 | 400 ||
 | Event had no visible/usable ticket types for the current channel | 20046 | 400 | API user is not configured to sell the specified ticket types |
+| Payment method has no funds available | 20129 | 400| |
 
 
 ---
