@@ -12,9 +12,9 @@ class TicketmasterWidget {
 
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : false; }
 
-  // get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
+  get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
   // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
+  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
@@ -93,6 +93,8 @@ class TicketmasterWidget {
 
     this.initBuyBtn();
 
+    this.initCountdoun();
+
     if(this.apiUrl){
       this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
     }else{
@@ -107,7 +109,34 @@ class TicketmasterWidget {
     // this.embedTMPlugin();
 
   }
-  
+
+  initCountdoun(){
+    // this.widgetRoot
+    let countDown = document.createElement("div");
+    countDown.classList.add("events-count-down");
+
+    let countDownDaysText = document.createTextNode('08');
+    let countDownHoursText = document.createTextNode('10');
+    let countDownMinuteText = document.createTextNode('46');
+
+    this.countDownDays = document.createElement("span");
+    this.countDownHours = document.createElement("span");
+    this.countDownMinute = document.createElement("span");
+
+    this.countDownDays.appendChild(countDownDaysText);
+    this.countDownHours.appendChild(countDownHoursText);
+    this.countDownMinute.appendChild(countDownMinuteText);
+
+    this.countDownDays.classList.add("events-count-down__day");
+    this.countDownHours.classList.add("events-count-down__hour");
+    this.countDownMinute.classList.add("events-count-down__minute");
+
+    countDown.appendChild(this.countDownDays);
+    countDown.appendChild(this.countDownHours);
+    countDown.appendChild(this.countDownMinute);
+
+    this.widgetRoot.appendChild(countDown);
+  }
 
   initBuyBtn(){
     this.buyBtn = document.createElement("a");
@@ -498,7 +527,6 @@ class TicketmasterWidget {
     name.appendChild(nameContent);
     this.initPretendedLink(name, itemConfig.url, true);
     medWrapper.appendChild(name);
-
 
 
     var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),

@@ -35,7 +35,6 @@ div[w-theme="simple_countdown"]{
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 41px;
 }
 
 div[w-theme="simple_countdown"] a,
@@ -281,11 +280,14 @@ div[w-theme="simple_countdown"] .event-category:first-child:before{
 
 div[w-theme="simple_countdown"] .legal-notice {
     position: absolute;
-    left: 30px;
-    bottom: 85px;
+    left: 0;
+    bottom: 11px;
     font-size: 14px;
     line-height: 16px;
     color: #768692;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
 }
 
 div[w-theme="simple_countdown"] .legal-notice:hover,
@@ -307,7 +309,7 @@ div[w-theme="simple_countdown"] .event-logo {
     display: block;
     position: absolute;
     top: 8px;
-    right: 10px;
+    right: 24px;
     width: 129px;
     height: 18px;
 }
@@ -329,12 +331,12 @@ div[w-theme="simple_countdown"] .event-logo:after {
 div[w-theme="simple_countdown"] .event-logo:before {
     opacity: 0;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-logo-blue.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
 div[w-theme="simple_countdown"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/tm-logo-gray.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
 
 div[w-theme="simple_countdown"] .event-logo:hover:before {
@@ -348,8 +350,8 @@ div[w-theme="simple_countdown"] .event-logo:hover:after {
 /* BUY NOW */
 div[w-theme="simple_countdown"] .event-buy-btn {
     position: absolute;
-    left: 30px;
-    bottom: 96px;
+    left: 24px;
+    bottom: 42px;
     width: 74px;
     height: 24px;
     padding-top: 5px;
@@ -408,7 +410,68 @@ background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100
 background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
 }
 
-/**/
-div[w-theme="simple_countdown"][w-proportion="3x6"]  {
-    width: 300px;
+/*time counter*/
+
+div[w-theme="simple_countdown"] .events-count-down {
+    position: absolute;
+    display: block;
+    color: #fff;
+    top: 78px;
+    width: 100%;
+    padding: 0 24px;
+    text-align: center;
 }
+div[w-theme="simple_countdown"] .events-count-down:before {
+    content: 'time left';
+    text-transform: uppercase;
+    background-color: rgba(65, 65, 65, 0.5);
+    font-family: "TMSans-Bold", Arial, serif;
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 3px;
+}
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__day,
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour,
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute{
+    width: 32.666%;
+    height: 58px;
+    font-family: InterstateWGL-Black, Arial, serif; /*TODO:add font InterstateWGL-Black*/
+    font-size: 40px;
+    color: #414141;
+    background-color: rgba(250, 250, 250, .8);
+    display: inline-block;
+}
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour {
+    margin: 0 1%;
+}
+
+div[w-theme="simple_countdown"] .events-count-down__day:after,
+div[w-theme="simple_countdown"] .events-count-down__hour:after,
+div[w-theme="simple_countdown"] .events-count-down__minute:after {
+    content: '';
+    text-transform: uppercase;
+    background-color: rgba(65, 65, 65, 0.5);
+    font-family: "TMSans-Bold", Arial, serif;
+    display: block;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 3px;
+    font-size: 10px;
+    line-height: 24px;
+    color: #fff;
+}
+div[w-theme="simple_countdown"] .events-count-down__day:after {
+    content: 'days';
+}
+div[w-theme="simple_countdown"] .events-count-down__hour:after {
+    content: 'hrs';
+}
+div[w-theme="simple_countdown"] .events-count-down__minute:after {
+    content: 'min';
+}
+
+
+/*time counter END*/
