@@ -205,6 +205,7 @@
 
     if(layout === 'horizontal'){
       height = getHeightByTheme(theme);
+      height = 252;
     }
     widgetNode.setAttribute('w-height', height);
 
