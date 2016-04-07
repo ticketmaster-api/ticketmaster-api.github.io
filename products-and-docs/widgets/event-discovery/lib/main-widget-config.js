@@ -302,9 +302,6 @@
   widget.onLoadCoordinate = function (response) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
-
-    console.log('onLoadCoordinate', response);
-
     widget.config['country'] = countryShortName;
     var $countrySelect = $('#w-country'),
         options = '';
