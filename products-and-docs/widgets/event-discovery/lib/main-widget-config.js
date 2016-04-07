@@ -66,11 +66,13 @@
   // TODO: do we need 'config' variable ?
   var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
 
-  var $layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
-      $widthController = $('#w-width').slider({
+  var $widthController = $('#w-width').slider({
     tooltip: 'always',
     handle: 'square'
   }),
+
+  //$layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
+  $colorSchemeSelector = $('.widget__color_scheme_control'),
       $borderRadiusController = $('#w-borderradius').slider({
     tooltip: 'always',
     handle: 'square'
@@ -100,10 +102,13 @@
 
     if (targetName === "w-theme") {
       if (targetValue === 'simple') {
-        $layoutSelectors.prop('disabled', true);
+        $colorSchemeSelector.hide();
+        //$layoutSelectors.prop('disabled', true);
       } else {
-        $layoutSelectors.prop('disabled', false);
-      }
+          $colorSchemeSelector.show();
+          //$layoutSelectors.prop('disabled', false);
+          //console.log('$layoutSelectors', $colorSchemeSelector);
+        }
 
       if (widgetNode.getAttribute('w-layout') === 'horizontal') {
         widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
