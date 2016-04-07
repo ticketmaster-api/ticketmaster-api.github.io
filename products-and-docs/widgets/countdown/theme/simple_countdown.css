@@ -207,7 +207,7 @@ div[w-theme="simple_countdown"] .event-wrapper:before {
 
 div[w-theme="simple_countdown"] .event-content-wraper {
     width: 100%;
-    padding: 287px 30px 0;
+    padding: 287px 24px 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -384,32 +384,34 @@ div[w-theme="simple_countdown"] .event-buy-btn[href='']:hover {
 
 /*  LAYOUT  */
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-content-wraper {
-    padding-top: 29px;
+    padding-top: 36px;
 }
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-name{
     margin-bottom: 17px;
-    padding-right: 64px;
+    /*padding-right: 64px;*/
     max-width: 560px;
+    font-size: 20px;
+    width: 50%;
 }
 div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper {
-    padding-right: 64px;
     max-width: 560px;
 }
 
-
-div[w-theme="simple_countdown"][w-layout="horizontal"] .legal-notice {
-    left: 119px;
-}
-
-div[w-theme="simple_countdown"][w-layout="horizontal"] .event-buy-btn {
-    bottom: 42px;
+div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper,
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
+    width: 50%;
 }
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-wrapper:before {
 background: -moz-linear-gradient(right, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
 background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 20%);
 background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
+    /* padding-right: 64px;*/
+    max-width: 560px;
 }
 
 /*time counter*/
@@ -475,5 +477,11 @@ div[w-theme="simple_countdown"] .events-count-down__minute:after {
     content: 'min';
 }
 
+div[w-theme="simple_countdown"][w-layout="horizontal"] .events-count-down{
+    width: 40%;
+    top: 36px;
+    right: 24px;
+    padding: 0;
+}
 
 /*time counter END*/
