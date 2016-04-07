@@ -90,8 +90,9 @@
     if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
       $('#w-country').prop('disabled', true)
-        .data('cleared', true)
-        .html('');
+        // .data('cleared', true)
+        // .html('')
+      ;
     }
 
     if(targetName === "w-theme"){
@@ -305,18 +306,21 @@
 
   $('#w-country').data('cleared', true);
   widget.onLoadCoordinate = function (response, countryShortName = '') {
+
+    console.log('onLoadCoordinate', response);
+
     widget.config['country'] = countryShortName;
     let $countrySelect = $('#w-country'),
       options = '';
+
+    $countrySelect.html(`<option>All</option>`);
 
     if(response){
       if(response.status === 'OK'){
         if(response.results){
           $countrySelect.prop('disabled', !response.results.length);
           if($countrySelect.data('cleared')){
-            $countrySelect
-              .data('cleared', false)
-              .html('');
+            $countrySelect.html('');
             for(let i in response.results){
               let result = response.results[i];
               if(result.address_components){
@@ -327,14 +331,13 @@
                 }
               }
             }
-            $countrySelect.append(options);
+            if(options){
+              $countrySelect.append(options);
+              $countrySelect.prop('disabled', false);
+            }
           }
         }
       }
-    }
-
-    if(!options){
-      $countrySelect.html(`<option>All</option>`);
     }
   }
 
