@@ -504,9 +504,6 @@
     }
 
     .toggle-code-btn {
-      font-size: 16px;
-      font-family: $font-body;
-      font-weight: normal;
       float: right;
       cursor: pointer;
       color: $n2-grey-color;
@@ -519,25 +516,17 @@
     .toggle-code-btn {
       background-color: $n3;
       color: $white;
-      border: none;
       border-radius: 0 0 4px 4px;
       position: fixed;
       top: $fixed-header-height;
       right: 80px;
       text-decoration: none;
-      font-family: $font-h4;
       width: 166px;
       text-align: left;
       padding-left: 26px;
-      outline: none;
-      margin-top: 0;
-      @include transition(0.3s);
-      height: 24px;
-      font-size: 0.6875em;
+      font-family: $font-h4;
       &:hover {
         background-color: $p1;
-        height: 44px;
-        font-size: 1em;
         span {
           -ms-transform: scale(1); /*IE-9*/
           transform: scale(1);

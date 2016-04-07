@@ -12,8 +12,8 @@ class TicketmasterWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  //get themeUrl() { return "http://localhost:4000/widgets/main/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/widgets/main/theme/"; }
+  get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
+  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
@@ -122,7 +122,8 @@ class TicketmasterWidget {
     // Set theme modificators
     this.themeModificators = {
       "oldschool" : this.oldSchoolModificator.bind(this),
-      "newschool" : this.newSchoolModificator.bind(this)
+      "newschool" : this.newSchoolModificator.bind(this),
+      "listview" : this.listViewModificator.bind(this)
     };
 
     this.config = this.widgetRoot.attributes;
@@ -163,9 +164,9 @@ class TicketmasterWidget {
 
     this.initMessage();
 
-    this.initSliderControls();
+    if (this.config.theme !== "listview") this.initSliderControls();
 
-    this.initEventCounter();
+    if (this.config.theme !== "listview") this.initEventCounter();
 
   }
   
@@ -394,6 +395,9 @@ class TicketmasterWidget {
     ticketLogo.appendChild(headLogo);
 
     this.eventsRootContainer.appendChild(ticketLogo);
+  }
+
+  listViewModificator(){
   }
 
   hideSliderControls(){
@@ -702,6 +706,10 @@ class TicketmasterWidget {
 
     this.config = this.widgetRoot.attributes;
 
+    if(this.config.theme === "listview") {
+      this.stopAutoSlideX();
+    }
+
     /*if(this.config.theme !== null){
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
     }*/
@@ -738,7 +746,9 @@ class TicketmasterWidget {
           events[i].style.height = `${this.config.height - this.borderSize * 2}px`;
         }
       }
-      this.goToSlideY(0);
+      if(this.config.theme !== "listview") {
+        this.goToSlideY(0);
+      }
     }
   }
 
@@ -870,7 +880,7 @@ class TicketmasterWidget {
               widget.publishEventsGroup.call(widget, group, i);
           });
 
-          widget.initSlider();
+          if (widget.config.theme !== "listview") widget.initSlider();
           widget.setEventsCounter();
           widget.resetReduceParamsOrder();
           if(widget.hideMessageWithoutDelay)
@@ -1035,6 +1045,25 @@ class TicketmasterWidget {
     return el;
   }
 
+  createBackgroundImage(event, img) {
+    if (this.config.theme !== "listview") {
+      var image = document.createElement("span");
+      image.classList.add("bg-cover");
+      image.style.backgroundImage = `url('${img}')`;
+      event.appendChild(image);
+    }
+  }
+
+  addBuyButton(domNode, url) {
+    if (this.config.theme === "listview") {
+      let buyBtn = document.createElement("a");
+      buyBtn.appendChild(document.createTextNode('BUY NOW'));
+      buyBtn.classList.add("event-buy-btn");
+      buyBtn.target = '_blank';
+      buyBtn.href = url;
+      domNode.appendChild(buyBtn);
+    }
+  }
 
   createDOMItem(itemConfig){
     var medWrapper = document.createElement("div");
@@ -1045,10 +1074,7 @@ class TicketmasterWidget {
     event.style.height = `${this.config.height - this.borderSize * 2}px`;
     event.style.width  = `${this.config.width - this.borderSize * 2}px`;
 
-    var image = document.createElement("span");
-    image.classList.add("bg-cover");
-    image.style.backgroundImage = `url('${itemConfig.img}')`;
-    event.appendChild(image);
+    this.createBackgroundImage(event, itemConfig.img);
 
     var nameContent = document.createTextNode(itemConfig.name),
     name =  document.createElement("span");
@@ -1057,7 +1083,7 @@ class TicketmasterWidget {
     this.initPretendedLink(name, itemConfig.url, true);
     medWrapper.appendChild(name);
 
-
+    this.addBuyButton(medWrapper, itemConfig.url);
 
     var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
     dateTime = document.createElement("span");

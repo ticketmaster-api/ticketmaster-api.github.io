@@ -24,7 +24,7 @@
             <a href="https://live-livenation.devportal.apigee.com/user/login" class="pull-right">Get your own</a>
             <div class="widget_api_key__field">
               <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
-              <a href="http://developer.ticketmaster.com/support/faq/" class="widget_api_key__question"></a>
+              <a href="/support/faq/" class="widget_api_key__question"></a>
             </div>
           </div>
         </div>
@@ -35,36 +35,41 @@
       </div>
 
       <div class="row row-native">
-        <div class="col-lg-12">
+        <div class="col-lg-12 base-margin-bottom">
           <label>Period</label>
-          <div class="tab-buttons">
-            <input checked id="w-period-day" type="radio" value="day" name="w-period">
-            <label for="w-period-day">Today</label>
-            <input checked id="w-period-week" type="radio" value="week" name="w-period">
-            <label for="w-period-week">Week</label>
-            <input id="w-period-month" type="radio" value="month" name="w-period">
-            <label for="w-period-month">Month</label>
-            <input id="w-period-year" type="radio" value="year" name="w-period">
-            <label for="w-period-year">Year</label>
+          <div class="row radio-buttons">
+            <div class="col-lg-3 col-sm-2 col-xs-6">
+              <input checked id="w-period-day" type="radio" value="day" name="w-period">
+              <label for="w-period-day">Today</label>
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-6">
+              <input checked id="w-period-week" type="radio" value="week" name="w-period">
+              <label for="w-period-week">Week</label>
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-6">
+              <input id="w-period-month" type="radio" value="month" name="w-period">
+              <label for="w-period-month">Month</label>
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-6">
+              <input id="w-period-year" type="radio" value="year" name="w-period">
+              <label for="w-period-year">Year</label>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row row-native">
-        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-postalcode">ZIP Code</label>
           <input type="text" id="w-postalcode" name="w-postalcode" value="90015">
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-radius">
             Radius <span class="config_field__description">(miles)</span>
           </label>
           <input class="js_widget__number text-center" type="number" id="w-radius" name="w-radius" value="25">
         </div>
-      </div>
-
-      <div class="row row-native">
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-md-12 col-sm-6">
           <label for="w-country">Country</label>
           <select id="w-country" name="w-country">
             <option selected value="US">United States</option>
@@ -73,42 +78,34 @@
       </div>
 
       <div class="row row-native">
-        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-attractionid">Attraction ID</label>
           <input type="text" id="w-attractionid" name="w-attractionid" value="">
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-promoterid">Promoter ID</label>
           <input type="text" id="w-promoterid" name="w-promoterid" value="">
         </div>
-      </div>
-
-      <div class="row row-native">
-        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-venueid">Venue ID</label>
           <input type="text" id="w-venueid" name="w-venueid" value="">
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-segmentid">Category ID</label>
           <input type="text" id="w-segmentid" name="w-segmentid" value="">
         </div>
       </div>
 
       <div class="row row-native">
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-md-6 col-sm-6">
           <label for="w-affiliateid">Affiliate ID</label>
           <input type="text" id="w-affiliateid" name="w-affiliateid" value="">
         </div>
-      </div>
-
-      <div class="row row-native">
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-md-6 col-sm-6">
           <label for="w-size">
             Event Count <span class="config_field__description">(1-100)</span>
           </label>
         </div>
-      </div>
-      <div class="row row-native">
         <div class="col-lg-3 col-md-2 col-sm-2">
           <input class="js_widget__number text-center" type="number" id="w-size" name="w-size" value="25" max="100" min="1" required>
         </div>
@@ -117,7 +114,7 @@
 
     <div class="tab-pane fade" id="widget-config-styling">
       <div class="row row-native">
-        <div class="col-lg-12 col-md-5 col-sm-5 col-sm-theme">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-theme">
           <label>Themes</label>
           <div class="tab-buttons">
             <input checked id="w-theme-simple" type="radio" value="simple" name="w-theme">
@@ -126,10 +123,12 @@
             <label for="w-theme-oldschool">Oldskool</label>
             <input id="w-theme-newschool" type="radio" value="newschool" name="w-theme">
             <label for="w-theme-newschool">Color Block</label>
+            <input id="w-theme-listview" type="radio" value="listview" name="w-theme">
+            <label for="w-theme-listview">List View</label>
           </div>
         </div>
 
-        <div class="col-lg-12 col-md-3 col-sm-3 col-sm-color_scheme">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-color_scheme">
           <div class="widget__color_scheme_control">
             <label>Color Scheme</label>
             <div class="tab-buttons">
@@ -141,36 +140,40 @@
           </div>
         </div>
 
-        <div class="col-lg-12 col-md-4 col-sm-4 col-sm-layout">
-          <div class="row widget__layout_control">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-layout">
+          <div class="row base-margin-bottom">
             <label>Layout</label>
             <div class="col-lg-12 js-fixed-size-buttons radio-buttons">
-              <div class="col-md-4">
-                <input id="w-fixed-300x600" type="radio" value="xxl" name="w-proportion">
-                <label for="w-fixed-300x600">300x600</label>
+              <div class="row">
+                <div class="col-lg-4 col-sm-2">
+                  <input id="w-fixed-300x600" type="radio" value="xxl" name="w-proportion">
+                  <label for="w-fixed-300x600">300x600</label>
+                </div>
+                <!--<input id="w-fixed-300x250" type="radio" value="l" name="w-proportion">
+                <label for="w-fixed-300x250">300x250</label>
+                <input id="w-fixed-728x90" type="radio" value="xl" name="w-proportion">
+                <label for="w-fixed-728x90">728x90</label>
+                <input id="w-fixed-160x600" type="radio" value="m" name="w-proportion">
+                <label for="w-fixed-160x600">160x600</label>
+                <input id="w-fixed-180x150" type="radio" value="s" name="w-proportion">
+                <label for="w-fixed-180x150">180x150</label>-->
+                <div class="col-sm-4">
+                  <input checked id="w-custom" type="radio" value="custom" name="w-proportion">
+                  <label for="w-custom">Custom</label>
+                </div>
               </div>
-              <!--<input id="w-fixed-300x250" type="radio" value="l" name="w-proportion">
-              <label for="w-fixed-300x250">300x250</label>
-              <input id="w-fixed-728x90" type="radio" value="xl" name="w-proportion">
-              <label for="w-fixed-728x90">728x90</label>
-              <input id="w-fixed-160x600" type="radio" value="m" name="w-proportion">
-              <label for="w-fixed-160x600">160x600</label>
-              <input id="w-fixed-180x150" type="radio" value="s" name="w-proportion">
-              <label for="w-fixed-180x150">180x150</label>-->
-              <div class="col-md-4">
-                <input checked id="w-custom" type="radio" value="custom" name="w-proportion">
-                <label for="w-custom">Custom</label>
-              </div>
-              <div class="col-lg-12 line"></div>
             </div>
-            <div class="col-lg-12 js-tab-buttons radio-buttons">
-              <div class="col-md-4">
-                <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
-                <label for="w-layout-vertical">Vertical</label>
-              </div>
-              <div class="col-md-4">
-                <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
-                <label for="w-layout-horizontal">Horizontal</label>
+              <div class="col-lg-12 js-tab-buttons radio-buttons">
+                <div class="row">
+                <div class="col-lg-12 line"></div>
+                <div class="col-lg-4 col-sm-2">
+                  <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
+                  <label for="w-layout-vertical">Vertical</label>
+                </div>
+                <div class="col-sm-4">
+                  <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
+                  <label for="w-layout-horizontal">Horizontal</label>
+                </div>
               </div>
             </div>
           </div>
@@ -178,7 +181,7 @@
       </div>
 
       <div class="row row-native">
-        <div class="col-lg-12 col-md-6 col-sm-6 js_widget_width_slider">
+        <div class="col-lg-12 js_widget_width_slider">
           <label for="w-width">
             Width <span class="config_field__description">(px)</span>
           </label>
@@ -186,7 +189,7 @@
             <input id="w-width" name="w-width" type="text" data-slider-min="350" data-slider-max="500" data-slider-step="1" data-slider-value="350">
           </div>
         </div>
-        <div class="col-lg-12 col-md-6 col-sm-6">
+        <div class="col-lg-12">
           <label for="w-borderradius">
             Corner Radius <span class="config_field__description">(px)</span>
           </label>
