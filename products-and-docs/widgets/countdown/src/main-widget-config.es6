@@ -96,7 +96,7 @@
         sizeConfig = {
           width: 620,
           // height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
-          height: 300,
+          height: 252,
           maxWidth: 900,
           minWidth: 620
         };
@@ -204,7 +204,7 @@
     widthSlider.slideDown("fast");
 
     if(layout === 'horizontal'){
-      height = getHeightByTheme(theme);
+      //height = getHeightByTheme(theme);
       height = 252;
     }
     widgetNode.setAttribute('w-height', height);
