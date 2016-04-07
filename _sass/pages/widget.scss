@@ -333,29 +333,7 @@
   }
 }
 
-.widget-no-border {
-  border: 0;
-  &:before,
-  &:after {
-    border: 0;
-  }
+.widget__various-width {
+  min-width: 100px;
+  max-width: 130px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
