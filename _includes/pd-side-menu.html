@@ -1,6 +1,7 @@
 <ul class="aside-menu" id="scrollable-element">
     <li>
         <h4><a href="/products-and-docs/apis/getting-started/">APIs</a></h4>
+        {% if page.categories[0] == "documentation" and page.categories[1] != "sdks" and page.categories[1] != "widgets" %}
         <ul class="categories">
             <li><a href="/products-and-docs/apis/getting-started/">Getting Started</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
@@ -154,6 +155,7 @@
             <li><a href="/api-explorer/">API Explorer</a></li>
             <li><a href="/products-and-docs/apis/changelog/">Changelog</a></li>
         </ul>
+        {% endif %}
     </li>
     <li>
         <h4><a href="/products-and-docs/sdks/" {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %} class="active" {% endif %} >SDKs</a></h4>
@@ -173,13 +175,6 @@
                 <!--<li><a href="/products-and-docs/widgets/countdown/">Event Countdown Widget</a></li>-->
             </ul>
         {% endif %}
-
-
-        <!--<ul class="categories">
-            <li><a href="/products-and-docs/under-development/">Getting started</a></li>
-            <li><a href="/products-and-docs/under-development/">Configuration Docs</a></li>
-            <li><a href="/products-and-docs/under-development/">Installation instructions</a></li>
-        </ul>-->
     </li>
 </ul>
 
