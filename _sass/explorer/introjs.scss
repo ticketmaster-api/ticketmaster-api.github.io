@@ -11,7 +11,7 @@
     -ms-transform: translateX(-50%) translateY(-50%);
     -o-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    z-index: 1;
+    z-index: 23;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -65,11 +65,11 @@
   -------------------------------- */
   .cd-tour-wrapper {
     position: fixed;
-    z-index: 2;
+    z-index: 24;
     height: 90%;
     width: 90%;
     left: 50%;
-    top: 45%;
+    top: 50%;
     bottom: auto;
     right: auto;
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -82,6 +82,9 @@
     -webkit-transition: opacity 0.4s 0s, visibility 0s 0.4s;
     -moz-transition: opacity 0.4s 0s, visibility 0s 0.4s;
     transition: opacity 0.4s 0s, visibility 0s 0.4s;
+    max-height: 90%;
+    margin-top: 0;
+    margin-bottom: 0;
   }
   .cd-tour-wrapper::before {
     /* never visible - this is used in jQuery to check the current MQ */
@@ -96,10 +99,14 @@
     -moz-transition: opacity 0.4s 0s, visibility 0s 0s;
     transition: opacity 0.4s 0s, visibility 0s 0s;
   }
+  @media only screen and (max-width: 1199px) {
+    .cd-tour-wrapper {
+      overflow: auto;
+    }
+  }
   @media only screen and (min-width: 600px) {
     .cd-tour-wrapper {
       max-width: 500px;
-      max-height: 600px;
     }
   }
   @media only screen and (min-width: 1200px) {
@@ -131,7 +138,7 @@
   .cd-single-step {
     /* tour single step */
     position: absolute;
-    z-index: 1;
+    z-index: 23;
     width: 100%;
     left: 0;
     top: 0;
@@ -163,7 +170,7 @@
   .cd-single-step > span {
     /* dot indicator - visible on desktop version only */
     position: relative;
-    z-index: 1;
+    z-index: 23;
     display: block;
     width: 10px;
     height: 10px;
@@ -319,7 +326,7 @@
     }
   }
   .cd-single-step .cd-more-info {
-    z-index: 1;
+    z-index: 23;
     padding: 1.5em;
     width: 100%;
   }
@@ -547,7 +554,7 @@
   .cd-cover-layer {
     /* background cover layer - visible when tour is activated */
     position: fixed;
-    z-index: 1;
+    z-index: 23;
     top: 0;
     left: 0;
     height: 100%;
@@ -643,7 +650,7 @@
   }
 
   #cd-tour-trigger {
-    margin-top: -180px;
+    margin-top: 64px;
     background-color: #7356a5;
     &:hover {
       background-color: #a61f84;
