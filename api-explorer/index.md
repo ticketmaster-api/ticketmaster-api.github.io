@@ -4,7 +4,7 @@ layout: api-explorer
 
 <div id="api-explorer">
     <!--hints-->
-    <button id="cd-tour-trigger" class="btn feedback-btn">Show hints</button>
+    <button id="cd-tour-trigger" class="btn feedback-btn scale-on-hover">Show hints</button>
 	<div class="cd-cover-layer"></div>
     <!--bootstrap error popup-->
     <div id="error-alert" class="modal fade" role="dialog">
@@ -84,7 +84,7 @@ layout: api-explorer
     <div class="row">
         <div class="row-container" style="position: relative;">
             <ul class="cd-tour-wrapper">
-        		<li class="cd-single-step" style="left: 65%; top: 7%;">
+        		<li class="cd-single-step" style="left: 65%; top: 46%;">
         			<span>Navigation Menu</span>
 
         			<div class="cd-more-info bottom">
@@ -111,7 +111,7 @@ layout: api-explorer
     <div class="row group-start">
         <div class="row-container" style="position: relative;">
             <ul class="cd-tour-wrapper">
-                <li class="cd-single-step" style="left: 35%; top: -6%;">
+                <li class="cd-single-step" style="left: 35%; top: 29%;">
                     <span>Api Key</span>
 
                     <div class="cd-more-info bottom">
@@ -142,7 +142,7 @@ layout: api-explorer
     <!--parameter fields-->
     <div class="row" style="position: relative;">
         <ul class="cd-tour-wrapper">
-            <li class="cd-single-step" style="left: 60%; top: -1%;">
+            <li class="cd-single-step" style="left: 60%; top: 4%;">
                 <span>Request Parameters</span>
 
                 <div class="cd-more-info bottom">
@@ -199,7 +199,7 @@ layout: api-explorer
     <div class="row">
         <div class="row-container" style="position: relative;">
             <ul class="cd-tour-wrapper">
-                <li class="cd-single-step" style="right: 20%; top: -1%;">
+                <li class="cd-single-step" style="right: 20%; top: 12%;">
                     <span>Request Log</span>
 
                     <div class="cd-more-info top">
@@ -217,7 +217,7 @@ layout: api-explorer
     <!--slider-->
     <div class="row-container" style="position: relative;">
         <ul class="cd-tour-wrapper">
-            <li class="cd-single-step" style="left: 17%; top: 73px;">
+            <li class="cd-single-step" style="left: 17%; top: 98px;">
                 <span>Response Items</span>
 
                 <div class="cd-more-info top">

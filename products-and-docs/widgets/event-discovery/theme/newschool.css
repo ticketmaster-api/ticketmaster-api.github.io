@@ -139,7 +139,7 @@ div[w-theme="newschool"] ul.events-root {
 div[w-theme="newschool"] .event-wrapper {
     display: block;
     position: relative;
-    height: 200px;
+    height: 370px !important;
     width:150px;
     float: left;
     overflow: hidden;
