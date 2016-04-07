@@ -216,8 +216,9 @@ var TicketmasterWidget = function () {
       this.themeModificators[this.widgetConfig.theme]();
     }
 
-    // this.embedUniversePlugin();
-    // this.embedTMPlugin();
+    /*plugins for 'buy button'*/
+    this.embedUniversePlugin();
+    this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -300,7 +301,7 @@ var TicketmasterWidget = function () {
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
       this.buyBtn.addEventListener('click', function (e) {
-        // e.preventDefault();
+        e.preventDefault(); /*used in plugins for 'buy button'*/
         _this2.stopAutoSlideX();
         //console.log(this.config.affiliateid)
       });
@@ -314,10 +315,10 @@ var TicketmasterWidget = function () {
             url = '';
         if (event) {
           if (event.url) {
-            // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
-            //   url = event.url;
-            // }
-            url = event.url;
+
+            if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
+              url = event.url;
+            }
           }
         }
         this.buyBtn.href = url;
@@ -723,6 +724,7 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
+        e.preventDefault(); /*used in plugins for 'buy button'*/
         handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
@@ -1150,6 +1152,8 @@ var TicketmasterWidget = function () {
     key: "addBuyButton",
     value: function addBuyButton(domNode, url) {
       if (this.config.theme === "listview") {
+        var _urlValid = this.isUniversePluginInitialized && this.isUniverseUrl(url) || this.isTMPluginInitialized && this.isAllowedTMEvent(url);
+        if (!_urlValid) url = '';
         var buyBtn = document.createElement("a");
         buyBtn.appendChild(document.createTextNode('BUY NOW'));
         buyBtn.classList.add("event-buy-btn");

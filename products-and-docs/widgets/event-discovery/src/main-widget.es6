@@ -25,7 +25,7 @@ class TicketmasterWidget {
 
   get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
-  get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion"]}  
+  get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion"]}
 
   get sliderDelay(){ return 5000; }
 
@@ -157,8 +157,9 @@ class TicketmasterWidget {
       this.themeModificators[ this.widgetConfig.theme ]();
     }
 
-    // this.embedUniversePlugin();
-    // this.embedTMPlugin();
+    /*plugins for 'buy button'*/
+    this.embedUniversePlugin();
+    this.embedTMPlugin();
 
     this.initBuyBtn();
 
@@ -237,7 +238,7 @@ class TicketmasterWidget {
     this.buyBtn.target = '_blank';
     this.buyBtn.href = '';
     this.buyBtn.addEventListener('click', (e)=> {
-      // e.preventDefault();
+      e.preventDefault(); /*used in plugins for 'buy button'*/
       this.stopAutoSlideX();
       //console.log(this.config.affiliateid)
     });
@@ -250,10 +251,10 @@ class TicketmasterWidget {
           url = '';
       if(event){
         if(event.url){
-          // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
-          //   url = event.url;
-          // }
-          url = event.url;
+
+           if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
+             url = event.url;
+           }
         }
       }
       this.buyBtn.href = url;
@@ -629,6 +630,7 @@ class TicketmasterWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
+      e.preventDefault();/*used in plugins for 'buy button'*/
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
@@ -1056,6 +1058,8 @@ class TicketmasterWidget {
 
   addBuyButton(domNode, url) {
     if (this.config.theme === "listview") {
+      let _urlValid = ( this.isUniversePluginInitialized && this.isUniverseUrl(url) ) || ( this.isTMPluginInitialized && this.isAllowedTMEvent(url) );
+      if(!_urlValid) url = '';
       let buyBtn = document.createElement("a");
       buyBtn.appendChild(document.createTextNode('BUY NOW'));
       buyBtn.classList.add("event-buy-btn");
