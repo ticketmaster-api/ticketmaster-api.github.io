@@ -35,7 +35,6 @@ div[w-theme="simple_countdown"]{
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 0;
 }
 
 div[w-theme="simple_countdown"] a,
