@@ -1,3 +1,4 @@
+/*CSS library - to be refactored to SCSS*/
 #api-explorer {
   .cd-nugget-info {
     position: absolute;
@@ -654,6 +655,8 @@
     background-color: #7356a5;
     &:hover {
       background-color: #a61f84;
+      width: 116px;
+      right: -36px;
     }
     @media (max-width: 767px){
       margin-bottom: 120px;
