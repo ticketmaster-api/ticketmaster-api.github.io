@@ -174,7 +174,6 @@ div[w-theme="simple"] .events_control {
     width: 0;
     height: 0;
     border-style: solid;
-
     -webkit-transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
     -webkit-transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
@@ -183,10 +182,12 @@ div[w-theme="simple"] .events_control {
 
 div[w-theme="simple"] .events_control-horizontal {
     top: 50%;
+    margin-top: -13px;
 }
 
 div[w-theme="simple"] .events_control-vertical {
     left: 50%;
+    margin-left: -13px;
 }
 
 div[w-theme="simple"] .events_control-left {
