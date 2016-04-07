@@ -67,7 +67,7 @@
     tooltip: 'always',
     handle: 'square'
   }),
-  $tabButtons = $('.widget__layout_control .js-tab-buttons');
+  $tabButtons = $('.js-tab-buttons');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
