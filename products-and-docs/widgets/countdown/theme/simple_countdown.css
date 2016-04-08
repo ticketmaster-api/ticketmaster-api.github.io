@@ -25,6 +25,12 @@
     font-style: normal;
     font-weight: normal; }
 
+@font-face {
+    font-family: "InterstateWGL-Black";
+    src: url("http://developer.ticketmaster.com/assets/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-2.eot");
+    src: url("http://developer.ticketmaster.com/assets/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-2.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-3.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-1.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
 
 /* Common styles for all themes  */
 div[w-theme="simple_countdown"]{
@@ -432,8 +438,7 @@ div[w-theme="simple_countdown"] .events-count-down:before {
     font-family: "TMSans-Bold", Arial, serif;
     display: block;
     font-size: 14px;
-    line-height: 24px;
-    height: 24px;
+    line-height: 28px;
     width: 100%;
     margin-bottom: 3px;
 }
@@ -460,11 +465,10 @@ div[w-theme="simple_countdown"] .events-count-down__minute:after {
     background-color: rgba(65, 65, 65, 0.5);
     font-family: "TMSans-Bold", Arial, serif;
     display: block;
-    height: 24px;
     width: 100%;
     margin-bottom: 3px;
     font-size: 10px;
-    line-height: 24px;
+    line-height: 22px;
     color: #fff;
 }
 div[w-theme="simple_countdown"] .events-count-down__day:after {
