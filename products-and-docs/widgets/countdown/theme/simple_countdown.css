@@ -31,6 +31,7 @@ div[w-theme="simple_countdown"]{
     position: relative;
     height: 200px;
     width: 150px;
+    overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;

@@ -1,3 +1,53 @@
+class CountdownClock {
+  set endTime(endTime) { this.config.endTime = endTime; }
+  get endTime(){ return this.config.endTime || new Date();}
+
+  set interval(interval) { return this.config.interval = interval; }
+  get interval(){ return this.config.interval || 1000;}
+
+  set onChange(fn) { return this.config.onChange = fn; }
+  get onChange(){ return this.config.onChange || ((time) => { console.log(time) })}
+
+  constructor(config = {}) {
+    this.config = config;
+    this.updateClock();
+    if(this.config.endTime) this.initInterval();
+  }
+
+  initInterval(){
+    this.timeinterval = setInterval(this.updateClock.bind(this), this.interval);
+  }
+
+  update(endTime){
+    clearInterval(this.timeinterval);
+    this.endTime = endTime;
+    this.updateClock();
+    if(endTime) this.initInterval();
+  }
+
+  updateClock() {
+    let timeRemaining = this.getTimeRemaining();
+    this.onChange(timeRemaining);
+    if (timeRemaining.total <= 0) clearInterval(this.timeinterval);
+  }
+
+  getTimeRemaining() {
+    let total = Date.parse(this.endTime) - Date.parse(new Date());
+    if(total < 0) total = 0;
+    let seconds = Math.floor((total / 1000) % 60),
+      minutes = Math.floor((total / 1000 / 60) % 60),
+      hours = Math.floor((total / 3600000 /* (1000 * 60 * 60) */) % 24),
+      days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */);
+    return {
+      total,
+      days,
+      hours,
+      minutes,
+      seconds
+    };
+  }
+}
+
 class TicketmasterWidget {
 
   set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
@@ -12,9 +62,9 @@ class TicketmasterWidget {
 
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : false; }
 
-  get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
+  // get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
   // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
-  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
@@ -93,7 +143,7 @@ class TicketmasterWidget {
 
     this.initBuyBtn();
 
-    this.initCountdoun();
+    this.buildCountdown();
 
     if(this.apiUrl){
       this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
@@ -105,27 +155,38 @@ class TicketmasterWidget {
     //   this.themeModificators[ this.widgetConfig.theme ]();
     // }
 
-    // this.embedUniversePlugin();
-    // this.embedTMPlugin();
+    this.embedUniversePlugin();
+    this.embedTMPlugin();
 
+
+    this.countdownClock = new CountdownClock({
+      onChange: this.onCountdownChange.bind(this)
+    });
   }
 
-  initCountdoun(){
+  getNormalizedDateValue(val){
+    return ('0' + val).slice(-2);
+  }
+
+  onCountdownChange(data){
+    console.log(data);
+    this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
+    this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
+    this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
+  }
+
+  buildCountdown(){
     // this.widgetRoot
     let countDown = document.createElement("div");
     countDown.classList.add("events-count-down");
-
-    let countDownDaysText = document.createTextNode('08');
-    let countDownHoursText = document.createTextNode('10');
-    let countDownMinuteText = document.createTextNode('46');
 
     this.countDownDays = document.createElement("span");
     this.countDownHours = document.createElement("span");
     this.countDownMinute = document.createElement("span");
 
-    this.countDownDays.appendChild(countDownDaysText);
-    this.countDownHours.appendChild(countDownHoursText);
-    this.countDownMinute.appendChild(countDownMinuteText);
+    this.countDownDays.innerHTML = '00';
+    this.countDownHours.innerHTML = '00';
+    this.countDownMinute.innerHTML = '00';
 
     this.countDownDays.classList.add("events-count-down__day");
     this.countDownHours.classList.add("events-count-down__hour");
@@ -144,9 +205,9 @@ class TicketmasterWidget {
     this.buyBtn.classList.add("event-buy-btn");
     this.buyBtn.target = '_blank';
     this.buyBtn.href = '';
-    // this.buyBtn.addEventListener('click', (e)=> {
-    //   e.preventDefault();
-    // });
+    this.buyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
     this.eventsRootContainer.appendChild(this.buyBtn);
   }
 
@@ -156,10 +217,9 @@ class TicketmasterWidget {
           url = '';
       if(event){
         if(event.url){
-          // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
-          //   url = event.url;
-          // }
-          url = event.url;
+          if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
+            url = event.url;
+          }
         }
       }
       this.buyBtn.href = url;
@@ -217,18 +277,8 @@ class TicketmasterWidget {
       this.hideMessageWithoutDelay = hideMessageWithoutDelay;
       this.messageContent.innerHTML = message;
       this.messageDialog.classList.add("event-message-visible");
-      // if (this.messageTimeout) {
-      //   clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
-      // }
     }
   }
-
-  // hideMessageWithDelay(delay){
-  //   if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
-  //   this.messageTimeout = setTimeout(()=>{
-  //     this.hideMessage();
-  //   }, delay);
-  // }
 
   hideMessage(){
     if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
@@ -385,6 +435,12 @@ class TicketmasterWidget {
     }
   }
 
+  onEventLoadError(status){
+    this.event = false;
+    this.showMessage("No results were found.", true);
+    console.log(`There was an error status - ${status}`);
+  }
+
   eventsLoadingHandler(){
     let widget = this.widget;
     widget.clearEvents(); // Additional clearing after each loading
@@ -397,15 +453,14 @@ class TicketmasterWidget {
         }
       }
       else if(this.status == 400) {
-        widget.event = false;
-        widget.showMessage("No results were found.", true);
-        console.log('There was an error 400');
+        widget.onEventLoadError.call(widget, this.status);
       }
       else {
-        widget.event = false;
-        widget.showMessage("No results were found.", true);
-        console.log('something else other than 200 was returned');
+        widget.onEventLoadError.call(widget, this.status);
       }
+      // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
+      let _ref, _ref2;
+      widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime : void 0 : void 0);
     }
     widget.setBuyBtnUrl();
   }
@@ -454,7 +509,8 @@ class TicketmasterWidget {
 
     currentEvent.date = {
       day: eventSet.dates.start.localDate,
-      time: eventSet.dates.start.localTime
+      time: eventSet.dates.start.localTime,
+      dateTime: eventSet.dates.start.dateTime
     };
 
     let venue = eventSet._embedded.venues[0];
