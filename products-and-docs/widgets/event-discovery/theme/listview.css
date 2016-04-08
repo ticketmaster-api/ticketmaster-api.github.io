@@ -27,6 +27,7 @@
 
 
 /* Common styles for all themes  */
+/*
 .widget-container {
     border: none;
 }
@@ -35,6 +36,13 @@
 .widget-container:after {
     width: 0;
     height: 0;
+    border: none;
+}
+*/
+
+.widget-container--discovery.listview-after,
+.widget-container--discovery.listview-after:before,
+.widget-container--discovery.listview-after:after {
     border: none;
 }
 
@@ -117,12 +125,15 @@ div[w-theme="listview"] .events-root-container{
     border-color: #ccc;
 }
 
-div[w-theme="listview"] ul{
+div[w-theme="listview"] #ss {
     margin: 37px auto 0 auto;
-    padding: 0 20px;
     height: 82%;
-    overflow-x: hidden;
-    overflow-y: auto;
+    width: 96% !important;
+}
+
+div[w-theme="listview"] ul {
+    margin: 0 auto;
+    padding: 0;
     margin-left: 0 !important;
     width: 100% !important;
 }
@@ -174,7 +185,7 @@ div[w-theme="listview"] .event-question:before {
 div[w-theme="listview"] .event-question:after {
     opacity: 0.7;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-white.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-grey.svg");
 }
 
 div[w-theme="listview"] .event-question:hover:before {
@@ -416,19 +427,16 @@ div[w-theme="listview"] .event-buy-btn[href='']:hover {
     opacity: 0.5;
 }
 
+div[w-theme="listview"] .event-buy-btn.main-btn {
+    display: none;
+}
+
 /*  LAYOUT  */
-div[w-theme="listview"][w-layout="horizontal"] .event-content-wraper {
+div[w-theme="listview"][w-layout="horizontal"] #ss {
+    height: 67%;
 }
-
-div[w-theme="listview"][w-layout="horizontal"] .event-name{
-}
-
-div[w-theme="listview"][w-layout="horizontal"] .address-wrapper {
-}
-
 
 div[w-theme="listview"][w-layout="horizontal"] .legal-notice {
-    left: 119px;
 }
 
 div[w-theme="listview"][w-layout="horizontal"] .event-buy-btn {
@@ -441,7 +449,72 @@ div[w-theme="listview"][w-layout="horizontal"] .event-wrapper:before {
     background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
 }
 
-/**/
 div[w-theme="listview"][w-proportion="3x6"]  {
     width: 300px;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .events-root-container {
+    background: #5d5d5d;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-content-wraper {
+    color: #fff;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-logo-box {
+    background: #dedede;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-wrapper {
+    border-bottom: 2px solid #414141;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-group-wrapper {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+div[w-theme="listview"] .ss-wrapper {
+    overflow : hidden;
+    width: 100%;
+    height: 100%;
+    position : relative;
+    z-index  : 1;
+    float: left;
+}
+
+div[w-theme="listview"] .ss-content {
+    width: 103%;
+    height: 100%;
+    padding         : 0 32px 0 0;
+    position        : relative;
+    right           : -18px;
+    overflow        : auto;
+    -moz-box-sizing : border-box;
+    box-sizing      : border-box;
+}
+
+div[w-theme="listview"] .ss-scroll {
+    position            : relative;
+    background          : rgba(0, 0, 0, .1);
+    width               : 6px;
+    border-radius       : 4px;
+    top                 : 0;
+    z-index             : 2;
+    cursor              : pointer;
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+
+div[w-theme="listview"] .ss-container:hover .ss-scroll {
+    opacity: 1;
+}
+
+div[w-theme="listview"] .ss-grabbed {
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
 }

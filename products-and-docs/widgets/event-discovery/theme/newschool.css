@@ -131,7 +131,7 @@ div[w-theme="newschool"] ul{
 
 div[w-theme="newschool"] ul.events-root {
     margin: 60px 0 0 0;
-    height: 65%;
+    height: 354px;
     display: block;
     overflow: hidden;
 }
@@ -592,7 +592,7 @@ div[w-theme="newschool"] .event-buy-btn[href='']:hover {
 div[w-theme="newschool"][w-layout="horizontal"] .ticket-logo {
     transform: rotate(-90deg);
     height: 24px;
-    width: 300px;
+    width: 446px;
     margin-left: 35px;
     position: static;
     transform-origin: left top 0;
@@ -736,6 +736,11 @@ div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root
 div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root,
 div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .events-root {
     height: 68%;
+}
+
+div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .event-wrapper,
+div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-wrapper {
+    height:404px!important;
 }
 
 div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .ticket-logo img:last-child,
