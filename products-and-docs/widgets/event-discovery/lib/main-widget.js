@@ -174,9 +174,13 @@ var TicketmasterWidget = function () {
     this.eventsRootContainer.classList.add("events-root-container");
     this.widgetRoot.appendChild(this.eventsRootContainer);
 
+    this.eventsRootDiv = document.createElement("div");
+    this.eventsRootDiv.setAttribute("id", "ss");
+    this.eventsRootContainer.appendChild(this.eventsRootDiv);
+
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
-    this.eventsRootContainer.appendChild(this.eventsRoot);
+    this.eventsRootDiv.appendChild(this.eventsRoot);
 
     // Set theme modificators
     this.themeModificators = {
@@ -226,6 +230,8 @@ var TicketmasterWidget = function () {
     if (this.config.theme !== "listview") this.initSliderControls();
 
     if (this.config.theme !== "listview") this.initEventCounter();
+
+    if (this.config.theme === "listview") this.addScroll();;
   }
 
   _createClass(TicketmasterWidget, [{
@@ -297,6 +303,7 @@ var TicketmasterWidget = function () {
       this.buyBtn = document.createElement("a");
       this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
       this.buyBtn.classList.add("event-buy-btn");
+      this.buyBtn.classList.add("main-btn");
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
       this.buyBtn.addEventListener('click', function (e) {
@@ -482,7 +489,12 @@ var TicketmasterWidget = function () {
     }
   }, {
     key: "listViewModificator",
-    value: function listViewModificator() {}
+    value: function listViewModificator() {
+      /*
+      var scrollRoot = document.getElementById("ss");
+      SimpleScrollbar.initEl(scrollRoot);
+      */
+    }
   }, {
     key: "hideSliderControls",
     value: function hideSliderControls() {
@@ -630,24 +642,24 @@ var TicketmasterWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[i]);
+      for (var _i in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[_i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var i in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[i]);
+      for (var _i2 in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[_i2]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var i in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[i]);
+      for (var _i3 in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[_i3]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -671,8 +683,8 @@ var TicketmasterWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var i = 0; eventGroup.length > i; i++) {
-          eventGroup[i].style.marginTop = 0;
+        for (var _i4 = 0; eventGroup.length > _i4; _i4++) {
+          eventGroup[_i4].style.marginTop = 0;
         }
       });
 
@@ -792,6 +804,29 @@ var TicketmasterWidget = function () {
             parent = el.parentNode;
         parent.removeChild(el);
       }
+
+      if (this.config.theme !== "listview") {
+        var eventsRootContainer = document.getElementsByClassName("events-root-container")[0];
+        var eventsRoot = document.getElementsByClassName("events-root")[0];
+        var ss = document.getElementById("ss");
+        ss.parentNode.removeChild(ss);
+
+        var ssDiv = document.createElement("div");
+        ssDiv.setAttribute("id", "ss");
+        eventsRootContainer.appendChild(ssDiv);
+
+        var ssDiv = document.getElementById("ss");
+        ssDiv.appendChild(eventsRoot);
+
+        var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
+        eventsRootContainer.classList.remove("listview-after");
+      }
+
+      if (this.config.theme === "listview") {
+        var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
+        eventsRootContainer.classList.add("listview-after");
+      }
+
       this.clearEvents();
     }
   }, {
@@ -836,6 +871,8 @@ var TicketmasterWidget = function () {
         this.getCoordinates(function () {
           _this8.makeRequest(_this8.eventsLoadingHandler, _this8.apiUrl, _this8.eventReqAttrs);
         });
+
+        if (this.config.theme === "listview") this.addScroll();
       } else {
         var events = document.getElementsByClassName("event-wrapper");
         for (var i in events) {
@@ -1157,6 +1194,43 @@ var TicketmasterWidget = function () {
         buyBtn.href = url;
         domNode.appendChild(buyBtn);
       }
+    }
+  }, {
+    key: "addScroll",
+    value: function addScroll() {
+      (function (n, t) {
+        function u(n) {
+          n.hasOwnProperty("data-simple-scrollbar") || Object.defineProperty(n, "data-simple-scrollbar", new SimpleScrollbar(n));
+        }function e(n, i) {
+          function f(n) {
+            var t = n.pageY - u;u = n.pageY;r(function () {
+              i.el.scrollTop += t / i.scrollRatio;
+            });
+          }function e() {
+            n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove", f);t.removeEventListener("mouseup", e);
+          }var u;n.addEventListener("mousedown", function (i) {
+            return u = i.pageY, n.classList.add("ss-grabbed"), t.body.classList.add("ss-grabbed"), t.addEventListener("mousemove", f), t.addEventListener("mouseup", e), !1;
+          });
+        }function i(n) {
+          for (this.target = n, this.bar = '<div class="ss-scroll">', this.wrapper = t.createElement("div"), this.wrapper.setAttribute("class", "ss-wrapper"), this.el = t.createElement("div"), this.el.setAttribute("class", "ss-content"), this.wrapper.appendChild(this.el); this.target.firstChild;) {
+            this.el.appendChild(this.target.firstChild);
+          }this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend", this.bar);this.bar = this.target.lastChild;e(this.bar, this);this.moveBar();this.el.addEventListener("scroll", this.moveBar.bind(this));this.el.addEventListener("mouseenter", this.moveBar.bind(this));this.target.classList.add("ss-container");
+        }function f() {
+          for (var i = t.querySelectorAll("*[ss-container]"), n = 0; n < i.length; n++) {
+            u(i[n]);
+          }
+        }var r = n.requestAnimationFrame || n.setImmediate || function (n) {
+          return setTimeout(n, 0);
+        };i.prototype = { moveBar: function moveBar() {
+            var t = this.el.scrollHeight,
+                i = this.el.clientHeight,
+                n = this;this.scrollRatio = i / t;r(function () {
+              n.bar.style.cssText = "height:" + i / t * 100 + "%; top:" + n.el.scrollTop / t * 100 + "%;right:-" + (n.target.clientWidth - n.bar.clientWidth) + "px;";
+            });
+          } };t.addEventListener("DOMContentLoaded", f);i.initEl = u;i.initAll = f;n.SimpleScrollbar = i;
+      })(window, document);
+      var scrollRoot = document.getElementById("ss");
+      SimpleScrollbar.initEl(scrollRoot);
     }
   }, {
     key: "createDOMItem",
