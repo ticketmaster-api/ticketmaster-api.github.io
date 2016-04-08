@@ -312,25 +312,26 @@
   });
 
   /**/
-  function addCustomList(wrapperId, listWrapperId ) {
+  function addCustomList(wrapperId, listWrapperId, listOption) {
     var $country = $(wrapperId),
-      $listWrapper = $country.find(listWrapperId),
-      $listOption = $listWrapper.find('option');
+      //$listWrapper = $(listWrapperId),
+      $listOption = $(listWrapperId).find('option');
+      //$listOption = listOption;
 
     //create ul
     var $ul = $('<ul class="custom_select__list">').appendTo($country);
+    //console.log('$listWrapper',$listWrapper );
+    console.log('$listOption', $listOption );
 
     //put li inside ul
     $listOption.each(function () {
       var data = {
         value: $(this).val()
       };
+      console.log('data.value',data.value );
       $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>")
-      console.log('$ul', $ul)
     });
   }
-
-  addCustomList('#w-country1', '#address-office');
   /**/
 
   $('#w-country').data('cleared', true);
@@ -358,13 +359,16 @@
               }
             }
             if(options){
-              $countrySelect.append(options);
+              let selectHead = $('<select required="" class="custom_select__field" name="subject" id="country-list"></select>');
+              selectHead.append(options);
+              $countrySelect.append(selectHead);
               $countrySelect.prop('disabled', false);
             }
           }
         }
       }
     }
+    addCustomList($countrySelect, '#country-list' ,options);
   }
 
 })();
