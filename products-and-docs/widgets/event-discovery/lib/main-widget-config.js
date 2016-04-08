@@ -306,6 +306,28 @@
     }
   });
 
+  /**/
+  function addCustomList(wrapperId, listWrapperId) {
+    var $country = $(wrapperId),
+        $listWrapper = $country.find(listWrapperId),
+        $listOption = $listWrapper.find('option');
+
+    //create ul
+    var $ul = $('<ul class="custom_select__list">').appendTo($country);
+
+    //put li inside ul
+    $listOption.each(function () {
+      var data = {
+        value: $(this).val()
+      };
+      $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>");
+      console.log('$ul', $ul);
+    });
+  }
+
+  addCustomList('#w-country1', '#address-office');
+  /**/
+
   $('#w-country').data('cleared', true);
   widget.onLoadCoordinate = function (response) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
