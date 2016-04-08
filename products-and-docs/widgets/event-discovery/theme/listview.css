@@ -475,7 +475,7 @@ div[w-theme="listview"][w-colorscheme="dark"] .event-group-wrapper {
     margin: 0;
 }
 
-.ss-wrapper {
+div[w-theme="listview"] .ss-wrapper {
     overflow : hidden;
     width: 100%;
     height: 100%;
@@ -484,7 +484,7 @@ div[w-theme="listview"][w-colorscheme="dark"] .event-group-wrapper {
     float: left;
 }
 
-.ss-content {
+div[w-theme="listview"] .ss-content {
     width: 103%;
     height: 100%;
     padding         : 0 32px 0 0;
@@ -495,7 +495,7 @@ div[w-theme="listview"][w-colorscheme="dark"] .event-group-wrapper {
     box-sizing      : border-box;
 }
 
-.ss-scroll {
+div[w-theme="listview"] .ss-scroll {
     position            : relative;
     background          : rgba(0, 0, 0, .1);
     width               : 6px;
@@ -507,11 +507,11 @@ div[w-theme="listview"][w-colorscheme="dark"] .event-group-wrapper {
     transition: opacity 0.25s linear;
 }
 
-.ss-container:hover .ss-scroll {
+div[w-theme="listview"] .ss-container:hover .ss-scroll {
     opacity: 1;
 }
 
-.ss-grabbed {
+div[w-theme="listview"] .ss-grabbed {
     user-select: none;
     -o-user-select: none;
     -moz-user-select: none;
