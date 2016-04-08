@@ -115,9 +115,13 @@ class TicketmasterWidget {
     this.eventsRootContainer.classList.add("events-root-container");
     this.widgetRoot.appendChild(this.eventsRootContainer);
 
+    this.eventsRootDiv = document.createElement("div");
+    this.eventsRootDiv.setAttribute("id", "ss");
+    this.eventsRootContainer.appendChild(this.eventsRootDiv);
+
     this.eventsRoot = document.createElement("ul");
     this.eventsRoot.classList.add("events-root");
-    this.eventsRootContainer.appendChild(this.eventsRoot);
+    this.eventsRootDiv.appendChild(this.eventsRoot);
 
     // Set theme modificators
     this.themeModificators = {
@@ -169,6 +173,7 @@ class TicketmasterWidget {
 
     if (this.config.theme !== "listview") this.initEventCounter();
 
+    if (this.config.theme === "listview") this.addScroll();;
   }
   
   getCoordinates(cb){
@@ -235,6 +240,7 @@ class TicketmasterWidget {
     this.buyBtn = document.createElement("a");
     this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
     this.buyBtn.classList.add("event-buy-btn");
+    this.buyBtn.classList.add("main-btn");
     this.buyBtn.target = '_blank';
     this.buyBtn.href = '';
     this.buyBtn.addEventListener('click', (e)=> {
@@ -399,6 +405,10 @@ class TicketmasterWidget {
   }
 
   listViewModificator(){
+    /*
+    var scrollRoot = document.getElementById("ss");
+    SimpleScrollbar.initEl(scrollRoot);
+    */
   }
 
   hideSliderControls(){
@@ -696,6 +706,31 @@ class TicketmasterWidget {
           parent = el.parentNode;
       parent.removeChild(el);
     }
+
+
+    if(this.config.theme !== "listview") {
+      var eventsRootContainer = document.getElementsByClassName("events-root-container")[0];
+      var eventsRoot = document.getElementsByClassName("events-root")[0];
+      var ss = document.getElementById("ss");
+      ss.parentNode.removeChild(ss);
+
+      var ssDiv = document.createElement("div");
+      ssDiv.setAttribute("id", "ss");
+      eventsRootContainer.appendChild(ssDiv);
+
+      var ssDiv = document.getElementById("ss");
+      ssDiv.appendChild(eventsRoot);
+
+      var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
+      eventsRootContainer.classList.remove("listview-after");
+    }
+
+    if(this.config.theme === "listview") {
+      var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
+      eventsRootContainer.classList.add("listview-after");
+    }
+
+
     this.clearEvents();
   }
 
@@ -739,6 +774,7 @@ class TicketmasterWidget {
         this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
       });
 
+      if(this.config.theme === "listview") this.addScroll();
     }
     else{
       let events = document.getElementsByClassName("event-wrapper");
@@ -752,6 +788,7 @@ class TicketmasterWidget {
         this.goToSlideY(0);
       }
     }
+
   }
 
   needToUpdate(newTheme, oldTheme, forCheck = []){
@@ -1067,6 +1104,12 @@ class TicketmasterWidget {
       buyBtn.href = url;
       domNode.appendChild(buyBtn);
     }
+  }
+
+  addScroll() {
+    (function(n,t){function u(n){n.hasOwnProperty("data-simple-scrollbar")||Object.defineProperty(n,"data-simple-scrollbar",new SimpleScrollbar(n))}function e(n,i){function f(n){var t=n.pageY-u;u=n.pageY;r(function(){i.el.scrollTop+=t/i.scrollRatio})}function e(){n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove",f);t.removeEventListener("mouseup",e)}var u;n.addEventListener("mousedown",function(i){return u=i.pageY,n.classList.add("ss-grabbed"),t.body.classList.add("ss-grabbed"),t.addEventListener("mousemove",f),t.addEventListener("mouseup",e),!1})}function i(n){for(this.target=n,this.bar='<div class="ss-scroll">',this.wrapper=t.createElement("div"),this.wrapper.setAttribute("class","ss-wrapper"),this.el=t.createElement("div"),this.el.setAttribute("class","ss-content"),this.wrapper.appendChild(this.el);this.target.firstChild;)this.el.appendChild(this.target.firstChild);this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend",this.bar);this.bar=this.target.lastChild;e(this.bar,this);this.moveBar();this.el.addEventListener("scroll",this.moveBar.bind(this));this.el.addEventListener("mouseenter",this.moveBar.bind(this));this.target.classList.add("ss-container")}function f(){for(var i=t.querySelectorAll("*[ss-container]"),n=0;n<i.length;n++)u(i[n])}var r=n.requestAnimationFrame||n.setImmediate||function(n){return setTimeout(n,0)};i.prototype={moveBar:function(){var t=this.el.scrollHeight,i=this.el.clientHeight,n=this;this.scrollRatio=i/t;r(function(){n.bar.style.cssText="height:"+i/t*100+"%; top:"+n.el.scrollTop/t*100+"%;right:-"+(n.target.clientWidth-n.bar.clientWidth)+"px;"})}};t.addEventListener("DOMContentLoaded",f);i.initEl=u;i.initAll=f;n.SimpleScrollbar=i})(window,document)
+    var scrollRoot = document.getElementById("ss");
+    SimpleScrollbar.initEl(scrollRoot);
   }
 
   createDOMItem(itemConfig){
