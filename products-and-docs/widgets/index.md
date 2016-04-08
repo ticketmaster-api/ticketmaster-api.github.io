@@ -44,12 +44,33 @@ Informational text about the widget and it abilities, functions and other inform
 {:/comment}
 {% endcapture %}
 
+{% capture countdown-widget %}
+{: #countdown-widget }
+## Countdown Widget
+
+{: .body}
+Informational text about the widget and it abilities, functions and other information.
+
+{: .button_set}
+[CONFIGURE NOW](/products-and-docs/under-development/){: .button.button-blue} 
+{::comment}
+[CONFIGURE NOW](/products-and-docs/widgets/countdown/){: .button.button-blue} 
+{:/comment}
+{::comment}
+[LEARN MORE](#){: .button .button-default}
+{:/comment}
+{% endcapture %}
+
 
 
 <div class="grey-box mask" markdown="1">
 {{payments}}
 </div>
 
-<div class="discovery_widget_box" markdown="1">
+<div class="widget_box widget_box__discovery" markdown="1">
 {{discovery-widget}}
+</div>
+
+<div class="widget_box widget_box__countdown" markdown="1">
+{{countdown-widget}}
 </div>

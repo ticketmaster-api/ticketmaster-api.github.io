@@ -171,13 +171,22 @@
   }
 }
 
-
-.discovery_widget_box {
+//widgets box
+//.discovery_widget_box {
+.widget_box {
   width: 847px;
   min-height: 262px;
+  margin-bottom: 72px;
   background-repeat: no-repeat;
   background-position: right top;
-  @include img-retina("/assets/img/products-and-docs/event-discovery-img.png", "/assets/img/products-and-docs/event-discovery-img@2x.png", 362px, 262px);
+
+  &__discovery{
+    @include img-retina("/assets/img/products-and-docs/event-discovery-img.png", "/assets/img/products-and-docs/event-discovery-img@2x.png", 362px, 262px);
+  }
+
+  &__countdown{
+    @include img-retina("/assets/img/products-and-docs/event-discovery-img-copy.png", "/assets/img/products-and-docs/event-discovery-img-copy@2x.png", 362px, 262px);
+  }
 
   @media #{$max-1200} {
     width: auto;
