@@ -4,6 +4,87 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var CountdownClock = function () {
+  _createClass(CountdownClock, [{
+    key: "endTime",
+    set: function set(endTime) {
+      this.config.endTime = endTime;
+    },
+    get: function get() {
+      return this.config.endTime || new Date();
+    }
+  }, {
+    key: "interval",
+    set: function set(interval) {
+      return this.config.interval = interval;
+    },
+    get: function get() {
+      return this.config.interval || 1000;
+    }
+  }, {
+    key: "onChange",
+    set: function set(fn) {
+      return this.config.onChange = fn;
+    },
+    get: function get() {
+      return this.config.onChange || function (time) {
+        console.log(time);
+      };
+    }
+  }]);
+
+  function CountdownClock() {
+    var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    _classCallCheck(this, CountdownClock);
+
+    this.config = config;
+    this.updateClock();
+    if (this.config.endTime) this.initInterval();
+  }
+
+  _createClass(CountdownClock, [{
+    key: "initInterval",
+    value: function initInterval() {
+      this.timeinterval = setInterval(this.updateClock.bind(this), this.interval);
+    }
+  }, {
+    key: "update",
+    value: function update(endTime) {
+      clearInterval(this.timeinterval);
+      this.endTime = endTime;
+      this.updateClock();
+      if (endTime) this.initInterval();
+    }
+  }, {
+    key: "updateClock",
+    value: function updateClock() {
+      var timeRemaining = this.getTimeRemaining();
+      this.onChange(timeRemaining);
+      if (timeRemaining.total <= 0) clearInterval(this.timeinterval);
+    }
+  }, {
+    key: "getTimeRemaining",
+    value: function getTimeRemaining() {
+      var total = Date.parse(this.endTime) - Date.parse(new Date());
+      if (total < 0) total = 0;
+      var seconds = Math.floor(total / 1000 % 60),
+          minutes = Math.floor(total / 1000 / 60 % 60),
+          hours = Math.floor(total / 3600000 /* (1000 * 60 * 60) */ % 24),
+          days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */);
+      return {
+        total: total,
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds
+      };
+    }
+  }]);
+
+  return CountdownClock;
+}();
+
 var TicketmasterWidget = function () {
   _createClass(TicketmasterWidget, [{
     key: "isConfigAttrExistAndNotEmpty",
@@ -46,14 +127,15 @@ var TicketmasterWidget = function () {
     get: function get() {
       return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : false;
     }
+
+    // get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
+    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
+
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/";
+      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/";
     }
-    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
-    // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
-
   }, {
     key: "portalUrl",
     get: function get() {
@@ -145,7 +227,7 @@ var TicketmasterWidget = function () {
 
     this.initBuyBtn();
 
-    this.initCountdoun();
+    this.buildCountdown();
 
     if (this.apiUrl) {
       this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
@@ -157,28 +239,41 @@ var TicketmasterWidget = function () {
     //   this.themeModificators[ this.widgetConfig.theme ]();
     // }
 
-    // this.embedUniversePlugin();
-    // this.embedTMPlugin();
+    this.embedUniversePlugin();
+    this.embedTMPlugin();
+
+    this.countdownClock = new CountdownClock({
+      onChange: this.onCountdownChange.bind(this)
+    });
   }
 
   _createClass(TicketmasterWidget, [{
-    key: "initCountdoun",
-    value: function initCountdoun() {
+    key: "getNormalizedDateValue",
+    value: function getNormalizedDateValue(val) {
+      return ('0' + val).slice(-2);
+    }
+  }, {
+    key: "onCountdownChange",
+    value: function onCountdownChange(data) {
+      console.log(data);
+      this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
+      this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
+      this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
+    }
+  }, {
+    key: "buildCountdown",
+    value: function buildCountdown() {
       // this.widgetRoot
       var countDown = document.createElement("div");
       countDown.classList.add("events-count-down");
-
-      var countDownDaysText = document.createTextNode('08');
-      var countDownHoursText = document.createTextNode('10');
-      var countDownMinuteText = document.createTextNode('46');
 
       this.countDownDays = document.createElement("span");
       this.countDownHours = document.createElement("span");
       this.countDownMinute = document.createElement("span");
 
-      this.countDownDays.appendChild(countDownDaysText);
-      this.countDownHours.appendChild(countDownHoursText);
-      this.countDownMinute.appendChild(countDownMinuteText);
+      this.countDownDays.innerHTML = '00';
+      this.countDownHours.innerHTML = '00';
+      this.countDownMinute.innerHTML = '00';
 
       this.countDownDays.classList.add("events-count-down__day");
       this.countDownHours.classList.add("events-count-down__hour");
@@ -198,9 +293,9 @@ var TicketmasterWidget = function () {
       this.buyBtn.classList.add("event-buy-btn");
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
-      // this.buyBtn.addEventListener('click', (e)=> {
-      //   e.preventDefault();
-      // });
+      this.buyBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
   }, {
@@ -211,10 +306,9 @@ var TicketmasterWidget = function () {
             url = '';
         if (event) {
           if (event.url) {
-            // if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
-            //   url = event.url;
-            // }
-            url = event.url;
+            if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
+              url = event.url;
+            }
           }
         }
         this.buyBtn.href = url;
@@ -282,19 +376,8 @@ var TicketmasterWidget = function () {
         this.hideMessageWithoutDelay = hideMessageWithoutDelay;
         this.messageContent.innerHTML = message;
         this.messageDialog.classList.add("event-message-visible");
-        // if (this.messageTimeout) {
-        //   clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
-        // }
       }
     }
-
-    // hideMessageWithDelay(delay){
-    //   if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
-    //   this.messageTimeout = setTimeout(()=>{
-    //     this.hideMessage();
-    //   }, delay);
-    // }
-
   }, {
     key: "hideMessage",
     value: function hideMessage() {
@@ -463,6 +546,13 @@ var TicketmasterWidget = function () {
       }
     }
   }, {
+    key: "onEventLoadError",
+    value: function onEventLoadError(status) {
+      this.event = false;
+      this.showMessage("No results were found.", true);
+      console.log("There was an error status - " + status);
+    }
+  }, {
     key: "eventsLoadingHandler",
     value: function eventsLoadingHandler() {
       var widget = this.widget;
@@ -475,14 +565,14 @@ var TicketmasterWidget = function () {
             widget.hideMessage();
           }
         } else if (this.status == 400) {
-          widget.event = false;
-          widget.showMessage("No results were found.", true);
-          console.log('There was an error 400');
+          widget.onEventLoadError.call(widget, this.status);
         } else {
-          widget.event = false;
-          widget.showMessage("No results were found.", true);
-          console.log('something else other than 200 was returned');
+          widget.onEventLoadError.call(widget, this.status);
         }
+        // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
+        var _ref = undefined,
+            _ref2 = undefined;
+        widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime : void 0 : void 0);
       }
       widget.setBuyBtnUrl();
     }
@@ -529,7 +619,8 @@ var TicketmasterWidget = function () {
 
       currentEvent.date = {
         day: eventSet.dates.start.localDate,
-        time: eventSet.dates.start.localTime
+        time: eventSet.dates.start.localTime,
+        dateTime: eventSet.dates.start.dateTime
       };
 
       var venue = eventSet._embedded.venues[0];
