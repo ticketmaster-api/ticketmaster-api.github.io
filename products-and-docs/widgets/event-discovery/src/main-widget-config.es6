@@ -243,6 +243,8 @@
     }
     widgetNode.setAttribute('w-height', height);
 
+    $('.country-select .js_custom_select').removeClass('custom_select-opened');//reset custom select
+    widget.onLoadCoordinate();
     widget.update();
   };
 
@@ -317,16 +319,16 @@
   });
 
   /**/
-  function addCustomList(wrapperId, listWrapperId, listOption) {
+  function addCustomList(wrapperId, listWrapperId) {
     var $country = $(wrapperId),
-      //$listWrapper = $(listWrapperId),
-      $listOption = $(listWrapperId).find('option');
-      //$listOption = listOption;
+        $listOption = $(listWrapperId).find('option');
+
+    //static-fix_me
+    let initInput = $('<input class="custom_select__placeholder" type="'+$listOption.val()+'" value="'+$listOption.html()+'" readonly="">');
 
     //create ul
     var $ul = $('<ul class="custom_select__list">').appendTo($country);
-    //console.log('$listWrapper',$listWrapper );
-    console.log('$listOption', $listOption.innerHTML );
+    // console.log('$listOption', $listOption );
 
     //put li inside ul
     $listOption.each(function () {
@@ -336,6 +338,7 @@
       console.log('data.value: ',data.value );
       $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>")
     });
+    initInput.appendTo($country);
   }
   /**/
 
@@ -362,26 +365,23 @@
                 if(country){
                   let isSelected = country.short_name === countryShortName ? 'selected' : '';
                   options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
-                  //console.log('if(country) get options: ', options);
                 }
               }
             }
             if(options){
-              console.log('options recived: ', options);
-              let selectHead = $('<select required="" class="custom_select__field" name="subject" id="country-list"></select>');
-              //let initInput = $('<input class="custom_select__placeholder" type="text" value="static ua" readonly="">');
-              //$countrySelect.append(initInput);
-
+              /*let selectHead = $('<select required="" class="custom_select__field-TODO" name="subject" id="country-list"></select>');
               selectHead.append(options);
-              $countrySelect.append(selectHead);
+              $countrySelect.append(selectHead);*/ //toDO
+
+              $countrySelect.append(options);
+
               $countrySelect.prop('disabled', false);
-              //addCustomList($countrySelect, '#country-list' ,options);
+              //addCustomList($countrySelect, '#country-list');
             }
           }
         }
       }
     }
-    //addCustomList($countrySelect, '#country-list' ,options);
   }
 
 })();

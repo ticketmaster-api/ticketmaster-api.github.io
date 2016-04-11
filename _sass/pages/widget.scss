@@ -122,6 +122,8 @@
   }
 
   select {
+    /*display: none;*/
+
     padding-right: 50px;
     background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
     background-position: right 30px center;
@@ -316,8 +318,13 @@
     }
   }
 }
-
+.widget__various-min-width {
+  min-width: 100px;
+}
 .widget__various-width {
   min-width: 100px;
   max-width: 130px;
+}
+.main-widget-config-form .country-select .custom_select__item {
+  list-style: none;
 }
