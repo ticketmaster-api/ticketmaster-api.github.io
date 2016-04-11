@@ -30,13 +30,13 @@
         },
         custom: {
           width: 350,
-          height: 550,
+          height: 600,
           layout: 'vertical'
         }
       },
       initSliderSize: {
         width: 350,
-        height: 550,
+        height: 600,
         maxWidth: 500,
         minWidth: 350
       }      
@@ -44,7 +44,7 @@
 
 
   function getHeightByTheme(theme){
-    return (theme === 'simple' ? 238 : 300);
+    return (theme === 'simple' ? 286 : 339);
   }
 
   function getBorderByTheme(theme) {
@@ -64,7 +64,7 @@
   }
 
   // TODO: do we need 'config' variable ?
-  var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":550,"w":350,"br":4}};
+  var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":600,"w":350,"br":4}};
 
   var $widthController = $('#w-width').slider({
     tooltip: 'always',
@@ -160,7 +160,7 @@
 
         sizeConfig = { //default size
           width: themeConfig.initSliderSize.width,  //350
-          height: themeConfig.initSliderSize.height,  //550
+          height: themeConfig.initSliderSize.height,  //600
           maxWidth: themeConfig.initSliderSize.maxWidth,  //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
@@ -194,7 +194,7 @@
 
   var resetWidget = function(configForm) {
     let widgetNode = document.querySelector("div[w-tmapikey]"),
-        height = 550,
+        height = 600,
         theme,
         layout;
 
@@ -306,7 +306,7 @@
       $self.addClass(errorCssClass);
       e.preventDefault();
       e.stopPropagation();
-    }else{
+      }else{
       $self.removeClass(errorCssClass);
     }
   });

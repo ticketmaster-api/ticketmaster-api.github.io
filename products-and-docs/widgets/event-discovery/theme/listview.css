@@ -50,11 +50,11 @@ div[w-theme="listview"]{
     position: relative;
     height: 200px;
     width: 150px;
+    overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 41px;
 }
 
 div[w-theme="listview"] a,
@@ -323,7 +323,7 @@ div[w-theme="listview"] .event-category:first-child:before{
 div[w-theme="listview"] .legal-notice {
     position: absolute;
     left: 30px;
-    bottom: 77px;
+    bottom: 36px;
     font-size: 14px;
     line-height: 16px;
     color: #768692;
