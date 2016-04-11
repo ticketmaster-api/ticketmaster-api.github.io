@@ -159,7 +159,7 @@ var TicketmasterWidget = function () {
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "height", "border", "borderradius", "colorscheme", "layout", "propotion"];
+      return ["width", "height", "border", "borderradius", "layout", "propotion"];
     }
   }, {
     key: "hideMessageDelay",

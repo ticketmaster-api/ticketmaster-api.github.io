@@ -93,11 +93,11 @@ div[w-theme="oldschool"]{
     position: relative;
     height: 200px;
     width: 150px;
+    overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 41px;
 }
 
 div[w-theme="oldschool"] .events-root-container{
@@ -358,18 +358,17 @@ div[w-theme="oldschool"] .event-logo-box:before{
 div[w-theme="oldschool"] .event-logo {
     position: relative;
     display: inline-block;
-    width: 100%;
+    width: 159px;
     height: 25px;
-    float: left;
+    top: -8px;
 }
 
-div[w-theme="oldschool"] .event-logo:before,
-div[w-theme="oldschool"] .event-logo:after {
+div[w-theme="oldschool"] .event-logo:before {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    top: -17px;
+    top: 0px;
     bottom: 0;
     background-repeat: no-repeat;
     background-position: center center;
@@ -379,12 +378,6 @@ div[w-theme="oldschool"] .event-logo:after {
 }
 
 div[w-theme="oldschool"] .event-logo:before {
-    opacity: 0;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="oldschool"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
@@ -530,6 +523,7 @@ div[w-theme="oldschool"] .event-group {
 
 /* BUY NOW */
 div[w-theme="oldschool"] .event-buy-btn {
+    z-index: 15;
     position: absolute;
     left: 50%;
     bottom: 145px;
@@ -645,7 +639,6 @@ div[w-theme="oldschool"][w-layout="horizontal"] .legal-notice{
 div[w-theme="oldschool"][w-layout="horizontal"] .events-counter{
     position: static;
     text-align: center;
-    margin-top: 10px;
 }
 
 div[w-theme="oldschool"][w-layout="horizontal"]  .event-name{

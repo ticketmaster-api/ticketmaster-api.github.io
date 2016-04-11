@@ -17,7 +17,7 @@
 
   @media (max-width: 767px) {
     top: auto;
-    bottom: 4em;
+    bottom: $base-margin*2;
   }
 
   &:hover{

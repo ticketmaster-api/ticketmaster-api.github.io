@@ -74,7 +74,7 @@ class TicketmasterWidget {
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-  get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "propotion"]}
+  get updateExceptions() { return ["width", "height", "border", "borderradius", "layout", "propotion"]}
 
   get hideMessageDelay(){ return 5000; }
 
