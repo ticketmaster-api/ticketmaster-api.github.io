@@ -93,11 +93,11 @@ div[w-theme="newschool"]{
     position: relative;
     height: 200px;
     width: 150px;
+    overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 41px;
 }
 
 div[w-theme="newschool"] .events-root-container {

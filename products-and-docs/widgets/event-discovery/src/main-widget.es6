@@ -6,14 +6,18 @@ class TicketmasterWidget {
   set events(responce){ this.eventsList = this.parseEvents(responce);}
   get events(){ return this.eventsList;}
 
+  get isListView(){ return this.config.theme === 'listview';}
   get borderSize(){ return this.config.border || 0;}
+  get widgetHeight(){ return this.config.height || 600;}
+  get widgetContentHeight(){ return this.widgetHeight - (this.isListView ? 0 : 39) || 600;}
 
   get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
-  // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/"; }
+  // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/event-discovery/theme/"; }
+  // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
@@ -141,10 +145,10 @@ class TicketmasterWidget {
       this.eventsRootContainer.classList.add("border");
     }
 
-    this.widgetRoot.style.height = `${this.config.height}px`;
+    this.widgetRoot.style.height = `${this.widgetHeight}px`;
     this.widgetRoot.style.width  = `${this.config.width}px`;
 
-    this.eventsRootContainer.style.height = `${this.config.height}px`;
+    this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
     this.eventsRootContainer.style.width  = `${this.config.width}px`;
     this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
     this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
@@ -169,11 +173,11 @@ class TicketmasterWidget {
 
     this.initMessage();
 
-    if (this.config.theme !== "listview") this.initSliderControls();
+    if (!this.isListView) this.initSliderControls();
 
-    if (this.config.theme !== "listview") this.initEventCounter();
+    if (!this.isListView) this.initEventCounter();
 
-    if (this.config.theme === "listview") this.addScroll();;
+    if (this.isListView) this.addScroll();
   }
   
   getCoordinates(cb){
@@ -505,7 +509,7 @@ class TicketmasterWidget {
     let eventGroup = this.eventsRoot.getElementsByClassName("event-group-" + this.currentSlideX);
     if(eventGroup.length){
       eventGroup = eventGroup[0];
-      eventGroup.style.marginTop = `-${this.currentSlideY * (this.config.height - this.borderSize * 2)}px`;
+      eventGroup.style.marginTop = `-${this.currentSlideY * (this.widgetContentHeight - this.borderSize * 2)}px`;
       this.toggleControlsVisibility();
       this.setBuyBtnUrl();
     }
@@ -708,7 +712,7 @@ class TicketmasterWidget {
     }
 
 
-    if(this.config.theme !== "listview") {
+    if(!this.isListView) {
       var eventsRootContainer = document.getElementsByClassName("events-root-container")[0];
       var eventsRoot = document.getElementsByClassName("events-root")[0];
       var ss = document.getElementById("ss");
@@ -725,7 +729,7 @@ class TicketmasterWidget {
       eventsRootContainer.classList.remove("listview-after");
     }
 
-    if(this.config.theme === "listview") {
+    if(this.isListView) {
       var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
       eventsRootContainer.classList.add("listview-after");
     }
@@ -743,7 +747,7 @@ class TicketmasterWidget {
 
     this.config = this.widgetRoot.attributes;
 
-    if(this.config.theme === "listview") {
+    if(this.isListView) {
       this.stopAutoSlideX();
     }
 
@@ -751,9 +755,9 @@ class TicketmasterWidget {
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
     }*/
 
-    this.widgetRoot.style.height = `${this.config.height}px`;
+    this.widgetRoot.style.height = `${this.widgetHeight}px`;
     this.widgetRoot.style.width  = `${this.config.width}px`;
-    this.eventsRootContainer.style.height = `${this.config.height}px`;
+    this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
     this.eventsRootContainer.style.width  = `${this.config.width}px`;
     this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
     this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
@@ -774,17 +778,17 @@ class TicketmasterWidget {
         this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
       });
 
-      if(this.config.theme === "listview") this.addScroll();
+      if(this.isListView) this.addScroll();
     }
     else{
       let events = document.getElementsByClassName("event-wrapper");
       for(let i in events){
         if(events.hasOwnProperty(i) && events[i].style !== undefined){
           events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
-          events[i].style.height = `${this.config.height - this.borderSize * 2}px`;
+          events[i].style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
         }
       }
-      if(this.config.theme !== "listview") {
+      if(!this.isListView) {
         this.goToSlideY(0);
       }
     }
@@ -919,7 +923,7 @@ class TicketmasterWidget {
               widget.publishEventsGroup.call(widget, group, i);
           });
 
-          if (widget.config.theme !== "listview") widget.initSlider();
+          if (!widget.isListView) widget.initSlider();
           widget.setEventsCounter();
           widget.resetReduceParamsOrder();
           if(widget.hideMessageWithoutDelay)
@@ -948,12 +952,11 @@ class TicketmasterWidget {
     groupNodeWrapper.classList.add("event-wrapper");
     groupNodeWrapper.classList.add("event-group-wrapper");
     groupNodeWrapper.style.width  = `${this.config.width - this.borderSize * 2}px`;
-    groupNodeWrapper.style.height = `${this.config.height - this.borderSize * 2}px`;
+    groupNodeWrapper.style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
 
     let groupNode = document.createElement("ul");
     groupNode.classList.add("event-group");
     groupNode.classList.add("event-group-" + index);
-    //groupNode.style.height  = `${this.config.height * group.length}px`;
 
     group.map((event)=> {
       this.publishEvent(event, groupNode)
@@ -979,7 +982,7 @@ class TicketmasterWidget {
 
   getImageForEvent(images){
     var width = this.config.width,
-      height = this.config.height;
+      height = this.widgetContentHeight;
 
     images.sort(function(a,b) {
       if (a.width < b.width)
@@ -1085,7 +1088,7 @@ class TicketmasterWidget {
   }
 
   createBackgroundImage(event, img) {
-    if (this.config.theme !== "listview") {
+    if (!this.isListView) {
       var image = document.createElement("span");
       image.classList.add("bg-cover");
       image.style.backgroundImage = `url('${img}')`;
@@ -1094,7 +1097,7 @@ class TicketmasterWidget {
   }
 
   addBuyButton(domNode, url) {
-    if (this.config.theme === "listview") {
+    if (this.isListView) {
       let _urlValid = ( this.isUniversePluginInitialized && this.isUniverseUrl(url) ) || ( this.isTMPluginInitialized && this.isAllowedTMEvent(url) );
       if(!_urlValid) url = '';
       let buyBtn = document.createElement("a");
@@ -1118,7 +1121,7 @@ class TicketmasterWidget {
 
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
-    event.style.height = `${this.config.height - this.borderSize * 2}px`;
+    event.style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
     event.style.width  = `${this.config.width - this.borderSize * 2}px`;
 
     this.createBackgroundImage(event, itemConfig.img);

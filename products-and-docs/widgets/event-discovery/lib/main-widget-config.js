@@ -31,40 +31,34 @@
       },
       custom: {
         width: 350,
-        height: 550,
+        height: 600,
         layout: 'vertical'
       }
     },
     initSliderSize: {
       width: 350,
-      height: 550,
+      height: 600,
       maxWidth: 500,
       minWidth: 350
     }
   };
 
   function getHeightByTheme(theme) {
-    return theme === 'simple' ? 238 : 300;
+    return theme === 'simple' ? 286 : 339;
   }
 
   function getBorderByTheme(theme) {
     switch (theme) {
-      case "oldschool":
-        return 2;
-        break;
-      case "newschool":
-        return 2;
-        break;
-      case "listview":
-        return 2;
+      case 'simple':
+        return 0;
         break;
       default:
-        return 0;
+        return 2;
     }
   }
 
   // TODO: do we need 'config' variable ?
-  var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 550, "w": 350, "br": 4 } };
+  var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 600, "w": 350, "br": 4 } };
 
   var $widthController = $('#w-width').slider({
     tooltip: 'always',
@@ -140,7 +134,7 @@
     //Check fixed sizes for 'simple' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var _sizeConfig = {
+      var sizeConfig = {
         width: themeConfig.sizes[targetValue].width,
         height: themeConfig.sizes[targetValue].height,
         maxWidth: 600,
@@ -158,21 +152,21 @@
         widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
+        sizeConfig = { //default size
           width: themeConfig.initSliderSize.width, //350
-          height: themeConfig.initSliderSize.height, //550
+          height: themeConfig.initSliderSize.height, //600
           maxWidth: themeConfig.initSliderSize.maxWidth, //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     // if(event.target.name === "border"){
@@ -192,9 +186,9 @@
 
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
-        height = 550,
-        theme = void 0,
-        layout = void 0;
+        height = 600,
+        theme = undefined,
+        layout = undefined;
 
     configForm.find("input[type='text'], input[type='number']").each(function () {
       var $self = $(this),
@@ -234,6 +228,7 @@
       height = getHeightByTheme(theme);
     }
     widgetNode.setAttribute('w-height', height);
+    widgetNode.setAttribute('w-border', 0);
 
     widget.update();
   };

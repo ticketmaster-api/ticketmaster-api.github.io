@@ -93,11 +93,11 @@ div[w-theme="oldschool"]{
     position: relative;
     height: 200px;
     width: 150px;
+    overflow: hidden;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-family: 'TMSans-Regular';
-    padding-bottom: 41px;
 }
 
 div[w-theme="oldschool"] .events-root-container{
@@ -638,7 +638,6 @@ div[w-theme="oldschool"][w-layout="horizontal"] .legal-notice{
 div[w-theme="oldschool"][w-layout="horizontal"] .events-counter{
     position: static;
     text-align: center;
-    margin-top: 10px;
 }
 
 div[w-theme="oldschool"][w-layout="horizontal"]  .event-name{
