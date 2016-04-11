@@ -127,7 +127,7 @@ div[w-theme="listview"] .events-root-container{
 
 div[w-theme="listview"] #ss {
     margin: 35px auto 0 auto;
-    height: 82%;
+    height: 83%;
     width: 96% !important;
 }
 
@@ -342,6 +342,7 @@ div[w-theme="listview"] .events-counter {
 }
 
 div[w-theme="listview"] .event-logo-box {
+    z-index: 10;
     position: absolute;
     bottom: 25px;
     left: 0;
@@ -359,8 +360,7 @@ div[w-theme="listview"] .event-logo {
     height: 25px;
 }
 
-div[w-theme="listview"] .event-logo:before,
-div[w-theme="listview"] .event-logo:after {
+div[w-theme="listview"] .event-logo:before {
     content: '';
     position: absolute;
     left: 0;
@@ -374,22 +374,8 @@ div[w-theme="listview"] .event-logo:after {
 }
 
 div[w-theme="listview"] .event-logo:before {
-    opacity: 0;
     /* TODO: add http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="listview"] .event-logo:after {
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="listview"] .event-logo:hover:before {
-    opacity: 1;
-}
-
-div[w-theme="listview"] .event-logo:hover:after {
-    opacity: 0;
 }
 
 /*group*/
@@ -434,7 +420,7 @@ div[w-theme="listview"] .event-buy-btn.main-btn {
 
 /*  LAYOUT  */
 div[w-theme="listview"][w-layout="horizontal"] #ss {
-    height: 67%;
+    height: 68%;
 }
 
 div[w-theme="listview"][w-layout="horizontal"] .legal-notice {
@@ -442,6 +428,10 @@ div[w-theme="listview"][w-layout="horizontal"] .legal-notice {
 
 div[w-theme="listview"][w-layout="horizontal"] .event-buy-btn {
     bottom: 42px;
+}
+
+div[w-theme="listview"][w-layout="horizontal"] .ss-content {
+    right: -12px!important;
 }
 
 div[w-theme="listview"][w-layout="horizontal"] .event-wrapper:before {
@@ -456,7 +446,7 @@ div[w-theme="listview"][w-proportion="3x6"]  {
 
 div[w-theme="listview"][w-colorscheme="dark"] .events-root-container {
     background: #5d5d5d;
-    border-color: #5d5d5d;
+    border: none;
 }
 
 div[w-theme="listview"][w-colorscheme="dark"] .event-content-wraper {

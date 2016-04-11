@@ -362,8 +362,7 @@ div[w-theme="oldschool"] .event-logo {
     height: 25px;
 }
 
-div[w-theme="oldschool"] .event-logo:before,
-div[w-theme="oldschool"] .event-logo:after {
+div[w-theme="oldschool"] .event-logo:before {
     content: '';
     position: absolute;
     left: 0;
@@ -378,12 +377,6 @@ div[w-theme="oldschool"] .event-logo:after {
 }
 
 div[w-theme="oldschool"] .event-logo:before {
-    opacity: 0;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="oldschool"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
