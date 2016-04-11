@@ -49,17 +49,11 @@
 
   function getBorderByTheme(theme) {
     switch (theme) {
-      case "oldschool":
-        return 2;
-        break;
-      case "newschool":
-        return 2;
-        break;
-      case "listview":
-        return 2;
+      case 'simple':
+        return 0;
         break;
       default:
-        return 0;
+        return 2;
     }
   }
 
@@ -234,6 +228,7 @@
       height = getHeightByTheme(theme);
     }
     widgetNode.setAttribute('w-height', height);
+    widgetNode.setAttribute('w-border', 0);
 
     widget.update();
   };
