@@ -61,14 +61,15 @@ var TicketmasterWidget = function () {
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
+
+    // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/event-discovery/theme/"; }
+    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
+
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://10.24.12.162:4000/products-and-docs/widgets/event-discovery/theme/";
+      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/";
     }
-    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
-    // get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/"; }
-
   }, {
     key: "portalUrl",
     get: function get() {
