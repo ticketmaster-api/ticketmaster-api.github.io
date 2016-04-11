@@ -640,11 +640,11 @@ class TicketmasterWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
-      e.preventDefault();/*used in plugins for 'buy button'*/
+      if(this.config.theme !== "listview") e.preventDefault(); /*used in plugins for 'buy button'*/
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
-      e.preventDefault();
+      if(this.config.theme !== "listview") e.preventDefault();
       handleTouchMove.call(this, e);
     }, false);
   }

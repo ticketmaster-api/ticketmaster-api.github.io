@@ -554,6 +554,7 @@ div[w-theme="newschool"] .event-group {
 
 /* BUY NOW */
 div[w-theme="newschool"] .event-buy-btn {
+    z-index: 15;
     position: absolute;
     left: 30px;
     bottom: 156px;

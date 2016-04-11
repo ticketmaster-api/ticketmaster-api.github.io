@@ -736,11 +736,11 @@ var TicketmasterWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        e.preventDefault(); /*used in plugins for 'buy button'*/
+        if (_this7.config.theme !== "listview") e.preventDefault(); /*used in plugins for 'buy button'*/
         handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        e.preventDefault();
+        if (_this7.config.theme !== "listview") e.preventDefault();
         handleTouchMove.call(_this7, e);
       }, false);
     }

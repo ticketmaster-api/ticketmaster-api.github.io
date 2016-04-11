@@ -358,9 +358,8 @@ div[w-theme="oldschool"] .event-logo-box:before{
 div[w-theme="oldschool"] .event-logo {
     position: relative;
     display: inline-block;
-    width: 100%;
+    width: 159px;
     height: 25px;
-    float: left;
 }
 
 div[w-theme="oldschool"] .event-logo:before,
@@ -530,6 +529,7 @@ div[w-theme="oldschool"] .event-group {
 
 /* BUY NOW */
 div[w-theme="oldschool"] .event-buy-btn {
+    z-index: 15;
     position: absolute;
     left: 50%;
     bottom: 145px;
