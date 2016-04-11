@@ -195,6 +195,8 @@
         height = 550,
         theme = void 0,
         layout = void 0;
+    var widthSlider = $('.js_widget_width_slider'),
+        $tabButtons = $('.js-tab-buttons');
 
     configForm.find("input[type='text'], input[type='number']").each(function () {
       var $self = $(this),
@@ -224,6 +226,9 @@
           theme = val;
         } else if (name === 'w-layout') {
           layout = val;
+        } else if (name === 'w-proportion') {
+          $tabButtons.slideDown("fast");
+          widthSlider.slideDown("fast");
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
@@ -317,14 +322,14 @@
     //create ul
     var $ul = $('<ul class="custom_select__list">').appendTo($country);
     //console.log('$listWrapper',$listWrapper );
-    console.log('$listOption', $listOption);
+    console.log('$listOption', $listOption.innerHTML);
 
     //put li inside ul
     $listOption.each(function () {
       var data = {
         value: $(this).val()
       };
-      console.log('data.value', data.value);
+      console.log('data.value: ', data.value);
       $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>");
     });
   }
@@ -346,27 +351,35 @@
           $countrySelect.prop('disabled', !response.results.length);
           if ($countrySelect.data('cleared')) {
             $countrySelect.html('');
+
             for (var i in response.results) {
               var result = response.results[i];
               if (result.address_components) {
                 var country = result.address_components[result.address_components.length - 1];
+                console.log('result(country): ', country);
                 if (country) {
                   var isSelected = country.short_name === countryShortName ? 'selected' : '';
                   options += '<option ' + isSelected + ' value="' + country.short_name + '">' + country.long_name + '</option>';
+                  //console.log('if(country) get options: ', options);
                 }
               }
             }
             if (options) {
+              console.log('options recived: ', options);
               var selectHead = $('<select required="" class="custom_select__field" name="subject" id="country-list"></select>');
+              //let initInput = $('<input class="custom_select__placeholder" type="text" value="static ua" readonly="">');
+              //$countrySelect.append(initInput);
+
               selectHead.append(options);
               $countrySelect.append(selectHead);
               $countrySelect.prop('disabled', false);
+              //addCustomList($countrySelect, '#country-list' ,options);
             }
           }
         }
       }
     }
-    addCustomList($countrySelect, '#country-list', options);
+    //addCustomList($countrySelect, '#country-list' ,options);
   };
 })();
 //# sourceMappingURL=main-widget-config.js.map

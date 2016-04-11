@@ -19,7 +19,7 @@
     font-style: normal;
     font-weight: normal; }
 @font-face {
-    font-family: "TMSans-Bold";
+    font-family: "TMSans-Bold", Arial, serif;
     src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
     src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
     font-style: normal;
@@ -35,7 +35,7 @@ div[w-theme="simple_countdown"]{
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
-    font-family: 'TMSans-Regular';
+    font-family: 'TMSans-Regular', Arial, serif;
 }
 
 div[w-theme="simple_countdown"] a,
@@ -47,7 +47,6 @@ div[w-theme="simple_countdown"] a:active{
 
 div[w-theme="simple_countdown"] .event-pretended-link {
     cursor: pointer;
-    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
@@ -63,7 +62,7 @@ div[w-theme="simple_countdown"] .event-message {
     right: 10px;
     top: -50%;
     border-radius: 4px;
-    font-family: "TMSans-Bold";
+    font-family: "TMSans-Bold", Arial, serif;
     font-size: 14px;
     line-height: 1.6;
     color: #ffffff;
@@ -220,7 +219,7 @@ div[w-theme="simple_countdown"] .event-name{
     display: -webkit-box;
     text-transform: uppercase;
     font-size: 24px;
-    font-family: "TMSans-Bold";
+    font-family: "TMSans-Bold", Arial, serif;
     margin-bottom: 20px;
     line-height: 31px;
     max-height: 62px;
@@ -232,15 +231,15 @@ div[w-theme="simple_countdown"] .event-name{
 
 div[w-theme="simple_countdown"] .event-date-wraper{
     display: block;
-    font-family: "TMSans-Bold";
+    font-family: "TMSans-Bold", Arial, serif;
     margin-bottom: 11px;
 }
 
 div[w-theme="simple_countdown"] .address-wrapper{
     display: block;
-    display: -webkit-box;
+    /*display: -webkit-box;*/
     height: 30px;
-    font-family: "TMSans-Light";
+    font-family: "TMSans-Light", Arial, serif;
     line-height: 1.3;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -250,6 +249,9 @@ div[w-theme="simple_countdown"] .address-wrapper{
 
 div[w-theme="simple_countdown"] .event-address{
     display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 div[w-theme="simple_countdown"] .event-address:after{
@@ -263,7 +265,7 @@ div[w-theme="simple_countdown"] .address-wrapper .event-address:last-child:after
 
 div[w-theme="simple_countdown"] .category-wrapper{
     display: block;
-    font-family: "TMSans-Bold";
+    font-family: "TMSans-Bold", Arial, serif;
 }
 
 div[w-theme="simple_countdown"] .address-wrapper,
@@ -363,7 +365,7 @@ div[w-theme="simple_countdown"] .event-buy-btn {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: "TMSans-Bold";
+    font-family: "TMSans-Bold", Arial, serif;
     font-size: 11px;
     line-height: 16px;
     color: #ffffff;
@@ -383,38 +385,6 @@ div[w-theme="simple_countdown"] .event-buy-btn[href='']:hover {
     opacity: 0.5;
 }
 
-/*  LAYOUT  */
-div[w-theme="simple_countdown"][w-layout="horizontal"] .event-content-wraper {
-    padding-top: 36px;
-}
-
-div[w-theme="simple_countdown"][w-layout="horizontal"] .event-name{
-    margin-bottom: 17px;
-    /*padding-right: 64px;*/
-    max-width: 560px;
-    font-size: 20px;
-    width: 50%;
-}
-div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper {
-    max-width: 560px;
-}
-
-div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper,
-div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
-    width: 50%;
-}
-
-div[w-theme="simple_countdown"][w-layout="horizontal"] .event-wrapper:before {
-background: -moz-linear-gradient(right, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
-background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 20%);
-background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
-}
-
-div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
-    /* padding-right: 64px;*/
-    max-width: 560px;
-}
-
 /*time counter*/
 
 div[w-theme="simple_countdown"] .events-count-down {
@@ -425,6 +395,7 @@ div[w-theme="simple_countdown"] .events-count-down {
     width: 100%;
     padding: 0 24px;
     text-align: center;
+    box-sizing: border-box;
 }
 div[w-theme="simple_countdown"] .events-count-down:before {
     content: 'time left';
@@ -443,11 +414,13 @@ div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute{
     width: 32.666%;
     height: 58px;
-    font-family: InterstateWGL-Black, Arial, serif; /*TODO:add font InterstateWGL-Black*/
+    line-height: 58px;
+    font-family: InterstateWGL-Black, Arial, serif;
     font-size: 40px;
     color: #414141;
     background-color: rgba(250, 250, 250, .8);
     display: inline-block;
+    position: relative;
 }
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour {
     margin: 0 1%;
@@ -461,9 +434,11 @@ div[w-theme="simple_countdown"] .events-count-down__minute:after {
     background-color: rgba(65, 65, 65, 0.5);
     font-family: "TMSans-Bold", Arial, serif;
     display: block;
+    position: absolute;
     height: 24px;
     width: 100%;
-    margin-bottom: 3px;
+    top: 100%;
+    margin-top: 3px;
     font-size: 10px;
     line-height: 24px;
     color: #fff;
@@ -477,6 +452,46 @@ div[w-theme="simple_countdown"] .events-count-down__hour:after {
 div[w-theme="simple_countdown"] .events-count-down__minute:after {
     content: 'min';
 }
+/*time counter END*/
+
+
+/*  LAYOUT  */
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-content-wraper {
+    padding-top: 36px;
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-name{
+    margin-bottom: 17px;
+    max-width: 560px;
+    font-size: 20px;
+    width: 50%;
+    /*ellipsis effect*/
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /*ellipsis effect end*/
+}
+div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper {
+    max-width: 560px;
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper,
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
+    width: 50%;
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-wrapper:before {
+    background: -moz-linear-gradient(right, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), -moz-linear-gradient(top, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
+    background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100%), -webkit-linear-gradient(top, rgba(0,0,0,0.12) 0%,rgba(0,0,0,0) 20%);
+    background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
+    max-width: 560px;
+}
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .events-count-down{
     width: 40%;
@@ -484,5 +499,4 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .events-count-down{
     right: 24px;
     padding: 0;
 }
-
-/*time counter END*/
+/*  LAYOUT  END*/
