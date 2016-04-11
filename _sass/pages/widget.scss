@@ -122,6 +122,8 @@
   }
 
   select {
+    /*display: none;*/
+
     padding-right: 50px;
     background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
     background-position: right 30px center;
@@ -239,24 +241,6 @@
   margin-bottom: 24px;
 }
 @media (min-width: 768px){
-  /*
-  .col-sm-theme{
-    //width: 44.66667%;
-  }
-
-  .col-sm-layout{
-    //width: 30.33333%;
-  }
-
-  .widget__layout_control {
-    //float: right;
-  }
-
-  .col-sm-color_scheme{
-    //text-align: center;
-  }
-  */
-
   .widget__color_scheme_control{
     display: inline-block;
   }
@@ -334,8 +318,13 @@
     }
   }
 }
-
+.widget__various-min-width {
+  min-width: 100px;
+}
 .widget__various-width {
   min-width: 100px;
   max-width: 130px;
+}
+.main-widget-config-form .country-select .custom_select__item {
+  list-style: none;
 }

@@ -164,6 +164,8 @@
         height = 550,
         theme,
         layout;
+    const widthSlider = $('.js_widget_width_slider'),
+          $tabButtons = $('.js-tab-buttons');
 
     configForm.find("input[type='text']").each(function(){
       let $self = $(this),
@@ -194,6 +196,9 @@
           theme = val;
         }else if(name === 'w-layout'){
           layout = val;
+        }else if(name === 'w-proportion'){
+          $tabButtons.slideDown("fast");
+          widthSlider.slideDown("fast");
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);

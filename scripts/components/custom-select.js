@@ -13,7 +13,8 @@ jQuery.fn.customSelect = function(options ) {
 
         var $select = $custom_select.find('select'),
             $placeholder = $custom_select.find('input'),
-            $list = $custom_select.find('ul'),
+            //$list = $custom_select.find('ul'),
+            $list = $('ul',$custom_select),
             $options = $list.find('li'),
             $feedbackModal = $('#feedback-modal'),
             openedCssClass = 'custom_select-opened',
@@ -21,6 +22,8 @@ jQuery.fn.customSelect = function(options ) {
             speed = 300;
 
         function show() {
+            console.log('start showing, list ul:', $list);
+            //$('ul.custom_select__list',$custom_select).show();//tmp
             $list.slideDown(speed);
             $custom_select.addClass(openedCssClass);
             $placeholder.focus();
@@ -33,6 +36,7 @@ jQuery.fn.customSelect = function(options ) {
 
         function set(isInit) {
             var $self = $(this);
+            console.log('set(isInit)-$self->:', $self);
             $placeholder.val($self.text());
             $select.val($self.data('value'));
             if(!isInit) $select.trigger('change');

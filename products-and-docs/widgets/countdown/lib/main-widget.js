@@ -283,7 +283,7 @@ var TicketmasterWidget = function () {
       countDown.appendChild(this.countDownHours);
       countDown.appendChild(this.countDownMinute);
 
-      this.widgetRoot.appendChild(countDown);
+      this.eventsRootContainer.appendChild(countDown);
     }
   }, {
     key: "initBuyBtn",

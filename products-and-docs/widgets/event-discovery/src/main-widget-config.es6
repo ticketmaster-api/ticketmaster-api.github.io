@@ -191,6 +191,8 @@
         height = 600,
         theme,
         layout;
+    const widthSlider = $('.js_widget_width_slider'),
+          $tabButtons = $('.js-tab-buttons');
 
     configForm.find("input[type='text'], input[type='number']").each(function(){
       let $self = $(this),
@@ -221,6 +223,9 @@
           theme = val;
         }else if(name === 'w-layout'){
           layout = val;
+        }else if(name === 'w-proportion'){
+          $tabButtons.slideDown("fast");
+          widthSlider.slideDown("fast");
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
@@ -233,6 +238,8 @@
     widgetNode.setAttribute('w-height', height);
     widgetNode.setAttribute('w-border', 0);
 
+    $('.country-select .js_custom_select').removeClass('custom_select-opened');//reset custom select
+    widget.onLoadCoordinate();
     widget.update();
   };
 
@@ -306,6 +313,30 @@
     }
   });
 
+  /**/
+  function addCustomList(wrapperId, listWrapperId) {
+    var $country = $(wrapperId),
+        $listOption = $(listWrapperId).find('option');
+
+    //static-fix_me
+    let initInput = $('<input class="custom_select__placeholder" type="'+$listOption.val()+'" value="'+$listOption.html()+'" readonly="">');
+
+    //create ul
+    var $ul = $('<ul class="custom_select__list">').appendTo($country);
+    // console.log('$listOption', $listOption );
+
+    //put li inside ul
+    $listOption.each(function () {
+      var data = {
+        value: $(this).val()
+      };
+      console.log('data.value: ',data.value );
+      $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>")
+    });
+    initInput.appendTo($country);
+  }
+  /**/
+
   $('#w-country').data('cleared', true);
   widget.onLoadCoordinate = function (response, countryShortName = '') {
     widget.config['country'] = countryShortName;
@@ -320,10 +351,12 @@
           $countrySelect.prop('disabled', !response.results.length);
           if($countrySelect.data('cleared')){
             $countrySelect.html('');
+
             for(let i in response.results){
               let result = response.results[i];
               if(result.address_components){
                 let country = result.address_components[result.address_components.length - 1];
+                console.log('result(country): ', country);
                 if(country){
                   let isSelected = country.short_name === countryShortName ? 'selected' : '';
                   options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
@@ -331,8 +364,14 @@
               }
             }
             if(options){
+              /*let selectHead = $('<select required="" class="custom_select__field-TODO" name="subject" id="country-list"></select>');
+              selectHead.append(options);
+              $countrySelect.append(selectHead);*/ //toDO
+
               $countrySelect.append(options);
+
               $countrySelect.prop('disabled', false);
+              //addCustomList($countrySelect, '#country-list');
             }
           }
         }
