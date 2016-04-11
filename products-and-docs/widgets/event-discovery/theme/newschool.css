@@ -377,19 +377,17 @@ div[w-theme="newschool"] .event-logo-box:after{
     width: 100%;
     height: 3px;
     border-top: 2px dashed #cccccc;
-    bottom: 92px;
+    bottom: 126px;
 }
 
 div[w-theme="newschool"] .event-logo {
     position: relative;
     display: inline-block;
-    width: 100%;
+    width: 159px;
     height: 25px;
-    float: left;
 }
 
-div[w-theme="newschool"] .event-logo:before,
-div[w-theme="newschool"] .event-logo:after {
+div[w-theme="newschool"] .event-logo:before {
     content: '';
     position: absolute;
     left: 0;
@@ -404,12 +402,6 @@ div[w-theme="newschool"] .event-logo:after {
 }
 
 div[w-theme="newschool"] .event-logo:before {
-    opacity: 0;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="newschool"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
@@ -554,6 +546,7 @@ div[w-theme="newschool"] .event-group {
 
 /* BUY NOW */
 div[w-theme="newschool"] .event-buy-btn {
+    z-index: 15;
     position: absolute;
     left: 30px;
     bottom: 156px;

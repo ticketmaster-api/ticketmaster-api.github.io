@@ -177,6 +177,7 @@ div[w-theme="simple"] .events_control {
     -webkit-transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
     -webkit-transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    z-index: 10;
 }
 
 
@@ -387,6 +388,7 @@ div[w-theme="simple"] .event-logo-box {
     width: 100%;
     height: 36px;
     background-color: rgba(255, 255, 255, 0.8);
+    z-index: 10;
 }
 
 div[w-theme="simple"] .event-logo {
@@ -398,8 +400,7 @@ div[w-theme="simple"] .event-logo {
     height: 25px;
 }
 
-div[w-theme="simple"] .event-logo:before,
-div[w-theme="simple"] .event-logo:after {
+div[w-theme="simple"] .event-logo:before {
     content: '';
     position: absolute;
     left: 0;
@@ -413,12 +414,6 @@ div[w-theme="simple"] .event-logo:after {
 }
 
 div[w-theme="simple"] .event-logo:before {
-    opacity: 0;
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="simple"] .event-logo:after {
     /* TODO: add http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
 }
@@ -440,6 +435,7 @@ div[w-theme="simple"] .event-group {
 
 /* BUY NOW */
 div[w-theme="simple"] .event-buy-btn {
+    z-index: 15;
     position: absolute;
     left: 30px;
     bottom: 42px;
