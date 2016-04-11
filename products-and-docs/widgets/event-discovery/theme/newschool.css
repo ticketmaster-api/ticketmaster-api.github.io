@@ -131,7 +131,7 @@ div[w-theme="newschool"] ul{
 
 div[w-theme="newschool"] ul.events-root {
     margin: 60px 0 0 0;
-    height: 354px;
+    height: 365px;
     display: block;
     overflow: hidden;
 }
@@ -385,6 +385,7 @@ div[w-theme="newschool"] .event-logo {
     display: inline-block;
     width: 159px;
     height: 25px;
+    top: -5px;
 }
 
 div[w-theme="newschool"] .event-logo:before {
@@ -392,7 +393,7 @@ div[w-theme="newschool"] .event-logo:before {
     position: absolute;
     left: 0;
     right: 0;
-    top: -17px;
+    top: 0px;
     bottom: 0;
     background-repeat: no-repeat;
     background-position: center center;

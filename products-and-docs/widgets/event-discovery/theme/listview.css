@@ -127,7 +127,7 @@ div[w-theme="listview"] .events-root-container{
 
 div[w-theme="listview"] #ss {
     margin: 35px auto 0 auto;
-    height: 83%;
+    height: 85%;
     width: 96% !important;
 }
 
@@ -420,7 +420,7 @@ div[w-theme="listview"] .event-buy-btn.main-btn {
 
 /*  LAYOUT  */
 div[w-theme="listview"][w-layout="horizontal"] #ss {
-    height: 68%;
+    height: 72%;
 }
 
 div[w-theme="listview"][w-layout="horizontal"] .legal-notice {

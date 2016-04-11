@@ -360,6 +360,7 @@ div[w-theme="oldschool"] .event-logo {
     display: inline-block;
     width: 159px;
     height: 25px;
+    top: -8px;
 }
 
 div[w-theme="oldschool"] .event-logo:before {
@@ -367,7 +368,7 @@ div[w-theme="oldschool"] .event-logo:before {
     position: absolute;
     left: 0;
     right: 0;
-    top: -17px;
+    top: 0px;
     bottom: 0;
     background-repeat: no-repeat;
     background-position: center center;
