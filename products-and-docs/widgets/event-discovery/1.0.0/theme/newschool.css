@@ -176,7 +176,7 @@ div[w-theme="newschool"] .bg-cover {
     -khtml-opacity: 0.10;
     opacity: 0.10;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
 }
 
