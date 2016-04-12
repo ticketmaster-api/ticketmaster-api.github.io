@@ -4,8 +4,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TicketmasterWidget = function () {
-  _createClass(TicketmasterWidget, [{
+var TicketmasterEventDiscoveryWidget = function () {
+  _createClass(TicketmasterEventDiscoveryWidget, [{
     key: "isConfigAttrExistAndNotEmpty",
     value: function isConfigAttrExistAndNotEmpty(attr) {
       if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
@@ -62,13 +62,13 @@ var TicketmasterWidget = function () {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
 
-    // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/event-discovery/theme/"; }
-    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
+    // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
+    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
 
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/";
+      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/";
     }
   }, {
     key: "portalUrl",
@@ -180,12 +180,13 @@ var TicketmasterWidget = function () {
 
   }]);
 
-  function TicketmasterWidget() {
+  function TicketmasterEventDiscoveryWidget(root) {
     var _this = this;
 
-    _classCallCheck(this, TicketmasterWidget);
+    _classCallCheck(this, TicketmasterEventDiscoveryWidget);
 
-    this.widgetRoot = document.querySelector("div[w-tmapikey]");
+    if (!root) return;
+    this.widgetRoot = root;
 
     this.eventsRootContainer = document.createElement("div");
     this.eventsRootContainer.classList.add("events-root-container");
@@ -252,7 +253,7 @@ var TicketmasterWidget = function () {
     if (this.isListView) this.addScroll();
   }
 
-  _createClass(TicketmasterWidget, [{
+  _createClass(TicketmasterEventDiscoveryWidget, [{
     key: "getCoordinates",
     value: function getCoordinates(cb) {
       var widget = this;
@@ -893,7 +894,7 @@ var TicketmasterWidget = function () {
 
         if (this.isListView) this.addScroll();
       } else {
-        var events = document.getElementsByClassName("event-wrapper");
+        var events = this.eventsRoot.getElementsByClassName("event-wrapper");
         for (var i in events) {
           if (events.hasOwnProperty(i) && events[i].style !== undefined) {
             events[i].style.width = this.config.width - this.borderSize * 2 + "px";
@@ -1369,7 +1370,8 @@ var TicketmasterWidget = function () {
           lastDay;
 
       if (period == "year") {
-        firstDay = new Date(date.getFullYear(), 0, 1), lastDay = new Date(date.getFullYear(), 12, 0);
+        firstDay = new Date(date.getFullYear(), 0, 1);
+        lastDay = new Date(date.getFullYear(), 12, 0);
       } else if (period == "month") {
         firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -1391,8 +1393,14 @@ var TicketmasterWidget = function () {
     }
   }]);
 
-  return TicketmasterWidget;
+  return TicketmasterEventDiscoveryWidget;
 }();
 
-var widget = new TicketmasterWidget();
+var widgetsEventDiscovery = [];
+(function () {
+  var widgetContainers = document.querySelectorAll("div[w-type='event-discovery']");
+  for (var i = 0; i < widgetContainers.length; ++i) {
+    widgetsEventDiscovery.push(new TicketmasterEventDiscoveryWidget(widgetContainers[i]));
+  }
+})();
 //# sourceMappingURL=main-widget.js.map
