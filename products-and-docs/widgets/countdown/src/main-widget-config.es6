@@ -161,11 +161,10 @@
   var resetWidget = function(configForm) {
     let widgetNode = document.querySelector("div[w-tmapikey]"),
         widthSlider = $('.js_widget_width_slider'),
+        $tabButtons = $('.js-tab-buttons'),
         height = 550,
         theme,
         layout;
-    const widthSlider = $('.js_widget_width_slider'),
-          $tabButtons = $('.js-tab-buttons');
 
     configForm.find("input[type='text']").each(function(){
       let $self = $(this),

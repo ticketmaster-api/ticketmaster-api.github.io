@@ -158,6 +158,7 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         widthSlider = $('.js_widget_width_slider'),
+        $tabButtons = $('.js-tab-buttons'),
         height = 550,
         theme = void 0,
         layout = void 0;
@@ -190,6 +191,9 @@
           theme = val;
         } else if (name === 'w-layout') {
           layout = val;
+        } else if (name === 'w-proportion') {
+          $tabButtons.slideDown("fast");
+          widthSlider.slideDown("fast");
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);

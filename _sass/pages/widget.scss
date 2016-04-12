@@ -122,14 +122,7 @@
   }
 
   select {
-    /*display: none;*/
-
-    padding-right: 50px;
-    background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
-    background-position: right 30px center;
-    &[disabled] {
-      opacity: 0.5;
-    }
+    display: none;
   }
 
   select::-ms-expand {
