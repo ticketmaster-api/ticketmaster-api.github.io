@@ -1,5 +1,6 @@
 (function(){
-
+  
+  let widget = widgetsEventDiscovery[0];
 
   var themeConfig = {      
       sizes: {

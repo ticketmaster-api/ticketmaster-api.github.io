@@ -85,8 +85,8 @@ var CountdownClock = function () {
   return CountdownClock;
 }();
 
-var TicketmasterWidget = function () {
-  _createClass(TicketmasterWidget, [{
+var TicketmasterCountdownWidget = function () {
+  _createClass(TicketmasterCountdownWidget, [{
     key: "isConfigAttrExistAndNotEmpty",
     value: function isConfigAttrExistAndNotEmpty(attr) {
       if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
@@ -128,13 +128,13 @@ var TicketmasterWidget = function () {
       return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : false;
     }
 
-    // get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
-    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
+    // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
+    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
 
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/";
+      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/";
     }
   }, {
     key: "portalUrl",
@@ -189,10 +189,10 @@ var TicketmasterWidget = function () {
     }
   }]);
 
-  function TicketmasterWidget() {
-    _classCallCheck(this, TicketmasterWidget);
+  function TicketmasterCountdownWidget(root) {
+    _classCallCheck(this, TicketmasterCountdownWidget);
 
-    this.widgetRoot = document.querySelector("div[w-tmapikey]");
+    this.widgetRoot = root;
 
     this.eventsRootContainer = document.createElement("div");
     this.eventsRootContainer.classList.add("events-root-container");
@@ -247,7 +247,7 @@ var TicketmasterWidget = function () {
     });
   }
 
-  _createClass(TicketmasterWidget, [{
+  _createClass(TicketmasterCountdownWidget, [{
     key: "getNormalizedDateValue",
     value: function getNormalizedDateValue(val) {
       return ('0' + val).slice(-2);
@@ -498,7 +498,7 @@ var TicketmasterWidget = function () {
           this.showMessage("No results were found.", true);
         }
       } else {
-        var events = document.getElementsByClassName("event-wrapper");
+        var events = this.widgetRoot.getElementsByClassName("event-wrapper");
         for (var i in events) {
           if (events.hasOwnProperty(i) && events[i].style !== undefined) {
             events[i].style.width = this.config.width - this.borderSize * 2 + "px";
@@ -570,8 +570,8 @@ var TicketmasterWidget = function () {
           widget.onEventLoadError.call(widget, this.status);
         }
         // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
-        var _ref = void 0,
-            _ref2 = void 0;
+        var _ref = undefined,
+            _ref2 = undefined;
         widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime : void 0 : void 0);
       }
       widget.setBuyBtnUrl();
@@ -774,8 +774,14 @@ var TicketmasterWidget = function () {
     }
   }]);
 
-  return TicketmasterWidget;
+  return TicketmasterCountdownWidget;
 }();
 
-var widgetCountdown = new TicketmasterWidget();
+var widgetsCountdown = [];
+(function () {
+  var widgetContainers = document.querySelectorAll("div[w-type='countdown']");
+  for (var i = 0; i < widgetContainers.length; ++i) {
+    widgetsCountdown.push(new TicketmasterCountdownWidget(widgetContainers[i]));
+  }
+})();
 //# sourceMappingURL=main-widget.js.map

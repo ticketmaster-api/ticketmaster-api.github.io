@@ -1,4 +1,4 @@
-class TicketmasterWidget {
+class TicketmasterEventDiscoveryWidget {
 
   set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
   get config() { return this.widgetConfig; }
@@ -15,9 +15,9 @@ class TicketmasterWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/event-discovery/theme/"; }
-  // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/theme/"; }
+  // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
+  // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
@@ -112,8 +112,9 @@ class TicketmasterWidget {
 
   //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
 
-  constructor() {
-    this.widgetRoot = document.querySelector("div[w-tmapikey]");
+  constructor(root) {
+    if(!root) return;
+    this.widgetRoot = root;
 
     this.eventsRootContainer = document.createElement("div");
     this.eventsRootContainer.classList.add("events-root-container");
@@ -781,7 +782,7 @@ class TicketmasterWidget {
       if(this.isListView) this.addScroll();
     }
     else{
-      let events = document.getElementsByClassName("event-wrapper");
+      let events = this.eventsRoot.getElementsByClassName("event-wrapper");
       for(let i in events){
         if(events.hasOwnProperty(i) && events[i].style !== undefined){
           events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
@@ -1231,8 +1232,8 @@ class TicketmasterWidget {
       firstDay, lastDay;
 
     if(period == "year" ){
-      firstDay = new Date(date.getFullYear(),0,1),
-        lastDay = new Date(date.getFullYear(),12,0);
+      firstDay = new Date(date.getFullYear(),0,1);
+      lastDay = new Date(date.getFullYear(),12,0);
     }
     else if(period == "month"){
       firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -1256,5 +1257,13 @@ class TicketmasterWidget {
   }
 
 }
+let widgetsEventDiscovery = [];
+(function () {
+  let widgetContainers = document.querySelectorAll("div[w-type='event-discovery']");
+  for (let i = 0; i < widgetContainers.length; ++i) {
+    widgetsEventDiscovery.push(new TicketmasterEventDiscoveryWidget(widgetContainers[i]));
+  }
+})();
 
-const widget = new TicketmasterWidget();
+
+

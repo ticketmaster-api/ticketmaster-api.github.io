@@ -48,7 +48,7 @@ class CountdownClock {
   }
 }
 
-class TicketmasterWidget {
+class TicketmasterCountdownWidget {
 
   set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
   get config() { return this.widgetConfig; }
@@ -62,9 +62,9 @@ class TicketmasterWidget {
 
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : false; }
 
-  // get themeUrl() { return "http://10.24.12.162:4000//products-and-docs/widgets/countdown/theme/"; }
-  // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/theme/"; }
+  // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
+  // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
+  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
@@ -107,8 +107,8 @@ class TicketmasterWidget {
     return attrs;
   }
 
-  constructor() {
-    this.widgetRoot = document.querySelector("div[w-tmapikey]");
+  constructor(root) {
+    this.widgetRoot = root;
 
     this.eventsRootContainer = document.createElement("div");
     this.eventsRootContainer.classList.add("events-root-container");
@@ -391,7 +391,7 @@ class TicketmasterWidget {
         this.showMessage("No results were found.", true);
       }
     }else{
-      let events = document.getElementsByClassName("event-wrapper");
+      let events = this.widgetRoot.getElementsByClassName("event-wrapper");
       for(let i in events){
         if(events.hasOwnProperty(i) && events[i].style !== undefined){
           events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
@@ -660,4 +660,10 @@ class TicketmasterWidget {
 
 }
 
-const widgetCountdown = new TicketmasterWidget();
+let widgetsCountdown = [];
+(function () {
+  let widgetContainers = document.querySelectorAll("div[w-type='countdown']");
+  for (let i = 0; i < widgetContainers.length; ++i) {
+    widgetsCountdown.push(new TicketmasterCountdownWidget(widgetContainers[i]));
+  }
+})();
