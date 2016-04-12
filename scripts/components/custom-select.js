@@ -2,7 +2,7 @@
 jQuery.fn.customSelect = function(options ) {
 
     var defaults = {
-
+            
         },
         settings = $.extend({}, defaults, options);
 
@@ -13,8 +13,7 @@ jQuery.fn.customSelect = function(options ) {
 
         var $select = $custom_select.find('select'),
             $placeholder = $custom_select.find('input'),
-            //$list = $custom_select.find('ul'),
-            $list = $('ul',$custom_select),
+            $list = $custom_select.find('ul'),
             $options = $list.find('li'),
             $feedbackModal = $('#feedback-modal'),
             openedCssClass = 'custom_select-opened',
@@ -22,8 +21,6 @@ jQuery.fn.customSelect = function(options ) {
             speed = 300;
 
         function show() {
-            console.log('start showing, list ul:', $list);
-            //$('ul.custom_select__list',$custom_select).show();//tmp
             $list.slideDown(speed);
             $custom_select.addClass(openedCssClass);
             $placeholder.focus();
@@ -34,9 +31,8 @@ jQuery.fn.customSelect = function(options ) {
             $custom_select.removeClass(openedCssClass);
         }
 
-        function set(isInit) {
-            var $self = $(this);
-            console.log('set(isInit)-$self->:', $self);
+        function set(self, isInit) {
+            var $self = $(self);
             $placeholder.val($self.text());
             $select.val($self.data('value'));
             if(!isInit) $select.trigger('change');
@@ -54,16 +50,17 @@ jQuery.fn.customSelect = function(options ) {
         }
 
         function reset() {
-            set.call($options.filter(':first'), true);
+            set($list.find('li').filter(':first'), true);
         }
 
         // Events
-        $options.on('click', function(){
-            set.call(this, false);
+        $list.on('click', 'li', function(){            
+            set(this, false);
         });
         $placeholder.on('blur', blur);
         $custom_select.on('click', toggle);
         $feedbackModal.on('hide.bs.modal', reset);
+        $feedbackModal.on('show.bs.modal', reset);
 
         reset();
         });
