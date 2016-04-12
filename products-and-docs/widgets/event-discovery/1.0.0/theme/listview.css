@@ -411,6 +411,7 @@ div[w-theme="listview"] .event-buy-btn[href='']:hover {
     background-color: #ccc;
     cursor: default;
     opacity: 0.5;
+    display: none;
 }
 
 div[w-theme="listview"] .event-buy-btn.main-btn {
