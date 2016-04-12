@@ -34,13 +34,13 @@
         },
         custom: {
           width: 350,
-          height: 550,
+          height: 600,
           layout: 'vertical'
         }
       },
       initSliderSize: {
         width: 350,
-        height: 550,
+        height: 600,
         maxWidth: 500,
         minWidth: 350
       }
@@ -136,7 +136,7 @@
 
         sizeConfig = { //default size
           width: themeConfig.simple_countdown.initSliderSize.width, //350
-          height: themeConfig.simple_countdown.initSliderSize.height, //550
+          height: themeConfig.simple_countdown.initSliderSize.height, //600
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
@@ -159,7 +159,7 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         widthSlider = $('.js_widget_width_slider'),
-        height = 550,
+        height = 600,
         theme = undefined,
         layout = undefined,
         $tabButtons = $('.js-tab-buttons');
