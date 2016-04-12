@@ -208,7 +208,7 @@ div[w-theme="listview"] .bg-cover {
     display: block;
     overflow: hidden;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
 }
 

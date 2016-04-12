@@ -1,5 +1,6 @@
 (function(){
 
+  let widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
         name: 'Poster',
@@ -31,13 +32,13 @@
           },
           custom: {
             width: 350,
-            height: 550,
+            height: 600,
             layout: 'vertical'
           }
         },
         initSliderSize: {
           width: 350,
-          height: 550,
+          height: 600,
           maxWidth: 500,
           minWidth: 350
         }
@@ -136,7 +137,7 @@
 
         sizeConfig = { //default size
           width: themeConfig.simple_countdown.initSliderSize.width,  //350
-          height: themeConfig.simple_countdown.initSliderSize.height,  //550
+          height: themeConfig.simple_countdown.initSliderSize.height,  //600
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth,  //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
@@ -155,16 +156,16 @@
 
     widgetNode.setAttribute(event.target.name, event.target.value);
 
-    widgetCountdown.update();
+    widget.update();
   };
 
   var resetWidget = function(configForm) {
     let widgetNode = document.querySelector("div[w-tmapikey]"),
         widthSlider = $('.js_widget_width_slider'),
-        $tabButtons = $('.js-tab-buttons'),
-        height = 550,
+        height = 600,
         theme,
-        layout;
+        layout,
+        $tabButtons = $('.js-tab-buttons');
 
     configForm.find("input[type='text']").each(function(){
       let $self = $(this),
@@ -213,7 +214,7 @@
     }
     widgetNode.setAttribute('w-height', height);
 
-    widgetCountdown.update();
+    widget.update();
   };
 
   var $configForm = $(".main-widget-config-form"),
@@ -242,8 +243,8 @@
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
 
     var htmlCode = document.createElement("div");
-    for(var key in widgetCountdown.config){
-      htmlCode.setAttribute("w-"+key,widgetCountdown.config[key]);
+    for(var key in widget.config){
+      htmlCode.setAttribute("w-"+key,widget.config[key]);
     }
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);

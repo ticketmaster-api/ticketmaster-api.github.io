@@ -2,6 +2,7 @@
 
 (function () {
 
+  var widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
       name: 'Poster',
@@ -33,13 +34,13 @@
         },
         custom: {
           width: 350,
-          height: 550,
+          height: 600,
           layout: 'vertical'
         }
       },
       initSliderSize: {
         width: 350,
-        height: 550,
+        height: 600,
         maxWidth: 500,
         minWidth: 350
       }
@@ -115,7 +116,7 @@
     //Check fixed sizes for 'simple_countdown' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var _sizeConfig = {
+      var sizeConfig = {
         width: themeConfig.simple_countdown.sizes[targetValue].width,
         height: themeConfig.simple_countdown.sizes[targetValue].height,
         maxWidth: 600,
@@ -133,35 +134,35 @@
         widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
+        sizeConfig = { //default size
           width: themeConfig.simple_countdown.initSliderSize.width, //350
-          height: themeConfig.simple_countdown.initSliderSize.height, //550
+          height: themeConfig.simple_countdown.initSliderSize.height, //600
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value);
 
-    widgetCountdown.update();
+    widget.update();
   };
 
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         widthSlider = $('.js_widget_width_slider'),
-        $tabButtons = $('.js-tab-buttons'),
-        height = 550,
-        theme = void 0,
-        layout = void 0;
+        height = 600,
+        theme = undefined,
+        layout = undefined,
+        $tabButtons = $('.js-tab-buttons');
 
     configForm.find("input[type='text']").each(function () {
       var $self = $(this),
@@ -209,7 +210,7 @@
     }
     widgetNode.setAttribute('w-height', height);
 
-    widgetCountdown.update();
+    widget.update();
   };
 
   var $configForm = $(".main-widget-config-form"),
@@ -237,8 +238,8 @@
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
 
     var htmlCode = document.createElement("div");
-    for (var key in widgetCountdown.config) {
-      htmlCode.setAttribute("w-" + key, widgetCountdown.config[key]);
+    for (var key in widget.config) {
+      htmlCode.setAttribute("w-" + key, widget.config[key]);
     }
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
