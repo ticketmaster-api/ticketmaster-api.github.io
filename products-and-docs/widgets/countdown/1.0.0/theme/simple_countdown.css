@@ -177,7 +177,7 @@ div[w-theme="simple_countdown"] .bg-cover {
     display: block;
     overflow: hidden;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
 }
 
@@ -386,9 +386,10 @@ div[w-theme="simple_countdown"] .event-buy-btn:hover {
 
 div[w-theme="simple_countdown"] .event-buy-btn[href=''],
 div[w-theme="simple_countdown"] .event-buy-btn[href='']:hover {
-    background-color: #ccc;
+    /*background-color: #ccc;*/
     cursor: default;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    opacity: 0;
 }
 
 /*time counter*/

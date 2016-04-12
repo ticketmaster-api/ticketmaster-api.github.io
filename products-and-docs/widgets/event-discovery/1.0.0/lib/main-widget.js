@@ -486,25 +486,12 @@ var TicketmasterEventDiscoveryWidget = function () {
       var ticketLogo = document.createElement("div");
       ticketLogo.classList.add("ticket-logo", "modificator");
 
-      var headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
-
-      headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
-
-      headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
-
-      headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      headLogo.setAttribute("height", "11");
-      ticketLogo.appendChild(headLogo);
+      for (var i = 0; i < 4; i++) {
+        var headLogo = document.createElement("img");
+        headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
+        headLogo.setAttribute("height", "11");
+        ticketLogo.appendChild(headLogo);
+      }
 
       this.eventsRootContainer.appendChild(ticketLogo);
     }

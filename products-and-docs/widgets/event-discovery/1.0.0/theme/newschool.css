@@ -176,7 +176,7 @@ div[w-theme="newschool"] .bg-cover {
     -khtml-opacity: 0.10;
     opacity: 0.10;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
 }
 
@@ -576,10 +576,11 @@ div[w-theme="newschool"] .event-buy-btn:hover {
 
 div[w-theme="newschool"] .event-buy-btn[href=''],
 div[w-theme="newschool"] .event-buy-btn[href='']:hover {
-    background-color: #ccc;
+    /*background-color: #ccc;*/
     cursor: default;
-    opacity: 0.5;
     color: #009cde;
+    /*opacity: 0.5;*/
+    opacity: 0;
 }
 
 /* Horizontal theme */

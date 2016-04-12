@@ -551,9 +551,10 @@ div[w-theme="oldschool"] .event-buy-btn:hover {
 
 div[w-theme="oldschool"] .event-buy-btn[href=''],
 div[w-theme="oldschool"] .event-buy-btn[href='']:hover {
-    background-color: #ccc;
+    /*background-color: #ccc;*/
     cursor: default;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    opacity: 0;
 }
 
 
