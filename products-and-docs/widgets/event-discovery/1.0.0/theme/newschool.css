@@ -388,6 +388,7 @@ div[w-theme="newschool"] .event-logo {
     top: -8px;
 }
 
+
 div[w-theme="newschool"] .event-logo:before {
     content: '';
     position: absolute;
