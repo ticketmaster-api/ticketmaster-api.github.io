@@ -123,6 +123,10 @@
 
   select {
     display: none;
+
+    @media (max-width: 767px){
+      display: block;
+    }
   }
 
   select::-ms-expand {
