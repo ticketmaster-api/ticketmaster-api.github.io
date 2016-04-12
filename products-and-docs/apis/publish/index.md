@@ -115,6 +115,7 @@ publish/{version}/events
     * `width` (number) - the width of the image.
 - `names` (object) - map of locale to value for the names of the event.
 - `place` (object) - the place where the event occurs.
+    * `names` (object) - map of locale to value for the names of the event.
     * `address` (object) - the address of the place of the event.
        - `line1s` (object) - map of locale to value for the first line of the address.
        - `line2s` (object) - map of locale to value for the second line of the address.
@@ -135,7 +136,7 @@ publish/{version}/events
 - `publicVisibility` (object) - determine if the event is visible on the Discovery API.
     * `startDateTime` (string) - the start date and time of visibility for this event on the Discovery API in UTC. 
     * `endDateTime` (string) - the end date and time of visibility for this event on the Discovery API in UTC.
-    * `visible` (boolean) - true if the event should be visible on the Discovery API, false otherwise.
+    * `visible` (boolean) - true if the event should be visible on the Discovery API, false otherwise. (if not specified: true)
 - `sales` (object) - sales dates information for the event.
     * `public` (object) - the public sales dates information for the event.
         - `endDateTime` (string) - the date and time of the end of the public sales period in UTC.
