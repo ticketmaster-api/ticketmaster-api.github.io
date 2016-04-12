@@ -389,6 +389,7 @@ class TicketmasterCountdownWidget {
         this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
       }else{
         this.showMessage("No results were found.", true);
+        this.countdownClock.update(null);
       }
     }else{
       let events = this.widgetRoot.getElementsByClassName("event-wrapper");
