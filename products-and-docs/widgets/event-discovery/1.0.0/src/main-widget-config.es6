@@ -361,8 +361,7 @@
         $placeholder = $(".country-select").find(".custom_select__placeholder"),
         $ul = listWrapperElement;
 
-    $placeholder.html('');//clear
-    $placeholder.val( $listOption.html() ).change();
+    $placeholder.val( $listOption.html() );
 
     $listOption.each(function () {
       var data = {
