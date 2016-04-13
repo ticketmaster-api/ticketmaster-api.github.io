@@ -258,19 +258,20 @@ var TicketmasterEventDiscoveryWidget = function () {
       function parseGoogleGeocodeResponse() {
         if (this && this.readyState === XMLHttpRequest.DONE) {
           var latlong = '',
-              response = null,
+              results = null,
               countryShortName = '';
           if (this.status === 200) {
-            response = JSON.parse(this.responseText);
+            var response = JSON.parse(this.responseText);
             if (response.status === 'OK' && response.results.length) {
               // Use first item if multiple results was found in one country or in different
-              var geometry = response.results[0].geometry;
-              countryShortName = response.results[0].address_components[response.results[0].address_components.length - 1].short_name;
+              results = response.results;
+              var geometry = results[0].geometry;
+              countryShortName = results[0].address_components[results[0].address_components.length - 1].short_name;
 
               // If multiple results without country try to find USA as prefer value
               if (!widget.config.country) {
-                for (var i in response.results) {
-                  var result = response.results[i];
+                for (var i in results) {
+                  var result = results[i];
                   if (result.address_components) {
                     var country = result.address_components[result.address_components.length - 1];
                     if (country) {
@@ -291,7 +292,7 @@ var TicketmasterEventDiscoveryWidget = function () {
             }
           }
           // Used in builder
-          if (widget.onLoadCoordinate) widget.onLoadCoordinate(response, countryShortName);
+          if (widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
           widget.config.latlong = latlong;
           cb(widget.config.latlong);
         }
