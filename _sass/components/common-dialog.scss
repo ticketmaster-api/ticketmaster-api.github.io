@@ -83,6 +83,9 @@
           background-color: $p1b;
           color: $white;
         }
+        &[disabled]{
+          background-color: $n3;
+        }
       }
     }
   }

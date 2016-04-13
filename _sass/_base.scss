@@ -915,3 +915,18 @@ input[type=range]:focus::-ms-fill-upper {
     opacity: inherit;
   }
 }
+
+.message {
+  margin: 0;
+  padding: 0;
+  display: none;
+  font-weight: normal;
+  font-family: $font-bold-p;
+  &-green {
+    color: $apple-green;
+  }
+  &-red {
+    color: $red;
+    font-family: $font-body;
+  }
+}
