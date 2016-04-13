@@ -27,9 +27,7 @@ var CountdownClock = function () {
       return this.config.onChange = fn;
     },
     get: function get() {
-      return this.config.onChange || function (time) {
-        console.log(time);
-      };
+      return this.config.onChange || function (time) {};
     }
   }]);
 
@@ -254,7 +252,6 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "onCountdownChange",
     value: function onCountdownChange(data) {
-      console.log(data);
       this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
       this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
       this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
@@ -328,21 +325,29 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "embedTMPlugin",
     value: function embedTMPlugin() {
-      var script = document.createElement('script');
-      script.setAttribute('src', this.portalUrl + 'scripts/vendors/tm.js');
-      script.setAttribute('type', 'text/javascript');
-      script.setAttribute('charset', 'UTF-8');
-      (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+      var id = 'id_tm_widget';
+      if (!document.getElementById(id)) {
+        var script = document.createElement('script');
+        script.setAttribute('src', this.portalUrl + 'scripts/vendors/tm.js');
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('charset', 'UTF-8');
+        script.setAttribute('id', id);
+        (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+      }
       this.isTMPluginInitialized = true;
     }
   }, {
     key: "embedUniversePlugin",
     value: function embedUniversePlugin() {
-      var script = document.createElement('script');
-      script.setAttribute('src', 'https://www.universe.com/embed.js');
-      script.setAttribute('type', 'text/javascript');
-      script.setAttribute('charset', 'UTF-8');
-      (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+      var id = 'id_universe_widget';
+      if (!document.getElementById(id)) {
+        var script = document.createElement('script');
+        script.setAttribute('src', 'https://www.universe.com/embed.js');
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('charset', 'UTF-8');
+        script.setAttribute('id', id);
+        (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+      }
       this.isUniversePluginInitialized = true;
     }
 
