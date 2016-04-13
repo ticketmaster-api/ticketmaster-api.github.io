@@ -80,7 +80,7 @@ Attn: Trademark Department, Legal 
 <div markdown="1">
 {{formheader}}
 <div class="col-xs-12 col-sm-8 contact-form-wrapper">
-<form accept-charset="UTF-8" action="#" method='GET' class="js_contact_form">
+<form accept-charset="UTF-8" action="#" method='POST' class="js_contact_form">
     <div class="col-sm-6">
         <label for="first-name">Your name</label>
         <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" tabindex="1" required>
