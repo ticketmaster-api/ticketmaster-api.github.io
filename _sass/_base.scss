@@ -916,16 +916,16 @@ input[type=range]:focus::-ms-fill-upper {
   }
 }
 
-.message {
+.text-overflow-message {
   margin: 0;
   padding: 0;
   display: none;
   font-weight: normal;
   font-family: $font-bold-p;
-  &-green {
+  &__green {
     color: $apple-green;
   }
-  &-red {
+  &__red {
     color: $red;
     font-family: $font-body;
   }

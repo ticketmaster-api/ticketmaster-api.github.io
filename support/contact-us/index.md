@@ -112,8 +112,8 @@ Attn: Trademark Department, Legal 
         <textarea name="descriptions" id="message-detail-text" tabindex="3" required></textarea>
     </div>
     <div class="col-sm-12">
-        <p id="message-success" class="message message-green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
-        <p id="message-error" class="message message-red" style="display:none">The maximum length of description can be 3000 characters.</p>
+        <p id="message-success" class="text-overflow-message text-overflow-message__green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-error" class="text-overflow-message text-overflow-message__red" style="display:none">The maximum length of description can be 3000 characters.</p>
     </div>
     <div class="col-sm-4">
         <button type="submit" class="button-blue">SEND</button>
