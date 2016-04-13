@@ -61,16 +61,11 @@ var TicketmasterEventDiscoveryWidget = function () {
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
-
-    //get themeUrl() { return "http://10.24.9.64:4000/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
-
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://localhost:4000/products-and-docs/widgets/event-discovery/1.0.0/theme/";
+      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/";
     }
-    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
-
   }, {
     key: "portalUrl",
     get: function get() {
@@ -645,24 +640,24 @@ var TicketmasterEventDiscoveryWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var _i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[_i]);
+      for (var i in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var _i2 in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[_i2]);
+      for (var i in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[i]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var _i3 in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[_i3]);
+      for (var i in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -686,8 +681,8 @@ var TicketmasterEventDiscoveryWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var _i4 = 0; eventGroup.length > _i4; _i4++) {
-          eventGroup[_i4].style.marginTop = 0;
+        for (var i = 0; eventGroup.length > i; i++) {
+          eventGroup[i].style.marginTop = 0;
         }
       });
 
