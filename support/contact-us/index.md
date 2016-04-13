@@ -167,6 +167,7 @@ var $contactForm = $('.js_contact_form'),
     function showMsgSuccess(id, delay){
         $(id).slideDown(400).delay( delay ).slideUp(200);
         $contactForm.trigger("reset");
+        $('.js_custom_select',$contactForm).trigger("custom-reset");
         //$textAreaDescription.css('height',''); //reset height of textarea
         $('button', $contactForm).prop('disabled',false);
     }
