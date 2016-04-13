@@ -6,7 +6,7 @@ class CountdownClock {
   get interval(){ return this.config.interval || 1000;}
 
   set onChange(fn) { return this.config.onChange = fn; }
-  get onChange(){ return this.config.onChange || ((time) => { console.log(time) })}
+  get onChange(){ return this.config.onChange || ((time) => {})}
 
   constructor(config = {}) {
     this.config = config;
@@ -168,7 +168,6 @@ class TicketmasterCountdownWidget {
   }
 
   onCountdownChange(data){
-    console.log(data);
     this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
     this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
     this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);

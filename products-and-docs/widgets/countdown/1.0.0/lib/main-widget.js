@@ -27,9 +27,7 @@ var CountdownClock = function () {
       return this.config.onChange = fn;
     },
     get: function get() {
-      return this.config.onChange || function (time) {
-        console.log(time);
-      };
+      return this.config.onChange || function (time) {};
     }
   }]);
 
@@ -254,7 +252,6 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "onCountdownChange",
     value: function onCountdownChange(data) {
-      console.log(data);
       this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
       this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
       this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
