@@ -320,12 +320,9 @@
   $('#w-country').data('cleared', true);
   widget.onLoadCoordinate = function (response, countryShortName = '') {
     widget.config['country'] = countryShortName;
-    let $countrySelect = $('#w-country'),
+    let $countrySelect = $('#w-country').html('<option>All</option>'),
         $ul = $(".js_widget_custom__list"),
         options = '';
-
-
-    $countrySelect.html(`<option>All</option>`);
 
     if(response){
       if(response.status === 'OK'){
