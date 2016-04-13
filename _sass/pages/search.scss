@@ -72,6 +72,9 @@
       position: absolute;
       right: 0;
       top: 0;
+      @media (min-width: 1200px) {
+        z-index: 2;
+      }
       &.sopen {
         width: 320px;
         @media #{$max-768} {
