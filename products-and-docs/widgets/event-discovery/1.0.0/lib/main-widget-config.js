@@ -2,9 +2,22 @@
 
 (function () {
 
-  var widget = widgetsEventDiscovery[0];
+  function getHeightByTheme(theme) {
+    return theme === 'simple' ? 286 : 339;
+  }
 
-  var themeConfig = {
+  function getBorderByTheme(theme) {
+    switch (theme) {
+      case 'simple':
+        return 0;
+        break;
+      default:
+        return 2;
+    }
+  }
+
+  var widget = widgetsEventDiscovery[0],
+      themeConfig = {
     sizes: {
       s: {
         width: 160,
@@ -43,36 +56,18 @@
       maxWidth: 500,
       minWidth: 350
     }
-  };
-
-  function getHeightByTheme(theme) {
-    return theme === 'simple' ? 286 : 339;
-  }
-
-  function getBorderByTheme(theme) {
-    switch (theme) {
-      case 'simple':
-        return 0;
-        break;
-      default:
-        return 2;
-    }
-  }
-
-  // TODO: do we need 'config' variable ?
-  var config = { "ak": "KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst", "kw": "Def", "t": { "n": "t1", "b": false, "h": 600, "w": 350, "br": 4 } };
+  },
+      isPostalCodeChanged = false;
 
   var $widthController = $('#w-width').slider({
     tooltip: 'always',
     handle: 'square'
   }),
-
-  //$layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
-  $colorSchemeSelector = $('.widget__color_scheme_control'),
       $borderRadiusController = $('#w-borderradius').slider({
     tooltip: 'always',
     handle: 'square'
-  });
+  }),
+      $colorSchemeSelector = $('.widget__color_scheme_control');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
@@ -88,26 +83,17 @@
         targetName = event.target.name,
         $tabButtons = $('.js-tab-buttons');
 
-    if (targetName === "w-country") {
-      //console.log(event.target.value);
-    }
     if (targetName === "w-postalcode") {
       widgetNode.setAttribute('w-country', '');
-      //$('#w-country').prop('disabled', true)
-      // .data('cleared', true)
-      // .html('')
-      //;
+      isPostalCodeChanged = true;
     }
 
     if (targetName === "w-theme") {
       if (targetValue === 'simple') {
         $colorSchemeSelector.hide();
-        //$layoutSelectors.prop('disabled', true);
       } else {
-          $colorSchemeSelector.show();
-          //$layoutSelectors.prop('disabled', false);
-          //console.log('$layoutSelectors', $colorSchemeSelector);
-        }
+        $colorSchemeSelector.show();
+      }
 
       if (widgetNode.getAttribute('w-layout') === 'horizontal') {
         widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
@@ -139,7 +125,7 @@
     //Check fixed sizes for 'simple' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var _sizeConfig = {
+      var sizeConfig = {
         width: themeConfig.sizes[targetValue].width,
         height: themeConfig.sizes[targetValue].height,
         maxWidth: 600,
@@ -157,43 +143,32 @@
         widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
+        sizeConfig = { //default size
           width: themeConfig.initSliderSize.width, //350
           height: themeConfig.initSliderSize.height, //600
           maxWidth: themeConfig.initSliderSize.maxWidth, //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    // if(event.target.name === "border"){
-    //if(event.target.checked){
-    //  widgetNode.setAttribute(event.target.id, "");
-    //}
-    //else{
-    //  widgetNode.removeAttribute(event.target.id);
-    //}
-    // }
-    // else {}
-
     widgetNode.setAttribute(event.target.name, event.target.value);
-
     widget.update();
   };
 
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 600,
-        theme = void 0,
-        layout = void 0;
+        theme = undefined,
+        layout = undefined;
     var widthSlider = $('.js_widget_width_slider'),
         $tabButtons = $('.js-tab-buttons');
 
@@ -313,47 +288,41 @@
     }
   });
 
-  $('#w-country').data('cleared', true);
-  widget.onLoadCoordinate = function (response) {
+  widget.onLoadCoordinate = function (results) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
     widget.config['country'] = countryShortName;
-    var $countrySelect = $('#w-country'),
-        $ul = $(".js_widget_custom__list"),
+    if (isPostalCodeChanged) {
+      isPostalCodeChanged = false;
+
+      var $countrySelect = $('#w-country'),
+          $ul = $(".js_widget_custom__list"),
+          options = "<option selected value=''>All</option>";
+
+      $countrySelect.html('');
+      $ul.html(''); //clear custom select list
+      $countrySelect.prop('disabled', !results);
+      if (results) {
+        $countrySelect.prop('disabled', !results.length);
         options = '';
-
-    $countrySelect.html('<option>All</option>');
-
-    if (response) {
-      if (response.status === 'OK') {
-        if (response.results) {
-          $countrySelect.prop('disabled', !response.results.length);
-          if ($countrySelect.data('cleared')) {
-            $countrySelect.html('');
-            $ul.html(''); //clear li
-
-            for (var i in response.results) {
-              var result = response.results[i];
-              if (result.address_components) {
-                var country = result.address_components[result.address_components.length - 1];
-                if (country) {
-                  var isSelected = country.short_name === countryShortName ? 'selected' : '';
-                  options += '<option ' + isSelected + ' value="' + country.short_name + '">' + country.long_name + '</option>';
-                }
-              }
-            }
-            if (options) {
-              $countrySelect.append(options);
-              $countrySelect.prop('disabled', false);
-              addCustomList($ul, '#w-country');
+        for (var i in results) {
+          var result = results[i];
+          if (result.address_components) {
+            var country = result.address_components[result.address_components.length - 1];
+            if (country) {
+              var isSelected = country.short_name === countryShortName ? 'selected' : '';
+              options += '<option ' + isSelected + ' value="' + country.short_name + '">' + country.long_name + '</option>';
             }
           }
         }
       }
+
+      $countrySelect.append(options);
+      addCustomList($ul, '#w-country', countryShortName);
     }
   };
 
-  function addCustomList(listWrapperElement, listWrapperId) {
+  function addCustomList(listWrapperElement, listWrapperId, activeVal) {
     var $listOption = $(listWrapperId).find('option'),
         //update list
     $placeholder = $(".country-select").find(".custom_select__placeholder"),
@@ -365,7 +334,7 @@
       var data = {
         value: $(this).val()
       };
-      $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>");
+      $ul.append('<li class="custom_select__item ' + (activeVal === data.value ? 'custom_select__item-active' : '') + '" data-value="' + data.value + '">' + $(this).text() + '</li>');
     });
   }
 })();
