@@ -63,7 +63,6 @@ class TicketmasterCountdownWidget {
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : false; }
 
   // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
-  // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
   get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
@@ -389,6 +388,7 @@ class TicketmasterCountdownWidget {
         this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
       }else{
         this.showMessage("No results were found.", true);
+        this.countdownClock.update(null);
       }
     }else{
       let events = this.widgetRoot.getElementsByClassName("event-wrapper");

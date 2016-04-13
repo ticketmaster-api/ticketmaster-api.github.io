@@ -129,7 +129,6 @@ var TicketmasterCountdownWidget = function () {
     }
 
     // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
-    // get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
 
   }, {
     key: "themeUrl",
@@ -496,6 +495,7 @@ var TicketmasterCountdownWidget = function () {
           this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
         } else {
           this.showMessage("No results were found.", true);
+          this.countdownClock.update(null);
         }
       } else {
         var events = this.widgetRoot.getElementsByClassName("event-wrapper");
@@ -570,8 +570,8 @@ var TicketmasterCountdownWidget = function () {
           widget.onEventLoadError.call(widget, this.status);
         }
         // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
-        var _ref = void 0,
-            _ref2 = void 0;
+        var _ref = undefined,
+            _ref2 = undefined;
         widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime : void 0 : void 0);
       }
       widget.setBuyBtnUrl();

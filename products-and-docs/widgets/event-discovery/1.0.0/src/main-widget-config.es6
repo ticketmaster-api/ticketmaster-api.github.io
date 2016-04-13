@@ -1,8 +1,21 @@
 (function(){
-  
-  let widget = widgetsEventDiscovery[0];
 
-  var themeConfig = {      
+  function getHeightByTheme(theme){
+    return (theme === 'simple' ? 286 : 339);
+  }
+
+  function getBorderByTheme(theme) {
+    switch (theme) {
+      case 'simple':
+        return 0;
+        break;
+      default:
+        return 2;
+    }
+  }
+  
+  let widget = widgetsEventDiscovery[0],
+    themeConfig = {
       sizes: {
         s: {
           width: 160,
@@ -41,36 +54,18 @@
         maxWidth: 500,
         minWidth: 350
       }      
-  };
-
-
-  function getHeightByTheme(theme){
-    return (theme === 'simple' ? 286 : 339);
-  }
-
-  function getBorderByTheme(theme) {
-    switch (theme) {
-      case 'simple':
-        return 0;
-        break;
-      default:
-        return 2;
-    }
-  }
-
-  // TODO: do we need 'config' variable ?
-  var config = {"ak":"KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst","kw":"Def","t":{"n":"t1","b":false,"h":600,"w":350,"br":4}};
+    },
+    isPostalCodeChanged = false;
 
   var $widthController = $('#w-width').slider({
-    tooltip: 'always',
-    handle: 'square'
-  }),
-  //$layoutSelectors = $('#w-colorscheme-light, #w-colorscheme-dark'),
-  $colorSchemeSelector = $('.widget__color_scheme_control'),
-  $borderRadiusController = $('#w-borderradius').slider({
-    tooltip: 'always',
-    handle: 'square'
-  });
+      tooltip: 'always',
+      handle: 'square'
+    }),
+    $borderRadiusController = $('#w-borderradius').slider({
+      tooltip: 'always',
+      handle: 'square'
+    }),
+    $colorSchemeSelector = $('.widget__color_scheme_control');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
@@ -86,25 +81,16 @@
         targetName = event.target.name,
         $tabButtons = $('.js-tab-buttons');
 
-    if(targetName === "w-country"){
-      //console.log(event.target.value);
-    }
     if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
-      //$('#w-country').prop('disabled', true)
-        // .data('cleared', true)
-        // .html('')
-      //;
+      isPostalCodeChanged = true;
     }
 
     if(targetName === "w-theme"){
       if(targetValue === 'simple'){
         $colorSchemeSelector.hide();
-        //$layoutSelectors.prop('disabled', true);
       }else{
         $colorSchemeSelector.show();
-        //$layoutSelectors.prop('disabled', false);
-        //console.log('$layoutSelectors', $colorSchemeSelector);
       }
 
       if(widgetNode.getAttribute('w-layout') === 'horizontal'){
@@ -175,33 +161,22 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    // if(event.target.name === "border"){
-      //if(event.target.checked){
-      //  widgetNode.setAttribute(event.target.id, "");
-      //}
-      //else{
-      //  widgetNode.removeAttribute(event.target.id);
-      //}
-    // }
-    // else {}
-
     widgetNode.setAttribute(event.target.name, event.target.value);
-    
     widget.update();
   };
 
   var resetWidget = function(configForm) {
     let widgetNode = document.querySelector("div[w-tmapikey]"),
-        height = 600,
-        theme,
-        layout;
+      height = 600,
+      theme,
+      layout;
     const widthSlider = $('.js_widget_width_slider'),
-          $tabButtons = $('.js-tab-buttons');
+      $tabButtons = $('.js-tab-buttons');
 
     configForm.find("input[type='text'], input[type='number']").each(function(){
       let $self = $(this),
-          data = $self.data(),
-          value = data.defaultValue;
+        data = $self.data(),
+        value = data.defaultValue;
 
       if(data.sliderValue){
         value = data.sliderValue;
@@ -317,57 +292,50 @@
     }
   });
 
-  $('#w-country').data('cleared', true);
-  widget.onLoadCoordinate = function (response, countryShortName = '') {
+  widget.onLoadCoordinate = function (results, countryShortName = '') {
     widget.config['country'] = countryShortName;
-    let $countrySelect = $('#w-country'),
+    if(isPostalCodeChanged){
+      isPostalCodeChanged = false;
+
+      let $countrySelect = $('#w-country'),
         $ul = $(".js_widget_custom__list"),
+        options = "<option selected value=''>All</option>";
+
+      $countrySelect.html('');
+      $ul.html(''); //clear custom select list
+      $countrySelect.prop('disabled', !results);
+      if(results){
+        $countrySelect.prop('disabled', !results.length);
         options = '';
-
-
-    $countrySelect.html(`<option>All</option>`);
-
-    if(response){
-      if(response.status === 'OK'){
-        if(response.results){
-          $countrySelect.prop('disabled', !response.results.length);
-          if($countrySelect.data('cleared')){
-            $countrySelect.html('');
-            $ul.html('');//clear li
-
-            for(let i in response.results){
-              let result = response.results[i];
-              if(result.address_components){
-                let country = result.address_components[result.address_components.length - 1];
-                if(country){
-                  let isSelected = country.short_name === countryShortName ? 'selected' : '';
-                  options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
-                }
-              }
-            }
-            if(options){
-              $countrySelect.append(options);
-              $countrySelect.prop('disabled', false);
-              addCustomList($ul, '#w-country');
+        for(let i in results){
+          let result = results[i];
+          if(result.address_components){
+            let country = result.address_components[result.address_components.length - 1];
+            if(country){
+              let isSelected = country.short_name === countryShortName ? 'selected' : '';
+              options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
             }
           }
         }
       }
+
+      $countrySelect.append(options);
+      addCustomList($ul, '#w-country', countryShortName);
     }
   };
 
-  function addCustomList(listWrapperElement, listWrapperId) {
+  function addCustomList(listWrapperElement, listWrapperId, activeVal) {
     var $listOption = $(listWrapperId).find('option'),//update list
         $placeholder = $(".country-select").find(".custom_select__placeholder"),
         $ul = listWrapperElement;
-
+  
     $placeholder.val( $listOption.html() );
 
     $listOption.each(function () {
       var data = {
         value: $(this).val()
       };
-      $ul.append("<li class='custom_select__item' data-value='" + data.value + "' >" + $(this).text() + "</li>")
+      $ul.append(`<li class="custom_select__item ${activeVal === data.value ? 'custom_select__item-active' : ''}" data-value="${data.value}">${$(this).text()}</li>`)
     });
   }
 

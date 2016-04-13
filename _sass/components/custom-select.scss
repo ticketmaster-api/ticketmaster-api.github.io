@@ -3,7 +3,7 @@
   position: relative;
   margin-bottom: 24px;
 
-  &:after {
+  &__arrow{
     content: '';
     position: absolute;
     top: 50%;
@@ -11,12 +11,32 @@
     width: 15px;
     height: 10px;
     margin-top: -5px;
-    background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+    cursor: pointer;
+
+    &:before,
+    &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      @include transition(opacity 0.2s ease-in-out);
+    }
+
+    &:before{
+      background: url("/assets/controls/ic-shevron-down-grey.svg") no-repeat;
+      opacity: 0;
+    }
+
+    &:after{
+      background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+    }
   }
 
   @media (min-width: 767px){
     &-opened {
-      &:after {
+      .custom_select__arrow {
         @include rotate(180deg)
       }
     }
@@ -55,6 +75,7 @@
   &__placeholder {
     margin-bottom: 0;
     cursor: pointer;
+    @include transition(opacity 0.2s ease-in-out);
     @media (max-width: 767px){
       display: none;
     }
@@ -63,6 +84,8 @@
   &__field {
     margin-bottom: 0;
     padding-right: 50px;
+    @include transition(opacity 0.2s ease-in-out);
+
     @media (min-width: 767px){
       // make select invisible
       border: 0 !important;
@@ -73,6 +96,30 @@
       padding: 0 !important;
       position: absolute !important;
       width: 1px !important;
+    }
+
+    &[disabled]{
+      opacity: 0.5;
+      cursor: default;
+      &+.custom_select__placeholder{
+        opacity: 0.5;
+        cursor: default;
+        &:focus{
+          border-color: #ccc;
+        }
+        &+.custom_select__list{
+          display: none!important;
+          &+.custom_select__arrow{
+            @include rotate(0);
+            &:before{
+              opacity: 0.5;
+            }
+            &:after{
+              opacity: 0;
+            }
+          }
+        }
+      }
     }
   }
 
