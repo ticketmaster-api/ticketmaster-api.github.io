@@ -1,20 +1,18 @@
 (function($){
 jQuery.fn.customSelect = function(options ) {
 
-    var defaults = {
-            
-        },
+    var defaults = {},
         settings = $.extend({}, defaults, options);
 
 
     return this.each(function () {
 
         var $custom_select = $(this);
+        $custom_select.append('<div class="custom_select__arrow"/>');
 
         var $select = $custom_select.find('select'),
             $placeholder = $custom_select.find('input'),
             $list = $custom_select.find('ul'),
-            $options = $list.find('li'),
             $feedbackModal = $('#feedback-modal'),
             openedCssClass = 'custom_select-opened',
             activeItemCssClass = 'custom_select__item-active',
@@ -36,13 +34,15 @@ jQuery.fn.customSelect = function(options ) {
             $placeholder.val($self.text());
             $select.val($self.data('value'));
             if(!isInit) $select.trigger('change');
-            $options.removeClass(activeItemCssClass);
+            $list.find('li').removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
         }
 
         function toggle() {
-            if ($list.is(':visible')) hide();
-            else show();
+            if(!$select.is(':disabled')){
+                if ($list.is(':visible')) hide();
+                else show();
+            }
         }
 
         function blur() {
