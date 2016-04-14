@@ -112,6 +112,7 @@
 
   .api-column {
     outline: none;
+    margin-top: 50px;
     .api-column-map-image{
       cursor: pointer;
       width: 100%;
@@ -164,7 +165,6 @@
     &.column-color-12 {
       @include colored-column(#db6b55);
     }
-    margin-top: 72px;
     &.transparent {
       opacity: 0.7;
       &:hover{
@@ -472,17 +472,15 @@
   }
 
   #req-res-container{
-    height: 210px;
+    height: auto;
     overflow: auto;
     padding-right: 10px;
-    margin-bottom: -25px;
     .req-resp-temp{
       border: none;
       border-bottom: 1px solid $silver;
       box-shadow: none;
       position: relative;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
+      float: left;
       .panel-heading,
       .panel-body{
         background: none;
@@ -502,7 +500,7 @@
         margin: 0;
       }
       .collapsing{
-        overflow: inherit;
+        overflow-x: inherit;
       }
       a[data-parent='#req-res-container']{
         color: $n2-grey-color;
