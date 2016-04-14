@@ -325,8 +325,7 @@ div[w-theme="simple_countdown"] .event-logo {
     height: 18px;
 }
 
-div[w-theme="simple_countdown"] .event-logo:before,
-div[w-theme="simple_countdown"] .event-logo:after {
+div[w-theme="simple_countdown"] .event-logo:before{
     content: '';
     position: absolute;
     left: 0;
@@ -337,25 +336,8 @@ div[w-theme="simple_countdown"] .event-logo:after {
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
-}
-
-div[w-theme="simple_countdown"] .event-logo:before {
-    opacity: 0;
     /* TODO: add http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="simple_countdown"] .event-logo:after {
-    /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
-}
-
-div[w-theme="simple_countdown"] .event-logo:hover:before {
-    opacity: 1;
-}
-
-div[w-theme="simple_countdown"] .event-logo:hover:after {
-    opacity: 0;
 }
 
 /* BUY NOW */
