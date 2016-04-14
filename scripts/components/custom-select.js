@@ -58,9 +58,14 @@ jQuery.fn.customSelect = function(options ) {
             set(this, false);
         });
         $placeholder.on('blur', blur);
-        $custom_select.on('click', toggle);
-        $feedbackModal.on('hide.bs.modal', reset);
-        $feedbackModal.on('show.bs.modal', reset);
+        $custom_select.on({
+            'click': toggle,
+            'custom-reset': reset
+        });
+        $feedbackModal.on({
+            'hide.bs.modal': reset,
+            'show.bs.modal': reset
+        });
 
         reset();
         });

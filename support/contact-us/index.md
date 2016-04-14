@@ -80,7 +80,7 @@ Attn: Trademark Department, Legal 
 <div markdown="1">
 {{formheader}}
 <div class="col-xs-12 col-sm-8 contact-form-wrapper">
-<form accept-charset="UTF-8" action="#" method='GET' class="js_contact_form">
+<form accept-charset="UTF-8" action="#" method='POST' class="js_contact_form">
     <div class="col-sm-6">
         <label for="first-name">Your name</label>
         <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" tabindex="1" required>
@@ -112,8 +112,8 @@ Attn: Trademark Department, Legal 
         <textarea name="descriptions" id="message-detail-text" tabindex="3" required></textarea>
     </div>
     <div class="col-sm-12">
-        <p id="message-success" class="message message-green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
-        <p id="message-error" class="message message-red" style="display:none">The maximum length of description can be 3000 characters.</p>
+        <p id="message-success" class="text-overflow-message text-overflow-message__green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-error" class="text-overflow-message text-overflow-message__red" style="display:none">The maximum length of description can be 3000 characters.</p>
     </div>
     <div class="col-sm-4">
         <button type="submit" class="button-blue">SEND</button>
@@ -155,7 +155,7 @@ var $contactForm = $('.js_contact_form'),
 
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=892e0c5e4c169c6128c7342614608330",  //41f4cf3970c05bb985abec394b1e3c0b-Prod //892e0c5e4c169c6128c7342614608330-test
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
           data: $contactForm.serialize() 
         }).done(function() {
           //callback which can be used to show a thank you message
@@ -167,6 +167,7 @@ var $contactForm = $('.js_contact_form'),
     function showMsgSuccess(id, delay){
         $(id).slideDown(400).delay( delay ).slideUp(200);
         $contactForm.trigger("reset");
+        $('.js_custom_select',$contactForm).trigger("custom-reset");
         //$textAreaDescription.css('height',''); //reset height of textarea
         $('button', $contactForm).prop('disabled',false);
     }
