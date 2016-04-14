@@ -1,27 +1,27 @@
 /* FONTS */
-/*TMSans*/
+/* TODO: update after release to  http://developer.ticketmaster.com/*/
 @font-face {
     font-family: "TMSans-Regular";
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 @font-face {
     font-family: "TMSans-Light";
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 @font-face {
     font-family: "TMSans-Italic";
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 @font-face {
     font-family: "TMSans-Bold";
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
-    src: url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://developer.ticketmaster.com/assets/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 
@@ -89,7 +89,7 @@ div[w-theme="listview"] .event-message {
     opacity: 0;
     z-index: 10;
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/img/widgets/message_logo.svg") no-repeat 16px 50%;
+    background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/message_logo.svg") no-repeat 16px 50%;
     -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -108,7 +108,7 @@ div[w-theme="listview"] .event-message__btn {
     top: 15px;
     cursor: pointer;
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ic-close-small-white.svg") no-repeat 50% 50%;
+    background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ic-close-small-white.svg") no-repeat 50% 50%;
 }
 
 div[w-theme="listview"] .events-root-container{
@@ -179,13 +179,13 @@ div[w-theme="listview"] .event-question:after {
 div[w-theme="listview"] .event-question:before {
     opacity: 0;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-blue.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/question-ic-blue.svg");
 }
 
 div[w-theme="listview"] .event-question:after {
     opacity: 0.7;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/question-ic-grey.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/question-ic-grey.svg");
 }
 
 div[w-theme="listview"] .event-question:hover:before {
@@ -373,7 +373,7 @@ div[w-theme="listview"] .event-logo:before {
 
 div[w-theme="listview"] .event-logo:before {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/img/widgets/ticketmaster-verified-logo-h.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
 }
 
 /*group*/
