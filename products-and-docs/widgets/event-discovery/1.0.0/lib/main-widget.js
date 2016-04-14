@@ -493,6 +493,8 @@ var TicketmasterEventDiscoveryWidget = function () {
       for (var i = 0; i < 4; i++) {
         var headLogo = document.createElement("img");
         headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
+        //TODO: change before move to live
+        // headLogo.setAttribute("src", this.logoUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
         headLogo.setAttribute("height", "11");
         ticketLogo.appendChild(headLogo);
       }
