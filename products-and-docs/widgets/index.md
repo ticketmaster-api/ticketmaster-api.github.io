@@ -52,10 +52,7 @@ Informational text about the widget and it abilities, functions and other inform
 Informational text about the widget and it abilities, functions and other information.
 
 {: .button_set}
-[CONFIGURE NOW](/products-and-docs/under-development/){: .button.button-blue} 
-{::comment}
 [CONFIGURE NOW](/products-and-docs/widgets/countdown/){: .button.button-blue} 
-{:/comment}
 {::comment}
 [LEARN MORE](#){: .button .button-default}
 {:/comment}
