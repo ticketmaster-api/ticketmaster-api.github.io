@@ -40,7 +40,13 @@ cache:
 
 notifications:
   #slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
-  email: false
+  email:
+    recipients:
+        - pashades@gmail.com
+        - pavlo_oliinyk1@epam.com
+        - de.gratnik@gmail.com
+    on_success: never
+    on_failure: always
 
 before_install:
   - '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages || true'

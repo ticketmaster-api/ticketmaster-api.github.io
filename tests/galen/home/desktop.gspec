@@ -49,7 +49,7 @@
 
     @on desktop
         nav-item-1:
-            % text is "PRODUCTS & DOCS"
+            text is "PRODUCTS & DOCS-1"
             aligned horizontally all nav-item-2
         nav-item-2:
             % text is "PARTNERS"
