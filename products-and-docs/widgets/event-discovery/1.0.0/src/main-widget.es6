@@ -27,7 +27,7 @@ class TicketmasterEventDiscoveryWidget {
 
   get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
-  get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion"]}
+  get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"]}
 
   get sliderDelay(){ return 5000; }
 
@@ -228,9 +228,8 @@ class TicketmasterEventDiscoveryWidget {
 
     if(this.isConfigAttrExistAndNotEmpty('postalcode')){
       let args = {components: `postal_code:${widget.config.postalcode}`};
-      if(this.config.country){
-        args.components += `|country:${this.config.country}`;
-      }
+      if(widget.config.googleapikey) args.key = widget.config.googleapikey;
+      if(this.config.country) args.components += `|country:${this.config.country}`;
       this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
     }else{
       // Used in builder

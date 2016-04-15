@@ -243,13 +243,14 @@
 
   $('.js_get_widget_code').on('click', function () {
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
-
     var htmlCode = document.createElement("div");
     for (var key in widget.config) {
       if (key !== 'latlong') {
         htmlCode.setAttribute("w-" + key, widget.config[key]);
       }
     }
+    // Use only Key from config form
+    htmlCode.setAttribute('w-googleapikey', $('#w-googleapikey').val() || '');
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
