@@ -94,7 +94,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion"];
+      return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"];
     }
   }, {
     key: "sliderDelay",
@@ -300,9 +300,8 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
         var args = { components: "postal_code:" + widget.config.postalcode };
-        if (this.config.country) {
-          args.components += "|country:" + this.config.country;
-        }
+        if (widget.config.googleapikey) args.key = widget.config.googleapikey;
+        if (this.config.country) args.components += "|country:" + this.config.country;
         this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
       } else {
         // Used in builder
