@@ -1,6 +1,6 @@
 #!/bin/bash
 echo 'Before script'
-#set -ev #for debugging
+set -e #exit on error
 sleep 10 # give xvfb some time to start
 
 copyTestContent() {
