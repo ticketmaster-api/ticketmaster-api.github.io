@@ -24,7 +24,7 @@ before_script:
 script:
   - jekyll serve &
   - sleep 15 # give jekyll some time to start
-  - sh ./tests/run-test.sh
+  - sh ./tests/run-test-dispatch.sh
 
 after_script:
   - rake travis:deploy --trace --verbose
@@ -37,10 +37,10 @@ cache:
 
 notifications:
   email:
-    recipients:
+    recipients: #will recive notification if it turn on in https://github.com/settings/ by admin
+        #- pavlo_oliinyk1@epam.com
+        #- de.gratnik@gmail.com
         - pashades@gmail.com
-        - pavlo_oliinyk1@epam.com
-        - de.gratnik@gmail.com
     on_success: never
     on_failure: always
   #slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
