@@ -25,9 +25,6 @@ script:
   - jekyll serve &
   - sleep 15 # give jekyll some time to start
   - sh ./tests/run-test.sh
-  #- '[ "${TEST_SEVERITY}" = "MEDIUM" ] && sh ./tests/levels/run-test-medium.sh || true'
-  #- '[ "${TEST_SEVERITY}" = "HIGH" ] && sh ./tests/levels/run-test-high.sh || true'
-  #- '[ "${TEST_SEVERITY}" = "CRITICAL" ] && sh ./tests/levels/run-test-critical.sh || true'
 
 after_script:
   - rake travis:deploy --trace --verbose
@@ -39,7 +36,6 @@ cache:
     - bundler
 
 notifications:
-  #slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
   email:
     recipients:
         - pashades@gmail.com
@@ -47,6 +43,7 @@ notifications:
         - de.gratnik@gmail.com
     on_success: never
     on_failure: always
+  #slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
 
 before_install:
   - '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages || true'
