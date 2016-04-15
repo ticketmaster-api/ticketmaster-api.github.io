@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "starts criticalLevelTest."
+set -e #exit on error
 
   # part1
 galen test tests/galen/all.test --htmlreport tests/galen/reports/all --groups HomePage

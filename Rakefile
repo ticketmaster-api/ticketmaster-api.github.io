@@ -63,11 +63,12 @@ namespace 'travis' do
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
         system "git add tests/galen"
-        system "git commit -a -m 'Auto-Report from Travis'"
+        system "git commit --allow-empty  --amend -m 'Auto-Report from Travis #{Time.now.utc.to_s}'"
         system "git checkout -b #{REPORT_BRANCH}"
     reported = system "git push -u -f origin #{REPORT_BRANCH}"
 
     puts "Reported: #{reported}"
+    puts "Reported-time(at UTC=+0000): #{Time.now.utc.to_s}"
 
     File.delete '.git/credentials'
 
