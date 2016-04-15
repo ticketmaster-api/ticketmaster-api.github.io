@@ -142,6 +142,7 @@ Attn: Trademark Department, Legal 
 <script>
 var $contactForm = $('.js_contact_form');
     $contactForm.submit(function(e){
+        $('button', $contactForm).prop('disabled',true);
         e.preventDefault();
         $.ajax({
           dataType: 'jsonp',
@@ -156,6 +157,8 @@ var $contactForm = $('.js_contact_form');
     }); 
     function showMsgSuccess(id, delay){
         $(id).slideDown(400).delay( delay ).slideUp(200);
+        $contactForm.trigger("reset");
+        $('button', $contactForm).prop('disabled',false);
     }
 </script>
 
