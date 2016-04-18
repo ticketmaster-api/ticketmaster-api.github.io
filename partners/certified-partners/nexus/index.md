@@ -59,7 +59,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="col-sm-6">
     <label >Number of Ticketmaster clients</label>
-    <input type="number-nexus" min="0" name="ticketsNumber" pattern="[0-9]*" title="This field may only contain alpha-numeric characters" tabindex="6">
+    <input type="number-nexus" min="0" name="ticketsNumber" pattern="[0-9]*" inputmode="numeric" title="This field may only contain alpha-numeric characters" tabindex="6">
     </div>    
     
     <label class="label-radio-group">Is product offering free or paid? <span class="label-required">(required)</span></label>
