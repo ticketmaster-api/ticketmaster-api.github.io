@@ -75,9 +75,8 @@
   });
 
   var changeState = function changeState(event) {
-    if (!event.target.name) {
-      return;
-    }
+    if (!event.target.name || event.target.name === "w-googleapikey") return;
+
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         targetValue = event.target.value,
         targetName = event.target.name,
