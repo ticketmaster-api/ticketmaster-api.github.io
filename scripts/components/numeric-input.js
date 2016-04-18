@@ -2,15 +2,8 @@
 
     jQuery.fn.checkNumeric = function(options ){
 
-        var defaults = {
-            scrollUpOnCollapse: true
-        },
+        var defaults = {},
         settings = $.extend( {}, defaults, options);
-
-        // Redraw element for table geometry update
-        function redrawElement(element){
-            $(element).hide(0).show(0);
-        }
 
         return this.each(function() {
             var $numeric_input = $(this);
@@ -29,8 +22,6 @@
         });
     };
 })(jQuery);
-
-
 
 $(document).on('ready', function () {
     $('.js_numeric_input').checkNumeric();
