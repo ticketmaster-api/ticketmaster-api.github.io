@@ -79,6 +79,18 @@
         margin: $base-margin*3 0px 0px 0px;
       }
 
+      h2:target:before {
+        content: "";
+        display: block;
+        height: 100px;
+        margin: -100px 0 0;
+
+        @media #{$max-1200} {
+          height: 154px;
+          margin-top: -154px;
+        }
+      }
+
       h3 {
         margin: $base-margin*2 0px 0px 0px;
       }
