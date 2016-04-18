@@ -2,9 +2,7 @@
 
     jQuery.fn.checkNumeric = function(options ){
 
-        var defaults = {
-            scrollUpOnCollapse: true
-        },
+        var defaults = {},
         settings = $.extend( {}, defaults, options);
 
         return this.each(function() {
