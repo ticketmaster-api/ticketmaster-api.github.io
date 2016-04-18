@@ -30,8 +30,6 @@
     };
 })(jQuery);
 
-
-
 $(document).on('ready', function () {
     $('.js_numeric_input').checkNumeric();
 });
