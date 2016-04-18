@@ -7,36 +7,36 @@ keywords: partners, certified partners, become an affilate
 ---
 
 {% capture distribution_partners_block %}
-[![Distribution Partners](/assets/img/partners/distribution-ic.svg)](#)
+[![Distribution Partners](/assets/img/partners/distribution-ic.svg)](/partners/distribution-partners/)
 
 ### Distribution Partners
 
 {: .descr}
 Distribution partners deliver incremental audiences to help our clients sell more tickets
 
-[Get to know our Distribution partners](/partners/)
+[Get to know our Distribution partners](/partners/distribution-partners/)
 {% endcapture %}
 
 {% capture certified_partners_block %}
-[![Certified Partners](/assets/img/partners/certified-ic.svg)](#)
+[![Certified Partners](/assets/img/partners/certified-ic.svg)](/partners/certified-partners/)
 
 ### Certified Partners
 
 {: .descr}
 Nexus Certified Partners are distinguished best-in-class solutions providers to the live events industry
 
-[Get to know our Nexus partners](/partners/)
+[Get to know our Nexus partners](/partners/certified-partners/)
 {% endcapture %}
 
 {% capture startups_block %}
-[![Startups &amp; Developers](/assets/img/partners/startups-ic.svg)](#)
+[![Startups &amp; Developers](/assets/img/partners/startups-ic.svg)](/partners/startups-and-developers/)
 
 ### Startups &amp; Developers
 
 {: .descr}
 Several words about startups and developers section. Main function and so on information
 
-[See all showcases](/partners/)
+[See all showcases](/partners/startups-and-developers/)
 {% endcapture %}
 
 {% capture distribution_header %}
@@ -46,19 +46,19 @@ Several words about startups and developers section. Main function and so on inf
 
 {% capture distribution_logos %}
 {: .logo}
-[![Groupon](/assets/img/partners/groupon-logo.png)](#)
+[![Groupon](/assets/img/partners/groupon-logo.png)](/partners/distribution-partners/)
 
 {: .logo}
-[![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](#)
+[![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](/partners/distribution-partners/)
 
 {: .logo}
-[![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](#)
+[![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](/partners/distribution-partners/)
 
 {: .logo .logo-bottom}
-[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](#)
+[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](/partners/distribution-partners/)
 
 {: .logo .logo-bottom}
-[![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](#)
+[![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](/partners/distribution-partners/)
 {% endcapture %}
 
 {% capture distribution_more %}
@@ -89,7 +89,7 @@ Have questions about our affiliate program? [Check out our FAQs!](/support/faq/#
 
 {% capture certified_logos %}
 {: .logo .logo-one}
-[![Nexus](/assets/img/partners/nexus-logo.png)](#)
+[![Nexus](/assets/img/partners/nexus-logo.png)](/partners/certified-partners/nexus/)
 {% endcapture %}
 
 {% capture certified_more %}
