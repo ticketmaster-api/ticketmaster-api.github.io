@@ -247,7 +247,7 @@ var TicketmasterCountdownWidget = function () {
   _createClass(TicketmasterCountdownWidget, [{
     key: "getNormalizedDateValue",
     value: function getNormalizedDateValue(val) {
-      return ('0' + val).slice(-2);
+      return (val < 0 || val > 9 ? "" : "0") + val;
     }
   }, {
     key: "onCountdownChange",
@@ -428,9 +428,6 @@ var TicketmasterCountdownWidget = function () {
       var result = '';
       if (!date.day) return result; // Day is required
 
-      function LZ(x) {
-        return (x < 0 || x > 9 ? "" : "0") + x;
-      }
       var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
           dayArray = date.day.split('-'),
@@ -454,7 +451,7 @@ var TicketmasterCountdownWidget = function () {
         H = H - 12;
       }
 
-      return result + ' ' + LZ(H) + ':' + m + ' ' + a;
+      return result + ' ' + this.getNormalizedDateValue(H) + ':' + m + ' ' + a;
     }
   }, {
     key: "clearEvents",
