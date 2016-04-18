@@ -84,10 +84,10 @@
         display: block;
         height: 100px;
         margin: -100px 0 0;
-        background: #0a6aa1;
 
         @media #{$max-1200} {
-          margin-top: 154px;
+          height: 154px;
+          margin-top: -154px;
         }
       }
 
