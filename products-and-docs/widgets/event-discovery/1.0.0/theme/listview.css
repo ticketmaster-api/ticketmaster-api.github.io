@@ -510,3 +510,12 @@ div[w-theme="listview"] .ss-grabbed {
     -khtml-user-select: none;
     -webkit-user-select: none;
 }
+
+/* !!! HotFix !!! */
+div[w-theme="listview"] .general-admission {
+    display: none;
+}
+
+div[w-theme="listview"] .ticket-logo {
+    display: none;
+}
