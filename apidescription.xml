@@ -539,7 +539,7 @@
 
     <!-- Event Details -->
     <resource path="discovery/v2/events/{id}.{format}">
-      <param name="id" required="true" type="xsd:string" style="template" default="1A4ZAZyGkeUYKaO">
+      <param name="id" required="true" type="xsd:string" style="template" default="G5diZfkn0B-bh">
         <doc>Event ID</doc>
       </param>
       <param name="format" required="true" type="xsd:string" style="template" default="json">
@@ -565,7 +565,7 @@
           <apigee:tag>Events</apigee:tag>
         </apigee:tags>
         <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v2/events/1A4ZAZyGkeUYKaO.json"/>
+        <apigee:example url="discovery/v2/events/G5diZfkn0B-bh.json"/>
         <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#event-details">Returns the event detail by event ID.
         </doc>
       </method>
@@ -573,7 +573,7 @@
 
     <!-- Event Images -->
     <resource path="discovery/v2/events/{id}/images.{format}">
-      <param name="id" required="true" type="xsd:string" style="template" default="1A4ZAZyGkeUYKaO">
+      <param name="id" required="true" type="xsd:string" style="template" default="G5diZfkn0B-bh">
         <doc>Event ID</doc>
       </param>
       <param name="format" required="true" type="xsd:string" style="template" default="json">
@@ -599,7 +599,7 @@
           <apigee:tag>Events</apigee:tag>
         </apigee:tags>
         <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v2/events/1A4ZAZyGkeUYKaO/images.json"/>
+        <apigee:example url="discovery/v2/events/G5diZfkn0B-bh/images.json"/>
         <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#event-img">Returns all the images for an event by ID. If an event does not have an image for a supported resolution, the event's classification image will be returned instead.
         </doc>
       </method>
