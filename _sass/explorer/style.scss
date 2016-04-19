@@ -473,7 +473,6 @@
 
   #req-res-container{
     height: auto;
-    overflow: auto;
     padding-right: 10px;
     .req-resp-temp{
       border: none;
@@ -481,6 +480,7 @@
       box-shadow: none;
       position: relative;
       float: left;
+      width: 100%;
       .panel-heading,
       .panel-body{
         background: none;
