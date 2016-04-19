@@ -14,8 +14,7 @@
                       $(this).val($(this).val().replace(/[^\d|\s]/g, ''));
                   })
                   .blur(function() {
-                      $(this).val($(this).val().replace(/[^\d]/g, ''));
-                        //.prop('type', 'number');
+                      $(this).val($(this).val().replace(/[^\d]/g, '')).prop('type', 'number');
                   });
             });
 
