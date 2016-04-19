@@ -172,20 +172,19 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
 Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API
 provides access to all Ticketmaster events, as well as Universe and TicketWeb events.
 
-### Commerse api
+### Commerce API
 
 Provide detailed information about ticket price, fees, taxes, related offers.
 
 ### Partner API
 
-Lets clients work with payments such as reserve, purchase and retreive ticket.
-Card provide detailed information about shipping, credit card information, purchase and commit the
-transaction.Order management let clients get information about an order retreive unredeemed orders.
+Lets clients work with payments such as reserve, purchase and retrieve ticket.
+Cards provide detailed information about shipping, credit card information, purchase and commit the transaction. Order
+management lets clients get the information about an order and retrieve unredeemed orders.
 
-### DealsDEALS API
+### DEALS API
 
-Provide information about event that are exclusive to the affiliate audience with differend additional
-parameters.
+ Provide information about events that are exclusive to the affiliate audience with different additional parameters.
 
 ### Publish API
 
