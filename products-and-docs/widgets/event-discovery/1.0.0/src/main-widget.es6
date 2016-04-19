@@ -1017,14 +1017,16 @@ class TicketmasterEventDiscoveryWidget {
           time: eventsSet[key].dates.start.localTime
         };
 
-        let venue = eventsSet[key]._embedded.venues[0];
-        if(venue){
-          if(venue.address)
-            currentEvent.address = venue.address;
+        if(eventsSet[key].hasOwnProperty('_embedded') && eventsSet[key]._embedded.hasOwnProperty('venues')){
+          let venue = eventsSet[key]._embedded.venues[0];
+          if(venue){
+            if(venue.address)
+              currentEvent.address = venue.address;
 
-          if(venue.name){
-            if(!currentEvent.address) currentEvent.address = {};
-            currentEvent.address.name = venue.name;
+            if(venue.name){
+              if(!currentEvent.address) currentEvent.address = {};
+              currentEvent.address.name = venue.name;
+            }
           }
         }
 
