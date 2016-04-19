@@ -721,7 +721,8 @@ div[w-theme="newschool"][w-colorscheme="dark"] .event-buy-btn[href=''],
 div[w-theme="newschool"][w-colorscheme="dark"]  .event-buy-btn[href='']:hover {
     background-color: #ccc;
     cursor: default;
-    opacity: 0.5;
+    /* opacity: 0.5; */
+    opacity: 0;
     color: #fff;
 }
 
