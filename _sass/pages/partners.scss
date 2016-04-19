@@ -417,6 +417,19 @@ body .top-bar.bg-header {
     height: 96px;
     resize: vertical;
   }
+  input[type=number] {
+    -moz-appearance:textfield;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
   .col-sm-12,
   .col-sm-6 {
     padding-left: 0;
