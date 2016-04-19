@@ -713,3 +713,7 @@ div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .event-conte
 div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-content-wraper {
     padding-top: 110px;
 }
+
+div[w-theme="oldschool"] .ticket-logo {
+    display: none;
+}

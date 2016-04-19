@@ -502,3 +502,12 @@ background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 10
 div[w-theme="simple"][w-proportion="3x6"]  {
     width: 300px;
 }
+
+/* !!! HotFix !!! */
+div[w-theme="simple"] .general-admission {
+    display: none;
+}
+
+div[w-theme="simple"] .ticket-logo {
+    display: none;
+}

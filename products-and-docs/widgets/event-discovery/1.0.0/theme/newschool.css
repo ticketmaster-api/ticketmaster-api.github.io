@@ -731,7 +731,6 @@ div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root
 
 div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root,
 div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .events-root {
-    height: 68%;
 }
 
 div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .event-wrapper,
@@ -756,3 +755,7 @@ div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .events_contr
     margin-top: -68px;
 }
 
+/* !!! HotFix !!! */
+div[w-theme="newschool"] .general-admission {
+    display: none;
+}
