@@ -182,7 +182,7 @@ Lets clients work with payments such as reserve, purchase and retrieve ticket.
 Cards provide detailed information about shipping, credit card information, purchase and commit the transaction. Order
 management lets clients get the information about an order and retrieve unredeemed orders.
 
-### DEALS API
+### Deals API
 
  Provide information about events that are exclusive to the affiliate audience with different additional parameters.
 
@@ -193,7 +193,7 @@ events, venues and attractions available within the Discovery API.
 
 ### International Discovery API 
 The Ticketmaster International Discovery API allows you to search for events, attractions, or venues, and
-get attraction, venue or event details including ticket information. Covers an markets in different countries.
+get attraction, venue or event details including ticket information. Covers markets in different countries.
 
 
 {: .double-margin #available-resources .no-mobile}
