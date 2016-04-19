@@ -12,7 +12,7 @@ keywords: Contact us
 # Contact us
 
 {: .lead .col-xs-12 .col-sm-8}
-Contact us, fixie tote bag ethnic keytar. Neutra vinyl American Apparel kale chips tofu art party, cardigan raw denim quinoa.
+We'd love to hear from you. Please let us know how we can help!
 
 {% capture social %}
 {: .gray .base-margin-top .text-center}
