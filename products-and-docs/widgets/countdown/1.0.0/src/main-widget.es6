@@ -517,14 +517,16 @@ class TicketmasterCountdownWidget {
       dateTime: eventSet.dates.start.dateTime
     };
 
-    let venue = eventSet._embedded.venues[0];
-    if(venue){
-      if(venue.address)
-        currentEvent.address = venue.address;
+    if(eventSet.hasOwnProperty('_embedded') && eventSet._embedded.hasOwnProperty('venues')){
+      let venue = eventSet._embedded.venues[0];
+      if(venue){
+        if(venue.address)
+          currentEvent.address = venue.address;
 
-      if(venue.name){
-        if(!currentEvent.address) currentEvent.address = {};
-        currentEvent.address.name = venue.name;
+        if(venue.name){
+          if(!currentEvent.address) currentEvent.address = {};
+          currentEvent.address.name = venue.name;
+        }
       }
     }
 
