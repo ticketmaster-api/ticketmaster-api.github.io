@@ -27,8 +27,8 @@
 /* TODO: change to http://developer.ticketmaster.com*/
 @font-face {
     font-family: "Ticketing-Regular";
-    src: url("http://ticketmaster-api-staging.github.io/assets/fonts/Widgets/ticketing.regular.otf"),
-         url("http://ticketmaster-api-staging.github.io/assets/fonts/Widgets/ticketing.regular.ttf") format("truetype");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot") format("truetype");
     font-style: normal;
     font-weight: normal; }
 
