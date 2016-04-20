@@ -686,6 +686,10 @@ div[w-theme="newschool"][w-layout="horizontal"][w-colorscheme="dark"] .events-ro
     background: #e5e5e5;
 }
 
+div[w-theme="newschool"][w-colorscheme="dark"] .events-root-container {
+    background: #ececec;
+}
+
 div[w-theme="newschool"][w-colorscheme="dark"] .ticket-logo {
     background: #4f72b9;
 }
