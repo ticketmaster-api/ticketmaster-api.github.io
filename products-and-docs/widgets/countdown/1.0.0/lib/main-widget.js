@@ -205,6 +205,7 @@ var TicketmasterCountdownWidget = function () {
     // };
 
     this.config = this.widgetRoot.attributes;
+    this.config.id = '1Ad0ZfdGkMoCQHJ';
 
     if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
