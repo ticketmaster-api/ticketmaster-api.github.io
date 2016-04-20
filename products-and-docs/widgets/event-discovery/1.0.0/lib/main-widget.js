@@ -74,7 +74,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: "logoUrl",
     get: function get() {
-      return "http://developer.ticketmaster.com/";
+      return "http://www.ticketmaster.com/";
     }
   }, {
     key: "legalNoticeUrl",
