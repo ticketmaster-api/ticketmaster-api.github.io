@@ -141,7 +141,7 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "logoUrl",
     get: function get() {
-      return "http://developer.ticketmaster.com/";
+      return "http://www.ticketmaster.com/";
     }
   }, {
     key: "legalNoticeUrl",
@@ -255,6 +255,7 @@ var TicketmasterCountdownWidget = function () {
       this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
       this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
       this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
+      this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
     }
   }, {
     key: "buildCountdown",
@@ -266,18 +267,22 @@ var TicketmasterCountdownWidget = function () {
       this.countDownDays = document.createElement("span");
       this.countDownHours = document.createElement("span");
       this.countDownMinute = document.createElement("span");
+      this.countDownSecond = document.createElement("span");
 
       this.countDownDays.innerHTML = '00';
       this.countDownHours.innerHTML = '00';
       this.countDownMinute.innerHTML = '00';
+      this.countDownSecond.innerHTML = '00';
 
       this.countDownDays.classList.add("events-count-down__day");
       this.countDownHours.classList.add("events-count-down__hour");
       this.countDownMinute.classList.add("events-count-down__minute");
+      this.countDownSecond.classList.add("events-count-down__second");
 
       countDown.appendChild(this.countDownDays);
       countDown.appendChild(this.countDownHours);
       countDown.appendChild(this.countDownMinute);
+      countDown.appendChild(this.countDownSecond);
 
       this.eventsRootContainer.appendChild(countDown);
     }
@@ -572,8 +577,8 @@ var TicketmasterCountdownWidget = function () {
           widget.onEventLoadError.call(widget, this.status);
         }
         // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
-        var _ref = undefined,
-            _ref2 = undefined;
+        var _ref = void 0,
+            _ref2 = void 0;
         widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime : void 0 : void 0);
       }
       widget.setBuyBtnUrl();

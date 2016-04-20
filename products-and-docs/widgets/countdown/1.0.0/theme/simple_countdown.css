@@ -322,7 +322,7 @@ div[w-theme="simple_countdown"] .event-logo {
     top: 8px;
     right: 24px;
     width: 159px;
-    height: 18px;
+    height: 26px;
 }
 
 div[w-theme="simple_countdown"] .event-logo:before{
@@ -399,24 +399,27 @@ div[w-theme="simple_countdown"] .events-count-down:before {
 }
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__day,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour,
-div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute{
-    width: 32.666%;
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute,
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__second{
+    width: 24.25%;
+    margin: 0 1% 0 0;
     height: 58px;
     line-height: 58px;
     font-family: InterstateWGL-Black, Arial, serif;
-    font-size: 40px;
+    font-size: 38px;
     color: #414141;
     background-color: rgba(250, 250, 250, .8);
     display: inline-block;
     position: relative;
 }
-div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour {
-    margin: 0 1%;
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__second {
+    margin-right: 0;
 }
 
 div[w-theme="simple_countdown"] .events-count-down__day:after,
 div[w-theme="simple_countdown"] .events-count-down__hour:after,
-div[w-theme="simple_countdown"] .events-count-down__minute:after {
+div[w-theme="simple_countdown"] .events-count-down__minute:after,
+div[w-theme="simple_countdown"] .events-count-down__second:after {
     content: '';
     text-transform: uppercase;
     background-color: rgba(65, 65, 65, 0.5);
@@ -440,27 +443,33 @@ div[w-theme="simple_countdown"] .events-count-down__hour:after {
 div[w-theme="simple_countdown"] .events-count-down__minute:after {
     content: 'min';
 }
+div[w-theme="simple_countdown"] .events-count-down__second:after {
+    content: 'sec';
+}
 /*time counter END*/
 
 
 /*  LAYOUT  */
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-content-wraper {
     padding-top: 36px;
+    width: 55%;
 }
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-name{
     margin-bottom: 17px;
     max-width: 560px;
     font-size: 20px;
-    width: 50%;
+    width: 100%;
     /*ellipsis effect*/
     display: block;
+    display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     /*ellipsis effect end*/
+    white-space: normal;
+    height: 80px;
 }
 div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper {
     max-width: 560px;
@@ -468,7 +477,7 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper {
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .address-wrapper,
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
-    width: 50%;
+    width: 100%;
 }
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-wrapper:before {
@@ -482,7 +491,7 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .event-date-wraper {
 }
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .events-count-down{
-    width: 40%;
+    width: 45%;
     top: 36px;
     right: 24px;
     padding: 0;
