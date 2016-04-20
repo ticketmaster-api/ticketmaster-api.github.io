@@ -255,6 +255,7 @@ var TicketmasterCountdownWidget = function () {
       this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
       this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
       this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
+      this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
     }
   }, {
     key: "buildCountdown",
@@ -266,18 +267,22 @@ var TicketmasterCountdownWidget = function () {
       this.countDownDays = document.createElement("span");
       this.countDownHours = document.createElement("span");
       this.countDownMinute = document.createElement("span");
+      this.countDownSecond = document.createElement("span");
 
       this.countDownDays.innerHTML = '00';
       this.countDownHours.innerHTML = '00';
       this.countDownMinute.innerHTML = '00';
+      this.countDownSecond.innerHTML = '00';
 
       this.countDownDays.classList.add("events-count-down__day");
       this.countDownHours.classList.add("events-count-down__hour");
       this.countDownMinute.classList.add("events-count-down__minute");
+      this.countDownSecond.classList.add("events-count-down__second");
 
       countDown.appendChild(this.countDownDays);
       countDown.appendChild(this.countDownHours);
       countDown.appendChild(this.countDownMinute);
+      countDown.appendChild(this.countDownSecond);
 
       this.eventsRootContainer.appendChild(countDown);
     }
