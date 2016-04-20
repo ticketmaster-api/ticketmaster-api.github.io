@@ -67,7 +67,7 @@ class TicketmasterCountdownWidget {
 
   get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
 
-  get logoUrl() { return "http://developer.ticketmaster.com/"; }
+  get logoUrl() { return "http://www.ticketmaster.com/"; }
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
