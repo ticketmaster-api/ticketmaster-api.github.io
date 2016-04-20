@@ -60,7 +60,10 @@ class TicketmasterCountdownWidget {
 
   get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
 
-  get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : false; }
+  set eventId(id){ this.config.id = id;}
+  get eventId(){ return this.config.id;}
+
+  get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : `https://app.ticketmaster.com/discovery/v2/events/1Ad0ZfdGkMoCQHJ.json`; }
 
   // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
   get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }
@@ -94,6 +97,10 @@ class TicketmasterCountdownWidget {
       {
         attr: 'tmapikey',
         verboseName: 'apikey'
+      },
+      {
+        attr: 'id',
+        verboseName: 'id'
       }
     ];
 
@@ -123,7 +130,7 @@ class TicketmasterCountdownWidget {
     // };
 
     this.config = this.widgetRoot.attributes;
-    this.config.id = '1Ad0ZfdGkMoCQHJ';
+    this.eventId = "1Ad0ZfdGkMoCQHJ";
 
     if(this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)){
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );

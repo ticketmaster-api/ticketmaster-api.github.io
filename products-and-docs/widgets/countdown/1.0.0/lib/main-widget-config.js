@@ -5,7 +5,7 @@
   var widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
-      name: 'Poster',
+      defaultId: document.querySelector("div[w-tmapikey]").getAttribute('w-id') || '1Ad0ZfdGkMoCQHJ',
       sizes: {
         s: {
           width: 160,
@@ -76,6 +76,12 @@
     $borderRadiusController.slider('relayout');
   });
 
+  function updateId(widgetNode) {
+    if (widgetNode.getAttribute('w-id') === '') {
+      widgetNode.setAttribute('w-id', themeConfig.simple_countdown.defaultId);
+    }
+  }
+
   var changeState = function changeState(event) {
     if (!event.target.name) {
       return;
@@ -93,6 +99,7 @@
 
     if (targetName === "w-layout") {
       var sizeConfig = themeConfig.simple_countdown.initSliderSize;
+      updateId(widgetNode);
       if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
@@ -122,6 +129,8 @@
         maxWidth: 600,
         minWidth: 350
       };
+
+      updateId(widgetNode); /**/
 
       //set layout
       widgetNode.setAttribute('w-layout', themeConfig.simple_countdown.sizes[targetValue].layout);
