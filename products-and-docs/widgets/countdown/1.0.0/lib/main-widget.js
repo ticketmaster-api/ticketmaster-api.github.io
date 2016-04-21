@@ -120,14 +120,18 @@ var TicketmasterCountdownWidget = function () {
     get: function get() {
       return "http://www.ticketmaster.com/event/";
     }
-
-    /*set eventId(id){ this.config.id = id;}
-    get eventId(){ return this.config.id;}*/
-
+  }, {
+    key: "eventId",
+    set: function set(id) {
+      this.config.id = id;
+    },
+    get: function get() {
+      return this.config.id;
+    }
   }, {
     key: "apiUrl",
     get: function get() {
-      return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/1Ad0ZfdGkMoCQHJ";
+      return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/" + this.eventId;
     }
 
     // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
@@ -209,7 +213,7 @@ var TicketmasterCountdownWidget = function () {
     // };
 
     this.config = this.widgetRoot.attributes;
-    //this.eventId = "1Ad0ZfdGkMoCQHJ";
+    this.eventId = "1Ad0ZfdGkMoCQHJ";
 
     if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
@@ -259,8 +263,8 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "toggleSeccondsVisibility",
     value: function toggleSeccondsVisibility() {
-      console.log(this.config.seconds);
-      console.log(this.countDownSecond);
+      //console.log(this.config.seconds);
+      //console.log(this.countDownSecond);
     }
   }, {
     key: "onCountdownChange",
@@ -273,7 +277,6 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "buildCountdown",
     value: function buildCountdown() {
-      // this.widgetRoot
       var countDown = document.createElement("div");
       countDown.classList.add("events-count-down");
 

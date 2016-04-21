@@ -174,8 +174,8 @@ class TicketmasterCountdownWidget {
   }
 
   toggleSeccondsVisibility(){
-    console.log(this.config.seconds)
-    console.log(this.countDownSecond)
+    //console.log(this.config.seconds);
+    //console.log(this.countDownSecond);
   }
 
   onCountdownChange(data){
@@ -186,7 +186,6 @@ class TicketmasterCountdownWidget {
   }
 
   buildCountdown(){
-    // this.widgetRoot
     let countDown = document.createElement("div");
     countDown.classList.add("events-count-down");
 

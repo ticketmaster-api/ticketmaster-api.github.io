@@ -3,7 +3,6 @@
   let widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
-        defaultId: document.querySelector("div[w-tmapikey]").getAttribute('w-id') || '1Ad0ZfdGkMoCQHJ',
         sizes: {
           s: {
             width: 160,
@@ -68,6 +67,8 @@
     tooltip: 'always',
     handle: 'square'
   }),
+  $getCodeButton = $('.js_get_widget_code'),
+  widgetNode = document.querySelector("div[w-tmapikey]"),
   $tabButtons = $('.js-tab-buttons');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
@@ -75,18 +76,19 @@
     $borderRadiusController.slider('relayout');
   });
 
-  function updateId(widgetNode){
+  function toggleDisabled(widgetNode){
     if ( widgetNode.getAttribute('w-id') === '') {
-      widgetNode.setAttribute('w-id', themeConfig.simple_countdown.defaultId);
-    }
+      $getCodeButton.prop("disabled",true);
+    }else {
+      $getCodeButton.prop('disabled',false);
+    };
   }
 
   var changeState = function(event){
     if(!event.target.name){
       return;
     }
-    const widgetNode = document.querySelector("div[w-tmapikey]"),
-        targetValue = event.target.value,
+    const targetValue = event.target.value,
         targetName = event.target.name;
 
 
@@ -96,18 +98,21 @@
     //   }
     //   widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
     // }
+    //console.log('start change');
 
 
+    /*
+    //set attr for 'seconds' radio-btn
     if(targetName === "w-seconds"){
       if (targetValue !== 'showSeconds') {
         widgetNode.setAttribute('w-seconds', 'hideSeconds');
       }
-
     }
+    */
 
     if(targetName === "w-layout"){
       let sizeConfig = themeConfig.simple_countdown.initSliderSize;
-      updateId(widgetNode);
+
       if(targetValue === 'horizontal'){
         sizeConfig = {
           width: 620,
@@ -139,8 +144,6 @@
         minWidth: 350
       };
 
-      updateId(widgetNode);
-
       //set layout
       widgetNode.setAttribute('w-layout', themeConfig.simple_countdown.sizes[targetValue].layout);
 
@@ -170,14 +173,15 @@
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
-    widgetNode.setAttribute(event.target.name, event.target.value);
+    widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
+
+    toggleDisabled(widgetNode);//set disabled btn if input is empty
 
     widget.update();
   };
 
   var resetWidget = function(configForm) {
-    let widgetNode = document.querySelector("div[w-tmapikey]"),
-        widthSlider = $('.js_widget_width_slider'),
+    let widthSlider = $('.js_widget_width_slider'),
         height = 600,
         theme,
         layout,
@@ -230,6 +234,8 @@
     }
     widgetNode.setAttribute('w-height', height);
 
+    toggleDisabled(widgetNode);//set disabled btn if input is empty
+
     widget.update();
   };
 
@@ -239,11 +245,14 @@
 
   $configForm.on("change", changeState);
   // Mobile devices. Force 'change' by 'Go' press
+
   $configForm.on("submit", function (e) {
+    //console.log('pressed on.submit');
     $configForm.find('input:focus').trigger('blur');
     e.preventDefault();
   });
 
+  /*set tooltip value above slider*/
   $configForm.find("input[type='text']").each(function(){
     var $self = $(this);
     $self.data('default-value', $self.val());
@@ -255,7 +264,7 @@
       $self.data('is-checked', 'checked');
   });
 
-  $('.js_get_widget_code').on('click', function(){
+  $getCodeButton.on('click', function(){
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
 
     var htmlCode = document.createElement("div");
