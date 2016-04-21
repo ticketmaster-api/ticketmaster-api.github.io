@@ -120,18 +120,14 @@ var TicketmasterCountdownWidget = function () {
     get: function get() {
       return "http://www.ticketmaster.com/event/";
     }
-  }, {
-    key: "eventId",
-    set: function set(id) {
-      this.config.id = id;
-    },
-    get: function get() {
-      return this.config.id;
-    }
+
+    /*set eventId(id){ this.config.id = id;}
+    get eventId(){ return this.config.id;}*/
+
   }, {
     key: "apiUrl",
     get: function get() {
-      return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/1Ad0ZfdGkMoCQHJ.json";
+      return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/1Ad0ZfdGkMoCQHJ";
     }
 
     // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
@@ -164,7 +160,7 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "updateExceptions",
     get: function get() {
-      return ["width", "height", "border", "borderradius", "layout", "propotion"];
+      return ["width", "height", "border", "borderradius", "layout", "propotion", "seconds"];
     }
   }, {
     key: "hideMessageDelay",
@@ -183,9 +179,6 @@ var TicketmasterCountdownWidget = function () {
           params = [{
         attr: 'tmapikey',
         verboseName: 'apikey'
-      }, {
-        attr: 'id',
-        verboseName: 'id'
       }];
 
       for (var i in params) {
@@ -216,7 +209,7 @@ var TicketmasterCountdownWidget = function () {
     // };
 
     this.config = this.widgetRoot.attributes;
-    this.eventId = "1Ad0ZfdGkMoCQHJ";
+    //this.eventId = "1Ad0ZfdGkMoCQHJ";
 
     if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
@@ -254,12 +247,20 @@ var TicketmasterCountdownWidget = function () {
     this.countdownClock = new CountdownClock({
       onChange: this.onCountdownChange.bind(this)
     });
+
+    this.toggleSeccondsVisibility();
   }
 
   _createClass(TicketmasterCountdownWidget, [{
     key: "getNormalizedDateValue",
     value: function getNormalizedDateValue(val) {
       return (val < 0 || val > 9 ? "" : "0") + val;
+    }
+  }, {
+    key: "toggleSeccondsVisibility",
+    value: function toggleSeccondsVisibility() {
+      console.log(this.config.seconds);
+      console.log(this.countDownSecond);
     }
   }, {
     key: "onCountdownChange",
@@ -525,6 +526,7 @@ var TicketmasterCountdownWidget = function () {
           }
         }
       }
+      this.toggleSeccondsVisibility();
     }
   }, {
     key: "needToUpdate",

@@ -97,6 +97,12 @@
     //   widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
     // }
 
+    if (targetName === "w-seconds") {
+      if (targetValue !== 'showSeconds') {
+        widgetNode.setAttribute('w-seconds', 'hideSeconds');
+      }
+    }
+
     if (targetName === "w-layout") {
       var sizeConfig = themeConfig.simple_countdown.initSliderSize;
       updateId(widgetNode);
@@ -130,7 +136,7 @@
         minWidth: 350
       };
 
-      updateId(widgetNode); /**/
+      updateId(widgetNode);
 
       //set layout
       widgetNode.setAttribute('w-layout', themeConfig.simple_countdown.sizes[targetValue].layout);
