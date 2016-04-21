@@ -16,7 +16,7 @@
     }
   }
 
-  function getCustomApiKey(code) {
+  function getGooleApiKey(code) {
     return code || "AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA";
   }
 
@@ -253,7 +253,7 @@
       }
     }
     // Use only Key from config form
-    htmlCode.setAttribute('w-googleapikey', getCustomApiKey());
+    htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
