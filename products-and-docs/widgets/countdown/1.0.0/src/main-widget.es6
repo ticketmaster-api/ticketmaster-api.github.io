@@ -32,14 +32,55 @@ class CountdownClock {
   }
 
   getTimeRemaining() {
+    let today = new Date();
+    //let total = Date.parse(this.endTime) - Date.parse(new Date());
     let total = Date.parse(this.endTime) - Date.parse(new Date());
+
     if(total < 0) total = 0;
     let seconds = Math.floor((total / 1000) % 60),
       minutes = Math.floor((total / 1000 / 60) % 60),
       hours = Math.floor((total / 3600000 /* (1000 * 60 * 60) */) % 24),
-      days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */);
+      days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */),
+      monthLeft = 0;
+
+    let daysInMonth = function(year,month){
+      var D=new Date(year, month-1, 1, 12);
+      return parseInt((-Date.parse(D)+D.setMonth(D.getMonth()+1)+36e5)/864e5);
+    };
+
+    let curr_month = today.getUTCMonth();
+      console.log('curr_month',curr_month +1);
+    let curr_year = today.getUTCFullYear();
+      console.log('curr_year',curr_year);
+    let curr_days_in_month = daysInMonth(curr_year, curr_month);
+
+    if(days => curr_days_in_month){
+      let servYear = new Date(this.endTime).getUTCFullYear();
+      let servMonth = new Date(this.endTime).getUTCMonth();
+
+      //let daysLeft = Math.floor( ( Date.parse('2016-07-28T04:00:00Z') - Date.parse(new Date()) ) / (1000 * 60 * 60 * 24/*mounth*/) );
+      //days = daysLeft/daysInMonth(servYear,servMounth);
+      //days = Math.floor(days);
+
+      monthLeft = Math.floor( days/daysInMonth(servYear,servMonth) );
+
+      let daysInMonthLocal = 0;
+      let sum=0;
+      for(let i =0; i < monthLeft; i++){
+        daysInMonthLocal = daysInMonth(servYear , new Date(this.endTime).getUTCMonth()+i );
+        sum = sum + daysInMonthLocal;
+        console.log(i , 'daysInMonth ',sum );
+      }
+      days = days - sum;
+
+      //days = Math.floor( (days/daysInMonth(servYear,servMonth) - monthLeft) * 31 );
+      console.log('days',days);
+      console.log('mounthLeft',monthLeft);
+    }
+
     return {
       total,
+      monthLeft,
       days,
       hours,
       minutes,
@@ -179,6 +220,7 @@ class TicketmasterCountdownWidget {
   }
 
   onCountdownChange(data){
+    this.countDownMonth.innerHTML = this.getNormalizedDateValue(data.monthLeft);
     this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
     this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
     this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
@@ -189,21 +231,25 @@ class TicketmasterCountdownWidget {
     let countDown = document.createElement("div");
     countDown.classList.add("events-count-down");
 
+    this.countDownMonth = document.createElement("span");
     this.countDownDays = document.createElement("span");
     this.countDownHours = document.createElement("span");
     this.countDownMinute = document.createElement("span");
     this.countDownSecond = document.createElement("span");
 
+    this.countDownMonth.innerHTML = '00';
     this.countDownDays.innerHTML = '00';
     this.countDownHours.innerHTML = '00';
     this.countDownMinute.innerHTML = '00';
     this.countDownSecond.innerHTML = '00';
 
+    this.countDownMonth.classList.add("events-count-down__month");
     this.countDownDays.classList.add("events-count-down__day");
     this.countDownHours.classList.add("events-count-down__hour");
     this.countDownMinute.classList.add("events-count-down__minute");
     this.countDownSecond.classList.add("events-count-down__second");
 
+    countDown.appendChild(this.countDownMonth);
     countDown.appendChild(this.countDownDays);
     countDown.appendChild(this.countDownHours);
     countDown.appendChild(this.countDownMinute);

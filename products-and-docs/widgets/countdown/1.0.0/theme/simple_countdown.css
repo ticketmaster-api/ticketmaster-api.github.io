@@ -397,11 +397,12 @@ div[w-theme="simple_countdown"] .events-count-down:before {
     width: 100%;
     margin-bottom: 3px;
 }
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__month,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__day,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__second{
-    width: 24.25%;
+    width: 18.25%;
     margin: 0 1% 0 0;
     height: 58px;
     line-height: 58px;
@@ -416,6 +417,7 @@ div[w-theme="simple_countdown"] .events-count-down .events-count-down__second {
     margin-right: 0;
 }
 
+div[w-theme="simple_countdown"] .events-count-down__month:after,
 div[w-theme="simple_countdown"] .events-count-down__day:after,
 div[w-theme="simple_countdown"] .events-count-down__hour:after,
 div[w-theme="simple_countdown"] .events-count-down__minute:after,
@@ -433,6 +435,9 @@ div[w-theme="simple_countdown"] .events-count-down__second:after {
     font-size: 10px;
     line-height: 22px;
     color: #fff;
+}
+div[w-theme="simple_countdown"] .events-count-down__month:after {
+    content: 'month';
 }
 div[w-theme="simple_countdown"] .events-count-down__day:after {
     content: 'days';
