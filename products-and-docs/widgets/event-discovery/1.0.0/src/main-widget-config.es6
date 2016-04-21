@@ -13,7 +13,9 @@
         return 2;
     }
   }
-  
+
+  function getCustomApiKey(code) { return code || "AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA";}
+
   let widget = widgetsEventDiscovery[0],
     themeConfig = {
       sizes: {
@@ -252,7 +254,7 @@
       }
     }
     // Use only Key from config form
-    htmlCode.setAttribute('w-googleapikey', $('#w-googleapikey').val() || '');
+    htmlCode.setAttribute('w-googleapikey', getCustomApiKey());
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
