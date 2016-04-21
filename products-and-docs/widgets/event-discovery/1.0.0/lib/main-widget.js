@@ -74,7 +74,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: "logoUrl",
     get: function get() {
-      return "http://www.ticketmaster.com/";
+      return "http://developer.ticketmaster.com/";
     }
   }, {
     key: "legalNoticeUrl",
@@ -650,24 +650,24 @@ var TicketmasterEventDiscoveryWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[i]);
+      for (var _i in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[_i]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var i in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[i]);
+      for (var _i2 in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[_i2]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var i in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[i]);
+      for (var _i3 in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[_i3]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -691,8 +691,8 @@ var TicketmasterEventDiscoveryWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var i = 0; eventGroup.length > i; i++) {
-          eventGroup[i].style.marginTop = 0;
+        for (var _i4 = 0; eventGroup.length > _i4; _i4++) {
+          eventGroup[_i4].style.marginTop = 0;
         }
       });
 
