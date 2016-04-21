@@ -254,7 +254,7 @@
       }
     }
     // Use only Key from config form
-    htmlCode.setAttribute('w-googleapikey', getCustomApiKey());
+    htmlCode.setAttribute('w-googleapikey', $('#w-googleapikey').val() || '');
     var tmp = document.createElement("div");
     tmp.appendChild(htmlCode);
     codeCont.textContent = tmp.innerHTML;
