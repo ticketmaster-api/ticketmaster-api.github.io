@@ -38,6 +38,44 @@ class CountdownClock {
       minutes = Math.floor((total / 1000 / 60) % 60),
       hours = Math.floor((total / 3600000 /* (1000 * 60 * 60) */) % 24),
       days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */);
+
+
+    /*
+    // if there's a cookie with the name myClock, use that value as the deadline
+    if(document.cookie && document.cookie.match('myClock')){
+      // get deadline value from cookie
+      let deadline = document.cookie.match(/(^|;)myClock=([^;]+)/)[2];
+    }
+    // otherwise, set a deadline 10 minutes from now and
+    // save it in a cookie with that name
+    else{
+      // create deadline 10 minutes from now
+      let timeInMinutes = 10;
+      let currentTime = Date.parse(new Date());
+      console.log('my local time: ', new Date(currentTime) , currentTime );
+      let deadline = new Date(currentTime + timeInMinutes*60*1000);
+      console.log('deadline: ',deadline );
+
+      // store deadline in cookie for future reference
+      //document.cookie = 'myClock=' + deadline + '; path=/; domain=.yourdomain.com';
+    }
+    */
+
+    let now = new Date();
+    let serverEndTimeTime = Date.parse(this.endTime);
+
+    /*console.log('now' ,now ,'timedifference between UTC and local time: ', now.getTimezoneOffset() );
+    console.log('now.toUTCString(): ', now.toUTCString() );
+    console.log('Date.parse(now) secs: ', Date.parse(now) );
+    console.log('serverEndTimeTime: ', serverEndTimeTime , new Date(serverEndTimeTime));*/
+
+
+    let local_hourTimezoneOffset = serverEndTimeTime  - new Date().getTimezoneOffset() / 60;
+    console.log('local_hour difference: ', Math.floor((local_hour/3600000)) );
+    console.log('total: ', total );
+    (local_hour <= 0) ? console.log('Event already showed ', local_hour ) : console.log('Event not started yet: ', local_hour );
+
+
     return {
       total,
       days,
