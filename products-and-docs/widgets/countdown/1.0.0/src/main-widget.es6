@@ -37,37 +37,42 @@ class CountdownClock {
     let seconds = Math.floor((total / 1000) % 60),
       minutes = Math.floor((total / 1000 / 60) % 60),
       hours = Math.floor((total / 3600000 /* (1000 * 60 * 60) */) % 24),
-      days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */);
+      days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */),
+      monthLeft = 0;
 
+    let daysInMonth = function(year,month){
+      var D=new Date(year, month-1, 1, 12);
+      return parseInt((-Date.parse(D)+D.setMonth(D.getMonth()+1)+36e5)/864e5);
+    };
 
-    /*
-    // if there's a cookie with the name myClock, use that value as the deadline
-    if(document.cookie && document.cookie.match('myClock')){
-      // get deadline value from cookie
-      let deadline = document.cookie.match(/(^|;)myClock=([^;]+)/)[2];
+    let today = new Date(),
+        curr_month = today.getUTCMonth(),
+        curr_year = today.getUTCFullYear(),
+        curr_days_in_month = daysInMonth(curr_year, curr_month);
+
+    if(days => curr_days_in_month){
+      let servYear = new Date(this.endTime).getUTCFullYear();
+      let servMonth = new Date(this.endTime).getUTCMonth();
+      let daysInMonthLocal = 0;
+      let sum = 0;
+
+      monthLeft = Math.floor( days/daysInMonth(servYear,servMonth) );
+      
+      for(let i =0; i < monthLeft; i++){
+        daysInMonthLocal = daysInMonth(servYear , new Date(this.endTime).getUTCMonth()+i );
+        sum = sum + daysInMonthLocal;
+        //console.log(i , 'daysInMonth to endTime ',sum );
+      }
+      days = days - sum;
     }
-    // otherwise, set a deadline 10 minutes from now and
-    // save it in a cookie with that name
-    else{
-      // create deadline 10 minutes from now
-      let timeInMinutes = 10;
-      let currentTime = Date.parse(new Date());
-      console.log('my local time: ', new Date(currentTime) , currentTime );
-      let deadline = new Date(currentTime + timeInMinutes*60*1000);
-      console.log('deadline: ',deadline );
-
-      // store deadline in cookie for future reference
-      //document.cookie = 'myClock=' + deadline + '; path=/; domain=.yourdomain.com';
-    }
-    */
 
     let now = new Date();
     let serverEndTime = Date.parse(this.endTime);
 
     /*console.log('now' ,now ,'timedifference between UTC and local time: ', now.getTimezoneOffset() );
-    console.log('now.toUTCString(): ', now.toUTCString() );
-    console.log('Date.parse(now) secs: ', Date.parse(now) );
-    console.log('serverEndTimeTime: ', serverEndTimeTime , new Date(serverEndTimeTime));*/
+     console.log('now.toUTCString(): ', now.toUTCString() );
+     console.log('Date.parse(now) secs: ', Date.parse(now) );
+     console.log('serverEndTimeTime: ', serverEndTimeTime , new Date(serverEndTimeTime));*/
 
 
     let local_hourTimezoneOffset = serverEndTime  - new Date().getTimezoneOffset() / 60;
@@ -76,9 +81,9 @@ class CountdownClock {
     console.log('total: ', total );
     (local_hourTimezoneOffset <= 0) ? console.log('Event already showed ', local_hourTimezoneOffset ) : console.log('Event not started yet: ', local_hourTimezoneOffset );
 
-
     return {
       total,
+      monthLeft,
       days,
       hours,
       minutes,
@@ -200,6 +205,7 @@ class TicketmasterCountdownWidget {
     this.embedUniversePlugin();
     this.embedTMPlugin();
 
+    this.countDownWrapper.classList.add("events-count-down");
 
     this.countdownClock = new CountdownClock({
       onChange: this.onCountdownChange.bind(this)
@@ -213,15 +219,30 @@ class TicketmasterCountdownWidget {
   }
 
   toggleSeccondsVisibility(){
-    //console.log(this.config.seconds);
-    //console.log(this.countDownSecond);
+    if(this.countDownMonth.innerHTML > 0){
+      this.countDownWrapper.classList.add("hide-seconds");
+      this.countDownWrapper.classList.remove("hide-days");
+      this.countDownWrapper.classList.remove("hide-month");//Removing a class that does not exist, does NOT throw an error
+    }else if(this.countDownDays.innerHTML <= 0){
+      this.countDownWrapper.classList.add("hide-month");
+      this.countDownWrapper.classList.add("hide-days");
+      this.countDownWrapper.classList.remove("hide-seconds");
+    }else {
+      this.countDownWrapper.classList.add("hide-month");
+      this.countDownWrapper.classList.remove("hide-days");
+      this.countDownWrapper.classList.remove("hide-seconds");
+    }
+
   }
 
   onCountdownChange(data){
+    this.countDownMonth.innerHTML = this.getNormalizedDateValue(data.monthLeft);
     this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
     this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
     this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
     this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
+
+    this.toggleSeccondsVisibility();
 
     let timeLeft = this.getNormalizedDateValue(data.total);
     console.log('timeLeft ', timeLeft);
@@ -231,30 +252,33 @@ class TicketmasterCountdownWidget {
   }
 
   buildCountdown(){
-    let countDown = document.createElement("div");
-    countDown.classList.add("events-count-down");
-
+    this.countDownWrapper = document.createElement("div");
+    this.countDownWrapper.classList.add("events-count-down");
+    this.countDownMonth = document.createElement("span");
     this.countDownDays = document.createElement("span");
     this.countDownHours = document.createElement("span");
     this.countDownMinute = document.createElement("span");
     this.countDownSecond = document.createElement("span");
 
+    this.countDownMonth.innerHTML = '00';
     this.countDownDays.innerHTML = '00';
     this.countDownHours.innerHTML = '00';
     this.countDownMinute.innerHTML = '00';
     this.countDownSecond.innerHTML = '00';
 
+    this.countDownMonth.classList.add("events-count-down__month");
     this.countDownDays.classList.add("events-count-down__day");
     this.countDownHours.classList.add("events-count-down__hour");
     this.countDownMinute.classList.add("events-count-down__minute");
     this.countDownSecond.classList.add("events-count-down__second");
 
-    countDown.appendChild(this.countDownDays);
-    countDown.appendChild(this.countDownHours);
-    countDown.appendChild(this.countDownMinute);
-    countDown.appendChild(this.countDownSecond);
+    this.countDownWrapper.appendChild(this.countDownMonth);
+    this.countDownWrapper.appendChild(this.countDownDays);
+    this.countDownWrapper.appendChild(this.countDownHours);
+    this.countDownWrapper.appendChild(this.countDownMinute);
+    this.countDownWrapper.appendChild(this.countDownSecond);
 
-    this.eventsRootContainer.appendChild(countDown);
+    this.eventsRootContainer.appendChild(this.countDownWrapper);
   }
 
   initBuyBtn(){
@@ -466,7 +490,7 @@ class TicketmasterCountdownWidget {
         }
       }
     }
-    this.toggleSeccondsVisibility();
+    //this.toggleSeccondsVisibility();
   }
 
   needToUpdate(newTheme, oldTheme, forCheck = []){

@@ -408,6 +408,7 @@ div[w-theme="simple_countdown"] .events-count-down:before {
     width: 100%;
     margin-bottom: 3px;
 }
+div[w-theme="simple_countdown"] .events-count-down .events-count-down__month,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__day,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute,
@@ -423,10 +424,11 @@ div[w-theme="simple_countdown"] .events-count-down .events-count-down__second{
     display: inline-block;
     position: relative;
 }
-div[w-theme="simple_countdown"] .events-count-down .events-count-down__second {
+div[w-theme="simple_countdown"] .events-count-down span:last-child {
     margin-right: 0;
 }
 
+div[w-theme="simple_countdown"] .events-count-down__month:after,
 div[w-theme="simple_countdown"] .events-count-down__day:after,
 div[w-theme="simple_countdown"] .events-count-down__hour:after,
 div[w-theme="simple_countdown"] .events-count-down__minute:after,
@@ -445,6 +447,9 @@ div[w-theme="simple_countdown"] .events-count-down__second:after {
     line-height: 22px;
     color: #fff;
 }
+div[w-theme="simple_countdown"] .events-count-down__month:after {
+    content: 'month';
+}
 div[w-theme="simple_countdown"] .events-count-down__day:after {
     content: 'days';
 }
@@ -457,6 +462,37 @@ div[w-theme="simple_countdown"] .events-count-down__minute:after {
 div[w-theme="simple_countdown"] .events-count-down__second:after {
     content: 'sec';
 }
+
+div[w-theme="simple_countdown"] .events-count-down.hide-month > .events-count-down__month {
+    display: none;
+}
+
+div[w-theme="simple_countdown"] .events-count-down.hide-days > .events-count-down__day {
+    display: none;
+}
+
+div[w-theme="simple_countdown"] .events-count-down.hide-seconds > .events-count-down__second {
+    display: none;
+}
+
+div[w-theme="simple_countdown"] .events-count-down.hide-month.hide-days > .events-count-down__minute {
+    margin: 0 1% 0 0;
+}
+
+div[w-theme="simple_countdown"] .events-count-down.hide-month.hide-days > span {
+    width: 32.331%;
+}
+/*claer margin for last elem in counter*/
+div[w-theme="simple_countdown"] .events-count-down.hide-month > .events-count-down__minute {
+    //margin-right: 0;
+}
+div[w-theme="simple_countdown"] .events-count-down.hide-seconds > .events-count-down__minute {
+    margin-right: 0;
+}
+
+/* G5viZKU1IjVso - to show test MM:HH:SS */
+/* vv1AeZAvtGkdoRlk9  - to show test DD:MM:HH:SS*/
+
 /*time counter END*/
 
 
