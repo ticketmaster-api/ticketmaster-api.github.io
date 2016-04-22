@@ -64,14 +64,52 @@ var CountdownClock = function () {
   }, {
     key: "getTimeRemaining",
     value: function getTimeRemaining() {
+      var today = new Date();
+      //let total = Date.parse(this.endTime) - Date.parse(new Date());
       var total = Date.parse(this.endTime) - Date.parse(new Date());
+
       if (total < 0) total = 0;
       var seconds = Math.floor(total / 1000 % 60),
           minutes = Math.floor(total / 1000 / 60 % 60),
           hours = Math.floor(total / 3600000 /* (1000 * 60 * 60) */ % 24),
-          days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */);
+          days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */),
+          monthLeft = 0;
+
+      var daysInMonth = function daysInMonth(year, month) {
+        var D = new Date(year, month - 1, 1, 12);
+        return parseInt((-Date.parse(D) + D.setMonth(D.getMonth() + 1) + 36e5) / 864e5);
+      };
+
+      var curr_month = today.getUTCMonth();
+      //console.log('curr_month',curr_month +1);
+      var curr_year = today.getUTCFullYear();
+      //console.log('curr_year',curr_year);
+      var curr_days_in_month = daysInMonth(curr_year, curr_month);
+
+      if (function (days) {
+        return curr_days_in_month;
+      }) {
+        var servYear = new Date(this.endTime).getUTCFullYear();
+        var servMonth = new Date(this.endTime).getUTCMonth();
+        var daysInMonthLocal = 0;
+        var sum = 0;
+
+        monthLeft = Math.floor(days / daysInMonth(servYear, servMonth));
+
+        for (var i = 0; i < monthLeft; i++) {
+          daysInMonthLocal = daysInMonth(servYear, new Date(this.endTime).getUTCMonth() + i);
+          sum = sum + daysInMonthLocal;
+          //console.log(i , 'daysInMonth ',sum );
+        }
+        days = days - sum;
+
+        //console.log('days',days);
+        //console.log('mounthLeft',monthLeft);
+      }
+
       return {
         total: total,
+        monthLeft: monthLeft,
         days: days,
         hours: hours,
         minutes: minutes,
@@ -248,6 +286,8 @@ var TicketmasterCountdownWidget = function () {
     this.embedUniversePlugin();
     this.embedTMPlugin();
 
+    this.countDownWrapper.classList.add("events-count-down");
+
     this.countdownClock = new CountdownClock({
       onChange: this.onCountdownChange.bind(this)
     });
@@ -263,44 +303,63 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "toggleSeccondsVisibility",
     value: function toggleSeccondsVisibility() {
-      //console.log(this.config.seconds);
       //console.log(this.countDownSecond);
+      //console.log(this.countDownMonth);
+      if (this.countDownMonth.innerHTML > 0) {
+        this.countDownWrapper.classList.add("hide-seconds");
+        this.countDownWrapper.classList.remove("hide-days");
+        this.countDownWrapper.classList.remove("hide-month"); //Removing a class that does not exist, does NOT throw an error
+      } else if (this.countDownDays.innerHTML <= 0) {
+          this.countDownWrapper.classList.add("hide-month");
+          this.countDownWrapper.classList.add("hide-days");
+          this.countDownWrapper.classList.remove("hide-seconds");
+        } else {
+          this.countDownWrapper.classList.add("hide-month");
+          this.countDownWrapper.classList.remove("hide-days");
+          this.countDownWrapper.classList.remove("hide-seconds");
+        }
     }
   }, {
     key: "onCountdownChange",
     value: function onCountdownChange(data) {
+      this.countDownMonth.innerHTML = this.getNormalizedDateValue(data.monthLeft);
       this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
       this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
       this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
       this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
+
+      this.toggleSeccondsVisibility();
     }
   }, {
     key: "buildCountdown",
     value: function buildCountdown() {
-      var countDown = document.createElement("div");
-      countDown.classList.add("events-count-down");
-
+      this.countDownWrapper = document.createElement("div");
+      this.countDownWrapper.classList.add("events-count-down");
+      this.countDownMonth = document.createElement("span");
       this.countDownDays = document.createElement("span");
       this.countDownHours = document.createElement("span");
       this.countDownMinute = document.createElement("span");
       this.countDownSecond = document.createElement("span");
 
+      this.countDownMonth.innerHTML = '00';
       this.countDownDays.innerHTML = '00';
       this.countDownHours.innerHTML = '00';
       this.countDownMinute.innerHTML = '00';
       this.countDownSecond.innerHTML = '00';
 
+      this.countDownMonth.classList.add("events-count-down__month");
       this.countDownDays.classList.add("events-count-down__day");
       this.countDownHours.classList.add("events-count-down__hour");
       this.countDownMinute.classList.add("events-count-down__minute");
       this.countDownSecond.classList.add("events-count-down__second");
 
-      countDown.appendChild(this.countDownDays);
-      countDown.appendChild(this.countDownHours);
-      countDown.appendChild(this.countDownMinute);
-      countDown.appendChild(this.countDownSecond);
+      this.countDownWrapper.appendChild(this.countDownMonth);
+      this.countDownWrapper.appendChild(this.countDownDays);
+      this.countDownWrapper.appendChild(this.countDownHours);
+      this.countDownWrapper.appendChild(this.countDownMinute);
+      this.countDownWrapper.appendChild(this.countDownSecond);
 
-      this.eventsRootContainer.appendChild(countDown);
+      this.eventsRootContainer.appendChild(this.countDownWrapper);
     }
   }, {
     key: "initBuyBtn",
@@ -529,7 +588,7 @@ var TicketmasterCountdownWidget = function () {
           }
         }
       }
-      this.toggleSeccondsVisibility();
+      //this.toggleSeccondsVisibility();
     }
   }, {
     key: "needToUpdate",

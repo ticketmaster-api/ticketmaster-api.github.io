@@ -37,9 +37,38 @@ class CountdownClock {
     let seconds = Math.floor((total / 1000) % 60),
       minutes = Math.floor((total / 1000 / 60) % 60),
       hours = Math.floor((total / 3600000 /* (1000 * 60 * 60) */) % 24),
-      days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */);
+      days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */),
+      monthLeft = 0;
+
+    let daysInMonth = function(year,month){
+      var D=new Date(year, month-1, 1, 12);
+      return parseInt((-Date.parse(D)+D.setMonth(D.getMonth()+1)+36e5)/864e5);
+    };
+
+    let today = new Date(),
+        curr_month = today.getUTCMonth(),
+        curr_year = today.getUTCFullYear(),
+        curr_days_in_month = daysInMonth(curr_year, curr_month);
+
+    if(days => curr_days_in_month){
+      let servYear = new Date(this.endTime).getUTCFullYear();
+      let servMonth = new Date(this.endTime).getUTCMonth();
+      let daysInMonthLocal = 0;
+      let sum = 0;
+
+      monthLeft = Math.floor( days/daysInMonth(servYear,servMonth) );
+      
+      for(let i =0; i < monthLeft; i++){
+        daysInMonthLocal = daysInMonth(servYear , new Date(this.endTime).getUTCMonth()+i );
+        sum = sum + daysInMonthLocal;
+        //console.log(i , 'daysInMonth to endTime ',sum );
+      }
+      days = days - sum;
+    }
+
     return {
       total,
+      monthLeft,
       days,
       hours,
       minutes,
@@ -161,6 +190,7 @@ class TicketmasterCountdownWidget {
     this.embedUniversePlugin();
     this.embedTMPlugin();
 
+    this.countDownWrapper.classList.add("events-count-down");
 
     this.countdownClock = new CountdownClock({
       onChange: this.onCountdownChange.bind(this)
@@ -174,42 +204,60 @@ class TicketmasterCountdownWidget {
   }
 
   toggleSeccondsVisibility(){
-    //console.log(this.config.seconds);
-    //console.log(this.countDownSecond);
+    if(this.countDownMonth.innerHTML > 0){
+      this.countDownWrapper.classList.add("hide-seconds");
+      this.countDownWrapper.classList.remove("hide-days");
+      this.countDownWrapper.classList.remove("hide-month");//Removing a class that does not exist, does NOT throw an error
+    }else if(this.countDownDays.innerHTML <= 0){
+      this.countDownWrapper.classList.add("hide-month");
+      this.countDownWrapper.classList.add("hide-days");
+      this.countDownWrapper.classList.remove("hide-seconds");
+    }else {
+      this.countDownWrapper.classList.add("hide-month");
+      this.countDownWrapper.classList.remove("hide-days");
+      this.countDownWrapper.classList.remove("hide-seconds");
+    }
+
   }
 
   onCountdownChange(data){
+    this.countDownMonth.innerHTML = this.getNormalizedDateValue(data.monthLeft);
     this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
     this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
     this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
     this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
+
+    this.toggleSeccondsVisibility();
   }
 
   buildCountdown(){
-    let countDown = document.createElement("div");
-    countDown.classList.add("events-count-down");
-
+    this.countDownWrapper = document.createElement("div");
+    this.countDownWrapper.classList.add("events-count-down");
+    this.countDownMonth = document.createElement("span");
     this.countDownDays = document.createElement("span");
     this.countDownHours = document.createElement("span");
     this.countDownMinute = document.createElement("span");
     this.countDownSecond = document.createElement("span");
 
+    this.countDownMonth.innerHTML = '00';
     this.countDownDays.innerHTML = '00';
     this.countDownHours.innerHTML = '00';
     this.countDownMinute.innerHTML = '00';
     this.countDownSecond.innerHTML = '00';
 
+    this.countDownMonth.classList.add("events-count-down__month");
     this.countDownDays.classList.add("events-count-down__day");
     this.countDownHours.classList.add("events-count-down__hour");
     this.countDownMinute.classList.add("events-count-down__minute");
     this.countDownSecond.classList.add("events-count-down__second");
 
-    countDown.appendChild(this.countDownDays);
-    countDown.appendChild(this.countDownHours);
-    countDown.appendChild(this.countDownMinute);
-    countDown.appendChild(this.countDownSecond);
+    this.countDownWrapper.appendChild(this.countDownMonth);
+    this.countDownWrapper.appendChild(this.countDownDays);
+    this.countDownWrapper.appendChild(this.countDownHours);
+    this.countDownWrapper.appendChild(this.countDownMinute);
+    this.countDownWrapper.appendChild(this.countDownSecond);
 
-    this.eventsRootContainer.appendChild(countDown);
+    this.eventsRootContainer.appendChild(this.countDownWrapper);
   }
 
   initBuyBtn(){
@@ -418,7 +466,7 @@ class TicketmasterCountdownWidget {
         }
       }
     }
-    this.toggleSeccondsVisibility();
+    //this.toggleSeccondsVisibility();
   }
 
   needToUpdate(newTheme, oldTheme, forCheck = []){
