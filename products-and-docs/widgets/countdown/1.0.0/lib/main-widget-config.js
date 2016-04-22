@@ -5,7 +5,6 @@
   var widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
-      name: 'Poster',
       sizes: {
         s: {
           width: 160,
@@ -69,6 +68,8 @@
     tooltip: 'always',
     handle: 'square'
   }),
+      $getCodeButton = $('.js_get_widget_code'),
+      widgetNode = document.querySelector("div[w-tmapikey]"),
       $tabButtons = $('.js-tab-buttons');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
@@ -76,12 +77,19 @@
     $borderRadiusController.slider('relayout');
   });
 
+  function toggleDisabled(widgetNode) {
+    if (widgetNode.getAttribute('w-id') === '') {
+      $getCodeButton.prop("disabled", true);
+    } else {
+      $getCodeButton.prop('disabled', false);
+    };
+  }
+
   var changeState = function changeState(event) {
     if (!event.target.name) {
       return;
     }
-    var widgetNode = document.querySelector("div[w-tmapikey]"),
-        targetValue = event.target.value,
+    var targetValue = event.target.value,
         targetName = event.target.name;
 
     // if(targetName === "w-theme"){
@@ -90,9 +98,20 @@
     //   }
     //   widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
     // }
+    //console.log('start change');
+
+    /*
+    //set attr for 'seconds' radio-btn
+    if(targetName === "w-seconds"){
+      if (targetValue !== 'showSeconds') {
+        widgetNode.setAttribute('w-seconds', 'hideSeconds');
+      }
+    }
+    */
 
     if (targetName === "w-layout") {
       var sizeConfig = themeConfig.simple_countdown.initSliderSize;
+
       if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
@@ -151,14 +170,15 @@
       widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
 
-    widgetNode.setAttribute(event.target.name, event.target.value);
+    widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
+
+    toggleDisabled(widgetNode); //set disabled btn if input is empty
 
     widget.update();
   };
 
   var resetWidget = function resetWidget(configForm) {
-    var widgetNode = document.querySelector("div[w-tmapikey]"),
-        widthSlider = $('.js_widget_width_slider'),
+    var widthSlider = $('.js_widget_width_slider'),
         height = 600,
         theme = void 0,
         layout = void 0,
@@ -210,6 +230,8 @@
     }
     widgetNode.setAttribute('w-height', height);
 
+    toggleDisabled(widgetNode); //set disabled btn if input is empty
+
     widget.update();
   };
 
@@ -219,11 +241,14 @@
 
   $configForm.on("change", changeState);
   // Mobile devices. Force 'change' by 'Go' press
+
   $configForm.on("submit", function (e) {
+    //console.log('pressed on.submit');
     $configForm.find('input:focus').trigger('blur');
     e.preventDefault();
   });
 
+  /*set tooltip value above slider*/
   $configForm.find("input[type='text']").each(function () {
     var $self = $(this);
     $self.data('default-value', $self.val());
@@ -234,7 +259,7 @@
     if ($self.is(':checked')) $self.data('is-checked', 'checked');
   });
 
-  $('.js_get_widget_code').on('click', function () {
+  $getCodeButton.on('click', function () {
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
 
     var htmlCode = document.createElement("div");
