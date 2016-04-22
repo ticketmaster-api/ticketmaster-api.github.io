@@ -173,19 +173,46 @@
 
 //widgets box
 //.discovery_widget_box {
+#direct-payments {
+  @media #{$max-1200} {
+    font-size: 36px;
+    line-height: 46px;
+  }
+}
+
 .widget_box {
-  width: 847px;
-  min-height: 262px;
+  width: 850px;
+  min-height: 438px;
   margin-bottom: 72px;
   background-repeat: no-repeat;
   background-position: right top;
 
   &__discovery{
-    @include img-retina("/assets/img/products-and-docs/event-discovery-img.png", "/assets/img/products-and-docs/event-discovery-img@2x.png", 362px, 262px);
+    /* @include img-retina("/assets/img/products-and-docs/event-discovery-widget-image.png", "/assets/img/products-and-docs/event-discovery-widget-image.png", 362px, 262px); */
+    background: url("/assets/img/products-and-docs/event-discovery-widget-image.png");
+    background-size: contain;
+    @media #{$max-1200} {
+      min-height: auto;
+      background-size: cover;
+    }
+    @media #{$max-768} {
+      background: url("/assets/img/products-and-docs/event-discovery-widget-image-m.png") top right;
+      background-size: cover;
+    }
   }
 
   &__countdown{
-    @include img-retina("/assets/img/products-and-docs/event-discovery-img-copy.png", "/assets/img/products-and-docs/event-discovery-img-copy@2x.png", 362px, 262px);
+    /* @include img-retina("/assets/img/products-and-docs/countdown-widget-image.png", "/assets/img/products-and-docs/countdown-widget-image@2x.png", 362px, 262px); */
+    background: url("/assets/img/products-and-docs/countdown-widget-image.png");
+    background-size: contain;
+    @media #{$max-1200} {
+      min-height: auto;
+      background-size: cover;
+    }
+    @media #{$max-768} {
+      background: url("/assets/img/products-and-docs/countdown-widget-image-m.png") top right;
+      background-size: cover;
+    }
   }
 
   @media #{$max-1200} {
@@ -193,13 +220,44 @@
   }
 
   @media #{$max-768} {
-    background-image: none;
     min-height: 0;
+    width: 111%;
+    position: relative;
+    left: -15px;
+    text-align: center;
+    padding: 0 15px 20px 15px;
   }
 
 
   h2{
-    margin-top: 0;
+    padding: 72px 0 0 48px;
+    color: #fff;
+    font-size: 54px;
+    line-height: 66px;
+    font-family: "InterstateWGL-Black", Arial, serif;
+    @media #{$max-1200} {
+      font-size: 36px;
+      line-height: 46px;
+      width: 40% !important;
+      padding-top: 66px;
+    }
+    @media #{$max-768} {
+      font-size: 24px;
+      line-height: 32px;
+      padding-left: 0;
+      width: 60% !important;
+      margin: 0 auto;
+    }
+  }
+
+  #countdown-widget {
+    padding-top: 105px;
+    @media #{$max-1200} {
+      padding-top: 82px;
+    }
+    @media #{$max-768} {
+      padding-top: 48px;
+    }
   }
   .button_set {
     .button {
@@ -214,7 +272,19 @@
       @media #{$max-768} and (orientation: portrait) {
         margin-left: auto;
         margin-right: auto;
+        display: block;
       }
+    }
+    margin-top: 37px;
+    margin-left: 48px;
+
+    @media #{$max-1200} {
+      padding-bottom: 50px;
+    }
+
+    @media #{$max-768} {
+      margin-left: 0;
+      padding-bottom: 0;
     }
   }
 
