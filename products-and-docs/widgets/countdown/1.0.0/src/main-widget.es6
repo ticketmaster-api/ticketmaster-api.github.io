@@ -62,7 +62,7 @@ class CountdownClock {
     */
 
     let now = new Date();
-    let serverEndTimeTime = Date.parse(this.endTime);
+    let serverEndTime = Date.parse(this.endTime);
 
     /*console.log('now' ,now ,'timedifference between UTC and local time: ', now.getTimezoneOffset() );
     console.log('now.toUTCString(): ', now.toUTCString() );
@@ -70,10 +70,11 @@ class CountdownClock {
     console.log('serverEndTimeTime: ', serverEndTimeTime , new Date(serverEndTimeTime));*/
 
 
-    let local_hourTimezoneOffset = serverEndTimeTime  - new Date().getTimezoneOffset() / 60;
-    console.log('local_hour difference: ', Math.floor((local_hour/3600000)) );
+    let local_hourTimezoneOffset = serverEndTime  - new Date().getTimezoneOffset() / 60;
+    console.log('local_hour difference: ', Math.floor((local_hourTimezoneOffset/3600000)) );
+    console.log('server EndTime: ', serverEndTime );
     console.log('total: ', total );
-    (local_hour <= 0) ? console.log('Event already showed ', local_hour ) : console.log('Event not started yet: ', local_hour );
+    (local_hourTimezoneOffset <= 0) ? console.log('Event already showed ', local_hourTimezoneOffset ) : console.log('Event not started yet: ', local_hourTimezoneOffset );
 
 
     return {
@@ -221,6 +222,12 @@ class TicketmasterCountdownWidget {
     this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
     this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
     this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
+
+    let timeLeft = this.getNormalizedDateValue(data.total);
+    console.log('timeLeft ', timeLeft);
+    if(timeLeft <= 0){
+      this.showMessage("Event has taken place", false , "event-message-started");
+    }
   }
 
   buildCountdown(){
@@ -331,11 +338,14 @@ class TicketmasterCountdownWidget {
     this.eventsRootContainer.appendChild(this.messageDialog);
   }
 
-  showMessage(message, hideMessageWithoutDelay){
+  showMessage(message, hideMessageWithoutDelay , /*optional string*/className){
     if(message.length){
       this.hideMessageWithoutDelay = hideMessageWithoutDelay;
       this.messageContent.innerHTML = message;
       this.messageDialog.classList.add("event-message-visible");
+    }
+    if(className.length){
+      this.messageDialog.classList.add(className);
     }
   }
 

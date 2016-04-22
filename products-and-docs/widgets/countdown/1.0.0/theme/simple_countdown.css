@@ -85,6 +85,20 @@ div[w-theme="simple_countdown"] .event-message-visible {
     top: 10px;
     opacity: 1;
 }
+div[w-theme="simple_countdown"] .event-message-visible.event-message-started {
+    top: 48px;
+    margin: 0 14px;
+    height: 97px;
+    /*font-family: "TMSans-Bold", Arial, serif;*/
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    background: rgba(208, 0, 110, 0.7) none;
+}
+/*hide close button*/
+div[w-theme="simple_countdown"] .event-message-visible.event-message-started .event-message__btn{
+    display: none;
+}
 
 div[w-theme="simple_countdown"] .event-message__btn {
     position: absolute;
@@ -144,8 +158,7 @@ div[w-theme="simple_countdown"] .event-question:after {
     right: 0;
     top: 0;
     bottom: 0;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: no-repeat center;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
@@ -177,8 +190,7 @@ div[w-theme="simple_countdown"] .bg-cover {
     display: block;
     overflow: hidden;
     background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
+    background: no-repeat center top;
 }
 
 
@@ -332,12 +344,11 @@ div[w-theme="simple_countdown"] .event-logo:before{
     right: 0;
     top: 0;
     bottom: 0;
-    background-repeat: no-repeat;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
+    background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg") no-repeat;
 }
 
 /* BUY NOW */
