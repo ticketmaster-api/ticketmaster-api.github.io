@@ -39,6 +39,30 @@ class TicketmasterEventDiscoveryWidget {
 
   get tmWidgetWhiteList(){ return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"]; }
 
+  get countriesWhiteList() {
+    return [
+      'Australia',
+      'Austria',
+      'Belgium',
+      'Canada',
+      'Denmark',
+      'Finland',
+      'France',
+      'Germany',
+      'Ireland',
+      'Mexico',
+      'Netherlands',
+      'New Zealand',
+      'Norway',
+      'Spain',
+      'Sweden',
+      'Turkey',
+      'UAE',
+      'United Kingdom',
+      'United States'
+    ]
+  }
+
   isConfigAttrExistAndNotEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
       return false;
@@ -190,32 +214,55 @@ class TicketmasterEventDiscoveryWidget {
           countryShortName = '';
         if(this.status === 200) {
           let response = JSON.parse(this.responseText);
-          if(response.status === 'OK' && response.results.length){
-            // Use first item if multiple results was found in one country or in different
-            results = response.results;
-            let geometry = results[0].geometry;
-            countryShortName = results[0].address_components[results[0].address_components.length - 1].short_name;
+          if (response.status === 'OK' && response.results.length) {
+            // Filtering only white list countries
+            results = response.results.filter((item) => {
+              return widget.countriesWhiteList.filter((elem) => {
+                  return elem === item.address_components[item.address_components.length - 1].long_name;
+                }).length > 0;
+            });
 
-            // If multiple results without country try to find USA as prefer value
-            if(!widget.config.country){
-              for(let i in results){
-                let result = results[i];
-                if(result.address_components){
-                  let country = result.address_components[result.address_components.length - 1];
-                  if(country){
-                    if(country.short_name === 'US'){
-                      countryShortName = 'US';
-                      geometry = result.geometry;
+            if (results.length) {
+              // sorting results by country name
+              results.sort((f, g) => {
+                let a = f.address_components[f.address_components.length - 1].long_name;
+                let b = g.address_components[g.address_components.length - 1].long_name;
+                if (a > b) {
+                  return 1;
+                }
+                if (a < b) {
+                  return -1;
+                }
+                return 0;
+              });
+
+              // Use first item if multiple results was found in one country or in different
+              let geometry = results[0].geometry;
+              countryShortName = results[0].address_components[results[0].address_components.length - 1].short_name;
+
+              // If multiple results without country try to find USA as prefer value
+              if (!widget.config.country) {
+                for (let i in results) {
+                  let result = results[i];
+                  if (result.address_components) {
+                    let country = result.address_components[result.address_components.length - 1];
+                    if (country) {
+                      if (country.short_name === 'US') {
+                        countryShortName = 'US';
+                        geometry = result.geometry;
+                      }
                     }
                   }
                 }
               }
-            }
 
-            if(geometry){
-              if(geometry.location){
-                latlong = `${geometry.location.lat},${geometry.location.lng}`;
+              if (geometry) {
+                if (geometry.location) {
+                  latlong = `${geometry.location.lat},${geometry.location.lng}`;
+                }
               }
+            } else {
+              results = null;
             }
           }
         }
