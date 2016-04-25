@@ -774,12 +774,15 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        console.log(e.target.className);
-        if (_this7.config.theme !== "listview" || e.target.className !== 'event-logo') e.preventDefault(); /*used in plugins for 'buy button'*/
+        if (_this7.config.theme !== "listview") {
+          if (e.target.className != 'event-logo') e.preventDefault();
+        } /*used in plugins for 'buy button'*/
         handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        if (_this7.config.theme !== "listview" || e.target.className !== 'event-logo') e.preventDefault();
+        if (_this7.config.theme !== "listview") {
+          if (e.target.className != 'event-logo') e.preventDefault();
+        }
         handleTouchMove.call(_this7, e);
       }, false);
     }
