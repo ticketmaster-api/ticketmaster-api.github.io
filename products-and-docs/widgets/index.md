@@ -13,10 +13,6 @@ keywords: widget, sell tickets, direct payments
 
 
 {: .lead .double-margin}
-Drop-in, clock out.
-
-{: .body .medium}
-Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui.
 
 {% capture discovery-widget %}
 ## Event Discovery Widget
