@@ -32,21 +32,7 @@ class CountdownClock {
   }
 
   getTimeRemaining() {
-    var t = {
-      "start": "2021-10-08T17:58:20.000Z",
-      "end": "2016-04-22T14:20:42.508Z",
-      "units": -1826,
-      "value": -172381057492,
-      "years": 5,
-      "months": 5,
-      "days": 16,
-      "hours": 3,
-      "minutes": 37,
-      "seconds": 37
-    };
-
-    //let total = Date.parse(this.endTime) - Date.parse(new Date());
-    this.endTime = '2021-10-08T17:58:20.000Z';
+    //this.endTime = '2021-10-08T17:10:20.000Z';
     let total = Date.parse(this.endTime) - Date.parse(new Date());
     if(total < 0) total = 0;
     let seconds = Math.floor((total / 1000) % 60),
@@ -73,40 +59,21 @@ class CountdownClock {
       let sum = 0;
 
       monthLeft = Math.floor( days/daysInMonth(servYear,servMonth) );
-      //66month
-
 
       for(let i =1; i < monthLeft; i++){
         daysInMonthLocal = daysInMonth(servYear , new Date(this.endTime).getUTCMonth()+i );
         sum = sum + daysInMonthLocal;
         //console.log(i , 'daysInMonth to endTime ',sum );
       }
-      console.log( 'days ',days );
       days = days - sum;
-      console.log( 'days:after ',days );
+      //console.log( 'days:after ',days );
 
-      if(monthLeft => 12){
+      if(monthLeft > 99){
         years = servYear - curr_year;
         monthLeft = monthLeft-1 - years*12;
         //console.log( 'monthLeft ',monthLeft );
       }
-
     }
-
-    let now = new Date();
-    let serverEndTime = Date.parse(this.endTime);
-
-    /*console.log('now' ,now ,'timedifference between UTC and local time: ', now.getTimezoneOffset() );
-     console.log('now.toUTCString(): ', now.toUTCString() );
-     console.log('Date.parse(now) secs: ', Date.parse(now) );
-     console.log('serverEndTimeTime: ', serverEndTimeTime , new Date(serverEndTimeTime));*/
-
-
-    let local_hourTimezoneOffset = serverEndTime  - new Date().getTimezoneOffset() / 60;
-    //console.log('local_hour difference: ', Math.floor((local_hourTimezoneOffset/3600000)) );
-    //console.log('server EndTime: ', serverEndTime );
-    //console.log('total: ', total );
-    //(local_hourTimezoneOffset <= 0) ? console.log('Event already showed ', local_hourTimezoneOffset ) : console.log('Event not started yet: ', local_hourTimezoneOffset );
 
     return {
       total,
@@ -135,7 +102,7 @@ class TicketmasterCountdownWidget {
   set eventId(id){ this.config.id = id;}
   get eventId(){ return this.config.id;}
 
-  get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : `https://app.ticketmaster.com/discovery/v2/events/${this.eventId}`; }
+  get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : `https://app.ticketmaster.com/discovery/v2/events/${this.eventId}.json`; }
 
   // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
   get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }
@@ -153,6 +120,8 @@ class TicketmasterCountdownWidget {
   get hideMessageDelay(){ return 5000; }
 
   get tmWidgetWhiteList(){ return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"]; }
+
+  get eventIdDefault(){ return '1Ad0ZfdGkMoCQHJ';}
 
   isConfigAttrExistAndNotEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
@@ -198,7 +167,7 @@ class TicketmasterCountdownWidget {
     // };
 
     this.config = this.widgetRoot.attributes;
-    this.eventId = "1Ad0ZfdGkMoCQHJ";
+    this.eventId = this.eventIdDefault;
 
     if(this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)){
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
@@ -268,15 +237,14 @@ class TicketmasterCountdownWidget {
     /*toggle CountDown-Box Visibility*/
     if(timeLeft <= 0){
       this.countDownWrapper.classList.add("hide-countDownBox");
-      console.info('timeLeft ', timeLeft);
       if(this.eventId && this.event){
         this.showMessage("This event has taken place", false , "event-message-started");
         return false; //exit if event has taken place
       }
     }else this.countDownWrapper.classList.remove("hide-countDownBox");
 
-    if(data.years > 1){
-      this.showMessage(`This event will start after ${data.years} years, ${data.monthLeft} month, ${data.days} days`, false , "event-message-started");
+    if(data.monthLeft > 99){
+      this.showMessage(`This event starts more than ${data.years} years, ${data.monthLeft} month, ${data.days} days, ${data.hours} hours`, false , "event-message-started");
       this.countDownWrapper.classList.add("hide-countDownBox");
       return false;
     }
@@ -411,18 +379,14 @@ class TicketmasterCountdownWidget {
       this.messageDialog.classList.remove("event-message-started");
     }
 
-    //console.log('className', className);
-
     if( className ){
       this.messageDialog.classList.add(className);
     }else {
       this.messageDialog.classList.add("event-message-visible");
       this.messageDialog.classList.remove(className);
-      //console.log('before: messageDialog.classList', this.messageDialog.classList);
     }
 
     className = null;
-    //console.log('after: box messageDialog.classList', this.messageDialog.classList);
 
   }
 
