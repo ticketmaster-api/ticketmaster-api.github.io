@@ -407,8 +407,11 @@ class TicketmasterEventDiscoveryWidget {
 
     var logo = document.createElement('a');
     logo.classList.add("event-logo");
-    logo.target = '_blank';
+    /* logo.target = '_blank';
     logo.href = this.logoUrl;
+    */
+    logo.href = 'javascript:void(0);';
+    logo.setAttribute('onclick', "javascript:window.open('" + this.logoUrl + "','_blank');");
 
     var logoBox = document.createElement('div');
     logoBox.classList.add("event-logo-box");
@@ -684,11 +687,11 @@ class TicketmasterEventDiscoveryWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
-      if(this.config.theme !== "listview") e.preventDefault(); /*used in plugins for 'buy button'*/
+      if(this.config.theme !== "listview" || e.target.className !== 'event-logo') e.preventDefault(); /*used in plugins for 'buy button'*/
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
-      if(this.config.theme !== "listview") e.preventDefault();
+      if(this.config.theme !== "listview" || e.target.className !== 'event-logo') e.preventDefault();
       handleTouchMove.call(this, e);
     }, false);
   }

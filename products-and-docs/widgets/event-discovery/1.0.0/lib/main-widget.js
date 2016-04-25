@@ -480,8 +480,11 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       var logo = document.createElement('a');
       logo.classList.add("event-logo");
-      logo.target = '_blank';
+      /* logo.target = '_blank';
       logo.href = this.logoUrl;
+      */
+      logo.href = 'javascript:void(0);';
+      logo.setAttribute('onclick', "javascript:window.open('" + this.logoUrl + "','_blank');");
 
       var logoBox = document.createElement('div');
       logoBox.classList.add("event-logo-box");
@@ -771,11 +774,12 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
 
       this.eventsRootContainer.addEventListener('touchstart', function (e) {
-        if (_this7.config.theme !== "listview") e.preventDefault(); /*used in plugins for 'buy button'*/
+        console.log(e.target.className);
+        if (_this7.config.theme !== "listview" || e.target.className !== 'event-logo') e.preventDefault(); /*used in plugins for 'buy button'*/
         handleTouchStart.call(_this7, e);
       }, false);
       this.eventsRootContainer.addEventListener('touchmove', function (e) {
-        if (_this7.config.theme !== "listview") e.preventDefault();
+        if (_this7.config.theme !== "listview" || e.target.className !== 'event-logo') e.preventDefault();
         handleTouchMove.call(_this7, e);
       }, false);
     }
