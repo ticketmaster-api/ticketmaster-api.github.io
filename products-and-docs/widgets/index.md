@@ -11,9 +11,6 @@ keywords: widget, sell tickets, direct payments
 
 # WIDGETS
 
-
-{: .lead .double-margin}
-
 {% capture discovery-widget %}
 ## Event Discovery Widget
 
