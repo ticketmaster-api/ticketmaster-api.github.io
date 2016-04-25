@@ -480,11 +480,11 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       var logo = document.createElement('a');
       logo.classList.add("event-logo");
-      /* logo.target = '_blank';
+      logo.target = '_blank';
       logo.href = this.logoUrl;
-      */
-      logo.href = 'javascript:void(0);';
+      /* logo.href = 'javascript:void(0);';
       logo.setAttribute('onclick', "javascript:window.open('" + this.logoUrl + "','_blank');");
+      */
 
       var logoBox = document.createElement('div');
       logoBox.classList.add("event-logo-box");
