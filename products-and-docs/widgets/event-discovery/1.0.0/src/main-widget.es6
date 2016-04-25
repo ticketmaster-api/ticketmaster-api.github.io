@@ -684,11 +684,11 @@ class TicketmasterEventDiscoveryWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
-      if(this.config.theme !== "listview") e.preventDefault(); /*used in plugins for 'buy button'*/
+      if(this.config.theme !== "listview") { if (e.target.className != 'event-logo') e.preventDefault(); } /*used in plugins for 'buy button'*/
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
-      if(this.config.theme !== "listview") e.preventDefault();
+      if(this.config.theme !== "listview") { if (e.target.className != 'event-logo') e.preventDefault(); }
       handleTouchMove.call(this, e);
     }, false);
   }
