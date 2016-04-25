@@ -64,27 +64,25 @@ var CountdownClock = function () {
   }, {
     key: "getTimeRemaining",
     value: function getTimeRemaining() {
-      var today = new Date();
-      //let total = Date.parse(this.endTime) - Date.parse(new Date());
+      //this.endTime = '2021-10-08T17:10:20.000Z';
       var total = Date.parse(this.endTime) - Date.parse(new Date());
-
       if (total < 0) total = 0;
       var seconds = Math.floor(total / 1000 % 60),
           minutes = Math.floor(total / 1000 / 60 % 60),
           hours = Math.floor(total / 3600000 /* (1000 * 60 * 60) */ % 24),
           days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */),
-          monthLeft = 0;
+          monthLeft = 0,
+          years = 0;
 
       var daysInMonth = function daysInMonth(year, month) {
         var D = new Date(year, month - 1, 1, 12);
         return parseInt((-Date.parse(D) + D.setMonth(D.getMonth() + 1) + 36e5) / 864e5);
       };
 
-      var curr_month = today.getUTCMonth();
-      //console.log('curr_month',curr_month +1);
-      var curr_year = today.getUTCFullYear();
-      //console.log('curr_year',curr_year);
-      var curr_days_in_month = daysInMonth(curr_year, curr_month);
+      var today = new Date(),
+          curr_month = today.getUTCMonth(),
+          curr_year = today.getUTCFullYear(),
+          curr_days_in_month = daysInMonth(curr_year, curr_month);
 
       if (function (days) {
         return curr_days_in_month;
@@ -96,19 +94,24 @@ var CountdownClock = function () {
 
         monthLeft = Math.floor(days / daysInMonth(servYear, servMonth));
 
-        for (var i = 0; i < monthLeft; i++) {
+        for (var i = 1; i < monthLeft; i++) {
           daysInMonthLocal = daysInMonth(servYear, new Date(this.endTime).getUTCMonth() + i);
           sum = sum + daysInMonthLocal;
-          //console.log(i , 'daysInMonth ',sum );
+          //console.log(i , 'daysInMonth to endTime ',sum );
         }
         days = days - sum;
+        //console.log( 'days:after ',days );
 
-        //console.log('days',days);
-        //console.log('mounthLeft',monthLeft);
+        if (monthLeft > 99) {
+          years = servYear - curr_year;
+          monthLeft = monthLeft - 1 - years * 12;
+          //console.log( 'monthLeft ',monthLeft );
+        }
       }
 
       return {
         total: total,
+        years: years,
         monthLeft: monthLeft,
         days: days,
         hours: hours,
@@ -169,7 +172,7 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "apiUrl",
     get: function get() {
-      return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/" + this.eventId;
+      return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/" + this.eventId + ".json";
     }
 
     // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
@@ -215,6 +218,11 @@ var TicketmasterCountdownWidget = function () {
       return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"];
     }
   }, {
+    key: "eventIdDefault",
+    get: function get() {
+      return '1Ad0ZfdGkMoCQHJ';
+    }
+  }, {
     key: "eventReqAttrs",
     get: function get() {
       var attrs = {},
@@ -251,7 +259,7 @@ var TicketmasterCountdownWidget = function () {
     // };
 
     this.config = this.widgetRoot.attributes;
-    this.eventId = "1Ad0ZfdGkMoCQHJ";
+    this.eventId = this.eventIdDefault;
 
     if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
@@ -276,7 +284,7 @@ var TicketmasterCountdownWidget = function () {
     if (this.apiUrl) {
       this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
     } else {
-      this.showMessage("Please enter event ID.", true);
+      this.showMessage("Please enter event ID.", true, null);
     }
 
     // if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
@@ -292,7 +300,7 @@ var TicketmasterCountdownWidget = function () {
       onChange: this.onCountdownChange.bind(this)
     });
 
-    this.toggleSeccondsVisibility();
+    this.toggleSecondsVisibility();
   }
 
   _createClass(TicketmasterCountdownWidget, [{
@@ -301,10 +309,8 @@ var TicketmasterCountdownWidget = function () {
       return (val < 0 || val > 9 ? "" : "0") + val;
     }
   }, {
-    key: "toggleSeccondsVisibility",
-    value: function toggleSeccondsVisibility() {
-      //console.log(this.countDownSecond);
-      //console.log(this.countDownMonth);
+    key: "toggleSecondsVisibility",
+    value: function toggleSecondsVisibility() {
       if (this.countDownMonth.innerHTML > 0) {
         this.countDownWrapper.classList.add("hide-seconds");
         this.countDownWrapper.classList.remove("hide-days");
@@ -322,13 +328,32 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: "onCountdownChange",
     value: function onCountdownChange(data) {
+      var timeLeft = this.getNormalizedDateValue(data.total);
+
+      /*toggle CountDown-Box Visibility*/
+      if (timeLeft <= 0) {
+        this.countDownWrapper.classList.add("hide-countDownBox");
+        if (this.eventId && this.event) {
+          this.showMessage("This event has taken place", false, "event-message-started");
+          return false; //exit if event has taken place
+        }
+      } else this.countDownWrapper.classList.remove("hide-countDownBox");
+
+      if (data.monthLeft > 99) {
+        this.showMessage("This event starts more than " + data.years + " years, " + data.monthLeft + " month, " + data.days + " days, " + data.hours + " hours", false, "event-message-started");
+        this.countDownWrapper.classList.add("hide-countDownBox");
+        return false;
+      }
+
       this.countDownMonth.innerHTML = this.getNormalizedDateValue(data.monthLeft);
       this.countDownDays.innerHTML = this.getNormalizedDateValue(data.days);
       this.countDownHours.innerHTML = this.getNormalizedDateValue(data.hours);
       this.countDownMinute.innerHTML = this.getNormalizedDateValue(data.minutes);
       this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
 
-      this.toggleSeccondsVisibility();
+      this.toggleSecondsVisibility();
+
+      //console.log('event is null?', this.apiUrl , '\n this.eventId', this.eventId);
     }
   }, {
     key: "buildCountdown",
@@ -455,12 +480,22 @@ var TicketmasterCountdownWidget = function () {
     }
   }, {
     key: "showMessage",
-    value: function showMessage(message, hideMessageWithoutDelay) {
+    value: function showMessage(message, hideMessageWithoutDelay, /*string togleClassName*/className) {
       if (message.length) {
         this.hideMessageWithoutDelay = hideMessageWithoutDelay;
         this.messageContent.innerHTML = message;
         this.messageDialog.classList.add("event-message-visible");
+        this.messageDialog.classList.remove("event-message-started");
       }
+
+      if (className) {
+        this.messageDialog.classList.add(className);
+      } else {
+        this.messageDialog.classList.add("event-message-visible");
+        this.messageDialog.classList.remove(className);
+      }
+
+      className = null;
     }
   }, {
     key: "hideMessage",
@@ -573,7 +608,7 @@ var TicketmasterCountdownWidget = function () {
         //   this.themeModificators[ this.widgetConfig.theme ]();
         // }
 
-        if (this.apiUrl) {
+        if (this.apiUrl && this.eventId) {
           this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
         } else {
           this.showMessage("No results were found.", true);
@@ -588,7 +623,7 @@ var TicketmasterCountdownWidget = function () {
           }
         }
       }
-      //this.toggleSeccondsVisibility();
+      //this.toggleSecondsVisibility();
     }
   }, {
     key: "needToUpdate",
@@ -632,7 +667,7 @@ var TicketmasterCountdownWidget = function () {
     key: "onEventLoadError",
     value: function onEventLoadError(status) {
       this.event = false;
-      this.showMessage("No results were found.", true);
+      this.showMessage("No results were found.", true, null);
       console.log("There was an error status - " + status);
     }
   }, {

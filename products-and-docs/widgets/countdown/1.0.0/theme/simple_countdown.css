@@ -61,6 +61,10 @@ div[w-theme="simple_countdown"] .event-pretended-link:hover {
     opacity: 0.7;
 }
 
+/*
+* event-message
+*/
+
 div[w-theme="simple_countdown"] .event-message {
     position: absolute;
     padding: 16px 46px 16px 52px;
@@ -80,10 +84,27 @@ div[w-theme="simple_countdown"] .event-message {
     -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
+div[w-theme="simple_countdown"] .event-message__content {}
 
 div[w-theme="simple_countdown"] .event-message-visible {
     top: 10px;
     opacity: 1;
+}
+div[w-theme="simple_countdown"] .event-message-visible.event-message-started {
+    top: 48px;
+    margin: 0 14px;
+    padding: 20px 46px;
+    //max-height: 96px;
+    /*font-family: "TMSans-Bold", Arial, serif;*/
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    background: rgba(208, 0, 110, 0.7) none;
+    border-radius: 0;
+}
+/*hide close button*/
+div[w-theme="simple_countdown"] .event-message-visible.event-message-started .event-message__btn{
+    display: none;
 }
 
 div[w-theme="simple_countdown"] .event-message__btn {
@@ -96,6 +117,15 @@ div[w-theme="simple_countdown"] .event-message__btn {
     /* TODO: update after release to  http://developer.ticketmaster.com/*/
     background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ic-close-small-white.svg") no-repeat 50% 50%;
 }
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-message-visible.event-message-started {
+    width: 45%;
+    top: 36px;
+    left: initial;
+}
+/*
+* event-message END
+*/
 
 div[w-theme="simple_countdown"] .events-root-container{
     overflow: hidden;
@@ -144,8 +174,7 @@ div[w-theme="simple_countdown"] .event-question:after {
     right: 0;
     top: 0;
     bottom: 0;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: no-repeat center;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
@@ -177,8 +206,7 @@ div[w-theme="simple_countdown"] .bg-cover {
     display: block;
     overflow: hidden;
     background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
+    background: no-repeat center top;
 }
 
 
@@ -332,12 +360,11 @@ div[w-theme="simple_countdown"] .event-logo:before{
     right: 0;
     top: 0;
     bottom: 0;
-    background-repeat: no-repeat;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
+    background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg") no-repeat;
 }
 
 /* BUY NOW */
@@ -380,7 +407,7 @@ div[w-theme="simple_countdown"] .events-count-down {
     position: absolute;
     display: block;
     color: #fff;
-    top: 116px;
+    top: 48px;
     width: 100%;
     padding: 0 24px;
     text-align: center;
@@ -396,6 +423,9 @@ div[w-theme="simple_countdown"] .events-count-down:before {
     line-height: 28px;
     width: 100%;
     margin-bottom: 3px;
+}
+div[w-theme="simple_countdown"] .events-count-down.hide-countDownBox {
+    display: none;
 }
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__month,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__day,
@@ -469,7 +499,7 @@ div[w-theme="simple_countdown"] .events-count-down.hide-month.hide-days > .event
 }
 
 div[w-theme="simple_countdown"] .events-count-down.hide-month.hide-days > span {
-    width: 32.331%;
+    width: 32.660%;
 }
 /*claer margin for last elem in counter*/
 div[w-theme="simple_countdown"] .events-count-down.hide-month > .events-count-down__minute {
@@ -478,9 +508,6 @@ div[w-theme="simple_countdown"] .events-count-down.hide-month > .events-count-do
 div[w-theme="simple_countdown"] .events-count-down.hide-seconds > .events-count-down__minute {
     margin-right: 0;
 }
-
-/* G5viZKU1IjVso - to show test MM:HH:SS */
-/* vv1AeZAvtGkdoRlk9  - to show test DD:MM:HH:SS*/
 
 /*time counter END*/
 
