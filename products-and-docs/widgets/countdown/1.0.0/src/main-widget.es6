@@ -494,7 +494,6 @@ class TicketmasterCountdownWidget {
 
       if(this.apiUrl && this.eventId){
         this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
-        console.log('update go', this.apiUrl);
       }else{
         this.showMessage("No results were found.", true);
         this.countdownClock.update(null);

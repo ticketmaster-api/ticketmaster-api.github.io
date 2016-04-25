@@ -62,38 +62,6 @@ var CountdownClock = function () {
       if (timeRemaining.total <= 0) clearInterval(this.timeinterval);
     }
   }, {
-    key: "TimeDifferenceCounter",
-    value: function TimeDifferenceCounter(sec) {
-      var t = parseInt(sec);
-      var years;var months;var days;
-      if (t > 31556926) {
-        years = parseInt(t / 31556926);t = t - years * 31556926;
-      }
-      if (t > 2629743) {
-        months = parseInt(t / 2629743);t = t - months * 2629743;
-      }
-      if (t > 86400) {
-        days = parseInt(t / 86400);t = t - days * 86400;
-      }
-      var hours = parseInt(t / 3600);
-      t = t - hours * 3600;
-      var minutes = parseInt(t / 60);
-      t = t - minutes * 60;
-      var content = "";
-      if (years) content += years + " Год(а)";
-      if (months) {
-        if (content) content += ", ";content += months + " Месяцев(а)";
-      }
-      if (days) {
-        if (content) content += ", ";content += days + " Дней(я)";
-      }
-      if (hours || days) {
-        if (content) content += "\n";content += hours + " Часов(а)";
-      }
-      if (content) content += ", ";content += minutes + " Минут(ы) " + t + " Секунд(ы)";
-      return content;
-    }
-  }, {
     key: "getTimeRemaining",
     value: function getTimeRemaining() {
       //this.endTime = '2021-10-08T17:10:20.000Z';
@@ -108,7 +76,7 @@ var CountdownClock = function () {
 
       var daysInMonth = function daysInMonth(year, month) {
         var D = new Date(year, month - 1, 1, 12);
-        return parseInt((-Date.parse(D) + D.setUTCMonth(D.getUTCMonth() + 1) + 36e5) / 864e5);
+        return parseInt((-Date.parse(D) + D.setMonth(D.getMonth() + 1) + 36e5) / 864e5);
       };
 
       var today = new Date(),
@@ -140,18 +108,6 @@ var CountdownClock = function () {
           //console.log( 'monthLeft ',monthLeft );
         }
       }
-
-      /*
-      let now = new Date();
-      let serverEndTime = Date.parse(this.endTime);
-      console.info('new Date().toJSON() ' , new Date().toJSON());
-      console.log('now offset HH: ', now.getTimezoneOffset() / 60 + ' hr');
-      console.log('now getUTCHours(): ', now.getUTCHours() );
-      console.log('\n ******* \n');
-      //let content = this.TimeDifferenceCounter(total);
-      console.log('this.endTime ' ,this.endTime);
-      console.log('this.endTime.getUTCHours() ' ,new Date(this.endTime).getUTCHours());
-      */
 
       return {
         total: total,
@@ -654,7 +610,6 @@ var TicketmasterCountdownWidget = function () {
 
         if (this.apiUrl && this.eventId) {
           this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
-          console.log('update go', this.apiUrl);
         } else {
           this.showMessage("No results were found.", true);
           this.countdownClock.update(null);
