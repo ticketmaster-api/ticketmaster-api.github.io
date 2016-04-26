@@ -58,6 +58,7 @@
 
     .modal-body {
       @include clearfix;
+      text-align: left;
       textarea {
         resize: none;
       }
@@ -81,6 +82,9 @@
           text-decoration: none;
           background-color: $p1b;
           color: $white;
+        }
+        &[disabled]{
+          background-color: $n3;
         }
       }
     }

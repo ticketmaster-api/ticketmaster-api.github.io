@@ -40,6 +40,9 @@
             <label for="description">Description</label>
             <textarea required rows="3" name="description" id="description"></textarea>
           </div>
+          <div class="col-sm-12">
+            <p id="feedback-message-error" class="text-overflow-message text-overflow-message__red" style="display:none">The maximum length of description can be 3000 characters.</p>
+          </div>
         </form>
 
       </div>
@@ -56,7 +59,7 @@
 
 
 <!-- Button trigger modal -->
-<button id="js_feedback_open" type="button" class="btn feedback-btn" data-toggle="modal" data-target="#feedback-modal">feedback</button>
+<button id="js_feedback_open" type="button" class="btn feedback-btn scale-on-hover" data-toggle="modal" data-target="#feedback-modal">feedback</button>
 
 
 <!-- Modal alert-->

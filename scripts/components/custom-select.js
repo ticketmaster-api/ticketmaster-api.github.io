@@ -1,20 +1,18 @@
 (function($){
 jQuery.fn.customSelect = function(options ) {
 
-    var defaults = {
-
-        },
+    var defaults = {},
         settings = $.extend({}, defaults, options);
 
 
     return this.each(function () {
 
         var $custom_select = $(this);
+        $custom_select.append('<div class="custom_select__arrow"/>');
 
         var $select = $custom_select.find('select'),
             $placeholder = $custom_select.find('input'),
             $list = $custom_select.find('ul'),
-            $options = $list.find('li'),
             $feedbackModal = $('#feedback-modal'),
             openedCssClass = 'custom_select-opened',
             activeItemCssClass = 'custom_select__item-active',
@@ -31,18 +29,20 @@ jQuery.fn.customSelect = function(options ) {
             $custom_select.removeClass(openedCssClass);
         }
 
-        function set(isInit) {
-            var $self = $(this);
+        function set(self, isInit) {
+            var $self = $(self);
             $placeholder.val($self.text());
             $select.val($self.data('value'));
             if(!isInit) $select.trigger('change');
-            $options.removeClass(activeItemCssClass);
+            $list.find('li').removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
         }
 
         function toggle() {
-            if ($list.is(':visible')) hide();
-            else show();
+            if(!$select.is(':disabled')){
+                if ($list.is(':visible')) hide();
+                else show();
+            }
         }
 
         function blur() {
@@ -50,20 +50,26 @@ jQuery.fn.customSelect = function(options ) {
         }
 
         function reset() {
-            set.call($options.filter(':first'), true);
+            set($list.find('li').filter(':first'), true);
         }
 
         // Events
-        $options.on('click', function(){
-            set.call(this, false);
+        $list.on('click', 'li', function(){            
+            set(this, false);
         });
         $placeholder.on('blur', blur);
-        $custom_select.on('click', toggle);
-        $feedbackModal.on('hide.bs.modal', reset);
+        $custom_select.on({
+            'click': toggle,
+            'custom-reset': reset
+        });
+        $feedbackModal.on({
+            'hide.bs.modal': reset,
+            'show.bs.modal': reset
+        });
 
         reset();
         });
-    }
+    };
 })(jQuery);
 
 $(document).on('ready', function () {

@@ -21,10 +21,29 @@
         // Clear highlight
         $form.removeClass(cssValidationClass);
     }
+    function showMsgError(id, delay, charCount){
+        var slideUpSpeed = 200;
+        $(id).append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>')
+        $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
+        setTimeout(
+          function(){
+              $('#feedback-contact-char-count').remove();
+              $('#js_feedback_btn').prop('disabled',false);
+          },
+          delay + slideUpSpeed*3);
+    }
 
     function submitForm(){
+        var $textAreaDescription = $('#description'),
+            charCount = $textAreaDescription.val().length;
+        if(3000 <= charCount) {
+            showMsgError('#feedback-message-error', 4000 , charCount);
+            return false;
+        }
 
         $email.val($email.val().toLocaleLowerCase());
+
+
         $.ajax({
             dataType: 'jsonp',
             url: $form.attr('action'),

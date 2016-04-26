@@ -82,7 +82,7 @@
 
 = block-5 (Events) text, align check =
         nav-item-block-5-footer-1:
-            % text is "hackathon"
+            % text is "hackathons"
             aligned horizontally all nav-item-block-5-footer-2
         nav-item-block-5-footer-2:
             % text is "devjam"

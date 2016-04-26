@@ -34,7 +34,7 @@ such a bright idea introduced for Ticketmaster's API.
 ![APIExplorer](/assets/img/partners/startups-development/bitmap@2x.png)
 {: .add-img-border}
 
-Get access to the [API Explorer](http://vmenshutin.github.io/).
+Get access to the [API Explorer](/api-explorer/).
 
 {% endcapture %}
 

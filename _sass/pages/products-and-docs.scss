@@ -88,10 +88,17 @@
     @media #{$max-768}{
       .sdk-elem{
         margin-bottom: 23px;
+        p {
+            margin-left: auto;
+            margin-right: auto;
+        }
       }
     }
     .row-sdk {
         max-width: 802px;
+        p {
+            width: 100%;
+        }
     }
     h2 {
         margin-top: 20px;
@@ -186,7 +193,7 @@
     }
 }
 
-.button-default{
+.button-default {
     color: $n3;
     border: solid 2px $n3;
     text-decoration: none;
@@ -196,6 +203,24 @@
     &:hover{
         color: $p1a;
         border-color: $p1a;
+    }
+}
+
+.button-transparent {
+    color: #fff;
+    background: none;
+    text-decoration: none;
+    margin-top: 17px;
+    padding: 12px 26px;
+    border: 2px solid #fff;
+    &:hover,
+    &:focus,
+    &:active {
+        outline: none;
+        text-decoration: none;
+        background-color: none;
+        color: #00A4FC;
+        border-color: #00A4FC;
     }
 }
 

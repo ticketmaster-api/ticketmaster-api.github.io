@@ -1,5 +1,8 @@
-<ul id="menu-dropdown" class="col-xs-12 col-sm-5 col-lg-3 closed" tabindex="-1">
-    <li><a class="apgee-login" href="https://dev-livenation.devportal.apigee.com/user/login">Login</a></li>
+<ul id="menu-dropdown" class="col-xs-12 col-sm-5 col-lg-3 closed{% if page.categories[0] == "documentation" %} fixed{% endif %}" tabindex="-1">
+    {% if page.categories[0] == "documentation" %}
+    <a id="menu-btn-fixed" class="tm-close"></a>
+    {% endif %}
+    <li><a class="apgee-login" href="https://live-livenation.devportal.apigee.com/user/login">Login</a></li>
     <li><a href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a></li>
     <li><a href="{{"/partners/" | prepend: site.baseurl}}">Partners</a></li>
     <li><a href="{{"/support/" | prepend: site.baseurl}}">Support</a></li>

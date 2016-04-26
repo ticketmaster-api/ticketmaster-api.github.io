@@ -1109,8 +1109,6 @@ If your integration requires captcha, use this endpoint to retreive a basic Goog
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 
-
-
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1143,15 +1141,15 @@ Header: X-TM-CAPTCHA-V2-STOKEN: <secure token>
 
 
 {: .article}
-## Solve Captcha [POST]
-{: #post-captcha}
+## Reserve tickets and create a Cart [POST]
+{: #reserve-tickets}
 
-Solve the captcha and establish a cart session<br/>
+Reserves the specified tickets. For integrations requiring captcha, send the captcha solution token in the json body.  A hold time will be returned in the cart response that will indicate, in seconds, how long the cart is available for.  This value may increase if the user moves through the cart process.<br/>
 
 /partners/v1/events/{event_id}/cart?apikey={apikey}
 {: .code .red}
 
-*Polling: No*
+*Polling: Yes*
 
 ### Parameters
 
@@ -1161,50 +1159,16 @@ Solve the captcha and establish a cart session<br/>
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 
 
-
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
 
 {% highlight bash %}
 https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
-{% endhighlight %}
-
-
-{% highlight js %}
-Status 200
-{"cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo="}
-{% endhighlight %}
-
-
-{: .article}
-## Reserve tickets and create a Cart [PUT]
-{: #reserve-tickets}
-
-Reserves the specified tickets. For integrations not requiring captcha, use this endpoint to establish the cart session.  A hold time will be returned in the cart response that will indicate, in seconds, how long the cart is available for.  This value can increase if the user moves through the cart process.
-
-*Polling: Yes*
-
-/partners/v1/cart/events/{event_id}/cart/tickets?apikey={apikey}
-{: .code .red}
-
-#### Parameters
-
-| Parameter  | Description          | Type              | Example      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-
-
->[Request](#req)
->[Response](#res)
-{: .reqres}
-
-{% highlight js %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/tickets?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
 {
-    "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
+    "token" : <captcha solution token, if required>,
+
     "tickets":[
         {
             "id": "000002040006", // Maintain leading-zeros in the ticket id as part of the string. 
@@ -1235,11 +1199,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/tickets?ap
     // If the requested seats (via place id or begin/end seat) are not available, use a Best Available search as a fallback.  Set to false to disable. Default is true.
     "accept_best_available": false
 }
-
-
 {% endhighlight %}
-
-
 
 
 {% highlight js %}
@@ -1336,7 +1296,7 @@ Get shipping options available for this event.  Note: some API users will be pre
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/{event_id}/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
 {% endhighlight %}
 
 {% highlight js %}
@@ -1427,7 +1387,7 @@ Add a shipping option to the event.  Note: some API users will be pre-configured
 {: .reqres}
 
 {% highlight js %}
-    https://app.ticketmaster.com/partners/v1/events/{event_id}/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+    https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/shipping?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
 
     {"shipping_id": "4"}
 {% endhighlight %}
@@ -1552,7 +1512,7 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
             "line2": "",                // Field required, but empty allowed
             "unit": "1h"                // Optional
             "city": "Los Angeles",      // Optional 
-            "country": {                // Required, use 840 for United States or 36 for Canada
+            "country": {                // Required, use 840 for United States. See Appendix for other supported country codes
                 "id": 840
             },
             "region": {                 // Optional
@@ -1674,9 +1634,10 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 Status 200
 {
     "redemption_url" : "https://myorder.ticketmaster.com/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
-    "tm_app_url" : "ticketmaster:///partners/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
+    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "grand_total" : 57.39,
-    "order_token" : "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"
+    "order_token" : "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
+    "order_number" : "35-46145/LA1"
 }
 {% endhighlight %}
 
@@ -1980,6 +1941,7 @@ Example:
 | Invalid cart | 90003 | 400 | cart_id parameter is invalid or stale |
 | Invalid Delivery Method ID | 10104 | 400 ||
 | Event had no visible/usable ticket types for the current channel | 20046 | 400 | API user is not configured to sell the specified ticket types |
+| Payment method has no funds available | 20129 | 400| |
 
 
 ---
@@ -1994,7 +1956,7 @@ Clients can reference the *code* field when communicating and debugging errors w
 
 The following illustrates a typical purchase flow:
 
-### 1. Discover event availability and ticket information.
+### 1. Discover event ticket information.
 
 Request: `GET /partners/v1/events/09004E6CE6325123`
 
@@ -2007,38 +1969,22 @@ Request: `GET /partners/v1/captcha`
 Response contains html to render in a webview containing a Google NoCaptcha ReCaptcha form.  Upon user-submit, the form will redirect the page to ticketmaster-g-recaptcha-response://{captcha-token}.
 Listen for redirects on the webview and obtain the captcha-token.
 
-### 3. Exchange captcha-token for a new cart session
+### 3. Submit the captcha-token with reserve criteria and start a new cart session
 
 Request: `POST /partners/v1/events/09004E6CE6325123/cart`
-Body: `{"token" : "2822b0737710e549a2f74c1e65be19b9"}`
+Body: `{"token" : "2822b0737710e549a2f74c1e65be19b9", "reserve" : { "tickets": [ {"id": "000000000001"}] }}`
 
 Post the captcha token. Response contains cart_id to be used on further operations on this cart.
 
 Response:
-`{"cart_id" : "6LcA5cESAAAAAPsVEe0jgHVOqlKIbkHaeK0HGhQ6cd34a074e785f2107de2c9fea0016c20"}`
+`{"cart_id" : "6LcA5cESAAAAAPsVEe0jgHVOqlKIbkHaeK0HGhQ6cd34a074e785f2107de2c9fea0016c20", "cart" : ...}`
 
 
-### 4. Make a reserve call.
-
-Request: `PUT /partners/v1/events/09004E6CE6325123/cart/tickets`
-
-Request body:
-
-{% highlight js %}
-{
-    "cart_id" : "6LcA5cESAAAAAPsVEe0jgHVOqlKIbkHaeK0HGhQ6cd34a074e785f2107de2c9fea0016c20",
-    "event": {
-              "id" : "09004E6CE6325123",
-              "tickets": [ {"id": "000000000001", "quantity": 1, "price": {"id" : 5}}]
-    }
-}
-{% endhighlight %}
-
-### 5. Get payment encryption certificate. Extract `id` and `value` from response.
+### 4. Get payment encryption certificate. Extract `id` and `value` from response.
 
 Request: `GET /partners/v1/certificate`
 
-### 6. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
+### 5. Add encrypted payment information.  Encrypt the credit card number and cvv for the payload (see example in Payment section)
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart/payment`
 
@@ -2082,7 +2028,7 @@ Request body:
 }
 {% endhighlight %}
 
-### 7. Purchase the tickets
+### 6. Purchase the tickets
 
 Request: `PUT /partners/v1/events/09004E6CE6325123/cart`
 
@@ -2100,8 +2046,9 @@ Response:
 {% highlight js %}
 {
     "redemption_url" : "http://myorder-qa.ticketmaster.net/redeem?event_id=3F004EC9D1EBBC76&token=d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
-    "tm_app_url" : "ticketmaster:///partners/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
+    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "order_token" : "d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
+    "order_number" : "35-46145/LA1",
     "grand_total":68.74
 }
 {% endhighlight %}
@@ -2110,10 +2057,11 @@ Response:
 ## Versions
 {: #versions}
 
-| Date | API Major Version | Minor Version | Comment | Author |
-| ---- | ----------------- | ------------- | ------- | ------ |
-| 2015-10-01 |        1          |      0        | Initial | Ryan Aviles |
-| 2015-10-12 |        1          |      0        | Updated captcha and cart session usage | Ryan Aviles |
+| Date | API Major Version | Minor Version | Comment |
+| ---- | ----------------- | ------------- | ------- |
+| 2015-10-01 |        1          |      0        | Initial |
+| 2015-10-12 |        1          |      0        | Updated captcha and cart session usage|
+| 2016-04-16 |        1          |      0        | Updated reserve endpoint|
 
 
 ## Appendix

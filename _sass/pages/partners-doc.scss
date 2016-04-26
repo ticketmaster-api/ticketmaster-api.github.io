@@ -1,7 +1,7 @@
 /* entire container, keeps perspective */
 .flip-container {
   perspective: 1000px;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
 /* flip the pane when hovered */
 .flip-container:hover .flipper, .flip-container.hover .flipper {
