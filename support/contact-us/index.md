@@ -145,8 +145,9 @@ var $contactForm = $('.js_contact_form'),
 
     $contactForm.submit(function(e){
         var charCount = $textAreaDescription.val().length;
-        $('button', $contactForm).prop('disabled',true);
+
         e.preventDefault();
+        $('button', $contactForm).prop('disabled',true);
 
         if(3000 <= charCount) {
           showMsgError('#message-error', 4000 , charCount);

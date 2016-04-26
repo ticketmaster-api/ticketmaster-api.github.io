@@ -36,7 +36,7 @@ At Ticketmaster, we are always looking for innovative products and services that
 We offer the support, knowledge and validation to make sure your solution is fully-compatible with Ticketmaster systems.  For vendors to access the Ticketmaster Ticketing System services, they must become a member of Ticketmaster’s Partner program, the costs of which help Ticketmaster offset its costs for vendor integration support.  If you are interested in finding out ways to integrate your product or service with Ticketmaster’s systems, please complete the form below: 
 
 <div class="col-sm-12 col-lg-8 nexus-form-wrapper">
-<form accept-charset="UTF-8" action="#" method="POST" class="js_nexus_form">    
+<form accept-charset="UTF-8" action="#" method="POST" class="js_nexus_form">
     <div class="col-sm-6">
         <label for="name-nexus">First name</label>
         <input type="text" id="first-name" name="firstName" maxlength="255" placeholder="" tabindex="1">
@@ -57,11 +57,11 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <label for="organization">Organization name</label>
         <input type="text" id="organization-nexus" name="organization" placeholder="" tabindex="5">
     </div>
+
     <div class="col-sm-6">
-    <label >Number of Ticketmaster clients</label>
-    <input class="js_numeric_input" type="number-nexus" min="0" name="ticketsNumber" pattern="[0-9]*" inputmode="numeric" title="This field may only contain alpha-numeric characters" tabindex="6">
-    </div>    
-    
+        <label >Number of Ticketmaster clients</label>
+        <input class="js_numeric_input" type="number-nexus" min="0" name="ticketsNumber" pattern="[0-9]*" inputmode="numeric" title="This field may only contain alpha-numeric characters" tabindex="6">
+    </div>
     <label class="label-radio-group">Is product offering free or paid? <span class="label-required">(required)</span></label>
     <div class="label-radio">
         <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label class="js-label-radio"><span><span></span></span>Paid</label>
@@ -75,16 +75,28 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="col-sm-12">
         <p id="message-success" class="message-green" >Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-error" class="text-overflow-message text-overflow-message__red" style="display:none">The maximum length of description can be 3000 characters.</p>
     </div>
     <div class="col-sm-6">
         <button type="submit" class="button-blue">SEND</button>
     </div>
 </form>
 </div>
-<script type="text/javascript">   
-    var $nexusForm = $('.js_nexus_form');
+
+<script>
+var $nexusForm = $('.js_nexus_form'),
+    $textAreaDescription = $('#company-detail-text');
+
     $nexusForm.submit(function(e){
+        var charCount = $textAreaDescription.val().length;
+
         e.preventDefault();
+        $('button', $nexusForm).prop('disabled',true);
+        if(3000 <= charCount) {
+          showMsgError('#message-error', 4000 , charCount);
+          return false;
+        }
+
         $.ajax({
           dataType: 'jsonp',
           url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
@@ -98,6 +110,21 @@ We offer the support, knowledge and validation to make sure your solution is ful
     }); 
     function showMsgSuccess(id, delay){
         $(id).slideDown(400).delay( delay ).slideUp(200);
-    }
+        $nexusForm.trigger("reset");
+        //$('.js_custom_select',$nexusForm).trigger("custom-reset");
+        //$textAreaDescription.css('height',''); //reset height of textarea
+        $('button', $nexusForm).prop('disabled',false);
+    };
+    function showMsgError(id, delay, charCount){
+      var slideUpSpeed = 200;
+      $(id).append('<span id="contact-char-count"> Current count is '+charCount+'</span>')
+      $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
+      setTimeout(
+        function(){
+          $('#contact-char-count').remove();
+          $('button', $nexusForm).prop('disabled',false);
+        },
+        delay + slideUpSpeed*3);
+    };
 </script>
 
