@@ -11,13 +11,26 @@ keywords: widget, sell tickets, direct payments
 
 # WIDGETS
 
+{% capture discovery-widget %}
+## Event Discovery Widget
 
-{: .lead .double-margin}
-Drop-in, clock out.
+{: .button_set}
+[CONFIGURE NOW](/products-and-docs/widgets/event-discovery/){: .button.button-blue}  
+{% comment %}
+[LEARN MORE](#){: .button .button-transparent}
+{% endcomment %}
+{% endcapture %}
 
-{: .body .medium}
-Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually beard single-origin coffee, twee 90's PBR Echo Park sartorial try-hard freegan Portland ennui.
+{% capture countdown-widget %}
+{: #countdown-widget }
+## Countdown Widget
 
+{: .button_set}
+[CONFIGURE NOW](/products-and-docs/widgets/countdown/){: .button.button-blue} 
+{% comment %} 
+[LEARN MORE](#){: .button .button-transparent}
+{% endcomment %} 
+{% endcapture %}
 
 {% capture payments %}
 ### Direct Payments
@@ -30,26 +43,14 @@ directly on your website at no additional cost.
 
 {% endcapture %}
 
-{% capture discovery-widget %}
-{: #event-discovery-widget }
-## Event Discovery Widget
+<div class="widget_box widget_box__discovery" markdown="1">
+{{discovery-widget}}
+</div>
 
-{: .body}
-Informational text about the widget and it abilities, functions and other information.
-
-{: .button_set}
-[CONFIGURE NOW](/products-and-docs/under-development/){: .button.button-blue}  
-{::comment}
-[LEARN MORE](#){: .button .button-default}
-{:/comment}
-{% endcapture %}
-
-
+<div class="widget_box widget_box__countdown" markdown="1">
+{{countdown-widget}}
+</div>
 
 <div class="grey-box mask" markdown="1">
 {{payments}}
-</div>
-
-<div class="discovery_widget_box" markdown="1">
-{{discovery-widget}}
 </div>

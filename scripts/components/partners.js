@@ -1,35 +1,46 @@
 (function(){
     $(document).ready(function(){
 
-        var slider = $('#slider');
+        function checkSize() {
+            if ($(".carousel-controls").css("z-index") == "1") {
+                return 200;
+            }
+            if ($(".carousel-controls").css("z-index") == "2") {
+                return 100;
+            }
+            return 250;
+        }
 
-        $('.show-more-link').on('click', function(e){
-            e.preventDefault();
-            var self = this,
-                text = '';
+        var  numberSlides = checkSize() == 100 ?  0 : 1;
 
-            if ($(self).hasClass('expanded'))
-                text = 'Show more information';
-            else
-                text = 'Hide';
-
-            $(self).text(text);
-            $(self).toggleClass('expanded');
-            $(self).parent().parent().find('.show-more').toggleClass('expanded');
+        var carousel = $("#carousel").waterwheelCarousel({
+            separation: checkSize(),
+            flankingItems: numberSlides,
+            sizeMultiplier: 0.5,
+            opacityMultiplier: 0.3,
+            // autoPlay: 5500,
+            // speed: 700
         });
 
-        // calls slider initializator function with parameters defined by screen resolution
-        var initSlider = function(){
-            slider.slick({ // initialize slide
-                infinite: true,
-                centerMode: true,
-                variableWidth: true,
-                adaptiveHeight: true,
-                dots: true
-            });
-        };
+        $(".carousel-controls .carousel-prev").on("click", function () {
+            carousel.prev();
+        });
 
-        initSlider();
+        $(".carousel-controls .carousel-next").on("click", function () {
+            carousel.next();
+        });
+
+
+        $(window).resize(function() {
+            var  numberSlides = checkSize() == 100 ?  0 : 1;
+            carousel.reload({
+                separation: checkSize(),
+                flankingItems: numberSlides,
+                sizeMultiplier: 0.5,
+                opacityMultiplier: 0.3,
+            });
+        });
+
 
     });
 })();

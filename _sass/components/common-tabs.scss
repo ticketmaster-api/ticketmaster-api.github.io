@@ -1,9 +1,16 @@
 .common_tabs{
+
+  .tab-content {
+    padding-top: 48px;
+  }
+
   .nav-tabs{
-    margin: 0 0 0 22px;
+    margin: 0 0 0 -8px;
+    border: none;
     @include clearfix();
     li {
       float: left;
+      margin-bottom: 0;
       a {
         display: block;
         position: relative;
@@ -16,7 +23,11 @@
         text-decoration: none;
         white-space: nowrap;
         color: #b7c9d3;
+        background: transparent;
         outline: none;
+        border: none;
+        -webkit-border-radius: 0;
+        border-radius: 0;
         margin-left: -8px;
 
         &:before {
@@ -51,22 +62,14 @@
           }
         }
       }
+
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus {
+        border: none;
+        background: transparent;
+      }
+
     }
   }
-
-  .tab-pane{
-    display: none;
-    border: 2px solid #f1f5f7;
-    padding-top: 20px;
-    margin-bottom: 15px;
-
-    &.active{
-      display: block;
-    }
-  }
-
-
-
-
-
 }

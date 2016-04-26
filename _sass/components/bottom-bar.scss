@@ -119,6 +119,14 @@
     @media #{$max-1200} {
       margin-top: 48px;
     }
+    a > h4{
+      &:hover,
+      &:active,
+      &:focus{
+        color: $p1b;
+        outline: none;
+      }
+    }
   }
   &.menu-bg{
     &:before{

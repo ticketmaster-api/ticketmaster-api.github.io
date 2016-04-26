@@ -13,8 +13,13 @@
                         "dots": true // no connecting dots between dots
                     }
                 },
-                "plugins" : ["state"] // activate the state plugin on this instance
+                "plugins" : [] // activate the state plugin on this instance
             });
+
+        /*set open list in 'changelog page' by load*/
+        $('.changelog .nested-list-wrapper').on('ready.jstree', function() {
+            $(".nested-list-wrapper").jstree("open_all");
+        });
 
     });
 })();

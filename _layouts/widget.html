@@ -1,21 +1,16 @@
 ---
-layout: default
+layout: documentation-single
 ---
 
-<link id="widget-theme-simple" rel="stylesheet" href="{{ "/widgets/main/theme/simple.css" | prepend: site.baseurl }}">
-<link id="widget-theme-oldschool" rel="stylesheet" href="{{ "/widgets/main/theme/oldschool.css" | prepend: site.baseurl }}">
-<link id="widget-theme-newschool" rel="stylesheet" href="{{ "/widgets/main/theme/newschool.css" | prepend: site.baseurl }}">
+<link id="widget-theme-listview" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/listview.css" | prepend: site.baseurl }}">
+<link id="widget-theme-simple" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/simple.css" | prepend: site.baseurl }}">
+<link id="widget-theme-oldschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/oldschool.css" | prepend: site.baseurl }}">
+<link id="widget-theme-newschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/newschool.css" | prepend: site.baseurl }}">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.min.css">
 
-<div class="top-bar bg-header bg-header-partners slice-bottom-left">
-  {% include partials/common-header.html %}
-</div>
-
-{% include partials/common-header-small.html %}
-{% include partials/expanded-menu-header.html %}
-
-<div class="base-content-wrapper widget-content-wrapper">
-  <div class="row">
+<div class="widget-content-wrapper">
+  <div class="row row-native">
     <div class="col-lg-12 col-md-12 col-sm-12">
       <h1>WIDGETS</h1>
       <p class="lead">The TM Widgets allow partners to setup particular widgets and provide enhanced discovery experience for consumers within copy/paste distance.</p>
@@ -24,27 +19,30 @@ layout: default
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-4 col-md-12 col-sm-12 config-block">
+  <div class="row row-native">
+    <div class="col-lg-4 config-block">
       {% include widget-config.html %}
     </div>
-    <div class="col-lg-8 col-md-12 col-sm-12">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="widget-container-wrapper">
-            <div class="widget-container">
-              <!-- <div id="ticketmaster-config" data-config="eyJhayI6IktSVW5qcTh5OFNnNWVEcFA5MGROek9LNzBkNFdpVXN0Iiwia3ciOiJtZXRhbCIsInQiOnsibiI6InQxIiwiYiI6ZmFsc2UsImgiOjU1MCwidyI6MzUwLCJiciI6NH19"></div> -->
-              <div w-tmapikey="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-size="25" w-height="550" w-borderradius="4" w-postalcode="90015" w-period="week" w-layout="vertical"></div>
-            </div>
+
+    <div class="col-lg-8 col-lg-widget">
+      <div class="widget-container-wrapper">
+        <div class="widget-container widget-container--discovery">
+          <div w-type="event-discovery" w-tmapikey="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst" w-googleapikey="" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="90015"  w-radius="25" w-country="US" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom"></div>
+        </div>
+      </div>
+      <div class="row hidden-lg row-mobile-control">
+        <div class="row row-native">
+          <div class="col-md-3 col-sm-3">
+            <button type="button" class="js_get_widget_code btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div id="footer" class="xs-center slice-top-left">
-  {% include partials/footer.html %}
+  </div>
 </div>
 
 <!-- Modal widget-->
@@ -62,12 +60,12 @@ layout: default
       <div class="modal-body">
         <div class="row">
           <div class="col-lg-12">
-            <h4>JavaScript</h4>
-            <code class="language-js widget_dialog__code" data-lang="js">
-              &lt;script src="http://ticketmaster-api-staging.github.io/widgets/main/lib/main-widget.js"&gt;&lt;/script&gt;
-            </code>
             <h4>HTML</h4>
             <code class="language-html widget_dialog__code" data-lang="html"></code>
+            <h4>JavaScript</h4>
+            <code class="language-js widget_dialog__code" data-lang="js">
+              &lt;script src="http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"&gt;&lt;/script&gt;
+            </code>
           </div>
         </div>
       </div>
@@ -81,7 +79,7 @@ layout: default
 <!-- Modal widget end-->
 
 
-<!-- Modal has no code-->
+<!-- Modal has no code-->
 <div id="js_widget_modal_no_code" class="modal modal-common modal-common-sm fade" role="dialog">
   <div class="modal-dialog">
 
@@ -101,5 +99,8 @@ layout: default
 <!-- Modal has no code end-->
 
 
-<script src="{{"/widgets/main/lib/main-widget.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/widgets/main/lib/main-widget-config.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js" | prepend: site.baseurl }}"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
+<script src="{{"/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget-config.js" | prepend: site.baseurl }}"></script>

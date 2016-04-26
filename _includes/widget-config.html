@@ -1,69 +1,137 @@
 
-<form accept-charset="UTF-8" class="main-widget-config-form common_tabs">
+<form accept-charset="UTF-8" class="main-widget-config-form common_tabs" method="post" autocomplete="off">
 
+  <!--Use for mobile devices 'Go' button-->
+  <button type="submit" class="hidden"></button>
 
   <ul class="nav nav-tabs" data-tabs="tabs">
     <li class="active">
       <a href="#widget-config-setup" data-toggle="tab">Technical</a>
     </li>
     <li>
-      <a href="#widget-config-styling" data-toggle="tab">Visual</a>
+      <a id="js_styling_nav_tab" href="#widget-config-styling" data-toggle="tab">Visual</a>
     </li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade active" id="widget-config-setup">
-      <div class="row">
-        <div class="col-lg-12">
-          <label for="w-tm-api-key">API Key</label>
-          <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+    <div class="tab-pane fade in active" id="widget-config-setup">
+      <div class="row row-native">
+        <div class="col-lg-12 col-md-6 col-sm-6">
+          <div class="widget_api_key">
+            <label for="w-tm-api-key">
+              API Key <span class="config_field__description">(Required)</span>
+            </label>
+            <a href="https://live-livenation.devportal.apigee.com/user/login" class="pull-right">Get your own</a>
+            <div class="widget_api_key__field">
+              <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst">
+              <a href="/support/faq/" class="widget_api_key__question"></a>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-md-6 col-sm-6">
           <label for="w-keyword">Keyword</label>
           <input type="text" id="w-keyword" name="w-keyword" value="">
         </div>
-        <div class="col-lg-12">
+      </div>
+
+      <div class="row row-native">
+        <div class="col-lg-12 base-margin-bottom">
           <label>Period</label>
-          <div class="tab-buttons">
-            <input checked id="w-period-day" type="radio" value="day" name="w-period">
-            <label for="w-period-day">Today</label>
-            <input checked id="w-period-week" type="radio" value="week" name="w-period">
-            <label for="w-period-week">Week</label>
-            <input id="w-period-month" type="radio" value="month" name="w-period">
-            <label for="w-period-month">Month</label>
-            <input id="w-period-year" type="radio" value="year" name="w-period">
-            <label for="w-period-year">Year</label>
+          <div class="row radio-buttons">
+            <div class="col-lg-3 col-sm-2 col-xs-6 widget__various-min-width">
+              <input checked id="w-period-day" type="radio" value="day" name="w-period">
+              <label for="w-period-day">Today</label>
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-6 widget__various-min-width">
+              <input checked id="w-period-week" type="radio" value="week" name="w-period">
+              <label for="w-period-week">Week</label>
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-6 widget__various-min-width">
+              <input id="w-period-month" type="radio" value="month" name="w-period">
+              <label for="w-period-month">Month</label>
+            </div>
+            <div class="col-lg-3 col-sm-2 col-xs-6 widget__various-min-width">
+              <input id="w-period-year" type="radio" value="year" name="w-period">
+              <label for="w-period-year">Year</label>
+            </div>
           </div>
         </div>
-        <div class="col-lg-6">
+      </div>
+
+      <div class="row row-native">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-postalcode">ZIP Code</label>
           <input type="text" id="w-postalcode" name="w-postalcode" value="90015">
         </div>
-        <div class="col-lg-6">
-          <label for="w-size">Event Count</label>
-          <input type="text" id="w-size" name="w-size" value="25">
+        <div class="col-lg-6 col-md-6 col-sm-3">
+          <label for="w-radius">
+            Radius <span class="config_field__description">(miles)</span>
+          </label>
+          <input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25">
         </div>
+      </div>
+      <div class="row row-native">
+        <div class="col-lg-12 col-md-12 col-sm-6">
+          <label for="w-country">Country</label>
+        </div>
+        <div class="col-xs-12 country-select">
+          <div class="js_custom_select custom_select">
+            <select id="w-country" class="custom_select__field" name="w-country">
+              <option selected value="US">United States</option>
+            </select>
+            <input class="custom_select__placeholder" type="text" value="United States" readonly="">
+            <ul class="custom_select__list js_widget_custom__list">
+              <li class="custom_select__item" data-value="US">United States</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-lg-12">
+      <!--<div class="row row-native">-->
+        <!--<div class="col-lg-12">-->
+          <!--<label for="w-googleapikey">Google API Key</label>-->
+          <!--<input type="text" id="w-googleapikey" name="w-googleapikey" value="">-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <div class="row row-native">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-attractionid">Attraction ID</label>
           <input type="text" id="w-attractionid" name="w-attractionid" value="">
         </div>
-
-        <div class="col-lg-12">
+        <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-promoterid">Promoter ID</label>
           <input type="text" id="w-promoterid" name="w-promoterid" value="">
         </div>
+        <div class="col-lg-6 col-md-6 col-sm-3">
+          <label for="w-venueid">Venue ID</label>
+          <input type="text" id="w-venueid" name="w-venueid" value="">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-3">
+          <label for="w-segmentid">Category ID</label>
+          <input type="text" id="w-segmentid" name="w-segmentid" value="">
+        </div>
+      </div>
 
-        <!--<div class="col-lg-12">-->
-          <!--<label for="w-radius">Radius</label>-->
-          <!--<input type="text" id="w-radius" name="w-radius" value="2">-->
-        <!--</div>-->
+      <div class="row row-native">
+        <div class="col-lg-12 col-md-6 col-sm-6">
+          <label for="w-affiliateid">Affiliate ID</label>
+          <input type="text" id="w-affiliateid" name="w-affiliateid" value="">
+        </div>
+        <div class="col-lg-12 col-md-6 col-sm-6">
+          <label for="w-size">
+            Event Count <span class="config_field__description">(1-100)</span>
+          </label>
+        </div>
+        <div class="col-lg-3 col-md-2 col-sm-2 widget__various-width">
+          <input class="js_widget__number js_numeric_input text-center" type="number" id="w-size" name="w-size" value="25" max="100" min="1" required>
+        </div>
       </div>
     </div>
 
     <div class="tab-pane fade" id="widget-config-styling">
-      <div class="row">
-        <div class="col-lg-12">
+      <div class="row row-native">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-theme">
           <label>Themes</label>
           <div class="tab-buttons">
             <input checked id="w-theme-simple" type="radio" value="simple" name="w-theme">
@@ -72,51 +140,97 @@
             <label for="w-theme-oldschool">Oldskool</label>
             <input id="w-theme-newschool" type="radio" value="newschool" name="w-theme">
             <label for="w-theme-newschool">Color Block</label>
-          </div>
-          <!--<div class="tab-buttons">-->
-            <!--<button type="button" class="active">1</button>-->
-            <!--<button type="button" disabled>2</button>-->
-            <!--<button type="button" disabled>3</button>-->
-          <!--</div>-->
-        </div>
-        <div class="col-lg-12">
-          <label>Color Scheme</label>
-          <div class="tab-buttons">
-            <input checked disabled id="w-colorscheme-light" type="radio" value="light" name="w-colorscheme">
-            <label for="w-colorscheme-light">Light</label>
-            <input disabled id="w-colorscheme-dark" type="radio" value="dark" name="w-colorscheme">
-            <label for="w-colorscheme-dark">Dark</label>
+            <input id="w-theme-listview" type="radio" value="listview" name="w-theme">
+            <label for="w-theme-listview">List View</label>
           </div>
         </div>
-        <div class="col-lg-12">
-          <label>Layout</label>
-          <div class="tab-buttons">
-            <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
-            <label for="w-layout-vertical">Vertical</label>
-            <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
-            <label for="w-layout-horizontal">Horizontal</label>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-color_scheme">
+          <div class="widget__color_scheme_control" style="display: none">
+            <label>Color Scheme</label>
+            <div class="tab-buttons">
+              <input checked id="w-colorscheme-light" type="radio" value="light" name="w-colorscheme">
+              <label for="w-colorscheme-light">Light</label>
+              <input id="w-colorscheme-dark" type="radio" value="dark" name="w-colorscheme">
+              <label for="w-colorscheme-dark">Dark</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-layout">
+          <div class="row base-margin-bottom">
+            <label>Layout</label>
+            <div class="col-lg-12 js-fixed-size-buttons radio-buttons">
+              <div class="row">
+                <div class="col-lg-4 col-sm-2 col-xs-2  widget__various-width">
+                  <input id="w-fixed-300x600" type="radio" value="xxl" name="w-proportion">
+                  <label for="w-fixed-300x600">300x600</label>
+                </div>
+                <!--<input id="w-fixed-300x250" type="radio" value="l" name="w-proportion">
+                <label for="w-fixed-300x250">300x250</label>
+                <input id="w-fixed-728x90" type="radio" value="xl" name="w-proportion">
+                <label for="w-fixed-728x90">728x90</label>
+                <input id="w-fixed-160x600" type="radio" value="m" name="w-proportion">
+                <label for="w-fixed-160x600">160x600</label>
+                <input id="w-fixed-180x150" type="radio" value="s" name="w-proportion">
+                <label for="w-fixed-180x150">180x150</label>-->
+                <div class="col-lg-4 col-sm-2 col-xs-2  widget__various-width">
+                  <input checked id="w-custom" type="radio" value="custom" name="w-proportion">
+                  <label for="w-custom">Custom</label>
+                </div>
+              </div>
+            </div>
+              <div class="col-lg-12 js-tab-buttons radio-buttons">
+                <div class="row">
+                <div class="col-lg-12 line"></div>
+                <div class="col-lg-4 col-sm-2 col-xs-2  widget__various-width">
+                  <input checked id="w-layout-vertical" type="radio" value="vertical" name="w-layout">
+                  <label for="w-layout-vertical">Vertical</label>
+                </div>
+                <div class="col-lg-4 col-sm-2 col-xs-2  widget__various-width">
+                  <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
+                  <label for="w-layout-horizontal">Horizontal</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row row-native">
+        <div class="col-lg-12 js_widget_width_slider">
+          <label for="w-width">
+            Width <span class="config_field__description">(px)</span>
+          </label>
+          <div class="bootstrap_slider bootstrap_slider-horizontal">
+            <input id="w-width" name="w-width" type="text" data-slider-min="350" data-slider-max="500" data-slider-step="1" data-slider-value="350">
           </div>
         </div>
         <div class="col-lg-12">
-          <label for="w-width">Width (px)</label>
-          <input type="range" id="w-width" name="w-width" max="500" min="350" value="350">
+          <label for="w-borderradius">
+            Corner Radius <span class="config_field__description">(px)</span>
+          </label>
+          <div class="bootstrap_slider bootstrap_slider-horizontal">
+            <input id="w-borderradius" name="w-borderradius" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="4">
+          </div>
         </div>
+
         <!--<div class="col-lg-12 base-margin">
           <input type="checkbox" id="w-border">
           <label for="w-border"><span></span>Include Border</label>
         </div>-->
-        <div class="col-lg-12">
-          <label for="w-borderradius">Corner Radius (px)</label>
-          <input type="range" id="w-borderradius" name="w-borderradius" max="20" min="0" value="4">
-        </div>
+
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <button id="js_get_widget_code" type="button" class="btn btn-submit button-blue">GET CODE</button>
-      <button id="js_reset_widget" type="button" class="btn button-white-gray-border">RESET</button>
+    <div class="row row-native visible-lg">
+      <div class="col-lg-6 col-md-3 col-sm-3">
+        <button type="button" class="js_get_widget_code btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
+      </div>
+      <div class="col-lg-6 col-md-3 col-sm-3">
+        <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
+      </div>
     </div>
   </div>
 

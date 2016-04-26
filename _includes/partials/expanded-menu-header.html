@@ -1,4 +1,4 @@
-<div id="expand-menu" class="row" tabindex="-1">
+<div id="expand-menu" class="row" tabindex="-1" {% if page.categories[0] == "documentation" or page.category == "documentation" %} style="position:fixed" {% endif %}>
     <div class="row-container">
         <div id="expand-one" class="expand-section" style="display: none;">
             <div class="col-xs-2 expand-column">
@@ -31,7 +31,7 @@
                         <a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a>
                     </li>
                     <li>
-                        <a href="http://vmenshutin.github.io/">API Explorer</a>
+                        <a href="/api-explorer/">API Explorer</a>
                     </li>
                     <li>
                         <a href="/products-and-docs/apis/changelog/">Changelog</a>
@@ -57,7 +57,10 @@
                         <a href="/products-and-docs/widgets/">Direct Payments</a>
                     </li>
                     <li>
-                        <a href="/products-and-docs/widgets/">Event Discovery Widget</a>
+                        <a href="/products-and-docs/widgets/event-discovery/">Event Discovery Widget</a>
+                    </li>
+                    <li>
+                        <a href="/products-and-docs/widgets/countdown/">Countdown Widget</a>
                     </li>
                 </ul>
             </div>

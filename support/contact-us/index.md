@@ -80,7 +80,7 @@ Attn: Trademark Department, Legal 
 <div markdown="1">
 {{formheader}}
 <div class="col-xs-12 col-sm-8 contact-form-wrapper">
-<form accept-charset="UTF-8" action="#" method="POST" class="js_contact_form">    
+<form accept-charset="UTF-8" action="#" method='POST' class="js_contact_form">
     <div class="col-sm-6">
         <label for="first-name">Your name</label>
         <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" tabindex="1" required>
@@ -107,13 +107,13 @@ Attn: Trademark Department, Legal 
           </ul>
         </div>
     </div>
-       
     <div class="col-sm-12">
         <label for="descriptions">Descriptions</label>
         <textarea name="descriptions" id="message-detail-text" tabindex="3" required></textarea>
     </div>
     <div class="col-sm-12">
-        <p id="message-success" class="message-green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-success" class="text-overflow-message text-overflow-message__green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-error" class="text-overflow-message text-overflow-message__red" style="display:none">The maximum length of description can be 3000 characters.</p>
     </div>
     <div class="col-sm-4">
         <button type="submit" class="button-blue">SEND</button>
@@ -140,10 +140,20 @@ Attn: Trademark Department, Legal 
 
 <!--contact us form -->
 <script>
-var $contactForm = $('.js_contact_form');
+var $contactForm = $('.js_contact_form'),
+    $textAreaDescription = $('#message-detail-text');
+
     $contactForm.submit(function(e){
-        $('button', $contactForm).prop('disabled',true);
+        var charCount = $textAreaDescription.val().length;
+
         e.preventDefault();
+        $('button', $contactForm).prop('disabled',true);
+
+        if(3000 <= charCount) {
+          showMsgError('#message-error', 4000 , charCount);
+          return false;
+        }
+
         $.ajax({
           dataType: 'jsonp',
           url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
@@ -158,7 +168,20 @@ var $contactForm = $('.js_contact_form');
     function showMsgSuccess(id, delay){
         $(id).slideDown(400).delay( delay ).slideUp(200);
         $contactForm.trigger("reset");
+        $('.js_custom_select',$contactForm).trigger("custom-reset");
+        //$textAreaDescription.css('height',''); //reset height of textarea
         $('button', $contactForm).prop('disabled',false);
+    }
+    function showMsgError(id, delay, charCount){
+        var slideUpSpeed = 200;
+        $(id).append('<span id="contact-char-count"> Current count is '+charCount+'</span>')
+        $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
+        setTimeout(
+          function(){
+              $('#contact-char-count').remove();
+              $('button', $contactForm).prop('disabled',false);
+          },
+          delay + slideUpSpeed*3);
     }
 </script>
 

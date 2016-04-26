@@ -30,7 +30,9 @@ $s1c: #6165B0;
 $white: #ffffff;
 $blue: #009cde;
 $red: #D0021B;
+$green: #57ad56;
 $apple-green: #7ed321;
+$silver: #dadddf;
 $white-70: rgba(255, 255, 255, 0.7);
 $white-90: rgba(255, 255, 255, 0.9);
 
@@ -95,6 +97,8 @@ $spacing-header: 15px;
 
 $base-margin: 24px;
 
+$fixed-header-height: 80px;
+
 // Jekyll custom variables
 
 $grey-color: $n2-grey-color;
@@ -133,7 +137,7 @@ $line-height-pull-q: 32px;
 $line-height-code: 24px;
 
 $borderHeight: 8px;
-$maincontent-margin: 55px;
+$maincontent-margin: 64px;
 
 // Animation
 $btn-transition-speed: 0.2s;
