@@ -46,17 +46,6 @@
     }
   };
 
-  /*
-  <input id="w-fixed-300x250" type="radio" value="l" name="w-proportion">
-    <label for="w-fixed-300x250">300x250</label>
-  <input id="w-fixed-728x90" type="radio" value="xl" name="w-proportion">
-    <label for="w-fixed-728x90">728x90</label>
-  <input id="w-fixed-160x600" type="radio" value="m" name="w-proportion">
-    <label for="w-fixed-160x600">160x600</label>
-  <input id="w-fixed-180x150" type="radio" value="s" name="w-proportion">
-    <label for="w-fixed-180x150">180x150</label>
-  */
-
   // function getHeightByTheme(theme){
   //   return (theme === 'simple_countdown' ? 238 : 300);
   // }
