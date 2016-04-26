@@ -16,7 +16,9 @@ keywords: widget, sell tickets, direct payments
 
 {: .button_set}
 [CONFIGURE NOW](/products-and-docs/widgets/event-discovery/){: .button.button-blue}  
+{% comment %}
 [LEARN MORE](#){: .button .button-transparent}
+{% endcomment %}
 {% endcapture %}
 
 {% capture countdown-widget %}
@@ -25,7 +27,9 @@ keywords: widget, sell tickets, direct payments
 
 {: .button_set}
 [CONFIGURE NOW](/products-and-docs/widgets/countdown/){: .button.button-blue} 
+{% comment %} 
 [LEARN MORE](#){: .button .button-transparent}
+{% endcomment %} 
 {% endcapture %}
 
 {% capture payments %}
