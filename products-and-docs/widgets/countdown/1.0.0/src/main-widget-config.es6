@@ -5,23 +5,23 @@
     simple_countdown: {
         sizes: {
           s: {
-            width: 160,
-            height: 300,
+            width: 180,
+            height: 150,
             layout: 'horizontal'
           },
           m: {
-            width: 160,
-            height: 300,
-            layout: 'horizontal'
+            width: 300,
+            height: 250,
+            layout: 'vertical'
           },
           l: {
             width: 160,
-            height: 300,
+            height: 600,
             layout: 'horizontal'
           },
           xl: {
-            width: 160,
-            height: 300,
+            width: 728,
+            height: 90,
             layout: 'horizontal'
           },
           xxl: {
@@ -44,6 +44,16 @@
       }
   };
 
+  /*
+  <input id="w-fixed-300x250" type="radio" value="l" name="w-proportion">
+    <label for="w-fixed-300x250">300x250</label>
+  <input id="w-fixed-728x90" type="radio" value="xl" name="w-proportion">
+    <label for="w-fixed-728x90">728x90</label>
+  <input id="w-fixed-160x600" type="radio" value="m" name="w-proportion">
+    <label for="w-fixed-160x600">160x600</label>
+  <input id="w-fixed-180x150" type="radio" value="s" name="w-proportion">
+    <label for="w-fixed-180x150">180x150</label>
+  */
 
   // function getHeightByTheme(theme){
   //   return (theme === 'simple_countdown' ? 238 : 300);
