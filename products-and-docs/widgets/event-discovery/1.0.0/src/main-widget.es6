@@ -442,9 +442,7 @@ class TicketmasterEventDiscoveryWidget {
 
     for(let i = 0; i < 4; i++){
       let headLogo = document.createElement("img");
-      headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-      //TODO: change before move to live
-      // headLogo.setAttribute("src", this.logoUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
+      headLogo.setAttribute("src", this.portalUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
       headLogo.setAttribute("height", "11");
       ticketLogo.appendChild(headLogo);
     }

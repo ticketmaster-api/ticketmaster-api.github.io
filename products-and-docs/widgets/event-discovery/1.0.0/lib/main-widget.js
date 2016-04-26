@@ -482,9 +482,6 @@ var TicketmasterEventDiscoveryWidget = function () {
       logo.classList.add("event-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
-      /* logo.href = 'javascript:void(0);';
-      logo.setAttribute('onclick', "javascript:window.open('" + this.logoUrl + "','_blank');");
-      */
 
       var logoBox = document.createElement('div');
       logoBox.classList.add("event-logo-box");
@@ -522,9 +519,7 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       for (var i = 0; i < 4; i++) {
         var headLogo = document.createElement("img");
-        headLogo.setAttribute("src", this.logoUrl + "assets/img/footer/ticketmaster-logo-white.svg");
-        //TODO: change before move to live
-        // headLogo.setAttribute("src", this.logoUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
+        headLogo.setAttribute("src", this.portalUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
         headLogo.setAttribute("height", "11");
         ticketLogo.appendChild(headLogo);
       }
