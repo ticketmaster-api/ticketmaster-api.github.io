@@ -96,7 +96,6 @@ var $nexusForm = $('.js_nexus_form'),
           showMsgError('#message-error', 4000 , charCount);
           return false;
         }
-
         $.ajax({
           dataType: 'jsonp',
           url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
