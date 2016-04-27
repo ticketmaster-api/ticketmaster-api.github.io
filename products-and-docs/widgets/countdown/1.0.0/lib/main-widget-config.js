@@ -7,23 +7,23 @@
     simple_countdown: {
       sizes: {
         s: {
-          width: 160,
-          height: 300,
+          width: 180,
+          height: 150,
           layout: 'horizontal'
         },
         m: {
-          width: 160,
-          height: 300,
-          layout: 'horizontal'
+          width: 300,
+          height: 250,
+          layout: 'vertical'
         },
         l: {
           width: 160,
-          height: 300,
+          height: 600,
           layout: 'horizontal'
         },
         xl: {
-          width: 160,
-          height: 300,
+          width: 728,
+          height: 90,
           layout: 'horizontal'
         },
         xxl: {
