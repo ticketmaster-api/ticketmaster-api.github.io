@@ -1,0 +1,25 @@
+<script src="/scripts/vendors/jquery-1.11.3.min.js"></script>
+<script>
+  var eventId = window.location.href.toString().split("?");
+
+  if (eventId[1] && eventId[1] != '') {
+
+    $.ajax({
+      type:"GET",
+      url:"https://app.ticketmaster.com/discovery/v2/events/" + eventId[1] + ".json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst",
+      async:true,
+      dataType: "json",
+      success: function(json) {
+        if (json.url && json.url != '') {
+          window.location.href = json.url;
+        }
+        // Parse the response.
+        // Do other things.
+      },
+      error: function(xhr, status, err) {
+        // This time, we do not end up here!
+      }
+    });
+
+  }
+</script>

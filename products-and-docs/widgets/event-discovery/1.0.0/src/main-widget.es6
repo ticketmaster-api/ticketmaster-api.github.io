@@ -9,7 +9,8 @@ class TicketmasterEventDiscoveryWidget {
   get isListView(){ return this.config.theme === 'listview';}
   get borderSize(){ return this.config.border || 0;}
   get widgetHeight(){ return this.config.height || 600;}
-  get widgetContentHeight(){ return this.widgetHeight - (this.isListView ? 0 : 39) || 600;}
+
+  get widgetContentHeight() {return this.widgetHeight - (this.isListView ? 0 : 39) || 600;}
 
   get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
 
@@ -1303,6 +1304,15 @@ let widgetsEventDiscovery = [];
   for (let i = 0; i < widgetContainers.length; ++i) {
     widgetsEventDiscovery.push(new TicketmasterEventDiscoveryWidget(widgetContainers[i]));
   }
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77036736-1', 'auto');
+  ga('send', 'pageview');
+
 })();
 
 
