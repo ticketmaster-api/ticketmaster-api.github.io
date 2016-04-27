@@ -7,9 +7,13 @@ class TicketmasterEventDiscoveryWidget {
   get events(){ return this.eventsList;}
 
   get isListView(){ return this.config.theme === 'listview';}
+  get isSimpleProportionM() { return this.config.proportion === 'm' && this.config.theme === 'simple'}
   get borderSize(){ return this.config.border || 0;}
   get widgetHeight(){ return this.config.height || 600;}
-  get widgetContentHeight(){ return this.widgetHeight - (this.isListView ? 0 : 39) || 600;}
+
+  get widgetContentHeight() {
+    return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
+  }
 
   get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
 

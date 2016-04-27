@@ -121,6 +121,7 @@ div[w-theme="simple"] ul{
 /*  question  */
 div[w-theme="simple"] .event-question {
     position: absolute;
+    z-index: 1;
     top: 10px;
     right: 10px;
     width: 16px;
@@ -485,7 +486,7 @@ div[w-theme="simple"][w-layout="horizontal"] .address-wrapper {
 
 
 div[w-theme="simple"][w-layout="horizontal"] .legal-notice {
-    left: 119px;
+    /* left: 119px; */
 }
 
 div[w-theme="simple"][w-layout="horizontal"] .event-buy-btn {
@@ -510,4 +511,81 @@ div[w-theme="simple"] .general-admission {
 
 div[w-theme="simple"] .ticket-logo {
     display: none;
+}
+
+
+
+
+div[w-theme="simple"][w-proportion="m"] {
+    margin-bottom: -1px;
+}
+
+
+div[w-theme="simple"][w-proportion="m"] .event-content-wraper {
+    padding: 36px 24px;
+}
+
+div[w-theme="simple"][w-proportion="m"] .event-content-wraper .event-name {
+    width: 252px;
+    font-family: TMSansLEADINGFIXED-Bold;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #ffffff;
+    margin: 0 0 14px;
+}
+
+div[w-theme="simple"][w-proportion="m"] .event-date-wraper {
+    width: 252px;
+    opacity: 0.7;
+    font-family: TMSansLEADINGFIXED-Bold;
+    font-size: 12px;
+    line-height: 1.3;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+div[w-theme="simple"][w-proportion="m"] .address-wrapper {
+    width: 252px;
+    opacity: 0.7;
+    font-family: TMSansLEADINGFIXED-Regular;
+    font-size: 12px;
+    line-height: 1.3;
+    color: #ffffff;
+}
+div[w-theme="simple"][w-proportion="m"] .legal-notice,
+div[w-theme="simple"][w-proportion="m"] .events-counter {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+}
+
+div[w-theme="simple"][w-proportion="m"] .events-counter {
+    right: 24px;
+    line-height: 36px;
+    font-family: TMSansLEADINGFIXED-Bold;
+    font-size: 11px;
+    color: #ffffff;
+}
+
+div[w-theme="simple"][w-proportion="m"] .legal-notice {
+	left: 24px;
+	line-height: 36px;
+	font-family: TMSansLEADINGFIXED-Regular;
+	font-size: 11px;
+	color: #ffffff;
+}
+div[w-theme="simple"][w-proportion="m"] .event-buy-btn {
+    font-family: TMSansLEADINGFIXED-Bold;
+    font-size: 11px;
+    color: #ffffff;
+    left: 24px;
+    display: inline-block;
+    margin: 0px 0 4px;
+}
+div[w-theme="simple"][w-proportion="m"] .event-logo {
+    top: 10px;    
+    right: 24px;
+}
+
+div[w-theme="simple"][w-proportion="m"] .event-logo-box {
+    height: 44px;
 }
