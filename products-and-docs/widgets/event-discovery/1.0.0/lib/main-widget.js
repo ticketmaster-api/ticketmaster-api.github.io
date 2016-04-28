@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -6,7 +6,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var TicketmasterEventDiscoveryWidget = function () {
   _createClass(TicketmasterEventDiscoveryWidget, [{
-    key: "isConfigAttrExistAndNotEmpty",
+    key: 'isConfigAttrExistAndNotEmpty',
     value: function isConfigAttrExistAndNotEmpty(attr) {
       if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
         return false;
@@ -16,7 +16,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       return true;
     }
   }, {
-    key: "config",
+    key: 'config',
     set: function set(attrs) {
       this.widgetConfig = this.loadConfig(attrs);
     },
@@ -24,7 +24,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       return this.widgetConfig;
     }
   }, {
-    key: "events",
+    key: 'events',
     set: function set(responce) {
       this.eventsList = this.parseEvents(responce);
     },
@@ -32,102 +32,107 @@ var TicketmasterEventDiscoveryWidget = function () {
       return this.eventsList;
     }
   }, {
-    key: "isListView",
+    key: 'isListView',
     get: function get() {
       return this.config.theme === 'listview';
     }
   }, {
-    key: "borderSize",
+    key: 'isSimpleProportionM',
+    get: function get() {
+      return this.config.proportion === 'm' && this.config.theme === 'simple';
+    }
+  }, {
+    key: 'borderSize',
     get: function get() {
       return this.config.border || 0;
     }
   }, {
-    key: "widgetHeight",
+    key: 'widgetHeight',
     get: function get() {
       return this.config.height || 600;
     }
   }, {
-    key: "widgetContentHeight",
+    key: 'widgetContentHeight',
     get: function get() {
-      return this.widgetHeight - (this.isListView ? 0 : 39) || 600;
+      return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
     }
   }, {
-    key: "eventUrl",
+    key: 'eventUrl',
     get: function get() {
       return "http://www.ticketmaster.com/event/";
     }
   }, {
-    key: "apiUrl",
+    key: 'apiUrl',
     get: function get() {
       return "https://app.ticketmaster.com/discovery/v2/events.json";
     }
   }, {
-    key: "themeUrl",
+    key: 'themeUrl',
     get: function get() {
       return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/";
     }
   }, {
-    key: "portalUrl",
+    key: 'portalUrl',
     get: function get() {
       return "http://ticketmaster-api-staging.github.io/";
     }
   }, {
-    key: "logoUrl",
+    key: 'logoUrl',
     get: function get() {
       return "http://www.ticketmaster.com/";
     }
   }, {
-    key: "legalNoticeUrl",
+    key: 'legalNoticeUrl',
     get: function get() {
       return "http://developer.ticketmaster.com/support/terms-of-use/";
     }
   }, {
-    key: "questionUrl",
+    key: 'questionUrl',
     get: function get() {
       return "http://developer.ticketmaster.com/support/faq/";
     }
   }, {
-    key: "geocodeUrl",
+    key: 'geocodeUrl',
     get: function get() {
       return "https://maps.googleapis.com/maps/api/geocode/json";
     }
   }, {
-    key: "updateExceptions",
+    key: 'updateExceptions',
     get: function get() {
       return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"];
     }
   }, {
-    key: "sliderDelay",
+    key: 'sliderDelay',
     get: function get() {
       return 5000;
     }
   }, {
-    key: "sliderRestartDelay",
+    key: 'sliderRestartDelay',
     get: function get() {
       return 5000;
     }
   }, {
-    key: "hideMessageDelay",
+    key: 'hideMessageDelay',
     get: function get() {
       return 5000;
     }
   }, {
-    key: "controlHiddenClass",
+    key: 'controlHiddenClass',
     get: function get() {
       return "events_control-hidden";
     }
   }, {
-    key: "tmWidgetWhiteList",
+    key: 'tmWidgetWhiteList',
     get: function get() {
       return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"];
     }
   }, {
-    key: "countriesWhiteList",
+    key: 'countriesWhiteList',
     get: function get() {
       return ['Australia', 'Austria', 'Belgium', 'Canada', 'Denmark', 'Finland', 'France', 'Germany', 'Ireland', 'Mexico', 'Netherlands', 'New Zealand', 'Norway', 'Spain', 'Sweden', 'Turkey', 'UAE', 'United Kingdom', 'United States'];
     }
   }, {
-    key: "eventReqAttrs",
+    key: 'eventReqAttrs',
     get: function get() {
       var attrs = {},
           params = [{
@@ -211,7 +216,7 @@ var TicketmasterEventDiscoveryWidget = function () {
 
     this.config = this.widgetRoot.attributes;
 
-    if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
+    if (this.config.theme !== null && !document.getElementById('widget-theme-' + this.config.theme)) {
       this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
     }
 
@@ -220,13 +225,13 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRootContainer.classList.add("border");
     }
 
-    this.widgetRoot.style.height = this.widgetHeight + "px";
-    this.widgetRoot.style.width = this.config.width + "px";
+    this.widgetRoot.style.height = this.widgetHeight + 'px';
+    this.widgetRoot.style.width = this.config.width + 'px';
 
-    this.eventsRootContainer.style.height = this.widgetContentHeight + "px";
-    this.eventsRootContainer.style.width = this.config.width + "px";
-    this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
-    this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
+    this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
+    this.eventsRootContainer.style.width = this.config.width + 'px';
+    this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
+    this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
 
     //this.clear();
 
@@ -256,7 +261,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }
 
   _createClass(TicketmasterEventDiscoveryWidget, [{
-    key: "getCoordinates",
+    key: 'getCoordinates',
     value: function getCoordinates(cb) {
       var widget = this;
 
@@ -311,7 +316,7 @@ var TicketmasterEventDiscoveryWidget = function () {
 
                 if (geometry) {
                   if (geometry.location) {
-                    latlong = geometry.location.lat + "," + geometry.location.lng;
+                    latlong = geometry.location.lat + ',' + geometry.location.lng;
                   }
                 }
               } else {
@@ -327,9 +332,9 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
 
       if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
-        var args = { components: "postal_code:" + widget.config.postalcode };
+        var args = { components: 'postal_code:' + widget.config.postalcode };
         if (widget.config.googleapikey) args.key = widget.config.googleapikey;
-        if (this.config.country) args.components += "|country:" + this.config.country;
+        if (this.config.country) args.components += '|country:' + this.config.country;
         this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
       } else {
         // Used in builder
@@ -340,7 +345,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "initBuyBtn",
+    key: 'initBuyBtn',
     value: function initBuyBtn() {
       var _this2 = this;
 
@@ -358,7 +363,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
   }, {
-    key: "setBuyBtnUrl",
+    key: 'setBuyBtnUrl',
     value: function setBuyBtnUrl() {
       if (this.buyBtn) {
         var event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
@@ -375,19 +380,19 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "isUniverseUrl",
+    key: 'isUniverseUrl',
     value: function isUniverseUrl(url) {
       return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
     }
   }, {
-    key: "isAllowedTMEvent",
+    key: 'isAllowedTMEvent',
     value: function isAllowedTMEvent(url) {
       for (var t = [/(?:ticketmaster\.com)\/(.*\/)?event\/([^\/?#]+)/, /(?:concerts\.livenation\.com)\/(.*\/)?event\/([^\/?#]+)/], n = null, r = 0; r < t.length && (n = url.match(t[r]), null === n); r++) {}
       var id = null !== n ? n[2] : void 0;
       return this.tmWidgetWhiteList.indexOf(id) > -1;
     }
   }, {
-    key: "embedTMPlugin",
+    key: 'embedTMPlugin',
     value: function embedTMPlugin() {
       var id = 'id_tm_widget';
       if (!document.getElementById(id)) {
@@ -401,7 +406,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.isTMPluginInitialized = true;
     }
   }, {
-    key: "embedUniversePlugin",
+    key: 'embedUniversePlugin',
     value: function embedUniversePlugin() {
       var id = 'id_universe_widget';
       if (!document.getElementById(id)) {
@@ -418,7 +423,7 @@ var TicketmasterEventDiscoveryWidget = function () {
     // Message
 
   }, {
-    key: "initMessage",
+    key: 'initMessage',
     value: function initMessage() {
       var _this3 = this;
 
@@ -438,7 +443,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRootContainer.appendChild(this.messageDialog);
     }
   }, {
-    key: "showMessage",
+    key: 'showMessage',
     value: function showMessage(message, hideMessageWithoutDelay) {
       if (message.length) {
         this.hideMessageWithoutDelay = hideMessageWithoutDelay;
@@ -450,7 +455,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "hideMessageWithDelay",
+    key: 'hideMessageWithDelay',
     value: function hideMessageWithDelay(delay) {
       var _this4 = this;
 
@@ -460,7 +465,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }, delay);
     }
   }, {
-    key: "hideMessage",
+    key: 'hideMessage',
     value: function hideMessage() {
       if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
       this.messageDialog.classList.remove("event-message-visible");
@@ -468,7 +473,7 @@ var TicketmasterEventDiscoveryWidget = function () {
     // End message
 
   }, {
-    key: "AdditionalElements",
+    key: 'AdditionalElements',
     value: function AdditionalElements() {
       var legalNoticeContent = document.createTextNode('Legal Notice'),
           legalNotice = document.createElement("a");
@@ -498,7 +503,7 @@ var TicketmasterEventDiscoveryWidget = function () {
     //adds general admission element for OLDSCHOOL theme
 
   }, {
-    key: "oldSchoolModificator",
+    key: 'oldSchoolModificator',
     value: function oldSchoolModificator() {
 
       var generalAdmissionWrapper = document.createElement("div");
@@ -512,7 +517,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRootContainer.appendChild(generalAdmissionWrapper);
     }
   }, {
-    key: "newSchoolModificator",
+    key: 'newSchoolModificator',
     value: function newSchoolModificator() {
       var ticketLogo = document.createElement("div");
       ticketLogo.classList.add("ticket-logo", "modificator");
@@ -527,10 +532,10 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRootContainer.appendChild(ticketLogo);
     }
   }, {
-    key: "listViewModificator",
+    key: 'listViewModificator',
     value: function listViewModificator() {}
   }, {
-    key: "hideSliderControls",
+    key: 'hideSliderControls',
     value: function hideSliderControls() {
       this.prevEventX.classList.add(this.controlHiddenClass);
       this.nextEventX.classList.add(this.controlHiddenClass);
@@ -538,7 +543,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.nextEventY.classList.add(this.controlHiddenClass);
     }
   }, {
-    key: "toggleControlsVisibility",
+    key: 'toggleControlsVisibility',
     value: function toggleControlsVisibility() {
       // Horizontal
       if (this.slideCountX > 1) {
@@ -574,35 +579,35 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "prevSlideX",
+    key: 'prevSlideX',
     value: function prevSlideX() {
       if (this.currentSlideX > 0) {
         this.setSlideManually(this.currentSlideX - 1, true);
       }
     }
   }, {
-    key: "nextSlideX",
+    key: 'nextSlideX',
     value: function nextSlideX() {
       if (this.slideCountX - 1 > this.currentSlideX) {
         this.setSlideManually(this.currentSlideX + 1, true);
       }
     }
   }, {
-    key: "prevSlideY",
+    key: 'prevSlideY',
     value: function prevSlideY() {
       if (this.currentSlideY > 0) {
         this.setSlideManually(this.currentSlideY - 1, false);
       }
     }
   }, {
-    key: "nextSlideY",
+    key: 'nextSlideY',
     value: function nextSlideY() {
       if (this.eventsGroups[this.currentSlideX].length - 1 > this.currentSlideY) {
         this.setSlideManually(this.currentSlideY + 1, false);
       }
     }
   }, {
-    key: "setSlideManually",
+    key: 'setSlideManually',
     value: function setSlideManually(slideIndex, isDirectionX) {
       var _this5 = this;
 
@@ -613,31 +618,31 @@ var TicketmasterEventDiscoveryWidget = function () {
       if (isDirectionX) this.goToSlideX(slideIndex);else this.goToSlideY(slideIndex);
     }
   }, {
-    key: "goToSlideX",
+    key: 'goToSlideX',
     value: function goToSlideX(slideIndex) {
       if (this.currentSlideX === slideIndex) return;
       this.currentSlideY = 0;
       this.currentSlideX = slideIndex;
-      this.eventsRoot.style.marginLeft = "-" + this.currentSlideX * 100 + "%";
+      this.eventsRoot.style.marginLeft = '-' + this.currentSlideX * 100 + '%';
       this.toggleControlsVisibility();
       this.setEventsCounter();
       this.setBuyBtnUrl();
     }
   }, {
-    key: "goToSlideY",
+    key: 'goToSlideY',
     value: function goToSlideY(slideIndex) {
       if (this.currentSlideY === slideIndex) return;
       this.currentSlideY = slideIndex;
       var eventGroup = this.eventsRoot.getElementsByClassName("event-group-" + this.currentSlideX);
       if (eventGroup.length) {
         eventGroup = eventGroup[0];
-        eventGroup.style.marginTop = "-" + this.currentSlideY * (this.widgetContentHeight - this.borderSize * 2) + "px";
+        eventGroup.style.marginTop = '-' + this.currentSlideY * (this.widgetContentHeight - this.borderSize * 2) + 'px';
         this.toggleControlsVisibility();
         this.setBuyBtnUrl();
       }
     }
   }, {
-    key: "runAutoSlideX",
+    key: 'runAutoSlideX',
     value: function runAutoSlideX() {
       var _this6 = this;
 
@@ -650,13 +655,13 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "stopAutoSlideX",
+    key: 'stopAutoSlideX',
     value: function stopAutoSlideX() {
       if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
       if (this.sliderInterval) clearInterval(this.sliderInterval);
     }
   }, {
-    key: "initSliderControls",
+    key: 'initSliderControls',
     value: function initSliderControls() {
       var _this7 = this;
 
@@ -782,13 +787,13 @@ var TicketmasterEventDiscoveryWidget = function () {
       }, false);
     }
   }, {
-    key: "initSlider",
+    key: 'initSlider',
     value: function initSlider() {
       if (this.sliderInterval) clearInterval(this.sliderInterval);
       if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
       this.slideCountX = this.eventsGroups.length;
       this.eventsRoot.style.marginLeft = '0%';
-      this.eventsRoot.style.width = this.slideCountX * 100 + "%";
+      this.eventsRoot.style.width = this.slideCountX * 100 + '%';
       this.currentSlideX = 0;
       this.currentSlideY = 0;
       this.runAutoSlideX();
@@ -796,7 +801,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.setBuyBtnUrl();
     }
   }, {
-    key: "formatDate",
+    key: 'formatDate',
     value: function formatDate(date) {
       var result = '';
       if (!date.day) return result; // Day is required
@@ -830,12 +835,12 @@ var TicketmasterEventDiscoveryWidget = function () {
       return result + ' ' + LZ(H) + ':' + m + ' ' + a;
     }
   }, {
-    key: "clearEvents",
+    key: 'clearEvents',
     value: function clearEvents() {
       this.eventsRoot.innerHTML = "";
     }
   }, {
-    key: "clear",
+    key: 'clear',
     value: function clear() {
       var modificatorList = this.widgetRoot.getElementsByClassName('modificator');
       while (modificatorList.length) {
@@ -869,7 +874,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.clearEvents();
     }
   }, {
-    key: "update",
+    key: 'update',
     value: function update() {
       var _this8 = this;
 
@@ -888,12 +893,12 @@ var TicketmasterEventDiscoveryWidget = function () {
         this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
       }*/
 
-      this.widgetRoot.style.height = this.widgetHeight + "px";
-      this.widgetRoot.style.width = this.config.width + "px";
-      this.eventsRootContainer.style.height = this.widgetContentHeight + "px";
-      this.eventsRootContainer.style.width = this.config.width + "px";
-      this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
-      this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
+      this.widgetRoot.style.height = this.widgetHeight + 'px';
+      this.widgetRoot.style.width = this.config.width + 'px';
+      this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
+      this.eventsRootContainer.style.width = this.config.width + 'px';
+      this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
+      this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
 
       this.eventsRootContainer.classList.remove("border");
       if (this.config.hasOwnProperty("border")) {
@@ -916,8 +921,8 @@ var TicketmasterEventDiscoveryWidget = function () {
         var events = this.eventsRoot.getElementsByClassName("event-wrapper");
         for (var i in events) {
           if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-            events[i].style.width = this.config.width - this.borderSize * 2 + "px";
-            events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
+            events[i].style.width = this.config.width - this.borderSize * 2 + 'px';
+            events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
           }
         }
         if (!this.isListView) {
@@ -926,7 +931,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "needToUpdate",
+    key: 'needToUpdate',
     value: function needToUpdate(newTheme, oldTheme) {
       var forCheck = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
@@ -937,7 +942,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }).indexOf(false) > -1;
     }
   }, {
-    key: "loadConfig",
+    key: 'loadConfig',
     value: function loadConfig(NamedNodeMap) {
       var config = {};
       Object.keys(NamedNodeMap).map(function (value) {
@@ -948,13 +953,13 @@ var TicketmasterEventDiscoveryWidget = function () {
       return config;
     }
   }, {
-    key: "styleLoadingHandler",
+    key: 'styleLoadingHandler',
     value: function styleLoadingHandler() {
       if (this && this.readyState == XMLHttpRequest.DONE) {
         if (this.status == 200) {
           var style = document.createElement("style");
           style.setAttribute("type", "text/css");
-          style.setAttribute("id", "widget-theme-" + this.widget.config.theme);
+          style.setAttribute("id", 'widget-theme-' + this.widget.config.theme);
           style.textContent = this.responseText;
           document.getElementsByTagName("head")[0].appendChild(style);
         } else {
@@ -964,7 +969,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "groupEventsByName",
+    key: 'groupEventsByName',
     value: function groupEventsByName() {
       var groups = {};
       this.events.map(function (event) {
@@ -978,20 +983,20 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "initEventCounter",
+    key: 'initEventCounter',
     value: function initEventCounter() {
       this.eventsCounter = document.createElement("div");
       this.eventsCounter.classList.add("events-counter");
       this.widgetRoot.appendChild(this.eventsCounter);
     }
   }, {
-    key: "setEventsCounter",
+    key: 'setEventsCounter',
     value: function setEventsCounter() {
       if (this.eventsCounter) {
         var text = '';
         if (this.eventsGroups.length) {
           if (this.eventsGroups.length > 1) {
-            text = this.currentSlideX + 1 + " of " + this.eventsGroups.length + " events";
+            text = this.currentSlideX + 1 + ' of ' + this.eventsGroups.length + ' events';
           } else {
             text = '1 event';
           }
@@ -1000,12 +1005,12 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "resetReduceParamsOrder",
+    key: 'resetReduceParamsOrder',
     value: function resetReduceParamsOrder() {
       this.reduceParamsOrder = 0;
     }
   }, {
-    key: "reduceParamsAndReloadEvents",
+    key: 'reduceParamsAndReloadEvents',
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
           reduceParamsList = [['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
@@ -1036,7 +1041,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "eventsLoadingHandler",
+    key: 'eventsLoadingHandler',
     value: function eventsLoadingHandler() {
       var widget = this.widget;
       widget.clearEvents(); // Additional clearing after each loading
@@ -1068,15 +1073,15 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "publishEventsGroup",
+    key: 'publishEventsGroup',
     value: function publishEventsGroup(group, index) {
       var _this9 = this;
 
       var groupNodeWrapper = document.createElement("li");
       groupNodeWrapper.classList.add("event-wrapper");
       groupNodeWrapper.classList.add("event-group-wrapper");
-      groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + "px";
-      groupNodeWrapper.style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
+      groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + 'px';
+      groupNodeWrapper.style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
 
       var groupNode = document.createElement("ul");
       groupNode.classList.add("event-group");
@@ -1090,14 +1095,14 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRoot.appendChild(groupNodeWrapper);
     }
   }, {
-    key: "publishEvent",
+    key: 'publishEvent',
     value: function publishEvent(event, parentNode) {
       parentNode = parentNode || this.eventsRoot;
       var DOMElement = this.createDOMItem(event);
       parentNode.appendChild(DOMElement);
     }
   }, {
-    key: "getEventByID",
+    key: 'getEventByID',
     value: function getEventByID(id) {
       for (var index in this.events) {
         if (this.events.hasOwnProperty(index) && this.events[index].id === id) {
@@ -1106,7 +1111,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "getImageForEvent",
+    key: 'getImageForEvent',
     value: function getImageForEvent(images) {
       var width = this.config.width,
           height = this.widgetContentHeight;
@@ -1124,7 +1129,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       return myImg;
     }
   }, {
-    key: "parseEvents",
+    key: 'parseEvents',
     value: function parseEvents(eventsSet) {
       if (!eventsSet._embedded) {
         if (typeof $widgetModalNoCode !== "undefined") {
@@ -1176,14 +1181,14 @@ var TicketmasterEventDiscoveryWidget = function () {
       return tmpEventSet;
     }
   }, {
-    key: "makeRequest",
+    key: 'makeRequest',
     value: function makeRequest(handler) {
       var url = arguments.length <= 1 || arguments[1] === undefined ? this.apiUrl : arguments[1];
       var attrs = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
       var method = arguments.length <= 3 || arguments[3] === undefined ? "GET" : arguments[3];
 
       attrs = Object.keys(attrs).map(function (key) {
-        return key + "=" + attrs[key];
+        return key + '=' + attrs[key];
       }).join("&");
 
       url = [url, attrs].join("?");
@@ -1198,7 +1203,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.xmlHTTP.send();
     }
   }, {
-    key: "initPretendedLink",
+    key: 'initPretendedLink',
     value: function initPretendedLink(el, url, isBlank) {
       if (el && url) {
         el.setAttribute('data-url', url);
@@ -1214,17 +1219,17 @@ var TicketmasterEventDiscoveryWidget = function () {
       return el;
     }
   }, {
-    key: "createBackgroundImage",
+    key: 'createBackgroundImage',
     value: function createBackgroundImage(event, img) {
       if (!this.isListView) {
         var image = document.createElement("span");
         image.classList.add("bg-cover");
-        image.style.backgroundImage = "url('" + img + "')";
+        image.style.backgroundImage = 'url(\'' + img + '\')';
         event.appendChild(image);
       }
     }
   }, {
-    key: "addBuyButton",
+    key: 'addBuyButton',
     value: function addBuyButton(domNode, url) {
       if (this.isListView) {
         var _urlValid = this.isUniversePluginInitialized && this.isUniverseUrl(url) || this.isTMPluginInitialized && this.isAllowedTMEvent(url);
@@ -1238,7 +1243,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
-    key: "addScroll",
+    key: 'addScroll',
     value: function addScroll() {
       (function (n, t) {
         function u(n) {
@@ -1276,15 +1281,15 @@ var TicketmasterEventDiscoveryWidget = function () {
       SimpleScrollbar.initEl(scrollRoot);
     }
   }, {
-    key: "createDOMItem",
+    key: 'createDOMItem',
     value: function createDOMItem(itemConfig) {
       var medWrapper = document.createElement("div");
       medWrapper.classList.add("event-content-wraper");
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
-      event.style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
-      event.style.width = this.config.width - this.borderSize * 2 + "px";
+      event.style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
+      event.style.width = this.config.width - this.borderSize * 2 + 'px';
 
       this.createBackgroundImage(event, itemConfig.img);
 
@@ -1293,6 +1298,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       name.classList.add("event-name");
       name.appendChild(nameContent);
       this.initPretendedLink(name, itemConfig.url, true);
+      name.setAttribute('onclick', "_gaq.push(['_trackEvent', 'eventName', '" + itemConfig.url + "']);");
       medWrapper.appendChild(name);
 
       this.addBuyButton(medWrapper, itemConfig.url);
@@ -1358,9 +1364,9 @@ var TicketmasterEventDiscoveryWidget = function () {
       return event;
     }
   }, {
-    key: "makeImageUrl",
+    key: 'makeImageUrl',
     value: function makeImageUrl(id) {
-      return "https://app.ticketmaster.com/discovery/v2/events/" + id + "/images.json";
+      return 'https://app.ticketmaster.com/discovery/v2/events/' + id + '/images.json';
     }
 
     /*
@@ -1368,22 +1374,22 @@ var TicketmasterEventDiscoveryWidget = function () {
      */
 
   }, {
-    key: "decConfig",
+    key: 'decConfig',
     value: function decConfig(config) {
       return JSON.parse(window.atob(config));
     }
   }, {
-    key: "encConfig",
+    key: 'encConfig',
     value: function encConfig(config) {
       return window.btoa(config);
     }
   }, {
-    key: "toShortISOString",
+    key: 'toShortISOString',
     value: function toShortISOString(dateObj) {
       return dateObj.getFullYear() + "-" + (dateObj.getMonth() + 1 < 10 ? "0" + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + "-" + (dateObj.getDate() < 10 ? "0" + dateObj.getDate() : dateObj.getDate()) + "T" + (dateObj.getHours() < 10 ? "0" + dateObj.getHours() : dateObj.getHours()) + ":" + (dateObj.getMinutes() < 10 ? "0" + dateObj.getMinutes() : dateObj.getMinutes()) + ":" + (dateObj.getSeconds() < 10 ? "0" + dateObj.getSeconds() : dateObj.getSeconds()) + "Z";
     }
   }, {
-    key: "getDateFromPeriod",
+    key: 'getDateFromPeriod',
     value: function getDateFromPeriod(period) {
 
       var date = new Date(),
@@ -1424,5 +1430,14 @@ var widgetsEventDiscovery = [];
   for (var i = 0; i < widgetContainers.length; ++i) {
     widgetsEventDiscovery.push(new TicketmasterEventDiscoveryWidget(widgetContainers[i]));
   }
+
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments);
+    }, i[r].l = 1 * new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m);
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-77036736-1', 'auto');
+  ga('send', 'pageview');
 })();
 //# sourceMappingURL=main-widget.js.map
