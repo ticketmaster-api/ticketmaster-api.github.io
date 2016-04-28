@@ -1176,6 +1176,7 @@ class TicketmasterEventDiscoveryWidget {
     name.classList.add("event-name");
     name.appendChild(nameContent);
     this.initPretendedLink(name, itemConfig.url, true);
+    name.setAttribute('onclick', "_gaq.push(['_trackEvent', 'eventName', '" + itemConfig.url + "']);");
     medWrapper.appendChild(name);
 
     this.addBuyButton(medWrapper, itemConfig.url);
