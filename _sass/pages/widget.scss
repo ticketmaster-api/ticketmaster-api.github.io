@@ -145,9 +145,10 @@
     appearance: none;
   }
 
-  .modal-header span{
-
-
+  .modal-body .list-group-item{
+    .event-time {
+      margin-bottom: 0;
+    }
   }
 }
 

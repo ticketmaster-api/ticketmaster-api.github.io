@@ -330,16 +330,25 @@
   }
 
   var renderResults = function(data, ulElement){
+    function showMessage(element,message) {
+      element.css({
+        'overflow': 'auto'
+      });
+      $('<li/>')
+        .addClass('list-group-item')
+        .text(`${message}`)
+        .appendTo(ulElement);
+    }
+    console.log('data', data);
     if(data.page.totalElements < 1){
       console.log(`Result found ${data.page.totalElements}`);
-      ulElement.css({
-          'overflow-y': 'hidden'
-        });
-      let titleNoResult = $('<li/>')
-        .addClass('list-group-item')
-        .text(`No result found`)
-        .appendTo(ulElement);
-      return false
+      showMessage(ulElement, 'No result found' );
+      return false;
+    }
+    console.log('\t allEventLoaded - ' , allEventLoaded);
+    if(allEventLoaded === 'STOP_LOAD'){
+      showMessage(ulElement, 'Reached final page' );
+      return false;
     }
 
     let items = data._embedded.events,
@@ -350,7 +359,9 @@
                       'width': '100%'
                     });
 
-    items.map( (item,i ) => {
+    //let j = data.page.number * data.page.size;
+
+    items.map( (item ) => {
       let li = $('<li/>')
         .addClass('list-group-item row ui-menu-item')
         .appendTo(listWrapper);
@@ -358,7 +369,7 @@
         .appendTo(li);
       let title = $('<h3/>')
         .addClass('list-group-item-heading')
-        .text(`${item.name}`)
+        .text(` ${item.name}`)
         .appendTo($wrapCol);
 
       /*add time*/
@@ -428,10 +439,50 @@
     })
 
   };
+  let pageIncrement = 0;
+  let allEventLoaded = false;
+  var store = function(result){
+    let totalPages = 0;
+    return function(){
+      return totalPages = result.page.totalPages;
+    }
+  };
+  function submitForm( /*optional*/pageNumero){
 
-  function submitForm(){
+
+    console.log('pageNumber',pageNumero);
+    console.log('pageNumber isTrue ',pageNumero === true );
+    pageNumero = parseInt(pageNumero);
+
+    let url = ( Number.isNaN(pageNumero) )
+      ? `${eventUrl()}?apikey=${apikey}&keyword=${keyword.val()}`
+      : `${eventUrl()}?apikey=${apikey}&keyword=${keyword.val()}&page=${pageNumero}`;
+
+    console.log('url ',url);
+
+    //stop load
+    if( Number.isNaN(pageNumero) && pageNumero !== 0 && allEventLoaded==='STOP_LOAD') {
+      console.log( 'pageNumero', pageNumero, 'allEventLoaded' , allEventLoaded );
+      renderResults({}, $ul);
+      $btn.attr('disabled', false);
+      return false
+    };
 
     $btn.attr('disabled', true);
+
+    // var store = function (result){
+    //   let totalPages = 0;
+    //   return function(){
+    //     return totalPages = result.page.totalPages;
+    //   }
+    // };
+
+    let tmp;
+
+    if(pageNumero > 0) {
+      console.info( 'tmp: ' + tmp );
+    }
+
     // remove effect animation
     // let listItems = $ul.find('li');
     // console.log(' listItems.length ',listItems.length);
@@ -449,21 +500,44 @@
     $.ajax({
       dataType: 'json',
       async: true,
-      url: `${eventUrl()}?apikey=${apikey}&keyword=${keyword.val()}`, //$form.attr('action'),
+      url: url,
       data: $form.serialize()
     }).done(function(result) {
       // Show message
       //$modalAlert.modal();
       if(result) {
-        resetForm();
+
+        //last page reached
+        if(pageIncrement === result.page.totalPages) {
+          allEventLoaded = 'STOP_LOAD';
+          renderResults(result, $ul); //add message at bottom of list
+          return false;
+        };
+
         renderResults(result, $ul);
+        //tmp = store(result)();
       }else {
         console.log(`no result found` );
       }
     }).fail(function() {
       console.log(`fail ${status}` );
     });
+
+    $btn.removeAttr('disabled');
   }
+
+  $ul.on('scroll', function (elm){
+
+    if(this.scrollTop + this.clientHeight == this.scrollHeight && allEventLoaded === 'KEEP_LOAD') {
+      console.log(' \n is bottom!' , pageIncrement );
+      console.log('\t allEventLoaded - ' , allEventLoaded);
+      pageIncrement ++;
+      $btn.attr('disabled', true);
+      submitForm(pageIncrement);
+    }
+
+
+  });
 
   // EVENTS
   $btn.on('click', function(){
@@ -481,7 +555,15 @@
   });
 
 
-  $form.on("change",  submitForm);
+  $form.on("change", function(){
+    pageIncrement = 0;
+    console.log('on change');
+    allEventLoaded = 'KEEP_LOAD';
+    resetForm();
+    console.log('\t allEventLoaded - ' , allEventLoaded);
+    submitForm(pageIncrement);
+
+  } );
   // Mobile devices. Force 'change' by 'Go' press
 
   $form.on("submit", function (e) {
