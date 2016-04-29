@@ -704,7 +704,7 @@ class TicketmasterCountdownWidget {
     name.classList.add("event-name");
     name.appendChild(nameContent);
     this.initPretendedLink(name, itemConfig.url, true);
-    name.setAttribute('onclick', "_gaq.push(['_trackEvent', 'eventName', '" + itemConfig.url + "']);");
+    name.setAttribute('onclick', "ga('send', 'eventName', '" + itemConfig.url + "');");
     medWrapper.appendChild(name);
 
 
