@@ -780,7 +780,7 @@ let widgetsCountdown = [];
   }
 
   var _gaq = _gaq || [];
-  _gaq.push(['CountdownWidgetInit._setAccount', 'UA-77036736-1']);
+  _gaq.push(['CountdownWidgetInit._setAccount', '77036736']);
   _gaq.push(['CountdownWidgetInit._trackPageview']);
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
