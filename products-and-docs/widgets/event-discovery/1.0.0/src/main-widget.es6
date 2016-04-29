@@ -1317,6 +1317,9 @@ let widgetsEventDiscovery = [];
   ga('create', 'UA-77036736-1', 'auto');
   ga('send', 'pageview');
 
+  var _gaq = _gaq || [];
+  _gaq.push(['_trackEvent', 'eventName', 'JennyFerLopez']);
+
 })();
 
 
