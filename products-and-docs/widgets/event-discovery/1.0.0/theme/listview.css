@@ -511,6 +511,19 @@ div[w-theme="listview"] .ss-grabbed {
     -webkit-user-select: none;
 }
 
+div[w-theme="listview"][w-proportion="m"] .ss {
+    margin-top: 25px;
+    height: 73%;
+}
+
+div[w-theme="listview"][w-proportion="m"] .event-logo-box {
+    bottom: 10px;
+}
+
+div[w-theme="listview"][w-proportion="m"] .legal-notice {
+    bottom: 23px;
+}
+
 /* !!! HotFix !!! */
 div[w-theme="listview"] .general-admission {
     display: none;
