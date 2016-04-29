@@ -284,4 +284,178 @@
     $widgetModalNoCode.modal('hide');
   });
 })();
+
+(function ($) {
+  var $modal = $('#get-eventId-modal'),
+      $form = $('#js_get_eventId_form', $modal),
+      $ul = $('#js_get_eventId_list'),
+      $btn = $modal.find('#js_get-eventId_btn'),
+      cssValidationClass = 'get-eventId_form-validation';
+
+  var keyword = $form.find('#keyword'),
+      apikey = $('#w-tm-api-key').val(),
+      eventUrl = function eventUrl() {
+    return 'https://app.ticketmaster.com/discovery/v2/events.json';
+  };
+
+  // var removeListItemEffect = function(listItems){
+  //   console.log( 'removeListItemEffect start ',listItems.length);
+  //
+  //   $btn.attr('disabled', true);
+  //   listItems.hide("slow", function fnCollapse() {
+  //     $(this).prev("li").hide("slow", fnCollapse);
+  //     // if(!$(this).prev("li").length) $btn.removeAttr('disabled');
+  //   });
+  //   $btn.removeAttr('disabled');
+  // };
+
+  function resetForm() {
+    var listItems = $ul.find('li');
+
+    $btn.removeAttr('disabled');
+    listItems.remove();
+    $form.find('input').each(function () {
+      var $self = $(this);
+      if ($self.attr('name')) {
+        $self.val('');
+      }
+    });
+
+    // Clear highlight
+    $form.removeClass(cssValidationClass);
+  }
+
+  var renderResults = function renderResults(data, ulElement) {
+    if (data.page.totalElements < 1) {
+      console.log('Result found ' + data.page.totalElements);
+      ulElement.css({
+        'overflow-y': 'hidden'
+      });
+      var titleNoResult = $('<li/>').addClass('list-group-item').text('No result found').appendTo(ulElement);
+      return false;
+    }
+
+    var items = data._embedded.events,
+        listWrapper = ulElement.css({
+      'overflow-y': 'scroll',
+      'max-height': '500px',
+      'width': '100%'
+    });
+
+    items.map(function (item, i) {
+      var li = $('<li/>').addClass('list-group-item row ui-menu-item').appendTo(listWrapper);
+      var $wrapCol = $('<div style="padding-right: 110px;"/>').appendTo(li);
+      var title = $('<h3/>').addClass('list-group-item-heading').text('' + item.name).appendTo($wrapCol);
+
+      /*add time*/
+      var currentEvent = {};
+      currentEvent.date = {
+        day: item.dates.start.localDate,
+        time: item.dates.start.localTime,
+        dateTime: item.dates.start.dateTime
+      };
+
+      var time = widgetsCountdown[0].formatDate(currentEvent.date);
+      var eventTime = $('<h4/>').addClass('event-time').text(time).appendTo($wrapCol);
+      /*add time end*/
+
+      if (item._embedded && item._embedded.venues) {
+        var venue = item._embedded.venues[0];
+        var addressName = $('<span/>').addClass('address-name').text(venue.name + '. ').appendTo($wrapCol);
+
+        if (venue.address.line1) {
+          var addressline1 = $('<span/>').addClass('address-line1').text(venue.address.line1).appendTo($wrapCol);
+          if (venue.address.line2) {
+            var _addressline = $('<span/>').addClass('address-line2').text(venue.address.line2).appendTo(_addressline);
+          }
+        }
+      } else {
+        console.log('Please enter keyword');
+      }
+
+      var buttonSetId = $('<button data-event="' + item.id + '"/>').addClass('js_set-eventId_btn btn btn-submit').css({ 'width': 'auto',
+        'height': 'auto' }).text('Set this ID')
+      // .data('ID', item.id)
+      .appendTo(li).wrap('<div style ="position: absolute; bottom: 10px; right: 10px;"/>');
+
+      // $.data(buttonSetId, 'event-ID', item.id);
+    });
+
+    $('.js_set-eventId_btn').on('click', function (e) {
+      var selectedID = e.target.getAttribute('data-event'),
+
+      //find configurator and widget
+      widget = widgetsCountdown[0],
+          widgetNode = document.querySelector("div[w-tmapikey]");
+      $('#w-id').val(selectedID);
+      widgetNode.setAttribute('w-id', selectedID);
+      widget.update();
+
+      // Close dialog
+      $modal.modal('hide');
+    });
+  };
+
+  function submitForm() {
+
+    $btn.attr('disabled', true);
+    // remove effect animation
+    // let listItems = $ul.find('li');
+    // console.log(' listItems.length ',listItems.length);
+    // if (listItems.length < 0){
+    //   removeListItemEffect(listItems);
+    //   $ul.slideUp(500);
+    //   listItems.delay( 800 ).remove();
+    //
+    //   console.log(' listItems ',listItems);
+    // }else {
+    //   $ul.show();
+    //   listItems = null;
+    // }
+
+    $.ajax({
+      dataType: 'json',
+      async: true,
+      url: eventUrl() + '?apikey=' + apikey + '&keyword=' + keyword.val(), //$form.attr('action'),
+      data: $form.serialize()
+    }).done(function (result) {
+      // Show message
+      //$modalAlert.modal();
+      if (result) {
+        resetForm();
+        renderResults(result, $ul);
+      } else {
+        console.log('no result found');
+      }
+    }).fail(function () {
+      console.log('fail ' + status);
+    });
+  }
+
+  // EVENTS
+  $btn.on('click', function () {
+    var form = $form.get(0);
+    if (!$btn.is(':disabled')) {
+      if (form.checkValidity()) {
+        //$btn.attr('disabled', true);
+        submitForm();
+      } else {
+        // Highlight errors
+        if (form.reportValidity) form.reportValidity();
+        $form.addClass(cssValidationClass);
+      }
+    }
+  });
+
+  $form.on("change", submitForm);
+  // Mobile devices. Force 'change' by 'Go' press
+
+  $form.on("submit", function (e) {
+    console.log('pressed on.submit');
+    $form.find('input:focus').trigger('blur');
+    e.preventDefault();
+  });
+
+  $modal.on('hidden.bs.modal', resetForm);
+})(jQuery);
 //# sourceMappingURL=main-widget-config.js.map
