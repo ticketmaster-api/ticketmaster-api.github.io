@@ -906,7 +906,7 @@ var widgetsCountdown = [];
   }
 
   var _gaq = _gaq || [];
-  _gaq.push(['_trackEvent', 'eventName', 'Jennyfer Lopez']);
+  _gaq.push(['_trackEvent', 'eventName', 'click', 'Jennyfer_Lopez']);
 
   (function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
