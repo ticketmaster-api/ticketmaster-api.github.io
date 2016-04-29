@@ -906,8 +906,6 @@ var widgetsCountdown = [];
   }
 
   var _gaq = _gaq || [];
-  _gaq.push(['CountdownWidgetInit._setAccount', '77036736']);
-  _gaq.push(['CountdownWidgetInit._trackPageview']);
   _gaq.push(['_trackEvent', 'eventName', 'Jennyfer Lopez']);
 
   (function (i, s, o, g, r, a, m) {
