@@ -827,7 +827,7 @@ var TicketmasterCountdownWidget = function () {
       name.classList.add("event-name");
       name.appendChild(nameContent);
       this.initPretendedLink(name, itemConfig.url, true);
-      name.setAttribute('onclick', "ga('send', 'eventName', '" + itemConfig.url + "');");
+      name.setAttribute('onclick', "ga('send', 'event', 'ClickeventName', 'click', '" + itemConfig.url + "');");
       medWrapper.appendChild(name);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
@@ -917,9 +917,6 @@ var widgetsCountdown = [];
     widgetsCountdown.push(new TicketmasterCountdownWidget(widgetContainers[i]));
   }
 })();
-
-var _gaq = _gaq || [];
-_gaq.push(['_trackEvent', 'eventName', 'click', 'Jennyfer_Lopez']);
 
 (function (i, s, o, g, r, a, m) {
   i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
