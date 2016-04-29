@@ -68,26 +68,29 @@
       border: none;
       margin-bottom: 38px;
       padding: 10px 29px;
-      .btn-submit {
-        width: 165px;
-        height: 50px;
+    }
+
+    .btn-submit {
+      width: 165px;
+      height: 50px;
+      color: $white;
+      font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+      text-transform: uppercase;
+      background-color: $p1;
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
+        text-decoration: none;
+        background-color: $p1b;
         color: $white;
-        font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
-        text-transform: uppercase;
-        background-color: $p1;
-        &:hover,
-        &:focus,
-        &:active {
-          outline: none;
-          text-decoration: none;
-          background-color: $p1b;
-          color: $white;
-        }
-        &[disabled]{
-          background-color: $n3;
-        }
+      }
+      &[disabled]{
+        background-color: $n3;
       }
     }
+
+
   }
 
   &-sm {

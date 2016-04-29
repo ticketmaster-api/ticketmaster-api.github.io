@@ -103,6 +103,9 @@
 
 .config-block{
   margin-bottom: 30px;
+  a:hover {
+    cursor: pointer;
+  }
 
   @media (max-width: 1199px){
     padding-right: 24px;
@@ -140,6 +143,11 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+  }
+
+  .modal-header span{
+
+
   }
 }
 
