@@ -31,16 +31,32 @@ class CountdownClock {
     if (timeRemaining.total <= 0) clearInterval(this.timeinterval);
   }
 
+  //Covert datetime by GMT offset
+  //If toUTC is true then return UTC time other wise return local time
+  convertLocalDateToUTCDate(date, toUTC) {
+    date = new Date(date);
+    //Local time converted to UTC
+    var localOffset = date.getTimezoneOffset() * 60000;
+    var localTime = date.getTime();
+    (toUTC)
+      ? date = localTime + localOffset
+      : date = localTime - localOffset;
+    date = new Date(date);
+    return date;
+  }
+
   getTimeRemaining() {
-    //this.endTime = '2021-10-08T17:10:20.000Z';
     let total = Date.parse(this.endTime) - Date.parse(new Date());
-    if(total < 0) total = 0;
+    if(total <= 0) {
+      let converted = this.convertLocalDateToUTCDate(this.endTime , false);
+      total = Date.parse(converted) - Date.parse(new Date());
+    }
     let seconds = Math.floor((total / 1000) % 60),
       minutes = Math.floor((total / 1000 / 60) % 60),
       hours = Math.floor((total / 3600000 /* (1000 * 60 * 60) */) % 24),
       days = Math.floor(total / 86400000 /* (1000 * 60 * 60 * 24) */),
-      monthLeft = 0,
-      years = 0;
+      monthLeft = 0;
+      //years = 0;
 
     let daysInMonth = function(year,month){
       var D=new Date(year, month-1, 1, 12);
@@ -48,36 +64,31 @@ class CountdownClock {
     };
 
     let today = new Date(),
+        curr_day = today.getUTCDate(),
         curr_month = today.getUTCMonth(),
         curr_year = today.getUTCFullYear(),
         curr_days_in_month = daysInMonth(curr_year, curr_month);
 
     if(days => curr_days_in_month){
-      let servYear = new Date(this.endTime).getUTCFullYear();
-      let servMonth = new Date(this.endTime).getUTCMonth();
-      let daysInMonthLocal = 0;
-      let sum = 0;
+      let servYear = new Date(this.endTime).getUTCFullYear(),
+          servMonth = new Date(this.endTime).getUTCMonth(),
+          servDay = new Date(this.endTime).getUTCDate(),
+          serv_days_in_month = daysInMonth(servYear, servMonth);
 
       monthLeft = Math.floor( days/daysInMonth(servYear,servMonth) );
 
-      for(let i =1; i < monthLeft; i++){
-        daysInMonthLocal = daysInMonth(servYear , new Date(this.endTime).getUTCMonth()+i );
-        sum = sum + daysInMonthLocal;
-        //console.log(i , 'daysInMonth to endTime ',sum );
-      }
-      days = days - sum;
-      //console.log( 'days:after ',days );
-
-      if(monthLeft > 99){
+      days = serv_days_in_month - Math.abs(servDay - curr_day);
+      
+      /*if(monthLeft > 99){
         years = servYear - curr_year;
         monthLeft = monthLeft-1 - years*12;
         //console.log( 'monthLeft ',monthLeft );
-      }
+      }*/
     }
 
     return {
       total,
-      years,
+      //years,
       monthLeft,
       days,
       hours,
@@ -238,13 +249,13 @@ class TicketmasterCountdownWidget {
     if(timeLeft <= 0){
       this.countDownWrapper.classList.add("hide-countDownBox");
       if(this.eventId && this.event){
-        this.showMessage("This event has taken place", false , "event-message-started");
+        this.showMessage(`This event has taken place`, false , "event-message-started");
         return false; //exit if event has taken place
       }
     }else this.countDownWrapper.classList.remove("hide-countDownBox");
 
     if(data.monthLeft > 99){
-      this.showMessage(`This event starts more than ${data.years} years, ${data.monthLeft} month, ${data.days} days, ${data.hours} hours`, false , "event-message-started");
+      this.showMessage(`This event starts more than ${data.monthLeft} month, ${data.days} days, ${data.hours} hours`, false , "event-message-started");
       this.countDownWrapper.classList.add("hide-countDownBox");
       return false;
     }
@@ -569,7 +580,7 @@ class TicketmasterCountdownWidget {
       }
       // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
       let _ref, _ref2;
-      widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime : void 0 : void 0);
+      widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime || _ref2.day : void 0 : void 0);
     }
     widget.setBuyBtnUrl();
   }
