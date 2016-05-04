@@ -39,7 +39,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'isSimpleProportionM',
     get: function get() {
-      return this.config.proportion === 'm' && this.config.theme === 'simple';
+      return this.config.proportion === 'm';
     }
   }, {
     key: 'borderSize',
