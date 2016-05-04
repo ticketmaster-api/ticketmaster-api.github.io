@@ -296,11 +296,14 @@
     $form = $('#js_get_eventId_form', $modal),
     $ul = $('#js_get_eventId_list'),
     $btn = $modal.find('#js_get-eventId_btn'),
+    $resultsCount = $form.find('.get_eventId_results'),
     cssValidationClass = 'get-eventId_form-validation';
 
   let keyword = $form.find('#keyword'),
       apikey =  $('#w-tm-api-key').val(),
-      eventUrl = ()=>{ return 'https://app.ticketmaster.com/discovery/v2/events.json' };
+      eventUrl = ()=>{ return 'https://app.ticketmaster.com/discovery/v2/events.json' },
+      pageIncrement = 0,
+      loadingFlag = false;
 
   // var removeListItemEffect = function(listItems){
   //   console.log( 'removeListItemEffect start ',listItems.length);
@@ -313,24 +316,39 @@
   //   $btn.removeAttr('disabled');
   // };
 
-  function resetForm(){
-    let listItems = $ul.find('li');
+  let loading = function(action) {
+    //let status = false;
 
-    $btn.removeAttr('disabled');
+    // add the overlay with loading image to the page
+    if(action=="on"){
+      $('#spinner').show();
+      //console.log("creating overlay");
+    }
+    else if(action=="off"){
+      $('#spinner').hide();
+      //console.log("removing overlay");
+    }
+
+  };
+
+  function resetForm(){
+    pageIncrement = 0;
+    let listItems = $ul.find('li');
     listItems.remove();
-    $form.find('input').each(function(){
+    /*$form.find('input').each(function(){
       var $self = $(this);
-      if($self.attr('name')){
+      if($self.attr('id','keyword')){
         $self.val('');
       }
-    });
+    });*/
 
     // Clear highlight
     $form.removeClass(cssValidationClass);
   }
 
   var renderResults = function(data, ulElement){
-    function showMessage(element,message) {
+    function showMessage(element,message, /*optional*/clearList) {
+      if(clearList) $('li',element).remove();
       element.css({
         'overflow': 'auto'
       });
@@ -338,34 +356,37 @@
         .addClass('list-group-item')
         .text(`${message}`)
         .appendTo(ulElement);
-    }
-    console.log('data', data);
-    if(data.page.totalElements < 1){
-      console.log(`Result found ${data.page.totalElements}`);
-      showMessage(ulElement, 'No result found' );
+    };
+
+    if(loadingFlag === "FINAL_PAGE") return false;
+
+    if(loadingFlag === 'STOP_LOAD' && data.length !== 0 ){
+      loadingFlag = "FINAL_PAGE";
+      showMessage(ulElement, 'Reached final page');
+      $btn.attr('disabled',false);
       return false;
     }
-    console.log('\t allEventLoaded - ' , allEventLoaded);
-    if(allEventLoaded === 'STOP_LOAD'){
-      showMessage(ulElement, 'Reached final page' );
+    if(data === null || !data._embedded){
+      showMessage(ulElement, 'No result found' ,true);
+      $btn.attr('disabled',false);
       return false;
     }
 
-    let items = data._embedded.events,
-        listWrapper = ulElement
-                    .css({
-                      'overflow-y': 'scroll',
-                      'max-height': '500px',
-                      'width': '100%'
-                    });
+    //start render data
 
-    //let j = data.page.number * data.page.size;
+    /*if(data.page.totalElements > 0){
+      console.log('data.page.totalElements' , data.page.totalElements);
+      $resultsCount.val(data.page.totalElements);
+      $resultsCount.show();
+    }else $resultsCount.hide();*/
+
+    let items = data._embedded.events;
 
     items.map( (item ) => {
       let li = $('<li/>')
-        .addClass('list-group-item row ui-menu-item')
-        .appendTo(listWrapper);
-      let $wrapCol = $('<div style="padding-right: 110px;"/>')
+        .addClass('list-group-item row')
+        .appendTo(ulElement);
+      let $wrapCol = $('<div class="event-text-wrapper"/>')
         .appendTo(li);
       let title = $('<h3/>')
         .addClass('list-group-item-heading')
@@ -387,7 +408,6 @@
         .appendTo($wrapCol);
       /*add time end*/
 
-
       if (item._embedded && item._embedded.venues) {
         let venue = item._embedded.venues[0];
         let addressName = $('<span/>')
@@ -408,20 +428,15 @@
           }
         }
       }else{
-        console.log(`Please enter keyword`);
+        console.log(`no _embedded found`);
       }
-
 
       let buttonSetId = $(`<button data-event="${item.id}"/>`)
         .addClass('js_set-eventId_btn btn btn-submit')
-        .css({'width': 'auto',
-              'height': 'auto'})
         .text(`Set this ID`)
-        // .data('ID', item.id)
         .appendTo(li)
-        .wrap('<div style ="position: absolute; bottom: 10px; right: 10px;"/>');
-      
-      // $.data(buttonSetId, 'event-ID', item.id);
+        .wrap('<div class ="wrapper-set-eventId_btn text-right"/>');
+
 
     });
 
@@ -430,72 +445,34 @@
       //find configurator and widget
           widget = widgetsCountdown[0],
           widgetNode = document.querySelector("div[w-tmapikey]");
+      
       $('#w-id').val(selectedID);
       widgetNode.setAttribute('w-id',selectedID);
       widget.update();
 
       // Close dialog
       $modal.modal('hide');
-    })
+    });
+
+    $btn.attr('disabled',false);
 
   };
-  let pageIncrement = 0;
-  let allEventLoaded = false;
-  var store = function(result){
-    let totalPages = 0;
-    return function(){
-      return totalPages = result.page.totalPages;
-    }
-  };
+
   function submitForm( /*optional*/pageNumero){
-
-
-    console.log('pageNumber',pageNumero);
-    console.log('pageNumber isTrue ',pageNumero === true );
     pageNumero = parseInt(pageNumero);
 
     let url = ( Number.isNaN(pageNumero) )
       ? `${eventUrl()}?apikey=${apikey}&keyword=${keyword.val()}`
       : `${eventUrl()}?apikey=${apikey}&keyword=${keyword.val()}&page=${pageNumero}`;
 
-    console.log('url ',url);
-
     //stop load
-    if( Number.isNaN(pageNumero) && pageNumero !== 0 && allEventLoaded==='STOP_LOAD') {
-      console.log( 'pageNumero', pageNumero, 'allEventLoaded' , allEventLoaded );
-      renderResults({}, $ul);
-      $btn.attr('disabled', false);
+    if( Number.isNaN(pageNumero) && pageNumero !== 0 && loadingFlag==='STOP_LOAD') {
+      renderResults(null, $ul);
       return false
     };
 
-    $btn.attr('disabled', true);
-
-    // var store = function (result){
-    //   let totalPages = 0;
-    //   return function(){
-    //     return totalPages = result.page.totalPages;
-    //   }
-    // };
-
-    let tmp;
-
-    if(pageNumero > 0) {
-      console.info( 'tmp: ' + tmp );
-    }
-
-    // remove effect animation
-    // let listItems = $ul.find('li');
-    // console.log(' listItems.length ',listItems.length);
-    // if (listItems.length < 0){
-    //   removeListItemEffect(listItems);
-    //   $ul.slideUp(500);
-    //   listItems.delay( 800 ).remove();
-    //
-    //   console.log(' listItems ',listItems);
-    // }else {
-    //   $ul.show();
-    //   listItems = null;
-    // }
+    //console.log(`loadingFlag ${loadingFlag}`);
+    if(loadingFlag === 'FINAL_PAGE') return false;
 
     $.ajax({
       dataType: 'json',
@@ -503,19 +480,18 @@
       url: url,
       data: $form.serialize()
     }).done(function(result) {
-      // Show message
-      //$modalAlert.modal();
       if(result) {
 
         //last page reached
-        if(pageIncrement === result.page.totalPages) {
-          allEventLoaded = 'STOP_LOAD';
+        if(pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
+          loadingFlag = 'STOP_LOAD';
+          loading('off');
           renderResults(result, $ul); //add message at bottom of list
           return false;
         };
 
         renderResults(result, $ul);
-        //tmp = store(result)();
+        loading('off');
       }else {
         console.log(`no result found` );
       }
@@ -523,19 +499,16 @@
       console.log(`fail ${status}` );
     });
 
-    $btn.removeAttr('disabled');
   }
 
   $ul.on('scroll', function (elm){
-
-    if(this.scrollTop + this.clientHeight == this.scrollHeight && allEventLoaded === 'KEEP_LOAD') {
-      console.log(' \n is bottom!' , pageIncrement );
-      console.log('\t allEventLoaded - ' , allEventLoaded);
+    //submitForm when go to bottom of list
+    if(this.scrollTop + this.clientHeight == this.scrollHeight && loadingFlag === 'KEEP_LOAD') {
       pageIncrement ++;
       $btn.attr('disabled', true);
+      loading('on');
       submitForm(pageIncrement);
     }
-
 
   });
 
@@ -544,8 +517,12 @@
     var form = $form.get(0);
     if(!$btn.is(':disabled')){
       if(form.checkValidity()) {
-        //$btn.attr('disabled', true);
-        submitForm();
+        $btn.attr('disabled', true);
+        pageIncrement = 0;
+        loadingFlag = 'KEEP_LOAD';
+        loading('on'); //show loading-spinner
+        resetForm(); //clear
+        submitForm(pageIncrement);
       }else{
         // Highlight errors
         if(form.reportValidity) form.reportValidity();
@@ -556,21 +533,21 @@
 
 
   $form.on("change", function(){
+    //console.log('on change');
     pageIncrement = 0;
-    console.log('on change');
-    allEventLoaded = 'KEEP_LOAD';
+    loadingFlag = 'KEEP_LOAD';
+    loading('on');
     resetForm();
-    console.log('\t allEventLoaded - ' , allEventLoaded);
     submitForm(pageIncrement);
 
   } );
   // Mobile devices. Force 'change' by 'Go' press
 
-  $form.on("submit", function (e) {
-    console.log('pressed on.submit');
+  /*$form.on("submit", function (e) {
+    //console.log('pressed on.submit');
     $form.find('input:focus').trigger('blur');
     e.preventDefault();
-  });
+  });*/
 
   $modal.on('hidden.bs.modal', resetForm);
 
