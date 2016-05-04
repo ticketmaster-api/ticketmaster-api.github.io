@@ -27,7 +27,7 @@
         m: {
           width: 300,
           height: 250,
-          layout: 'horizontal'
+          layout: 'vertical'
         },
         l: {
           width: 160,
