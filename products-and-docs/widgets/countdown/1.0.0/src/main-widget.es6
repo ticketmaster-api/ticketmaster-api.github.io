@@ -31,6 +31,7 @@ class CountdownClock {
     if (timeRemaining.total <= 0) clearInterval(this.timeinterval);
   }
 
+  /*
   //Covert datetime by GMT offset
   //If toUTC is true then return UTC time other wise return local time
   convertLocalDateToUTCDate(date, toUTC) {
@@ -44,13 +45,11 @@ class CountdownClock {
     date = new Date(date);
     return date;
   }
+  */
 
   getTimeRemaining() {
     let total = Date.parse(this.endTime) - Date.parse(new Date());
-    if(total <= 0) {
-      let converted = this.convertLocalDateToUTCDate(this.endTime , false);
-      total = Date.parse(converted) - Date.parse(new Date());
-    }
+    if(total <= 0) total = 0;
     let seconds = Math.floor((total / 1000) % 60),
       minutes = Math.floor((total / 1000 / 60) % 60),
       hours = Math.floor((total / 3600000 /* (1000 * 60 * 60) */) % 24),
@@ -69,7 +68,7 @@ class CountdownClock {
         curr_year = today.getUTCFullYear(),
         curr_days_in_month = daysInMonth(curr_year, curr_month);
 
-    if(days => curr_days_in_month){
+    if(days >= curr_days_in_month){
       let servYear = new Date(this.endTime).getUTCFullYear(),
           servMonth = new Date(this.endTime).getUTCMonth(),
           servDay = new Date(this.endTime).getUTCDate(),
