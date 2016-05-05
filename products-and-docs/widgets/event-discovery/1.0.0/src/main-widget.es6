@@ -7,7 +7,7 @@ class TicketmasterEventDiscoveryWidget {
   get events(){ return this.eventsList;}
 
   get isListView(){ return this.config.theme === 'listview';}
-  get isSimpleProportionM() { return this.config.proportion === 'm' && this.config.theme === 'simple'}
+  get isSimpleProportionM() { return this.config.proportion === 'm'}
   get borderSize(){ return this.config.border || 0;}
   get widgetHeight(){ return this.config.height || 600;}
 

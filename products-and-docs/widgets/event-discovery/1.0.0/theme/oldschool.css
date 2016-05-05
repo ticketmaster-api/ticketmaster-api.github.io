@@ -678,42 +678,127 @@ div[w-theme="oldschool"][w-layout="horizontal"] .events-root-container:before {
     right: auto;
 }
 
-/* 300x600 */
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"],
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root-container {}
-
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root,
-div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .events-root {
+/* 300x600 [Start] */
+div[w-theme="oldschool"][w-proportion="xxl"] .events-root {
     height: 68%;
 }
 
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .ticket-logo img:last-child,
-div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .ticket-logo img:last-child {
+div[w-theme="oldschool"][w-proportion="xxl"] .ticket-logo img:last-child {
     display: none;
 }
 
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .event-logo-box:before,
-div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-logo-box:before {
+div[w-theme="oldschool"][w-proportion="xxl"] .event-logo-box:before {
     width: 250px;
     height: 40px;
     left: 58%;
 }
 
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .events_control-horizontal,
-div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .events_control-horizontal {
+div[w-theme="oldschool"][w-proportion="xxl"] .events_control-horizontal {
     margin-top: -68px;
 }
 
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .event-date-wraper,
-div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-date-wraper {
+div[w-theme="oldschool"][w-proportion="xxl"] .event-date-wraper {
     top: 375px;
 }
 
-div[w-theme="oldschool"][w-colorscheme="light"][w-proportion="xxl"] .event-content-wraper,
-div[w-theme="oldschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-content-wraper {
+div[w-theme="oldschool"][w-proportion="xxl"] .event-content-wraper {
     padding-top: 110px;
 }
 
 div[w-theme="oldschool"] .ticket-logo {
     display: none;
 }
+
+div[w-theme="oldschool"][w-proportion="xxl"] .event-buy-btn {
+    bottom: 203px;
+}
+/* 300x600 [End] */
+
+/* 300x250 [Start] */
+div[w-theme="oldschool"][w-proportion="m"] {
+    margin-bottom: -1px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-content-wraper {
+    padding: 50px 21px 0 21px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-date-wraper {
+    font-size: 14px;
+    line-height: 25px;
+    bottom: 33px;
+    top: auto;
+    color: #414141;
+    opacity: 1;
+    text-align: right;
+    padding-right: 20px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-name {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 6px;
+    -webkit-line-clamp: 2;
+    max-height: 45px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-address {
+    font-size: 14px;
+    line-height: 18px;
+    color: #414141;
+    opacity: 1;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .address-wrapper {
+    margin-top: 2px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .address-wrapper:before {
+    margin-bottom: 5px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .address-wrapper:after {
+    margin-left: -114px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-logo-box:before {
+    content: "";
+    background: none;
+    display: none;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .general-admission {
+    height: 2px;
+    padding: 0;
+    overflow: hidden;
+    top: 34px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-logo-box {
+    display: none;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .events-root-container:after {
+    display: none;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .legal-notice {
+    position: absolute;
+    bottom: 1px;
+    left: 9px;
+    font-size: 11px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .events-counter {
+    position: absolute;
+    bottom: 1px;
+    right: 11px;
+    font-size: 11px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-buy-btn {
+    bottom: 38px;
+    margin-left: 0;
+    left: 20px;
+}
+/* 300x250 [End] */

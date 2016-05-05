@@ -113,6 +113,17 @@ div[w-theme="newschool"] .events-root-container {
     border-color: #ccc;
 }
 
+div[w-theme="newschool"] .events-root-container:before {
+    content: "";
+    width: 100%;
+    height: 132px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 5;
+}
+
 div[w-theme="newschool"][w-colorscheme="light"] .events-root-container {
     background: #fff;
 }
@@ -129,18 +140,11 @@ div[w-theme="newschool"] ul{
     transform: translate3d(0, 0, 0);
 }
 
-div[w-theme="newschool"] ul.events-root {
-    margin: 60px 0 0 0;
-    height: 365px;
-    display: block;
-    overflow: hidden;
-}
-
 div[w-theme="newschool"] .event-wrapper {
     display: block;
     position: relative;
-    height: 370px !important;
-    width:150px;
+    /* height: 370px !important; */
+    width: 150px;
     float: left;
     overflow: hidden;
     background-size: cover;
@@ -237,7 +241,7 @@ div[w-theme="newschool"][w-colorscheme="light"] .event-wrapper:nth-child(2n+5):b
 div[w-theme="newschool"] .event-content-wraper {
     display: block;
     width: 100%;
-    padding: 100px 28px 0;
+    padding: 170px 28px 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -252,6 +256,17 @@ div[w-theme="newschool"] .ticket-logo {
     height: 24px;
     text-align: center;
     top: 37px;
+}
+
+div[w-theme="newschool"] .ticket-logo:before {
+    display: block;
+    position: absolute;
+    top: -37px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 37px;
+    background: #fff;
 }
 
 div[w-theme="newschool"] .ticket-logo img {
@@ -278,7 +293,7 @@ div[w-theme="newschool"] .event-name{
 div[w-theme="newschool"] .event-date-wraper{
     display: block;
     position: absolute;
-    top: 40px;
+    top: 130px;
     width: 100%;
     color: #414141;
     font-size: 18px;
@@ -356,6 +371,7 @@ div[w-theme="newschool"] .event-logo-box {
     font-size: 14px;
     line-height: 26px;
     text-align: center;
+    z-index: 10;
 }
 
 div[w-theme="newschool"] .event-logo-box:before{
@@ -583,8 +599,7 @@ div[w-theme="newschool"] .event-buy-btn[href='']:hover {
     opacity: 0;
 }
 
-/* Horizontal theme */
-
+/* Horizontal theme [Start] */
 div[w-theme="newschool"][w-layout="horizontal"] .ticket-logo {
     transform: rotate(-90deg);
     height: 24px;
@@ -629,9 +644,10 @@ div[w-theme="newschool"][w-layout="horizontal"] .events-root-container:before {
     display: block;
     background: #fff;
     width: 150px;
-    height:300px;
+    height: 100%;
     position: absolute;
     right: 0;
+    left: auto;
     z-index: 5;
 }
 
@@ -663,6 +679,10 @@ div[w-theme="newschool"][w-layout="horizontal"] .event-content-wraper .event-nam
     -webkit-box-orient: vertical;
 }
 
+div[w-theme="newschool"][w-layout="horizontal"] .event-date-wraper {
+    top: 30px;
+}
+
 div[w-theme="newschool"][w-layout="horizontal"] .legal-notice {
     right: 5px;
     left: auto;
@@ -678,9 +698,9 @@ div[w-theme="newschool"][w-layout="horizontal"] .event-buy-btn {
     bottom: 20px;
 
 }
+/* Horizontal theme [End] */
 
-/* Dark Theme */
-
+/* Dark Theme [Start] */
 div[w-theme="newschool"][w-layout="horizontal"][w-colorscheme="dark"] .events-root-container:before,
 div[w-theme="newschool"][w-layout="horizontal"][w-colorscheme="dark"] .events-root-container:after {
     background: #e5e5e5;
@@ -688,6 +708,11 @@ div[w-theme="newschool"][w-layout="horizontal"][w-colorscheme="dark"] .events-ro
 
 div[w-theme="newschool"][w-colorscheme="dark"] .events-root-container {
     background: #ececec;
+}
+
+div[w-theme="newschool"][w-colorscheme="dark"] .events-root-container:before,
+div[w-theme="newschool"][w-colorscheme="dark"] .ticket-logo:before {
+    background: #ededed;
 }
 
 div[w-theme="newschool"][w-colorscheme="dark"] .ticket-logo {
@@ -729,36 +754,118 @@ div[w-theme="newschool"][w-colorscheme="dark"]  .event-buy-btn[href='']:hover {
     opacity: 0;
     color: #fff;
 }
+/* Dark Theme [End] */
 
-/* 300x600 */
-div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"],
-div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root-container {}
-
-div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .events-root,
-div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .events-root {
-}
-
-div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .event-wrapper,
-div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-wrapper {
-    height:404px!important;
-}
-
-div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .ticket-logo img:last-child,
-div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .ticket-logo img:last-child {
+/* 300x600 [Start] */
+div[w-theme="newschool"][w-proportion="xxl"] .ticket-logo img:last-child {
     display: none;
 }
 
-div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .event-logo-box:before,
-div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .event-logo-box:before {
+div[w-theme="newschool"][w-proportion="xxl"] .event-name {
+    font-size: 28px;
+    line-height: 1.2em;
+}
+
+div[w-theme="newschool"][w-proportion="xxl"] .event-logo-box:before {
     width: 250px;
     height: 40px;
     left: 58%;
 }
 
-div[w-theme="newschool"][w-colorscheme="light"][w-proportion="xxl"] .events_control-horizontal,
-div[w-theme="newschool"][w-colorscheme="dark"][w-proportion="xxl"] .events_control-horizontal {
+div[w-theme="newschool"][w-proportion="xxl"] .events_control-horizontal {
     margin-top: -68px;
 }
+/* 300x600 [End]*/
+
+/* 300x250 [Start] */
+div[w-theme="newschool"][w-colorscheme="light"][w-proportion="m"] .events-root-container {
+    background: #f8f8f8;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .events-root-container:before {
+    height: 75px;
+    background: #f8f8f8;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .ticket-logo {
+    height: 2px;
+    overflow: hidden;
+    top: 35px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-logo-box:after {
+    bottom: 28px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-logo {
+    top: 23px;
+    right: -46px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] ul.events-root {
+    margin-top: 37px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-content-wraper {
+    padding: 34px 21px 0 21px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-date-wraper {
+    font-size: 12px;
+    line-height: 18px;
+    top: 10px;
+    color: #414141;
+    opacity: 0.7;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-name {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 6px;
+    -webkit-line-clamp: 2;
+    max-height: 45px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-address {
+    font-size: 12px;
+    line-height: 18px;
+    color: #414141;
+    opacity: 0.7;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-logo-box:before {
+    content: "";
+    background: none;
+    display: none;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-buy-btn {
+    left: 22px;
+    bottom: 35px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .legal-notice {
+    position: absolute;
+    bottom: 1px;
+    left: 9px;
+    font-size: 11px;
+}
+div[w-theme="newschool"][w-proportion="m"] .events-counter {
+    position: absolute;
+    bottom: 1px;
+    right: 11px;
+    font-size: 11px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] {
+    margin-bottom: -1px;
+}
+
+div[w-theme="newschool"][w-proportion="m"][w-colorscheme="dark"] .events-root-container:before,
+div[w-theme="newschool"][w-proportion="m"][w-colorscheme="dark"] .ticket-logo:before {
+    background: #e6e6e6;
+}
+/* 300x250 [Finish] */
 
 /* !!! HotFix !!! */
 div[w-theme="newschool"] .general-admission {
