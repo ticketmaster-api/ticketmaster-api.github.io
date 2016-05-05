@@ -62,28 +62,27 @@ var CountdownClock = function () {
       if (timeRemaining.total <= 0) clearInterval(this.timeinterval);
     }
 
+    /*
     //Covert datetime by GMT offset
     //If toUTC is true then return UTC time other wise return local time
-
-  }, {
-    key: "convertLocalDateToUTCDate",
-    value: function convertLocalDateToUTCDate(date, toUTC) {
+    convertLocalDateToUTCDate(date, toUTC) {
       date = new Date(date);
       //Local time converted to UTC
       var localOffset = date.getTimezoneOffset() * 60000;
       var localTime = date.getTime();
-      toUTC ? date = localTime + localOffset : date = localTime - localOffset;
+      (toUTC)
+        ? date = localTime + localOffset
+        : date = localTime - localOffset;
       date = new Date(date);
       return date;
     }
+    */
+
   }, {
     key: "getTimeRemaining",
     value: function getTimeRemaining() {
       var total = Date.parse(this.endTime) - Date.parse(new Date());
-      if (total <= 0) {
-        var converted = this.convertLocalDateToUTCDate(this.endTime, false);
-        total = Date.parse(converted) - Date.parse(new Date());
-      }
+      if (total <= 0) total = 0;
       var seconds = Math.floor(total / 1000 % 60),
           minutes = Math.floor(total / 1000 / 60 % 60),
           hours = Math.floor(total / 3600000 /* (1000 * 60 * 60) */ % 24),
@@ -102,9 +101,7 @@ var CountdownClock = function () {
           curr_year = today.getUTCFullYear(),
           curr_days_in_month = daysInMonth(curr_year, curr_month);
 
-      if (function (days) {
-        return curr_days_in_month;
-      }) {
+      if (days >= curr_days_in_month) {
         var servYear = new Date(this.endTime).getUTCFullYear(),
             servMonth = new Date(this.endTime).getUTCMonth(),
             servDay = new Date(this.endTime).getUTCDate(),
