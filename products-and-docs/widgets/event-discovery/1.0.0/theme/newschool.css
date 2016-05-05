@@ -798,8 +798,8 @@ div[w-theme="newschool"][w-proportion="m"] .event-logo-box:after {
 }
 
 div[w-theme="newschool"][w-proportion="m"] .event-logo {
-    top: 27px;
-    right: -50px;
+    top: 23px;
+    right: -46px;
 }
 
 div[w-theme="newschool"][w-proportion="m"] ul.events-root {
@@ -807,7 +807,7 @@ div[w-theme="newschool"][w-proportion="m"] ul.events-root {
 }
 
 div[w-theme="newschool"][w-proportion="m"] .event-content-wraper {
-    padding-top: 34px;
+    padding: 34px 21px 0 21px;
 }
 
 div[w-theme="newschool"][w-proportion="m"] .event-date-wraper {
@@ -837,6 +837,33 @@ div[w-theme="newschool"][w-proportion="m"] .event-logo-box:before {
     content: "";
     background: none;
     display: none;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-buy-btn {
+    left: 22px;
+    bottom: 35px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .legal-notice {
+    position: absolute;
+    bottom: 1px;
+    left: 9px;
+    font-size: 11px;
+}
+div[w-theme="newschool"][w-proportion="m"] .events-counter {
+    position: absolute;
+    bottom: 1px;
+    right: 11px;
+    font-size: 11px;
+}
+
+div[w-theme="newschool"][w-proportion="m"] {
+    margin-bottom: -1px;
+}
+
+div[w-theme="newschool"][w-proportion="m"][w-colorscheme="dark"] .events-root-container:before,
+div[w-theme="newschool"][w-proportion="m"][w-colorscheme="dark"] .ticket-logo:before {
+    background: #e6e6e6;
 }
 /* 300x250 [Finish] */
 
