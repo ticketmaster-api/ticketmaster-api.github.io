@@ -7,7 +7,9 @@
     "event-discovery-widget-1.0.0-once": "babel products-and-docs/widgets/event-discovery/1.0.0/src -d products-and-docs/widgets/event-discovery/1.0.0/lib --source-maps",
     "event-discovery-widget-1.0.0": "npm run event-discovery-widget-1.0.0-once -- -w",
     "countdown-widget-1.0.0-once": "babel products-and-docs/widgets/countdown/1.0.0/src -d products-and-docs/widgets/countdown/1.0.0/lib --source-maps",
-    "countdown-widget-1.0.0": "npm run countdown-widget-1.0.0-once -- -w"
+    "countdown-widget-1.0.0": "npm run countdown-widget-1.0.0-once -- -w",
+    "poc-map-event-discovery-widget-1.0.0-once": "babel products-and-docs/widgets/poc-map-picker/1.0.0/src -d products-and-docs/widgets/poc-map-picker/1.0.0/lib --source-maps",
+    "poc-map-event-discovery-widget-1.0.0": "npm run poc-map-event-discovery-widget-1.0.0-once -- -w"
   },
   "repository": {
     "type": "git",
