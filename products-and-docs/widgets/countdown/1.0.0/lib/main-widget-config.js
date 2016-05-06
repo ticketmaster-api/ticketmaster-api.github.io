@@ -357,7 +357,6 @@
       $btn.attr('disabled', false);
       return false;
     }
-
     if (data === null || !data._embedded) {
       showMessage(ulElement, 'No result found', true);
       $btn.attr('disabled', false);

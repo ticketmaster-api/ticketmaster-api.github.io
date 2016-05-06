@@ -801,4 +801,8 @@ div[w-theme="oldschool"][w-proportion="m"] .event-buy-btn {
     margin-left: 0;
     left: 20px;
 }
+
+div[w-theme="oldschool"][w-proportion="m"] .events_control-horizontal {
+    top: 45%;
+}
 /* 300x250 [End] */
