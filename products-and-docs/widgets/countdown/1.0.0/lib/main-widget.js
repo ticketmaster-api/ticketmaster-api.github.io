@@ -403,6 +403,7 @@ var TicketmasterCountdownWidget = function () {
       this.buyBtn.classList.add("event-buy-btn");
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
+      this.buyBtn.setAttribute('onclick', "ga('send', 'event', 'CountdownClickBuyButton', 'click');");
       this.buyBtn.addEventListener('click', function (e) {
         e.preventDefault();
       });
@@ -824,7 +825,7 @@ var TicketmasterCountdownWidget = function () {
       name.classList.add("event-name");
       name.appendChild(nameContent);
       this.initPretendedLink(name, itemConfig.url, true);
-      name.setAttribute('onclick', "ga('send', 'event', 'ClickeventName', 'click', '" + itemConfig.url + "');");
+      name.setAttribute('onclick', "ga('send', 'event', 'CountDownClickeventName', 'click', '" + itemConfig.url + "');");
       medWrapper.appendChild(name);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
