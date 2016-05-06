@@ -177,7 +177,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       return attrs;
     }
 
-    //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=KRUnjq8y8Sg5eDpP90dNzOK70d4WiUst
+    //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG
 
   }]);
 
