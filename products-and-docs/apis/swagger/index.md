@@ -4,7 +4,7 @@ categories:
 - documentation
 - changelog
 title: Example Swagger
-data: fruits
+data: swaggerExample
 ---
 
 In this example swagger description is included in the page (using `data` front
