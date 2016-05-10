@@ -19,7 +19,7 @@ Top promo description
 {:/comment}
 {% capture top_promo_desc %}
 
-Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
+Join the Ticketmaster developer network, build innovative applications, and help us deliver those unforgettable moments of joy to fans everywhere.
 
 {% endcapture %}
 
