@@ -355,7 +355,6 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.buyBtn.classList.add("main-btn");
       this.buyBtn.target = '_blank';
       this.buyBtn.href = '';
-      this.buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
       this.buyBtn.addEventListener('click', function (e) {
         e.preventDefault(); /*used in plugins for 'buy button'*/
         _this2.stopAutoSlideX();
@@ -1240,7 +1239,6 @@ var TicketmasterEventDiscoveryWidget = function () {
         buyBtn.classList.add("event-buy-btn");
         buyBtn.target = '_blank';
         buyBtn.href = url;
-        buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
         domNode.appendChild(buyBtn);
       }
     }
@@ -1300,7 +1298,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       name.classList.add("event-name");
       name.appendChild(nameContent);
       this.initPretendedLink(name, itemConfig.url, true);
-      name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
+      name.setAttribute('onclick', "_gaq.push(['_trackEvent', 'eventName', '" + itemConfig.url + "']);");
       medWrapper.appendChild(name);
 
       this.addBuyButton(medWrapper, itemConfig.url);

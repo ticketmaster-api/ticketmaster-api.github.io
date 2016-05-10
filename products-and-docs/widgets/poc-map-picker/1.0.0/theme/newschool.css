@@ -865,10 +865,6 @@ div[w-theme="newschool"][w-proportion="m"][w-colorscheme="dark"] .events-root-co
 div[w-theme="newschool"][w-proportion="m"][w-colorscheme="dark"] .ticket-logo:before {
     background: #e6e6e6;
 }
-
-div[w-theme="newschool"][w-proportion="m"] .events_control-horizontal {
-    top: 45%;
-}
 /* 300x250 [Finish] */
 
 /* !!! HotFix !!! */

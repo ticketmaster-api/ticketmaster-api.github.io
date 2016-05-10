@@ -70,6 +70,28 @@
           <input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25">
         </div>
       </div>
+
+      <div class="row row-native">
+        <div class="col-lg-12 col-md-3 col-sm-3">
+          <button type="button" id="js_open_map" class="btn btn-block button button-blue widget_config__btn">Hide Map</button>
+        </div>
+        <div class="google_map col-xs-12" style="margin: 10px 0;">
+          <div id="js_google_map">
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-native">
+        <div class="col-lg-6 col-md-6 col-sm-3">
+          <label for="w-latitude">Latitude</label>
+          <input class="js_widget__number js_numeric_input text-center" type="text" id="w-latitude" name="w-latitude" type="number" value="">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-3">
+          <label for="w-longitude">Longitude</label>
+          <input class="js_widget__number js_numeric_input text-center" type="number" id="w-longitude" name="w-radius" value="">
+        </div>
+      </div>
+
       <div class="row row-native">
         <div class="col-lg-12 col-md-12 col-sm-6">
           <label for="w-country">Country</label>
@@ -231,7 +253,7 @@
 
     <div class="row row-native visible-lg">
       <div class="col-lg-6 col-md-3 col-sm-3">
-        <button type="button" class="js_get_widget_code btn btn-block button button-blue widget_config__btn">GET CODE</button>
+        <button type="button" class="js_get_widget_code btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
       </div>
       <div class="col-lg-6 col-md-3 col-sm-3">
         <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
