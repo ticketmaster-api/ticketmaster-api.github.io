@@ -415,12 +415,12 @@
           .text(venue.name+'. ')
           .appendTo($wrapCol);
 
-        if (venue.address.line1) {
+        if ('address' in venue && 'line1' in venue.address) {
           let addressline1 = $('<span/>')
             .addClass('address-line1')
             .text(venue.address.line1)
             .appendTo($wrapCol);
-          if (venue.address.line2) {
+          if ('line2' in venue.address) {
             let addressline1 = $('<span/>')
               .addClass('address-line2')
               .text(venue.address.line2)

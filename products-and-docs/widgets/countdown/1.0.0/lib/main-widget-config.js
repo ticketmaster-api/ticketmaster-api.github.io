@@ -399,9 +399,9 @@
         var venue = item._embedded.venues[0];
         var addressName = $('<span/>').addClass('address-name').text(venue.name + '. ').appendTo($wrapCol);
 
-        if (venue.address.line1) {
+        if ('address' in venue && 'line1' in venue.address) {
           var addressline1 = $('<span/>').addClass('address-line1').text(venue.address.line1).appendTo($wrapCol);
-          if (venue.address.line2) {
+          if ('line2' in venue.address) {
             var _addressline = $('<span/>').addClass('address-line2').text(venue.address.line2).appendTo(_addressline);
           }
         }
