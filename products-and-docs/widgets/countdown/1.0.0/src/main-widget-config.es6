@@ -300,7 +300,7 @@
     cssValidationClass = 'get-eventId_form-validation';
 
   let keyword = $form.find('#keyword'),
-      apikey =  $('#w-tm-api-key').val(),
+      apikey =  $('#w-tm-api-key'),
       eventUrl = ()=>{ return 'https://app.ticketmaster.com/discovery/v2/events.json' },
       pageIncrement = 0,
       loadingFlag = false;
@@ -348,6 +348,8 @@
 
   var renderResults = function(data, ulElement){
     function showMessage(element,message, /*optional*/clearList) {
+      $btn.attr('disabled',false);
+
       if(clearList) $('li',element).remove();
       element.css({
         'overflow': 'auto'
@@ -360,17 +362,15 @@
 
     if(loadingFlag === "FINAL_PAGE") return false;
 
+    if(data === 'FAIL'){ showMessage($ul, 'Failure, possible key not correct ' ,true); return false; }
+
     if(loadingFlag === 'STOP_LOAD' && data.length !== 0 ){
       loadingFlag = "FINAL_PAGE";
       showMessage(ulElement, 'Reached final page');
-      $btn.attr('disabled',false);
       return false;
     }
-    if(data === null || !data._embedded){
-      showMessage(ulElement, 'No result found' ,true);
-      $btn.attr('disabled',false);
-      return false;
-    }
+    
+    if(data === null || !data._embedded){ showMessage(ulElement, 'No result found' ,true); return false; }
 
     //start render data
 
@@ -462,8 +462,8 @@
     pageNumero = parseInt(pageNumero);
 
     let url = ( Number.isNaN(pageNumero) )
-      ? `${eventUrl()}?apikey=${apikey}&keyword=${keyword.val()}`
-      : `${eventUrl()}?apikey=${apikey}&keyword=${keyword.val()}&page=${pageNumero}`;
+      ? `${eventUrl()}?apikey=${apikey.val()}&keyword=${keyword.val()}`
+      : `${eventUrl()}?apikey=${apikey.val()}&keyword=${keyword.val()}&page=${pageNumero}`;
 
     //stop load
     if( Number.isNaN(pageNumero) && pageNumero !== 0 && loadingFlag==='STOP_LOAD') {
@@ -495,8 +495,10 @@
       }else {
         console.log(`no result found` );
       }
-    }).fail(function() {
-      console.log(`fail ${status}` );
+    }).fail(function(e) {
+      console.log(`There was an fail status - ${e.status}` );
+      loading('off');
+      renderResults('FAIL', $ul);
     });
 
   }
@@ -533,7 +535,6 @@
 
 
   $form.on("change", function(){
-    //console.log('on change');
     pageIncrement = 0;
     loadingFlag = 'KEEP_LOAD';
     loading('on');
@@ -543,11 +544,11 @@
   } );
   // Mobile devices. Force 'change' by 'Go' press
 
-  /*$form.on("submit", function (e) {
+  $form.on("submit", function (e) {
     //console.log('pressed on.submit');
-    $form.find('input:focus').trigger('blur');
+    //$form.find('input:focus').trigger('blur');
     e.preventDefault();
-  });*/
+  });
 
   $modal.on('hidden.bs.modal', resetForm);
 
