@@ -296,7 +296,7 @@
     $form = $('#js_get_eventId_form', $modal),
     $ul = $('#js_get_eventId_list'),
     $btn = $modal.find('#js_get-eventId_btn'),
-    $resultsCount = $form.find('.get_eventId_results'),
+    //$resultsCount = $form.find('.get_eventId_results'),
     cssValidationClass = 'get-eventId_form-validation';
 
   let keyword = $form.find('#keyword'),
@@ -317,16 +317,12 @@
   // };
 
   let loading = function(action) {
-    //let status = false;
-
     // add the overlay with loading image to the page
     if(action=="on"){
       $('#spinner').show();
-      //console.log("creating overlay");
     }
     else if(action=="off"){
       $('#spinner').hide();
-      //console.log("removing overlay");
     }
 
   };
@@ -366,7 +362,7 @@
 
     if(loadingFlag === 'STOP_LOAD' && data.length !== 0 ){
       loadingFlag = "FINAL_PAGE";
-      showMessage(ulElement, 'Reached final page');
+      showMessage(ulElement, 'Reached final page', false);
       return false;
     }
     
@@ -471,7 +467,6 @@
       return false
     };
 
-    //console.log(`loadingFlag ${loadingFlag}`);
     if(loadingFlag === 'FINAL_PAGE') return false;
 
     $.ajax({
@@ -505,11 +500,15 @@
 
   $ul.on('scroll', function (elm){
     //submitForm when go to bottom of list
-    if(this.scrollTop + this.clientHeight == this.scrollHeight && loadingFlag === 'KEEP_LOAD') {
-      pageIncrement ++;
-      $btn.attr('disabled', true);
-      loading('on');
-      submitForm(pageIncrement);
+    if($form.get(0).checkValidity()) {
+
+      if (this.scrollTop + this.clientHeight == this.scrollHeight && loadingFlag === 'KEEP_LOAD') {
+        pageIncrement++;
+        $btn.attr('disabled', true);
+        loading('on');
+        submitForm(pageIncrement);
+      }
+
     }
 
   });
@@ -535,21 +534,23 @@
 
 
   $form.on("change", function(){
-    pageIncrement = 0;
-    loadingFlag = 'KEEP_LOAD';
-    loading('on');
-    resetForm();
-    submitForm(pageIncrement);
-
+    if($form.get(0).checkValidity()) {
+      pageIncrement = 0;
+      loadingFlag = 'KEEP_LOAD';
+      loading('on');
+      resetForm();
+      submitForm(pageIncrement);
+    }
   } );
   // Mobile devices. Force 'change' by 'Go' press
 
   $form.on("submit", function (e) {
-    //console.log('pressed on.submit');
-    //$form.find('input:focus').trigger('blur');
     e.preventDefault();
   });
 
-  $modal.on('hidden.bs.modal', resetForm);
+  $modal.on('hidden.bs.modal',function (e) {
+    resetForm();
+    keyword.val('');//clear search input
+  });
 
 })(jQuery);

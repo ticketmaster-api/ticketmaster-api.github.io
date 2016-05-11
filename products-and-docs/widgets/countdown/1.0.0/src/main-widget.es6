@@ -46,6 +46,9 @@ class CountdownClock {
     return date;
   }
   */
+  /*
+   vvG1OZKgldvNZ4 - 23 days Twenty One Pilots
+  */
 
   getTimeRemaining() {
     let total = Date.parse(this.endTime) - Date.parse(new Date());
@@ -68,7 +71,7 @@ class CountdownClock {
         curr_year = today.getUTCFullYear(),
         curr_days_in_month = daysInMonth(curr_year, curr_month);
 
-    if(days >= curr_days_in_month){
+    if(days > curr_days_in_month){
       let servYear = new Date(this.endTime).getUTCFullYear(),
           servMonth = new Date(this.endTime).getUTCMonth(),
           servDay = new Date(this.endTime).getUTCDate(),
@@ -76,7 +79,7 @@ class CountdownClock {
 
       monthLeft = Math.floor( days/daysInMonth(servYear,servMonth) );
 
-      days = serv_days_in_month - Math.abs(servDay - curr_day);
+      days = Math.abs(servDay - curr_day);
       
       /*if(monthLeft > 99){
         years = servYear - curr_year;
