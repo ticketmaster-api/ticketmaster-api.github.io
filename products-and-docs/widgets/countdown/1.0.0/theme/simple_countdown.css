@@ -102,6 +102,15 @@ div[w-theme="simple_countdown"] .event-message-visible.event-message-started {
     background: rgba(208, 0, 110, 0.7) none;
     border-radius: 0;
 }
+
+div[w-theme="simple_countdown"][w-proportion="m"] .event-message-visible.event-message-started {
+    top: 14px;
+    font-size: 16px;
+    padding: 10px;
+}
+/* event-message END*/
+
+
 /*hide close button*/
 div[w-theme="simple_countdown"] .event-message-visible.event-message-started .event-message__btn{
     display: none;
@@ -129,10 +138,6 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .event-message-visible.ev
 
 div[w-theme="simple_countdown"] .events-root-container{
     overflow: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -147,10 +152,6 @@ div[w-theme="simple_countdown"] ul{
     -webkit-transition: margin 0.5s ease-in-out;
     -moz-transition: margin 0.5s ease-in-out;
     transition: margin 0.5s ease-in-out;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
 }
 
 /*  question  */

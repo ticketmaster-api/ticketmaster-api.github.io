@@ -46,9 +46,6 @@ class CountdownClock {
     return date;
   }
   */
-  /*
-   vvG1OZKgldvNZ4 - 23 days Twenty One Pilots
-  */
 
   getTimeRemaining() {
     let total = Date.parse(this.endTime) - Date.parse(new Date());
