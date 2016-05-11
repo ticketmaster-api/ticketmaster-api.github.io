@@ -86,7 +86,12 @@
   position: absolute;
   width: 410px;
   height:60px;
-  right: 10px;
+  /* right: 10px; */
+  right: -84px;
+  @media #{$max-1200} {
+    right: 10px;
+  }
+
 }
 
 #search{
