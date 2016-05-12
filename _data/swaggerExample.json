@@ -1,7 +1,7 @@
 {
     "swagger":"2.0",
     "info":{
-        "description":"Discovery API",
+        "description":"Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to all Ticketmaster events, as well as Universe and TicketWeb events.",
         "version":"${application.version}",
         "title":"Discovery API Service",
         "contact":{
@@ -31,13 +31,21 @@
             "description":"Classification API"
         }
     ],
+    "produces": [
+        "application/json",
+        "application/json;charset=utf-8",
+        "application/hal+json;charset=utf-8",
+        "application/http",
+        "application/xml"
+    ],
     "paths":{
         "/discovery/v2/attractions":{
             "get":{
                 "tags":[
                     "attraction-api"
                 ],
-                "summary":"find",
+                "summary":"Get Attraction Details",
+                "id":"attraction-details",
                 "operationId":"findUsingGET",
                 "consumes":[
                     "application/json"
@@ -119,8 +127,13 @@
                         "schema":{
                             "type":"string"
                         }
+                    },
+                    "resreq": {
+                        "request":"{\n    \"fruits1\": [\n        {\n            \"id\": 1,\n            \"name\": \"Berry\",\n            \"price\": 6.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n",
+                        "response":"{\n    \"fruits2\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cherry\",\n            \"price\": 8.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n"
                     }
                 }
+
             }
         },
         "/discovery/v2/attractions/legacy":{

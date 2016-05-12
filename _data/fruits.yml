@@ -115,6 +115,16 @@ paths:
                     </error>
         403:
           description: Insufficient right to add a fruit
+          examples:
+                application/json: >
+                      {
+                          "error": "Missing key `price`."
+                      }
+                application/xml: >
+                      {
+                        "error": "Missing key `price`."
+                      }
+
   /fruits/{id}:
     get:
       summary: Fetch a fruit

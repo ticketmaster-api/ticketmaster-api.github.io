@@ -1,24 +1,77 @@
-<h1>{{ page.title }}</h1>
-
 {% if page.data %}
 {% assign swagger = site.data[page.data] %}
 {% else %}
 {% assign swagger = page %}
 {% endif %}
 
+<h1>{{ swagger.info.title | upcase}}</h1>
+<p class="lead article">{{ swagger.info.description }}</p>
+
+<h2 class="article">Overview</h2>
+{% if swagger.basePath %}
+<p>
+    <strong>Base Path: </strong><code>{{ swagger.basePath }}</code>
+</p>{% endif %}
+{% if swagger.host %}
+<p>
+    <strong>Host URL: </strong><code>{{ swagger.host }}</code>
+</p>{% endif %}
+
+{% comment %}
+{% if swagger.tags %}
+    <h3>Tags:</h3>
+    {% for tag in swagger.tags %}
+    <div>
+        <p> name: {{ tag.name }} , <br /> description: {{ tag.description }}</p>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endcomment %}
+
 {% for route in swagger.paths %}
-<div class="swagger-paths">
-    <h2 class="swagger-path">{{ route[0] }}</h2>
+<!--<div class="swagger-paths">-->
     {% for method in route[1] %}
-    <div class="swagger-method swagger-method-{{ method[0] }}">
-        <h3 class="swagger-method-title">
+    <h2 class="article console-link" id="{{ method[1].id | append: '-v2'}}">{{ method[1].summary }}</h2>
+    <div class="">
+        <!--<div class="swagger-method swagger-method-{{ method[0] }}">-->
+        <!--<h3 class="swagger-method-title">
             <a href="#" class="swagger-method-link">
                 <span class="swagger-method-name">{{ method[0] | upcase }}</span>
                 {{ method[1].summary }}
             </a>
-        </h3>
-        <div class="swagger-method-details">
+        </h3>-->
+        <p><strong>Method: </strong>{{ method[0] | upcase }}</p>
+        <p class="code red">{{ route[0] }}</p>
+        <div class="">
             {% if method[1].parameters %}
+            <div class="swagger-response">
+                <h4>Responses</h4>
+                {% for response in method[1].responses %}
+                <h5>
+                    <span class="swagger-response-code">{{ response[0] }}</span>
+                    {{ response[1].description }}
+                </h5>
+                {% for content_type in swagger.produces %}
+
+                {% if response[1].examples[content_type] %}
+                {% assign example = response[1].examples[content_type] %}
+                {% if content_type contains 'json' %}
+                {% highlight json %}{{ example }}{% endhighlight %}
+                {% elsif content_type contains 'xml' %}
+                {% highlight xml %}{{ example }}{% endhighlight %}
+                {% else %}
+                {% highlight http %}{{ example }}{% endhighlight %}
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+
+
+
+
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if method[1].responses %}
             <div class="swagger-parameters">
                 <h4>Parameters</h4>
                 <table class="swagger-parameters-table">
@@ -26,7 +79,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Located in</th>
-                            <th>Description</th>
+                            <th>Required</th>
                             <th>Type</th>
                         <tr>
                     </thead>
@@ -60,35 +113,54 @@
                 </table>
             </div>
             {% endif %}
-            {% if method[1].responses %}
-            <div class="swagger-response">
-                <h4>Responses</h4>
-                {% for response in method[1].responses %}
-                <h5>
-                    <span class="swagger-response-code">{{ response[0] }}</span>
-                    {{ response[1].description }}
-                </h5>
-                {% for content_type in swagger.produces %}
-                    {% if response[1].examples[content_type] %}
-                        {% assign example = response[1].examples[content_type] %}
-                        {% if content_type contains 'json' %}
-                            {% highlight json %}{{ example }}{% endhighlight %}
-                        {% elsif content_type contains 'xml' %}
-                            {% highlight xml %}{{ example }}{% endhighlight %}
-                        {% else %}
-                            {% highlight http %}{{ example }}{% endhighlight %}
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                {% endfor %}
-            </div>
-            {% endif %}
         </div>
+
     </div>
     {% endfor %}
-</div>
+
+    <blockquote class="aside lang-selector" tabindex="-1">
+            <p><a href="#js" class="active">JavaScript</a>
+                <a href="#curl">cURL</a></p>
+    </blockquote>
+{% highlight js %}
+$.ajax({
+    type:"GET",
+    url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}",
+    async:true,
+    dataType: "json",
+    success: function(json) {
+            console.log(json);
+            // Parse the response.
+            // Do other things.
+            },
+    error: function(xhr, status, err) {
+            // This time, we do not end up here!
+    }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}'
+{% endhighlight %}
+
+
+{% for method in route[1] %}
+<div class="article"></div>
+    {% if method[1].responses.resreq %}
+    <blockquote class="article reqres" style="margin-right: 0px;">
+        <p><a href="#req">Request</a>
+            <a href="#res">Response</a></p>
+    </blockquote>
+    {% highlight json %}{{ method[1].responses.resreq.request }}{% endhighlight %}
+    {% highlight json %}{{ method[1].responses.resreq.response }}{% endhighlight %}
+    {% endif %}
+
 {% endfor %}
 
+{% endfor %}
+
+<!--
 <script type="text/javascript">
 // Helpers
 
@@ -147,3 +219,4 @@ else {
     document.addEventListener("DOMContentLoaded", init);
 }
 </script>
+-->

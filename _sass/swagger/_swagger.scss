@@ -1,5 +1,5 @@
 @mixin swagger-method($color) {
-    border: 1px solid $color;
+    border-left: 2px solid $color;
 
     .swagger-method-title {
         background: lighten($color, 30%);
@@ -23,7 +23,7 @@
 .swagger-method {
     padding: 0;
     margin: 10px 0;
-    border-radius: 5px;
+    //border-radius: 5px;
 
 }
 
@@ -68,15 +68,15 @@
     @include swagger-method($s1a);
 }
 
-.swagger-method-details {
+/*.swagger-method-details {
     margin: 0;
     padding: 15px;
-    display: none;
+    //display: none;
 
     &.open {
         display: block;
     }
-}
+}*/
 
 .swagger-response {
     font-size: $base-font-size;
@@ -94,7 +94,7 @@
     }
 }
 
-.swagger-parameters-table {
+/*.swagger-parameters-table {
     border-spacing: 0px;
     border-collapse: collapse;
     margin-bottom: $spacing-unit;
@@ -108,7 +108,7 @@
     th {
         background: lighten($grey-color-light, 6%);
     }
-}
+}*/
 
 .swagger-parameter-required {
     &:after {
