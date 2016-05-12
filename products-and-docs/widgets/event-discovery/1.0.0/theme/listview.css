@@ -444,7 +444,7 @@ div[w-theme="listview"][w-proportion="3x6"]  {
     width: 300px;
 }
 
-div[w-theme="listview"][w-colorscheme="dark"][w-proportion="3x6"] .event-logo {
+div[w-theme="listview"][w-colorscheme="dark"][w-proportion="xxl"] .event-logo {
     right: 14px;
 }
 
