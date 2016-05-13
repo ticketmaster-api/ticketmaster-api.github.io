@@ -3,6 +3,7 @@ layout: documentation
 categories:
 - documentation
 - swagger
+- discovery
 title: Example Swagger
 data: swaggerExample
 ---

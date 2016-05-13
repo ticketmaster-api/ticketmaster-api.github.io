@@ -4,6 +4,56 @@
 {% assign swagger = page %}
 {% endif %}
 
+
+<!--{% if site.data.orgs.methodsDescrCommerse %}
+{% assign methodsDescription = site.data.orgs.methodsDescrCommerse %}
+{% endif %}-->
+
+{% case page.categories[2] %}
+    {% when 'discovery' %}
+        {% assign methodsDescription = site.data.orgs.methodsDescrDiscovery %}
+    {% when 'commerce' %}
+        {% assign methodsDescription = site.data.orgs.methodsDescrCommerse %}
+    {% else %}
+        This is not assign
+{% endcase %}
+
+<!--{% if methodsDescription.method %}
+<h3>methods Description:</h3>
+{% for tag in methodsDescription.method %}
+<div>
+    <p> name: {{ tag.title }} ,
+    <br /> description: {{ tag.id }}
+    {% comment %}<br /> description: {{ tag.resreq }}{% endcomment %}
+    <br /> description: {{ tag.pathsParent }}
+    </p>
+</div>
+{% endfor %}
+{% endif %}-->
+
+<h4>start check</h4>
+<p class="code blue">swagger.paths.size: {{ swagger.paths | size }}</p>
+{% for route in swagger.paths %}
+    <!--<p class="code blue">route in swagger: {{ route[0] }}</p>-->
+
+
+{% for tag in methodsDescription.method %}
+{% if tag.pathsParent == route[0] %}
+<h4>  set this --id: {{ tag.id | append: '-v2'}}, --titele: {{ tag.title }} </h4>
+{% if tag.codeExample %}
+<h4> codeExample js: {% highlight js %}{{ tag.codeExample.js }}{% endhighlight %}</h4>
+<h4> codeExample curl: {% highlight curl %}{{ tag.codeExample.curl }}{% endhighlight %}</h4>
+{%endif%}
+{%endif%}
+
+{% assign tag.codeExample = '' %}
+
+{% endfor %}
+
+
+
+{% endfor %}
+
 <h1>{{ swagger.info.title | upcase}}</h1>
 <p class="lead article">{{ swagger.info.description }}</p>
 
@@ -17,7 +67,7 @@
     <strong>Host URL: </strong><code>{{ swagger.host }}</code>
 </p>{% endif %}
 
-{% comment %}
+<!--{% comment %}
 {% if swagger.tags %}
     <h3>Tags:</h3>
     {% for tag in swagger.tags %}
@@ -26,21 +76,27 @@
     </div>
     {% endfor %}
 {% endif %}
-{% endcomment %}
+{% endcomment %}-->
 
 {% for route in swagger.paths %}
+
+    {% if methodsDescription.method contains route[0]%}
+        <p>This contains 'Hello'. {{ methodsDescription.method }}</p>
+    {% endif %}
+
+    {% for tag in methodsDescription.method %}
+        {% if tag.pathsParent == route[0] %}
+            {% assign current_resreq = tag.resreq %}
+            {% assign current_id = tag.id | append: '-v2'%}
+            {% assign current_title = tag.title %}
+        {% endif %}
+    {% endfor %}
 <!--<div class="swagger-paths">-->
     {% for method in route[1] %}
-    <h2 class="article console-link" id="{{ method[1].id | append: '-v2'}}">{{ method[1].summary }}</h2>
+    <h2 class="article {% if current_title %}console-link{% endif %}" id="{{ current_id }}">{% if current_title %}{{ current_title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
     <div class="">
-        <!--<div class="swagger-method swagger-method-{{ method[0] }}">-->
-        <!--<h3 class="swagger-method-title">
-            <a href="#" class="swagger-method-link">
-                <span class="swagger-method-name">{{ method[0] | upcase }}</span>
-                {{ method[1].summary }}
-            </a>
-        </h3>-->
         <p><strong>Method: </strong>{{ method[0] | upcase }}</p>
+        <p><strong>Summary: </strong>{{ method[1].summary }}</p>
         <p class="code red">{{ route[0] }}</p>
         <div class="">
             {% if method[1].parameters %}
@@ -52,7 +108,6 @@
                     {{ response[1].description }}
                 </h5>
                 {% for content_type in swagger.produces %}
-
                 {% if response[1].examples[content_type] %}
                 {% assign example = response[1].examples[content_type] %}
                 {% if content_type contains 'json' %}
@@ -64,8 +119,6 @@
                 {% endif %}
                 {% endif %}
                 {% endfor %}
-
-
 
 
                 {% endfor %}
@@ -124,18 +177,18 @@
     </blockquote>
 {% highlight js %}
 $.ajax({
-    type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}",
-    async:true,
-    dataType: "json",
-    success: function(json) {
-            console.log(json);
-            // Parse the response.
-            // Do other things.
-            },
-    error: function(xhr, status, err) {
-            // This time, we do not end up here!
-    }
+type:"GET",
+url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}",
+async:true,
+dataType: "json",
+success: function(json) {
+console.log(json);
+// Parse the response.
+// Do other things.
+},
+error: function(xhr, status, err) {
+// This time, we do not end up here!
+}
 });
 {% endhighlight %}
 
@@ -147,16 +200,23 @@ curl \
 
 {% for method in route[1] %}
 <div class="article"></div>
-    {% if method[1].responses.resreq %}
+    {% if current_resreq %}
     <blockquote class="article reqres" style="margin-right: 0px;">
         <p><a href="#req">Request</a>
             <a href="#res">Response</a></p>
     </blockquote>
-    {% highlight json %}{{ method[1].responses.resreq.request }}{% endhighlight %}
-    {% highlight json %}{{ method[1].responses.resreq.response }}{% endhighlight %}
+    {% highlight json %}{{ current_resreq.request }}{% endhighlight %}
+    {% highlight json %}{{ current_resreq.response }}{% endhighlight %}
     {% endif %}
 
 {% endfor %}
+
+<!--clear title and id-->
+{% assign current_id = tag.id %}
+{% assign current_title = tag.title %}
+
+{% assign current_resreq = tag.resreq %}
+<!--clear title and id END-->
 
 {% endfor %}
 

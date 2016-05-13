@@ -127,6 +127,10 @@
                         "schema":{
                             "type":"string"
                         }
+                    },
+                    "resreq": {
+                        "request":"{\n    \"fruits1\": [\n        {\n            \"id\": 1,\n            \"name\": \"Berry\",\n            \"price\": 6.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n",
+                        "response":"{\n    \"fruits2\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cherry\",\n            \"price\": 8.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n"
                     }
                 }
 
