@@ -349,7 +349,7 @@ var TicketmasterCountdownWidget = function () {
       } else this.countDownWrapper.classList.remove("hide-countDownBox");
 
       if (data.monthLeft > 99) {
-        this.showMessage("This event starts more than " + data.monthLeft + " month, " + data.days + " days, " + data.hours + " hours", false, "event-message-started");
+        this.showMessage("This event starts in more than " + data.monthLeft + " month, " + data.days + " days, " + data.hours + " hours", false, "event-message-started");
         this.countDownWrapper.classList.add("hide-countDownBox");
         return false;
       }

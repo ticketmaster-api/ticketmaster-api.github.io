@@ -358,24 +358,17 @@
 
     if(loadingFlag === "FINAL_PAGE") return false;
 
-    if(data === 'FAIL'){ showMessage($ul, 'Failure, possible key not correct ' ,true); return false; }
+    if(data === 'FAIL'){ showMessage($ul, 'Failure, possible key not correct.' ,true); return false; }
 
     if(loadingFlag === 'STOP_LOAD' && data.length !== 0 ){
       loadingFlag = "FINAL_PAGE";
-      showMessage(ulElement, 'Reached final page', false);
+      showMessage(ulElement, 'No more results.', false);
       return false;
     }
     
-    if(data === null || !data._embedded){ showMessage(ulElement, 'No result found' ,true); return false; }
+    if(data === null || !data._embedded){ showMessage(ulElement, 'No results found.' ,true); return false; }
 
     //start render data
-
-    /*if(data.page.totalElements > 0){
-      console.log('data.page.totalElements' , data.page.totalElements);
-      $resultsCount.val(data.page.totalElements);
-      $resultsCount.show();
-    }else $resultsCount.hide();*/
-
     let items = data._embedded.events;
 
     items.map( (item ) => {
@@ -438,7 +431,7 @@
 
     $('.js_set-eventId_btn').on('click',(e)=>{
       let selectedID = e.target.getAttribute('data-event'),
-      //find configurator and widget
+          //find configurator and widget
           widget = widgetsCountdown[0],
           widgetNode = document.querySelector("div[w-tmapikey]");
       
