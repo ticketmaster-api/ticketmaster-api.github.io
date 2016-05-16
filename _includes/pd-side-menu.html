@@ -1,7 +1,7 @@
 <ul class="aside-menu" id="scrollable-element">
     <li>
         <h4><a href="/products-and-docs/apis/getting-started/">APIs</a></h4>
-        {% if page.categories[0] == "documentation" and page.categories[1] != "sdks" and page.categories[1] != "widgets" %}
+        {% if page.categories[0] == "documentation" and page.categories[1] != "sdks" and page.categories[1] != "widgets" and page.categories[1] != "tutorials" %}
         <ul class="categories">
             <li><a href="/products-and-docs/apis/getting-started/">Getting Started</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
@@ -189,6 +189,15 @@
                 <li><a href="/products-and-docs/widgets/event-discovery/">Event Discovery Widget</a></li>
                 <li><a href="/products-and-docs/widgets/countdown/">Countdown Widget</a></li>
             </ul>
+        {% endif %}
+    </li>
+    <li>
+        <h4><a href="/products-and-docs/tutorials/" {% if page.categories[0] == "documentation" and page.categories[1] == "tutorials" %} class="active" {% endif %} >Tutorials</a></h4>
+        {% if page.categories[0] == "documentation" and page.categories[1] == "tutorials" %}
+        <ul class="categories">
+            <li><a href="https://www.universe.com/directpayments">Google Maps tutorial</a></li>
+            <li><a href="/products-and-docs/widgets/event-discovery/">Discovery API tutorial</a></li>
+        </ul>
         {% endif %}
     </li>
 </ul>

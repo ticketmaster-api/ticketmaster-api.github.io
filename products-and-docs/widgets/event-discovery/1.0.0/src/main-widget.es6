@@ -6,7 +6,8 @@ class TicketmasterEventDiscoveryWidget {
   set events(responce){ this.eventsList = this.parseEvents(responce);}
   get events(){ return this.eventsList;}
 
-  get isListView(){ return this.config.theme === 'listview';}
+  get isListView() { return this.config.theme === 'listview';}
+  get isBarcodeWidget() { return (this.config.theme === 'oldschool' || this.config.theme === 'newschool');}
   get isSimpleProportionM() { return this.config.proportion === 'm'}
   get borderSize(){ return this.config.border || 0;}
   get widgetHeight(){ return this.config.height || 600;}
@@ -1141,6 +1142,17 @@ class TicketmasterEventDiscoveryWidget {
     }
   }
 
+  addBarcode(domNode, url) {
+    if (this.isBarcodeWidget) {
+      let barcodeBtn = document.createElement("a");
+      barcodeBtn.classList.add("barcode");
+      barcodeBtn.target = '_blank';
+      barcodeBtn.href = url;
+      barcodeBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickEventName', 'click');");
+      domNode.appendChild(barcodeBtn);
+    }
+  }
+
   addBuyButton(domNode, url) {
     if (this.isListView) {
       let _urlValid = ( this.isUniversePluginInitialized && this.isUniverseUrl(url) ) || ( this.isTMPluginInitialized && this.isAllowedTMEvent(url) );
@@ -1181,6 +1193,7 @@ class TicketmasterEventDiscoveryWidget {
     name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
     medWrapper.appendChild(name);
 
+    this.addBarcode(event, itemConfig.url);
     this.addBuyButton(medWrapper, itemConfig.url);
 
     var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
