@@ -4,41 +4,27 @@
             "pathsParent":"/discovery/v2/attractions",
             "id":"search-attractions",
             "title":"Search Attractions",
-            "resreq": {
-                "request":"{\n    \"fruits1\": [\n        {\n            \"id\": 1,\n            \"name\": \"Berry\",\n            \"price\": 6.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n",
-                "response":"{\n    \"fruits2\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cherry\",\n            \"price\": 8.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n"
-            },
-            "codeExample":{
-                "js": "$.ajax({type:'GET'});",
-                "curl": "curl \                \n--include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}'"
-            }
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
         },
         {
             "pathsParent":"/discovery/v2/attractions/legacy",
             "id":"legacy-attraction-details",
-            "title":"?legacy Attraction Details",
-            "resreq": {
-                "request":"{\n    \"fruits3\": [\n        {\n            \"id\": 1,\n            \"name\": \"Berry\",\n            \"price\": 6.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n",
-                "response":"{\n    \"fruits4\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cherry\",\n            \"price\": 8.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n"
-            }
+            "title":"?legacy Attraction Details"
         },
         {
-            "pathsParent":"/discovery/v2/attractions/",
-            "id":"attraction-details",
-            "title":"Get Attraction Details",
-            "resreq": {
-                "request":"{\n    \"fruits5\": [\n        {\n            \"id\": 1,\n            \"name\": \"Berry\",\n            \"price\": 6.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n",
-                "response":"{\n    \"fruits6\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cherry\",\n            \"price\": 8.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n"
-            }
+            "pathsParent":"/discovery/v2/attractions/legacy/{id}",
+            "id":"legacy-attraction-details",
+            "title":"legacy-Get Attraction Details",
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
         },
         {
             "pathsParent":"/discovery/v2/venues/{id}",
             "id":"venue-details",
             "title":"Get Venue Details",
-            "resreq": {
-                "request":"{\n    \"venue1\": [\n        {\n            \"id\": 1,\n            \"name\": \"Berry\",\n            \"price\": 6.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n",
-                "response":"{\n    \"venue2\": [\n        {\n            \"id\": 1,\n            \"name\": \"Cherry\",\n            \"price\": 8.30,\n            \"description\": \"Lovely red cherries\",\n            \"origin\": [\n                \"france\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Peach\",\n            \"price\": 4.10,\n            \"origin\": [\n                \"spain\",\n                \"italy\"\n            ]\n        }\n    ]\n}\n"
-            }
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
         }
     ]
 }

@@ -1,5 +1,6 @@
 @mixin swagger-method($color) {
-    border-left: 2px solid $color;
+    //border: 2px solid $color;
+    //padding: 2px 5px;
 
     .swagger-method-title {
         background: lighten($color, 30%);

@@ -4,55 +4,20 @@
 {% assign swagger = page %}
 {% endif %}
 
-
-<!--{% if site.data.orgs.methodsDescrCommerse %}
-{% assign methodsDescription = site.data.orgs.methodsDescrCommerse %}
-{% endif %}-->
-
 {% case page.categories[2] %}
     {% when 'discovery' %}
         {% assign methodsDescription = site.data.orgs.methodsDescrDiscovery %}
     {% when 'commerce' %}
         {% assign methodsDescription = site.data.orgs.methodsDescrCommerse %}
+    {% when 'pim' %}
+        {% assign methodsDescription = site.data.orgs.methods-pim-api %}
     {% else %}
         This is not assign
 {% endcase %}
 
-<!--{% if methodsDescription.method %}
-<h3>methods Description:</h3>
-{% for tag in methodsDescription.method %}
-<div>
-    <p> name: {{ tag.title }} ,
-    <br /> description: {{ tag.id }}
-    {% comment %}<br /> description: {{ tag.resreq }}{% endcomment %}
-    <br /> description: {{ tag.pathsParent }}
-    </p>
-</div>
-{% endfor %}
-{% endif %}-->
-
-<h4>start check</h4>
-<p class="code blue">swagger.paths.size: {{ swagger.paths | size }}</p>
-{% for route in swagger.paths %}
-    <!--<p class="code blue">route in swagger: {{ route[0] }}</p>-->
 
 
-{% for tag in methodsDescription.method %}
-{% if tag.pathsParent == route[0] %}
-<h4>  set this --id: {{ tag.id | append: '-v2'}}, --titele: {{ tag.title }} </h4>
-{% if tag.codeExample %}
-<h4> codeExample js: {% highlight js %}{{ tag.codeExample.js }}{% endhighlight %}</h4>
-<h4> codeExample curl: {% highlight curl %}{{ tag.codeExample.curl }}{% endhighlight %}</h4>
-{%endif%}
-{%endif%}
-
-{% assign tag.codeExample = '' %}
-
-{% endfor %}
-
-
-
-{% endfor %}
+<!--<p class="code blue">swagger.paths.size: {{ swagger.paths | size }}</p>-->
 
 <h1>{{ swagger.info.title | upcase}}</h1>
 <p class="lead article">{{ swagger.info.description }}</p>
@@ -67,58 +32,110 @@
     <strong>Host URL: </strong><code>{{ swagger.host }}</code>
 </p>{% endif %}
 
-<!--{% comment %}
-{% if swagger.tags %}
-    <h3>Tags:</h3>
-    {% for tag in swagger.tags %}
-    <div>
-        <p> name: {{ tag.name }} , <br /> description: {{ tag.description }}</p>
-    </div>
-    {% endfor %}
-{% endif %}
-{% endcomment %}-->
-
 {% for route in swagger.paths %}
-
-    {% if methodsDescription.method contains route[0]%}
+    <!--{% if methodsDescription.method contains route[0]%}
         <p>This contains 'Hello'. {{ methodsDescription.method }}</p>
-    {% endif %}
+    {% endif %}-->
 
     {% for tag in methodsDescription.method %}
         {% if tag.pathsParent == route[0] %}
-            {% assign current_resreq = tag.resreq %}
-            {% assign current_id = tag.id | append: '-v2'%}
-            {% assign current_title = tag.title %}
+            {% assign _id = tag.id | append: '-v2'%}
+            {% assign _title = tag.title %}
+            {% assign _reqres = tag.reqres %}
+            {% assign _codePath = tag.codePath %}
         {% endif %}
     {% endfor %}
-<!--<div class="swagger-paths">-->
+
     {% for method in route[1] %}
-    <h2 class="article {% if current_title %}console-link{% endif %}" id="{{ current_id }}">{% if current_title %}{{ current_title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
+    <h2 class="article {% if _title %}console-link{% endif %}" id="{{ _id }}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}[{{ method[0] | upcase }}]</h2>
     <div class="">
-        <p><strong>Method: </strong>{{ method[0] | upcase }}</p>
+        <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
         <p><strong>Summary: </strong>{{ method[1].summary }}</p>
         <p class="code red">{{ route[0] }}</p>
         <div class="">
             {% if method[1].parameters %}
             <div class="swagger-response">
-                <h4>Responses</h4>
+                <h3>Responses</h3>
                 {% for response in method[1].responses %}
                 <h5>
                     <span class="swagger-response-code">{{ response[0] }}</span>
                     {{ response[1].description }}
                 </h5>
+
+                {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                {% assign schemaSplit = schemaRes | split: ' ' %}
+                <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
+                <h3 data-ref-path="{{ schemaSplit[1] }}">Response structure:
+                <p class="code blue"> {{ schemaSplit[1] }}
+                    {% for schemaSplitType in schemaSplit[1] %}
+                    <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
+                    {% endfor %}
+                </p>
+                </h3>
+                <ul class="nested-list">
+                    {% for pathFirsLvl in schemaSplit[0] %}
+                        {% for pathScdLvl in schemaSplit[1] %}
+                            {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+                            <li>
+                            <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+                                    <ul>
+                                    {% for item in property[1].items %}
+                                        <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
+                                            <ul>
+                                                {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                                {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+                                                {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+                                                {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+                                                <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                                </li>
+                                                {% endfor %}
+                                                {% endfor %}
+                                            </ul>
+                                            {%endif%}
+                                        </li>
+                                    {% endfor %}
+                                    {% if property[1]['$ref'] %}
+                                        <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
+                                            <ul>
+                                                {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                                {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
+                                                {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
+                                                {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                                <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                                </li>
+                                                {% endfor %}
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                    </ul>
+                                    {% endif %}
+                            </li>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+
+                <!--{% for schema_details in schemaRes %}
+                    <p>{{ swagger.schema_details }}</p>
+                    <h4 class="14"> schemaRes14 : {{ swagger.schema_details.schemaRes }}</h4>
+                    <h4 class="15"> schemaRes15 : {{ swagger.schema_details.['schemaRes'] }}</h4>
+                {% endfor %}-->
+
+                <!--
                 {% for content_type in swagger.produces %}
-                {% if response[1].examples[content_type] %}
-                {% assign example = response[1].examples[content_type] %}
-                {% if content_type contains 'json' %}
-                {% highlight json %}{{ example }}{% endhighlight %}
-                {% elsif content_type contains 'xml' %}
-                {% highlight xml %}{{ example }}{% endhighlight %}
-                {% else %}
-                {% highlight http %}{{ example }}{% endhighlight %}
-                {% endif %}
-                {% endif %}
+                    {% if response[1].examples[content_type] %}
+                    {% assign example = response[1].examples[content_type] %}
+                        {% if content_type contains 'json' %}
+                        {% highlight json %}{{ example }}{% endhighlight %}
+                        {% elsif content_type contains 'xml' %}
+                        {% highlight xml %}{{ example }}{% endhighlight %}
+                        {% else %}
+                        {% highlight http %}{{ example }}{% endhighlight %}
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}
+                -->
 
 
                 {% endfor %}
@@ -126,7 +143,7 @@
             {% endif %}
             {% if method[1].responses %}
             <div class="swagger-parameters">
-                <h4>Parameters</h4>
+                <h3>Parameters</h3>
                 <table class="swagger-parameters-table">
                     <thead>
                         <tr>
@@ -171,52 +188,34 @@
     </div>
     {% endfor %}
 
+{% if _codePath %}
+    {% assign codePath = _codePath | prepend: 'apis-code-examples/' %}
     <blockquote class="aside lang-selector" tabindex="-1">
             <p><a href="#js" class="active">JavaScript</a>
                 <a href="#curl">cURL</a></p>
     </blockquote>
-{% highlight js %}
-$.ajax({
-type:"GET",
-url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}",
-async:true,
-dataType: "json",
-success: function(json) {
-console.log(json);
-// Parse the response.
-// Do other things.
-},
-error: function(xhr, status, err) {
-// This time, we do not end up here!
-}
-});
-{% endhighlight %}
-
-{% highlight bash %}
-curl \
---include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}'
-{% endhighlight %}
+    {% include {{codePath}} %}
+{%endif%}
 
 
-{% for method in route[1] %}
+<!--{% for method in route[1] %}-->
 <div class="article"></div>
-    {% if current_resreq %}
-    <blockquote class="article reqres" style="margin-right: 0px;">
-        <p><a href="#req">Request</a>
-            <a href="#res">Response</a></p>
-    </blockquote>
-    {% highlight json %}{{ current_resreq.request }}{% endhighlight %}
-    {% highlight json %}{{ current_resreq.response }}{% endhighlight %}
+    {% if _reqres %}
+        {% assign resreq = _reqres | prepend: 'apis-code-examples/' %}
+        <blockquote class="article reqres" style="margin-right: 0px;">
+            <p><a href="#req">Request</a>
+                <a href="#res">Response</a></p>
+        </blockquote>
+        {% include {{resreq}} %}
     {% endif %}
+<!--{% endfor %}-->
 
-{% endfor %}
-
-<!--clear title and id-->
-{% assign current_id = tag.id %}
-{% assign current_title = tag.title %}
-
-{% assign current_resreq = tag.resreq %}
-<!--clear title and id END-->
+<!--clear current val-->
+{% assign _id = tag.id %}
+{% assign _title = tag.title %}
+{% assign _reqres = tag.resreq %}
+{% assign _codePath = tag.codePath %}
+<!--clear END-->
 
 {% endfor %}
 
