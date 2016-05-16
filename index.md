@@ -1,7 +1,7 @@
 ---
 layout: home
 category: home
-excerpt: Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
+excerpt: Join the Ticketmaster developer network, build innovative applications, and help us deliver those unforgettable moments of joy to fans everywhere.
 keywords: fan-centric, developer network, build innovative applications
 ---
 
@@ -19,7 +19,7 @@ Top promo description
 {:/comment}
 {% capture top_promo_desc %}
 
-Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
+Join the Ticketmaster developer network, build innovative applications, and help us deliver those unforgettable moments of joy to fans everywhere.
 
 {% endcapture %}
 

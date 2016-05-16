@@ -2510,9 +2510,8 @@ Rate-Limit: 5000
 
 | Source	|
 |:----------|
-| ticketweb	|
+| ticketmaster	|
 | universe	|
-| frontgate	|
 
 
 ## Supported Locales
