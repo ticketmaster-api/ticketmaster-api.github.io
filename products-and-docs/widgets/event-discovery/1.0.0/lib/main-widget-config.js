@@ -29,9 +29,9 @@
         layout: 'horizontal'
       },
       m: {
-        width: 160,
-        height: 300,
-        layout: 'horizontal'
+        width: 300,
+        height: 250,
+        layout: 'vertical'
       },
       l: {
         width: 160,

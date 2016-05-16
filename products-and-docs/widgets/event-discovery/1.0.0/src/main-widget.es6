@@ -7,9 +7,13 @@ class TicketmasterEventDiscoveryWidget {
   get events(){ return this.eventsList;}
 
   get isListView(){ return this.config.theme === 'listview';}
+  get isSimpleProportionM() { return this.config.proportion === 'm'}
   get borderSize(){ return this.config.border || 0;}
   get widgetHeight(){ return this.config.height || 600;}
-  get widgetContentHeight(){ return this.widgetHeight - (this.isListView ? 0 : 39) || 600;}
+
+  get widgetContentHeight() {
+    return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
+  }
 
   get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
 
@@ -294,6 +298,7 @@ class TicketmasterEventDiscoveryWidget {
     this.buyBtn.classList.add("main-btn");
     this.buyBtn.target = '_blank';
     this.buyBtn.href = '';
+    this.buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
     this.buyBtn.addEventListener('click', (e)=> {
       e.preventDefault(); /*used in plugins for 'buy button'*/
       this.stopAutoSlideX();
@@ -682,11 +687,11 @@ class TicketmasterEventDiscoveryWidget {
     }
 
     this.eventsRootContainer.addEventListener('touchstart', (e)=> {
-      if(this.config.theme !== "listview") { if (e.target.className != 'event-logo') e.preventDefault(); } /*used in plugins for 'buy button'*/
+      if(this.config.theme !== "listview") { if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault(); } /*used in plugins for 'buy button'*/
       handleTouchStart.call(this, e);
     }, false);
     this.eventsRootContainer.addEventListener('touchmove', (e)=> {
-      if(this.config.theme !== "listview") { if (e.target.className != 'event-logo') e.preventDefault(); }
+      if(this.config.theme !== "listview") { if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault(); }
       handleTouchMove.call(this, e);
     }, false);
   }
@@ -1145,6 +1150,7 @@ class TicketmasterEventDiscoveryWidget {
       buyBtn.classList.add("event-buy-btn");
       buyBtn.target = '_blank';
       buyBtn.href = url;
+      buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
       domNode.appendChild(buyBtn);
     }
   }
@@ -1172,6 +1178,7 @@ class TicketmasterEventDiscoveryWidget {
     name.classList.add("event-name");
     name.appendChild(nameContent);
     this.initPretendedLink(name, itemConfig.url, true);
+    name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
     medWrapper.appendChild(name);
 
     this.addBuyButton(medWrapper, itemConfig.url);
@@ -1303,6 +1310,18 @@ let widgetsEventDiscovery = [];
   for (let i = 0; i < widgetContainers.length; ++i) {
     widgetsEventDiscovery.push(new TicketmasterEventDiscoveryWidget(widgetContainers[i]));
   }
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77036736-1', 'auto');
+  ga('send', 'pageview');
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_trackEvent', 'eventName', 'JennyFerLopez']);
+
 })();
 
 

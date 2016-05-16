@@ -102,6 +102,15 @@ div[w-theme="simple_countdown"] .event-message-visible.event-message-started {
     background: rgba(208, 0, 110, 0.7) none;
     border-radius: 0;
 }
+
+div[w-theme="simple_countdown"][w-proportion="m"] .event-message-visible.event-message-started {
+    top: 14px;
+    font-size: 16px;
+    padding: 10px;
+}
+/* event-message END*/
+
+
 /*hide close button*/
 div[w-theme="simple_countdown"] .event-message-visible.event-message-started .event-message__btn{
     display: none;
@@ -129,10 +138,6 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .event-message-visible.ev
 
 div[w-theme="simple_countdown"] .events-root-container{
     overflow: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -147,10 +152,6 @@ div[w-theme="simple_countdown"] ul{
     -webkit-transition: margin 0.5s ease-in-out;
     -moz-transition: margin 0.5s ease-in-out;
     transition: margin 0.5s ease-in-out;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
 }
 
 /*  question  */
@@ -347,10 +348,10 @@ div[w-theme="simple_countdown"] .event-logo-box {
 div[w-theme="simple_countdown"] .event-logo {
     display: block;
     position: absolute;
-    top: 8px;
+    top: 6px;
     right: 24px;
     width: 159px;
-    height: 26px;
+    height: 25px;
 }
 
 div[w-theme="simple_countdown"] .event-logo:before{
@@ -560,3 +561,61 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .events-count-down{
     padding: 0;
 }
 /*  LAYOUT  END*/
+
+/* LAYOUT 300x250 */
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down {
+    top: 14px;
+}
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down:before {
+    font-size: 10px;
+    line-height: 12px;
+}
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down .events-count-down__month,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down .events-count-down__day,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down .events-count-down__hour,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down .events-count-down__minute,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down .events-count-down__second{
+    height: 27px;
+    line-height: 27px;
+    font-size: 18px;
+    text-align: right;
+    padding: 3px;
+
+}
+
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down__month:after,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down__day:after,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down__hour:after,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down__minute:after,
+div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down__second:after {
+    top: 0%;
+    margin-top: -3px;
+    height: 14px;
+    text-align: left;
+    color: #414141;
+    background: none;
+    font-family: "TMSans-Regular", Arial, serif;
+    font-size: 8px;
+}
+
+div[w-theme="simple_countdown"][w-proportion="m"] .event-content-wraper {
+    padding-top: 68px;
+}
+div[w-theme="simple_countdown"][w-proportion="m"] .event-logo-box {
+    bottom: 32px
+}
+
+div[w-theme="simple_countdown"][w-proportion="m"] .event-name{
+    font-size: 18px;
+    font-family: "TMSans-Bold", Arial, serif;
+    margin-bottom: 10px;
+    line-height: 24px;
+    height: 50px;
+}
+div[w-theme="simple_countdown"][w-proportion="m"] .event-date {
+    color: rgba(255,255,255,.7);
+}
+div[w-theme="simple_countdown"][w-proportion="m"] .event-question {
+    display: none;
+}
+/*  LAYOUT 300x250 END*/

@@ -185,7 +185,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
   <tbody>
     <tr>
       <td style="text-align: center" rowspan="9">
-        <a href="/products-and-docs/apis/discovery/v1/">
+        <a href="/products-and-docs/apis/discovery/v2/">
           <img src="/assets/img/getting-started/ic-search-big.svg" alt="Discovery API">
         </a>
       <h4 style="margin-top:11px;">Discovery API</h4>
@@ -252,7 +252,6 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    
     <tr>
       <td style="text-align: center; background: rgb(255, 255, 255);">
         <a href="/products-and-docs/apis/commerce/">
@@ -266,7 +265,6 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    
     <tr>
       <td style="text-align: center" rowspan="14">
         <a href="/products-and-docs/apis/partner/">
@@ -371,7 +369,6 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-
     <tr>
       <td style="text-align: center" rowspan="2">
         <a href="/products-and-docs/apis/deals-api/">
@@ -392,7 +389,6 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-
     <tr>
       <td style="text-align: center" rowspan="1">
        <a href="/products-and-docs/apis/publish/">
@@ -400,13 +396,12 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
        </a>
        <h4 style="margin-top:11px;text-">Publish API</h4>
       </td>
-      <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish event</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish Event</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    
     <tr>
       <td style="text-align: center; background: rgb(255, 255, 255);" rowspan="16">
         <a href="/products-and-docs/apis/international-discovery/">
@@ -525,7 +520,50 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    
+    {% comment %}
+    <tr>
+      <td style="text-align: center" rowspan="5">
+       <a href="/products-and-docs/apis/archtics/">
+         <img src="/assets/img/getting-started/ic-archtic.svg" alt="Archtics API">
+       </a>
+       <h4 style="margin-top:11px;text-">Archtics API</h4>
+      </td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#customer-query">Customer query</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#event-details">Event Details</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#event-search">Event Search</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#ping">PING</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#seats-sold">Seats Sold</a></td>
+      <td style="text-align: center;border-right: 0px;"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    {% endcomment %}
+
   </tbody>
 </table>
 </div>

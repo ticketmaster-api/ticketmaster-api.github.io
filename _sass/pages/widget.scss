@@ -103,6 +103,9 @@
 
 .config-block{
   margin-bottom: 30px;
+  a:hover {
+    cursor: pointer;
+  }
 
   @media (max-width: 1199px){
     padding-right: 24px;
@@ -140,6 +143,56 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+  }
+
+  .modal-body {
+    .get_eventId_results {
+      margin-top: -24px;
+      font-size: 0.75em;
+      span {
+        font-weight: bold;
+      }
+    }
+    #overlay #spinner {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 110%;
+      background: url("../../assets/img/loader.gif");
+      background-size: 40px 40px;
+      border: 0 solid #fff;
+    }
+    .list-group {
+      overflow-y: scroll;
+      max-height: 500px;
+      width: 100%;
+      padding: 0 10px 0 15px;
+    }
+    .list-group-item {
+      .event-text-wrapper {
+        padding-right: 110px;
+        @media (max-width: 468px){
+          padding-right: 0;
+          margin-bottom: 10px;
+        }
+      }
+      .event-time {
+        margin-bottom: 0;
+      }
+      .wrapper-set-eventId_btn{
+        position: absolute;
+        bottom: 10px; right: 10px;
+        @media (max-width: 468px){
+          position: relative;
+          bottom: 0;
+          left: 0;
+        }
+        .btn-submit {
+          width: auto;
+          height: auto;
+        }
+      }
+    }
   }
 }
 
@@ -188,6 +241,8 @@
 
 .widget_config__btn {
   margin-top: 0;
+  padding-left: 0;
+  padding-right: 0;
   @media (max-width: 768px) {
     margin-bottom: 24px;
   }

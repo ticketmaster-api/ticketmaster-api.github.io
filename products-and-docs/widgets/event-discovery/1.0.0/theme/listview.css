@@ -325,7 +325,7 @@ div[w-theme="listview"] .legal-notice {
     left: 30px;
     bottom: 36px;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 17px;
     color: #768692;
 }
 
@@ -444,9 +444,17 @@ div[w-theme="listview"][w-proportion="3x6"]  {
     width: 300px;
 }
 
+div[w-theme="listview"][w-colorscheme="dark"][w-proportion="xxl"] .event-logo {
+    right: 14px;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"][w-proportion="m"] .event-logo {
+    right: 14px;
+}
+
 div[w-theme="listview"][w-colorscheme="dark"] .events-root-container {
     background: #5d5d5d;
-    border: none;
+    border-color: #5d5d5d;
 }
 
 div[w-theme="listview"][w-colorscheme="dark"] .event-content-wraper {
@@ -455,6 +463,8 @@ div[w-theme="listview"][w-colorscheme="dark"] .event-content-wraper {
 
 div[w-theme="listview"][w-colorscheme="dark"] .event-logo-box {
     background: #dedede;
+    left: -2px;
+    width: 102%;
 }
 
 div[w-theme="listview"][w-colorscheme="dark"] .event-wrapper {
@@ -465,6 +475,10 @@ div[w-theme="listview"][w-colorscheme="dark"] .event-group-wrapper {
     border: 0;
     padding: 0;
     margin: 0;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-logo {
+    right: 15px;
 }
 
 div[w-theme="listview"] .ss-wrapper {
@@ -509,6 +523,19 @@ div[w-theme="listview"] .ss-grabbed {
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
+}
+
+div[w-theme="listview"][w-proportion="m"] .ss {
+    margin-top: 25px;
+    height: 73%;
+}
+
+div[w-theme="listview"][w-proportion="m"] .event-logo-box {
+    bottom: 10px;
+}
+
+div[w-theme="listview"][w-proportion="m"] .legal-notice {
+    bottom: 21px;
 }
 
 /* !!! HotFix !!! */

@@ -32,7 +32,8 @@
           <label for="w-id">
             Event Id <span class="config_field__description">(Required)</span>
           </label>
-          <a href="/api-explorer/" class="pull-right">Get event Id</a>
+          <a id="js_get-eventId_open" type="button" class="pull-right" data-toggle="modal" data-target="#get-eventId-modal">Get event ID</a>
+
           <input type="text" id="w-id" name="w-id" value="1Ad0ZfdGkMoCQHJ">
         </div>
       </div>
@@ -49,6 +50,10 @@
                 <div class="col-lg-4 col-sm-2 col-xs-6 widget__various-width">
                   <input id="w-fixed-300x600" type="radio" value="xxl" name="w-proportion">
                   <label for="w-fixed-300x600">300x600</label>
+                </div>
+                <div class="col-lg-4 col-sm-2 col-xs-6 widget__various-width">
+                  <input id="w-fixed-300x250" type="radio" value="m" name="w-proportion">
+                  <label for="w-fixed-300x250">300x250</label>
                 </div>
                 <div class="col-lg-4 col-sm-2 col-xs-6 widget__various-width">
                   <input checked id="w-custom" type="radio" value="custom" name="w-proportion">
@@ -118,7 +123,7 @@
 
     <div class="row row-native visible-lg">
       <div class="col-lg-6 col-md-3 col-sm-3">
-        <button type="button" class="js_get_widget_code btn btn-block btn-submit button-blue widget_config__btn">GET CODE</button>
+        <button type="button" class="js_get_widget_code btn btn-block button button-blue widget_config__btn">GET CODE</button>
       </div>
       <div class="col-lg-6 col-md-3 col-sm-3">
         <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
@@ -127,3 +132,5 @@
   </div>
 
 </form>
+
+{% include widget-countdown-modal.html %}

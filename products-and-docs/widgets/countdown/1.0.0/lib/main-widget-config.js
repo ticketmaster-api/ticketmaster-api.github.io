@@ -7,23 +7,23 @@
     simple_countdown: {
       sizes: {
         s: {
-          width: 160,
-          height: 300,
+          width: 180,
+          height: 150,
           layout: 'horizontal'
         },
         m: {
-          width: 160,
-          height: 300,
-          layout: 'horizontal'
+          width: 300,
+          height: 250,
+          layout: 'vertical'
         },
         l: {
           width: 160,
-          height: 300,
+          height: 600,
           layout: 'horizontal'
         },
         xl: {
-          width: 160,
-          height: 300,
+          width: 728,
+          height: 90,
           layout: 'horizontal'
         },
         xxl: {
@@ -284,4 +284,232 @@
     $widgetModalNoCode.modal('hide');
   });
 })();
+
+(function ($) {
+  var $modal = $('#get-eventId-modal'),
+      $form = $('#js_get_eventId_form', $modal),
+      $ul = $('#js_get_eventId_list'),
+      $btn = $modal.find('#js_get-eventId_btn'),
+
+  //$resultsCount = $form.find('.get_eventId_results'),
+  cssValidationClass = 'get-eventId_form-validation';
+
+  var keyword = $form.find('#keyword'),
+      apikey = $('#w-tm-api-key'),
+      eventUrl = function eventUrl() {
+    return 'https://app.ticketmaster.com/discovery/v2/events.json';
+  },
+      pageIncrement = 0,
+      loadingFlag = false;
+
+  // var removeListItemEffect = function(listItems){
+  //   console.log( 'removeListItemEffect start ',listItems.length);
+  //
+  //   $btn.attr('disabled', true);
+  //   listItems.hide("slow", function fnCollapse() {
+  //     $(this).prev("li").hide("slow", fnCollapse);
+  //     // if(!$(this).prev("li").length) $btn.removeAttr('disabled');
+  //   });
+  //   $btn.removeAttr('disabled');
+  // };
+
+  var loading = function loading(action) {
+    // add the overlay with loading image to the page
+    if (action == "on") {
+      $('#spinner').show();
+    } else if (action == "off") {
+      $('#spinner').hide();
+    }
+  };
+
+  function resetForm() {
+    pageIncrement = 0;
+    var listItems = $ul.find('li');
+    listItems.remove();
+    /*$form.find('input').each(function(){
+      var $self = $(this);
+      if($self.attr('id','keyword')){
+        $self.val('');
+      }
+    });*/
+
+    // Clear highlight
+    $form.removeClass(cssValidationClass);
+  }
+
+  var renderResults = function renderResults(data, ulElement) {
+    function showMessage(element, message, /*optional*/clearList) {
+      $btn.attr('disabled', false);
+
+      if (clearList) $('li', element).remove();
+      element.css({
+        'overflow': 'auto'
+      });
+      $('<li/>').addClass('list-group-item').text('' + message).appendTo(ulElement);
+    };
+
+    if (loadingFlag === "FINAL_PAGE") return false;
+
+    if (data === 'FAIL') {
+      showMessage($ul, 'Failure, possible key not correct.', true);return false;
+    }
+
+    if (loadingFlag === 'STOP_LOAD' && data.length !== 0) {
+      loadingFlag = "FINAL_PAGE";
+      showMessage(ulElement, 'No more results.', false);
+      return false;
+    }
+
+    if (data === null || !data._embedded) {
+      showMessage(ulElement, 'No results found.', true);return false;
+    }
+
+    //start render data
+    var items = data._embedded.events;
+
+    items.map(function (item) {
+      var li = $('<li/>').addClass('list-group-item row').appendTo(ulElement);
+      var $wrapCol = $('<div class="event-text-wrapper"/>').appendTo(li);
+      var title = $('<h3/>').addClass('list-group-item-heading').text(' ' + item.name).appendTo($wrapCol);
+
+      /*add time*/
+      var currentEvent = {};
+      currentEvent.date = {
+        day: item.dates.start.localDate,
+        time: item.dates.start.localTime,
+        dateTime: item.dates.start.dateTime
+      };
+
+      var time = widgetsCountdown[0].formatDate(currentEvent.date);
+      var eventTime = $('<h4/>').addClass('event-time').text(time).appendTo($wrapCol);
+      /*add time end*/
+
+      if (item._embedded && item._embedded.venues) {
+        var venue = item._embedded.venues[0];
+        var addressName = $('<span/>').addClass('address-name').text(venue.name + '. ').appendTo($wrapCol);
+
+        if ('address' in venue && 'line1' in venue.address) {
+          var addressline1 = $('<span/>').addClass('address-line1').text(venue.address.line1).appendTo($wrapCol);
+          if ('line2' in venue.address) {
+            var _addressline = $('<span/>').addClass('address-line2').text(venue.address.line2).appendTo(_addressline);
+          }
+        }
+      } else {
+        console.log('no _embedded found');
+      }
+
+      var buttonSetId = $('<button data-event="' + item.id + '"/>').addClass('js_set-eventId_btn btn btn-submit').text('Set this ID').appendTo(li).wrap('<div class ="wrapper-set-eventId_btn text-right"/>');
+    });
+
+    $('.js_set-eventId_btn').on('click', function (e) {
+      var selectedID = e.target.getAttribute('data-event'),
+
+      //find configurator and widget
+      widget = widgetsCountdown[0],
+          widgetNode = document.querySelector("div[w-tmapikey]");
+
+      $('#w-id').val(selectedID);
+      widgetNode.setAttribute('w-id', selectedID);
+      widget.update();
+
+      // Close dialog
+      $modal.modal('hide');
+    });
+
+    $btn.attr('disabled', false);
+  };
+
+  function submitForm( /*optional*/pageNumero) {
+    pageNumero = parseInt(pageNumero);
+
+    var url = Number.isNaN(pageNumero) ? eventUrl() + '?apikey=' + apikey.val() + '&keyword=' + keyword.val() : eventUrl() + '?apikey=' + apikey.val() + '&keyword=' + keyword.val() + '&page=' + pageNumero;
+
+    //stop load
+    if (Number.isNaN(pageNumero) && pageNumero !== 0 && loadingFlag === 'STOP_LOAD') {
+      renderResults(null, $ul);
+      return false;
+    };
+
+    if (loadingFlag === 'FINAL_PAGE') return false;
+
+    $.ajax({
+      dataType: 'json',
+      async: true,
+      url: url,
+      data: $form.serialize()
+    }).done(function (result) {
+      if (result) {
+
+        //last page reached
+        if (pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
+          loadingFlag = 'STOP_LOAD';
+          loading('off');
+          renderResults(result, $ul); //add message at bottom of list
+          return false;
+        };
+
+        renderResults(result, $ul);
+        loading('off');
+      } else {
+        console.log('no result found');
+      }
+    }).fail(function (e) {
+      console.log('There was an fail status - ' + e.status);
+      loading('off');
+      renderResults('FAIL', $ul);
+    });
+  }
+
+  $ul.on('scroll', function (elm) {
+    //submitForm when go to bottom of list
+    if ($form.get(0).checkValidity()) {
+
+      if (this.scrollTop + this.clientHeight == this.scrollHeight && loadingFlag === 'KEEP_LOAD') {
+        pageIncrement++;
+        $btn.attr('disabled', true);
+        loading('on');
+        submitForm(pageIncrement);
+      }
+    }
+  });
+
+  // EVENTS
+  $btn.on('click', function () {
+    var form = $form.get(0);
+    if (!$btn.is(':disabled')) {
+      if (form.checkValidity()) {
+        $btn.attr('disabled', true);
+        pageIncrement = 0;
+        loadingFlag = 'KEEP_LOAD';
+        loading('on'); //show loading-spinner
+        resetForm(); //clear
+        submitForm(pageIncrement);
+      } else {
+        // Highlight errors
+        if (form.reportValidity) form.reportValidity();
+        $form.addClass(cssValidationClass);
+      }
+    }
+  });
+
+  $form.on("change", function () {
+    if ($form.get(0).checkValidity()) {
+      pageIncrement = 0;
+      loadingFlag = 'KEEP_LOAD';
+      loading('on');
+      resetForm();
+      submitForm(pageIncrement);
+    }
+  });
+  // Mobile devices. Force 'change' by 'Go' press
+
+  $form.on("submit", function (e) {
+    e.preventDefault();
+  });
+
+  $modal.on('hidden.bs.modal', function (e) {
+    resetForm();
+    keyword.val(''); //clear search input
+  });
+})(jQuery);
 //# sourceMappingURL=main-widget-config.js.map

@@ -156,7 +156,7 @@ var $contactForm = $('.js_contact_form'),
 
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=d9878ccc8e22c7253d057015617f82cd",
           data: $contactForm.serialize() 
         }).done(function() {
           //callback which can be used to show a thank you message
