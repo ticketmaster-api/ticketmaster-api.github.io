@@ -1,15 +1,9 @@
 ---
-layout: documentation-swagger
+layout: documentation
 categories:
 - documentation
-- changelog
+- swagger
+- pim
 title: Example Swagger
-data: swaggerExample
+data: swagger-pim-api
 ---
-
-In this example swagger description is included in the page (using `data` front
-matter). See [source file](https://raw.githubusercontent.com/jexhson/jekyll-swagger/gh-pages/_data/fruits.yml)
-
-Data file must be in `_data` directory (see [jekyll doc](http://jekyllrb.com/docs/datafiles/)).
-
-## Some routes

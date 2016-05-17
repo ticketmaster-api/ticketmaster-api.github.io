@@ -18,11 +18,17 @@ layout: default
                 </div>
             </div>
 
+
             <div class="col-xs-12 col-lg-9" id="main-block">
                 <div class="content" style="display: block;">
-                    {{ content }}
+                    {% if page.categories[1] == "swagger" %}
+                        {% include swagger.html %}
+                    {% else %}
+                        {{ content }}
+                    {% endif %}
                 </div>
             </div>
+
         </div>
     </div>
 

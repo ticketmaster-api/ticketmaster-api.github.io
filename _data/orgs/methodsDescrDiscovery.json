@@ -1,0 +1,30 @@
+{
+    "method": [
+        {
+            "pathsParent":"/discovery/v2/attractions",
+            "id":"search-attractions",
+            "title":"Search Attractions",
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/attractions/legacy",
+            "id":"legacy-attraction-details",
+            "title":"?legacy Attraction Details"
+        },
+        {
+            "pathsParent":"/discovery/v2/attractions/legacy/{id}",
+            "id":"legacy-attraction-details",
+            "title":"legacy-Get Attraction Details",
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/venues/{id}",
+            "id":"venue-details",
+            "title":"Get Venue Details",
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
+        }
+    ]
+}

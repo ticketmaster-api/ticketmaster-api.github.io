@@ -1,0 +1,281 @@
+{% if page.data %}
+{% assign swagger = site.data[page.data] %}
+{% else %}
+{% assign swagger = page %}
+{% endif %}
+
+{% case page.categories[2] %}
+    {% when 'discovery' %}
+        {% assign methodsDescription = site.data.orgs.methodsDescrDiscovery %}
+    {% when 'commerce' %}
+        {% assign methodsDescription = site.data.orgs.methodsDescrCommerse %}
+    {% when 'pim' %}
+        {% assign methodsDescription = site.data.orgs.methods-pim-api %}
+    {% else %}
+        This is not assign
+{% endcase %}
+
+
+
+<!--<p class="code blue">swagger.paths.size: {{ swagger.paths | size }}</p>-->
+
+<h1>{{ swagger.info.title | upcase}}</h1>
+<p class="lead article">{{ swagger.info.description }}</p>
+
+<h2 class="article">Overview</h2>
+{% if swagger.basePath %}
+<p>
+    <strong>Base Path: </strong><code>{{ swagger.basePath }}</code>
+</p>{% endif %}
+{% if swagger.host %}
+<p>
+    <strong>Host URL: </strong><code>{{ swagger.host }}</code>
+</p>{% endif %}
+
+{% for route in swagger.paths %}
+    <!--{% if methodsDescription.method contains route[0]%}
+        <p>This contains 'Hello'. {{ methodsDescription.method }}</p>
+    {% endif %}-->
+
+    {% for tag in methodsDescription.method %}
+        {% if tag.pathsParent == route[0] %}
+            {% assign _id = tag.id | append: '-v2'%}
+            {% assign _title = tag.title %}
+            {% assign _reqres = tag.reqres %}
+            {% assign _codePath = tag.codePath %}
+        {% endif %}
+    {% endfor %}
+
+    {% for method in route[1] %}
+    <h2 class="article {% if _title %}console-link{% endif %}" id="{{ _id }}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}[{{ method[0] | upcase }}]</h2>
+    <div class="">
+        <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
+        <p><strong>Summary: </strong>{{ method[1].summary }}</p>
+        <p class="code red">{{ route[0] }}</p>
+        <div class="">
+            {% if method[1].parameters %}
+            <div class="swagger-response">
+                <h3>Responses</h3>
+                {% for response in method[1].responses %}
+                <h5>
+                    <span class="swagger-response-code">{{ response[0] }}</span>
+                    {{ response[1].description }}
+                </h5>
+
+                {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                {% assign schemaSplit = schemaRes | split: ' ' %}
+                <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
+                <h3 data-ref-path="{{ schemaSplit[1] }}">Response structure:
+                <p class="code blue"> {{ schemaSplit[1] }}
+                    {% for schemaSplitType in schemaSplit[1] %}
+                    <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
+                    {% endfor %}
+                </p>
+                </h3>
+                <ul class="nested-list">
+                    {% for pathFirsLvl in schemaSplit[0] %}
+                        {% for pathScdLvl in schemaSplit[1] %}
+                            {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+                            <li>
+                            <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+                                    <ul>
+                                    {% for item in property[1].items %}
+                                        <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
+                                            <ul>
+                                                {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                                {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+                                                {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+                                                {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+                                                <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                                </li>
+                                                {% endfor %}
+                                                {% endfor %}
+                                            </ul>
+                                            {%endif%}
+                                        </li>
+                                    {% endfor %}
+                                    {% if property[1]['$ref'] %}
+                                        <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
+                                            <ul>
+                                                {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                                {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
+                                                {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
+                                                {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                                <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                                </li>
+                                                {% endfor %}
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                    </ul>
+                                    {% endif %}
+                            </li>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+
+                <!--{% for schema_details in schemaRes %}
+                    <p>{{ swagger.schema_details }}</p>
+                    <h4 class="14"> schemaRes14 : {{ swagger.schema_details.schemaRes }}</h4>
+                    <h4 class="15"> schemaRes15 : {{ swagger.schema_details.['schemaRes'] }}</h4>
+                {% endfor %}-->
+
+                <!--
+                {% for content_type in swagger.produces %}
+                    {% if response[1].examples[content_type] %}
+                    {% assign example = response[1].examples[content_type] %}
+                        {% if content_type contains 'json' %}
+                        {% highlight json %}{{ example }}{% endhighlight %}
+                        {% elsif content_type contains 'xml' %}
+                        {% highlight xml %}{{ example }}{% endhighlight %}
+                        {% else %}
+                        {% highlight http %}{{ example }}{% endhighlight %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                -->
+
+
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if method[1].responses %}
+            <div class="swagger-parameters">
+                <h3>Parameters</h3>
+                <table class="swagger-parameters-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Located in</th>
+                            <th>Required</th>
+                            <th>Type</th>
+                        <tr>
+                    </thead>
+                    <tbody>
+                        {% for parameter in method[1].parameters %}
+                        <tr>
+                            <td>
+                                {% if parameter.required %}
+                                <span class="swagger-parameter-required">
+                                {% endif %}
+                                {{ parameter.name }}
+                                {% if parameter.required %}
+                                </span>
+                                {% endif %}
+                            </td>
+                            <td>{{ parameter.in }}</td>
+                            <td>{{ parameter.description }}</td>
+                            <td>
+                                {% if parameter.type %}
+                                {{ parameter.type | capitalize }}
+                                {% if parameter.items %}
+                                of {{ parameter.items.type | capitalize }}
+                                {% endif %}
+                                {% else %}
+                                String
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+    {% endfor %}
+
+{% if _codePath %}
+    {% assign codePath = _codePath | prepend: 'apis-code-examples/' %}
+    <blockquote class="aside lang-selector" tabindex="-1">
+            <p><a href="#js" class="active">JavaScript</a>
+                <a href="#curl">cURL</a></p>
+    </blockquote>
+    {% include {{codePath}} %}
+{%endif%}
+
+
+<!--{% for method in route[1] %}-->
+<div class="article"></div>
+    {% if _reqres %}
+        {% assign resreq = _reqres | prepend: 'apis-code-examples/' %}
+        <blockquote class="article reqres" style="margin-right: 0px;">
+            <p><a href="#req">Request</a>
+                <a href="#res">Response</a></p>
+        </blockquote>
+        {% include {{resreq}} %}
+    {% endif %}
+<!--{% endfor %}-->
+
+<!--clear current val-->
+{% assign _id = tag.id %}
+{% assign _title = tag.title %}
+{% assign _reqres = tag.resreq %}
+{% assign _codePath = tag.codePath %}
+<!--clear END-->
+
+{% endfor %}
+
+<!--
+<script type="text/javascript">
+// Helpers
+
+var slice = Array.prototype.slice;
+
+function s(expr, parent) {
+    return typeof expr === "string" ? (parent || document).querySelector(expr) : expr || null;
+}
+
+function ss(expr, parent) {
+    return slice.call((parent || document).querySelectorAll(expr));
+}
+
+s.bind = function(element, o) {
+    if (element) {
+        for (var event in o) {
+            var callback = o[event];
+
+            event.split(/\s+/).forEach(function (event) {
+                element.addEventListener(event, callback);
+            });
+        }
+    }
+};
+
+s.toggleDetails = function (element) {
+    if (element.classList.contains('open')) {
+        element.classList.remove('open');
+    }
+    else {
+        element.classList.add('open');
+    }
+}
+
+// Initialization
+
+function init() {
+    ss('.swagger-method-title').forEach(function (title) {
+        s.bind(title, {
+            'click': function (e) {
+                var details = s('.swagger-method-details', title.parentNode)
+                s.toggleDetails(details);
+                e.preventDefault();
+            }
+        });
+    });
+}
+
+
+// DOM already loaded?
+if (document.readyState !== "loading") {
+    init();
+}
+else {
+    // Wait for it
+    document.addEventListener("DOMContentLoaded", init);
+}
+</script>
+-->
