@@ -3,9 +3,11 @@ layout: documentation
 categories:
 - documentation
 - swagger
-- pim
+- discovery-v2
 title: Example Swagger
-data: swagger-pim-api
+data: discovery-api-docs
+redirect_from:
+- "/products-and-docs/apis/swagger/"
 ---
 
 {% comment %}
@@ -28,12 +30,13 @@ data: swagger-pim-api
 
 {% endcapture %}
 
+
+
 {% capture releaseNotes %}
    {{ site.data.orgs.v2-pim.methods-pim-v2-api.releaseNotes }}
 {% endcapture %}
 
 {{ versionBlock }}
-
 {{ releaseNotes }}
 
 
