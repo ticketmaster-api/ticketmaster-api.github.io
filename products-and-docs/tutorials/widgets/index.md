@@ -14,23 +14,7 @@ keywords: widget, sell tickets, direct payments
 {: .lead .double-margin}
 Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
 
-{% capture maps %}
-###Adding a Google Map to your website
-
-{: .body}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
-
-{% endcapture %}
-
-{% capture maps_1 %}
-###Google Map to your website tutorial
-
-{: .body}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.
-
-{% endcapture %}
-
-{% capture dicovery_api %}
+{% capture widgets %}
 ###Another Tutorial
 
 {: .body}
@@ -39,11 +23,5 @@ Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. A
 {% endcapture %}
 
 <div class="tutor-box" markdown="1">
-{{maps}}
-</div>
-<div class="tutor-box" markdown="1">
-{{maps_1}}
-</div>
-<div class="tutor-box" markdown="1">
-{{dicovery_api}}
+{{widgets}}
 </div>

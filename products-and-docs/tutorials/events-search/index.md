@@ -30,20 +30,9 @@ Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.
 
 {% endcapture %}
 
-{% capture dicovery_api %}
-###Another Tutorial
-
-{: .body}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
-
-{% endcapture %}
-
 <div class="tutor-box" markdown="1">
 {{maps}}
 </div>
 <div class="tutor-box" markdown="1">
 {{maps_1}}
-</div>
-<div class="tutor-box" markdown="1">
-{{dicovery_api}}
 </div>
