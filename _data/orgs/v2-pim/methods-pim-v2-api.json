@@ -1,0 +1,31 @@
+{
+    "method": [
+        {
+            "pathsParent":"v2/assets/{assetId}",
+            "id":"assets-assetId",
+            "title":"Search Attractions",
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
+        },
+        {
+            "pathsParent":"/assets",
+            "id":"assets",
+            "title":"Assets"
+        },
+        {
+            "pathsParent":"/assets/bulk/search",
+            "id":"bulk-search",
+            "title":"bulk-search",
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
+        },
+        {
+            "pathsParent":"/assets/search",
+            "id":"search",
+            "title":"search",
+            "reqres": "discovery-api-codes/reqres-search-events.md",
+            "codePath":"discovery-api-codes/search-events.md"
+        }
+    ],
+    "releaseNotes":"Release Notes : Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status' "
+}

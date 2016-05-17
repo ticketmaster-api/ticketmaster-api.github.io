@@ -12,14 +12,13 @@
     {% when 'pim' %}
         {% assign methodsDescription = site.data.orgs.methods-pim-api %}
     {% else %}
-        This is not assign
+        page.categories[2] is not assign cor
 {% endcase %}
 
-
-
-<!--<p class="code blue">swagger.paths.size: {{ swagger.paths | size }}</p>-->
-
 <h1>{{ swagger.info.title | upcase}}</h1>
+
+{{content}}
+
 <p class="lead article">{{ swagger.info.description }}</p>
 
 <h2 class="article">Overview</h2>
@@ -77,7 +76,7 @@
                         {% for pathScdLvl in schemaSplit[1] %}
                             {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
                             <li>
-                            <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+                            <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                                     <ul>
                                     {% for item in property[1].items %}
                                         <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
@@ -116,7 +115,8 @@
                     {% endfor %}
                 </ul>
 
-                <!--{% for schema_details in schemaRes %}
+                <!--{% comment %}
+                {% for schema_details in schemaRes %}
                     <p>{{ swagger.schema_details }}</p>
                     <h4 class="14"> schemaRes14 : {{ swagger.schema_details.schemaRes }}</h4>
                     <h4 class="15"> schemaRes15 : {{ swagger.schema_details.['schemaRes'] }}</h4>
@@ -135,9 +135,8 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+                {% endcomment %}
                 -->
-
-
                 {% endfor %}
             </div>
             {% endif %}
@@ -198,7 +197,6 @@
 {%endif%}
 
 
-<!--{% for method in route[1] %}-->
 <div class="article"></div>
     {% if _reqres %}
         {% assign resreq = _reqres | prepend: 'apis-code-examples/' %}
@@ -208,14 +206,14 @@
         </blockquote>
         {% include {{resreq}} %}
     {% endif %}
-<!--{% endfor %}-->
 
-<!--clear current val-->
-{% assign _id = tag.id %}
-{% assign _title = tag.title %}
-{% assign _reqres = tag.resreq %}
-{% assign _codePath = tag.codePath %}
-<!--clear END-->
+
+{% comment %}
+    {% assign _id = tag.id %}
+    {% assign _title = tag.title %}
+    {% assign _reqres = tag.resreq %}
+    {% assign _codePath = tag.codePath %}
+{% endcomment %}
 
 {% endfor %}
 
