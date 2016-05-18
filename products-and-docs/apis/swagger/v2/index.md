@@ -3,7 +3,7 @@ layout: documentation
 categories:
 - documentation
 - swagger
-- discovery-v2
+- v3
 title: Example Swagger
 data: discovery-api-docs
 redirect_from:

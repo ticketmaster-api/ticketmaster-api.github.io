@@ -3,7 +3,7 @@ layout: documentation
 categories:
 - documentation
 - swagger
-- discovery-v1
+- v1
 title: Example Swagger
 data: swagger-pim-api
 ---
