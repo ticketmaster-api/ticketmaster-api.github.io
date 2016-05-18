@@ -33,7 +33,7 @@ redirect_from:
 
 
 {% capture releaseNotes %}
-   {{ site.data.orgs.v2-pim.methods-pim-v2-api.releaseNotes }}
+   {{ site.data.orgs.discovery-v2.methods-discovery-v2.releaseNotes }}
 {% endcapture %}
 
 {{ versionBlock }}

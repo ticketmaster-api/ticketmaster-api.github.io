@@ -5,21 +5,32 @@
 {% endif %}
 
 {% case page.categories[2] %}
-    {% when 'commerce' %}
-        {% assign methodsDescription = site.data.orgs.methodsDescrCommerse %}
-    {% when 'discovery-v2' %}
-        {% assign methodsDescription = site.data.orgs.methodsDescrDiscovery %}
+    {% when 'pim' %}
+        {% assign methodsDescription = site.data.orgs.methods-pim-api %}
     {% when 'discovery-v1' %}
-        {% assign methodsDescription = site.data.orgs.v2-pim.methods-pim-v2-api %}
+        {% assign methodsDescription = site.data.orgs.discovery-v1.methods-discovery-v1 %}
+    {% when 'discovery-v2' %}
+        {% assign methodsDescription = site.data.orgs.discovery-v2.methods-discovery-v2 %}
     {% else %}
         page.categories[2] is not assign
 {% endcase %}
 
+    <!--
+    {% comment %} Use it instead of 'switch-case' construction {% endcomment %}
+    {% comment %}
+        {% assign pageMetaFolder = page.categories[2] %}
+        <p class="blue lead article">{{ pageMetaFolder }} : {{ site.data.orgs[pageMetaFolder]}}</p>
+        {% assign pageMetaFileName = page.categories[3] %}
+        <p class="blue lead article">{{ pageMetaFileName }} : {{ site.data.orgs[pageMetaFolder].pageMetaFileName }}</p>
+    {% endcomment %}
+    -->
+
+
 <h1>{{ swagger.info.title | upcase}}</h1>
 
-{{content}}
-
 <p class="lead article">{{ swagger.info.description }}</p>
+
+{{content}}
 
 <h2 class="article">Overview</h2>
 {% if swagger.basePath %}
@@ -32,9 +43,6 @@
 </p>{% endif %}
 
 {% for route in swagger.paths %}
-    <!--{% if methodsDescription.method contains route[0]%}
-        <p>This contains 'Hello'. {{ methodsDescription.method }}</p>
-    {% endif %}-->
 
     {% for tag in methodsDescription.method %}
         {% if tag.pathsParent == route[0] %}
@@ -46,7 +54,7 @@
     {% endfor %}
 
     {% for method in route[1] %}
-    <h2 class="article {% if _title %}console-link{% endif %}" id="{{ _id }}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}[{{ method[0] | upcase }}]</h2>
+    <h2 class="article {% if _title %}console-link{% endif %}" id="{{ _id }}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %} [{{ method[0] | upcase }}]</h2>
     <div class="">
         <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
         <p><strong>Summary: </strong>{{ method[1].summary }}</p>
@@ -220,12 +228,11 @@
     {% endif %}
 
 
-{% comment %}
+<!--{% comment %} Clear meta data {% endcomment %}-->
     {% assign _id = tag.id %}
     {% assign _title = tag.title %}
     {% assign _reqres = tag.resreq %}
     {% assign _codePath = tag.codePath %}
-{% endcomment %}
 
 {% endfor %}
 
