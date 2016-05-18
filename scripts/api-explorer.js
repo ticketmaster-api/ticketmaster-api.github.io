@@ -633,6 +633,25 @@ Object.byString = function(o, s) {
         self.setEventListeners();
     };
 
+    function isImageOk(img) {
+        // During the onload event, IE correctly identifies any images that
+        // weren't downloaded as not complete. Others should too. Gecko-based
+        // browsers act like NS4 in that they report this incorrectly.
+        if (!img.complete) {
+            return false;
+        }
+
+        // However, they do have two very useful properties: naturalWidth and
+        // naturalHeight. These give the true size of the image. If it failed
+        // to load, either of these should be zero.
+        if (typeof img.naturalWidth != "undefined" && img.naturalWidth == 0) {
+            return false;
+        }
+
+        // No other way of checking: assume it's ok.
+        return true;
+    }
+
     // generates image element with google map
     var getMapImage = function(lat, lng, address){
         var coordinates = address ? address : (lat && lng ? (lat + ',' + lng) : '');
@@ -645,10 +664,19 @@ Object.byString = function(o, s) {
                     + 'zoom=8' + '&' //zoom
                     + 'size=' + width + 'x' + height + '&' //size
                     + 'format=JPEG' + '&'// image format
-                    + 'markers=color:red%7Clabel:V%7C' + coordinates + '&' // marker with the same coordinates with V label
-                    + 'key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'; // api key (vmfreakmonkey@gmail.com)
+                    + 'markers=color:red%7Clabel:V%7C' + coordinates;// marker with the same coordinates with V label
+                    //+ '&key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'; // api key (vmfreakmonkey@gmail.com)
 
-            return $('<img data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '" class="api-column-map-image" src="' + url + '">');
+            var img = $('<img data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '" class="api-column-map-image" src="' + url + '">');
+            
+            img
+              .on('error', function() {
+                  img = $('<button class="button button-blue" style="width: 92%;margin: 4%;" data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '">Show map</button>')
+              })
+              .attr("src", $(img).attr("src"))
+            ;
+
+            return img
         }
         else
             return false;
