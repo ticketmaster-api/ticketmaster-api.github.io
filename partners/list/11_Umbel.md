@@ -8,5 +8,5 @@ categories:
   - certified
 
 tile_logo: "umbel-logo.png"
-tile_description: "Umbel helps you securely collect first-party customer data, combine it with your TicketMaster data and leverage internal & external data sources to give you a truly complete view of your fans."
+tile_description: "Umbel helps marketers engage fans, sell tickets, find and retain sponsors and create personalized in-stadium experiences. We connect data across online and offline systems including Ticketmaster, mobile apps, vendors, Wi-Fi and beacons and turn it into a unique competitive asset that powers better performing marketing campaigns."
 ---

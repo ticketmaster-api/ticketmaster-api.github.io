@@ -1169,35 +1169,38 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 {
     "token" : <captcha solution token, if required>,
 
-    "tickets":[
-        {
-            "id": "000002040006", // Maintain leading-zeros in the ticket id as part of the string. 
-            "quantity": 1,
+    "reserve" : {
 
-            "price" : {
-                // Optional. For reserving best available within a price level discovered in Event Details.
-                "id" : 3,
+        "tickets":[
+            {
+                "id": "000002040006", // Maintain leading-zeros in the ticket id as part of the string. 
+                "quantity": 1,
 
-                // Optional. Only for accounts configured for variable-priced ticketing.
-                "amount" : 50.0
+                "price" : {
+                    // Optional. For reserving best available within a price level discovered in Event Details.
+                    "id" : 3,
+
+                    // Optional. Only for accounts configured for variable-priced ticketing.
+                    "amount" : 50.0
+                }
             }
-        }
-    ],
+        ],
 
-    // Optional.  For reserving best available within a specific area discovered in Event Details
-    "areas" : [ { "id" : 2 } ],
+        // Optional.  For reserving best available within a specific area discovered in Event Details
+        "areas" : [ { "id" : 2 } ],
 
-    // Optional.  These are place ids from the ticket availability output which correspond to exact seat locations
-    "places" : ["INGEEMRQHE5E2ORRG4", "INGEEMRQHE5E2ORRGA"],
+        // Optional.  These are place ids from the ticket availability output which correspond to exact seat locations
+        "places" : ["INGEEMRQHE5E2ORRG4", "INGEEMRQHE5E2ORRGA"],
 
-    // Optional. Section/Row/Seat identifiers.  Using 'places' is preferred over this.
-    "section": "CLB239",
-    "row": "C",
-    "begin_seat": 17,
-    "end_seat" : 18,
+        // Optional. Section/Row/Seat identifiers.  Using 'places' is preferred over this.
+        "section": "CLB239",
+        "row": "C",
+        "begin_seat": 17,
+        "end_seat" : 18,
 
-    // If the requested seats (via place id or begin/end seat) are not available, use a Best Available search as a fallback.  Set to false to disable. Default is true.
-    "accept_best_available": false
+        // If the requested seats (via place id or begin/end seat) are not available, use a Best Available search as a fallback.  Set to false to disable. Default is true.
+        "accept_best_available": false
+    }
 }
 {% endhighlight %}
 

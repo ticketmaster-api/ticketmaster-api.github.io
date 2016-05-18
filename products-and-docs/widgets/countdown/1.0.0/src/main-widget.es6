@@ -68,7 +68,7 @@ class CountdownClock {
         curr_year = today.getUTCFullYear(),
         curr_days_in_month = daysInMonth(curr_year, curr_month);
 
-    if(days >= curr_days_in_month){
+    if(days > curr_days_in_month){
       let servYear = new Date(this.endTime).getUTCFullYear(),
           servMonth = new Date(this.endTime).getUTCMonth(),
           servDay = new Date(this.endTime).getUTCDate(),
@@ -76,7 +76,7 @@ class CountdownClock {
 
       monthLeft = Math.floor( days/daysInMonth(servYear,servMonth) );
 
-      days = serv_days_in_month - Math.abs(servDay - curr_day);
+      days = Math.abs(servDay - curr_day);
       
       /*if(monthLeft > 99){
         years = servYear - curr_year;
@@ -254,7 +254,7 @@ class TicketmasterCountdownWidget {
     }else this.countDownWrapper.classList.remove("hide-countDownBox");
 
     if(data.monthLeft > 99){
-      this.showMessage(`This event starts more than ${data.monthLeft} month, ${data.days} days, ${data.hours} hours`, false , "event-message-started");
+      this.showMessage(`This event starts in more than ${data.monthLeft} month, ${data.days} days, ${data.hours} hours`, false , "event-message-started");
       this.countDownWrapper.classList.add("hide-countDownBox");
       return false;
     }

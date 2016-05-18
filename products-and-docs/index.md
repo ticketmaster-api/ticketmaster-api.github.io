@@ -32,13 +32,13 @@ Already doing business with Ticketmaster? <br>
 {% capture api %}
 ## APIs
 
-[![Discovery API](/assets/img/products-and-docs/ic-search-big.svg)](/products-and-docs/apis/discovery/v1/)
+[![Discovery API](/assets/img/products-and-docs/ic-search-big.svg)](/products-and-docs/apis/discovery/v2/)
 [![Commerce API](/assets/img/products-and-docs/ic-commerce-api.svg)](/products-and-docs/apis/commerce/)
 [![Partner API](/assets/img/products-and-docs/ic-user.svg)](/products-and-docs/apis/partner/)
 [![Deals API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/deals-api/)
 [![Publish API](/assets/img/products-and-docs/ic-publish.svg)](/products-and-docs/apis/publish/)
 [![International Discovery API](/assets/img/products-and-docs/ic-flag.svg)](/products-and-docs/apis/international-discovery/)
-[![Archtics API](/assets/img/products-and-docs/ic-archtic.svg)](/products-and-docs/apis/archtics/)
+{% comment %}[![Archtics API](/assets/img/products-and-docs/ic-archtic.svg)](/products-and-docs/apis/archtics/){% endcomment %}
 
 {: .lead}
 Everything you need to handle event discovery,  commerce, accounts, orders, and fans.

@@ -185,7 +185,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
   <tbody>
     <tr>
       <td style="text-align: center" rowspan="9">
-        <a href="/products-and-docs/apis/discovery/v1/">
+        <a href="/products-and-docs/apis/discovery/v2/">
           <img src="/assets/img/getting-started/ic-search-big.svg" alt="Discovery API">
         </a>
       <h4 style="margin-top:11px;">Discovery API</h4>
@@ -520,6 +520,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
+    {% comment %}
     <tr>
       <td style="text-align: center" rowspan="5">
        <a href="/products-and-docs/apis/archtics/">
@@ -561,6 +562,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
+    {% endcomment %}
 
   </tbody>
 </table>
