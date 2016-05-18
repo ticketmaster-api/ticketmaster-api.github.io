@@ -19,7 +19,7 @@ excerpt: Visit Universe’s site to get everything you need to sell tickets dire
 keywords: widget, sell tickets, direct payments
 ---
 
-###Google Map to your website tutorial
+### Google Map to your website tutorial
 
 {: .img-preview}
 [![Google Map to your website tutorial](/products-and-docs/tutorials/img/img-1.png)](https://www.universe.com/)
