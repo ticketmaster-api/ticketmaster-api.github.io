@@ -645,8 +645,8 @@ Object.byString = function(o, s) {
                     + 'zoom=8' + '&' //zoom
                     + 'size=' + width + 'x' + height + '&' //size
                     + 'format=JPEG' + '&'// image format
-                    + 'markers=color:red%7Clabel:V%7C' + coordinates + '&' // marker with the same coordinates with V label
-                    + 'key=AIzaSyC3ojxA4q6cVYf-MFNjZV6Z-bpRNy8dc_s'; // api key (vmfreakmonkey@gmail.com)
+                    + 'markers=color:red%7Clabel:V%7C' + coordinates // marker with the same coordinates with V label
+                    //+ '&key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'; // api key (vmfreakmonkey@gmail.com)
 
             return $('<img data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '" class="api-column-map-image" src="' + url + '">');
         }
