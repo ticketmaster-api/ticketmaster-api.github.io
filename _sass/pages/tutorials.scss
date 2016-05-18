@@ -1,0 +1,77 @@
+.tutorials-article {
+  overflow: hidden;
+  margin: 0 auto 47px auto;
+  clear: both;
+  @media #{$max-768} {
+    margin: 0 -15px 47px -15px;
+  }
+  .image {
+    width: 264px;
+    height: 180px;
+    float: left;
+    margin-top: 5px;
+    @media #{$max-768} {
+      display: none;
+    }
+  }
+  .announcement {
+    width: 65%;
+    height: 158px;
+    float: left;
+    margin: 0 0 0 28px;
+    overflow: hidden;
+    @media #{$max-1200} {
+      width: 56%;
+    }
+    @media #{$max-768} {
+      width: 100%;
+      height: auto;
+      margin-left: 0;
+      margin-bottom: 24px;
+    }
+    a {
+      font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+      font-size: 1em;
+      color: #414141;
+      line-height: 32px;
+      display: block;
+      clear: both;
+    }
+    h3 {
+      margin-top: 0;
+    }
+    p {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .tags {
+    float: left;
+    margin-left: 27px;
+    @media #{$max-768} {
+      margin-left: 0;
+    }
+    button.tag-btn {
+      color: $p1;
+      padding: 1px 8px;
+      border: 1px solid rgba(0, 155, 222, .2);
+      border-radius: 2px;
+      background-color: $white;
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 24px;
+      outline: none;
+      font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+      cursor: pointer;
+      &:hover,
+      &.active,
+      &.active:hover,
+      &:focus {
+        background: $p1;
+        color: $white;
+        cursor: inherit;
+      }
+    }
+  }
+}

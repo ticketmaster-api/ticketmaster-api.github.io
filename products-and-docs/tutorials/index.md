@@ -1,5 +1,5 @@
 ---
-layout: documentation-single
+layout: tutorials
 categories:
 - documentation
 - tutorials
@@ -14,36 +14,23 @@ keywords: widget, sell tickets, direct payments
 {: .lead .double-margin}
 Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
 
-{% capture maps %}
-###Adding a Google Map to your website
-
-{: .body}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
-
-{% endcapture %}
-
-{% capture maps_1 %}
-###Google Map to your website tutorial
-
-{: .body}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.
-
-{% endcapture %}
-
-{% capture dicovery_api %}
-###Another Tutorial
-
-{: .body}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
-
-{% endcapture %}
-
-<div class="tutor-box" markdown="1">
-{{maps}}
-</div>
-<div class="tutor-box" markdown="1">
-{{maps_1}}
-</div>
-<div class="tutor-box" markdown="1">
-{{dicovery_api}}
+<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+{% for tutorials in site.pages %}
+        {% if tutorials.categories[0] == "tutorials" %}
+            <div class="tutorials-article">
+                {% if tutorials.img %}
+                    {% if tutorials.link %}<a href="{{ tutorials.link }}">{% endif %}<img src="{{ tutorials.img }}" class="image" alt="{{tutorials.title}}"/>{% if tutorials.link %}</a>{% endif %}
+                {% endif %}
+                <div class="announcement">
+                    <h3>{% if tutorials.link %}<a href="{{ tutorials.link }}">{% endif %}{{ tutorials.title }}{% if tutorials.link %}</a>{% endif %}</h3>
+                    <p>{{ tutorials.announcement }}</p>
+                </div>
+                <div class="tags">
+                    {% for tag in tutorials.tags %}
+                        <button class="tag-btn" tag="{{tag}}">{{tag}}</button>
+                     {% endfor %}
+                 </div>
+            </div>
+        {% endif %}
+{% endfor %}
 </div>
