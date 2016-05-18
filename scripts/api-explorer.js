@@ -645,10 +645,19 @@ Object.byString = function(o, s) {
                     + 'zoom=8' + '&' //zoom
                     + 'size=' + width + 'x' + height + '&' //size
                     + 'format=JPEG' + '&'// image format
-                    + 'markers=color:red%7Clabel:V%7C' + coordinates + '&' // marker with the same coordinates with V label
-                    + 'key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'; // api key (vmfreakmonkey@gmail.com)
+                    + 'markers=color:red%7Clabel:V%7C' + coordinates;// marker with the same coordinates with V label
+                    //+ '&key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'; // api key (vmfreakmonkey@gmail.com)
 
-            return $('<img data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '" class="api-column-map-image" src="' + url + '">');
+            var img = $('<img data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '" class="api-column-map-image" src="' + url + '">');
+
+            img
+              .on('error', function() {
+                  img = $('<button class="button button-blue" style="width: 92%;margin: 4%;" data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '">Show map</button>')
+              })
+              .attr("src", $(img).attr("src"))
+            ;
+
+            return img
         }
         else
             return false;
