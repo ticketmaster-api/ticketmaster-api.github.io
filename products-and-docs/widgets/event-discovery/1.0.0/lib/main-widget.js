@@ -37,6 +37,11 @@ var TicketmasterEventDiscoveryWidget = function () {
       return this.config.theme === 'listview';
     }
   }, {
+    key: 'isBarcodeWidget',
+    get: function get() {
+      return this.config.theme === 'oldschool' || this.config.theme === 'newschool';
+    }
+  }, {
     key: 'isSimpleProportionM',
     get: function get() {
       return this.config.proportion === 'm';
@@ -1230,6 +1235,18 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
+    key: 'addBarcode',
+    value: function addBarcode(domNode, url) {
+      if (this.isBarcodeWidget) {
+        var barcodeBtn = document.createElement("a");
+        barcodeBtn.classList.add("barcode");
+        barcodeBtn.target = '_blank';
+        barcodeBtn.href = url;
+        barcodeBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickEventName', 'click');");
+        domNode.appendChild(barcodeBtn);
+      }
+    }
+  }, {
     key: 'addBuyButton',
     value: function addBuyButton(domNode, url) {
       if (this.isListView) {
@@ -1303,6 +1320,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
       medWrapper.appendChild(name);
 
+      this.addBarcode(event, itemConfig.url);
       this.addBuyButton(medWrapper, itemConfig.url);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
