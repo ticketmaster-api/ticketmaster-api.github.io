@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "PIM API",
+        "title": "Discovery API v1(PIM api test)",
         "description": "Work with assets using this API.\nIf update operation (create, update, delete) fails if at least one operation with items from parameters fails.\n",
         "version": "1.0.7"
     },
