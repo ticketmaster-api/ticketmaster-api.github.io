@@ -408,4 +408,5 @@ This is the final code you've put together in this lesson. It:
 * Creates and displays a Google Map in the div.
 
 {: .small}
-Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 3.0 License, and code samples are licensed under the Apache 2.0 License. For details, see our Site Policies. Last updated May 6, 2016.
+Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 3.0 License, and code samples are licensed under the Apache 2.0 License. For details, see our Site Policies. 
+<br>Last updated May 6, 2016.
