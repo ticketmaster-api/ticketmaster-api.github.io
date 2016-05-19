@@ -3,7 +3,7 @@ layout: documentation
 categories:
 - documentation
 - swagger
-- discovery-v1
+- v1
 title: Example Swagger
 data: swagger-pim-api
 ---
@@ -13,7 +13,7 @@ data: swagger-pim-api
   categories:
   - documentation                   // main category
   - swagger                         // if page.categories[1] == "swagger"  -> include swagger.html
-  - pim                             // identifier for additional metadata. When 'pim' methodsDescription = site.data.orgs.methods-pim-api
+  - discovery-v1                    // identifier for additional metadata. When 'discovery-v1' methodsDescription = site.data.orgs...
   title: Example Swagger            // not used
   data: swagger-pim-api             // file from swagger
 {% endcomment %}
@@ -29,9 +29,13 @@ data: swagger-pim-api
 {% endcapture %}
 
 
-
+{% assign releaseNotes = site.data.orgs.discovery-v2.methods-discovery-v1.releaseNotes %}
 {% capture releaseNotes %}
-   {{ site.data.orgs.v2-pim.methods-pim-v2-api.releaseNotes }}
+    {%if releaseNotes%}
+      {{ releaseNotes }}
+    {%else%}
+      Release Notes not added.
+   {%endif%}
 {% endcapture %}
 
 {{ versionBlock }}
