@@ -20,7 +20,6 @@
   // Wait for response
   // TODO: update links to live
   checkResponse = function(event){
-    debugger;
     if( event.origin = "https://live-livenation.devportal.apigee.com") {
       sessionStorage.setItem('tk-api-key', event.data.key);
       sessionStorage.setItem('tk-api-email', event.data.email);

@@ -1,6 +1,6 @@
 .tutorials-article {
   overflow: hidden;
-  margin: 0 auto 47px auto;
+  margin: 0 auto 47px -15px;
   clear: both;
   @media #{$max-768} {
     margin: 0 -15px 47px -15px;
@@ -79,5 +79,8 @@
 .single-column.article {
   p {
     width: 55%;
+    @media #{$max-1200} {
+      width: 100%;
+    }
   }
 }
