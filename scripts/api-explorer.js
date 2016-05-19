@@ -652,7 +652,14 @@ Object.byString = function(o, s) {
 
             img
               .on('error', function() {
-                  img = $('<button class="button button-blue" style="width: 92%;margin: 4%;" data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '">Show map</button>')
+                  var imgElem = $('.api-column-map-image');
+                  img = $('<button class="button button-blue" style="width: 92%;margin: 4%;" data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '">Show map</button>');
+                  imgElem.parent().append(img);
+                  imgElem.remove();
+
+                  img.on('click', function(e){
+                      mapPopUpListener(e);
+                  });
               })
               .attr("src", $(img).attr("src"))
             ;
