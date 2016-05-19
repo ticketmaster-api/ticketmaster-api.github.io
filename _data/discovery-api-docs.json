@@ -227,7 +227,8 @@
     "/discovery/v2/attractions/{id}": {
       "get": {
         "tags": [
-          "attraction-api"
+          "attraction-api",
+          "event-api"
         ],
         "summary": "get",
         "operationId": "getUsingGET",

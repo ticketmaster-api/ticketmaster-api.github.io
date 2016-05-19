@@ -14,8 +14,8 @@ redirect_from:
   layout: documentation
   categories:
   - documentation                   // main category
-  - swagger                         // if page.categories[1] == "swagger"  -> include swagger.html
-  - pim                             // identifier for additional metadata. When 'pim' methodsDescription = site.data.orgs.methods-pim-api
+  - swagger                         // if page.categories[1] == "swagger"  -> include swagger.html and it is 'folder name'
+  - v1                              // folder name
   title: Example Swagger            // not used
   data: swagger-pim-api             // file from swagger
 {% endcomment %}

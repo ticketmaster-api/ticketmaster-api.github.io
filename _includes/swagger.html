@@ -4,9 +4,6 @@
 {% assign swagger = page %}
 {% endif %}
 
-{% comment %}
-{% endcomment %}
-
 <!-- Use it instead of 'switch-case' construction  -->
 {% assign pageMetaFolder = page.categories[1] %}
 {% assign pageMetaVersionFolder = page.categories[2] %}
@@ -34,6 +31,17 @@
     <strong>Base Path: </strong><code>{{ swagger.basePath }}</code>
 </p>{% endif %}
 
+<!--
+{% comment %}
+    {% if swagger.tags %}
+    <strong>tags: </strong>
+        {% for tagItem in swagger.tags %}
+            <p><code>{{ tagItem.name }}</code> - {{ tagItem.description }}</p>
+        {% endfor %}
+    {% endif %}
+{% endcomment %}
+-->
+
 {% for route in swagger.paths %}
 
     {% for tag in methodsDescription.method %}
@@ -50,10 +58,27 @@
     <div class="">
         <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
         <p><strong>Summary: </strong>{{ method[1].summary }}</p>
+
+        {%if method[1].tags and swagger.tags %}
+        <p><strong>Method tags info: </strong>
+            {% for tagItem in method[1].tags %}
+                {% for topTagItem in swagger.tags %}
+                    {% if topTagItem.name contains tagItem %}
+                        API name: <em>{{ topTagItem.name }}</em> description: <em>{{ topTagItem.description }}</em></br>
+                    {% endif %}
+                {% endfor %}
+
+            {% endfor %}
+
+        </p>
+        {% endif %}
+
         <p class="code red">{{ route[0] }}</p>
         <div class="">
             {% assign tableUrlParam = false %}
             {% assign tableQueryParam = false %}
+            {% assign tableBodyParam = false %}
+            {% assign tableOtherParam = false %}
 
             {% for parameter in method[1].parameters %}
                 {% case parameter.in %}
@@ -61,8 +86,11 @@
                         {% assign tableUrlParam = true %}
                     {% when 'query' %}
                         {% assign tableQueryParam = true %}
+                    {% when 'body' %}
+                        <!-- If in is "body. Required. The schema defining the type used for the body parameter.-->
+                        {% assign tableBodyParam = true %}
                     {% else %}
-                        This is not a cake nor a cookie
+                        {% assign tableOtherParam = true %}
                 {% endcase %}
             {% endfor %}
 
@@ -176,6 +204,13 @@
                 </div>
                 {% endif %}
 
+                {% if tableBodyParam %}
+                    <p>
+                        <strong>Required: </strong>
+                        {{method[1].parameters.in.schema}}
+                    </p>
+                {% endif %}
+
             {% if method[1].responses %}
             <div class="swagger-response">
                 <h3>Responses:</h3>
@@ -187,7 +222,7 @@
                 </p>
                 {% if response[1].schema['type'] %}<p><strong>Schema type: </strong>{{ response[1].schema['type'] }}</p>{% endif %}
 
-                {% if response[1].schema['$ref'] %}
+                {% if response[1].schema['$ref'] %}{% endif %}
                 {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
                 {% assign schemaSplit = schemaRes | split: ' ' %}
                 <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
@@ -241,6 +276,8 @@
                     {% endfor %}
                     {% endfor %}
                 </ul>
+                {% if response[1].schema['type'] == 'array' %}
+                <p>schema['type'] is : {{response[1].schema['type']}}</p>
                 {% endif %}
                 <!--{% comment %}
                 {% for schema_details in schemaRes %}
