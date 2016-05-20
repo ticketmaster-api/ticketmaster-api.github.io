@@ -2,21 +2,21 @@
 layout: documentation
 categories:
 - documentation
-- archtics
-title: Archtics API
-excerpt: The Ticketmaster Archtics API
-keywords: Archtics API
+- season-tix
+title: Season Tix API
+excerpt: The Ticketmaster Season Tix API
+keywords: Season Tix API
 ---
 
 {: .article}
-# Archtics API
+# Season Tix API
 
-Archtics Ticketing Service (ATS) API Specification
+Season Tix API Specification
 {: .lead}
 
 ## Overview
 {: #overview }
-API Specification for add/update and receive an Archtics account, or add a name to an existing Archtics account
+API Specification for add/update and receive an Season Tix account, or add a name to an existing Season Tix account
 
 ## Customer Query
 {: #customer-query}
@@ -330,7 +330,7 @@ Content-Type: application/json;charset=UTF-8
 2.	Plan events are also included in the result set.  The event_name parameter will be the Plan Name, and the `events_in_plan` array will display all events within that plan.
 
 ### Frequency of operation:
-This API call can be made 1-2 times per day, or as Archtics events are added or changed.
+This API call can be made 1-2 times per day, or as Season Tix events are added or changed.
 
 ### Incremental or Comprehensive Data:
 This API will return comprehensive data.
@@ -385,7 +385,7 @@ This API will return comprehensive data.
 |O_25.	|`small_image_name`	|O|	Varchar(100)	|N|	Image name - small |
 |O_26.	|`large_image_name`	|O|	Varchar(100)	|N|	Image name - large |
 |O_27.	|`allow_singles`	|O|	Char(1)	|Y|	N- Do not allow a transaction that would create a single seat. <br/>Y – It is permissible to create a single, but should still be avoided when possible. |
-|O_28.	|`event_onsale_date`	|O|	datetime	|N|	Start date & time of when event is “on-sale”.  This is the INET on-sale, or the Archtics on-sale if INET is not set.  If neither are set, no value is returned.  Format:  YYYY-MM-DD HH:MM |
+|O_28.	|`event_onsale_date`	|O|	datetime	|N|	Start date & time of when event is “on-sale”.  This is the INET on-sale, or the Season Tix on-sale if INET is not set.  If neither are set, no value is returned.  Format:  YYYY-MM-DD HH:MM |
 |O_29.	|`event_offsale_date`	|O|	datetime	|N|	End date & time of when event is “off-sale” |
 | |`events_in_plan`	|O|	Array [	|N|	Array of events in a static plan |
 |O_30.  |`event_name`	|O|	Char(8)	|N|	Event Name |
@@ -492,11 +492,11 @@ Content-Type: application/json;charset=UTF-8
 #### NOTES:
 The caller can restrict the data returned by including optional input parameters, like "end_date" and "season_name" and "num_seats", etc.  This will reduce the number of events returned in the response.
 
-The list of classes in the "hold_classes" output array will be restricted to those Archtics classes for which the caller (uid) has privileges.
+The list of classes in the "hold_classes" output array will be restricted to those Season Tix classes for which the caller (uid) has privileges.
 
-The list of classes in the "avail_classes" output array will be restricted to those Archtics classes which are available for sale.
+The list of classes in the "avail_classes" output array will be restricted to those Season Tix classes which are available for sale.
 
-The Archtics Sell Location Rules are not considered for this API call.
+The Season Tix Sell Location Rules are not considered for this API call.
 
 If start_date is omitted, default start_date is today's date.  If end_date is omitted, end_date is 90 days after start_date.
 
@@ -1042,7 +1042,7 @@ See error messages in the output section.
 | O_42. | `gate_exit_portal	`|O|	varchar(120)	||	Gate Exit Portal - used on Mobile Barcode Page  (back view)
 | O_43. | `ticket_type_pc	`|O|	varchar(40)	||	Ticket Type / PC - used on Mobile Barcode Page  (back view)
 | O_44. | `class_attribute	`|O|	long varchar	||	List of class attribute abbreviations that apply to this block of seats. The attribute descriptions are provided in the System_Options call.|
-| O_45. | `event_id	`|O|	integer	 ||	The Archtics internal id for this event. |
+| O_45. | `event_id	`|O|	integer	 ||	The Season Tix internal id for this event. |
 | O_46. | `delayed_delivery	`|O|	char(1)	||	Indicator if this block of seats can be printed at this time.<br/>`Y` – Ticket cannot be printed at this time.<br/>`N` – Ticket can be printed.  Either because it is close enough to the event, or it has special allowance because of a price code or because the consumer has a list code. |
 | O_47. | `print_offset_date_time	`|O|	datetime	||	When printing is available for an event.  Only returned if Delayed_Delivery = Y. |
 | O_48. | `return_allowed_ind	`|O|	Char(1)	||	Can this ticket be returned by the consumer.<br/>`$` – No. Comp tickets cannot be returned<br/>`3` – No.  Tickets for sale on 3rd party site<br/>`A` – No.  Tickets have Added Credit assigned<br/>`C` – No. Price Code is not allowed for Consumer Return<br/>`D` – No. Event Date has past passed or time too close<br/>`E` – No. Event is NOT in the Event Selector; (Not allowed by the client)<br/>`F` – No. Tickets have already been forwarded<br/>`G` – No.  Club (Student) Group joined<br/>`H` – No.  Tickets have been forwarded to charity<br/>`L` – Tickets are Locked, no action allowed (Forced PID or Forced WC)<br/>`N` – No.  Product is not enabled<br/>`Q` – Tickets are Posted for resale (exchange)<br/>`R` – No. Tickets have been resold<br/>`V` – No - Non expandable plan<br/>`X` – No. Customer is restricted<br/>`Y` – Yes, ticket eligible for consumer return |
