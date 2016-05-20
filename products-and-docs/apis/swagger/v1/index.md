@@ -2,6 +2,7 @@
 layout: documentation
 categories:
 - documentation
+- generated
 - swagger
 - v1
 title: Example Swagger
@@ -28,8 +29,10 @@ data: swagger-pim-api
 
 {% endcapture %}
 
-
-{% assign releaseNotes = site.data.orgs.discovery-v2.methods-discovery-v1.releaseNotes %}
+{% assign pageMetaFolder = page.categories[2] %}
+{% assign pageMetaVersionFolder = page.categories[3] %}
+{% assign methodsDescription = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
+{% assign releaseNotes = methodsDescription.releaseNotes %}
 {% capture releaseNotes %}
     {%if releaseNotes%}
       {{ releaseNotes }}
@@ -39,6 +42,5 @@ data: swagger-pim-api
 {% endcapture %}
 
 {{ versionBlock }}
-{{ releaseNotes }}
 
 

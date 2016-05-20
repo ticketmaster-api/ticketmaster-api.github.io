@@ -2,7 +2,7 @@
     "method": [
         {
             "pathsParent":"/discovery/v2/attractions",
-            "id":"assets-assetId",
+            "id":"search-attractions",
             "title":"Search Attractions(test json)",
             "reqres": "discovery-api-codes/reqres-search-events.md",
             "codePath":"discovery-api-codes/search-events.md"
@@ -21,11 +21,11 @@
         },
         {
             "pathsParent":"/discovery/v2/attractions/{id}",
-            "id":"search",
+            "id":"attraction-details",
             "title":"search(test json)",
             "reqres": "discovery-api-codes/reqres-search-events.md",
             "codePath":"discovery-api-codes/search-events.md"
         }
     ],
-    "releaseNotes":"Release Notes : Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status' "
+    "releaseNotes":"Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status' "
 }
