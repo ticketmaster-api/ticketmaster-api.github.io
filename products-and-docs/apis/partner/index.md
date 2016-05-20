@@ -1411,9 +1411,9 @@ Add a shipping option to the event.  Note: some API users will be pre-configured
 ## Encryption Certificate [GET]
 {: #encrypt-cert}
 
-Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.  Not necessary for invoice transactions.
+Credit card information must be encrypted before sent to the API. Use this endpoint to get an encryption certificate value and id.  Not necessary for invoice transactions. Certificate is valid for 24 hours.
 
-/partners/v1/certificate?apikey={apikey}&cart_id={cart_id}
+/partners/v1/certificate?apikey={apikey}
 {: .code .red}
 
 *Polling: No*
@@ -1423,14 +1423,13 @@ Credit card information must be encrypted before sent to the API. Use this endpo
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
 
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+https://app.ticketmaster.com/partners/v1/certificate?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 {% highlight js %}
