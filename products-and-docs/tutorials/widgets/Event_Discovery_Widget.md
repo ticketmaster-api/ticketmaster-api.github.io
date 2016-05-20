@@ -32,20 +32,20 @@ Event Discovery widget is based on [Discovery API](/products-and-docs/apis/disco
 
 Open [widget configuration page](/products-and-docs/widgets/event-discovery/). Select technical tab. Fill the form.
 
-![Event Discovery widget technical tab](/products-and-docs/tutorials/img/EDW-config1.png)
+![Event Discovery widget technical tab](/products-and-docs/tutorials/img/edw-conf1.png)
 
 ## Step2. Configure visual appearance
 
 Select visual tab. Configure visual appearance of the widget.
 You can preview the widget on this page.
 
-![Event Discovery widget visual tab](/products-and-docs/tutorials/img/EDW-config2.png)
+![Event Discovery widget visual tab](/products-and-docs/tutorials/img/edw-conf2.png)
 
 ## Step3. Get widget code
 
 Press "Get code" button and you will get a pop-up window a code snippet of the widget.
 
-![Event Discovery widget code](/products-and-docs/tutorials/img/EDW-config3.png)
+![Event Discovery widget code](/products-and-docs/tutorials/img/edw-conf3.png)
 
 ## Step 4. Put widget on your page
 
