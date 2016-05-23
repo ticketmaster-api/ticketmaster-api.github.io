@@ -16,7 +16,7 @@ keywords: widget, sell tickets, direct payments
 {: .lead .double-margin}
 Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
 
-<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 comntent">
+<div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 comntent">
 {% for tutorials-widgets in site.pages %}
     {% if tutorials-widgets.categories[1] == "tutorials-widgets" %}
         <div class="tutorials-article">
