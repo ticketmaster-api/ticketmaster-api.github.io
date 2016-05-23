@@ -2,6 +2,7 @@
 layout: documentation
 categories:
 - documentation
+- generated
 - swagger
 - v2
 title: Example Swagger
@@ -14,8 +15,8 @@ redirect_from:
   layout: documentation
   categories:
   - documentation                   // main category
-  - swagger                         // if page.categories[1] == "swagger"  -> include swagger.html
-  - pim                             // identifier for additional metadata. When 'pim' methodsDescription = site.data.orgs.methods-pim-api
+  - swagger                         // if page.categories[1] == "swagger"  -> include swagger.html and it is 'folder name'
+  - v1                              // folder name
   title: Example Swagger            // not used
   data: swagger-pim-api             // file from swagger
 {% endcomment %}
@@ -32,11 +33,18 @@ redirect_from:
 
 
 
+{% assign pageMetaFolder = page.categories[2] %}
+{% assign pageMetaVersionFolder = page.categories[3] %}
+{% assign methodsDescription = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
+{% assign releaseNotes = methodsDescription.releaseNotes %}
 {% capture releaseNotes %}
-   {{ site.data.orgs.discovery-v2.methods-discovery-v2.releaseNotes }}
+    {%if releaseNotes%}
+      {{ releaseNotes }}
+    {%else%}
+      Release Notes not added.
+   {%endif%}
 {% endcapture %}
 
 {{ versionBlock }}
-{{ releaseNotes }}
 
 
