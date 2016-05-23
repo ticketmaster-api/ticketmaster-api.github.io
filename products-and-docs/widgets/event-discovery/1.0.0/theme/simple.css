@@ -416,7 +416,7 @@ div[w-theme="simple"] .event-logo:before {
 
 div[w-theme="simple"] .event-logo:before {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-gray-logo.svg");
 }
 
 /*
