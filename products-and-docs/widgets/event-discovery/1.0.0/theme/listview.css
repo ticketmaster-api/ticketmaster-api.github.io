@@ -324,8 +324,12 @@ div[w-theme="listview"] .legal-notice {
     position: absolute;
     left: 30px;
     bottom: 36px;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 11px;
+    line-height: 20px;
+    color: #fff;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .legal-notice {
     color: #768692;
 }
 
@@ -342,28 +346,34 @@ div[w-theme="listview"] .events-counter {
 div[w-theme="listview"] .event-logo-box {
     z-index: 10;
     position: absolute;
-    bottom: 25px;
+    bottom: 22px;
     left: 0;
     width: 100%;
-    height: 36px;
+    height: 44px;
     background-color: #b7c9d3;
 }
 
 div[w-theme="listview"] .event-logo {
     display: block;
     position: absolute;
-    top: 6px;
+    top: 15px;
     right: 10px;
-    width: 159px;
-    height: 25px;
+    width: 160px;
+    height: 18px;
+    font-size: 11px;
+    color: #fff;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-logo {
+    color: #768692;
 }
 
 div[w-theme="listview"] .event-logo:before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 60px;
     right: 0;
-    top: 0;
+    top: -1px;
     bottom: 0;
     background-repeat: no-repeat;
     -webkit-transition: opacity 0.2s ease-in-out;
@@ -373,7 +383,12 @@ div[w-theme="listview"] .event-logo:before {
 
 div[w-theme="listview"] .event-logo:before {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-white-logo.svg");
+    background-size: 98px;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-logo:before {
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-gray-logo.svg");
 }
 
 /*group*/

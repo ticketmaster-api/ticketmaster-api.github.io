@@ -358,17 +358,20 @@ div[w-theme="oldschool"] .event-logo-box:before{
 div[w-theme="oldschool"] .event-logo {
     position: relative;
     display: inline-block;
-    width: 159px;
-    height: 25px;
+    width: 160px;
+    height: 18px;
     top: -8px;
+    font-size: 11px;
+    color: #768692;
+    text-align: left;
 }
 
 div[w-theme="oldschool"] .event-logo:before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 60px;
     right: 0;
-    top: 0px;
+    top: 3px;
     bottom: 0;
     background-repeat: no-repeat;
     background-position: center center;
@@ -379,7 +382,8 @@ div[w-theme="oldschool"] .event-logo:before {
 
 div[w-theme="oldschool"] .event-logo:before {
     /* TODO: add http://developer.ticketmaster.com/*/
-    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg");
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-size: 98px;
 }
 
 /*
