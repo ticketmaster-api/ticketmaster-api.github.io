@@ -34,12 +34,14 @@
 
 
                         screenBtn.addEventListener("click", function(){
-                            var title = $(this).parent().parent().parent().find('h2')
-                                .clone(true)
-                                .find('a')
-                                .remove()
-                                .end()
-                                .html();
+                            if ($(this).parent().parent().prev().hasClass('window-title')) {
+                                var title = $(this).parent().parent().prev()
+                                    .clone(true)
+                                    .find('a')
+                                    .remove()
+                                    .end()
+                                    .html();
+                            } else var title = '';
 
                             var content = $(this).parent().parent()
                                 .clone(true)

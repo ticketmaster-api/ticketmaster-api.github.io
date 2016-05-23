@@ -281,7 +281,7 @@
             color: $blue;
           }
         }
-        .lang-selector {
+        .lang-selector, .t-lang-selector {
           /* width: 95%;
           margin-left: auto;
           margin-right: auto;
@@ -1245,7 +1245,7 @@
         margin: 0;
       }
     }
-    .lang-selector, .reqres {
+    .lang-selector, .t-lang-selector, .reqres {
       width: 95%;
       margin-bottom: 15px;
       overflow:hidden;

@@ -50,6 +50,9 @@ Try it out:
 
 Because everything on the web is made up of HTML, we'll start there. The following code creates the simplest of web pages:
 
+{: .window-title}
+The basic HTML page
+
 {: .tutorial-code}
 >[HTML](#html)
 >[JavaScript](#js)
