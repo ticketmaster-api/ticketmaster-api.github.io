@@ -387,7 +387,7 @@ div[w-theme="simple"] .event-logo-box {
     bottom: 36px;
     left: 0;
     width: 100%;
-    height: 36px;
+    height: 44px;
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 10;
 }
@@ -395,16 +395,18 @@ div[w-theme="simple"] .event-logo-box {
 div[w-theme="simple"] .event-logo {
     display: block;
     position: absolute;
-    top: 6px;
-    right: 10px;
-    width: 159px;
-    height: 25px;
+    top: 15px;
+    right: 19px;
+    width: 160px;
+    height: 18px;
+    font-size: 11px;
+    color: #768692;
 }
 
 div[w-theme="simple"] .event-logo:before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 60px;
     right: 0;
     top: 0;
     bottom: 0;
@@ -417,6 +419,7 @@ div[w-theme="simple"] .event-logo:before {
 div[w-theme="simple"] .event-logo:before {
     /* TODO: add http://developer.ticketmaster.com/*/
     background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-size: 98px;
 }
 
 /*
@@ -581,10 +584,7 @@ div[w-theme="simple"][w-proportion="m"] .event-buy-btn {
     display: inline-block;
     margin: 0px 0 4px;
 }
-div[w-theme="simple"][w-proportion="m"] .event-logo {
-    top: 10px;    
-    right: 24px;
-}
+
 
 div[w-theme="simple"][w-proportion="m"] .event-logo-box {
     height: 44px;

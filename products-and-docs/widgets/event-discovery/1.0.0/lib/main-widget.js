@@ -493,6 +493,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       logo.classList.add("event-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
+      logo.innerHTML = 'Powered by:';
 
       var logoBox = document.createElement('div');
       logoBox.classList.add("event-logo-box");
