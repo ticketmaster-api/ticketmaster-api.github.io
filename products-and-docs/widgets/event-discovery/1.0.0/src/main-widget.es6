@@ -1151,6 +1151,9 @@ class TicketmasterEventDiscoveryWidget {
       barcodeBtn.href = url;
       barcodeBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickEventName', 'click');");
       domNode.appendChild(barcodeBtn);
+      let bottomBg = document.createElement("span");
+      bottomBg.classList.add("barcode-bottom");
+      domNode.appendChild(bottomBg);
     }
   }
 
