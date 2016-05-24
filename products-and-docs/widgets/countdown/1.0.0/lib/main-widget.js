@@ -183,14 +183,13 @@ var TicketmasterCountdownWidget = function () {
     get: function get() {
       return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/" + this.eventId + ".json";
     }
-
-    // get themeUrl() { return "http://10.24.12.162:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
-
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/";
+      return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/";
     }
+    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }
+
   }, {
     key: "portalUrl",
     get: function get() {
@@ -263,9 +262,9 @@ var TicketmasterCountdownWidget = function () {
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
     // Set theme modificators
-    // this.themeModificators = {
-    //   "oldschool" : this.oldSchoolModificator.bind(this)
-    // };
+    /*this.themeModificators = {
+      "oldschool" : this.oldSchoolModificator.bind(this)
+    };*/
 
     this.config = this.widgetRoot.attributes;
     this.eventId = this.eventIdDefault;
@@ -296,9 +295,9 @@ var TicketmasterCountdownWidget = function () {
       this.showMessage("Please enter event ID.", true, null);
     }
 
-    // if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-    //   this.themeModificators[ this.widgetConfig.theme ]();
-    // }
+    /*if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+      this.themeModificators[ this.widgetConfig.theme ]();
+    }*/
 
     this.embedUniversePlugin();
     this.embedTMPlugin();
@@ -544,8 +543,9 @@ var TicketmasterCountdownWidget = function () {
     }
 
     //adds general admission element for OLDSCHOOL theme
-    // oldSchoolModificator(){
-    // }
+    /*oldSchoolModificator(){
+      console.log('inside oldSchoolModificator' );
+    }*/
 
   }, {
     key: "formatDate",
@@ -596,7 +596,7 @@ var TicketmasterCountdownWidget = function () {
     }
   }, {
     key: "update",
-    value: function update() {
+    value: function update(isFullWidthTheme) {
 
       var oldTheme = this.config.constructor();
       for (var attr in this.config) {
@@ -611,12 +611,32 @@ var TicketmasterCountdownWidget = function () {
       this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
       this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
-      if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
+      if (this.config.theme !== null) {
+        this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
+      }
+
+      if (this.needToUpdate(this.config, oldTheme, this.updateExceptions) || isFullWidthTheme) {
         this.clear();
 
-        // if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-        //   this.themeModificators[ this.widgetConfig.theme ]();
-        // }
+        if (this.widgetConfig.theme !== 'simple_countdown') {
+          var heightStatic = '700px';
+          //draw inline style
+          //border
+          this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
+          this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
+
+          //set width
+          this.widgetRoot.style.width = "100%";
+          this.widgetRoot.style.height = heightStatic;
+          this.widgetRoot.style.display = "block";
+          this.eventsRootContainer.style.width = "100%";
+          this.eventsRootContainer.style.height = heightStatic;
+          this.widgetConfig.width = "100%";
+        }
+
+        /*if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+          this.themeModificators[ this.widgetConfig.theme ]();
+        }*/
 
         if (this.apiUrl && this.eventId) {
           this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
@@ -727,6 +747,9 @@ var TicketmasterCountdownWidget = function () {
           myImg = element.url;
         }
       });
+      if (myImg === "") {
+        myImg = images[images.length - 1].url;
+      }
       return myImg;
     }
   }, {

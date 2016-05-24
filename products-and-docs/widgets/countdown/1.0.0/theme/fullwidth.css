@@ -1,0 +1,712 @@
+/* FONTS */
+/* TODO: update after release to  http://developer.ticketmaster.com/*/
+@font-face {
+    font-family: "TMSans-Regular";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "TMSans-Light";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "TMSans-Italic";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "TMSans-Bold", Arial, serif;
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "InterstateWGL-Black";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-2.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-2.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-3.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-1.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Common styles for all themes  */
+div[w-theme="fullwidth"] .events-root-container {
+
+}
+
+div[w-theme="fullwidth"] {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    font-family: 'TMSans-Regular', Arial, serif;
+}
+
+div[w-theme="fullwidth"] a,
+div[w-theme="fullwidth"] a:hover,
+div[w-theme="fullwidth"] a:focus,
+div[w-theme="fullwidth"] a:active {
+    text-decoration: none;
+}
+
+div[w-theme="fullwidth"] .event-pretended-link {
+    cursor: pointer;
+    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="fullwidth"] .event-pretended-link:hover {
+    opacity: 0.7;
+}
+
+/*
+* event-message
+*/
+
+div[w-theme="fullwidth"] .event-message {
+    position: absolute;
+    padding: 16px 46px 16px 52px;
+    left: 10px;
+    right: 10px;
+    top: -50%;
+    border-radius: 4px;
+    font-family: "TMSans-Bold", Arial, serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ffffff;
+    opacity: 0;
+    z-index: 10;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: #7356a5 url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/message_logo.svg") no-repeat 16px 50%;
+    -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+div[w-theme="fullwidth"] .event-message__content {
+}
+
+div[w-theme="fullwidth"] .event-message-visible {
+    top: 10px;
+    opacity: 1;
+}
+
+div[w-theme="fullwidth"] .event-message-visible.event-message-started {
+    top: 48px;
+    margin: 0 14px;
+    padding: 20px 46px;
+/ / max-height: 96 px;
+    /*font-family: "TMSans-Bold", Arial, serif;*/
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    background: rgba(208, 0, 110, 0.7) none;
+    border-radius: 0;
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .event-message-visible.event-message-started {
+    top: 14px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* event-message END*/
+
+/*hide close button*/
+div[w-theme="fullwidth"] .event-message-visible.event-message-started .event-message__btn {
+    display: none;
+}
+
+div[w-theme="fullwidth"] .event-message__btn {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    /* TODO: update after release to  http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ic-close-small-white.svg") no-repeat 50% 50%;
+}
+
+div[w-theme="fullwidth"][w-layout="horizontal"] .event-message-visible.event-message-started {
+    width: 45%;
+    top: 36px;
+    left: initial;
+}
+
+/*
+* event-message END
+*/
+
+div[w-theme="fullwidth"] .events-root-container {
+    overflow: hidden;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #e5e5e5;
+    border-style: solid;
+    border-color: #ccc;
+
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 900;
+}
+
+div[w-theme="fullwidth"] ul {
+    margin: 0;
+    padding: 0;
+    -webkit-transition: margin 0.5s ease-in-out;
+    -moz-transition: margin 0.5s ease-in-out;
+    transition: margin 0.5s ease-in-out;
+}
+
+/*  question  */
+div[w-theme="fullwidth"] .event-question {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="fullwidth"] .event-question:before,
+div[w-theme="fullwidth"] .event-question:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: no-repeat center;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+div[w-theme="fullwidth"] .event-question:before {
+    opacity: 0;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/question-ic-blue.svg");
+}
+
+div[w-theme="fullwidth"] .event-question:after {
+    opacity: 0.7;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/question-ic-white.svg");
+}
+
+div[w-theme="fullwidth"] .event-question:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="fullwidth"] .event-question:hover:after {
+    opacity: 0;
+}
+
+div[w-theme="fullwidth"] .bg-cover {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    background-size: cover;
+    background: center top;
+}
+
+/* Theme special styles */
+div[w-theme="fullwidth"] .event-wrapper {
+    display: block;
+    position: relative;
+    height: 700px;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 1.3;
+    color: #fff;
+}
+
+div[w-theme="fullwidth"] .event-content-wraper,
+div[w-theme="fullwidth"] .event-wrapper:before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+div[w-theme="fullwidth"] .event-wrapper:before {
+    content: '';
+    /*background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), -moz-linear-gradient(top, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 15%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), -webkit-linear-gradient(top, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 15%);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 15%);*/
+
+    background: -moz-linear-gradient(right, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), -moz-linear-gradient(top, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 20%);
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), -webkit-linear-gradient(top, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 20%);
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 20%);
+}
+
+div[w-theme="fullwidth"] .event-content-wraper {
+    /*width: 100%;
+    padding: 277px 24px 0;*/
+    padding: 0px 24px 72px;
+    top: 50%;
+    width: 55%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: "TMSans-Bold", Arial, serif;
+}
+
+div[w-theme="fullwidth"] .event-name {
+    display: block;
+    display: -webkit-box;
+    text-transform: uppercase;
+    /*font-family: "TMSans-Bold", Arial, serif;*/
+    margin-bottom: 24px;
+    font-size: 54px;
+    width: 100%;
+    white-space: normal;
+    max-height: 116px;
+    height: 116px;
+    line-height: 64px;
+    /*ellipsis effect*/
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /*ellipsis effect end*/
+
+}
+
+div[w-theme="fullwidth"] .event-date-wraper {
+    display: block;
+    /*font-family: "TMSans-Bold", Arial, serif;*/
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 24px;
+    width: 100%;
+    /*max-width: 560px;*/
+}
+div[w-theme="fullwidth"] .event-date {
+    color: rgba(255, 255, 255, .7);
+}
+
+div[w-theme="fullwidth"] .address-wrapper {
+    /*font-family: "TMSans-Regular", Arial, serif;*/
+    font-size: 24px;
+    width: 100%;
+    /*max-width: 560px;*/
+    display: block;
+    /*display: -webkit-box;*/
+    height: 32px;
+    line-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+div[w-theme="fullwidth"] .event-address {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+div[w-theme="fullwidth"] .event-address:after {
+    content: ',\00a0';
+    display: inline-block;
+}
+
+div[w-theme="fullwidth"] .address-wrapper .event-address:last-child:after {
+    display: none;
+}
+
+div[w-theme="fullwidth"] .category-wrapper {
+   /* display: block;
+    font-family: "TMSans-Bold", Arial, serif;*/
+}
+
+div[w-theme="fullwidth"] .address-wrapper,
+div[w-theme="fullwidth"] .category-wrapper {
+   /* opacity: 0.7;*/
+}
+
+div[w-theme="fullwidth"] .event-category:before {
+    content: ', ';
+}
+
+div[w-theme="fullwidth"] .event-category:first-child:before {
+    content: '';
+}
+
+div[w-theme="fullwidth"] .legal-notice {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 11px;
+    font-size: 11px;
+    line-height: 16px;
+    color: #ffffff;
+    opacity: 0.7;
+    width: 60px;
+}
+
+div[w-theme="fullwidth"] .legal-notice:hover,
+div[w-theme="fullwidth"] .legal-notice:focus,
+div[w-theme="fullwidth"] .legal-notice:active {
+    color: #019cde;
+}
+
+div[w-theme="fullwidth"] .event-logo-box {
+    position: absolute;
+    bottom: 36px;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+div[w-theme="fullwidth"] .event-logo {
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 24px;
+    width: 159px;
+    height: 25px;
+}
+
+div[w-theme="fullwidth"] .event-logo:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    /* TODO: add http://developer.ticketmaster.com/*/
+    background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg") no-repeat;
+}
+
+/* BUY NOW */
+div[w-theme="fullwidth"] .event-buy-btn {
+    position: absolute;
+    left: 24px;
+    bottom: 42px;
+    width: 74px;
+    height: 24px;
+    padding-top: 5px;
+    border-radius: 4px;
+    background-color: #009cde;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "TMSans-Bold", Arial, serif;
+    font-size: 11px;
+    line-height: 16px;
+    color: #ffffff;
+    text-align: center;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="fullwidth"] .event-buy-btn:hover {
+    background-color: #2A7CC7;
+}
+
+div[w-theme="fullwidth"] .event-buy-btn[href=''],
+div[w-theme="fullwidth"] .event-buy-btn[href='']:hover {
+    cursor: default;
+    opacity: 0;
+}
+
+/*time counter*/
+
+div[w-theme="fullwidth"] .events-count-down {
+    position: absolute;
+    display: block;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    width: 45%;
+    top: 48px;
+    right: 24px;
+    padding: 0;
+}
+
+div[w-theme="fullwidth"] .events-count-down:before {
+    content: 'time left';
+    text-transform: uppercase;
+    background-color: rgba(65, 65, 65, 0.5);
+    font-family: "TMSans-Bold", Arial, serif;
+    display: block;
+    font-size: 14px;
+    line-height: 28px;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+div[w-theme="fullwidth"] .events-count-down.hide-countDownBox {
+    display: none;
+}
+
+div[w-theme="fullwidth"] .events-count-down .events-count-down__month,
+div[w-theme="fullwidth"] .events-count-down .events-count-down__day,
+div[w-theme="fullwidth"] .events-count-down .events-count-down__hour,
+div[w-theme="fullwidth"] .events-count-down .events-count-down__minute,
+div[w-theme="fullwidth"] .events-count-down .events-count-down__second {
+    width: 24.25%;
+    margin: 0 1% 0 0;
+    height: 58px;
+    line-height: 58px;
+    font-family: InterstateWGL-Black, Arial, serif;
+    font-size: 38px;
+    color: #414141;
+    background-color: rgba(250, 250, 250, .8);
+    display: inline-block;
+    position: relative;
+}
+
+div[w-theme="fullwidth"] .events-count-down span:last-child {
+    margin-right: 0;
+}
+
+div[w-theme="fullwidth"] .events-count-down__month:after,
+div[w-theme="fullwidth"] .events-count-down__day:after,
+div[w-theme="fullwidth"] .events-count-down__hour:after,
+div[w-theme="fullwidth"] .events-count-down__minute:after,
+div[w-theme="fullwidth"] .events-count-down__second:after {
+    content: '';
+    text-transform: uppercase;
+    background-color: rgba(65, 65, 65, 0.5);
+    font-family: "TMSans-Bold", Arial, serif;
+    display: block;
+    position: absolute;
+    height: 24px;
+    width: 100%;
+    top: 100%;
+    margin-top: 3px;
+    font-size: 10px;
+    line-height: 22px;
+    color: #fff;
+}
+
+div[w-theme="fullwidth"] .events-count-down__month:after {
+    content: 'month';
+}
+
+div[w-theme="fullwidth"] .events-count-down__day:after {
+    content: 'days';
+}
+
+div[w-theme="fullwidth"] .events-count-down__hour:after {
+    content: 'hrs';
+}
+
+div[w-theme="fullwidth"] .events-count-down__minute:after {
+    content: 'min';
+}
+
+div[w-theme="fullwidth"] .events-count-down__second:after {
+    content: 'sec';
+}
+
+div[w-theme="fullwidth"] .events-count-down.hide-month > .events-count-down__month {
+    display: none;
+}
+
+div[w-theme="fullwidth"] .events-count-down.hide-days > .events-count-down__day {
+    display: none;
+}
+
+div[w-theme="fullwidth"] .events-count-down.hide-seconds > .events-count-down__second {
+    display: none;
+}
+
+div[w-theme="fullwidth"] .events-count-down.hide-month.hide-days > .events-count-down__minute {
+    margin: 0 1% 0 0;
+}
+
+div[w-theme="fullwidth"] .events-count-down.hide-month.hide-days > span {
+    width: 32.660%;
+}
+
+/*claer margin for last elem in counter*/
+div[w-theme="fullwidth"] .events-count-down.hide-month > .events-count-down__minute {
+/ / margin-right: 0;
+}
+
+div[w-theme="fullwidth"] .events-count-down.hide-seconds > .events-count-down__minute {
+    margin-right: 0;
+}
+
+/*time counter END*/
+
+/*  LAYOUT  */
+
+/*  LAYOUT  END*/
+
+@media (min-width: 1199px) {
+    div[w-theme="fullwidth"]{
+        max-height: 700px;
+    }
+    div[w-theme="fullwidth"] .event-content-wraper {}
+}
+@media (min-width: 767px )and (max-width: 1199px) {
+    div[w-theme="fullwidth"]{
+        max-height: 530px;
+    }
+    div[w-theme="fullwidth"] .event-content-wraper {
+        top: 35%;
+        max-height: 285px;
+    }
+    div[w-theme="fullwidth"] .event-name {
+        font-size: 34px;
+        max-height: 76px;
+        height: 76px;
+        line-height: 42px;
+        margin-bottom: 14px;
+    }
+    div[w-theme="fullwidth"] .event-date-wraper {
+        font-size: 16px;
+        max-height: 56px;
+        height: 56px;
+        line-height: 28px;
+        margin-bottom: 14px;
+    }
+    div[w-theme="fullwidth"] .address-wrapper {
+        font-size: 16px;
+        line-height: 22px;
+        max-height: 44px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 767px) {
+    div[w-theme="fullwidth"]{
+        max-height: 500px;
+    }
+    div[w-theme="fullwidth"] .event-content-wraper {
+        top: 35%;
+        width: 100%;
+        max-height: 255px;
+    }
+    div[w-theme="fullwidth"] .events-count-down {
+        width: 100%;
+        right: 0;
+        padding: 0 24px;
+    }
+    div[w-theme="fullwidth"] .event-name {
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 14px;
+        max-height: 56px;
+        height: 56px;
+    }
+    div[w-theme="fullwidth"] .event-date-wraper {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 14px;
+        max-height: 16px;
+        height: 16px;
+    }
+    div[w-theme="fullwidth"] .address-wrapper {
+        font-size: 12px;
+        line-height: 16px;
+        max-height: 32px;
+        height: 32px;
+    }
+}
+
+
+/* LAYOUT 300x250
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down {
+    top: 14px;
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down:before {
+    font-size: 10px;
+    line-height: 12px;
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__month,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__day,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__hour,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__minute,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__second {
+    height: 27px;
+    line-height: 27px;
+    font-size: 18px;
+    text-align: right;
+    padding: 3px;
+
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__month:after,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__day:after,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__hour:after,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__minute:after,
+div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__second:after {
+    top: 0%;
+    margin-top: -3px;
+    height: 14px;
+    text-align: left;
+    color: #414141;
+    background: none;
+    font-family: "TMSans-Regular", Arial, serif;
+    font-size: 8px;
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .event-content-wraper {
+    padding-top: 68px;
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .event-logo-box {
+    bottom: 32px
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .event-name {
+    font-size: 18px;
+    font-family: "TMSans-Bold", Arial, serif;
+    margin-bottom: 10px;
+    line-height: 24px;
+    height: 50px;
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .event-date {
+    color: rgba(255, 255, 255, .7);
+}
+
+div[w-theme="fullwidth"][w-proportion="m"] .event-question {
+    display: none;
+}
+*/
+/*  LAYOUT 300x250 END*/
