@@ -108,147 +108,6 @@
                 {% endcase %}
             {% endfor %}
 
-            {% if method[1].responses %}
-                <div class="swagger-response">
-                <h3>Responses:</h3>
-                {% for response in method[1].responses %}
-                <p>
-                    <span class="swagger-response-code">{{ response[0] }}</span>
-                    {{ response[1].description }}
-                </p>
-                {% if response[1].schema['type'] %}
-
-                    <!--{% comment %} Parse inner prop if its obj or arr
-                    <ul>
-                        {% for item in response[1].schema  %}
-                        &lt;!&ndash;if obj&ndash;&gt;
-                            {% assign collection = item[1] %}
-                            {% for itemCollection in collection  %}
-                                {%if itemCollection[0] %}
-                                    <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
-                                {% endif %}
-                            {% endfor %}
-                            {% assign collection = '' %}
-                        &lt;!&ndash;if obj&ndash;&gt;
-                        {% endfor %}
-                    </ul>
-                    {% endcomment %}-->
-
-                    <ul class="nested-list">
-                        {% if response[1].schema.type == 'string'%}
-                        <li>
-                            <code class="highlighter-rouge">schema</code>{% if response[1].schema.type %} ({{ response[1].schema.type | lstrip }}){% endif %} - {% if response[1].schema.description %}{{ response[1].schema.description | lstrip}}{% elsif response[1].schema.format %}{{ response[1].schema.format | lstrip}}{%else%}A simple string response{% endif %}
-<!--                            {% comment %}
-                            {% if response[1].schema.headers %}
-                            <ul>{% for item in response[1].schema.headers  %}
-                                    {{ item | lstrip}}
-                                    <li><code class="highlighter-rouge">{{ item[0] }}</code>{% if item[1].type %} ({{ item[1].type | lstrip }}){% endif %} - {{ item[1].description }}</li>
-                                {% endfor %}</ul>
-                            {% endif %}{% endcomment %}-->
-                            <ul>
-                                {% for item in response[1].schema  %}
-                                <!--if obj-->
-                                {% assign collection = item[1] %}
-                                    {% for itemCollection in collection  %}
-                                        {%if itemCollection[0] %}
-                                        <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% assign collection = '' %}
-                                <!--if obj-->
-                                {% endfor %}
-                            </ul>
-
-                        </li>
-                        {% endif %}
-                    </ul>
-                {% endif %}<!--{% comment %} END response[1].schema['type'] {% endcomment %}-->
-
-                {% if response[1].schema['$ref'] %}
-                {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
-                {% assign schemaSplit = schemaRes | split: ' ' %}
-                <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
-                <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
-                    {{ schemaSplit[1] }}
-                    {% for schemaSplitType in schemaSplit[1] %}
-                    <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
-                    {% endfor %}
-                </h5>
-                <ul class="nested-list">
-                    {% for pathFirsLvl in schemaSplit[0] %}
-                    {% for pathScdLvl in schemaSplit[1] %}
-                    {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
-                    <li>
-                        <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
-                        <ul>
-                            {% for item in property[1].items %}
-                            <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
-                                <ul>
-                                    {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                                    {% assign schemaSplitInner = schemaResInner | split: ' ' %}
-                                    {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
-                                    {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-                                    <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
-                                    </li>
-                                    {% endfor %}
-                                    {% endfor %}
-                                </ul>
-                                {%endif%}
-                            </li>
-                            {% endfor %}
-                            {% if property[1]['$ref'] %}
-                            <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
-                                <ul>
-                                    {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                                    {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
-                                    {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
-                                    {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                    <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
-                                    </li>
-                                    {% endfor %}
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                    {% endfor %}
-                    {% endfor %}
-                </ul>
-                {% endif %}<!--{% comment %} END response[1].schema['$ref'] {% endcomment %}-->
-
-                {% if response[1].schema['type'] == 'array' %}
-                <p>schema['type'] is : {{response[1].schema['type']}}</p>
-                {% endif %}
-
-                <!--{% comment %}
-                {% for schema_details in schemaRes %}
-                    <p>{{ swagger.schema_details }}</p>
-                    <h4 class="14"> schemaRes14 : {{ swagger.schema_details.schemaRes }}</h4>
-                    <h4 class="15"> schemaRes15 : {{ swagger.schema_details.['schemaRes'] }}</h4>
-                {% endfor %}-->
-
-                <!--
-                {% for content_type in swagger.produces %}
-                    {% if response[1].examples[content_type] %}
-                    {% assign example = response[1].examples[content_type] %}
-                        {% if content_type contains 'json' %}
-                        {% highlight json %}{{ example }}{% endhighlight %}
-                        {% elsif content_type contains 'xml' %}
-                        {% highlight xml %}{{ example }}{% endhighlight %}
-                        {% else %}
-                        {% highlight http %}{{ example }}{% endhighlight %}
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                {% endcomment %}
-                -->
-                {% endfor %}
-            </div>
-            {% endif %}
-
             {% if tableUrlParam %}
             <div class="swagger-parameters">
                 <h3>URL parameters:</h3>
@@ -415,7 +274,148 @@
                         </tbody>
                     </table>
                 </div>
+            {% endif %}
+
+            {% if method[1].responses %}
+            <div class="swagger-response">
+                <h3>Response structure:</h3>
+                {% for response in method[1].responses %}
+                <p>
+                    <span class="swagger-response-code">{{ response[0] }}</span>
+                    {{ response[1].description }}
+                </p>
+                {% if response[1].schema['type'] %}
+
+                <!--{% comment %} Parse inner prop if its obj or arr
+                <ul>
+                    {% for item in response[1].schema  %}
+                    &lt;!&ndash;if obj&ndash;&gt;
+                        {% assign collection = item[1] %}
+                        {% for itemCollection in collection  %}
+                            {%if itemCollection[0] %}
+                                <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
+                            {% endif %}
+                        {% endfor %}
+                        {% assign collection = '' %}
+                    &lt;!&ndash;if obj&ndash;&gt;
+                    {% endfor %}
+                </ul>
+                {% endcomment %}-->
+
+                <ul class="nested-list">
+                    {% if response[1].schema.type == 'string'%}
+                    <li>
+                        <code class="highlighter-rouge">schema</code>{% if response[1].schema.type %} ({{ response[1].schema.type | lstrip }}){% endif %} - {% if response[1].schema.description %}{{ response[1].schema.description | lstrip}}{% elsif response[1].schema.format %}{{ response[1].schema.format | lstrip}}{%else%}A simple string response{% endif %}
+                        <!--                            {% comment %}
+                                                    {% if response[1].schema.headers %}
+                                                    <ul>{% for item in response[1].schema.headers  %}
+                                                            {{ item | lstrip}}
+                                                            <li><code class="highlighter-rouge">{{ item[0] }}</code>{% if item[1].type %} ({{ item[1].type | lstrip }}){% endif %} - {{ item[1].description }}</li>
+                                                        {% endfor %}</ul>
+                                                    {% endif %}{% endcomment %}-->
+                        <ul>
+                            {% for item in response[1].schema  %}
+                            <!--if obj-->
+                            {% assign collection = item[1] %}
+                            {% for itemCollection in collection  %}
+                            {%if itemCollection[0] %}
+                            <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
+                            {% endif %}
+                            {% endfor %}
+                            {% assign collection = '' %}
+                            <!--if obj-->
+                            {% endfor %}
+                        </ul>
+
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}<!--{% comment %} END response[1].schema['type'] {% endcomment %}-->
+
+                {% if response[1].schema['$ref'] %}
+                {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                {% assign schemaSplit = schemaRes | split: ' ' %}
+                <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
+                <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
+                    {{ schemaSplit[1] }}
+                    {% for schemaSplitType in schemaSplit[1] %}
+                    <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
+                    {% endfor %}
+                </h5>
+                <ul class="nested-list">
+                    {% for pathFirsLvl in schemaSplit[0] %}
+                    {% for pathScdLvl in schemaSplit[1] %}
+                    {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+                    <li>
+                        <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+                        <ul>
+                            {% for item in property[1].items %}
+                            <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
+                                <ul>
+                                    {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                    {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+                                    {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+                                    {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+                                    <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                    </li>
+                                    {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                                {%endif%}
+                            </li>
+                            {% endfor %}
+                            {% if property[1]['$ref'] %}
+                            <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
+                                <ul>
+                                    {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                    {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
+                                    {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
+                                    {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                    <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                    </li>
+                                    {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+                {% endif %}<!--{% comment %} END response[1].schema['$ref'] {% endcomment %}-->
+
+                {% if response[1].schema['type'] == 'array' %}
+                <p>schema['type'] is : {{response[1].schema['type']}}</p>
                 {% endif %}
+
+                <!--{% comment %}
+                {% for schema_details in schemaRes %}
+                    <p>{{ swagger.schema_details }}</p>
+                    <h4 class="14"> schemaRes14 : {{ swagger.schema_details.schemaRes }}</h4>
+                    <h4 class="15"> schemaRes15 : {{ swagger.schema_details.['schemaRes'] }}</h4>
+                {% endfor %}-->
+
+                <!--
+                {% for content_type in swagger.produces %}
+                    {% if response[1].examples[content_type] %}
+                    {% assign example = response[1].examples[content_type] %}
+                        {% if content_type contains 'json' %}
+                        {% highlight json %}{{ example }}{% endhighlight %}
+                        {% elsif content_type contains 'xml' %}
+                        {% highlight xml %}{{ example }}{% endhighlight %}
+                        {% else %}
+                        {% highlight http %}{{ example }}{% endhighlight %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% endcomment %}
+                -->
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
 
     </div>
