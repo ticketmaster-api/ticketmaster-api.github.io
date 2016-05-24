@@ -230,7 +230,7 @@ div[w-theme="fullwidth"] .bg-cover {
     display: block;
     overflow: hidden;
     background-size: cover;
-    background: no-repeat center top;
+    background: center top;
 }
 
 /* Theme special styles */
@@ -571,15 +571,7 @@ div[w-theme="fullwidth"] .events-count-down.hide-seconds > .events-count-down__m
 /*time counter END*/
 
 /*  LAYOUT  */
-div[w-theme="fullwidth"][w-layout="horizontal"] .event-name {}
-div[w-theme="fullwidth"][w-layout="horizontal"] .address-wrapper {}
 
-div[w-theme="fullwidth"][w-layout="horizontal"] .address-wrapper,
-div[w-theme="fullwidth"][w-layout="horizontal"] .event-date-wraper {}
-
-div[w-theme="fullwidth"][w-layout="horizontal"] .event-wrapper:before {}
-div[w-theme="fullwidth"][w-layout="horizontal"] .event-date-wraper {}
-div[w-theme="fullwidth"][w-layout="horizontal"] .events-count-down {}
 /*  LAYOUT  END*/
 
 @media (min-width: 1199px) {

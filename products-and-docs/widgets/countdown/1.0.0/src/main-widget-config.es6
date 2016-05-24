@@ -81,7 +81,7 @@
       $getCodeButton.prop("disabled",true);
     }else {
       $getCodeButton.prop('disabled',false);
-    };
+    }
   }
 
   var changeState = function(event){
@@ -89,7 +89,7 @@
       return;
     }
     const targetValue = event.target.value,
-        targetName = event.target.name;
+          targetName = event.target.name;
 
     if(targetName === "w-theme" ){
       let widthSlider = $('.js_widget_width_slider'),
@@ -112,8 +112,10 @@
         });
         widgetNode.setAttribute('w-height', 700);
       }else {
-        let currID = widgetNode.getAttribute('w-id');
-        resetWidget($configForm , currID);
+        let excludeOption = {
+              id : widgetNode.getAttribute('w-id')
+            };
+        resetWidget($configForm , excludeOption );
 
         $layoutBox.slideDown("fast");
         widthSlider.slideDown("fast");
@@ -125,14 +127,6 @@
         });
       }
     }
-    
-    // if(targetName === "w-theme"){
-    //   if(widgetNode.getAttribute('w-layout') === 'horizontal'){
-    //     widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
-    //   }
-    //   widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
-    // }
-    //console.log('start change');
 
 
     /*
@@ -214,7 +208,7 @@
     widget.update();
   };
 
-  var resetWidget = function(configForm , id) {
+  var resetWidget = function(configForm , excludeOption) {
     let widthSlider = $('.js_widget_width_slider'),
         height = 600,
         theme,
@@ -258,6 +252,11 @@
         widgetNode.setAttribute($self.attr('name'), val);
       }
     });
+
+    if(excludeOption.id){
+      widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
+      $('#w-id').val(excludeOption.id);//set val in cofigurator
+    }
 
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");

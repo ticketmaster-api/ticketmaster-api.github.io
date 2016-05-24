@@ -505,6 +505,7 @@ class TicketmasterCountdownWidget {
       this.clear();
 
       if(this.widgetConfig.theme !== 'simple_countdown') {
+        let heightStatic = '700px';
         //draw inline style
         //border
         this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
@@ -512,10 +513,10 @@ class TicketmasterCountdownWidget {
 
         //set width
         this.widgetRoot.style.width = `100%`;
-        this.widgetRoot.style.height = `700px`;
+        this.widgetRoot.style.height = heightStatic;
         this.widgetRoot.style.display = `block`;
         this.eventsRootContainer.style.width  = `100%`;
-        this.eventsRootContainer.style.height = `700px`;
+        this.eventsRootContainer.style.height = heightStatic;
         this.widgetConfig.width = `100%`;
       }
 
@@ -532,7 +533,6 @@ class TicketmasterCountdownWidget {
     }else{
       let events = this.widgetRoot.getElementsByClassName("event-wrapper");
       for(let i in events){
-        console.log('inside event-wrapper , events[i].style: ', events[i].style );
         if(events.hasOwnProperty(i) && events[i].style !== undefined){
           events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
           events[i].style.height = `${this.config.height - this.borderSize * 2}px`;

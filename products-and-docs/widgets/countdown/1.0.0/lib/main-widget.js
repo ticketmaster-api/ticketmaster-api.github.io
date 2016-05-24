@@ -619,6 +619,7 @@ var TicketmasterCountdownWidget = function () {
         this.clear();
 
         if (this.widgetConfig.theme !== 'simple_countdown') {
+          var heightStatic = '700px';
           //draw inline style
           //border
           this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
@@ -626,10 +627,10 @@ var TicketmasterCountdownWidget = function () {
 
           //set width
           this.widgetRoot.style.width = "100%";
-          this.widgetRoot.style.height = "700px";
+          this.widgetRoot.style.height = heightStatic;
           this.widgetRoot.style.display = "block";
           this.eventsRootContainer.style.width = "100%";
-          this.eventsRootContainer.style.height = "700px";
+          this.eventsRootContainer.style.height = heightStatic;
           this.widgetConfig.width = "100%";
         }
 
@@ -646,7 +647,6 @@ var TicketmasterCountdownWidget = function () {
       } else {
         var events = this.widgetRoot.getElementsByClassName("event-wrapper");
         for (var i in events) {
-          console.log('inside event-wrapper , events[i].style: ', events[i].style);
           if (events.hasOwnProperty(i) && events[i].style !== undefined) {
             events[i].style.width = this.config.width - this.borderSize * 2 + "px";
             events[i].style.height = this.config.height - this.borderSize * 2 + "px";

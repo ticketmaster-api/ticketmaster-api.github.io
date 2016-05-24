@@ -83,7 +83,7 @@
       $getCodeButton.prop("disabled", true);
     } else {
       $getCodeButton.prop('disabled', false);
-    };
+    }
   }
 
   var changeState = function changeState(event) {
@@ -113,8 +113,10 @@
         });
         widgetNode.setAttribute('w-height', 700);
       } else {
-        var currID = widgetNode.getAttribute('w-id');
-        resetWidget($configForm, currID);
+        var excludeOption = {
+          id: widgetNode.getAttribute('w-id')
+        };
+        resetWidget($configForm, excludeOption);
 
         $layoutBox.slideDown("fast");
         widthSlider.slideDown("fast");
@@ -126,14 +128,6 @@
         });
       }
     }
-
-    // if(targetName === "w-theme"){
-    //   if(widgetNode.getAttribute('w-layout') === 'horizontal'){
-    //     widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
-    //   }
-    //   widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
-    // }
-    //console.log('start change');
 
     /*
     //set attr for 'seconds' radio-btn
@@ -212,7 +206,7 @@
     widget.update();
   };
 
-  var resetWidget = function resetWidget(configForm, id) {
+  var resetWidget = function resetWidget(configForm, excludeOption) {
     var widthSlider = $('.js_widget_width_slider'),
         height = 600,
         theme = void 0,
@@ -255,6 +249,11 @@
         widgetNode.setAttribute($self.attr('name'), val);
       }
     });
+
+    if (excludeOption.id) {
+      widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
+      $('#w-id').val(excludeOption.id); //set val in cofigurator
+    }
 
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
@@ -431,14 +430,13 @@
       //find configurator and widget
       widget = widgetsCountdown[0],
           widgetNode = document.querySelector("div[w-tmapikey]");
-
-      $('#w-id').val(selectedID);
-      widgetNode.setAttribute('w-id', selectedID);
       var isFullWidthTheme = function isFullWidthTheme() {
         return widgetNode.getAttribute('w-theme') === "fullwidth";
       };
+
+      $('#w-id').val(selectedID);
+      widgetNode.setAttribute('w-id', selectedID);
       if (isFullWidthTheme) {
-        console.log(widgetNode.getAttribute('w-theme'));
         widgetNode.style.width = '100%';
       }
 
