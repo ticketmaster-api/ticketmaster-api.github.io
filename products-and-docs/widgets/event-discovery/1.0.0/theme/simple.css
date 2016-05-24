@@ -530,7 +530,7 @@ div[w-theme="simple"][w-proportion="m"] .event-content-wraper {
 
 div[w-theme="simple"][w-proportion="m"] .event-content-wraper .event-name {
     width: 252px;
-    font-family: TMSansLEADINGFIXED-Bold;
+    font-family: "TMSans-Bold";
     font-size: 18px;
     line-height: 1.3;
     color: #ffffff;
@@ -540,7 +540,7 @@ div[w-theme="simple"][w-proportion="m"] .event-content-wraper .event-name {
 div[w-theme="simple"][w-proportion="m"] .event-date-wraper {
     width: 252px;
     opacity: 0.7;
-    font-family: TMSansLEADINGFIXED-Bold;
+    font-family: "TMSans-Bold";
     font-size: 12px;
     line-height: 1.3;
     color: #ffffff;
@@ -564,7 +564,7 @@ div[w-theme="simple"][w-proportion="m"] .events-counter {
 div[w-theme="simple"][w-proportion="m"] .events-counter {
     right: 24px;
     line-height: 36px;
-    font-family: TMSansLEADINGFIXED-Bold;
+    font-family: "TMSans-Bold";
     font-size: 11px;
     color: #ffffff;
 }
@@ -577,7 +577,7 @@ div[w-theme="simple"][w-proportion="m"] .legal-notice {
 	color: #ffffff;
 }
 div[w-theme="simple"][w-proportion="m"] .event-buy-btn {
-    font-family: TMSansLEADINGFIXED-Bold;
+    font-family: "TMSans-Bold";
     font-size: 11px;
     color: #ffffff;
     left: 24px;
