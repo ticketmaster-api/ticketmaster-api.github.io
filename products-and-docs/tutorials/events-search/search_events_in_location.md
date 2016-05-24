@@ -502,6 +502,7 @@ getLocation();
 {% endhighlight %}
 
 As a result we will get a page with a map and list of events.
+
 ![Map with events](/products-and-docs/tutorials/img/search-events-map.png)
 
 You can try this code [there](http://plnkr.co/edit/i1NZC9PopEF2fWzUAAH8?p=info).
