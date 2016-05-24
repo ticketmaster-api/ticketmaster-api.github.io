@@ -1245,6 +1245,9 @@ var TicketmasterEventDiscoveryWidget = function () {
         barcodeBtn.href = url;
         barcodeBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickEventName', 'click');");
         domNode.appendChild(barcodeBtn);
+        var bottomBg = document.createElement("span");
+        bottomBg.classList.add("barcode-bottom");
+        domNode.appendChild(bottomBg);
       }
     }
   }, {

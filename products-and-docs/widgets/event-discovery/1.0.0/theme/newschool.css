@@ -113,17 +113,6 @@ div[w-theme="newschool"] .events-root-container {
     border-color: #ccc;
 }
 
-div[w-theme="newschool"] .events-root-container:before {
-    content: "";
-    width: 100%;
-    height: 140px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: #fff;
-    z-index: 5;
-}
-
 div[w-theme="newschool"][w-colorscheme="light"] .events-root-container {
     background: #fff;
 }
@@ -358,7 +347,7 @@ div[w-theme="newschool"] .events-counter {
 
 div[w-theme="newschool"] .event-logo-box {
     position: absolute;
-    bottom: 48px;
+    bottom: 8px;
     left: 0;
     width: 100%;
     height: 46px;
@@ -374,6 +363,7 @@ div[w-theme="newschool"] .event-logo-box {
     z-index: 10;
 }
 
+/*
 div[w-theme="newschool"] .event-logo-box:before{
     content: '';
     display: block;
@@ -385,6 +375,7 @@ div[w-theme="newschool"] .event-logo-box:before{
     left: 50%;
     margin-left: -150px;
 }
+*/
 
 div[w-theme="newschool"] .event-logo-box:after{
     content: '';
@@ -566,6 +557,36 @@ div[w-theme="newschool"] .event-group {
     width: 100%;
 }
 
+div[w-theme="newschool"] .ss {
+    position: relative;
+}
+
+div[w-theme="newschool"] .barcode {
+    z-index: 15;
+    position: absolute;
+    left: 50%;
+    bottom: 65px;
+    width: 300px;
+    height: 40px;
+    margin-left: -150px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    background: url('http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/barcode.svg') no-repeat;
+    -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+div[w-theme="newschool"] .barcode-bottom {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 145px;
+    bottom: -4px;
+    background: #fff;
+}
+
 /* BUY NOW */
 div[w-theme="newschool"] .event-buy-btn {
     z-index: 15;
@@ -638,21 +659,9 @@ div[w-theme="newschool"][w-layout="horizontal"] .event-logo-box {
     transform: rotate(-90deg);
     width: 300px;
     bottom: 125px;
-    right: -60px;
+    right: -100px;
     left: inherit;
     z-index: 10;
-}
-
-div[w-theme="newschool"][w-layout="horizontal"] .events-root-container:before {
-    content: '';
-    display: block;
-    background: #fff;
-    width: 160px;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    left: auto;
-    z-index: 5;
 }
 
 div[w-theme="newschool"][w-layout="horizontal"] .event-logo-box::before {
@@ -701,6 +710,23 @@ div[w-theme="newschool"][w-layout="horizontal"] .event-buy-btn {
     left: 105px;
     bottom: 20px;
 
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .barcode {
+    transform: rotate(-90deg);
+    left: auto;
+    right: -25px;
+    top: 128px;
+    width: 255px;
+}
+
+div[w-theme="newschool"][w-layout="horizontal"] .barcode-bottom {
+    display: block;
+    position: absolute;
+    width: 161px;
+    height: 102%;
+    right: -1px;
+    background: #fff;
 }
 /* Horizontal theme [End] */
 
@@ -751,6 +777,9 @@ div[w-theme="newschool"][w-colorscheme="dark"]  .event-buy-btn[href='']:hover {
     opacity: 0;
     color: #fff;
 }
+div[w-theme="newschool"][w-colorscheme="dark"] .barcode-bottom {
+    background: #ededed;
+}
 /* Dark Theme [End] */
 
 /* 300x600 [Start] */
@@ -772,11 +801,30 @@ div[w-theme="newschool"][w-proportion="xxl"] .event-logo-box:before {
 div[w-theme="newschool"][w-proportion="xxl"] .events_control-horizontal {
     margin-top: -68px;
 }
+
+div[w-theme="newschool"][w-proportion="xxl"] .barcode {
+    width: 260px;
+    margin-left: -130px;
+}
 /* 300x600 [End]*/
 
 /* 300x250 [Start] */
 div[w-theme="newschool"][w-colorscheme="light"][w-proportion="m"] .events-root-container {
     background: #f8f8f8;
+}
+div[w-theme="newschool"][w-proportion="m"] .events-root-container:before {
+    content: "";
+    width: 100%;
+    height: 140px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 5;
+}
+
+div[w-theme="newschool"][w-proportion="m"] .event-logo-box {
+    bottom: 48px;
 }
 
 div[w-theme="newschool"][w-proportion="m"] .events-root-container:before {
@@ -865,6 +913,12 @@ div[w-theme="newschool"][w-proportion="m"][w-colorscheme="dark"] .ticket-logo:be
 
 div[w-theme="newschool"][w-proportion="m"] .events_control-horizontal {
     top: 45%;
+}
+div[w-theme="newschool"][w-proportion="m"] .barcode {
+    display: none;
+}
+div[w-theme="newschool"][w-proportion="m"] .barcode-bottom {
+    display: none;
 }
 /* 300x250 [Finish] */
 
