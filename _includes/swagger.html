@@ -24,6 +24,32 @@
 <h4 class="aside gray" id="developer-console">Developer Console</h4><p>Make live API calls right now in the interactive docs:</p><p><a href="/products-and-docs/apis/interactive-console/" class="button">INTERACTIVE DOCS</a></p>
 
 <div class="article">
+
+    {% assign files = site.releaseNotes %}
+
+    {% for file in files reversed %}
+    <!--<p>file.categories: {{ file.categories | join : ', '}} </p>-->
+
+            {% if page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4] %}
+
+            <!--<hr>
+            <p>this.page categ: {{ page.categories | join : ', '}}</p>
+            <p>notes[2]: {{ notes.categories[2] }} , file[3]: {{ file.categories[3] }}</p>
+            <p>notes[3]: {{ notes.categories[3] }} , file[4]: {{ file.categories[4] }}</p>-->
+            <!--{% assign relNotesNameFolder = file.path %}
+            <p>file.path: {{ relNotesNameFolder | replace '/',''}} </p>-->
+                {% if file.categories[2] == 'releaseNotes'%}
+                    <div class="changelog">
+                        <h2>{{ file.title }}</h2>
+                        <h4>{{ file.date  | date_to_long_string  }}</h4>
+                        {{ file }}
+                    </div>
+                {% endif %}
+            {% endif %}
+
+    {% endfor %}
+
+    <!--{% comment %}
     {% assign releaseNotes = methodsDescription.releaseNotes %}
     <p>
         {%if releaseNotes%}
@@ -32,6 +58,7 @@
             Release Notes not added.
         {%endif%}
     </p>
+    {% endcomment %}-->
 </div>
 
 <h2 class="article">Overview</h2>
