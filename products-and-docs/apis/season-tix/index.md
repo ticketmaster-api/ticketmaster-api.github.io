@@ -3,7 +3,7 @@ layout: documentation
 categories:
 - documentation
 - season-tix
-title: Season Tix API
+title: Season Tix API 1.0
 excerpt: The Ticketmaster Season Tix API
 keywords: Season Tix API
 ---
