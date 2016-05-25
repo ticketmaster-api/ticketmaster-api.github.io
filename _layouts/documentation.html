@@ -24,6 +24,17 @@ layout: default
                     {% if page.categories[1] == "generated" %}
                         {% include swagger.html %}
                     {% else %}
+                        {% if page.categories[2] == 'releaseNotes'%}
+                            {% assign files = site.releaseNotes %}
+                            {% for file in files reversed %}
+                            <div class="changelog" markdown="1">
+                                <h2>{{ file.title }}</h2>
+                                <h4>{{ file.date  | date_to_long_string  }}</h4>
+                                {{ file }}
+                            </div>
+                            <!--<p>* [{{ file.path }}] ({{ site.baseurl }}   {{ file.path }} )</p>-->
+                            {% endfor %}
+                        {% endif %}
                         {{ content }}
                     {% endif %}
                 </div>

@@ -21,6 +21,9 @@ Test this endpoint right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
+{: .article }
+{%include release-notes.html%}
+
 ## Event Offers
 {: .article .console-link #event-offers}
 

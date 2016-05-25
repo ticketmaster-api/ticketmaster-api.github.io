@@ -1,0 +1,16 @@
+<div class="article">
+{% assign files = site.releaseNotes %}
+
+{% for file in files reversed %}
+    {% if page.categories[1] == file.categories[3] %}
+    <!--this page.categories: {{ page.categories[1] == file.categories[3]}}-->
+        {% if file.categories[2] == 'releaseNotes'%}
+        <div class="changelog">
+            <h2>{{ file.title }}</h2>
+            <h4>{{ file.date  | date_to_long_string  }}</h4>
+            {{ file }}
+        </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</div>

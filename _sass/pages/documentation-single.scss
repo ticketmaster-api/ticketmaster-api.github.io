@@ -313,12 +313,18 @@
 }
 
 .changelog {
-  min-height: 500px;
+  /*min-height: 500px;*/
   margin-bottom: $base-margin;
   overflow: hidden;
   strong {
     font-family: $font-body;
     color: $secondary-color1;
     font-weight: normal;
+  }
+  .nested-list-wrapper {
+    h3,h4,h5 {
+      //margin-top: 0;
+    }
+
   }
 }

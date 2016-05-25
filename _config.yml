@@ -28,3 +28,8 @@ author :
 production_url : http://developers.ticketmaster.com/
 gems:
   - jekyll-redirect-from
+
+collections:
+  releaseNotes:
+    output: true
+#    permalink: /releaseNotes/:path/
