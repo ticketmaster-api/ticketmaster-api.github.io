@@ -169,6 +169,27 @@
       padding: 0 10px 0 15px;
     }
     .list-group-item {
+      .thumbnail{
+        position: relative;
+        width: 100px;
+        height: 66px;
+        overflow: hidden;
+        float: left;
+        display: block;
+        margin: 2px 12px 0 0;
+
+        img {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 100%;
+          height: auto;
+          -webkit-transform: translate(-50%,-50%);
+          -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+          margin: 0;
+        }
+      }
       .event-text-wrapper {
         padding-right: 110px;
         @media (max-width: 468px){
@@ -192,6 +213,10 @@
           height: auto;
         }
       }
+      &-heading {
+        margin-left: 110px;
+        min-height: 60px;
+      }
     }
   }
 }
@@ -199,6 +224,7 @@
 .widget-container {
   float: left;
   position: relative;
+  z-index: 0;
 
   &--discovery {
     border-bottom: 1px dashed #ccc;
