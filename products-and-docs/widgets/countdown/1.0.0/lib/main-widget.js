@@ -183,13 +183,14 @@ var TicketmasterCountdownWidget = function () {
     get: function get() {
       return this.config.id ? "https://app.ticketmaster.com/discovery/v2/events/" + this.config.id + ".json" : "https://app.ticketmaster.com/discovery/v2/events/" + this.eventId + ".json";
     }
+
+    //get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
+
   }, {
     key: "themeUrl",
     get: function get() {
-      return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/";
+      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/";
     }
-    //get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }
-
   }, {
     key: "portalUrl",
     get: function get() {
