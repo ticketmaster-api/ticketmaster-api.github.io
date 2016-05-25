@@ -17,9 +17,11 @@
             });
 
         /*set open list in 'changelog page' by load*/
-        $('.changelog .nested-list-wrapper').on('ready.jstree', function() {
-            $(".nested-list-wrapper").jstree("open_all");
-        });
+        // var $changelog = $('.changelog'),
+        //     $listInsideChangelog = $('.nested-list-wrapper', $changelog);
+        // $listInsideChangelog.on('ready.jstree', function() {
+        //     $listInsideChangelog.jstree("open_all");
+        // });
 
     });
 })();

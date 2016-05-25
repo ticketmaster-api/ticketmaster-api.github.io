@@ -21,10 +21,13 @@ layout: default
 
             <div class="col-xs-12 col-lg-9" id="main-block">
                 <div class="content" style="display: block;">
+                    {{ content }}
+
                     {% if page.categories[1] == "generated" %}
                         {% include swagger.html %}
                     {% else %}
-                        {% if page.categories[2] == 'releaseNotes'%}
+                        <!--release notes for static documentation-->
+                        <!--{% if page.categories[2] == 'releaseNotes'%}
                             {% assign files = site.releaseNotes %}
                             {% for file in files reversed %}
                             <div class="changelog" markdown="1">
@@ -32,10 +35,10 @@ layout: default
                                 <h4>{{ file.date  | date_to_long_string  }}</h4>
                                 {{ file }}
                             </div>
-                            <!--<p>* [{{ file.path }}] ({{ site.baseurl }}   {{ file.path }} )</p>-->
                             {% endfor %}
-                        {% endif %}
-                        {{ content }}
+                        {% endif %}-->
+                        {%include release-notes.html%}
+                        <!--release notes END-->
                     {% endif %}
                 </div>
             </div>
