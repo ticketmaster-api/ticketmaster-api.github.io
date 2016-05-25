@@ -729,7 +729,7 @@ class TicketmasterCountdownWidget {
     name.classList.add("event-name");
     name.appendChild(nameContent);
     this.initPretendedLink(name, itemConfig.url, true);
-    name.setAttribute('onclick', "ga('send', 'event', 'CountDownClickeventName', 'click', '" + itemConfig.url + "');");
+    name.setAttribute('onclick', `ga('send', 'event', 'CountDownClickeventName_theme=${this.config.theme}_width=${this.config.width}_height=${this.config.height}_color_scheme=light', 'click', '${itemConfig.url}');`);
     medWrapper.appendChild(name);
 
 
