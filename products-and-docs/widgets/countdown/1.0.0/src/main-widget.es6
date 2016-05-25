@@ -112,7 +112,7 @@ class TicketmasterCountdownWidget {
   set eventId(id){ this.config.id = id;}
   get eventId(){ return this.config.id;}
 
-  get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : `https://app.ticketmaster.com/discovery/v2/events/${this.eventId}.json`; }
+  get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.eventId}.json` : `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json`; }
 
   //get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
   get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }

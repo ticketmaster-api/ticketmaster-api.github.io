@@ -250,7 +250,7 @@
       }
     });
 
-    if (excludeOption.id) {
+    if (typeof excludeOption !== 'undefined' && typeof excludeOption.id !== 'undefined') {
       widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
       $('#w-id').val(excludeOption.id); //set val in cofigurator
     }
@@ -389,9 +389,14 @@
 
     //start render data
     var items = data._embedded.events;
+    console.log('items[0].images : ', items[0].images);
 
     items.map(function (item) {
       var li = $('<li/>').addClass('list-group-item row').appendTo(ulElement);
+
+      var spanImg = $('<span class="thumbnail" />').appendTo(li);
+      var img = $('<img src=' + item.images[0].url + ' />').addClass('list-group-item-heading').appendTo(spanImg);
+
       var $wrapCol = $('<div class="event-text-wrapper"/>').appendTo(li);
       var title = $('<h3/>').addClass('list-group-item-heading').text(' ' + item.name).appendTo($wrapCol);
 

@@ -253,9 +253,9 @@
       }
     });
 
-    if(excludeOption.id){
-      widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
-      $('#w-id').val(excludeOption.id);//set val in cofigurator
+    if(typeof excludeOption !== 'undefined' && typeof excludeOption.id !== 'undefined'){
+        widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
+        $('#w-id').val(excludeOption.id);//set val in cofigurator
     }
 
     $tabButtons.slideDown("fast");
@@ -394,11 +394,19 @@
 
     //start render data
     let items = data._embedded.events;
+    console.log('items[0].images : ',items[0].images);
 
-    items.map( (item ) => {
+    items.map( (item) => {
       let li = $('<li/>')
         .addClass('list-group-item row')
         .appendTo(ulElement);
+      
+      let spanImg = $('<span class="thumbnail" />')
+        .appendTo(li);
+      let img = $('<img src='+ item.images[0].url+' />')
+        .addClass('list-group-item-heading')
+        .appendTo(spanImg);
+
       let $wrapCol = $('<div class="event-text-wrapper"/>')
         .appendTo(li);
       let title = $('<h3/>')
