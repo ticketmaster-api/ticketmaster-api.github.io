@@ -25,7 +25,7 @@
 }
 
 @font-face {
-    font-family: "TMSans-Bold", Arial, serif;
+    font-family: "TMSans-Bold";
     src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
     src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
     font-style: normal;
@@ -396,24 +396,27 @@ div[w-theme="fullwidth"] .event-logo-box {
 div[w-theme="fullwidth"] .event-logo {
     display: block;
     position: absolute;
-    top: 6px;
+    top: 10px;
     right: 24px;
-    width: 159px;
-    height: 25px;
+    width: 164px;
+    height: 15px;
+    font-size: 11px;
+    color: #768692;
 }
 
-div[w-theme="fullwidth"] .event-logo:before {
+div[w-theme="fullwidth"] .event-logo:after{
     content: '';
     position: absolute;
-    left: 0;
+    left: 62px;
     right: 0;
-    top: 0;
+    top: -1px;
     bottom: 0;
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     /* TODO: add http://developer.ticketmaster.com/*/
-    background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticketmaster-verified-logo-h.svg") no-repeat;
+    background: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-gray-logo.svg") no-repeat;
+    background-size: 100px;
 }
 
 /* BUY NOW */
