@@ -105,6 +105,18 @@
   position: relative;
 }
 
+.documentation .content .article-wrapper .code-article-wrapper .tab-content pre {
+  overflow-x: auto;
+  padding: 15px 20px;
+  margin-bottom: 0;
+  max-height: 320px;
+}
+
+.documentation .content .article-wrapper .code-article-wrapper .tab-content pre code {
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+
 .tutorials {
   .window-title {
     display: none;

@@ -129,28 +129,24 @@
             }
         });
 
-
-
         $(".t-lang-selector a").click(function(event) {
             var currentButton = $(this);
-            var allBtn = $(".t-lang-selector a[href*=" + currentButton.attr('href') + "]");
-            var tabGroup = $('.tab-active');
+            var buttonsGroup = currentButton.parent().find('a');
+            var tabsGroup = currentButton.parent().parent().parent().find('.tab-content');
 
-            currentButton.parents().find('.active-lang').html(currentButton.html());
+            currentButton.parent().parent().prev('.active-lang').html(currentButton.html());
 
             event.preventDefault();
-            allBtn.addClass("active");
-            allBtn.siblings().removeClass("active");
+            buttonsGroup.removeClass('active');
+            currentButton.addClass("active");
 
-            if(allBtn.hasClass('active')){
-                var strTMP = currentButton.index().toString();
-                tabGroup.removeClass("tab-active");
-                tabGroup = $(".tab-"+strTMP );
-                tabGroup.addClass("tab-active");
-            }
-            $(this).parents().find('.active-lang').removeClass('open');
-            $(this).parents().find('.t-lang-selector').removeClass('show');
+            tabsGroup.removeClass('tab-active');
+            tabsGroup.eq(currentButton.index()).addClass('tab-active');
+
+            $(this).parent().parent().prev('.active-lang').removeClass('open');
+            $(this).parent().parent('.t-lang-selector').removeClass('show');
             $(this).focus();
+
         });
 
 
