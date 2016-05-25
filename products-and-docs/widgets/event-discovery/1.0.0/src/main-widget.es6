@@ -1189,14 +1189,12 @@ class TicketmasterEventDiscoveryWidget {
 
     this.createBackgroundImage(event, itemConfig.img);
 
-    console.log(this.config);
-
     var nameContent = document.createTextNode(itemConfig.name),
     name =  document.createElement("span");
     name.classList.add("event-name");
     name.appendChild(nameContent);
     this.initPretendedLink(name, itemConfig.url, true);
-    name.setAttribute('onclick', `ga('send', 'event', 'CountDownClickeventName_theme=${this.config.theme}_width=${this.config.width}_height=${this.config.height}_color_scheme=light', 'click', '${itemConfig.url}');`);
+    name.setAttribute('onclick', `ga('send', 'event', 'DiscoveryClickeventName_theme=${this.config.theme}_width=${this.config.width}_height=${this.config.height}_color_scheme=${this.config.colorscheme}', 'click', '${itemConfig.url}');`);
     /* name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');"); */
     medWrapper.appendChild(name);
 
