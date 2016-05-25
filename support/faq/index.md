@@ -3,7 +3,7 @@ layout: base-content
 categories:
 - support
 - faq
-title: FAQ
+title: FAQs
 excerpt: At Ticketmaster, we see ourselves as the engine that powers unforgetable moments of joy for fans everywhere.
 keywords: FAQ, Ticketmaster affiliate program, datasets API cover
 ---

@@ -4,7 +4,7 @@ categories:
 - documentation
 - discovery
 - v2
-title: Discovery API
+title: Discovery API 2.0
 excerpt: Use the Discovery API to search, look up and find events, attractions and venues.
 keywords: API, search events, attraction details, event images, category details, venue details, support
 redirect_from: 
