@@ -352,12 +352,11 @@ div[w-theme="simple_countdown"] .event-logo {
     right: 24px;
     width: 164px;
     height: 15px;
-    text-align: left;
     font-size: 11px;
     color: #768692;
 }
 
-div[w-theme="simple_countdown"] .event-logo:before{
+div[w-theme="simple_countdown"] .event-logo:after{
     content: '';
     position: absolute;
     left: 62px;
