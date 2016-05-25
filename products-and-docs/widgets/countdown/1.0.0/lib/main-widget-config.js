@@ -371,6 +371,13 @@
       $('<li/>').addClass('list-group-item').text('' + message).appendTo(ulElement);
     };
 
+    function getImageForEvent(images) {
+      images.sort(function (a, b) {
+        if (a.width < b.width) return -1;else if (a.width > b.width) return 1;else return 0;
+      });
+      return images[0].url;
+    }
+
     if (loadingFlag === "FINAL_PAGE") return false;
 
     if (data === 'FAIL') {
@@ -389,13 +396,12 @@
 
     //start render data
     var items = data._embedded.events;
-    console.log('items[0].images : ', items[0].images);
 
     items.map(function (item) {
       var li = $('<li/>').addClass('list-group-item row').appendTo(ulElement);
 
       var spanImg = $('<span class="thumbnail" />').appendTo(li);
-      var img = $('<img src=' + item.images[0].url + ' />').addClass('list-group-item-heading').appendTo(spanImg);
+      var img = $('<img src=' + getImageForEvent(item.images) + ' />').addClass('list-group-item-heading').appendTo(spanImg);
 
       var $wrapCol = $('<div class="event-text-wrapper"/>').appendTo(li);
       var title = $('<h3/>').addClass('list-group-item-heading').text(' ' + item.name).appendTo($wrapCol);

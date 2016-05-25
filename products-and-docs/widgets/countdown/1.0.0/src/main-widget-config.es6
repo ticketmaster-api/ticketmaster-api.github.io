@@ -380,6 +380,18 @@
         .appendTo(ulElement);
     };
 
+    function getImageForEvent(images){
+      images.sort(function(a,b) {
+        if (a.width < b.width)
+          return -1;
+        else if (a.width > b.width)
+          return 1;
+        else
+          return 0;
+      });
+      return images[0].url;
+    }
+
     if(loadingFlag === "FINAL_PAGE") return false;
 
     if(data === 'FAIL'){ showMessage($ul, 'Failure, possible key not correct.' ,true); return false; }
@@ -394,7 +406,6 @@
 
     //start render data
     let items = data._embedded.events;
-    console.log('items[0].images : ',items[0].images);
 
     items.map( (item) => {
       let li = $('<li/>')
@@ -403,7 +414,7 @@
       
       let spanImg = $('<span class="thumbnail" />')
         .appendTo(li);
-      let img = $('<img src='+ item.images[0].url+' />')
+      let img = $('<img src='+ getImageForEvent(item.images)+' />')
         .addClass('list-group-item-heading')
         .appendTo(spanImg);
 
