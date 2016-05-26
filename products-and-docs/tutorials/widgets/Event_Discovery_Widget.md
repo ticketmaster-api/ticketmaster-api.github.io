@@ -23,7 +23,7 @@ keywords: widget, sell tickets, direct payments
 
 ## Introduction
 
-The Event Discovery widget allow partners to provide enhanced discovery experience for consumers within copy/paste distance.
+The Event Discovery widget allows partners to provide enhanced discovery experience for consumers within copy/paste distance.
 You can use the widget configurator to customize the layout of the widget, and grab a small code snippet to insert into your website.
 
 Event Discovery widget is based on [Discovery API](/products-and-docs/apis/discovery/).
