@@ -7,7 +7,7 @@ title: Archtics API
 excerpt: The Ticketmaster Archtics API
 keywords: Archtics API
 ---
-{% comment %}
+
 {: .article}
 # Archtics API
 
@@ -1306,5 +1306,3 @@ Content-Type: application/json;charset=UTF-8
   }
 }
 {% endhighlight %}
-
-{% endcomment %}
