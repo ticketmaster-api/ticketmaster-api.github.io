@@ -1,0 +1,102 @@
+---
+layout: documentation-single
+---
+
+<link id="widget-theme-listview" rel="stylesheet" href="{{ "/products-and-docs/widgets/calendar/1.0.0/theme/calendar.css" | prepend: site.baseurl }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.min.css">
+
+<div class="widget-content-wrapper">
+    <div class="row row-native">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h1>WIDGETS</h1>
+            <p class="lead">The TM Widgets allow partners to setup particular widgets and provide enhanced discovery experience for consumers within copy/paste distance.</p>
+            <h2>Widget: Keyword search</h2>
+            <p>You can use the widget configurator below to customize the layout of the widget, and grab a small code snippet to insert into your website.</p>
+        </div>
+    </div>
+
+    <div class="row row-native">
+        <div class="col-lg-4 config-block">
+            {% include widget-config.html %}
+        </div>
+
+        <div class="col-lg-8 col-lg-widget">
+            <div class="widget-container-wrapper">
+                <div class="widget-container widget-container--calendar">
+                    <div w-type="calendar" w-tmapikey="5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG" w-googleapikey="" w-keyword="" w-theme="calendar" w-colorscheme="light" w-width="300" w-height="394" w-size="25" w-border="0" w-borderradius="4" w-postalcode="90015"  w-radius="25" w-country="US" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom"></div>
+                </div>
+            </div>
+            <div class="row hidden-lg row-mobile-control">
+                <div class="row row-native">
+                    <div class="col-md-3 col-sm-3">
+                        <button type="button" class="js_get_widget_code btn btn-block button button-blue widget_config__btn">GET CODE</button>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <button type="button" class="js_reset_widget btn btn-block button-white-gray-border widget_config__btn">RESET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal widget-->
+<div id="js_widget_modal" class="modal modal-common fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <div class="row">
+                    <h3 class="modal-title col-lg-12">Embedded code</h3>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>HTML</h4>
+                        <code class="language-html widget_dialog__code" data-lang="html"></code>
+                        <h4>JavaScript</h4>
+                        <code class="language-js widget_dialog__code" data-lang="js">
+                            &lt;script src="http://ticketmaster-api-staging.github.io/products-and-docs/widgets/calendar/1.0.0/lib/main-widget.js"&gt;&lt;/script&gt;
+                        </code>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="js_widget_modal__close" type="button" class="btn btn-submit text-center">Ok</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal widget end-->
+
+
+<!-- Modal has no code-->
+<div id="js_widget_modal_no_code" class="modal modal-common modal-common-sm fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="modal-title col-lg-12 text-center">Warning</h3>
+                <p class="text-center">There are no such events</p>
+                <div class="modal-footer">
+                    <button id="js_widget_modal_no_code__close" type="button" class="btn btn-submit text-center">Ok</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal has no code end-->
+
+
+<script src="{{"/products-and-docs/widgets/calendar/1.0.0/lib/main-widget.js" | prepend: site.baseurl }}"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
+<script src="{{"/products-and-docs/widgets/calendar/1.0.0/lib/main-widget-config.js" | prepend: site.baseurl }}"></script>

@@ -1,0 +1,53 @@
+/* FONTS */
+/* TODO: update after release to  http://developer.ticketmaster.com/*/
+@font-face {
+    font-family: "TMSans-Regular";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Light";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Italic";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+@font-face {
+    font-family: "TMSans-Bold";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+
+@font-face {
+    font-family: "InterstateWGL-Black";
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-2.eot");
+    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-2.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-3.woff") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/Interstate/Interstate%20Web%20Fonts/Interstate-WGL-Black/b2b70f79-f67e-4018-8328-fc80a7c3b0c2-1.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal; }
+
+/* Common styles for all themes  */
+div[w-theme="calendar"]{
+    position: relative;
+    height: 394px;
+    width: 300px;
+    overflow: hidden;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    font-family: 'TMSans-Regular', Arial, serif;
+    border: 1px solid #b2c3cb;
+}
+
+div[w-theme="calendar"] a,
+div[w-theme="calendar"] a:hover,
+div[w-theme="calendar"] a:focus,
+div[w-theme="calendar"] a:active{
+    text-decoration: none;
+}
