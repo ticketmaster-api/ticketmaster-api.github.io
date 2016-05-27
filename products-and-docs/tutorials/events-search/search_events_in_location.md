@@ -91,7 +91,7 @@ Now you can see your current location.
 
 ## Discovery API request
 
-Make request to Discovery API with latitude and longitude. [More details.](http://ticketmaster-api-staging.github.io/products-and-docs/apis/discovery/v2/#srch-events-v2)
+Make a request to Discovery API with latitude and longitude. [More details.](http://ticketmaster-api-staging.github.io/products-and-docs/apis/discovery/v2/#srch-events-v2)
 
 {: .tutorial-code}
 >[HTML](#html)
@@ -174,9 +174,9 @@ getLocation();
 
 Now you can see in browser log events in your location.
 
-## Process responce
+## Process a response
 
-Parse the responce from Discovery API and show events.
+Parse the response from Discovery API and show events.
 
 {: .tutorial-code}
 >[HTML](#html)
@@ -264,7 +264,7 @@ Parse the responce from Discovery API and show events.
     getLocation();
 {% endhighlight %}
 
-So we have list of events on the page.
+So we have a list of events on the page.
 
 ## Connect Google map
 
@@ -501,7 +501,7 @@ getLocation();
       }
 {% endhighlight %}
 
-As a result we will get a page with a map and list of events.
+As a result, we will get a page with a map and list of events.
 
 ![Map with events](/products-and-docs/tutorials/img/search-events-map.png)
 
