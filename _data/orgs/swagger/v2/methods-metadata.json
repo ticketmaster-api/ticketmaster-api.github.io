@@ -4,8 +4,8 @@
             "pathsParent":"/discovery/v2/attractions",
             "id":"search-attractions",
             "title":"Search Attractions(test json)",
-            "reqres": "discovery-api-codes/reqres-search-events.md",
-            "codePath":"discovery-api-codes/search-events.md"
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
         },
         {
             "pathsParent":"/discovery/v2/attractions/legacy",
@@ -16,16 +16,15 @@
             "pathsParent":"/discovery/v2/attractions/legacy/{id}",
             "id":"bulk-search",
             "title":"bulk-search(test json)",
-            "reqres": "discovery-api-codes/reqres-search-events.md",
-            "codePath":"discovery-api-codes/search-events.md"
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
         },
         {
             "pathsParent":"/discovery/v2/attractions/{id}",
             "id":"attraction-details",
             "title":"search(test json)",
-            "reqres": "discovery-api-codes/reqres-search-events.md",
-            "codePath":"discovery-api-codes/search-events.md"
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
         }
-    ],
-    "releaseNotes":"Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status' "
+    ]
 }

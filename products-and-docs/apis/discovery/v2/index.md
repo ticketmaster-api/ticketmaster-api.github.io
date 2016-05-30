@@ -29,8 +29,6 @@ Make live API calls right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
 
-{: .article }
-{%include release-notes.html%}
 
 ## Overview
 {: .article #overview }

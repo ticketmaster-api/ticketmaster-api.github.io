@@ -177,7 +177,7 @@ class TicketmasterCountdownWidget {
     };*/
 
     this.config = this.widgetRoot.attributes;
-    this.eventId = this.eventIdDefault;
+    this.eventId = this.config.id;
 
     if(this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)){
       this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );

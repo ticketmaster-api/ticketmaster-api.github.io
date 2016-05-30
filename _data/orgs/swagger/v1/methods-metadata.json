@@ -4,8 +4,8 @@
             "pathsParent":"/assets/{assetId}",
             "id":"search-attractions",
             "title":"Search Attractions",
-            "reqres": "discovery-api-codes/reqres-search-events.md",
-            "codePath":"discovery-api-codes/search-events.md"
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
         },
         {
             "pathsParent":"/assets",
@@ -16,15 +16,15 @@
             "pathsParent":"/assets/bulk/search",
             "id":"legacy-attraction-details",
             "title":"legacy-Get Attraction Details",
-            "reqres": "discovery-api-codes/reqres-search-events.md",
-            "codePath":"discovery-api-codes/search-events.md"
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
         },
         {
             "pathsParent":"/assets/search",
             "id":"venue-details",
             "title":"Get Venue Details",
-            "reqres": "discovery-api-codes/reqres-search-events.md",
-            "codePath":"discovery-api-codes/search-events.md"
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
         }
     ]
 }
