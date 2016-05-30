@@ -21,25 +21,14 @@ layout: default
 
             <div class="col-xs-12 col-lg-9" id="main-block">
                 <div class="content" style="display: block;">
-                    {{ content }}
 
                     {% if page.categories[1] == "generated" %}
                         {% include swagger.html %}
                     {% else %}
-                        <!--release notes for static documentation-->
-                        <!--{% if page.categories[2] == 'releaseNotes'%}
-                            {% assign files = site.releaseNotes %}
-                            {% for file in files reversed %}
-                            <div class="changelog" markdown="1">
-                                <h2>{{ file.title }}</h2>
-                                <h4>{{ file.date  | date_to_long_string  }}</h4>
-                                {{ file }}
-                            </div>
-                            {% endfor %}
-                        {% endif %}-->
-                        {%include release-notes.html%}
-                        <!--release notes END-->
+                        {{ content }}
                     {% endif %}
+
+                    {%include release-notes.html%}
                 </div>
 				<div id="disqus_thread"></div>
             </div>

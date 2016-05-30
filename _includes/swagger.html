@@ -1,29 +1,21 @@
-{% if page.data %}
-{% assign swagger = site.data[page.data] %}
-{% else %}
-{% assign swagger = page %}
+<!-- :api-name:{{page.categories[2]}}  api-version: {{page.categories[3]}} -->
+
+{% assign pageMetaFolder        = page.categories[2] %}
+{% assign pageMetaVersionFolder = page.categories[3] %}
+{% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
+
+{% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
+{% if !swagger %}{%else%}
+    <!--No file found: api.json in _data/orgs/{{page.categories[2]}}/{{page.categories[3]}}-->
 {% endif %}
 
-<!-- {{page.categories[2]}}:api-name  {{page.categories[3]}}:api-version -->
-{% assign pageMetaFolder = page.categories[2] %}
-{% assign pageMetaVersionFolder = page.categories[3] %}
-{% assign methodsDescription = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
-
-{% if methodsDescription %}
-{% else %}
+{% if methodsDescription %}{%else%}
     <!--These 'pageMetaVersionFolder':{{pageMetaVersionFolder}} or 'pageMetaFolder':{{pageMetaFolder}} are not correct. Please fix it.-->
 {% endif %}
 
-
 <h1>{{ swagger.info.title | upcase}}</h1>
 
-<p class="version-button article {% if page.categories[3] == 'v2' %}active{% endif %}" style="margin-right: 0px;">
-    <a href="/products-and-docs/apis/swagger/v2/">V 2.0</a>
-</p>
-<p class="version-button {% if page.categories[3] == 'v1' %}active{% endif %}">
-    <a href="/products-and-docs/apis/swagger/v1/">V 1.0</a>
-</p>
-
+{{content}}
 
 <p class="lead article">{{ swagger.info.description }}</p>
 
@@ -301,21 +293,15 @@
                     {% if response[1].schema.type == 'string'%}
                     <li>
                         <code class="highlighter-rouge">schema</code>{% if response[1].schema.type %} ({{ response[1].schema.type | lstrip }}){% endif %} - {% if response[1].schema.description %}{{ response[1].schema.description | lstrip}}{% elsif response[1].schema.format %}{{ response[1].schema.format | lstrip}}{%else%}A simple string response{% endif %}
-                        <!--                            {% comment %}
-                                                    {% if response[1].schema.headers %}
-                                                    <ul>{% for item in response[1].schema.headers  %}
-                                                            {{ item | lstrip}}
-                                                            <li><code class="highlighter-rouge">{{ item[0] }}</code>{% if item[1].type %} ({{ item[1].type | lstrip }}){% endif %} - {{ item[1].description }}</li>
-                                                        {% endfor %}</ul>
-                                                    {% endif %}{% endcomment %}-->
+
                         <ul>
                             {% for item in response[1].schema  %}
                             <!--if obj-->
                             {% assign collection = item[1] %}
                             {% for itemCollection in collection  %}
-                            {%if itemCollection[0] %}
-                            <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
-                            {% endif %}
+                                {%if itemCollection[0] %}
+                                <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
+                                {% endif %}
                             {% endfor %}
                             {% assign collection = '' %}
                             <!--if obj-->
@@ -446,7 +432,6 @@
 {% endfor %}
 
 <div class="article">
-
     {% assign files = site.releaseNotes %}
 
     {% for file in files reversed %}
@@ -460,17 +445,6 @@
         {% endif %}
         {% endif %}
     {% endfor %}
-
-    <!--{% comment %}
-    {% assign releaseNotes = methodsDescription.releaseNotes %}
-    <p>
-        {%if releaseNotes%}
-        <strong>Release Notes: </strong>{{ releaseNotes }}
-        {%else%}
-            Release Notes not added.
-        {%endif%}
-    </p>
-    {% endcomment %}-->
 </div>
 
 <!--

@@ -1,5 +1,5 @@
 <div class="article">
-{% assign files = site.releaseNotes %}
+{% assign files = site.pages %}
 
 {% for file in files reversed %}
     {% if page.categories[1] == file.categories[3] %}
@@ -8,7 +8,7 @@
         <div class="changelog">
             <h2>{{ file.title }}</h2>
             <h4>{{ file.date  | date_to_long_string  }}</h4>
-            {{ file }}
+            {{ file.content }}
         </div>
         {% endif %}
     {% endif %}
