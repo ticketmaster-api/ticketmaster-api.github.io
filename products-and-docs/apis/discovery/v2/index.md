@@ -765,7 +765,7 @@ discovery/{version}/events/{id}.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}",
+  url:"https://app.ticketmaster.com/discovery/v2/events/G5diZfkn0B-bh.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -781,7 +781,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}'
+--include 'https://app.ticketmaster.com/discovery/v2/events/G5diZfkn0B-bh.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -790,7 +790,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v2/events/k7vGFKzleBdwS.json?{apikey} HTTP/1.1
+GET /discovery/v2/events/G5diZfkn0B-bh.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -817,323 +817,319 @@ X-Unknown-Params: api-key
 Rate-Limit: 5000
 
 {
-  "name": "RNDM",
-  "type": "event",
-  "id": "k7vGFKzleBdwS",
-  "test": false,
-  "url": "http://ticketmaster.com/event/0E0050681F51BA4C",
-  "locale": "en-us",
-  "images":  [
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RECOMENDATION_16_9.jpg",
-      "width": 100,
-      "height": 56,
-      "fallback": false
+  "_embedded": {
+    "venues": [
+      {
+        "name": "Madison Square Garden",
+        "type": "venue",
+        "id": "KovZpZA7AAEA",
+        "test": false,
+        "url": "http://ticketmaster.com/venue/483329",
+        "locale": "en-us",
+        "postalCode": "10001",
+        "timezone": "America/New_York",
+        "city": {
+          "name": "New York"
+        },
+        "state": {
+          "name": "New York",
+          "stateCode": "NY"
+        },
+        "country": {
+          "name": "United States Of America",
+          "countryCode": "US"
+        },
+        "address": {
+          "line1": "7th Ave & 32nd Street"
+        },
+        "location": {
+          "longitude": "-73.99160060",
+          "latitude": "40.74970620"
+        },
+        "markets": [
+          {
+            "id": "35"
+          },
+          {
+            "id": "51"
+          },
+          {
+            "id": "55"
+          },
+          {
+            "id": "124"
+          }
+        ],
+        "dmas": [
+          {
+            "id": 200
+          },
+          {
+            "id": 296
+          },
+          {
+            "id": 345
+          },
+          {
+            "id": 422
+          }
+        ],
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/venues/KovZpZA7AAEA?locale=en-us"
+          }
+        }
+      }
+    ],
+    "attractions": [
+      {
+        "name": "Radiohead",
+        "type": "attraction",
+        "id": "K8vZ91713wV",
+        "test": false,
+        "url": "http://ticketmaster.com/artist/763468",
+        "locale": "en-us",
+        "images": [
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_EVENT_DETAIL_PAGE_16_9.jpg",
+            "width": 205,
+            "height": 115,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_LANDSCAPE_16_9.jpg",
+            "width": 1136,
+            "height": 639,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_16_9.jpg",
+            "width": 640,
+            "height": 360,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RECOMENDATION_16_9.jpg",
+            "width": 100,
+            "height": 56,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_3_2.jpg",
+            "width": 640,
+            "height": 427,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_16_9.jpg",
+            "width": 1024,
+            "height": 576,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_ARTIST_PAGE_3_2.jpg",
+            "width": 305,
+            "height": 203,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+            "width": 2048,
+            "height": 1152,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_3_2.jpg",
+            "width": 1024,
+            "height": 683,
+            "fallback": false
+          },
+          {
+            "ratio": "4_3",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_CUSTOM.jpg",
+            "width": 305,
+            "height": 225,
+            "fallback": false
+          }
+        ],
+        "classifications": [
+          {
+            "primary": true,
+            "segment": {
+              "id": "KZFzniwnSyZfZ7v7nJ",
+              "name": "Music"
+            },
+            "genre": {
+              "id": "KnvZfZ7vAeA",
+              "name": "Rock"
+            },
+            "subGenre": {
+              "id": "KZazBEonSMnZfZ7v6dt",
+              "name": "Alternative Rock"
+            }
+          }
+        ],
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/attractions/K8vZ91713wV?locale=en-us"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/discovery/v2/events/G5diZfkn0B-bh?locale=en-us"
     },
-     {
-      "ratio": "3_2",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_ARTIST_PAGE_3_2.jpg",
-      "width": 305,
-      "height": 203,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "width": 2048,
-      "height": 1152,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_LANDSCAPE_16_9.jpg",
-      "width": 1136,
-      "height": 639,
-      "fallback": false
-    },
-     {
-      "ratio": "3_2",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_3_2.jpg",
-      "width": 1024,
-      "height": 683,
-      "fallback": false
-    },
-     {
-      "ratio": "4_3",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_CUSTOM.jpg",
-      "width": 305,
-      "height": 225,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_EVENT_DETAIL_PAGE_16_9.jpg",
-      "width": 205,
-      "height": 115,
-      "fallback": false
-    },
-     {
-      "ratio": "3_2",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_3_2.jpg",
-      "width": 640,
-      "height": 427,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_16_9.jpg",
-      "width": 640,
-      "height": 360,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_16_9.jpg",
-      "width": 1024,
-      "height": 576,
-      "fallback": false
+    "attractions": [
+      {
+        "href": "/discovery/v2/attractions/K8vZ91713wV?locale=en-us"
+      }
+    ],
+    "venues": [
+      {
+        "href": "/discovery/v2/venues/KovZpZA7AAEA?locale=en-us"
+      }
+    ]
+  },
+  "classifications": [
+    {
+      "primary": true,
+      "segment": {
+        "id": "KZFzniwnSyZfZ7v7nJ",
+        "name": "Music"
+      },
+      "genre": {
+        "id": "KnvZfZ7vAeA",
+        "name": "Rock"
+      },
+      "subGenre": {
+        "id": "KZazBEonSMnZfZ7v6dt",
+        "name": "Alternative Rock"
+      }
     }
   ],
-  "sales":  {
-    "public":  {
-      "startDateTime": "2015-12-18T15:00:00Z",
-      "startTBD": false,
-      "endDateTime": "2016-03-08T00:30:00Z"
-    }
-  },
-  "dates":  {
-    "start":  {
-      "localDate": "2016-03-07",
+  "dates": {
+    "start": {
+      "localDate": "2016-07-27",
       "localTime": "19:30:00",
-      "dateTime": "2016-03-08T00:30:00Z",
+      "dateTime": "2016-07-27T23:30:00Z",
       "dateTBD": false,
       "dateTBA": false,
       "timeTBA": false,
       "noSpecificTime": false
     },
     "timezone": "America/New_York",
-    "status":  {
+    "status": {
       "code": "onsale"
     }
   },
-  "classifications":  [
-     {
-      "primary": true,
-      "segment":  {
-        "id": "KZFzniwnSyZfZ7v7nJ",
-        "name": "Music"
-      },
-      "genre":  {
-        "id": "KnvZfZ7vAeA",
-        "name": "Rock"
-      },
-      "subGenre":  {
-        "id": "KZazBEonSMnZfZ7v6dt",
-        "name": "Alternative Rock"
-      }
+  "id": "G5diZfkn0B-bh",
+  "images": [
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_EVENT_DETAIL_PAGE_16_9.jpg",
+      "width": 205,
+      "height": 115,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_LANDSCAPE_16_9.jpg",
+      "width": 1136,
+      "height": 639,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_16_9.jpg",
+      "width": 640,
+      "height": 360,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RECOMENDATION_16_9.jpg",
+      "width": 100,
+      "height": 56,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_3_2.jpg",
+      "width": 640,
+      "height": 427,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_16_9.jpg",
+      "width": 1024,
+      "height": 576,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_ARTIST_PAGE_3_2.jpg",
+      "width": 305,
+      "height": 203,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "width": 2048,
+      "height": 1152,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_3_2.jpg",
+      "width": 1024,
+      "height": 683,
+      "fallback": false
+    },
+    {
+      "ratio": "4_3",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_CUSTOM.jpg",
+      "width": 305,
+      "height": 225,
+      "fallback": false
     }
   ],
-  "promoter":  {
-    "id": "653"
+  "locale": "en-us",
+  "name": "Radiohead",
+  "pleaseNote": "No tickets will be delivered prior to April 18th. Tickets are not available at the box office on the first day of the public on sale. ARRIVE EARLY: Please arrive one-hour prior to showtime. All packages, including briefcases and pocketbooks, will be inspected prior to entry.",
+  "priceRanges": [
+    {
+      "type": "standard",
+      "currency": "USD",
+      "min": 80,
+      "max": 80
+    }
+  ],
+  "promoter": {
+    "id": "494"
   },
-  "_links":  {
-    "self":  {
-      "href": "/discovery/v2/events/k7vGFKzleBdwS?locale=en-us"
-    },
-    "attractions":  [
-       {
-        "href": "/discovery/v2/attractions/K8vZ917885V?locale=en-us"
-      },
-       {
-        "href": "/discovery/v2/attractions/K8vZ917foI0?locale=en-us"
-      }
-    ],
-    "venues":  [
-       {
-        "href": "/discovery/v2/venues/KovZpZAEAdaA?locale=en-us"
-      }
-    ]
+  "sales": {
+    "public": {
+      "startDateTime": "2016-03-18T14:00:00Z",
+      "startTBD": false,
+      "endDateTime": "2016-07-27T21:30:00Z"
+    }
   },
-  "_embedded":  {
-    "venues":  [
-       {
-        "name": "Gramercy Theatre",
-        "type": "venue",
-        "id": "KovZpZAEAdaA",
-        "test": false,
-        "locale": "en-us",
-        "postalCode": "10010",
-        "timezone": "America/New_York",
-        "city":  {
-          "name": "New York"
-        },
-        "state":  {
-          "name": "New York",
-          "stateCode": "NY"
-        },
-        "country":  {
-          "name": "United States Of America",
-          "countryCode": "US"
-        },
-        "address":  {
-          "line1": "127 East 23rd Street"
-        },
-        "location":  {
-          "longitude": "-73.98501292",
-          "latitude": "40.73975368"
-        },
-        "markets":  [
-           {
-            "id": "35"
-          },
-           {
-            "id": "55"
-          },
-           {
-            "id": "124"
-          }
-        ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/venues/KovZpZAEAdaA?locale=en-us"
-          }
-        }
-      }
-    ],
-    "attractions":  [
-       {
-        "name": "RNDM",
-        "type": "attraction",
-        "id": "K8vZ917885V",
-        "test": false,
-        "locale": "en-us",
-        "images":  [
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": false
-          },
-           {
-            "ratio": "3_2",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": false
-          },
-           {
-            "ratio": "3_2",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": false
-          },
-           {
-            "ratio": "4_3",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": false
-          },
-           {
-            "ratio": "3_2",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": false
-          }
-        ],
-        "classifications":  [
-           {
-            "primary": true,
-            "segment":  {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre":  {
-              "id": "KnvZfZ7vAeA",
-              "name": "Rock"
-            },
-            "subGenre":  {
-              "id": "KZazBEonSMnZfZ7v6dt",
-              "name": "Alternative Rock"
-            }
-          }
-        ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/attractions/K8vZ917885V?locale=en-us"
-          }
-        }
-      },
-       {
-        "name": "Parker Gispert",
-        "type": "attraction",
-        "id": "K8vZ917foI0",
-        "test": false,
-        "locale": "en-us",
-        "classifications":  [
-           {
-            "primary": true,
-            "segment":  {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre":  {
-              "id": "KnvZfZ7vAeA",
-              "name": "Rock"
-            },
-            "subGenre":  {
-              "id": "KZazBEonSMnZfZ7v6da",
-              "name": "Rock"
-            }
-          }
-        ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/attractions/K8vZ917foI0?locale=en-us"
-          }
-        }
-      }
-    ]
-  }
+  "test": false,
+  "type": "event",
+  "url": "http://ticketmaster.com/event/3B00506AA4EA161B"
 }
 {% endhighlight %}
 
@@ -3679,14 +3675,11 @@ discovery/{version}/venues.{format}
     * `self` (object) - link to this data set.
         - `href` (string) - reference.
         - `templated` (boolean) - is templated.
-    * `next` (object) - link to next data set.
-        - `href` (string) - reference.
-        - `templated` (boolean) - is templated.
 - `page` (object) - information about current page in data source.
+    * `number` (number) - current page number counted from 0.
     * `size` (number) - page size.
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
-    * `number` (number) - current page number counted from 0.
     
 
 {: .aside}
@@ -3749,111 +3742,103 @@ X-Unknown-Params: api-key
 Rate-Limit: 5000
 
 {
-  "_links":  {
-    "self":  {
-      "href": "/discovery/v2/venues.json?keyword=UCV{&page,size,sort}",
-      "templated": true
-    }
-  },
-  "_embedded":  {
-    "extensions": {
-      "geolocation": {
-        "geocode": {
-          "county": "Stormont, Dundas and Glengarry United Counties",
-           "geometry": {
-             "location": {
-              "longitude": -75.18716959999999,
-              "latitude": 44.9455704
-            }
-          },
-        "streetNumber": "5000",
-        "route": "Dejong Road",
-        "state": "Ontario",
-        "postalCode": "K0C 1X0",
-        "formattedAddress": "5000 Dejong Rd, Morrisburg, ON K0C 1X0, Canada",
-        "city": "Morrisburg",
-        "country": "Canada"
-        }
-      }
-    },
-    "venues":  [
-       {
-        "name": "#1 Please do not use, left over from UCV initial acct set up",
-        "type": "venue",
-        "id": "KovZpZAFnIEA",
-        "test": false,
-        "locale": "en-us",
-        "postalCode": "K0C1X0",
-        "timezone": "America/Toronto",
-        "city":  {
+  "_embedded": {
+    "venues": [
+      {
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/venues/KovZpZAFnIEA?locale=en-us"
+          }
+        },
+        "address": {
+          "line1": "Crysler Park Marina, 13480 County Rd 2"
+        },
+        "city": {
           "name": "Morrisburg"
         },
-        "state":  {
-          "name": "Ontario",
-          "stateCode": "ON"
-        },
-        "country":  {
+        "country": {
           "name": "Canada",
           "countryCode": "CA"
         },
-        "address":  {
-          "line1": "Crysler Park Marina, 13480 County Rd 2"
-        },
-        "location":  {
+        "dmas": [
+          {
+            "id": 519
+          }
+        ],
+        "id": "KovZpZAFnIEA",
+        "locale": "en-us",
+        "location": {
           "longitude": "-75.18702730",
           "latitude": "44.94535340"
         },
-        "markets":  [
-           {
+        "markets": [
+          {
             "id": "103"
           }
         ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/venues/KovZpZAFnIEA?locale=en-us"
-          }
-        }
+        "name": "#1 Please do not use, left over from UCV initial acct set up",
+        "postalCode": "K0C1X0",
+        "state": {
+          "name": "Ontario",
+          "stateCode": "ON"
+        },
+        "test": false,
+        "timezone": "America/Toronto",
+        "type": "venue",
+        "url": "http://ticketmaster.ca/venue/341396"
       },
-       {
+      {
         "name": "#2 Please do not use, left over from UCV initial acct set up",
         "type": "venue",
         "id": "KovZpZAFnIJA",
         "test": false,
+        "url": "http://ticketmaster.ca/venue/341395",
         "locale": "en-us",
         "postalCode": "K0C1X0",
         "timezone": "America/Toronto",
-        "city":  {
+        "city": {
           "name": "Morrisburg"
         },
-        "state":  {
+        "state": {
           "name": "Ontario",
           "stateCode": "ON"
         },
-        "country":  {
+        "country": {
           "name": "Canada",
           "countryCode": "CA"
         },
-        "address":  {
+        "address": {
           "line1": "13740 County Road 2"
         },
-        "location":  {
+        "location": {
           "longitude": "-75.18635300",
           "latitude": "44.89937100"
         },
-        "markets":  [
-           {
+        "markets": [
+          {
             "id": "103"
           }
         ],
-        "_links":  {
-          "self":  {
+        "dmas": [
+          {
+            "id": 519
+          }
+        ],
+        "_links": {
+          "self": {
             "href": "/discovery/v2/venues/KovZpZAFnIJA?locale=en-us"
           }
         }
       }
     ]
   },
-  "page":  {
+  "_links": {
+    "self": {
+      "href": "/discovery/v2/venues.json?view=null&keyword=UCV{&page,size,sort}",
+      "templated": true
+    }
+  },
+  "page": {
     "size": 20,
     "totalElements": 2,
     "totalPages": 1,
@@ -3890,32 +3875,37 @@ discovery/{version}/venues/{id}.{format}
 ### Response structure:
 
 {: .nested-list}
-* `name` (string) - name of venue.
-* `locale` (string) - locale of venue.
-* `markets` (array) - markets.
-    - `{array item object}` - market.
-        * `id` (string) - market id.
-* `country` (object) - country.
-    - `name` (string) - name of country.
-    - `countryCode` (string) - code of country.
-* `state` (object) - state of venue.
-    - `name` (string) - name of state.
-    - `stateCode` (string) - code of state.
-* `city` (object) - citiy of venue.
-    - `name` (string) - name of city.
-* `postalCode` (string) - postal code of venue.
-* `address` (object) - address of venue.
-    - `line1` (string) - address line 1.
-    - `line2` (string) - address line 2.
-* `location` (object) - location.
-    - `longitude` (string) - address line 1.
-    - `latitude` (string) - address line 2.
-* `timeZone` (string) - time zone of venue.
 * `_links` (object) - links to venues.
     - `self` (object) - link to this venue.
         * `href` (string) - reference.
+* `address` (object) - address of venue.
+    - `line1` (string) - address line 1.
+    - `line2` (string) - address line 2.
+* `city` (object) - citiy of venue.
+    - `name` (string) - name of city.
+* `country` (object) - country.
+    - `name` (string) - name of country.
+    - `countryCode` (string) - code of country.
+* `dmas` (array) - dmas venue.
+    - `{array item object}` - dmas.
+        * `id` (number) - id.
 * `id` (string) - id of venue.
+* `locale` (string) - locale of venue.
+* `location` (object) - location.
+    - `longitude` (string) - address line 1.
+    - `latitude` (string) - address line 2.
+* `markets` (array) - markets.
+    - `{array item object}` - market.
+        * `id` (string) - market id.
+* `name` (string) - name of venue.
+* `postalCode` (string) - postal code of venue.
+* `state` (object) - state of venue.
+    - `name` (string) - name of state.
+    - `stateCode` (string) - code of state.
+* `test` (boolean) - is test event.
+* `timeZone` (string) - time zone of venue.
 * `type` (string) - type of venue.
+* `url` (string) - url to venue.
 
 
 {: .aside}
