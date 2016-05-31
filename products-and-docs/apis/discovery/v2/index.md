@@ -34,7 +34,7 @@ Make live API calls right now in the interactive docs:
 
 ### Authentication
 
-To run a API call, you will need to pass your API Key as the query parameter  __apikey__.
+To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
 
 Example: `https://app.ticketmaster.com/discovery/v2/events.json?{apikey}`
 
