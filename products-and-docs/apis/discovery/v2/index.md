@@ -90,8 +90,8 @@ discovery/{version}/events.{format}
 |	`stateCode` | stateCode |string| No|
 |	`segmentId` | segmentId |string| No|
 |	`segmentName` | segmentName |string| No|
-| `classificationName` |any classification name - segment - genre - sub-genre | ref | No|
-| `classificationId` | any classification id - segment - genre - sub-genre| ref | No|
+| `classificationName` |any classification name - segment - genre - sub-genre | string | No|
+| `classificationId` | any classification id - segment - genre - sub-genre| string | No|
 |	`dmaId`|dmaId| string | No|
 
 
@@ -117,7 +117,7 @@ discovery/{version}/events.{format}
                     *	`max` (number) - maximum price
             * `promoter` (object) - promoter.
                 - `id` (string) - promoter id.
-            * `info` () - event's information.
+            * `info` (string) - event's information.
             * `images` (array) - images.
                 - `{array item object}` - image.
                     * `ratio` (string) - image ratio.
@@ -3657,7 +3657,7 @@ discovery/{version}/venues.{format}
                 - `countryCode` (string) - code of country.
             * `dmas` (array) - dmas venue.
                 - `{array item object}` - dmas.
-                    * `id` (integer) - id.
+                    * `id` (number) - id.
             * `id` (string) - id of venue.
             * `locale` (string) - locale of venue.
             * `location` (object) - location.
