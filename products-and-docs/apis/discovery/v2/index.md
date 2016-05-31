@@ -82,7 +82,7 @@ discovery/{version}/events.{format}
 | `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes|no|only"       | No      |
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
-| `sort`   | The search sort criteria. Values: "", "eventDate,desc", "eventDate,asc", "name,desc", "name,asc". | string            |              | No      |
+| `sort`   | The search sort criteria. Values: "", "date,desc", "date,asc", "name,desc", "name,asc". | string            |              | No      |
 | `onsaleStartDateTime`   | Include events going onsale after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `onsaleEndDateTime`   | Include events going onsale before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 
