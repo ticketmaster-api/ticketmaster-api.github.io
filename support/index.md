@@ -3,7 +3,7 @@ layout: base-content
 categories:
 - support
 - support
-title: Support | The Ticketmaster Developer Network
+title: Support
 excerpt: Answers to your most burning questions
 keywords: support, resources, forums, FAQ
 ---

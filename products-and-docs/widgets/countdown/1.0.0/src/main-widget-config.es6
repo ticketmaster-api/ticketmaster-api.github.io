@@ -76,13 +76,13 @@
     $borderRadiusController.slider('relayout');
   });
 
-  function toggleDisabled(widgetNode){
-    if ( widgetNode.getAttribute('w-id') === '') {
-      $getCodeButton.prop("disabled",true);
-    }else {
-      $getCodeButton.prop('disabled',false);
-    }
-  }
+  // function toggleDisabled(widgetNode){
+  //   if ( widgetNode.getAttribute('w-id') === '') {
+  //     $getCodeButton.prop("disabled",true);
+  //   }else {
+  //     $getCodeButton.prop('disabled',false);
+  //   }
+  // }
 
   var changeState = function(event){
     if(!event.target.name){
@@ -203,7 +203,7 @@
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
 
-    toggleDisabled(widgetNode);//set disabled btn if input is empty
+    //toggleDisabled(widgetNode);//set disabled btn if input is empty
 
     widget.update();
   };
@@ -267,7 +267,7 @@
     }
     widgetNode.setAttribute('w-height', height);
 
-    toggleDisabled(widgetNode);//set disabled btn if input is empty
+    // toggleDisabled(widgetNode);//set disabled btn if input is empty
 
     widget.update();
   };
@@ -484,6 +484,15 @@
       if(isFullWidthTheme){
         widgetNode.style.width = '100%';
       }
+
+      /*
+      //toggle $getCodeButton
+      if ( widgetNode.getAttribute('w-id') === '') {
+        $getCodeButton.prop("disabled",true);
+      }else {
+        $getCodeButton.prop('disabled',false);
+      }
+      */
 
       widget.update(isFullWidthTheme);
 
