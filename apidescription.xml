@@ -678,6 +678,9 @@
       <param name="format" required="true" type="xsd:string" style="template" default="json">
         <doc>API Response Format</doc>
       </param>
+      <param name="source" required="true" type="xsd:string" style="query" default="json">
+        <doc>source</doc>
+      </param>
       <param name="locale" required="false" type="xsd:string" style="query">
         <doc>The attraction locale, including country and localization.</doc>
         <option value=""/>
@@ -708,6 +711,9 @@
     <resource path="discovery/v2/classifications.{format}">
       <param name="format" required="true" type="xsd:string" style="template" default="json">
         <doc>API Response Format</doc>
+      </param>
+      <param name="classificationID" required="false" style="query" type="xsd:string">
+        <doc>A string to search by classification ID</doc>
       </param>
       <param name="keyword" required="false" style="query" type="xsd:string">
         <doc>A string to search against classifications names.</doc>
