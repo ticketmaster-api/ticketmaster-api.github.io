@@ -109,16 +109,16 @@ discovery/{version}/events.{format}
             * `test` (boolean) - is test.
             * `locale` (string) - locale of event.
             * `url` (string) - links to event detail page.
-            * `pleaseNote` () - event's note.
+            * `pleaseNote` (string) - event's note.
             * `priceRanges` (array) - priceRanges.
                 - `{array item object}` - priceRange.
-                    *	`type` () - price type ("standard")
-                    *	`currency` () - currency
-                    *	`min` () - minimum price
-                    *	`max` () - maximum price
+                    *	`type` (string) - price type ("standard")
+                    *	`currency` (string) - currency
+                    *	`min` (number) - minimum price
+                    *	`max` (number) - maximum price
             * `promoter` (object) - promoter.
                 - `id` (string) - promoter id.
-            * `info` () - event's information.
+            * `info` (string) - event's information.
             * `images` (array) - images.
                 - `{array item object}` - image.
                     * `ratio` (string) - image ratio.
@@ -2063,7 +2063,7 @@ discovery/{version}/venues.{format}
                 - `countryCode` (string) - code of country.
             * `dmas` (array) - dmas venue.
                 - `{array item object}` - dmas.
-                    * `id` (integer) - id.
+                    * `id` (number) - id.
             * `id` (string) - id of venue.
             * `locale` (string) - locale of venue.
             * `location` (object) - location.
