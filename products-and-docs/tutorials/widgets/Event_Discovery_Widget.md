@@ -4,22 +4,22 @@ categories:
   - tutorials
   - tutorials-widgets
 
-title: Adding a Event Discovery widget to your website
+title: Adding Event Discovery widget to your website
 
 img: "/assets/img/products-and-docs/event-discovery-widget-image.png"
 
 link: "/products-and-docs/tutorials/widgets/Event_Discovery_Widget.html"
 
-announcement: "Step by step guide about customization and adding a Event discovery widget to your website."
+announcement: "Step by step guide about customization and adding Event discovery widget to your website."
 
 tags: 
   - Discovery API
 
-excerpt: Step by step guide about customization and adding a Event discovery widget to your website.
+excerpt: Step by step guide about customization and adding Event discovery widget to your website.
 keywords: widget, sell tickets, direct payments
 ---
 
-# ADDING A EVENT DISCOVERY WIDGET
+# ADDING EVENT DISCOVERY WIDGET
 
 ## Introduction
 
