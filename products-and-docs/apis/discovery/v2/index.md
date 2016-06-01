@@ -739,7 +739,7 @@ discovery/{version}/events/{id}.{format}
 * `info` (string) - event's information.
 * `locale` (string) - locale of event.
 * `name` (string) - name of event.
-* `pleaseNote` () - event's note.
+* `pleaseNote` (string) - event's note.
 * `priceRanges` (array) - priceRanges.
     - `{array item object}` - priceRange.
         *	`type` (string) - price type ("standard")
