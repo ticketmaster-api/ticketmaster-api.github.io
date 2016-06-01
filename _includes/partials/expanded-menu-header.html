@@ -133,6 +133,11 @@
                     <li>
                         <a href="/support/faq/#affiliates-a">Affiliates</a>
                     </li>
+                    {%for item in site.pages %}
+                        {% if item.categories[0] == "faq-api" %}
+                        <li><a href="/support/faq/#{{ item.categories[1] }}">{{item.title}}</a></li>
+                        {% endif %}
+                    {%endfor%}
                 </ul>
             </div>
             <div class="col-xs-2 expand-column" style="margin-right: -10px;">
