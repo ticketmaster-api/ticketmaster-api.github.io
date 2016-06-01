@@ -68,7 +68,6 @@ discovery/{version}/events.{format}
 | `keyword`  | A string to search against event's name. Partial word will not be found. ex: `keyword=Mado` will not found event with name: Madonna   | string            |                | No      |
 | `attractionId`   | Attraction ID(s) separated by comma. | string            |       "K8vZ91713eV"       | No      |
 | `venueId`   | Venue ID(s) separated by comma. | string            |       "KovZpZAEdFtJ"       | No      |
-| `promoterId`   | Promoter ID(s) separated by comma. | string            |       "494"       | No      |
 | `postalCode`   | Zipcode or Postal Code of the venue in which the event is taking place. This is text-based search, not location-based search. Use lat/long + radius search for nearby events. | string            |       "90069"       | No      |
 | `latlong`   | The Latitude, Longitude coordinates for the venue in which this event is taking place. | string            |       "34.0928090,-118.3286610"       | No      |
 | `radius`   | The radius of the area in which we want to search for events. | string            |       "25"       | No      |
@@ -633,26 +632,86 @@ discovery/{version}/events/{id}.{format}
 ### Response structure:
 
 {: .nested-list}
-* `name` (string) - name of event.
-* `type` (string) - type of event.
-* `id` (string) - id of event.
-* `test` (boolean) - is test.
-* `locale` (string) - locale of event.
-* `url` (string) - links to event detail page.
-* `promoterId` (array) - promoter ids of event.
-    - `{array item numbers}` - promoter id.
-* `images` (array) - images.
-    - `{array item object}` - image.
-        * `ratio` (string) - image ratio.
-        * `url` (string) - image url.
-        * `width` (number) - image width.
-        * `height` (number) - image height.
-        * `fallback` (boolean) - image fallback availability.
-* `sales` (object) - sales.
-    - `public` (object) - public sales.
-        * `startDateTime` (string) - date and time start of public sales.
-        * `startTBD` (boolean) - is start TBD.
-        * `endDateTime` (string) - date and time end of public sales.
+* `_embedded` (object) - container for related items.
+    - `attractions` (array) - related attractions.
+        + `{array item object}` - event attractions.
+            * `_links` (object) - links to attractions.
+                - `self` (object) - link to this attraction.
+                    * `href` (string) - reference.
+            * `classifications` (array) - classifications.
+                - `{array item object}` - classification.
+                    * `primary` (boolean) - is primary.
+                    * `segment` (object) - segment.
+                        - `id` (string) - segment id.
+                        - `name` (string) - segment name.
+                    * `genre` (object) - genre.
+                        - `id` (string) - genre id.
+                        - `name` (string) - genre name.
+                    * `subGenre` (object) - subgenre.
+                        - `id` (string) - subgenre id.
+                        - `name` (string) - subgenre name.
+            * `id` (string) - id of current attraction.
+            * `images` (array) - images.
+                - `{array item object}` - image.
+                    * `ratio` (string) - image ratio.
+                    * `url` (string) - image url.
+                    * `width` (number) - image width.
+                    * `height` (number) - image height.
+                    * `fallback` (boolean) - image fallback availability.
+            * `name` (string) - name of event attraction.
+            * `locale` (string) - locale of event.
+            * `test` (boolean) - is test.
+            * `type` (string) - type of current attraction.
+            * `url` (string) - url to event attraction.
+    - `venue` (array) - related venues.
+        * `{array item object}` - venue.
+            * `_links` (object) - links.
+                - `self` (object) - link to this venue.
+                    * `href` (string) - reference. 
+            * `address` (object) - address of venue.
+                - `line1` (string) - street name.
+                - `line2` (string) - city and state code where event happen.
+            * `city` (object) - city of venue.
+                - `name` (string) - city name of venue.
+            * `country` (object) - country of venue.
+                - `countryCode` (string) - country code of venue.
+            * `id` (string) - id of current venue.
+            * `locale` (string) - locale of event.
+            * `location` (object) - location of venue.
+                - `latitude` (string) - latitude of venue.
+                - `longitude` (string) - longitude of venue.            
+            * `markets` (array) - markets.
+                - `{array item object}` - market.
+                    * `id` (string) - market id.
+            * `name` (string) - name of event venue.
+            * `postalCode` (string) - postal code of venue.
+            * `state` (object) - state of venue.
+                - `stateCode` (string) - state code of venue.
+            * `type` (string) - type of current venue.
+            * `test` (boolean) - is test.
+            * `timeZone` (string) - time zone of event.
+            * `url` (string) - links to venue.
+* `_links` (object) - links to event.
+    - `self` (object) - link to this event.
+        + `href` (string) - reference.
+    - `attractions` (object) - links to event attractions.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event attraction.
+    - `venue` (object) - link to event venues.
+        * `{array item object}` - link.
+            * `href` (string) - reference to event venue.
+* `classifications` (array) - classifications.
+    - `{array item object}` - classification.
+        * `primary` (boolean) - is primary.
+        * `segment` (object) - segment.
+            - `id` (string) - segment id.
+            - `name` (string) - segment name.
+        * `genre` (object) - genre.
+            - `id` (string) - genre id.
+            - `name` (string) - genre name.
+        * `subGenre` (object) - subgenre.
+            - `id` (string) - subgenre id.
+            - `name` (string) - subgenre name.
 * `dates` (object) - dates of event.
     - `start` (object) - start of event.
         * `dateTime` (string) - date and time start of event.
@@ -669,87 +728,34 @@ discovery/{version}/events/{id}.{format}
             - `localEndDate` (string) - local end date of event displayed.
     - `status` (object) - status of event.
         * `code` (string) - code of status.
-* `classifications` (array) - classifications.
-    - `{array item object}` - classification.
-        * `primary` (boolean) - is primary.
-        * `segment` (object) - segment.
-            - `id` (string) - segment id.
-            - `name` (string) - segment name.
-        * `genre` (object) - genre.
-            - `id` (string) - genre id.
-            - `name` (string) - genre name.
-        * `subGenre` (object) - subgenre.
-            - `id` (string) - subgenre id.
-            - `name` (string) - subgenre name.
-* `_links` (object) - links to event.
-    - `self` (object) - link to this event.
-        + `href` (string) - reference.
-    - `attractions` (object) - links to event attractions.
-        * `{array item object}` - link.
-            * `href` (string) - reference to event attraction.
-    - `venue` (object) - link to event venues.
-        * `{array item object}` - link.
-            * `href` (string) - reference to event venue.
-* `_embedded` (object) - container for related items.
-    - `venue` (array) - related venues.
-        * `{array item object}` - venue.
-            * `name` (string) - name of event venue.
-            * `type` (string) - type of current venue.
-            * `id` (string) - id of current venue.
-            * `test` (boolean) - is test.
-            * `locale` (string) - locale of event.
-            * `postalCode` (string) - postal code of venue.
-            * `timeZone` (string) - time zone of event.
-            * `markets` (array) - markets.
-                - `{array item object}` - market.
-                    * `id` (string) - market id.
-            * `country` (object) - country of venue.
-                - `countryCode` (string) - country code of venue.
-            * `state` (object) - state of venue.
-                - `stateCode` (string) - state code of venue.
-            * `city` (object) - city of venue.
-                - `name` (string) - city name of venue.
-            * `location` (object) - location of venue.
-                - `latitude` (string) - latitude of venue.
-                - `longitude` (string) - longitude of venue.
-            * `address` (object) - address of venue.
-                - `line1` (string) - street name.
-                - `line2` (string) - city and state code where event happen.
-            * `_links` (object) - links.
-                - `self` (object) - link to this venue.
-                    * `href` (string) - reference. 
-    - `attractions` (array) - related attractions.
-        + `{array item object}` - event attractions.
-            * `url` (string) - url to event attraction.
-            * `image` (object) - images of attraction.
-                - `url` (string) - images url of event.
-            * `name` (string) - name of event attraction.
-            * `_links` (object) - links to attractions.
-                - `self` (object) - link to this attraction.
-                    * `href` (string) - reference.
-            * `id` (string) - id of current attraction.
-            * `type` (string) - type of current attraction.
-            * `test` (boolean) - is test.
-            * `locale` (string) - locale of event.
-            * `images` (array) - images.
-                - `{array item object}` - image.
-                    * `ratio` (string) - image ratio.
-                    * `url` (string) - image url.
-                    * `width` (number) - image width.
-                    * `height` (number) - image height.
-                    * `fallback` (boolean) - image fallback availability.
-            * `classifications` (array) - classifications.
-                - `{array item object}` - classification.
-                    * `primary` (boolean) - is primary.
-                    * `segment` (object) - segment.
-                        - `id` (string) - segment id.
-                        - `name` (string) - segment name.
-                    * `genre` (object) - genre.
-                        - `id` (string) - genre id.
-                        - `name` (string) - genre name.
-                    * `subGenre` (object) - subgenre.
-                        - `id` (string) - subgenre id.
-                        - `name` (string) - subgenre name.
+* `id` (string) - id of event.
+* `images` (array) - images.
+    - `{array item object}` - image.
+        * `ratio` (string) - image ratio.
+        * `url` (string) - image url.
+        * `width` (number) - image width.
+        * `height` (number) - image height.
+        * `fallback` (boolean) - image fallback availability.
+* `info` (string) - event's information.
+* `locale` (string) - locale of event.
+* `name` (string) - name of event.
+* `pleaseNote` () - event's note.
+* `priceRanges` (array) - priceRanges.
+    - `{array item object}` - priceRange.
+        *	`type` (string) - price type ("standard")
+        *	`currency` (string) - currency
+        *	`min` (number) - minimum price
+        *	`max` (number) - maximum price
+* `promoter` (object) - promoter.
+    - `id` (string) - promoter id.
+* `sales` (object) - sales.
+    - `public` (object) - public sales.
+        * `startDateTime` (string) - date and time start of public sales.
+        * `startTBD` (boolean) - is start TBD.
+        * `endDateTime` (string) - date and time end of public sales.
+* `test` (boolean) - is test.
+* `type` (string) - type of event.
+* `url` (string) - links to event detail page.
 
 {: .aside}
 >[JavaScript](#js)
@@ -759,7 +765,7 @@ discovery/{version}/events/{id}.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}",
+  url:"https://app.ticketmaster.com/discovery/v2/events/G5diZfkn0B-bh.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -775,7 +781,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS.json?{apikey}'
+--include 'https://app.ticketmaster.com/discovery/v2/events/G5diZfkn0B-bh.json?{apikey}'
 {% endhighlight %}
 
 {: .article}
@@ -784,7 +790,7 @@ curl \
 {: .reqres}
 
 {% highlight http %}
-GET /discovery/v2/events/k7vGFKzleBdwS.json?{apikey} HTTP/1.1
+GET /discovery/v2/events/G5diZfkn0B-bh.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -811,323 +817,319 @@ X-Unknown-Params: api-key
 Rate-Limit: 5000
 
 {
-  "name": "RNDM",
-  "type": "event",
-  "id": "k7vGFKzleBdwS",
-  "test": false,
-  "url": "http://ticketmaster.com/event/0E0050681F51BA4C",
-  "locale": "en-us",
-  "images":  [
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RECOMENDATION_16_9.jpg",
-      "width": 100,
-      "height": 56,
-      "fallback": false
+  "_embedded": {
+    "venues": [
+      {
+        "name": "Madison Square Garden",
+        "type": "venue",
+        "id": "KovZpZA7AAEA",
+        "test": false,
+        "url": "http://ticketmaster.com/venue/483329",
+        "locale": "en-us",
+        "postalCode": "10001",
+        "timezone": "America/New_York",
+        "city": {
+          "name": "New York"
+        },
+        "state": {
+          "name": "New York",
+          "stateCode": "NY"
+        },
+        "country": {
+          "name": "United States Of America",
+          "countryCode": "US"
+        },
+        "address": {
+          "line1": "7th Ave & 32nd Street"
+        },
+        "location": {
+          "longitude": "-73.99160060",
+          "latitude": "40.74970620"
+        },
+        "markets": [
+          {
+            "id": "35"
+          },
+          {
+            "id": "51"
+          },
+          {
+            "id": "55"
+          },
+          {
+            "id": "124"
+          }
+        ],
+        "dmas": [
+          {
+            "id": 200
+          },
+          {
+            "id": 296
+          },
+          {
+            "id": 345
+          },
+          {
+            "id": 422
+          }
+        ],
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/venues/KovZpZA7AAEA?locale=en-us"
+          }
+        }
+      }
+    ],
+    "attractions": [
+      {
+        "name": "Radiohead",
+        "type": "attraction",
+        "id": "K8vZ91713wV",
+        "test": false,
+        "url": "http://ticketmaster.com/artist/763468",
+        "locale": "en-us",
+        "images": [
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_EVENT_DETAIL_PAGE_16_9.jpg",
+            "width": 205,
+            "height": 115,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_LANDSCAPE_16_9.jpg",
+            "width": 1136,
+            "height": 639,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_16_9.jpg",
+            "width": 640,
+            "height": 360,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RECOMENDATION_16_9.jpg",
+            "width": 100,
+            "height": 56,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_3_2.jpg",
+            "width": 640,
+            "height": 427,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_16_9.jpg",
+            "width": 1024,
+            "height": 576,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_ARTIST_PAGE_3_2.jpg",
+            "width": 305,
+            "height": 203,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+            "width": 2048,
+            "height": 1152,
+            "fallback": false
+          },
+          {
+            "ratio": "3_2",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_3_2.jpg",
+            "width": 1024,
+            "height": 683,
+            "fallback": false
+          },
+          {
+            "ratio": "4_3",
+            "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_CUSTOM.jpg",
+            "width": 305,
+            "height": 225,
+            "fallback": false
+          }
+        ],
+        "classifications": [
+          {
+            "primary": true,
+            "segment": {
+              "id": "KZFzniwnSyZfZ7v7nJ",
+              "name": "Music"
+            },
+            "genre": {
+              "id": "KnvZfZ7vAeA",
+              "name": "Rock"
+            },
+            "subGenre": {
+              "id": "KZazBEonSMnZfZ7v6dt",
+              "name": "Alternative Rock"
+            }
+          }
+        ],
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/attractions/K8vZ91713wV?locale=en-us"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/discovery/v2/events/G5diZfkn0B-bh?locale=en-us"
     },
-     {
-      "ratio": "3_2",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_ARTIST_PAGE_3_2.jpg",
-      "width": 305,
-      "height": 203,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-      "width": 2048,
-      "height": 1152,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_LANDSCAPE_16_9.jpg",
-      "width": 1136,
-      "height": 639,
-      "fallback": false
-    },
-     {
-      "ratio": "3_2",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_3_2.jpg",
-      "width": 1024,
-      "height": 683,
-      "fallback": false
-    },
-     {
-      "ratio": "4_3",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_CUSTOM.jpg",
-      "width": 305,
-      "height": 225,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_EVENT_DETAIL_PAGE_16_9.jpg",
-      "width": 205,
-      "height": 115,
-      "fallback": false
-    },
-     {
-      "ratio": "3_2",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_3_2.jpg",
-      "width": 640,
-      "height": 427,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_16_9.jpg",
-      "width": 640,
-      "height": 360,
-      "fallback": false
-    },
-     {
-      "ratio": "16_9",
-      "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_16_9.jpg",
-      "width": 1024,
-      "height": 576,
-      "fallback": false
+    "attractions": [
+      {
+        "href": "/discovery/v2/attractions/K8vZ91713wV?locale=en-us"
+      }
+    ],
+    "venues": [
+      {
+        "href": "/discovery/v2/venues/KovZpZA7AAEA?locale=en-us"
+      }
+    ]
+  },
+  "classifications": [
+    {
+      "primary": true,
+      "segment": {
+        "id": "KZFzniwnSyZfZ7v7nJ",
+        "name": "Music"
+      },
+      "genre": {
+        "id": "KnvZfZ7vAeA",
+        "name": "Rock"
+      },
+      "subGenre": {
+        "id": "KZazBEonSMnZfZ7v6dt",
+        "name": "Alternative Rock"
+      }
     }
   ],
-  "sales":  {
-    "public":  {
-      "startDateTime": "2015-12-18T15:00:00Z",
-      "startTBD": false,
-      "endDateTime": "2016-03-08T00:30:00Z"
-    }
-  },
-  "dates":  {
-    "start":  {
-      "localDate": "2016-03-07",
+  "dates": {
+    "start": {
+      "localDate": "2016-07-27",
       "localTime": "19:30:00",
-      "dateTime": "2016-03-08T00:30:00Z",
+      "dateTime": "2016-07-27T23:30:00Z",
       "dateTBD": false,
       "dateTBA": false,
       "timeTBA": false,
       "noSpecificTime": false
     },
     "timezone": "America/New_York",
-    "status":  {
+    "status": {
       "code": "onsale"
     }
   },
-  "classifications":  [
-     {
-      "primary": true,
-      "segment":  {
-        "id": "KZFzniwnSyZfZ7v7nJ",
-        "name": "Music"
-      },
-      "genre":  {
-        "id": "KnvZfZ7vAeA",
-        "name": "Rock"
-      },
-      "subGenre":  {
-        "id": "KZazBEonSMnZfZ7v6dt",
-        "name": "Alternative Rock"
-      }
+  "id": "G5diZfkn0B-bh",
+  "images": [
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_EVENT_DETAIL_PAGE_16_9.jpg",
+      "width": 205,
+      "height": 115,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_LANDSCAPE_16_9.jpg",
+      "width": 1136,
+      "height": 639,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_16_9.jpg",
+      "width": 640,
+      "height": 360,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RECOMENDATION_16_9.jpg",
+      "width": 100,
+      "height": 56,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_RETINA_PORTRAIT_3_2.jpg",
+      "width": 640,
+      "height": 427,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_16_9.jpg",
+      "width": 1024,
+      "height": 576,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_ARTIST_PAGE_3_2.jpg",
+      "width": 305,
+      "height": 203,
+      "fallback": false
+    },
+    {
+      "ratio": "16_9",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+      "width": 2048,
+      "height": 1152,
+      "fallback": false
+    },
+    {
+      "ratio": "3_2",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_TABLET_LANDSCAPE_3_2.jpg",
+      "width": 1024,
+      "height": 683,
+      "fallback": false
+    },
+    {
+      "ratio": "4_3",
+      "url": "http://s1.ticketm.net/dam/a/c4c/e751ab33-b9cd-4d24-ad4a-5ef79faa7c4c_72681_CUSTOM.jpg",
+      "width": 305,
+      "height": 225,
+      "fallback": false
     }
   ],
-  "promoter":  {
-    "id": "653"
+  "locale": "en-us",
+  "name": "Radiohead",
+  "pleaseNote": "No tickets will be delivered prior to April 18th. Tickets are not available at the box office on the first day of the public on sale. ARRIVE EARLY: Please arrive one-hour prior to showtime. All packages, including briefcases and pocketbooks, will be inspected prior to entry.",
+  "priceRanges": [
+    {
+      "type": "standard",
+      "currency": "USD",
+      "min": 80,
+      "max": 80
+    }
+  ],
+  "promoter": {
+    "id": "494"
   },
-  "_links":  {
-    "self":  {
-      "href": "/discovery/v2/events/k7vGFKzleBdwS?locale=en-us"
-    },
-    "attractions":  [
-       {
-        "href": "/discovery/v2/attractions/K8vZ917885V?locale=en-us"
-      },
-       {
-        "href": "/discovery/v2/attractions/K8vZ917foI0?locale=en-us"
-      }
-    ],
-    "venues":  [
-       {
-        "href": "/discovery/v2/venues/KovZpZAEAdaA?locale=en-us"
-      }
-    ]
+  "sales": {
+    "public": {
+      "startDateTime": "2016-03-18T14:00:00Z",
+      "startTBD": false,
+      "endDateTime": "2016-07-27T21:30:00Z"
+    }
   },
-  "_embedded":  {
-    "venues":  [
-       {
-        "name": "Gramercy Theatre",
-        "type": "venue",
-        "id": "KovZpZAEAdaA",
-        "test": false,
-        "locale": "en-us",
-        "postalCode": "10010",
-        "timezone": "America/New_York",
-        "city":  {
-          "name": "New York"
-        },
-        "state":  {
-          "name": "New York",
-          "stateCode": "NY"
-        },
-        "country":  {
-          "name": "United States Of America",
-          "countryCode": "US"
-        },
-        "address":  {
-          "line1": "127 East 23rd Street"
-        },
-        "location":  {
-          "longitude": "-73.98501292",
-          "latitude": "40.73975368"
-        },
-        "markets":  [
-           {
-            "id": "35"
-          },
-           {
-            "id": "55"
-          },
-           {
-            "id": "124"
-          }
-        ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/venues/KovZpZAEAdaA?locale=en-us"
-          }
-        }
-      }
-    ],
-    "attractions":  [
-       {
-        "name": "RNDM",
-        "type": "attraction",
-        "id": "K8vZ917885V",
-        "test": false,
-        "locale": "en-us",
-        "images":  [
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": false
-          },
-           {
-            "ratio": "3_2",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": false
-          },
-           {
-            "ratio": "3_2",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": false
-          },
-           {
-            "ratio": "4_3",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": false
-          },
-           {
-            "ratio": "3_2",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": false
-          },
-           {
-            "ratio": "16_9",
-            "url": "http://s1.ticketm.net/dam/a/063/1689bfea-ae98-4c7e-a31d-bbca2dd14063_54361_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": false
-          }
-        ],
-        "classifications":  [
-           {
-            "primary": true,
-            "segment":  {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre":  {
-              "id": "KnvZfZ7vAeA",
-              "name": "Rock"
-            },
-            "subGenre":  {
-              "id": "KZazBEonSMnZfZ7v6dt",
-              "name": "Alternative Rock"
-            }
-          }
-        ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/attractions/K8vZ917885V?locale=en-us"
-          }
-        }
-      },
-       {
-        "name": "Parker Gispert",
-        "type": "attraction",
-        "id": "K8vZ917foI0",
-        "test": false,
-        "locale": "en-us",
-        "classifications":  [
-           {
-            "primary": true,
-            "segment":  {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre":  {
-              "id": "KnvZfZ7vAeA",
-              "name": "Rock"
-            },
-            "subGenre":  {
-              "id": "KZazBEonSMnZfZ7v6da",
-              "name": "Rock"
-            }
-          }
-        ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/attractions/K8vZ917foI0?locale=en-us"
-          }
-        }
-      }
-    ]
-  }
+  "test": false,
+  "type": "event",
+  "url": "http://ticketmaster.com/event/3B00506AA4EA161B"
 }
 {% endhighlight %}
 
@@ -1314,7 +1316,7 @@ Rate-Limit: 5000
 ## Search Attractions
 
 **Method:** GET.
-Authentication required..
+Authentication required.
 Search Attractions!
 
 {: .code .red}
@@ -1344,24 +1346,9 @@ discovery/{version}/attractions.{format}
 - `_embedded` (object) - container attractions.
     * `attractions` (array) - attractions.
         - `{array item object}` - attraction.
-            * `url` (string) - url to event attraction.
-            * `image` (object) - images of attraction.
-                - `url` (string) - images url of event.
-            * `name` (string) - name of event attraction.
             * `_links` (object) - links to attractions.
                 - `self` (object) - link to this attraction.
                     * `href` (string) - reference.
-            * `id` (string) - id of current attraction.
-            * `type` (string) - type of current attraction.
-            * `test` (boolean) - is test.
-            * `locale` (string) - locale of event.
-            * `images` (array) - images.
-                - `{array item object}` - image.
-                    * `ratio` (string) - image ratio.
-                    * `url` (string) - image url.
-                    * `width` (number) - image width.
-                    * `height` (number) - image height.
-                    * `fallback` (boolean) - image fallback availability.
             * `classifications` (array) - classifications.
                 - `{array item object}` - classification.
                     * `primary` (boolean) - is primary.
@@ -1374,6 +1361,19 @@ discovery/{version}/attractions.{format}
                     * `subGenre` (object) - subgenre.
                         - `id` (string) - subgenre id.
                         - `name` (string) - subgenre name.
+            * `id` (string) - id of current attraction.            
+            * `images` (array) - images.
+                - `{array item object}` - image.
+                    * `fallback` (boolean) - image fallback availability.
+                    * `height` (number) - image height.
+                    * `ratio` (string) - image ratio.
+                    * `url` (string) - image url.
+                    * `width` (number) - image width.
+            * `locale` (string) - locale of event.
+            * `name` (string) - name of event attraction.
+            * `test` (boolean) - is test.
+            * `type` (string) - type of current attraction.
+            * `url` (string) - url to event attraction.
 - `_links` (object) - links to attractions data set.
     * `self` (object) - link to this data set.
         - `href` (string) - reference.
@@ -1518,28 +1518,14 @@ discovery/{version}/attractions/{id}.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
+| `source`   | source | string            |              | No      |
 
 ### Response structure:
 
 {: .nested-list}
-* `url` (string) - url to event attraction.
-* `image` (object) - images of attraction.
-    - `url` (string) - images url of event.
-* `name` (string) - name of event attraction.
 * `_links` (object) - links to attractions.
     - `self` (object) - link to this attraction.
         * `href` (string) - reference.
-* `id` (string) - id of current attraction.
-* `type` (string) - type of current attraction.
-* `test` (boolean) - is test.
-* `locale` (string) - locale of event.
-* `images` (array) - images.
-    - `{array item object}` - image.
-        * `ratio` (string) - image ratio.
-        * `url` (string) - image url.
-        * `width` (number) - image width.
-        * `height` (number) - image height.
-        * `fallback` (boolean) - image fallback availability.
 * `classifications` (array) - classifications.
     - `{array item object}` - classification.
         * `primary` (boolean) - is primary.
@@ -1552,6 +1538,19 @@ discovery/{version}/attractions/{id}.{format}
         * `subGenre` (object) - subgenre.
             - `id` (string) - subgenre id.
             - `name` (string) - subgenre name.
+* `id` (string) - id of current attraction.
+* `images` (array) - images.
+    - `{array item object}` - image.
+        * `ratio` (string) - image ratio.
+        * `url` (string) - image url.
+        * `width` (number) - image width.
+        * `height` (number) - image height.
+        * `fallback` (boolean) - image fallback availability.
+* `locale` (string) - locale of event.
+* `name` (string) - name of event attraction.
+* `test` (boolean) - is test.
+* `type` (string) - type of current attraction.
+* `url` (string) - url to event attraction.
 
 {: .aside}
 >[JavaScript](#js)
@@ -1738,6 +1737,7 @@ discovery/{version}/classifications.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
+| `classificationID `  |  classification ID  | string            |                | No      |
 | `size`   | The number of events returned in the API response. | string            |       "20"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
@@ -1748,13 +1748,30 @@ discovery/{version}/classifications.{format}
 - `_embedded` (object) - container for classifications.
     * `classifications` (array) - classifications.
         - `{array item object}` - classification.
-            * `segment` (object) - segment.
-                - `id` (string) - segment id.
-                - `name` (string) - segment name.
-            * `_links` (object) - links to categories data sets.
+            * `_links` (object) - links to classifications data sets.
                 - `self` (object) - link to this data set.
                     * `href` (string) - reference.
-- `_links` (object) - links to categories data sets.
+            * `segment` (object) - segment.
+                - `_embedded` (object) - container for genres.
+                    * `genres` (array) - genres.
+                        - `{array item object}` - genres.
+                            * `_links` (object) - links to genre.
+                                - `self` (object) - link to this genre.
+                                    * `href` (string) - reference.
+                            * `_embedded` (object) - container for subgenres.
+                                + `subgenres` (array) - subgenres.
+                                    - `{array item object}` - subgenre.
+                                        * `_links` (object) - links to subgenre.
+                                            - `self` (object) - link to this subgenre.
+                                                * `href` (string) - reference.
+                                        * `id` (string) - genre id.
+                                        * `name` (string) - genre name.
+                            * `id` (string) - genre id.
+                            * `name` (string) - genre name.
+                * `_links` (object) - links to segments.
+                    - `self` (object) - link to this segments.
+                        * `href` (string) - reference.
+- `_links` (object) - links to classifications data sets.
     * `self` (object) - link to this data set.
         - `href` (string) - reference.
         - `templated` (boolean) - ability to be templated.
@@ -1827,79 +1844,340 @@ X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
 
-{
-  "_links":  {
-    "self":  {
-      "href": "/discovery/v2/classifications.json{?page,size,sort}",
-      "templated": true
-    }
-  },
-  "_embedded":  {
-    "classifications":  [
-       {},
-       {
-        "segment":  {
-          "id": "KZFzniwnSyZfZ7v7nn",
-          "name": "Film"
-        },
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/classifications/KZFzniwnSyZfZ7v7nn?locale=en-us"
-          }
-        }
+{  
+   "_links":{  
+      "self":{  
+         "href":"/discovery/v2/classifications.json?view=null&size=2{&page,sort}",
+         "templated":true
       },
-       {
-        "segment":  {
-          "id": "KZFzniwnSyZfZ7v7n1",
-          "name": "Miscellaneous"
-        },
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/classifications/KZFzniwnSyZfZ7v7n1?locale=en-us"
-          }
-        }
-      },
-       {
-        "segment":  {
-          "id": "KZFzniwnSyZfZ7v7nJ",
-          "name": "Music"
-        },
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/classifications/KZFzniwnSyZfZ7v7nJ?locale=en-us"
-          }
-        }
-      },
-       {
-        "segment":  {
-          "id": "KZFzniwnSyZfZ7v7nE",
-          "name": "Sports"
-        },
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE?locale=en-us"
-          }
-        }
-      },
-       {
-        "segment":  {
-          "id": "KZFzniwnSyZfZ7v7nl",
-          "name": "Undefined"
-        },
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/classifications/KZFzniwnSyZfZ7v7nl?locale=en-us"
-          }
-        }
+      "next":{  
+         "href":"/discovery/v2/classifications.json?view=null&page=1&size=2{&sort}",
+         "templated":true
       }
-    ]
-  },
-  "page":  {
-    "size": 20,
-    "totalElements": 6,
-    "totalPages": 1,
-    "number": 0
-  }
+   },
+   "_embedded":{  
+      "classifications":[  
+         {  
+            "_links":{  
+               "self":{  
+                  "href":"/discovery/v2/classifications/KZFzniwnSyZfZ7v7na?locale=en-us"
+               }
+            },
+            "segment":{  
+               "id":"KZFzniwnSyZfZ7v7na",
+               "name":"Arts & Theatre",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7na?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "genres":[
+                    {  
+                        "id":"KnvZfZ7v7lv",
+                        "name":"Magic & Illusion",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7v7lv?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7v7l7",
+                                 "name":"Magic",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7v7l7?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  ]
+               }
+            }
+         },
+         {  
+            "_links":{  
+               "self":{  
+                  "href":"/discovery/v2/classifications/KZFzniwnSyZfZ7v7nn?locale=en-us"
+               }
+            },
+            "segment":{  
+               "id":"KZFzniwnSyZfZ7v7nn",
+               "name":"Film",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7nn?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "genres":[  
+                     {  
+                        "id":"KnvZfZ7vAka",
+                        "name":"Miscellaneous",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAka?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFll",
+                                 "name":"Classic/Reissue",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFll?locale=en-us"
+                                    }
+                                 }
+                              },
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFln",
+                                 "name":"Miscellaneous",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFln?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAkF",
+                        "name":"Family",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAkF?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFlt",
+                                 "name":"Miscellaneous",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFlt?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAk1",
+                        "name":"Foreign",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAk1?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vavv",
+                                 "name":"Foreign",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vavv?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAkd",
+                        "name":"Animation",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAkd?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFla",
+                                 "name":"Animation",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFla?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAkE",
+                        "name":"Urban",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAkE?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vavd",
+                                 "name":"Urban",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vavd?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAke",
+                        "name":"Action/Adventure",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAke?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFlF",
+                                 "name":"Action/Adventure",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFlF?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAkJ",
+                        "name":"Music",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAkJ?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vave",
+                                 "name":"Music",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vave?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAkA",
+                        "name":"Comedy",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAkA?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFlJ",
+                                 "name":"Comedy",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFlJ?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAk7",
+                        "name":"Arthouse",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAk7?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFl1",
+                                 "name":"Arthouse",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFl1?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAk6",
+                        "name":"Drama",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAk6?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFlI",
+                                 "name":"Drama",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFlI?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     },
+                     {  
+                        "id":"KnvZfZ7vAkk",
+                        "name":"Documentary",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/genres/KnvZfZ7vAkk?locale=en-us"
+                           }
+                        },
+                        "_embedded":{  
+                           "subgenres":[  
+                              {  
+                                 "id":"KZazBEonSMnZfZ7vFlE",
+                                 "name":"Documentary",
+                                 "_links":{  
+                                    "self":{  
+                                       "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFlE?locale=en-us"
+                                    }
+                                 }
+                              }
+                           ]
+                        }
+                     }
+                  ]
+               }
+            }
+         }
+      ]
+   },
+   "page":{  
+      "size":2,
+      "totalElements":6,
+      "totalPages":3,
+      "number":0
+   }
 }
 {% endhighlight %}
 
@@ -1932,12 +2210,31 @@ discovery/{version}/classifications/{id}.{format}
 ### Response structure:
 
 {: .nested-list}
-* `segment` (object) - segment.
-    - `id` (string) - segment id.
-    - `name` (string) - segment name.
-* `_links` (object) - links to categories data sets.
+* `_links` (object) - links to classifications data sets.
     - `self` (object) - link to this data set.
         * `href` (string) - reference.
+* `segment` (object) - segment.
+    - `_embedded` (object) - container for genres.
+        * `genres` (array) - genres.
+            - `{array item object}` - genres.
+                * `_links` (object) - links to genre.
+                    - `self` (object) - link to this genre.
+                        * `href` (string) - reference.
+                * `_embedded` (object) - container for subgenres.
+                    + `subgenres` (array) - subgenres.
+                        - `{array item object}` - subgenre.
+                            * `_links` (object) - links to subgenre.
+                                - `self` (object) - link to this subgenre.
+                                    * `href` (string) - reference.
+                            * `id` (string) - genre id.
+                            * `name` (string) - genre name.
+                * `id` (string) - genre id.
+                * `name` (string) - genre name.
+    * `_links` (object) - links to segments.
+        - `self` (object) - link to this segments.
+            * `href` (string) - reference.
+    - `id` (string) - segment id.
+    - `name` (string) - segment name.
 
 {: .aside}
 >[JavaScript](#js)
@@ -1998,16 +2295,1309 @@ X-Unknown-Params: apikey
 X-Unknown-Params: api-key
 Rate-Limit: 5000
 
-{
-  "segment":  {
-    "id": "KZFzniwnSyZfZ7v7nE",
-    "name": "Sports"
-  },
-  "_links":  {
-    "self":  {
-      "href": "/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE?locale=en-us"
-    }
-  }
+{  
+   "_links":{  
+      "self":{  
+         "href":"/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE?locale=en-us"
+      }
+   },
+   "segment":{  
+      "id":"KZFzniwnSyZfZ7v7nE",
+      "name":"Sports",
+      "_links":{  
+         "self":{  
+            "href":"/discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7nE?locale=en-us"
+         }
+      },
+      "_embedded":{  
+         "genres":[  
+            {  
+               "id":"KnvZfZ7vA76",
+               "name":"Netball",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA76?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtA",
+                        "name":"Netball",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtA?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7k",
+               "name":"Motorsports/Racing",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7k?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFt7",
+                        "name":"Motorsports/Racing",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFt7?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7a",
+               "name":"Roller Hockey",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7a?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtF",
+                        "name":"Roller Hockey",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtF?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAea",
+               "name":"Rodeo",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAea?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtk",
+                        "name":"Bullriding",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtk?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1d",
+                        "name":"Rodeo",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1d?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA71",
+               "name":"Rugby",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA71?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFta",
+                        "name":"Rugby",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFta?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFt1",
+                        "name":"Rugby League",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFt1?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtJ",
+                        "name":"Rugby Union",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtJ?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7v",
+               "name":"Ice Skating",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7v?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIF",
+                        "name":"Ice Skating",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIF?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7d",
+               "name":"Martial Arts",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7d?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIJ",
+                        "name":"Kickboxing",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIJ?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFI1",
+                        "name":"Karate",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFI1?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIE",
+                        "name":"Mixed Martial Arts",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIE?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7e",
+               "name":"Indoor Soccer",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7e?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIa",
+                        "name":"Indoor Soccer",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIa?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7A",
+               "name":"Miscellaneous",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7A?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtv",
+                        "name":"High School",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtv?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIl",
+                        "name":"GAA",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIl?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIt",
+                        "name":"Miscellaneous",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIt?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFte",
+                        "name":"College",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFte?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtd",
+                        "name":"Minor League",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtd?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA77",
+               "name":"Lacrosse",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA77?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFII",
+                        "name":"Lacrosse",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFII?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAet",
+               "name":"Athletic Races",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAet?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF11",
+                        "name":"Athletic Races",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF11?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7l",
+               "name":"Table Tennis",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7l?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFne",
+                        "name":"Table Tennis",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFne?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAeI",
+               "name":"Aquatics",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAeI?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1a",
+                        "name":"Aquatics",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1a?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7n",
+               "name":"Swimming",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7n?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFnv",
+                        "name":"Swimming",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFnv?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAel",
+               "name":"Bandy",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAel?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1E",
+                        "name":"Bandy",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1E?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAen",
+               "name":"Badminton",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAen?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1J",
+                        "name":"Badminton",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1J?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7E",
+               "name":"Soccer",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7E?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtI",
+                        "name":"MLS",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtI?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtt",
+                        "name":"Soccer",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtt?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7J",
+               "name":"Ski Jumping",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7J?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtE",
+                        "name":"Ski Jumping",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtE?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7t",
+               "name":"Surfing",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7t?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtl",
+                        "name":"Surfing",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtl?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vA7I",
+               "name":"Squash",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vA7I?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFtn",
+                        "name":"Squash",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFtn?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdk",
+               "name":"Cricket",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdk?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJE",
+                        "name":"Cricket",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJE?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdA",
+               "name":"Boxing",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdA?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJJ",
+                        "name":"Boxing",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJJ?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdF",
+               "name":"Curling",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdF?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJl",
+                        "name":"Curling",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJl?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAd6",
+               "name":"Skiing",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAd6?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJI",
+                        "name":"Cross Country",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJI?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJt",
+                        "name":"Nordic Combined",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJt?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJn",
+                        "name":"Skiing",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJn?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAd1",
+               "name":"Equestrian",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAd1?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEe",
+                        "name":"Dressage",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEe?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEd",
+                        "name":"Equestrian",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEd?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFE7",
+                        "name":"Horse Racing",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFE7?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAda",
+               "name":"Cycling",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAda?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEv",
+                        "name":"Cycling",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEv?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAAe",
+               "name":"Toros",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAAe?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFn7",
+                        "name":"Toros",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFn7?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAAv",
+               "name":"Tennis",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAAv?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFnd",
+                        "name":"Tennis",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFnd?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAde",
+               "name":"Basketball",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAde?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJ6",
+                        "name":"Men Professional",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJ6?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJ7",
+                        "name":"NBDL",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJ7?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJd",
+                        "name":"Minor League",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJd?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJA",
+                        "name":"NBA",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJA?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJF",
+                        "name":"WNBA",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJF?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJv",
+                        "name":"College",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJv?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJe",
+                        "name":"High School",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJe?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJk",
+                        "name":"NBL",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJk?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFn1",
+                        "name":"NBA D League",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFn1?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFnJ",
+                        "name":"Women Professional",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFnJ?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAA7",
+               "name":"Volleyball",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAA7?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFnk",
+                        "name":"Minor League",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFnk?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFn6",
+                        "name":"Volleyball",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFn6?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdv",
+               "name":"Baseball",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdv?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1t",
+                        "name":"Minor League",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1t?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1l",
+                        "name":"Professional",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1l?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1I",
+                        "name":"College",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1I?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vF1n",
+                        "name":"MLB",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vF1n?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAAd",
+               "name":"Track & Field",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAAd?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFnA",
+                        "name":"Track & Field",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFnA?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAd7",
+               "name":"Body Building",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAd7?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJ1",
+                        "name":"Body Building",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJ1?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAAk",
+               "name":"Wrestling",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAAk?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFna",
+                        "name":"Wrestling",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFna?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdd",
+               "name":"Biathlon",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdd?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFJa",
+                        "name":"Biathlon",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFJa?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAAA",
+               "name":"Waterpolo",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAAA?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFnF",
+                        "name":"Waterpolo",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFnF?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdn",
+               "name":"Gymnastics",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdn?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIk",
+                        "name":"Gymnastics",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIk?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdt",
+               "name":"Golf",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdt?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFI7",
+                        "name":"PGA Tour",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFI7?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFId",
+                        "name":"PGA B-Tour",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFId?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIv",
+                        "name":"Golf",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIv?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIe",
+                        "name":"LPGA",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIe?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFIA",
+                        "name":"PGA Senior Tour",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFIA?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdl",
+               "name":"Handball",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdl?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFI6",
+                        "name":"Handball",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFI6?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdJ",
+               "name":"Extreme",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdJ?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEA",
+                        "name":"Extreme",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEA?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdI",
+               "name":"Hockey",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdI?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEl",
+                        "name":"Ice Hockey",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEl?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEE",
+                        "name":"NHL",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEE?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEI",
+                        "name":"College",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEI?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEt",
+                        "name":"Minor League",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEt?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEn",
+                        "name":"Professional",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEn?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            },
+            {  
+               "id":"KnvZfZ7vAdE",
+               "name":"Football",
+               "_links":{  
+                  "self":{  
+                     "href":"/discovery/v2/classifications/genres/KnvZfZ7vAdE?locale=en-us"
+                  }
+               },
+               "_embedded":{  
+                  "subgenres":[  
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEk",
+                        "name":"AFL",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEk?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFE1",
+                        "name":"NFL",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFE1?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEa",
+                        "name":"High School",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEa?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFE6",
+                        "name":"College",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFE6?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEJ",
+                        "name":"Professional",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEJ?locale=en-us"
+                           }
+                        }
+                     },
+                     {  
+                        "id":"KZazBEonSMnZfZ7vFEF",
+                        "name":"International Rules",
+                        "_links":{  
+                           "self":{  
+                              "href":"/discovery/v2/classifications/subgenres/KZazBEonSMnZfZ7vFEF?locale=en-us"
+                           }
+                        }
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   }
 }
 {% endhighlight %}
 
@@ -2085,14 +3675,11 @@ discovery/{version}/venues.{format}
     * `self` (object) - link to this data set.
         - `href` (string) - reference.
         - `templated` (boolean) - is templated.
-    * `next` (object) - link to next data set.
-        - `href` (string) - reference.
-        - `templated` (boolean) - is templated.
 - `page` (object) - information about current page in data source.
+    * `number` (number) - current page number counted from 0.
     * `size` (number) - page size.
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
-    * `number` (number) - current page number counted from 0.
     
 
 {: .aside}
@@ -2155,111 +3742,103 @@ X-Unknown-Params: api-key
 Rate-Limit: 5000
 
 {
-  "_links":  {
-    "self":  {
-      "href": "/discovery/v2/venues.json?keyword=UCV{&page,size,sort}",
-      "templated": true
-    }
-  },
-  "_embedded":  {
-    "extensions": {
-      "geolocation": {
-        "geocode": {
-          "county": "Stormont, Dundas and Glengarry United Counties",
-           "geometry": {
-             "location": {
-              "longitude": -75.18716959999999,
-              "latitude": 44.9455704
-            }
-          },
-        "streetNumber": "5000",
-        "route": "Dejong Road",
-        "state": "Ontario",
-        "postalCode": "K0C 1X0",
-        "formattedAddress": "5000 Dejong Rd, Morrisburg, ON K0C 1X0, Canada",
-        "city": "Morrisburg",
-        "country": "Canada"
-        }
-      }
-    },
-    "venues":  [
-       {
-        "name": "#1 Please do not use, left over from UCV initial acct set up",
-        "type": "venue",
-        "id": "KovZpZAFnIEA",
-        "test": false,
-        "locale": "en-us",
-        "postalCode": "K0C1X0",
-        "timezone": "America/Toronto",
-        "city":  {
+  "_embedded": {
+    "venues": [
+      {
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/venues/KovZpZAFnIEA?locale=en-us"
+          }
+        },
+        "address": {
+          "line1": "Crysler Park Marina, 13480 County Rd 2"
+        },
+        "city": {
           "name": "Morrisburg"
         },
-        "state":  {
-          "name": "Ontario",
-          "stateCode": "ON"
-        },
-        "country":  {
+        "country": {
           "name": "Canada",
           "countryCode": "CA"
         },
-        "address":  {
-          "line1": "Crysler Park Marina, 13480 County Rd 2"
-        },
-        "location":  {
+        "dmas": [
+          {
+            "id": 519
+          }
+        ],
+        "id": "KovZpZAFnIEA",
+        "locale": "en-us",
+        "location": {
           "longitude": "-75.18702730",
           "latitude": "44.94535340"
         },
-        "markets":  [
-           {
+        "markets": [
+          {
             "id": "103"
           }
         ],
-        "_links":  {
-          "self":  {
-            "href": "/discovery/v2/venues/KovZpZAFnIEA?locale=en-us"
-          }
-        }
+        "name": "#1 Please do not use, left over from UCV initial acct set up",
+        "postalCode": "K0C1X0",
+        "state": {
+          "name": "Ontario",
+          "stateCode": "ON"
+        },
+        "test": false,
+        "timezone": "America/Toronto",
+        "type": "venue",
+        "url": "http://ticketmaster.ca/venue/341396"
       },
-       {
+      {
         "name": "#2 Please do not use, left over from UCV initial acct set up",
         "type": "venue",
         "id": "KovZpZAFnIJA",
         "test": false,
+        "url": "http://ticketmaster.ca/venue/341395",
         "locale": "en-us",
         "postalCode": "K0C1X0",
         "timezone": "America/Toronto",
-        "city":  {
+        "city": {
           "name": "Morrisburg"
         },
-        "state":  {
+        "state": {
           "name": "Ontario",
           "stateCode": "ON"
         },
-        "country":  {
+        "country": {
           "name": "Canada",
           "countryCode": "CA"
         },
-        "address":  {
+        "address": {
           "line1": "13740 County Road 2"
         },
-        "location":  {
+        "location": {
           "longitude": "-75.18635300",
           "latitude": "44.89937100"
         },
-        "markets":  [
-           {
+        "markets": [
+          {
             "id": "103"
           }
         ],
-        "_links":  {
-          "self":  {
+        "dmas": [
+          {
+            "id": 519
+          }
+        ],
+        "_links": {
+          "self": {
             "href": "/discovery/v2/venues/KovZpZAFnIJA?locale=en-us"
           }
         }
       }
     ]
   },
-  "page":  {
+  "_links": {
+    "self": {
+      "href": "/discovery/v2/venues.json?view=null&keyword=UCV{&page,size,sort}",
+      "templated": true
+    }
+  },
+  "page": {
     "size": 20,
     "totalElements": 2,
     "totalPages": 1,
@@ -2296,32 +3875,37 @@ discovery/{version}/venues/{id}.{format}
 ### Response structure:
 
 {: .nested-list}
-* `name` (string) - name of venue.
-* `locale` (string) - locale of venue.
-* `markets` (array) - markets.
-    - `{array item object}` - market.
-        * `id` (string) - market id.
-* `country` (object) - country.
-    - `name` (string) - name of country.
-    - `countryCode` (string) - code of country.
-* `state` (object) - state of venue.
-    - `name` (string) - name of state.
-    - `stateCode` (string) - code of state.
-* `city` (object) - citiy of venue.
-    - `name` (string) - name of city.
-* `postalCode` (string) - postal code of venue.
-* `address` (object) - address of venue.
-    - `line1` (string) - address line 1.
-    - `line2` (string) - address line 2.
-* `location` (object) - location.
-    - `longitude` (string) - address line 1.
-    - `latitude` (string) - address line 2.
-* `timeZone` (string) - time zone of venue.
 * `_links` (object) - links to venues.
     - `self` (object) - link to this venue.
         * `href` (string) - reference.
+* `address` (object) - address of venue.
+    - `line1` (string) - address line 1.
+    - `line2` (string) - address line 2.
+* `city` (object) - citiy of venue.
+    - `name` (string) - name of city.
+* `country` (object) - country.
+    - `name` (string) - name of country.
+    - `countryCode` (string) - code of country.
+* `dmas` (array) - dmas venue.
+    - `{array item object}` - dmas.
+        * `id` (number) - id.
 * `id` (string) - id of venue.
+* `locale` (string) - locale of venue.
+* `location` (object) - location.
+    - `longitude` (string) - address line 1.
+    - `latitude` (string) - address line 2.
+* `markets` (array) - markets.
+    - `{array item object}` - market.
+        * `id` (string) - market id.
+* `name` (string) - name of venue.
+* `postalCode` (string) - postal code of venue.
+* `state` (object) - state of venue.
+    - `name` (string) - name of state.
+    - `stateCode` (string) - code of state.
+* `test` (boolean) - is test event.
+* `timeZone` (string) - time zone of venue.
 * `type` (string) - type of venue.
+* `url` (string) - url to venue.
 
 
 {: .aside}
