@@ -8,7 +8,7 @@ title: Release notes Discovery API [v2]
 date: 3/01/2016
 ---
 
-Example: 'sort=displayName,-status'. Multiple sign-based sort order. No sign - ascending, minus sign - descending.
+We’re happy to announce the release of Discovery API v2.0 today! This release has a few major changes, primarily designed to simplify the code and to better support environments.
 {: .lead}
 
 {: .nested-list}
