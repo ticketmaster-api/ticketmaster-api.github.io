@@ -8,8 +8,8 @@ title: Release notes Commerce API
 date: 23/09/2014
 ---
 
-Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status'
 {: .lead}
+Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status'
 
 {: .nested-list}
 - ### Commerce API

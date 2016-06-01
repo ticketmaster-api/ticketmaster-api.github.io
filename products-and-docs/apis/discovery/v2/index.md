@@ -131,6 +131,14 @@ discovery/{version}/events.{format}
                     * `startTBD` (boolean) - is start TBD.
                     * `endDateTime` (string) - date and time end of public sales.
             * `dates` (object) - dates of event.
+                - `access` (object) - access
+                    - `startDateTime` (string) - start date time
+                    - `startApproximate` (boolean) - start approximate 
+                    - `endDateTime` (string) - end date time 
+                    - `endApproximate` (boolean) - end approximate
+                - `end` (object) - start of event.
+                    * `approximate` (boolean) - is approximate.
+                    * `dateTime` (string) - date and time end of event.
                 - `start` (object) - start of event.
                     * `dateTime` (string) - date and time start of event.
                     * `localDate` (string) - local date start of event.
@@ -140,10 +148,12 @@ discovery/{version}/events.{format}
                     * `timeTBA` (boolean) - is time TBA.
                     * `noSpecificTime` (boolean) - is no specific time.
                 - `timezone` (string) - time zone of event.
+                {% comment %}
                 - `displayOptions` (object) - display options of event.
                     * `range` (object) - range of event displayed.
                         - `localStartDate` (string) - local start date of event displayed.
                         - `localEndDate` (string) - local end date of event displayed.
+                {% endcomment %}
                 - `status` (object) - status of event.
                     * `code` (string) - code of status.
             * `classifications` (array) - classifications.
@@ -713,6 +723,14 @@ discovery/{version}/events/{id}.{format}
             - `id` (string) - subgenre id.
             - `name` (string) - subgenre name.
 * `dates` (object) - dates of event.
+    - `access` (object) - access
+        - `startDateTime` (string) - start date time
+        - `startApproximate` (boolean) - start approximate 
+        - `endDateTime` (string) - end date time 
+        - `endApproximate` (boolean) - end approximate
+    - `end` (object) - start of event.
+        * `approximate` (boolean) - is approximate.
+        * `dateTime` (string) - date and time end of event.
     - `start` (object) - start of event.
         * `dateTime` (string) - date and time start of event.
         * `localDate` (string) - local date start of event.

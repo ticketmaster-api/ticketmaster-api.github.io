@@ -293,7 +293,6 @@
                     {% if response[1].schema.type == 'string'%}
                     <li>
                         <code class="highlighter-rouge">schema</code>{% if response[1].schema.type %} ({{ response[1].schema.type | lstrip }}){% endif %} - {% if response[1].schema.description %}{{ response[1].schema.description | lstrip}}{% elsif response[1].schema.format %}{{ response[1].schema.format | lstrip}}{%else%}A simple string response{% endif %}
-
                         <ul>
                             {% for item in response[1].schema  %}
                             <!--if obj-->
@@ -307,7 +306,6 @@
                             <!--if obj-->
                             {% endfor %}
                         </ul>
-
                     </li>
                     {% endif %}
                 </ul>
