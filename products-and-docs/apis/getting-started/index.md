@@ -520,49 +520,48 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    {% comment %}
     <tr>
       <td style="text-align: center" rowspan="5">
-       <a href="/products-and-docs/apis/archtics/">
-         <img src="/assets/img/getting-started/ic-archtic.svg" alt="Archtics API">
+       <a href="/products-and-docs/apis/season-tix/">
+         <img src="/assets/img/products-and-docs/ic-season-tix.svg" alt="Season Tix API">
        </a>
-       <h4 style="margin-top:11px;text-">Archtics API</h4>
+       <h4 style="margin-top:11px;text-">Season Tix API</h4>
       </td>
-      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#customer-query">Customer query</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/season-tix/#customer-query">Customer query</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#event-details">Event Details</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/season-tix/#event-details">Event Details</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#event-search">Event Search</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/season-tix/#event-search">Event Search</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#ping">PING</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/season-tix/#ping">PING</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/archtics/#seats-sold">Seats Sold</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/season-tix/#seats-sold">Seats Sold</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
-    {% endcomment %}
+
 
   </tbody>
 </table>

@@ -3,6 +3,9 @@ layout: documentation
 categories:
 - documentation
 - publish
+title: Publish API 2.0
+excerpt: Use the Publish API to push events, attractions and venues to the Ticketmaster system.
+keywords: API, publish, events
 ---
 
 # Publish API

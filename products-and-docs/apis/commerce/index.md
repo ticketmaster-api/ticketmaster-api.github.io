@@ -4,7 +4,7 @@ id: com1
 categories:
 - documentation
 - commerce
-title: Commerce API
+title: Commerce API 1.0
 excerpt: Ticketmaster Commerce API
 keywords: API, commerce API, reserve tickets, retrieve barcode
 ---

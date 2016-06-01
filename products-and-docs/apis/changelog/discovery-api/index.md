@@ -8,9 +8,6 @@ title: Release notes Discovery API [v2]
 date: 3/01/2016
 ---
 
-Example: 'sort=displayName,-status'. Multiple sign-based sort order. No sign - ascending, minus sign - descending.
-{: .lead}
-
 {: .nested-list}
 - ### Discovery API
   + ##### General model
