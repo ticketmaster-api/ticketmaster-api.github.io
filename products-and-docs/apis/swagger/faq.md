@@ -2,16 +2,21 @@
 layout: base-content
 categories:
 - faq-api
-- swagger-api-link-anchor
-title: Swagger api
+- swagger
+
+title: Swagger api FAQ
+titleId: swagger-api-link-anchor
+
+questions:
+  - "[Lorem ipsum dolor sit amet](#s-1)"
+  - "[Odio venenatis vel taciti habitant](#s-2)"
+  - "[Lorem ipsum dolor sit amet](#s-3)"
+  - "[Odio venenatis vel taciti habitant](#s-4)"
+  - "[Odio venenatis vel taciti habitant](#s-5)"
+  - "[Lorem ipsum dolor sit amet](#s-6)"
+  - "[Odio venenatis vel taciti habitant](#s-7)"
+
 ---
-
-{: #swagger-api-link-anchor .double-margin}
-## This is FAQ Swagger api test
-
-{: .link-inline .double-margin-bottom}
-[Lorem ipsum dolor sit amet](#s-1)
-[Odio venenatis vel taciti habitant](#s-2)
 
 
 {: #s-1}
@@ -26,4 +31,4 @@ Integer mattis viverra nostra aenean erat, sed integer. A aptent. Primis. Volutp
 
 {: .double-margin-bottom}
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  
+
