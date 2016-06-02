@@ -1,0 +1,21 @@
+{
+    "method": [
+        {
+            "pathsParent":"/discovery/v2/attractions",
+            "id":"search-attractions",
+            "title":"Search Attractions",
+            "reqres": "publish/reqres-search-events.md",
+            "codePath":"publish/search-events.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/attractions/{id}",
+            "id":"attractions-detail",
+            "title":"Get Attractions Detail"
+        },
+        {
+            "pathsParent":"/discovery/v2/events",
+            "id":"search-events",
+            "title":"Search Events"
+        }
+    ]
+}
