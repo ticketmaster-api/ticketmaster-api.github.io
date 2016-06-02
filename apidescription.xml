@@ -814,6 +814,10 @@
       <param name="source" required="false" style="query" type="xsd:string">
         <doc>Source.</doc>
       </param>
+      <param name="extensions" required="false" style="query" type="xsd:string">
+        <doc>Extensions</doc>
+        <option value="geolocation"/>
+      </param>
       <method id="discovery.v2.venues.get" name="GET" apigee:displayName="Search Venues">
         <apigee:tags>
           <apigee:tag primary="true">Discovery API v2</apigee:tag>

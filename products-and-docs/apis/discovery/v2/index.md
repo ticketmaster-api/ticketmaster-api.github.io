@@ -3646,13 +3646,14 @@ discovery/{version}/venues.{format}
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
-| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
-| `page`   | The page for paginating through the results. | string            |       "1"       | No      |
-| `sort`   | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
-|`stateCode`| The state code. | string | | No |
-|`countryCode`|   The country code. |string | | No |
-|`includeTest`| Include test   |string, enum:["yes","no","only"]| | No |
-|`source`|   source   |string | | No |
+| `size`      | The number of events returned in the API response. | string            |       "10"       | No      |
+| `page`      | The page for paginating through the results. | string            |       "1"       | No      |
+| `sort`      | The search sort criteria. Values: "", "name,desc", "name,asc". | string            |              | No      |
+| `stateCode` | The state code. | string | | No |
+| `countryCode`| The country code. |string | | No |
+| `includeTest`| Include test   |string, enum:["yes","no","only"]| | No |
+| `source`    | Source   |string | | No |
+| `extensions`| Availiable value: `geolocation` |string | | No |
 
 ### Response structure:
 
@@ -3679,11 +3680,26 @@ discovery/{version}/venues.{format}
             * `location` (object) - location.
                 - `longitude` (string) - address line 1.
                 - `latitude` (string) - address line 2.
+            * `extensions` (object) - extensions.
+                - `geolocation` (object) - geolocation.
+                    * `geocode` (object) -  geocode.             
+                      - `county` (string) - county.               
+                      - `geometry` (object) - geometry.             
+                        * `location` (object) - location. 
+                          - `longitude` (number) - longitude.    
+                          - `latitude` (number) - latitude.
+                      - `streetNumber` (string) - streetNumber of venue.              
+                      - `route` (string) - route.
+                      - `state` (string) - state of venue.
+                      - `postalCode` (string) - postalCode of venue.
+                      - `formattedAddress` (string) - formattedAddress 
+                      - `city` (string) - city of venue.
+                      - `country` (string) - country of venue.
+            * `postalCode` (string) - postal code of venue.
             * `markets` (array) - markets.
                 - `{array item object}` - market.
                     * `id` (string) - market id.
             * `name` (string) - name of venue.
-            * `postalCode` (string) - postal code of venue.
             * `state` (object) - state of venue.
                 - `name` (string) - name of state.
                 - `stateCode` (string) - code of state.
