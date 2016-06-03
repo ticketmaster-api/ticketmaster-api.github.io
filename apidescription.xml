@@ -851,6 +851,10 @@
         <option value="fr-fr"/>
         <option value="fr-ca"/>
       </param>
+      <param name="extensions" required="false" style="query" type="xsd:string">
+        <doc>Extensions.</doc>
+        <option value="geolocation"/>
+      </param>
       <method id="discovery.v2.venues.id.get" name="GET" apigee:displayName="Get Venue Details">
         <apigee:tags>
           <apigee:tag primary="true">Discovery API v2</apigee:tag>
