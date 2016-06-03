@@ -526,6 +526,11 @@ div[w-theme="calendar"] #weekSсheduler {
     background: #fff;
     padding-top: 15px;
 }
+
+div[w-theme="calendar"] #weekSсheduler .days {
+    width: 270px;
+    margin-left: 17px;
+}
 div[w-theme="calendar"] #weekSсheduler .days .d {
     display: inline-block;
     width: 24px;
@@ -534,6 +539,11 @@ div[w-theme="calendar"] #weekSсheduler .days .d {
     font-size: 12px;
     color: #b7c9d3;
     margin: 0 5px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .d:last-child {
+    margin-right:0;
+    border-right: none;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .d.active {
@@ -545,11 +555,51 @@ div[w-theme="calendar"] #weekSсheduler .days .d .num {
     display: block;
 }
 
+div[w-theme="calendar"] #weekSсheduler .ss-wrapper {
+    overflow : hidden;
+    height   : 100%;
+    position : relative;
+    z-index  : 1;
+    float: left;
+}
+
+div[w-theme="calendar"] #weekSсheduler .ss-content {
+    height          : 100%;
+    width           : 100%;
+    padding         : 0 32px 0 0;
+    position        : relative;
+    overflow        : auto;
+    -moz-box-sizing : border-box;
+    box-sizing      : border-box;
+}
+
+div[w-theme="calendar"] #weekSсheduler .ss-scroll {
+    position            : relative;
+    background          : rgba(153, 153, 153, .2);
+    width               : 6px;
+    border-radius       : 4px;
+    top                 : 0;
+    z-index             : 2;
+    cursor              : pointer;
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+
+div[w-theme="calendar"] #weekSсheduler .ss-container:hover .ss-scroll {
+    opacity: 1;
+}
+
+div[w-theme="calendar"] #weekSсheduler .ss-grabbed {
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
 div[w-theme="calendar"] #weekSсheduler .days .time-wrapper {
-    width:280px;
-    height:220px;
-    overflow-x: hidden;
-    overflow-y: auto;
+    width: 275px;
+    height: 220px;
     margin: 0 auto;
 }
 
@@ -559,6 +609,7 @@ div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder {
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .t {
+    width:263px;
     border-top: 1px dashed rgba(183, 201, 211, 0.6);
     overflow: hidden;
     margin: 0;
@@ -587,37 +638,129 @@ div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .d {
     padding: 0;
 }
 
-/*
-div[w-theme="calendar"] a,
-div[w-theme="calendar"] a:hover,
-div[w-theme="calendar"] a:focus,
-div[w-theme="calendar"] a:active{
-    text-decoration: none;
+/* Selectors */
+div[w-theme="calendar"] .sliderLeftSelector,
+div[w-theme="calendar"] .sliderRightSelector {
+    position: absolute;
+    float: left;
+    left: 10px;
+    top: 35px;
 }
 
-div[w-theme="calendar"] .tabs {
-    margin-top: 10px;
+div[w-theme="calendar"] .sliderRightSelector {
+    left: auto;
+    right: 20px;
 }
-div[w-theme="calendar"] .tabs a {
+
+div[w-theme="calendar"] .selector-title {
     font-family: 'TMSans-Bold', Arial, serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    padding: 5px 10px;
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+    clear: both;
+    font-size: 14px;
+    line-height: 2em;
+    padding-right: 2em;
+    padding-left: 1em;
     color: #b7c9d3;
-    border: 1px solid #b7c9d2;
-    border-left: none;
+    border-bottom: 2px solid #f1f5f7;
+    -webkit-transition: color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-div[w-theme="calendar"] .tabs a:first-child {
-    border-left: 1px solid #b7c9d2;
-    border-radius: 4px 0 0 4px;
+div[w-theme="calendar"] .selector-title:before,
+div[w-theme="calendar"] .selector-title:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 15px;
+    height: 10px;
+    margin-top: -5px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 }
 
-div[w-theme="calendar"] .tabs a:last-child {
-    border-radius: 0 4px 4px 0;
+div[w-theme="calendar"] .selector-title:before {
+    opacity: 0;
+    background-image: url("/assets/widgets/1.0.0/img/small-shevron-hover.svg");
 }
 
-div[w-theme="calendar"] .tabs a.active {
+div[w-theme="calendar"] .selector-title:after {
+    background-image: url("/assets/widgets/1.0.0/img/small-shevron.svg");
+
+}
+
+div[w-theme="calendar"] .selector-title.open:after {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+div[w-theme="calendar"] .selector-title.open:hover:after {
+    opacity: 0;
+}
+
+div[w-theme="calendar"] .selector-title:hover {
+    color: #189ddc;
+    cursor: pointer;
+}
+
+div[w-theme="calendar"] .selector-title:hover:before {
+    opacity: 1;
+}
+
+div[w-theme="calendar"] .selector-title:hover:after {
+    opacity: 0;
+}
+
+div[w-theme="calendar"] .selector-content {
+    font-family: 'TMSans-Bold', Arial, serif;
+    font-size: 14px;
+    display: none;
+    width: auto;
     background: #b7c9d2;
+    position: absolute;
+    z-index: 10;
+    border-radius: 0 0 4px 4px;
+    padding: 10px 0 10px 0;
+    outline: none;
+}
+
+div[w-theme="calendar"] .selector-content.show {
+    display: block;
+}
+
+div[w-theme="calendar"] .selector-content span {
     color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0 1em;
+    box-sizing: content-box;
+    margin: 0 1%;
+    text-align: left;
+    line-height: 2em;
+    white-space: nowrap;
+    min-width: 86px;
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+div[w-theme="calendar"] .selector-content span:hover {
+    color: #189ddc;
+    cursor: pointer;
 }

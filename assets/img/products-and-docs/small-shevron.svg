@@ -1,12 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="10px" height="7px" viewBox="0 0 10 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: sketchtool 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
-    <title>small_shevron</title>
-    <desc>Created with sketchtool.</desc>
-    <defs></defs>
-    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-108.000000, -661.000000)" fill="#B7C9D3">
-            <path d="M117.359577,662.615746 L113,666.969448 C112.925577,667.04387 112.837447,667.081081 112.735605,667.081081 C112.633764,667.081081 112.545633,667.04387 112.47121,666.969448 L108.111633,662.615746 C108.037211,662.541324 108,662.452214 108,662.348414 C108,662.244614 108.037211,662.155504 108.111633,662.081081 L109.086957,661.111633 C109.161379,661.037211 109.24951,661 109.351351,661 C109.453193,661 109.541324,661.037211 109.615746,661.111633 L112.735605,664.231492 L115.855464,661.111633 C115.929887,661.037211 116.018018,661 116.119859,661 C116.2217,661 116.309831,661.037211 116.384254,661.111633 L117.359577,662.081081 C117.434,662.155504 117.47121,662.244614 117.47121,662.348414 C117.47121,662.452214 117.434,662.541324 117.359577,662.615746 L117.359577,662.615746 Z" id="small_shevron" sketch:type="MSShapeGroup"></path>
-        </g>
+<svg width="12" height="8" xmlns="http://www.w3.org/2000/svg">
+ <!-- Generator: sketchtool 3.8.2 (29753) - http://www.bohemiancoding.com/sketch -->
+ <title>7CE808A4-2005-420C-BEB4-5427BFBB4F1C</title>
+ <desc>Created with sketchtool.</desc>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g fill-rule="evenodd" fill="none" id="13.6-x-Widget-Calendar">
+   <g fill="#B7C9D3" id="13.5-Widget-Calendar---Day">
+    <g id="Calendar-Day">
+     <g id="Period">
+      <path fill="#b7c9d3" transform="rotate(-315 6.031847000122069,2.1568462848663335) translate(-108.65685272216797,-7.656854152679443) " id="small_shevron_grey" d="m118.54667,13.6658c0.08905,-0.09045 0.14203,-0.21501 0.14203,-0.35253l0,-6.99913c0,-0.26964 -0.22595,-0.50044 -0.50468,-0.50044l-0.99063,0c-0.29065,0 -0.50469,0.22406 -0.50469,0.50044l0,5.49956l-5.49956,0c-0.26964,0 -0.50044,0.22596 -0.50044,0.50469l0,0.99063c0,0.29065 0.22406,0.50468 0.50044,0.50468l6.99913,0c0.13413,0 0.25866,-0.05591 0.34994,-0.14643l0.00846,-0.00147z"/>
+     </g>
     </g>
+   </g>
+  </g>
+ </g>
 </svg>

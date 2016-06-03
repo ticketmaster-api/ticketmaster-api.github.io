@@ -196,6 +196,9 @@ var TicketmasterCalendarWidget = function () {
         this.tab1RootContainer.classList.add("active");
         this.tabsRootContainer.appendChild(this.tab1RootContainer);
 
+        var leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', '<span class="selector-title">July 2</span><span class="selector-content" tabindex="-1"><span class="active">Thursday 2</span><span>Friday 3</span><span>Saturday 4</span><span class="point active">Sunday 5</span></span>');
+        var RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active">All Events</span><span>Sport</span><span>Music</span><span>Shows</span><span>Conferences</span><span>Seminars</span></span>');
+
         this.tab2RootContainer = document.createElement("div");
         this.tab2RootContainer.classList.add("tab");
         this.tab2RootContainer.innerHTML = '<div id="weekSсheduler">';
@@ -1261,44 +1264,6 @@ var TicketmasterCalendarWidget = function () {
             }
         }
     }, {
-        key: "addScroll",
-        value: function addScroll() {
-            (function (n, t) {
-                function u(n) {
-                    n.hasOwnProperty("data-simple-scrollbar") || Object.defineProperty(n, "data-simple-scrollbar", new SimpleScrollbar(n));
-                }function e(n, i) {
-                    function f(n) {
-                        var t = n.pageY - u;u = n.pageY;r(function () {
-                            i.el.scrollTop += t / i.scrollRatio;
-                        });
-                    }function e() {
-                        n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove", f);t.removeEventListener("mouseup", e);
-                    }var u;n.addEventListener("mousedown", function (i) {
-                        return u = i.pageY, n.classList.add("ss-grabbed"), t.body.classList.add("ss-grabbed"), t.addEventListener("mousemove", f), t.addEventListener("mouseup", e), !1;
-                    });
-                }function i(n) {
-                    for (this.target = n, this.bar = '<div class="ss-scroll">', this.wrapper = t.createElement("div"), this.wrapper.setAttribute("class", "ss-wrapper"), this.el = t.createElement("div"), this.el.setAttribute("class", "ss-content"), this.wrapper.appendChild(this.el); this.target.firstChild;) {
-                        this.el.appendChild(this.target.firstChild);
-                    }this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend", this.bar);this.bar = this.target.lastChild;e(this.bar, this);this.moveBar();this.el.addEventListener("scroll", this.moveBar.bind(this));this.el.addEventListener("mouseenter", this.moveBar.bind(this));this.target.classList.add("ss-container");
-                }function f() {
-                    for (var i = t.querySelectorAll("*[ss-container]"), n = 0; n < i.length; n++) {
-                        u(i[n]);
-                    }
-                }var r = n.requestAnimationFrame || n.setImmediate || function (n) {
-                    return setTimeout(n, 0);
-                };i.prototype = { moveBar: function moveBar() {
-                        var t = this.el.scrollHeight,
-                            i = this.el.clientHeight,
-                            n = this;this.scrollRatio = i / t;r(function () {
-                            n.bar.style.cssText = "height:" + i / t * 100 + "%; top:" + n.el.scrollTop / t * 100 + "%;right:-" + (n.target.clientWidth - n.bar.clientWidth) + "px;";
-                        });
-                    } };t.addEventListener("DOMContentLoaded", f);i.initEl = u;i.initAll = f;n.SimpleScrollbar = i;
-            })(window, document);
-            // var scrollRoot = document.getElementsByClassName("ss")[0];
-            var scrollRoot = document.querySelector('.ss');
-            SimpleScrollbar.initEl(scrollRoot);
-        }
-    }, {
         key: "createDOMItem",
         value: function createDOMItem(itemConfig) {
             var medWrapper = document.createElement("div");
@@ -1493,8 +1458,81 @@ var TabsControls = function () {
     return TabsControls;
 }();
 
+var SelectorControls = function SelectorControls(root, selectorClass, selectorContent) {
+    _classCallCheck(this, SelectorControls);
+
+    if (!root) return;
+    this.SelectorRoot = root;
+    this.SelectorClass = selectorClass;
+    this.SelectorContent = selectorContent;
+    this.SelectorContainer = document.createElement("div");
+    this.SelectorContainer.classList.add(this.SelectorClass);
+    this.SelectorContainer.innerHTML = this.SelectorContent;
+    this.SelectorRoot.appendChild(this.SelectorContainer);
+
+    this.selTitle = this.SelectorContainer.getElementsByTagName("span")[0];
+    this.selContent = this.selTitle.nextElementSibling;
+
+    this.selTitle.addEventListener("click", function (e) {
+        this.nextElementSibling.classList.add("show");
+        if (this.classList.contains("open")) {
+            this.classList.remove("open");
+            this.nextElementSibling.classList.remove("show");
+        } else {
+            this.classList.add("open");
+        }
+        this.nextElementSibling.focus();
+    }, false);
+
+    this.selContent.addEventListener("blur", function (e) {
+        var self = this;
+        setTimeout(function () {
+            self.classList.remove("show");
+            self.previousElementSibling.classList.remove("open");
+        }, 127);
+    }, false);
+};
+
 var WeekScheduler = function () {
     _createClass(WeekScheduler, [{
+        key: "addScroll",
+        value: function addScroll() {
+            (function (n, t) {
+                function u(n) {
+                    n.hasOwnProperty("data-simple-scrollbar") || Object.defineProperty(n, "data-simple-scrollbar", new SimpleScrollbar(n));
+                }function e(n, i) {
+                    function f(n) {
+                        var t = n.pageY - u;u = n.pageY;r(function () {
+                            i.el.scrollTop += t / i.scrollRatio;
+                        });
+                    }function e() {
+                        n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove", f);t.removeEventListener("mouseup", e);
+                    }var u;n.addEventListener("mousedown", function (i) {
+                        return u = i.pageY, n.classList.add("ss-grabbed"), t.body.classList.add("ss-grabbed"), t.addEventListener("mousemove", f), t.addEventListener("mouseup", e), !1;
+                    });
+                }function i(n) {
+                    for (this.target = n, this.bar = '<div class="ss-scroll">', this.wrapper = t.createElement("div"), this.wrapper.setAttribute("class", "ss-wrapper"), this.el = t.createElement("div"), this.el.setAttribute("class", "ss-content"), this.wrapper.appendChild(this.el); this.target.firstChild;) {
+                        this.el.appendChild(this.target.firstChild);
+                    }this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend", this.bar);this.bar = this.target.lastChild;e(this.bar, this);this.moveBar();this.el.addEventListener("scroll", this.moveBar.bind(this));this.el.addEventListener("mouseenter", this.moveBar.bind(this));this.target.classList.add("ss-container");
+                }function f() {
+                    for (var i = t.querySelectorAll("*[ss-container]"), n = 0; n < i.length; n++) {
+                        u(i[n]);
+                    }
+                }var r = n.requestAnimationFrame || n.setImmediate || function (n) {
+                    return setTimeout(n, 0);
+                };i.prototype = { moveBar: function moveBar() {
+                        var t = this.el.scrollHeight,
+                            i = this.el.clientHeight,
+                            n = this;this.scrollRatio = i / t;r(function () {
+                            n.bar.style.cssText = "height:" + i / t * 100 + "%; top:" + n.el.scrollTop / t * 100 + "%;right:-" + (n.target.clientWidth - n.bar.clientWidth) + "px;";
+                        });
+                    } };t.addEventListener("DOMContentLoaded", f);i.initEl = u;i.initAll = f;n.SimpleScrollbar = i;
+            })(window, document);
+            // var scrollRoot = document.getElementsByClassName("ss")[0];
+            var scrollRoot = document.querySelector('.ss');
+            SimpleScrollbar.initEl(scrollRoot);
+        }
+    }, {
         key: "startMonth",
         value: function startMonth() {
             var current = new Date(); // get current date
@@ -1513,9 +1551,11 @@ var WeekScheduler = function () {
                 daysDiv += "<span class=\"d" + currentDayClass + "\">" + dayOfWeek[i] + " <span class=\"num\">" + day.getDate() + "</span></span>";
             }
             var timeDiv = '';
-            timeDiv = '<div class="time-wrapper"><div class="time-holder">';
+            var zero = '';
+            timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
             for (var _i5 = 0; _i5 <= 23; _i5++) {
-                timeDiv += "<div class=\"t t-" + _i5 + "\"><span class=\"tl\">" + _i5 + " : 00</span>";
+                if (_i5 <= 9) zero = '0';else zero = '';
+                timeDiv += "<div class=\"t t-" + _i5 + "\"><span class=\"tl\">" + zero + _i5 + " : 00</span>";
                 for (var d = 0; d <= 6; d++) {
                     timeDiv += "<span class=\"d d-" + d + "\"></span>";
                 }
@@ -1536,6 +1576,7 @@ var WeekScheduler = function () {
         this.weekdaysRootContainer.classList.add("days");
         this.weekdaysRootContainer.innerHTML = this.startMonth();
         this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
+        this.addScroll();
     }
 
     return WeekScheduler;
@@ -1551,13 +1592,4 @@ var widgetsCalendar = [];
 
 var controls = new TabsControls();
 var weekScheduler = new WeekScheduler(document.getElementById('weekSсheduler'));
-
-/*
-var tabs = document.querySelectorAll('.tb');
-for (var i = 0; i < tabs.length; i++) {
-    tabs[i].addEventListener('click', function (event) {
-        alert('qergqerg');
-    });
-}
-*/
 //# sourceMappingURL=main-widget.js.map
