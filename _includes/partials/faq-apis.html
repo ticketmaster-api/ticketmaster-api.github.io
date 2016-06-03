@@ -1,0 +1,9 @@
+<div class="article">
+{% assign files = site.pages %}
+
+{% for file in files %}
+    {% if 'faq-api' == file.categories[0] %}
+        {{ file.content }}
+    {% endif %}
+{% endfor %}
+</div>

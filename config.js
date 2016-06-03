@@ -31,8 +31,20 @@ var venueDetails = function (version, isPrimary, notExpandable) {
           "path": "city"
         },
         {
+          "id": "name",
+          "path": "country"
+        },
+        {
           "id": "countryCode",
           "path": "country"
+        },
+        {
+          "id": "name",
+          "path": "state"
+        },
+        {
+          "id": "stateCode",
+          "path": "state"
         },
         {
           "id": "latitude",
@@ -61,6 +73,15 @@ var venueDetails = function (version, isPrimary, notExpandable) {
           },
           {
             "id": "timezone"
+          },
+          {
+            "id": "test"
+          },
+          {
+            "id": "url"
+          },
+          {
+            "id": "locale"
           }
         ]
       },
@@ -76,6 +97,72 @@ var venueDetails = function (version, isPrimary, notExpandable) {
           "address": mapAddress
         },
         "fields": fields
+      },
+      {
+        "title": "Extensions",
+        "path": (isPrimary ? "" : "_embedded.venue" + (version ? "s" : "")),
+        "fields": [
+          {
+            "id": "county",
+            "path": "extensions.geolocation.geocode"
+          },
+          {
+            "id": "longitude",
+            "path": "extensions.geolocation.geocode.geometry.location"
+          },
+          {
+            "id": "latitude",
+            "path": "extensions.geolocation.geocode.geometry.location"
+          },
+          {
+            "id": "streetNumber",
+            "path": "extensions.geolocation.geocode"
+          },
+          {
+            "id": "route",
+            "path": "extensions.geolocation.geocode"
+          },
+          {
+            "id": "state",
+            "path": "extensions.geolocation.geocode"
+          },
+          {
+            "id": "postalCode",
+            "path": "extensions.geolocation.geocode"
+          },
+          {
+            "id": "formattedAddress",
+            "path": "extensions.geolocation.geocode"
+          },
+          {
+            "id": "city",
+            "path": "extensions.geolocation.geocode"
+          },
+          {
+            "id": "country",
+            "path": "extensions.geolocation.geocode"
+          }
+        ]
+      },
+      {
+        "title": "Markets",
+        "path": (isPrimary ? "" : "_embedded.venue" + (version ? "s" : "")),
+        "fields": [
+          {
+            "id": "id",
+            "path": "markets"
+          }
+        ]
+      },
+      {
+        "title": "dmas",
+        "path": (isPrimary ? "" : "_embedded.venue" + (version ? "s" : "")),
+        "fields": [
+          {
+            "id": "id",
+            "path": "dmas"
+          }
+        ]
       }
     ];
 
@@ -124,6 +211,15 @@ var venueDetails = function (version, isPrimary, notExpandable) {
           },
           {
             "id": "locale"
+          },
+          {
+            "id": "type"
+          },
+          {
+            "id": "test"
+          },
+          {
+            "id": "url"
           }
         ]
       }
@@ -685,6 +781,7 @@ var CONFIG = {
       ]
     }
   ],
+
   "discovery.v2.events.get": [
     { // subcolumn
       "title": "Events", // subcolumn title (required)
@@ -700,19 +797,68 @@ var CONFIG = {
               "expandsTo": "discovery.v2.events.id.get",
               "fields": [
                 {
+                  "id": "name"
+                },
+                {
+                  "id": "type"
+                },
+                {
                   "id": "id"
                 },
                 {
-                  "id": "url"
+                  "id": "test"
                 },
                 {
                   "id": "locale"
                 },
                 {
-                  "id": "name"
+                  "id": "url"
                 },
                 {
-                  "id": "test"
+                  "id": "pleaseNote"
+                },
+                {
+                  "id": "info"
+                }
+              ]
+            },
+            {
+              "title": "Price Ranges",
+              "path": "_embedded.events",
+              "collection": true,
+              "fields": [
+                {
+                  "path": "priceRanges",
+                  "expandsTo": [
+                    {
+                      "title": "Price Range",
+                      "path": "priceRanges",
+                      "fields": [
+                        {
+                          "id": "type"
+                        },
+                        {
+                          "id": "currency"
+                        },
+                        {
+                          "id": "min"
+                        },
+                        {
+                          "id": "max"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Promoter",
+              "path": "_embedded.events",
+              "fields": [
+                {
+                  "id": "id",
+                  "path": "promoter"
                 }
               ]
             },
@@ -720,6 +866,47 @@ var CONFIG = {
               "title": "Dates",
               "path": "_embedded.events",
               "fields": [
+                {
+                  "id": "timezone",
+                  "path": "dates"
+                },
+
+                {
+                  "id": "code",
+                  "path": "dates.status"
+                }
+              ]
+            },
+            {
+              "title": "Dates.access",
+              "path": "_embedded.events",
+              "fields": [
+                {
+                  "id": "startDateTime",
+                  "path": "dates.access"
+                },
+                {
+                  "id": "startApproximate",
+                  "path": "dates.access"
+                },
+                {
+                  "id": "endDateTime",
+                  "path": "dates.access"
+                },
+                {
+                  "id": "endApproximate",
+                  "path": "dates.access"
+                },
+              ]
+            },
+            {
+              "title": "Dates.start",
+              "path": "_embedded.events",
+              "fields": [
+                {
+                  "id": "dateTime",
+                  "path": "dates.start"
+                },
                 {
                   "id": "localDate",
                   "path": "dates.start"
@@ -729,12 +916,59 @@ var CONFIG = {
                   "path": "dates.start"
                 },
                 {
-                  "id": "timezone",
-                  "path": "dates"
+                  "id": "dateTBD",
+                  "path": "dates.start"
                 },
                 {
-                  "id": "code",
-                  "path": "dates.status"
+                  "id": "dateTBA",
+                  "path": "dates.start"
+                },
+                {
+                  "id": "timeTBA",
+                  "path": "dates.start"
+                },
+                {
+                  "id": "noSpecificTime",
+                  "path": "dates.start"
+                },
+              ]
+            },
+            {
+              "title": "Dates.end",
+              "path": "_embedded.events",
+              "fields": [
+                {
+                  "id": "localTime",
+                  "path": "dates.end"
+                },
+                {
+                  "id": "dateTime",
+                  "path": "dates.end"
+                },
+                {
+                  "id": "approximate",
+                  "path": "dates.end"
+                },
+              ]
+            },
+            {
+              "title": "Sales",
+              "path": "_embedded.events",
+              "collection": true, // if array (not required)
+              "fields": [
+                {
+                  "path": "sales",
+                  "expandsTo": [
+                    {
+                      "title": "public",
+                      "path": "sales",
+                      "fields": [
+                        { "id": "startDateTime" },
+                        { "id": "startTBD" },
+                        { "id": "endDateTime" }
+                      ]
+                    }
+                  ]
                 }
               ]
             },
@@ -808,10 +1042,13 @@ var CONFIG = {
               "title": "Classifications",
               "path": "_embedded.events",
               "collection": true,
-              "fields": [{
-                "path": "classifications",
-                "expandsTo": classificationDetails(true, "classifications", true)
-              }]
+              "fields": [
+                {
+                  "id": "primary",
+                  "path": "classifications",
+                  "expandsTo": classificationDetails(true, "classifications", true)
+                }
+              ]
             }
           ]
         }
@@ -819,6 +1056,7 @@ var CONFIG = {
     },
     pageDetails
   ],
+
   "discovery.v2.events.id.get": [
     { // subcolumn
       "title": "Event Details",
@@ -1036,3 +1274,4 @@ var CONFIG = {
   "commerce.events.offers": {},
   "tap.events": {}
 };
+

@@ -2,15 +2,22 @@
 
 {% assign pageMetaFolder        = page.categories[2] %}
 {% assign pageMetaVersionFolder = page.categories[3] %}
-{% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
 
+{% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
 {% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
+
+{%if methodsDescription or swagger%}
+{%else%}
+    {% assign swagger = site.data.orgs[pageMetaFolder]['api'] %}
+    {% assign methodsDescription = site.data.orgs[pageMetaFolder].methods-metadata %}
+{%endif%}
+
 {% if !swagger %}{%else%}
-    <!--No file found: api.json in _data/orgs/{{page.categories[2]}}/{{page.categories[3]}}-->
+    <p>No file found: <b>api.json</b> in _data/orgs/{{page.categories[2]}}/{{page.categories[3]}}</p>
 {% endif %}
 
 {% if methodsDescription %}{%else%}
-    <!--These 'pageMetaVersionFolder':{{pageMetaVersionFolder}} or 'pageMetaFolder':{{pageMetaFolder}} are not correct. Please fix it.-->
+    <p>These 'pageMetaVersionFolder':<b>{{pageMetaVersionFolder}}</b> or 'pageMetaFolder':<b>{{pageMetaFolder}}</b> are not correct. Please fix it.</p>
 {% endif %}
 
 <h1>{{ swagger.info.title | upcase}}</h1>
@@ -87,7 +94,7 @@
                         {% assign tableUrlParam = true %}
                     {% when 'query' %}
                         {% assign tableQueryParam = true %}
-                    {% when 'body' %}
+                    {% when 'body' or 'header' %}
                         {% assign tableBodyParam = true %}
                         <!-- If in is "body. Required. The schema defining the type used for the body parameter.-->
                     {% else %}
@@ -207,7 +214,7 @@
 
             {% if tableBodyParam %}
                 <div class="swagger-parameters">
-                    <h3>Body parameters:</h3>
+                    <h3>Body or Header parameters:</h3>
                     <table class="swagger-parameters-table">
                         <thead>
                             <tr>
@@ -220,7 +227,7 @@
                         </thead>
                         <tbody>
                             {% for parameter in method[1].parameters %}
-                            {% if parameter.in contains 'body' %}
+                            {% if parameter.in contains 'body' or parameter.in contains 'header' %}
                             <tr>
                                 <td>
                                     {% if parameter.required %}
@@ -293,7 +300,6 @@
                     {% if response[1].schema.type == 'string'%}
                     <li>
                         <code class="highlighter-rouge">schema</code>{% if response[1].schema.type %} ({{ response[1].schema.type | lstrip }}){% endif %} - {% if response[1].schema.description %}{{ response[1].schema.description | lstrip}}{% elsif response[1].schema.format %}{{ response[1].schema.format | lstrip}}{%else%}A simple string response{% endif %}
-
                         <ul>
                             {% for item in response[1].schema  %}
                             <!--if obj-->
@@ -307,7 +313,6 @@
                             <!--if obj-->
                             {% endfor %}
                         </ul>
-
                     </li>
                     {% endif %}
                 </ul>
@@ -431,7 +436,7 @@
 
 {% endfor %}
 
-<div class="article">
+<!--<div class="article">
     {% assign files = site.releaseNotes %}
 
     {% for file in files reversed %}
@@ -445,7 +450,7 @@
         {% endif %}
         {% endif %}
     {% endfor %}
-</div>
+</div>-->
 
 <!--
 <script type="text/javascript">
