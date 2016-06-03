@@ -2,20 +2,20 @@
     "method": [
         {
             "pathsParent":"/discovery/v2/attractions",
-            "id":"search-attractions",
-            "title":"Search Attractions",
+            "id":"publish-attractions",
+            "title":"Publish Attractions",
             "reqres": "publish/reqres-search-events.md",
             "codePath":"publish/search-events.md"
         },
         {
             "pathsParent":"/discovery/v2/attractions/{id}",
-            "id":"attractions-detail",
-            "title":"Get Attractions Detail"
+            "id":"attractions-patch",
+            "title":"Publish a path on an attraction"
         },
         {
             "pathsParent":"/discovery/v2/events",
-            "id":"search-events",
-            "title":"Search Events"
+            "id":"publish-events",
+            "title":"Publish an event"
         }
     ]
 }
