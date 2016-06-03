@@ -432,7 +432,6 @@ Object.byString = function(o, s) {
             self.column = $('<div class="api-column'
             + colors[currentColumnColorIndex] // colorize column appropriately
             + (index ? ' transparent' : '') + '"></div>').hide(); // if there was index provided -> column is a child of previous column and should become transparent
-
             for (var i = 0; i < configObject.length; i++){ // iterate through method main subcolumns
                 var subcolumn = configObject[i], // subcolumn
                     listGroup = $('<div class="list-group"></div>'), //subcolumn future element
@@ -523,7 +522,7 @@ Object.byString = function(o, s) {
                     }
                 }
                 self.column.append(listGroup);
-                if (subColumnMapImage){ // append map image if there is any
+                if (subColumnMapImage && subcolumn["map"]){ // append map image if there is any
                     var imgListGroup = $('<div class="list-group"></div>'), //subcolumn future element
                         imgTitle = $('<a class="list-group-item active">' + 'Map' + '</a>');
                     imgListGroup.append(imgTitle).append(subColumnMapImage);
