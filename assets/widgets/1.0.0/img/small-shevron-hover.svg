@@ -1,0 +1,22 @@
+<svg width="12" height="8" xmlns="http://www.w3.org/2000/svg">
+ <!-- Generator: sketchtool 3.8.2 (29753) - http://www.bohemiancoding.com/sketch -->
+ <title>7CE808A4-2005-420C-BEB4-5427BFBB4F1C</title>
+ <desc>Created with sketchtool.</desc>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g fill-rule="evenodd" fill="none" id="13.6-x-Widget-Calendar">
+   <g fill="#B7C9D3" id="13.5-Widget-Calendar---Day">
+    <g id="Calendar-Day">
+     <g id="Period">
+      <path fill="#189ddc" transform="rotate(-315 6.031847000122069,2.1568462848663335) translate(-108.65685272216797,-7.656854152679443) " id="small_shevron_grey" d="m118.54667,13.6658c0.08905,-0.09045 0.14203,-0.21501 0.14203,-0.35253l0,-6.99913c0,-0.26964 -0.22595,-0.50044 -0.50468,-0.50044l-0.99063,0c-0.29065,0 -0.50469,0.22406 -0.50469,0.50044l0,5.49956l-5.49956,0c-0.26964,0 -0.50044,0.22596 -0.50044,0.50469l0,0.99063c0,0.29065 0.22406,0.50468 0.50044,0.50468l6.99913,0c0.13413,0 0.25866,-0.05591 0.34994,-0.14643l0.00846,-0.00147z"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

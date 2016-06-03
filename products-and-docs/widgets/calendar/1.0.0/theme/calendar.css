@@ -701,7 +701,8 @@ div[w-theme="calendar"] .selector-title:after {
 
 }
 
-div[w-theme="calendar"] .selector-title.open:after {
+div[w-theme="calendar"] .selector-title.open:after,
+div[w-theme="calendar"] .selector-title.open:before {
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
