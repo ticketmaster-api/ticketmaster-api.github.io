@@ -2,7 +2,7 @@
 <div class="article">
 {% assign files = site.pages %}
 
-{% comment %}
+
 {% for file in files %}
     {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
         <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }} [top 5]</h2>
@@ -13,7 +13,6 @@
         {% endif %}
     {% endif %}
 {% endfor %}
-{% endcomment %}
 
 {% for file in files reversed %}
     {% if page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
