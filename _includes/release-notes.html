@@ -1,25 +1,28 @@
+<!--faq and release-notes-->
 <div class="article">
 {% assign files = site.pages %}
 
+{% comment %}
 {% for file in files %}
     {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
-        <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }}</h2>
+        <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }} [top 5]</h2>
         {% if file.questions %}
-            {% for question in file.questions %}
+            {% for question in file.questions limit:5 %}
                 {{question | markdownify }}
             {% endfor %}
         {% endif %}
-        {{ file.content }}
     {% endif %}
 {% endfor %}
+{% endcomment %}
 
 {% for file in files reversed %}
-    {% if page.categories[1] == file.categories[3] %}
-    <!--this page.categories: {{ page.categories[1] == file.categories[3]}}-->
+    {% if page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
+    <!--this page.categories: {{ page.categories| join: ", "}}-->
+    <!--this file.categories: {{file.categories | join: ", "}}-->
         {% if file.categories[2] == 'releaseNotes'%}
         <div class="changelog">
             <h2>{{ file.title }}</h2>
-            <h4>{{ file.date  | date_to_long_string  }}</h4>{{ file.content }}</div>
+            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content }}</div>
         {% endif %}
     {% endif %}
 {% endfor %}

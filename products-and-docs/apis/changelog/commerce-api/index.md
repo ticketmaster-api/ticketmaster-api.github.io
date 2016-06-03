@@ -5,7 +5,7 @@ categories:
 - releaseNotes
 - commerce
 title: Release notes Commerce API
-date: 23/09/2014
+release_date: "2015-02-27"
 ---
 
 {: .lead}
