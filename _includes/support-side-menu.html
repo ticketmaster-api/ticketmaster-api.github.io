@@ -13,7 +13,7 @@
                     <li><a href="#affiliates-a">Affiliates</a></li>
                     {%for item in site.pages %}
                         {% if item.categories[0] == "faq-api" %}
-                            <li><a href="#{{ item.categories[1] }}">{{item.title}}</a></li>
+                            <li><a href="{{ item.titleId | prepend:'#' }}">{{item.title}}</a></li>
                         {% endif %}
                     {%endfor%}
                 </ul>

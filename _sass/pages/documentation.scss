@@ -2,7 +2,13 @@
   padding-top: $fixed-header-height; /*header height*/
   position: relative;
 
+  #disqus_thread {
+    margin: $base-margin*2 0 $base-margin*3;
+  }
+
   .content {
+    margin-bottom: 72px;
+
     &:last-child {
       margin-bottom: $base-margin;
     }

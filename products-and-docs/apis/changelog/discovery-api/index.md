@@ -5,7 +5,7 @@ categories:
 - releaseNotes
 - discovery
 title: Release notes Discovery API [v2]
-date: 3/01/2016
+release_date: "2016-01-03"
 ---
 
 We’re happy to announce the release of Discovery API v2.0 today! This release has a few major changes, primarily designed to simplify the code and to better support environments.

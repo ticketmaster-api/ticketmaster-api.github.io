@@ -24,12 +24,13 @@ layout: default
 
                     {% if page.categories[1] == 'changelog'%}
 
-                        {% assign files = site.pages %}
+                        {% assign files = site.pages | sort: 'release_date' , 'last' %}
+
                         {% for file in files reversed %}
                             {% if file.categories[2] == 'releaseNotes'%}
                             <div class="changelog" markdown="1">
                                 <h2>{{ file.title }}</h2>
-                                <h4>{{ file.date  | date_to_long_string  }}</h4>
+                                <h4>{{ file.release_date  | date_to_long_string  }}</h4>
                                 {{ file.content }}
                             </div>
                             {% endif %}

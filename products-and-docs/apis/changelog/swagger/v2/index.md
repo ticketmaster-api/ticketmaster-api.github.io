@@ -6,7 +6,7 @@ categories:
 - swagger
 - v2
 title: Release notes Swagger API [v2]
-date: 20/05/2016
+release_date: "2016-05-27"
 ---
 
 Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status'

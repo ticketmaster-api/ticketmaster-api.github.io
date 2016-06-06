@@ -135,7 +135,7 @@
                     </li>
                     {%for item in site.pages %}
                         {% if item.categories[0] == "faq-api" %}
-                        <li><a href="/support/faq/#{{ item.categories[1] }}">{{item.title}}</a></li>
+                        <li><a href="/support/faq/#{{ item.titleId }}">{{item.title}}</a></li>
                         {% endif %}
                     {%endfor%}
                 </ul>

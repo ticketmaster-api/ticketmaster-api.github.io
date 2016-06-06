@@ -3,6 +3,12 @@
 
 {% for file in files %}
     {% if 'faq-api' == file.categories[0] %}
+    <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }}</h2>
+        {% if file.questions %}
+            {% for question in file.questions %}
+                {{question | markdownify }}
+            {% endfor %}
+        {% endif %}
         {{ file.content }}
     {% endif %}
 {% endfor %}
