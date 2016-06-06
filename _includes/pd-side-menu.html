@@ -179,13 +179,25 @@
                     <li><a href="#event-search">Event Search</a></li>
                     <li><a href="#event-details">Event Details</a></li>
                     <li><a href="#seats-sold">Seats Sold</a></li>
-
                 </ul>
                 {% endif %}
             </li>
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>
             <li><a href="/api-explorer/">API Explorer</a></li>
             <li><a href="/products-and-docs/apis/changelog/">Changelog</a></li>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "changelog" %}
+                {% assign files = site.pages %}
+                    <ul class="sections menu-highlight">
+                        {% for file in files %}
+                            {% if file.categories[2] == 'releaseNotes'%}
+                                {% if thisCategory == file.categories[3]%}{%else%}
+                                <li><a href="{{ file.title | lstrip | downcase | prepend: '#' | replace: ' ' , '-' }}">{{ file.title }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                            {%assign thisCategory = file.categories[3]%}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
         </ul>
         {% endif %}
     </li>
