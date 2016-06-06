@@ -41,6 +41,7 @@ keywords: FAQ, Ticketmaster affiliate program, datasets API cover
 [What markets does the Ticketmaster serve?](#q-14)
 [Will I have access to official artist/team creative?](#q-15)
 
+{%include partials/faq-api-questions-links.html %}
 
 {: #general-a .double-margin}
 ## General

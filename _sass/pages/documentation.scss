@@ -688,6 +688,15 @@
       .expand{
         width: 100%;
       }
+      .faq-api{
+        h2 {
+          margin: $base-margin*2 0;
+        }
+        p {
+          margin-top: $base-margin/4;
+        }
+      }
+
     }
 
     .article-wrapper {
@@ -1301,6 +1310,12 @@
   }
 
 }
+
+/*.article-wrapper > .faq-api{
+  p {
+    margin-top: $base-margin/4;
+  }
+}*/
 
 
 
