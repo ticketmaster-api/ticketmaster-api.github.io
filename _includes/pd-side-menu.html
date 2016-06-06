@@ -15,6 +15,24 @@
                 {% endif %}
             </li>
            
+            <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "swagger" or page.categories[2] == "swagger" %}
+
+                {% assign files = site.pages %}
+                {% for file in files %}
+                    {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
+                        {% if file.questions %}
+                            {% for question in file.questions limit:1 %}
+                            <ul class="sections menu-highlight">
+                                <li><a href="#swagger-api-title-uniq-link-anchor">Faq api</a></li>
+                            </ul>
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                {% endif %}
+            </li>
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
