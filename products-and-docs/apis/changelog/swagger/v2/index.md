@@ -8,7 +8,6 @@ categories:
 title: Swagger API
 release_date: "2016-05-20"
 ---
-
 Multiple sign-based sort order. No sign - ascending, minus sign - descending. Example: 'sort=displayName,-status'
 {: .lead}
 

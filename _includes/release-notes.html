@@ -16,15 +16,9 @@
 
 <!--release-notes-->
 <div class="article">
-{% for file in files reversed %}
-    {% if page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
-    <!--this page.categories: {{ page.categories| join: ", "}}-->
-    <!--this file.categories: {{file.categories | join: ", "}}-->
-        {% if file.categories[2] == 'releaseNotes'%}
+{% for file in files reversed %}{% if file.categories[2] == 'releaseNotes' and page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
         <div class="changelog-section">
             <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">{{ file.title }}</h2>
-            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content }}</div>
-        {% endif %}
-    {% endif %}
+            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>{% endif %}
 {% endfor %}
 </div>
