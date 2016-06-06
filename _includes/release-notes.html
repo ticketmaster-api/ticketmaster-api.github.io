@@ -23,7 +23,9 @@
         {% if file.categories[2] == 'releaseNotes'%}
         <div class="changelog">
             <h2>{{ file.title }}</h2>
-            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content }}</div>
+            <h4>{{ file.release_date  | date_to_long_string  }}</h4>
+            <div>{{ file.content | markdownify }}</div>
+        </div>
         {% endif %}
     {% endif %}
 {% endfor %}
