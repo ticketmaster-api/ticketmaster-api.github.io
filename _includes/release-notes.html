@@ -7,7 +7,7 @@
         {% if file.categories[2] == 'releaseNotes'%}
         <div class="changelog-section">
             <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">{{ file.title }}</h2>
-            <h4>{{ file.date  | date_to_long_string  }}</h4>{{ file.content }}</div>
+            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content }}</div>
         {% endif %}
     {% endif %}
 {% endfor %}

@@ -4,15 +4,15 @@ categories:
 - changelog
 - releaseNotes
 - discovery
-title: Release notes Discovery API [v2]
-date: 3/01/2016
+title: Discovery API 
+release_date: "2016-01-03"
 ---
 
 We’re happy to announce the release of Discovery API v2.0 today! This release has a few major changes, primarily designed to simplify the code and to better support environments.
 {: .lead}
 
 {: .nested-list}
-- ### Discovery API
+- ### Discovery API [v2]
   + ##### General model
     * IDs are now obfuscated.
     * The concept of **"domain" was removed in favor of "locale"**.

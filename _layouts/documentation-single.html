@@ -24,12 +24,18 @@ layout: default
 
                     {% if page.categories[1] == 'changelog'%}
 
-                        {% assign files = site.pages %}
+                        {% assign files = site.pages | sort: 'release_date' , 'last'%}
+
                         {% for file in files reversed %}
                             {% if file.categories[2] == 'releaseNotes'%}
                             <div class="changelog-section">
-                                <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">{{ file.title }}</h2>
-                                <h4>{{ file.date  | date_to_long_string  }}</h4>{{ file.content }}</div>
+                                {% if thisCategory == file.categories[3]%}{%else%}
+                                    <hr/>
+                                    <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">{{ file.title }}</h2>
+                                {%endif%}
+                                <h4>{{ file.release_date  | date_to_long_string }}</h4>{{ file.content }}</div>
+
+                                {%assign thisCategory = file.categories[3]%}
                             {% endif %}
                         {% endfor %}
 

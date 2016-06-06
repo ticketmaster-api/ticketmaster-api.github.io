@@ -170,10 +170,13 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "changelog" %}
                 {% assign files = site.pages %}
                     <ul class="sections menu-highlight">
-                            {% for file in files reversed %}
-                                {% if file.categories[2] == 'releaseNotes'%}
-                                    <li><a href="{{ file.title | lstrip | downcase | prepend: '#' | replace: ' ' , '-' }}">{{ file.title }}</a></li>
+                        {% for file in files %}
+                            {% if file.categories[2] == 'releaseNotes'%}
+                                {% if thisCategory == file.categories[3]%}{%else%}
+                                <li><a href="{{ file.title | lstrip | downcase | prepend: '#' | replace: ' ' , '-' }}">{{ file.title }}</a></li>
                                 {% endif %}
+                            {% endif %}
+                            {%assign thisCategory = file.categories[3]%}
                         {% endfor %}
                     </ul>
                 {% endif %}
