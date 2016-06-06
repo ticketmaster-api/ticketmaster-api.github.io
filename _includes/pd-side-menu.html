@@ -24,7 +24,7 @@
                         {% if file.questions %}
                             {% for question in file.questions limit:1 %}
                             <ul class="sections menu-highlight">
-                                <li><a href="#swagger-api-title-uniq-link-anchor">Faq api</a></li>
+                                <li><a href="#{{file.titleId}}">{{file.title}}</a></li>
                             </ul>
                             {% endfor %}
                         {% endif %}
