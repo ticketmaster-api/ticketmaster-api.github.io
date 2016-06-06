@@ -1,7 +1,6 @@
-<!--faq and release-notes-->
-<div class="article">
+<!--faq-->
+<div class="article faq-api">
 {% assign files = site.pages %}
-
 
 {% for file in files %}
     {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
@@ -13,7 +12,10 @@
         {% endif %}
     {% endif %}
 {% endfor %}
+</div>
 
+<!--release-notes-->
+<div class="article">
 {% for file in files reversed %}
     {% if page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
     <!--this page.categories: {{ page.categories| join: ", "}}-->

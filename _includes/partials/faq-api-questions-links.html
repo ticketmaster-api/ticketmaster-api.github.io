@@ -1,15 +1,14 @@
-<div class="article">
+<div class="article faq-api">
 {% assign files = site.pages %}
 
 {% for file in files %}
     {% if 'faq-api' == file.categories[0] %}
-    <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }}</h2>
-        <!--{% if file.questions %}
+    <h4 class="double-margin">{{ file.title }}</h4>
+        {% if file.questions %}
             {% for question in file.questions %}
                 {{question | markdownify }}
             {% endfor %}
-        {% endif %}-->
-        {{ file.content }}
+        {% endif %}
     {% endif %}
 {% endfor %}
 </div>
