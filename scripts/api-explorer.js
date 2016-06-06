@@ -298,6 +298,8 @@ Object.byString = function(o, s) {
                             + method.parameters[param].name + '" id="' + method.parameters[param].name + '" url-style="'
                             + method.parameters[param].style + '">');
 
+                param === "extensions" && input.val('geolocation');
+
                 element.append(input);
                 primaryColumn.append(element);
                 new Tooltip(element);
