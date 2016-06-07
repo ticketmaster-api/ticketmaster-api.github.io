@@ -3,22 +3,44 @@
 {% assign files = site.pages %}
 
 {% for file in files %}
-    {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
-        <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }} [top 5]</h2>
-        {% if file.questions %}
-            {% for question in file.questions limit:5 %}
-                {{question | markdownify }}
-            {% endfor %}
+
+    {% if 'faq-api' == file.categories[0] %}
+        {% if page.categories[1] == file.categories[1] and page.categories[2] == file.categories[2]%}
+            <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }} [top 5]</h2>
+            {% if file.questions %}
+                {% for question in file.questions limit:5 %}
+                    {{question | markdownify }}
+                {% endfor %}
+            {% endif %}
         {% endif %}
+
+        <!--{%comment%}if page generated from JSON{%endcomment%}-->
+        {% if 'generated' == page.categories[1] %}
+            {% if page.categories[2] == file.categories[1] and page.categories[3] == file.categories[2]%}
+                <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }} [top 5]</h2>
+                {% if file.questions %}
+                    {% for question in file.questions limit:5 %}
+                    {{question | markdownify }}
+                    {% endfor %}
+                {% endif %}
+            {%endif%}
+        {%endif%}
+
     {% endif %}
+
 {% endfor %}
 </div>
 
 <!--release-notes-->
 <div class="article">
-{% for file in files reversed %}{% if file.categories[2] == 'releaseNotes' and page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
+
+{% for file in files reversed %}
+    {% if file.categories[2] == 'releaseNotes' and page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
         <div class="changelog-section">
-            <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">{{ file.title }}</h2>
-            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>{% endif %}
+            {% if thisCategory == file.categories[3]%}{%else%}
+            <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">Release notes for {{ file.title }}:</h2>{%endif%}
+            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>
+            {%assign thisCategory = file.categories[3]%}
+    {% endif %}
 {% endfor %}
 </div>
