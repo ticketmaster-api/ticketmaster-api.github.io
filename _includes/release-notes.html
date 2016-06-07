@@ -35,12 +35,45 @@
 <div class="article">
 
 {% for file in files reversed %}
-    {% if file.categories[2] == 'releaseNotes' and page.categories[1] == file.categories[3] or page.categories[2] == file.categories[3] and page.categories[3] == file.categories[4]%}
-        <div class="changelog-section">
-            {% if thisCategory == file.categories[3]%}{%else%}
-            <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">Release notes for {{ file.title }}:</h2>{%endif%}
-            <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>
-            {%assign thisCategory = file.categories[3]%}
+    {% if file.categories[2] == 'releaseNotes' %}
+
+        {% if page.categories[1] == file.categories[3] %}
+            {%comment%}<!--apiname check-->{%endcomment%}
+            <!--{%comment%}if page static md{%endcomment%}-->
+            <!--
+            <ul>
+                <li>page: {{page.categories | join: ' , '}} , file: {{file.categories | join: ' , ' }}</li>
+                <li>{{page.categories[1]}} , {{file.categories[3]}}</li>
+                <li>or</li>
+                <li>{{page.categories[2]}} , {{file.categories[3]}} <b> and </b> {{page.categories[3]}} , {{file.categories[4]}}</li>
+            </ul>
+            -->
+
+            {% if page.categories[2] == file.categories[4] or file.categories[4] == 'v1' %}
+            <div class="changelog-section">
+                {% if thisCategory == file.categories[3]%}{%else%}
+                <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">Changelog for {{ file.title }}:</h2>{%endif%}
+                <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>
+                {%assign thisCategory = file.categories[3]%}
+            {% endif %}
+        {% endif %}
+
+
+    {%if page.categories[1] == 'generated'%}<!--{%comment%}if page generated{%endcomment%}-->
+        {%if page.categories[2] == file.categories[3]%}
+        {%comment%}<!--apiname check-->{%endcomment%}
+
+            {%if page.categories[3] == file.categories[4]%}
+                {%comment%}<!--version check-->{%endcomment%}
+                    <div class="changelog-section">
+                        {% if thisCategory == file.categories[3]%}{%else%}
+                        <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">Changelog for {{ file.title }}:</h2>{%endif%}
+                        <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>
+                    {%assign thisCategory = file.categories[3]%}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
     {% endif %}
 {% endfor %}
 </div>
