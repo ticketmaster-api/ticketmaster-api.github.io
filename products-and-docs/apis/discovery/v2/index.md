@@ -72,9 +72,10 @@ discovery/{version}/events.{format}
 | `latlong`   | The Latitude, Longitude coordinates for the venue in which this event is taking place. | string            |       "34.0928090,-118.3286610"       | No      |
 | `radius`   | The radius of the area in which we want to search for events. | string            |       "25"       | No      |
 | `unit`   | The radius distance unit. Possible values: miles, km. | string            |       "miles"       | No      |
-| `source`   | Source of the event. Possible values are '', 'ticketmaster', 'ticketweb', 'universe'. | string            |       "ticketmaster"       | No      |
+| `source`   | Source of the event. Possible values are 'ticketmaster', 'frontgate', 'universe'. | string            |       "ticketmaster"       | No      |
+| `countryCode`   | ISO value for the country in which you want to query events in. Poissble values are: 'US', 'CA', 'AU', 'NZ', 'MX'. | string            |       "MX"       | No      |
 | `locale`   | The event locale, including country and localization. Values: “”, “en-us”, “en-gb”, “en-ca”, “es-us”, “en-mx”, “es-mx”, “en-au”, “en-nz”, “fr-fr”, “fr-ca”. | string            |              | No      |
-| `marketId`   | The city/area in which this event takes place. | string            |       "27"       | No      |
+| `marketId`   | The city/metro area in which this event takes place. | string            |       "27"       | No      |
 | `startDateTime`   | Include events happening after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `endDateTime`   | Include events happening before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes|no|only"       | No      |
