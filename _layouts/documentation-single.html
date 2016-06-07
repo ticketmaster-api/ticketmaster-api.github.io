@@ -27,7 +27,7 @@ layout: default
                         <!--{% assign files = site.pages | sort: 'release_date' , 'last' %}-->
                         {% assign files = site.pages %}
 
-                        {% for file in files %}
+                        {% for file in files | sort: 'categories' , 'first' %}
                             {% if file.categories[2] == 'releaseNotes'%}
                             <div class="changelog-section">
                                 {% if thisCategory == file.categories[3]%}{%else%}
