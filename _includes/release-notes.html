@@ -1,79 +1,54 @@
-<!--faq-->
-<div class="article faq-api">
+<!--release-notes(or changelog)-->
 {% assign files = site.pages %}
 
-{% for file in files %}
-
-    {% if 'faq-api' == file.categories[0] %}
-        {% if page.categories[1] == file.categories[1] and page.categories[2] == file.categories[2]%}
-            <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }} [top 5]</h2>
-            {% if file.questions %}
-                {% for question in file.questions limit:5 %}
-                    {{question | markdownify }}
-                {% endfor %}
+<div class="article">
+{% for file in files reversed %}
+    {% if file.categories[2] == 'releaseNotes' %}
+    <!--{%comment%}if page static md{%endcomment%}-->
+        {% if page.categories[1] == file.categories[3] %}
+        {%comment%}<!--apiname check-->{%endcomment%}
+            {% if page.categories[2] == file.categories[4] or file.categories[4] == 'v1' %}
+                {% include partials/changelog-concrete-apis-render.html %}
             {% endif %}
         {% endif %}
 
-        <!--{%comment%}if page generated from JSON{%endcomment%}-->
-        {% if 'generated' == page.categories[1] %}
-            {% if page.categories[2] == file.categories[1] and page.categories[3] == file.categories[2]%}
-                <h2 class="double-margin" id="{{ file.titleId }}">{{ file.title }} [top 5]</h2>
-                {% if file.questions %}
-                    {% for question in file.questions limit:5 %}
-                    {{question | markdownify }}
-                    {% endfor %}
+
+        {%if page.categories[1] == 'generated'%}<!--{%comment%}if page generated{%endcomment%}-->
+            {%if page.categories[2] == file.categories[3] or file.categories[3] == 'v1' %}
+            {%comment%}<!--apiname check-->{%endcomment%}
+
+                {%if page.categories[3] == file.categories[4]%}
+                {%comment%}<!--version check-->{%endcomment%}
+                    {% include partials/changelog-concrete-apis-render.html %}
                 {% endif %}
-            {%endif%}
-        {%endif%}
+            {% endif %}
+        {% endif %}
 
     {% endif %}
-
 {% endfor %}
 </div>
 
-<!--release-notes-->
-<div class="article">
+<!--faq-->
+<div class="article faq-api">
+{% for file in files %}
 
-{% for file in files reversed %}
-    {% if file.categories[2] == 'releaseNotes' %}
-
-        {% if page.categories[1] == file.categories[3] %}
-            {%comment%}<!--apiname check-->{%endcomment%}
-            <!--{%comment%}if page static md{%endcomment%}-->
-            <!--
-            <ul>
-                <li>page: {{page.categories | join: ' , '}} , file: {{file.categories | join: ' , ' }}</li>
-                <li>{{page.categories[1]}} , {{file.categories[3]}}</li>
-                <li>or</li>
-                <li>{{page.categories[2]}} , {{file.categories[3]}} <b> and </b> {{page.categories[3]}} , {{file.categories[4]}}</li>
-            </ul>
-            -->
-
-            {% if page.categories[2] == file.categories[4] or file.categories[4] == 'v1' %}
-            <div class="changelog-section">
-                {% if thisCategory == file.categories[3]%}{%else%}
-                <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">Changelog for {{ file.title }}:</h2>{%endif%}
-                <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>
-                {%assign thisCategory = file.categories[3]%}
+    {% if 'faq-api' == file.categories[0] %}
+        {% if page.categories[1] == file.categories[1]%}<!--{%comment%}if page static md{%endcomment%}-->
+        <!--{%comment%}to check version: {% if page.categories[2] == file.categories[2] %}version correct: {{file.categories[2]}}{% endif %}{%endcomment%}-->
+            {% if file.questions and file.title and file.titleId and file.content%}
+                {% include partials/faq-concrete-apis-render.html %}
             {% endif %}
         {% endif %}
 
-
-    {%if page.categories[1] == 'generated'%}<!--{%comment%}if page generated{%endcomment%}-->
-        {%if page.categories[2] == file.categories[3]%}
-        {%comment%}<!--apiname check-->{%endcomment%}
-
-            {%if page.categories[3] == file.categories[4]%}
-                {%comment%}<!--version check-->{%endcomment%}
-                    <div class="changelog-section">
-                        {% if thisCategory == file.categories[3]%}{%else%}
-                        <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">Changelog for {{ file.title }}:</h2>{%endif%}
-                        <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>
-                    {%assign thisCategory = file.categories[3]%}
-            {% endif %}
-        {% endif %}
+        {% if 'generated' == page.categories[1] %}<!--{%comment%}if page generated from JSON{%endcomment%}-->
+            {% if page.categories[2] == file.categories[1]%}
+        <!--{%comment%}to check version: {% if page.categories[3] == file.categories[2] %}version correct: {{file.categories[2]}}{% endif %}{%endcomment%}-->
+                {% if file.questions and file.title and file.titleId and file.content%}
+                    {% include partials/faq-concrete-apis-render.html %}
+                {% endif %}
+            {%endif%}
+        {%endif%}
     {% endif %}
 
-    {% endif %}
 {% endfor %}
 </div>

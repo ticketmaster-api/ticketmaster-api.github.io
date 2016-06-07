@@ -18,10 +18,11 @@
             <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "swagger" or page.categories[2] == "swagger" %}
 
+                {%comment%}
                 {% assign files = site.pages %}
                 {% for file in files %}
                     {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
-                        {% if file.questions %}
+                        {% if file.questions and file.title and file.content %}
                             {% for question in file.questions limit:1 %}
                             <ul class="sections menu-highlight">
                                 <li><a href="#{{file.titleId}}">{{file.title}}</a></li>
@@ -30,6 +31,7 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+                {% endcomment %}
 
                 {% endif %}
             </li>
