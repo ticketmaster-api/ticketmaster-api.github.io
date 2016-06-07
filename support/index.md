@@ -31,11 +31,11 @@ No matter what question you have or help you need, we're here for you.
 ### Forums
 
 {: .link-inline }
-[General Discussion](http://stackoverflow.com/questions/tagged/ticketmaster-api)
-[API Forums](http://stackoverflow.com/questions/tagged/ticketmaster-api)
-[SDK Forums](http://stackoverflow.com/questions/tagged/ticketmaster-api)
-[Widget Forums](http://stackoverflow.com/questions/tagged/ticketmaster-api)
-[Affiliate Topics](http://stackoverflow.com/questions/tagged/ticketmaster-api)
+[General Discussion](#)
+[API Forums](#)
+[SDK Forums](#)
+[Widget Forums](#)
+[Affiliate Topics](#)
 
 {% endcapture %}
 
@@ -56,9 +56,11 @@ No matter what question you have or help you need, we're here for you.
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 column" markdown="1">
 {{left}}
 </div>
+{%comment%}
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 column" markdown="1">
 {{middle}}
 </div>
+{%endcomment%}
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 column" markdown="1">
 {{right}}
 </div>
