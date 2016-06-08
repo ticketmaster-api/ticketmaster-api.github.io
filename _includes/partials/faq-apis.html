@@ -1,5 +1,5 @@
 <div class="article">
-{% assign files = site.pages %}
+{% assign files = site.pages | sort : 'title'%}
 
 {% for file in files %}
     {% if 'faq-api' == file.categories[0] and file.content and file.questions and file.title %}
