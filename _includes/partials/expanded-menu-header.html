@@ -134,7 +134,8 @@
                     <li>
                         <a href="/support/faq/#affiliates-a">Affiliates</a>
                     </li>
-                    {%for item in site.pages %}
+                    {% assign faq_items = site.pages | sort: 'title' %}
+                    {%for item in faq_items %}
                         {% if item.categories[0] == "faq-api" and item.content and item.questions and item.title %}
                         <li><a href="/support/faq/#{{ item.titleId }}">{{item.title}}</a></li>
                         {% endif %}
