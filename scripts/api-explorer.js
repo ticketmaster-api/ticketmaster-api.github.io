@@ -58,6 +58,10 @@ Object.byString = function(o, s) {
     /* INITIALIZATION PHASE */
 
     $(document).ready(function() {
+        (function () {
+            var item = sessionStorage.getItem('tk-api-email');
+            document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
+        })();
         readFromWADL(); //parse WADL file when document is ready
         setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
         spinner = $('#spinner');

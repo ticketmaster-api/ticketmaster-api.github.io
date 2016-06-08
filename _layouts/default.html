@@ -24,13 +24,12 @@
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             ga('create', 'UA-72344127-1', 'auto');
             ga('send', 'pageview');
-
-            if( sessionStorage.getItem('tk-api-email') && typeof sessionStorage.getItem('tk-api-email') === "string" ) {
-                document.getElementsByClassName("apigee-login")[0].textContent = (sessionStorage.getItem('tk-api-email') != undefined) ?  sessionStorage.getItem('tk-api-email') : "Login";
-            }
-
+            (function () {
+                var item = sessionStorage.getItem('tk-api-email');
+                document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
+            })();
         </script>
-        <script src="{{"/scripts/components/scroll-top.js" | prepend: site.baseurl }}"></script>
+        <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
         {% include feedback.html %}
         <script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
