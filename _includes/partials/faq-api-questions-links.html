@@ -2,7 +2,7 @@
 {% assign files = site.pages | sort: 'title' %}
 
 {% for file in files %}
-    {% if 'faq-api' == file.categories[0] %}
+    {% if 'faq-api' == file.categories[0] and item.content.size > 1 and item.questions and item.title%}
         {% if file.questions and file.content and file.title and file.titleId %}
         <h4 class="double-margin">{{ file.title }}</h4>
             {% for question in file.questions %}
