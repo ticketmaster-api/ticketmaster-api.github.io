@@ -16,7 +16,7 @@
   }
   .image {
     width: 264px;
-    height: 180px;
+    height: 230px;
     float: left;
     margin-top: 5px;
     @media #{$max-768} {
@@ -25,7 +25,7 @@
   }
   .announcement {
     width: 63%;
-    height: 158px;
+    //height: 158px;
     float: left;
     padding: 0 0 0 28px;
     overflow: hidden;
@@ -45,6 +45,15 @@
       line-height: 32px;
       display: block;
       clear: both;
+      &.button-blue {
+        color: $white;
+        margin-top: $base-margin + $base-margin/2;
+        margin-bottom: $base-margin - 10;
+        width: 165px;
+        text-transform: uppercase;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
     }
     h3 {
       margin-top: 0;
@@ -58,7 +67,8 @@
   }
   .tags {
     float: left;
-    margin-left: 27px;
+    margin-bottom: 24px;
+    //margin-left: 27px;
     @media #{$max-768} {
       margin-left: 0;
     }
@@ -70,7 +80,7 @@
       background-color: $white;
       float: left;
       margin-right: 20px;
-      margin-bottom: 24px;
+      margin-top: $base-margin/2;
       outline: none;
       font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
       cursor: default;
