@@ -13,8 +13,9 @@
                     <li><a href="#affiliates-a">Affiliates</a></li>
                     {% assign faq_items = site.pages | sort: 'title' %}
                     {%for item in faq_items %}
-                        {% if item.categories[0] == "faq-api" and item.content and item.questions and item.title%}
+                        {% if item.categories[0] == "faq-api" and item.content.size > 1 and item.questions and item.title%}
                             <li><a href="{{ item.titleId | prepend:'#' }}">{{item.title}}</a></li>
+                            <!--<p>{{item.content.size > 1}}</p>-->
                         {% endif %}
                     {%endfor%}
                 </ul>
