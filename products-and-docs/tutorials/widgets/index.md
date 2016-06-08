@@ -26,12 +26,13 @@ Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. A
             <div class="announcement">
                 <h3>{% if tutorials-widgets.link %}<a href="{{ tutorials-widgets.link }}">{% endif %}{{ tutorials-widgets.title }}{% if tutorials-widgets.link %}</a>{% endif %}</h3>
                 <p>{{ tutorials-widgets.announcement }}</p>
-            </div>
-            <div class="tags">
-                {% for tag in tutorials-widgets.tags %}
-                    <button class="tag-btn" tag="{{tag}}">{{tag}}</button>
-                {% endfor %}
-            </div>
+                {% if tutorials.link %}<a class="button button-blue" href="{{ tutorials.link }}">Learn more</a>{% endif %}
+                <div class="tags">
+                    {% for tag in tutorials-events-search.tags %}
+                        <button class="tag-btn" tag="{{tag}}">{{tag}}</button>
+                    {% endfor %}
+                </div>
+            </div>            
         </div>
     {% endif %}
 {% endfor %}
