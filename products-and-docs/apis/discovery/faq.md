@@ -3,7 +3,7 @@ layout: base-content
 categories:
 - faq-api
 - discovery
-- v2
+
 title: Discovery api FAQ
 titleId: discovery-api-title-uniq-link-anchor
 
