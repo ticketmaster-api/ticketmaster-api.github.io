@@ -32,7 +32,7 @@
 <div class="article faq-api">
 {% for file in files %}
 
-    {% if 'faq-api' == file.categories[0] and item.content.size > 1 and item.questions and item.title %}
+    {% if 'faq-api' == file.categories[0] and file.content.size > 1 and file.questions and file.title %}
         {% if page.categories[1] == file.categories[1]%}<!--{%comment%}if page static md{%endcomment%}-->
         <!--{%comment%}to check version: {% if page.categories[2] == file.categories[2] %}version correct: {{file.categories[2]}}{% endif %}{%endcomment%}-->
             {% if file.questions and file.title and file.titleId and file.content%}
