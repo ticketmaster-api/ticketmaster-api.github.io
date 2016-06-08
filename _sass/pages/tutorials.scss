@@ -51,8 +51,11 @@
         margin-bottom: $base-margin - 10;
         width: 165px;
         text-transform: uppercase;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding: 8px 26px;
+        border: none;
+        &:visited {
+          color: $white;
+        }
       }
     }
     h3 {
@@ -66,7 +69,7 @@
     }
   }
   .tags {
-    float: left;
+    //float: left;
     margin-bottom: 24px;
     //margin-left: 27px;
     @media #{$max-768} {
