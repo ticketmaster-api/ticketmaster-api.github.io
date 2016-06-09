@@ -25,6 +25,7 @@
       if (event.data.key && event.data.email) {
         sessionStorage.setItem('tk-api-key', event.data.key);
         sessionStorage.setItem('tk-api-email', event.data.email);
+        document.getElementsByClassName("apigee-login")[0].textContent = event.data.email;
       }
     } else {
       console.error(origin + " is not allowed");
