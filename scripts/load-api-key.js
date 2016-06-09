@@ -1,33 +1,33 @@
 (function(){
   var apiKey = sessionStorage.getItem('tk-api-key');
+  var DOMAIN = "https://live-livenation.devportal.apigee.com";
+
   if(apiKey === null){
     var onLoadHandler = function() {
       var win = window.frames.target;
-      win.postMessage("", "https://live-livenation.devportal.apigee.com");
+      win.postMessage("", DOMAIN);
     };
 
     var iframe = document.createElement("iframe");
     iframe.style.display = "none";
-    iframe.setAttribute("src","https://live-livenation.devportal.apigee.com/user/");
+    iframe.setAttribute("src", DOMAIN + "/user/");
     iframe.setAttribute("name","target");
-    iframe.addEventListener("load",onLoadHandler);
+    iframe.addEventListener("load", onLoadHandler);
 
     var body = document.getElementsByTagName("body")[0];
     body.appendChild(iframe);
   }
-
-
   // Wait for response
   checkResponse = function(event){
-    if( event.origin = "https://live-livenation.devportal.apigee.com") {
+    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+    if (origin == DOMAIN) {
       console.warn('Event data on postMessage()\nkey - ', event.data.key, '\nemail - ', event.data.email);
       if (event.data.key && event.data.email) {
         sessionStorage.setItem('tk-api-key', event.data.key);
         sessionStorage.setItem('tk-api-email', event.data.email);
       }
-    }
-    else{
-      console.error(event.origin + " is not allowed");
+    } else {
+      console.error(origin + " is not allowed");
     }
   };
 
