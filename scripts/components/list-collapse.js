@@ -25,46 +25,30 @@
     //     $listInsideChangelog.jstree("open_all");
     // });
 
-    
-
-  });
-})();
-
-(function () {
-  $(document).ready(function () {
-
     $('.nested-list-wrapper').on("click","li", function () {
-      console.log('click li');
 
       $('.jstree-children .jstree-anchor')
         .each(function () {
           var replace = "Github (https://github.com/ticketmaster-api/sdk-java)",
             byMe = '<a href="https://github.com/ticketmaster-api/sdk-java">Github</a>';
 
-          if ($(this).attr('href') === '#') {
-            //console.log("me", $(this).text());
-
-            var newMe = $(this)
-                .html($(this).html().replace(replace, byMe))
-                .replaceWith("<span class=" + $(this).attr('class') + ">" + $(this).html() + "</span>")
-              ;
-
-            //console.log("newMe", newMe);
+          if ($(this).attr('href') === '#') {            $(this)
+            .html($(this).html().replace(replace, byMe))
+            .replaceWith("<span class=" + $(this).attr('class') + ">" + $(this).html() + "</span>")
+          ;
           }
-
         });
 
       $('.jstree-anchor').on("click", "a", function (event) {
         //document.location.href = this;
         if(event.target.tagName === 'A' && event.target.href !== '#'){
-          console.log("target = " + event.target.href + ", this=" + this.tagName);
           document.location.href = event.target.href;
         }
       });
     });
 
 
-    
-  })
-  })();
+  });
+})();
+
   
