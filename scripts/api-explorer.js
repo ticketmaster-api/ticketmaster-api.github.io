@@ -58,6 +58,10 @@ Object.byString = function(o, s) {
     /* INITIALIZATION PHASE */
 
     $(document).ready(function() {
+        (function () {
+            var item = sessionStorage.getItem('tk-api-email');
+            document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
+        })();
         readFromWADL(); //parse WADL file when document is ready
         setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
         spinner = $('#spinner');
@@ -298,6 +302,8 @@ Object.byString = function(o, s) {
                             + method.parameters[param].name + '" id="' + method.parameters[param].name + '" url-style="'
                             + method.parameters[param].style + '">');
 
+                param === "extensions" && input.val('geolocation');
+
                 element.append(input);
                 primaryColumn.append(element);
                 new Tooltip(element);
@@ -432,7 +438,6 @@ Object.byString = function(o, s) {
             self.column = $('<div class="api-column'
             + colors[currentColumnColorIndex] // colorize column appropriately
             + (index ? ' transparent' : '') + '"></div>').hide(); // if there was index provided -> column is a child of previous column and should become transparent
-
             for (var i = 0; i < configObject.length; i++){ // iterate through method main subcolumns
                 var subcolumn = configObject[i], // subcolumn
                     listGroup = $('<div class="list-group"></div>'), //subcolumn future element
@@ -523,7 +528,7 @@ Object.byString = function(o, s) {
                     }
                 }
                 self.column.append(listGroup);
-                if (subColumnMapImage){ // append map image if there is any
+                if (subColumnMapImage && subcolumn["map"]){ // append map image if there is any
                     var imgListGroup = $('<div class="list-group"></div>'), //subcolumn future element
                         imgTitle = $('<a class="list-group-item active">' + 'Map' + '</a>');
                     imgListGroup.append(imgTitle).append(subColumnMapImage);
@@ -645,10 +650,26 @@ Object.byString = function(o, s) {
                     + 'zoom=8' + '&' //zoom
                     + 'size=' + width + 'x' + height + '&' //size
                     + 'format=JPEG' + '&'// image format
-                    + 'markers=color:red%7Clabel:V%7C' + coordinates // marker with the same coordinates with V label
+                    + 'markers=color:red%7Clabel:V%7C' + coordinates;// marker with the same coordinates with V label
                     //+ '&key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'; // api key (vmfreakmonkey@gmail.com)
 
-            return $('<img data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '" class="api-column-map-image" src="' + url + '">');
+            var img = $('<img data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '" class="api-column-map-image" src="' + url + '">');
+
+            img
+              .on('error', function() {
+                  var imgElem = $('.api-column-map-image');
+                  img = $('<button class="button button-blue" style="width: 92%;margin: 4%;" data-lat="' + lat + '" data-long="' + lng + '" data-address="' + address + '">Show map</button>');
+                  imgElem.parent().append(img);
+                  imgElem.remove();
+
+                  img.on('click', function(e){
+                      mapPopUpListener(e);
+                  });
+              })
+              .attr("src", $(img).attr("src"))
+            ;
+
+            return img
         }
         else
             return false;

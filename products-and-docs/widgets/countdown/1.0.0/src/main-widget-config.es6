@@ -68,36 +68,65 @@
   }),
   $getCodeButton = $('.js_get_widget_code'),
   widgetNode = document.querySelector("div[w-tmapikey]"),
-  $tabButtons = $('.js-tab-buttons');
+  $tabButtons = $('.js-tab-buttons'),
+  $layoutBox = $('#js-layout-box');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
     $borderRadiusController.slider('relayout');
   });
 
-  function toggleDisabled(widgetNode){
-    if ( widgetNode.getAttribute('w-id') === '') {
-      $getCodeButton.prop("disabled",true);
-    }else {
-      $getCodeButton.prop('disabled',false);
-    };
-  }
+  // function toggleDisabled(widgetNode){
+  //   if ( widgetNode.getAttribute('w-id') === '') {
+  //     $getCodeButton.prop("disabled",true);
+  //   }else {
+  //     $getCodeButton.prop('disabled',false);
+  //   }
+  // }
 
   var changeState = function(event){
     if(!event.target.name){
       return;
     }
     const targetValue = event.target.value,
-        targetName = event.target.name;
+          targetName = event.target.name;
+
+    if(targetName === "w-theme" ){
+      let widthSlider = $('.js_widget_width_slider'),
+          widgetContainerWrapper = $('.widget-container-wrapper'),
+          widgetContainer = $(".widget-container", widgetContainerWrapper),
+          $border_slider = $('.js_widget_border_slider');
 
 
-    // if(targetName === "w-theme"){
-    //   if(widgetNode.getAttribute('w-layout') === 'horizontal'){
-    //     widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
-    //   }
-    //   widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
-    // }
-    //console.log('start change');
+      if(targetValue === "fullwidth"){
+        $layoutBox.slideUp();
+        widthSlider.slideUp("fast");
+        $borderRadiusController.slider('setValue', 0);
+        widgetNode.setAttribute('w-borderradius', 0);
+        $border_slider.slideUp("fast");
+        widgetContainerWrapper.css({
+          width: "100%"
+        });
+        widgetContainer.css({
+          width: "100%"
+        });
+        widgetNode.setAttribute('w-height', 700);
+      }else {
+        let excludeOption = {
+              id : widgetNode.getAttribute('w-id')
+            };
+        resetWidget($configForm , excludeOption );
+
+        $layoutBox.slideDown("fast");
+        widthSlider.slideDown("fast");
+        $border_slider.slideDown("fast");
+        $borderRadiusController.slider('setValue', 4);
+        widgetNode.setAttribute('w-borderradius', 4);
+        widgetContainerWrapper.css({
+          width: 'auto'
+        });
+      }
+    }
 
 
     /*
@@ -135,7 +164,7 @@
 
     //Check fixed sizes for 'simple_countdown' theme
     if(targetName === "w-proportion") {
-      let widthSlider = $('.js_widget_width_slider');
+      let widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
       let sizeConfig = {
         width: themeConfig.simple_countdown.sizes[targetValue].width,
         height: themeConfig.simple_countdown.sizes[targetValue].height,
@@ -174,12 +203,12 @@
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
 
-    toggleDisabled(widgetNode);//set disabled btn if input is empty
+    //toggleDisabled(widgetNode);//set disabled btn if input is empty
 
     widget.update();
   };
 
-  var resetWidget = function(configForm) {
+  var resetWidget = function(configForm , excludeOption) {
     let widthSlider = $('.js_widget_width_slider'),
         height = 600,
         theme,
@@ -224,6 +253,11 @@
       }
     });
 
+    if(typeof excludeOption !== 'undefined' && typeof excludeOption.id !== 'undefined'){
+        widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
+        $('#w-id').val(excludeOption.id);//set val in cofigurator
+    }
+
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 
@@ -233,7 +267,7 @@
     }
     widgetNode.setAttribute('w-height', height);
 
-    toggleDisabled(widgetNode);//set disabled btn if input is empty
+    // toggleDisabled(widgetNode);//set disabled btn if input is empty
 
     widget.update();
   };
@@ -305,16 +339,6 @@
       pageIncrement = 0,
       loadingFlag = false;
 
-  // var removeListItemEffect = function(listItems){
-  //   console.log( 'removeListItemEffect start ',listItems.length);
-  //
-  //   $btn.attr('disabled', true);
-  //   listItems.hide("slow", function fnCollapse() {
-  //     $(this).prev("li").hide("slow", fnCollapse);
-  //     // if(!$(this).prev("li").length) $btn.removeAttr('disabled');
-  //   });
-  //   $btn.removeAttr('disabled');
-  // };
 
   let loading = function(action) {
     // add the overlay with loading image to the page
@@ -356,6 +380,18 @@
         .appendTo(ulElement);
     };
 
+    function getImageForEvent(images){
+      images.sort(function(a,b) {
+        if (a.width < b.width)
+          return -1;
+        else if (a.width > b.width)
+          return 1;
+        else
+          return 0;
+      });
+      return images[0].url;
+    }
+
     if(loadingFlag === "FINAL_PAGE") return false;
 
     if(data === 'FAIL'){ showMessage($ul, 'Failure, possible key not correct.' ,true); return false; }
@@ -371,10 +407,17 @@
     //start render data
     let items = data._embedded.events;
 
-    items.map( (item ) => {
+    items.map( (item) => {
       let li = $('<li/>')
         .addClass('list-group-item row')
         .appendTo(ulElement);
+      
+      let spanImg = $('<span class="thumbnail" />')
+        .appendTo(li);
+      let img = $('<img src='+ getImageForEvent(item.images)+' />')
+        .addClass('list-group-item-heading')
+        .appendTo(spanImg);
+
       let $wrapCol = $('<div class="event-text-wrapper"/>')
         .appendTo(li);
       let title = $('<h3/>')
@@ -434,10 +477,24 @@
           //find configurator and widget
           widget = widgetsCountdown[0],
           widgetNode = document.querySelector("div[w-tmapikey]");
+      let isFullWidthTheme = function (){ return widgetNode.getAttribute('w-theme') === "fullwidth" };
       
       $('#w-id').val(selectedID);
       widgetNode.setAttribute('w-id',selectedID);
-      widget.update();
+      if(isFullWidthTheme){
+        widgetNode.style.width = '100%';
+      }
+
+      /*
+      //toggle $getCodeButton
+      if ( widgetNode.getAttribute('w-id') === '') {
+        $getCodeButton.prop("disabled",true);
+      }else {
+        $getCodeButton.prop('disabled',false);
+      }
+      */
+
+      widget.update(isFullWidthTheme);
 
       // Close dialog
       $modal.modal('hide');

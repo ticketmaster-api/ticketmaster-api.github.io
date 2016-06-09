@@ -526,6 +526,30 @@
         <option value="date,asc"/>
         <option value="date,desc"/>
       </param>
+      <param name="city" required="false" style="query" type="xsd:string">
+        <doc>The city.</doc>
+      </param>
+      <param name="countryCode" required="false" style="query" type="xsd:string">
+        <doc>The country code.</doc>
+      </param>
+      <param name="stateCode" required="false" style="query" type="xsd:string">
+        <doc>The state code.</doc>
+      </param>
+      <param name="segmentId" required="false" style="query" type="xsd:string">
+        <doc>The segmentId.</doc>
+      </param>
+      <param name="segmentName" required="false" style="query" type="xsd:string">
+        <doc>The segmentName.</doc>
+      </param>
+      <param name="classificationId" required="false" style="query" type="xsd:string">
+        <doc>The classification ID.</doc>
+      </param>
+      <param name="classificationName" required="false" style="query" type="xsd:string">
+        <doc>The classification name.</doc>
+      </param>
+      <param name="dmaId" required="false" style="query" type="xsd:string">
+        <doc>The dmaId.</doc>
+      </param>
       <method id="discovery.v2.events.get" name="GET" apigee:displayName="Search Events">
         <apigee:tags>
           <apigee:tag primary="true">Discovery API v2</apigee:tag>
@@ -660,6 +684,9 @@
       <param name="format" required="true" type="xsd:string" style="template" default="json">
         <doc>API Response Format</doc>
       </param>
+      <param name="source" required="true" type="xsd:string" style="query" default="json">
+        <doc>source</doc>
+      </param>
       <param name="locale" required="false" type="xsd:string" style="query">
         <doc>The attraction locale, including country and localization.</doc>
         <option value=""/>
@@ -690,6 +717,9 @@
     <resource path="discovery/v2/classifications.{format}">
       <param name="format" required="true" type="xsd:string" style="template" default="json">
         <doc>API Response Format</doc>
+      </param>
+      <param name="classificationID" required="false" style="query" type="xsd:string">
+        <doc>A string to search by classification ID</doc>
       </param>
       <param name="keyword" required="false" style="query" type="xsd:string">
         <doc>A string to search against classifications names.</doc>
@@ -769,6 +799,25 @@
         <option value="name,desc"/>
         <option value="name,asc"/>
       </param>
+      <param name="stateCode" required="false" style="query" type="xsd:string">
+        <doc>The state code.</doc>
+      </param>
+      <param name="countryCode" required="false" style="query" type="xsd:string">
+        <doc>The country code.</doc>
+      </param>
+      <param name="includeTest" required="false" style="query" type="xsd:string">
+        <doc>Include test.</doc>
+        <option value="yes"/>
+        <option value="no"/>
+        <option value="only"/>
+      </param>
+      <param name="source" required="false" style="query" type="xsd:string">
+        <doc>Source.</doc>
+      </param>
+      <param name="extensions" required="false" style="query" type="xsd:string">
+        <doc>Extensions</doc>
+        <option value="geolocation"/>
+      </param>
       <method id="discovery.v2.venues.get" name="GET" apigee:displayName="Search Venues">
         <apigee:tags>
           <apigee:tag primary="true">Discovery API v2</apigee:tag>
@@ -801,6 +850,10 @@
         <option value="en-nz"/>
         <option value="fr-fr"/>
         <option value="fr-ca"/>
+      </param>
+      <param name="extensions" required="false" style="query" type="xsd:string">
+        <doc>Extensions.</doc>
+        <option value="geolocation"/>
       </param>
       <method id="discovery.v2.venues.id.get" name="GET" apigee:displayName="Get Venue Details">
         <apigee:tags>

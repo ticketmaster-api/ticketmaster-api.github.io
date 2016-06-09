@@ -1,0 +1,30 @@
+{
+    "method": [
+        {
+            "pathsParent":"/assets/{assetId}",
+            "id":"search-attractions",
+            "title":"Search Attractions",
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
+        },
+        {
+            "pathsParent":"/assets",
+            "id":"legacy-attraction-details",
+            "title":"?legacy Attraction Details"
+        },
+        {
+            "pathsParent":"/assets/bulk/search",
+            "id":"legacy-attraction-details",
+            "title":"legacy-Get Attraction Details",
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
+        },
+        {
+            "pathsParent":"/assets/search",
+            "id":"venue-details",
+            "title":"Get Venue Details",
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
+        }
+    ]
+}

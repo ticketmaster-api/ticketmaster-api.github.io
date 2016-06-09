@@ -1,0 +1,14 @@
+<div class="article faq-api">
+{% assign files = site.pages | sort: 'title' %}
+
+{% for file in files %}
+    {% if 'faq-api' == file.categories[0] and file.content.size > 1 and file.questions and file.title%}
+        {% if file.questions and file.content and file.title and file.titleId %}
+        <h4 class="double-margin">{{ file.title }}</h4>
+            {% for question in file.questions %}
+                {{question | markdownify }}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</div>

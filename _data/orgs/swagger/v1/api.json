@@ -1,0 +1,1136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Discovery API",
+    "version": "${application.version}",
+    "title": "Discovery API Service",
+    "contact": {
+      "name": "discovery-api@ticketmaster.com"
+    },
+    "license": {}
+  },
+  "host": "api1.disco.intqa102.syseng.tmcs:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "event-api",
+      "description": "Event API"
+    },
+    {
+      "name": "venue-api",
+      "description": "Venue API"
+    },
+    {
+      "name": "attraction-api",
+      "description": "Attraction API"
+    },
+    {
+      "name": "classification-api",
+      "description": "Classification API"
+    }
+  ],
+  "paths": {
+    "/discovery/v2/attractions": {
+      "get": {
+        "tags": [
+          "attraction-api"
+        ],
+        "summary": "find",
+        "operationId": "findUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "only"
+            ]
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "affiliateId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/attractions/legacy": {
+      "get": {
+        "tags": [
+          "attraction-api"
+        ],
+        "summary": "legacy/find",
+        "operationId": "legacyFindUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "affiliateId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/attractions/legacy/{id}": {
+      "get": {
+        "tags": [
+          "attraction-api"
+        ],
+        "summary": "legacy/get",
+        "operationId": "legacyGetUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/attractions/{id}": {
+      "get": {
+        "tags": [
+          "attraction-api",
+          "event-api"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications": {
+      "get": {
+        "tags": [
+          "classification-api"
+        ],
+        "summary": "find",
+        "operationId": "findUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "only"
+            ]
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "affiliateId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/{id}": {
+      "get": {
+        "tags": [
+          "classification-api"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events": {
+      "get": {
+        "tags": [
+          "event-api"
+        ],
+        "summary": "find",
+        "operationId": "findUsingGET_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "latlong",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "marketId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "promoterId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "unit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "miles",
+              "km"
+            ]
+          },
+          {
+            "name": "endDateTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "startDateTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "countryCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "stateCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "venueId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "attractionId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "segmentId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "segmentName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "classificationName",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "classificationId",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "dmaId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "postalCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeTBA",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "only"
+            ]
+          },
+          {
+            "name": "includeTBD",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "only"
+            ]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "onsaleEndDateTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "onsaleStartDateTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "entitlementPromoterId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "only"
+            ]
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "affiliateId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/legacy": {
+      "get": {
+        "tags": [
+          "event-api"
+        ],
+        "summary": "legacy/find",
+        "operationId": "legacyFindUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "affiliateId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/legacy/{id}": {
+      "get": {
+        "tags": [
+          "event-api"
+        ],
+        "summary": "legacy/get",
+        "operationId": "legacyGetUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/legacy/{id}/images": {
+      "get": {
+        "tags": [
+          "event-api"
+        ],
+        "summary": "legacy/getImages",
+        "operationId": "legacyGetImagesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/{id}": {
+      "get": {
+        "tags": [
+          "event-api"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/{id}/images": {
+      "get": {
+        "tags": [
+          "event-api"
+        ],
+        "summary": "getImages",
+        "operationId": "getImagesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues": {
+      "get": {
+        "tags": [
+          "venue-api"
+        ],
+        "summary": "find",
+        "operationId": "findUsingGET_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "stateCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "countryCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "only"
+            ]
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "affiliateId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues/legacy": {
+      "get": {
+        "tags": [
+          "venue-api"
+        ],
+        "summary": "legacy/find",
+        "operationId": "legacyFindUsingGET_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "affiliateId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues/legacy/{id}": {
+      "get": {
+        "tags": [
+          "venue-api"
+        ],
+        "summary": "legacy/get",
+        "operationId": "legacyGetUsingGET_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues/{id}": {
+      "get": {
+        "tags": [
+          "venue-api"
+        ],
+        "summary": "get",
+        "operationId": "getUsingGET_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8",
+          "application/hal+json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
