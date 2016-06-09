@@ -7,7 +7,9 @@
     "event-discovery-widget-1.0.0-once": "babel products-and-docs/widgets/event-discovery/1.0.0/src -d products-and-docs/widgets/event-discovery/1.0.0/lib --source-maps",
     "event-discovery-widget-1.0.0": "npm run event-discovery-widget-1.0.0-once -- -w",
     "countdown-widget-1.0.0-once": "babel products-and-docs/widgets/countdown/1.0.0/src -d products-and-docs/widgets/countdown/1.0.0/lib --source-maps",
-    "countdown-widget-1.0.0": "npm run countdown-widget-1.0.0-once -- -w"
+    "countdown-widget-1.0.0": "npm run countdown-widget-1.0.0-once -- -w",
+    "calendar-widget-1.0.0-once": "babel products-and-docs/widgets/calendar/1.0.0/src -d products-and-docs/widgets/calendar/1.0.0/lib --source-maps",
+    "calendar-widget-1.0.0": "npm run calendar-widget-1.0.0-once -- -w"
   },
   "repository": {
     "type": "git",
