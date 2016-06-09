@@ -12,7 +12,7 @@ keywords: changelog, API
 
 {% capture changelog %}
 
-We’re happy to announce the release of Discovery API v2.0 today! This release has a few major changes, primarily designed to simplify the code and to better support environments.
+In this page you can find all updates of Ticketmaster APIs. 
 {: .lead}
         
 {% endcapture %}

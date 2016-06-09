@@ -88,8 +88,6 @@ discovery/{version}/events.{format}
 |	`city` | city |string| No|
 |	`countryCode` | countryCode |string| No|
 |	`stateCode` | stateCode |string| No|
-|	`segmentId` | segmentId |string| No|
-|	`segmentName` | segmentName |string| No|
 | `classificationName` |any classification name - segment - genre - sub-genre | string | No|
 | `classificationId` | any classification id - segment - genre - sub-genre| string | No|
 |	`dmaId`|dmaId| string | No|

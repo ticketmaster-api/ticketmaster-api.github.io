@@ -87,6 +87,9 @@
   background: none;
   color: $p1b;
 }
+.jstree-default .jstree-clicked {
+  color: $n2-grey-color;
+}
 
 .jstree-default > .jstree-container-ul > .jstree-node {
   margin-left: 0;
@@ -98,8 +101,15 @@ i.jstree-icon.jstree-themeicon {
 }
 
 /*hover*/
+a.jstree-anchor > h5,
+span.jstree-anchor > h5{
+  &:hover {
+    color: $p1b;
+  }
+}
 .jstree-hovered {
   color: $p1b;
+  &.jstree-anchor{ color: $n2-grey-color; }
 }
 
 .jstree-default .jstree-closed > .jstree-ocl {
@@ -123,12 +133,24 @@ i.jstree-icon.jstree-themeicon {
 }
 
 .jstree-default {
-  a {
+  span {
+    cursor: pointer;
+    //&:hover {
+    //  color: $p1b;
+    //}
+  }
+  span,a {
     color: $n2-grey-color;
     white-space: pre-line;
     display: inline-block;
     &:focus {
       text-decoration: none;
+    }
+  }
+  span > a {
+    color: $p1;
+    &:hover {
+      color: $p1b;
     }
   }
 }
