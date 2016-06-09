@@ -193,7 +193,7 @@
                         {% for file in files %}
                             {% if file.categories[2] == 'releaseNotes'%}
                                 {% if thisCategory == file.categories[3]%}{%else%}
-                                <li><a href="{{ file.title | lstrip | downcase | prepend: '#' | replace: ' ' , '-' }}">{{ file.title }}</a></li>
+                                <li><a href="{{ file.title | lstrip | downcase | prepend: '#' | replace: ' ' , '-' | replace: '(' , '-' | replace: ')' , '-' }}">{{ file.title }}</a></li>
                                 {% endif %}
                             {% endif %}
                             {%assign thisCategory = file.categories[3]%}

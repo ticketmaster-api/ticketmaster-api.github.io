@@ -322,6 +322,10 @@
     font-weight: normal;
   }
 
+  h3,h4,h5 {
+    line-height: 32px;
+  }
+
   /*offset for fixed header*/
   h2:target:before {
     content: "";

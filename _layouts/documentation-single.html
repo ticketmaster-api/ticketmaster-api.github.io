@@ -31,7 +31,7 @@ layout: default
                             {% if file.categories[2] == 'releaseNotes'%}
                             <div class="changelog-section">
                                 {% if thisCategory == file.categories[3]%}{%else%}
-                                    <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' }}">{{ file.title }}</h2>
+                                    <h2 id="{{ file.title | lstrip | downcase | replace: ' ' , '-' | replace: '(' , '-' | replace: ')' , '-' }}">{{ file.title }}</h2>
                                 {%endif%}
                                 <h4>{{ file.release_date  | date_to_long_string }}</h4>{{ file.content | markdownify}}</div>
 
