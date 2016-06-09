@@ -1,4 +1,4 @@
-<div id="expand-menu" class="row" tabindex="-1" {% if page.categories[0] == "documentation" or page.category == "documentation" %} style="position:fixed" {% endif %}>
+<div id="expand-menu" class="row" tabindex="-1" {% if page.categories[0] == "documentation" or page.category == "documentation"  or page.categories[0] == "tutorials" %} style="position:fixed" {% endif %}>
     <div class="row-container">
         <div id="expand-one" class="expand-section" style="display: none;">
             <div class="col-xs-2 expand-column">
@@ -52,7 +52,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-xs-2 expand-column" style="margin-right: -50px;">
+            <div class="col-xs-2 expand-column">
                 <a href="/products-and-docs/widgets/">
                     <h4>WIDGETS</h4>
                 </a>
@@ -65,6 +65,19 @@
                     </li>
                     <li>
                         <a href="/products-and-docs/widgets/countdown/">Countdown Widget</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-2 expand-column" style="margin-right: -50px;">
+                <a href="/products-and-docs/tutorials/">
+                    <h4>TUTORIALS</h4>
+                </a>
+                <ul>
+                    <li>
+                        <a href="/products-and-docs/tutorials/events-search/">Events Search</a>
+                    </li>
+                    <li>
+                        <a href="/products-and-docs/tutorials/widgets/">Widgets</a>
                     </li>
                 </ul>
             </div>
@@ -106,6 +119,7 @@
                 </ul>
             </div>
         </div>
+
         <div id="expand-three" class="expand-section" style="display: none;">
             <div class="col-xs-1 expand-column" style="margin-right: 30px;">
                 <a href="/support/faq/">
@@ -121,11 +135,17 @@
                     <li>
                         <a href="/support/faq/#affiliates-a">Affiliates</a>
                     </li>
+                    {% assign faq_items = site.pages | sort: 'title' %}
+                    {%for item in faq_items %}
+                        {% if item.categories[0] == "faq-api" and item.content.size > 1 and item.questions and item.title %}
+                            <li><a href="/support/faq/#{{ item.titleId }}">{{item.title}}</a></li>
+                        {% endif %}
+                    {%endfor%}
                 </ul>
             </div>
             {% comment %}
             <div class="col-xs-2 expand-column" style="margin-right: -10px;">
-                <a href="http://stackoverflow.com/questions/tagged/ticketmaster-api">
+                <a href="#">
                     <h4>Forums</h4>
                 </a>
                 <ul>
@@ -224,6 +244,7 @@
                     <h4>Contact Us</h4>
                 </a>
             </div>
+
         </div>
         <div id="expand-four" class="expand-section" style="display: none;">
             <div class="col-xs-2 expand-column">

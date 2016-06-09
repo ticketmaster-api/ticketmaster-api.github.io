@@ -108,6 +108,17 @@
     }
   }
 
+  /*copy from documentation.scss*/
+  .faq-api{
+    h4 {
+      margin: $base-margin 0;
+    }
+    p {
+      margin-top: $base-margin/4;
+      margin-bottom: 0;
+    }
+  }/*end*/
+
 }
 
 .link-inline > a {

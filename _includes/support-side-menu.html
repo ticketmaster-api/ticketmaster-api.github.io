@@ -6,11 +6,17 @@
     <li>
         <ul class="categories">
             <li><a href="/support/faq/">FAQ</a>
-                {% if page.categories[0] == "support" and page.categories[1] == "faq" %}
+                {% if page.categories[0] == "support" and page.categories[1] == "faq" or page.categories[0] == "faq-api"%}
                 <ul class="sections menu-highlight">
                     <li><a href="#general-a">General</a></li>
                     <li><a href="#account-a">Data</a></li>
                     <li><a href="#affiliates-a">Affiliates</a></li>
+                    {% assign faq_items = site.pages | sort: 'title' %}
+                    {%for item in faq_items %}
+                        {% if item.categories[0] == "faq-api" and item.content.size > 1 and item.questions and item.title%}
+                            <li><a href="{{ item.titleId | prepend:'#' }}">{{item.title}}</a></li>
+                        {% endif %}
+                    {%endfor%}
                 </ul>
                 {% endif %}
             </li>

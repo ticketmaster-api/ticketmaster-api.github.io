@@ -37,6 +37,11 @@ var TicketmasterEventDiscoveryWidget = function () {
       return this.config.theme === 'listview';
     }
   }, {
+    key: 'isBarcodeWidget',
+    get: function get() {
+      return this.config.theme === 'oldschool' || this.config.theme === 'newschool';
+    }
+  }, {
     key: 'isSimpleProportionM',
     get: function get() {
       return this.config.proportion === 'm';
@@ -488,6 +493,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       logo.classList.add("event-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
+      logo.innerHTML = 'Powered by:';
 
       var logoBox = document.createElement('div');
       logoBox.classList.add("event-logo-box");
@@ -1230,6 +1236,21 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
     }
   }, {
+    key: 'addBarcode',
+    value: function addBarcode(domNode, url) {
+      if (this.isBarcodeWidget) {
+        var barcodeBtn = document.createElement("a");
+        barcodeBtn.classList.add("barcode");
+        barcodeBtn.target = '_blank';
+        barcodeBtn.href = url;
+        barcodeBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickEventName', 'click');");
+        domNode.appendChild(barcodeBtn);
+        var bottomBg = document.createElement("span");
+        bottomBg.classList.add("barcode-bottom");
+        domNode.appendChild(bottomBg);
+      }
+    }
+  }, {
     key: 'addBuyButton',
     value: function addBuyButton(domNode, url) {
       if (this.isListView) {
@@ -1300,9 +1321,11 @@ var TicketmasterEventDiscoveryWidget = function () {
       name.classList.add("event-name");
       name.appendChild(nameContent);
       this.initPretendedLink(name, itemConfig.url, true);
-      name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
+      name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
+      /* name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');"); */
       medWrapper.appendChild(name);
 
+      this.addBarcode(event, itemConfig.url);
       this.addBuyButton(medWrapper, itemConfig.url);
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
@@ -1432,17 +1455,14 @@ var widgetsEventDiscovery = [];
   for (var i = 0; i < widgetContainers.length; ++i) {
     widgetsEventDiscovery.push(new TicketmasterEventDiscoveryWidget(widgetContainers[i]));
   }
-
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments);
-    }, i[r].l = 1 * new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m);
-  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-  ga('create', 'UA-77036736-1', 'auto');
-  ga('send', 'pageview');
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_trackEvent', 'eventName', 'JennyFerLopez']);
 })();
+
+(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments);
+  }, i[r].l = 1 * new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m);
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-78315612-1', 'auto');
+ga('send', 'pageview');
 //# sourceMappingURL=main-widget.js.map

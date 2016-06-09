@@ -18,13 +18,21 @@ layout: default
                 </div>
             </div>
 
+
             <div class="col-xs-12 col-lg-9" id="main-block">
                 <div class="content" style="display: block;">
-                    {{ content }}
-					
+
+                    {% if page.categories[1] == "generated" %}
+                        {% include swagger.html %}
+                    {% else %}
+                        {{ content }}
+                    {% endif %}
+
+                    {%include release-notes.html%}
                 </div>
 				<div id="disqus_thread"></div>
             </div>
+
         </div>
     </div>
 

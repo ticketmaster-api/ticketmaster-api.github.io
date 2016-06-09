@@ -16,7 +16,114 @@ Season Tix API Specification
 
 ## Overview
 {: #overview }
-API Specification for add/update and receive an Season Tix account, or add a name to an existing Season Tix account
+This is a sample of the many API calls that are used by external systems to access data from an Archtics (Ticketmaster) database. For additional information, please contact [archtics_integration_services@ticketmaster.com](mailto:archtics_integration_services@ticketmaster.com) during business hours.
+
+## PING
+{: #ping}
+
+**Purpose:** Confirms system connectivity and server status.
+
+**Cache:** No.
+
+**USE:** This API call can be used to test general connectivity to a database.
+
+#### NOTES:
+This call can be used as a mechanism to make sure connectivity is available to a database.
+
+### Requirements:
+none
+
+### Frequency of operation:
+This API call can be made as often as needed, based on mutual agreement between TM and the caller.
+
+### Incremental or Comprehensive Data:
+This API will return comprehensive data.
+
+### Data Delivery:
+  -	Data content: the API will return all data as it pertains to system health.
+  -	Approximate size of a single "record": approximately 550 characters.
+  -	Retrieve the next "batch" of records:  n/a
+  -	"last record" indicator: n/a
+  -	Request for previously received data:  n/a
+  -	Duplicate data: n/a
+  -	Time zone: n/a
+
+### Error Messages:
+These are no error messages that are unique to this API call.
+
+### Input and Output Parameter Details:
+
+|Parm#	| Parameter Name	     |I/O	   |Data Type  |	Reqd	| Description|
+|:------|:---------------------|:-----:|:----------|:------:|:-----------|
+| I_1. |`	cmd	`|I|	Char(32)	|Y|	Always "ping" |
+| I_2. |`	ref	`|I|	Char(32)	|N|	Reference attribute; echoed to result |
+| I_3. |`	uid	`|I|	Char(12)	|Y|	User ID (used on connection to DB). (user99) |
+| I_4. |`	pwd	`|I|	Char(36)	|N|	If password is passed, it will be enforced. |
+| I_5. |`	dsn	`|I|	Char(32)	|Y|	Data Source Name (e.g. DB) to connect to (apigee) |
+| O_1. |`	ref	`|O|	Char(32)	|N|	Reference attribute; echoed from request |
+| O_2. |`	result	`|O|	Integer	|Y|	Result (return code) <br />`0` – OK.  Ping successful <br />`all others` – Internal error |
+| O_3. |`	sql_code	`|O|	Integer	|Y|	SQL Return Code |
+| O_4. |`	error_detail	`|O|	Varchar(250))	|N|	English description of any generated errors |
+| O_5. |`	system_available	`|O|	Boolean	|Y|	Flags if system is available for requests |
+| O_6. |`	digit_available	`|O|	Boolean	|Y|	Flags if system is available for Digit (e.g. sending/retrieving seats from the Host) |
+| O_7. |`	cpu_load	`|O|	Integer	|Y|	CPU load of server (if server is a multi-processor, this is the average load of all processors) |
+| O_8. |`	cpu_usage	`|O|	Decimal(12,6)	|Y|	CPU usage of server process (in milli-seconds) |
+| O_9. |`	db_connections	`|O|	Integer	|Y|	Active DB connections |
+| O_10. |`	active_requests	`|O|	Integer	|Y|	Number of Server Threads actively handling a request |
+| O_11. |`	unscheduled_requests	`|O|	Integer	|Y|	Number of requests queued up waiting for an available Server Thread |
+| O_12. |`	db_name	`|O|	Varchar(20)	|Y|	Database Name as defined by ticketing server |
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight http %}
+POST /url HTTP/1.1
+Content-Type: application/json;
+
+{
+    "header": {
+        "ver": 1,
+        "src_sys_type": 2,
+        "src_sys_name": "testing",
+        "archtics_version": "V999"
+    },
+    "command1": {
+        "cmd": "ping",
+        "uid": "user99",
+        "dsn": "apigee"
+    }
+}
+{% endhighlight %}
+
+{% highlight http %}
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+
+{
+  "command1": {
+    "active_requests": 1,
+    "cmd": "ping",
+    "system_available": 0,
+    "cpu_load": 1,
+    "digit_available": 0,
+    "db_name": "apigee",
+    "cpu_usage": 76219.19,
+    "unscheduled_requests": 0,
+    "db_connections": 10,
+    "result": 0,
+    "sql_code": 0
+  },
+  "header": {
+    "src_sys_type": 2,
+    "archtics_version": "V999",
+    "ver": 1,
+    "src_sys_name": "testing",
+    "ats_version": "4.23.3",
+    "result": 0
+  }
+}
+{% endhighlight %}
 
 ## Customer Query
 {: #customer-query}
@@ -262,6 +369,18 @@ Content-Type: application/json;charset=UTF-8
       "account_id_list": "100479",
       "customer": {
         "name_type": "I",
+         "alt_id_array": [
+          {
+            "alt_id_comment": "Testing External System ID"
+            "alt_id_type": "EXTSY"
+            "alt_id": "EXT-12345"
+          },
+          {
+            "alt_id_comment": "LOYALTY-321"
+            "alt_id_type": "LOY"
+            "alt_id": "LOYALTY-123"
+          }
+        ],
         "phone_fax": "5310869753",
         "name_mi": "Q",
         "add_date": "2016-04-11",
@@ -301,186 +420,6 @@ Content-Type: application/json;charset=UTF-8
     }
 }
 {% endhighlight %}
-
-## Event Details
-{: #event-details}
-
-**Purpose:** Returns a list of events and event attributes.
-
-**Cache:**	Yes.  Refresh 1-2 times per day (depending on expected number of event updates)
-
-**Use:** This API call can be used to return:
-
-1.	All events in the database
-2.	A specific event or list of events.
-  - `event_filter_type` : "L"
-  - `event_filter` : "EVENT01,EVENT02,EVENT03" (Note: no space after the comma)
-3.	A specific number of events (e.g. 45)
-  - `count` : 45
-4.	A specific number of events (e.g. 200) starting with a specific event (e.g. EVENT999)
-  - `prev_event_name` : "EVENT999",
-  - `count`: 200
-5.	All events in a specific item set
-  - `event_filter_type` : "S"
-  - `event_filter` : "2014_Basketball"
-
-
-#### NOTES:
-1.	The events are returned in alphabetical order by event_name.
-2.	Plan events are also included in the result set.  The event_name parameter will be the Plan Name, and the `events_in_plan` array will display all events within that plan.
-
-### Frequency of operation:
-This API call can be made 1-2 times per day, or as Season Tix events are added or changed.
-
-### Incremental or Comprehensive Data:
-This API will return comprehensive data.
-
-### Data Delivery:
-  - Data content: the API will return a separate array of information for each event.
-  - Approximate size of a single "record": about 750 characters per event
-  - Retrieve the next "batch" of records:  use the `prev_event_name` input parameter
-  - "last record" indicator: n/a
-  - Request for previously received data:  n/a
-  - Duplicate data: the calling system is responsible for de-duplicating data.
-  - Time zone: All times are relative to the client's venue or arena.
-
-### Input and Output Parameter Details:
-
-|Parm#	| Parameter Name	     |I/O	   |Data Type  |	Reqd	| Description|
-|:------|:---------------------|:-----:|:----------|:------:|:-----------|
-|I_1.		|`cmd`	|I|	Char(32)	|Y|	Always “event_details”  |
-|I_2.		|`ref`	|I|	Char(32)	|N| Reference attribute; echoed to result |
-|I_3.		|`uid`	|I|	Char(12)	|Y|	User ID (used on connection to DB). <br/> Uid will be provided by TM |
-|I_4.		|`dsn`	|I|	Char(32)	|Y|	Data Source Name (e.g. DB) to connect to (apigee) |
-|I_5.		|`site_name`	|I|	Char (24)	|N|	Identifies the web-site the consumer is logging in from. <br/> If provided, then the list of events returned by this call will be limited to those in the organization to which this site is attached. If not provided, then all events will be returned. |
-|I_6.		|`prev_event_name`	|I|	Char (8)|N| The last event name retrieved on the previous SP call.  This allows the SP to be called in a loop and return all events. Use spaces or NULL on the 1st call to get the 1st event |
-| I_7.  |	`count`	|I| Integer	|N|	Limits the number of event records to be returned.  Default = 500.|
-| I_8.  |	`event_filter`	|I|	Long Varchar	|N/Y|	Name of item set, or comma-delimited list of event names. <br/> If not provided, then all events will be returned. <br/> If event_filter_type = 'S', then event_filter will refer to an item set. <br/> If event_filter_type = 'L', then event_filter will contain a comma-delimited list of event names.|
-| I_9.  |	`event_filter_type`|	I|	Char(1)|	N/Y|	Type of event filter Required if event_filter is included NULL = All events will be returned (current behavior) <br/> S = Event selector <br/> L = List of event names|
-|O_1.		|`ref`	|O|	Char(32)	|N|	Reference attribute; echoed from request |
-|O_2.		|`result`	|O|	Integer	|Y|	Result (return code) <br/>`5211` – Invalid “site_name” <br/>`5231` – No events found <br/>`11075` – Return data size exceeds 250000 byte limit <br/>All others – Internal error |
-|O_3.		|`sql_code`	|O|	Integer	|Y|	SQL Return Code |
-|O_4.		|`error_detail`	|O|	Varchar(250)	|N|	English description of any generated errors |
-|O_5.		|`count`	|O|	Integer	|Y|	Actual number of event records returned|
-|       |`customer`	|O|	Array [	|Y|	Array of event results |
-|O_6.   | `event_name`	|O|	Char(8)	|Y|	Event name|
-|O_7.   | `event_name_inet`	|O|	Varchar(50)	|Y|	Event name – specifically for online display|
-|O_8.   |	`event_description`	|O|	Varchar(255)	|N|	Event description – specifically for online display|
-|O_9.   |	`inet_event_text`	|O|	Long varchar	|N|	Event text.  Can be long description of event.|
-|O_10.  |	`plan_type`	|O|	Char(1)	|Y|	Plan Type <br/>S = Same seat (static) plan <br/>N = Single event (not a plan)|
-|O_11.  |`total_events`	|O|	Integer	|Y|	Number of events in a plan|
-|O_12.  |`event_date`	|O|	Date	|N|	Event Date|
-|O_13.	|`event_time`	|O|	Time	|N|	Event Time|
-|O_14.	|`performer`	|O|	Char(50)	|Y|	Performer / opponent (sports) name|
-|O_15.	|`organization`	|O|	Char(16)	|Y|	Owning organization|
-|O_16.	|`venue_name`	|O|	Char(30)	|Y|	Arena (venue) Name|
-|O_17.	|`manifest_name`	|O|	Char(64)	|Y|	Manifest Name|
-|O_18.	|`season_name`  	|O|	Varchar(80)	|Y|	Season Name|
-|O_19.	|`event_category`	|O|	char(1)	|Y|	Event category <br/>E	Event (standard, seated event) <br/>P	Parking <br/>O	Other |
-|O_20.	|`event_duration`	|O|	Integer	|N| Approximate duration (in minutes) of the event |
-|O_21.	|`url`	|O|	Char(255)	|N|	URL for linking to another site for additional event information |
-|O_22.	|`major_cat`	|O|	char(64)	|N|	Event Major Category |
-|O_23.	|`minor_cat`	|O|	char(64)	|N|	Event Minor Category |
-|O_24.	|`thumbnail_image_name`	|O|	Varchar(100)	|N|	Image name – thumbnails. <br/> This name will be used to look up the actual image stored on the web side.|
-|O_25.	|`small_image_name`	|O|	Varchar(100)	|N|	Image name - small |
-|O_26.	|`large_image_name`	|O|	Varchar(100)	|N|	Image name - large |
-|O_27.	|`allow_singles`	|O|	Char(1)	|Y|	N- Do not allow a transaction that would create a single seat. <br/>Y – It is permissible to create a single, but should still be avoided when possible. |
-|O_28.	|`event_onsale_date`	|O|	datetime	|N|	Start date & time of when event is “on-sale”.  This is the INET on-sale, or the Season Tix on-sale if INET is not set.  If neither are set, no value is returned.  Format:  YYYY-MM-DD HH:MM |
-|O_29.	|`event_offsale_date`	|O|	datetime	|N|	End date & time of when event is “off-sale” |
-| |`events_in_plan`	|O|	Array [	|N|	Array of events in a static plan |
-|O_30.  |`event_name`	|O|	Char(8)	|N|	Event Name |
-|       |             | | &nbsp;&nbsp; ]   | |	** End of “events_in_plan” array ** |
-|       |             | | ]	      | |	** End of “events” array **         |
-
->[Request](#req)
->[Response](#res)
-{: .reqres}
-
-{% highlight http %}
-POST /url HTTP/1.1
-Content-Type: application/json;
-
-{
-  "header": {
-    "ver": 1,
-    "src_sys_type": 2,
-    "src_sys_name": "testing",
-    "archtics_version": "V999"
-  },
-  "command1": {
-    "cmd": "event_details",
-    "event_filter": "Event01,Event02",
-    "event_filter_type": "L",
-    "uid": "user99",
-    "dsn": "apigee"
-  }
-}
-{% endhighlight %}
-
-{% highlight http %}
-HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-
-{
-  "command1": {
-    "count": 2,
-    "result": 0,
-    "events": [
-      {
-        "event_duration": 180,
-        "organization": "VANILLA",
-        "plan_type": "N",
-        "event_description": "Apigee Test Event #1",
-        "minor_cat": "BASKETBALL",
-        "event_name": "EVENT01",
-        "major_cat": "SPORTS",
-        "total_events": 1,
-        "multiple_seats_per_pid": "N",
-        "season_name": "Apigee Testing Season",
-        "allow_singles": "Y",
-        "manifest_name": "Test Manifest",
-        "event_time": "20:00",
-        "venue_name": "Arena",
-        "performer": "Opposing Team #1",
-        "event_category": "E",
-        "event_date": "2016-05-01",
-        "archtics_venue_id": "1"
-      },
-      {
-        "event_duration": 180,
-        "organization": "VANILLA",
-        "plan_type": "N",
-        "event_description": "Apigee Test Event #2",
-        "minor_cat": "BASKETBALL",
-        "event_name": "EVENT02",
-        "major_cat": "SPORTS",
-        "total_events": 1,
-        "multiple_seats_per_pid": "N",
-        "season_name": "Apigee Testing Season",
-        "allow_singles": "Y",
-        "manifest_name": "Test Manifest",
-        "event_time": "18:00",
-        "venue_name": "Arena",
-        "performer": "Opposing Team #2",
-        "event_category": "E",
-        "event_date": "2016-06-01",
-        "archtics_venue_id": "1"
-      }
-    ],
-    "cmd": "event_details",
-    "sql_code": 0
-  },
-  "header": {
-    "src_sys_type": 2,
-    "archtics_version": "V999",
-    "ver": 1,
-    "src_sys_name": "testing",
-    "ats_version": "4.23.3",
-    "result": 0
-  }
-}
-{% endhighlight %}
-
 
 ## Event Search
 {: #event-search}
@@ -795,61 +734,95 @@ Content-Type: application/json;charset=UTF-8
 {% endhighlight %}
 
 
+## Event Details
+{: #event-details}
 
-## PING
-{: #ping}
+**Purpose:** Returns a list of events and event attributes.
 
-**Purpose:** Confirms system connectivity and server status.
+**Cache:**	Yes.  Refresh 1-2 times per day (depending on expected number of event updates)
 
-**Cache:** No.
+**Use:** This API call can be used to return:
 
-**USE:** This API call can be used to test general connectivity to a database.
+1.	All events in the database
+2.	A specific event or list of events.
+  - `event_filter_type` : "L"
+  - `event_filter` : "EVENT01,EVENT02,EVENT03" (Note: no space after the comma)
+3.	A specific number of events (e.g. 45)
+  - `count` : 45
+4.	A specific number of events (e.g. 200) starting with a specific event (e.g. EVENT999)
+  - `prev_event_name` : "EVENT999",
+  - `count`: 200
+5.	All events in a specific item set
+  - `event_filter_type` : "S"
+  - `event_filter` : "2014_Basketball"
+
 
 #### NOTES:
-This call can be used as a mechanism to make sure connectivity is available to a database.
-
-### Requirements:
-none
+1.	The events are returned in alphabetical order by event_name.
+2.	Plan events are also included in the result set.  The event_name parameter will be the Plan Name, and the `events_in_plan` array will display all events within that plan.
 
 ### Frequency of operation:
-This API call can be made as often as needed, based on mutual agreement between TM and the caller.
+This API call can be made 1-2 times per day, or as Season Tix events are added or changed.
 
 ### Incremental or Comprehensive Data:
 This API will return comprehensive data.
 
 ### Data Delivery:
-  -	Data content: the API will return all data as it pertains to system health.
-  -	Approximate size of a single "record": approximately 550 characters.
-  -	Retrieve the next "batch" of records:  n/a
-  -	"last record" indicator: n/a
-  -	Request for previously received data:  n/a
-  -	Duplicate data: n/a
-  -	Time zone: n/a
-
-### Error Messages:
-These are no error messages that are unique to this API call.
+  - Data content: the API will return a separate array of information for each event.
+  - Approximate size of a single "record": about 750 characters per event
+  - Retrieve the next "batch" of records:  use the `prev_event_name` input parameter
+  - "last record" indicator: n/a
+  - Request for previously received data:  n/a
+  - Duplicate data: the calling system is responsible for de-duplicating data.
+  - Time zone: All times are relative to the client's venue or arena.
 
 ### Input and Output Parameter Details:
 
 |Parm#	| Parameter Name	     |I/O	   |Data Type  |	Reqd	| Description|
 |:------|:---------------------|:-----:|:----------|:------:|:-----------|
-| I_1. |`	cmd	`|I|	Char(32)	|Y|	Always "ping" |
-| I_2. |`	ref	`|I|	Char(32)	|N|	Reference attribute; echoed to result |
-| I_3. |`	uid	`|I|	Char(12)	|Y|	User ID (used on connection to DB). (user99) |
-| I_4. |`	pwd	`|I|	Char(36)	|N|	If password is passed, it will be enforced. |
-| I_5. |`	dsn	`|I|	Char(32)	|Y|	Data Source Name (e.g. DB) to connect to (apigee) |
-| O_1. |`	ref	`|O|	Char(32)	|N|	Reference attribute; echoed from request |
-| O_2. |`	result	`|O|	Integer	|Y|	Result (return code) <br />`0` – OK.  Ping successful <br />`all others` – Internal error |
-| O_3. |`	sql_code	`|O|	Integer	|Y|	SQL Return Code |
-| O_4. |`	error_detail	`|O|	Varchar(250))	|N|	English description of any generated errors |
-| O_5. |`	system_available	`|O|	Boolean	|Y|	Flags if system is available for requests |
-| O_6. |`	digit_available	`|O|	Boolean	|Y|	Flags if system is available for Digit (e.g. sending/retrieving seats from the Host) |
-| O_7. |`	cpu_load	`|O|	Integer	|Y|	CPU load of server (if server is a multi-processor, this is the average load of all processors) |
-| O_8. |`	cpu_usage	`|O|	Decimal(12,6)	|Y|	CPU usage of server process (in milli-seconds) |
-| O_9. |`	db_connections	`|O|	Integer	|Y|	Active DB connections |
-| O_10. |`	active_requests	`|O|	Integer	|Y|	Number of Server Threads actively handling a request |
-| O_11. |`	unscheduled_requests	`|O|	Integer	|Y|	Number of requests queued up waiting for an available Server Thread |
-| O_12. |`	db_name	`|O|	Varchar(20)	|Y|	Database Name as defined by ticketing server |
+|I_1.		|`cmd`	|I|	Char(32)	|Y|	Always “event_details”  |
+|I_2.		|`ref`	|I|	Char(32)	|N| Reference attribute; echoed to result |
+|I_3.		|`uid`	|I|	Char(12)	|Y|	User ID (used on connection to DB). <br/> Uid will be provided by TM |
+|I_4.		|`dsn`	|I|	Char(32)	|Y|	Data Source Name (e.g. DB) to connect to (apigee) |
+|I_5.		|`site_name`	|I|	Char (24)	|N|	Identifies the web-site the consumer is logging in from. <br/> If provided, then the list of events returned by this call will be limited to those in the organization to which this site is attached. If not provided, then all events will be returned. |
+|I_6.		|`prev_event_name`	|I|	Char (8)|N| The last event name retrieved on the previous SP call.  This allows the SP to be called in a loop and return all events. Use spaces or NULL on the 1st call to get the 1st event |
+| I_7.  |	`count`	|I| Integer	|N|	Limits the number of event records to be returned.  Default = 500.|
+| I_8.  |	`event_filter`	|I|	Long Varchar	|N/Y|	Name of item set, or comma-delimited list of event names. <br/> If not provided, then all events will be returned. <br/> If event_filter_type = 'S', then event_filter will refer to an item set. <br/> If event_filter_type = 'L', then event_filter will contain a comma-delimited list of event names.|
+| I_9.  |	`event_filter_type`|	I|	Char(1)|	N/Y|	Type of event filter Required if event_filter is included NULL = All events will be returned (current behavior) <br/> S = Event selector <br/> L = List of event names|
+|O_1.		|`ref`	|O|	Char(32)	|N|	Reference attribute; echoed from request |
+|O_2.		|`result`	|O|	Integer	|Y|	Result (return code) <br/>`5211` – Invalid “site_name” <br/>`5231` – No events found <br/>`11075` – Return data size exceeds 250000 byte limit <br/>All others – Internal error |
+|O_3.		|`sql_code`	|O|	Integer	|Y|	SQL Return Code |
+|O_4.		|`error_detail`	|O|	Varchar(250)	|N|	English description of any generated errors |
+|O_5.		|`count`	|O|	Integer	|Y|	Actual number of event records returned|
+|       |`customer`	|O|	Array [	|Y|	Array of event results |
+|O_6.   | `event_name`	|O|	Char(8)	|Y|	Event name|
+|O_7.   | `event_name_inet`	|O|	Varchar(50)	|Y|	Event name – specifically for online display|
+|O_8.   |	`event_description`	|O|	Varchar(255)	|N|	Event description – specifically for online display|
+|O_9.   |	`inet_event_text`	|O|	Long varchar	|N|	Event text.  Can be long description of event.|
+|O_10.  |	`plan_type`	|O|	Char(1)	|Y|	Plan Type <br/>S = Same seat (static) plan <br/>N = Single event (not a plan)|
+|O_11.  |`total_events`	|O|	Integer	|Y|	Number of events in a plan|
+|O_12.  |`event_date`	|O|	Date	|N|	Event Date|
+|O_13.	|`event_time`	|O|	Time	|N|	Event Time|
+|O_14.	|`performer`	|O|	Char(50)	|Y|	Performer / opponent (sports) name|
+|O_15.	|`organization`	|O|	Char(16)	|Y|	Owning organization|
+|O_16.	|`venue_name`	|O|	Char(30)	|Y|	Arena (venue) Name|
+|O_17.	|`manifest_name`	|O|	Char(64)	|Y|	Manifest Name|
+|O_18.	|`season_name`  	|O|	Varchar(80)	|Y|	Season Name|
+|O_19.	|`event_category`	|O|	char(1)	|Y|	Event category <br/>E	Event (standard, seated event) <br/>P	Parking <br/>O	Other |
+|O_20.	|`event_duration`	|O|	Integer	|N| Approximate duration (in minutes) of the event |
+|O_21.	|`url`	|O|	Char(255)	|N|	URL for linking to another site for additional event information |
+|O_22.	|`major_cat`	|O|	char(64)	|N|	Event Major Category |
+|O_23.	|`minor_cat`	|O|	char(64)	|N|	Event Minor Category |
+|O_24.	|`thumbnail_image_name`	|O|	Varchar(100)	|N|	Image name – thumbnails. <br/> This name will be used to look up the actual image stored on the web side.|
+|O_25.	|`small_image_name`	|O|	Varchar(100)	|N|	Image name - small |
+|O_26.	|`large_image_name`	|O|	Varchar(100)	|N|	Image name - large |
+|O_27.	|`allow_singles`	|O|	Char(1)	|Y|	N- Do not allow a transaction that would create a single seat. <br/>Y – It is permissible to create a single, but should still be avoided when possible. |
+|O_28.	|`event_onsale_date`	|O|	datetime	|N|	Start date & time of when event is “on-sale”.  This is the INET on-sale, or the Season Tix on-sale if INET is not set.  If neither are set, no value is returned.  Format:  YYYY-MM-DD HH:MM |
+|O_29.	|`event_offsale_date`	|O|	datetime	|N|	End date & time of when event is “off-sale” |
+| |`events_in_plan`	|O|	Array [	|N|	Array of events in a static plan |
+|O_30.  |`event_name`	|O|	Char(8)	|N|	Event Name |
+|       |             | | &nbsp;&nbsp; ]   | |	** End of “events_in_plan” array ** |
+|       |             | | ]	      | |	** End of “events” array **         |
 
 >[Request](#req)
 >[Response](#res)
@@ -860,17 +833,19 @@ POST /url HTTP/1.1
 Content-Type: application/json;
 
 {
-    "header": {
-        "ver": 1,
-        "src_sys_type": 2,
-        "src_sys_name": "testing",
-        "archtics_version": "V999"
-    },
-    "command1": {
-        "cmd": "ping",
-        "uid": "user99",
-        "dsn": "apigee"
-    }
+  "header": {
+    "ver": 1,
+    "src_sys_type": 2,
+    "src_sys_name": "testing",
+    "archtics_version": "V999"
+  },
+  "command1": {
+    "cmd": "event_details",
+    "event_filter": "Event01,Event02",
+    "event_filter_type": "L",
+    "uid": "user99",
+    "dsn": "apigee"
+  }
 }
 {% endhighlight %}
 
@@ -880,16 +855,51 @@ Content-Type: application/json;charset=UTF-8
 
 {
   "command1": {
-    "active_requests": 1,
-    "cmd": "ping",
-    "system_available": 0,
-    "cpu_load": 1,
-    "digit_available": 0,
-    "db_name": "apigee",
-    "cpu_usage": 76219.19,
-    "unscheduled_requests": 0,
-    "db_connections": 10,
+    "count": 2,
     "result": 0,
+    "events": [
+      {
+        "event_duration": 180,
+        "organization": "VANILLA",
+        "plan_type": "N",
+        "event_description": "Apigee Test Event #1",
+        "minor_cat": "BASKETBALL",
+        "event_name": "EVENT01",
+        "major_cat": "SPORTS",
+        "total_events": 1,
+        "multiple_seats_per_pid": "N",
+        "season_name": "Apigee Testing Season",
+        "allow_singles": "Y",
+        "manifest_name": "Test Manifest",
+        "event_time": "20:00",
+        "venue_name": "Arena",
+        "performer": "Opposing Team #1",
+        "event_category": "E",
+        "event_date": "2016-05-01",
+        "archtics_venue_id": "1"
+      },
+      {
+        "event_duration": 180,
+        "organization": "VANILLA",
+        "plan_type": "N",
+        "event_description": "Apigee Test Event #2",
+        "minor_cat": "BASKETBALL",
+        "event_name": "EVENT02",
+        "major_cat": "SPORTS",
+        "total_events": 1,
+        "multiple_seats_per_pid": "N",
+        "season_name": "Apigee Testing Season",
+        "allow_singles": "Y",
+        "manifest_name": "Test Manifest",
+        "event_time": "18:00",
+        "venue_name": "Arena",
+        "performer": "Opposing Team #2",
+        "event_category": "E",
+        "event_date": "2016-06-01",
+        "archtics_venue_id": "1"
+      }
+    ],
+    "cmd": "event_details",
     "sql_code": 0
   },
   "header": {
@@ -902,7 +912,6 @@ Content-Type: application/json;charset=UTF-8
   }
 }
 {% endhighlight %}
-
 
 
 ## Seats Sold

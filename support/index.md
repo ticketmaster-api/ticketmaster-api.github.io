@@ -56,11 +56,11 @@ No matter what question you have or help you need, we're here for you.
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 column" markdown="1">
 {{left}}
 </div>
-{%comment%}
+{% comment %}
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 column" markdown="1">
 {{middle}}
 </div>
-{%endcomment%}
+{% endcomment %}
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 column" markdown="1">
 {{right}}
 </div>

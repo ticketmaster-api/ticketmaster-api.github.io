@@ -34,7 +34,7 @@
           </label>
           <a id="js_get-eventId_open" type="button" class="pull-right" data-toggle="modal" data-target="#get-eventId-modal">Get event ID</a>
 
-          <input type="text" id="w-id" name="w-id" value="1Ad0ZfdGkMoCQHJ">
+          <input type="text" id="w-id" name="w-id" value="1Ad0ZfdGkMoCQHJ" class="double-margin-bottom">
         </div>
       </div>
 
@@ -42,7 +42,17 @@
 
     <div class="tab-pane fade" id="widget-config-styling">
       <div class="row row-native">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-layout">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-theme">
+          <label>Themes</label>
+          <div class="tab-buttons">
+            <input checked id="w-theme-simple" type="radio" value="simple_countdown" name="w-theme">
+            <label for="w-theme-simple">Poster</label>
+            <input id="w-theme-fullwidth" type="radio" value="fullwidth" name="w-theme">
+            <label for="w-theme-fullwidth">Full-width</label>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sm-layout" id="js-layout-box">
           <div class="row base-margin-bottom">
             <label>Layout</label>
             <div class="col-lg-12 js-fixed-size-buttons radio-buttons">
@@ -110,7 +120,7 @@
             <input id="w-width" name="w-width" type="text" data-slider-min="350" data-slider-max="500" data-slider-step="1" data-slider-value="350">
           </div>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12 js_widget_border_slider double-margin-bottom">
           <label for="w-borderradius">
             Corner Radius <span class="config_field__description">(px)</span>
           </label>

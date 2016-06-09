@@ -2,7 +2,13 @@
   padding-top: $fixed-header-height; /*header height*/
   position: relative;
 
+  #disqus_thread {
+    margin: $base-margin*2 0 $base-margin*3;
+  }
+
   .content {
+    margin-bottom: 72px;
+
     &:last-child {
       margin-bottom: $base-margin;
     }
@@ -79,6 +85,7 @@
         margin: $base-margin*3 0px 0px 0px;
       }
 
+      /*offset for fixed header*/
       h2:target:before {
         content: "";
         display: block;
@@ -89,7 +96,7 @@
           height: 154px;
           margin-top: -154px;
         }
-      }
+      }/*offset END*/
 
       h3 {
         margin: $base-margin*2 0px 0px 0px;
@@ -281,7 +288,7 @@
             color: $blue;
           }
         }
-        .lang-selector {
+        .lang-selector, .t-lang-selector {
           /* width: 95%;
           margin-left: auto;
           margin-right: auto;
@@ -361,6 +368,218 @@
           padding-left: 0;
         }
       }
+
+      /* Tutorial Code Hightlighter [START] */
+      .code-article-wrapper {
+        width: 100%;
+        float: none;
+
+        h1, h2, h3, h4, h5, h6,
+        iframe,
+        p, table, ul, ol, aside, dl, figure {
+          @media #{$max-768} {
+            width: 100%;
+          }
+        }
+
+        blockquote {
+          border-left: 0;
+          padding: 0;
+          margin: 0;
+          font-size: 16px;
+          letter-spacing: -1px;
+          display: inline-block;
+          width: 100%;
+          font-style: normal;
+
+          p {
+            margin-top: 0;
+          }
+
+          @media #{$max-1200} {
+            /*margin-top: $base-margin;*/
+          }
+        }
+
+        .tab-content {
+          width: 100%;
+          display: none;
+
+          pre {
+            overflow-x: auto;
+            padding-top: 10px;
+            margin-bottom: 0;
+            code {
+              width: 980px;
+              display: block;
+            }
+          }
+        }
+
+        .noscroll + .tab-content {
+          pre {
+            overflow-x: hidden;
+            code {
+              width: auto;
+            }
+          }
+          + .tab-content {
+            pre {
+              overflow-x: hidden;
+              code {
+                width: auto;
+              }
+            }
+          }
+        }
+
+        .tab-active {
+          display: block;
+        }
+        .tab-hide {
+          display: none;
+        }
+
+        .active-lang {
+          display: inline-block;
+          position: relative;
+          clear: both;
+          font-size: 1.5em;
+          line-height: 2em;
+          padding-right: 2em;
+          padding-left: 1em;
+          color: $n3;
+          border-bottom: 2px solid #f1f5f7;
+          @include transition(color $btn-transition-speed $btn-transition-timing-function);
+
+          &:before,
+          &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 15px;
+            height: 10px;
+            margin-top: -5px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+          }
+
+          &:before {
+            opacity: 0;
+            background-image: url("/assets/img/products-and-docs/ic-shevron-down-active.svg");
+          }
+
+          &:after {
+            background-image: url("/assets/img/products-and-docs/ic-chevron.svg");
+          }
+
+          &:hover{
+            color: $blue;
+            &:before {
+              opacity: 1;
+            }
+            &:after {
+              opacity: 0;
+            }
+          }
+
+          &.open {
+            &:before,
+            &:after {
+              @include rotate(180deg);
+            }
+          }
+
+          &:focus,
+          &:active {
+            outline: none;
+            text-decoration: none;
+            color: $blue;
+          }
+        }
+        .t-lang-selector {
+          /* width: 95%;
+          margin-left: auto;
+          margin-right: auto;
+          */
+          display: none;
+          width: auto;
+          background: #b7c9d2;
+          position: absolute;
+          z-index:10;
+          border-radius: 0 0 4px 4px;
+
+          &:focus {
+            border: none;
+            outline: none;
+          }
+
+          &.show {
+            display: block;
+          }
+
+          &.lang-small + .tab-content {
+            pre {
+              max-height: 250px;
+            }
+          }
+          &.lang-medium + .tab-content {
+            pre {
+              max-height: 550px;
+            }
+          }
+          p {
+            text-align: center;
+          }
+          a {
+            color: #fff;
+            font-size: $size-h3;
+            /* border-bottom: 2px solid $underline-border-grey; */
+            text-decoration: none;
+            display: block;
+            /* padding: 0 2.5% ; */
+            padding: 0 1.5em ;
+            box-sizing: content-box;
+            /* float: left; */
+            margin: 0 1.3%;
+            /* text-align: center; */
+            text-align: left;
+            line-height: 2em;
+            white-space: nowrap;
+            min-width: 86px;
+
+            &:hover {
+              color: $p1b;
+              border-color: $p1b;
+            }
+
+            @media #{$max-1200} {
+              width: auto;
+              padding: 0 25px;
+              min-width: 0%;
+            }
+
+            @media (max-width: 320px) {
+              float: none;
+              display: inline-block;
+            }
+          }
+          .active {
+            color: $p1a;
+            /* border-bottom: 2px solid $p1a; */
+          }
+        }
+
+        @media #{$max-1200} {
+          width: 100%;
+          float: inherit;
+          margin-top: 0;
+          padding-left: 0;
+        }
+      }
+      /* Tutorial Code Hightlighter [END] */
 
       .left-wrapper {
         width: 55%;
@@ -469,6 +688,15 @@
       .expand{
         width: 100%;
       }
+      .faq-api{
+        h2 {
+          margin: $base-margin*2 0;
+        }
+        p {
+          margin-top: $base-margin/4;
+        }
+      }
+
     }
 
     .article-wrapper {
@@ -486,6 +714,13 @@
       }
       &:nth-child(2){
         margin-top: 0;
+      }
+
+      .changelog-section .nested-list-wrapper {
+        h3,h4,h5 {
+          margin-top: 0;
+          line-height: 32px;
+        }
       }
     }
 
@@ -1033,7 +1268,7 @@
         margin: 0;
       }
     }
-    .lang-selector, .reqres {
+    .lang-selector, .t-lang-selector, .reqres {
       width: 95%;
       margin-bottom: 15px;
       overflow:hidden;
@@ -1076,6 +1311,12 @@
   }
 
 }
+
+/*.article-wrapper > .faq-api{
+  p {
+    margin-top: $base-margin/4;
+  }
+}*/
 
 
 
