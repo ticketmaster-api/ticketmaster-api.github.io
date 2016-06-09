@@ -38,7 +38,9 @@ Already doing business with Ticketmaster? <br>
 [![Deals API](/assets/img/products-and-docs/ic-cart.svg)](/products-and-docs/apis/deals-api/)
 [![Publish API](/assets/img/products-and-docs/ic-publish.svg)](/products-and-docs/apis/publish/)
 [![International Discovery API](/assets/img/products-and-docs/ic-flag.svg)](/products-and-docs/apis/international-discovery/)
+{%comment%}
 [![Season Tix API](/assets/img/products-and-docs/ic-season-tix.svg)](/products-and-docs/apis/season-tix/)
+{%endcomment%}
 
 {: .lead}
 Everything you need to handle event discovery,  commerce, accounts, orders, and fans.

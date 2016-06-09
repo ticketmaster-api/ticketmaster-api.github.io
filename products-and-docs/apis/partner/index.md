@@ -34,6 +34,14 @@ Staging: https://app.ticketmaster.com/partners-sandbox/v1
 
 All connections must be made over SSL using https.
 
+### Sandbox environment & testing
+
+New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
+
+    * 3F004ACD115F6B19: No order processing fee
+    * 110050B273AB0C36: Canadian event, Has order processing fee
+    * 3F005085F00474B7: Reserved seating only. No GA
+
 ### Best Practices
 
 
@@ -1283,7 +1291,7 @@ Get shipping options available for this event.  Note: some API users will be pre
 /partners/v1/events/{event_id}/cart/shipping?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
-*Polling: No*
+*Polling: Yes*
 
 ### Parameters
 
