@@ -18,11 +18,58 @@
             <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "swagger" or page.categories[2] == "swagger" %}
 
+                {% assign pageMetaFolder        = page.categories[2] %}
+                {% assign pageMetaVersionFolder = page.categories[3] %}
+                {% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
+                {% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
+                {% if swagger.paths.size > 0 %}
+                    <ul class="sections menu-highlight">
+                    {% for route in swagger.paths %}
+
+                        {% for tag in methodsDescription.method %}
+                            {% if tag.pathsParent == route[0] %}
+                                {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+                                {% assign _title = tag.title %}
+                                {% assign _reqres = tag.reqres %}
+                                {% assign _codePath = tag.codePath %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% assign indexLoop = forloop.index0 %}
+
+                            {% for method in route[1] %}
+                                <li><a href="{% if _id %}{{ _id | prepend: '#'}}{% else %}{{ method[1].summary
+                                    | lstrip
+                                    | downcase
+                                    | replace: ' ' , '-'
+                                    | replace: '[' , '-'
+                                    | replace: ']' , '-'
+                                    | replace: '/' , '-'
+                                    | replace: '\' , '-'
+                                    | replace: '(' , '-'
+                                    | replace: ')' , '-'
+                                    | prepend: '#'
+                                    | append: '-'
+                                    | append: indexLoop
+                                    | append: '-'
+                                    | append: page.categories[3] }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary | lstrip }}{% endif %}</a></li>
+                            {% endfor %}
+                        {% comment %}<!--Clear meta data -->{% endcomment %}
+                        {% assign _id = tag.id %}
+                        {% assign _title = tag.title %}
+                        {% assign _reqres = tag.resreq %}
+                        {% assign _codePath = tag.codePath %}
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+
+
                 {%comment%}
+                <!--faq-api menu item can be here-->
                 {% assign files = site.pages %}
                 {% for file in files %}
                     {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
-                        {% if file.questions and file.title and file.content %}
+                        {% if file.questions and file.title and file.content.size > 1 %}
                             {% for question in file.questions limit:1 %}
                             <ul class="sections menu-highlight">
                                 <li><a href="#{{file.titleId}}">{{file.title}}</a></li>
@@ -32,6 +79,8 @@
                     {% endif %}
                 {% endfor %}
                 {% endcomment %}
+
+                {% include partials/changelog-apis.html%}
 
                 {% endif %}
             </li>
@@ -52,6 +101,7 @@
                     <li><a href="#supported-sources">Supported Sources</a></li>
                     <li><a href="#supported-locales">Supported Locales</a></li>
                     <li><a href="#supported-dma">Supported DMA</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
             
@@ -72,6 +122,7 @@
                     <li><a href="#supported-domains">Supported Domains</a></li>
                     <li><a href="#supported-sources">Supported Sources</a></li>
                     <li><a href="#supported-locales">Supported Locales</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
 
                 {% endif %}
@@ -81,6 +132,7 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#event-offers">Event Offers</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
             </li>
@@ -121,6 +173,7 @@
                     <li><a href="#examples">Examples</a></li>
                     <li><a href="#versions">Versions</a></li>
                     <li><a href="#appendix">Appendix</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
             </li>
@@ -133,6 +186,7 @@
                     <li><a href="#search-events-specified-deals">Search for Events with a Specified Deal</a></li>
                     <li><a href="#group-error-responses">Group Error Responses</a></li>
                     <li><a href="#group-appendix">Group Appendix: Market IDs</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
             </li>
@@ -144,6 +198,7 @@
                     <li><a href="#supported-markets">Supported Markets</a></li>
                     <li><a href="#supported-sources">Supported Sources</a></li>
                     <li><a href="#supported-locales">Supported Locales</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
             </li>
@@ -169,6 +224,7 @@
                     <li><a href="#domains-list">Domains List</a></li>
                     <li><a href="#cities-list">Cities List</a></li>
                     <li><a href="#categories-list">Categories List</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
             </li>
@@ -182,6 +238,7 @@
                     <li><a href="#event-search">Event Search</a></li>
                     <li><a href="#event-details">Event Details</a></li>
                     <li><a href="#seats-sold">Seats Sold</a></li>
+                    {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
             </li>
