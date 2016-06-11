@@ -485,10 +485,16 @@
       <param name="marketId" required="false" style="query" type="xsd:integer" default="27">
         <doc>The city/area in which this event takes place.</doc>
       </param>
-      <param name="startDateTime" required="false" style="query" type="xsd:integer" default="1">
+      <param name="startDateTime" required="false" style="query" type="xsd:string">
         <doc>Include events happening after this date.</doc>
       </param>
-      <param name="endDateTime" required="false" style="query" type="xsd:integer" default="1">
+      <param name="endDateTime" required="false" style="query" type="xsd:string">
+        <doc>Include events happening before this date.</doc>
+      </param>
+      <param name="onsaleStartDateTime" required="false" style="query" type="xsd:string">
+        <doc>Include events happening before this date.</doc>
+      </param>
+      <param name="onsaleEndDateTime" required="false" style="query" type="xsd:string">
         <doc>Include events happening before this date.</doc>
       </param>
       <param name="includeTBA" required="false" style="query" type="xsd:string">
@@ -534,12 +540,6 @@
       </param>
       <param name="stateCode" required="false" style="query" type="xsd:string">
         <doc>The state code.</doc>
-      </param>
-      <param name="segmentId" required="false" style="query" type="xsd:string">
-        <doc>The segmentId.</doc>
-      </param>
-      <param name="segmentName" required="false" style="query" type="xsd:string">
-        <doc>The segmentName.</doc>
       </param>
       <param name="classificationId" required="false" style="query" type="xsd:string">
         <doc>The classification ID.</doc>
