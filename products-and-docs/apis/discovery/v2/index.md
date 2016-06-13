@@ -77,20 +77,20 @@ discovery/{version}/events.{format}
 | `marketId`   | The city/metro area in which this event takes place. | string            |       "27"       | No      |
 | `startDateTime`   | Include events happening after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `endDateTime`   | Include events happening before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
-| `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes|no|only"       | No      |
-| `includeTBD`   | Whether or not to return events with dates to be determined (TBD). Default is 'no', TBD events are not returned. | string            |       "yes|no|only"       | No      |
-| `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes|no|only"       | No      |
+| `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
+| `includeTBD`   | Whether or not to return events with dates to be determined (TBD). Default is 'no', TBD events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
+| `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "eventDate,date.desc", "eventDate,date.asc", "name,date.desc", "name,date.asc". | string            |              | No      |
 | `onsaleStartDateTime`   | Include events going onsale after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `onsaleEndDateTime`   | Include events going onsale before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
-|	`city` | city |string| No|
+|	`city` | city |string| | No|
 | `countryCode`   | ISO value for the country in which you want to query events in. Poissble values are: 'US', 'CA', 'AU', 'NZ', 'MX'. | string            |       "MX"       | No      |
-|	`stateCode` | stateCode |string| No|
-| `classificationName` |any classification name - segment - genre - sub-genre | string | No|
-| `classificationId` | any classification id - segment - genre - sub-genre| string | No|
-|	`dmaId`|dmaId| string | No|
+|	`stateCode` | stateCode |string|| No|
+| `classificationName` |any classification name - segment - genre - sub-genre | string || No|
+| `classificationId` | any classification id - segment - genre - sub-genre| string || No|
+|	`dmaId`|dmaId| string || No|
 
 
 
