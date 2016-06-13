@@ -119,13 +119,13 @@ The affiliate program is best-suited for websites and apps that can deliver uniq
 {: #q-10}
 ### How does the onboarding process work?
 
-Ticketmaster will provide appropriate publishers an API key, or other content tools, to access the [Discovery API](/products-and-docs/apis/discovery/). You will also need to separately create a publisher account through [Affiliate Window](https://darwin.affiliatewindow.com/affiliate-signup/account-details), our third-party provider who manages our tracking, reporting and payments. 
+Ticketmaster will provide appropriate publishers an API key, or other content tools, to access the [Discovery API](/products-and-docs/apis/discovery/). You will also need to separately create a publisher account through [Impact Radius](https://member.impactradius.com/bla/Ticketmasterdirect/login.user), our third-party provider who manages our tracking, reporting and payments. 
 
 {: .double-margin-bottom}
-Once you have an affiliate publisher ID, you will wrap destination URLs in an Affiliate Window wrapper to ensure proper tracking, so that when you deliver a sale to Ticketmaster or Ticketsnow, you’ll be credited for the purchase. You will be able to receive reporting through the Affiliate Window interface, as well as custom reports that can be sent on a daily basis. 
+Once you have an affiliate publisher ID, you will wrap destination URLs in an Impact Radius wrapper to ensure proper tracking, so that when you deliver a sale to Ticketmaster or Ticketsnow, you’ll be credited for the purchase. You will be able to receive reporting through the Impact Radius interface, as well as custom reports that can be sent on a daily basis. 
 
 {: .double-margin-bottom}
-Before signing up at Affiliate Window, please [reach out to us](mailto:distributedcommerce@ticketmaster.com) about whether you’re appropriate for the program!
+Before signing up at Impact Radius, please [reach out to us](mailto:distributedcommerce@ticketmaster.com) about whether you’re appropriate for the program!
 
 
 {: #q-11}
