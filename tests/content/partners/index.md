@@ -85,9 +85,9 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 ## Already affiliated?
 
 {: .body .p}
-If you are a current member of the Ticketmaster affiliate program, manage your account at Affiliate Window.
+If you are a current member of the Ticketmaster affiliate program, manage your account at Impact Radius.
 
-[GO TO LOGIN](https://darwin.affiliatewindow.com/login){: .button.button-blue .base-margin-bottom}
+[GO TO LOGIN](https://member.impactradius.com/bla/Ticketmasterdirect/login.user){: .button.button-blue .base-margin-bottom}
 
 {: .gray}
 #### Have questions about our affiliate program?
