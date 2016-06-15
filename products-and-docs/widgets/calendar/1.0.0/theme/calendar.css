@@ -290,6 +290,7 @@ div[w-theme="calendar"] .event-content-wraper {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: #fff;
+    text-align: left;
 }
 
 div[w-theme="calendar"] .event-name{
@@ -527,7 +528,7 @@ div[w-theme="calendar"] .tabs span {
     font-family: 'TMSans-Bold', Arial, serif;
     font-size: 11px;
     text-transform: uppercase;
-    padding: 2px 10px;
+    padding: 2px 10px 0 10px;
     color: #b7c9d3;
     border: 1px solid #b7c9d2;
     border-left: none;
@@ -702,10 +703,12 @@ div[w-theme="calendar"] .sliderRightSelector {
 
 div[w-theme="calendar"] .sliderRightSelector {
     left: auto;
-    right: 20px;
+    right: 10px;
+    width: 122px;
 }
 
 div[w-theme="calendar"] .selector-title {
+    text-align: left;
     font-family: 'TMSans-Bold', Arial, serif;
     font-size: 14px;
     display: inline-block;
@@ -714,7 +717,7 @@ div[w-theme="calendar"] .selector-title {
     font-size: 14px;
     line-height: 2em;
     padding-right: 2em;
-    padding-left: 1em;
+    padding-left: 0;
     color: #b7c9d3;
     border-bottom: 2px solid #f1f5f7;
     -webkit-transition: color 0.2s ease-in-out;
@@ -726,6 +729,10 @@ div[w-theme="calendar"] .selector-title {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+div[w-theme="calendar"] .sliderRightSelector .selector-title {
+    width: 122px;
 }
 
 div[w-theme="calendar"] .selector-title:before,
@@ -786,6 +793,7 @@ div[w-theme="calendar"] .selector-content {
     background: #b7c9d2;
     position: absolute;
     z-index: 10;
+    left: -15px;
     border-radius: 0 0 4px 4px;
     padding: 10px 0 10px 0;
     outline: none;
@@ -812,6 +820,10 @@ div[w-theme="calendar"] .selector-content span {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+div[w-theme="calendar"] .sliderRightSelector .selector-content span {
+    min-width: 120px;
 }
 
 div[w-theme="calendar"] .selector-content span:hover {
