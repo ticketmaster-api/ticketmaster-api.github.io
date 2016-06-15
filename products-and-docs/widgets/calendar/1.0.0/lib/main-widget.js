@@ -207,7 +207,7 @@ var TicketmasterCalendarWidget = function () {
         this.tab2RootContainer.innerHTML = '<div id="weekSсheduler">';
         this.tabsRootContainer.appendChild(this.tab2RootContainer);
 
-        var leftSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderLeftSelector', '<span class="selector-title">June 12 - June 18</span><span class="selector-content" tabindex="-1"><span class="active" w-period="">June 12 - June 18</span><span w-period="">June 19 - June 25</span><span w-period="">June 26 - June 30</span></span>', 'period', this.update.bind(this));
+        var leftSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderLeftSelector', '<span class="selector-title">Jun 12 - Jun 18</span><span class="selector-content" tabindex="-1"><span class="active" w-period="">Jun 12 - Jun 18</span><span w-period="">Jun 19 - Jun 25</span><span w-period="">Jun 26 - Jun 30</span></span>', 'period', this.update.bind(this));
         var RightSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
 
         this.eventLogoBox = document.createElement("div");
@@ -1543,6 +1543,8 @@ var WeekScheduler = function () {
                         });
                     });
 
+                    console.log(weekEvents);
+
                     var current = new Date();
                     var weekstart = current.getDate() - current.getDay();
                     var sunday = new Date(current.setDate(weekstart));
@@ -1665,7 +1667,7 @@ var WeekScheduler = function () {
                 "size": "25",
                 "radius": "25",
                 "latlong": "34.0390107,-118.2672801",
-                "startDateTime": "2016-06-15T00:00:00Z",
+                "startDateTime": "2016-06-12T00:00:00Z",
                 "endDateTime": "2016-06-18T23:59:59Z"
             };
         }
