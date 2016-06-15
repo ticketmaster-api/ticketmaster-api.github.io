@@ -308,6 +308,68 @@ class TicketmasterEventDiscoveryWidget {
     this.eventsRootContainer.appendChild(this.buyBtn);
   }
 
+  addClass(o, c){
+  var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
+  if (re.test(o.className)) return
+    o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+  }
+
+  removeClass(o, c){
+  var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
+    o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+  }
+
+  updateTransition(url) {
+    var el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
+
+    if(url !=='' ) {
+      let elEventDate = this.eventsRootContainer.getElementsByClassName("centered-logo");
+      // console.log('---el elEventDate.length' , elEventDate.length);
+
+      if(elEventDate){
+        if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
+          //elEventDate = this.eventsRootContainer.getElementsByClassName("centered-logo");
+          // console.log('**el url' , url);
+
+          let i;
+          for (i = 0; i < elEventDate.length-1; i++) {
+            //this.addClass(elEventDate[i], "right-logo");
+            this.removeClass(elEventDate[i], "centered-logo");
+            // console.log(i, 'addClass: ', elEventDate[i].className);
+          }
+
+        }
+      }else return;
+
+    }else {
+      let elEventDate = this.eventsRootContainer.getElementsByClassName("right-logo");
+
+      if(this.config.theme === 'oldschool' && this.config.proportion === 'm'){
+        let i;
+        for (i = 0; i < elEventDate.length-1; i++) {
+          this.addClass(elEventDate[i],"centered-logo");
+          this.removeClass(elEventDate[i],"right-logo");
+        }
+        // console.log('__else el: ' , elEventDate, 'url' , url);
+      }
+    }
+
+    if(url !=='' && this.config.theme !== 'oldschool') {
+      if(el){
+        el.classList.add("right-logo");
+        el.classList.remove("centered-logo");
+      }else return;
+    }
+    else if(this.config.theme !== 'oldschool'){
+      el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
+
+      if(el){
+        el.classList.remove("right-logo");
+        el.classList.add("centered-logo");
+      }
+    }
+  }
+
   setBuyBtnUrl(){
     if(this.buyBtn){
       let event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
@@ -318,6 +380,8 @@ class TicketmasterEventDiscoveryWidget {
            if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
              url = event.url;
            }
+          this.updateTransition(url);
+
         }
       }
       this.buyBtn.href = url;
@@ -412,7 +476,7 @@ class TicketmasterEventDiscoveryWidget {
     this.widgetRoot.appendChild(legalNotice);
 
     var logo = document.createElement('a');
-    logo.classList.add("event-logo");
+    logo.classList.add("event-logo","centered-logo");
     logo.target = '_blank';
     logo.href = this.logoUrl;
     logo.innerHTML = 'Powered by:';
@@ -1203,7 +1267,7 @@ class TicketmasterEventDiscoveryWidget {
 
     var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
     dateTime = document.createElement("span");
-    dateTime.classList.add("event-date");
+    dateTime.classList.add("event-date", "centered-logo");
     dateTime.appendChild(dateTimeContent);
 
     var dateWraper = document.createElement("span");

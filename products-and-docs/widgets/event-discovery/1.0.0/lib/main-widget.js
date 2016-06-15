@@ -369,6 +369,68 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
   }, {
+    key: 'addClass',
+    value: function addClass(o, c) {
+      var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
+      if (re.test(o.className)) return;
+      o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "");
+    }
+  }, {
+    key: 'removeClass',
+    value: function removeClass(o, c) {
+      var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
+      o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "");
+    }
+  }, {
+    key: 'updateTransition',
+    value: function updateTransition(url) {
+      var el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
+
+      if (url !== '') {
+        var elEventDate = this.eventsRootContainer.getElementsByClassName("centered-logo");
+        // console.log('---el elEventDate.length' , elEventDate.length);
+
+        if (elEventDate) {
+          if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
+            //elEventDate = this.eventsRootContainer.getElementsByClassName("centered-logo");
+            // console.log('**el url' , url);
+
+            var i = void 0;
+            for (i = 0; i < elEventDate.length - 1; i++) {
+              //this.addClass(elEventDate[i], "right-logo");
+              this.removeClass(elEventDate[i], "centered-logo");
+              // console.log(i, 'addClass: ', elEventDate[i].className);
+            }
+          }
+        } else return;
+      } else {
+        var _elEventDate = this.eventsRootContainer.getElementsByClassName("right-logo");
+
+        if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
+          var _i = void 0;
+          for (_i = 0; _i < _elEventDate.length - 1; _i++) {
+            this.addClass(_elEventDate[_i], "centered-logo");
+            this.removeClass(_elEventDate[_i], "right-logo");
+          }
+          // console.log('__else el: ' , elEventDate, 'url' , url);
+        }
+      }
+
+      if (url !== '' && this.config.theme !== 'oldschool') {
+        if (el) {
+          el.classList.add("right-logo");
+          el.classList.remove("centered-logo");
+        } else return;
+      } else if (this.config.theme !== 'oldschool') {
+        el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
+
+        if (el) {
+          el.classList.remove("right-logo");
+          el.classList.add("centered-logo");
+        }
+      }
+    }
+  }, {
     key: 'setBuyBtnUrl',
     value: function setBuyBtnUrl() {
       if (this.buyBtn) {
@@ -380,6 +442,7 @@ var TicketmasterEventDiscoveryWidget = function () {
             if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
               url = event.url;
             }
+            this.updateTransition(url);
           }
         }
         this.buyBtn.href = url;
@@ -490,7 +553,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.widgetRoot.appendChild(legalNotice);
 
       var logo = document.createElement('a');
-      logo.classList.add("event-logo");
+      logo.classList.add("event-logo", "centered-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
       logo.innerHTML = 'Powered by:';
@@ -688,24 +751,24 @@ var TicketmasterEventDiscoveryWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var _i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[_i]);
+      for (var _i2 in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[_i2]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var _i2 in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[_i2]);
+      for (var _i3 in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[_i3]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var _i3 in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[_i3]);
+      for (var _i4 in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[_i4]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -729,8 +792,8 @@ var TicketmasterEventDiscoveryWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var _i4 = 0; eventGroup.length > _i4; _i4++) {
-          eventGroup[_i4].style.marginTop = 0;
+        for (var _i5 = 0; eventGroup.length > _i5; _i5++) {
+          eventGroup[_i5].style.marginTop = 0;
         }
       });
 
@@ -1330,7 +1393,7 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
           dateTime = document.createElement("span");
-      dateTime.classList.add("event-date");
+      dateTime.classList.add("event-date", "centered-logo");
       dateTime.appendChild(dateTimeContent);
 
       var dateWraper = document.createElement("span");
