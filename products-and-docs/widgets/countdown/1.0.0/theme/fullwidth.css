@@ -404,6 +404,26 @@ div[w-theme="fullwidth"] .event-logo {
     font-size: 11px;
     color: #768692;
 }
+div[w-theme="fullwidth"] .event-logo.right-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: calc(100% - 190px);
+}
+div[w-theme="fullwidth"] .event-logo.centered-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+}
 
 div[w-theme="fullwidth"] .event-logo:after{
     content: '';

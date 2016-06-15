@@ -593,7 +593,7 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .event-logo.right-logo {
     transition-duration: .5s;
     transition-timing-function: linear;*/
     margin: auto;
-    left: 71%;
+    left: calc(100% - 190px);
 }
 
 div[w-theme="simple_countdown"][w-layout="horizontal"] .event-logo.centered-logo {
@@ -606,6 +606,12 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .event-logo.centered-logo
     margin: auto;
 }
 /*  LAYOUT  END*/
+
+div[w-theme="simple_countdown"][w-proportion="custom"][w-layout="vertical"] .event-name,
+div[w-theme="simple_countdown"][w-proportion="xxl"] .event-name {
+    max-height: 132px;
+    -webkit-line-clamp: 4;
+}
 
 /* LAYOUT 300x250 */
 div[w-theme="simple_countdown"][w-proportion="m"] .events-count-down {
