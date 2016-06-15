@@ -207,7 +207,9 @@ div[w-theme="simple_countdown"] .bg-cover {
     display: block;
     overflow: hidden;
     background-size: cover;
-    background: no-repeat center top;
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: no-repeat;
 }
 
 
@@ -356,6 +358,27 @@ div[w-theme="simple_countdown"] .event-logo {
     color: #768692;
 }
 
+div[w-theme="simple_countdown"] .event-logo.right-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 45%;
+}
+div[w-theme="simple_countdown"] .event-logo.centered-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+}
+
 div[w-theme="simple_countdown"] .event-logo:after{
     content: '';
     position: absolute;
@@ -391,6 +414,7 @@ div[w-theme="simple_countdown"] .event-buy-btn {
     text-align: center;
     -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    z-index: 1;
 }
 
 div[w-theme="simple_countdown"] .event-buy-btn:hover {
@@ -563,6 +587,24 @@ div[w-theme="simple_countdown"][w-layout="horizontal"] .events-count-down{
     right: 24px;
     padding: 0;
 }
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-logo.right-logo {
+    /*-webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;*/
+    margin: auto;
+    left: 71%;
+}
+
+div[w-theme="simple_countdown"][w-layout="horizontal"] .event-logo.centered-logo {
+    /*-webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;*/
+    right: 0;
+    left: 0;
+    margin: auto;
+}
 /*  LAYOUT  END*/
 
 /* LAYOUT 300x250 */
@@ -621,4 +663,15 @@ div[w-theme="simple_countdown"][w-proportion="m"] .event-date {
 div[w-theme="simple_countdown"][w-proportion="m"] .event-question {
     display: none;
 }
+div[w-theme="simple_countdown"][w-proportion="m"] .event-buy-btn {
+    bottom: 38px;
+}
+
+div[w-theme="simple_countdown"][w-proportion="m"] .event-logo.right-logo {
+    left: 40%;
+}
 /*  LAYOUT 300x250 END*/
+
+div[w-theme="simple_countdown"][w-proportion="xxl"] .event-logo.right-logo {
+    left: 38%;
+}

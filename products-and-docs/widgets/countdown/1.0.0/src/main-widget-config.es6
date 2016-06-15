@@ -74,6 +74,7 @@
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
     $borderRadiusController.slider('relayout');
+    windowScroll();//recalculate widget container position
   });
 
   // function toggleDisabled(widgetNode){
@@ -83,6 +84,99 @@
   //     $getCodeButton.prop('disabled',false);
   //   }
   // }
+
+  //variables for fixed widget
+  var $window = $(window),
+      $containerWidget = $(".widget-container-wrapper"),
+      $configBlock = $(".config-block"),
+      window_min = 0,
+      window_max = 0,
+      desktopWidth = 1200,
+      threshold_offset = 50;
+  /*
+   set the container's maximum and minimum limits as well as movement thresholds
+   */
+  function setLimits(){
+    //max and min container movements
+    var topCss = ($containerWidget.css("top")>0) ? parseInt($containerWidget.css("top")) : 0;
+    var headerOffset = $('.top-bar').height() + /*padding of top-bar*/8 + /*bottom-margin*/10;
+    var max_move = $configBlock.offset().top + $configBlock.height() - $containerWidget.height() - topCss - headerOffset;
+    var min_move = $configBlock.offset().top - headerOffset;
+
+    $containerWidget.attr("data-min", min_move).attr("data-max",max_move);
+    //window thresholds so the movement isn't called when its not needed!
+    window_min = min_move - threshold_offset;
+    window_max = max_move + $containerWidget.height() + threshold_offset;
+  }
+  //sets the limits for the first load
+  setLimits();
+
+  function windowScroll(){
+    let innerWidth = window.innerWidth;
+    let j = 0;
+    function updateScroll() {
+      //if the window is within the threshold, begin movements
+      if ($window.scrollTop() >= window_min && $window.scrollTop() < window_max) {
+        if ($containerWidget.height() < $configBlock.height() && innerWidth >= desktopWidth) {
+          //reset the limits (optional)
+          setLimits();
+          //move the container
+          containerMove();
+        }
+      }
+      j++;
+
+    }
+    if(j === 0) updateScroll();
+
+    setTimeout(() => {
+      if (innerWidth < desktopWidth && $containerWidget.height() > $configBlock.height()) {
+        // console.log('*** ', j , innerWidth ,'<', desktopWidth );
+        containerMove_clearOffset();
+        updateScroll();
+      }
+      if($containerWidget.height() < $configBlock.height() || innerWidth >= desktopWidth) {
+        // console.log('ignore ',j);
+        if( innerWidth < desktopWidth ){
+          containerMove_clearOffset();
+        }
+        updateScroll();
+      }
+    }, 200);    
+
+  }
+
+  $window.on("scroll resize", windowScroll);
+
+  /**
+   * Clear top offset of widget container
+   */
+  function containerMove_clearOffset(){
+    $containerWidget.css("margin-top", 0);
+  }
+  /**
+   * Handles moving the container if needed.
+   **/
+  function containerMove(){
+    var wst = $window.scrollTop();
+    //if the window scroll is within the min and max (the container will be "sticky";
+    if( wst >= $containerWidget.attr("data-min") && wst <= $containerWidget.attr("data-max") ){
+      //work out the margin offset
+      var margin_top = $window.scrollTop() - $containerWidget.attr("data-min");
+      //margin it down!
+      $containerWidget.css("margin-top", margin_top);
+      //if the window scroll is below the minimum
+    }else if( wst <= $containerWidget.attr("data-min") ){
+      //fix the container to the top.
+      $containerWidget.css("margin-top",0);
+      //if the window scroll is above the maximum
+    }else if( wst > $containerWidget.attr("data-max") ){
+      //fix the container to the top
+      $containerWidget.css("margin-top", $containerWidget.attr("data-max")-$containerWidget.attr("data-min")+"px" );
+    }
+  }
+  //do one container move on load
+  containerMove();
 
   var changeState = function(event){
     if(!event.target.name){
@@ -126,8 +220,8 @@
           width: 'auto'
         });
       }
+      
     }
-
 
     /*
     //set attr for 'seconds' radio-btn
@@ -206,14 +300,19 @@
     //toggleDisabled(widgetNode);//set disabled btn if input is empty
 
     widget.update();
+
+    windowScroll();//recalculate widget container position
   };
 
   var resetWidget = function(configForm , excludeOption) {
     let widthSlider = $('.js_widget_width_slider'),
+        widgetContainerWrapper = $('.widget-container-wrapper'),
         height = 600,
         theme,
         layout,
         $tabButtons = $('.js-tab-buttons');
+
+    widgetContainerWrapper.removeAttr('style');
 
     configForm.find("input[type='text']").each(function(){
       let $self = $(this),

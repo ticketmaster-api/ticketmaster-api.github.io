@@ -237,6 +237,21 @@ div[w-theme="oldschool"] .event-date-wraper{
     padding: 7px 0 3px;
 }
 
+div[w-theme="oldschool"] .event-date.centered-logo{
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    margin-right: 33px;
+}
+div[w-theme="oldschool"] .event-date.right-logo{
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    margin-right: 0px;
+}
+
 /*div[w-theme="oldschool"] .event-date-wraper:after{*/
     /*content: '';*/
     /*display: block;*/
