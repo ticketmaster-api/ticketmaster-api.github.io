@@ -139,6 +139,9 @@ var TicketmasterCalendarWidget = function () {
                 attr: 'radius',
                 verboseName: 'radius'
             }, {
+                attr: 'classificationid',
+                verboseName: 'classificationId'
+            }, {
                 attr: 'attractionid',
                 verboseName: 'attractionId'
             }, {
@@ -196,13 +199,21 @@ var TicketmasterCalendarWidget = function () {
         this.tab1RootContainer.classList.add("active");
         this.tabsRootContainer.appendChild(this.tab1RootContainer);
 
-        var leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', '<span class="selector-title">July 2</span><span class="selector-content" tabindex="-1"><span class="active">Thursday 2</span><span>Friday 3</span><span>Saturday 4</span><span class="point active">Sunday 5</span></span>');
-        var RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active">All Events</span><span>Sport</span><span>Music</span><span>Shows</span><span>Conferences</span><span>Seminars</span></span>');
+        var leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', this.getCurrentWeek(), 'period', this.update.bind(this));
+        var RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
 
         this.tab2RootContainer = document.createElement("div");
         this.tab2RootContainer.classList.add("tab");
         this.tab2RootContainer.innerHTML = '<div id="weekSсheduler">';
         this.tabsRootContainer.appendChild(this.tab2RootContainer);
+
+        var leftSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderLeftSelector', '<span class="selector-title">June 12 - June 18</span><span class="selector-content" tabindex="-1"><span class="active" w-period="">June 12 - June 18</span><span w-period="">June 19 - June 25</span><span w-period="">June 26 - June 30</span></span>', 'period', this.update.bind(this));
+        var RightSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+
+        this.eventLogoBox = document.createElement("div");
+        this.eventLogoBox.classList.add("event-logo-box-c");
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.tab2RootContainer.appendChild(this.eventLogoBox);
 
         this.tab3RootContainer = document.createElement("div");
         this.tab3RootContainer.classList.add("tab");
@@ -221,13 +232,6 @@ var TicketmasterCalendarWidget = function () {
         this.eventsRoot = document.createElement("ul");
         this.eventsRoot.classList.add("events-root");
         this.eventsRootContainer.appendChild(this.eventsRoot);
-
-        // Set theme modificators
-        this.themeModificators = {
-            "oldschool": this.oldSchoolModificator.bind(this),
-            "newschool": this.newSchoolModificator.bind(this),
-            "listview": this.listViewModificator.bind(this)
-        };
 
         this.config = this.widgetRoot.attributes;
 
@@ -257,10 +261,6 @@ var TicketmasterCalendarWidget = function () {
             _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
         });
 
-        if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
-            this.themeModificators[this.widgetConfig.theme]();
-        }
-
         /*plugins for 'buy button'*/
         this.embedUniversePlugin();
         this.embedTMPlugin();
@@ -277,6 +277,26 @@ var TicketmasterCalendarWidget = function () {
     }
 
     _createClass(TicketmasterCalendarWidget, [{
+        key: "getCurrentWeek",
+        value: function getCurrentWeek() {
+            var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var content = '<span class="selector-title">';
+            var today = new Date();
+            var todayTmp = new Date();
+            content += monthNames[today.getMonth()] + ' ' + today.getDate();
+            content += '</span>';
+            content += '<span class="selector-content" tabindex="-1">';
+
+            for (var d = 0; d <= 6; d++) {
+                todayTmp.setDate(today.getDate() + d);
+                if (d == 0) content += "<span class=\"active\" w-period=\"" + todayTmp + "\">";else content += "<span w-period=\"" + todayTmp + "\">";
+                content += monthNames[todayTmp.getMonth()] + ' ' + todayTmp.getDate();
+                content += '</span>';
+            }
+            content += '</span>';
+            return content;
+        }
+    }, {
         key: "getCoordinates",
         value: function getCoordinates(cb) {
             var widget = this;
@@ -514,38 +534,6 @@ var TicketmasterCalendarWidget = function () {
             question.href = this.questionUrl;
             this.widgetRoot.appendChild(question);
         }
-    }, {
-        key: "oldSchoolModificator",
-        value: function oldSchoolModificator() {
-
-            var generalAdmissionWrapper = document.createElement("div");
-            generalAdmissionWrapper.classList.add("general-admission", "modificator");
-
-            var generalAdmission = document.createElement("div"),
-                generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-            generalAdmission.appendChild(generalAdmissionText);
-            generalAdmissionWrapper.appendChild(generalAdmission);
-
-            this.eventsRootContainer.appendChild(generalAdmissionWrapper);
-        }
-    }, {
-        key: "newSchoolModificator",
-        value: function newSchoolModificator() {
-            var ticketLogo = document.createElement("div");
-            ticketLogo.classList.add("ticket-logo", "modificator");
-
-            for (var i = 0; i < 4; i++) {
-                var headLogo = document.createElement("img");
-                headLogo.setAttribute("src", this.portalUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
-                headLogo.setAttribute("height", "11");
-                ticketLogo.appendChild(headLogo);
-            }
-
-            this.eventsRootContainer.appendChild(ticketLogo);
-        }
-    }, {
-        key: "listViewModificator",
-        value: function listViewModificator() {}
     }, {
         key: "hideSliderControls",
         value: function hideSliderControls() {
@@ -861,28 +849,6 @@ var TicketmasterCalendarWidget = function () {
                 parent.removeChild(el);
             }
 
-            if (!this.isListView) {
-                var eventsRootContainer = document.getElementsByClassName("events-root-container")[0];
-                var eventsRoot = document.getElementsByClassName("events-root")[0];
-                var ss = document.getElementsByClassName("ss")[0];
-                ss.parentNode.removeChild(ss);
-
-                var ssDiv = document.createElement("div");
-                ssDiv.setAttribute("class", "ss");
-                eventsRootContainer.appendChild(ssDiv);
-
-                var ssDiv = document.getElementsByClassName("ss")[0];
-                ssDiv.appendChild(eventsRoot);
-
-                var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
-                eventsRootContainer.classList.remove("listview-after");
-            }
-
-            if (this.isListView) {
-                var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
-                eventsRootContainer.classList.add("listview-after");
-            }
-
             this.clearEvents();
         }
     }, {
@@ -897,20 +863,18 @@ var TicketmasterCalendarWidget = function () {
 
             this.config = this.widgetRoot.attributes;
 
-            if (this.isListView) {
-                this.stopAutoSlideX();
-            }
-
-            /*if(this.config.theme !== null){
-             this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-             }*/
-
             this.widgetRoot.style.height = this.widgetHeight + "px";
             this.widgetRoot.style.width = this.config.width + "px";
-            this.eventsRootContainer.style.height = this.widgetContentHeight + "px";
-            this.eventsRootContainer.style.width = this.config.width + "px";
-            this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
-            this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
+            this.widgetRoot.style.borderRadius = this.config.borderradius + "px";
+            this.widgetRoot.style.borderWidth = this.borderSize + "px";
+            /*
+            this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
+            this.eventsRootContainer.style.width  = `${this.config.width}px`;
+            this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
+            this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
+            */
+
+            this.getCurrentWeek();
 
             this.eventsRootContainer.classList.remove("border");
             if (this.config.hasOwnProperty("border")) {
@@ -920,30 +884,24 @@ var TicketmasterCalendarWidget = function () {
             if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
                 this.clear();
 
-                if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
-                    this.themeModificators[this.widgetConfig.theme]();
+                /*
+                if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
+                    this.themeModificators[ this.widgetConfig.theme ]();
                 }
+                */
 
                 this.getCoordinates(function () {
                     _this8.makeRequest(_this8.eventsLoadingHandler, _this8.apiUrl, _this8.eventReqAttrs);
                 });
-
-                if (this.isListView) this.addScroll();
             } else {
                 var events = this.eventsRoot.getElementsByClassName("event-wrapper");
                 for (var i in events) {
                     if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-                        /*
-                        events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
-                        events[i].style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
-                        */
                         events[i].style.width = this.config.width + "px";
                         events[i].style.height = this.widgetContentHeight + "px";
                     }
                 }
-                if (!this.isListView) {
-                    this.goToSlideY(0);
-                }
+                this.goToSlideY(0);
             }
         }
     }, {
@@ -1029,7 +987,7 @@ var TicketmasterCalendarWidget = function () {
         key: "reduceParamsAndReloadEvents",
         value: function reduceParamsAndReloadEvents() {
             var eventReqAttrs = {},
-                reduceParamsList = [['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
+                reduceParamsList = [['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['classificationId'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
 
             // make copy of params
             for (var key in this.eventReqAttrs) {
@@ -1379,13 +1337,11 @@ var TicketmasterCalendarWidget = function () {
         key: "getDateFromPeriod",
         value: function getDateFromPeriod(period) {
 
+            /*
             var date = new Date(),
                 period = period.toLowerCase(),
-                firstDay,
-                lastDay;
-
-            /*
-            if(period == "year" ){
+                firstDay, lastDay;
+              if(period == "year" ){
                 firstDay = new Date(date.getFullYear(),0,1);
                 lastDay = new Date(date.getFullYear(),12,0);
             }
@@ -1404,8 +1360,13 @@ var TicketmasterCalendarWidget = function () {
             }
             */
 
-            firstDay = new Date();
-            lastDay = new Date();
+            var firstDay = new Date();
+            var lastDay = new Date();
+
+            if (period != 'week') {
+                firstDay = new Date(period);
+                lastDay = new Date(period);
+            }
 
             firstDay.setHours(0);lastDay.setHours(23);
             firstDay.setMinutes(0);lastDay.setMinutes(59);
@@ -1458,7 +1419,7 @@ var TabsControls = function () {
     return TabsControls;
 }();
 
-var SelectorControls = function SelectorControls(root, selectorClass, selectorContent) {
+var SelectorControls = function SelectorControls(root, selectorClass, selectorContent, attribute, update) {
     _classCallCheck(this, SelectorControls);
 
     if (!root) return;
@@ -1472,6 +1433,15 @@ var SelectorControls = function SelectorControls(root, selectorClass, selectorCo
 
     this.selTitle = this.SelectorContainer.getElementsByTagName("span")[0];
     this.selContent = this.selTitle.nextElementSibling;
+
+    this.selContent.addEventListener("click", function (e) {
+        this.parentNode.getElementsByClassName('selector-title')[0].innerHTML = e.target.innerHTML;
+        this.parentNode.getElementsByClassName('selector-title')[0].classList.remove('open');
+        this.parentNode.getElementsByClassName('selector-content')[0].classList.remove('show');
+        if (attribute == 'period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period', e.target.getAttribute('w-period'));
+        if (attribute == 'classificationId') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-classificationId', e.target.getAttribute('w-classificationId'));
+        update();
+    });
 
     this.selTitle.addEventListener("click", function (e) {
         this.nextElementSibling.classList.add("show");
@@ -1533,37 +1503,171 @@ var WeekScheduler = function () {
             SimpleScrollbar.initEl(scrollRoot);
         }
     }, {
+        key: "getJSON",
+        value: function getJSON(handler) {
+            var url = arguments.length <= 1 || arguments[1] === undefined ? this.apiUrl : arguments[1];
+            var attrs = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+            var method = arguments.length <= 3 || arguments[3] === undefined ? "GET" : arguments[3];
+
+            attrs = Object.keys(attrs).map(function (key) {
+                return key + "=" + attrs[key];
+            }).join("&");
+
+            url = [url, attrs].join("?");
+
+            this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+            if (method == "POST") {
+                this.xmlHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            }
+            this.xmlHTTP.widget = this;
+            this.xmlHTTP.onreadystatechange = handler;
+            this.xmlHTTP.open(method, url, true);
+            this.xmlHTTP.send();
+        }
+    }, {
+        key: "getWeekEventsHandler",
+        value: function getWeekEventsHandler() {
+            var widget = this.widget;
+            var events = void 0;
+            var weekEvents = [];
+            if (this && this.readyState == XMLHttpRequest.DONE) {
+                if (this.status == 200) {
+                    events = JSON.parse(this.responseText);
+                    // console.log(events._embedded.events);
+                    events._embedded.events.forEach(function (item) {
+                        weekEvents.push({
+                            'name': item.name,
+                            'date': item.dates.start.localDate,
+                            'time': item.dates.start.localTime,
+                            'url': item.url
+                        });
+                    });
+
+                    var current = new Date();
+                    var weekstart = current.getDate() - current.getDay();
+                    var sunday = new Date(current.setDate(weekstart));
+                    var currentSunday = sunday;
+                    var daysDiv = '';
+                    var currentDayClass = '';
+                    var dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    var now = new Date();
+                    for (var i = 0; i <= 6; i++) {
+                        var day = new Date(new Date(currentSunday).getTime() + i * 24 * 60 * 60 * 1000);
+                        if (day.getDay() == now.getDay()) currentDayClass = ' active';else currentDayClass = '';
+                        daysDiv += "<span class=\"d" + currentDayClass + "\">" + dayOfWeek[i] + " <span class=\"num\">" + day.getDate() + "</span></span>";
+                    }
+                    var zeroLead = '';
+                    var timeTmp = '';
+                    var monthTmp = '';
+                    var timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+                    for (var _i5 = 13; _i5 <= 23; _i5++) {
+                        if (_i5 <= 9) {
+                            zeroLead = '0';
+                            timeTmp = '0' + _i5 + ":00:00";
+                        } else {
+                            zeroLead = '';
+                            timeTmp = _i5 + ":00:00";
+                        }
+                        timeDiv += "<div class=\"t t-" + _i5 + "\"><span class=\"tl\">" + zeroLead + _i5 + " : 00</span>";
+                        for (var d = 0; d <= 6; d++) {
+                            var dayTmp = new Date(new Date(currentSunday).getTime() + d * 24 * 60 * 60 * 1000);
+                            if (parseInt(dayTmp.getMonth() + 1) <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1);else monthTmp = dayTmp.getMonth() + 1;
+                            var dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
+                            timeDiv += "<span class=\"d d-" + d + "\" w-date=\"" + dateTmp + "\" w-time=\"" + zeroLead + _i5 + ":00:00\">";
+
+                            for (var e = 0, l = weekEvents.length; e < l; ++e) {
+                                if (weekEvents[e].date == dateTmp && weekEvents[e].time == timeTmp) {
+                                    timeDiv += '<span class="round"></span>';
+                                }
+                            }
+
+                            timeDiv += '</span>';
+                        }
+                        timeDiv += "</div>";
+                    }
+                    timeDiv += "</div></div>";
+                    daysDiv += timeDiv;
+                    widget.weekdaysRootContainer.innerHTML = daysDiv;
+                    widget.addScroll();
+                } else if (this.status == 400) {
+                    console.log('There was an error 400');
+                } else {
+                    console.log('something else other than 200 was returned');
+                }
+            }
+        }
+    }, {
         key: "startMonth",
         value: function startMonth() {
-            var current = new Date(); // get current date
-            var weekstart = current.getDate() - current.getDay();
-            var weekend = weekstart + 6; // end day is the first day + 6
-            var sunday = new Date(current.setDate(weekstart));
-            // var sunday = new Date(current.setDate(weekend));
-            var currentSunday = sunday;
-            var daysDiv = '';
-            var currentDayClass = '';
-            var dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            var now = new Date();
-            for (var i = 0; i <= 6; i++) {
-                var day = new Date(new Date(currentSunday).getTime() + i * 24 * 60 * 60 * 1000);
-                if (day.getDay() == now.getDay()) currentDayClass = ' active';else currentDayClass = '';
-                daysDiv += "<span class=\"d" + currentDayClass + "\">" + dayOfWeek[i] + " <span class=\"num\">" + day.getDate() + "</span></span>";
+            this.getJSON(this.getWeekEventsHandler, this.apiUrl, this.eventReqAttrs);
+        }
+    }, {
+        key: "apiUrl",
+        get: function get() {
+            return "https://app.ticketmaster.com/discovery/v2/events.json";
+        }
+    }, {
+        key: "eventReqAttrs",
+        get: function get() {
+            var attrs = {},
+                params = [{
+                attr: 'tmapikey',
+                verboseName: 'apikey'
+            }, {
+                attr: 'keyword',
+                verboseName: 'keyword'
+            }, {
+                attr: 'size',
+                verboseName: 'size'
+            }, {
+                attr: 'radius',
+                verboseName: 'radius'
+            }, {
+                attr: 'classificationid',
+                verboseName: 'classificationId'
+            }, {
+                attr: 'attractionid',
+                verboseName: 'attractionId'
+            }, {
+                attr: 'promoterid',
+                verboseName: 'promoterId'
+            }, {
+                attr: 'venueid',
+                verboseName: 'venueId'
+            }, {
+                attr: 'segmentid',
+                verboseName: 'segmentId'
+            }];
+
+            /*
+            for(let i in params){
+                let item = params[i];
+                if(this.isConfigAttrExistAndNotEmpty(item.attr))
+                    attrs[item.verboseName] = this.config[item.attr];
             }
-            var timeDiv = '';
-            var zero = '';
-            timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
-            for (var _i5 = 0; _i5 <= 23; _i5++) {
-                if (_i5 <= 9) zero = '0';else zero = '';
-                timeDiv += "<div class=\"t t-" + _i5 + "\"><span class=\"tl\">" + zero + _i5 + " : 00</span>";
-                for (var d = 0; d <= 6; d++) {
-                    timeDiv += "<span class=\"d d-" + d + "\"></span>";
-                }
-                timeDiv += "</div>";
+              // Only one allowed at the same time
+            if(this.config.latlong){
+                attrs.latlong = this.config.latlong;
+            }else{
+                if(this.isConfigAttrExistAndNotEmpty("postalcode"))
+                    attrs.postalCode = this.config.postalcode;
             }
-            timeDiv += "</div></div>";
-            daysDiv += timeDiv;
-            return daysDiv;
+              if(this.isConfigAttrExistAndNotEmpty("period")){
+                let period = this.getDateFromPeriod(this.config.period);
+                attrs.startDateTime = period[0];
+                attrs.endDateTime = period[1];
+            }
+            */
+
+            // return attrs;
+            return {
+                "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+                "size": "25",
+                "radius": "25",
+                "latlong": "34.0390107,-118.2672801",
+                "startDateTime": "2016-06-15T00:00:00Z",
+                "endDateTime": "2016-06-18T23:59:59Z"
+            };
         }
     }]);
 
@@ -1574,9 +1678,8 @@ var WeekScheduler = function () {
         this.weekSchedulerRoot = root;
         this.weekdaysRootContainer = document.createElement("div");
         this.weekdaysRootContainer.classList.add("days");
-        this.weekdaysRootContainer.innerHTML = this.startMonth();
+        this.startMonth();
         this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
-        this.addScroll();
     }
 
     return WeekScheduler;
