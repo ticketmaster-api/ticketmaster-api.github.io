@@ -1,0 +1,12 @@
+{% assign files = site.pages | sort: 'title' , 'last'%}
+{% for file in files %}
+    {% if file.categories[2] == 'releaseNotes' and file.categories[3] == page.categories[1] %}
+        {% if file.categories[4] == page.categories[2] or file.categories[4] == 'v1'%}
+            {% if thisCategory == file.categories[3]%}{%else%}
+            <li><a href="{{ file.title | lstrip | downcase | prepend: '#changelog-' | replace: ' ' , '-' | replace: '(' , '-' | replace: ')' , '-' }}">Changelog</a></li>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+{%assign thisCategory = file.categories[3]%}
+{% endfor %}

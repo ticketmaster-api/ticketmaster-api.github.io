@@ -73,25 +73,24 @@ discovery/{version}/events.{format}
 | `radius`   | The radius of the area in which we want to search for events. | string            |       "25"       | No      |
 | `unit`   | The radius distance unit. Possible values: miles, km. | string            |       "miles"       | No      |
 | `source`   | Source of the event. Possible values are 'ticketmaster', 'frontgate', 'universe'. | string            |       "ticketmaster"       | No      |
-| `countryCode`   | ISO value for the country in which you want to query events in. Poissble values are: 'US', 'CA', 'AU', 'NZ', 'MX'. | string            |       "MX"       | No      |
 | `locale`   | There is no fallback mechanism, so it's possible you will not have values in multi-lingual fields | string            |              | No      |
 | `marketId`   | The city/metro area in which this event takes place. | string            |       "27"       | No      |
 | `startDateTime`   | Include events happening after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `endDateTime`   | Include events happening before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
-| `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes|no|only"       | No      |
-| `includeTBD`   | Whether or not to return events with dates to be determined (TBD). Default is 'no', TBD events are not returned. | string            |       "yes|no|only"       | No      |
-| `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes|no|only"       | No      |
+| `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
+| `includeTBD`   | Whether or not to return events with dates to be determined (TBD). Default is 'no', TBD events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
+| `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
 | `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "eventDate,date.desc", "eventDate,date.asc", "name,date.desc", "name,date.asc". | string            |              | No      |
 | `onsaleStartDateTime`   | Include events going onsale after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `onsaleEndDateTime`   | Include events going onsale before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
-|	`city` | city |string| No|
-|	`countryCode` | countryCode |string| No|
-|	`stateCode` | stateCode |string| No|
-| `classificationName` |any classification name - segment - genre - sub-genre | string | No|
-| `classificationId` | any classification id - segment - genre - sub-genre| string | No|
-|	`dmaId`|dmaId| string | No|
+|	`city` | city |string| | No|
+| `countryCode`   | ISO value for the country in which you want to query events in. Poissble values are: 'US', 'CA', 'AU', 'NZ', 'MX'. | string            |       "MX"       | No      |
+|	`stateCode` | stateCode |string|| No|
+| `classificationName` |any classification name - segment - genre - sub-genre | string || No|
+| `classificationId` | any classification id - segment - genre - sub-genre| string || No|
+|	`dmaId`|dmaId| string || No|
 
 
 
@@ -1169,9 +1168,15 @@ discovery/{version}/events/{id}/images.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v2"         | Yes      |
-| `id`       | Event ID.            | string            | "1A4ZAZyGkeUYKaO"  | Yes      |
-| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |   "en-us"   | No      |
+| `id`       | Event ID. Required.  | string            | "1A4ZAZyGkeUYKaO"  | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Query parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |   "en-us"   | No      |
+
 
 ### Response structure:
 
