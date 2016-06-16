@@ -564,10 +564,15 @@ div[w-theme="simple"][w-proportion="xxl"] .event-name {
     -webkit-line-clamp: 4;
 }
 
+
+
 div[w-theme="simple"][w-proportion="m"] {
     margin-bottom: -1px;
 }
 
+div[w-theme="simple"][w-proportion="m"] .event-wrapper:before {
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
 div[w-theme="simple"][w-proportion="m"] .event-content-wraper {
     padding: 36px 24px;

@@ -368,65 +368,39 @@ var TicketmasterEventDiscoveryWidget = function () {
       });
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
-  }, {
-    key: 'addClass',
-    value: function addClass(o, c) {
-      var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
-      if (re.test(o.className)) return;
-      o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "");
-    }
-  }, {
-    key: 'removeClass',
-    value: function removeClass(o, c) {
-      var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
-      o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "");
-    }
+
+    /**
+     * Set position center/right
+     *
+     * @param url
+     * @param isAddressCenter - if true : Set address position center/right for oldschool theme 300x250 (proportion :'m')
+     */
+
   }, {
     key: 'updateTransition',
-    value: function updateTransition(url) {
+    value: function updateTransition(url, isAddressCenter) {
       var el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
-
+      isAddressCenter ? el = this.eventsRootContainer.querySelectorAll(".event-date.centered-logo") : el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
       if (url !== '') {
-        var elEventDate = this.eventsRootContainer.getElementsByClassName("centered-logo");
-        // console.log('---el elEventDate.length' , elEventDate.length);
-
-        if (elEventDate) {
-          if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
-            //elEventDate = this.eventsRootContainer.getElementsByClassName("centered-logo");
-            // console.log('**el url' , url);
-
-            var i = void 0;
-            for (i = 0; i < elEventDate.length - 1; i++) {
-              //this.addClass(elEventDate[i], "right-logo");
-              this.removeClass(elEventDate[i], "centered-logo");
-              // console.log(i, 'addClass: ', elEventDate[i].className);
-            }
-          }
-        } else return;
-      } else {
-        var _elEventDate = this.eventsRootContainer.getElementsByClassName("right-logo");
-
-        if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
-          var _i = void 0;
-          for (_i = 0; _i < _elEventDate.length - 1; _i++) {
-            this.addClass(_elEventDate[_i], "centered-logo");
-            this.removeClass(_elEventDate[_i], "right-logo");
-          }
-          // console.log('__else el: ' , elEventDate, 'url' , url);
-        }
-      }
-
-      if (url !== '' && this.config.theme !== 'oldschool') {
-        if (el) {
+        if (el && !isAddressCenter) {
           el.classList.add("right-logo");
           el.classList.remove("centered-logo");
-        } else return;
-      } else if (this.config.theme !== 'oldschool') {
-        el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
-
-        if (el) {
+        } else if (el) {
+          var i = void 0;
+          for (i = 0; i < el.length - 1; i++) {
+            el[i].classList.remove("centered-logo");
+          }
+        }
+      } else {
+        isAddressCenter ? el = this.eventsRootContainer.querySelectorAll(".event-date") : el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
+        if (el && !isAddressCenter) {
           el.classList.remove("right-logo");
           el.classList.add("centered-logo");
+        } else if (el) {
+          var _i = void 0;
+          for (_i = 0; _i < el.length - 1; _i++) {
+            el[_i].classList.add("centered-logo");
+          }
         }
       }
     }
@@ -442,7 +416,12 @@ var TicketmasterEventDiscoveryWidget = function () {
             if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
               url = event.url;
             }
-            this.updateTransition(url);
+
+            if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
+              this.updateTransition(url, true);
+            } else {
+              this.updateTransition(url);
+            }
           }
         }
         this.buyBtn.href = url;
