@@ -148,9 +148,9 @@ li {
     }
 }
 
-.content {
+.documentation .content {
   ol>li,
-  ul>li:not(.jstree-node) {
+  ul>li:not(.jstree-node){
     &:before {
       content: "\2022";
       font-size: 11px;
@@ -158,6 +158,15 @@ li {
       margin-right: 10px;
     }
   }
+  /*ul>li.event-wrapper,
+  ul>li.jstree-node {
+    &:before {
+      content: "";
+      font-size: 11px;
+      line-height: 24px;
+      margin-right: 0px;
+    }
+  }*/
 }
 
 
