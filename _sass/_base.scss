@@ -149,11 +149,14 @@ li {
 }
 
 .content {
-  ul>li {
-    list-style: inside disc;
-  }
-  ol>li {
-    list-style: inside decimal;
+  ol>li,
+  ul>li:not(.jstree-node) {
+    &:before {
+      content: "\2022";
+      font-size: 11px;
+      line-height: 24px;
+      margin-right: 10px;
+    }
   }
 }
 
