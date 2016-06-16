@@ -4,6 +4,7 @@ class TicketmasterCalendarWidget {
     get config() { return this.widgetConfig; }
 
     set events(responce){ this.eventsList = this.parseEvents(responce);}
+    set events(responce){ this.eventsList = this.parseEvents(responce);}
     get events(){ return this.eventsList;}
 
     get borderSize(){ return this.config.border || 0;}
@@ -96,6 +97,10 @@ class TicketmasterCalendarWidget {
                     verboseName: 'radius'
                 },
                 {
+                    attr: 'classificationid',
+                    verboseName: 'classificationId'
+                },
+                {
                     attr: 'attractionid',
                     verboseName: 'attractionId'
                 },
@@ -154,13 +159,22 @@ class TicketmasterCalendarWidget {
         this.tab1RootContainer.classList.add("active");
         this.tabsRootContainer.appendChild(this.tab1RootContainer);
 
-        let leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', '<span class="selector-title">July 2</span><span class="selector-content" tabindex="-1"><span class="active">Thursday 2</span><span>Friday 3</span><span>Saturday 4</span><span class="point active">Sunday 5</span></span>');
-        let RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active">All Events</span><span>Sport</span><span>Music</span><span>Shows</span><span>Conferences</span><span>Seminars</span></span>');
+        let leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', this.getCurrentWeek(), 'period', this.update.bind(this));
+        let RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
 
         this.tab2RootContainer = document.createElement("div");
         this.tab2RootContainer.classList.add("tab");
         this.tab2RootContainer.innerHTML = '<div id="weekSсheduler">';
         this.tabsRootContainer.appendChild(this.tab2RootContainer);
+
+        let leftSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderLeftSelector', '<span class="selector-title">Jun 12 - Jun 18</span><span class="selector-content" tabindex="-1"><span class="active" w-period="">Jun 12 - Jun 18</span><span w-period="">Jun 19 - Jun 25</span><span w-period="">Jun 26 - Jun 30</span></span>', 'period', this.update.bind(this));
+        let RightSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+
+        this.eventLogoBox = document.createElement("div");
+        this.eventLogoBox.classList.add("event-logo-box-c");
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.tab2RootContainer.appendChild(this.eventLogoBox);
+
 
         this.tab3RootContainer = document.createElement("div");
         this.tab3RootContainer.classList.add("tab");
@@ -179,13 +193,6 @@ class TicketmasterCalendarWidget {
         this.eventsRoot = document.createElement("ul");
         this.eventsRoot.classList.add("events-root");
         this.eventsRootContainer.appendChild(this.eventsRoot);
-
-        // Set theme modificators
-        this.themeModificators = {
-            "oldschool" : this.oldSchoolModificator.bind(this),
-            "newschool" : this.newSchoolModificator.bind(this),
-            "listview" : this.listViewModificator.bind(this)
-        };
 
         this.config = this.widgetRoot.attributes;
 
@@ -215,10 +222,6 @@ class TicketmasterCalendarWidget {
             this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
         });
 
-        if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-            this.themeModificators[ this.widgetConfig.theme ]();
-        }
-
         /*plugins for 'buy button'*/
         this.embedUniversePlugin();
         this.embedTMPlugin();
@@ -232,6 +235,26 @@ class TicketmasterCalendarWidget {
         /* if (!this.isListView) this.initEventCounter(); */
 
         if (this.isListView) this.addScroll();
+    }
+
+    getCurrentWeek() {
+        let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        let content = '<span class="selector-title">';
+        let today = new Date();
+        let todayTmp = new Date();
+        content += monthNames[today.getMonth()] + ' ' + today.getDate();
+        content += '</span>';
+        content += '<span class="selector-content" tabindex="-1">';
+
+        for (var d=0; d<=6; d++) {
+            todayTmp.setDate(today.getDate() + d);
+            if (d == 0) content += `<span class="active" w-period="${todayTmp}">`;
+            else content += `<span w-period="${todayTmp}">`;
+            content += monthNames[todayTmp.getMonth()] + ' ' + todayTmp.getDate();
+            content += '</span>';
+        }
+        content += '</span>';
+        return content;
     }
 
     getCoordinates(cb){
@@ -452,36 +475,6 @@ class TicketmasterCalendarWidget {
         question.target = '_blank';
         question.href = this.questionUrl;
         this.widgetRoot.appendChild(question);
-    }
-
-    oldSchoolModificator(){
-
-        var generalAdmissionWrapper = document.createElement("div");
-        generalAdmissionWrapper.classList.add("general-admission", "modificator");
-
-        var generalAdmission = document.createElement("div"),
-            generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-        generalAdmission.appendChild(generalAdmissionText);
-        generalAdmissionWrapper.appendChild(generalAdmission);
-
-        this.eventsRootContainer.appendChild(generalAdmissionWrapper);
-    }
-
-    newSchoolModificator(){
-        var ticketLogo = document.createElement("div");
-        ticketLogo.classList.add("ticket-logo", "modificator");
-
-        for(let i = 0; i < 4; i++){
-            let headLogo = document.createElement("img");
-            headLogo.setAttribute("src", this.portalUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
-            headLogo.setAttribute("height", "11");
-            ticketLogo.appendChild(headLogo);
-        }
-
-        this.eventsRootContainer.appendChild(ticketLogo);
-    }
-
-    listViewModificator(){
     }
 
     hideSliderControls(){
@@ -779,30 +772,6 @@ class TicketmasterCalendarWidget {
             parent.removeChild(el);
         }
 
-
-        if(!this.isListView) {
-            var eventsRootContainer = document.getElementsByClassName("events-root-container")[0];
-            var eventsRoot = document.getElementsByClassName("events-root")[0];
-            var ss = document.getElementsByClassName("ss")[0];
-            ss.parentNode.removeChild(ss);
-
-            var ssDiv = document.createElement("div");
-            ssDiv.setAttribute("class", "ss");
-            eventsRootContainer.appendChild(ssDiv);
-
-            var ssDiv = document.getElementsByClassName("ss")[0];
-            ssDiv.appendChild(eventsRoot);
-
-            var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
-            eventsRootContainer.classList.remove("listview-after");
-        }
-
-        if(this.isListView) {
-            var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
-            eventsRootContainer.classList.add("listview-after");
-        }
-
-
         this.clearEvents();
     }
 
@@ -815,20 +784,18 @@ class TicketmasterCalendarWidget {
 
         this.config = this.widgetRoot.attributes;
 
-        if(this.isListView) {
-            this.stopAutoSlideX();
-        }
-
-        /*if(this.config.theme !== null){
-         this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-         }*/
-
         this.widgetRoot.style.height = `${this.widgetHeight}px`;
         this.widgetRoot.style.width  = `${this.config.width}px`;
+        this.widgetRoot.style.borderRadius = `${this.config.borderradius}px`;
+        this.widgetRoot.style.borderWidth = `${this.borderSize}px`;
+        /*
         this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
         this.eventsRootContainer.style.width  = `${this.config.width}px`;
         this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
         this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
+        */
+
+        this.getCurrentWeek();
 
         this.eventsRootContainer.classList.remove("border");
         if( this.config.hasOwnProperty("border") ){
@@ -838,31 +805,26 @@ class TicketmasterCalendarWidget {
         if(this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
             this.clear();
 
+            /*
             if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
                 this.themeModificators[ this.widgetConfig.theme ]();
             }
+            */
 
             this.getCoordinates(() => {
                 this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
             });
 
-            if(this.isListView) this.addScroll();
         }
         else{
             let events = this.eventsRoot.getElementsByClassName("event-wrapper");
             for(let i in events){
                 if(events.hasOwnProperty(i) && events[i].style !== undefined){
-                    /*
-                    events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
-                    events[i].style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
-                    */
                     events[i].style.width = `${this.config.width}px`;
                     events[i].style.height = `${this.widgetContentHeight}px`;
                 }
             }
-            if(!this.isListView) {
                 this.goToSlideY(0);
-            }
         }
 
     }
@@ -944,6 +906,7 @@ class TicketmasterCalendarWidget {
                 ['startDateTime', 'endDateTime', 'country'],
                 ['radius'],
                 ['postalCode', 'latlong'],
+                ['classificationId'],
                 ['attractionId'],
                 ['promoterId'],
                 ['segmentId'],
@@ -1300,11 +1263,11 @@ class TicketmasterCalendarWidget {
 
     getDateFromPeriod(period){
 
+        /*
         var date = new Date(),
             period = period.toLowerCase(),
             firstDay, lastDay;
 
-        /*
         if(period == "year" ){
             firstDay = new Date(date.getFullYear(),0,1);
             lastDay = new Date(date.getFullYear(),12,0);
@@ -1324,8 +1287,13 @@ class TicketmasterCalendarWidget {
         }
         */
 
-        firstDay = new Date();
-        lastDay = new Date();
+        let firstDay = new Date();
+        let lastDay = new Date();
+
+        if (period != 'week') {
+            firstDay = new Date(period);
+            lastDay = new Date(period);
+        }
 
         firstDay.setHours(0);   lastDay.setHours(23);
         firstDay.setMinutes(0); lastDay.setMinutes(59);
@@ -1372,7 +1340,7 @@ class TabsControls {
 
 class SelectorControls {
 
-    constructor(root, selectorClass, selectorContent) {
+    constructor(root, selectorClass, selectorContent, attribute, update) {
         if (!root) return;
         this.SelectorRoot = root;
         this.SelectorClass = selectorClass;
@@ -1384,6 +1352,15 @@ class SelectorControls {
 
         this.selTitle = this.SelectorContainer.getElementsByTagName("span")[0];
         this.selContent = this.selTitle.nextElementSibling;
+
+        this.selContent.addEventListener("click",function(e){
+            this.parentNode.getElementsByClassName('selector-title')[0].innerHTML = e.target.innerHTML;
+            this.parentNode.getElementsByClassName('selector-title')[0].classList.remove('open');
+            this.parentNode.getElementsByClassName('selector-content')[0].classList.remove('show');
+            if (attribute == 'period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period', e.target.getAttribute('w-period'));
+            if (attribute == 'classificationId') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-classificationId', e.target.getAttribute('w-classificationId'));
+            update();
+        });
 
         this.selTitle.addEventListener("click",function(e){
             this.nextElementSibling.classList.add("show");
@@ -1411,6 +1388,82 @@ class SelectorControls {
 
 class WeekScheduler {
 
+    get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
+
+    get eventReqAttrs(){
+        let attrs = {},
+            params = [
+                {
+                    attr: 'tmapikey',
+                    verboseName: 'apikey'
+                },
+                {
+                    attr: 'keyword',
+                    verboseName: 'keyword'
+                },
+                {
+                    attr: 'size',
+                    verboseName: 'size'
+                },
+                {
+                    attr: 'radius',
+                    verboseName: 'radius'
+                },
+                {
+                    attr: 'classificationid',
+                    verboseName: 'classificationId'
+                },
+                {
+                    attr: 'attractionid',
+                    verboseName: 'attractionId'
+                },
+                {
+                    attr: 'promoterid',
+                    verboseName: 'promoterId'
+                },
+                {
+                    attr: 'venueid',
+                    verboseName: 'venueId'
+                },
+                {
+                    attr: 'segmentid',
+                    verboseName: 'segmentId'
+                }
+            ];
+
+        /*
+        for(let i in params){
+            let item = params[i];
+            if(this.isConfigAttrExistAndNotEmpty(item.attr))
+                attrs[item.verboseName] = this.config[item.attr];
+        }
+
+        // Only one allowed at the same time
+        if(this.config.latlong){
+            attrs.latlong = this.config.latlong;
+        }else{
+            if(this.isConfigAttrExistAndNotEmpty("postalcode"))
+                attrs.postalCode = this.config.postalcode;
+        }
+
+        if(this.isConfigAttrExistAndNotEmpty("period")){
+            let period = this.getDateFromPeriod(this.config.period);
+            attrs.startDateTime = period[0];
+            attrs.endDateTime = period[1];
+        }
+        */
+
+        // return attrs;
+        return {
+            "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+            "size": "25",
+            "radius": "25",
+            "latlong": "34.0390107,-118.2672801",
+            "startDateTime": "2016-06-12T00:00:00Z",
+            "endDateTime": "2016-06-18T23:59:59Z"
+        }
+    }
+
     addScroll() {
         (function(n,t){function u(n){n.hasOwnProperty("data-simple-scrollbar")||Object.defineProperty(n,"data-simple-scrollbar",new SimpleScrollbar(n))}function e(n,i){function f(n){var t=n.pageY-u;u=n.pageY;r(function(){i.el.scrollTop+=t/i.scrollRatio})}function e(){n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove",f);t.removeEventListener("mouseup",e)}var u;n.addEventListener("mousedown",function(i){return u=i.pageY,n.classList.add("ss-grabbed"),t.body.classList.add("ss-grabbed"),t.addEventListener("mousemove",f),t.addEventListener("mouseup",e),!1})}function i(n){for(this.target=n,this.bar='<div class="ss-scroll">',this.wrapper=t.createElement("div"),this.wrapper.setAttribute("class","ss-wrapper"),this.el=t.createElement("div"),this.el.setAttribute("class","ss-content"),this.wrapper.appendChild(this.el);this.target.firstChild;)this.el.appendChild(this.target.firstChild);this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend",this.bar);this.bar=this.target.lastChild;e(this.bar,this);this.moveBar();this.el.addEventListener("scroll",this.moveBar.bind(this));this.el.addEventListener("mouseenter",this.moveBar.bind(this));this.target.classList.add("ss-container")}function f(){for(var i=t.querySelectorAll("*[ss-container]"),n=0;n<i.length;n++)u(i[n])}var r=n.requestAnimationFrame||n.setImmediate||function(n){return setTimeout(n,0)};i.prototype={moveBar:function(){var t=this.el.scrollHeight,i=this.el.clientHeight,n=this;this.scrollRatio=i/t;r(function(){n.bar.style.cssText="height:"+i/t*100+"%; top:"+n.el.scrollTop/t*100+"%;right:-"+(n.target.clientWidth-n.bar.clientWidth)+"px;"})}};t.addEventListener("DOMContentLoaded",f);i.initEl=u;i.initAll=f;n.SimpleScrollbar=i})(window,document)
         // var scrollRoot = document.getElementsByClassName("ss")[0];
@@ -1418,47 +1471,109 @@ class WeekScheduler {
         SimpleScrollbar.initEl(scrollRoot);
     }
 
-    startMonth() {
-        var current = new Date();     // get current date
-        var weekstart = current.getDate() - current.getDay();
-        var weekend = weekstart + 6;       // end day is the first day + 6
-        var sunday = new Date(current.setDate(weekstart));
-        // var sunday = new Date(current.setDate(weekend));
-        let currentSunday = sunday;
-        let daysDiv = '';
-        let currentDayClass = '';
-        let dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        let now = new Date();
-        for (let i=0; i<=6; i++) {
-            let day  = new Date(new Date(currentSunday).getTime()+(i*24*60*60*1000));
-            if (day.getDay() == now.getDay()) currentDayClass = ' active'; else currentDayClass = '';
-            daysDiv += `<span class="d${currentDayClass}">${dayOfWeek[i]} <span class="num">${day.getDate()}</span></span>`;
+    getJSON(handler, url=this.apiUrl, attrs={}, method="GET"){
+        attrs = Object.keys(attrs).map(function(key){
+            return `${key}=${attrs[key]}`;
+        }).join("&");
+
+        url = [url,attrs].join("?");
+
+        this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        if(method == "POST") {
+            this.xmlHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         }
-        let timeDiv = '';
-        let zero = '';
-        timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
-        for (let i=0; i<=23; i++) {
-            if (i<=9) zero = '0'; else zero = '';
-            timeDiv += `<div class="t t-${i}"><span class="tl">${zero}${i} : 00</span>`;
-            for (let d=0; d<=6; d++) {
-                timeDiv += `<span class="d d-${d}"></span>`;
-            }
-            timeDiv += `</div>`;
-        }
-        timeDiv += `</div></div>`;
-        daysDiv += timeDiv;
-        return daysDiv;
+        this.xmlHTTP.widget = this;
+        this.xmlHTTP.onreadystatechange = handler;
+        this.xmlHTTP.open(method, url, true);
+        this.xmlHTTP.send();
     }
 
+    getWeekEventsHandler() {
+        let widget = this.widget;
+        let events;
+        let weekEvents = [];
+        if (this && this.readyState == XMLHttpRequest.DONE ) {
+            if(this.status == 200){
+                events = JSON.parse(this.responseText);
+                // console.log(events._embedded.events);
+                events._embedded.events.forEach(function(item) {
+                    weekEvents.push({
+                        'name' : item.name,
+                        'date'  : item.dates.start.localDate,
+                        'time': item.dates.start.localTime,
+                        'url' : item.url,
+                    });
+                });
+
+                console.log(weekEvents);
+
+                var current = new Date();
+                var weekstart = current.getDate() - current.getDay();
+                var sunday = new Date(current.setDate(weekstart));
+                let currentSunday = sunday;
+                let daysDiv = '';
+                let currentDayClass = '';
+                let dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                let now = new Date();
+                for (let i=0; i<=6; i++) {
+                    let day  = new Date(new Date(currentSunday).getTime()+(i*24*60*60*1000));
+                    if (day.getDay() == now.getDay()) currentDayClass = ' active'; else currentDayClass = '';
+                    daysDiv += `<span class="d${currentDayClass}">${dayOfWeek[i]} <span class="num">${day.getDate()}</span></span>`;
+                }
+                let zeroLead = '';
+                let timeTmp = '';
+                let monthTmp = '';
+                let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+                for (let i=13; i<=23; i++) {
+                    if (i<=9) {
+                        zeroLead = '0';
+                        timeTmp = '0' + i + ":00:00";
+                    } else {
+                        zeroLead = '';
+                        timeTmp = i + ":00:00"
+                    }
+                    timeDiv += `<div class="t t-${i}"><span class="tl">${zeroLead}${i} : 00</span>`;
+                    for (let d=0; d<=6; d++) {
+                        let dayTmp  = new Date(new Date(currentSunday).getTime()+(d*24*60*60*1000));
+                        if (parseInt(dayTmp.getMonth() + 1)  <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1); else monthTmp = dayTmp.getMonth() + 1;
+                        let dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
+                        timeDiv += `<span class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
+
+                        for(let e=0, l=weekEvents.length; e<l; ++e) {
+                            if (weekEvents[e].date == dateTmp && weekEvents[e].time == timeTmp) {
+                                timeDiv += '<span class="round"></span>';
+                            }
+                        }
+
+                        timeDiv += '</span>';
+                    }
+                    timeDiv += `</div>`;
+                }
+                timeDiv += `</div></div>`;
+                daysDiv += timeDiv;
+                widget.weekdaysRootContainer.innerHTML = daysDiv;
+                widget.addScroll();
+            }
+            else if(this.status == 400) {
+                console.log('There was an error 400');
+            }
+            else {
+                console.log('something else other than 200 was returned');
+            }
+        }
+    }
+
+    startMonth() {
+        this.getJSON( this.getWeekEventsHandler, this.apiUrl, this.eventReqAttrs );
+    }
 
     constructor(root) {
         if (!root) return;
         this.weekSchedulerRoot = root;
         this.weekdaysRootContainer = document.createElement("div");
         this.weekdaysRootContainer.classList.add("days");
-        this.weekdaysRootContainer.innerHTML = this.startMonth();
+        this.startMonth();
         this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
-        this.addScroll();
     }
 }
 

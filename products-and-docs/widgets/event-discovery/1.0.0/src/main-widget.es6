@@ -111,6 +111,22 @@ class TicketmasterEventDiscoveryWidget {
       {
         attr: 'segmentid',
         verboseName: 'segmentId'
+      },
+      {
+        attr: 'classificationname',
+        verboseName: 'classificationName'
+      },
+      {
+        attr: 'city',
+        verboseName: 'city'
+      },
+      {
+        attr: 'countrycode',
+        verboseName: 'countryCode'
+      },
+      {
+        attr: 'source',
+        verboseName: 'source'
       }
     ];
 
@@ -955,6 +971,11 @@ class TicketmasterEventDiscoveryWidget {
   reduceParamsAndReloadEvents(){
     let eventReqAttrs = {},
       reduceParamsList = [
+        ['classificationName'],
+        ['city'],
+        ['countryCode'],
+        ['source'],
+
         ['startDateTime', 'endDateTime', 'country'],
         ['radius'],
         ['postalCode', 'latlong'],

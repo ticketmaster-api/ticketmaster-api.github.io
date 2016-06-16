@@ -164,6 +164,18 @@ var TicketmasterEventDiscoveryWidget = function () {
       }, {
         attr: 'segmentid',
         verboseName: 'segmentId'
+      }, {
+        attr: 'classificationname',
+        verboseName: 'classificationName'
+      }, {
+        attr: 'city',
+        verboseName: 'city'
+      }, {
+        attr: 'countrycode',
+        verboseName: 'countryCode'
+      }, {
+        attr: 'source',
+        verboseName: 'source'
       }];
 
       for (var i in params) {
@@ -1062,7 +1074,7 @@ var TicketmasterEventDiscoveryWidget = function () {
     key: 'reduceParamsAndReloadEvents',
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
-          reduceParamsList = [['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
+          reduceParamsList = [['classificationName'], ['city'], ['countryCode'], ['source'], ['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {

@@ -53,16 +53,31 @@
 
     {% for tag in methodsDescription.method %}
         {% if tag.pathsParent == route[0] %}
-            {% assign _id = tag.id | append: '-v2'%}
+            {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
             {% assign _title = tag.title %}
             {% assign _reqres = tag.reqres %}
             {% assign _codePath = tag.codePath %}
         {% endif %}
     {% endfor %}
 
+{% assign indexLoop = forloop.index0 %}
+
     {% for method in route[1] %}
-    <h2 class="article {% if _title %}console-link{% endif %}" id="{{ _id }}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
     <div class="">
+        <h2 class="article {% if _title %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
+        | lstrip
+        | downcase
+        | replace: ' ' , '-'
+        | replace: '[' , '-'
+        | replace: ']' , '-'
+        | replace: '/' , '-'
+        | replace: '\' , '-'
+        | replace: '(' , '-'
+        | replace: ')' , '-'
+        | append: '-'
+        | append: indexLoop
+        | append: '-'
+        | append: page.categories[3] | lstrip }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
         <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
         <p><strong>Summary: </strong>{{ method[1].summary }}</p>
         {%if method[1].description %}<p><strong>Description: </strong>{{ method[1].description }}</p>{% endif %}
