@@ -179,6 +179,9 @@
       color: $n3;
       text-transform: uppercase;
       font-family: $font-bold-p;
+      &.active {
+        color: $p1c;
+      }
       &.apgee-login {
         display: block;
         height: 27px;
