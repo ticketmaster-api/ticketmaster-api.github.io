@@ -148,13 +148,25 @@ li {
     }
 }
 
-.content {
-  ul>li {
-    list-style: inside disc;
+.documentation .content {
+  ol>li,
+  ul>li:not(.jstree-node){
+    &:before {
+      content: "\2022";
+      font-size: 11px;
+      line-height: 24px;
+      margin-right: 10px;
+    }
   }
-  ol>li {
-    list-style: inside decimal;
-  }
+  /*ul>li.event-wrapper,
+  ul>li.jstree-node {
+    &:before {
+      content: "";
+      font-size: 11px;
+      line-height: 24px;
+      margin-right: 0px;
+    }
+  }*/
 }
 
 
