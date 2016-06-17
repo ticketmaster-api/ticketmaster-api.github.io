@@ -109,8 +109,20 @@ class TicketmasterEventDiscoveryWidget {
         verboseName: 'venueId'
       },
       {
-        attr: 'segmentid',
-        verboseName: 'segmentId'
+        attr: 'classificationname',
+        verboseName: 'classificationName'
+      },
+      {
+        attr: 'city',
+        verboseName: 'city'
+      },
+      {
+        attr: 'countrycode',
+        verboseName: 'countryCode'
+      },
+      {
+        attr: 'source',
+        verboseName: 'source'
       }
     ];
 
@@ -308,6 +320,40 @@ class TicketmasterEventDiscoveryWidget {
     this.eventsRootContainer.appendChild(this.buyBtn);
   }
 
+  /**
+   * Set position center/right
+   *
+   * @param url
+   * @param isAddressCenter - if true : Set address position center/right for oldschool theme 300x250 (proportion :'m')
+   */
+  updateTransition(url , isAddressCenter) {
+    let el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
+    (isAddressCenter)? el = this.eventsRootContainer.querySelectorAll(".event-date.centered-logo") : el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");    
+    if(url !=='') {
+      if(el && !isAddressCenter){
+        el.classList.add("right-logo");
+        el.classList.remove("centered-logo");
+      }else if(el){
+        let i;
+        for (i = 0; i < el.length-1; i++) {
+          el[i].classList.remove("centered-logo");
+        }
+      }
+    }
+    else {
+      (isAddressCenter)? el = this.eventsRootContainer.querySelectorAll(".event-date"): el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
+      if (el && !isAddressCenter) {
+        el.classList.remove("right-logo");
+        el.classList.add("centered-logo");
+      }else if(el){
+        let i;
+        for (i = 0; i < el.length-1; i++) {
+          el[i].classList.add("centered-logo");
+        }
+      }
+    }
+  }
+
   setBuyBtnUrl(){
     if(this.buyBtn){
       let event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
@@ -318,6 +364,13 @@ class TicketmasterEventDiscoveryWidget {
            if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
              url = event.url;
            }
+
+          if(this.config.theme === 'oldschool' && this.config.proportion === 'm'){
+            this.updateTransition(url , true);
+          }else{
+            this.updateTransition(url);
+          }
+
         }
       }
       this.buyBtn.href = url;
@@ -412,7 +465,7 @@ class TicketmasterEventDiscoveryWidget {
     this.widgetRoot.appendChild(legalNotice);
 
     var logo = document.createElement('a');
-    logo.classList.add("event-logo");
+    logo.classList.add("event-logo","centered-logo");
     logo.target = '_blank';
     logo.href = this.logoUrl;
     logo.innerHTML = 'Powered by:';
@@ -914,12 +967,17 @@ class TicketmasterEventDiscoveryWidget {
   reduceParamsAndReloadEvents(){
     let eventReqAttrs = {},
       reduceParamsList = [
+        ['classificationName'],
+        ['city'],
+        ['countryCode'],
+        ['source'],
+
         ['startDateTime', 'endDateTime', 'country'],
         ['radius'],
         ['postalCode', 'latlong'],
         ['attractionId'],
         ['promoterId'],
-        ['segmentId'],
+        // ['segmentId'],
         ['venueId'],
         ['keyword'],
         ['size']
@@ -1203,7 +1261,7 @@ class TicketmasterEventDiscoveryWidget {
 
     var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
     dateTime = document.createElement("span");
-    dateTime.classList.add("event-date");
+    dateTime.classList.add("event-date", "centered-logo");
     dateTime.appendChild(dateTimeContent);
 
     var dateWraper = document.createElement("span");
