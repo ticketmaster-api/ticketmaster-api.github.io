@@ -3,10 +3,11 @@
     <a id="menu-btn-fixed" class="tm-close"></a>
     {% endif %}
     <li><a class="apgee-login" href="https://live-livenation.devportal.apigee.com/user/login">Login</a></li>
-    <li><a href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a></li>
-    <li><a href="{{"/partners/" | prepend: site.baseurl}}">Partners</a></li>
-    <li><a href="{{"/support/" | prepend: site.baseurl}}">Support</a></li>
-    <li><a href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a></li>
-    <li><a href="{{"/events/" | prepend: site.baseurl}}">Events</a></li>
-    <li><a href="http://code.ticketmaster.com/">Open Source</a></li>
+    <li><a class="{% if  page.categories[0] == "documentation" or page.categories[0] == "products-and-docs" %}active{% endif %}" href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a></li>
+    <li><a class="{% if  page.categories[0] == "partners" %}active{% endif %}" href="{{"/partners/" | prepend: site.baseurl}}">Partners</a></li>
+    <li><a class="{% if  page.categories[0] == "support" %}active{% endif %}" href="{{"/support/" | prepend: site.baseurl}}">Support</a></li>
+    <li><a class="{% if  page.categories[0] == "documentation" %}active{% endif %}" href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a></li>
+    <li><a class="{% if  page.categories[0] == "documentation" %}active{% endif %}" href="{{"/events/" | prepend: site.baseurl}}">Events</a></li>
+    <li><a class="{% if  page.categories[0] == "documentation" %}active{% endif %}" href="http://code.ticketmaster.com/">Open Source</a></li>
+    <li>page.categories: {{ page.categories }}</li>
 </ul>

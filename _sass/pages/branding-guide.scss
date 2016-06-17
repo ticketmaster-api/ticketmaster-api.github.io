@@ -11,8 +11,13 @@
       }
     }
   }
-  h2,h3 {
-    margin-top: $base-margin*2;
+}
+
+.distribution {
+  .content {
+    h2,h3 {
+      margin-top: $base-margin*2;
+    }
   }
 }
 
