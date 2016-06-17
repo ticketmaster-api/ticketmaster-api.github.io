@@ -15,7 +15,7 @@ layout: default
             {% include partials/faq-apis.html %}
         {% endif %}
 
-        {% if page.categories[0] == "support"%}
+        {% if page.categories[0] == "support"% and page.categories[1] != "contact-us" %}
         <div id="disqus_thread" style="margin-top:50px;"></div>
         <script>
             var disqus_config = function () {

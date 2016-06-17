@@ -40,7 +40,7 @@ layout: default
 
                     {% endif %}
                 <div class="side-box"></div>
-                    {% if page.categories[1] == 'changelog'%}
+                    {% if page.categories[1] == 'changelog' or page.categories[1] == 'getting-started' %}
                         <div id="disqus_thread"></div>
                         <script>
                             var disqus_config = function () {
