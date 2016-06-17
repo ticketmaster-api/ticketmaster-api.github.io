@@ -585,6 +585,15 @@ div[w-theme="calendar"] #weekSсheduler .days .d .round {
     display: block;
     margin-left: -1px;
     margin-top: 2px;
+    position: relative;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .d .round .popup {
+    width:300px;
+    height: 100px;
+    position: absolute;
+    background: #768692;
+    color: #fff;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .d:first-child {
