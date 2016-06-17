@@ -16,7 +16,7 @@ category: partners
     </div>
     <div class="col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == "partners" and page.categories[1] == "distribution" %} distribution{% endif %}">
         {{ content }}
-
+    {% if page.categories[1] != "certified" %}
     <div id="disqus_thread"></div>
     <script>
         var disqus_config = function () {
@@ -32,7 +32,7 @@ category: partners
             (d.head || d.body).appendChild(s);
         })();
     </script>
-
+    {% endif %}
     </div>
 </div>
 
