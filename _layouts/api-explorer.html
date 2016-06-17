@@ -5,6 +5,28 @@
 <div id="spinner" style="display: none;"></div>
 {% include home-header.html %}
 {{content}}
+
+<div style="max-width: 1170px; margin: 0 auto; overflow: hidden;">
+  <div class="col-xs-12">
+    <div id="disqus_thread"></div>
+  </div>
+</div>
+
+<script>
+  var disqus_config = function () {
+    this.page.url = document.URL || "http://developer.ticketmaster.com/";
+    this.page.identifier = "{{page.title}}";
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//ticketmasterapi.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
 {% include home-footer.html %}
 <div id="back-top">
   <a href="javascript:void(0)"><span></span></a>
