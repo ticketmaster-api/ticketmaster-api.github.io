@@ -1535,10 +1535,12 @@ var WeekScheduler = function () {
                     events = JSON.parse(this.responseText);
                     // console.log(events._embedded.events);
                     events._embedded.events.forEach(function (item) {
+                        // console.log(item);
                         weekEvents.push({
                             'name': item.name,
                             'date': item.dates.start.localDate,
                             'time': item.dates.start.localTime,
+                            'place': item.venues[0].city + ' ' + item.venues[0].address,
                             'url': item.url
                         });
                     });
@@ -1579,7 +1581,11 @@ var WeekScheduler = function () {
 
                             for (var e = 0, l = weekEvents.length; e < l; ++e) {
                                 if (weekEvents[e].date == dateTmp && weekEvents[e].time == timeTmp) {
-                                    timeDiv += '<span class="round"></span>';
+                                    timeDiv += '<span class="round">';
+                                    timeDiv += '<span class="popup">';
+                                    timeDiv += weekEvents[e].name;
+                                    timeDiv += '</span>';
+                                    timeDiv += '</span>';
                                 }
                             }
 
