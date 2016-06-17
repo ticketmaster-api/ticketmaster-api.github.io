@@ -5,7 +5,9 @@
             "id":"search-attractions",
             "title":"Search Attractions(test json)",
             "reqres": "swagger/reqres-search-events.md",
-            "codePath":"swagger/search-events.md"
+            "codePath":"swagger/search-events.md",
+            "preContent":"swagger/pre-content-example.md",
+            "postContent":"swagger/post-content-example.md"
         },
         {
             "pathsParent":"/discovery/v2/attractions/legacy",
