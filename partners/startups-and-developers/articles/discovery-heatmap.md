@@ -7,7 +7,7 @@ tags:
 
 {% capture left %}
 
-## Discovery Heatmap
+## Discovery API Heatmap
 
 #### Heatmap representing data from Discovery API. [Fullscreen](http://heatmap-1220776398.us-west-2.elb.amazonaws.com/)
 
