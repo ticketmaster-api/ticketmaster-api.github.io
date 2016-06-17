@@ -3,6 +3,7 @@ order: 1
 category: sd-article
 tags:
   - web
+  - heatmap
 ---
 
 {% capture left %}

@@ -109,10 +109,6 @@ class TicketmasterEventDiscoveryWidget {
         verboseName: 'venueId'
       },
       {
-        attr: 'segmentid',
-        verboseName: 'segmentId'
-      },
-      {
         attr: 'classificationname',
         verboseName: 'classificationName'
       },
@@ -981,7 +977,7 @@ class TicketmasterEventDiscoveryWidget {
         ['postalCode', 'latlong'],
         ['attractionId'],
         ['promoterId'],
-        ['segmentId'],
+        // ['segmentId'],
         ['venueId'],
         ['keyword'],
         ['size']
