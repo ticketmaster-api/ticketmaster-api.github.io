@@ -4,15 +4,14 @@ categories:
 - documentation
 - tutorials
 title: Tutorials
-excerpt: Visit Universe’s site to get everything you need to sell tickets directly on your website at no additional cost.
-keywords: widget, sell tickets, direct payments
+excerpt: Having trouble integrating with our APIs? It's not quite intuitive? Fear not! These tutorials will help you get up and running in no time! Full, contextual examples with full code snippets will provide you with what you need to kick start your own codebase!
 ---
 
 
 # TICKETMASTER TUTORIALS
 
 {: .lead .double-margin}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
+Having trouble integrating with our APIs? It's not quite intuitive? Fear not! These tutorials will help you get up and running in no time! Full, contextual examples with full code snippets will provide you with what you need to kick start your own codebase!
 
 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
 {% for tutorials in site.pages %}
