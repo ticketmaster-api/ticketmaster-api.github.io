@@ -34,7 +34,7 @@
         }])
       }
     } else {
-      console.error(origin + " is not allowed");
+      console.warn(origin + " is not allowed");
     }
   };
 
