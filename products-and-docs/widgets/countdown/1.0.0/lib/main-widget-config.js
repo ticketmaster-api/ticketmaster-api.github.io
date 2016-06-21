@@ -73,12 +73,6 @@
       $tabButtons = $('.js-tab-buttons'),
       $layoutBox = $('#js-layout-box');
 
-  $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-    $widthController.slider('relayout');
-    $borderRadiusController.slider('relayout');
-    windowScroll(); //recalculate widget container position
-  });
-
   // function toggleDisabled(widgetNode){
   //   if ( widgetNode.getAttribute('w-id') === '') {
   //     $getCodeButton.prop("disabled",true);
@@ -86,6 +80,10 @@
   //     $getCodeButton.prop('disabled',false);
   //   }
   // }
+
+  var $configForm = $(".main-widget-config-form"),
+      $widgetModal = $('#js_widget_modal'),
+      $widgetModalNoCode = $('#js_widget_modal_no_code');
 
   //variables for fixed widget
   var $window = $(window),
@@ -110,9 +108,10 @@
     window_min = min_move - threshold_offset;
     window_max = max_move + $containerWidget.height() + threshold_offset;
   }
-  //sets the limits for the first load
-  setLimits();
 
+  /*
+   widget container scroll handler
+   */
   function windowScroll() {
     var innerWidth = window.innerWidth;
     var j = 0;
@@ -132,12 +131,10 @@
 
     setTimeout(function () {
       if (innerWidth < desktopWidth && $containerWidget.height() > $configBlock.height()) {
-        // console.log('*** ', j , innerWidth ,'<', desktopWidth );
         containerMove_clearOffset();
         updateScroll();
       }
       if ($containerWidget.height() < $configBlock.height() || innerWidth >= desktopWidth) {
-        // console.log('ignore ',j);
         if (innerWidth < desktopWidth) {
           containerMove_clearOffset();
         }
@@ -175,8 +172,20 @@
           $containerWidget.css("margin-top", $containerWidget.attr("data-max") - $containerWidget.attr("data-min") + "px");
         }
   }
-  //do one container move on load
-  containerMove();
+
+  var replaceApiKey = function replaceApiKey(options) {
+    var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+
+    if (userKey !== null) {
+      var inputApiKey = options.inputApiKey;
+      var _widgetNode = options.widgetNode;
+      var _widget = options.widget;
+
+      inputApiKey.attr('value', userKey).val(userKey);
+      _widgetNode.setAttribute("w-tm-api-key", userKey);
+      _widget.update();
+    }
+  };
 
   var changeState = function changeState(event) {
     if (!event.target.name) {
@@ -187,7 +196,7 @@
 
     if (targetName === "w-theme") {
       var widthSlider = $('.js_widget_width_slider'),
-          widgetContainerWrapper = $('.widget-container-wrapper'),
+          widgetContainerWrapper = $containerWidget,
           widgetContainer = $(".widget-container", widgetContainerWrapper),
           $border_slider = $('.js_widget_border_slider');
 
@@ -366,10 +375,24 @@
     widget.update();
   };
 
-  var $configForm = $(".main-widget-config-form"),
-      $widgetModal = $('#js_widget_modal'),
-      $widgetModalNoCode = $('#js_widget_modal_no_code');
+  var init = function init() {
+    //sets the limits for the first load
+    setLimits();
 
+    //do one container move on load
+    containerMove();
+
+    // replace Api-Key if user logged
+    replaceApiKey({
+      inputApiKey: $('#w-tm-api-key'),
+      widgetNode: widgetNode,
+      widget: widget
+    });
+  };
+
+  /**
+   * Events
+   */
   $configForm.on("change", changeState);
   // Mobile devices. Force 'change' by 'Go' press
 
@@ -403,6 +426,18 @@
     $widgetModal.modal();
   });
 
+  /**
+   * check if user logged just before enter widget page
+   */
+  $window.on('login', function (e, data) {
+    replaceApiKey({
+      userKey: data.key,
+      inputApiKey: $('#w-tm-api-key'),
+      widgetNode: widgetNode,
+      widget: widget
+    });
+  });
+
   $('.js_reset_widget').on('click', function () {
     resetWidget($configForm);
   });
@@ -414,6 +449,14 @@
   $('#js_widget_modal_no_code__close').on('click', function () {
     $widgetModalNoCode.modal('hide');
   });
+
+  $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
+    $widthController.slider('relayout');
+    $borderRadiusController.slider('relayout');
+    windowScroll(); //recalculate widget container position
+  });
+
+  init();
 })();
 
 (function ($) {
