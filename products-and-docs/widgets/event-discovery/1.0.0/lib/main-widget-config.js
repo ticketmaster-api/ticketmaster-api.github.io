@@ -170,6 +170,37 @@
   //do one container move on load
   containerMove();
 
+  var replaceApiKey = function replaceApiKey(options) {
+    var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+
+    if (userKey !== null) {
+      var inputApiKey = options.inputApiKey;
+      var widgetNode = options.widgetNode;
+      var _widget = options.widget;
+
+      inputApiKey.attr('value', userKey).val(userKey);
+      widgetNode.setAttribute("w-tm-api-key", userKey);
+      _widget.update();
+    }
+  };
+  replaceApiKey({
+    inputApiKey: $('#w-tm-api-key'),
+    widgetNode: document.querySelector("div[w-tmapikey]"),
+    widget: widget
+  });
+
+  /**
+   * check if user logged just before enter widget page
+   */
+  $window.on('login', function (e, data) {
+    replaceApiKey({
+      userKey: data.key,
+      inputApiKey: $('#w-tm-api-key'),
+      widgetNode: document.querySelector("div[w-tmapikey]"),
+      widget: widget
+    });
+  });
+
   var changeState = function changeState(event) {
     if (!event.target.name || event.target.name === "w-googleapikey") return;
 
