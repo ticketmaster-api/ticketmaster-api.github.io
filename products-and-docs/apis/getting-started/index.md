@@ -13,37 +13,39 @@ keywords: API, register for a key, live events core datasets, URI Format, URI Ex
 
 
 {: .lead .double-margin}
-Everything you need to start playing with the Ticketmaster APIs.
+Everything you need to get up and running with the Ticketmaster API. We'll cover the basics here, so please keep reading :)
 
 {: #introduction}
 ## Introduction
 
+{: .body}
+To get the most out of your experience, [register for an API](https://live-livenation.devportal.apigee.com/user/register) or [log in to your account](https://live-livenation.devportal.apigee.com/user/login) now. We'll render links in examples and code samples into active link using your own API Key. If you prefer to jump right into the APIs and make live calls, check out the [API Explorer](/api-explorer/).
+
+We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event detail page experience for your customers.
+
+***Note**: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2) and will be discontinued by the end of the year. *
+
+Our APIs work against many platforms including Ticketmaster, TicketWeb, Universe, FrontGate, TicketsNow and many more. Event coverage is global.
+
+Below are some use cases of how our APIs are used:
+
+| API	           	 	| User Case                                                                                              	|
+|:----------------------|:----------------------------------------------------------------------------------------------------------|
+| Discovery API      	| Searching events by keyword in a certain location (lat/long).											   	|
+| Discovery API        	| Getting events for a particular artist OR venue in a specific country/city/zip code/DMA/etc.				|
+| Discovery API        	| Getting hi-res images for a particular event or artist.													|
+| Discovery API       	| Search events of a certain genre in a particular location for a certain promoter.							|
+| Commerce API         	| Get available offers for a particular event.																|
+| Partner API          	| Transact against offers for a particular event (partners-only).											|
+
+
+{: #data-model}
+## Data Model
 
 {: .body}
-Welcome to the Ticketmaster API! To get you started, we'll go over the **live events core datasets** we’ve made
-available to you. Once you [register for a key](https://live-livenation.devportal.apigee.com/user/login), you will
-be able to access the following datasets:
+![The Ticketmaster Data Model](/assets/img/getting-started/data-model.png)
 
-{: .double-margin}
-|Dataset            |  Description                                                                                              |
-|:------------------|:----------------------------------------------------------------------------------------------------------|
-|Events             |A live event must have a date, time, venue and attaction associated with it. Sometime the venue is TBD     |
-|Venues             |A venue is a physical location at which an event takes place. A venue can also has sub-venues (rooms).     |
-|Attractions        |Any event should have at least one attraction. Artists, teams, stand-up comics are examples of attractions.|
-|Offers             |Offers are generally event-specific. Sometimes special offers are applied to carts or to particular API keys.  |
-|Tickets            |Any particular offer can hold a variety of tickets. A ticket is transactable.                              |
-|Cart               |A cart can hold any transactable item, like tickets, merchandize, parking, etc.                         |
-
-
-These datasets are distributed across five distinct APIs: Discovery API, Commerce API, Accounts API, Orders API and Publish API.
-
-{: .body .double-margin-bottom}
-This overview covers the core concepts that you need to know before you could 
-fully use the APIs to their potential. Once you have a good understanding of the
-API core concepts, you can then dig deeper into each API by visiting its 
-dedicated overview page.
-
-{: .double-margin #uri-format}
+{: #uri-format}
 ## URI Format
 
 All API calls follow this format: 
@@ -561,8 +563,6 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>-->
-    -->
-
 
   </tbody>
 </table>

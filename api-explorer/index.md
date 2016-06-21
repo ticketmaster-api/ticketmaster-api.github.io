@@ -76,7 +76,8 @@ layout: api-explorer
     <div class="row">
         <div class="row-container">
             <div class="col-xs-12">
-                <h1>TICKETMASTER API EXPLORER</h1>
+                <h1>THE API EXPLORER</h1>
+				<p>Make live API calls without writing a single line of code! The API Explorer currently works with the <a href="/products-and-docs/apis/discovery/v2">Discovery API</a>, <a href="/products-and-docs/apis/commerce/">Commerce API</a> and <a href="/products-and-docs/apis/publish/">Publish API</a> <strong>only</strong>. TAP is experimental.</p>
             </div>
         </div>
     </div>
