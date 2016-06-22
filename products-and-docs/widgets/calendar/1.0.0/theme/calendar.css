@@ -585,15 +585,114 @@ div[w-theme="calendar"] #weekSсheduler .days .d .round {
     display: block;
     margin-left: -1px;
     margin-top: 2px;
-    position: relative;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d .round .popup {
-    width:300px;
-    height: 100px;
+div[w-theme="calendar"] #weekSсheduler .days .popup {
+    width: 265px;
+    max-height: 185px;
+    overflow: hidden;
+    padding: 13px 10px;
     position: absolute;
     background: #768692;
     color: #fff;
+    left: 0;
+    top: 25px;
+    z-index: 10;
+    display: none;
+    text-align: left;
+    border-radius: 4px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .tail {
+    width:10px;
+    height: 5px;
+    display: block;
+    position: absolute;
+    margin: 7px 0 0 2px;
+    display: none;
+    z-index: 10;
+}
+div[w-theme="calendar"] #weekSсheduler .days .tail:before {
+    content: "\A";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 5px 5px;
+    border-color: transparent transparent #768692 transparent;
+    position: absolute;
+    top: -5px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(65, 65, 65, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .img {
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    display: block;
+    margin-top: 2px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder {
+    overflow: hidden;
+    display: block;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name,
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:hover {
+    font-family: "TMSans-Bold";
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    display: block;
+    color: #fff;
+    margin-bottom: 7px;
+    max-height: 33px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date {
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 14px;
+    color: #fff;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 4px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place {
+    font-family: "TMSans-Light";
+    font-size: 11px;
+    line-height: 14px;
+    color: #fff;
+    opacity: 0.7;
+    display: block;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup:focus {
+    outline: none;
+    border: none;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup.show {
+    display: block;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .d:first-child {
@@ -674,9 +773,11 @@ div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder {
 div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .t {
     width:263px;
     border-top: 1px dashed rgba(183, 201, 211, 0.6);
-    overflow: hidden;
     margin: 0;
     padding: 0;
+    position: relative;
+    float: left;
+    overflow: visible;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .tl {
