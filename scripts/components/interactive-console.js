@@ -39,7 +39,7 @@
             loggedUserKeyContainer = $('#pantheon-api-key'),
             loggedUserKey = $( 'span' , loggedUserKeyContainer),
             copyButton = $('.copy-btn'),
-            userApiKeySessionStorage = sessionStorage.getItem('tk-api-key')
+            userApiKeySessionStorage = null,
             iframe = $('#console-iframe');
 
         if (getQueryVariable('id') && consoleUrls[getQueryVariable('id')]){
@@ -51,12 +51,28 @@
             header.addClass('expanded');
             sessionStorage.setItem('console_visited', 'true');
         }
-        if(userApiKeySessionStorage !== null) {
-            getKeyButton.fadeOut();
-            loggedUserKey.text(userApiKeySessionStorage);
-            copyButton.attr('data-clipboard-text',userApiKeySessionStorage);
-            loggedUserKeyContainer.fadeIn();
+        function showUserApiKeySessionStorage(isResized) {
+            userApiKeySessionStorage = sessionStorage.getItem('tk-api-key');
+            if(userApiKeySessionStorage !== null) {
+                if(isResized) {
+                    getKeyButton.hide();
+                }
+                getKeyButton.fadeOut();
+                loggedUserKey.text(userApiKeySessionStorage);
+                copyButton.attr('data-clipboard-text',userApiKeySessionStorage);
+                loggedUserKeyContainer.fadeIn();
+            }
         }
+        showUserApiKeySessionStorage();
+
+        /**
+         * check if user logged
+         */
+        $(window).on('login', function (e, data) {
+            showUserApiKeySessionStorage();
+        });
+
+        $(window).on('resize', function(){showUserApiKeySessionStorage(true)} );
 
         header.on('click', function(){
             if (!$(this).hasClass('expanded')){
@@ -119,7 +135,7 @@
                 try {
                     var successful = document.execCommand('copy', false, null);
                     var msg = successful ? 'successful' : 'unsuccessful';
-                    console.log('Copying text command was ' + msg + successful);
+                    // console.log('Copying text command was ' + msg + successful);
                 } catch (err) {
                     console.log('Oops, unable to copy');
                 }

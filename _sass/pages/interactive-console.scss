@@ -6,10 +6,16 @@
 }
 
 #instructions-header {
-  width: 40%;
+  width: 50%;
   cursor: pointer;
+  display: inline-block;
+  margin-top: $base-margin;
+  p {
+    display: inline;
+  }
   h3 {
     margin-bottom: 0;
+    margin-top: 0;
   }
   .instructions-chevron {
     display: inline-block;
@@ -33,12 +39,9 @@
   border: solid 1px rgba(21, 140, 210, 0.2);
   color: $n3;
   font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 15px;
-  line-height: $base-margin;
-  padding: $base-margin+4 $base-margin*2 $base-margin+4 $base-margin;
-  margin-top: -54px;
+  padding: ($base-margin - 4) $base-margin*2 ($base-margin - 4) $base-margin;
+  position: absolute;
+  right: 15px;
     span {
       color:$n2;
     }
@@ -47,6 +50,18 @@
       right: 20px;
       margin-top: -$base-margin;
     }
+
+  @media #{$max-768} {
+    position: relative;
+    margin-top: 0;
+    left: 0;
+    font-size: 12px;
+    text-align: center;
+    padding: ($base-margin - 4) $base-margin;
+    .copy-btn {
+      display: none;
+    }
+  }
 }
 
 #console-instructions{
