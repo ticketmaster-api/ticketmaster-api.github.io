@@ -233,8 +233,6 @@ class TicketmasterCalendarWidget {
         if (!this.isListView) this.initSliderControls();
 
         /* if (!this.isListView) this.initEventCounter(); */
-
-        if (this.isListView) this.addScroll();
     }
 
     getCurrentWeek() {
@@ -1459,16 +1457,18 @@ class WeekScheduler {
             "size": "25",
             "radius": "25",
             "latlong": "34.0390107,-118.2672801",
-            "startDateTime": "2016-06-12T00:00:00Z",
-            "endDateTime": "2016-06-18T23:59:59Z"
+            "startDateTime": "2016-06-19T00:00:00Z",
+            "endDateTime": "2016-06-25T23:59:59Z"
         }
     }
 
     addScroll() {
         (function(n,t){function u(n){n.hasOwnProperty("data-simple-scrollbar")||Object.defineProperty(n,"data-simple-scrollbar",new SimpleScrollbar(n))}function e(n,i){function f(n){var t=n.pageY-u;u=n.pageY;r(function(){i.el.scrollTop+=t/i.scrollRatio})}function e(){n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove",f);t.removeEventListener("mouseup",e)}var u;n.addEventListener("mousedown",function(i){return u=i.pageY,n.classList.add("ss-grabbed"),t.body.classList.add("ss-grabbed"),t.addEventListener("mousemove",f),t.addEventListener("mouseup",e),!1})}function i(n){for(this.target=n,this.bar='<div class="ss-scroll">',this.wrapper=t.createElement("div"),this.wrapper.setAttribute("class","ss-wrapper"),this.el=t.createElement("div"),this.el.setAttribute("class","ss-content"),this.wrapper.appendChild(this.el);this.target.firstChild;)this.el.appendChild(this.target.firstChild);this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend",this.bar);this.bar=this.target.lastChild;e(this.bar,this);this.moveBar();this.el.addEventListener("scroll",this.moveBar.bind(this));this.el.addEventListener("mouseenter",this.moveBar.bind(this));this.target.classList.add("ss-container")}function f(){for(var i=t.querySelectorAll("*[ss-container]"),n=0;n<i.length;n++)u(i[n])}var r=n.requestAnimationFrame||n.setImmediate||function(n){return setTimeout(n,0)};i.prototype={moveBar:function(){var t=this.el.scrollHeight,i=this.el.clientHeight,n=this;this.scrollRatio=i/t;r(function(){n.bar.style.cssText="height:"+i/t*100+"%; top:"+n.el.scrollTop/t*100+"%;right:-"+(n.target.clientWidth-n.bar.clientWidth)+"px;"})}};t.addEventListener("DOMContentLoaded",f);i.initEl=u;i.initAll=f;n.SimpleScrollbar=i})(window,document)
         // var scrollRoot = document.getElementsByClassName("ss")[0];
-        var scrollRoot = document.querySelector('.ss');
-        SimpleScrollbar.initEl(scrollRoot);
+        var scrollRoot = document.querySelectorAll('.ss');
+        scrollRoot.forEach(function(item) {
+            SimpleScrollbar.initEl(item);
+        });
     }
 
     getJSON(handler, url=this.apiUrl, attrs={}, method="GET"){
@@ -1488,26 +1488,76 @@ class WeekScheduler {
         this.xmlHTTP.send();
     }
 
+    formatDate(date) {
+        var result = '';
+        if(!date.day) return result; // Day is required
+
+        function LZ(x) {
+            return (x < 0 || x > 9 ? "" : "0") + x
+        }
+        var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+            dayArray = date.day.split('-'),
+            d = parseInt(dayArray[2]),
+            M = parseInt(dayArray[1]);
+
+        var E = new Date(date.day).getDay();
+        result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
+
+        if(!date.time) return result;
+
+        var timeArray = date.time.split(':'),
+            H = parseInt(timeArray[0]),
+            m = timeArray[1],
+            a = "AM";
+
+        if (H > 11) a = "PM";
+        if (H == 0) {
+            H = 12;
+        } else if (H > 12) {
+            H = H - 12;
+        }
+
+        return result + ' ' + LZ(H) + ':' + m + ' ' + a;
+    }
+
     getWeekEventsHandler() {
         let widget = this.widget;
         let events;
+        let place;
+        let address;
         let weekEvents = [];
-        if (this && this.readyState == XMLHttpRequest.DONE ) {
-            if(this.status == 200){
+        let eventDate;
+        if (this && this.readyState == XMLHttpRequest.DONE) {
+            if (this.status == 200) {
                 events = JSON.parse(this.responseText);
                 // console.log(events._embedded.events);
-                events._embedded.events.forEach(function(item) {
-                    // console.log(item);
+                events._embedded.events.forEach(function (item) {
+                    if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
+                    if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
+
+                    let imgWidth;
+                    let index;
+                    item.images.forEach(function(img, i) {
+                        if (i == 0) imgWidth = img.width;
+                        if (imgWidth > img.width) {
+                            imgWidth = img.width;
+                            index = i;
+                        }
+                    });
+
                     weekEvents.push({
-                        'name' : item.name,
-                        'date'  : item.dates.start.localDate,
+                        'name': item.name,
+                        'date': item.dates.start.localDate,
                         'time': item.dates.start.localTime,
-                        'place': item.venues[0].city + ' ' + item.venues[0].address,
-                        'url' : item.url,
+                        'datetime': widget.formatDate({day: item.dates.start.localDate, time: item.dates.start.localTime}),
+                        'place': place + ', ' + address,
+                        'url': item.url,
+                        'img': item.images[index].url
                     });
                 });
 
-                console.log(weekEvents);
+                // console.log(weekEvents);
 
                 var current = new Date();
                 var weekstart = current.getDate() - current.getDay();
@@ -1517,8 +1567,8 @@ class WeekScheduler {
                 let currentDayClass = '';
                 let dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 let now = new Date();
-                for (let i=0; i<=6; i++) {
-                    let day  = new Date(new Date(currentSunday).getTime()+(i*24*60*60*1000));
+                for (let i = 0; i <= 6; i++) {
+                    let day = new Date(new Date(currentSunday).getTime() + (i * 24 * 60 * 60 * 1000));
                     if (day.getDay() == now.getDay()) currentDayClass = ' active'; else currentDayClass = '';
                     daysDiv += `<span class="d${currentDayClass}">${dayOfWeek[i]} <span class="num">${day.getDate()}</span></span>`;
                 }
@@ -1526,8 +1576,8 @@ class WeekScheduler {
                 let timeTmp = '';
                 let monthTmp = '';
                 let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
-                for (let i=13; i<=23; i++) {
-                    if (i<=9) {
+                for (let i = 13; i <= 23; i++) {
+                    if (i <= 9) {
                         zeroLead = '0';
                         timeTmp = '0' + i + ":00:00";
                     } else {
@@ -1535,23 +1585,36 @@ class WeekScheduler {
                         timeTmp = i + ":00:00"
                     }
                     timeDiv += `<div class="t t-${i}"><span class="tl">${zeroLead}${i} : 00</span>`;
-                    for (let d=0; d<=6; d++) {
-                        let dayTmp  = new Date(new Date(currentSunday).getTime()+(d*24*60*60*1000));
-                        if (parseInt(dayTmp.getMonth() + 1)  <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1); else monthTmp = dayTmp.getMonth() + 1;
+                    for (let d = 0; d <= 6; d++) {
+                        let dayCount = 0;
+                        let dayTmp = new Date(new Date(currentSunday).getTime() + (d * 24 * 60 * 60 * 1000));
+                        if (parseInt(dayTmp.getMonth() + 1) <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1); else monthTmp = dayTmp.getMonth() + 1;
                         let dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
-                        timeDiv += `<span class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
+                        timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
-                        for(let e=0, l=weekEvents.length; e<l; ++e) {
+                        for (let e = 0, l = weekEvents.length; e < l; ++e) {
                             if (weekEvents[e].date == dateTmp && weekEvents[e].time == timeTmp) {
-                                timeDiv += '<span class="round">';
-                                timeDiv += '<span class="popup">';
-                                timeDiv += weekEvents[e].name;
+                                if (dayCount == 0) {
+                                    timeDiv += '<span class="round"></span>';
+                                    timeDiv += '<span class="tail"></span>';
+                                    timeDiv += '<div class="popup ss" tabindex="-1">';
+                                    timeDiv += '<div class="ss-container">';
+                                    dayCount = 1;
+                                }
+                                timeDiv += '<span class="event">';
+                                timeDiv += '<span class="event-holder">';
+                                timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
+                                timeDiv += '<span class="img" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>';
+                                timeDiv += '<span class="name">' + weekEvents[e].name + '</span>';
+                                timeDiv += '</a>';
+                                timeDiv += '<span class="date">' + weekEvents[e].datetime + '</span>';
+                                timeDiv += '<span class="place">' + weekEvents[e].place + '</span>';
                                 timeDiv += '</span>';
                                 timeDiv += '</span>';
                             }
                         }
-
-                        timeDiv += '</span>';
+                        if (dayCount == 1) timeDiv += '</div></div>';
+                        timeDiv += '</div>';
                     }
                     timeDiv += `</div>`;
                 }
@@ -1560,12 +1623,32 @@ class WeekScheduler {
                 widget.weekdaysRootContainer.innerHTML = daysDiv;
                 widget.addScroll();
             }
-            else if(this.status == 400) {
+            else if (this.status == 400) {
                 console.log('There was an error 400');
             }
             else {
                 console.log('something else other than 200 was returned');
             }
+        }
+
+        var rounds = document.querySelectorAll("span.round");
+        for (var x = 0; x < rounds.length; x++) {
+            rounds[x].addEventListener("click", function (e) {
+                this.nextElementSibling.classList.add("show");
+                this.nextElementSibling.nextElementSibling.classList.add("show");
+                this.nextElementSibling.nextElementSibling.focus();
+            }, false);
+        }
+
+        var popups = document.querySelectorAll(".popup");
+        for (var y = 0; y < popups.length; y++) {
+            popups[y].addEventListener("blur", function (e) {
+                let self = this;
+                setTimeout(function () {
+                    self.previousElementSibling.classList.remove("show");
+                    self.classList.remove("show");
+                }, 127);
+            }, false);
         }
     }
 
