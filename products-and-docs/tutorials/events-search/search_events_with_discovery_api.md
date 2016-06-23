@@ -4,113 +4,73 @@ categories:
   - tutorials
   - tutorials-events-search
 
-title: Search events with Discovery API
+title: Get started with the Discovery API
 
 img: "/products-and-docs/tutorials/img/tutorial-img.png"
 
 link: "/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html"
 
-announcement: "Tutorial for beginners about the Discovery API. Describes different cases of the Discovery APi using."
+announcement: "Basic walkthrough of the Discovery API and how to get value out of it quickly."
 
 tags: 
   - Discovery API
 
-excerpt: Tutorial for beginners about the Discovery API. Describes different cases of the Discovery APi using.
+excerpt: Basic walkthrough of the Discovery API and how to get value out of it quickly.
 keywords: events, attractions, classifications, venues, search, discovery, api
 ---
 
-# Search events with Discovery API
+# Get started with the Discovery API
 
 ## Introduction
 
-Use the Discovery API to search, look up and find events, attractions, venues, and classifications. The API provides access to all Ticketmaster events, as well as Universe and TicketWeb events.
-Documentation about this API can be found [here](http://developer.ticketmaster.com/products-and-docs/apis/discovery/v2/).
+Use the Discovery API to search, look up and find events, attractions, venues, and classifications. The API provides accecc to content sourced from [various platform, markets and countries](/products-and-docs/apis/discovery/v2/#supported-country-codes).
 
-In this tutorial, we will make simple events browser application. It will lead us through all Discovery API.
+Documentation about this API can be found [here](/products-and-docs/apis/discovery/v2/).
+
+In this tutorial, we will create a simple event browsing application, which will walk us through all the Discovery API functionality.
 
 ### Authentication
 
 To run a successful API call, you will need to pass your API Key as the query parameter `apikey`.
-Example: https://app.ticketmaster.com/discovery/v2/events.json?{apikey}
+
+**Example:** https://app.ticketmaster.com/discovery/v2/events.json?{apikey}
 
 ### Get an API key
 
-[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a Consumer Key that is used for authentication.
+[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a `Consumer Key` that is used for authentication.
+
+Your `Consumer Key` is your `API Key`.
 
 ![Disovery API application](/products-and-docs/tutorials/img/discovery-api-app.png)
 
 ### Discovery API data model
 
-Discovery API has four main entities: event, attraction, classification, venue.
+The Discovery API has four main entities: **event**, **attraction**, **classification**, and **venue**:
 
-An event is a main entity. It describes some event that is being selling. An event is related to venues, attractions, and classifications.
+- An event is the **central entity** to which all other entities relate. An event is basically a happening at a particular date and time. 
+- An attraction is the artist, team or the performers at the event.
+- A classification is an attribute of both events and attractions and has three different levels:
+	- **Segment**: This could be music, sports, arts & theater, family, Film, and miscellaneous.
+	- Genre: These are the various genres under each segment.
+	- Sub-genre: The secondary genre for this event or attraction under this particular segment.
+- A venue describes the physical location at which the event is taking place.
 
-Attraction describes some show that is demonstrated during an event. Attraction can be organized by several artists. An artist can have different attractions for different events. An attraction has classifications.
-
-A classification shows categories and sub-categories related to some attraction or event.
-
-A venue describes a place for an event.
+To learn more about the Discovery API, [click here](/products-and-docs/apis/discovery/v2/).
 
 ![Disovery API data model](/products-and-docs/tutorials/img/discovery-api-data.png)
 
-### Ticketmaster API Explorer application
+### The Ticketmaster API Explorer
 
-This is a very cool open-source application that helps to understand API requests and responses instantly, thanks to the EPAM’s team and such a bright idea introduced for Ticketmaster’s API. Get access to the [API Explorer](/api-explorer/).
+This open-source application helps you understand API requests and responses instantly. You can [jump in](/api-explorer/) right away!.
 
 ![API explorer](/products-and-docs/tutorials/img/discovery-api-explorer.png)
 
-### Events
 
-The are three API methods related to events:
+## Example: Event Listings
 
-- Search Events
-- Get Event Details
-- Search Event Images
+In this example, we'll show an event list and display the attraction of the event clicked. We use [Bootsrap](http://getbootstrap.com/) for the UI. 
 
-Search Events method returns a list of events according to provided criteria. You can search events by keyword, location, attraction, venue.
-
-The method returns a part of the search result as a list of event objects (20 by default) and a page object. A page object contains information about total events count, pages count and current page number. 
-
-Get Event Details method returns full information for some event specified by id. It is supposed that event object from the Search Events method contains not full information about some event. An event object contains classification object (merged from all attractions) for this event, images (merged from all attractions), attractions, venues, dates, and sales.
-
-Despite that an event object contains attractions, images, classifications, and venues, we have separate methods Search Event Images, Get Attraction Details, Get Classification Details and Get Venue Details. It is supposed that these separate methods will return more detailed information about related items.
-
-### Attractions
-
-There are two API methods related to attractions:
-
-- Search Attractions
-- Get Attraction Details
-
-Search Attractions method returns a list of attractions according to provided criteria. The method returns a part of the search result as a list of attraction objects (20 by default) and a page object.
-
-Get Attraction Details method returns full information for some attraction specified by id. Attraction object contains classifications and images related only to this attraction.
-
-### Classifications
-
-There are two API methods related to classifications:
-
-- Search Classifications
-- Get Classification Details
-
-Search Classifications method returns a list of classifications according to provided criteria. The method returns a part of the search result as a list of classification objects (20 by default) and a page object.
-
-Get Classification Details method returns full information for some classification specified by id. A classification object represents some categories related to an event. A classification consists of segments. A segment consists of genres. Every genre consists of subgenres.
-
-### Venues
-
-There are two API methods related to venues:
-
-- Search Venues
-- Get Venue Details
-
-Search Venues method returns a list of venues according to provided criteria. The method returns a part of the search result as a list of venue objects (20 by default) and a page object.
-
-Get Venue Details method returns full information for some venue specified by id.
-
-## Events explorer example
-
-Events explorer is application shows all events as a list and the first attraction of selected event. We use [Bootsrap](http://getbootstrap.com/). It allows getting cool UX layout very quickly. Our layout consists of a list of event items with pagination in a footer. Also, we have a separate section for an attraction. Let's review the code of this example (you can also play with this code on [Plunker](http://plnkr.co/edit/YX3fR7DdKCugKZ4uPmaC?p=preview)).
+Let's review the code (or you can also play with it on [Plunker](http://plnkr.co/edit/YX3fR7DdKCugKZ4uPmaC?p=preview)).
 
 {: .tutorial-code}
 >[HTML](#html)
@@ -310,11 +270,11 @@ This code will produce such layout.
 
 ![Attraction picture](/products-and-docs/tutorials/img/discovery-api-events2.png)
 
-Let's consider in detail this code.
+Great! Now let’s dive into the details:
 
-### Request for events
+### Requesting events
 
-We should call Search Events method to get an event list. We do it in the function `getEvents`. This function has one parameter - a number of requested page. Code execution in our example starts from the call of `getEvents` function with page equal 0. We have global variable `page` with initial value 0. When we use pagination this variable is changing.
+We call the [Search Events](/products-and-docs/apis/discovery/v2/#srch-events-v2) method to get a list of events. We do it in the JS function `getEvents`. This function has one parameter - a number of requested page. Code execution in our example starts from the call of `getEvents` function with page equal 0. We have global variable `page` with initial value 0. When we use pagination, this variable changes.
 
 {: .tutorial-code}
 >[JavaScript](#js)
@@ -353,11 +313,9 @@ function getEvents(page) {
 }
 {% endhighlight %}
 
-This function has three parts. In the first part, we show a panel with event list and hide a panel with attraction details. Then we work with a page number. `page` cannot be less that 0. After the last page, we go to the first page again. In the third part, we call Search Events method and call function `showEvents` in a case of success.
+This function has three parts. In the first part, we show a panel with event list and hide a panel with attraction details. Then we work with the page number. `page` cannot be less that 0. After the last page, we go to the first page again. In the third part, we call Search Events method and call function `showEvents` in a case of success.
 
-### Layout for events list
-
-In HTML we have a simple Bootstrap layout. In head section, Bootstrap is connected. Body contains Bootstrap container with two panels: `events-panel` - show list of events, `attraction-panel` - show information about attraction (invisible by default).
+### Layout for event list
 
 {: .tutorial-code}
 >[HTML](#html)
@@ -406,7 +364,7 @@ In HTML we have a simple Bootstrap layout. In head section, Bootstrap is connect
 
 The panel has title section, body with a list of items and footer with pagination buttons.
 
-### Event list building
+### Rendering the event list
 
 When we get events from the server we call function `showEvents`. It builds list item for each event. List item has click handler that calls function `getAttraction`. So after clicking on list item we call Search Attractions method with if of the first attraction for a current event.
 
@@ -499,4 +457,4 @@ function showAttraction(json) {
 {% endhighlight %}
 
 
-You can explore the source code of this example [there](http://plnkr.co/edit/YX3fR7DdKCugKZ4uPmaC?p=preview).
+You can try this entire tutorial code [there](http://plnkr.co/edit/YX3fR7DdKCugKZ4uPmaC?p=preview).

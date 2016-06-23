@@ -898,7 +898,7 @@ Status 200
 
 Returns an alphanumeric event id based on a Venue-supplied event code+host combination<br/>
 
-/partners/v1/events/code/{event_code}/{event_host}
+/partners/v1/events/{event_code}/{event_host}/id
 {: .code .red}
 
 *Polling: No*
@@ -916,7 +916,7 @@ Returns an alphanumeric event id based on a Venue-supplied event code+host combi
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/code/53-45243/NY1?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+https://app.ticketmaster.com/partners/v1/events/53-45243/NY1/id?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 {% endhighlight %}
 
 {% highlight js %}

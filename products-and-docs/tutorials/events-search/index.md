@@ -6,15 +6,14 @@ categories:
 - events-search-tutorials
 
 title: Events Search Tutorials
-excerpt: Visit Universe’s site to get everything you need to sell tickets directly on your website at no additional cost.
-keywords: widget, sell tickets, direct payments
+excerpt: Our Discovery API is rich with event listings and details as well as artist and venue data. Below are a few tutorials that showcase different ways of leveraging the Discovery API to extract content in a meaningful way.
 ---
 
 
 # EVENTS SEARCH TUTORIALS
 
 {: .lead .double-margin}
-Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.
+Our Discovery API is rich with event listings and details as well as artist and venue data. Below are a few tutorials that showcase different ways of leveraging the Discovery API to extract content in a meaningful way.
 
 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 comntent">
 {% for tutorials-events-search in site.pages %}

@@ -8,5 +8,5 @@ categories:
   - certified
 
 tile_logo: "Fanserv.png"
-tile_description: "FanServ is built to connect advertisers, publishers, leagues and teams in finding the true value of the fan impression. We take pride in delivering top-tier products built with a focus on engagement and seamless partner integrations, providing a mobile platform solution built for your success."
+tile_description: "FanServ builds mobile solutions to connect you with your audience and unlock the true value of the fan impression. We work closely with you in delivering best-in-class user experiences built with a focus on fan engagement and partner integrations, providing mobile platform solutions to grow your business."
 ---

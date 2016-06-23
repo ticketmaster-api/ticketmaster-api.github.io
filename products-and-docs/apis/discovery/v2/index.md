@@ -86,7 +86,7 @@ discovery/{version}/events.{format}
 | `onsaleStartDateTime`   | Include events going onsale after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 | `onsaleEndDateTime`   | Include events going onsale before this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
 |	`city` | city |string| | No|
-| `countryCode`   | ISO value for the country in which you want to query events in. Poissble values are: 'US', 'CA', 'AU', 'NZ', 'MX'. | string            |       "MX"       | No      |
+| `countryCode`   | ISO value for the country in which you want to query events in. Possible values are: 'US', 'CA', 'AU', 'NZ', 'MX'. | string            |       "MX"       | No      |
 |	`stateCode` | stateCode |string|| No|
 | `classificationName` |any classification name - segment - genre - sub-genre | string || No|
 | `classificationId` | any classification id - segment - genre - sub-genre| string || No|
@@ -4063,17 +4063,18 @@ Rate-Limit: 5000
 {% endhighlight %}
 
 ## Supported Country Codes
-{: .article #supported-сountry-сodes}
-
+{: .article #supported-country-codes}
 This the [ISO Alpha-2 Code](https://en.wikipedia.org/wiki/ISO_3166-1) country values:
 
-| Source	|
-|:--------|
-| US		|
-| CA		|
-| AU		|
-| NZ		|
-| MX		|
+| Source				|
+|:----------------------|
+| AU (Australia)		|
+| CA (Canada)			|
+| GB (Great Britain)	|
+| IE (Ireland)			|
+| MX (Mexico)			|
+| NZ (New Zealand)		|
+| US (United States)	|
 
 ## Supported Markets
 {: .article #supported-markets}

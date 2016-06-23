@@ -74,9 +74,9 @@ For more information please [contact us](mailto:distributedcommerce@ticketmaster
 ### Already affiliated?
 
 {: .body .p}
-If you are a current member of the Ticketmaster affiliate program,<br>manage your account at Affiliate Window.
+If you are a current member of the Ticketmaster affiliate program,<br>manage your account at Impact Radius.
 
-[GO TO LOGIN](https://darwin.affiliatewindow.com/login){: .button.button-blue .base-margin-bottom}
+[GO TO LOGIN](https://member.impactradius.com/bla/Ticketmasterdirect/login.user){: .button.button-blue .base-margin-bottom}
 
 Have questions about our affiliate program? [Check out our FAQs!](/support/faq/#affiliates-a)
 

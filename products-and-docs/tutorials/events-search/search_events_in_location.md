@@ -4,41 +4,44 @@ categories:
   - tutorials
   - tutorials-events-search
 
-title: Search events in some location
+title: Locate events on a map
 
 img: "/products-and-docs/tutorials/img/img-1.png"
 
 link: "/products-and-docs/tutorials/events-search/search_events_in_location.html"
 
-announcement: "Search events in some location specified by latitude and longitude using Discovery API."
+announcement: "Using both the Discovery API and Google Maps API to show events taking place at the particular longitude/latitude value pair provided by the Google Maps API."
 
 tags: 
   - Discovery API
 
-excerpt: Search events in some location. Discovery API provides Event search call. You can search events in some location specified by latitude and longitude.
+excerpt: This tutorial goes through the steps needed to create a Google Map populated with events taking place in a specific area on the map.
 keywords: events, search, location, map, discovery, api
 ---
 
-# Search events in some location
+# Locate events on a map
 
 ## Introduction
 
-Search events in some location. Discovery API provides Event search call. You can search events in some location specified by latitude and longitude.
+This tutorial goes through the steps needed to create a Google Map populated with events taking place in a specific area on the map. Given the lat/lon value pair provided by the Google Maps API, a search call is triggered in the Discovery API with that value in a radius of 25 miles, which is the default value if none is set.
 
 ## Authentication
 
 To run a successful API call, you will need to pass your API Key as the query parameter `apikey`.
-Example: https://app.ticketmaster.com/discovery/v2/events.json?{apikey}
+
+**Example:** https://app.ticketmaster.com/discovery/v2/events.json?{apikey}
 
 ## Get an API key
 
-[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a Consumer Key that is used for authentication.
+[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a `Consumer Key` that is used for authentication.
+
+Your `Consumer Key` is your `API Key`.
 
 ![Disovery API application](/products-and-docs/tutorials/img/discovery-api-app.png)
 
 ## Events on a map
 
-In this tutorial, we develop a simple page with Google map with markers for events.
+Here's a simple page with a Google map and markers for events:
 
 {: .tutorial-code}
 >[HTML](#html)
@@ -159,18 +162,20 @@ getLocation();
       }
 {% endhighlight %}
 
-As a result, we will get a page with a map and list of events.
+When rendered, the page will show the map below:
 
 ![Map with events](/products-and-docs/tutorials/img/search-events-map.png)
 
-Let’s consider in detail this code.
+Great! Now let’s dive into the details.
 
 
-## Using Google map
+## Using the Google Map API
 
-Our application has a simple layout. There are two `div` elemnts. One div with `id="map"` for Google map.
-The second div with `id="events"` for a list of events.
-For work with Google maps we should add map scrip in the end of body `<script src="https://maps.googleapis.com/maps/api/js" async defer></script>`.
+The page has a simple layout. We start by including CSS and jQuery in the `head` tag. You will see that in all out tutorials.
+
+Inside the `body` element, there are two `div` elements. One with `id="map"` for the rendering of the Google map. The second with `id="events"` to render the list of events marked on the map.
+
+Below the divs, we include our own script, which we will discuss later, and the Google Maps API `<script src="https://maps.googleapis.com/maps/api/js" async defer></script>`.
 
 {: .tutorial-code}
 >[HTML](#html)
@@ -195,11 +200,11 @@ For work with Google maps we should add map scrip in the end of body `<script sr
 {% endhighlight %}
 
 
-## Using HTML Geolocation
+## Getting the browser's geolocation
 
-Geolocation is a standard feature of HTML5. All modern browsers support it. [More details.](http://www.w3schools.com/html/html5_geolocation.asp)
+Geolocation is a standard feature in HTML5. [All modern browsers support it](http://www.w3schools.com/html/html5_geolocation.asp).
 
-When you try to use geolocation in JavaScript, a browser will ask a user for permission.
+When you try to use geolocation in JavaScript, a browser will ask a user for permission:
 
 {: .tutorial-code}
 >[JavaScript](#js)
@@ -235,16 +240,15 @@ function showError(error) {
 
 {% endhighlight %}
 
-There are two functions for work with geolocation `getLocation` and `showError`.
-`getLocation` tries to get location `navigator.geolocation.getCurrentPosition(showPosition, showError);`.
-In a case of error it calls `showError`. `showError` checks error code and shows a friendly message.
+There are two functions defined above: `getLocation` and `showError`.
 
-So, now you can see your current location.
+`getLocation` tries to get the location `navigator.geolocation.getCurrentPosition(showPosition, showError);` and in a case of an error, it calls `showError`, which in turn checks the error code and displays the appropriate message back to the user.
 
-## Discovery API request
+Assuming no errors are encountered, now we have your current location in a lat/lon value pair.
 
-In a case of successful request for current location the function `showPosition` is called.
-It shows Google map and makes a request to Discovery API with latitude and longitude. [More details.](http://ticketmaster-api-staging.github.io/products-and-docs/apis/discovery/v2/#srch-events-v2)
+## Passing location to the Discovery API
+
+Now we make an API call to [search for events within 25 miles from the latitude and longitude values](http://developer.ticketmaster.com/products-and-docs/apis/discovery/v2/#srch-events-v2) we received in the step above. We call the function `ShowPosition` to render that.
 
 {: .tutorial-code}
 >[JavaScript](#js)
@@ -285,9 +289,9 @@ function showPosition(position) {
 
 
 
-## Process a response
+## Process the API response
 
-In a case of a succesful request to Discovery API we call function `showEvents` that processes a response and shows events as a list.
+In a case of a succesful request to Discovery API, we call function `showEvents` that processes the response and displays the event list.
 Other function `initMap` initializes Google map and shows markers for events.
 
 
@@ -327,6 +331,6 @@ function addMarker(map, event) {
 {% endhighlight %}
 
 
-During a map initialization, we add markers in the function `addMarker`. [More details about markers.](https://developers.google.com/maps/documentation/javascript/tutorials/custom-markers)
+During the map initialization, we use the `addMarker` function to add event markers to the map. [More details about markers.](https://developers.google.com/maps/documentation/javascript/tutorials/custom-markers)
 
-You can try this code [there](http://plnkr.co/edit/i1NZC9PopEF2fWzUAAH8?p=info).
+You can try this entire tutorial code [here](http://plnkr.co/edit/i1NZC9PopEF2fWzUAAH8?p=info).
