@@ -950,7 +950,7 @@ div[w-theme="oldschool"] .event-logo:hover:after {
     
     console.log(location.search);
 
-    var myParam = location.search.split('?')[1];
+    var myParam = location.search.split('?id=')[1];
 
     $.ajax({
       type: "GET",
