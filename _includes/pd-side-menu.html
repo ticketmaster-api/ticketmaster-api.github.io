@@ -7,6 +7,7 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#introduction">Introduction</a></li>
+					<li><a href="#data-model">Data Model</a></li>
                     <li><a href="#uri-format">URI Format</a></li>
                     <li><a href="#rate-limit">Rate Limit</a></li>
                     <li><a href="#cors-support">CORS Support</a></li>
@@ -15,7 +16,7 @@
                 </ul>
                 {% endif %}
             </li>
-           
+           {% comment %}
             <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "swagger" or page.categories[2] == "swagger" %}
 
@@ -85,6 +86,7 @@
 
                 {% endif %}
             </li>
+            {% endcomment %}
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
@@ -97,7 +99,8 @@
                     <li><a href="#search-classifications-v2">Search Classifications</a></li>
                     <li><a href="#classifications-details-v2">Get Classification Details</a></li>
                     <li><a href="#search-venues-v2">Search Venues</a></li>
-                    <li><a href="#venue-details-v2">Get Venue Details</a></li>
+					<li><a href="#venue-details-v2">Get Venue Details</a></li>
+                    <li><a href="#supported-country-codes">Supported Country Codes</a></li>
                     <li><a href="#supported-country-codes">Supported Country Codes</a></li>
                     <li><a href="#supported-markets">Supported Markets</a></li>
                     <li><a href="#supported-sources">Supported Sources</a></li>

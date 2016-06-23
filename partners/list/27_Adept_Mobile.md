@@ -8,5 +8,5 @@ categories:
   - certified
 
 tile_logo: "Adept_Mobile.png"
-tile_description: "Adept Mobile is a leading provider of mobile applications in the professional sports and entertainment space."
+tile_description: "Adept Mobile is a leading provider of mobile applications in the sports and entertainment space. Adept has partnered with well-known sports brands in the NFL, NBA and The Ultimate Fighting Championship® to implement award winning, multi-platform mobile experiences."
 ---
