@@ -12,6 +12,7 @@
   overflow: hidden;
   margin: auto;
   position: relative;
+  margin-bottom: $base-margin*4;
 
   &>.col-lg-9 {
     float: right;
@@ -118,6 +119,10 @@
       margin-bottom: 0;
     }
   }/*end*/
+
+  ol>li {
+    list-style: decimal;
+  }
 
 }
 

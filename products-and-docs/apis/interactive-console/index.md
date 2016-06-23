@@ -49,6 +49,10 @@ page layout goes here
 
 {{page_title}}
 
+<div id="pantheon-api-key" class="pantheon-api-key" style="display: none;">
+  Your API Key: <span id="copy-clip"></span>
+  <div class="copy-btn" rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-text=""></div>  
+</div>
 <div id="instructions-header" class="double-margin-top" markdown="1">
 <span class="instructions-chevron pull-left" markdown="1"></span>
 {{instructions_header}}

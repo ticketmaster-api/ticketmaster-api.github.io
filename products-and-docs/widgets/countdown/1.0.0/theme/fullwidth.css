@@ -230,7 +230,8 @@ div[w-theme="fullwidth"] .bg-cover {
     display: block;
     overflow: hidden;
     background-size: cover;
-    background: center top;
+    background-position-x: center;
+    background-position-y: top;
 }
 
 /* Theme special styles */
@@ -403,6 +404,26 @@ div[w-theme="fullwidth"] .event-logo {
     font-size: 11px;
     color: #768692;
 }
+div[w-theme="fullwidth"] .event-logo.right-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: calc(100% - 190px);
+}
+div[w-theme="fullwidth"] .event-logo.centered-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+}
 
 div[w-theme="fullwidth"] .event-logo:after{
     content: '';
@@ -439,7 +460,12 @@ div[w-theme="fullwidth"] .event-buy-btn {
     text-align: center;
     -webkit-transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    z-index: 1;
 }
+/*
+vv1AvZAv9GkeRWf4V
+http://s1.ticketm.net/dam/a/d06/f95bb038-2912-4cb5-90e8-8501d508ad06_92661_RETINA_PORTRAIT_3_2.jpg
+*/
 
 div[w-theme="fullwidth"] .event-buy-btn:hover {
     background-color: #2A7CC7;
@@ -648,68 +674,3 @@ div[w-theme="fullwidth"] .events-count-down.hide-seconds > .events-count-down__m
         height: 32px;
     }
 }
-
-
-/* LAYOUT 300x250
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down {
-    top: 14px;
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down:before {
-    font-size: 10px;
-    line-height: 12px;
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__month,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__day,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__hour,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__minute,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down .events-count-down__second {
-    height: 27px;
-    line-height: 27px;
-    font-size: 18px;
-    text-align: right;
-    padding: 3px;
-
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__month:after,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__day:after,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__hour:after,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__minute:after,
-div[w-theme="fullwidth"][w-proportion="m"] .events-count-down__second:after {
-    top: 0%;
-    margin-top: -3px;
-    height: 14px;
-    text-align: left;
-    color: #414141;
-    background: none;
-    font-family: "TMSans-Regular", Arial, serif;
-    font-size: 8px;
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .event-content-wraper {
-    padding-top: 68px;
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .event-logo-box {
-    bottom: 32px
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .event-name {
-    font-size: 18px;
-    font-family: "TMSans-Bold", Arial, serif;
-    margin-bottom: 10px;
-    line-height: 24px;
-    height: 50px;
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .event-date {
-    color: rgba(255, 255, 255, .7);
-}
-
-div[w-theme="fullwidth"][w-proportion="m"] .event-question {
-    display: none;
-}
-*/
-/*  LAYOUT 300x250 END*/

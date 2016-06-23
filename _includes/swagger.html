@@ -57,13 +57,15 @@
             {% assign _title = tag.title %}
             {% assign _reqres = tag.reqres %}
             {% assign _codePath = tag.codePath %}
+            {% assign _preContent = tag.preContent %}
+            {% assign _postContent = tag.postContent %}
         {% endif %}
     {% endfor %}
 
-{% assign indexLoop = forloop.index0 %}
+    {% assign indexLoop = forloop.index0 %}
 
     {% for method in route[1] %}
-    <div class="">
+
         <h2 class="article {% if _title %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
         | lstrip
         | downcase
@@ -78,6 +80,13 @@
         | append: indexLoop
         | append: '-'
         | append: page.categories[3] | lstrip }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
+        <!--{% comment %} Add post content if it defined in metadata.json {% endcomment %}-->
+        {% if _preContent %}
+        {% assign preContent = _preContent | prepend: 'apis-code-examples/' %}
+        <div class="pre-content">
+            {% include {{ preContent }} %}
+        </div>
+        {% endif %}
         <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
         <p><strong>Summary: </strong>{{ method[1].summary }}</p>
         {%if method[1].description %}<p><strong>Description: </strong>{{ method[1].description }}</p>{% endif %}
@@ -100,7 +109,7 @@
         <div class="">
             {% assign tableUrlParam = false %}
             {% assign tableQueryParam = false %}
-            {% assign tableBodyParam = false %}
+            {% assign tableBodyHeaderFormdataParam = false %}
             {% assign tableOtherParam = false %}
 
             {% for parameter in method[1].parameters %}
@@ -109,9 +118,9 @@
                         {% assign tableUrlParam = true %}
                     {% when 'query' %}
                         {% assign tableQueryParam = true %}
-                    {% when 'body' or 'header' %}
-                        {% assign tableBodyParam = true %}
-                        <!-- If in is "body. Required. The schema defining the type used for the body parameter.-->
+                    {% when 'body' or 'header' or 'formData'%}
+                        {% assign tableBodyHeaderFormdataParam = true %}
+                        <!-- If 'in' is "header", "formData" or "body".-->
                     {% else %}
                         {% assign tableOtherParam = true %}
                 {% endcase %}
@@ -143,7 +152,7 @@
                                             </span>
                             {% endif %}
                         </td>
-                        <td>{{ parameter.in }}</td>
+                        <td>{{ parameter.description }}</td>
                         <!--"query", "header", "path", "formData" or "body"-->
                         <td>
                             {% if parameter.type %}
@@ -156,13 +165,13 @@
                             {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
                             {% endif %}
                             {% else %}
-                            !!! - Not defined
+                            <!--Not defined in json-->
                             {% endif %}
                         </td>
                         <td>
                             {% if parameter.default %}{{ parameter.default | capitalize | join: ', ' }}{% endif %}
                         </td>
-                        <td>{% if parameter.required == false %}No{%else%}Yes - {{ parameter.description }}{%endif%}</td>
+                        <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
                     </tr>
                     {% endif %}
@@ -198,8 +207,7 @@
                                             </span>
                                     {% endif %}
                                 </td>
-                                <td>{{ parameter.in }}</td>
-                                <!--"query", "header", "path", "formData" or "body"-->
+                                <td>{{ parameter.description }}</td>
                                 <td>
                                     {% if parameter.type %}
                                     {{ parameter.type | capitalize }}
@@ -211,13 +219,13 @@
                                     {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
                                     {% endif %}
                                     {% else %}
-                                    !!! - Not defined
+                                    <!--Not defined in json-->
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if parameter.default %}{{ parameter.default | capitalize | join: ', ' }}{% endif %}
                                 </td>
-                                <td>{% if parameter.required == false %}No{%else%}Yes - {{ parameter.description }}{%endif%}</td>
+                                <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
                             </tr>
                             {% endif %}
@@ -227,13 +235,14 @@
                     </div>
             {% endif %}
 
-            {% if tableBodyParam %}
+            {% if tableBodyHeaderFormdataParam %}
                 <div class="swagger-parameters">
-                    <h3>Body or Header parameters:</h3>
+                    <h3>Other parameters:</h3>
                     <table class="swagger-parameters-table">
                         <thead>
                             <tr>
                                 <th>Parameter</th><!--name-->
+                                <th>In</th><!--name-->
                                 <th>Description</th><!--in-->
                                 <th>Type</th><!--Type-->
                                 <th>Default Value</th><!--default-->
@@ -242,7 +251,7 @@
                         </thead>
                         <tbody>
                             {% for parameter in method[1].parameters %}
-                            {% if parameter.in contains 'body' or parameter.in contains 'header' %}
+                            {% if parameter.in contains 'body' or parameter.in contains 'header' parameter.in contains 'formData' %}
                             <tr>
                                 <td>
                                     {% if parameter.required %}
@@ -254,7 +263,70 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ parameter.in }}</td>
-                                <!--"query", "header", "path", "formData" or "body"-->
+                                <td>{{ parameter.description }}<br/>
+                                    {%if parameter.schema %}
+                                        {% assign paramsSchema = parameter.schema %}
+                                        {% if parameter.schema['$ref'] %}
+                                            {% assign schemaRes = paramsSchema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                                            {% assign schemaSplit = schemaRes | split: ' ' %}
+                                            <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
+                                                {{ schemaSplit[1] }}
+                                                {% for schemaSplitType in schemaSplit[1] %}
+                                                    <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
+                                                {% endfor %}
+                                            </h5>
+                                            {% assign pathFirsLvl = schemaSplit[0] %}
+                                            {% assign pathScdLvl = schemaSplit[1] %}
+                                            <pre><code class="language-json">{{ swagger.[pathFirsLvl][pathScdLvl].properties | jsonify }}</code></pre>
+
+                                         <!--{% comment %} Parse inner prop
+                                         <ul class="nested-list">
+                                        {% for pathFirsLvl in schemaSplit[0] %}
+                                        {% for pathScdLvl in schemaSplit[1] %}
+                                        {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+                                            <li>
+                                                <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+                                                <ul>
+                                                    {% for item in property[1].items %}
+                                                    <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
+                                                        <ul>
+                                                            {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                                            {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+                                                            {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+                                                            {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+                                                            <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                                            </li>
+                                                            {% endfor %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                        {%endif%}
+                                                    </li>
+                                                    {% endfor %}
+                                                    {% if property[1]['$ref'] %}
+                                                    <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
+                                                        <ul>
+                                                            {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                                            {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
+                                                            {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
+                                                            {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                                            <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}</li>
+                                                            {% endfor %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    {% endif %}
+                                                </ul>
+                                                {% endif %}
+                                            </li>
+                                            {% endfor %}
+                                            {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                        {% endcomment %}-->
+
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
                                 <td>
                                     {% if parameter.type %}
                                     {{ parameter.type | capitalize }}
@@ -266,16 +338,13 @@
                                             {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
                                         {% endif %}
                                     {% else %}
-                                    !!! - Not defined
+                                     <!--Not defined in json-->
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if parameter.default %}{{ parameter.default | capitalize | join: ', ' }}{% endif %}
                                 </td>
-                                <td>{% if parameter.required == false %}No{%else%}Yes - {{ parameter.description }}{%endif%} <br/>
-                                    Required. The schema defining the type used for the body parameter.<br/>
-                                    {{ parameter.schema }}
-                                </td>
+                                <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
                             </tr>
                             {% endif %}
@@ -298,7 +367,6 @@
                 <!--{% comment %} Parse inner prop if its obj or arr
                 <ul>
                     {% for item in response[1].schema  %}
-                    &lt;!&ndash;if obj&ndash;&gt;
                         {% assign collection = item[1] %}
                         {% for itemCollection in collection  %}
                             {%if itemCollection[0] %}
@@ -306,7 +374,6 @@
                             {% endif %}
                         {% endfor %}
                         {% assign collection = '' %}
-                    &lt;!&ndash;if obj&ndash;&gt;
                     {% endfor %}
                 </ul>
                 {% endcomment %}-->
@@ -371,10 +438,9 @@
                                     {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
                                     {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
                                     {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
-                                    {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                    <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
-                                    </li>
-                                    {% endfor %}
+                                        {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                            <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}</li>
+                                        {% endfor %}
                                     {% endfor %}
                                 </ul>
                             </li>
@@ -419,8 +485,6 @@
             {% endif %}
         </div>
 
-    </div>
-    {% endfor %}
 
 {% if _codePath %}
     {% assign codePath = _codePath | prepend: 'apis-code-examples/' %}
@@ -431,23 +495,34 @@
     {% include {{codePath}} %}
 {%endif%}
 
+{% endfor %}
 
-<div class="article"></div>
+<div class="article">
     {% if _reqres %}
         {% assign resreq = _reqres | prepend: 'apis-code-examples/' %}
-        <blockquote class="article reqres" style="margin-right: 0px;">
+        <blockquote class="reqres" style="margin-right: 0px;">
             <p><a href="#req">Request</a>
                 <a href="#res">Response</a></p>
         </blockquote>
         {% include {{resreq}} %}
     {% endif %}
+</div>
 
+<!--{% comment %} Add post content if it defined in metadata.json {% endcomment %}-->
+{% if _postContent %}
+{% assign postContent = _postContent | prepend: 'apis-code-examples/' %}
+<div class="article">
+    {% include {{ postContent}} %}
+</div>
+{% endif %}
 
 <!--{% comment %} Clear meta data {% endcomment %}-->
     {% assign _id = tag.id %}
     {% assign _title = tag.title %}
     {% assign _reqres = tag.resreq %}
     {% assign _codePath = tag.codePath %}
+    {% assign _preContent = tag.preContent %}
+    {% assign _postContent = tag.postContent %}
 
 {% endfor %}
 

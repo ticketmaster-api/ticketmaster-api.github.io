@@ -403,6 +403,28 @@ div[w-theme="simple"] .event-logo {
     color: #768692;
 }
 
+div[w-theme="simple"] .event-logo.right-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 50%;
+}
+div[w-theme="simple"] .event-logo.centered-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+}
+
+
 div[w-theme="simple"] .event-logo:before {
     content: '';
     position: absolute;
@@ -442,7 +464,7 @@ div[w-theme="simple"] .event-buy-btn {
     z-index: 15;
     position: absolute;
     left: 30px;
-    bottom: 42px;
+    bottom: 45px;
     width: 74px;
     height: 24px;
     padding-top: 5px;
@@ -493,7 +515,7 @@ div[w-theme="simple"][w-layout="horizontal"] .legal-notice {
 }
 
 div[w-theme="simple"][w-layout="horizontal"] .event-buy-btn {
-    bottom: 42px;
+    bottom: 45px;
 }
 
 div[w-theme="simple"][w-layout="horizontal"] .event-wrapper:before {
@@ -502,10 +524,29 @@ background: -webkit-linear-gradient(right, rgba(0,0,0,0) 30%,rgba(0,0,0,0.9) 100
 background-image: linear-gradient(to left, rgba(0,0,0,0) 30%, rgba(0,0,0,0.9) 100%), linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 20%);
 }
 
-/**/
-div[w-theme="simple"][w-proportion="3x6"]  {
-    width: 300px;
+div[w-theme="simple"][w-layout="horizontal"] .event-logo.right-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    margin: auto;
+    left: 73%;
 }
+
+div[w-theme="simple"][w-layout="horizontal"] .event-logo.centered-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+/**/
+/*div[w-theme="simple"][w-proportion="3x6"]  {
+    width: 300px;
+}*/
 
 /* !!! HotFix !!! */
 div[w-theme="simple"] .general-admission {
@@ -517,12 +558,21 @@ div[w-theme="simple"] .ticket-logo {
 }
 
 
+div[w-theme="simple"][w-proportion="custom"][w-layout="vertical"] .event-name,
+div[w-theme="simple"][w-proportion="xxl"] .event-name {
+    max-height: 132px;
+    -webkit-line-clamp: 4;
+}
+
 
 
 div[w-theme="simple"][w-proportion="m"] {
     margin-bottom: -1px;
 }
 
+div[w-theme="simple"][w-proportion="m"] .event-wrapper:before {
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
 div[w-theme="simple"][w-proportion="m"] .event-content-wraper {
     padding: 36px 24px;
@@ -582,10 +632,19 @@ div[w-theme="simple"][w-proportion="m"] .event-buy-btn {
     color: #ffffff;
     left: 24px;
     display: inline-block;
-    margin: 0px 0 4px;
+    margin: 0;
 }
 
 
 div[w-theme="simple"][w-proportion="m"] .event-logo-box {
     height: 44px;
 }
+
+div[w-theme="simple"][w-proportion="m"] .event-logo.right-logo {
+    left: 38%;
+}
+
+div[w-theme="simple"][w-proportion="xxl"] .event-logo.right-logo {
+    left: 38%;
+}
+

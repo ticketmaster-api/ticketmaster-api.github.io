@@ -106,8 +106,11 @@
         margin: $base-margin 0px 0px 0px;
       }
 
-      p, ul, ol, dl, figure, .table-wrapper, .reqres-wrapper {
+      p, ul, ol, dl, figure, .table-wrapper {
         margin: $base-margin 0px 0px 0px;
+      }
+      .reqres-wrapper {
+        margin: $base-margin*2 0px 0px 0px;
       }
       .v-button {
         margin: $base-margin 0px $base-margin 0px;

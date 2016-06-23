@@ -162,8 +162,17 @@ var TicketmasterEventDiscoveryWidget = function () {
         attr: 'venueid',
         verboseName: 'venueId'
       }, {
-        attr: 'segmentid',
-        verboseName: 'segmentId'
+        attr: 'classificationname',
+        verboseName: 'classificationName'
+      }, {
+        attr: 'city',
+        verboseName: 'city'
+      }, {
+        attr: 'countrycode',
+        verboseName: 'countryCode'
+      }, {
+        attr: 'source',
+        verboseName: 'source'
       }];
 
       for (var i in params) {
@@ -368,6 +377,42 @@ var TicketmasterEventDiscoveryWidget = function () {
       });
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
+
+    /**
+     * Set position center/right
+     *
+     * @param url
+     * @param isAddressCenter - if true : Set address position center/right for oldschool theme 300x250 (proportion :'m')
+     */
+
+  }, {
+    key: 'updateTransition',
+    value: function updateTransition(url, isAddressCenter) {
+      var el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
+      isAddressCenter ? el = this.eventsRootContainer.querySelectorAll(".event-date.centered-logo") : el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
+      if (url !== '') {
+        if (el && !isAddressCenter) {
+          el.classList.add("right-logo");
+          el.classList.remove("centered-logo");
+        } else if (el) {
+          var i = void 0;
+          for (i = 0; i < el.length - 1; i++) {
+            el[i].classList.remove("centered-logo");
+          }
+        }
+      } else {
+        isAddressCenter ? el = this.eventsRootContainer.querySelectorAll(".event-date") : el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
+        if (el && !isAddressCenter) {
+          el.classList.remove("right-logo");
+          el.classList.add("centered-logo");
+        } else if (el) {
+          var _i = void 0;
+          for (_i = 0; _i < el.length - 1; _i++) {
+            el[_i].classList.add("centered-logo");
+          }
+        }
+      }
+    }
   }, {
     key: 'setBuyBtnUrl',
     value: function setBuyBtnUrl() {
@@ -379,6 +424,12 @@ var TicketmasterEventDiscoveryWidget = function () {
 
             if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
               url = event.url;
+            }
+
+            if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
+              this.updateTransition(url, true);
+            } else {
+              this.updateTransition(url);
             }
           }
         }
@@ -490,7 +541,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.widgetRoot.appendChild(legalNotice);
 
       var logo = document.createElement('a');
-      logo.classList.add("event-logo");
+      logo.classList.add("event-logo", "centered-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
       logo.innerHTML = 'Powered by:';
@@ -688,24 +739,24 @@ var TicketmasterEventDiscoveryWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var _i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[_i]);
+      for (var _i2 in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[_i2]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var _i2 in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[_i2]);
+      for (var _i3 in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[_i3]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var _i3 in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[_i3]);
+      for (var _i4 in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[_i4]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -729,8 +780,8 @@ var TicketmasterEventDiscoveryWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var _i4 = 0; eventGroup.length > _i4; _i4++) {
-          eventGroup[_i4].style.marginTop = 0;
+        for (var _i5 = 0; eventGroup.length > _i5; _i5++) {
+          eventGroup[_i5].style.marginTop = 0;
         }
       });
 
@@ -1020,7 +1071,9 @@ var TicketmasterEventDiscoveryWidget = function () {
     key: 'reduceParamsAndReloadEvents',
     value: function reduceParamsAndReloadEvents() {
       var eventReqAttrs = {},
-          reduceParamsList = [['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'], ['segmentId'], ['venueId'], ['keyword'], ['size']];
+          reduceParamsList = [['classificationName'], ['city'], ['countryCode'], ['source'], ['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'],
+      // ['segmentId'],
+      ['venueId'], ['keyword'], ['size']];
 
       // make copy of params
       for (var key in this.eventReqAttrs) {
@@ -1330,7 +1383,7 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
           dateTime = document.createElement("span");
-      dateTime.classList.add("event-date");
+      dateTime.classList.add("event-date", "centered-logo");
       dateTime.appendChild(dateTimeContent);
 
       var dateWraper = document.createElement("span");

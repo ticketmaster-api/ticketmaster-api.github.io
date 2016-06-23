@@ -24,7 +24,6 @@ layout: default
 
                     {% if page.categories[1] == 'changelog'%}
 
-                    <!--{% assign files = site.pages  %}-->
                     {% assign files = site.pages | sort: 'title' , 'last' %}
 
                         {% for file in files %}
@@ -41,6 +40,23 @@ layout: default
 
                     {% endif %}
                 <div class="side-box"></div>
+                    {% if page.categories[1] == 'changelog' or page.categories[1] == 'getting-started' %}
+                        <div id="disqus_thread"></div>
+                        <script>
+                            var disqus_config = function () {
+                                this.page.url = document.URL || "http://developer.ticketmaster.com/";
+                                this.page.identifier = "{{page.title}}";
+                            };
+                            (function() { // DON'T EDIT BELOW THIS LINE
+                                var d = document, s = d.createElement('script');
+
+                                s.src = '//ticketmasterapi.disqus.com/embed.js';
+
+                                s.setAttribute('data-timestamp', +new Date());
+                                (d.head || d.body).appendChild(s);
+                            })();
+                        </script>
+                    {% endif %}
                 </div>
             </div>
         </div>

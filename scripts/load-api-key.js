@@ -26,9 +26,15 @@
         sessionStorage.setItem('tk-api-key', event.data.key);
         sessionStorage.setItem('tk-api-email', event.data.email);
         document.getElementsByClassName("apigee-login")[0].textContent = event.data.email;
+
+        /*add custom login event for widget*/
+        $(window).trigger('login', [{
+          key: event.data.key,
+          email: event.data.email
+        }])
       }
     } else {
-      console.error(origin + " is not allowed");
+      console.warn(origin + " is not allowed");
     }
   };
 

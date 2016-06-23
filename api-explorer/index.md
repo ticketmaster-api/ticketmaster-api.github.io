@@ -1,5 +1,6 @@
 ---
 layout: api-explorer
+category: api-explorer
 ---
 
 <div id="api-explorer">
