@@ -27,7 +27,12 @@ Apps which implement Ticketmaster OAuth are able to have Ticketmaster users auth
 | __Access&nbsp;Token__ | Access tokens are credentials used to access protected resources. An access token is a random string representing an authorization issued to the client. Access tokens represent specific scopes and durations of access, granted by the resource owner, and enforced by the resource server and authorization server.
 | __Refresh&nbsp;Token__ | Refresh tokens are credentials used to obtain access tokens. Refresh tokens are issued to the client by the authorization server and are used to obtain a new access token when the current access token becomes invalid or expires.
 | __Auth&nbsp;Code__ | An intermediate token used in the Authorization Code Grant Flow, generated after the user has successfully provided valid login credentials, and can be exchanged for the actual OAuth tokens (access token & refresh token).
-| __Authorization&nbsp;Code&nbsp;Flow ("three-legged")__ | This flow must take place in a browser. It works by sending the user to a specially crafted URI on the OAuth trusted service (https://oauth.ticketmaster.com), where the user is then able to approve or decline your application's request to access their account.  If approved, the client is redirected to a URI hosted by your application, along with an Authorzation Code. The server which receives the redirected request can then exchange the auth code for the access tokens. This flow is typically what people are thinking of when they talk about OAuth 2.0.
+
+## Authorization Code Flow ("three-legged")
+
+This flow must take place in a browser. It works by sending the user to a specially crafted URI on the OAuth trusted service (https://oauth.ticketmaster.com), where the user is then able to approve or decline your application's request to access their account.  If approved, the client is redirected to a URI hosted by your application, along with an Authorzation Code. The server which receives the redirected request can then exchange the auth code for the access tokens.
+
+This flow is typically what people are thinking of when they talk about OAuth 2.0.
 
 ### Step 1
 {: #step1}
@@ -36,19 +41,20 @@ Create an Authorization URI using the following scheme:
 
 Base URI: `https://oauth.ticketmaster.com/oauth/authorize`
 
-Query Parmaeters:
-+ **client_id**
-+ **redirect_uri**
-+ **response_type = code**
-+ **state** (Optional: Unique identifier to protect against CSRF)
-+ **scope = all**
+Query Parameters:
+
+ + **client_id**
+ + **redirect_uri**
+ + **response_type = code**
+ + **state** (Optional: Unique identifier to protect against CSRF)
+ + **scope = all**
 
 Note, the header `Content-Type: application/x-www-form-urlencoded` must be included when sending this request.
 
 Example (unencoded for readability):
 
 {% highlight bash %}
-https://oauth.ticketmaster.com/oauth/token?client_id=12341234&redirect_uri=http://localhost/oauth/code_callback&scope=all&response_type=code
+GET https://oauth.ticketmaster.com/oauth/token?client_id=12341234&redirect_uri=http://localhost/oauth/code_callback&scope=all&response_type=code
 {% endhighlight %}
 
 ### Step 2
@@ -67,7 +73,7 @@ User logs in to Ticketmaster, and grants your Application permission to access t
 The OAuth API uses a 302 Redirect to send the User back to your `redirect_uri`, including the `?code=` (Auth Code) query parameter:
 
 {% highlight bash %}
-http://localhost/oauth/code_callback?code=1c6b27fd4dbca7390b7d6cbbb8d4e41a5841d123
+GET http://localhost/oauth/code_callback?code=1c6b27fd4dbca7390b7d6cbbb8d4e41a5841d123
 {% endhighlight %}
 
 + **code**
@@ -79,6 +85,14 @@ http://localhost/oauth/code_callback?code=1c6b27fd4dbca7390b7d6cbbb8d4e41a5841d1
 The server handling the request at the `redirect_uri` parses the `?code=` from the query string, and POSTs the auth code to `https://oauth.ticketmaster.com/oauth/token`.  The OAuth API responds with Access Token, Refresh Token, and expiration information.
 
 Note, the header `Content-Type: application/x-www-form-urlencoded` must be included when sending this request.
+
+Query Parameters:
+
++ **client_id**
++ **client_secret**
++ **code = the code you just parsed**
++ **redirect_uri**
++ **grant_type = "authorization_code" [note]**
 
 >[Request](#req)
 >[Response](#res)
@@ -101,12 +115,6 @@ Status 200
 }
 {% endhighlight %}
 
-+ **client_id**
-+ **client_secret**
-+ **code = the code you just parsed**
-+ **redirect_uri**
-+ **grant_type = "authorization_code" [note]**
-
 ## Using Access Tokens
 {: using-access-token}
 
@@ -121,7 +129,8 @@ To create new Access Tokens, use the following procedure:
 
 Base URI: `https://oauth.ticketmaster.com/oauth/token`
 
-Query Parmaeters:
+Query Parameters:
+
 + grant_type = refresh_token
 + client_id
 + client_secret
