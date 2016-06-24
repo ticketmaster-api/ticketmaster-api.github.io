@@ -7,6 +7,7 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#introduction">Introduction</a></li>
+					<li><a href="#data-model">Data Model</a></li>
                     <li><a href="#uri-format">URI Format</a></li>
                     <li><a href="#rate-limit">Rate Limit</a></li>
                     <li><a href="#cors-support">CORS Support</a></li>
@@ -106,7 +107,7 @@
                     {% include partials/changelog-apis.html%}
                 </ul>
                 {% endif %}
-            
+
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v1" %}
 
                 <ul class="sections menu-highlight">
@@ -129,7 +130,7 @@
 
                 {% endif %}
             </li>
-           
+
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
@@ -201,6 +202,26 @@
                     <li><a href="#supported-sources">Supported Sources</a></li>
                     <li><a href="#supported-locales">Supported Locales</a></li>
                     {% include partials/changelog-apis.html%}
+                </ul>
+                {% endif %}
+            </li>
+            <li><a href="/products-and-docs/apis/oauth/">OAuth API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "oauth" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#terminologies">Terminologies</a></li>
+                    <li class="sub-section">
+                        <span class="sub-section-label">Authorization (three-legged)</span>
+                        <ul class="sections menu-highlight">
+                            <li><a href="#step1">Step 1</a></li>
+                            <li><a href="#step2">Step 2</a></li>
+                            <li><a href="#step3">Step 3</a></li>
+                            <li><a href="#step4">Step 4</a></li>
+                            <li><a href="#step5">Step 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#using-access-token">Using Access Token</a></li>
+                    <li><a href="#getting-refresh-tokens">Getting Refresh Tokens</a></li>
                 </ul>
                 {% endif %}
             </li>
@@ -293,4 +314,3 @@
         {% endif %}
     </li>
 </ul>
-
