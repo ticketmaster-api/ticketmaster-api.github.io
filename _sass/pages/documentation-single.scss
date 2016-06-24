@@ -90,6 +90,22 @@
       width: 100%;
     }
   }
+  &.sdks {
+    @media (max-width: 768px) {
+      .tutorials-article  {
+        margin-bottom: 0;
+        .announcement {
+          padding-left: 0;
+        }
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .col-lg-10 {
+        width: 88.33333%;
+      }
+    }
+  }
 }
 
 .grey-box {
@@ -114,9 +130,15 @@
     background-repeat: no-repeat;
     @media #{$max-768} {
       background-image: none;
+      margin-top: 10px;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-left: -15px;
+      width: calc(100% + 30px);
     }
 
     .body {
+      width: 50%;
       @media #{$max-1200} {
         width: 50%;
       }
@@ -126,7 +148,7 @@
     }
     .body+p {
       @media #{$max-768} {
-        text-align: center;
+        text-align: left;
       }
     }
   }
