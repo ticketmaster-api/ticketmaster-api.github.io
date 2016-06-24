@@ -981,6 +981,7 @@ var CONFIG = {
               "fields": [
                 {
                   "id": "ratio",
+                  "showDimension": true,
                   "path": "images",
                   "thumbnail" : { // if thumbnail is shown. if this field is present - image pop-up will show on click
                     "id" : "url", // name of the field with url
