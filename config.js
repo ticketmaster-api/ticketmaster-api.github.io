@@ -1014,12 +1014,6 @@ var CONFIG = {
                       ]
                     }
                   ]
-                },
-                {
-                  "id": "height"
-                },
-                {
-                  "id": "width"
                 }
               ]
             },
