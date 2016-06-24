@@ -511,15 +511,6 @@ Object.byString = function(o, s) {
                         + (subcolumn["fields"][0]["id"] ? (subcolumn["fields"][0]["id"] + ': ') : '') + (destinationDeep[item][subcolumn["fields"][0]["id"]] ? destinationDeep[item][subcolumn["fields"][0]["id"]] : ('#' + item))
                         + dimension
                         + '</a>'); // get specified in config field value from response item
-                        try {
-                            console.log('isThumbnail: ', isThumbnail);
-                            if( subcolumn["fields"][0]["showDimension"] && isThumbnail ) {
-                                (isThumbnail) ? console.log('isThumbnail' , isThumbnail) : console.log(isThumbnail);
-                                console.log('dimension: ', destinationDeep[item]["width"],'x',destinationDeep[item]["height"] );
-                                console.log('subcolumn["fields"][0]["showDimension"]: ', subcolumn["fields"][0]["showDimension"] );
-                            }
-                        }catch(e){}
-
                         listGroup.append(listItem);
                         itemCount++;
                     }
