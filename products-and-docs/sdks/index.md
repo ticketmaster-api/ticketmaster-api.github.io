@@ -13,13 +13,6 @@ keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 # SDKs
 
 
-{: .lead .double-margin}
-Easy integration for iOS and Android.
-
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-
-When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
 {% capture SDKJava_img %}
 /assets/img/products-and-docs/sdk-java-img.png
 {% endcapture %}
@@ -27,7 +20,7 @@ When an unknown printer took a galley of type and scrambled it to make a type sp
 SDK-Java
 {% endcapture %}
 {% capture SDKJava_description %}
-Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
+
 {% endcapture %}
 {% capture SDKJava_link %}
 https://github.com/ticketmaster-api/sdk-java
@@ -40,7 +33,7 @@ https://github.com/ticketmaster-api/sdk-java
 SDK-JavaScript
 {% endcapture %}
 {% capture SDK_JS_description %}
-Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
+
 {% endcapture %}
 {% capture SDK_JS_link %}
 https://github.com/ticketmaster-api/sdk-javascript
@@ -53,7 +46,7 @@ https://github.com/ticketmaster-api/sdk-javascript
 SDK-Scala
 {% endcapture %}
 {% capture SDK_scala_description %}
-Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
+
 {% endcapture %}
 {% capture SDK_scala_link %}
 https://github.com/ticketmaster-api/sdk-scala
