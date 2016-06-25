@@ -13,8 +13,44 @@ keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 # SDKs
 
 
-{: .lead .double-margin}
-Easy integration for iOS and Android.
+{% capture SDKJava_img %}
+/assets/img/products-and-docs/sdk-java-img.png
+{% endcapture %}
+{% capture SDKJava_title %}
+SDK-Java
+{% endcapture %}
+{% capture SDKJava_description %}
+
+{% endcapture %}
+{% capture SDKJava_link %}
+https://github.com/ticketmaster-api/sdk-java
+{% endcapture %}
+
+{% capture SDK_JS_img %}
+/assets/img/products-and-docs/sdk-js-img.png
+{% endcapture %}
+{% capture SDK_JS_title %}
+SDK-JavaScript
+{% endcapture %}
+{% capture SDK_JS_description %}
+
+{% endcapture %}
+{% capture SDK_JS_link %}
+https://github.com/ticketmaster-api/sdk-javascript
+{% endcapture %}
+
+{% capture SDK_scala_img %}
+/assets/img/products-and-docs/sdk-scala-img.png
+{% endcapture %}
+{% capture SDK_scala_title %}
+SDK-Scala
+{% endcapture %}
+{% capture SDK_scala_description %}
+
+{% endcapture %}
+{% capture SDK_scala_link %}
+https://github.com/ticketmaster-api/sdk-scala
+{% endcapture %}
 
 {% capture manager %}
 ### Account Manager
@@ -29,9 +65,54 @@ season tickets all in one trusted place.
 
 {% endcapture %}
 
+
+
+<div class="raw" markdown="1"> 
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
+      <div class="tutorials-article">                
+              <a href=" tutorials.link "><img src=" {{ SDKJava_img }} " class="image" alt="{{ SDKJava_title }}"/></a>                
+          <div class="announcement">
+              <h3>{{ SDKJava_title }}</h3>
+              <p>{{ SDKJava_description }}</p>
+              <a class="button button-blue" href="{{ SDKJava_link }}">Learn more</a>              
+          </div>                
+      </div>
+  </div>
+  <div class="clearfix" ></div>
+</div>
+
+<div class="raw" markdown="1"> 
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 double-margin-top">        
+      <div class="tutorials-article">                
+              <a href=" tutorials.link "><img src=" {{ SDK_JS_img }} " class="image" alt="{{ SDK_JS_title }}"/></a>                
+          <div class="announcement">
+              <h3>{{ SDK_JS_title }}</h3>
+              <p>{{ SDK_JS_description }}</p>
+              <a class="button button-blue" href="{{ SDK_JS_link }}">Learn more</a>              
+          </div>                
+      </div>
+  </div>
+  <div class="clearfix" ></div>
+</div>
+
+<div class="raw" markdown="1"> 
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
+      <div class="tutorials-article">                
+              <a href=" tutorials.link "><img src=" {{ SDK_scala_img }} " class="image" alt="{{ SDK_scala_title }}"/></a>                
+          <div class="announcement">
+              <h3>{{ SDK_scala_title }}</h3>
+              <p>{{ SDK_scala_description }}</p>
+              <a class="button button-blue" href="{{ SDK_scala_link }}">Learn more</a>              
+          </div>                
+      </div>
+  </div>
+  <div class="clearfix" ></div>
+</div>
+
 <div class="grey-box android" markdown="1">
 {{manager}}
 </div>
+
 
 <div id="disqus_thread" style="margin-top: 50px;"></div>
 <script>
