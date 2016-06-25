@@ -19,7 +19,7 @@ redirect_from:
 {: .version-button }
 [V 1.0]({{"/products-and-docs/apis/discovery/v1/" | prepend: site.baseurl}})
 
-Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to all Ticketmaster events, as well as Universe and TicketWeb events.
+Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to content sourced from various platform, including Ticketmaster, Universe, FrontGate Tickets and TMR. The content spans over seven countries including USA, UK, Mexico, Canada, Australia, New Zeleand and Ireland. More content and sources are added to the Discovery API daily.
 {: .lead .article}
 
 #### Developer Console
