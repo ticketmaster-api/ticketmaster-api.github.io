@@ -721,7 +721,7 @@ input[type=range]:focus::-ms-fill-upper {
 // this supports visualizing fixed elements in iOS devices - important!
 @mixin transform-3d(){
   @media (-webkit-min-device-pixel-ratio: 2){
-    -webkit-transform: translate3d(0px,0px,0px);
+    /* -webkit-transform: translate3d(0px,0px,0px); */
   }
 }
 
