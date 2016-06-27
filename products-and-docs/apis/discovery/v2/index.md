@@ -4100,7 +4100,7 @@ Rate-Limit: 5000
 {: .article #supported-country-codes}
 This the [ISO Alpha-2 Code](https://en.wikipedia.org/wiki/ISO_3166-1) country values:
 
-| Source				|
+| Country Code		|
 |:----------------------|
 | AU (Australia)		|
 | CA (Canada)			|
@@ -4240,6 +4240,7 @@ Markets can be used to filter events by larger regional demographic groupings. E
 | Source	|
 |:----------|
 | ticketmaster	|
+| tmr (ticketmaster resale platform) |
 | universe	|
 | frontgate |
 
