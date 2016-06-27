@@ -603,6 +603,22 @@ div[w-theme="calendar"] #weekSсheduler .days .popup {
     border-radius: 4px;
 }
 
+div[w-theme="calendar"] #weekSсheduler .days .popup-up {
+    width: 265px;
+    height: 185px;
+    overflow: hidden;
+    padding: 13px 10px;
+    position: absolute;
+    background: #768692;
+    color: #fff;
+    left: 0;
+    bottom: 24px;
+    z-index: 10;
+    display: none;
+    text-align: left;
+    border-radius: 4px;
+}
+
 div[w-theme="calendar"] #weekSсheduler .days .tail {
     width:10px;
     height: 5px;
@@ -612,8 +628,19 @@ div[w-theme="calendar"] #weekSсheduler .days .tail {
     display: none;
     z-index: 10;
 }
+
+div[w-theme="calendar"] #weekSсheduler .days .tail-up {
+    width:10px;
+    height: 5px;
+    display: block;
+    position: absolute;
+    margin: -17px 0 0 2px;
+    display: none;
+    z-index: 10;
+}
+
 div[w-theme="calendar"] #weekSсheduler .days .tail:before {
-    content: "\A";
+    content: " ";
     display: block;
     width: 0;
     height: 0;
@@ -624,7 +651,20 @@ div[w-theme="calendar"] #weekSсheduler .days .tail:before {
     top: -5px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event {
+div[w-theme="calendar"] #weekSсheduler .days .tail-up:before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #768692 transparent transparent transparent;
+    position: absolute;
+    top: -5px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event {
     display: block;
     overflow: hidden;
     border-bottom: 1px solid rgba(65, 65, 65, 0.2);
@@ -632,13 +672,15 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event {
     margin-bottom: 10px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event:last-child {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event:last-child,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event:last-child {
     border-bottom: 0;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .img {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .img,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .img {
     width: 30px;
     height: 30px;
     float: left;
@@ -647,13 +689,16 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .img {
     margin-top: 2px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder {
     overflow: hidden;
     display: block;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name,
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:hover {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:hover,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .name,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .name:hover {
     font-family: "TMSans-Bold";
     font-size: 14px;
     line-height: 18px;
@@ -667,7 +712,8 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:
     -webkit-line-clamp: 2;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .date {
     font-family: "TMSans-Bold";
     font-size: 11px;
     line-height: 14px;
@@ -677,7 +723,8 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date 
     margin-bottom: 4px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .place {
     font-family: "TMSans-Light";
     font-size: 11px;
     line-height: 14px;
@@ -686,12 +733,14 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place
     display: block;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup:focus {
+div[w-theme="calendar"] #weekSсheduler .days .popup:focus,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up:focus {
     outline: none;
     border: none;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup.show {
+div[w-theme="calendar"] #weekSсheduler .days .popup.show,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up.show {
     display: block;
 }
 
@@ -749,6 +798,17 @@ div[w-theme="calendar"] #weekSсheduler .ss-scroll {
 
 div[w-theme="calendar"] #weekSсheduler .ss-container:hover .ss-scroll {
     opacity: 1;
+}
+
+div[w-theme="calendar"] #weekSсheduler .popup .ss-content,
+div[w-theme="calendar"] #weekSсheduler .popup-up .ss-content {
+    width: 120% !important;
+}
+
+div[w-theme="calendar"] #weekSсheduler .popup .ss-scroll,
+div[w-theme="calendar"] #weekSсheduler .popup-up .ss-scroll {
+    right: -243px !important;
+    background-color: rgba(255,255,255,0.2);
 }
 
 div[w-theme="calendar"] #weekSсheduler .ss-grabbed {

@@ -1457,18 +1457,19 @@ class WeekScheduler {
             "size": "25",
             "radius": "25",
             "latlong": "34.0390107,-118.2672801",
-            "startDateTime": "2016-06-19T00:00:00Z",
-            "endDateTime": "2016-06-25T23:59:59Z"
+            "startDateTime": "2016-06-27T00:00:00Z",
+            "endDateTime": "2016-07-02T23:59:59Z"
         }
     }
 
     addScroll() {
         (function(n,t){function u(n){n.hasOwnProperty("data-simple-scrollbar")||Object.defineProperty(n,"data-simple-scrollbar",new SimpleScrollbar(n))}function e(n,i){function f(n){var t=n.pageY-u;u=n.pageY;r(function(){i.el.scrollTop+=t/i.scrollRatio})}function e(){n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove",f);t.removeEventListener("mouseup",e)}var u;n.addEventListener("mousedown",function(i){return u=i.pageY,n.classList.add("ss-grabbed"),t.body.classList.add("ss-grabbed"),t.addEventListener("mousemove",f),t.addEventListener("mouseup",e),!1})}function i(n){for(this.target=n,this.bar='<div class="ss-scroll">',this.wrapper=t.createElement("div"),this.wrapper.setAttribute("class","ss-wrapper"),this.el=t.createElement("div"),this.el.setAttribute("class","ss-content"),this.wrapper.appendChild(this.el);this.target.firstChild;)this.el.appendChild(this.target.firstChild);this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend",this.bar);this.bar=this.target.lastChild;e(this.bar,this);this.moveBar();this.el.addEventListener("scroll",this.moveBar.bind(this));this.el.addEventListener("mouseenter",this.moveBar.bind(this));this.target.classList.add("ss-container")}function f(){for(var i=t.querySelectorAll("*[ss-container]"),n=0;n<i.length;n++)u(i[n])}var r=n.requestAnimationFrame||n.setImmediate||function(n){return setTimeout(n,0)};i.prototype={moveBar:function(){var t=this.el.scrollHeight,i=this.el.clientHeight,n=this;this.scrollRatio=i/t;r(function(){n.bar.style.cssText="height:"+i/t*100+"%; top:"+n.el.scrollTop/t*100+"%;right:-"+(n.target.clientWidth-n.bar.clientWidth)+"px;"})}};t.addEventListener("DOMContentLoaded",f);i.initEl=u;i.initAll=f;n.SimpleScrollbar=i})(window,document)
-        // var scrollRoot = document.getElementsByClassName("ss")[0];
-        var scrollRoot = document.querySelectorAll('.ss');
-        scrollRoot.forEach(function(item) {
-            SimpleScrollbar.initEl(item);
-        });
+        var scrollRoot = document.querySelectorAll(".ss");
+        var maxL = scrollRoot.length;
+        for (let ml = 0; ml < maxL; ml++) {
+            console.log(scrollRoot[ml]);
+            SimpleScrollbar.initEl(scrollRoot[ml]);
+        }
     }
 
     getJSON(handler, url=this.apiUrl, attrs={}, method="GET"){
@@ -1593,12 +1594,19 @@ class WeekScheduler {
                         timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
                         for (let e = 0, l = weekEvents.length; e < l; ++e) {
-                            if (weekEvents[e].date == dateTmp && weekEvents[e].time == timeTmp) {
+                            if (weekEvents[e].date == dateTmp && weekEvents[e].time.substring(0,2) == timeTmp.substring(0,2)) {
                                 if (dayCount == 0) {
                                     timeDiv += '<span class="round"></span>';
-                                    timeDiv += '<span class="tail"></span>';
-                                    timeDiv += '<div class="popup ss" tabindex="-1">';
-                                    timeDiv += '<div class="ss-container">';
+                                    if (weekEvents[e].time.substring(0,2) < 18) {
+                                        timeDiv += '<span class="tail"></span>';
+                                        timeDiv += '<div class="popup ss" tabindex="-1">';
+                                        timeDiv += '<div class="ss-container">';
+                                    }
+                                    else {
+                                        timeDiv += '<span class="tail-up"></span>';
+                                        timeDiv += '<div class="popup-up ss" tabindex="-1">';
+                                        timeDiv += '<div class="ss-container">';
+                                    }
                                     dayCount = 1;
                                 }
                                 timeDiv += '<span class="event">';
@@ -1634,16 +1642,20 @@ class WeekScheduler {
         var rounds = document.querySelectorAll("span.round");
         for (var x = 0; x < rounds.length; x++) {
             rounds[x].addEventListener("click", function (e) {
+                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "visible";
+                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "visible";
                 this.nextElementSibling.classList.add("show");
                 this.nextElementSibling.nextElementSibling.classList.add("show");
                 this.nextElementSibling.nextElementSibling.focus();
             }, false);
         }
 
-        var popups = document.querySelectorAll(".popup");
+        var popups = document.querySelectorAll(".popup, .popup-up");
         for (var y = 0; y < popups.length; y++) {
             popups[y].addEventListener("blur", function (e) {
                 let self = this;
+                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "hidden";
+                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "auto";
                 setTimeout(function () {
                     self.previousElementSibling.classList.remove("show");
                     self.classList.remove("show");

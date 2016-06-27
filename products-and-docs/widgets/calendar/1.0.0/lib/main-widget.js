@@ -1496,11 +1496,12 @@ var WeekScheduler = function () {
                         });
                     } };t.addEventListener("DOMContentLoaded", f);i.initEl = u;i.initAll = f;n.SimpleScrollbar = i;
             })(window, document);
-            // var scrollRoot = document.getElementsByClassName("ss")[0];
-            var scrollRoot = document.querySelectorAll('.ss');
-            scrollRoot.forEach(function (item) {
-                SimpleScrollbar.initEl(item);
-            });
+            var scrollRoot = document.querySelectorAll(".ss");
+            var maxL = scrollRoot.length;
+            for (var ml = 0; ml < maxL; ml++) {
+                console.log(scrollRoot[ml]);
+                SimpleScrollbar.initEl(scrollRoot[ml]);
+            }
         }
     }, {
         key: "getJSON",
@@ -1632,12 +1633,18 @@ var WeekScheduler = function () {
                             timeDiv += "<div class=\"d d-" + d + "\" w-date=\"" + dateTmp + "\" w-time=\"" + zeroLead + _i5 + ":00:00\">";
 
                             for (var e = 0, l = weekEvents.length; e < l; ++e) {
-                                if (weekEvents[e].date == dateTmp && weekEvents[e].time == timeTmp) {
+                                if (weekEvents[e].date == dateTmp && weekEvents[e].time.substring(0, 2) == timeTmp.substring(0, 2)) {
                                     if (dayCount == 0) {
                                         timeDiv += '<span class="round"></span>';
-                                        timeDiv += '<span class="tail"></span>';
-                                        timeDiv += '<div class="popup ss" tabindex="-1">';
-                                        timeDiv += '<div class="ss-container">';
+                                        if (weekEvents[e].time.substring(0, 2) < 18) {
+                                            timeDiv += '<span class="tail"></span>';
+                                            timeDiv += '<div class="popup ss" tabindex="-1">';
+                                            timeDiv += '<div class="ss-container">';
+                                        } else {
+                                            timeDiv += '<span class="tail-up"></span>';
+                                            timeDiv += '<div class="popup-up ss" tabindex="-1">';
+                                            timeDiv += '<div class="ss-container">';
+                                        }
                                         dayCount = 1;
                                     }
                                     timeDiv += '<span class="event">';
@@ -1671,16 +1678,20 @@ var WeekScheduler = function () {
             var rounds = document.querySelectorAll("span.round");
             for (var x = 0; x < rounds.length; x++) {
                 rounds[x].addEventListener("click", function (e) {
+                    document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "visible";
+                    document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "visible";
                     this.nextElementSibling.classList.add("show");
                     this.nextElementSibling.nextElementSibling.classList.add("show");
                     this.nextElementSibling.nextElementSibling.focus();
                 }, false);
             }
 
-            var popups = document.querySelectorAll(".popup");
+            var popups = document.querySelectorAll(".popup, .popup-up");
             for (var y = 0; y < popups.length; y++) {
                 popups[y].addEventListener("blur", function (e) {
                     var self = this;
+                    document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "hidden";
+                    document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "auto";
                     setTimeout(function () {
                         self.previousElementSibling.classList.remove("show");
                         self.classList.remove("show");
@@ -1757,8 +1768,8 @@ var WeekScheduler = function () {
                 "size": "25",
                 "radius": "25",
                 "latlong": "34.0390107,-118.2672801",
-                "startDateTime": "2016-06-19T00:00:00Z",
-                "endDateTime": "2016-06-25T23:59:59Z"
+                "startDateTime": "2016-06-27T00:00:00Z",
+                "endDateTime": "2016-07-02T23:59:59Z"
             };
         }
     }]);
