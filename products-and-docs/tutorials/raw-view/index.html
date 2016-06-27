@@ -1,3 +1,10 @@
 <script>
-    document.write("<pre>" + window.sessionStorage.getItem("content")+ "</pre>");
+    function escapeHTML( string )
+    {
+        var pre = document.createElement('pre');
+        var text = document.createTextNode( string );
+        pre.appendChild(text);
+        return pre.innerHTML;
+    }
+    document.write("<pre><code>" + escapeHTML(window.sessionStorage.getItem("content")) + "</code></pre>");
 </script>
