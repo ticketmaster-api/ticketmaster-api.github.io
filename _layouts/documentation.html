@@ -23,7 +23,7 @@ layout: default
                 <div class="content" style="display: block;">
 
                     {% if page.categories[1] == "generated" %}
-                        {% comment %}{% include swagger.html %}{% endcomment %}
+                        {% include swagger.html %}
                     {% else %}
                         {{ content }}
                     {% endif %}

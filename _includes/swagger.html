@@ -49,6 +49,39 @@
 {% endcomment %}
 -->
 
+{% comment %}
+<!--sort by order_list -->
+{% assign inList = false %}
+{% assign contEmpty = 0 %}
+{% assign order_list_length =  methodsDescription.list | size  %}
+
+{% for route in swagger.paths %}
+    <!---->
+    <!--//show item in list first-->
+    {% if inList == false and order_list_length > 0 %}
+        {% for listTag in methodsDescription.list %}
+        <p>in order_list : {{listTag}}</p>
+        {% if forloop.index < forloop.length %}{% assign inList = true %}{% endif %}
+        {% endfor %}
+        <p> ** listIsFinish : {{inList}}</p>
+    {% endif %}
+
+
+    <!--//show item that not in list-->
+    {% for tag in methodsDescription.list %}
+        {% if tag != route[0] %}
+        {% assign contEmpty  = contEmpty | plus: 1 %}
+            {% if contEmpty == order_list_length  %}
+                <p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% assign contEmpty = 0 %}
+    <!---->
+{% endfor %}
+<!--order end-->
+{% endcomment %}
+
 {% for route in swagger.paths %}
 
     {% for tag in methodsDescription.method %}
@@ -59,6 +92,8 @@
             {% assign _codePath = tag.codePath %}
             {% assign _preContent = tag.preContent %}
             {% assign _postContent = tag.postContent %}
+
+
         {% endif %}
     {% endfor %}
 

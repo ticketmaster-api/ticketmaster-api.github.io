@@ -28,5 +28,11 @@
             "reqres": "swagger/reqres-search-events.md",
             "codePath":"swagger/search-events.md"
         }
+    ],
+    "list": [
+        "/discovery/v2/attractions/legacy",
+        "/discovery/v2/attractions/{id}",
+        "/discovery/v2/attractions/legacy/{id}",
+        "/discovery/v2/attractions"
     ]
 }
