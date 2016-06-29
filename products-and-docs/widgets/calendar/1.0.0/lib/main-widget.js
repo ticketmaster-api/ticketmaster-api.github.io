@@ -1499,7 +1499,6 @@ var WeekScheduler = function () {
             var scrollRoot = document.querySelectorAll(".ss");
             var maxL = scrollRoot.length;
             for (var ml = 0; ml < maxL; ml++) {
-                console.log(scrollRoot[ml]);
                 SimpleScrollbar.initEl(scrollRoot[ml]);
             }
         }
@@ -1571,7 +1570,6 @@ var WeekScheduler = function () {
             if (this && this.readyState == XMLHttpRequest.DONE) {
                 if (this.status == 200) {
                     events = JSON.parse(this.responseText);
-                    // console.log(events._embedded.events);
                     events._embedded.events.forEach(function (item) {
                         if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
                         if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
@@ -1597,7 +1595,34 @@ var WeekScheduler = function () {
                         });
                     });
 
-                    // console.log(weekEvents);
+                    var tDate = weekEvents[0].date;
+                    var count = 0;
+                    var ctrl = 0;
+                    for (var e = 0, l = weekEvents.length; e < l; ++e) {
+                        if (tDate != weekEvents[e].date) {
+                            weekEvents[e].count = 1;
+                            tDate == weekEvents[e].date;
+                        } else {
+                            weekEvents[e].count = null;
+                        }
+                        /*
+                        if (tDate == weekEvents[e].date) {
+                            weekEvents[e].count = count;
+                            count++;
+                        }
+                        else {
+                            let countSum = count;
+                            for (let i=e; i<=(e-count); i--) {
+                                weekEvents[i].count = countSum;
+                            }
+                            tDate = weekEvents[e].date;
+                            count = 0;
+                            weekEvents[e].count = count;
+                        }
+                        */
+                    }
+
+                    console.log(weekEvents);
 
                     var current = new Date();
                     var weekstart = current.getDate() - current.getDay();
@@ -1616,6 +1641,7 @@ var WeekScheduler = function () {
                     var timeTmp = '';
                     var monthTmp = '';
                     var timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+
                     for (var _i5 = 13; _i5 <= 23; _i5++) {
                         if (_i5 <= 9) {
                             zeroLead = '0';
@@ -1632,11 +1658,11 @@ var WeekScheduler = function () {
                             var dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
                             timeDiv += "<div class=\"d d-" + d + "\" w-date=\"" + dateTmp + "\" w-time=\"" + zeroLead + _i5 + ":00:00\">";
 
-                            for (var e = 0, l = weekEvents.length; e < l; ++e) {
-                                if (weekEvents[e].date == dateTmp && weekEvents[e].time.substring(0, 2) == timeTmp.substring(0, 2)) {
+                            for (var _e = 0, _l = weekEvents.length; _e < _l; ++_e) {
+                                if (weekEvents[_e].date == dateTmp && weekEvents[_e].time.substring(0, 2) == timeTmp.substring(0, 2)) {
                                     if (dayCount == 0) {
                                         timeDiv += '<span class="round"></span>';
-                                        if (weekEvents[e].time.substring(0, 2) < 18) {
+                                        if (weekEvents[_e].time.substring(0, 2) < 18) {
                                             timeDiv += '<span class="tail"></span>';
                                             timeDiv += '<div class="popup ss" tabindex="-1">';
                                             timeDiv += '<div class="ss-container">';
@@ -1649,12 +1675,12 @@ var WeekScheduler = function () {
                                     }
                                     timeDiv += '<span class="event">';
                                     timeDiv += '<span class="event-holder">';
-                                    timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
-                                    timeDiv += '<span class="img" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>';
-                                    timeDiv += '<span class="name">' + weekEvents[e].name + '</span>';
+                                    timeDiv += '<a href="' + weekEvents[_e].url + '" target="_blank">';
+                                    timeDiv += '<span class="img" style="background: url(' + weekEvents[_e].img + ') center center no-repeat"></span>';
+                                    timeDiv += '<span class="name">' + weekEvents[_e].name + '</span>';
                                     timeDiv += '</a>';
-                                    timeDiv += '<span class="date">' + weekEvents[e].datetime + '</span>';
-                                    timeDiv += '<span class="place">' + weekEvents[e].place + '</span>';
+                                    timeDiv += '<span class="date">' + weekEvents[_e].datetime + '</span>';
+                                    timeDiv += '<span class="place">' + weekEvents[_e].place + '</span>';
                                     timeDiv += '</span>';
                                     timeDiv += '</span>';
                                 }

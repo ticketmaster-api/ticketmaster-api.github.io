@@ -1467,7 +1467,6 @@ class WeekScheduler {
         var scrollRoot = document.querySelectorAll(".ss");
         var maxL = scrollRoot.length;
         for (let ml = 0; ml < maxL; ml++) {
-            console.log(scrollRoot[ml]);
             SimpleScrollbar.initEl(scrollRoot[ml]);
         }
     }
@@ -1532,7 +1531,6 @@ class WeekScheduler {
         if (this && this.readyState == XMLHttpRequest.DONE) {
             if (this.status == 200) {
                 events = JSON.parse(this.responseText);
-                // console.log(events._embedded.events);
                 events._embedded.events.forEach(function (item) {
                     if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
                     if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
@@ -1554,11 +1552,31 @@ class WeekScheduler {
                         'datetime': widget.formatDate({day: item.dates.start.localDate, time: item.dates.start.localTime}),
                         'place': place + ', ' + address,
                         'url': item.url,
-                        'img': item.images[index].url
+                        'img': item.images[index].url,
+                        'count': 0
                     });
                 });
 
-                // console.log(weekEvents);
+                let tDate = weekEvents[0].date;
+                let count = 0;
+
+                for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                    if (tDate == weekEvents[e].date) {
+                        weekEvents[e].count = count;
+                        count++;
+                    }
+                    else {
+                        let countSum = count;
+                        for (let i=e; i<=(e-count); i--) {
+                            weekEvents[i].count = countSum;
+                        }
+                        tDate = weekEvents[e].date;
+                        count = 0;
+                        weekEvents[e].count = count;
+                    }
+                }
+
+                console.log(weekEvents);
 
                 var current = new Date();
                 var weekstart = current.getDate() - current.getDay();
@@ -1577,6 +1595,7 @@ class WeekScheduler {
                 let timeTmp = '';
                 let monthTmp = '';
                 let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+
                 for (let i = 13; i <= 23; i++) {
                     if (i <= 9) {
                         zeroLead = '0';
