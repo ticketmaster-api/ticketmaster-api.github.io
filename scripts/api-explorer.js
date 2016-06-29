@@ -509,7 +509,7 @@ Object.byString = function(o, s) {
                         + '>' + (isThumbnail ? ('<img class="subcolumn-thumbnail" src="' // if there is thumbnail
                         + (thumbNailPath ? (Object.byString(destinationDeep[item], thumbNailPath)[subcolumn["fields"][0]["thumbnail"]["id"]] + '">') : destinationDeep[item][subcolumn["fields"][0]["thumbnail"]["id"]] + '">')) : '') // if thumbnail has its own destination
                         + (subcolumn["fields"][0]["id"] ? (subcolumn["fields"][0]["id"] + ': ') : '') + (destinationDeep[item][subcolumn["fields"][0]["id"]] ? destinationDeep[item][subcolumn["fields"][0]["id"]] : ('#' + item))
-                        + dimension
+                        + '</br>' + dimension
                         + '</a>'); // get specified in config field value from response item
                         listGroup.append(listItem);
                         itemCount++;
