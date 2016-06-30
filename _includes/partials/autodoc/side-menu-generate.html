@@ -1,0 +1,47 @@
+{% assign pageMetaFolder        = page.categories[2] %}
+{% assign pageMetaVersionFolder = page.categories[3] %}
+{% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
+{% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
+{% if swagger.paths.size > 0 %}
+    <ul class="sections menu-highlight">
+        {% if swagger.host or swagger.basePath %}
+        <li><a href="#overview">Overview</a></li>
+        {% endif %}
+        {% for route in swagger.paths %}
+
+            {% for tag in methodsDescription.method %}
+                {% if tag.pathsParent == route[0] %}
+                    {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+                    {% assign _title = tag.title %}
+                    {% assign _reqres = tag.reqres %}
+                    {% assign _codePath = tag.codePath %}
+                {% endif %}
+            {% endfor %}
+
+            {% assign indexLoop = forloop.index0 %}
+
+            {% for method in route[1] %}
+            <li><a href="{% if _id %}{{ _id | prepend: '#'}}{% else %}{{ method[1].summary
+                            | lstrip
+                            | downcase
+                            | replace: ' ' , '-'
+                            | replace: '[' , '-'
+                            | replace: ']' , '-'
+                            | replace: '/' , '-'
+                            | replace: '\' , '-'
+                            | replace: '(' , '-'
+                            | replace: ')' , '-'
+                            | prepend: '#'
+                            | append: '-'
+                            | append: indexLoop
+                            | append: '-'
+                            | append: page.categories[3] }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary | lstrip }}{% endif %}</a></li>
+            {% endfor %}
+            {% comment %}<!--Clear meta data -->{% endcomment %}
+            {% assign _id = tag.id %}
+            {% assign _title = tag.title %}
+            {% assign _reqres = tag.resreq %}
+            {% assign _codePath = tag.codePath %}
+        {% endfor %}
+    </ul>
+{% endif %}
