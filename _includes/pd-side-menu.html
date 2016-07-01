@@ -317,9 +317,61 @@
         <h4><a href="/products-and-docs/tutorials/" {% if page.categories[1] == "tutorials" %} class="active" {% endif %} >Tutorials</a></h4>
         {% if page.categories[1] == "tutorials" or page.categories[0] == "tutorials" %}
         <ul class="categories">
-            <li><a href="/products-and-docs/tutorials/events-search/" {% if page.categories[2] == "events-search-tutorials" or page.categories[1] == "tutorials-events-search" %} class="active" {% endif %} >Events Search</a></li>
-            <li><a href="/products-and-docs/tutorials/widgets/" {% if page.categories[2] == "widgets-tutorials" or page.categories[1] == "tutorials-widgets" %} class="active" {% endif %} >Widgets</a></li>
+            <li>
+                <a href="/products-and-docs/tutorials/events-search/" {% if page.categories[2] == "events-search-tutorials" or page.categories[1] == "tutorials-events-search" %} class="active" {% endif %} >Events Search</a>
+                <ul class="sections menu-highlight sd-tags-list"></ul>
+            </li>
+            <li>
+                <a href="/products-and-docs/tutorials/widgets/" {% if page.categories[2] == "widgets-tutorials" or page.categories[1] == "tutorials-widgets" %} class="active" {% endif %} >Widgets</a>
+                <ul class="sections menu-highlight sd-tags-list"></ul>
+            </li>
         </ul>
         {% endif %}
     </li>
 </ul>
+
+<script>
+    $(document).ready(function () {
+
+        var uniqueUpcoming = [].map.call($(".tag-btn"), function(item){
+            return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';
+        }).filter( function(value, index, self) {
+            return self.indexOf(value) === index;
+        }).join("");
+
+        if(uniqueUpcoming !== ""){
+            $(".categories>li>a.active + .sd-tags-list").append(uniqueUpcoming);
+        }
+
+        var PartnerTagClickHandler = function() {
+            var currentItem = this.textContent;
+            var isActive = $(this).hasClass('active');
+            if(isActive){
+                $(".tag-btn, .tag-menu-btn").removeClass("active");
+                $(".tutorials-article").show();
+                if(this.tagName.toUpperCase() == "BUTTON"){
+                    this.blur();
+                }
+
+            }else{
+                $(".tag-btn").add(".tag-menu-btn").removeClass("active").map(function(){
+                    if (this.textContent == currentItem) {
+                        return this;
+                    }
+                }).addClass("active");
+
+                $(".tutorials-article").show().filter(function() {
+                    return $(this).find(".tag-btn.active").size() === 0;
+                }).hide();
+            }
+
+
+        };
+
+        $(".tutorials-article").on("click", ".tag-btn", PartnerTagClickHandler);
+        $(".categories").on("click", ".tag-menu-btn", PartnerTagClickHandler);
+    });
+
+
+
+</script>

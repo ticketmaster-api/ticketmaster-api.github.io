@@ -91,11 +91,9 @@
       &.active,
       &.active:hover,
       &:focus {
-        /*
         background: $p1;
         color: $white;
         cursor: inherit;
-        */
       }
     }
   }
@@ -131,6 +129,10 @@
 }
 
 .tutorials {
+  .tag-menu-btn.active{
+    text-decoration: none;
+    color: $p1a;
+  }
   .window-title {
     display: none;
   }
