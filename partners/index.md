@@ -94,7 +94,7 @@ Have questions about our affiliate program? [Check out our FAQs!](/support/faq/#
 
 {% capture certified_more %}
 {: .caption}
-Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
+At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s Ticketing Services; that’s why we’ve created the Nexus Certified Partner Program. Our goal is to work with best in breed solution providers.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
