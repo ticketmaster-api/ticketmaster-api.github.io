@@ -63,7 +63,7 @@ Several words about startups and developers section. Main function and so on inf
 
 {% capture distribution_more %}
 {: .caption}
-Description information about Distribution Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
+Dedicated to the mission to promote and sell client tickets through a variety of new storefronts. We enable this through content and transactional solutions, building amazing user experiences with our partners to delight Fans and drive sales.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
