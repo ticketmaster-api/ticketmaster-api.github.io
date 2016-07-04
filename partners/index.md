@@ -34,7 +34,7 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 ### Startups &amp; Developers
 
 {: .descr}
-Several words about startups and developers section. Main function and so on information
+The best startups based on the Ticketmaster API.
 
 [See all showcases](/partners/startups-and-developers/)
 {% endcapture %}
