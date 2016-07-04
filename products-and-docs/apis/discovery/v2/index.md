@@ -19,7 +19,7 @@ redirect_from:
 {: .version-button }
 [V 1.0]({{"/products-and-docs/apis/discovery/v1/" | prepend: site.baseurl}})
 
-Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to content sourced from various platform, including Ticketmaster, Universe, FrontGate Tickets and TMR. The content spans over seven countries including USA, UK, Mexico, Canada, Australia, New Zeleand and Ireland. More content and sources are added to the Discovery API daily.
+Search and look up events, attractions, venues and classifications across all supported sources, markets and locales.
 {: .lead .article}
 
 #### Developer Console
@@ -35,13 +35,48 @@ Make live API calls right now in the interactive docs:
 
 ### Authentication
 
-To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
+To run a successful API call, you will need to pass your API Key in the `apikey` query parameter. **Your API Key should automatically appear in all URLs throughout this portal**.
 
 Example: `https://app.ticketmaster.com/discovery/v2/events.json?{apikey}`
 
+Without a valid API Key, you will receive a `401` Status Code with the following response:
+
+	{
+	    "fault": {
+	        "faultstring": "Invalid ApiKey",
+	        "detail": {
+	            "errorcode": "oauth.v2.InvalidApiKey"
+	        }
+	    }
+	}
+
 ### Root URL
 
-`https://app.ticketmaster.com/discovery/{API version}`
+`https://app.ticketmaster.com/discovery/v2/`
+
+### Event Sources
+
+The API provides access to content sourced from various platform, including **Ticketmaster**, **Universe**, **FrontGate Tickets** and **Ticketmaster Resale** (TMR). By default, the API returns events from all sources. To specify a specifc source(s), use the `&source=` parameter. Multiple, comma separated values are OK. 
+
+### Event Coverage
+
+With over 113K+ events available in the API, coverage spans all of the following countries: **United States**, **United Kingdom**, **Ireland**, **Australia**, **New Zealand**, **Mexico** and **Canada**. More events and more countries are added on continious basis.
+
+![event map](/assets/img/products-and-docs/map.png)
+
+### Examples
+
+**Get a list of all events in the United States**
+`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&{apikey}`
+
+**Search for events sourced by Universe in the United States with keyword "devjam"**
+`https://app.ticketmaster.com/discovery/v2/events.json?keyword=devjam&source=universe&countryCode=US&{apikey}`
+
+**Search for music events in the Los Angeles area**
+`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&{apikey}`
+
+**Get a list of all events for Adele in Canada**
+`https://app.ticketmaster.com/discovery/v2/events.json?attractionId=K8vZ917Gku7&countryCode=CA&{apikey}`
 
 
 ## Search Events
@@ -4065,7 +4100,7 @@ Rate-Limit: 5000
 {: .article #supported-country-codes}
 This the [ISO Alpha-2 Code](https://en.wikipedia.org/wiki/ISO_3166-1) country values:
 
-| Source				|
+| Country Code		|
 |:----------------------|
 | AU (Australia)		|
 | CA (Canada)			|
@@ -4205,6 +4240,7 @@ Markets can be used to filter events by larger regional demographic groupings. E
 | Source	|
 |:----------|
 | ticketmaster	|
+| tmr (ticketmaster resale platform) |
 | universe	|
 | frontgate |
 
