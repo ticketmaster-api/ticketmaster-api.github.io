@@ -19,7 +19,7 @@ redirect_from:
 {: .version-button }
 [V 1.0]({{"/products-and-docs/apis/discovery/v1/" | prepend: site.baseurl}})
 
-Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to all Ticketmaster events, as well as Universe and TicketWeb events.
+Search and look up events, attractions, venues and classifications across all supported sources, markets and locales.
 {: .lead .article}
 
 #### Developer Console
@@ -35,13 +35,48 @@ Make live API calls right now in the interactive docs:
 
 ### Authentication
 
-To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
+To run a successful API call, you will need to pass your API Key in the `apikey` query parameter. **Your API Key should automatically appear in all URLs throughout this portal**.
 
 Example: `https://app.ticketmaster.com/discovery/v2/events.json?{apikey}`
 
+Without a valid API Key, you will receive a `401` Status Code with the following response:
+
+	{
+	    "fault": {
+	        "faultstring": "Invalid ApiKey",
+	        "detail": {
+	            "errorcode": "oauth.v2.InvalidApiKey"
+	        }
+	    }
+	}
+
 ### Root URL
 
-`https://app.ticketmaster.com/discovery/{API version}`
+`https://app.ticketmaster.com/discovery/v2/`
+
+### Event Sources
+
+The API provides access to content sourced from various platform, including **Ticketmaster**, **Universe**, **FrontGate Tickets** and **Ticketmaster Resale** (TMR). By default, the API returns events from all sources. To specify a specifc source(s), use the `&source=` parameter. Multiple, comma separated values are OK. 
+
+### Event Coverage
+
+With over 113K+ events available in the API, coverage spans all of the following countries: **United States**, **United Kingdom**, **Ireland**, **Australia**, **New Zealand**, **Mexico** and **Canada**. More events and more countries are added on continious basis.
+
+![event map](/assets/img/products-and-docs/map.png)
+
+### Examples
+
+**Get a list of all events in the United States**
+`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&{apikey}`
+
+**Search for events sourced by Universe in the United States with keyword "devjam"**
+`https://app.ticketmaster.com/discovery/v2/events.json?keyword=devjam&source=universe&countryCode=US&{apikey}`
+
+**Search for music events in the Los Angeles area**
+`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&{apikey}`
+
+**Get a list of all events for Adele in Canada**
+`https://app.ticketmaster.com/discovery/v2/events.json?attractionId=K8vZ917Gku7&countryCode=CA&{apikey}`
 
 
 ## Search Events
@@ -80,7 +115,7 @@ discovery/{version}/events.{format}
 | `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
 | `includeTBD`   | Whether or not to return events with dates to be determined (TBD). Default is 'no', TBD events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
 | `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
-| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
+| `size`   | The number of events returned in the API response. (Max 500) | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "eventDate,date.desc", "eventDate,date.asc", "name,date.desc", "name,date.asc". | string            |              | No      |
 | `onsaleStartDateTime`   | Include events going onsale after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
@@ -1358,7 +1393,6 @@ discovery/{version}/attractions.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `keyword`  | A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.     | string            |                | No      |
-| `domain`   | The entity interested in this event (special use case). | string           |      "ticketmaster.com"     | No      |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
 | `size`   | The number of events returned in the API response. | string            |       "20"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
@@ -4066,7 +4100,7 @@ Rate-Limit: 5000
 {: .article #supported-country-codes}
 This the [ISO Alpha-2 Code](https://en.wikipedia.org/wiki/ISO_3166-1) country values:
 
-| Source				|
+| Country Code		|
 |:----------------------|
 | AU (Australia)		|
 | CA (Canada)			|
@@ -4206,6 +4240,7 @@ Markets can be used to filter events by larger regional demographic groupings. E
 | Source	|
 |:----------|
 | ticketmaster	|
+| tmr (ticketmaster resale platform) |
 | universe	|
 | frontgate |
 

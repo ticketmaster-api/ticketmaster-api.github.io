@@ -500,13 +500,17 @@ Object.byString = function(o, s) {
                         thumbNailPath = isThumbnail ? (subcolumn["fields"][0]["thumbnail"]["path"] ? subcolumn["fields"][0]["thumbnail"]["path"] : '') : ''; // if there is a thumbnail path - save it
 
                     for (var item in destinationDeep){ // iterate through response items collection
+                        var dimension = (subcolumn["fields"][0]["showDimension"] && isThumbnail ) ? ( ' ('+ destinationDeep[item]["width"] +'x'+ destinationDeep[item]["height"] +')' ) : '';
+
                         var listItem = $('<a class="list-group-item' + (isExpandable ? ' expandable' : '') + '" ' // if field is expandable add class .expandable
                         + (isExpandable ? ('expand-path="' + (expandsToObject ? (i /*subcolumn*/ + '.fields.' + '0.expandsTo' ) : expandsTo) + '" ') : ' ') // path to object to be expanded
                         + (subcolumn["path"] ? ('subcolumn-path="' + subcolumn["path"] + '" ') : ' ') // path to object to be expanded
                         + 'index="' + item + '"' // index in array in case it expands to secondary
                         + '>' + (isThumbnail ? ('<img class="subcolumn-thumbnail" src="' // if there is thumbnail
                         + (thumbNailPath ? (Object.byString(destinationDeep[item], thumbNailPath)[subcolumn["fields"][0]["thumbnail"]["id"]] + '">') : destinationDeep[item][subcolumn["fields"][0]["thumbnail"]["id"]] + '">')) : '') // if thumbnail has its own destination
-                        + (subcolumn["fields"][0]["id"] ? (subcolumn["fields"][0]["id"] + ': ') : '') + (destinationDeep[item][subcolumn["fields"][0]["id"]] ? destinationDeep[item][subcolumn["fields"][0]["id"]] : ('#' + item)) + '</a>'); // get specified in config field value from response item
+                        + (subcolumn["fields"][0]["id"] ? (subcolumn["fields"][0]["id"] + ': ') : '') + (destinationDeep[item][subcolumn["fields"][0]["id"]] ? destinationDeep[item][subcolumn["fields"][0]["id"]] : ('#' + item))
+                        + dimension
+                        + '</a>'); // get specified in config field value from response item
                         listGroup.append(listItem);
                         itemCount++;
                     }

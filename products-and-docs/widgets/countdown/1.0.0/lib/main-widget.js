@@ -282,11 +282,11 @@ var TicketmasterCountdownWidget = function () {
     this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
     this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
+    this.initBuyBtn();
+
     this.AdditionalElements();
 
     this.initMessage();
-
-    this.initBuyBtn();
 
     this.buildCountdown();
 
@@ -410,6 +410,23 @@ var TicketmasterCountdownWidget = function () {
       this.eventsRootContainer.appendChild(this.buyBtn);
     }
   }, {
+    key: "updateTransition",
+    value: function updateTransition(url) {
+      var el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
+      if (url !== '') {
+        if (el) {
+          el.classList.add("right-logo");
+          el.classList.remove("centered-logo");
+        } else return;
+      } else {
+        el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
+        if (el) {
+          el.classList.remove("right-logo");
+          el.classList.add("centered-logo");
+        }
+      }
+    }
+  }, {
     key: "setBuyBtnUrl",
     value: function setBuyBtnUrl() {
       if (this.buyBtn) {
@@ -420,6 +437,7 @@ var TicketmasterCountdownWidget = function () {
             if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
               url = event.url;
             }
+            this.updateTransition(url);
           }
         }
         this.buyBtn.href = url;
@@ -527,10 +545,10 @@ var TicketmasterCountdownWidget = function () {
       this.widgetRoot.appendChild(legalNotice);
 
       var logo = document.createElement('a');
-      logo.classList.add("event-logo");
+      logo.classList.add("event-logo", "centered-logo");
       logo.target = '_blank';
       logo.href = this.logoUrl;
-      logo.innerHTML = 'Powered by:';
+      logo.innerHTML = 'Powered by ';
 
       var logoBox = document.createElement('div');
       logoBox.classList.add("event-logo-box");

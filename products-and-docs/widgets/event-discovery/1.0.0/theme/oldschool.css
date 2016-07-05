@@ -27,11 +27,13 @@
 /* TODO: change to http://developer.ticketmaster.com*/
 @font-face {
     font-family: "Ticketing-Regular";
-    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot");
-    src: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot?") format("embedded-opentype"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot") format("woff"), url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot") format("truetype");
+    src: url('http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot');
+    src: url('http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.eot?#iefix') format('embedded-opentype'),
+    url('http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.woff') format('woff'),
+    url('http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.ttf')  format('truetype'),
+    url('http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/fonts/ticketing/ticketing.regular.svg#svgFontName') format('svg');
     font-style: normal;
     font-weight: normal; }
-
 
 /* Common styles for all themes  */
 div[w-theme="oldschool"] a,
@@ -236,6 +238,7 @@ div[w-theme="oldschool"] .event-date-wraper{
     font-size: 18px;
     padding: 7px 0 3px;
 }
+
 
 /*div[w-theme="oldschool"] .event-date-wraper:after{*/
     /*content: '';*/
@@ -773,7 +776,23 @@ div[w-theme="oldschool"][w-proportion="m"] .event-date-wraper {
     color: #414141;
     opacity: 1;
     text-align: right;
-    padding-right: 20px;
+}
+div[w-theme="oldschool"][w-proportion="m"] .event-date{
+    -webkit-transition-duration: .7s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .7s;
+    transition-timing-function: linear;
+    margin-right: 24px;
+}
+
+div[w-theme="oldschool"][w-proportion="m"] .event-date.centered-logo{
+    -webkit-transition-duration: .7s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .7s;
+    transition-timing-function: linear;
+    margin: 0;
+    display: block;
+    text-align: center;
 }
 
 div[w-theme="oldschool"][w-proportion="m"] .event-name {

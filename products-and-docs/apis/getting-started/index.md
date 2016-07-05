@@ -4,7 +4,7 @@ categories:
 - documentation
 - getting-started
 title: Getting Started
-excerpt: Everything you need to start playing with the Ticketmaster APIs
+excerpt: Everything you need to start playing with the Ticketmaster API
 keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
 
@@ -13,7 +13,7 @@ keywords: API, register for a key, live events core datasets, URI Format, URI Ex
 
 
 {: .lead .double-margin}
-Everything you need to get up and running with the Ticketmaster API. We'll cover the basics here, so please keep reading :)
+Everything you need to get up and running with the Ticketmaster API. Basic concepts are talked about here, so please keep reading :)
 
 {: #introduction}
 ## Introduction
@@ -21,22 +21,26 @@ Everything you need to get up and running with the Ticketmaster API. We'll cover
 {: .body}
 To get the most out of your experience, [register for an API](https://live-livenation.devportal.apigee.com/user/register) or [log in to your account](https://live-livenation.devportal.apigee.com/user/login) now. We'll render links in examples and code samples into active link using your own API Key. If you prefer to jump right into the APIs and make live calls, check out the [API Explorer](/api-explorer/).
 
-We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event detail page experience for your customers.
+We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event discovery experience for your fans.
 
-***Note**: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2) and will be discontinued by the end of the year. *
+*Note: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2) and will be discontinued by the end of the year.*
 
-Our APIs work against many platforms including Ticketmaster, TicketWeb, Universe, FrontGate, TicketsNow and many more. Event coverage is global.
+Our APIs work against many platforms including Ticketmaster, TicketWeb, Universe, FrontGate, Ticketmaster Resale (TMR) and many more. 
 
-Below are some use cases of how our APIs are used:
+Event coverage is global.
 
-| API	           	 	| User Case                                                                                              	|
+### Use Cases
+
+Here's a few examples of common use cases that most developers build apps against:
+
+| API	           	 	| Use Case                                                                                              	|
 |:----------------------|:----------------------------------------------------------------------------------------------------------|
-| Discovery API      	| Searching events by keyword in a certain location (lat/long).											   	|
-| Discovery API        	| Getting events for a particular artist OR venue in a specific country/city/zip code/DMA/etc.				|
-| Discovery API        	| Getting hi-res images for a particular event or artist.													|
-| Discovery API       	| Search events of a certain genre in a particular location for a certain promoter.							|
-| Commerce API         	| Get available offers for a particular event.																|
-| Partner API          	| Transact against offers for a particular event (partners-only).											|
+| [Discovery API](/products-and-docs/apis/discovery/v2/)      	| Searching events by keyword in a certain location (lat/long).											   	|
+| [Discovery API](/products-and-docs/apis/discovery/v2/)        	| Getting events for a particular artist OR venue in a specific country/city/zip code/DMA/etc.				|
+| [Discovery API](/products-and-docs/apis/discovery/v2/)        	| Getting hi-res images for a particular event or artist.													|
+| [Discovery API](/products-and-docs/apis/discovery/v2/)       	| Search events of a certain genre in a particular location for a certain promoter.							|
+| [Commerce API ](/products-and-docs/apis/commerce/)        	| Get available offers for a particular event.																|
+| [Partner API ](/products-and-docs/apis/partner/)         	| Transact against offers for a particular event (partners-only).											|
 
 
 {: #data-model}

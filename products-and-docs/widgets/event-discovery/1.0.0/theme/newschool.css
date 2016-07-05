@@ -398,6 +398,12 @@ div[w-theme="newschool"] .event-logo {
     text-align: left;
 }
 
+div[w-theme="newschool"] .event-logo.centered-logo {
+    position: relative;
+    margin: 0 auto;
+    left: 0;
+}
+
 
 div[w-theme="newschool"] .event-logo:before {
     content: '';
@@ -842,9 +848,24 @@ div[w-theme="newschool"][w-proportion="m"] .event-logo-box:after {
     bottom: 28px;
 }
 
-div[w-theme="newschool"][w-proportion="m"] .event-logo {
+div[w-theme="newschool"][w-proportion="m"] .event-logo.right-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
     top: 23px;
-    right: -46px;
+    margin: auto;
+    left: 18%;
+}
+div[w-theme="newschool"][w-proportion="m"] .event-logo.centered-logo {
+    -webkit-transition-duration: .5s;
+    -webkit-transition-timing-function: linear;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    top: 23px;
+    right: 0;
+    left: 0;
+    margin: auto;
 }
 
 div[w-theme="newschool"][w-proportion="m"] ul.events-root {

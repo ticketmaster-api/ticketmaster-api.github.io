@@ -259,6 +259,11 @@
   text-align: left;
   display: inline-block;
   margin-bottom: 34px;
+  -webkit-transition-duration: .3s;
+  -webkit-transition-timing-function: linear;
+  transition-duration: .3s;
+  transition-timing-function: linear;
+
   @media (min-width: 1200px){
     width: auto;
     margin-left: 10px;
