@@ -14,6 +14,7 @@ announcement: "Using both the Discovery API and Google Maps API to show events t
 
 tags: 
   - Discovery API
+  - My Tag
 
 excerpt: This tutorial goes through the steps needed to create a Google Map populated with events taking place in a specific area on the map.
 keywords: events, search, location, map, discovery, api
