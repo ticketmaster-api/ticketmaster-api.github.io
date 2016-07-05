@@ -1847,7 +1847,9 @@ Sample credit-card information for use in the sandbox environment:
     <li>Expiration: 12/2020</li>
 </ul>
 
-The "id" you get in the response can be used in the [Add TM Payment Information](#post-card-tm) along with an encrypted cvv. The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`.
+The "id" you get in the response can be used in the [Add TM Payment Information](#post-card-tm) along with an encrypted cvv. The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`. 
+
+The `cart_id` is optional in the request. If this request is being made while a cart is created, then it is recommended that the `cart_id` be added in the request body.
 
 *Polling: No*  
 *Member Authorization: Required*
@@ -1870,7 +1872,8 @@ The "id" you get in the response can be used in the [Add TM Payment Information]
 https://app.ticketmaster.com/partners/v1/member/billing?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
 
 {
-    "billing_method":
+    "cart_id": "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",  //Optional
+    "billing_method":                       //All Fields are required.
     {
         "address": {
             "city": "Los Angeles",
@@ -1921,7 +1924,7 @@ Status 200
 
 Get saved Ticketmaster Member Information which I can be used to make payment for the exisiting cart. You list out the payment options and which ever option the customer chooses, use the "id" of that payment method in the "Add TM Payment Method".
 
-The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`
+The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`. The `cart_id` is optional in the request. If this request is being made while a cart is created, then it is recommended that the `cart_id` be added in the request.
 
 *Polling: No*  
 *Member Authorization: Required*
