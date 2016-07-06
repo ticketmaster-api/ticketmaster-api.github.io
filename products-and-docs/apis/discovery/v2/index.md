@@ -3691,7 +3691,6 @@ discovery/{version}/venues.{format}
 | `countryCode`| The country code. |string | | No |
 | `includeTest`| Include test   |string, enum:["yes","no","only"]| | No |
 | `source`    | Source   |string | | No |
-| `extensions`| Availiable value: `geolocation` |string | | No |
 
 ### Response structure:
 
@@ -3718,21 +3717,6 @@ discovery/{version}/venues.{format}
             * `location` (object) - location.
                 - `longitude` (string) - address line 1.
                 - `latitude` (string) - address line 2.
-            * `extensions` (object) - extensions.
-                - `geolocation` (object) - geolocation.
-                    * `geocode` (object) -  geocode.             
-                      - `county` (string) - county.               
-                      - `geometry` (object) - geometry.             
-                        * `location` (object) - location. 
-                          - `longitude` (number) - longitude.    
-                          - `latitude` (number) - latitude.
-                      - `streetNumber` (string) - streetNumber of venue.              
-                      - `route` (string) - route.
-                      - `state` (string) - state of venue.
-                      - `postalCode` (string) - postalCode of venue.
-                      - `formattedAddress` (string) - formattedAddress 
-                      - `city` (string) - city of venue.
-                      - `country` (string) - country of venue.
             * `postalCode` (string) - postal code of venue.
             * `markets` (array) - markets.
                 - `{array item object}` - market.
@@ -3945,7 +3929,6 @@ discovery/{version}/venues/{id}.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
-| `extensions`| Availiable value: `geolocation` |string | | No |
 
 ### Response structure:
 
@@ -3964,21 +3947,6 @@ discovery/{version}/venues/{id}.{format}
 * `dmas` (array) - dmas venue.
     - `{array item object}` - dmas.
         * `id` (number) - id.
-* `extensions` (object) - extensions.
-    - `geolocation` (object) - geolocation.
-        * `geocode` (object) -  geocode.             
-            - `county` (string) - county.               
-            - `geometry` (object) - geometry.             
-              * `location` (object) - location. 
-                  - `longitude` (number) - longitude.    
-                  - `latitude` (number) - latitude.
-            - `streetNumber` (string) - streetNumber of venue.              
-            - `route` (string) - route.
-            - `state` (string) - state of venue.
-            - `postalCode` (string) - postalCode of venue.
-            - `formattedAddress` (string) - formattedAddress 
-            - `city` (string) - city of venue.
-            - `country` (string) - country of venue.
 * `id` (string) - id of venue.
 * `locale` (string) - locale of venue.
 * `location` (object) - location.
