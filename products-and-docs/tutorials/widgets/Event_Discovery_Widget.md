@@ -6,7 +6,7 @@ categories:
 
 title: Adding Event Discovery widget to your website
 
-img: "/assets/img/products-and-docs/event-discovery-widget-image.png"
+img: "/products-and-docs/tutorials/img/event-discovery-widget-image264x216.png"
 
 link: "/products-and-docs/tutorials/widgets/Event_Discovery_Widget.html"
 
