@@ -192,6 +192,7 @@ var venueDetails = function (version, isPrimary, notExpandable) {
         "fields": [
           {
             "id": "ratio",
+            "showDimension": true,
             "path": "images",
             "thumbnail" : { // if thumbnail is shown. if this field is present - image pop-up will show on click
               "id" : "url", // name of the field with url
@@ -1202,6 +1203,7 @@ var CONFIG = {
       "fields": [
         {
           "id": "ratio",
+          "showDimension": true,
           "path": "",
           "thumbnail" : { // if thumbnail is shown. if this field is present - image pop-up will show on click
             "id" : "url", // name of the field with url
@@ -1288,6 +1290,7 @@ var CONFIG = {
       "fields": [ // if collection is true there should be only 1 field to iterate through (required)
         {
           "id": "ratio",
+          "showDimension": true,
           "thumbnail" : { // if thumbnail is shown. if this field is present - image pop-up will show on click
             "id" : "url", // name of the field with url
             "path" : '' // path to field with src

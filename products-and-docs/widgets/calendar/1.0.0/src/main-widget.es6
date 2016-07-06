@@ -167,9 +167,6 @@ class TicketmasterCalendarWidget {
         this.tab2RootContainer.innerHTML = '<div id="weekSсheduler">';
         this.tabsRootContainer.appendChild(this.tab2RootContainer);
 
-        let leftSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderLeftSelector', '<span class="selector-title">Jun 12 - Jun 18</span><span class="selector-content" tabindex="-1"><span class="active" w-period="">Jun 12 - Jun 18</span><span w-period="">Jun 19 - Jun 25</span><span w-period="">Jun 26 - Jun 30</span></span>', 'period', this.update.bind(this));
-        let RightSelector1 = new SelectorControls(this.tab2RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
-
         this.eventLogoBox = document.createElement("div");
         this.eventLogoBox.classList.add("event-logo-box-c");
         this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
@@ -178,8 +175,13 @@ class TicketmasterCalendarWidget {
 
         this.tab3RootContainer = document.createElement("div");
         this.tab3RootContainer.classList.add("tab");
-        this.tab3RootContainer.innerHTML = "This is MONTH TAB";
+        this.tab3RootContainer.innerHTML = '<div id="monthScheduler">';
         this.tabsRootContainer.appendChild(this.tab3RootContainer);
+
+        this.eventLogoBox = document.createElement("div");
+        this.eventLogoBox.classList.add("event-logo-box-c");
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.tab3RootContainer.appendChild(this.eventLogoBox);
 
         this.tab4RootContainer = document.createElement("div");
         this.tab4RootContainer.classList.add("tab");
@@ -250,6 +252,7 @@ class TicketmasterCalendarWidget {
             else content += `<span w-period="${todayTmp}">`;
             content += monthNames[todayTmp.getMonth()] + ' ' + todayTmp.getDate();
             content += '</span>';
+            todayTmp = new Date();
         }
         content += '</span>';
         return content;
@@ -349,7 +352,6 @@ class TicketmasterCalendarWidget {
         this.buyBtn.addEventListener('click', (e)=> {
             e.preventDefault(); /*used in plugins for 'buy button'*/
             this.stopAutoSlideX();
-            //console.log(this.config.affiliateid)
         });
         this.eventsRootContainer.appendChild(this.buyBtn);
     }
@@ -1429,46 +1431,56 @@ class WeekScheduler {
                 }
             ];
 
-        /*
-        for(let i in params){
-            let item = params[i];
-            if(this.isConfigAttrExistAndNotEmpty(item.attr))
-                attrs[item.verboseName] = this.config[item.attr];
+        let startmonth, startdate, endmonth, enddate;
+        let startDateTime = '2016-06-27T00:00:00Z';
+        let endDateTime = '2016-07-02T23:59:59Z';
+
+        let current = new Date();
+        let start = new Date();
+        let end = new Date();
+
+        let weekstart = current.getDate() - current.getDay();
+        start = new Date(current.setDate(weekstart));
+        end.setDate(end.getDate() + 6);
+        if (start.getMonth()+1 <=9) startmonth = '0' + (start.getMonth()+1); else startmonth = start.getMonth()+1;
+        if (start.getDate() <=9) startdate = '0' + start.getDate(); else startdate = start.getDate();
+        if (end.getMonth()+1 <=9) endmonth = '0' + (end.getMonth()+1); else endmonth = end.getMonth()+1;
+        if (end.getDate() <=9) enddate = '0' + end.getDate(); else enddate = end.getDate();
+        startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
+        endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
+        // console.log(startDateTime + ' - ' + endDateTime);
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+            start = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
+            end = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
+            end.setDate(end.getDate() + 6);
+            if (start.getMonth()+1 <=9) startmonth = '0' + (start.getMonth()+1); else startmonth = start.getMonth()+1;
+            if (start.getDate() <=9) startdate = '0' + start.getDate(); else startdate = start.getDate();
+            if (end.getMonth()+1 <=9) endmonth = '0' + (end.getMonth()+1); else endmonth = end.getMonth()+1;
+            if (end.getDate() <=9) enddate = '0' + end.getDate(); else enddate = end.getDate();
+            startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
+            endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
+            // console.log(startDateTime + ' - ' + endDateTime);
         }
 
-        // Only one allowed at the same time
-        if(this.config.latlong){
-            attrs.latlong = this.config.latlong;
-        }else{
-            if(this.isConfigAttrExistAndNotEmpty("postalcode"))
-                attrs.postalCode = this.config.postalcode;
-        }
-
-        if(this.isConfigAttrExistAndNotEmpty("period")){
-            let period = this.getDateFromPeriod(this.config.period);
-            attrs.startDateTime = period[0];
-            attrs.endDateTime = period[1];
-        }
-        */
-
-        // return attrs;
         return {
             "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
             "size": "25",
             "radius": "25",
             "latlong": "34.0390107,-118.2672801",
-            "startDateTime": "2016-06-19T00:00:00Z",
-            "endDateTime": "2016-06-25T23:59:59Z"
+            "startDateTime": startDateTime,
+            "endDateTime": endDateTime,
+            "size": 100
         }
     }
 
     addScroll() {
         (function(n,t){function u(n){n.hasOwnProperty("data-simple-scrollbar")||Object.defineProperty(n,"data-simple-scrollbar",new SimpleScrollbar(n))}function e(n,i){function f(n){var t=n.pageY-u;u=n.pageY;r(function(){i.el.scrollTop+=t/i.scrollRatio})}function e(){n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove",f);t.removeEventListener("mouseup",e)}var u;n.addEventListener("mousedown",function(i){return u=i.pageY,n.classList.add("ss-grabbed"),t.body.classList.add("ss-grabbed"),t.addEventListener("mousemove",f),t.addEventListener("mouseup",e),!1})}function i(n){for(this.target=n,this.bar='<div class="ss-scroll">',this.wrapper=t.createElement("div"),this.wrapper.setAttribute("class","ss-wrapper"),this.el=t.createElement("div"),this.el.setAttribute("class","ss-content"),this.wrapper.appendChild(this.el);this.target.firstChild;)this.el.appendChild(this.target.firstChild);this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend",this.bar);this.bar=this.target.lastChild;e(this.bar,this);this.moveBar();this.el.addEventListener("scroll",this.moveBar.bind(this));this.el.addEventListener("mouseenter",this.moveBar.bind(this));this.target.classList.add("ss-container")}function f(){for(var i=t.querySelectorAll("*[ss-container]"),n=0;n<i.length;n++)u(i[n])}var r=n.requestAnimationFrame||n.setImmediate||function(n){return setTimeout(n,0)};i.prototype={moveBar:function(){var t=this.el.scrollHeight,i=this.el.clientHeight,n=this;this.scrollRatio=i/t;r(function(){n.bar.style.cssText="height:"+i/t*100+"%; top:"+n.el.scrollTop/t*100+"%;right:-"+(n.target.clientWidth-n.bar.clientWidth)+"px;"})}};t.addEventListener("DOMContentLoaded",f);i.initEl=u;i.initAll=f;n.SimpleScrollbar=i})(window,document)
-        // var scrollRoot = document.getElementsByClassName("ss")[0];
-        var scrollRoot = document.querySelectorAll('.ss');
-        scrollRoot.forEach(function(item) {
-            SimpleScrollbar.initEl(item);
-        });
+        var scrollRoot = document.querySelectorAll(".ss");
+        var maxL = scrollRoot.length;
+        for (let ml = 0; ml < maxL; ml++) {
+            SimpleScrollbar.initEl(scrollRoot[ml]);
+        }
     }
 
     getJSON(handler, url=this.apiUrl, attrs={}, method="GET"){
@@ -1531,7 +1543,6 @@ class WeekScheduler {
         if (this && this.readyState == XMLHttpRequest.DONE) {
             if (this.status == 200) {
                 events = JSON.parse(this.responseText);
-                // console.log(events._embedded.events);
                 events._embedded.events.forEach(function (item) {
                     if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
                     if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
@@ -1553,14 +1564,51 @@ class WeekScheduler {
                         'datetime': widget.formatDate({day: item.dates.start.localDate, time: item.dates.start.localTime}),
                         'place': place + ', ' + address,
                         'url': item.url,
-                        'img': item.images[index].url
+                        'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                        'count': 0
                     });
                 });
 
-                // console.log(weekEvents);
+                let tDate = weekEvents[0].date;
+                let tTime = weekEvents[0].time.substring(0,2);
+                let count = 0;
+                let startFlag = 0;
+                let endFlag = 0;
+
+                for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                    if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substring(0,2)) {
+                        weekEvents[e].count = count;
+                        endFlag = e;
+                        count++;
+                    }
+                    if (tDate == weekEvents[e].date && tTime != weekEvents[e].time.substring(0,2)) {
+                        for (let i = startFlag; i <= endFlag; i++) {
+                            weekEvents[i].count = count-1;
+                        }
+                        tTime = weekEvents[e].time.substring(0,2);
+                        startFlag = e;
+                        count = 0;
+                    }
+                    if (tDate != weekEvents[e].date || e == l-1) {
+                        for (let i = startFlag; i <= endFlag; i++) {
+                            weekEvents[i].count = count-1;
+                        }
+                        tDate = weekEvents[e].date;
+                        tTime = weekEvents[e].time.substring(0,2);
+                        startFlag = e;
+                        count = 0;
+                    }
+                }
 
                 var current = new Date();
-                var weekstart = current.getDate() - current.getDay();
+
+                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+                    var weekstartTmp = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
+                    var weekstart = weekstartTmp.getDate() - weekstartTmp.getDay();
+                }
+                else {
+                    var weekstart = current.getDate() - current.getDay();
+                }
                 var sunday = new Date(current.setDate(weekstart));
                 let currentSunday = sunday;
                 let daysDiv = '';
@@ -1574,8 +1622,10 @@ class WeekScheduler {
                 }
                 let zeroLead = '';
                 let timeTmp = '';
+                let dateTmp = '';
                 let monthTmp = '';
                 let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+
                 for (let i = 13; i <= 23; i++) {
                     if (i <= 9) {
                         zeroLead = '0';
@@ -1585,20 +1635,37 @@ class WeekScheduler {
                         timeTmp = i + ":00:00"
                     }
                     timeDiv += `<div class="t t-${i}"><span class="tl">${zeroLead}${i} : 00</span>`;
+
                     for (let d = 0; d <= 6; d++) {
                         let dayCount = 0;
                         let dayTmp = new Date(new Date(currentSunday).getTime() + (d * 24 * 60 * 60 * 1000));
                         if (parseInt(dayTmp.getMonth() + 1) <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1); else monthTmp = dayTmp.getMonth() + 1;
-                        let dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
+                        if (parseInt(dayTmp.getDate()) < 9) {
+                            dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + '0' + parseInt(dayTmp.getDate());
+                        }
+                        else {
+                            dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
+                        }
                         timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
                         for (let e = 0, l = weekEvents.length; e < l; ++e) {
-                            if (weekEvents[e].date == dateTmp && weekEvents[e].time == timeTmp) {
+                            if (weekEvents[e].date == dateTmp && weekEvents[e].time.substring(0,2) == timeTmp.substring(0,2)) {
                                 if (dayCount == 0) {
                                     timeDiv += '<span class="round"></span>';
-                                    timeDiv += '<span class="tail"></span>';
-                                    timeDiv += '<div class="popup ss" tabindex="-1">';
-                                    timeDiv += '<div class="ss-container">';
+                                    if (weekEvents[e].time.substring(0,2) < 18) {
+                                        timeDiv += '<span class="tail"></span>';
+                                        timeDiv += '<div class="popup ';
+                                        if (weekEvents[e].count == 0) timeDiv += 'single ';
+                                        timeDiv += 'ss" tabindex="-1">';
+                                        timeDiv += '<div class="ss-container">';
+                                    }
+                                    else {
+                                        timeDiv += '<span class="tail-up"></span>';
+                                        timeDiv += '<div class="popup-up ';
+                                        if (weekEvents[e].count == 0) timeDiv += 'single ';
+                                        timeDiv +=  'ss" tabindex="-1">';
+                                        timeDiv += '<div class="ss-container">';
+                                    }
                                     dayCount = 1;
                                 }
                                 timeDiv += '<span class="event">';
@@ -1634,22 +1701,63 @@ class WeekScheduler {
         var rounds = document.querySelectorAll("span.round");
         for (var x = 0; x < rounds.length; x++) {
             rounds[x].addEventListener("click", function (e) {
+                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "visible";
+                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "visible";
                 this.nextElementSibling.classList.add("show");
                 this.nextElementSibling.nextElementSibling.classList.add("show");
                 this.nextElementSibling.nextElementSibling.focus();
             }, false);
         }
 
-        var popups = document.querySelectorAll(".popup");
+        var popups = document.querySelectorAll(".popup, .popup-up");
         for (var y = 0; y < popups.length; y++) {
             popups[y].addEventListener("blur", function (e) {
                 let self = this;
+                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "hidden";
+                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "auto";
                 setTimeout(function () {
                     self.previousElementSibling.classList.remove("show");
                     self.classList.remove("show");
                 }, 127);
             }, false);
         }
+    }
+
+    update() {
+        let days = document.getElementById('weekSсheduler').firstChild;
+        document.getElementById('weekSсheduler').removeChild(days);
+        this.weekdaysRootContainer = document.createElement("div");
+        this.weekdaysRootContainer.classList.add("days");
+        this.startMonth();
+        this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
+    }
+
+    getCurrentMonth() {
+        let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let content = '<span class="selector-title">';
+        let current = new Date();
+        let weekstart = current.getDate() - current.getDay();
+        let sunday = new Date(current.setDate(weekstart));
+        let sundayGetMonth;
+        let sundayGetDate;
+
+        content += monthNames[current.getMonth()] + ' ' + current.getDate();
+        current.setDate(current.getDate() + 6);
+        content += ' - ' + monthNames[current.getMonth()] + ' ' + current.getDate();
+        content += '</span>';
+        content += '<span class="selector-content" tabindex="-1">';
+
+        for (var m=0; m<=5; m++) {
+            if (m==0) content += `<span class="active" w-period="${sunday}">`;
+            content += `<span w-period="${sunday}">`;
+            content += monthNames[sunday.getMonth()] + ' ' + sunday.getDate();
+            sunday.setDate(sunday.getDate() + 6);
+            content += ' - ' + monthNames[sunday.getMonth()] + ' ' + sunday.getDate();
+            content += '</span>';
+            sunday.setDate(sunday.getDate() + 1);
+        }
+        content += '</span>';
+        return content;
     }
 
     startMonth() {
@@ -1659,11 +1767,314 @@ class WeekScheduler {
     constructor(root) {
         if (!root) return;
         this.weekSchedulerRoot = root;
+
+        this.getCurrentMonth();
+
+        let leftSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderLeftSelector', this.getCurrentMonth(), 'period', this.update.bind(this));
+        let RightSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+
         this.weekdaysRootContainer = document.createElement("div");
         this.weekdaysRootContainer.classList.add("days");
         this.startMonth();
         this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
     }
+}
+
+class MonthScheduler {
+
+    get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
+
+    get eventReqAttrs(){
+        let attrs = {},
+            params = [
+                {
+                    attr: 'tmapikey',
+                    verboseName: 'apikey'
+                },
+                {
+                    attr: 'keyword',
+                    verboseName: 'keyword'
+                },
+                {
+                    attr: 'size',
+                    verboseName: 'size'
+                },
+                {
+                    attr: 'radius',
+                    verboseName: 'radius'
+                },
+                {
+                    attr: 'classificationid',
+                    verboseName: 'classificationId'
+                },
+                {
+                    attr: 'attractionid',
+                    verboseName: 'attractionId'
+                },
+                {
+                    attr: 'promoterid',
+                    verboseName: 'promoterId'
+                },
+                {
+                    attr: 'venueid',
+                    verboseName: 'venueId'
+                },
+                {
+                    attr: 'segmentid',
+                    verboseName: 'segmentId'
+                }
+            ];
+
+        let date = new Date();
+        let startmonth, startdate, endmonth, enddate, startDateTime, endDateTime;
+        let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+        if (firstDay.getMonth()+1 <=9) startmonth = '0' + (firstDay.getMonth()+1); else startmonth = firstDay.getMonth()+1;
+        startdate = '0' + firstDay.getDate();
+        if (lastDay.getMonth()+1 <=9) endmonth = '0' + (lastDay.getMonth()+1); else endmonth = lastDay.getMonth()+1;
+        enddate = lastDay.getDate();
+        startDateTime = firstDay.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
+        endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+            firstDay = new Date(date.getFullYear(), document.querySelector('[w-type="calendar"]').getAttribute("w-period"), 1);
+            lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")) + 1, 0);
+            if (firstDay.getMonth()+1 <=9) startmonth = '0' + (firstDay.getMonth()+1); else startmonth = firstDay.getMonth()+1;
+            startdate = '0' + firstDay.getDate();
+            if (lastDay.getMonth()+1 <=9) endmonth = '0' + (lastDay.getMonth()+1); else endmonth = lastDay.getMonth()+1;
+            enddate = lastDay.getDate();
+            startDateTime = firstDay.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
+            endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
+        }
+
+        return {
+            "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+            "size": "25",
+            "radius": "15",
+            "latlong": "34.0390107,-118.2672801",
+            "startDateTime": startDateTime,
+            "endDateTime": endDateTime,
+            "size": 400
+        }
+    }
+
+    getJSON(handler, url=this.apiUrl, attrs={}, method="GET"){
+        attrs = Object.keys(attrs).map(function(key){
+            return `${key}=${attrs[key]}`;
+        }).join("&");
+
+        url = [url,attrs].join("?");
+
+        this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        if(method == "POST") {
+            this.xmlHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        }
+        this.xmlHTTP.widget = this;
+        this.xmlHTTP.onreadystatechange = handler;
+        this.xmlHTTP.open(method, url, true);
+        this.xmlHTTP.send();
+    }
+
+    formatDate(date) {
+        var result = '';
+        if(!date.day) return result; // Day is required
+
+        function LZ(x) {
+            return (x < 0 || x > 9 ? "" : "0") + x
+        }
+        var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+            dayArray = date.day.split('-'),
+            d = parseInt(dayArray[2]),
+            M = parseInt(dayArray[1]);
+
+        var E = new Date(date.day).getDay();
+        result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
+
+        if(!date.time) return result;
+
+        var timeArray = date.time.split(':'),
+            H = parseInt(timeArray[0]),
+            m = timeArray[1],
+            a = "AM";
+
+        if (H > 11) a = "PM";
+        if (H == 0) {
+            H = 12;
+        } else if (H > 12) {
+            H = H - 12;
+        }
+
+        return result + ' ' + LZ(H) + ':' + m + ' ' + a;
+    }
+
+    startMonth() {
+        this.getJSON( this.getMonthEventsHandler, this.apiUrl, this.eventReqAttrs );
+    }
+
+    getMonthEventsHandler() {
+        let widget = this.widget;
+        let events;
+        let place;
+        let address;
+        let monthEvents = [];
+        let eventDate;
+
+        if (this && this.readyState == XMLHttpRequest.DONE) {
+            if (this.status == 200) {
+                events = JSON.parse(this.responseText);
+                events._embedded.events.forEach(function (item) {
+                    if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
+                    if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
+
+                    let imgWidth;
+                    let index;
+                    item.images.forEach(function (img, i) {
+                        if (i == 0) imgWidth = img.width;
+                        if (imgWidth > img.width) {
+                            imgWidth = img.width;
+                            index = i;
+                        }
+                    });
+
+                    monthEvents.push({
+                        'name': item.name,
+                        'date': item.dates.start.localDate,
+                        'time': item.dates.start.localTime,
+                        'datetime': widget.formatDate({
+                            day: item.dates.start.localDate,
+                            time: item.dates.start.localTime
+                        }),
+                        'place': place + ', ' + address,
+                        'url': item.url,
+                        'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                        'count': 0
+                    });
+                });
+
+
+                let tDate = monthEvents[0].date;
+                let count = 0;
+                let startFlag = 0;
+                let endFlag = 0;
+
+                for (let e = 0, l = monthEvents.length; e < l; ++e) {
+                    if (tDate == monthEvents[e].date) {
+                        monthEvents[e].count = count;
+                        endFlag = e;
+                        count++;
+                    }
+                    if (tDate != monthEvents[e].date || e == l-1) {
+                        for (let i = startFlag; i <= endFlag; i++) {
+                            monthEvents[i].count = count;
+                        }
+                        tDate = monthEvents[e].date;
+                        startFlag = e;
+                        count = 0;
+                    }
+                }
+
+                let id = 'calendar';
+                let year = new Date().getFullYear();
+                let month = new Date().getMonth() + 1;
+
+                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+                    year = new Date().getFullYear();
+                    month = document.querySelector('[w-type="calendar"]').getAttribute("w-period");
+                }
+
+                var elem = document.getElementById(id);
+                var mon = month - 1;
+                var d = new Date(year, mon);
+                var table = '<table><tr><th>s</th><th>m</th><th>t</th><th>w</th><th>t</th><th>f</th><th>s</th></tr><tr>';
+                var tmpD = new Date(year, mon);
+                var outEnd = [];
+                for (var i = 0; i < d.getDay(); i++) {
+                    tmpD.setDate(tmpD.getDate() - 1);
+                    outEnd[i] = '<td class="dis">' + tmpD.getDate() + '</td>';
+                }
+                outEnd.reverse();
+                table += outEnd.join('');
+
+                var eventFlag = false;
+
+                while (d.getMonth() == mon) {
+                    table += '<td>';
+
+                    for (let e = 0, l = monthEvents.length; e < l; ++e) {
+                        if ( new Date(monthEvents[e].date).getDate() === d.getDate() && eventFlag === false) {
+                            table += '<span class="round">' + d.getDate() + '<span class="count">' + monthEvents[e].count + '</span></span>';
+                            eventFlag = true;
+                        }
+                        if ( new Date(monthEvents[e].date).getDate() !== d.getDate() ) {
+                            eventFlag = false;
+                        }
+                    }
+
+                    table += d.getDate();
+                    table += '</td>';
+
+                    if (d.getDay() % 7 == 6) {
+                        table += '</tr><tr>';
+                    }
+
+                    d.setDate(d.getDate() + 1);
+                }
+                if (d.getDay() != 0) {
+                    d.setDate(d.getDate() - 1);
+                    for (var i = d.getDay(); i < 6; i++) {
+                        d.setDate(d.getDate() + 1);
+                        table += '<td class="dis">' + d.getDate() + '</td>';
+                    }
+                }
+                table += '</tr></table>';
+                elem.innerHTML = table;
+            }
+        }
+    }
+
+    getMonthes() {
+        var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        let now = new Date();
+        let content = '';
+        content += '<span class="selector-title">' + MONTH_NAMES[now.getMonth()]+ '</span>';
+        content += '<span class="selector-content" tabindex="-1">';
+        for (let i = now.getMonth(); i<=11; i++) {
+            content += '<span ';
+            if (i == now.getMonth()) content += 'class="active" ';
+            content += 'w-period="' + (i+1) + '">' + MONTH_NAMES[i] + '</span>';
+        }
+        content += '</span>';
+        return content;
+    }
+
+    update() {
+        let month = document.getElementById('monthScheduler').firstChild;
+        document.getElementById('monthScheduler').removeChild(month);
+        this.monthRootContainer = document.createElement("div");
+        this.monthRootContainer.id = "calendar";
+        this.monthSchedulerRoot.appendChild(this.monthRootContainer);
+        // let month_ = document.querySelector('[w-type="calendar"]').getAttribute("w-period");
+        // let year_ = new Date();
+        this.startMonth();
+    }
+
+    constructor(root) {
+        if (!root) return;
+        this.monthSchedulerRoot = root;
+
+        let leftSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
+        let RightSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+
+        this.calendarRootContainer = document.createElement("div");
+        this.calendarRootContainer.id = "calendar";
+        this.monthSchedulerRoot.appendChild(this.calendarRootContainer);
+        this.startMonth();
+
+    }
+
+
 }
 
 let widgetsCalendar = [];
@@ -1677,3 +2088,4 @@ let widgetsCalendar = [];
 
 let controls = new TabsControls;
 let weekScheduler = new WeekScheduler(document.getElementById('weekSсheduler'));
+let monthScheduler = new MonthScheduler(document.getElementById('monthScheduler'));

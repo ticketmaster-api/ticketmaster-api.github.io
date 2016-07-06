@@ -564,6 +564,7 @@ div[w-theme="calendar"] #weekSсheduler {
 
 div[w-theme="calendar"] #weekSсheduler .days {
     width: 270px;
+    height: 258px;
     margin-left: 17px;
 }
 
@@ -589,7 +590,7 @@ div[w-theme="calendar"] #weekSсheduler .days .d .round {
 
 div[w-theme="calendar"] #weekSсheduler .days .popup {
     width: 265px;
-    max-height: 185px;
+    height: 185px;
     overflow: hidden;
     padding: 13px 10px;
     position: absolute;
@@ -597,6 +598,28 @@ div[w-theme="calendar"] #weekSсheduler .days .popup {
     color: #fff;
     left: 0;
     top: 25px;
+    z-index: 10;
+    display: none;
+    text-align: left;
+    border-radius: 4px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup.single,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up.single {
+    height: auto;
+    max-height: 185px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup-up {
+    width: 265px;
+    height: 185px;
+    overflow: hidden;
+    padding: 13px 10px;
+    position: absolute;
+    background: #768692;
+    color: #fff;
+    left: 0;
+    bottom: 24px;
     z-index: 10;
     display: none;
     text-align: left;
@@ -612,8 +635,19 @@ div[w-theme="calendar"] #weekSсheduler .days .tail {
     display: none;
     z-index: 10;
 }
+
+div[w-theme="calendar"] #weekSсheduler .days .tail-up {
+    width:10px;
+    height: 5px;
+    display: block;
+    position: absolute;
+    margin: -17px 0 0 2px;
+    display: none;
+    z-index: 10;
+}
+
 div[w-theme="calendar"] #weekSсheduler .days .tail:before {
-    content: "\A";
+    content: " ";
     display: block;
     width: 0;
     height: 0;
@@ -624,7 +658,20 @@ div[w-theme="calendar"] #weekSсheduler .days .tail:before {
     top: -5px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event {
+div[w-theme="calendar"] #weekSсheduler .days .tail-up:before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #768692 transparent transparent transparent;
+    position: absolute;
+    top: -5px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .popup .event,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event {
     display: block;
     overflow: hidden;
     border-bottom: 1px solid rgba(65, 65, 65, 0.2);
@@ -632,13 +679,15 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event {
     margin-bottom: 10px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event:last-child {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event:last-child,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event:last-child {
     border-bottom: 0;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .img {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .img,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .img {
     width: 30px;
     height: 30px;
     float: left;
@@ -647,13 +696,16 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .img {
     margin-top: 2px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder {
     overflow: hidden;
     display: block;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name,
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:hover {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:hover,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .name,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .name:hover {
     font-family: "TMSans-Bold";
     font-size: 14px;
     line-height: 18px;
@@ -667,7 +719,8 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:
     -webkit-line-clamp: 2;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .date {
     font-family: "TMSans-Bold";
     font-size: 11px;
     line-height: 14px;
@@ -677,7 +730,8 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date 
     margin-bottom: 4px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place {
+div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .place {
     font-family: "TMSans-Light";
     font-size: 11px;
     line-height: 14px;
@@ -686,12 +740,14 @@ div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place
     display: block;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup:focus {
+div[w-theme="calendar"] #weekSсheduler .days .popup:focus,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up:focus {
     outline: none;
     border: none;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup.show {
+div[w-theme="calendar"] #weekSсheduler .days .popup.show,
+div[w-theme="calendar"] #weekSсheduler .days .popup-up.show {
     display: block;
 }
 
@@ -749,6 +805,17 @@ div[w-theme="calendar"] #weekSсheduler .ss-scroll {
 
 div[w-theme="calendar"] #weekSсheduler .ss-container:hover .ss-scroll {
     opacity: 1;
+}
+
+div[w-theme="calendar"] #weekSсheduler .popup .ss-content,
+div[w-theme="calendar"] #weekSсheduler .popup-up .ss-content {
+    width: 120% !important;
+}
+
+div[w-theme="calendar"] #weekSсheduler .popup .ss-scroll,
+div[w-theme="calendar"] #weekSсheduler .popup-up .ss-scroll {
+    right: -243px !important;
+    background-color: rgba(255,255,255,0.2);
 }
 
 div[w-theme="calendar"] #weekSсheduler .ss-grabbed {
@@ -939,4 +1006,77 @@ div[w-theme="calendar"] .sliderRightSelector .selector-content span {
 div[w-theme="calendar"] .selector-content span:hover {
     color: #189ddc;
     cursor: pointer;
+}
+
+div[w-theme="calendar"] #calendar {
+    margin: 0px auto;
+    padding: 0;
+    height: 273px;
+}
+
+div[w-theme="calendar"] #calendar table {
+    width: 100%;
+    border: 0;
+}
+
+div[w-theme="calendar"] #calendar table td,
+div[w-theme="calendar"] #calendar table th {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: inline-block;
+    border: 0;
+    padding-top: 7px;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 2px;
+}
+
+div[w-theme="calendar"] #calendar table th {
+    font-weight: normal;
+    background: none;
+    text-transform: uppercase;
+    color: #b7c9d3;
+    margin-top: 21px;
+}
+
+div[w-theme="calendar"] #calendar table td {
+    position: relative;
+}
+
+div[w-theme="calendar"] #calendar table tr:nth-child(even) {
+    background: none;
+}
+
+div[w-theme="calendar"] #calendar td.dis {
+    color: #d9d9d9;
+}
+
+div[w-theme="calendar"] #calendar .round {
+    width: 33px;
+    height: 33px;
+    background: #009cde;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    color: #fff;
+    font-weight: bold;
+    top: 1px;
+    padding-top: 5px;
+}
+
+div[w-theme="calendar"] #calendar .round .count {
+    display: block;
+    position: absolute;
+    padding: 3px 5px;
+    border: 2px solid #fff;
+    font-size: 10px;
+    right: -7px;
+    background: #3E6BBB;
+    font-weight: normal;
+    border-radius: 12px;
+    top: -6px;
+    line-height: 10px;
 }

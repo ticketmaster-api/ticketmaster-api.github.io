@@ -450,9 +450,6 @@
       <param name="venueId" required="false" style="query" type="xsd:string" default="“KovZpZAEdFtJ”">
         <doc>Venue ID(s) separated by comma.</doc>
       </param>
-      <param name="promoterId" required="false" style="query" type="xsd:string" default="494">
-        <doc>Promoter ID(s) separated by comma.</doc>
-      </param>
       <param name="postalCode" required="false" style="query" type="xsd:string" default="90069">
         <doc>Zipcode or Postal Code of the venue in which the event is taking place.</doc>
       </param>
@@ -491,12 +488,6 @@
       <param name="endDateTime" required="false" style="query" type="xsd:string">
         <doc>Include events happening before this date.</doc>
       </param>
-      <param name="onsaleStartDateTime" required="false" style="query" type="xsd:string">
-        <doc>Include events happening before this date.</doc>
-      </param>
-      <param name="onsaleEndDateTime" required="false" style="query" type="xsd:string">
-        <doc>Include events happening before this date.</doc>
-      </param>
       <param name="includeTBA" required="false" style="query" type="xsd:string">
         <doc>Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned.</doc>
         <option value=""/>
@@ -532,6 +523,12 @@
         <option value="date,asc"/>
         <option value="date,desc"/>
       </param>
+      <param name="onsaleStartDateTime" required="false" style="query" type="xsd:string">
+        <doc>Include events happening before this date.</doc>
+      </param>
+      <param name="onsaleEndDateTime" required="false" style="query" type="xsd:string">
+        <doc>Include events happening before this date.</doc>
+      </param>
       <param name="city" required="false" style="query" type="xsd:string">
         <doc>The city.</doc>
       </param>
@@ -541,11 +538,11 @@
       <param name="stateCode" required="false" style="query" type="xsd:string">
         <doc>The state code.</doc>
       </param>
-      <param name="classificationId" required="false" style="query" type="xsd:string">
-        <doc>The classification ID.</doc>
-      </param>
       <param name="classificationName" required="false" style="query" type="xsd:string">
         <doc>The classification name.</doc>
+      </param>
+      <param name="classificationId" required="false" style="query" type="xsd:string">
+        <doc>The classification ID.</doc>
       </param>
       <param name="dmaId" required="false" style="query" type="xsd:string">
         <doc>The dmaId.</doc>
@@ -684,9 +681,6 @@
       <param name="format" required="true" type="xsd:string" style="template" default="json">
         <doc>API Response Format</doc>
       </param>
-      <param name="source" required="true" type="xsd:string" style="query" default="json">
-        <doc>source</doc>
-      </param>
       <param name="locale" required="false" type="xsd:string" style="query">
         <doc>The attraction locale, including country and localization.</doc>
         <option value=""/>
@@ -700,6 +694,9 @@
         <option value="en-nz"/>
         <option value="fr-fr"/>
         <option value="fr-ca"/>
+      </param>
+      <param name="source" required="true" type="xsd:string" style="query" default="json">
+        <doc>source</doc>
       </param>
       <method id="discovery.v2.attractions.id.get" name="GET" apigee:displayName="Get Attraction Details">
         <apigee:tags>
@@ -718,11 +715,11 @@
       <param name="format" required="true" type="xsd:string" style="template" default="json">
         <doc>API Response Format</doc>
       </param>
-      <param name="classificationID" required="false" style="query" type="xsd:string">
-        <doc>A string to search by classification ID</doc>
-      </param>
       <param name="keyword" required="false" style="query" type="xsd:string">
         <doc>A string to search against classifications names.</doc>
+      </param>
+      <param name="classificationID" required="false" style="query" type="xsd:string">
+        <doc>A string to search by classification ID</doc>
       </param>
       <param name="size" required="false" style="query" type="xsd:integer" default="20">
         <doc>The number of categories returned in the API response.</doc>
@@ -753,6 +750,20 @@
       </param>
       <param name="format" required="true" type="xsd:string" style="template" default="json">
         <doc>API Response Format</doc>
+      </param>
+      <param name="locale" required="false" type="xsd:string" style="query">
+        <doc>The attraction locale, including country and localization.</doc>
+        <option value=""/>
+        <option value="en-us"/>
+        <option value="en-gb"/>
+        <option value="en-ca"/>
+        <option value="es-us"/>
+        <option value="en-mx"/>
+        <option value="es-mx"/>
+        <option value="en-au"/>
+        <option value="en-nz"/>
+        <option value="fr-fr"/>
+        <option value="fr-ca"/>
       </param>
       <method id="discovery.v2.classifications.id.get" name="GET" apigee:displayName="Get Classification Details">
         <apigee:tags>
