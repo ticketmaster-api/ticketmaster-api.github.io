@@ -122,6 +122,12 @@
   }
   h3 {
     margin-top: 0;
+    &:target:before {
+      content: "";
+      display: block;
+      height: 138px;
+      margin: -138px 0 0;
+    }
   }
   &.android {
     background-color: #f1f4f6;
