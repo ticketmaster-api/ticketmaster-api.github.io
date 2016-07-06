@@ -34,7 +34,7 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 ### Startups &amp; Developers
 
 {: .descr}
-The best startups based on the Ticketmaster API. Discovery API Heatmap. API Explorer.
+Examples of apps and demos leveraging the Ticketmaster API, like Global Heatmap, API Explorer, etc.
 
 [See all showcases](/partners/startups-and-developers/)
 {% endcapture %}
