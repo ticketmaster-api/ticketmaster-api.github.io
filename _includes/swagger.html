@@ -28,15 +28,25 @@
 
 <h4 class="aside gray" id="developer-console">Developer Console</h4><p>Make live API calls right now in the interactive docs:</p><p><a href="/products-and-docs/apis/interactive-console/" class="button">INTERACTIVE DOCS</a></p>
 
-<h2 class="article">Overview</h2>
-{% if swagger.host %}
-<p>
-    <strong>Host URL: </strong><code>{{ swagger.host }}</code>
-</p>{% endif %}
-{% if swagger.basePath %}
-<p>
-    <strong>Base Path: </strong><code>{{ swagger.basePath }}</code>
-</p>{% endif %}
+{% if swagger.host or swagger.basePath or methodsDescription.overview | size > 0 %}
+<h2 class="article" id="overview">Overview</h2>
+
+    {% if methodsDescription.overview | size > 0%}
+        {% for overviewItem in methodsDescription.overview %}
+            <h3>{{overviewItem.title}}</h3>
+            <p>{{overviewItem.description}}</p>
+        {%endfor%}
+    {%endif%}
+
+    {% if swagger.host %}
+    <p>
+        <strong>Host URL: </strong><code>{{ swagger.host }}</code>
+    </p>{% endif %}
+    {% if swagger.basePath %}
+    <p>
+        <strong>Base Path: </strong><code>{{ swagger.basePath }}</code>
+    </p>{% endif %}
+{% endif %}
 
 <!--
 {% comment %}

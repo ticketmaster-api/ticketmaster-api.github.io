@@ -5,13 +5,13 @@ categories:
 - documentation
 - commerce
 title: Commerce API 1.0
-excerpt: Ticketmaster Commerce API
+excerpt: Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster's and TicketWeb's. Once offers and products are selected, you can use the API to cart and transact on those items.
 keywords: API, commerce API, reserve tickets, retrieve barcode
 ---
 
 # Commerce API
 {: .article}
-Use the Ticketmaster Commerce API to retreive event offer information.
+Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster's and TicketWeb's. Once offers and products are selected, you can use the API to cart and transact on those items.
 {: .article .lead}
 
 #### Developer Console

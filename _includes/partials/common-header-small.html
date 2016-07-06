@@ -4,7 +4,7 @@
     {% endif %}
     <li><a class="apgee-login" href="https://live-livenation.devportal.apigee.com/user/login">Login</a></li>
     <li><a {% if page.category == "documentation" or page.category == "api-explorer" or page.categories[0] == "documentation" or page.category == "products-and-docs" or page.categories[0] == "tutorials" %}class="active"{% endif %} href="{{"/products-and-docs/" | prepend: site.baseurl}}">Products & Docs</a></li>
-    <li><a {% if page.category == "partners" or page.categories[0] == "partners" or page.categories[0] == "startup_and_development" %}class="active"{% endif %}" href="{{"/partners/" | prepend: site.baseurl}}">Partners</a></li>
+    <li><a {% if page.category == "partners" or page.categories[0] == "partners" or page.categories[0] == "startup_and_development" %}class="active"{% endif %} href="{{"/partners/" | prepend: site.baseurl}}">Partners</a></li>
     <li><a {% if page.category == "support" or page.categories[0] == "support" %}class="active"{% endif %} href="{{"/support/" | prepend: site.baseurl}}">Support</a></li>
     <li><a {% if page.category == "blogs" or page.category == "blogs" %}class="active"{% endif %} href="{{"/blogs/" | prepend: site.baseurl}}">Blogs</a></li>
     <li><a {% if page.category == "events" or page.categories[0] == "events" %}class="active"{% endif %} href="{{"/events/" | prepend: site.baseurl}}">Events</a></li>

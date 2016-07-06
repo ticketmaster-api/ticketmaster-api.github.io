@@ -11,7 +11,7 @@ layout: default
             <div class="col-xs-12 col-sm-6 col-lg-3 has-bg" id="aside-block">
                 <div class="wrapper-aside-menu">
                     <h3 class="menu-header" id="aside-heading">
-                        <a href="/products-and-docs/"></a>Products &amp; Docs</a>
+                        Products &amp; Docs
                         <span class="expanded" id="side-menu-btn"></span>
                     </h3>
                     {% include pd-side-menu.html %}
@@ -23,7 +23,7 @@ layout: default
                 <div class="content" style="display: block;">
 
                     {% if page.categories[1] == "generated" %}
-                        {% comment %}{% include swagger.html %}{% endcomment %}
+                        {% include swagger.html %}
                     {% else %}
                         {{ content }}
                     {% endif %}
@@ -79,11 +79,25 @@ layout: default
 })();
 </script>
 
+<script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
 <script>
     new Clipboard('.copy-btn');
-    if(sessionStorage.getItem('tk-api-key') !== null) {
-        document.body.innerHTML = document.body.innerHTML.replace(/\{apikey\}/g, "apikey=" + sessionStorage.getItem('tk-api-key'));
-    }
-</script>
+    var userKey = sessionStorage.getItem('tk-api-key');
 
-<script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
+    function replaceText(selector, text, newText, flags) {
+        var matcher = new RegExp(text, flags);
+        $(selector).each(function () {
+            var $this = $(this);
+            if (!$this.children().length)
+                $this.text($this.text().replace(matcher, newText));
+        });
+    }
+
+    if(userKey !== null) {
+        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+    }
+
+    $(window).on('login',function(){
+        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+    });
+</script>

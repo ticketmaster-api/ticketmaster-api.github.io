@@ -16,54 +16,10 @@
                 </ul>
                 {% endif %}
             </li>
-           {% comment %}
+           {% comment %}{% endcomment %}
             <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
-                {% if page.categories[0] == "documentation" and page.categories[1] == "swagger" or page.categories[2] == "swagger" %}
-
-                {% assign pageMetaFolder        = page.categories[2] %}
-                {% assign pageMetaVersionFolder = page.categories[3] %}
-                {% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
-                {% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
-                {% if swagger.paths.size > 0 %}
-                    <ul class="sections menu-highlight">
-                    {% for route in swagger.paths %}
-
-                        {% for tag in methodsDescription.method %}
-                            {% if tag.pathsParent == route[0] %}
-                                {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
-                                {% assign _title = tag.title %}
-                                {% assign _reqres = tag.reqres %}
-                                {% assign _codePath = tag.codePath %}
-                            {% endif %}
-                        {% endfor %}
-
-                        {% assign indexLoop = forloop.index0 %}
-
-                            {% for method in route[1] %}
-                                <li><a href="{% if _id %}{{ _id | prepend: '#'}}{% else %}{{ method[1].summary
-                                    | lstrip
-                                    | downcase
-                                    | replace: ' ' , '-'
-                                    | replace: '[' , '-'
-                                    | replace: ']' , '-'
-                                    | replace: '/' , '-'
-                                    | replace: '\' , '-'
-                                    | replace: '(' , '-'
-                                    | replace: ')' , '-'
-                                    | prepend: '#'
-                                    | append: '-'
-                                    | append: indexLoop
-                                    | append: '-'
-                                    | append: page.categories[3] }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary | lstrip }}{% endif %}</a></li>
-                            {% endfor %}
-                        {% comment %}<!--Clear meta data -->{% endcomment %}
-                        {% assign _id = tag.id %}
-                        {% assign _title = tag.title %}
-                        {% assign _reqres = tag.resreq %}
-                        {% assign _codePath = tag.codePath %}
-                    {% endfor %}
-                    </ul>
-                {% endif %}
+                {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "swagger" %}
+                    {% include partials/autodoc/side-menu-generate.html%}
 
 
                 {%comment%}
@@ -86,7 +42,7 @@
 
                 {% endif %}
             </li>
-            {% endcomment %}
+
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
@@ -101,7 +57,6 @@
                     <li><a href="#search-venues-v2">Search Venues</a></li>
 					<li><a href="#venue-details-v2">Get Venue Details</a></li>
                     <li><a href="#supported-country-codes">Supported Country Codes</a></li>
-                    <li><a href="#supported-country-codes">Supported Country Codes</a></li>
                     <li><a href="#supported-markets">Supported Markets</a></li>
                     <li><a href="#supported-sources">Supported Sources</a></li>
                     <li><a href="#supported-locales">Supported Locales</a></li>
@@ -110,7 +65,7 @@
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
                 {% endif %}
-            
+
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v1" %}
 
                 <ul class="sections menu-highlight">
@@ -133,7 +88,7 @@
 
                 {% endif %}
             </li>
-           
+
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
@@ -209,6 +164,26 @@
                     <li><a href="#supported-locales">Supported Locales</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
+                </ul>
+                {% endif %}
+            </li>
+            <li><a href="/products-and-docs/apis/oauth/">OAuth API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "oauth" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#terminologies">Terminologies</a></li>
+                    <li class="sub-section">
+                        <span class="sub-section-label">Authorization (three-legged)</span>
+                        <ul class="sections menu-highlight">
+                            <li><a href="#step1">Step 1</a></li>
+                            <li><a href="#step2">Step 2</a></li>
+                            <li><a href="#step3">Step 3</a></li>
+                            <li><a href="#step4">Step 4</a></li>
+                            <li><a href="#step5">Step 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#using-access-token">Using Access Token</a></li>
+                    <li><a href="#getting-refresh-tokens">Getting Refresh Tokens</a></li>
                 </ul>
                 {% endif %}
             </li>
@@ -297,10 +272,61 @@
         <h4><a href="/products-and-docs/tutorials/" {% if page.categories[1] == "tutorials" %} class="active" {% endif %} >Tutorials</a></h4>
         {% if page.categories[1] == "tutorials" or page.categories[0] == "tutorials" %}
         <ul class="categories">
-            <li><a href="/products-and-docs/tutorials/events-search/" {% if page.categories[2] == "events-search-tutorials" or page.categories[1] == "tutorials-events-search" %} class="active" {% endif %} >Events Search</a></li>
-            <li><a href="/products-and-docs/tutorials/widgets/" {% if page.categories[2] == "widgets-tutorials" or page.categories[1] == "tutorials-widgets" %} class="active" {% endif %} >Widgets</a></li>
+            <li>
+                <a href="/products-and-docs/tutorials/events-search/" {% if page.categories[2] == "events-search-tutorials" or page.categories[1] == "tutorials-events-search" %} class="active" {% endif %} >Events Search</a>
+                <ul class="sections menu-highlight sd-tags-list"></ul>
+            </li>
+            <li>
+                <a href="/products-and-docs/tutorials/widgets/" {% if page.categories[2] == "widgets-tutorials" or page.categories[1] == "tutorials-widgets" %} class="active" {% endif %} >Widgets</a>
+                <ul class="sections menu-highlight sd-tags-list"></ul>
+            </li>
         </ul>
         {% endif %}
     </li>
 </ul>
 
+<script>
+    $(document).ready(function () {
+
+        var uniqueUpcoming = [].map.call($(".tag-btn"), function(item){
+            return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';
+        }).filter( function(value, index, self) {
+            return self.indexOf(value) === index;
+        }).join("");
+
+        if(uniqueUpcoming !== ""){
+            $(".categories>li>a.active + .sd-tags-list").append(uniqueUpcoming);
+        }
+
+        var PartnerTagClickHandler = function() {
+            var currentItem = this.textContent;
+            var isActive = $(this).hasClass('active');
+            if(isActive){
+                $(".tag-btn, .tag-menu-btn").removeClass("active");
+                $(".tutorials-article").show();
+                if(this.tagName.toUpperCase() == "BUTTON"){
+                    this.blur();
+                }
+
+            }else{
+                $(".tag-btn").add(".tag-menu-btn").removeClass("active").map(function(){
+                    if (this.textContent == currentItem) {
+                        return this;
+                    }
+                }).addClass("active");
+
+                $(".tutorials-article").show().filter(function() {
+                    return $(this).find(".tag-btn.active").size() === 0;
+                }).hide();
+            }
+
+
+        };
+
+        $(".tutorials-article").on("click", ".tag-btn", PartnerTagClickHandler);
+        $(".categories").on("click", ".tag-menu-btn", PartnerTagClickHandler);
+    });
+
+
+
+</script>
