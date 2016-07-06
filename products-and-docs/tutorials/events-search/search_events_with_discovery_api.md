@@ -23,7 +23,7 @@ keywords: events, attractions, classifications, venues, search, discovery, api
 
 ## Introduction
 
-Use the Discovery API to search, look up and find events, attractions, venues, and classifications. The API provides accecc to content sourced from [various platform, markets and countries](/products-and-docs/apis/discovery/v2/#supported-country-codes).
+Use the Discovery API to search, look up and find events, attractions, venues, and classifications. The API provides access to content sourced from [various platform, markets and countries](/products-and-docs/apis/discovery/v2/#supported-country-codes).
 
 Documentation about this API can be found [here](/products-and-docs/apis/discovery/v2/).
 
