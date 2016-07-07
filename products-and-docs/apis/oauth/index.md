@@ -54,7 +54,7 @@ Note, the header `Content-Type: application/x-www-form-urlencoded` must be inclu
 Example (unencoded for readability):
 
 {% highlight bash %}
-GET https://oauth.ticketmaster.com/oauth/token?client_id=12341234&redirect_uri=http://localhost/oauth/code_callback&scope=all&response_type=code
+GET https://oauth.ticketmaster.com/oauth/authorize?client_id=12341234&redirect_uri=http://localhost/oauth/code_callback&scope=all&response_type=code
 {% endhighlight %}
 
 ### Step 2
