@@ -80,8 +80,10 @@ layout: default
 </script>
 
 <script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
+<script>new Clipboard('.copy-btn');</script>
+
+{% if page.categories contains "replace_apikey" %}
 <script>
-    new Clipboard('.copy-btn');
     var userKey = sessionStorage.getItem('tk-api-key');
 
     function replaceText(selector, text, newText, flags) {
@@ -101,3 +103,4 @@ layout: default
         replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
     });
 </script>
+{% endif %}
