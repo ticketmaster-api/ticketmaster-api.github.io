@@ -1080,3 +1080,9 @@ div[w-theme="calendar"] #calendar .round .count {
     top: -6px;
     line-height: 10px;
 }
+
+div[w-theme="calendar"] #calendar .round:hover,
+div[w-theme="calendar"] #calendar .round:hover .count {
+    cursor: pointer;
+    background: #ba1079;
+}

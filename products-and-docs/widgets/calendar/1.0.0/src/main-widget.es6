@@ -1839,14 +1839,16 @@ class MonthScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
             firstDay = new Date(date.getFullYear(), document.querySelector('[w-type="calendar"]').getAttribute("w-period"), 1);
-            lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")) + 1, 0);
-            if (firstDay.getMonth()+1 <=9) startmonth = '0' + (firstDay.getMonth()+1); else startmonth = firstDay.getMonth()+1;
+            lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")), 0);
+            if (firstDay.getMonth()+1 <=9) startmonth = '0' + (firstDay.getMonth()); else startmonth = firstDay.getMonth();
             startdate = '0' + firstDay.getDate();
-            if (lastDay.getMonth()+1 <=9) endmonth = '0' + (lastDay.getMonth()+1); else endmonth = lastDay.getMonth()+1;
+            if (lastDay.getMonth()+1 <=9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
             enddate = lastDay.getDate();
             startDateTime = firstDay.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
             endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
         }
+
+        console.log(startDateTime + ' - ' + endDateTime);
 
         return {
             "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
@@ -1919,7 +1921,6 @@ class MonthScheduler {
         let place;
         let address;
         let monthEvents = [];
-        let eventDate;
 
         if (this && this.readyState == XMLHttpRequest.DONE) {
             if (this.status == 200) {
@@ -1953,27 +1954,23 @@ class MonthScheduler {
                     });
                 });
 
-
+                let monthEventsSort = {};
+                let eventsArr = [];
                 let tDate = monthEvents[0].date;
-                let count = 0;
-                let startFlag = 0;
-                let endFlag = 0;
 
                 for (let e = 0, l = monthEvents.length; e < l; ++e) {
                     if (tDate == monthEvents[e].date) {
-                        monthEvents[e].count = count;
-                        endFlag = e;
-                        count++;
+                        eventsArr.push(monthEvents[e]);
+                        monthEventsSort[new Date(monthEvents[e].date).getDate()] = monthEvents[e];
                     }
-                    if (tDate != monthEvents[e].date || e == l-1) {
-                        for (let i = startFlag; i <= endFlag; i++) {
-                            monthEvents[i].count = count;
-                        }
-                        tDate = monthEvents[e].date;
-                        startFlag = e;
-                        count = 0;
+                    else {
+                        monthEventsSort[new Date(tDate).getDate()] = eventsArr;
+                        eventsArr = [];
+                        eventsArr.push(monthEvents[e]);
                     }
+                    tDate = monthEvents[e].date;
                 }
+
 
                 let id = 'calendar';
                 let year = new Date().getFullYear();
@@ -2002,14 +1999,10 @@ class MonthScheduler {
                 while (d.getMonth() == mon) {
                     table += '<td>';
 
-                    for (let e = 0, l = monthEvents.length; e < l; ++e) {
-                        if ( new Date(monthEvents[e].date).getDate() === d.getDate() && eventFlag === false) {
-                            table += '<span class="round">' + d.getDate() + '<span class="count">' + monthEvents[e].count + '</span></span>';
-                            eventFlag = true;
-                        }
-                        if ( new Date(monthEvents[e].date).getDate() !== d.getDate() ) {
-                            eventFlag = false;
-                        }
+                    if (monthEventsSort[d.getDate()] != undefined) {
+                        let eventsCount = monthEventsSort[d.getDate()].length;
+                        if (eventsCount === undefined) eventsCount = 1;
+                        table += '<span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span>';
                     }
 
                     table += d.getDate();
