@@ -102,7 +102,7 @@ season tickets all in one trusted place.
       <div class="tutorials-article">                
               <a href=" tutorials.link "><img src=" {{ SDK_scala_img }} " class="image" alt="{{ SDK_scala_title }}"/></a>                
           <div class="announcement">
-              <h3 >{{ SDK_scala_title }}</h3>
+              <h3>{{ SDK_scala_title }}</h3>
               <p>{{ SDK_scala_description }}</p>
               <a class="button button-blue" href="{{ SDK_scala_link }}">Learn more</a>              
           </div>                
