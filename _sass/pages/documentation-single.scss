@@ -91,6 +91,16 @@
     }
   }
   &.sdks {
+    #sdk-java,
+    #sdk-javascript,
+    #sdk-scala {
+      &:target:before {
+        content: "";
+        display: block;
+        height: 100px;
+        margin: -100px 0 0;
+      }
+    }
     @media (max-width: 768px) {
       .tutorials-article  {
         margin-bottom: 0;
