@@ -1966,7 +1966,6 @@ var MonthScheduler = function () {
             var place = void 0;
             var address = void 0;
             var monthEvents = [];
-            var eventDate = void 0;
 
             if (this && this.readyState == XMLHttpRequest.DONE) {
                 if (this.status == 200) {
@@ -2000,25 +1999,20 @@ var MonthScheduler = function () {
                         });
                     });
 
+                    var monthEventsSort = {};
+                    var eventsArr = [];
                     var tDate = monthEvents[0].date;
-                    var count = 0;
-                    var startFlag = 0;
-                    var endFlag = 0;
 
                     for (var e = 0, l = monthEvents.length; e < l; ++e) {
                         if (tDate == monthEvents[e].date) {
-                            monthEvents[e].count = count;
-                            endFlag = e;
-                            count++;
+                            eventsArr.push(monthEvents[e]);
+                            monthEventsSort[new Date(monthEvents[e].date).getDate()] = monthEvents[e];
+                        } else {
+                            monthEventsSort[new Date(tDate).getDate()] = eventsArr;
+                            eventsArr = [];
+                            eventsArr.push(monthEvents[e]);
                         }
-                        if (tDate != monthEvents[e].date || e == l - 1) {
-                            for (var _i8 = startFlag; _i8 <= endFlag; _i8++) {
-                                monthEvents[_i8].count = count;
-                            }
-                            tDate = monthEvents[e].date;
-                            startFlag = e;
-                            count = 0;
-                        }
+                        tDate = monthEvents[e].date;
                     }
 
                     var id = 'calendar';
@@ -2048,14 +2042,10 @@ var MonthScheduler = function () {
                     while (d.getMonth() == mon) {
                         table += '<td>';
 
-                        for (var _e2 = 0, _l2 = monthEvents.length; _e2 < _l2; ++_e2) {
-                            if (new Date(monthEvents[_e2].date).getDate() === d.getDate() && eventFlag === false) {
-                                table += '<span class="round">' + d.getDate() + '<span class="count">' + monthEvents[_e2].count + '</span></span>';
-                                eventFlag = true;
-                            }
-                            if (new Date(monthEvents[_e2].date).getDate() !== d.getDate()) {
-                                eventFlag = false;
-                            }
+                        if (monthEventsSort[d.getDate()] != undefined) {
+                            var eventsCount = monthEventsSort[d.getDate()].length;
+                            if (eventsCount === undefined) eventsCount = 1;
+                            table += '<span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span>';
                         }
 
                         table += d.getDate();
@@ -2164,14 +2154,16 @@ var MonthScheduler = function () {
 
             if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
                 firstDay = new Date(date.getFullYear(), document.querySelector('[w-type="calendar"]').getAttribute("w-period"), 1);
-                lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")) + 1, 0);
-                if (firstDay.getMonth() + 1 <= 9) startmonth = '0' + (firstDay.getMonth() + 1);else startmonth = firstDay.getMonth() + 1;
+                lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")), 0);
+                if (firstDay.getMonth() + 1 <= 9) startmonth = '0' + firstDay.getMonth();else startmonth = firstDay.getMonth();
                 startdate = '0' + firstDay.getDate();
-                if (lastDay.getMonth() + 1 <= 9) endmonth = '0' + (lastDay.getMonth() + 1);else endmonth = lastDay.getMonth() + 1;
+                if (lastDay.getMonth() + 1 <= 9) endmonth = '0' + parseInt(lastDay.getMonth() + 1);else endmonth = parseInt(lastDay.getMonth()) + 1;
                 enddate = lastDay.getDate();
                 startDateTime = firstDay.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
                 endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
             }
+
+            console.log(startDateTime + ' - ' + endDateTime);
 
             return _defineProperty({
                 "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
