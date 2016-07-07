@@ -1465,7 +1465,7 @@ Status 200
 {% endhighlight %}
 
 {: .article}
-## Add payment information [PUT]
+## Add Billing Information [PUT]
 {: #post-card}
 
 Add customer information and credit card or invoice data to the transaction. For credit cards, set `encryption_key` with the `id` value from the output of /certificate.
