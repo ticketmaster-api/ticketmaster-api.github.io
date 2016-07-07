@@ -70,7 +70,7 @@ User logs in to Ticketmaster, and grants your Application permission to access t
 ### Step 4
 {: #step4}
 
-The OAuth API uses a 302 Redirect to send the User back to your `redirect_uri`, including the `?code=` (Auth Code) query parameter:
+The OAuth API uses a 302 Redirect to send the User back to your `redirect_uri`, including the `?code=` (Auth Code) query parameter. A sample node.js server for capturing the OAuth response on "localhost:8080" can be accessed [here](https://gist.github.com/romil93/e0eded76310fb3bde67359b44e08e682).
 
 {% highlight bash %}
 GET http://localhost/oauth/code_callback?code=1c6b27fd4dbca7390b7d6cbbb8d4e41a5841d123
