@@ -1954,6 +1954,46 @@ var MonthScheduler = function () {
             return result + ' ' + LZ(H) + ':' + m + ' ' + a;
         }
     }, {
+        key: "addScroll",
+        value: function addScroll() {
+            (function (n, t) {
+                function u(n) {
+                    n.hasOwnProperty("data-simple-scrollbar") || Object.defineProperty(n, "data-simple-scrollbar", new SimpleScrollbar(n));
+                }function e(n, i) {
+                    function f(n) {
+                        var t = n.pageY - u;u = n.pageY;r(function () {
+                            i.el.scrollTop += t / i.scrollRatio;
+                        });
+                    }function e() {
+                        n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove", f);t.removeEventListener("mouseup", e);
+                    }var u;n.addEventListener("mousedown", function (i) {
+                        return u = i.pageY, n.classList.add("ss-grabbed"), t.body.classList.add("ss-grabbed"), t.addEventListener("mousemove", f), t.addEventListener("mouseup", e), !1;
+                    });
+                }function i(n) {
+                    for (this.target = n, this.bar = '<div class="ss-scroll">', this.wrapper = t.createElement("div"), this.wrapper.setAttribute("class", "ss-wrapper"), this.el = t.createElement("div"), this.el.setAttribute("class", "ss-content"), this.wrapper.appendChild(this.el); this.target.firstChild;) {
+                        this.el.appendChild(this.target.firstChild);
+                    }this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend", this.bar);this.bar = this.target.lastChild;e(this.bar, this);this.moveBar();this.el.addEventListener("scroll", this.moveBar.bind(this));this.el.addEventListener("mouseenter", this.moveBar.bind(this));this.target.classList.add("ss-container");
+                }function f() {
+                    for (var i = t.querySelectorAll("*[ss-container]"), n = 0; n < i.length; n++) {
+                        u(i[n]);
+                    }
+                }var r = n.requestAnimationFrame || n.setImmediate || function (n) {
+                    return setTimeout(n, 0);
+                };i.prototype = { moveBar: function moveBar() {
+                        var t = this.el.scrollHeight,
+                            i = this.el.clientHeight,
+                            n = this;this.scrollRatio = i / t;r(function () {
+                            n.bar.style.cssText = "height:" + i / t * 100 + "%; top:" + n.el.scrollTop / t * 100 + "%;right:-" + (n.target.clientWidth - n.bar.clientWidth) + "px;";
+                        });
+                    } };t.addEventListener("DOMContentLoaded", f);i.initEl = u;i.initAll = f;n.SimpleScrollbar = i;
+            })(window, document);
+            var scrollRoot = document.querySelectorAll(".ss");
+            var maxL = scrollRoot.length;
+            for (var ml = 0; ml < maxL; ml++) {
+                SimpleScrollbar.initEl(scrollRoot[ml]);
+            }
+        }
+    }, {
         key: "startMonth",
         value: function startMonth() {
             this.getJSON(this.getMonthEventsHandler, this.apiUrl, this.eventReqAttrs);
@@ -1994,8 +2034,7 @@ var MonthScheduler = function () {
                             }),
                             'place': place + ', ' + address,
                             'url': item.url,
-                            'img': item.hasOwnProperty('images') && item.images[index] != undefined ? item.images[index].url : '',
-                            'count': 0
+                            'img': item.hasOwnProperty('images') && item.images[index] != undefined ? item.images[index].url : ''
                         });
                     });
 
@@ -2045,10 +2084,40 @@ var MonthScheduler = function () {
                         if (monthEventsSort[d.getDate()] != undefined) {
                             var eventsCount = monthEventsSort[d.getDate()].length;
                             if (eventsCount === undefined) eventsCount = 1;
-                            table += '<span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span>';
-                        }
+                            table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
 
-                        table += d.getDate();
+                            if (d.getDate() <= 10) {
+                                table += '<span class="tail"></span>';
+                                table += '<div class="popup ';
+                                if (eventsCount == 1) table += 'sinlge ';
+                                table += 'ss" tabindex="-1">';
+                            } else {
+                                table += '<span class="tail-up"></span>';
+                                table += '<div class="popup-up ';
+                                if (eventsCount == 1) table += 'sinlge ';
+                                table += 'ss" tabindex="-1">';
+                            }
+
+                            table += '<div class="ss-container">';
+
+                            for (var _e2 = 0, _l2 = monthEventsSort[d.getDate()].length; _e2 < _l2; _e2++) {
+                                table += '<span class="event">';
+                                table += '<span class="event-holder">';
+                                table += '<a href="' + monthEventsSort[d.getDate()][_e2].url + '" target="_blank">';
+                                table += '<span class="img" style="background: url(' + monthEventsSort[d.getDate()][_e2].img + ') center center no-repeat"></span>';
+                                table += '<span class="name">' + monthEventsSort[d.getDate()][_e2].name + '</span>';
+                                table += '</a>';
+                                table += '<span class="date">' + monthEventsSort[d.getDate()][_e2].datetime + '</span>';
+                                table += '<span class="place">' + monthEventsSort[d.getDate()][_e2].place + '</span>';
+                                table += '</span>';
+                                table += '</span>';
+                            }
+
+                            table += '</div>';
+                            table += '</div>';
+                        } else {
+                            table += d.getDate();
+                        }
                         table += '</td>';
 
                         if (d.getDay() % 7 == 6) {
@@ -2066,7 +2135,37 @@ var MonthScheduler = function () {
                     }
                     table += '</tr></table>';
                     elem.innerHTML = table;
+                    widget.addScroll();
+                } else if (this.status == 400) {
+                    console.log('There was an error 400');
+                } else {
+                    console.log('something else other than 200 was returned');
                 }
+            }
+
+            var rounds = document.querySelectorAll("span.round-holder");
+            for (var x = 0; x < rounds.length; x++) {
+                rounds[x].addEventListener("click", function (e) {
+                    this.classList.add("active");
+                    this.nextElementSibling.classList.add("show");
+                    this.nextElementSibling.nextElementSibling.classList.add("show");
+                    this.nextElementSibling.nextElementSibling.focus();
+                }, false);
+            }
+
+            var popups = document.querySelectorAll(".popup, .popup-up");
+            for (var y = 0; y < popups.length; y++) {
+                popups[y].addEventListener("blur", function (e) {
+                    var self = this;
+                    setTimeout(function () {
+                        self.previousElementSibling.classList.remove("show");
+                        self.classList.remove("show");
+                        var rounds = document.querySelectorAll("span.round-holder");
+                        for (var x = 0; x < rounds.length; x++) {
+                            rounds[x].classList.remove("active");
+                        }
+                    }, 127);
+                }, false);
             }
         }
     }, {
@@ -2155,7 +2254,7 @@ var MonthScheduler = function () {
             if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
                 firstDay = new Date(date.getFullYear(), document.querySelector('[w-type="calendar"]').getAttribute("w-period"), 1);
                 lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")), 0);
-                if (firstDay.getMonth() + 1 <= 9) startmonth = '0' + firstDay.getMonth();else startmonth = firstDay.getMonth();
+                if (parseInt(firstDay.getMonth()) <= 9) startmonth = '0' + parseInt(firstDay.getMonth());else startmonth = parseInt(firstDay.getMonth());
                 startdate = '0' + firstDay.getDate();
                 if (lastDay.getMonth() + 1 <= 9) endmonth = '0' + parseInt(lastDay.getMonth() + 1);else endmonth = parseInt(lastDay.getMonth()) + 1;
                 enddate = lastDay.getDate();

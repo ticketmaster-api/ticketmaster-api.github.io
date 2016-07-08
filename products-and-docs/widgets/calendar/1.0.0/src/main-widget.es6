@@ -1840,7 +1840,7 @@ class MonthScheduler {
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
             firstDay = new Date(date.getFullYear(), document.querySelector('[w-type="calendar"]').getAttribute("w-period"), 1);
             lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")), 0);
-            if (firstDay.getMonth()+1 <=9) startmonth = '0' + (firstDay.getMonth()); else startmonth = firstDay.getMonth();
+            if (parseInt(firstDay.getMonth()) <= 9) startmonth = '0' + parseInt(firstDay.getMonth()); else startmonth = parseInt(firstDay.getMonth());
             startdate = '0' + firstDay.getDate();
             if (lastDay.getMonth()+1 <=9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
             enddate = lastDay.getDate();
@@ -1911,6 +1911,15 @@ class MonthScheduler {
         return result + ' ' + LZ(H) + ':' + m + ' ' + a;
     }
 
+    addScroll() {
+        (function(n,t){function u(n){n.hasOwnProperty("data-simple-scrollbar")||Object.defineProperty(n,"data-simple-scrollbar",new SimpleScrollbar(n))}function e(n,i){function f(n){var t=n.pageY-u;u=n.pageY;r(function(){i.el.scrollTop+=t/i.scrollRatio})}function e(){n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove",f);t.removeEventListener("mouseup",e)}var u;n.addEventListener("mousedown",function(i){return u=i.pageY,n.classList.add("ss-grabbed"),t.body.classList.add("ss-grabbed"),t.addEventListener("mousemove",f),t.addEventListener("mouseup",e),!1})}function i(n){for(this.target=n,this.bar='<div class="ss-scroll">',this.wrapper=t.createElement("div"),this.wrapper.setAttribute("class","ss-wrapper"),this.el=t.createElement("div"),this.el.setAttribute("class","ss-content"),this.wrapper.appendChild(this.el);this.target.firstChild;)this.el.appendChild(this.target.firstChild);this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend",this.bar);this.bar=this.target.lastChild;e(this.bar,this);this.moveBar();this.el.addEventListener("scroll",this.moveBar.bind(this));this.el.addEventListener("mouseenter",this.moveBar.bind(this));this.target.classList.add("ss-container")}function f(){for(var i=t.querySelectorAll("*[ss-container]"),n=0;n<i.length;n++)u(i[n])}var r=n.requestAnimationFrame||n.setImmediate||function(n){return setTimeout(n,0)};i.prototype={moveBar:function(){var t=this.el.scrollHeight,i=this.el.clientHeight,n=this;this.scrollRatio=i/t;r(function(){n.bar.style.cssText="height:"+i/t*100+"%; top:"+n.el.scrollTop/t*100+"%;right:-"+(n.target.clientWidth-n.bar.clientWidth)+"px;"})}};t.addEventListener("DOMContentLoaded",f);i.initEl=u;i.initAll=f;n.SimpleScrollbar=i})(window,document)
+        var scrollRoot = document.querySelectorAll(".ss");
+        var maxL = scrollRoot.length;
+        for (let ml = 0; ml < maxL; ml++) {
+            SimpleScrollbar.initEl(scrollRoot[ml]);
+        }
+    }
+
     startMonth() {
         this.getJSON( this.getMonthEventsHandler, this.apiUrl, this.eventReqAttrs );
     }
@@ -1950,7 +1959,6 @@ class MonthScheduler {
                         'place': place + ', ' + address,
                         'url': item.url,
                         'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                        'count': 0
                     });
                 });
 
@@ -2002,10 +2010,42 @@ class MonthScheduler {
                     if (monthEventsSort[d.getDate()] != undefined) {
                         let eventsCount = monthEventsSort[d.getDate()].length;
                         if (eventsCount === undefined) eventsCount = 1;
-                        table += '<span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span>';
-                    }
+                        table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
 
-                    table += d.getDate();
+                        if (d.getDate() <= 10) {
+                            table += '<span class="tail"></span>';
+                            table += '<div class="popup ';
+                            if (eventsCount == 1) table += 'sinlge ';
+                            table += 'ss" tabindex="-1">';
+                        }
+                        else {
+                            table += '<span class="tail-up"></span>';
+                            table += '<div class="popup-up ';
+                            if (eventsCount == 1) table += 'sinlge ';
+                            table += 'ss" tabindex="-1">';
+                        }
+
+                        table += '<div class="ss-container">';
+
+                        for(let e=0, l = monthEventsSort[d.getDate()].length; e < l; e++) {
+                            table += '<span class="event">';
+                            table += '<span class="event-holder">';
+                            table += '<a href="' + monthEventsSort[d.getDate()][e].url + '" target="_blank">';
+                            table += '<span class="img" style="background: url(' + monthEventsSort[d.getDate()][e].img + ') center center no-repeat"></span>';
+                            table += '<span class="name">' + monthEventsSort[d.getDate()][e].name + '</span>';
+                            table += '</a>';
+                            table += '<span class="date">' + monthEventsSort[d.getDate()][e].datetime + '</span>';
+                            table += '<span class="place">' + monthEventsSort[d.getDate()][e].place + '</span>';
+                            table += '</span>';
+                            table += '</span>';
+                        }
+
+                        table += '</div>';
+                        table += '</div>';
+                    }
+                    else {
+                        table += d.getDate();
+                    }
                     table += '</td>';
 
                     if (d.getDay() % 7 == 6) {
@@ -2023,8 +2063,41 @@ class MonthScheduler {
                 }
                 table += '</tr></table>';
                 elem.innerHTML = table;
+                widget.addScroll();
+            }
+            else if (this.status == 400) {
+                console.log('There was an error 400');
+            }
+            else {
+                console.log('something else other than 200 was returned');
             }
         }
+
+        var rounds = document.querySelectorAll("span.round-holder");
+        for (var x = 0; x < rounds.length; x++) {
+            rounds[x].addEventListener("click", function (e) {
+                this.classList.add("active");
+                this.nextElementSibling.classList.add("show");
+                this.nextElementSibling.nextElementSibling.classList.add("show");
+                this.nextElementSibling.nextElementSibling.focus();
+            }, false);
+        }
+
+        var popups = document.querySelectorAll(".popup, .popup-up");
+        for (var y = 0; y < popups.length; y++) {
+            popups[y].addEventListener("blur", function (e) {
+                let self = this;
+                setTimeout(function () {
+                    self.previousElementSibling.classList.remove("show");
+                    self.classList.remove("show");
+                    var rounds = document.querySelectorAll("span.round-holder");
+                    for (var x = 0; x < rounds.length; x++) {
+                        rounds[x].classList.remove("active");
+                    }
+                }, 127);
+            }, false);
+        }
+
     }
 
     getMonthes() {

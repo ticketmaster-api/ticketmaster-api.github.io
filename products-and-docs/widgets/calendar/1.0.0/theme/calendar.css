@@ -1042,8 +1042,13 @@ div[w-theme="calendar"] #calendar table th {
     margin-top: 21px;
 }
 
-div[w-theme="calendar"] #calendar table td {
+div[w-theme="calendar"] #calendar table tr {
     position: relative;
+    display: block;
+}
+
+div[w-theme="calendar"] #calendar table td {
+    position: static;
 }
 
 div[w-theme="calendar"] #calendar table tr:nth-child(even) {
@@ -1054,6 +1059,12 @@ div[w-theme="calendar"] #calendar td.dis {
     color: #d9d9d9;
 }
 
+div[w-theme="calendar"] #calendar .round-holder {
+    width: 33px;
+    height: 33px;
+    display: block;
+    position: relative;
+}
 div[w-theme="calendar"] #calendar .round {
     width: 33px;
     height: 33px;
@@ -1063,7 +1074,7 @@ div[w-theme="calendar"] #calendar .round {
     position: absolute;
     color: #fff;
     font-weight: bold;
-    top: 1px;
+    top: -5px;
     padding-top: 5px;
 }
 
@@ -1082,7 +1093,225 @@ div[w-theme="calendar"] #calendar .round .count {
 }
 
 div[w-theme="calendar"] #calendar .round:hover,
-div[w-theme="calendar"] #calendar .round:hover .count {
+div[w-theme="calendar"] #calendar .round:hover .count,
+div[w-theme="calendar"] #calendar .round-holder.active .round,
+div[w-theme="calendar"] #calendar .round-holder.active .count {
     cursor: pointer;
     background: #ba1079;
+}
+
+div[w-theme="calendar"] #calendar .popup {
+    width: 265px;
+    height: 185px;
+    overflow: hidden;
+    padding: 13px 10px;
+    position: absolute;
+    background: #768692;
+    color: #fff;
+    left: 17px;
+    top: 25px;
+    z-index: 10;
+    display: none;
+    text-align: left;
+    border-radius: 4px;
+}
+
+div[w-theme="calendar"] #calendar .popup.single,
+div[w-theme="calendar"] #calendar .popup-up.single {
+    height: auto;
+    max-height: 185px;
+}
+
+div[w-theme="calendar"] #calendar .popup-up {
+    width: 265px;
+    height: 185px;
+    overflow: hidden;
+    padding: 13px 10px;
+    position: absolute;
+    background: #768692;
+    color: #fff;
+    left: 17px;
+    bottom: 37px;
+    z-index: 10;
+    display: none;
+    text-align: left;
+    border-radius: 4px;
+}
+
+div[w-theme="calendar"] #calendar .tail {
+    width:10px;
+    height: 5px;
+    display: block;
+    position: absolute;
+    margin: 1px 0 0 12px;
+    display: none;
+    z-index: 10;
+}
+
+div[w-theme="calendar"] #calendar .tail-up {
+    width:10px;
+    height: 5px;
+    display: block;
+    position: absolute;
+    margin: -38px 0 0 12px;
+    display: none;
+    z-index: 10;
+}
+
+div[w-theme="calendar"] #calendar .tail:before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 5px 5px;
+    border-color: transparent transparent #768692 transparent;
+    position: absolute;
+    top: -5px;
+}
+
+div[w-theme="calendar"] #calendar .tail-up:before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #768692 transparent transparent transparent;
+    position: absolute;
+    top: -5px;
+}
+
+div[w-theme="calendar"] #calendar .popup .event,
+div[w-theme="calendar"] #calendar .popup-up .event {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(65, 65, 65, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+div[w-theme="calendar"] #calendar .popup .event:last-child,
+div[w-theme="calendar"] #calendar .popup-up .event:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+div[w-theme="calendar"] #calendar .popup .event .img,
+div[w-theme="calendar"] #calendar .popup-up .event .img {
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    display: block;
+    margin-top: 2px;
+}
+
+div[w-theme="calendar"] #calendar .popup .event .event-holder,
+div[w-theme="calendar"] #calendar .popup-up .event .event-holder {
+    overflow: hidden;
+    display: block;
+}
+
+div[w-theme="calendar"] #calendar .popup .event .event-holder .name,
+div[w-theme="calendar"] #calendar .popup .event .event-holder .name:hover,
+div[w-theme="calendar"] #calendar .popup-up .event .event-holder .name,
+div[w-theme="calendar"] #calendar .popup-up .event .event-holder .name:hover {
+    font-family: "TMSans-Bold";
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    display: block;
+    color: #fff;
+    margin-bottom: 7px;
+    max-height: 33px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+}
+
+div[w-theme="calendar"] #calendar .popup .event .event-holder .date,
+div[w-theme="calendar"] #calendar .popup-up .event .event-holder .date {
+    font-family: "TMSans-Bold";
+    font-size: 11px;
+    line-height: 14px;
+    color: #fff;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 4px;
+}
+
+div[w-theme="calendar"] #calendar .popup .event .event-holder .place,
+div[w-theme="calendar"] #calendar .popup-up .event .event-holder .place {
+    font-family: "TMSans-Light";
+    font-size: 11px;
+    line-height: 14px;
+    color: #fff;
+    opacity: 0.7;
+    display: block;
+}
+
+div[w-theme="calendar"] #calendar .popup:focus,
+div[w-theme="calendar"] #calendar .popup-up:focus {
+    outline: none;
+    border: none;
+}
+
+div[w-theme="calendar"] #calendar .popup.show,
+div[w-theme="calendar"] #calendar .popup-up.show {
+    display: block;
+}
+
+div[w-theme="calendar"] #calendar .ss-wrapper {
+    overflow : hidden;
+    height   : 100%;
+    position : relative;
+    z-index  : 1;
+    float: left;
+}
+
+div[w-theme="calendar"] #calendar .ss-content {
+    height          : 100%;
+    width           : 100%;
+    padding         : 0 32px 0 0;
+    position        : relative;
+    overflow        : auto;
+    -moz-box-sizing : border-box;
+    box-sizing      : border-box;
+}
+
+div[w-theme="calendar"] #calendar .ss-scroll {
+    position            : relative;
+    background          : rgba(153, 153, 153, .2);
+    width               : 6px;
+    border-radius       : 4px;
+    top                 : 0;
+    z-index             : 2;
+    cursor              : pointer;
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+
+div[w-theme="calendar"] #calendar .ss-container:hover .ss-scroll {
+    opacity: 1;
+}
+
+div[w-theme="calendar"] #calendar .popup .ss-content,
+div[w-theme="calendar"] #calendar .popup-up .ss-content {
+    width: 120% !important;
+}
+
+div[w-theme="calendar"] #calendar .popup .ss-scroll,
+div[w-theme="calendar"] #calendar .popup-up .ss-scroll {
+    right: -243px !important;
+    background-color: rgba(255,255,255,0.2);
+}
+
+div[w-theme="calendar"] #calendar .ss-grabbed {
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
 }
