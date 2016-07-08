@@ -84,7 +84,7 @@ season tickets all in one trusted place.
 </div>
 
 <div class="raw" id="sdk-javascript" markdown="1"> 
-  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 double-margin-top">        
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
       <div class="tutorials-article">                
               <a href=" tutorials.link "><img src=" {{ SDK_JS_img }} " class="image" alt="{{ SDK_JS_title }}"/></a>                
           <div class="announcement">
