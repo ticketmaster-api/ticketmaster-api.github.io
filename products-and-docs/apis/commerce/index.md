@@ -50,13 +50,14 @@ commerce/{version}/events/{id}/offers.{format}
             - `type` (string) - type of price.
             - `attributes` (object) - attributes of price.
                 * `currency` (string) - currency of price.
+                * `value` (string) - the offered price.
             - `relationships` (object) - available relationships.
-                * `offers` (object) - related offers.
+                * `offers` (object) - offers that are sellable at this price.
                     - `data` (array) - container for offers.
                         + `{array item object}` - offer.
                             * `id` (string) - id of offer.
                             * `type` (string) - type of offer.
-                * `price-zones` (object) - related price zones.
+                * `price-zones` (object) - price-zones that are sellable at this price.
                     - `data` (array) - container for price zones.
                         + `{array item object}` - price zone.
                             * `id` (string) - id of price zone.
