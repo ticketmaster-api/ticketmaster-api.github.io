@@ -979,6 +979,7 @@
         <apigee:authentication required="true"/>
       </method>
     </resource>
+     -->
   </resources>
-  -->
+ 
 </application>
