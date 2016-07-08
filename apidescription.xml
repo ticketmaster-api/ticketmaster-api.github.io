@@ -967,6 +967,7 @@
     </resource>
   </resources>
   <!-- UWD API -->
+  <!--
   <resources base="https://uapi.ticketmaster.com/">
     <!-- Get info about access token -->
     <resource path="tap/endpoint/restv1/events">
@@ -979,4 +980,5 @@
       </method>
     </resource>
   </resources>
+  -->
 </application>
