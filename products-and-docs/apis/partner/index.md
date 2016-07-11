@@ -1493,6 +1493,18 @@ Sample credit-card information for use in the sandbox environment:
     <li>Expiration: 12/2020</li>
 </ul>
 
+Sample code for generating random bytes for salting 
+
+{% highlight java %}
+
+SecureRandom random = new SecureRandom();
+          byte[] salt = new byte[16];
+          random.nextBytes(salt);
+          
+          String saltedValue = salt + "4588883206000011";
+          
+{% endhighlight %} 
+
 /partners/v1/events/{event_id}/cart/payment?apikey={apikey}
 {: .code .red}
 
