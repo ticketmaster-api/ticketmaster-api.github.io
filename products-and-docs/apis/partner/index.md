@@ -1480,7 +1480,7 @@ Encrypt the credit card and cvv number using the following steps:
 
 <ol>
     <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
-    <li>Before encrypting the sensitive data, salt it with 16 random bytes. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
+    <li>Before encrypting the sensitive data, salt it with 16 random bytes at the beginning of the number. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
     <li>When encrypting data, use RSA encryption with pkcs1 padding. Use the certificate value from step 1 as the public key.</li>
     <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
@@ -1492,6 +1492,18 @@ Sample credit-card information for use in the sandbox environment:
     <li>CVV: 123</li>
     <li>Expiration: 12/2020</li>
 </ul>
+
+Sample code for generating random bytes for salting 
+
+{% highlight java %}
+
+SecureRandom random = new SecureRandom();
+          byte[] salt = new byte[16];
+          random.nextBytes(salt);
+          
+          String saltedValue = salt + "4588883206000011";
+          
+{% endhighlight %} 
 
 /partners/v1/events/{event_id}/cart/payment?apikey={apikey}
 {: .code .red}
