@@ -45,24 +45,25 @@ commerce/{version}/events/{id}/offers.{format}
 - `limits` (object) - limits for event.
     * `max` (object) - max limit.
 - `prices` (object) - prices.
-    * `_embedded` (array) - container for prices data.
+    * `data` (array) - container for prices data.
         + `{array item object}` - price.
             - `type` (string) - type of price.
             - `attributes` (object) - attributes of price.
                 * `currency` (string) - currency of price.
+                * `value` (string) - the offered price.
             - `relationships` (object) - available relationships.
-                * `offers` (object) - related offers.
-                    - `_embedded` (array) - container for offers.
+                * `offers` (object) - offers that are sellable at this price.
+                    - `data` (array) - container for offers.
                         + `{array item object}` - offer.
                             * `id` (string) - id of offer.
                             * `type` (string) - type of offer.
-                * `price-zones` (object) - related price zones.
-                    - `_embedded` (array) - container for price zones.
+                * `price-zones` (object) - price-zones that are sellable at this price.
+                    - `data` (array) - container for price zones.
                         + `{array item object}` - price zone.
                             * `id` (string) - id of price zone.
                             * `type` (string) - type of price zone.                 
 - `areas` (object) - event areas.
-    - `_embedded` (array) - container for areas.
+    - `data` (array) - container for areas.
         + `{array item object}` - area.
             * `id` (string) - id of area.
             * `type` (string) - type of area.
@@ -72,22 +73,22 @@ commerce/{version}/events/{id}/offers.{format}
                 - `area-type` (string) - type of area.
             * `relationships` (object) - available relationships.
                 - `areas` (object) - related areas.
-                    * `_embedded` (array) - areas.
+                    * `data` (array) - areas.
                         + `{array item object}` - container for areas.
                             - `id` (string) - id of area.
                             - `type` (string) - type of area.
                 - `offers` (object) - related offers.
-                    * `_embedded` (array) - container for offers.
+                    * `data` (array) - container for offers.
                         + `{array item object}` - offer.
                             - `id` (string) - id of offer.
                             - `type` (string) - type of offer.
                 - `price-zones` (object) - related price zones.
-                    * `_embedded` (array) - container for price zones.
+                    * `data` (array) - container for price zones.
                         + `{array item object}` - price zone.
                             - `id` (string) - id of price zone.
                             - `type` (string) - type of price zone.
 - `passwords` (object) - passwords.
-    - `_embedded` (array) - container for passwords.
+    - `data` (array) - container for passwords.
         + `{array item object}` - password.
             * `id` (string) - password id.
             * `type` (string) - password type.
@@ -100,7 +101,7 @@ commerce/{version}/events/{id}/offers.{format}
                 - `text-label` (string) - text label.
             * `relationships` (object) - available relationships.
                 - `offers` (object) - related offers.
-                    * `_embedded` (array) - container for offers.
+                    * `data` (array) - container for offers.
                         + `{array item object}` - offer.
                             - `id` (string) - id of offer.
                             - `type` (string) - type of offer.
@@ -135,22 +136,22 @@ commerce/{version}/events/{id}/offers.{format}
             - `offer-type` (string) - offer type.       
         * `relationships` (object) - available relationships.
             * `areas` (object) - related areas.
-                - `_embedded` (array) - container for areas.
+                - `data` (array) - container for areas.
                     + `{array item object}` - area.
                         * `id` (string) - id of area.
                         * `type` (string) - type of area.            
             * `products` (object) - related products.
-                * `_embedded` (array) - container for products.
+                * `data` (array) - container for products.
                     + `{array item object}` - product.
                         - `id` (string) - id of product.
                         - `type` (string) - type of product.
             * `price-zones` (object) - related price zones.
-                * `_embedded` (array) - container for price zones.
+                * `data` (array) - container for price zones.
                     + `{array item object}` - price zone.
                         - `id` (string) - id of price zone.
                         - `type` (string) - type of price zone.
 - `price-zones` (object) - price zones.
-    - `_embedded` (array) - container for price zones.
+    - `data` (array) - container for price zones.
         + `{array item object}` - price zone.
             * `id` (string) - price zone id.
             * `type` (string) - price zone type.
@@ -159,12 +160,12 @@ commerce/{version}/events/{id}/offers.{format}
                 - `name` (string) - name of price zone.
             * `relationships` (object) - available relationships.
                 - `offers` (object) - related offers.
-                    * `_embedded` (array) - container for offers.
+                    * `data` (array) - container for offers.
                         + `{array item object}` - offer.
                             - `id` (string) - id of offer.
                             - `type` (string) - type of offer.
                 - `areas` (object) - related areas.
-                    - `_embedded` (array) - container for areas.
+                    - `data` (array) - container for areas.
                         + `{array item object}` - area.
                             * `id` (string) - id of area.
                             * `type` (string) - type of area.
@@ -230,7 +231,7 @@ Set-Cookie: ****
     "max": 8
   },
   "prices":  {
-    "_embedded":  [
+    "data":  [
        {
         "type": "offered-prices",
         "attributes":  {
@@ -239,7 +240,7 @@ Set-Cookie: ****
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000062800006",
                 "type": "offers"
@@ -251,7 +252,7 @@ Set-Cookie: ****
             ]
           },
           "price-zones":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "1",
                 "type": "price-zones"
@@ -268,7 +269,7 @@ Set-Cookie: ****
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000000000001",
                 "type": "offers"
@@ -276,7 +277,7 @@ Set-Cookie: ****
             ]
           },
           "areas":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "3",
                 "type": "areas"
@@ -284,7 +285,7 @@ Set-Cookie: ****
             ]
           },
           "price-zones":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "1",
                 "type": "price-zones"
@@ -301,7 +302,7 @@ Set-Cookie: ****
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000050820004",
                 "type": "offers"
@@ -309,7 +310,7 @@ Set-Cookie: ****
             ]
           },
           "price-zones":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "1",
                 "type": "price-zones"
@@ -326,7 +327,7 @@ Set-Cookie: ****
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000052830004",
                 "type": "offers"
@@ -334,7 +335,7 @@ Set-Cookie: ****
             ]
           },
           "price-zones":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "1",
                 "type": "price-zones"
@@ -351,7 +352,7 @@ Set-Cookie: ****
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "00006E840004",
                 "type": "offers"
@@ -359,7 +360,7 @@ Set-Cookie: ****
             ]
           },
           "price-zones":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "1",
                 "type": "price-zones"
@@ -371,7 +372,7 @@ Set-Cookie: ****
     ]
   },
   "areas":  {
-    "_embedded":  [
+    "data":  [
        {
         "id": "3",
         "type": "areas",
@@ -383,7 +384,7 @@ Set-Cookie: ****
         "relationships":  {
           "areas":  {},
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000000000001",
                 "type": "offers"
@@ -411,7 +412,7 @@ Set-Cookie: ****
             ]
           },
           "price-zones":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "1",
                 "type": "price-zones"
@@ -481,7 +482,7 @@ Set-Cookie: ****
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "3",
               "type": "areas"
@@ -489,7 +490,7 @@ Set-Cookie: ****
           ]
         },
         "products":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "05004F24E0B864B3",
               "type": "products"
@@ -497,7 +498,7 @@ Set-Cookie: ****
           ]
         },
         "price-zones":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "1",
               "type": "price-zones"
@@ -569,7 +570,7 @@ Set-Cookie: ****
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "3",
               "type": "areas"
@@ -577,7 +578,7 @@ Set-Cookie: ****
           ]
         },
         "products":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "05004F24E0B864B3",
               "type": "products"
@@ -585,7 +586,7 @@ Set-Cookie: ****
           ]
         },
         "price-zones":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "1",
               "type": "price-zones"
@@ -657,7 +658,7 @@ Set-Cookie: ****
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "3",
               "type": "areas"
@@ -665,7 +666,7 @@ Set-Cookie: ****
           ]
         },
         "products":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "05004F24E0B864B3",
               "type": "products"
@@ -673,7 +674,7 @@ Set-Cookie: ****
           ]
         },
         "price-zones":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "1",
               "type": "price-zones"
@@ -745,7 +746,7 @@ Set-Cookie: ****
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "3",
               "type": "areas"
@@ -753,7 +754,7 @@ Set-Cookie: ****
           ]
         },
         "products":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "05004F24E0B864B3",
               "type": "products"
@@ -761,7 +762,7 @@ Set-Cookie: ****
           ]
         },
         "price-zones":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "1",
               "type": "price-zones"
@@ -828,7 +829,7 @@ Set-Cookie: ****
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "3",
               "type": "areas"
@@ -836,7 +837,7 @@ Set-Cookie: ****
           ]
         },
         "products":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "05004F24E0B864B3",
               "type": "products"
@@ -844,7 +845,7 @@ Set-Cookie: ****
           ]
         },
         "price-zones":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "1",
               "type": "price-zones"
@@ -911,7 +912,7 @@ Set-Cookie: ****
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "3",
               "type": "areas"
@@ -919,7 +920,7 @@ Set-Cookie: ****
           ]
         },
         "products":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "05004F24E0B864B3",
               "type": "products"
@@ -927,7 +928,7 @@ Set-Cookie: ****
           ]
         },
         "price-zones":  {
-          "_embedded":  [
+          "data":  [
              {
               "id": "1",
               "type": "price-zones"
@@ -938,7 +939,7 @@ Set-Cookie: ****
     }
   ],
   "price-zones":  {
-    "_embedded":  [
+    "data":  [
        {
         "id": "1",
         "type": "price-zones",
@@ -948,7 +949,7 @@ Set-Cookie: ****
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000000000001",
                 "type": "offers"
@@ -976,7 +977,7 @@ Set-Cookie: ****
             ]
           },
           "areas":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "3",
                 "type": "areas"

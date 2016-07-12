@@ -1,4 +1,4 @@
-(function(){
+($ => {
 
   let widget = widgetsCountdown[0];
   var themeConfig = {
@@ -179,7 +179,8 @@
     if(userKey !== null) {
       let {inputApiKey, widgetNode , widget } = options;
       inputApiKey
-        .attr('value',userKey)
+        .attr('value', userKey)
+        .data('userAPIkey', userKey)
         .val(userKey);
       widgetNode.setAttribute("w-tm-api-key", userKey);
       widget.update();
@@ -325,8 +326,8 @@
     configForm.find("input[type='text']").each(function(){
       let $self = $(this),
           data = $self.data(),
-          value = data.defaultValue;
-
+          value = data.userAPIkey || data.defaultValue || '';
+      
       if(data.sliderValue){
         value = data.sliderValue;
         $self.slider({
@@ -466,9 +467,9 @@
 
   init();
 
-})();
+})(jQuery);
 
-(function($){
+($ => {
   let $modal = $('#get-eventId-modal'),
     $form = $('#js_get_eventId_form', $modal),
     $ul = $('#js_get_eventId_list'),

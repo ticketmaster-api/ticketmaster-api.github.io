@@ -7,9 +7,6 @@
 
   p {
     width: 85%;
-    &.lead {
-      width: 100%;
-    }
     &.medium {
       width: 40.5%;
     }
@@ -91,6 +88,16 @@
     }
   }
   &.sdks {
+    #sdk-java,
+    #sdk-javascript,
+    #sdk-scala {
+      &:target:before {
+        content: "";
+        display: block;
+        height: 100px;
+        margin: -100px 0 0;
+      }
+    }
     @media (max-width: 768px) {
       .tutorials-article  {
         margin-bottom: 0;
@@ -112,7 +119,7 @@
   width: 847px;
   padding: 46px 46px 26px 46px;
   background: #f1f4f6;
-  margin-top: 75px;
+  margin-top: $base-margin;
   @media #{$max-1200} {
     width: 100%;
     margin-bottom: 80px;
@@ -122,6 +129,12 @@
   }
   h3 {
     margin-top: 0;
+    &:target:before {
+      content: "";
+      display: block;
+      height: 138px;
+      margin: -138px 0 0;
+    }
   }
   &.android {
     background-color: #f1f4f6;

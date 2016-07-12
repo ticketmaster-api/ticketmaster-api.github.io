@@ -9,7 +9,7 @@ redirect_from:
 - "/apis/partner/"
 title: Partner API
 excerpt: The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket and event informaton.
-keywords: Partner API, host and API, reserve tickets, create a cart, order management
+keywords: Partner API, host and API, reserve tickets, create a cart, order management, member management
 ---
 
 {: .article}
@@ -48,6 +48,10 @@ New TM Developer accounts are automatically provisioned for the sandbox environm
 #### Cleanup
 
 If a user abandons a page/tab after a ticket reserve has been made, client applications should do their best to detect this and issue a `DELETE /cart` request to free up allocated resources on the ticketing server.  This should also be done if client apps no longer want to wait through a long, continuing polling process.  This is necessary since ticket reserve requests that result in polling will eventually complete asynchronously and take up resources even if clients do not consume the next polling url.
+
+#### Authorization
+
+Any API calls which require member authorization, refer to [Ticketmaster OAuth API](/products-and-docs/apis/oauth/) on how to get the Member Access Token and maintaining them. For all the Member Authorization requests, you will have to pass the following header with the request `Authorization: Bearer <access_token>`.
 
 #### Polling
 [Polling](#poll) results from limited per-partner resources in the ticketing system. Clients should always be ready to handle polling responses. See [polling](#poll) for more details.
@@ -1460,6 +1464,80 @@ Status 200
 }
 {% endhighlight %}
 
+{: .article}
+## Add TM payment information [PUT]
+{: #post-card-tm}
+
+Add Ticketmaster credit card data to the transaction. Set `encryption_key` with the `id` value from the output of /certificate.
+
+Encrypt the cvv number using the following steps:
+
+<ol>
+    <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
+    <li>Before encrypting the sensitive data, salt it with 16 random bytes. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
+    <li>When encrypting data, use RSA encryption with pkcs1 padding. Use the certificate value from step 1 as the public key.</li>
+    <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
+</ol>
+
+Sample credit-card information for use in the sandbox environment:
+
+<ul>
+    <li>CC#: 4588883206000011</li>
+    <li>CVV: 123</li>
+    <li>Expiration: 12/2020</li>
+</ul>
+
+To see how to get the `id` that goes inside `billing_method` see ["View Member Payment Information"](#view-payment) or add new payment information to [Ticketmaster Member Account](#add-payment).
+
+The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`.
+
+*Polling: No*  
+*Member Authorization: Required*
+
+/partners/v1/events/{event_id}/cart/payment?apikey={apikey}
+{: .code .red}
+
+### Parameters
+
+| Parameter  | Description                              | Type              | Example                               | Required |
+|:-----------|:-----------------------------------------|:----------------- |:------------------------------------- |:-------- |
+| `event_id` | The 16-digit alphanumeric event ID.      | string            | "0B004ED9FC825ACB"                    | Yes      |
+| `apikey`   | Your API Key                             | string            | "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"    | Yes      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+
+{
+    "cart_id": "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
+    "billing_method": {
+        "id": "70561111"
+    },
+    "payment": {
+        "amount": "119.00",
+        "type": "CC",
+        "card": {
+            "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=",
+            "encryption_key": "paysys-dev.0.us.999"
+        }
+    }
+}
+{% endhighlight %}
+
+
+
+{% highlight js %}
+Status 200
+{
+    "cart" : {
+        ...
+    }
+}
+{% endhighlight %}
 
 {: .article}
 ## Add payment information [PUT]
@@ -1613,7 +1691,10 @@ Finalize the purchase and commit the transaction. `source_account_id` can be any
 /partners/v1/events/{event_id}/cart?apikey={apikey}
 {: .code .red}
 
-*Polling: Yes*
+*Polling: Yes*  
+*Authorization: Required for auto claim of ticket to member account*
+
+For now, the response is the same with or without the Authorization Header.
 
 ### Parameters
 
@@ -1740,6 +1821,167 @@ Status 200
     // json payload from originally requested response (status code = 200)
 }
 
+{% endhighlight %}
+
+
+
+{: .article}
+## Add Member Payment Information to Ticketmaster Account [POST]
+{: #add-payment}
+
+Collect the member payment information and save it to their Ticketmaster Account for future payments.
+
+Encrypt the credit card number using the following steps:
+
+<ol>
+    <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
+    <li>Before encrypting the sensitive data, salt it with 16 random bytes. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
+    <li>When encrypting data, use RSA encryption with pkcs1 padding. Use the certificate value from step 1 as the public key.</li>
+    <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
+</ol>
+
+Sample credit-card information for use in the sandbox environment:
+
+<ul>
+    <li>CC#: 4588883206000011</li>
+    <li>Expiration: 12/2020</li>
+</ul>
+
+The "id" you get in the response can be used in the [Add TM Payment Information](#post-card-tm) along with an encrypted cvv. The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`. 
+
+The `cart_id` is optional in the request. If this request is being made while a cart is created, then it is recommended that the `cart_id` be added in the request body.
+
+*Polling: No*  
+*Member Authorization: Required*
+
+/partners/v1/member/billing?apikey={apikey}
+{: .code .red}
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/member/billing?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+
+{
+    "cart_id": "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",  //Optional
+    "billing_method":                       //All Fields are required.
+    {
+        "address": {
+            "city": "Los Angeles",
+            "country": {
+                "id": 840
+            },
+            "line1": "123 My Street",
+            "line2": "testadd2",
+            "postal_code": 90210,
+            "region": {
+                "abbrev": "CA"
+            },
+            "unit": 1234
+        },
+        "type": "CC",
+        "card": {
+            "expire_month": 12,
+            "expire_year": 2020,
+            "issuer": "VISA",
+            "encryption_key": "paysys-dev.0.us.999",
+            "number": "JvWajg8hahdWPXeMNn2+N4SMxEAoA03sAABy/t2Ga4rHUm9TGbz0oOIWLXgZCVG3WtgwOfqqMN6ijM4AXiYbt+KsFJCA1WVD02vSG+H+/Pj2fIZ13fvyORES2l3wSYZ80KdVz6fkyLRLRtT6o0hyATozyMnFLxpqhsk3CKkiGNE="
+        },
+        "first_name": "Jon",
+        "last_name": "Bastin",
+        "home_phone": "555-555-5555"
+    }
+}
+
+
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "billing_method": {
+        "card": {
+            "encryption_key": "paysys-dev.0.us.999"
+        },
+        "id": 70561111
+    }
+}
+
+{% endhighlight %}
+
+{: .article}
+## View Member Payment Information [GET]
+{: #view-payment}
+
+Get saved Ticketmaster Member Information which I can be used to make payment for the exisiting cart. You list out the payment options and which ever option the customer chooses, use the "id" of that payment method in the "Add TM Payment Method".
+
+The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`. The `cart_id` is optional in the request. If this request is being made while a cart is created, then it is recommended that the `cart_id` be added in the request.
+
+*Polling: No*  
+*Member Authorization: Required*
+
+/partners/v1/member/billing?apikey={apikey}&cart_id={cart_id}
+{: .code .red}
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `cart_id`   | Card identifier. Must be url encoded.         | string            |     "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D"          | Yes      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/member/billing?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&cart_id=bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo%3D
+
+
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+{
+    "data": [{
+        "address": {
+            "city": "Los Angeles",
+            "country": {
+                "id": 840,
+                "standard": "ISO"
+            },
+            "line1": "123 My Street",
+            "line2": "testadd2",
+            "postal_code": "90210",
+            "region": {
+                "abbrev": "CA"
+            },
+            "unit": "1234"
+        },
+        "card": {
+            "expire_month": 12,
+            "expire_year": 2020,
+            "issuer": "VISA",
+            "number": "0011",
+            "type": "VISA"
+        },
+        "first_name": "Jon",
+        "home_phone": "5555555555",
+        "id": "70561111",
+        "last_name": "Bastin",
+        "type": "CC"
+    }]
+}
 {% endhighlight %}
 
 {: .article}
@@ -1937,7 +2179,6 @@ Example:
     }
 }
 {% endhighlight %}
-
 
 | message  | code  | http_code              | Note
 |:-----------|:---------------------|:----------------- |

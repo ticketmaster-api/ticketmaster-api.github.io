@@ -118,10 +118,19 @@
                             <li><a href="#get-shipping-options">Get Shipping Options</a></li>
                             <li><a href="#add-shipping-option">Add Shipping Option</a></li>
                             <li><a href="#encrypt-cert">Encryption Certificate</a></li>
+                            <li><a href="#post-card-tm">Add TM payment information</a></li>
+                            <li><a href="#post-card">Add payment information</a></li>
                             <li><a href="#post-card">Add Billing Information</a></li>
                             <li><a href="#purchase-tickets">Commit Transactions</a></li>
                             <li><a href="#delete-cart">Delete Cart</a></li>
                             <li><a href="#poll">Polling</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-section">
+                        <span class="sub-section-label">Member Management</span>
+                        <ul class="sections menu-highlight">
+                            <li><a href="#add-payment">Add Member Payment Information</a></li>
+                            <li><a href="#view-payment">View Member Payment Information</a></li>
                         </ul>
                     </li>
                     <li class="sub-section">
@@ -251,17 +260,19 @@
     </li>
     <li>
         <h4><a href="/products-and-docs/sdks/" {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %} class="active" {% endif %} >SDKs</a></h4>
-        <!--<ul class="categories">
-            <li><a href="/products-and-docs/under-development/">Getting Started</a></li>
-            <li><a href="/products-and-docs/under-development/">Installation instruction</a></li>
-            <li><a href="/products-and-docs/under-development/">Documentation</a></li>
-            <li><a href="/products-and-docs/under-development/">Code samples</a></li>
-        </ul>-->
+        {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
+        <ul class="sections menu-highlight">
+            <li><a href="#sdk-java">SDK-Java</a></li>
+            <li><a href="#sdk-javascript">SDK-JavaScript</a></li>
+            <li><a href="#sdk-scala">SDK-Scala</a></li>
+            <li><a href="#account-manager">Account Manager</a></li>
+        </ul>
+        {% endif %}
     </li>
     <li>
         <h4><a href="/products-and-docs/widgets/" {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %} class="active" {% endif %} >Widgets</a></h4>
         {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %}
-            <ul class="categories">
+            <ul class="categories menu-highlight">
                 <li><a href="https://www.universe.com/directpayments">Direct Payments</a></li>
                 <li><a href="/products-and-docs/widgets/event-discovery/">Event Discovery Widget</a></li>
                 <li><a href="/products-and-docs/widgets/countdown/">Countdown Widget</a></li>
