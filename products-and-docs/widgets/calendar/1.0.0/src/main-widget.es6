@@ -164,7 +164,7 @@ class TicketmasterCalendarWidget {
 
         this.tab2RootContainer = document.createElement("div");
         this.tab2RootContainer.classList.add("tab");
-        this.tab2RootContainer.innerHTML = '<div id="weekSсheduler">';
+        this.tab2RootContainer.innerHTML = '<div id="weekSсheduler"><div class="spinner-container"><div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div></div>';
         this.tabsRootContainer.appendChild(this.tab2RootContainer);
 
         this.eventLogoBox = document.createElement("div");
@@ -175,7 +175,7 @@ class TicketmasterCalendarWidget {
 
         this.tab3RootContainer = document.createElement("div");
         this.tab3RootContainer.classList.add("tab");
-        this.tab3RootContainer.innerHTML = '<div id="monthScheduler">';
+        this.tab3RootContainer.innerHTML = '<div id="monthScheduler"><div class="spinner-container"><div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div></div>';
         this.tabsRootContainer.appendChild(this.tab3RootContainer);
 
         this.eventLogoBox = document.createElement("div");
@@ -1432,6 +1432,7 @@ class WeekScheduler {
             ];
 
         let startmonth, startdate, endmonth, enddate;
+        let classificationid = '';
         let startDateTime = '2016-06-27T00:00:00Z';
         let endDateTime = '2016-07-02T23:59:59Z';
 
@@ -1463,6 +1464,10 @@ class WeekScheduler {
             // console.log(startDateTime + ' - ' + endDateTime);
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
+            classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
+        }
+
         return {
             "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
             "size": "25",
@@ -1470,9 +1475,14 @@ class WeekScheduler {
             "latlong": "34.0390107,-118.2672801",
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
+            "classificationId": classificationid,
             "size": 100
         }
     }
+
+    get messageRootContainer(){ return 'weekSсheduler'; }
+
+    get hideMessageDelay(){ return 3000; }
 
     addScroll() {
         (function(n,t){function u(n){n.hasOwnProperty("data-simple-scrollbar")||Object.defineProperty(n,"data-simple-scrollbar",new SimpleScrollbar(n))}function e(n,i){function f(n){var t=n.pageY-u;u=n.pageY;r(function(){i.el.scrollTop+=t/i.scrollRatio})}function e(){n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove",f);t.removeEventListener("mouseup",e)}var u;n.addEventListener("mousedown",function(i){return u=i.pageY,n.classList.add("ss-grabbed"),t.body.classList.add("ss-grabbed"),t.addEventListener("mousemove",f),t.addEventListener("mouseup",e),!1})}function i(n){for(this.target=n,this.bar='<div class="ss-scroll">',this.wrapper=t.createElement("div"),this.wrapper.setAttribute("class","ss-wrapper"),this.el=t.createElement("div"),this.el.setAttribute("class","ss-content"),this.wrapper.appendChild(this.el);this.target.firstChild;)this.el.appendChild(this.target.firstChild);this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend",this.bar);this.bar=this.target.lastChild;e(this.bar,this);this.moveBar();this.el.addEventListener("scroll",this.moveBar.bind(this));this.el.addEventListener("mouseenter",this.moveBar.bind(this));this.target.classList.add("ss-container")}function f(){for(var i=t.querySelectorAll("*[ss-container]"),n=0;n<i.length;n++)u(i[n])}var r=n.requestAnimationFrame||n.setImmediate||function(n){return setTimeout(n,0)};i.prototype={moveBar:function(){var t=this.el.scrollHeight,i=this.el.clientHeight,n=this;this.scrollRatio=i/t;r(function(){n.bar.style.cssText="height:"+i/t*100+"%; top:"+n.el.scrollTop/t*100+"%;right:-"+(n.target.clientWidth-n.bar.clientWidth)+"px;"})}};t.addEventListener("DOMContentLoaded",f);i.initEl=u;i.initAll=f;n.SimpleScrollbar=i})(window,document)
@@ -1481,6 +1491,52 @@ class WeekScheduler {
         for (let ml = 0; ml < maxL; ml++) {
             SimpleScrollbar.initEl(scrollRoot[ml]);
         }
+    }
+
+    initMessage(){
+        this.eventsRootContainer = document.getElementById(this.messageRootContainer);
+        this.messageDialogContainer = document.createElement('div');
+        this.messageDialogContainer.classList.add("event-message-container");
+        // this.messageDialogContainer.classList.add("hide");
+        this.messageDialog = document.createElement('div');
+        this.messageDialog.classList.add("event-message_");
+        this.messageContent = document.createElement('div');
+        this.messageContent.classList.add("event-message__content");
+
+        let messageClose = document.createElement('div');
+        messageClose.classList.add("event-message__btn");
+        messageClose.addEventListener("click", ()=> {
+            this.hideMessage();
+        });
+
+        this.messageDialog.appendChild(this.messageContent);
+        this.messageDialog.appendChild(messageClose);
+        this.messageDialogContainer.appendChild(this.messageDialog);
+        this.eventsRootContainer.appendChild(this.messageDialogContainer);
+    }
+
+    showMessage(message, hideMessageWithoutDelay){
+
+        if(message.length){
+            this.hideMessageWithoutDelay = hideMessageWithoutDelay;
+            this.messageContent.innerHTML = message;
+            this.messageDialog.classList.add("event-message_-visible");
+            if (this.messageTimeout) {
+                clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+            }
+        }
+    }
+
+    hideMessageWithDelay(delay){
+        if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
+        this.messageTimeout = setTimeout(()=>{
+            this.hideMessage();
+        }, delay);
+    }
+
+    hideMessage(){
+        if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
+        this.messageDialog.classList.remove("event-message_-visible");
     }
 
     getJSON(handler, url=this.apiUrl, attrs={}, method="GET"){
@@ -1540,34 +1596,56 @@ class WeekScheduler {
         let address;
         let weekEvents = [];
         let eventDate;
+        let spinner = document.querySelector('#weekSсheduler .spinner-container');
+        let messageContainer = document.querySelector('#weekSсheduler .event-message-container');
+
         if (this && this.readyState == XMLHttpRequest.DONE) {
+
+            spinner.classList.add('hide');
+
             if (this.status == 200) {
+
                 events = JSON.parse(this.responseText);
-                events._embedded.events.forEach(function (item) {
-                    if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
-                    if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
 
-                    let imgWidth;
-                    let index;
-                    item.images.forEach(function(img, i) {
-                        if (i == 0) imgWidth = img.width;
-                        if (imgWidth > img.width) {
-                            imgWidth = img.width;
-                            index = i;
-                        }
-                    });
+                if (events.page.totalElements != 0) {
+                    events._embedded.events.forEach(function (item) {
+                        if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
+                        if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
 
-                    weekEvents.push({
-                        'name': item.name,
-                        'date': item.dates.start.localDate,
-                        'time': item.dates.start.localTime,
-                        'datetime': widget.formatDate({day: item.dates.start.localDate, time: item.dates.start.localTime}),
-                        'place': place + ', ' + address,
-                        'url': item.url,
-                        'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                        'count': 0
+                        let imgWidth;
+                        let index;
+                        item.images.forEach(function (img, i) {
+                            if (i == 0) imgWidth = img.width;
+                            if (imgWidth > img.width) {
+                                imgWidth = img.width;
+                                index = i;
+                            }
+                        });
+
+                        weekEvents.push({
+                            'name': item.name,
+                            'date': item.dates.start.localDate,
+                            'time': item.dates.start.localTime,
+                            'datetime': widget.formatDate({
+                                day: item.dates.start.localDate,
+                                time: item.dates.start.localTime
+                            }),
+                            'place': place + ', ' + address,
+                            'url': item.url,
+                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                            'count': 0
+                        });
                     });
-                });
+                }
+                else {
+                    weekEvents[0] = ({
+                        date : '',
+                        time : '',
+                    });
+                    messageContainer.classList.remove('hide');
+                    widget.showMessage("No results were found.<br/>Here other options for you.");
+                    widget.hideMessageWithDelay(widget.hideMessageDelay);
+                }
 
                 let tDate = weekEvents[0].date;
                 let tTime = weekEvents[0].time.substring(0,2);
@@ -1724,7 +1802,7 @@ class WeekScheduler {
     }
 
     update() {
-        let days = document.getElementById('weekSсheduler').firstChild;
+        let days = document.querySelector('#weekSсheduler .days');
         document.getElementById('weekSсheduler').removeChild(days);
         this.weekdaysRootContainer = document.createElement("div");
         this.weekdaysRootContainer.classList.add("days");
@@ -1761,6 +1839,8 @@ class WeekScheduler {
     }
 
     startMonth() {
+        let spinner = document.querySelector('#weekSсheduler .spinner-container');
+        spinner.classList.remove('hide');
         this.getJSON( this.getWeekEventsHandler, this.apiUrl, this.eventReqAttrs );
     }
 
@@ -1775,6 +1855,7 @@ class WeekScheduler {
 
         this.weekdaysRootContainer = document.createElement("div");
         this.weekdaysRootContainer.classList.add("days");
+        this.initMessage();
         this.startMonth();
         this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
     }
@@ -1827,6 +1908,7 @@ class MonthScheduler {
 
         let date = new Date();
         let startmonth, startdate, endmonth, enddate, startDateTime, endDateTime;
+        let classificationid = '';
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
@@ -1848,7 +1930,11 @@ class MonthScheduler {
             endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
         }
 
-        console.log(startDateTime + ' - ' + endDateTime);
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
+            classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
+        }
+
+        // console.log(startDateTime + ' - ' + endDateTime);
 
         return {
             "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
@@ -1857,9 +1943,14 @@ class MonthScheduler {
             "latlong": "34.0390107,-118.2672801",
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
+            "classificationId": classificationid,
             "size": 400
         }
     }
+
+    get messageRootContainer(){ return 'monthScheduler'; }
+
+    get hideMessageDelay(){ return 3000; }
 
     getJSON(handler, url=this.apiUrl, attrs={}, method="GET"){
         attrs = Object.keys(attrs).map(function(key){
@@ -1920,7 +2011,55 @@ class MonthScheduler {
         }
     }
 
+    initMessage(){
+        this.eventsRootContainer = document.getElementById(this.messageRootContainer);
+        this.messageDialogContainer = document.createElement('div');
+        this.messageDialogContainer.classList.add("event-message-container");
+        // this.messageDialogContainer.classList.add("hide");
+        this.messageDialog = document.createElement('div');
+        this.messageDialog.classList.add("event-message_");
+        this.messageContent = document.createElement('div');
+        this.messageContent.classList.add("event-message__content");
+
+        let messageClose = document.createElement('div');
+        messageClose.classList.add("event-message__btn");
+        messageClose.addEventListener("click", ()=> {
+            this.hideMessage();
+        });
+
+        this.messageDialog.appendChild(this.messageContent);
+        this.messageDialog.appendChild(messageClose);
+        this.messageDialogContainer.appendChild(this.messageDialog);
+        this.eventsRootContainer.appendChild(this.messageDialogContainer);
+    }
+
+    showMessage(message, hideMessageWithoutDelay){
+
+        if(message.length){
+            this.hideMessageWithoutDelay = hideMessageWithoutDelay;
+            this.messageContent.innerHTML = message;
+            this.messageDialog.classList.add("event-message_-visible");
+            if (this.messageTimeout) {
+                clearTimeout(this.messageTimeout); // Clear timeout if before 'hideMessageWithDelay' was called
+            }
+        }
+    }
+
+    hideMessageWithDelay(delay){
+        if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout if this method was called before
+        this.messageTimeout = setTimeout(()=>{
+            this.hideMessage();
+        }, delay);
+    }
+
+    hideMessage(){
+        if(this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
+        this.messageDialog.classList.remove("event-message_-visible");
+    }
+
     startMonth() {
+        let spinner = document.querySelector('#monthScheduler .spinner-container');
+        spinner.classList.remove('hide');
         this.getJSON( this.getMonthEventsHandler, this.apiUrl, this.eventReqAttrs );
     }
 
@@ -1930,37 +2069,53 @@ class MonthScheduler {
         let place;
         let address;
         let monthEvents = [];
+        let spinner = document.querySelector('#monthScheduler .spinner-container');
 
         if (this && this.readyState == XMLHttpRequest.DONE) {
+
+            spinner.classList.add('hide');
+
             if (this.status == 200) {
                 events = JSON.parse(this.responseText);
-                events._embedded.events.forEach(function (item) {
-                    if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
-                    if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
 
-                    let imgWidth;
-                    let index;
-                    item.images.forEach(function (img, i) {
-                        if (i == 0) imgWidth = img.width;
-                        if (imgWidth > img.width) {
-                            imgWidth = img.width;
-                            index = i;
-                        }
-                    });
+                if (events.page.totalElements != 0) {
 
-                    monthEvents.push({
-                        'name': item.name,
-                        'date': item.dates.start.localDate,
-                        'time': item.dates.start.localTime,
-                        'datetime': widget.formatDate({
-                            day: item.dates.start.localDate,
-                            time: item.dates.start.localTime
-                        }),
-                        'place': place + ', ' + address,
-                        'url': item.url,
-                        'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                    events._embedded.events.forEach(function (item) {
+                        if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
+                        if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
+
+                        let imgWidth;
+                        let index;
+                        item.images.forEach(function (img, i) {
+                            if (i == 0) imgWidth = img.width;
+                            if (imgWidth > img.width) {
+                                imgWidth = img.width;
+                                index = i;
+                            }
+                        });
+
+                        monthEvents.push({
+                            'name': item.name,
+                            'date': item.dates.start.localDate,
+                            'time': item.dates.start.localTime,
+                            'datetime': widget.formatDate({
+                                day: item.dates.start.localDate,
+                                time: item.dates.start.localTime
+                            }),
+                            'place': place + ', ' + address,
+                            'url': item.url,
+                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                        });
                     });
-                });
+                }
+                else {
+                    monthEvents[0] = ({
+                        date : '',
+                        time : '',
+                    });
+                    widget.showMessage("No results were found.<br/>Here other options for you.");
+                    widget.hideMessageWithDelay(widget.hideMessageDelay);
+                }
 
                 let monthEventsSort = {};
                 let eventsArr = [];
@@ -2005,8 +2160,9 @@ class MonthScheduler {
                 var eventFlag = false;
 
                 while (d.getMonth() == mon) {
-                    table += '<td>';
-
+                    table += '<td';
+                    if (new Date().getDate() == d.getDate()) table += ' class="today"';
+                    table += '>';
                     if (monthEventsSort[d.getDate()] != undefined) {
                         let eventsCount = monthEventsSort[d.getDate()].length;
                         if (eventsCount === undefined) eventsCount = 1;
@@ -2015,27 +2171,46 @@ class MonthScheduler {
                         if (d.getDate() <= 10) {
                             table += '<span class="tail"></span>';
                             table += '<div class="popup ';
-                            if (eventsCount == 1) table += 'sinlge ';
+                            if (eventsCount == 1) table += 'single ';
                             table += 'ss" tabindex="-1">';
                         }
                         else {
                             table += '<span class="tail-up"></span>';
                             table += '<div class="popup-up ';
-                            if (eventsCount == 1) table += 'sinlge ';
+                            if (eventsCount == 1) table += 'single ';
                             table += 'ss" tabindex="-1">';
                         }
 
                         table += '<div class="ss-container">';
 
-                        for(let e=0, l = monthEventsSort[d.getDate()].length; e < l; e++) {
+                        let url, img, name, datetime, place, eventsLenght;
+
+                        if (monthEventsSort[d.getDate()].length == undefined) eventsLenght = 1;
+                        else eventsLenght = monthEventsSort[d.getDate()].length;
+
+                        for(let e=0, l = eventsLenght; e < l; e++) {
+                            if (monthEventsSort[d.getDate()] && monthEventsSort[d.getDate()][e]) {
+                                url = monthEventsSort[d.getDate()][e].url;
+                                img = monthEventsSort[d.getDate()][e].img;
+                                name = monthEventsSort[d.getDate()][e].name;
+                                datetime = monthEventsSort[d.getDate()][e].datetime;
+                                place = monthEventsSort[d.getDate()][e].place;
+                            }
+                            else {
+                                url = monthEventsSort[d.getDate()].url;
+                                img = monthEventsSort[d.getDate()].img;
+                                name = monthEventsSort[d.getDate()].name;
+                                datetime = monthEventsSort[d.getDate()].datetime;
+                                place = monthEventsSort[d.getDate()].place;
+                            }
                             table += '<span class="event">';
                             table += '<span class="event-holder">';
-                            table += '<a href="' + monthEventsSort[d.getDate()][e].url + '" target="_blank">';
-                            table += '<span class="img" style="background: url(' + monthEventsSort[d.getDate()][e].img + ') center center no-repeat"></span>';
-                            table += '<span class="name">' + monthEventsSort[d.getDate()][e].name + '</span>';
+                            table += '<a href="' + url + '" target="_blank">';
+                            table += '<span class="img" style="background: url(' + img + ') center center no-repeat"></span>';
+                            table += '<span class="name">' + name + '</span>';
                             table += '</a>';
-                            table += '<span class="date">' + monthEventsSort[d.getDate()][e].datetime + '</span>';
-                            table += '<span class="place">' + monthEventsSort[d.getDate()][e].place + '</span>';
+                            table += '<span class="date">' + datetime + '</span>';
+                            table += '<span class="place">' + place + '</span>';
                             table += '</span>';
                             table += '</span>';
                         }
@@ -2090,10 +2265,7 @@ class MonthScheduler {
                 setTimeout(function () {
                     self.previousElementSibling.classList.remove("show");
                     self.classList.remove("show");
-                    var rounds = document.querySelectorAll("span.round-holder");
-                    for (var x = 0; x < rounds.length; x++) {
-                        rounds[x].classList.remove("active");
-                    }
+                    self.previousElementSibling.previousElementSibling.classList.remove('active');
                 }, 127);
             }, false);
         }
@@ -2116,7 +2288,7 @@ class MonthScheduler {
     }
 
     update() {
-        let month = document.getElementById('monthScheduler').firstChild;
+        let month = document.getElementById('calendar');
         document.getElementById('monthScheduler').removeChild(month);
         this.monthRootContainer = document.createElement("div");
         this.monthRootContainer.id = "calendar";
@@ -2137,6 +2309,7 @@ class MonthScheduler {
         this.calendarRootContainer.id = "calendar";
         this.monthSchedulerRoot.appendChild(this.calendarRootContainer);
         this.startMonth();
+        this.initMessage();
 
     }
 
