@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(function ($) {
 
   var widget = widgetsCountdown[0];
   var themeConfig = {
@@ -181,7 +181,7 @@
       var _widgetNode = options.widgetNode;
       var _widget = options.widget;
 
-      inputApiKey.attr('value', userKey).val(userKey);
+      inputApiKey.attr('value', userKey).data('userAPIkey', userKey).val(userKey);
       _widgetNode.setAttribute("w-tm-api-key", userKey);
       _widget.update();
     }
@@ -322,7 +322,7 @@
     configForm.find("input[type='text']").each(function () {
       var $self = $(this),
           data = $self.data(),
-          value = data.defaultValue;
+          value = data.userAPIkey || data.defaultValue || '';
 
       if (data.sliderValue) {
         value = data.sliderValue;
@@ -457,7 +457,7 @@
   });
 
   init();
-})();
+})(jQuery);
 
 (function ($) {
   var $modal = $('#get-eventId-modal'),
