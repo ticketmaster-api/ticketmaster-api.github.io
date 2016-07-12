@@ -1161,7 +1161,7 @@ div[w-theme="calendar"] #calendar .popup {
 }
 
 div[w-theme="calendar"] #calendar .popup.single,
-div[w-theme="calendar"] #calendar .popup-up.sinlge {
+div[w-theme="calendar"] #calendar .popup-up.single {
     height: auto;
     max-height: 185px;
 }
