@@ -279,60 +279,86 @@
                                         {% if parameter.schema['$ref'] %}
                                             {% assign schemaRes = paramsSchema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
                                             {% assign schemaSplit = schemaRes | split: ' ' %}
-                                            <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
-                                                {{ schemaSplit[1] }}
-                                                {% for schemaSplitType in schemaSplit[1] %}
-                                                    <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
-                                                {% endfor %}
-                                            </h5>
                                             {% assign pathFirsLvl = schemaSplit[0] %}
                                             {% assign pathScdLvl = schemaSplit[1] %}
-                                            <pre><code class="language-json">{{ swagger.[pathFirsLvl][pathScdLvl].properties | jsonify }}</code></pre>
+                                            <h5 class="code blue" style="margin-right: 80px;" data-ref-path="{{ schemaSplit[1] }}">
+                                                {{ schemaSplit[1] }}
+                                            </h5>
+                                            {%if swagger.[pathFirsLvl][pathScdLvl].properties%}
+                                                    <span>
+                                                        <a class="button btn-small js_show-modal"
+                                                           style=""
+                                                           rel="tooltip"
+                                                           data-toggle="modal"
+                                                           data-target=".modal-langs"
+                                                           data-placement="top"
+                                                           data-original-title="View Full Screen"
+                                                           aria-describedby="tooltip500998"
+                                                           data-modal-title={{ schemaSplit[1] }}
+                                                        >show all</a>
+                                                    </span>
+                                            {% endif %}
 
-                                         <!--{% comment %} Parse inner prop
-                                         <ul class="nested-list">
-                                        {% for pathFirsLvl in schemaSplit[0] %}
-                                        {% for pathScdLvl in schemaSplit[1] %}
-                                        {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
-                                            <li>
-                                                <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
-                                                <ul>
-                                                    {% for item in property[1].items %}
-                                                    <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
+
+                                            {%if swagger.[pathFirsLvl][pathScdLvl].properties%}
+                                            <div class="copy-json" style="height: 0; width: 0; opacity: 0; display: none;">
+                                                <!--{% comment %}
+                                                {% assign json_obj = swagger.[pathFirsLvl][pathScdLvl].properties %}
+                                                {% highlight json %}{{ json_obj | jsonify  }}{% endhighlight %}
+                                                Parse inner prop
+                                                {% endcomment %}-->
+
+                                                 <ul class="" style="">
+                                                {% for pathFirsLvl in schemaSplit[0] %}
+                                                {% for pathScdLvl in schemaSplit[1] %}
+                                                {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+                                                    <li>
+                                                        <code>{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                                                         <ul>
-                                                            {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                                                            {% assign schemaSplitInner = schemaResInner | split: ' ' %}
-                                                            {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
-                                                            {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-                                                            <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                                            {% for item in property[1].items %}
+                                                            <li><span>&#123;{{ item[0] }}&#125;</span> - {{ item[1] }}{% if item[0] == '$ref'%}
+                                                                <ul>
+                                                                    {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                                                    {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+                                                                    {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+                                                                        {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+                                                                        <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1]['$ref'] %} - <span class="">{{ innerRef[1]['$ref'] }}</span>{% endif %}
+                                                                            {% if innerRef[1].type == 'array' or innerRef[1]['$ref'] %}
+                                                                                <!--<code>{{ innerRef[1].items['$ref'] }}</code>-->
+                                                                                {%assign outer = innerRef[1].items['$ref']%}
+                                                                                {%include partials/autodoc/inner-item.html%}
+                                                                            {%endif%}
+                                                                        </li>
+                                                                        {% endfor %}
+                                                                    {% endfor %}
+                                                                </ul>
+                                                                {%endif%}
                                                             </li>
                                                             {% endfor %}
-                                                            {% endfor %}
+                                                            {% if property[1]['$ref'] %}
+                                                            <li><span>{$ref}</span> - {{ property[1]['$ref'] }}
+                                                                <ul>
+                                                                    {% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                                                                    {% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
+                                                                    {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
+                                                                        {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                                                        <!--<span>innerRefPage[1]: {{innerRefPage[1]}}</span>-->
+                                                                        <li><code>{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
+                                                                        {% endfor %}
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </li>
+                                                            {% endif %}
                                                         </ul>
-                                                        {%endif%}
+                                                        {% endif %}
                                                     </li>
                                                     {% endfor %}
-                                                    {% if property[1]['$ref'] %}
-                                                    <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
-                                                        <ul>
-                                                            {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                                                            {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
-                                                            {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
-                                                            {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                                            <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}</li>
-                                                            {% endfor %}
-                                                            {% endfor %}
-                                                        </ul>
-                                                    </li>
-                                                    {% endif %}
+                                                    {% endfor %}
+                                                    {% endfor %}
                                                 </ul>
-                                                {% endif %}
-                                            </li>
-                                            {% endfor %}
-                                            {% endfor %}
-                                            {% endfor %}
-                                        </ul>
-                                        {% endcomment %}-->
+                                        <!--{% comment %} Parse inner prop{% endcomment %}-->
+                                            </div>
+                                            {%endif%}
 
                                         {% endif %}
                                     {% endif %}
@@ -536,6 +562,39 @@
 
 {% endfor %}
 
+<script>
+(function () {
+
+    var copyContent = function(me){
+        var copy = $('.copy-json', $(me).parent().parent()).html();
+        var proxyItem_s = document.createElement("div");
+        proxyItem_s.setAttribute("style", "max-height:550px;overflow-y:auto;");
+        proxyItem_s.className = "nested-list-static";
+        proxyItem_s.innerHTML = copy;
+        return proxyItem_s;
+    };
+
+    var clickHandler = function(){
+        var title = $(this).data('modal-title');
+        var content = copyContent(this);
+
+        $(".fs-modal #modal-title").html(title);
+        $(".fs-modal .modal-body").html(content);
+
+        $(".fs-modal .modal-body").delegate(".lang-selector a", "click", function () {
+            $(".aside.lang-selector a").eq($(this).index()).click();
+            $(this).parent().children().removeClass("active");
+            $(this).addClass("active");
+            $(this).parents().closest(".modal-body").children().removeClass("tab-active");
+            $(this).parents().closest(".modal-body").children().eq($(this).index() + 1).addClass("tab-active");
+        });
+    };
+
+    $('#main-block').on('click', '.js_show-modal', clickHandler );
+
+})();
+
+</script>
 
 <!--
 <script type="text/javascript">

@@ -1,0 +1,34 @@
+<!--{% comment %}<p class="code blue">{{outer}}</p>{% endcomment %}-->
+<ul>
+    {% assign schemaResInner = outer | replace: '#/',''  | replace:'/',' ' %}
+    {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+    {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+    {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+    <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}
+        {% if innerRef[1]['$ref'] %}
+        <!--<code> *** {{ innerRef[1]['$ref'] }}</code>-->
+        <!--<code> ^^^ {{ schemaSplitInner | join: ' ' }}</code>-->
+            {%assign outer = innerRef[1]['$ref']%}
+            {%include partials/autodoc/inner-item.html%}
+        {%endif%}
+        {% if innerRef[1].type =='array' %}
+            <!--<code> +++ {{ innerRef[1]['$ref'] }}</code>-->
+            <!--<p class="blue">{{ innerRef[1] }}</p>-->
+            <ul>
+                <li>{array item object}</li>
+                <ul>
+                    {% for item in innerRef[1].items %}
+                    <li><span>&#123;{{ item[0] }}&#125;</span> - {{ item[1] }}{% if item[0]['$ref'] %}
+                        <!--<code> ::: {{ schemaSplitInner | join: ' ' }}</code>-->
+                        {%assign outer = item[0]['$ref']%}
+                        {%include partials/autodoc/inner-item.html%}
+                        {%endif%}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        {%endif%}
+    </li>
+    {% endfor %}
+    {% endfor %}
+</ul>
