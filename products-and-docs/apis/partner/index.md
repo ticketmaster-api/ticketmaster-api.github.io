@@ -1497,11 +1497,11 @@ Sample code for generating random bytes for salting
 
 {% highlight java %}
 
-SecureRandom random = new SecureRandom();
-          byte[] salt = new byte[16];
-          random.nextBytes(salt);
+    SecureRandom random = new SecureRandom();
+    byte[] salt = new byte[16];
+    random.nextBytes(salt);
           
-          String saltedValue = salt + "4588883206000011";
+    String saltedValue = salt + "4588883206000011";
           
 {% endhighlight %} 
 
