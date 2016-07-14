@@ -1,14 +1,13 @@
 package bla.tm.widgets;
 
 import net.serenitybdd.core.pages.PageObject;
-import net.serenitybdd.core.pages.WidgetObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.core.pages.WidgetObjectImpl;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements AnsestorWidget {
 
-    public AnsestorWidgetImpl(final PageObject page, final ElementLocator locator, final WebElement webElement,
+    public AnsestorWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
                                  final long timeoutInMilliseconds) {
         super(page, locator, webElement, timeoutInMilliseconds);
     }

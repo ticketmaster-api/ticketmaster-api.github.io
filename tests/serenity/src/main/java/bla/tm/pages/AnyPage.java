@@ -2,41 +2,39 @@ package bla.tm.pages;
 
 import bla.tm.staticmethods.DriverProperties;
 import net.serenitybdd.core.annotations.findby.FindBy;
-import org.openqa.selenium.WebElement;
+import net.serenitybdd.core.pages.WebElementFacade;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.util.Optional.ofNullable;
-
 public class AnyPage extends AncestorPage {
 
     @FindBy(xpath = "//h1[@class='public ']/strong/a")
-    private WebElement gitHubSDKJavaTitle;
+    private WebElementFacade gitHubSDKJavaTitle;
 
     @FindBy(xpath = "//h1[@class='public ']/strong/a")
-    private WebElement gitHubJavaScriptTitle;
+    private WebElementFacade gitHubJavaScriptTitle;
 
     @FindBy(xpath = "//h1[@class='public ']/strong/a")
-    private WebElement gitHubJavaScalaTitle;
+    private WebElementFacade gitHubJavaScalaTitle;
 
     @FindBy(xpath = "//div[@class='text-wrapper col-lg-6 col-sm-12 col-xs-12']/h1[@class='only-desktop']")
-    private WebElement pantheonLogInTitle;
+    private WebElementFacade pantheonLogInTitle;
 
     @FindBy(xpath = "//h1[@class='site-title']/a")
-    private WebElement techTitle;
+    private WebElementFacade techTitle;
 
     @FindBy(xpath = "//h2[text()='Because Engineers are Fans Too!']")
-    private WebElement mediumTitle;
+    private WebElementFacade mediumTitle;
 
     @FindBy(xpath = "//td[@class='WikiLogoName']/a")
-    private WebElement apiDocumentationTitle;
+    private WebElementFacade apiDocumentationTitle;
 
     public String baseTestedUrl = new DriverProperties().getEnvironmentVariables().getProperty("webdriver.base.url");
 
-    private Map<String, WebElement> getClickableElements() {
-        Map<String, WebElement> elements = new HashMap<String, WebElement>();
+    public Map<String, WebElementFacade> getClickableElements() {
+        Map<String, WebElementFacade> elements = new HashMap<String, WebElementFacade>();
         elements.put("WIDGETS", this.titleText);
         elements.put("WIDGETS COUNTDOWN", this.titleText);
         elements.put("sdk-java", gitHubSDKJavaTitle);
@@ -53,13 +51,8 @@ public class AnyPage extends AncestorPage {
         elements.put("DEALS API", this.titleText);
         elements.put("Direct Payments", this.titleText);
         elements.put("ADDING EVENT DISCOVERY WIDGET", this.titleText);
+        elements.put("LOCATE EVENTS ON A MAP", this.titleText);
+        elements.put("GET STARTED WITH THE DISCOVERY API", this.titleText);
         return elements;
-    }
-
-    public void checkIsElementIsShown(String key) {
-        WebElement element;
-        ofNullable(element = getClickableElements().get(key)).orElseThrow(
-                () -> new RuntimeException("There is no such element on the page"));
-        assertTrue(element.isDisplayed());
     }
 }

@@ -1,13 +1,10 @@
 package bla.tm.steps;
 
 import bla.tm.pages.site.HomePage;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.WebElement;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.assertTrue;
+import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
 
 public class HomePageSteps {
 
@@ -45,7 +42,7 @@ public class HomePageSteps {
 
     @Step
     public void validateAndClickElement(String key) {
-        WebElement element = homePage.findWebElementByKey(key);
+        WebElementFacade element = findWebElementByKey(key, homePage.getClickableElements());
         element.isEnabled();
         element.click();
     }

@@ -3,13 +3,9 @@ package bla.tm.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
-
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 
 public class AncestorPage extends PageObject {
 
@@ -37,12 +33,11 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div/ul[@id='scrollable-element']")
     private WebElementFacade leftSideMenu;
 
-    public WebElementFacade getFeedbackButton() {
-        return feedbackButton;
-    }
+    @FindBy(xpath = "//div[@class='search-container']/a[@href='https://live-livenation.devportal.apigee.com/user/login']")
+    private WebElementFacade logInLink;
 
-    public String getTitleText() {
-        return titleText.getText();
+    public void closeWindow() {
+        super.getDriver().close();
     }
 
     public void maximisePageWindow() {
@@ -51,6 +46,18 @@ public class AncestorPage extends PageObject {
 
     public String returnCurrentUrl(){
         return this.getDriver().getCurrentUrl();
+    }
+
+    public WebElementFacade getFeedbackButton() {
+        return feedbackButton;
+    }
+
+    public WebElementFacade getLogInButton() {
+        return logInLink;
+    }
+
+    public String getTitleText() {
+        return titleText.getText();
     }
 
     private boolean iSDisplayedFooterMenu() {
@@ -79,6 +86,7 @@ public class AncestorPage extends PageObject {
         assertTrue(iSDisplayedFooterMenu());
         assertTrue(feedbackButton.isDisplayed());
         assertTrue(searchOption.isDisplayed());
+        assertTrue(logInLink.isDisplayed());
 
         if (disqus){assertTrue(iSDisplayedDisqusFeature());}
         else {assertFalse(iSDisplayedDisqusFeature());}

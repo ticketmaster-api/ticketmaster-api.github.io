@@ -1,8 +1,10 @@
 package bla.tm.steps.products_and_docs;
 
 import bla.tm.pages.site.products_and_docs.PD_SDKsPage;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.WebElement;
+
+import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
 
 public class PD_SDKsSteps {
 
@@ -30,7 +32,7 @@ public class PD_SDKsSteps {
 
     @Step
     public void validateAndClickElement(String key) {
-        WebElement element = sDKsPage.findWebElementByKey(key);
+        WebElementFacade element = findWebElementByKey(key, sDKsPage.getClickableElements());
         element.isEnabled();
         element.click();
     }

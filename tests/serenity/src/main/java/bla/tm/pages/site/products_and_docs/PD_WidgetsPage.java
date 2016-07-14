@@ -2,39 +2,30 @@ package bla.tm.pages.site.products_and_docs;
 
 import bla.tm.pages.AncestorPage;
 import net.serenitybdd.core.annotations.findby.FindBy;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static java.util.Optional.ofNullable;
 
 @DefaultUrl("/products-and-docs/widgets/")
 public class PD_WidgetsPage extends AncestorPage {
 
     @FindBy(xpath = "//div[@class='widget_box widget_box__discovery']/p/a[@class='button button-blue' and text()='CONFIGURE NOW']")
-    private WebElement eventDiscoveryWidgetButton;
+    private WebElementFacade eventDiscoveryWidgetButton;
 
     @FindBy(xpath = "//div[@class='widget_box widget_box__countdown']/p/a[@class='button button-blue' and text()='CONFIGURE NOW']")
-    private WebElement countdownWidgetButton;
+    private WebElementFacade countdownWidgetButton;
 
     @FindBy(xpath = "//a[@class='button button-blue' and text()='LEARN MORE!']")
-    private WebElement directPaymentButton;
+    private WebElementFacade directPaymentButton;
 
-    private Map<String, WebElement> getClickableElements() {
-        Map<String, WebElement> elements = new HashMap<String, WebElement>();
+    public Map<String, WebElementFacade> getClickableElements() {
+        Map<String, WebElementFacade> elements = new HashMap<String, WebElementFacade>();
         elements.put("Discovery Widget Button", eventDiscoveryWidgetButton);
         elements.put("Countdown Widget Button", countdownWidgetButton);
         elements.put("DirectPaymentButton", directPaymentButton);
         return elements;
-    }
-
-    public WebElement findWebElementByKey(String key) {
-        return ofNullable(getClickableElements().get(key)).orElseThrow(
-                () -> new RuntimeException("There is no such element on the page"));
     }
 
     public void switchToNewTab() {

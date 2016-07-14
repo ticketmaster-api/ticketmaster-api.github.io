@@ -1,7 +1,10 @@
 package bla.tm.steps.products_and_docs;
 
 import bla.tm.pages.site.products_and_docs.PD_TutorialsPage;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
+
+import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
 
 public class PD_TutorialsSteps {
 
@@ -25,5 +28,12 @@ public class PD_TutorialsSteps {
     @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         tutorialsPage.checkGeneralPageElements(disqus, leftMenu);
+    }
+
+    @Step
+    public void validateAndClickElement(String key) {
+        WebElementFacade element = findWebElementByKey(key, tutorialsPage.getClickableElements());
+        element.isEnabled();
+        element.click();
     }
 }

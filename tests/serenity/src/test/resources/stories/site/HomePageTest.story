@@ -5,15 +5,15 @@ As a test enfineer
 I want to test Ticket Master Developer's site
 So that I test Home Page of Ticket Master Developer's site
 
-Scenario: 4_1 (//) Verification for general page elements
+Scenario: (/Home Page/) Verification for general page elements
 Given open Home page
 Then check general page elements for Home Page, where DISQUS = false and LeftMenu = false
 
-Scenario: 4_2 (//) Verification for twitter's list of events
+Scenario: (/Home Page/) Verification for twitter's list of events
 Given open Home page
 Then check that Twitter's list of events is shown
 
-Scenario: 4_3 (//) Verification for all the page links
+Scenario: (/Home Page/) Verification for all the page links
 Given open Home page
 When check visibility and click <elementKey> element
 Then check that new page has <pageURL> and <pageTitle>

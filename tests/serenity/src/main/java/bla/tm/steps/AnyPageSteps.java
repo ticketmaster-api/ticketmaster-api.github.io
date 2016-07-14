@@ -1,9 +1,12 @@
 package bla.tm.steps;
 
 import bla.tm.pages.AnyPage;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
+import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AnyPageSteps {
 
@@ -45,6 +48,6 @@ public class AnyPageSteps {
             assertEquals(anyPage.returnCurrentUrl(), url);
         };
 
-        anyPage.checkIsElementIsShown(title);
+        assertTrue(findWebElementByKey(title, anyPage.getClickableElements()).isDisplayed());
     }
 }

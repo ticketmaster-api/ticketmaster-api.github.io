@@ -5,7 +5,6 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-
 import static org.junit.Assert.assertTrue;
 import bla.tm.steps.HomePageSteps;
 

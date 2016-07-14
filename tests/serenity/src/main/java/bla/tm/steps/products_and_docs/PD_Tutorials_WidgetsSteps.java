@@ -4,6 +4,7 @@ import bla.tm.pages.site.products_and_docs.PD_Tutorials_WidgetsPage;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.WebElementFacade;
 
+import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -36,7 +37,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void validateAndClickElement(String key) {
-        WebElementFacade element = tutorialsWidgetsPage.findWebElementByKey(key);
+        WebElementFacade element = findWebElementByKey(key, tutorialsWidgetsPage.getClickableElements());
         element.isEnabled();
         element.click();
     }

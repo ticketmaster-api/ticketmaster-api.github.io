@@ -4,16 +4,16 @@ As a test enfineer
 I want to test Ticket Master Developer's site
 So that I test Widgets Page of Ticket Master Developer's site
 
-Scenario: 1_1 (/products-and-docs/widgets/) Verification for general page's elements
+Scenario: (/products-and-docs/widgets/) Verification for general page's elements
 Given open Widgets page
 Then check general page elements for Widgets Page, where DISQUS = false and LeftMenu = true
 
-Scenario: 1_2 (/products-and-docs/widgets/) Verification for Direct Payment Button element
+Scenario: (/products-and-docs/widgets/) Verification for Direct Payment Button element
 Given open Widgets page
 When check visibility and click DirectPaymentButton element of Widgets page
 Then check that new page opened from Direct Payment Button has has appropriate url
 
-Scenario: 1_3 (/products-and-docs/widgets/) Verification for all the page's links
+Scenario: (/products-and-docs/widgets/) Verification for all the page's links
 Given open Widgets page
 When check visibility and click <elementKey> element of Widgets page
 Then check that new page opened from Widgets page has <pageURL> and <pageTitle>

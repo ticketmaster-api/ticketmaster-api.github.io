@@ -4,10 +4,9 @@ package bla.tm.widgets;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
-public class FeedbackWidgetButtonImpl extends AnsestorWidgetImpl implements FeedbackWidget{
+public class FeedbackWidgetImpl extends AnsestorWidgetImpl implements FeedbackWidget{
 
     @FindBy(xpath = ".//div[@class='modal-header']/div[@class='row']/h3[@class='modal-title col-lg-12']")
     private WebElementFacade feedbackTitleText;
@@ -51,13 +50,13 @@ public class FeedbackWidgetButtonImpl extends AnsestorWidgetImpl implements Feed
     @FindBy(xpath = ".//*[contains(@id,'feedback-message-error')]")
     private WebElementFacade descriptionErrorMessage;
 
-    public FeedbackWidgetButtonImpl(final PageObject page, final ElementLocator locator, final WebElement webElement,
-                                    final long timeoutInMilliseconds) {
+    public FeedbackWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
+                              final long timeoutInMilliseconds) {
         super(page, locator, webElement, timeoutInMilliseconds);
     }
 
-    public FeedbackWidgetButtonImpl(final PageObject page, final ElementLocator locator,
-                                    final long timeoutInMilliseconds) {
+    public FeedbackWidgetImpl(final PageObject page, final ElementLocator locator,
+                              final long timeoutInMilliseconds) {
         super(page, locator, timeoutInMilliseconds);
     }
 
