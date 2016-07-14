@@ -568,7 +568,7 @@
     var copyContent = function(me){
         var copy = $('.copy-json', $(me).parent().parent()).html();
         var proxyItem_s = document.createElement("div");
-        proxyItem_s.setAttribute("style", "max-height:550px;overflow-y:auto;");
+        proxyItem_s.setAttribute("style", "overflow-y:auto;");
         proxyItem_s.className = "nested-list-static";
         proxyItem_s.innerHTML = copy;
         return proxyItem_s;
