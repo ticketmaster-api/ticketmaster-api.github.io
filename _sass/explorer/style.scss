@@ -526,6 +526,22 @@
     }
   }
 
+  .events-tracker {
+    background: #f1f4f6;
+    height: 60px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    .events-tracker__section {
+      padding: 20px 0 20px 10px;
+    }
+    .events-tracker__title {
+      color: #b7c9d3;
+    }
+    .events-tracker__counter {
+      color: #768692;
+      font-weight: bold;
+    }
+  }
 }
 
 .vertical-alignment-helper {
