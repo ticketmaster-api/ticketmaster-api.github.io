@@ -18,6 +18,7 @@
    //console.log('copy', proxyItem.textContent);
    };
   var clickHandler = function(){
+
     copyHandler(this);
 
     var title = $(this).data('modal-title'),
@@ -29,7 +30,7 @@
 
 
     $modalTitle.html(title);
-    $(".fs-modal .modal-body").html(content);
+    $modalBody.html(content);
     $(".fs-modal .modal-body .copy-btn-fs").attr('data-clipboard-text' , copyBtnText);
 
     $modalBody.delegate(".lang-selector a", "click", function () {

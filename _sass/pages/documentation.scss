@@ -1286,6 +1286,9 @@
         line-height: 32px;
       }
     }
+    .close {
+      z-index: 9;
+    }
   }
 
   .modal-body {
