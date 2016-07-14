@@ -11,12 +11,12 @@
   };
 
   var copyHandler = function(me){
-   var html = showContent(me).outerHTML;
-   var proxyItem = document.createElement("div");
-   proxyItem.innerHTML = html;
-   me.dataset.clipboardText = proxyItem.textContent;
-   //console.log('copy', proxyItem.textContent);
+    var html = showContent(me).outerHTML ;
+    var proxyItem = document.createElement("div");
+    proxyItem.innerHTML = html;
+    me.dataset.clipboardText = proxyItem.textContent.replace(/^\s+|\s+$/gm,'');//replace spaces tp 1 space
    };
+
   var clickHandler = function(){
 
     copyHandler(this);
@@ -27,7 +27,6 @@
         $modal = $(".fs-modal"),
         $modalTitle = $("#modal-title",$modal),
         $modalBody = $(".modal-body",$modal);
-
 
     $modalTitle.html(title);
     $modalBody.html(content);
