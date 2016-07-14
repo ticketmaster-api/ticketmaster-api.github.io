@@ -1358,6 +1358,15 @@
         color: $secondary-color1;
         font-weight: normal;
       }
+
+      .copy-btn-fs {
+        right: 25px;
+      }
+
+      @media (min-width: 767px){
+        word-break: normal;
+        max-height: 550px;
+      }
     }
 
   }

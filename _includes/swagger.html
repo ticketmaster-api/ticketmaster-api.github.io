@@ -307,6 +307,7 @@
                                                 {% highlight json %}{{ json_obj | jsonify  }}{% endhighlight %}
                                                 Parse inner prop
                                                 {% endcomment %}-->
+                                                <div class="copy-btn-fs" rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-text="{{ json_obj | jsonify | strip| strip_newlines }}"></div>
 
                                                  <ul class="" style="">
                                                 {% for pathFirsLvl in schemaSplit[0] %}
@@ -562,42 +563,13 @@
 
 {% endfor %}
 
+<script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
 <script>
-(function () {
-
-    var copyContent = function(me){
-        var copy = $('.copy-json', $(me).parent().parent()).html();
-        var proxyItem_s = document.createElement("div");
-        proxyItem_s.setAttribute("style", "overflow-y:auto;");
-        proxyItem_s.className = "nested-list-static";
-        proxyItem_s.innerHTML = copy;
-        return proxyItem_s;
-    };
-
-    var clickHandler = function(){
-        var title = $(this).data('modal-title');
-        var content = copyContent(this);
-
-        $(".fs-modal #modal-title").html(title);
-        $(".fs-modal .modal-body").html(content);
-
-        $(".fs-modal .modal-body").delegate(".lang-selector a", "click", function () {
-            $(".aside.lang-selector a").eq($(this).index()).click();
-            $(this).parent().children().removeClass("active");
-            $(this).addClass("active");
-            $(this).parents().closest(".modal-body").children().removeClass("tab-active");
-            $(this).parents().closest(".modal-body").children().eq($(this).index() + 1).addClass("tab-active");
-        });
-    };
-
-    $('#main-block').on('click', '.js_show-modal', clickHandler );
-
-})();
-
+new Clipboard('.copy-btn-fs');
 </script>
+<script src="{{ "/scripts/components/autodoc-show-all.js" | prepend: site.baseurl }}"></script>
 
-<!--
-<script type="text/javascript">
+<!--<script type="text/javascript">
 // Helpers
 
 var slice = Array.prototype.slice;
