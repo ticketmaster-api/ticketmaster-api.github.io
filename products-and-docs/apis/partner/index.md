@@ -38,9 +38,7 @@ All connections must be made over SSL using https.
 
 New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
-    * 3F004ACD115F6B19: No order processing fee
-    * 110050B273AB0C36: Canadian event, Has order processing fee
-    * 3F005085F00474B7: Reserved seating only. No GA
+    * 3F004ACD115F6B19
 
 ### Best Practices
 
