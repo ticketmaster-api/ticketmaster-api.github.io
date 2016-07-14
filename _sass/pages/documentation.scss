@@ -737,7 +737,7 @@
       font-family: $font-bold-p;
       padding: 10px 40px;
       color: $n3;
-      display: inline-block;
+      //display: inline-block;
       cursor: pointer;
 
       &:visited {
@@ -1112,6 +1112,11 @@
     opacity: 0;
     width: 0;
     height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    line-height: 0;
+    position: absolute;
   }
   .copy-btn-fs {
     position: absolute;
@@ -1252,18 +1257,34 @@
     height: 100%;
     vertical-align: middle;
     margin-right: -4px; /* Adjusts for spacing */
+    @media (max-width: 767px){
+      height: 0;
+      content: none;
+    }
   }
 
   .modal-dialog {
     display: inline-block;
     text-align: left;
     vertical-align: top;
-    width: 98%;
+    //width: 98%;
+    @media (max-width: 767px){
+      margin: 0;
+    }
   }
 
   .modal-header {
-    h4 {
+    //h4 {
+    //  font-size: 2.25em;
+    //}
+    h2 {
       font-size: 2.25em;
+      text-align: left;
+
+      @media (max-width: 767px){
+        font-size: 1.5em;
+        line-height: 32px;
+      }
     }
   }
 
@@ -1321,6 +1342,7 @@
     .nested-list-static {
       background-color: #f1f4f6;
       padding: 8px 12px;
+      word-break: break-all;
 
       ul {
         margin: 0;
