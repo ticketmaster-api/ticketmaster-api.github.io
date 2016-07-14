@@ -307,9 +307,9 @@
                                                 {% highlight json %}{{ json_obj | jsonify  }}{% endhighlight %}
                                                 Parse inner prop
                                                 {% endcomment %}-->
-                                                <div rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-text=""></div>
+                                                <div class="copy-btn-fs"rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-text=""></div>
 
-                                                 <ul class="" style="">
+                                                 <ul>
                                                 {% for pathFirsLvl in schemaSplit[0] %}
                                                 {% for pathScdLvl in schemaSplit[1] %}
                                                 {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
