@@ -737,7 +737,7 @@
       font-family: $font-bold-p;
       padding: 10px 40px;
       color: $n3;
-      display: inline-block;
+      //display: inline-block;
       cursor: pointer;
 
       &:visited {
@@ -1252,6 +1252,9 @@
     height: 100%;
     vertical-align: middle;
     margin-right: -4px; /* Adjusts for spacing */
+    @media (max-width: 767px){
+      height: 0;
+    }
   }
 
   .modal-dialog {
