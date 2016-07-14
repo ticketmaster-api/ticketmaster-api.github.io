@@ -1360,6 +1360,28 @@ div[w-theme="calendar"] #calendar .ss-grabbed {
     -webkit-user-select: none;
 }
 
+div[w-theme="calendar"] #year {
+    margin: 0px auto;
+    padding: 0;
+    height: 273px;
+    text-align: center;
+}
+
+div[w-theme="calendar"] #year .monthes-container {
+    width: 225px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #b7c9d3;
+    padding-top: 20px;
+}
+
+div[w-theme="calendar"] #year .month {
+    display: inline-block;
+    width: 70px;
+    height: 67px;
+    font-size: 14px;
+}
+
 div[w-theme="calendar"] .spinner-container {
     width: 100%;
     height: 275px;
