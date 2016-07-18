@@ -45,9 +45,31 @@
 <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
 <script>
-  if(sessionStorage.getItem('tk-api-key') !== null){
-    document.querySelector("input#api-key").value = sessionStorage.getItem('tk-api-key');
+
+function checkUserKey() {
+  var userKey = sessionStorage.getItem('tk-api-key'),
+      _inputApiKey = 'input#api-key';
+  if (userKey !== null) {
+    replaceApiKey({userKey: userKey, inputApiKey: _inputApiKey })
+  } else {
+    /**
+     * check if user logged just before enter api-explorer page
+     */
+    $(window).on('login', function (e, data) {
+      replaceApiKey({
+        userKey: data.key,
+        inputApiKey: _inputApiKey
+      });
+    });
   }
+}
+
+function replaceApiKey(options) {
+  document.querySelector(options.inputApiKey).value = options.userKey;
+}
+
+checkUserKey();
+
 </script>
 </body>
 </html>
