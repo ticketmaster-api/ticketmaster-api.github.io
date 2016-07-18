@@ -1,10 +1,10 @@
 package bla.tm.steps;
 
 import bla.tm.pages.AnyPage;
-import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
 import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -40,11 +40,7 @@ public class AnyPageSteps {
     public void checkIfPageIsOpened(String url, String title){
         if (url.contains("{url}")) {assertEquals(anyPage.returnCurrentUrl(), url.replace("{url}", anyPage.baseTestedUrl));}
         else {
-            try {
-                Thread.sleep(1000);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
+            waitForSomeActionHappened(500);
             assertEquals(anyPage.returnCurrentUrl(), url);
         };
 

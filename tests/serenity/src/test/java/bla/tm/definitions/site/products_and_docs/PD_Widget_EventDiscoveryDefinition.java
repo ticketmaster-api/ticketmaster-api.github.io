@@ -24,7 +24,8 @@ public class PD_Widget_EventDiscoveryDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Event Discovery Widget page")
-    public void givenOpenEventDiscoveryWidgetPage() {
+    public void openEventDiscoveryWidgetPage() {
+        eventDiscoveryWidgetPage.closePage();
         eventDiscoveryWidgetPage.maximiseBrowserWindow();
         eventDiscoveryWidgetPage.openPage();
     }

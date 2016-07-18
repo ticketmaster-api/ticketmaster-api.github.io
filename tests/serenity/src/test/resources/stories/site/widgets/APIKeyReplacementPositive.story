@@ -1,9 +1,29 @@
-Meta: @debug
+Meta:
 
 Narrative:
 As a test enfineer
 I want to test Ticket Master Developer's site
 So that I test API Key is shown corectly on the pages
+
+Scenario: (APi Key - Interactive API Console page) Placeholder is shown when user is not logged in
+Given open Interactive API Console page
+When User is not logged to site (Interactive API Console)
+Then check that API key is provided for all placeholders on Interactive API Console page
+
+Scenario: (APi Key - Interactive API Console page) Custom API key is shown when user is logged in
+Given open Interactive API Console page
+When User is logged to site (Interactive API Console)
+Then check that API key is provided for all placeholders on Interactive API Console page
+
+Scenario: (APi Key - API Explorer) Placeholder is shown when user is not logged in
+Given open API Explorer page
+When User is not logged to site (API Explorer)
+Then check that API key is provided for all placeholders on API Explorer page
+
+Scenario: (APi Key - API Explorer) Custom API key is shown when user is logged in
+Given open API Explorer page
+When User is logged to site (API Explorer)
+Then check that API key is provided for all placeholders on API Explorer page
 
 Scenario: (APi Key - Countdown Widget) Placeholder is shown when user is not logged in
 Given open Countdown Widget page
@@ -24,26 +44,6 @@ Scenario: (APi Key - Event Discovery Widget) Custom API key is shown when user i
 Given open Event Discovery Widget page
 When User is logged to site (Event Discovery Widget)
 Then check that API key is provided for all placeholders on Event Discovery Widget page
-
-Scenario: (APi Key - API Explorer) Placeholder is shown when user is not logged in
-Given open API Explorer page
-When User is not logged to site (API Explorer)
-Then check that API key is provided for all placeholders on API Explorer page
-
-Scenario: (APi Key - API Explorer) Custom API key is shown when user is logged in
-Given open API Explorer page
-When User is logged to site (API Explorer)
-Then check that API key is provided for all placeholders on API Explorer page
-
-Scenario: (APi Key - Interactive API Console page) Placeholder is shown when user is not logged in
-Given open Interactive API Console page
-When User is not logged to site (Interactive API Console)
-Then check that API key is provided for all placeholders on Interactive API Console page
-
-Scenario: (APi Key - Interactive API Console page) Custom API key is shown when user is logged in
-Given open Discovery API v1 page
-When User is logged to site (Interactive API Console)
-Then check that API key is provided for all placeholders on Interactive API Console page
 
 Scenario: (APi Key - Discovery API v2 page) Placeholder is shown when user is not logged in
 Given open Discovery API v2 page

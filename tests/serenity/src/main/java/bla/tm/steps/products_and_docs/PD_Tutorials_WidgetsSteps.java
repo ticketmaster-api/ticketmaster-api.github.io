@@ -1,15 +1,12 @@
 package bla.tm.steps.products_and_docs;
 
 import bla.tm.pages.site.products_and_docs.PD_Tutorials_WidgetsPage;
-import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.Step;
 
 import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.NoSuchElementException;
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
+import static org.junit.Assert.*;
 
 public class PD_Tutorials_WidgetsSteps {
 
@@ -44,11 +41,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void checkIfWidgetIsNotShown() {
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+        waitForSomeActionHappened(500);
         assertFalse(tutorialsWidgetsPage.getFeedbackWidget().isCurrentlyVisible());
     }
 
@@ -187,11 +180,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void checkEmailSentNotificationIsNotShown() {
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+        waitForSomeActionHappened(500);
         assertFalse(tutorialsWidgetsPage.getSuccessfulSentEmailNotificationOKButton().isVisible());
     }
 }

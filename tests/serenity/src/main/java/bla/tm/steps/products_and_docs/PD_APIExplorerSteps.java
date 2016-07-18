@@ -2,6 +2,8 @@ package bla.tm.steps.products_and_docs;
 
 import bla.tm.pages.site.products_and_docs.PD_APIExplorerPage;
 import net.thucydides.core.annotations.Step;
+
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 
 public class PD_APIExplorerSteps {
@@ -11,6 +13,11 @@ public class PD_APIExplorerSteps {
     @Step
     public void openPage() {
         apiExplorerPage.open();
+    }
+
+    @Step
+    public void closePage() {
+        apiExplorerPage.closeWindow();
     }
 
     @Step
@@ -36,13 +43,11 @@ public class PD_APIExplorerSteps {
     @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         if ("{apikey}".equals(apikey)){
-            assertEquals(apiExplorerPage.getAPIKeyTextField().getText(), "");
+            assertEquals(apiExplorerPage.getAPIKeyTextField().getAttribute("value"), "");
         }
         else {
-            try {Thread.sleep(150);} catch(InterruptedException ex) {Thread.currentThread().interrupt();}
-            assertEquals(apiExplorerPage.getAPIKeyTextField().getText(), apikey);
+            waitForSomeActionHappened(150);
+            assertEquals(apiExplorerPage.getAPIKeyTextField().getAttribute("value"), apikey);
         }
-
-        apiExplorerPage.closeWindow();
     }
 }

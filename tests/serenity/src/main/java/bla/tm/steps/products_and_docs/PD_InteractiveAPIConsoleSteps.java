@@ -1,13 +1,9 @@
 package bla.tm.steps.products_and_docs;
 
 import bla.tm.pages.site.products_and_docs.PD_InteractiveAPIConsolePage;
-import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.WebElement;
 
-import java.util.Map;
-
-import static java.util.Optional.ofNullable;
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -18,6 +14,11 @@ public class PD_InteractiveAPIConsoleSteps {
     @Step
     public void openPage() {
         interactiveAPIConsolePage.open();
+    }
+
+    @Step
+    public void closePage() {
+        interactiveAPIConsolePage.closeWindow();
     }
 
     @Step
@@ -46,10 +47,8 @@ public class PD_InteractiveAPIConsoleSteps {
             assertTrue(interactiveAPIConsolePage.getGetAPIKeyButton().isVisible());
         }
         else {
-            try {Thread.sleep(50);} catch(InterruptedException ex) {Thread.currentThread().interrupt();}
+            waitForSomeActionHappened(50);
             assertEquals(interactiveAPIConsolePage.getAPIKeyCustomTokenField().getText(), apikey);
         }
-
-        interactiveAPIConsolePage.closeWindow();
     }
 }

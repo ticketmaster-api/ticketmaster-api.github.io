@@ -3,6 +3,7 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_Widget_EventDiscoveryPage;
 import net.thucydides.core.annotations.Step;
 
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 
 public class PD_Widget_EventDiscoverySteps {
@@ -12,6 +13,11 @@ public class PD_Widget_EventDiscoverySteps {
     @Step
     public void openPage() {
         eventDiscoveryWidgetPage.open();
+    }
+
+    @Step
+    public void closePage() {
+        eventDiscoveryWidgetPage.closeWindow();
     }
 
     @Step
@@ -40,10 +46,8 @@ public class PD_Widget_EventDiscoverySteps {
             assertEquals(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAPIKeyTextField().getAttribute("value"), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
         }
         else {
-            try {Thread.sleep(50);} catch(InterruptedException ex) {Thread.currentThread().interrupt();}
+            waitForSomeActionHappened(50);
             assertEquals(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAPIKeyTextField().getAttribute("value"), apikey);
         }
-
-        eventDiscoveryWidgetPage.closeWindow();
     }
 }

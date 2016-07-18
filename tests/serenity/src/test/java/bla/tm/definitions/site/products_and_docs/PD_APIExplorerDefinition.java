@@ -25,6 +25,7 @@ public class PD_APIExplorerDefinition {
 
     @Given("open API Explorer page")
     public void givenOpenAPIExplorerPage() {
+        apiExplorerPage.closePage();
         apiExplorerPage.maximiseBrowserWindow();
         apiExplorerPage.openPage();
     }

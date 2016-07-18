@@ -3,11 +3,11 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_DiscoveryAPIv2Page;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.WebElement;
 
 import java.util.Map;
 
-import static java.util.Optional.ofNullable;
+import static bla.tm.staticmethods.StaticMethods.checkIfWebElementExist;
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertTrue;
 
 public class PD_DiscoveryAPIv2Steps {
@@ -17,6 +17,11 @@ public class PD_DiscoveryAPIv2Steps {
     @Step
     public void openPage() {
         discoveryAPIv2Page.open();
+    }
+
+    @Step
+    public void closePage() {
+        discoveryAPIv2Page.closeWindow();
     }
 
     @Step
@@ -49,15 +54,9 @@ public class PD_DiscoveryAPIv2Steps {
         //First check for non hidden elements
         for (Map.Entry<String, WebElementFacade> entry : discoveryAPIv2Page.getAPIKeyPlaceHoldersList().entrySet()){
             String key = entry.getKey();
-            WebElement value = entry.getValue();
-            try {
-                Thread.sleep(100);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            ofNullable(value).orElseThrow(
-                    () -> new RuntimeException("There is no " + key + " element on the page"));
-            assertTrue(value.getAttribute("textContent").contains(apikey));
+            WebElementFacade value = entry.getValue();
+            waitForSomeActionHappened(50);
+            assertTrue(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
         }
 
         //Second check for hidden elements
@@ -66,17 +65,9 @@ public class PD_DiscoveryAPIv2Steps {
 
         for (Map.Entry<String, WebElementFacade> entry : discoveryAPIv2Page.getAPIKeyHiddenPlaceHoldersList().entrySet()){
             String key = entry.getKey();
-            WebElement value = entry.getValue();
-            try {
-                Thread.sleep(100);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            ofNullable(value).orElseThrow(
-                    () -> new RuntimeException("There is no " + key + " element on the page"));
-            assertTrue(value.getAttribute("textContent").contains(apikey));
+            WebElementFacade value = entry.getValue();
+            waitForSomeActionHappened(50);
+            assertTrue(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
         }
-
-        discoveryAPIv2Page.closeWindow();
     }
 }

@@ -11,4 +11,17 @@ public class StaticMethods {
                 () -> new RuntimeException("There is no " + key + " element on the page"));
     }
 
+    public static WebElementFacade checkIfWebElementExist(WebElementFacade webElement) {
+        return ofNullable(webElement).orElseThrow(
+                () -> new RuntimeException("There is no element on the page"));
+    }
+
+    public static void waitForSomeActionHappened(int sec) {
+        try {
+            Thread.sleep(sec);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
 }

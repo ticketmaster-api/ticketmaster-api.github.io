@@ -3,6 +3,7 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_Widget_CountdownPage;
 import net.thucydides.core.annotations.Step;
 
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 
 public class PD_Widget_CountdownSteps {
@@ -12,6 +13,11 @@ public class PD_Widget_CountdownSteps {
     @Step
     public void openPage() {
         countdownWidgetPage.open();
+    }
+
+    @Step
+    public void closePage() {
+        countdownWidgetPage.closeWindow();
     }
 
     @Step
@@ -40,10 +46,8 @@ public class PD_Widget_CountdownSteps {
             assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getAttribute("value"), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
         }
         else {
-            try {Thread.sleep(50);} catch(InterruptedException ex) {Thread.currentThread().interrupt();}
+            waitForSomeActionHappened(50);
             assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getAttribute("value"), apikey);
         }
-
-        countdownWidgetPage.closeWindow();
     }
 }

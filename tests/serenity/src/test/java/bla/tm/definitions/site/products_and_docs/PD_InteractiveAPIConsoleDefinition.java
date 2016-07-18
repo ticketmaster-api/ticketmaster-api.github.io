@@ -25,6 +25,7 @@ public class PD_InteractiveAPIConsoleDefinition {
 
     @Given("open Interactive API Console page")
     public void givenOpenInteractiveAPIConsolePage() {
+        interactiveAPIConsolePage.closePage();
         interactiveAPIConsolePage.maximiseBrowserWindow();
         interactiveAPIConsolePage.openPage();
     }

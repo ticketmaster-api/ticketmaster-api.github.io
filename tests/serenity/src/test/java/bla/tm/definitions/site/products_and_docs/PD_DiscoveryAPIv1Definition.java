@@ -23,6 +23,7 @@ public class PD_DiscoveryAPIv1Definition {
 
     @Given("open Discovery API v1 page")
     public void openDiscoveryAPIv1Page() {
+        discoveryAPIv1Page.closePage();
         discoveryAPIv1Page.maximiseBrowserWindow();
         discoveryAPIv1Page.openPage();
     }

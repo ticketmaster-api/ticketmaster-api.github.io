@@ -24,7 +24,8 @@ public class PD_Widget_CountdownDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Countdown Widget page")
-    public void givenOpenCountdownWidgetPage() {
+    public void openCountdownWidgetPage() {
+        countdownWidgetPage.closePage();
         countdownWidgetPage.maximiseBrowserWindow();
         countdownWidgetPage.openPage();
     }
