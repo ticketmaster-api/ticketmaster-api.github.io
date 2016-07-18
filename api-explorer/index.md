@@ -108,17 +108,10 @@ category: api-explorer
             <section class="col-xs-12">
                 <div class="col-xs-12 events-tracker">
                     <div class="row">
-                        <div class="col-xs-3 events-tracker__section">
-                            <span class="events-tracker__title">Number of Events: </span>
-                            <span id="js-events-counter" class="events-tracker__counter">0</span>
-                        </div>
-                        <div class="col-xs-3 events-tracker__section">
-                            <span class="events-tracker__title">Number of Attractions: </span>
-                            <span id="js-attractions-counter" class="events-tracker__counter">0</span>
-                        </div>
-                        <div class="col-xs-3 events-tracker__section">
-                            <span class="events-tracker__title">Number of Venues: </span>
-                            <span id="js-venues-counter" class="events-tracker__counter">0</span>
+                        <div class="col-xs-12 events-tracker__section">
+                            <span class="events-tracker__title">Number of Events: <span id="js-events-counter" class="events-tracker__counter"></span></span>
+                            <span class="events-tracker__title">Number of Attractions: <span id="js-attractions-counter" class="events-tracker__counter"></span></span>
+                            <span class="events-tracker__title">Number of Venues: <span id="js-venues-counter" class="events-tracker__counter"></span></span>
                         </div>
                     </div>
                 </div>

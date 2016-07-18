@@ -521,14 +521,16 @@
     margin-top: 10px;
     margin-bottom: 20px;
     .events-tracker__section {
-      padding: 20px 0 20px 10px;
+      padding: 20px 10px;
+      font-weight: bold;
     }
     .events-tracker__title {
       color: #b7c9d3;
+      margin-right: 63px;
+      max-width: 64px;
     }
     .events-tracker__counter {
       color: #768692;
-      font-weight: bold;
     }
   }
 }
