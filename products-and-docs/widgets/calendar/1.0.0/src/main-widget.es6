@@ -4,7 +4,7 @@ class TicketmasterCalendarWidget {
     get config() { return this.widgetConfig; }
 
     set events(responce){ this.eventsList = this.parseEvents(responce);}
-    set events(responce){ this.eventsList = this.parseEvents(responce);}
+
     get events(){ return this.eventsList;}
 
     get borderSize(){ return this.config.border || 0;}
@@ -138,6 +138,19 @@ class TicketmasterCalendarWidget {
             attrs.endDateTime = period[1];
         }
 
+        if (this.config.period != 'week') {
+            let period_ = new Date(this.config.period);
+            let firstDay = new Date(period_);
+            let lastDay = new Date(period_);
+            firstDay.setDate(lastDay.getDate() + 1);
+            lastDay.setDate(lastDay.getDate() + 2);
+            firstDay.setHours(0);   lastDay.setHours(23);
+            firstDay.setMinutes(0); lastDay.setMinutes(59);
+            firstDay.setSeconds(0); lastDay.setSeconds(59);
+            attrs.startDateTime = this.toShortISOString(firstDay);
+            attrs.endDateTime = this.toShortISOString(lastDay);
+        }
+
         return attrs;
     }
 
@@ -234,7 +247,7 @@ class TicketmasterCalendarWidget {
 
         this.initMessage();
 
-        if (!this.isListView) this.initSliderControls();
+        this.initSliderControls();
 
         /* if (!this.isListView) this.initEventCounter(); */
     }
@@ -932,7 +945,7 @@ class TicketmasterCalendarWidget {
                 }
             }
 
-            if(this.reduceParamsOrder === 0) this.showMessage("No results were found.<br/>Here other options for you.");
+            // if(this.reduceParamsOrder === 0) this.showMessage("No results were found.<br/>Here other options for you.");
             this.reduceParamsOrder++;
             this.makeRequest( this.eventsLoadingHandler, this.apiUrl, eventReqAttrs );
         }else{
@@ -960,7 +973,7 @@ class TicketmasterCalendarWidget {
                             widget.publishEventsGroup.call(widget, group, i);
                     });
 
-                    if (!widget.isListView) widget.initSlider();
+                    widget.initSlider();
                     widget.setEventsCounter();
                     widget.resetReduceParamsOrder();
                     if(widget.hideMessageWithoutDelay)
@@ -1050,6 +1063,7 @@ class TicketmasterCalendarWidget {
             return [];
         }
         eventsSet = eventsSet._embedded.events;
+
         var tmpEventSet = [];
         for(var key in eventsSet){
             if(eventsSet.hasOwnProperty(key)){
@@ -1099,9 +1113,7 @@ class TicketmasterCalendarWidget {
         attrs = Object.keys(attrs).map(function(key){
             return `${key}=${attrs[key]}`;
         }).join("&");
-
         url = [url,attrs].join("?");
-
         this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
         if(method == "POST") {
             this.xmlHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -1242,7 +1254,6 @@ class TicketmasterCalendarWidget {
         return `https://app.ticketmaster.com/discovery/v2/events/${id}/images.json`;
     }
 
-
     /* Config block */
 
     decConfig(config){
@@ -1264,37 +1275,15 @@ class TicketmasterCalendarWidget {
     }
 
     getDateFromPeriod(period){
-
-        /*
-        var date = new Date(),
-            period = period.toLowerCase(),
-            firstDay, lastDay;
-
-        if(period == "year" ){
-            firstDay = new Date(date.getFullYear(),0,1);
-            lastDay = new Date(date.getFullYear(),12,0);
-        }
-        else if(period == "month"){
-            firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-            lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-        }
-        else if(period == "week"){
-            var first = date.getDate() - date.getDay();
-            var last = first + 6;
-            firstDay = new Date(date.setDate(first));
-            lastDay = new Date(date.setDate(last));
-        } else {
-            firstDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-            lastDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        }
-        */
-
         let firstDay = new Date();
         let lastDay = new Date();
+        lastDay.setDate(lastDay.getDate() + 1);
 
         if (period != 'week') {
-            firstDay = new Date(period);
-            lastDay = new Date(period);
+            period = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
+            let firstDay = new Date(period);
+            let lastDay = new Date(period);
+            lastDay.setDate(lastDay.getDate() + 1);
         }
 
         firstDay.setHours(0);   lastDay.setHours(23);
