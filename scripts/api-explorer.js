@@ -33,7 +33,7 @@ Object.byString = function(o, s) {
   var base = {}, //base object with parsed API data
     defaultMethod, //the very first method found (rendered by default)
     selectedMethod, //currently selected method
-    apiKey = "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0", //API Key
+    apiKey = sessionStorage.getItem('tk-api-key') || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0", //API Key
     apiKeyDefault = apiKey, // default api key (temporarily used when there is no other api key available)
     slider, // slider with response columns
     spinner, // spinner
@@ -219,7 +219,7 @@ Object.byString = function(o, s) {
         slider.slick("unslick");
         initSlider();
       }
-    });
+    }).on('login', function (e, data) { apiKey=data.key });
     $('#parameters-btn').on('click', function(e){
       e.preventDefault();
       var btn = $(this);
