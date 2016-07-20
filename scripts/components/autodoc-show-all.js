@@ -14,7 +14,7 @@
     var html = showContent(me).outerHTML ;
     var proxyItem = document.createElement("div");
     proxyItem.innerHTML = html;
-    me.dataset.clipboardText = proxyItem.textContent.replace(/^\s+|\s+$/gm,'');//replace spaces tp 1 space
+    me.dataset.clipboardText = proxyItem.textContent.replace(/^\s+|\s+$/gm,'');//replace spaces to 1 space
    };
 
   var clickHandler = function(){
