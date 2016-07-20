@@ -75,3 +75,26 @@ layout: default
 <script src="{{"/scripts/components/list-collapse.js" | prepend: site.baseurl }}"></script>
 
 {% endif %}
+
+{% if page.categories contains "replace_apikey" %}
+<script>
+    var userKey = sessionStorage.getItem('tk-api-key');
+    
+    function replaceText(selector, text, newText, flags) {
+        var matcher = new RegExp(text, flags);
+        $(selector).each(function () {
+            var $this = $(this);
+            if (!$this.children().length)
+                $this.text($this.text().replace(matcher, newText));
+        });
+    }
+    
+    if(userKey !== null) {
+        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+    }
+    
+    $(window).on('login',function(){
+        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+    });
+</script>
+{% endif %}

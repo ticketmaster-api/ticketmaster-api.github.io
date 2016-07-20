@@ -38,9 +38,7 @@ All connections must be made over SSL using https.
 
 New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
-    * 3F004ACD115F6B19: No order processing fee
-    * 110050B273AB0C36: Canadian event, Has order processing fee
-    * 3F005085F00474B7: Reserved seating only. No GA
+    * 3F004ACD115F6B19
 
 ### Best Practices
 
@@ -1465,91 +1463,22 @@ Status 200
 {% endhighlight %}
 
 {: .article}
-## Add TM payment information [PUT]
-{: #post-card-tm}
-
-Add Ticketmaster credit card data to the transaction. Set `encryption_key` with the `id` value from the output of /certificate.
-
-Encrypt the cvv number using the following steps:
-
-<ol>
-    <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
-    <li>Before encrypting the sensitive data, salt it with 16 random bytes. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
-    <li>When encrypting data, use RSA encryption with pkcs1 padding. Use the certificate value from step 1 as the public key.</li>
-    <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
-</ol>
-
-Sample credit-card information for use in the sandbox environment:
-
-<ul>
-    <li>CC#: 4588883206000011</li>
-    <li>CVV: 123</li>
-    <li>Expiration: 12/2020</li>
-</ul>
-
-To see how to get the `id` that goes inside `billing_method` see ["View Member Payment Information"](#view-payment) or add new payment information to [Ticketmaster Member Account](#add-payment).
-
-The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`.
-
-*Polling: No*  
-*Member Authorization: Required*
-
-/partners/v1/events/{event_id}/cart/payment?apikey={apikey}
-{: .code .red}
-
-### Parameters
-
-| Parameter  | Description                              | Type              | Example                               | Required |
-|:-----------|:-----------------------------------------|:----------------- |:------------------------------------- |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.      | string            | "0B004ED9FC825ACB"                    | Yes      |
-| `apikey`   | Your API Key                             | string            | "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"    | Yes      |
-
-
->[Request](#req)
->[Response](#res)
-{: .reqres}
-
-{% highlight bash %}
-https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
-
-{
-    "cart_id": "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
-    "billing_method": {
-        "id": "70561111"
-    },
-    "payment": {
-        "amount": "119.00",
-        "type": "CC",
-        "card": {
-            "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=",
-            "encryption_key": "paysys-dev.0.us.999"
-        }
-    }
-}
-{% endhighlight %}
-
-
-
-{% highlight js %}
-Status 200
-{
-    "cart" : {
-        ...
-    }
-}
-{% endhighlight %}
-
-{: .article}
-## Add payment information [PUT]
+## Add Billing Information [PUT]
 {: #post-card}
 
 Add customer information and credit card or invoice data to the transaction. For credit cards, set `encryption_key` with the `id` value from the output of /certificate.
+
+There is two ways of adding payment information to the cart:
+<ol>
+    <li>Use a credit card</li>
+    <li>Use a saved member credit card</li>
+</ol>
 
 Encrypt the credit card and cvv number using the following steps:
 
 <ol>
     <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
-    <li>Before encrypting the sensitive data, salt it with 16 random bytes. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
+    <li>Before encrypting the sensitive data, salt it with 16 random ASCII characters at the beginning of the number. Make sure that these bytes are ASCII printables as non-printables will not work.</li>
     <li>When encrypting data, use RSA encryption with pkcs1 padding. Use the certificate value from step 1 as the public key.</li>
     <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
@@ -1562,18 +1491,29 @@ Sample credit-card information for use in the sandbox environment:
     <li>Expiration: 12/2020</li>
 </ul>
 
+Sample code for salting 
 
-*Polling: No*
+{% highlight java %}
+          
+    String saltedValue = "1234567890123456" + "4588883206000011";
+          
+{% endhighlight %} 
 
 /partners/v1/events/{event_id}/cart/payment?apikey={apikey}
 {: .code .red}
 
 ### Parameters
 
-| Parameter  | Description          | Type              | Example      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
-| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| Parameter  | Description                              | Type              | Example                                   | Required |
+|:-----------|:-----------------------------------------|:------------------|:------------------------------------------|:-------- |
+| `event_id` | The 16-digit alphanumeric event ID.      | string            |     "0B004ED9FC825ACB"                    | Yes      |
+| `apikey`   | Your API Key                             | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"    |Yes      |
+
+
+#### This is the request that is used for adding a credit card as a payment to the cart.
+
+*Polling: No*  
+*Authorization: No*
 
 
 >[Request](#req)
@@ -1618,6 +1558,49 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
             "postal_code": "90210"
         },
         "reference" : "15278303",       // Required for type=INVOICE only. Your numeric string-quoted reference number for this invoice transaction.
+    }
+}
+{% endhighlight %}
+
+
+
+{% highlight js %}
+Status 200
+{
+    "cart" : {
+        ...
+    }
+}
+{% endhighlight %}
+
+#### This request is used to add a member payment method to the cart.
+
+To see how to get the `id` that goes inside `billing_method` see ["View Member Payment Information"](#view-payment) or add new payment information to [Ticketmaster Member Account](#add-payment).
+
+The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`.
+
+*Polling: No*  
+*Authorization: Required*
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+
+{
+    "cart_id": "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
+    "billing_method": {
+        "id": "70561111"
+    },
+    "payment": {
+        "amount": "119.00",
+        "type": "CC",
+        "card": {
+            "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=",
+            "encryption_key": "paysys-dev.0.us.999"
+        }
     }
 }
 {% endhighlight %}
@@ -2193,7 +2176,8 @@ Example:
 | Invalid Delivery Method ID | 10104 | 400 ||
 | Event had no visible/usable ticket types for the current channel | 20046 | 400 | API user is not configured to sell the specified ticket types |
 | Payment method has no funds available | 20129 | 400| |
-
+| Connection error to upstream service | 502 | 502| |
+| Upstream service timeout | 504 | 504 | | 
 
 ---
 {: .aside}

@@ -78,7 +78,7 @@ category: api-explorer
         <div class="row-container">
             <div class="col-xs-12">
                 <h1>THE API EXPLORER</h1>
-				<p>Make live API calls without writing a single line of code! The API Explorer currently works with the <a href="/products-and-docs/apis/discovery/v2">Discovery API</a>, <a href="/products-and-docs/apis/commerce/">Commerce API</a> and <a href="/products-and-docs/apis/publish/">Publish API</a> <strong>only</strong>. TAP is experimental.</p>
+				<p>Make live API calls without writing a single line of code! The API Explorer currently works with the <a href="/products-and-docs/apis/discovery/v2">Discovery API</a>, <a href="/products-and-docs/apis/commerce/">Commerce API</a> and <a href="/products-and-docs/apis/publish/">Publish API</a> <strong>only</strong>.</p>
             </div>
         </div>
     </div>
@@ -101,6 +101,24 @@ category: api-explorer
             </div>
         </div>
     </div>
+    
+    <!--event counter bar-->
+    <div class="row">
+        <div class="row-container">
+            <section class="col-xs-12">
+                <div class="col-xs-12 events-tracker">
+                    <div class="row">
+                        <div class="col-xs-12 events-tracker__section">
+                            <span class="events-tracker__title">Number of Events: <span id="js-events-counter" class="events-tracker__counter"></span></span>
+                            <span class="events-tracker__title">Number of Attractions: <span id="js-attractions-counter" class="events-tracker__counter"></span></span>
+                            <span class="events-tracker__title">Number of Venues: <span id="js-venues-counter" class="events-tracker__counter"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
     <!--selected method-->
     <div class="row">
         <div class="row-container" id="title">

@@ -7,7 +7,7 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#introduction">Introduction</a></li>
-					<li><a href="#data-model">Data Model</a></li>
+                    <li><a href="#data-model">Data Model</a></li>
                     <li><a href="#uri-format">URI Format</a></li>
                     <li><a href="#rate-limit">Rate Limit</a></li>
                     <li><a href="#cors-support">CORS Support</a></li>
@@ -16,7 +16,7 @@
                 </ul>
                 {% endif %}
             </li>
-           {% comment %}{% endcomment %}
+           {% comment %}
             <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "swagger" %}
                     {% include partials/autodoc/side-menu-generate.html%}
@@ -42,7 +42,7 @@
 
                 {% endif %}
             </li>
-
+	   {% endcomment %}
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
@@ -55,7 +55,7 @@
                     <li><a href="#search-classifications-v2">Search Classifications</a></li>
                     <li><a href="#classifications-details-v2">Get Classification Details</a></li>
                     <li><a href="#search-venues-v2">Search Venues</a></li>
-					<li><a href="#venue-details-v2">Get Venue Details</a></li>
+                    <li><a href="#venue-details-v2">Get Venue Details</a></li>
                     <li><a href="#supported-country-codes">Supported Country Codes</a></li>
                     <li><a href="#supported-markets">Supported Markets</a></li>
                     <li><a href="#supported-sources">Supported Sources</a></li>
@@ -93,6 +93,10 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#event-offers">Event Offers</a></li>
+                    <li><a href="#get-cart">Get Cart</a></li>
+                    <li><a href="#create-cart">Create Cart</a></li>
+                    <li><a href="#empty-cart">Empty Cart</a></li>
+                    <li><a href="#update-cart-products">Update Cart Products</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
@@ -118,8 +122,6 @@
                             <li><a href="#get-shipping-options">Get Shipping Options</a></li>
                             <li><a href="#add-shipping-option">Add Shipping Option</a></li>
                             <li><a href="#encrypt-cert">Encryption Certificate</a></li>
-                            <li><a href="#post-card-tm">Add TM payment information</a></li>
-                            <li><a href="#post-card">Add payment information</a></li>
                             <li><a href="#post-card">Add Billing Information</a></li>
                             <li><a href="#purchase-tickets">Commit Transactions</a></li>
                             <li><a href="#delete-cart">Delete Cart</a></li>
