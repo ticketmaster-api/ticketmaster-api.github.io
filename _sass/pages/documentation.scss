@@ -1267,9 +1267,10 @@
     display: inline-block;
     text-align: left;
     vertical-align: top;
-    //width: 98%;
+    width: 98%;
     @media (max-width: 767px){
       margin: 0;
+      width: 100%;
     }
   }
 
