@@ -825,10 +825,6 @@
       <param name="source" required="false" style="query" type="xsd:string">
         <doc>Source.</doc>
       </param>
-      <param name="extensions" required="false" style="query" type="xsd:string">
-        <doc>Extensions</doc>
-        <option value="geolocation"/>
-      </param>
       <method id="discovery.v2.venues.get" name="GET" apigee:displayName="Search Venues">
         <apigee:tags>
           <apigee:tag primary="true">Discovery API v2</apigee:tag>
@@ -861,10 +857,6 @@
         <option value="en-nz"/>
         <option value="fr-fr"/>
         <option value="fr-ca"/>
-      </param>
-      <param name="extensions" required="false" style="query" type="xsd:string">
-        <doc>Extensions.</doc>
-        <option value="geolocation"/>
       </param>
       <method id="discovery.v2.venues.id.get" name="GET" apigee:displayName="Get Venue Details">
         <apigee:tags>
@@ -1153,8 +1145,10 @@
     </resource>
   </resources>
   <!-- UWD API -->
+  
   <resources base="https://uapi.ticketmaster.com/">
     <!-- Get info about access token -->
+    <!--
     <resource path="tap/endpoint/restv1/events">
       <method id="tap.events" name="GET" apigee:displayName="Get Events">
         <apigee:tags>
@@ -1164,5 +1158,7 @@
         <apigee:authentication required="true"/>
       </method>
     </resource>
+     -->
   </resources>
+ 
 </application>
