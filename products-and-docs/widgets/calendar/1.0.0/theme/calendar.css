@@ -836,6 +836,11 @@ div[w-theme="calendar"] #weekSсheduler .popup-up .ss-content {
     width: 120% !important;
 }
 
+div[w-theme="calendar"] #weekSсheduler .popup.single .ss-content,
+div[w-theme="calendar"] #weekSсheduler .popup-up.single .ss-content {
+    width: 110% !important;
+}
+
 div[w-theme="calendar"] #weekSсheduler .popup .ss-scroll,
 div[w-theme="calendar"] #weekSсheduler .popup-up .ss-scroll {
     right: -243px !important;
@@ -1360,6 +1365,10 @@ div[w-theme="calendar"] #calendar .ss-grabbed {
     -webkit-user-select: none;
 }
 
+div[w-theme="calendar"] #calendar #month-update {
+    display: none;
+}
+
 div[w-theme="calendar"] #year {
     margin: 0px auto;
     padding: 0;
@@ -1376,10 +1385,38 @@ div[w-theme="calendar"] #year .monthes-container {
 }
 
 div[w-theme="calendar"] #year .month {
-    display: inline-block;
+    display: block;
+    float: left;
     width: 70px;
     height: 67px;
     font-size: 14px;
+    text-align: center;
+}
+
+div[w-theme="calendar"] #year .month .name {
+    display: block;
+    text-align: center;
+    clear: both;
+    margin: 0 auto 2px auto;
+}
+
+div[w-theme="calendar"] #year .month .name.current {
+    font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+    color: #768692;
+}
+
+div[w-theme="calendar"] #year .month .count {
+    display: inline-block;
+    clear: both;
+    padding: 5px 7px;
+    font-size: 12px;
+    font-family;
+    color: #fff;
+    background: #208dcf;
+    font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+    border-radius: 15px;
+    min-width: 28px;
+    min-height: 28px;
 }
 
 div[w-theme="calendar"] .spinner-container {
