@@ -226,15 +226,14 @@
                 {% endif %}
             </li>
             {% comment %}
-            <li><a href="/products-and-docs/apis/season-tix/">Season Tix API</a>
-                {% if page.categories[0] == "documentation" and page.categories[1] == "season-tix" %}
+            <li><a href="/products-and-docs/apis/season-ticketing/">Season Ticketing API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "season-ticketing" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#ping">PING</a></li>
-                    <li><a href="#customer-query">Customer Query</a></li>
-                    <li><a href="#event-search">Event Search</a></li>
-                    <li><a href="#event-details">Event Details</a></li>
-                    <li><a href="#seats-sold">Seats Sold</a></li>
+                    <li><a href="#getting-your-api-key">Getting Your API KEY</a></li>
+                    <li><a href="#construct-the-url">Construct the URL</a></li>
+                    <li><a href="#asynchronous-polling">Asynchronous Polling</a></li>
+                    <li><a href="#http-result-codes-and-meaning">HTTP Result Codes</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
