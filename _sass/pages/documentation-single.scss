@@ -372,3 +372,15 @@
   }/*offset END*/
 
 }
+
+.getting-started {
+  h2 {
+    margin-top: $base-margin*3;
+  }
+  h3 {
+    margin-top: $base-margin*2;
+  }
+  .lead {
+    margin-bottom: 0;
+  }
+}
