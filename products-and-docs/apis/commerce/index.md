@@ -174,8 +174,9 @@ commerce/{version}/events/{id}/offers.{format}
 
 {: .aside}
 >[JS](#js)
-8D35
+>[cURL](#curl)
 {: .lang-selector}
+
 {% highlight js %}
 $.ajax({
   type:"GET",
