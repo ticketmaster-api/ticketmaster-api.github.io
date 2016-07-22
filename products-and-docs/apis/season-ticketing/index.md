@@ -21,7 +21,7 @@ This is a collection of Open API calls that are used by external systems to acce
 ## Getting Your API KEY
 {: #getting-your-api-key}
 
-- Visit [developer.ticketmaster.com](http://www.developer.ticketmaster.com)  to get your API key
+- Visit [developer.ticketmaster.com](http://developer.ticketmaster.com)  to get your API key
 - Click "GET YOUR API KEY" button
 - On the Login screen, click "Create new account" button.
 - Fill out the form, using the name of a contact person in your organization.  Ticketmaster will contact you by this email address if you wish to become a Ticketmaster partner.  Recommendation - use your company&#39;s name or email domain name as your username.
@@ -47,7 +47,7 @@ This is a collection of Open API calls that are used by external systems to acce
       * Current limits are 80 calls per minute or 5000 calls per day
   - Direct the JSON request to the appropriate Ticketmaster database
 + Return the JSON response to the call.
-+ The sample API calls below, except `ATS\_EXT\_TEST\_POLLING`, a rapid response is expected.
++ A rapid response is expected for the sample API calls below, except `ATS_EXT_TEST_POLLING`.
 
 ## How to construct the URL
 {: #construct-the-url}
@@ -56,7 +56,7 @@ Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&{apikey}`
 
 | **Name** | **Description** | **Required** | **Sample** |
 | --- | --- | --- | --- |
-| Product\* (see details below) | A logical grouping of related database resources | Yes | sth-customersth-inventorysth-holdsth-buy |
+| Product\* (see details below) | A logical grouping of related database resources | Yes | sth-customersth sth-inventorysth sth-holdsth sth-buy |
 | resource | Path to an API method | Yes | ticketing\_services.aspx |
 | dsn | Data Source Name | Yes | DSN (e.g., sandbox, test) |
 | API key | Authorized API Key | Yes | [Unique to each developer - Get your API key](https://live-livenation.devportal.apigee.com/user/login) |
@@ -68,7 +68,8 @@ https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{a
 
 ### Sample API Requests:
 
-#### PING
+#### PING 
+{: style="font-size:20px"}
 
 **Purpose:**  Confirms system connectivity and server status.
 
@@ -90,7 +91,8 @@ https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{a
 {% endhighlight %}
 
 
-#### ATS\_EXT\_TEST\_POLLING
+#### ATS_EXT_TEST_POLLING
+{: style="font-size:20px"}
 
 **Purpose:**  Allows caller to test the asynchronous polling method by introducing a 10-second delay in the response.  You can make this API call, receive a "202 Accepted" response with CIN and CTKN cookies, and continue making the call until you receive a "200 OK" response.  See the section on Asynchronous Polling, below.
 
@@ -111,7 +113,8 @@ https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{a
 {% endhighlight %}
 
 
-#### EVENT\_SEARCH
+#### EVENT_SEARCH
+{: style="font-size:20px"}
 
 **Purpose:**  Returns attributes about events that occur within a specified date range.
 
@@ -134,7 +137,8 @@ https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{a
 }
 {% endhighlight %}
 
-#### EVENT\_DETAILS
+#### EVENT_DETAILS
+{: style="font-size:20px"}
 
 **Purpose:**  Returns a list of events and event attributes.
 
@@ -156,7 +160,8 @@ https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{a
 }
 {% endhighlight %}
 
-#### CUSTOMER\_QUERY
+#### CUSTOMER_QUERY
+{: style="font-size:20px"}
 
 **Purpose:**  Returns basic account and name information based on an input account-id, email address or external-id.
 
@@ -180,7 +185,10 @@ https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{a
 }
 {% endhighlight %}
 
-#### SEATS\_SOLD
+#### SEATS_SOLD
+{: style="font-size:20px"}
+
+**Purpose:** Retrieves detailed information about seats that are sold to a consumer’s account.
 
 {% highlight json %}
 {
@@ -213,21 +221,21 @@ If further interest, contact Ticketmaster for discussion about more sophisticate
     -	`Event_Search` – see above.
     -	`Event_Details` – see above.
     -	`Customer_Query` – see above.
-    -	`Seats_Sold` - Retrieves detailed information about seats that are sold to a consumer’s account.
+    -	`Seats_Sold` - see above.
     -	`Customer_Add` – Create a new customer account.
     -	`Customer_Update` - Update an existing customer’s account.
     -	… and others.
 +	**Inventory** – This product contains a number of API calls that provide available inventory, ticket pricing, and allow callers to request seats.  This product includes all the API calls in the “customer” product (above), plus:
     -	`Get_Avail_Seats` - Retrieves a list of available (unsold) seats for specified event.
-    -	`Event_Price_Info` - Returns attributes about each price code, ticket type, and price for seats for a specific event. 
+    -	`Event_Price_Info` - Retrieves attributes about each price code, ticket type, and price for seats for a specific event. 
     -	… and others.
 +	**Hold** – This product contains a number of API calls that allow callers to Hold seats in a shopping cart.  This product contains all the API calls in the “Inventory” product (above), plus:
     -	`Seats_Hold` - Holds “best available” seats in the shopping cart.
     -	`Seats_Hold_Specific` - Holds user-specified seats in the shopping cart.
-    -	`Shopping_Cart` - displays the contents of the shopping cart.
+    -	`Shopping_Cart` - capitalize the contents of the shopping cart.
     -	… and others.
 +	**Buy** – Contains all the API calls that allow callers to purchase and manage seats for a consumer.  This product contains API calls that allow an authorized partner to offer a complete purchase transaction.  This product contains all APIs in the system, including:
-    -	`Check_out` - Returns fees due for items in the shopping cart.
+    -	`Check_out` - Retrieves fees due for items in the shopping cart.
     -	`Payment_Request` - Authorizes payments and completes the purchase of seats.
     -	`Ticket_Print` – Print tickets; can be used for electronic ticket delivery.
     -	… and others.
@@ -244,7 +252,7 @@ Ticketmaster systems support multiple clients and our Web Services layer require
     + Content-Type: application/json
   - Body:
     + The JSON Command should be included here
-+ Initial response: X seconds later (X is usually &lt; 2 seconds), the server may respond with
++ Initial response: X seconds later (X is usually &lt; 4 seconds), the server may respond with
   - If HTTP response &quot;200 OK&quot; is returned
     * Request is complete - no polling logic is required; skip this entire section.
   - If HTTP response &quot;202 Accepted&quot; is returned, the response will include:
@@ -252,7 +260,7 @@ Ticketmaster systems support multiple clients and our Web Services layer require
     * Set-Cookie: `QTKN=<something>`
     * Continue to step 3
   - If HTTP response is not 200 and is not 202, contact Ticketmaster for assistance.
-+ Y seconds later (Y is normally about 1 - 2 seconds), the caller repeats the initial HTTPS request, using the &quot;cookies&quot; provided, to check if the response is complete.
++ Y seconds later (Y is normally about 300ms), the caller repeats the initial HTTPS request, using the &quot;cookies&quot; provided, to check if the response is complete.
   - The complete JSON Command should be included each time the call is re-submitted.
   - Cookie values that were returned by the SERVER with the &quot;Set\_Cookie&quot; responses (above) must be provided in this polling step.
     * `SID` - should not change for the duration of this API polling cycle.
