@@ -1345,12 +1345,21 @@ class SelectorControls {
         this.selContent = this.selTitle.nextElementSibling;
 
         this.selContent.addEventListener("click",function(e){
-            this.parentNode.getElementsByClassName('selector-title')[0].innerHTML = e.target.innerHTML;
-            this.parentNode.getElementsByClassName('selector-title')[0].classList.remove('open');
-            this.parentNode.getElementsByClassName('selector-content')[0].classList.remove('show');
-            if (attribute == 'period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period', e.target.getAttribute('w-period'));
-            if (attribute == 'classificationId') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-classificationId', e.target.getAttribute('w-classificationId'));
-            update();
+            if (e.target.classList.contains('selector-content') === false) {
+                this.parentNode.getElementsByClassName('selector-title')[0].innerHTML = e.target.innerHTML;
+                this.parentNode.getElementsByClassName('selector-title')[0].classList.remove('open');
+                this.parentNode.getElementsByClassName('selector-content')[0].classList.remove('show');
+                if (attribute == 'period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period', e.target.getAttribute('w-period'));
+                if (attribute == 'classificationId') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-classificationId', e.target.getAttribute('w-classificationId'));
+                update();
+            }
+            else {
+                console.log(this.classList);
+                if (this.classList.contains("show")) {
+                    this.classList.remove("show");
+                    this.prevElementSibling.classList.remove("open");
+                }
+            }
         });
 
         this.selTitle.addEventListener("click",function(e){
@@ -1914,30 +1923,26 @@ class MonthScheduler {
         endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-            /*
-            firstDay = new Date(date.getFullYear(), document.querySelector('[w-type="calendar"]').getAttribute("w-period"), 1);
-            lastDay = new Date(date.getFullYear(), parseInt(document.querySelector('[w-type="calendar"]').getAttribute("w-period")), 0);
-            if (parseInt(firstDay.getMonth()) <= 9) startmonth = '0' + parseInt(firstDay.getMonth()); else startmonth = parseInt(firstDay.getMonth());
+            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 7) {
+                firstDay =  new Date(date.getFullYear(), date.getMonth() + 1, 1);
+                lastDay = new Date(date.getFullYear(), date.getMonth() + 2, 0);
+            }
+            else {
+                firstDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7), 0);
+                lastDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7), 0);
+            }
+            if (parseInt(firstDay.getMonth()) <= 9) startmonth = '0' + parseInt(firstDay.getMonth() + 1); else startmonth = parseInt(firstDay.getMonth() + 1);
             startdate = '0' + firstDay.getDate();
             if (lastDay.getMonth()+1 <=9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
             enddate = lastDay.getDate();
-            */
-            firstDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substring(0,4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substring(5,7), 1);
-            lastDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substring(0,4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substring(5,7), 0);
-            if (parseInt(firstDay.getMonth()) <= 9) startmonth = '0' + parseInt(firstDay.getMonth()); else startmonth = parseInt(firstDay.getMonth());
-            startdate = '0' + firstDay.getDate();
-            if (lastDay.getMonth()+1 <=9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
-            enddate = lastDay.getDate();
-            startDateTime = firstDay.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
+            startDateTime = firstDay.getFullYear() + '-' + startmonth + '-01T00:00:00Z';
             endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
-            console.log(startDateTime + '-' + endDateTime);
+            // document.querySelector('[w-type="calendar"]').setAttribute("w-period", firstDay.getFullYear() + '-' + startmonth);
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
-
-        // console.log(startDateTime + ' - ' + endDateTime);
 
         return {
             "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
@@ -2124,7 +2129,7 @@ class MonthScheduler {
                 let eventsArr = [];
                 let tDate = monthEvents[0].date;
 
-                for (let e = 0, l = monthEvents.length; e < l; ++e) {
+                for (let e = 0, l = monthEvents.length; e < l; e++) {
                     if (tDate == monthEvents[e].date) {
                         eventsArr.push(monthEvents[e]);
                         monthEventsSort[new Date(monthEvents[e].date).getDate()] = monthEvents[e];
@@ -2137,18 +2142,25 @@ class MonthScheduler {
                     tDate = monthEvents[e].date;
                 }
 
+                if (eventsArr.lenght != 0) {
+                    let dayNo = eventsArr[0].date.substr(8,2);
+                    monthEventsSort[dayNo] = eventsArr;
+                }
 
                 let id = 'calendar';
                 let year = new Date().getFullYear();
                 let month = new Date().getMonth() + 1;
 
+
                 if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-                    year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substring(0,4);
-                    month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substring(5,7);
+                    if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length == 7) {
+                        year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4);
+                        month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7);
+                    }
                 }
 
                 var elem = document.getElementById(id);
-                var mon = month - 1;
+                var mon = parseInt(month) - 1;
                 var d = new Date(year, mon);
                 var table = '<table><tr><th>s</th><th>m</th><th>t</th><th>w</th><th>t</th><th>f</th><th>s</th></tr><tr>';
                 var tmpD = new Date(year, mon);
@@ -2159,8 +2171,6 @@ class MonthScheduler {
                 }
                 outEnd.reverse();
                 table += outEnd.join('');
-
-                var eventFlag = false;
 
                 while (d.getMonth() == mon) {
                     table += '<td';
@@ -2290,11 +2300,20 @@ class MonthScheduler {
         let nowMonthTmp = nowMonth;
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-            year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0,4);
-            month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
-            nowMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
-            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,1) == '0') nowMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6,1);
-            nowMonth = parseInt(nowMonth - 1);
+
+            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 7) {
+                year =  new Date().getFullYear();
+                month = new Date().getMonth() + 1;
+                if (month <= 9) month = '0' + month;
+                nowMonth = new Date().getMonth();
+            }
+            else {
+                year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0,4);
+                month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
+                nowMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
+                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,1) == '0') nowMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6,1);
+                nowMonth = parseInt(nowMonth - 1);
+            }
             nowMonthTmp = nowMonth;
             if (new Date().getFullYear() != year) {
                 nowMonth = 0;
@@ -2320,23 +2339,56 @@ class MonthScheduler {
         return content;
     }
 
+    getCategories() {
+        let active = document.querySelector('[w-type="calendar"]').getAttribute('w-classificationid');
+        switch (active) {
+            case 'KZFzniwnSyZfZ7v7na':
+                active = 'Arts & Theatre';
+                break
+            case 'KZFzniwnSyZfZ7v7nn':
+                active = 'Film';
+                break
+            case 'KZFzniwnSyZfZ7v7n1':
+                active = 'Miscellaneous';
+                break
+            case 'KZFzniwnSyZfZ7v7nJ':
+                active = 'Music';
+                break
+            case 'KZFzniwnSyZfZ7v7nE':
+                active = 'Sports';
+                break
+            default:
+                active = 'All Events';
+        }
+        let content = '<span class="selector-title">';
+        content += active;
+        content += '</span>';
+        content += '<span class="selector-content" tabindex="-1">';
+        content += '<span class="active" w-classificationId="">All Events</span>';
+        content += '<span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span>';
+        content += '<span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span>';
+        content += '<span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span>';
+        content += '<span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span>';
+        content += '<span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span>';
+        content += '</span>';
+        return content;
+    }
+
     update() {
         let parentLeftselector = document.getElementsByClassName('tab')[2];
         let delLeftselector = parentLeftselector.getElementsByClassName('sliderLeftSelector')[0];
         delLeftselector.parentElement.removeChild(delLeftselector);
-        // let delRightselector = parentLeftselector.getElementsByClassName('sliderRightSelector')[0];
-        // delRightselector.parentElement.removeChild(delRightselector);
+        let delRightselector = parentLeftselector.getElementsByClassName('sliderRightSelector')[0];
+        delRightselector.parentElement.removeChild(delRightselector);
 
         let selector = document.getElementById('calendar');
         let leftSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
-        // let RightSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+        let RightSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
         let month = document.getElementById('calendar');
         document.getElementById('monthScheduler').removeChild(month);
         this.monthRootContainer = document.createElement("div");
         this.monthRootContainer.id = "calendar";
         this.monthSchedulerRoot.appendChild(this.monthRootContainer);
-        // let month_ = document.querySelector('[w-type="calendar"]').getAttribute("w-period");
-        // let year_ = new Date();
         this.startMonth();
     }
 
@@ -2344,7 +2396,7 @@ class MonthScheduler {
         if (!root) return;
         this.monthSchedulerRoot = root;
         let leftSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
-        let RightSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+        let RightSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
         this.calendarRootContainer = document.createElement("div");
         this.calendarRootContainer.id = "calendar";
         this.monthSchedulerRoot.appendChild(this.calendarRootContainer);
@@ -2415,8 +2467,15 @@ class YearScheduler {
         endDateTime = lastDay.getFullYear() + '-12-31T23:59:59Z';
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-            firstDay = document.querySelector('[w-type="calendar"]').getAttribute("w-period") + '-01-01T00:00:00Z';
-            lastDay = parseInt(firstDay + 1) + '-12-31T23:59:59Z';
+
+            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 4) {
+                firstDay =  new Date(date.getFullYear()) + '-01-01T00:00:00Z';
+                lastDay = new Date(date.getFullYear()) + '-12-31T23:59:59Z';
+            }
+            else {
+                firstDay = document.querySelector('[w-type="calendar"]').getAttribute("w-period") + '-01-01T00:00:00Z';
+                lastDay = parseInt(firstDay + 1) + '-12-31T23:59:59Z';
+            }
             startDateTime = firstDay;
             endDateTime = lastDay;
         }
@@ -2571,7 +2630,14 @@ class YearScheduler {
     startYear() {
         let MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let prm = [];
-        let year = this.eventReqAttrs.startDateTime.substring(0,4);
+        let year;
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 4) {
+            year = new Date().getFullYear();
+        }
+        else {
+            year = this.eventReqAttrs.startDateTime.substring(0,4);
+        }
+
         let month = '01';
         for(let i = 1; i <= 12; i++){
                 if (i<=9) month = '0' + i; else month = i;
@@ -2612,7 +2678,6 @@ class YearScheduler {
                 rounds[x].addEventListener("click", function (e) {
                     document.querySelector('[w-type="calendar"]').setAttribute('w-period', e.target.getAttribute('rel'));
                     document.querySelectorAll('.tb')[2].click();
-                    // document.querySelectorAll(".tab.active .sliderLeftSelector .selector-content span[w-period='" + e.target.getAttribute('rel') + "']")[0].click();
                     document.getElementById('month-update').click();
                 }, false);
             }
