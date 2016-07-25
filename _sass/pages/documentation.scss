@@ -86,7 +86,8 @@
       }
 
       /*offset for fixed header*/
-      h2:target:before {
+      h2:target:before,
+      h3:target:before {
         content: "";
         display: block;
         height: 100px;
