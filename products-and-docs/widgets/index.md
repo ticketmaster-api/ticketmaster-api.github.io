@@ -51,6 +51,6 @@ directly on your website at no additional cost.
 {{countdown-widget}}
 </div>
 
-<div class="grey-box mask" markdown="1">
+<div class="grey-box android mask" markdown="1">
 {{payments}}
 </div>
