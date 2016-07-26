@@ -74,11 +74,15 @@ Retrieve reservable seat information based on specific criteria.
 
 - `picks` (array) - Picks.
     - `{array item object}` - pick.
+        * `type` (string) - "general-seating", or "seats"
         * `quality` (number) - A quality score representing a combination of price and location to stage.
         * `areaId` (string) - An area id usable for reserves
+        * `areaName` (string) - Name of the area
+        * `areaDescription` (string) - Description of the area
+        * `descriptions` (array) - A list of descriptions for this pick
         * `section` (string) - The section name in the venue
-        * `row` (string) - The row in the section
-        * `snapshotImageUrl` - Combine with snapshotImageBase to form an image url of this pick in the venue
+        * `row` (string) - The row in the section, if applicable.
+        * `snapshotImageUrl` - An image url of this pick in the venue. Add your apikey to request.
         * `offers` (array) - Offers.    
             - `{array item object}` - offer.
                 - `offer id` (string) - The offer id corresponding to one in _embedded.offer[].
@@ -119,6 +123,11 @@ Status 200
       "areaId": "10",
       "section": "103",
       "row": "18",
+      "descriptions": [
+          "Full View"
+      ],
+      "areaName": "L100",
+      "areaDescription": "LOWER BOWL",
       "snapshotImageUrl": "image?systemId=HOST&segmentIds=s_10,s_11,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_12,s_120,s_13,s_14,s_16,s_17,s_18,s_2,s_22,s_5,s_6,s_8,s_9&placeId=GEYDGORRHA5DS",
       "offers": [
         "GJ6DC7BQ"
@@ -150,8 +159,7 @@ Status 200
         ]
       }
     ]
-  },
-  "snapshotImageBase": "http://mapsapi.tmol.co/maps/geometry/3/event/1C00506FB56F338A/"
+  }
 }
 {% endhighlight %}
 
@@ -159,7 +167,7 @@ Status 200
 ## Snapshot Image [GET]
 {: #snapshot-image}
 
-A visual-representation of the approximate location of seats in the venue. Each result from the Top Picks API contains a snapshotImageUrl.  When combined with snapshotImageBase, clients can load and render a .png image of the pick to the user.
+A visual-representation of the approximate location of seats in the venue. Each result from the Top Picks API contains a snapshotImageUrl of a .png image.
 
 
 ### Query Parameters
@@ -167,8 +175,9 @@ All query parameters in snapshotImageUrl must be maintained and un-altered. Clie
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `w`   | The width, in pixels, of the image.         | number            |     300          | No      |
+| `w`   | The width, in pixels, of the image.  (min: 102, max: 1024)      | number            |     300          | No      |
 | `pw`   | The width, in pixels, of the dropped pin in the image.         | number            |     30          | No      |
+| `apikey`   | Your API Key         | string            |     GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne           | Yes      |
 
 
 ![pick image](/assets/img/products-and-docs/top-pick-1.png)
