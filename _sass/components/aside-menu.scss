@@ -189,12 +189,12 @@ body{
   }
   &.is-fixed {
     .wrapper-aside-menu{
-      height: 100%;
+      height: calc(100% - 80px);
       .aside-menu{
-        max-height: 80%;
+        max-height: calc(100% - 130px);
         overflow: auto;
         &>li:last-child {
-          margin-bottom: 15%;
+          /*margin-bottom: 15%;*/
         }
       }
       @media (min-width: 1200px) {
