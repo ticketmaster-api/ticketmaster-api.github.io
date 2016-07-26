@@ -1982,8 +1982,6 @@ Get detailed information about an order. For specifically-enabled accounts only.
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 | `order_token`   | An order token         | string            |     "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"          |  No     |
-| `order_number`   | A legacy Ticketmaster order account number (ex. 39-5234153/LA1) | string            |     "39-5234153/LA1"          | No      |
-
 
 
 >[Request](#req)
