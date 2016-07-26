@@ -125,7 +125,7 @@ http://app.ticketmaster.com/discovery/v1/events.json?keyword=Madonna&apikey=4dsf
 https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
 {: .code .red}
 
-{: .double-margin #rate-limit}
+{: #rate-limit}
 ## Rate Limit
 
 All API keys are issued with a _default quota_ of **5000 API calls/day**. We do increase rate limits on case-by-case basis. In order to increase the rate limit for a particular application, we need to verify the following:
@@ -144,34 +144,37 @@ You can see how much of your quota has been used by checking the following **res
 * **Rate-Limit-Over**: How many requests over your quota you've made.
 * **Rate-Limit-Reset**: The UTC date and time of when your quota will be reset.
 
-{: .code .red}
-	curl -I 'http://app.ticketmaster.com/discovery/v1/events.json?keyword=Queen&apikey=xxx'
 
-	HTTP/1.1 200 OK
-	Rate-Limit: 5000
-	Rate-Limit-Available: 4978
-	Rate-Limit-Over: 0
-	Rate-Limit-Reset: 1453180594367
+{% highlight bash %}
+curl -I 'http://app.ticketmaster.com/discovery/v1/events.json?keyword=Queen&apikey=xxx'
+
+HTTP/1.1 200 OK
+Rate-Limit: 5000
+Rate-Limit-Available: 4978
+Rate-Limit-Over: 0
+Rate-Limit-Reset: 1453180594367
+{% endhighlight %}
 
 ### API Response When Quota is Reached
 When you do go over your quota, you will get an HTTP status code 429 indicating you've made too many requests. The following is the API response you will receive:
 
-{: .code .red}
-	{
-		"fault": {
-			"faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
-			"detail": {
-				"errorcode": "policies.ratelimit.QuotaViolation"
-			}
-		}
-	}
+{% highlight json %}
+{
+  "fault": {
+    "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
+    "detail": {
+      "errorcode": "policies.ratelimit.QuotaViolation"
+    }
+  }
+}
+{% endhighlight %}
 
-{: .double-margin #cors-support}
+{: #cors-support}
 ## CORS Support
 
 The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing){:target="_blank"} which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy){:target="_blank"}. CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors){:target="_blank"}.
 
-{: .double-margin #available-resources .no-mobile}
+{: #available-resources .no-mobile}
 ## Available Resources
 
 <div class="table-wrapper no-mobile">

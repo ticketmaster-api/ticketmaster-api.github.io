@@ -460,17 +460,6 @@
     }
   }
 
-  .btn-small {
-    top: 28px;
-    margin-left: 30px;
-    text-transform: uppercase;
-    font-family: $font-h4;
-    font-size: $size-h6;
-    padding: 5px 15px;
-    position: relative;
-    border-radius: 3px;
-  }
-
   #req-res-container{
     height: auto;
     padding-right: 10px;
@@ -526,6 +515,38 @@
     }
   }
 
+  .events-tracker {
+    background: #f1f4f6;
+    height: 60px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    .events-tracker__section {
+      padding: 20px 10px;
+      font-weight: bold;
+    }
+    .events-tracker__title {
+      color: #b7c9d3;
+      margin-right: 63px;
+      max-width: 64px;
+    }
+    .events-tracker__counter {
+      color: #768692;
+    }
+  }
+}
+
+.documentation,
+#api-explorer {
+  .btn-small {
+    top: 28px;
+    margin-left: 30px;
+    text-transform: uppercase;
+    font-family: $font-h4;
+    font-size: $size-h6;
+    padding: 5px 15px;
+    position: relative;
+    border-radius: 3px;
+  }
 }
 
 .vertical-alignment-helper {

@@ -21,6 +21,7 @@ Apps which implement Ticketmaster OAuth are able to have Ticketmaster users auth
 {: #overview }
 
 ### Terminology
+{: #terminologies}
 
 | __Client&nbsp;ID__ | A public key which identifies your Ticketmaster API client / app.  Used when initiating the OAuth handshake.
 | __Client&nbsp;Secret__ | A private token which is used to authenticate your Ticketmaster API client / app for certain operations.  Not meant to be shared in untrusted environments, i.e. served up in your app.
@@ -116,7 +117,7 @@ Status 200
 {% endhighlight %}
 
 ## Using Access Tokens
-{: using-access-token}
+{: #using-access-token}
 
 Once you have obtained an Access Token, you can use it to identify the User until the time specified by the `expires_in` key in the response. At the time of writing, this is 3600 seconds (1 hour). After that time, you need to reissue a new Access Token using the Refresh Token (explained below), or will need the User to reauthenticate (via Step 1 above).
 

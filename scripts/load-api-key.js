@@ -31,7 +31,7 @@
         $(window).trigger('login', [{
           key: event.data.key,
           email: event.data.email
-        }])
+        }]);
       }
     } else {
       console.warn(origin + " is not allowed");

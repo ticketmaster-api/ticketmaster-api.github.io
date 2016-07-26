@@ -101,6 +101,24 @@ category: api-explorer
             </div>
         </div>
     </div>
+    
+    <!--event counter bar-->
+    <div class="row">
+        <div class="row-container">
+            <section class="col-xs-12">
+                <div class="col-xs-12 events-tracker">
+                    <div class="row">
+                        <div class="col-xs-12 events-tracker__section">
+                            <span class="events-tracker__title">Number of Events: <span id="js-events-counter" class="events-tracker__counter"></span></span>
+                            <span class="events-tracker__title">Number of Attractions: <span id="js-attractions-counter" class="events-tracker__counter"></span></span>
+                            <span class="events-tracker__title">Number of Venues: <span id="js-venues-counter" class="events-tracker__counter"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
     <!--selected method-->
     <div class="row">
         <div class="row-container" id="title">
