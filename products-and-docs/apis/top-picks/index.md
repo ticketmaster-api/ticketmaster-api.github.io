@@ -104,7 +104,6 @@ Retrieve reservable seat information based on specific criteria.
                     - `reason` (string) - Name of charge.
                     - `type` (string) - Type of charge.
                     - `amount` (number) - Amount of charge
-- `snapshotImageBase` (string) - Base url for snapshotImageUrl values in picks data.
 
 >[Request](#req)
 >[Response](#res)
