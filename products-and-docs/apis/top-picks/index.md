@@ -76,9 +76,10 @@ Retrieve reservable seat information based on specific criteria.
     - `{array item object}` - pick.
         * `type` (string) - "general-seating", or "seats"
         * `quality` (number) - A quality score representing a combination of price and location to stage.
-        * `areaId` (string) - An area id usable for reserves
-        * `areaName` (string) - Name of the area
-        * `areaDescription` (string) - Description of the area
+        * `area` (object) - An area information
+            - `id` (string) - Area id
+            - `name` (string) - Area name
+            - `description` (string) - Area description
         * `descriptions` (array) - A list of descriptions for this pick
         * `section` (string) - The section name in the venue
         * `row` (string) - The row in the section, if applicable.
@@ -120,14 +121,16 @@ Status 200
   "picks": [
     {
       "quality": 0.626072,
-      "areaId": "10",
       "section": "103",
       "row": "18",
       "descriptions": [
           "Full View"
       ],
-      "areaName": "L100",
-      "areaDescription": "LOWER BOWL",
+      "area" : {
+        "id" : 10,
+        "name" : "L100",
+        "description" : "LOWER BOWL"
+      },
       "snapshotImageUrl": "image?systemId=HOST&segmentIds=s_10,s_11,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_12,s_120,s_13,s_14,s_16,s_17,s_18,s_2,s_22,s_5,s_6,s_8,s_9&placeId=GEYDGORRHA5DS",
       "offers": [
         "GJ6DC7BQ"
