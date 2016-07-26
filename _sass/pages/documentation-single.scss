@@ -215,7 +215,7 @@
 .widget_box {
   width: 850px;
   min-height: 438px;
-  margin-bottom: 72px;
+  margin-bottom: $base-margin*3;
   background-repeat: no-repeat;
   background-position: right top;
 
@@ -262,7 +262,7 @@
 
 
   h2{
-    padding: 72px 0 0 48px;
+    padding: $base-margin*3 0 0 $base-margin*2;
     color: #fff;
     font-size: 54px;
     line-height: 66px;
