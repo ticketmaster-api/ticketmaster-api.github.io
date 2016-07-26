@@ -185,4 +185,8 @@ All query parameters in snapshotImageUrl must be maintained and un-altered. Clie
 ![pick image](/assets/img/products-and-docs/top-pick-1.png)
 
 
+Example use of Top Picks data
+
+![pick image](/assets/img/products-and-docs/top-pick-2.png)
+
 
