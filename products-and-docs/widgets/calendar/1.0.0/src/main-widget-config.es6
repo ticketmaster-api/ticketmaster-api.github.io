@@ -46,7 +46,7 @@
         $colorSchemeSelector = $('.widget__color_scheme_control');
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-        $widthController.slider('relayout');
+        // $widthController.slider('relayout');
         $borderRadiusController.slider('relayout');
     });
 
@@ -140,6 +140,8 @@
 
         widgetNode.setAttribute(event.target.name, event.target.value);
         widget.update();
+        let spinner = document.querySelector('.events-root-container .spinner-container');
+        spinner.classList.add('hide');
         setTimeout(function() {
             weekScheduler.update();
             monthScheduler.update();
@@ -208,8 +210,9 @@
         if(layout === 'horizontal'){
             height = getHeightByTheme(theme);
         }
-        widgetNode.setAttribute('w-height', height);
-        widgetNode.setAttribute('w-border', 0);
+        // widgetNode.setAttribute('w-height', height);
+        widgetNode.setAttribute('w-height', '400');
+        // widgetNode.setAttribute('w-border', 0);
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened');//reset custom select
         widget.onLoadCoordinate();
