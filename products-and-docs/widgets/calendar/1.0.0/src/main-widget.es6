@@ -205,6 +205,7 @@ class TicketmasterCalendarWidget {
 
         this.eventsRootContainer = document.createElement("div");
         this.eventsRootContainer.classList.add("events-root-container");
+        this.eventsRootContainer.innerHTML = '<div class="spinner-container"><div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div></div>';
         this.tab1RootContainer.appendChild(this.eventsRootContainer);
 
         this.eventsRoot = document.createElement("ul");
@@ -354,6 +355,7 @@ class TicketmasterCalendarWidget {
             widget.config.latlong = '';
             widget.config.country = '';
             cb(widget.config.latlong);
+            document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", '');
         }
     }
 
@@ -792,6 +794,8 @@ class TicketmasterCalendarWidget {
     }
 
     update() {
+        let spinner = document.querySelector('.events-root-container .spinner-container');
+        spinner.classList.remove('hide');
         let oldTheme = this.config.constructor();
         for (let attr in this.config) {
             if (this.config.hasOwnProperty(attr)) oldTheme[attr] = this.config[attr];
@@ -956,9 +960,14 @@ class TicketmasterCalendarWidget {
 
     eventsLoadingHandler(){
         let widget = this.widget;
+        let spinner = document.querySelector('.events-root-container .spinner-container');
+
         widget.clearEvents(); // Additional clearing after each loading
         if (this && this.readyState == XMLHttpRequest.DONE ) {
             if(this.status == 200){
+
+                spinner.classList.add('hide');
+
                 widget.events = JSON.parse(this.responseText);
 
                 if(widget.events.length){
@@ -1389,7 +1398,11 @@ class WeekScheduler {
     get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
     get eventReqAttrs(){
-        let latlong = '', tmapikey = '';
+        let tmapikey = '',
+            latlong = '',
+            keyword = '',
+            radius;
+
         let attrs = {},
             params = [
                 {
@@ -1471,6 +1484,14 @@ class WeekScheduler {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-keyword") != '') {
+            keyword = document.querySelector('[w-type="calendar"]').getAttribute("w-keyword");
+        }
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-radius") != '') {
+            radius = document.querySelector('[w-type="calendar"]').getAttribute("w-radius");
+        }
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
@@ -1478,11 +1499,12 @@ class WeekScheduler {
 
         return {
             "apikey": tmapikey,
-            "radius": "25",
             "latlong": latlong,
+            "keyword": keyword,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
             "classificationId": classificationid,
+            "radius": radius,
             "size": "100"
         }
 
@@ -1616,8 +1638,18 @@ class WeekScheduler {
 
                 if (events.page.totalElements != 0) {
                     events._embedded.events.forEach(function (item) {
-                        if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
-                        if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
+                        if(item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')){
+                            place = item._embedded.venues[0].name;
+                            if (item._embedded.venues[0].hasOwnProperty('address')) {
+                                address = item._embedded.venues[0].address.line1;
+                            } else {
+                                address = '';
+                            }
+                        }
+                        else {
+                            place = '';
+                            address = '';
+                        }
 
                         let imgWidth;
                         let index;
@@ -1629,19 +1661,21 @@ class WeekScheduler {
                             }
                         });
 
-                        weekEvents.push({
-                            'name': item.name,
-                            'date': item.dates.start.localDate,
-                            'time': item.dates.start.localTime,
-                            'datetime': widget.formatDate({
-                                day: item.dates.start.localDate,
-                                time: item.dates.start.localTime
-                            }),
-                            'place': place + ', ' + address,
-                            'url': item.url,
-                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                            'count': 0
-                        });
+                        if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
+                            weekEvents.push({
+                                'name': item.name,
+                                'date': item.dates.start.localDate,
+                                'time': item.dates.start.localTime,
+                                'datetime': widget.formatDate({
+                                    day: item.dates.start.localDate,
+                                    time: item.dates.start.localTime
+                                }),
+                                'place': place + ', ' + address,
+                                'url': item.url,
+                                'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                'count': 0
+                            });
+                        }
                     });
                 }
                 else {
@@ -1655,22 +1689,22 @@ class WeekScheduler {
                 }
 
                 let tDate = weekEvents[0].date;
-                let tTime = weekEvents[0].time.substring(0,2);
+                let tTime = weekEvents[0].time.substr(0,2);
                 let count = 0;
                 let startFlag = 0;
                 let endFlag = 0;
 
                 for (let e = 0, l = weekEvents.length; e < l; ++e) {
-                    if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substring(0,2)) {
+                    if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0,2)) {
                         weekEvents[e].count = count;
                         endFlag = e;
                         count++;
                     }
-                    if (tDate == weekEvents[e].date && tTime != weekEvents[e].time.substring(0,2)) {
+                    if (tDate == weekEvents[e].date && tTime != weekEvents[e].time.substr(0,2)) {
                         for (let i = startFlag; i <= endFlag; i++) {
                             weekEvents[i].count = count-1;
                         }
-                        tTime = weekEvents[e].time.substring(0,2);
+                        tTime = weekEvents[e].time.substr(0,2);
                         startFlag = e;
                         count = 0;
                     }
@@ -1679,7 +1713,7 @@ class WeekScheduler {
                             weekEvents[i].count = count-1;
                         }
                         tDate = weekEvents[e].date;
-                        tTime = weekEvents[e].time.substring(0,2);
+                        tTime = weekEvents[e].time.substr(0,2);
                         startFlag = e;
                         count = 0;
                     }
@@ -1737,8 +1771,7 @@ class WeekScheduler {
                         timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
                         for (let e = 0, l = weekEvents.length; e < l; ++e) {
-                            // console.log(weekEvents[e].date + '==' + dateTmp + '&&' + weekEvents[e].time.substring(0,2) + '==' + timeTmp.substring(0,2));
-                            if (weekEvents[e].date == dateTmp && weekEvents[e].time.substring(0,2) == timeTmp.substring(0,2)) {
+                            if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0,2) == timeTmp.substr(0,2)) {
                                 if (dayCount == 0) {
                                     timeDiv += '<span class="round"></span>';
                                     if (weekEvents[e].time.substring(0,2) < 18) {
@@ -1877,7 +1910,10 @@ class MonthScheduler {
     get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
     get eventReqAttrs(){
-        let tmapikey = '', latlong = '';
+        let tmapikey = '',
+            latlong = '',
+            keyword = '',
+            radius;
         let attrs = {},
             params = [
                 {
@@ -1957,18 +1993,27 @@ class MonthScheduler {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-keyword") != '') {
+            keyword = document.querySelector('[w-type="calendar"]').getAttribute("w-keyword");
+        }
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-radius") != '') {
+            radius = document.querySelector('[w-type="calendar"]').getAttribute("w-radius");
+        }
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
+
         return {
             "apikey": tmapikey,
-            "size": "25",
-            "radius": "15",
             "latlong": latlong,
+            "keyword": keyword,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
             "classificationId": classificationid,
+            "radius": radius,
             "size": "400"
         }
     }
@@ -2106,8 +2151,18 @@ class MonthScheduler {
                 if (events.page.totalElements != 0) {
 
                     events._embedded.events.forEach(function (item) {
-                        if (item._embedded.venues != undefined) place = item._embedded.venues[0].name;
-                        if (item._embedded.venues != undefined) address = item._embedded.venues[0].address.line1;
+                        if(item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')){
+                            place = item._embedded.venues[0].name;
+                            if (item._embedded.venues[0].hasOwnProperty('address')) {
+                                address = item._embedded.venues[0].address.line1;
+                            } else {
+                                address = '';
+                            }
+                        }
+                        else {
+                            place = '';
+                            address = '';
+                        }
 
                         let imgWidth;
                         let index;
@@ -2119,18 +2174,20 @@ class MonthScheduler {
                             }
                         });
 
-                        monthEvents.push({
-                            'name': item.name,
-                            'date': item.dates.start.localDate,
-                            'time': item.dates.start.localTime,
-                            'datetime': widget.formatDate({
-                                day: item.dates.start.localDate,
-                                time: item.dates.start.localTime
-                            }),
-                            'place': place + ', ' + address,
-                            'url': item.url,
-                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                        });
+                        if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
+                            monthEvents.push({
+                                'name': item.name,
+                                'date': item.dates.start.localDate,
+                                'time': item.dates.start.localTime,
+                                'datetime': widget.formatDate({
+                                    day: item.dates.start.localDate,
+                                    time: item.dates.start.localTime
+                                }),
+                                'place': place + ', ' + address,
+                                'url': item.url,
+                                'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                            });
+                        }
                     });
                 }
                 else {
@@ -2430,7 +2487,10 @@ class YearScheduler {
     get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
     get eventReqAttrs(){
-        let tmapikey = '', latlong = '';
+        let tmapikey = '',
+            latlong = '',
+            keyword = '',
+            radius;
         let attrs = {},
             params = [
                 {
@@ -2506,19 +2566,28 @@ class YearScheduler {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-keyword") != '') {
+            keyword = document.querySelector('[w-type="calendar"]').getAttribute("w-keyword");
+        }
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-radius") != '') {
+            radius = document.querySelector('[w-type="calendar"]').getAttribute("w-radius");
+        }
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
+
         return {
             "apikey": tmapikey,
-            "size": "25",
-            "radius": "15",
             "latlong": latlong,
+            "keyword": keyword,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
             "classificationId": classificationid,
-            "size": 400
+            "radius": radius,
+            "size": "400"
         }
     }
 
