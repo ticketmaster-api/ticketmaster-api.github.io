@@ -140,6 +140,23 @@
 
         widgetNode.setAttribute(event.target.name, event.target.value);
         widget.update();
+        setTimeout(function() {
+            weekScheduler.update();
+            monthScheduler.update();
+            yearScheduler.update();
+        }, 500);
+
+
+        /*
+        widget.update().then(function() {
+            console.log('Update Done');
+            weekScheduler.update();
+            // monthScheduler.update();
+            // yearScheduler.update();
+        }, function(error) {
+            console.log("Error!", error);
+        });
+        */
     };
 
     var resetWidget = function(configForm) {

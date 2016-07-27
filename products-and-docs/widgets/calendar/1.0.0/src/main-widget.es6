@@ -339,6 +339,7 @@ class TicketmasterCalendarWidget {
                 if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
                 widget.config.latlong = latlong;
                 cb(widget.config.latlong);
+                document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", latlong);
             }
         }
 
@@ -791,7 +792,6 @@ class TicketmasterCalendarWidget {
     }
 
     update() {
-
         let oldTheme = this.config.constructor();
         for (let attr in this.config) {
             if (this.config.hasOwnProperty(attr)) oldTheme[attr] = this.config[attr];
@@ -829,7 +829,6 @@ class TicketmasterCalendarWidget {
             this.getCoordinates(() => {
                 this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
             });
-
         }
         else{
             let events = this.eventsRoot.getElementsByClassName("event-wrapper");
@@ -841,7 +840,6 @@ class TicketmasterCalendarWidget {
             }
                 this.goToSlideY(0);
         }
-
     }
 
     needToUpdate(newTheme, oldTheme, forCheck = []){
@@ -1391,6 +1389,7 @@ class WeekScheduler {
     get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
     get eventReqAttrs(){
+        let latlong = '', tmapikey = '';
         let attrs = {},
             params = [
                 {
@@ -1464,20 +1463,29 @@ class WeekScheduler {
             // console.log(startDateTime + ' - ' + endDateTime);
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
+            tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+        }
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
+            latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
+        }
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
+
         return {
-            "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
-            "size": "25",
+            "apikey": tmapikey,
             "radius": "25",
-            "latlong": "34.0390107,-118.2672801",
+            "latlong": latlong,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
             "classificationId": classificationid,
-            "size": 100
+            "size": "100"
         }
+
     }
 
     get messageRootContainer(){ return 'weekSсheduler'; }
@@ -1869,6 +1877,7 @@ class MonthScheduler {
     get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
     get eventReqAttrs(){
+        let tmapikey = '', latlong = '';
         let attrs = {},
             params = [
                 {
@@ -1940,21 +1949,27 @@ class MonthScheduler {
             // document.querySelector('[w-type="calendar"]').setAttribute("w-period", firstDay.getFullYear() + '-' + startmonth);
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
+            tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+        }
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
+            latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
+        }
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
-        console.log(startDateTime);
-
         return {
-            "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+            "apikey": tmapikey,
             "size": "25",
             "radius": "15",
-            "latlong": "34.0390107,-118.2672801",
+            "latlong": latlong,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
             "classificationId": classificationid,
-            "size": 400
+            "size": "400"
         }
     }
 
@@ -2415,6 +2430,7 @@ class YearScheduler {
     get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
     get eventReqAttrs(){
+        let tmapikey = '', latlong = '';
         let attrs = {},
             params = [
                 {
@@ -2482,15 +2498,23 @@ class YearScheduler {
             endDateTime = lastDay;
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
+            tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+        }
+
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
+            latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
+        }
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
         return {
-            "apikey": "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+            "apikey": tmapikey,
             "size": "25",
             "radius": "15",
-            "latlong": "34.0390107,-118.2672801",
+            "latlong": latlong,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
             "classificationId": classificationid,
