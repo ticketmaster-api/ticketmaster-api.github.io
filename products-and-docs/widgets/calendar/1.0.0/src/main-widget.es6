@@ -2174,7 +2174,7 @@ class MonthScheduler {
                             }
                         });
 
-                        if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
+                        // if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
                             monthEvents.push({
                                 'name': item.name,
                                 'date': item.dates.start.localDate,
@@ -2187,7 +2187,7 @@ class MonthScheduler {
                                 'url': item.url,
                                 'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
                             });
-                        }
+                        // }
                     });
                 }
                 else {
@@ -2220,6 +2220,7 @@ class MonthScheduler {
                     let dayNo = eventsArr[0].date.substr(8,2);
                     monthEventsSort[dayNo] = eventsArr;
                 }
+
 
                 let id = 'calendar';
                 let year = new Date().getFullYear();
