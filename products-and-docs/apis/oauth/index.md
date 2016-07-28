@@ -14,6 +14,7 @@ keywords: Oauth API, member details, access token
 # OAuth API
 
 The Ticketmaster OAuth API provides a secure and standardized way to authenticate Ticketmaster users.
+{: .article .lead}
 
 Apps which implement Ticketmaster OAuth are able to have Ticketmaster users authorize their app to make requests to the Ticketmaster Open Platform on their behalf.  It can also be used as a social sign-on provider, i.e. a "Login with Ticketmaster" button.
 
