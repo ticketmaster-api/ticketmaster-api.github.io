@@ -12,7 +12,7 @@ keywords: Partner API, TopPicks, Top Picks, host and API, reserve tickets
 # Top Picks API
 
 The Top Picks API provides seat recommendations based on current availability, sampling across various areas of a venue and available price points. Results are near real-time but for certain high velocity events picks may expire (sell out) quickly.
-
+{: .article .lead}
 
 ## Overview
 {: #overview }
