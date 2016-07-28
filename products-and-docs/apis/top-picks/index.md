@@ -83,7 +83,7 @@ Retrieve reservable seat information based on specific criteria.
         * `descriptions` (array) - A list of descriptions for this pick
         * `section` (string) - The section name in the venue
         * `row` (string) - The row in the section, if applicable.
-        * `snapshotImageUrl` - An image url of this pick in the venue. Add your apikey to request.
+        * `snapshotImageUrl` - An image url of this pick in the venue. Add your apikey to request. If venue or event doesn't support detailed images, this field will be null.
         * `offers` (array) - Offers.    
             - `{array item object}` - offer.
                 - `offer id` (string) - The offer id corresponding to one in _embedded.offer[].
