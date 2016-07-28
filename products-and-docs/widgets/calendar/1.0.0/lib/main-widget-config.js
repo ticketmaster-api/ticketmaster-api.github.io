@@ -62,9 +62,23 @@
             targetName = event.target.name,
             $tabButtons = $('.js-tab-buttons');
 
+        if (targetName === "w-keyword") {
+            isPostalCodeChanged = true;
+            if (document.getElementById('w-keyword').value == '') {
+                document.getElementById('w-postalcode').value = '90015';
+                document.querySelector('[w-type="calendar"]').setAttribute('w-country', 'US');
+                document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', '34.0390107,-118.2672801');
+            }
+        }
+
         if (targetName === "w-postalcode") {
             widgetNode.setAttribute('w-country', '');
             isPostalCodeChanged = true;
+            if (document.getElementById('w-keyword').value == '' && document.getElementById('w-postalcode').value == '') {
+                document.getElementById('w-postalcode').value = '90015';
+                document.querySelector('[w-type="calendar"]').setAttribute('w-country', 'US');
+                document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', '34.0390107,-118.2672801');
+            }
         }
 
         if (targetName === "w-theme") {

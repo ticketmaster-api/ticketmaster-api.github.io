@@ -355,7 +355,9 @@ class TicketmasterCalendarWidget {
             widget.config.latlong = '';
             widget.config.country = '';
             cb(widget.config.latlong);
-            document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", '');
+            if (document.getElementById('w-keyword').value != '') {
+                document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", '');
+            }
         }
     }
 
@@ -2206,21 +2208,29 @@ class MonthScheduler {
                 for (let e = 0, l = monthEvents.length; e < l; e++) {
                     if (tDate == monthEvents[e].date) {
                         eventsArr.push(monthEvents[e]);
-                        monthEventsSort[new Date(monthEvents[e].date).getDate()] = monthEvents[e];
+                        let day = new Date(monthEvents[e].date).getDate();
+                        if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                        monthEventsSort[day] = monthEvents[e];
                     }
                     else {
-                        monthEventsSort[new Date(tDate).getDate()] = eventsArr;
+                        let day = new Date(monthEvents[e].date).getDate();
+                        if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                        monthEventsSort[day] = eventsArr;
                         eventsArr = [];
                         eventsArr.push(monthEvents[e]);
                     }
                     tDate = monthEvents[e].date;
+
+                    if (eventsArr.lenght != 0) {
+                        let dayNo = eventsArr[0].date.substr(8,2);
+                        if (dayNo.substr(0,1) == '0') dayNo = dayNo.substr(1,1);
+                        monthEventsSort[dayNo] = eventsArr;
+                    }
                 }
 
-                if (eventsArr.lenght != 0) {
-                    let dayNo = eventsArr[0].date.substr(8,2);
-                    monthEventsSort[dayNo] = eventsArr;
-                }
 
+                console.log(monthEvents);
+                // console.log(monthEventsSort);
 
                 let id = 'calendar';
                 let year = new Date().getFullYear();
@@ -2588,7 +2598,7 @@ class YearScheduler {
             "endDateTime": endDateTime,
             "classificationId": classificationid,
             "radius": radius,
-            "size": "400"
+            "size": "1"
         }
     }
 
