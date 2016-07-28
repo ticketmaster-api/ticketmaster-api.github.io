@@ -5,8 +5,13 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
-@At("https://live-livenation.devportal.apigee.com/")
+@At("https://live-livenation.devportal.apigee.com/user/login")
 public class UserLogInPage extends AncestorPage {
+
+    public final String pageHeader = "LOG IN";
+
+    @FindBy(xpath = "//h1[@class='only-desktop']")
+    private WebElementFacade pageTitle;
 
     @FindBy(xpath = "//div[@class='text-wrapper col-lg-6 col-sm-12 col-xs-12']/a[@title='Create a new user account.']")
     private WebElementFacade createNewAccountButton;
@@ -19,6 +24,9 @@ public class UserLogInPage extends AncestorPage {
 
     @FindBy(xpath = "//button[@id='edit-submit']")
     private WebElementFacade logInButton;
+
+    @FindBy(xpath = "//form[@id='user-login']/div/a[@href='/user/password']")
+    private WebElementFacade forgotYourPasswordLink;
 
     public WebElementFacade getCreateNewAccountButton() {
         return createNewAccountButton;
@@ -34,6 +42,14 @@ public class UserLogInPage extends AncestorPage {
 
     public WebElementFacade getLogInButton() {
         return logInButton;
+    }
+
+    public WebElementFacade getForgotYourPasswordLink() {
+        return forgotYourPasswordLink;
+    }
+
+    public String getTitleText() {
+        return pageTitle.getText();
     }
 
 }

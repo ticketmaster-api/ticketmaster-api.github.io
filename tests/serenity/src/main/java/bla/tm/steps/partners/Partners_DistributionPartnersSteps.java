@@ -3,6 +3,8 @@ package bla.tm.steps.partners;
 import bla.tm.pages.site.partners.Partners_DistributionPartnersPage;
 import net.thucydides.core.annotations.Step;
 
+import static org.junit.Assert.assertEquals;
+
 public class Partners_DistributionPartnersSteps {
 
     Partners_DistributionPartnersPage distributionPartnersPage;
@@ -18,8 +20,8 @@ public class Partners_DistributionPartnersSteps {
     }
 
     @Step
-    public String getTitle() {
-        return distributionPartnersPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (distributionPartnersPage.getTitleText(), distributionPartnersPage.pageHeader);
     }
 
     @Step

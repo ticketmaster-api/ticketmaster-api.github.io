@@ -11,6 +11,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/sdks/")
 public class PD_SDKsPage extends AncestorPage {
 
+    public final String pageHeader = "SDKs";
+
     @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[1]/div/div/div/a")
     private WebElementFacade sdkJavaButton;
 

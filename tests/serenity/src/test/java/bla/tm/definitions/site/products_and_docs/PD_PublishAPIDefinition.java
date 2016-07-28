@@ -38,6 +38,7 @@ public class PD_PublishAPIDefinition {
 
     @Then("check general page elements for Publish API Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        publishAPIPage.checkIfTitleIsCorrect();
         publishAPIPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

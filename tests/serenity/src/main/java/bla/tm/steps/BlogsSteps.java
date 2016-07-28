@@ -18,11 +18,6 @@ public class BlogsSteps {
     }
 
     @Step
-    public String getTitle() {
-        return blogsPage.getTitleText();
-    }
-
-    @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         blogsPage.checkGeneralPageElements(disqus, leftMenu);
     }

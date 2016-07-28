@@ -11,6 +11,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/tutorials/events-search/")
 public class PD_Tutorials_EventSearchPage extends AncestorPage {
 
+    public final String pageHeader = "EVENTS SEARCH TUTORIALS";
+
     @FindBy(xpath = "//div[@class='announcement']/a[@href='/products-and-docs/tutorials/events-search/search_events_in_location.html' and text()='Learn more']")
     private WebElementFacade locateEventOnMapWidgetButton;
 

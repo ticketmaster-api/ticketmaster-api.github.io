@@ -11,6 +11,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/apis/commerce/")
 public class PD_CommerceAPIPage extends AncestorPage {
 
+    public final String pageHeader = "COMMERCE API";
+
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Offers')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey01PlaceHolder;
 

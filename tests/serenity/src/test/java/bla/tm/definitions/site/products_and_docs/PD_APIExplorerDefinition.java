@@ -8,8 +8,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertTrue;
-
 public class PD_APIExplorerDefinition {
 
     private String apiKey = "{apikey}";
@@ -24,7 +22,7 @@ public class PD_APIExplorerDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open API Explorer page")
-    public void givenOpenAPIExplorerPage() {
+    public void openAPIExplorerPage() {
         apiExplorerPage.closePage();
         apiExplorerPage.maximiseBrowserWindow();
         apiExplorerPage.openPage();
@@ -47,6 +45,7 @@ public class PD_APIExplorerDefinition {
 
     @Then("check general page elements for API Explorer Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        apiExplorerPage.checkIfTitleIsCorrect();
         apiExplorerPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

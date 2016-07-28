@@ -5,15 +5,13 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 
-import static org.junit.Assert.assertTrue;
-
 public class Partners_NexusDefinition {
 
     @Steps
     Partners_NexusSteps nexusPage;
 
     @Given("open Join The Nexus Program page")
-    public void givenOpenNexusPage() {
+    public void openNexusPage() {
         nexusPage.maximiseBrowserWindow();
         nexusPage.openPage();
     }

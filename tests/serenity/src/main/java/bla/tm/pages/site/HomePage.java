@@ -9,6 +9,10 @@ import java.util.Map;
 //@DefaultUrl("#HOST/")
 public class HomePage extends AncestorPage {
 
+    public final String pageHeader = "WELCOME TO\n" +
+                                     "THE FAN-CENTRIC\n" +
+                                     "PLATFORM.";
+
     @FindBy(xpath = "//a[@class='tm-btn tm-btn-white rightarrow' and text()='GET YOUR API KEY']")
     private WebElementFacade getAPIKeyButton;
 
@@ -48,6 +52,9 @@ public class HomePage extends AncestorPage {
     @FindBy(xpath = "//div[@class='col-xs-12 col-sm-8 col-lg-12']/ul/li/a[text()='Legacy docs']")
     private WebElementFacade legacyDocsLink;
 
+    @FindBy(xpath = "//nav[@id='menu']/a[contains(.,'Open Source')]")
+    private WebElementFacade openSourceMenuItem;
+
     public Map<String, WebElementFacade> getClickableElements() {
         Map<String, WebElementFacade> elements = new HashMap<String, WebElementFacade>();
         elements.put("Get Your API Key", getAPIKeyButton);
@@ -62,6 +69,7 @@ public class HomePage extends AncestorPage {
         elements.put("Partner API", partnerAPILink);
         elements.put("Deals API", dealsAPILink);
         elements.put("Legacy docs", legacyDocsLink);
+        elements.put("Open Source", openSourceMenuItem);
         return elements;
     }
 

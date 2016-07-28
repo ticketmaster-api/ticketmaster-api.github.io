@@ -11,6 +11,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/apis/deals-api/")
 public class PD_DealsAPIPage extends AncestorPage {
 
+    public final String pageHeader = "DEALS API";
+
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Overview')]]/p[contains(.,'Example ')]/code")
     private WebElementFacade apikey01PlaceHolder;
 

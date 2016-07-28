@@ -15,10 +15,10 @@ When check visibility and click <elementKey> element of Tutorials EventSearch pa
 Then check that new page opened from Tutorials EventSearch page has <pageURL> and <pageTitle>
 
 Examples:
-|                elementKey               |                                 pageURL                                       |       pageTitle      |
-|    Locate Event On Map Widget Button    |{url}/products-and-docs/tutorials/events-search/search_events_in_location.html |LOCATE EVENTS ON A MAP|
-|  Locate Event On Map Widget Header Link |{url}/products-and-docs/tutorials/events-search/search_events_in_location.html |LOCATE EVENTS ON A MAP|
-|   Locate Event On Map Widget Image Link |{url}/products-and-docs/tutorials/events-search/search_events_in_location.html |LOCATE EVENTS ON A MAP|
-|   Get Started WIth Discovery API Widget Button  |{url}/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html |GET STARTED WITH THE DISCOVERY API|
-|Get Started WIth Discovery API Widget Header Link|{url}/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html |GET STARTED WITH THE DISCOVERY API|
-| Get Started WIth Discovery API Widget Image Link|{url}/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html |GET STARTED WITH THE DISCOVERY API|
+|                elementKey               |                                 pageURL                                       |   pageTitle    |
+|    Locate Event On Map Widget Button    |{url}/products-and-docs/tutorials/events-search/search_events_in_location.html |      //h1      |
+|  Locate Event On Map Widget Header Link |{url}/products-and-docs/tutorials/events-search/search_events_in_location.html |      //h1      |
+|   Locate Event On Map Widget Image Link |{url}/products-and-docs/tutorials/events-search/search_events_in_location.html |      //h1      |
+|   Get Started WIth Discovery API Widget Button  |{url}/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html |      //h1      |
+|Get Started WIth Discovery API Widget Header Link|{url}/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html |      //h1      |
+| Get Started WIth Discovery API Widget Image Link|{url}/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html |      //h1      |

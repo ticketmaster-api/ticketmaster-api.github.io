@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static bla.tm.staticmethods.StaticMethods.checkIfWebElementExist;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class PD_PublishAPISteps {
@@ -30,8 +31,8 @@ public class PD_PublishAPISteps {
     }
 
     @Step
-    public String getTitle() {
-        return publishAPIPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (publishAPIPage.getTitleText(), publishAPIPage.pageHeader);
     }
 
     @Step

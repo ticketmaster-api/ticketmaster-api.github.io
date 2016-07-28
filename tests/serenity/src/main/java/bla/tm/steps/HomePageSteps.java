@@ -5,6 +5,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
 import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
+import static org.junit.Assert.assertEquals;
 
 public class HomePageSteps {
 
@@ -18,11 +19,6 @@ public class HomePageSteps {
     @Step
     public void maximiseBrowserWindow() {
         homePage.maximisePageWindow();
-    }
-
-    @Step
-    public String getTitle() {
-        return homePage.getTitleText();
     }
 
     @Step
@@ -45,5 +41,15 @@ public class HomePageSteps {
         WebElementFacade element = findWebElementByKey(key, homePage.getClickableElements());
         element.isEnabled();
         element.click();
+    }
+
+    @Step
+    public void checkIfTitleIsCorrect(){
+        assertEquals (homePage.pageHeader, homePage.getTitleText());
+    }
+
+    @Step
+    public void clickLogIn() {
+        homePage.getLogInButton().click();
     }
 }

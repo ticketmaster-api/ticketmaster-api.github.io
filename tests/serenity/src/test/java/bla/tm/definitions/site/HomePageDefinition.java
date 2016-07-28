@@ -1,12 +1,14 @@
 package bla.tm.definitions.site;
 
 import bla.tm.steps.AnyPageSteps;
+import bla.tm.steps.HomePageSteps;
+import bla.tm.steps.pantheon.UserLogInSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+
 import static org.junit.Assert.assertTrue;
-import bla.tm.steps.HomePageSteps;
 
 public class HomePageDefinition {
 
@@ -16,24 +18,34 @@ public class HomePageDefinition {
     @Steps
     AnyPageSteps anyPage;
 
+    @Steps
+    UserLogInSteps userLogInPage;
+
     @Given("open Home page")
-    public void givenOpenHomePage() {
+    public void openHomePage() {
         homePage.maximiseBrowserWindow();
         homePage.openPage();
     }
 
-    @When("check visibility and click $key element")
+    @When("check visibility and click $key element of Home page")
     public void clickGetAPIKeyButton(String key) {
         homePage.validateAndClickElement(key);
     }
 
-    @Then("check that new page has $url and $title")
-    public void checkIfPageIsOpened(String url, String title){
-        anyPage.checkIfPageIsOpened(url,title);
+    @When("navigate to Pantheon LogIn page from Home page")
+    public void openLogInPageAndCheckUserIsNotLoggedIn() {
+        homePage.clickLogIn();
+        userLogInPage.isPageOpened();
+    }
+
+    @Then("check that new page opened from Home page has $url and $xpath")
+    public void checkIfPageIsOpened(String url, String xpath){
+        anyPage.checkIfPageIsOpened(url,xpath);
     }
 
     @Then("check general page elements for Home Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        homePage.checkIfTitleIsCorrect();
         homePage.checkGeneralPageElements(disqus, leftMenu);
     }
 

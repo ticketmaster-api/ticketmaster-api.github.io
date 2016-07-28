@@ -45,6 +45,7 @@ public class PD_DiscoveryAPIv1Definition {
 
     @Then("check general page elements for Discovery API v1 Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        discoveryAPIv1Page.checkIfTitleIsCorrect();
         discoveryAPIv1Page.checkGeneralPageElements(disqus, leftMenu);
     }
 

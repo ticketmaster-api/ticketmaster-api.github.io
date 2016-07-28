@@ -7,7 +7,7 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertFalse;
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 
 public class PD_Tutorials_WidgetsDefinition {
 
@@ -18,7 +18,7 @@ public class PD_Tutorials_WidgetsDefinition {
     AnyPageSteps anyPage;
 
     @Given("open Tutorials Widgets page")
-    public void givenOpenTutorialsWidgetsPage() {
+    public void openTutorialsWidgetsPage() {
         tutorialsWidgetsPage.maximiseBrowserWindow();
         tutorialsWidgetsPage.openPage();
     }
@@ -68,6 +68,7 @@ public class PD_Tutorials_WidgetsDefinition {
 
     @When("Name field is populated with bigger than 255 symbols text")
     public void populateNameFieldWithMoreThanAccepted() {
+        waitForSomeActionHappened(50);
         tutorialsWidgetsPage.populateNameFieldWithMoreThanAccepted();
     }
 
@@ -94,6 +95,7 @@ public class PD_Tutorials_WidgetsDefinition {
 
     @Then("check general page elements for Tutorials Widgets Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        tutorialsWidgetsPage.checkIfTitleIsCorrect();
         tutorialsWidgetsPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

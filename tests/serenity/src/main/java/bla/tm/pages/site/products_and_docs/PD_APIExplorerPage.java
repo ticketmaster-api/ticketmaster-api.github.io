@@ -8,6 +8,8 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/api-explorer/")
 public class PD_APIExplorerPage extends AncestorPage {
 
+    public final String pageHeader = "THE API EXPLORER";
+
     @FindBy(xpath = "//input[@id='api-key']")
     private WebElementFacade apikeyTextField;
 

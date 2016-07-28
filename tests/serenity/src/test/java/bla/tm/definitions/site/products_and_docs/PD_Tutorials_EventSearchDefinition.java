@@ -7,8 +7,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertFalse;
-
 public class PD_Tutorials_EventSearchDefinition {
 
     @Steps
@@ -18,7 +16,7 @@ public class PD_Tutorials_EventSearchDefinition {
     AnyPageSteps anyPage;
 
     @Given("open Tutorials EventSearch page")
-    public void givenOpenTutorialsEventSearchPage() {
+    public void openTutorialsEventSearchPage() {
         tutorialsEventSearchPage.maximiseBrowserWindow();
         tutorialsEventSearchPage.openPage();
     }
@@ -30,6 +28,7 @@ public class PD_Tutorials_EventSearchDefinition {
 
     @Then("check general page elements for Tutorials EventSearch Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        tutorialsEventSearchPage.checkIfTitleIsCorrect();
         tutorialsEventSearchPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

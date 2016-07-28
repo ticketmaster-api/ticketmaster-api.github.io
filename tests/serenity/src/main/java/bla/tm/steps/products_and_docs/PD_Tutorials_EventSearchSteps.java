@@ -5,6 +5,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
 import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
+import static org.junit.Assert.assertEquals;
 
 public class PD_Tutorials_EventSearchSteps {
 
@@ -21,8 +22,8 @@ public class PD_Tutorials_EventSearchSteps {
     }
 
     @Step
-    public String getTitle() {
-        return tutorialsEventSearchPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (tutorialsEventSearchPage.getTitleText(), tutorialsEventSearchPage.pageHeader);
     }
 
     @Step

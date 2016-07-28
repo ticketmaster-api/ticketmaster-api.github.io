@@ -7,9 +7,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 public class PD_TutorialsDefinition {
 
     @Steps
@@ -19,7 +16,7 @@ public class PD_TutorialsDefinition {
     AnyPageSteps anyPage;
 
     @Given("open Tutorials page")
-    public void givenOpenTutorialsPage() {
+    public void openTutorialsPage() {
         tutorialsPage.maximiseBrowserWindow();
         tutorialsPage.openPage();
     }
@@ -31,6 +28,7 @@ public class PD_TutorialsDefinition {
 
     @Then("check general page elements for Tutorials Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        tutorialsPage.checkIfTitleIsCorrect();
         tutorialsPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

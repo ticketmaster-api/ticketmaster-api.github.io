@@ -3,6 +3,8 @@ package bla.tm.steps;
 import bla.tm.pages.site.EventsPage;
 import net.thucydides.core.annotations.Step;
 
+import static org.junit.Assert.assertEquals;
+
 public class EventsSteps {
 
     EventsPage eventsPage;
@@ -18,12 +20,12 @@ public class EventsSteps {
     }
 
     @Step
-    public String getTitle() {
-        return eventsPage.getTitleText();
+    public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        eventsPage.checkGeneralPageElements(disqus, leftMenu);
     }
 
     @Step
-    public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
-        eventsPage.checkGeneralPageElements(disqus, leftMenu);
+    public void checkIfTitleIsCorrect(){
+        assertEquals (eventsPage.getTitleText(), eventsPage.pageHeader);
     }
 }

@@ -23,8 +23,8 @@ public class PD_Tutorials_WidgetsSteps {
     }
 
     @Step
-    public String getTitle() {
-        return tutorialsWidgetsPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (tutorialsWidgetsPage.getTitleText(), tutorialsWidgetsPage.pageHeader);
     }
 
     @Step

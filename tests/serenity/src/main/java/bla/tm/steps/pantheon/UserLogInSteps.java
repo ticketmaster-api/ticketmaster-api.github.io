@@ -2,7 +2,8 @@ package bla.tm.steps.pantheon;
 
 import bla.tm.pages.pantheon.UserLogInPage;
 import net.thucydides.core.annotations.Step;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertEquals;
 
 public class UserLogInSteps {
 
@@ -17,6 +18,26 @@ public class UserLogInSteps {
 
     @Step
     public void isPageOpened() {
-        assertTrue(userLogInPage.getCreateNewAccountButton().isVisible());
+        userLogInPage.getCreateNewAccountButton().shouldBeVisible();
+    }
+
+    @Step
+    public void checkGeneralPageElements(){
+        userLogInPage.checkGeneralPageElementsPantheon();
+    }
+
+    @Step
+    public void checkIfTitleIsCorrect(){
+        assertEquals (userLogInPage.pageHeader, userLogInPage.getTitleText());
+    }
+
+    @Step
+    public void clickForgotYourPasswordLink(){
+        userLogInPage.getForgotYourPasswordLink().click();
+    }
+
+    @Step
+    public void clickCreateNewAccountButton() {
+        userLogInPage.getCreateNewAccountButton().click();
     }
 }

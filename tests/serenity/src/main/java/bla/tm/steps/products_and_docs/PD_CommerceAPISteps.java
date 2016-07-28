@@ -1,6 +1,7 @@
 package bla.tm.steps.products_and_docs;
 
 import bla.tm.pages.site.products_and_docs.PD_CommerceAPIPage;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import static bla.tm.staticmethods.StaticMethods.checkIfWebElementExist;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class PD_CommerceAPISteps {
@@ -30,8 +32,8 @@ public class PD_CommerceAPISteps {
     }
 
     @Step
-    public String getTitle() {
-        return commerceAPIPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (commerceAPIPage.getTitleText(), commerceAPIPage.pageHeader);
     }
 
     @Step
@@ -64,5 +66,10 @@ public class PD_CommerceAPISteps {
             waitForSomeActionHappened(50);
             assertFalse(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
         }
+    }
+
+    @Step
+    public void getCommonAPIListOfMethods() {
+        Serenity.setSessionVariable("Commerce API").to(commerceAPIPage.getLeftSideMenuWidget().getSelectedLeftMenuObject("Commerce API"));
     }
 }

@@ -8,8 +8,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertTrue;
-
 public class PD_InteractiveAPIConsoleDefinition {
 
     private String apiKey = "{apikey}";
@@ -24,7 +22,7 @@ public class PD_InteractiveAPIConsoleDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Interactive API Console page")
-    public void givenOpenInteractiveAPIConsolePage() {
+    public void openInteractiveAPIConsolePage() {
         interactiveAPIConsolePage.closePage();
         interactiveAPIConsolePage.maximiseBrowserWindow();
         interactiveAPIConsolePage.openPage();
@@ -47,6 +45,7 @@ public class PD_InteractiveAPIConsoleDefinition {
 
     @Then("check general page elements for Interactive API Console Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        interactiveAPIConsolePage.checkIfTitleIsCorrect();
         interactiveAPIConsolePage.checkGeneralPageElements(disqus, leftMenu);
     }
 

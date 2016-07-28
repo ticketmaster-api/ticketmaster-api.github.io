@@ -26,8 +26,8 @@ public class PD_Widget_EventDiscoverySteps {
     }
 
     @Step
-    public String getTitle() {
-        return eventDiscoveryWidgetPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (eventDiscoveryWidgetPage.getTitleText(), eventDiscoveryWidgetPage.pageHeader);
     }
 
     @Step

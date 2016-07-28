@@ -1,4 +1,4 @@
-Meta: Getting Started Page
+Meta:
 
 Narrative:
 As a test enfineer

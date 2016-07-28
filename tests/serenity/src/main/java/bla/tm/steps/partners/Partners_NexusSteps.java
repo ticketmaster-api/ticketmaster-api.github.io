@@ -18,11 +18,6 @@ public class Partners_NexusSteps {
     }
 
     @Step
-    public String getTitle() {
-        return nexusPage.getTitleText();
-    }
-
-    @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         nexusPage.checkGeneralPageElements(disqus, leftMenu);
     }

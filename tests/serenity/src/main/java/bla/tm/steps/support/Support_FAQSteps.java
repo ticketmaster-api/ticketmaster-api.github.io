@@ -3,6 +3,8 @@ package bla.tm.steps.support;
 import bla.tm.pages.site.support.Support_FAQPage;
 import net.thucydides.core.annotations.Step;
 
+import static org.junit.Assert.assertEquals;
+
 public class Support_FAQSteps {
 
     Support_FAQPage faqPage;
@@ -18,8 +20,8 @@ public class Support_FAQSteps {
     }
 
     @Step
-    public String getTitle() {
-        return faqPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (faqPage.getTitleText(), faqPage.pageHeader);
     }
 
     @Step

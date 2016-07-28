@@ -38,6 +38,7 @@ public class PD_InternationalDiscoveryAPIDefinition {
 
     @Then("check general page elements for International Discovery API Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        internationalDiscoveryAPIPage.checkIfTitleIsCorrect();
         internationalDiscoveryAPIPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

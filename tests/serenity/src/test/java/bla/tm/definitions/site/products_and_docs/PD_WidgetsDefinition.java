@@ -2,14 +2,10 @@ package bla.tm.definitions.site.products_and_docs;
 
 import bla.tm.steps.AnyPageSteps;
 import bla.tm.steps.products_and_docs.PD_WidgetsSteps;
-import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 
 public class PD_WidgetsDefinition {
@@ -21,7 +17,7 @@ public class PD_WidgetsDefinition {
     AnyPageSteps anyPage;
 
     @Given("open Widgets page")
-    public void givenOpenWidgetsPage() {
+    public void openWidgetsPage() {
         widgetsPage.maximiseBrowserWindow();
         widgetsPage.openPage();
     }
@@ -33,6 +29,7 @@ public class PD_WidgetsDefinition {
 
     @Then("check general page elements for Widgets Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        widgetsPage.checkIfTitleIsCorrect();
         widgetsPage.checkGeneralPageElements(disqus, leftMenu);
     }
 
@@ -44,7 +41,7 @@ public class PD_WidgetsDefinition {
     @Then("check that new page opened from Direct Payment Button has has appropriate url")
     public void checkDirectPaymentButton(){
         widgetsPage.switchToNewTab();
-        anyPage.checkIfPageIsOpened("https://www.universe.com/directpayments","Direct Payments");
+        anyPage.checkIfPageIsOpened("https://www.universe.com/directpayments","//h1");
         widgetsPage.closeAllTabs();
     }
 }

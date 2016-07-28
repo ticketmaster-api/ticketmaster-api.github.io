@@ -3,6 +3,8 @@ package bla.tm.steps.support;
 import bla.tm.pages.site.support.Support_GeneralTermsOfUsePage;
 import net.thucydides.core.annotations.Step;
 
+import static org.junit.Assert.assertEquals;
+
 public class Support_GeneralTermsOfUseSteps {
 
     Support_GeneralTermsOfUsePage generalTermsOfUsePage;
@@ -18,8 +20,8 @@ public class Support_GeneralTermsOfUseSteps {
     }
 
     @Step
-    public String getTitle() {
-        return generalTermsOfUsePage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (generalTermsOfUsePage.getTitleText(), generalTermsOfUsePage.pageHeader);
     }
 
     @Step

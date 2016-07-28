@@ -26,8 +26,8 @@ public class PD_APIExplorerSteps {
     }
 
     @Step
-    public String getTitle() {
-        return apiExplorerPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (apiExplorerPage.getTitleText(), apiExplorerPage.pageHeader);
     }
 
     @Step

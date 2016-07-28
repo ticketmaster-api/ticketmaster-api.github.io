@@ -10,6 +10,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/tutorials/")
 public class PD_TutorialsPage extends AncestorPage {
 
+    public final String pageHeader = "TICKETMASTER TUTORIALS";
+
     @FindBy(xpath = "//div[@class='announcement']/a[@href='/products-and-docs/tutorials/widgets/Event_Discovery_Widget.html' and text()='Learn more']")
     private WebElementFacade addingEventDiscoveryWidgetButton;
 

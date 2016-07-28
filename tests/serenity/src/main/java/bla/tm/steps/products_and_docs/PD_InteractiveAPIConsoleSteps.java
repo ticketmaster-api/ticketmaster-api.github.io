@@ -27,8 +27,8 @@ public class PD_InteractiveAPIConsoleSteps {
     }
 
     @Step
-    public String getTitle() {
-        return interactiveAPIConsolePage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (interactiveAPIConsolePage.getTitleText(), interactiveAPIConsolePage.pageHeader);
     }
 
     @Step

@@ -8,8 +8,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertTrue;
-
 public class PD_Widget_CountdownDefinition {
 
     private String apiKey = "{apikey}";
@@ -47,6 +45,7 @@ public class PD_Widget_CountdownDefinition {
 
     @Then("check general page elements for Countdown Widget Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        countdownWidgetPage.checkIfTitleIsCorrect();
         countdownWidgetPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

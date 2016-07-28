@@ -11,13 +11,14 @@ public class PD_OauthAPIDefinition {
     PD_OauthAPISteps oauthPage;
 
     @Given("open Oauth API page")
-    public void givenOpenOauthAPIPage() {
+    public void openOauthAPIPage() {
         oauthPage.maximiseBrowserWindow();
         oauthPage.openPage();
     }
 
     @Then("check general page elements for Oauth API Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        oauthPage.checkIfTitleIsCorrect();
         oauthPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

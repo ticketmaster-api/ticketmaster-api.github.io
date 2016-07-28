@@ -8,6 +8,8 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/products-and-docs/apis/interactive-console/")
 public class PD_InteractiveAPIConsolePage extends AncestorPage {
 
+    public final String pageHeader = "INTERACTIVE API CONSOLE";
+
     @FindBy(xpath = "//span[@id='copy-clip']")
     private WebElementFacade apikeyCustomTokenField;
 

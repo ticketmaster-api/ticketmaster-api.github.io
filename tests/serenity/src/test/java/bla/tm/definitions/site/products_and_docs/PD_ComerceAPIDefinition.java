@@ -36,8 +36,14 @@ public class PD_ComerceAPIDefinition {
         commerceAPIPage.openPage();
     }
 
+    @When("Commerce API menu has list of methods")
+    public void getCommerceAPILeftMenuItems() {
+        commerceAPIPage.getCommonAPIListOfMethods();
+    }
+
     @Then("check general page elements for Commerce API Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        commerceAPIPage.checkIfTitleIsCorrect();
         commerceAPIPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

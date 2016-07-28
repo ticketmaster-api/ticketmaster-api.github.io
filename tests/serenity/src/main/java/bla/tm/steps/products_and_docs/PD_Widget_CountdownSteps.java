@@ -26,8 +26,8 @@ public class PD_Widget_CountdownSteps {
     }
 
     @Step
-    public String getTitle() {
-        return countdownWidgetPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (countdownWidgetPage.getTitleText(), countdownWidgetPage.pageHeader);
     }
 
     @Step

@@ -11,6 +11,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/apis/international-discovery/")
 public class PD_InternationalDiscoveryAPIPage extends AncestorPage {
 
+    public final String pageHeader = "INTERNATIONAL DISCOVERY API";
+
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h3[contains(.,'Overview')]]/ul[./li[contains(.,'apikey')]]/li/code[2]")
     private WebElementFacade apikey01PlaceHolder;
 

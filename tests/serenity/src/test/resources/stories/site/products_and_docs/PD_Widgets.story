@@ -19,6 +19,6 @@ When check visibility and click <elementKey> element of Widgets page
 Then check that new page opened from Widgets page has <pageURL> and <pageTitle>
 
 Examples:
-|       elementKey      |                       pageURL                     |        pageTitle       |
-|Discovery Widget Button|  {url}/products-and-docs/widgets/event-discovery/ |         WIDGETS        |
-|Countdown Widget Button|     {url}/products-and-docs/widgets/countdown/    |    WIDGETS COUNTDOWN   |
+|       elementKey      |                       pageURL                     |   pageTitle    |
+|Discovery Widget Button|  {url}/products-and-docs/widgets/event-discovery/ |      //h1      |
+|Countdown Widget Button|     {url}/products-and-docs/widgets/countdown/    |      //h1      |

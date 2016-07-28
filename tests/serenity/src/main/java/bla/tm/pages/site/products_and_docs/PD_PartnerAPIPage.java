@@ -11,6 +11,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/apis/partner/")
 public class PD_PartnerAPIPage extends AncestorPage {
 
+    public final String pageHeader = "PARTNER API";
+
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Overview')]]/p[contains(.,'Example:')]/code")
     private WebElementFacade apikey01PlaceHolder;
 
@@ -59,14 +61,14 @@ public class PD_PartnerAPIPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-bash' and contains(.,'https://app.ticketmaster.com/partners/v1/certificate?apikey=')]")
     private WebElementFacade apikey16PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Add TM payment information [PUT]')]]/p[contains(.,'/partners/v1/events/{event_id}/cart/payment?apikey=')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Add Billing Information [PUT]')]]/p[contains(.,'/partners/v1/events/{event_id}/cart/payment?apikey=')]")
     private WebElementFacade apikey17PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-bash' and contains(.,'https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey') and contains(.,'70561111')]")
     private WebElementFacade apikey18PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Add payment information [PUT]')]]/p[contains(.,'/partners/v1/events/{event_id}/cart/payment?apikey=')]")
-    private WebElementFacade apikey19PlaceHolder;
+//    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Add payment information [PUT]')]]/p[contains(.,'/partners/v1/events/{event_id}/cart/payment?apikey=')]")
+//    private WebElementFacade apikey19PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-bash' and contains(.,'https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey') and contains(.,'john.doe@ticketmaster.com')]")
     private WebElementFacade apikey20PlaceHolder;
@@ -150,7 +152,7 @@ public class PD_PartnerAPIPage extends AncestorPage {
         elements.put("apikey16PlaceHolder", apikey16PlaceHolder);
         elements.put("apikey17PlaceHolder", apikey17PlaceHolder);
         elements.put("apikey18PlaceHolder", apikey18PlaceHolder);
-        elements.put("apikey19PlaceHolder", apikey19PlaceHolder);
+//        elements.put("apikey19PlaceHolder", apikey19PlaceHolder);
         elements.put("apikey20PlaceHolder", apikey20PlaceHolder);
         elements.put("apikey21PlaceHolder", apikey21PlaceHolder);
         elements.put("apikey22PlaceHolder", apikey22PlaceHolder);

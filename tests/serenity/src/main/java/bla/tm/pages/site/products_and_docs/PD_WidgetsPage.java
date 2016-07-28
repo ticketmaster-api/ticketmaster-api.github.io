@@ -11,6 +11,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/widgets/")
 public class PD_WidgetsPage extends AncestorPage {
 
+    public final String pageHeader = "WIDGETS";
+
     @FindBy(xpath = "//div[@class='widget_box widget_box__discovery']/p/a[@class='button button-blue' and text()='CONFIGURE NOW']")
     private WebElementFacade eventDiscoveryWidgetButton;
 

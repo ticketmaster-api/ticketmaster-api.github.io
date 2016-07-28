@@ -3,6 +3,8 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_Tutorials_EventSearch_SearchEventWithDiscoveryAPIPage;
 import net.thucydides.core.annotations.Step;
 
+import static org.junit.Assert.assertEquals;
+
 public class PD_Tutorials_EventSearch_SearchEventWithDiscoveryAPISteps {
 
     PD_Tutorials_EventSearch_SearchEventWithDiscoveryAPIPage tutorialsEventSearchSearchEventWithDiscoveryAPIPage;
@@ -18,8 +20,8 @@ public class PD_Tutorials_EventSearch_SearchEventWithDiscoveryAPISteps {
     }
 
     @Step
-    public String getTitle() {
-        return tutorialsEventSearchSearchEventWithDiscoveryAPIPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (tutorialsEventSearchSearchEventWithDiscoveryAPIPage.getTitleText(), tutorialsEventSearchSearchEventWithDiscoveryAPIPage.pageHeader);
     }
 
     @Step

@@ -10,6 +10,8 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/apis/discovery/v2/")
 public class PD_DiscoveryAPIv2Page extends AncestorPage {
 
+    public final String pageHeader = "DISCOVERY API";
+
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Overview')]]/p[contains(.,'Example:')]/code")
     private WebElementFacade apikey01PlaceHolder;
 

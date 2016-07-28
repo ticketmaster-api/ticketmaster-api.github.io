@@ -38,6 +38,7 @@ public class PD_DealsAPIDefinition {
 
     @Then("check general page elements for Deals API Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        dealsAPIPage.checkIfTitleIsCorrect();
         dealsAPIPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

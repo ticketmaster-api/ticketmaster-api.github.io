@@ -8,8 +8,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import static org.junit.Assert.assertTrue;
-
 public class PD_Widget_EventDiscoveryDefinition {
 
     private String apiKey = "{apikey}";
@@ -47,6 +45,7 @@ public class PD_Widget_EventDiscoveryDefinition {
 
     @Then("check general page elements for Event Discovery Widget Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        eventDiscoveryWidgetPage.checkIfTitleIsCorrect();
         eventDiscoveryWidgetPage.checkGeneralPageElements(disqus, leftMenu);
     }
 

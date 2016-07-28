@@ -3,7 +3,6 @@ package bla.tm.definitions.site.products_and_docs;
 import bla.tm.steps.pantheon.UserAccountSteps;
 import bla.tm.steps.pantheon.UserLogInSteps;
 import bla.tm.steps.products_and_docs.PD_DiscoveryAPIv2Steps;
-import bla.tm.steps.products_and_docs.PD_GettingStartedSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -46,6 +45,7 @@ public class PD_DiscoveryAPIv2Definition {
 
     @Then("check general page elements for Discovery API v2 Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        discoveryAPIv2Page.checkIfTitleIsCorrect();
         discoveryAPIv2Page.checkGeneralPageElements(disqus, leftMenu);
     }
 

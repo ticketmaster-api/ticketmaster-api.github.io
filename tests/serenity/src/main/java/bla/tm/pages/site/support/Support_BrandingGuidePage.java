@@ -6,5 +6,5 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/support/branding-guide/")
 public class Support_BrandingGuidePage extends AncestorPage {
 
-
+    public final String pageHeader = "BRANDING GUIDE";
 }

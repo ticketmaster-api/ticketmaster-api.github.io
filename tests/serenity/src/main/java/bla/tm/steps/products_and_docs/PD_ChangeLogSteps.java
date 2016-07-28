@@ -3,6 +3,8 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_ChangeLogPage;
 import net.thucydides.core.annotations.Step;
 
+import static org.junit.Assert.assertEquals;
+
 public class PD_ChangeLogSteps {
 
     PD_ChangeLogPage changeLogPage;
@@ -18,8 +20,8 @@ public class PD_ChangeLogSteps {
     }
 
     @Step
-    public String getTitle() {
-        return changeLogPage.getTitleText();
+    public void checkIfTitleIsCorrect(){
+        assertEquals (changeLogPage.getTitleText(), changeLogPage.pageHeader);
     }
 
     @Step

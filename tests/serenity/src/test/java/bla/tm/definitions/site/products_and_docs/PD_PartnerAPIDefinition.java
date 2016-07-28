@@ -38,6 +38,7 @@ public class PD_PartnerAPIDefinition {
 
     @Then("check general page elements for Partner API Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
+        partnerAPIPage.checkIfTitleIsCorrect();
         partnerAPIPage.checkGeneralPageElements(disqus, leftMenu);
     }
 
