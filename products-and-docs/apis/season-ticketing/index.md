@@ -33,7 +33,7 @@ This is a collection of Open API calls that are used by external systems to acce
 
 + Use any Rest Client (e.g., Google ARC, Postman, Insomnia, JetBrain, Cocoa) for testing the API calls.  Configure the REST client as follows:
 + The caller (or calling application) will:
-   - POST a JSON call to: `https://app.ticketmaster.com/sth-customer/ticketing_services.aspx?dsn=apigee&{apikey}` 
+   - POST a JSON call to: `https://app.ticketmaster.com/sth-customer/ticketing_services.aspx?dsn=apigee&apikey={apikey}` 
        * use HTTPS protocol
        * specify the product (sth-customer)
        * specify the DSN (apigee)
@@ -52,7 +52,7 @@ This is a collection of Open API calls that are used by external systems to acce
 ## How to construct the URL
 {: #construct-the-url}
 
-Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&{apikey}`
+Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&apikey={apikey}`
 
 | **Name** | **Description** | **Required** | **Sample** |
 | --- | --- | --- | --- |
@@ -63,7 +63,7 @@ Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&{apikey}`
 
 **Sample URL:**
 
-https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{apikey}
+https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&apikey={apikey}
 {: .code .red}
 
 ### Sample API Requests:
