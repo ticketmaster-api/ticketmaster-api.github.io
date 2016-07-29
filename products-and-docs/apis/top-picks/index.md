@@ -83,7 +83,7 @@ Retrieve reservable seat information based on specific criteria.
         * `descriptions` (array) - A list of descriptions for this pick
         * `section` (string) - The section name in the venue
         * `row` (string) - The row in the section, if applicable.
-        * `snapshotImageUrl` - An image url of this pick in the venue. Add your apikey to request. If venue or event doesn't support detailed images, this field will be null.
+        * `snapshotImageUrl` - An image url of this pick in the venue. If the venue or event doesn't support detailed images, this field will be null.
         * `offers` (array) - Offers.    
             - `{array item object}` - offer.
                 - `offer id` (string) - The offer id corresponding to one in _embedded.offer[].
@@ -179,7 +179,6 @@ All query parameters in snapshotImageUrl must be maintained and un-altered. Clie
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `w`   | The width, in pixels, of the image.  (min: 102, max: 1024)      | number            |     300          | No      |
 | `pw`   | The width, in pixels, of the dropped pin in the image.         | number            |     30          | No      |
-| `apikey`   | Your API Key         | string            |     GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne           | Yes      |
 
 
 ![pick image](/assets/img/products-and-docs/top-pick-1.png)
