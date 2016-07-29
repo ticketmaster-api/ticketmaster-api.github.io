@@ -110,7 +110,7 @@ Retrieve reservable seat information based on specific criteria.
 https://app.ticketmaster.com/top-picks/v1/events/1C00506FB56F338A?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&areas=10,11&prices=70,150&quantity=4&ticketTypeId=000000000001&sections=103
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight json %}
 Status 200
 {
   "picks": [

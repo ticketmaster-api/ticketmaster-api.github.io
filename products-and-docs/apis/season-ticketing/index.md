@@ -33,7 +33,7 @@ This is a collection of Open API calls that are used by external systems to acce
 
 + Use any Rest Client (e.g., Google ARC, Postman, Insomnia, JetBrain, Cocoa) for testing the API calls.  Configure the REST client as follows:
 + The caller (or calling application) will:
-   - POST a JSON call to: `https://app.ticketmaster.com/sth-customer/ticketing_services.aspx?dsn=apigee&{apikey}` 
+   - POST a JSON call to: `https://app.ticketmaster.com/sth-customer/ticketing_services.aspx?dsn=apigee&apikey={apikey}` 
        * use HTTPS protocol
        * specify the product (sth-customer)
        * specify the DSN (apigee)
@@ -52,18 +52,18 @@ This is a collection of Open API calls that are used by external systems to acce
 ## How to construct the URL
 {: #construct-the-url}
 
-Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&{apikey}`
+Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&apikey={apikey}`
 
 | **Name** | **Description** | **Required** | **Sample** |
 | --- | --- | --- | --- |
-| Product\* (see details below) | A logical grouping of related database resources | Yes | sth-customersth sth-inventorysth sth-holdsth sth-buy |
+| Product\* (see details below) | A logical grouping of related database resources | Yes | sth-customer sth-inventory sth-hold sth-buy |
 | resource | Path to an API method | Yes | ticketing\_services.aspx |
 | dsn | Data Source Name | Yes | DSN (e.g., sandbox, test) |
 | API key | Authorized API Key | Yes | [Unique to each developer - Get your API key](https://live-livenation.devportal.apigee.com/user/login) |
 
 **Sample URL:**
 
-https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&{apikey}
+https://app.ticketmaster.com/sth-customer/ticketing\_services.aspx?dsn=apigee&apikey={apikey}
 {: .code .red}
 
 ### Sample API Requests:
@@ -260,7 +260,7 @@ Ticketmaster systems support multiple clients and our Web Services layer require
     * Set-Cookie: `QTKN=<something>`
     * Continue to step 3
   - If HTTP response is not 200 and is not 202, contact Ticketmaster for assistance.
-+ Y seconds later (Y is normally about 300ms), the caller repeats the initial HTTPS request, using the &quot;cookies&quot; provided, to check if the response is complete.
++ Y seconds later (Y is normally about 300 ms), the caller repeats the initial HTTPS request, using the &quot;cookies&quot; provided, to check if the response is complete.
   - The complete JSON Command should be included each time the call is re-submitted.
   - Cookie values that were returned by the SERVER with the &quot;Set\_Cookie&quot; responses (above) must be provided in this polling step.
     * `SID` - should not change for the duration of this API polling cycle.
