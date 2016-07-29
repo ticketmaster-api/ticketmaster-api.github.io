@@ -7,6 +7,6 @@ categories:
   - partner
   - certified
 
-tile_logo: "Qualex.eps"
+tile_logo: "Qualex.png"
 tile_description: "Qualex Consulting Services SportVizion helps teams See Beyond the Data with a 360 degree view of their fans in real time. Providing predictive analytics for targeted campaigns and business objectives."
 ---
