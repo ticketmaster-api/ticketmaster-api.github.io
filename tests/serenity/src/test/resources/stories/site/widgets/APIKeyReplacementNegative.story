@@ -1,9 +1,19 @@
-Meta:
+Meta: @debug
 
 Narrative:
 As a test enfineer
 I want to test Ticket Master Developer's site
 So that I test API Key is NOT replaced on the page
+
+Scenario: (APi Key - Top Picks API page) Custom API key is not replaced when user is logged in
+Given open Top Picks API page
+When User is logged to site (Top Picks API)
+Then check that API key is provided for all placeholders on Top Picks API page
+
+Scenario: (APi Key - Season Ticketing API page) Custom API key is not replaced when user is logged in
+Given open Season Ticketing API page
+When User is logged to site (Season Ticketing API)
+Then check that API key is provided for all placeholders on Season Ticketing API page
 
 Scenario: (APi Key - International Discovery API page) Custom API key is not replaced when user is logged in
 Given open International Discovery API page
