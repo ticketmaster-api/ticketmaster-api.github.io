@@ -130,7 +130,7 @@ Status 200
         "name" : "L100",
         "description" : "LOWER BOWL"
       },
-      "snapshotImageUrl": "image?systemId=HOST&segmentIds=s_10,s_11,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_12,s_120,s_13,s_14,s_16,s_17,s_18,s_2,s_22,s_5,s_6,s_8,s_9&placeId=GEYDGORRHA5DS",
+      "snapshotImageUrl": "https://app.ticketmaster.com/maps/geometry/3/event/1C00506FB56F338A/image?systemId=HOST&segmentIds=s_10,s_11,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_12,s_120,s_13,s_14,s_16,s_17,s_18,s_2,s_22,s_5,s_6,s_8,s_9&placeId=GEYDGORRHA5DS",
       "offers": [
         "GJ6DC7BQ"
       ]
