@@ -130,7 +130,12 @@
     }
   }
 }
-
+.normal-float {
+  float: none;
+}
+.wrap-overflow {
+  overflow: hidden;
+}
 .events-tracker {
   background: #f1f4f6;
   &.events-tracker_col-view {
@@ -141,6 +146,17 @@
     width: 264px;
     height: 190px;
     border-radius: 4px;
+  }
+  &.events-tracker_col-blue {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 255px 0 0 90px;
+    .events-tracker__title {
+      color: #fff;
+      opacity: 0.6;
+    }
+    .events-tracker__counter {
+      color: #fff;
+    }
   }
   .events-tracker__item {
     text-align: right;

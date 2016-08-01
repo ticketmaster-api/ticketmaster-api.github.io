@@ -17,11 +17,14 @@ Top promo large heading
 {::comment}
 Top promo description
 {:/comment}
+
+
 {% capture top_promo_desc %}
 
 Join the Ticketmaster developer network, build innovative applications, and help us deliver those unforgettable moments of joy to fans everywhere.
 
 {% endcapture %}
+
 
 {::comment}
 Partners block heading
@@ -118,14 +121,32 @@ Raw html goes here (uses liquid variabled defined above)
 {:/comment}
 <div id="top-promo" class="slice-top-right slice-bottom-right promo xs-center">
     <div class="row">
-        <div class="row-container">
-<div class="col-xs-12 white" markdown="1">
+        <div class="row-container wrap-overflow">
+        <ul class="events-tracker events-tracker_col-view events-tracker_col-blue">
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Events: </div>
+                <div id="js-events-counter" class="events-tracker__counter"></div>
+            </li>
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Attractions: </div>
+                <div id="js-attractions-counter" class="events-tracker__counter"></div>
+            </li>
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Venues: </div>
+                <div id="js-venues-counter" class="events-tracker__counter"></div>
+            </li>
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Countries: </div>
+                <div id="js-countries-counter" class="events-tracker__counter">7</div>
+            </li>
+        </ul>
+<div class="col-xs-12 white normal-float" markdown="1">
 {{top_promo_heading}}
 </div>
-<div class="col-xs-12 col-sm-11 col-md-10 description" markdown="1">
+<div class="col-xs-12 col-sm-11 col-md-10 description normal-float" markdown="1">
 {{top_promo_desc}}
 </div>
-<div class="col-xs-12 button-block">
+<div class="col-xs-12 button-block normal-float">
     <a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent rightarrow">REVIEW DOCUMENTATION</a>
     <a href="{{"/api-explorer/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE APIs</a>
@@ -230,3 +251,4 @@ Raw html goes here (uses liquid variabled defined above)
         </div>
     </div>
 </div>
+<script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
