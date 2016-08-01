@@ -173,6 +173,20 @@
   .events-tracker__counter {
     color: #768692;
   }
+  @media #{$max-1200} {
+    &.events-tracker_col-view {
+      margin: auto;
+      float: none;
+      width: auto;
+      height: auto;
+    }
+    .events-tracker__title,
+    .events-tracker__counter  {
+      width: auto;
+      float: left;
+      margin: 0 5px;
+    }
+  }
 }
 
 .social-buttons {
