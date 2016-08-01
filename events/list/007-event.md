@@ -1,7 +1,9 @@
 ---
 
+prime: true
+
 category: event
-title: "The Ticketmaster API Devjam in San Francisco, CA!"
+title: "The Ticketmaster API Devjam in San Jose, CA!"
 
 date_title: "Saturday, August 27, 2016 @ 9am"
 date_start: "2016-08-27 17:30:00"
@@ -10,10 +12,10 @@ date_end: "2016-08-27 23:59:00"
 img: "/assets/img/events/devjam7.png"
 
 place: 
-  - "TicketWeb"
-  - "https://www.google.com/maps/place/685+Market+St+%23200,+San+Francisco,+CA+94103/@37.7876553,-122.4033073,19z/data=!3m1!4b1!4m2!3m1!1s0x8085808814a1b309:0xaa9564ec35d3ec53"
+  - "The Apigee HQ"
+  - "https://www.google.com/maps/place/Apigee+Corporation/@37.3338758,-121.8964377,17z/data=!3m1!4b1!4m5!3m4!1s0x808fbaeffae285dd:0x8d689395340b6812!8m2!3d37.3338716!4d-121.894249"
 
-city: "San Francisco, CA"
+city: "San Jose, CA"
 
 rsvp: "https://www.universe.com/events/the-ticketmaster-api-devjam-in-san-francisco-ca-tickets-san-francisco-N35CPS"
 link: "https://www.universe.com/tmdevjam-sf"
