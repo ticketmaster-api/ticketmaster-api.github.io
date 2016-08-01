@@ -9,12 +9,30 @@ excerpt: Everything you need to start playing with the Ticketmaster API
 keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
 
+<ul class="events-tracker events-tracker_col-view">
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Events: </div>
+        <div id="js-events-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Attractions: </div>
+        <div id="js-attractions-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Venues: </div>
+        <div id="js-venues-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Countries: </div>
+        <div id="js-countries-counter" class="events-tracker__counter">7</div>
+    </li>
+</ul>
 
 # GETTING STARTED
 
-
 {: .lead .double-margin}
 Everything you need to get up and running with the Ticketmaster API. Basic concepts are talked about here, so please keep reading :)
+
 
 {: #introduction}
 ## Introduction
