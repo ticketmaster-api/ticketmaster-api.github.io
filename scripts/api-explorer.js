@@ -211,6 +211,7 @@ Object.byString = function(o, s) {
         sendPrimaryRequest(true);
       }
     });
+    $('body').on('click touch', '#copy-request', copyToClipBoard);
   };
 
   // sets listeners for api dropdowns
@@ -958,5 +959,38 @@ Object.byString = function(o, s) {
 
     return JSON.stringify(obj);
   };
+  
+  var copyToClipBoard = function(e) {
+    e.preventDefault();
+    var dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute("id", "dummy_id");
+    document.getElementById("dummy_id").value = formDeepLinkingUrl();
+    dummy.select();
+    console.log(selectedMethod);
+    console.log(formPrimaryURL(selectedMethod));
+    try {
+      var successful = document.execCommand("copy");
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Copying text command was ' + msg);
+    } catch (err) {
+      console.log('Unable to copy');
+    }
+    document.body.removeChild(dummy);
+  };
 
+  function formDeepLinkingUrl() {
+    var location = window.location;
+    var params = getAllParameteres();
+    var querys = ['api=2', 'method=' + selectedMethod];
+
+    for(var i in params) {
+      if (params.hasOwnProperty(i) && params[i].value) {
+        querys.push([params[i].id, '=', params[i].value].join(''));
+      }
+    }
+    return [location.origin, location.pathname, '?', querys.join('&')].join('');
+  }
+  
 }(jQuery));
+
