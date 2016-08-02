@@ -136,6 +136,7 @@
 .wrap-overflow {
   overflow: hidden;
 }
+
 .events-tracker {
   background: #f1f4f6;
   &.events-tracker_col-view {
@@ -174,6 +175,27 @@
     color: #768692;
   }
   @media #{$max-1200} {
+    &.events-tracker_col-blue {
+      margin: 10px 0;
+      width: 100%;
+      padding: 5px 30px 0;
+      height: auto;
+      .events-tracker__title {
+        margin-right: 10px;
+      }
+      .events-tracker__counter {
+        width: auto;
+        float: left;
+      }
+      .events-tracker__item {
+        margin: 0;
+        display: inline-block;
+        width: 24%;
+      }
+    }
+  }
+  @media #{$max-768} {
+    display: none;
     &.events-tracker_col-view {
       margin: auto;
       float: none;
