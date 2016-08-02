@@ -88,16 +88,6 @@
     }
   }
   &.sdks {
-    #sdk-java,
-    #sdk-javascript,
-    #sdk-scala {
-      &:target:before {
-        content: "";
-        display: block;
-        height: 100px;
-        margin: -100px 0 0;
-      }
-    }
     @media (max-width: 768px) {
       .tutorials-article  {
         margin-bottom: 0;
@@ -141,6 +131,7 @@
     background-image: url('/assets/img/products-and-docs/android-mock-i-o-s-mock.png');
     background-position: right bottom;
     background-repeat: no-repeat;
+    overflow: hidden;
     @media #{$max-768} {
       background-image: none;
       margin-top: 10px;
