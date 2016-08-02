@@ -10,10 +10,13 @@
    */
   function initEventCountersPanel() {
     var intervals = [],
-      config = ['events','venues','attractions'],
+      config = ['events', 'venues', 'attractions', 'countries'],
       timeLeap = 60000;
 
     config.forEach(function (el) {
+      var val = el === 'countries' && 7;
+
+      renderValue(el, val);
       updateEventpanelCounters(el);
       intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
     });
@@ -24,15 +27,36 @@
    * @param url {string}
    */
   function updateEventpanelCounters(url) {
-    $.ajax({
-      method: 'GET',
-      url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join('')
-    }).then(function (data) {
-      var quantity = data.page && data.page.totalElements || 'none';
-      console.debug(url, ' - ', quantity);
-      $(['#js-', url,'-counter'].join('')).text(quantity);
-    }).fail(function (err) {
-      console.error('Error: %s', err);
-    })
+    if (url !== 'countries') {
+      $.ajax({
+        method: 'GET',
+        url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join('')
+      }).then(function (data) {
+        var quantity = data.page && data.page.totalElements || 'none';
+        console.debug(url, ' - ', quantity);
+        setSessionStorage(url, quantity);
+        renderValue(url, quantity);
+      }).fail(function (err) {
+        console.error('Error: %s', err);
+      })
+    }
+  }
+
+  function setSessionStorage(key, val) {
+    if (Storage) {
+      sessionStorage.setItem(key, val);
+    }
+  }
+
+  function getSessionStorage(key) {
+    if (sessionStorage[key]) {
+      return sessionStorage.getItem(key);
+    }
+    return null;
+  }
+
+  function renderValue(el, val) {
+    var value = val || getSessionStorage(el) || '';
+    $(['#js-', el,'-counter'].join('')).text(value);
   }
 }(jQuery));

@@ -137,7 +137,7 @@ Raw html goes here (uses liquid variabled defined above)
             </li>
             <li class="events-tracker__item">
                 <div class="events-tracker__title">Countries: </div>
-                <div id="js-countries-counter" class="events-tracker__counter">7</div>
+                <div id="js-countries-counter" class="events-tracker__counter"></div>
             </li>
         </ul>
 <div class="col-xs-12 white normal-float" markdown="1">

@@ -5,13 +5,13 @@
 <div id="spinner" style="display: none;"></div>
 {% include home-header.html %}
 {{content}}
-
 <div style="max-width: 1170px; margin: 0 auto; overflow: hidden;">
   <div class="col-xs-12">
     <div id="disqus_thread"></div>
   </div>
 </div>
 
+<script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
 <script>
   var disqus_config = function () {
     this.page.url = document.URL || "http://developer.ticketmaster.com/";

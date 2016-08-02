@@ -69,39 +69,7 @@ Object.byString = function(o, s) {
     spinner = $('#spinner');
     slider = $('#columns');
     initSlider(); // initialize slider depending on screen resolution
-    initEventCountersPanel(); // Counter panel init
   });
-
-  /**
-   * Initialization of counter panel
-   */
-  function initEventCountersPanel() {
-    var intervals = [],
-      config = ['events','venues','attractions'],
-      timeLeap = 60000;
-
-    config.forEach(function (el) {
-      updateEventpanelCounters(el);
-      intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
-    });
-  }
-
-  /**
-   * Get date for Counter Panel
-   * @param url {string}
-   */
-  function updateEventpanelCounters(url) {
-    $.ajax({
-      method: 'GET',
-      url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join('')
-    }).then(function (data) {
-      var quantity = data.page && data.page.totalElements || 'none';
-      console.debug(url, ' - ', quantity);
-      $(['#js-', url,'-counter'].join('')).text(quantity);
-    }).fail(function (err) {
-      console.error('Error: %s', err);
-    })
-  }
 
   // calls slider initializator function with parameters defined by screen resolution
   var initSlider = function(){
@@ -112,12 +80,10 @@ Object.byString = function(o, s) {
   var getResponsiveId = function(width){
     if (width < 768){
       return 1;
-    }
-    else{
+    } else {
       if (width < 1200){
         return 2;
-      }
-      else {
+      } else {
         return 4;
       }
     }
