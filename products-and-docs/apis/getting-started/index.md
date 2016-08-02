@@ -179,7 +179,7 @@ When you do go over your quota, you will get an HTTP status code 429 indicating 
 {% highlight json %}
 {
   "fault": {
-    "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
+    "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {apikey}",
     "detail": {
       "errorcode": "policies.ratelimit.QuotaViolation"
     }
