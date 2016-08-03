@@ -16,6 +16,11 @@
 
     function getGooleApiKey(code) { return code || "AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA";}
 
+    function getTmApiKey() {
+        if (sessionStorage.getItem('tk-api-key')) return sessionStorage.getItem('tk-api-key');
+        else return '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+    }
+
     let widget = widgetsCalendar[0],
         themeConfig = {
             sizes: {
@@ -58,6 +63,23 @@
             targetName = event.target.name,
             $tabButtons = $('.js-tab-buttons');
 
+        if(targetName === "w-tm-api-key") {
+            if (sessionStorage.getItem('tk-api-key')) {
+                document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+            }
+            if (document.getElementById('w-tm-api-key').value == '') {
+                if (sessionStorage.getItem('tk-api-key')) {
+                    document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+                }
+                else {
+                    document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+                }
+            }
+        }
+
         if(targetName === "w-keyword"){
             isPostalCodeChanged = true;
             if (document.getElementById('w-keyword').value == '') {
@@ -75,6 +97,11 @@
                 document.querySelector('[w-type="calendar"]').setAttribute('w-country', 'US');
                 document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', '34.0390107,-118.2672801');
             }
+        }
+
+        if(targetName === "w-radius"){
+            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '25';
+
         }
 
         if(targetName === "w-theme"){
@@ -255,6 +282,21 @@
             $self.data('is-checked', 'checked');
     });
 
+    if (sessionStorage.getItem('tk-api-key')) {
+        document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+        document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+    }
+    if (document.getElementById('w-tm-api-key').value == '') {
+        if (sessionStorage.getItem('tk-api-key')) {
+            document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+        }
+        else {
+            document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+        }
+    }
+
     $('.js_get_widget_code').on('click', function(){
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
@@ -265,6 +307,7 @@
         }
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
+        htmlCode.setAttribute('w-tmapikey', getTmApiKey());
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
