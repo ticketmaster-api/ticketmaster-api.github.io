@@ -1,4 +1,4 @@
-Meta: @debug
+Meta:
 
 Narrative:
 As a test enfineer

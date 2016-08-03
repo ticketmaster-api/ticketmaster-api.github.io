@@ -57,4 +57,8 @@ public class PD_GettingStartedSteps {
         }
     }
 
+    @Step
+    public void checkSummaryWidgetVisible(){
+        gettingStartedPage.getSummaryWidget().shouldBeVisible();
+    }
 }

@@ -50,10 +50,11 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.21</version>
         </dependency>
+        <!--This section is added to run selenium test on headless Debian server started with Xvfb-->
         <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-jbehave</artifactId>
-            <version>1.13.0</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>2.45.0</version>
         </dependency>
     </dependencies>
 

@@ -29,4 +29,9 @@ public class PD_GettingStartedDefinition {
         gettingStartedPage.compareCommerceAPIMethodsToSameGettingStartedMethodsList();
     }
 
+    @Then("Summary widget is shown for Getting Started page")
+    public void checkSummaryWidgetVisible(){
+        gettingStartedPage.checkSummaryWidgetVisible();
+    }
+
 }

@@ -55,6 +55,9 @@ public class HomePage extends AncestorPage {
     @FindBy(xpath = "//nav[@id='menu']/a[contains(.,'Open Source')]")
     private WebElementFacade openSourceMenuItem;
 
+    @FindBy(xpath = "//div[@class='row-container wrap-overflow']/ul[@class='events-tracker events-tracker_col-view events-tracker_col-blue']")
+    private WebElementFacade summaryWidget;
+
     public Map<String, WebElementFacade> getClickableElements() {
         Map<String, WebElementFacade> elements = new HashMap<String, WebElementFacade>();
         elements.put("Get Your API Key", getAPIKeyButton);
@@ -77,4 +80,7 @@ public class HomePage extends AncestorPage {
         return twittersList.isDisplayed();
     }
 
+    public WebElementFacade getSummaryWidget() {
+        return  summaryWidget;
+    }
 }

@@ -52,4 +52,9 @@ public class HomePageSteps {
     public void clickLogIn() {
         homePage.getLogInButton().click();
     }
+
+    @Step
+    public void checkSummaryWidgetVisible(){
+        homePage.getSummaryWidget().shouldBeVisible();
+    }
 }
