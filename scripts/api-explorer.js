@@ -108,8 +108,7 @@ Object.byString = function(o, s) {
       var obj = {};
 
       querys.map(function (e) {
-        var a = decodeURI(e);
-        a = a.split('=');
+        var a = decodeURI(e).split('=');
         obj[a[0]] = a[1];
       });
       return obj;
@@ -164,10 +163,16 @@ Object.byString = function(o, s) {
     }
   };
 
+  //deep linkin handler remove
+  var removeHandler = function (selector) {
+    $('body').undelegate(selector, 'click touch');
+  };
+
   // handles click event on GET/POST button + click events for CLEAR buttons + alert message timeouts
   var setListeners = function(){
-    $('#primary-btn').on('click', function(e){
+    $('body').on('click', '#primary-btn', function (e){
       e.preventDefault();
+      removeHandler('.pagination-btn');
       sendPrimaryRequest();
     });
     primaryColumn.on('keyup change', function(e){
@@ -485,6 +490,27 @@ Object.byString = function(o, s) {
 
   /* END OF INITIALIZATION PHASE FUNCTIONS */
 
+  var setPaginationlistener = function () {
+    var pageInput = $('#page');
+    var page = +pageInput.val();
+    var count = 0;
+    var result = 0;
+
+    $('body').on('click touch', '.pagination-btn', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if ($(this).hasClass('next-page')) {
+        count++;
+      } else if ($(this).hasClass('prev-page')) {
+        count--;
+      }
+      result = page + count;
+      pageInput.val(result < 0 ? '' : result);
+      removeHandler('.pagination-btn');
+      $('#primary-btn').trigger('click');
+    })
+  };
+
   // column constructor
   var Column = function(configObject, responseObject, index, guId){
     var self = this;
@@ -498,16 +524,26 @@ Object.byString = function(o, s) {
       self.column = $('<div class="api-column'
         + colors[currentColumnColorIndex] // colorize column appropriately
         + (index ? ' transparent' : '') + '"></div>').hide(); // if there was index provided -> column is a child of previous column and should become transparent
-      for (var i = 0; i < configObject.length; i++){ // iterate through method main subcolumns
-        var subcolumn = configObject[i], // subcolumn
+      for (var i = 0; i < configObject.length; i++) { // iterate through method main subcolumns
+        var subcolumn = configObject[i]; // subcolumn
+        var isPage = subcolumn["title"].toLowerCase() === 'page',
           listGroup = $('<div class="list-group"></div>'), //subcolumn future element
-          title = $('<a class="list-group-item active">' + subcolumn["title"] + '</a>'); // subcolumn title
+          title = $(['<a class="list-group-item active ',
+            (isPage? 'pagination"' : '" '),
+            (isPage? 'id="api-explorer-pagination"' : ''),
+            '>',
+            subcolumn["title"],
+            '<b id="next-page" class="pagination-btn next-page btn">&nbsp;</b>',
+            '<b id="prev-page" class="pagination-btn prev-page btn">&nbsp;</b>',
+            '</a>'].join('')); // subcolumn title
 
         var destinationObject = subcolumn["path"] ? Object.byString(self.responseObject, subcolumn["path"]) : self.responseObject; // object inside the response to iterate through
         destinationObject = index ? destinationObject[index]: destinationObject;
         self.destinationObject = destinationObject;
 
         listGroup.append(title);
+
+        //Sets listener for pagination of response
 
         if (subcolumn["expandsTo"]){
           var nextIndex = getNextColorIndex();
@@ -603,6 +639,7 @@ Object.byString = function(o, s) {
         }
       }
     };
+    setPaginationlistener();
     self.render = function(){
       slider.slick('slickAdd', self.column);
       slider.slick('slickNext');
@@ -1048,6 +1085,5 @@ Object.byString = function(o, s) {
     }
     return [location.origin, location.pathname.replace(/\/$/gmi, ''), '?', querys.join('&')].join('');
   }
-  
 }(jQuery));
 

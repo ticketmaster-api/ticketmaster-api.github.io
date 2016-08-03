@@ -22,8 +22,8 @@ A software development kit (SDK or "devkit") is typically a set of software deve
 SDK-Java
 {% endcapture %}
 {% capture SDKJava_description %}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua.
+Java SDK for the Ticketmaster Open Platform.  
+Aims to wrap the Ticketmaster API with coverage for all Open Platform endpoints
 {% endcapture %}
 {% capture SDKJava_link %}
 https://github.com/ticketmaster-api/sdk-java
@@ -36,8 +36,8 @@ https://github.com/ticketmaster-api/sdk-java
 SDK-JavaScript
 {% endcapture %}
 {% capture SDK_JS_description %}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua.
+Javascript SDK for the Ticketmaster Open Platform.  
+Aims to wrap the Ticketmaster API with coverage for all Open Platform endpoints
 {% endcapture %}
 {% capture SDK_JS_link %}
 https://github.com/ticketmaster-api/sdk-javascript
@@ -50,8 +50,8 @@ https://github.com/ticketmaster-api/sdk-javascript
 SDK-Scala
 {% endcapture %}
 {% capture SDK_scala_description %}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua.
+Scala SDK for the Ticketmaster Open Platform.  
+Aims to wrap the Ticketmaster API with coverage for all Open Platform endpoints
 {% endcapture %}
 {% capture SDK_scala_link %}
 https://github.com/ticketmaster-api/sdk-scala
