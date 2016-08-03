@@ -54,4 +54,9 @@ public class HomePageDefinition {
         assertTrue(homePage.isDisplayedTwittersList());
     }
 
+    @Then("Summary widget is shown for Home page")
+    public void checkSummaryWidgetVisible(){
+        homePage.checkSummaryWidgetVisible();
+    }
+
 }
