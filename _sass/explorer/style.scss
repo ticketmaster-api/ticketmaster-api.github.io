@@ -710,4 +710,40 @@
   }
 }
 
+.pagination {
+  .pagination-btn {
+    float: right;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      margin-top: -6px;
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .prev-page {
+    &::before {
+      $angle: 180deg;
+      background: url(../../assets/img/ic-shevron-right-white.svg) no-repeat;
+      -webkit-transform: rotate($angle);
+      -moz-transform: rotate($angle);
+      -o-transform: rotate($angle);
+      -ms-transform: rotate($angle);
+      transform: rotate($angle);
+      margin-top: -8px;
+    }
+  }
+  .next-page {
+    &::before {
+      background: url(../../assets/img/ic-shevron-right-white.svg) no-repeat;
+      right: 0;
+    }
+  }
+}
+
 
