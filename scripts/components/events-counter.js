@@ -33,11 +33,10 @@
         url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join('')
       }).then(function (data) {
         var quantity = data.page && data.page.totalElements || 'none';
-        console.debug(url, ' - ', quantity);
         setSessionStorage(url, quantity);
         renderValue(url, quantity);
       }).fail(function (err) {
-        console.error('Error: %s', err);
+        console.error('Error: ', err);
       })
     }
   }

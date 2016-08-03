@@ -59,11 +59,9 @@ Object.byString = function(o, s) {
 
   /* INITIALIZATION PHASE */
 
-  $(document).ready(function() {
-    (function () {
-      var item = sessionStorage.getItem('tk-api-email');
-      document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
-    })();
+  $(function() {
+    var item = sessionStorage.getItem('tk-api-email');
+    document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
     readFromWADL(); //parse WADL file when document is ready
     setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
     spinner = $('#spinner');
@@ -103,9 +101,51 @@ Object.byString = function(o, s) {
     slider.slick("setPosition", getColumnCount() - 1);
   };
 
+  var parseUrl = function () {
+    var location = window.location.search;
+    if (location) {
+      var querys = location.replace(/^\?/g, '').split('&');
+      var obj = {};
+
+      querys.map(function (e) {
+        var a = decodeURI(e);
+        a = a.split('=');
+        obj[a[0]] = a[1];
+      });
+      return obj;
+    }
+    return false;
+  };
+
+  /**
+   * Set active Api dropdown from URL. Deep linking
+   * @param obj
+   */
+  var setActiveDropdown = function (obj) {
+    var apiSections = $('.api-dropdown .dropdown-toggle');
+    apiSections.removeClass('selected-group');
+    apiSections.filter(function () {
+        return $(this).text().toUpperCase() === obj.api.toUpperCase() && $(this).addClass('selected-group');
+    });
+  };
+
+  //sets parameter fields while deep linking
+  var setParams = function(obj){
+    primaryColumn
+      .find('.parameter-item input')
+      .each(function(){
+        var $this = $(this);
+        $this.val(obj[$this.attr('id')]).trigger('change');
+    });
+  };
+
   // builds page according to base data
   var buildPageLayout = function(){
     var first = true;
+
+    // get query from url (deep linking)
+    var params = parseUrl();
+
     //render droppowns within navigation bar
     for (var apiName in base) {
       addApiDropdown(apiName, first);
@@ -113,8 +153,15 @@ Object.byString = function(o, s) {
     }
     //set dropdown event listeners
     setDropdownListeners();
-    //render primary column using the default method (the very first method found in WADL file)
-    renderPrimaryColumn(defaultMethod); // no callback required
+
+    if (params) {
+      setActiveDropdown(params);
+      renderPrimaryColumn(base[params.api][params.method], setParams.bind(null, params));
+      selectedMethod = base[params.api][params.method];
+    } else {
+      //render primary column using the default method (the very first method found in WADL file)
+      renderPrimaryColumn(defaultMethod); // no callback required
+    }
   };
 
   // handles click event on GET/POST button + click events for CLEAR buttons + alert message timeouts
@@ -161,23 +208,27 @@ Object.byString = function(o, s) {
         items.remove();
       }, 300);
     });
-    $('#api-key').change(function(){
-      apiKey = $(this).val();
-      apiKey = apiKey ? apiKey : apiKeyDefault;
-    }).on('keyup', function(e){
-      if (e.keyCode == 13){
-        $(e.target).blur();
-        sendPrimaryRequest();
-      }
-    });
-    $('#error-alert, #success-alert').on("shown.bs.modal", function(){
-      var me = $(this);
-      timeout = setTimeout(function(){
-        me.modal("hide");
-      }, 3000);
-    }).on("hide.bs.modal", function(){
-      clearTimeout(timeout);
-    });
+    $('#api-key')
+      .change(function(){
+        apiKey = $(this).val();
+        apiKey = apiKey ? apiKey : apiKeyDefault;
+      })
+      .on('keyup', function(e){
+        if (e.keyCode == 13){
+          $(e.target).blur();
+          sendPrimaryRequest();
+        }
+      });
+    $('#error-alert, #success-alert')
+      .on("shown.bs.modal", function(){
+        var me = $(this);
+        timeout = setTimeout(function(){
+          me.modal("hide");
+        }, 3000);
+      })
+      .on("hide.bs.modal", function(){
+        clearTimeout(timeout);
+      });
     $(window).on('resize', function(){ // since slick-inbuilt responsive object has bugs when slides are added/removed - we have to reinit slider when screen is resized
       var newScreenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
       if (getResponsiveId(screenWidth) != getResponsiveId(newScreenWidth)){
@@ -215,16 +266,24 @@ Object.byString = function(o, s) {
   };
 
   // sets listeners for api dropdowns
-  var setDropdownListeners = function(){
-    $('.nav').on('click', function(e){
-      var target = $(e.target).parent();
-      if ($(e.target).hasClass('api-doc-link')){
+  var setDropdownListeners = function () {
+    $('body').on('click', '.nav', function (e){
+      var targetElement = $(e.target);
+      var target = targetElement.parent();
+
+      if (targetElement.hasClass('api-doc-link')) {
         e.stopPropagation();
-      }
-      else if (target.hasClass('select-default-method')){
+      } else if (target.hasClass('select-default-method')){
         e.preventDefault();
-        $('.dropdown-toggle').removeClass('selected-group');
-        target.closest('.api-dropdown').find('.dropdown-toggle').addClass('selected-group');
+
+        $('.dropdown-toggle')
+          .removeClass('selected-group');
+
+        target
+          .closest('.api-dropdown')
+          .find('.dropdown-toggle')
+          .addClass('selected-group');
+
         renderPrimaryColumn(base[target.attr('api-name')][target.attr('method-name')]); // no callback required
         selectedMethod = base[target.attr('api-name')][target.attr('method-name')];
       }
@@ -292,7 +351,7 @@ Object.byString = function(o, s) {
       }
     }
 
-    setTimeout(function(){
+    setTimeout(function () {
       $('#selected-method-name').text(method.name);
       $('#doc-link').attr('href', method.documentation).fadeIn(100);
       primaryColumn.find('.parameter-item').remove(); //remove all existing parameter fields
@@ -967,14 +1026,13 @@ Object.byString = function(o, s) {
     dummy.setAttribute("id", "dummy_id");
     document.getElementById("dummy_id").value = formDeepLinkingUrl();
     dummy.select();
-    console.log(selectedMethod);
-    console.log(formPrimaryURL(selectedMethod));
+
     try {
       var successful = document.execCommand("copy");
       var msg = successful ? 'successful' : 'unsuccessful';
-      console.log('Copying text command was ' + msg);
+      console.info('Copying text command was ' + msg);
     } catch (err) {
-      console.log('Unable to copy');
+      console.warn('Unable to copy');
     }
     document.body.removeChild(dummy);
   };
@@ -982,14 +1040,13 @@ Object.byString = function(o, s) {
   function formDeepLinkingUrl() {
     var location = window.location;
     var params = getAllParameteres();
-    var querys = ['api=2', 'method=' + selectedMethod];
-
+    var querys = ['api=' + encodeURI(selectedMethod.category), 'method='+ encodeURI(selectedMethod.id)];
     for(var i in params) {
       if (params.hasOwnProperty(i) && params[i].value) {
         querys.push([params[i].id, '=', params[i].value].join(''));
       }
     }
-    return [location.origin, location.pathname, '?', querys.join('&')].join('');
+    return [location.origin, location.pathname.replace(/\/$/gmi, ''), '?', querys.join('&')].join('');
   }
   
 }(jQuery));
