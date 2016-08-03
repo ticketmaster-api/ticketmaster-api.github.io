@@ -488,6 +488,17 @@ Object.byString = function(o, s) {
     });
   };
 
+  var paginationButtonsView = function (selector, page) {
+    var pageInput = $('#page');
+    var page = page || +pageInput.val();
+
+    if (page > 0) {
+      $(selector).removeClass('hide');
+    } else {
+      $(selector).addClass('hide');
+    }
+  };
+
   /* END OF INITIALIZATION PHASE FUNCTIONS */
 
   var setPaginationlistener = function () {
@@ -504,10 +515,18 @@ Object.byString = function(o, s) {
       } else if ($(this).hasClass('prev-page')) {
         count--;
       }
+
       result = page + count;
-      pageInput.val(result < 0 ? '' : result);
-      removeHandler('.pagination-btn');
-      $('#primary-btn').trigger('click');
+      paginationButtonsView('.prev-page', result);
+
+      if (result >= 0) {
+        removeHandler('.pagination-btn');
+        pageInput.val(result);
+        $('#primary-btn').trigger('click');
+      } else {
+        count = 0;
+        return false;
+      }
     })
   };
 
@@ -648,6 +667,7 @@ Object.byString = function(o, s) {
         spinner.hide();
       }, 500);
     };
+    paginationButtonsView('.prev-page');
     self.setEventListeners = function(){
       self.column.on('click', function(e){
         var selfIndex = self.getIndex();
