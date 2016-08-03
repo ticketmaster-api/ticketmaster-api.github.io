@@ -2229,7 +2229,7 @@ class MonthScheduler {
                 }
 
 
-                console.log(monthEvents);
+                // console.log(monthEvents);
                 // console.log(monthEventsSort);
 
                 let id = 'calendar';

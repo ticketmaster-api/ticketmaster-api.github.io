@@ -21,7 +21,7 @@
     }
 
     function getTmApiKey() {
-        if (sessionStorage.getItem('tk-api-key')) return sessionStorage.getItem('tk-api-key');else return '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+        return document.getElementById('w-tm-api-key').value;
     }
 
     var widget = widgetsCalendar[0],
@@ -67,6 +67,8 @@
             $tabButtons = $('.js-tab-buttons');
 
         if (targetName === "w-tm-api-key") {
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', targetValue);
+
             if (sessionStorage.getItem('tk-api-key')) {
                 document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
                 document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
