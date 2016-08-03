@@ -175,6 +175,8 @@
     color: #768692;
   }
   @media #{$max-1200} {
+    display: none !important;
+
     &.events-tracker_col-blue {
       margin: 10px 14px;
       width: auto;
@@ -197,7 +199,6 @@
     }
   }
   @media #{$max-768} {
-    display: none !important;
     &.events-tracker_col-view {
       margin: auto;
       float: none;
