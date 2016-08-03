@@ -164,7 +164,8 @@ category: api-explorer
             <div class="col-xs-12">
                 <a href="#" id="parameters-btn"></a>
                 <h3 style="float: left;">Parameters</h3>
-                <a href="#" class="btn-default btn-small" id="clear-params">Clear parameters</a>
+                <a href="#" class="btn-default btn-small api-exp-param-button" id="copy-request">Copy</a>
+                <a href="#" class="btn-default btn-small api-exp-param-button" id="clear-params">Clear</a>
             </div>
         </div>
     </div>
