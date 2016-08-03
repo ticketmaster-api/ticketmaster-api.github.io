@@ -78,7 +78,7 @@
       }
     }
     @media #{$max-768} {
-      margin: 5px 0 -9px;
+      margin: 5px 0 -7px;
     }
   }
   .description {
@@ -175,11 +175,15 @@
     color: #768692;
   }
   @media #{$max-1200} {
+    display: none !important;
+
     &.events-tracker_col-blue {
-      margin: 10px 0;
-      width: 100%;
+      margin: 10px 14px;
+      width: auto;
       padding: 5px 30px 0;
       height: auto;
+      display: block;
+      float: none;
       .events-tracker__title {
         margin-right: 10px;
       }
@@ -195,7 +199,6 @@
     }
   }
   @media #{$max-768} {
-    display: none;
     &.events-tracker_col-view {
       margin: auto;
       float: none;
@@ -226,6 +229,7 @@
   display: inline-block;
   border-radius: 5px;
   padding: 14px 30px 10px;
+  overflow: hidden;
 }
 
 .tm-btn-white {
