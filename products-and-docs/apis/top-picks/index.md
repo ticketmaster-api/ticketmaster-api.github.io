@@ -74,11 +74,16 @@ Retrieve reservable seat information based on specific criteria.
 
 - `picks` (array) - Picks.
     - `{array item object}` - pick.
+        * `type` (string) - "general-seating", or "seats"
         * `quality` (number) - A quality score representing a combination of price and location to stage.
-        * `areaId` (string) - An area id usable for reserves
+        * `area` (object) - An area information
+            - `id` (string) - Area id
+            - `name` (string) - Area name
+            - `description` (string) - Area description
+        * `descriptions` (array) - A list of descriptions for this pick
         * `section` (string) - The section name in the venue
-        * `row` (string) - The row in the section
-        * `snapshotImageUrl` - Combine with snapshotImageBase to form an image url of this pick in the venue
+        * `row` (string) - The row in the section, if applicable.
+        * `snapshotImageUrl` - An image url of this pick in the venue. If the venue or event doesn't support detailed images, this field will be null.
         * `offers` (array) - Offers.    
             - `{array item object}` - offer.
                 - `offer id` (string) - The offer id corresponding to one in _embedded.offer[].
@@ -99,7 +104,6 @@ Retrieve reservable seat information based on specific criteria.
                     - `reason` (string) - Name of charge.
                     - `type` (string) - Type of charge.
                     - `amount` (number) - Amount of charge
-- `snapshotImageBase` (string) - Base url for snapshotImageUrl values in picks data.
 
 >[Request](#req)
 >[Response](#res)
@@ -116,10 +120,17 @@ Status 200
   "picks": [
     {
       "quality": 0.626072,
-      "areaId": "10",
       "section": "103",
       "row": "18",
-      "snapshotImageUrl": "image?systemId=HOST&segmentIds=s_10,s_11,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_12,s_120,s_13,s_14,s_16,s_17,s_18,s_2,s_22,s_5,s_6,s_8,s_9&placeId=GEYDGORRHA5DS",
+      "descriptions": [
+          "Full View"
+      ],
+      "area" : {
+        "id" : 10,
+        "name" : "L100",
+        "description" : "LOWER BOWL"
+      },
+      "snapshotImageUrl": "https://app.ticketmaster.com/maps/geometry/3/event/1C00506FB56F338A/image?systemId=HOST&segmentIds=s_10,s_11,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_12,s_120,s_13,s_14,s_16,s_17,s_18,s_2,s_22,s_5,s_6,s_8,s_9&placeId=GEYDGORRHA5DS",
       "offers": [
         "GJ6DC7BQ"
       ]
@@ -150,8 +161,7 @@ Status 200
         ]
       }
     ]
-  },
-  "snapshotImageBase": "http://mapsapi.tmol.co/maps/geometry/3/event/1C00506FB56F338A/"
+  }
 }
 {% endhighlight %}
 
@@ -159,7 +169,7 @@ Status 200
 ## Snapshot Image [GET]
 {: #snapshot-image}
 
-A visual-representation of the approximate location of seats in the venue. Each result from the Top Picks API contains a snapshotImageUrl.  When combined with snapshotImageBase, clients can load and render a .png image of the pick to the user.
+A visual-representation of the approximate location of seats in the venue. Each result from the Top Picks API contains a snapshotImageUrl of a .png image.
 
 
 ### Query Parameters
@@ -167,11 +177,15 @@ All query parameters in snapshotImageUrl must be maintained and un-altered. Clie
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `w`   | The width, in pixels, of the image.         | number            |     300          | No      |
+| `w`   | The width, in pixels, of the image.  (min: 102, max: 1024)      | number            |     300          | No      |
 | `pw`   | The width, in pixels, of the dropped pin in the image.         | number            |     30          | No      |
 
 
 ![pick image](/assets/img/products-and-docs/top-pick-1.png)
 
+
+Example use of Top Picks data
+
+![pick image](/assets/img/products-and-docs/top-pick-2.png)
 
 

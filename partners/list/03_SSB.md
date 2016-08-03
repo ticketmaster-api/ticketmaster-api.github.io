@@ -8,5 +8,5 @@ categories:
 
 tile_logo: "SSB.png"
 
-tile_description: "SSB is the industry leader in Sports and Entertainment data management.  Its Central Intelligence platform serves as the data foundation to which and from which all data flows for professional teams, universities,  leagues, venues and conferences.  SSB increases our client’s effectiveness (more revenue, fan engagement) and efficiency (immediate access to reports and analytics"
+tile_description: "SSB applies unparalleled expertise to deliver solutions to complex business problems.  We provide a clear picture of the business - comprised of any number of data and information inputs - in an elegant and simplified manner.  With more than 40 sports clients, SSB is deeply rooted in the industr. Visit us at https://ssbinfo.com/"
 ---

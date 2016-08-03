@@ -42,7 +42,7 @@ To get the most out of your experience, [register for an API](https://live-liven
 
 We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event discovery experience for your fans.
 
-*Note: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2) and will be discontinued by the end of the year.*
+*Note: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2), therefore we recommend that developers plan to use this single service for access to global events.*
 
 Our APIs work against many platforms including Ticketmaster, TicketWeb, Universe, FrontGate, Ticketmaster Resale (TMR) and many more. 
 
