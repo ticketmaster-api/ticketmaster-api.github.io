@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/products-and-docs/widgets/countdown/")
 public class PD_Widget_CountdownPage extends AncestorPage {
 
-    public final String pageHeader = "WIDGETS COUNTDOWN";
+    public final String pageHeader = "COUNTDOWN WIDGET";
 
     @FindBy(xpath = "//form[@class='main-widget-config-form common_tabs']")
     private CountdownWidget countdownWidget;

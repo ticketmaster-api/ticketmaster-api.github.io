@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/products-and-docs/widgets/event-discovery/")
 public class PD_Widget_EventDiscoveryPage extends AncestorPage {
 
-    public final String pageHeader = "WIDGETS";
+    public final String pageHeader = "EVENT DISCOVERY WIDGET";
 
     @FindBy(xpath = "//form[@class='main-widget-config-form common_tabs']")
     private EventDiscoveryWidget eventDiscoveryWidget;

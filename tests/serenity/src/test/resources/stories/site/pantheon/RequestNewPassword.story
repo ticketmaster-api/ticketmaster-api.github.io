@@ -5,7 +5,7 @@ As a test enfineer
 I want to test Ticket Master Developer's site
 So that I test Pantheon Request New Password Page of Ticket Master Developer's site
 
-Scenario: (https://live-livenation.devportal.apigee.com/user/password) Verification for general page's elements
+Scenario: (live-livenation.devportal.apigee.com/user/password) Verification for general page's elements
 Given open Home page
 When navigate to Pantheon LogIn page from Home page
 When navigate to Pantheon Request New Password page from LogIn page

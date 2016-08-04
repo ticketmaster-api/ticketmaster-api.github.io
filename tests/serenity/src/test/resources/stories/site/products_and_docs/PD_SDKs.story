@@ -16,9 +16,6 @@ Then check that new page opened from SDKs page has <pageURL> and <pageTitle>
 
 Examples:
 |       elementKey      |                       pageURL                     |            pageTitle            |
-|    SDK-Java Button    |    https://github.com/ticketmaster-api/sdk-java   | //h1[@class='public ']/strong/a |
-| SDK-JavaScript Button | https://github.com/ticketmaster-api/sdk-javascript| //h1[@class='public ']/strong/a |
-|    SDK-Scala Button   |    https://github.com/ticketmaster-api/sdk-scala  | //h1[@class='public ']/strong/a |
 |     SDK-Java Image    |    https://github.com/ticketmaster-api/sdk-java   | //h1[@class='public ']/strong/a |
 | SDK-JavaScript Image  | https://github.com/ticketmaster-api/sdk-javascript| //h1[@class='public ']/strong/a |
 |    SDK-Scala Image    |    https://github.com/ticketmaster-api/sdk-scala  | //h1[@class='public ']/strong/a |
