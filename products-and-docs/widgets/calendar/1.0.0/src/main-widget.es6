@@ -1507,7 +1507,7 @@ class WeekScheduler {
             "endDateTime": endDateTime,
             "classificationId": classificationid,
             "radius": radius,
-            "size": "100"
+            "size": "500"
         }
 
     }
@@ -2016,7 +2016,7 @@ class MonthScheduler {
             "endDateTime": endDateTime,
             "classificationId": classificationid,
             "radius": radius,
-            "size": "400"
+            "size": "500"
         }
     }
 
