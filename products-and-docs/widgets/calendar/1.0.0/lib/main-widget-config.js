@@ -360,7 +360,6 @@
             if (results) {
                 var status = void 0;
                 if (results.length <= 1) status = true;else status = false;
-                console.log(status);
                 $countrySelect.prop('disabled', status);
                 // $countrySelect.prop('disabled', !results.length);
                 options = '';
