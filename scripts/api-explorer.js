@@ -164,18 +164,13 @@ Object.byString = function(o, s) {
     }
   };
 
-  //deep linkin handler remove
-  var removeHandler = function (selector) {
-    $('body').undelegate(selector, 'click touch');
-  };
-
   // handles click event on GET/POST button + click events for CLEAR buttons + alert message timeouts
   var setListeners = function(){
-    $('body').on('click', '#primary-btn', function (e){
+    $(document).on('click', '#primary-btn', function (e){
       e.preventDefault();
-      removeHandler('.pagination-btn');
       sendPrimaryRequest();
     });
+
     primaryColumn.on('keyup change', function(e){
       var input = $(e.target);
       if (e.target.tagName === "INPUT"){
@@ -193,18 +188,22 @@ Object.byString = function(o, s) {
         }
       }
     });
+
     $('#clear-params').on('click', function(e){
       e.preventDefault();
       clearParams();
     });
+
     $("#reformat-json").on('click', function(e){
       e.preventDefault();
       prettyfyJSON();
     });
+
     $("#clear-json").on('click', function(e){
       e.preventDefault();
       $('#post-json-area').val('');
     });
+
     $('#clear-req-resp').on('click', function(e){
       e.preventDefault();
       var container = $('#req-res-container'),
@@ -214,6 +213,7 @@ Object.byString = function(o, s) {
         items.remove();
       }, 300);
     });
+
     $('#api-key')
       .change(function(){
         apiKey = $(this).val();
@@ -225,6 +225,7 @@ Object.byString = function(o, s) {
           sendPrimaryRequest();
         }
       });
+
     $('#error-alert, #success-alert')
       .on("shown.bs.modal", function(){
         var me = $(this);
@@ -235,6 +236,7 @@ Object.byString = function(o, s) {
       .on("hide.bs.modal", function(){
         clearTimeout(timeout);
       });
+
     $(window).on('resize', function(){ // since slick-inbuilt responsive object has bugs when slides are added/removed - we have to reinit slider when screen is resized
       var newScreenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
       if (getResponsiveId(screenWidth) != getResponsiveId(newScreenWidth)){
@@ -243,6 +245,7 @@ Object.byString = function(o, s) {
         initSlider();
       }
     }).on('login', function (e, data) { apiKey=data.key });
+
     $('#parameters-btn').on('click', function(e){
       e.preventDefault();
       var btn = $(this);
@@ -253,6 +256,7 @@ Object.byString = function(o, s) {
         primaryColumnSlideUp();
       }
     });
+
     $('#json-btn').on('click', function(e){
       e.preventDefault();
       var btn = $(this);
@@ -263,6 +267,7 @@ Object.byString = function(o, s) {
         dataJSONSlideUp();
       }
     });
+
     $('#cd-tour-trigger').on('click', function(){
       if (slider.find('.api-column').length == 0){
         sendPrimaryRequest(true);
@@ -359,14 +364,20 @@ Object.byString = function(o, s) {
 
     setTimeout(function () {
       $('#selected-method-name').text(method.name);
-      $('#doc-link').attr('href', method.documentation).fadeIn(100);
-      primaryColumn.find('.parameter-item').remove(); //remove all existing parameter fields
-      primaryBtn.text(method.method).removeClass('post'); //change text in 'run query button' (GET or POST)
-      for (var param in method.parameters){ //render new paramater fields
-        var element = $('<div class="col-lg-3 col-sm-6 col-xs-12 parameter-item"></div>'),
-          input = $('<input type="text" class="form-control event-param" placeholder="'
-            + method.parameters[param].name + '" id="' + method.parameters[param].name + '" url-style="'
-            + method.parameters[param].style + '">');
+      $('#doc-link')
+        .attr('href', method.documentation)
+        .fadeIn(100);
+      primaryColumn
+        .find('.parameter-item')
+        .remove(); //remove all existing parameter fields
+      primaryBtn
+        .text(method.method)
+        .removeClass('post'); //change text in 'run query button' (GET or POST)
+      for (var param in method.parameters) { //render new paramater fields
+        var par = method.parameters[param],
+          name = par.name,
+          element = $('<div class="col-lg-3 col-sm-6 col-xs-12 parameter-item"></div>'),
+          input = $(['<input type="text" class="form-control event-param" placeholder="', name,'" id="', name,'" url-style="', par.style,'">'].join(''));
 
         param === "extensions" && input.val('geolocation');
 
@@ -374,18 +385,21 @@ Object.byString = function(o, s) {
         primaryColumn.append(element);
         new Tooltip(element);
       }
-      if (method.method === "POST"){
+
+      if (method.method === "POST") {
         postJsonArea.val('');
         postJson.show();
         primaryBtn.addClass('post');
-        if (screenWidth >= 768)
-          if (isJsonAreaVisible || !isJsonVisible)
-            dataJSONSlideDown();
+        if (screenWidth >= 768 && (isJsonAreaVisible || !isJsonVisible)) {
+          dataJSONSlideDown();
+        }
       }
-      if (screenWidth >= 768 && isPrimaryVisible)
+      if (screenWidth >= 768 && isPrimaryVisible) {
         primaryColumnSlideDown();
-      if (callback)
+      }
+      if (callback) {
         callback();
+      }
     }, isPrimaryVisible ? 500 : 0);
   };
 
@@ -489,17 +503,6 @@ Object.byString = function(o, s) {
     });
   };
 
-  var paginationButtonsView = function (selector, page) {
-    var pageInput = $('#page');
-    var page = page || +pageInput.val();
-
-    if (page > 0) {
-      $(selector).removeClass('hide');
-    } else {
-      $(selector).addClass('hide');
-    }
-  };
-
   /* END OF INITIALIZATION PHASE FUNCTIONS */
 
   var setPaginationlistener = function () {
@@ -508,7 +511,7 @@ Object.byString = function(o, s) {
     var count = 0;
     var result = 0;
 
-    $('body').on('click touch', '.pagination-btn', function (e) {
+    setEventHandler('.pagination-btn', 'click touch', function paginationBtn(e) {
       e.preventDefault();
       e.stopPropagation();
       if ($(this).hasClass('next-page')) {
@@ -518,21 +521,19 @@ Object.byString = function(o, s) {
       }
 
       result = page + count;
-      paginationButtonsView('.prev-page', result);
 
       if (result >= 0) {
-        removeHandler('.pagination-btn');
         pageInput.val(result);
         $('#primary-btn').trigger('click');
       } else {
         count = 0;
         return false;
       }
-    })
+    });
   };
 
   // column constructor
-  var Column = function(configObject, responseObject, index, guId){
+  var Column = function(configObject, responseObject, index, guId) {
     var self = this;
     self.guId = guId;
     self.responseObject = responseObject;
@@ -540,22 +541,27 @@ Object.byString = function(o, s) {
     self.colorIndex = currentColumnColorIndex;
     self.method = selectedMethod;
     self.usedParams = getAllParameteres();
-    self.init = function(){
-      self.column = $('<div class="api-column'
-        + colors[currentColumnColorIndex] // colorize column appropriately
-        + (index ? ' transparent' : '') + '"></div>').hide(); // if there was index provided -> column is a child of previous column and should become transparent
+    removeHandler('.pagination-btn');
+    self.init = function () {
+      var resPage = self.responseObject.page,
+        subcolumn,
+        listGroup,
+        title;
+
+      self.column = $([
+        '<div class="api-column', colors[currentColumnColorIndex], (index ? ' transparent' : '') + '"></div>'// colorize column appropriately
+      ].join('')).hide(); // if there was index provided -> column is a child of previous column and should become transparent
+
       for (var i = 0; i < configObject.length; i++) { // iterate through method main subcolumns
-        var subcolumn = configObject[i]; // subcolumn
-        var isPage = subcolumn["title"].toLowerCase() === 'page',
-          listGroup = $('<div class="list-group"></div>'), //subcolumn future element
-          title = $(['<a class="list-group-item active ',
-            (isPage? 'pagination"' : '" '),
-            (isPage? 'id="api-explorer-pagination"' : ''),
-            '>',
+        subcolumn = configObject[i]; // subcolumn
+        listGroup = $('<div class="list-group"></div>'); //subcolumn future element
+        title = $([
+          '<a class="list-group-item active', (isPage(subcolumn.title) ? ' pagination" id="api-explorer-pagination"' : '"'), '>',
             subcolumn["title"],
-            '<b id="next-page" class="pagination-btn next-page btn">&nbsp;</b>',
-            '<b id="prev-page" class="pagination-btn prev-page btn">&nbsp;</b>',
-            '</a>'].join('')); // subcolumn title
+            '<b id="next-page" class="pagination-btn next-page btn', (isLast(resPage) ? ' hide': ''),'">&nbsp;</b>',
+            '<b id="prev-page" class="pagination-btn prev-page btn', (isFirst(resPage) ? ' hide': ''),'">&nbsp;</b>',
+          '</a>'
+        ].join('')); // subcolumn title
 
         var destinationObject = subcolumn["path"] ? Object.byString(self.responseObject, subcolumn["path"]) : self.responseObject; // object inside the response to iterate through
         destinationObject = index ? destinationObject[index]: destinationObject;
@@ -563,16 +569,19 @@ Object.byString = function(o, s) {
 
         listGroup.append(title);
 
-        //Sets listener for pagination of response
-
         if (subcolumn["expandsTo"]){
           var nextIndex = getNextColorIndex();
-          title.append($('<a href="#" class="pull-right expand-new-method" ' // more button
-            + 'method="' + subcolumn["expandsTo"] + '" '
-            + 'next-color-index="' + nextIndex + '" '
-            + 'data-id="' + (destinationObject.id ? destinationObject.id : (destinationObject.segment ? destinationObject.segment.id : 'undefined')) + '"></a>'))
-            .append($('<p class="pull-right color-circle' // color circle
-              + colors[nextIndex] + '"></p>'));
+
+          title
+            .append($([
+              '<a href="#"',
+                'class="pull-right expand-new-method" ',// more button
+                'method="',subcolumn["expandsTo"],'" ',
+                'next-color-index="',nextIndex,'" ',
+                'data-id="',(destinationObject.id ? destinationObject.id : (destinationObject.segment ? destinationObject.segment.id : 'undefined')),
+              '"></a>'
+            ].join('')))
+            .append($(['<p class="pull-right color-circle', colors[nextIndex],'"></p>'].join('')));
         }
 
         if (subcolumn["map"]){ // does subcolumn have latitude and longitude for map popup?
@@ -631,8 +640,7 @@ Object.byString = function(o, s) {
             itemCount++;
           }
           title.prepend('<p class="subcolumn-count">' + itemCount + '</p>'); // show item count in sobcolumn title area
-        }
-        else {
+        } else {
           for (var field in subcolumn["fields"]){
             var destinationDeep = subcolumn["fields"][field]["path"] ? Object.byString(destinationObject,  subcolumn["fields"][field]["path"]) : destinationObject, // if field has its additional path
               isThumbnail = subcolumn["fields"][field]["thumbnail"] ? true : false, // if there is a thumbnail
@@ -648,7 +656,7 @@ Object.byString = function(o, s) {
           }
         }
         self.column.append(listGroup);
-        if (subColumnMapImage && subcolumn["map"]){ // append map image if there is any
+        if (subColumnMapImage && subcolumn["map"]) { // append map image if there is any
           var imgListGroup = $('<div class="list-group"></div>'), //subcolumn future element
             imgTitle = $('<a class="list-group-item active">' + 'Map' + '</a>');
           imgListGroup.append(imgTitle).append(subColumnMapImage);
@@ -668,7 +676,6 @@ Object.byString = function(o, s) {
         spinner.hide();
       }, 500);
     };
-    paginationButtonsView('.prev-page');
     self.setEventListeners = function () {
       self.column.on('click', function (e) {
         var selfIndex = self.getIndex();
@@ -733,7 +740,6 @@ Object.byString = function(o, s) {
           }, 500);
           return false;
         }
-
       });
     };
     self.makeColumnLast = function () { // slides to make current column last within current view
@@ -859,14 +865,14 @@ Object.byString = function(o, s) {
 
   // changes method selected above and fills in parameters
   var changeSelectedMethod = function (method, paramObjectArray, callback){
-    var fillInInputVals = function(){ // fill in all inputs
+    var fillInInputVals = function () { // fill in all inputs
       for (var i = 0; i < paramObjectArray.length; i++){
         var input = primaryColumn.find('#' + paramObjectArray[i]['id']);
         input.val(paramObjectArray[i]['value']);
         input.trigger('change');
       }
     };
-    var scroll = function(){ // scroll up to slider top and run callback
+    var scroll = function () { // scroll up to slider top and run callback
       if (slider.offset().top <= window.pageYOffset)
         scrollToSlider(400);
       callback();
@@ -903,6 +909,7 @@ Object.byString = function(o, s) {
     var url = formPrimaryURL(selectedMethod);
     if (!visible)
       spinner.show();
+
     sendRequest(url, selectedMethod.method, function(response, guid){
       slider.slick('slickGoTo', 0);
       setTimeout(function(){
@@ -997,8 +1004,8 @@ Object.byString = function(o, s) {
 
     worker.onmessage = function(event) {
       $(selector).prepend(event.data);
-      
-      $(document).on('click touch', '.tm-code-container .expanded', function (e) {
+
+      setEventHandler('.tm-code-container .expanded', 'click touch', function jsonCodeContainerExpanded(e) {
         e.preventDefault();
         e.stopPropagation();
         var $self = $(this);
@@ -1010,7 +1017,7 @@ Object.byString = function(o, s) {
           });
       });
 
-      $(document).on('click touch', '.tm-code-container .expanded.collapsed', function (e) {
+      setEventHandler('.tm-code-container .expanded.collapsed', 'click touch', function jsonCodeContainerCollapsed(e) {
         e.preventDefault();
         e.stopPropagation();
         var $self = $(this);
@@ -1023,15 +1030,16 @@ Object.byString = function(o, s) {
               .removeClass('collapsed')
               .removeClass('hidden');
           });
-      });
+      })
     };
     
     worker.postMessage(code);
   };
 
   //universal ajax request sender
-  var sendRequest = function(url, method, callback){
+  var sendRequest = function (url, method, callback) {
     //spinner.show();
+
     $.ajax({
       type: method,
       url: url,
@@ -1064,6 +1072,10 @@ Object.byString = function(o, s) {
             '</div>',
           '</div>'
         ].join('');
+
+        // removes old code-container handlers
+        removeHandler('.tm-code-container .expanded');
+        removeHandler('.tm-code-container .expanded.collapsed');
 
         // injects formatted json to code block
         highlightCode('.language-json', jqXHR.responseText);
@@ -1117,7 +1129,7 @@ Object.byString = function(o, s) {
   };
 
   // reformat json string to display it properly
-  var prettyfyJSON = function() {
+  var prettyfyJSON = function () {
     var textarea = document.getElementById('post-json-area'),
       ugly = textarea.value,
       obj = {},
@@ -1133,7 +1145,19 @@ Object.byString = function(o, s) {
     return JSON.stringify(obj);
   };
 
-  var copyToClipBoard = function(e) {
+  var formDeepLinkingUrl = function () {
+    var location = window.location;
+    var params = getAllParameteres();
+    var querys = ['api=' + encodeURI(selectedMethod.category), 'method='+ encodeURI(selectedMethod.id)];
+    for(var i in params) {
+      if (params.hasOwnProperty(i) && params[i].value) {
+        querys.push([params[i].id, '=', params[i].value].join(''));
+      }
+    }
+    return [location.origin, location.pathname.replace(/\/$/gmi, ''), '?', querys.join('&')].join('');
+  };
+
+  var copyToClipBoard = function (e) {
     e.preventDefault();
     var dummy = document.createElement("input");
     document.body.appendChild(dummy);
@@ -1151,16 +1175,63 @@ Object.byString = function(o, s) {
     document.body.removeChild(dummy);
   };
 
-  function formDeepLinkingUrl() {
-    var location = window.location;
-    var params = getAllParameteres();
-    var querys = ['api=' + encodeURI(selectedMethod.category), 'method='+ encodeURI(selectedMethod.id)];
-    for(var i in params) {
-      if (params.hasOwnProperty(i) && params[i].value) {
-        querys.push([params[i].id, '=', params[i].value].join(''));
-      }
+  // helper functions ----------------------
+
+  /**
+   * Checks for last page
+   * @param page {object}
+   * @returns {boolean}
+   */
+  function isLast(page) {
+    return +page.number >= +page.totalPages -1;
+  }
+
+  /**
+   * Checks for first page
+   * @param page {object}
+   * @returns {boolean}
+   */
+  function isFirst(page) {
+    return +page.number === 0;
+  }
+
+  /**
+   * Checks for page section
+   * @param title {string}
+   * @returns {boolean}
+   */
+  function isPage(title) {
+    return title.toLowerCase() === 'page';
+  }
+
+  /**
+   * Removes delegated handler
+   * @param selector {string}
+   * @param namespace {string}
+   */
+  function removeHandler(selector, namespace) {
+    var eventName = [
+      namespace ? 'click.' + namespace: 'click',
+      namespace ? 'touch.' + namespace: 'touch'
+    ].join(' ');
+
+    $(document).undelegate(selector, eventName);
+  }
+
+  /**
+   * Sets delegated event handler
+   * @param selector {string}
+   * @param events {string}
+   * @param callback {function}
+   * @returns {boolean}
+   */
+  function setEventHandler(selector, events, callback) {
+    if (!selector || !events || typeof callback !== 'function' || !callback.name) {
+      console.error('set Handler fails');
+      return false;
     }
-    return [location.origin, location.pathname.replace(/\/$/gmi, ''), '?', querys.join('&')].join('');
+    
+    $(document).on(events, selector, callback);
   }
 }(jQuery));
 
