@@ -1402,6 +1402,7 @@ class WeekScheduler {
     get eventReqAttrs(){
         let tmapikey = '',
             latlong = '',
+            postalcode = '90015',
             keyword = '',
             radius;
 
@@ -1482,6 +1483,10 @@ class WeekScheduler {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
         }
 
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-postalcode") != '') {
+            postalcode = document.querySelector('[w-type="calendar"]').getAttribute("w-postalcode");
+        }
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
@@ -1498,10 +1503,11 @@ class WeekScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
-
+        console.log(postalcode);
         return {
             "apikey": tmapikey,
             "latlong": latlong,
+            "postalcode": postalcode,
             "keyword": keyword,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
