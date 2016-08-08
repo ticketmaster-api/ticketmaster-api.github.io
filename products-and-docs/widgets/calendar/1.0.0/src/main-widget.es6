@@ -340,6 +340,7 @@ class TicketmasterCalendarWidget {
                 if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
                 widget.config.latlong = latlong;
                 cb(widget.config.latlong);
+                console.log(latlong);
                 document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", latlong);
             }
         }
@@ -1498,6 +1499,8 @@ class WeekScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
+        console.log(latlong);
+
         return {
             "apikey": tmapikey,
             "latlong": latlong,
@@ -1508,8 +1511,6 @@ class WeekScheduler {
             "radius": radius,
             "size": "500"
         }
-
-        console.log(latlong);
 
     }
 
