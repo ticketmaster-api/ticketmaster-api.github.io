@@ -43,7 +43,22 @@
                     <label for="w-radius">
                         Radius <span class="config_field__description">(miles)</span>
                     </label>
-                    <input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25">
+                    <!-- <input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25"> -->
+
+                    <div class="js_custom_select custom_select">
+                        <select id="w-radius" class="custom_select__field" name="w-radius">
+                            <option selected value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                        <input class="custom_select__placeholder" type="text" value="5" readonly="">
+                        <ul class="custom_select__list js_widget_custom__list">
+                            <li class="custom_select__item" data-value="5">5</li>
+                            <li class="custom_select__item" data-value="10">10</li>
+                            <li class="custom_select__item" data-value="15">15</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
             <div class="row row-native">
