@@ -1427,6 +1427,31 @@ div[w-theme="calendar"] #year .month .count {
     min-height: 28px;
 }
 
+/* Dark Theme */
+div[w-theme="calendar"][w-colorscheme="dark"] .events-root-container{
+    background-color: #414141;
+    border-style: solid;
+    border-color: transparent;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs {
+    background: #48494a;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span {
+    color: #b7c9d3;
+    border: 1px solid #919192;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span:first-child {
+    border-left: 1px solid #919192;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span.active {
+    background: #919192;
+    color: #48494a;
+}
+
 div[w-theme="calendar"] .spinner-container {
     width: 100%;
     height: 275px;

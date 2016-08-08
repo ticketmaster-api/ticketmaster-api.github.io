@@ -354,7 +354,7 @@
             isPostalCodeChanged = false;
 
             let $countrySelect = $('#w-country'),
-                $ul = $(".js_widget_custom__list"),
+                $ul = $("#w-country .js_widget_custom__list"),
                 options = "<option selected value=''>All</option>";
 
             $countrySelect.html('');
