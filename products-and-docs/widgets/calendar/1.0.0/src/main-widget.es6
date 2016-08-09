@@ -347,7 +347,7 @@ class TicketmasterCalendarWidget {
         }
 
         if(this.isConfigAttrExistAndNotEmpty('postalcode')){
-            let args = {components: `postal_code:${widget.config.postalcode}`};
+            let args = {language: 'en', components: `postal_code:${widget.config.postalcode}`};
             if(widget.config.googleapikey) args.key = widget.config.googleapikey;
             if(this.config.country) args.components += `|country:${this.config.country}`;
             this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
