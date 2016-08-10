@@ -59,49 +59,15 @@ Object.byString = function(o, s) {
 
   /* INITIALIZATION PHASE */
 
-  $(document).ready(function() {
-    (function () {
-      var item = sessionStorage.getItem('tk-api-email');
-      document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
-    })();
+  $(function() {
+    var item = sessionStorage.getItem('tk-api-email');
+    document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
     readFromWADL(); //parse WADL file when document is ready
     setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
     spinner = $('#spinner');
     slider = $('#columns');
     initSlider(); // initialize slider depending on screen resolution
-    initEventCountersPanel(); // Counter panel init
   });
-
-  /**
-   * Initialization of counter panel
-   */
-  function initEventCountersPanel() {
-    var intervals = [],
-      config = ['events','venues','attractions'],
-      timeLeap = 60000;
-
-    config.forEach(function (el) {
-      updateEventpanelCounters(el);
-      intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
-    });
-  }
-
-  /**
-   * Get date for Counter Panel
-   * @param url {string}
-   */
-  function updateEventpanelCounters(url) {
-    $.ajax({
-      method: 'GET',
-      url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join('')
-    }).then(function (data) {
-      var quantity = data.page && data.page.totalElements || 'none';
-      console.debug(url, ' - ', quantity);
-      $(['#js-', url,'-counter'].join('')).text(quantity);
-    }).fail(function (err) {
-      console.error('Error: %s', err);
-    })
-  }
 
   // calls slider initializator function with parameters defined by screen resolution
   var initSlider = function(){
@@ -112,12 +78,10 @@ Object.byString = function(o, s) {
   var getResponsiveId = function(width){
     if (width < 768){
       return 1;
-    }
-    else{
+    } else {
       if (width < 1200){
         return 2;
-      }
-      else {
+      } else {
         return 4;
       }
     }
@@ -137,9 +101,50 @@ Object.byString = function(o, s) {
     slider.slick("setPosition", getColumnCount() - 1);
   };
 
+  var parseUrl = function () {
+    var location = window.location.search;
+    if (location) {
+      var querys = location.replace(/^\?/g, '').split('&');
+      var obj = {};
+
+      querys.map(function (e) {
+        var a = decodeURI(e).split('=');
+        obj[a[0]] = a[1];
+      });
+      return obj;
+    }
+    return false;
+  };
+
+  /**
+   * Set active Api dropdown from URL. Deep linking
+   * @param obj
+   */
+  var setActiveDropdown = function (obj) {
+    var apiSections = $('.api-dropdown .dropdown-toggle');
+    apiSections.removeClass('selected-group');
+    apiSections.filter(function () {
+        return $(this).text().toUpperCase() === obj.api.toUpperCase() && $(this).addClass('selected-group');
+    });
+  };
+
+  //sets parameter fields while deep linking
+  var setParams = function(obj){
+    primaryColumn
+      .find('.parameter-item input')
+      .each(function(){
+        var $this = $(this);
+        $this.val(obj[$this.attr('id')]).trigger('change');
+    });
+  };
+
   // builds page according to base data
   var buildPageLayout = function(){
     var first = true;
+
+    // get query from url (deep linking)
+    var params = parseUrl();
+
     //render droppowns within navigation bar
     for (var apiName in base) {
       addApiDropdown(apiName, first);
@@ -147,14 +152,27 @@ Object.byString = function(o, s) {
     }
     //set dropdown event listeners
     setDropdownListeners();
-    //render primary column using the default method (the very first method found in WADL file)
-    renderPrimaryColumn(defaultMethod); // no callback required
+
+    if (params) {
+      setActiveDropdown(params);
+      renderPrimaryColumn(base[params.api][params.method], setParams.bind(null, params));
+      selectedMethod = base[params.api][params.method];
+    } else {
+      //render primary column using the default method (the very first method found in WADL file)
+      renderPrimaryColumn(defaultMethod); // no callback required
+    }
+  };
+
+  //deep linkin handler remove
+  var removeHandler = function (selector) {
+    $('body').undelegate(selector, 'click touch');
   };
 
   // handles click event on GET/POST button + click events for CLEAR buttons + alert message timeouts
   var setListeners = function(){
-    $('#primary-btn').on('click', function(e){
+    $('body').on('click', '#primary-btn', function (e){
       e.preventDefault();
+      removeHandler('.pagination-btn');
       sendPrimaryRequest();
     });
     primaryColumn.on('keyup change', function(e){
@@ -195,23 +213,27 @@ Object.byString = function(o, s) {
         items.remove();
       }, 300);
     });
-    $('#api-key').change(function(){
-      apiKey = $(this).val();
-      apiKey = apiKey ? apiKey : apiKeyDefault;
-    }).on('keyup', function(e){
-      if (e.keyCode == 13){
-        $(e.target).blur();
-        sendPrimaryRequest();
-      }
-    });
-    $('#error-alert, #success-alert').on("shown.bs.modal", function(){
-      var me = $(this);
-      timeout = setTimeout(function(){
-        me.modal("hide");
-      }, 3000);
-    }).on("hide.bs.modal", function(){
-      clearTimeout(timeout);
-    });
+    $('#api-key')
+      .change(function(){
+        apiKey = $(this).val();
+        apiKey = apiKey ? apiKey : apiKeyDefault;
+      })
+      .on('keyup', function(e){
+        if (e.keyCode == 13){
+          $(e.target).blur();
+          sendPrimaryRequest();
+        }
+      });
+    $('#error-alert, #success-alert')
+      .on("shown.bs.modal", function(){
+        var me = $(this);
+        timeout = setTimeout(function(){
+          me.modal("hide");
+        }, 3000);
+      })
+      .on("hide.bs.modal", function(){
+        clearTimeout(timeout);
+      });
     $(window).on('resize', function(){ // since slick-inbuilt responsive object has bugs when slides are added/removed - we have to reinit slider when screen is resized
       var newScreenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
       if (getResponsiveId(screenWidth) != getResponsiveId(newScreenWidth)){
@@ -245,19 +267,28 @@ Object.byString = function(o, s) {
         sendPrimaryRequest(true);
       }
     });
+    $('body').on('click touch', '#copy-request', copyToClipBoard);
   };
 
   // sets listeners for api dropdowns
-  var setDropdownListeners = function(){
-    $('.nav').on('click', function(e){
-      var target = $(e.target).parent();
-      if ($(e.target).hasClass('api-doc-link')){
+  var setDropdownListeners = function () {
+    $('body').on('click', '.nav', function (e){
+      var targetElement = $(e.target);
+      var target = targetElement.parent();
+
+      if (targetElement.hasClass('api-doc-link')) {
         e.stopPropagation();
-      }
-      else if (target.hasClass('select-default-method')){
+      } else if (target.hasClass('select-default-method')){
         e.preventDefault();
-        $('.dropdown-toggle').removeClass('selected-group');
-        target.closest('.api-dropdown').find('.dropdown-toggle').addClass('selected-group');
+
+        $('.dropdown-toggle')
+          .removeClass('selected-group');
+
+        target
+          .closest('.api-dropdown')
+          .find('.dropdown-toggle')
+          .addClass('selected-group');
+
         renderPrimaryColumn(base[target.attr('api-name')][target.attr('method-name')]); // no callback required
         selectedMethod = base[target.attr('api-name')][target.attr('method-name')];
       }
@@ -325,7 +356,7 @@ Object.byString = function(o, s) {
       }
     }
 
-    setTimeout(function(){
+    setTimeout(function () {
       $('#selected-method-name').text(method.name);
       $('#doc-link').attr('href', method.documentation).fadeIn(100);
       primaryColumn.find('.parameter-item').remove(); //remove all existing parameter fields
@@ -457,7 +488,47 @@ Object.byString = function(o, s) {
     });
   };
 
+  var paginationButtonsView = function (selector, page) {
+    var pageInput = $('#page');
+    var page = page || +pageInput.val();
+
+    if (page > 0) {
+      $(selector).removeClass('hide');
+    } else {
+      $(selector).addClass('hide');
+    }
+  };
+
   /* END OF INITIALIZATION PHASE FUNCTIONS */
+
+  var setPaginationlistener = function () {
+    var pageInput = $('#page');
+    var page = +pageInput.val();
+    var count = 0;
+    var result = 0;
+
+    $('body').on('click touch', '.pagination-btn', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if ($(this).hasClass('next-page')) {
+        count++;
+      } else if ($(this).hasClass('prev-page')) {
+        count--;
+      }
+
+      result = page + count;
+      paginationButtonsView('.prev-page', result);
+
+      if (result >= 0) {
+        removeHandler('.pagination-btn');
+        pageInput.val(result);
+        $('#primary-btn').trigger('click');
+      } else {
+        count = 0;
+        return false;
+      }
+    })
+  };
 
   // column constructor
   var Column = function(configObject, responseObject, index, guId){
@@ -472,16 +543,26 @@ Object.byString = function(o, s) {
       self.column = $('<div class="api-column'
         + colors[currentColumnColorIndex] // colorize column appropriately
         + (index ? ' transparent' : '') + '"></div>').hide(); // if there was index provided -> column is a child of previous column and should become transparent
-      for (var i = 0; i < configObject.length; i++){ // iterate through method main subcolumns
-        var subcolumn = configObject[i], // subcolumn
+      for (var i = 0; i < configObject.length; i++) { // iterate through method main subcolumns
+        var subcolumn = configObject[i]; // subcolumn
+        var isPage = subcolumn["title"].toLowerCase() === 'page',
           listGroup = $('<div class="list-group"></div>'), //subcolumn future element
-          title = $('<a class="list-group-item active">' + subcolumn["title"] + '</a>'); // subcolumn title
+          title = $(['<a class="list-group-item active ',
+            (isPage? 'pagination"' : '" '),
+            (isPage? 'id="api-explorer-pagination"' : ''),
+            '>',
+            subcolumn["title"],
+            '<b id="next-page" class="pagination-btn next-page btn">&nbsp;</b>',
+            '<b id="prev-page" class="pagination-btn prev-page btn">&nbsp;</b>',
+            '</a>'].join('')); // subcolumn title
 
         var destinationObject = subcolumn["path"] ? Object.byString(self.responseObject, subcolumn["path"]) : self.responseObject; // object inside the response to iterate through
         destinationObject = index ? destinationObject[index]: destinationObject;
         self.destinationObject = destinationObject;
 
         listGroup.append(title);
+
+        //Sets listener for pagination of response
 
         if (subcolumn["expandsTo"]){
           var nextIndex = getNextColorIndex();
@@ -577,6 +658,7 @@ Object.byString = function(o, s) {
         }
       }
     };
+    setPaginationlistener();
     self.render = function(){
       slider.slick('slickAdd', self.column);
       slider.slick('slickNext');
@@ -585,6 +667,7 @@ Object.byString = function(o, s) {
         spinner.hide();
       }, 500);
     };
+    paginationButtonsView('.prev-page');
     self.setEventListeners = function(){
       self.column.on('click', function(e){
         var selfIndex = self.getIndex();
@@ -992,5 +1075,35 @@ Object.byString = function(o, s) {
 
     return JSON.stringify(obj);
   };
+  
+  var copyToClipBoard = function(e) {
+    e.preventDefault();
+    var dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute("id", "dummy_id");
+    document.getElementById("dummy_id").value = formDeepLinkingUrl();
+    dummy.select();
 
+    try {
+      var successful = document.execCommand("copy");
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.info('Copying text command was ' + msg);
+    } catch (err) {
+      console.warn('Unable to copy');
+    }
+    document.body.removeChild(dummy);
+  };
+
+  function formDeepLinkingUrl() {
+    var location = window.location;
+    var params = getAllParameteres();
+    var querys = ['api=' + encodeURI(selectedMethod.category), 'method='+ encodeURI(selectedMethod.id)];
+    for(var i in params) {
+      if (params.hasOwnProperty(i) && params[i].value) {
+        querys.push([params[i].id, '=', params[i].value].join(''));
+      }
+    }
+    return [location.origin, location.pathname.replace(/\/$/gmi, ''), '?', querys.join('&')].join('');
+  }
 }(jQuery));
+

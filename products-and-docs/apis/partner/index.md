@@ -16,6 +16,7 @@ keywords: Partner API, host and API, reserve tickets, create a cart, order manag
 # Partner API
 
 The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket and event informaton.
+{: .article .lead}
 
 ## Overview
 {: #overview }
@@ -2154,7 +2155,7 @@ Example:
 {
     "error": {
         "message" : "Invalid input data type",
-        "code": 10002
+        "code": 10002,
         "http_code":400,
         "severity":"ERROR"
     }
@@ -2238,7 +2239,7 @@ Request body:
         "address": {
             "line1": "123 Main Street", 
             "line2": "",                
-            "unit": "1h"                
+            "unit": "1h",                
             "city": "Los Angeles",      
             "country": {                
                 "id": 840

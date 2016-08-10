@@ -52,7 +52,7 @@ publish/{version}/events
 
 ### Minimal recommended request payload:
 
-{% highlight ruby %}
+{% highlight json %}
 {
     "source" : {
         "id" : "test_id_0009",

@@ -488,7 +488,7 @@ div[w-theme="calendar"] .event-buy-btn {
     z-index: 15;
     position: absolute;
     left: 30px;
-    bottom: 42px;
+    bottom: 27px;
     width: 74px;
     height: 24px;
     padding-top: 5px;
@@ -533,6 +533,9 @@ div[w-theme="calendar"]{
     background: #fff;
     border-radius: 5px;
     text-align: center;
+    overflow: hidden;
+    position: relative;
+    z-index:10;
 }
 
 div[w-theme="calendar"] .tabs {
@@ -1349,6 +1352,11 @@ div[w-theme="calendar"] #calendar .ss-container:hover .ss-scroll {
 div[w-theme="calendar"] #calendar .popup .ss-content,
 div[w-theme="calendar"] #calendar .popup-up .ss-content {
     width: 120% !important;
+}
+
+div[w-theme="calendar"] #calendar .popup.single .ss-content,
+div[w-theme="calendar"] #calendar .popup-up.single .ss-content {
+    width: 110% !important;
 }
 
 div[w-theme="calendar"] #calendar .popup .ss-scroll,

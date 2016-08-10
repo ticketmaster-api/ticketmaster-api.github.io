@@ -106,12 +106,21 @@ category: api-explorer
     <div class="row">
         <div class="row-container">
             <section class="col-xs-12">
-                <div class="col-xs-12 events-tracker">
+                <div class="col-xs-12 horizontal-events-tracker">
                     <div class="row">
-                        <div class="col-xs-12 events-tracker__section">
-                            <span class="events-tracker__title">Number of Events: <span id="js-events-counter" class="events-tracker__counter"></span></span>
-                            <span class="events-tracker__title">Number of Attractions: <span id="js-attractions-counter" class="events-tracker__counter"></span></span>
-                            <span class="events-tracker__title">Number of Venues: <span id="js-venues-counter" class="events-tracker__counter"></span></span>
+                        <div class="col-xs-12 horizontal-events-tracker__section">
+                            <span class="horizontal-events-tracker__title">
+                                Number of Events: 
+                                <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
+                            </span>
+                            <span class="horizontal-events-tracker__title">
+                                Number of Attractions: 
+                                <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
+                            </span>
+                            <span class="horizontal-events-tracker__title">
+                                Number of Venues: 
+                                <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -155,7 +164,8 @@ category: api-explorer
             <div class="col-xs-12">
                 <a href="#" id="parameters-btn"></a>
                 <h3 style="float: left;">Parameters</h3>
-                <a href="#" class="btn-default btn-small" id="clear-params">Clear parameters</a>
+                <a href="#" class="btn-default btn-small api-exp-param-button" id="copy-request">Copy</a>
+                <a href="#" class="btn-default btn-small api-exp-param-button" id="clear-params">Clear</a>
             </div>
         </div>
     </div>

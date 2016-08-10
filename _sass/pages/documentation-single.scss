@@ -88,16 +88,6 @@
     }
   }
   &.sdks {
-    #sdk-java,
-    #sdk-javascript,
-    #sdk-scala {
-      &:target:before {
-        content: "";
-        display: block;
-        height: 100px;
-        margin: -100px 0 0;
-      }
-    }
     @media (max-width: 768px) {
       .tutorials-article  {
         margin-bottom: 0;
@@ -116,6 +106,7 @@
 }
 
 .grey-box {
+  clear: both;
   width: 847px;
   padding: 46px 46px 26px 46px;
   background: #f1f4f6;
@@ -141,6 +132,7 @@
     background-image: url('/assets/img/products-and-docs/android-mock-i-o-s-mock.png');
     background-position: right bottom;
     background-repeat: no-repeat;
+    overflow: hidden;
     @media #{$max-768} {
       background-image: none;
       margin-top: 10px;
@@ -215,7 +207,7 @@
 .widget_box {
   width: 850px;
   min-height: 438px;
-  margin-bottom: 72px;
+  margin-bottom: $base-margin*3;
   background-repeat: no-repeat;
   background-position: right top;
 
@@ -262,7 +254,7 @@
 
 
   h2{
-    padding: 72px 0 0 48px;
+    padding: $base-margin*3 0 0 $base-margin*2;
     color: #fff;
     font-size: 54px;
     line-height: 66px;

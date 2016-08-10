@@ -56,7 +56,7 @@ Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&apikey={api
 
 | **Name** | **Description** | **Required** | **Sample** |
 | --- | --- | --- | --- |
-| Product\* (see details below) | A logical grouping of related database resources | Yes | sth-customersth sth-inventorysth sth-holdsth sth-buy |
+| Product\* (see details below) | A logical grouping of related database resources | Yes | sth-customer sth-inventory sth-hold sth-buy |
 | resource | Path to an API method | Yes | ticketing\_services.aspx |
 | dsn | Data Source Name | Yes | DSN (e.g., sandbox, test) |
 | API key | Authorized API Key | Yes | [Unique to each developer - Get your API key](https://live-livenation.devportal.apigee.com/user/login) |
@@ -260,7 +260,7 @@ Ticketmaster systems support multiple clients and our Web Services layer require
     * Set-Cookie: `QTKN=<something>`
     * Continue to step 3
   - If HTTP response is not 200 and is not 202, contact Ticketmaster for assistance.
-+ Y seconds later (Y is normally about 300ms), the caller repeats the initial HTTPS request, using the &quot;cookies&quot; provided, to check if the response is complete.
++ Y seconds later (Y is normally about 300 ms), the caller repeats the initial HTTPS request, using the &quot;cookies&quot; provided, to check if the response is complete.
   - The complete JSON Command should be included each time the call is re-submitted.
   - Cookie values that were returned by the SERVER with the &quot;Set\_Cookie&quot; responses (above) must be provided in this polling step.
     * `SID` - should not change for the duration of this API polling cycle.

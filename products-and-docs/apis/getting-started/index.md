@@ -9,12 +9,30 @@ excerpt: Everything you need to start playing with the Ticketmaster API
 keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
 
+<ul class="events-tracker events-tracker_col-view">
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Events: </div>
+        <div id="js-events-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Attractions: </div>
+        <div id="js-attractions-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Venues: </div>
+        <div id="js-venues-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Countries: </div>
+        <div id="js-countries-counter" class="events-tracker__counter">7</div>
+    </li>
+</ul>
 
 # GETTING STARTED
 
-
 {: .lead .double-margin}
 Everything you need to get up and running with the Ticketmaster API. Basic concepts are talked about here, so please keep reading :)
+
 
 {: #introduction}
 ## Introduction
@@ -161,7 +179,7 @@ When you do go over your quota, you will get an HTTP status code 429 indicating 
 {% highlight json %}
 {
   "fault": {
-    "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
+    "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {apikey}",
     "detail": {
       "errorcode": "policies.ratelimit.QuotaViolation"
     }
@@ -275,6 +293,37 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
+    
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#get-cart">Get Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#create-cart">Create Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#empty-cart">Empty Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#update-cart-products">Update Cart Products</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    
+    
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#get-cart">Get Cart</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>

@@ -12,7 +12,7 @@ keywords: Partner API, TopPicks, Top Picks, host and API, reserve tickets
 # Top Picks API
 
 The Top Picks API provides seat recommendations based on current availability, sampling across various areas of a venue and available price points. Results are near real-time but for certain high velocity events picks may expire (sell out) quickly.
-
+{: .article .lead}
 
 ## Overview
 {: #overview }
@@ -114,7 +114,7 @@ Retrieve reservable seat information based on specific criteria.
 https://app.ticketmaster.com/top-picks/v1/events/1C00506FB56F338A?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne&areas=10,11&prices=70,150&quantity=4&ticketTypeId=000000000001&sections=103
 {% endhighlight %}
 
-{% highlight js %}
+{% highlight json %}
 Status 200
 {
   "picks": [
