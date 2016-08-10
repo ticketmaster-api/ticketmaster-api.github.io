@@ -208,6 +208,25 @@
         targetName = event.target.name,
         $tabButtons = $('.js-tab-buttons');
 
+    if(targetName === "w-tm-api-key") {
+      document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
+
+      if (sessionStorage.getItem('tk-api-key')) {
+        document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+        document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+      }
+      if (document.getElementById('w-tm-api-key').value == '') {
+        if (sessionStorage.getItem('tk-api-key')) {
+          document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+          document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+        }
+        else {
+          document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+          document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+        }
+      }
+    }
+
     if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
       isPostalCodeChanged = true;
