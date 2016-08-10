@@ -1,6 +1,7 @@
 class TicketmasterCalendarWidget {
 
     set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
+
     get config() { return this.widgetConfig; }
 
     set events(responce){ this.eventsList = this.parseEvents(responce);}
@@ -136,6 +137,11 @@ class TicketmasterCalendarWidget {
             let period = this.getDateFromPeriod(this.config.period);
             attrs.startDateTime = period[0];
             attrs.endDateTime = period[1];
+        }
+
+        if (sessionStorage.getItem('tk-api-key')) {
+            attrs.apikey = sessionStorage.getItem('tk-api-key');
+            document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", attrs.apikey);
         }
 
         if (this.config.period != 'week') {
@@ -1482,6 +1488,10 @@ class WeekScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            if (sessionStorage.getItem('tk-api-key')) {
+                tmapikey = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
+            }
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
@@ -1992,6 +2002,10 @@ class MonthScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            if (sessionStorage.getItem('tk-api-key')) {
+                tmapikey = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
+            }
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
@@ -2574,6 +2588,10 @@ class YearScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            if (sessionStorage.getItem('tk-api-key')) {
+                tmapikey = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
+            }
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {

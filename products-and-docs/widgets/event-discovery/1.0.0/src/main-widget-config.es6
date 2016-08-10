@@ -435,7 +435,11 @@
       $ul.html(''); //clear custom select list
       $countrySelect.prop('disabled', !results);
       if(results){
-        $countrySelect.prop('disabled', !results.length);
+        let status;
+        if (results.length <=1) status = true;
+        else status = false;
+        $countrySelect.prop('disabled', status);
+        // $countrySelect.prop('disabled', !results.length);
         options = '';
         for(let i in results){
           let result = results[i];

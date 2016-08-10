@@ -388,9 +388,12 @@
     function addCustomList(listWrapperElement, listWrapperId, activeVal) {
         var $listOption = $(listWrapperId).find('option'),//update list
             $placeholder = $(".country-select").find(".custom_select__placeholder"),
-            $ul = listWrapperElement;
+            // $ul = listWrapperElement;
+            $ul = $('.country-select .custom_select__list');
 
         $placeholder.val( $listOption.html() );
+
+        $($ul).html('');
 
         $listOption.each(function () {
             var data = {
