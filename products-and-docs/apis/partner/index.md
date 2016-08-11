@@ -1975,10 +1975,12 @@ Status 200
 ## Order management [GET]
 {: #order-mangement}
 
-Get detailed information about an order. For specifically-enabled accounts only. One of order_token or order_number is required.
+Get detailed information about an order. For specifically-enabled accounts only.
 
 /partners/v1/orders?order_token={order_token}?apikey={apikey}
 {: .code .red}
+
+*Polling: Yes*
 
 ### Parameters
 
