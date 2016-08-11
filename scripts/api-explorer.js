@@ -1183,6 +1183,7 @@ Object.byString = function(o, s) {
    * @returns {boolean}
    */
   function isLast(page) {
+    if (!page) return false;
     return +page.number >= +page.totalPages -1;
   }
 
@@ -1192,6 +1193,7 @@ Object.byString = function(o, s) {
    * @returns {boolean}
    */
   function isFirst(page) {
+    if (!page) return false;
     return +page.number === 0;
   }
 
