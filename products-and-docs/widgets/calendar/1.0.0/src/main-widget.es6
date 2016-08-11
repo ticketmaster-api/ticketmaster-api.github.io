@@ -347,7 +347,7 @@ class TicketmasterCalendarWidget {
                 widget.config.latlong = latlong;
                 if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
                 cb(widget.config.latlong);
-                console.log(latlong);
+                // console.log(latlong);
                 document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", latlong);
             }
         }
@@ -1510,7 +1510,7 @@ class WeekScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
-        console.log(latlong);
+        // console.log(latlong);
 
         return {
             "apikey": tmapikey,
@@ -1654,7 +1654,12 @@ class WeekScheduler {
                 if (events.page.totalElements != 0) {
                     events._embedded.events.forEach(function (item) {
                         if(item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')){
-                            place = item._embedded.venues[0].name;
+                            if (item._embedded.venues[0].hasOwnProperty('name')) {
+                                place = item._embedded.venues[0].name + ', ';
+                            }
+                            else {
+                                place = '';
+                            }
                             if (item._embedded.venues[0].hasOwnProperty('address')) {
                                 address = item._embedded.venues[0].address.line1;
                             } else {
@@ -1685,7 +1690,7 @@ class WeekScheduler {
                                     day: item.dates.start.localDate,
                                     time: item.dates.start.localTime
                                 }),
-                                'place': place + ', ' + address,
+                                'place': place + address,
                                 'url': item.url,
                                 'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
                                 'count': 0
@@ -1990,11 +1995,15 @@ class MonthScheduler {
             else {
                 firstDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7), 0);
                 lastDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7), 0);
+                firstDay.setDate(new Date(firstDay).getDate() - 1);
+                lastDay.setDate(new Date(lastDay).getDate() + 1);
+                // console.log(firstDay);
+                // console.log(lastDay);
             }
             if (parseInt(firstDay.getMonth()+1) <= 9) startmonth = '0' + parseInt(firstDay.getMonth() + 1); else startmonth = parseInt(firstDay.getMonth() + 1);
             startdate = '0' + firstDay.getDate();
             if (lastDay.getMonth()+1 <= 9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
-            enddate = lastDay.getDate();
+            enddate = '0' + lastDay.getDate();
             startDateTime = firstDay.getFullYear() + '-' + startmonth + '-01T00:00:00Z';
             endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
             // document.querySelector('[w-type="calendar"]').setAttribute("w-period", firstDay.getFullYear() + '-' + startmonth);
@@ -2023,7 +2032,6 @@ class MonthScheduler {
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
-
 
         return {
             "apikey": tmapikey,
@@ -2169,9 +2177,20 @@ class MonthScheduler {
 
                 if (events.page.totalElements != 0) {
 
+                    let currentMonth = document.querySelector('[w-type="calendar"]').getAttribute('w-period').substr(5,2);
+                    if (currentMonth == '') {
+                        currentMonth = new Date().getMonth() + 1;
+                        if (parseInt(currentMonth) <= 9) currentMonth = '0' + currentMonth;
+                    }
+
                     events._embedded.events.forEach(function (item) {
                         if(item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')){
-                            place = item._embedded.venues[0].name;
+                            if (item._embedded.venues[0].hasOwnProperty('name')) {
+                                place = item._embedded.venues[0].name + ', ';
+                            }
+                            else {
+                                place = '';
+                            }
                             if (item._embedded.venues[0].hasOwnProperty('address')) {
                                 address = item._embedded.venues[0].address.line1;
                             } else {
@@ -2194,19 +2213,23 @@ class MonthScheduler {
                         });
 
                         // if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
-                            monthEvents.push({
-                                'name': item.name,
-                                'date': item.dates.start.localDate,
-                                'time': item.dates.start.localTime,
-                                'datetime': widget.formatDate({
-                                    day: item.dates.start.localDate,
-                                    time: item.dates.start.localTime
-                                }),
-                                'place': place + ', ' + address,
-                                'url': item.url,
-                                'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                            });
-                        // }
+
+                            if (currentMonth == item.dates.start.localDate.substr(5,2)) {
+
+                                monthEvents.push({
+                                    'name': item.name,
+                                    'date': item.dates.start.localDate,
+                                    'time': item.dates.start.localTime,
+                                    'datetime': widget.formatDate({
+                                        day: item.dates.start.localDate,
+                                        time: item.dates.start.localTime
+                                    }),
+                                    'place': place + address,
+                                    'url': item.url,
+                                    'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                });
+                            }
+
                     });
                 }
                 else {
@@ -2217,6 +2240,8 @@ class MonthScheduler {
                     widget.showMessage("No results were found.<br/>Here other options for you.");
                     widget.hideMessageWithDelay(widget.hideMessageDelay);
                 }
+
+                console.log(monthEvents);
 
                 let monthEventsSort = {};
                 let eventsArr = [];
