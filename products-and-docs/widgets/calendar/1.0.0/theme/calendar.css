@@ -1546,6 +1546,21 @@ div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c:after {
     background-size: 98px;
 }
 
+div[w-theme="calendar"][w-colorscheme="dark"] .spinner-container {
+    width: 100%;
+    height: 275px;
+    margin: 0 auto;
+    text-align: center;
+    background: #48494a;
+    display: block;
+    position: absolute;
+    z-index: 10;
+}
+
+div[w-theme="calendar"] .spinner > div {
+    opacity: 0.5;
+}
+
 div[w-theme="calendar"] .spinner-container {
     width: 100%;
     height: 275px;
