@@ -1364,10 +1364,22 @@ class SelectorControls {
         this.selContent.addEventListener("click",function(e){
             if (e.target.classList.contains('selector-content') === false) {
                 this.parentNode.getElementsByClassName('selector-title')[0].innerHTML = e.target.innerHTML;
+                this.parentNode.getElementsByClassName('selector-title')[0].setAttribute("w-classificationid", e.target.getAttribute('w-classificationId'));
                 this.parentNode.getElementsByClassName('selector-title')[0].classList.remove('open');
                 this.parentNode.getElementsByClassName('selector-content')[0].classList.remove('show');
                 if (attribute == 'period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period', e.target.getAttribute('w-period'));
+                if (attribute == 'w-period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period-week', e.target.getAttribute('w-period-week'));
                 if (attribute == 'classificationId') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-classificationId', e.target.getAttribute('w-classificationId'));
+
+                /* Month fix by dates changing */
+                if (this.parentNode.classList.contains('sliderLeftSelector') === true) {
+                    if (this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid') != undefined) {
+                        if (this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid') != document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId")) {
+                            document.querySelector('[w-type="calendar"]').setAttribute("w-classificationId", this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid'));
+                        }
+                    }
+                }
+
                 update();
             }
             else {
@@ -2003,9 +2015,12 @@ class MonthScheduler {
             if (parseInt(firstDay.getMonth()+1) <= 9) startmonth = '0' + parseInt(firstDay.getMonth() + 1); else startmonth = parseInt(firstDay.getMonth() + 1);
             startdate = '0' + firstDay.getDate();
             if (lastDay.getMonth()+1 <= 9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
-            enddate = '0' + lastDay.getDate();
+            if (lastDay.getDate()+1 <= 9) enddate = '0' + parseInt(lastDay.getDate() + 1); else enddate = parseInt(lastDay.getDate()) + 1;
+            // enddate = '0' + lastDay.getDate();
+
             startDateTime = firstDay.getFullYear() + '-' + startmonth + '-01T00:00:00Z';
             endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
+            // console.log(startDateTime + ' - ' + endDateTime);
             // document.querySelector('[w-type="calendar"]').setAttribute("w-period", firstDay.getFullYear() + '-' + startmonth);
         }
 
@@ -2241,10 +2256,11 @@ class MonthScheduler {
                     widget.hideMessageWithDelay(widget.hideMessageDelay);
                 }
 
-                console.log(monthEvents);
+                // console.log(monthEvents);
 
                 let monthEventsSort = {};
                 let eventsArr = [];
+                // console.log(monthEvents[0]);
                 let tDate = monthEvents[0].date;
 
                 for (let e = 0, l = monthEvents.length; e < l; e++) {
@@ -2468,6 +2484,7 @@ class MonthScheduler {
 
     getCategories() {
         let active = document.querySelector('[w-type="calendar"]').getAttribute('w-classificationid');
+        let activeId = document.querySelector('[w-type="calendar"]').getAttribute('w-classificationid');
         switch (active) {
             case 'KZFzniwnSyZfZ7v7na':
                 active = 'Arts & Theatre';
@@ -2487,7 +2504,7 @@ class MonthScheduler {
             default:
                 active = 'All Events';
         }
-        let content = '<span class="selector-title">';
+        let content = '<span class="selector-title" w-classificationid="' + activeId + '">';
         content += active;
         content += '</span>';
         content += '<span class="selector-content" tabindex="-1">';
