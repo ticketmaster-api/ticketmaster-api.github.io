@@ -1485,9 +1485,9 @@ class WeekScheduler {
         endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
         // console.log(startDateTime + ' - ' + endDateTime);
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-            start = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
-            end = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period-week") != 'week') {
+            start = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
+            end = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
             end.setDate(end.getDate() + 6);
             if (start.getMonth()+1 <=9) startmonth = '0' + (start.getMonth()+1); else startmonth = start.getMonth()+1;
             if (start.getDate() <=9) startdate = '0' + start.getDate(); else startdate = start.getDate();
@@ -1753,8 +1753,8 @@ class WeekScheduler {
 
                 var current = new Date();
 
-                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-                    var weekstart = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
+                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period-week") != 'week') {
+                    var weekstart = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
                     weekstart.setDate(weekstart.getDate() - weekstart.getDay());
                 }
                 else {
@@ -1902,8 +1902,8 @@ class WeekScheduler {
         content += '<span class="selector-content" tabindex="-1">';
 
         for (var m=0; m<=5; m++) {
-            if (m==0) content += `<span class="active" w-period="${sunday}">`;
-            content += `<span w-period="${sunday}">`;
+            if (m==0) content += `<span class="active" w-period-week="${sunday}">`;
+            content += `<span w-period-week="${sunday}">`;
             content += monthNames[sunday.getMonth()] + ' ' + sunday.getDate();
             sunday.setDate(sunday.getDate() + 6);
             content += ' - ' + monthNames[sunday.getMonth()] + ' ' + sunday.getDate();
@@ -1926,7 +1926,7 @@ class WeekScheduler {
 
         this.getCurrentMonth();
 
-        let leftSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderLeftSelector', this.getCurrentMonth(), 'period', this.update.bind(this));
+        let leftSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderLeftSelector', this.getCurrentMonth(), 'w-period', this.update.bind(this));
         let RightSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
 
         this.weekdaysRootContainer = document.createElement("div");
