@@ -1521,7 +1521,20 @@ div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover .count {
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] #calendar td.dis {
-    color: #768692;
+    color: #696969;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table th {
+    color: #c8c8c9;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table td {
+    color: #8d8d8d;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #year .month .name,
+div[w-theme="calendar"][w-colorscheme="dark"] #year .month .name.current {
+    color: #c8c8c9;
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-box {
