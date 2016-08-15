@@ -78,7 +78,7 @@ Let's review the code (or you can also play with it on [Plunker](http://plnkr.co
 {: .t-lang-selector}
 
 
-{% highlight js %}
+{% highlight html %}
 <!DOCTYPE html>
 <html>
 

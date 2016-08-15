@@ -2260,8 +2260,13 @@ class MonthScheduler {
 
                 let monthEventsSort = {};
                 let eventsArr = [];
-                // console.log(monthEvents[0]);
-                let tDate = monthEvents[0].date;
+                let tDate = '';
+                if (monthEvents[0]) {
+                    tDate = monthEvents[0].date;
+                }
+                else {
+                    tDate = '';
+                }
 
                 for (let e = 0, l = monthEvents.length; e < l; e++) {
                     if (tDate == monthEvents[e].date) {
