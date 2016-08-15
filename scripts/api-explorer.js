@@ -27,7 +27,6 @@ Object.byString = function(o, s) {
  * API method description = <resource><method><doc>***</doc></method></resource>
  * API method category = <resource><method><? primary="true">***</?></method></resource>
  * */
-
 (function($){
 
   var base = {}, //base object with parsed API data
@@ -55,12 +54,12 @@ Object.byString = function(o, s) {
     ], // array with color classes used to differentiate columns
     currentColumnColorIndex = -1, // current color index in color array used to set column background
     nextCircleColorIndex = currentColumnColorIndex, // color index used to display in circles
-    screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization)
+    screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization),
     worker = new Worker('../scripts/components/highlight-worker.js'); // Json-formatter worker
 
   /* INITIALIZATION PHASE */
 
-  $(function() {
+  $(function () {
     var item = sessionStorage.getItem('tk-api-email');
     document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
     readFromWADL(); //parse WADL file when document is ready
@@ -511,6 +510,11 @@ Object.byString = function(o, s) {
     var count = 0;
     var result = 0;
 
+    if (!pageInput.length) {
+      $('.pagination-btn').addClass('hide');
+      return;
+    }
+
     setEventHandler('.pagination-btn', 'click touch', function paginationBtn(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -535,6 +539,7 @@ Object.byString = function(o, s) {
   // column constructor
   var Column = function(configObject, responseObject, index, guId) {
     var self = this;
+
     self.guId = guId;
     self.responseObject = responseObject;
     self.destinationObject = {};
@@ -543,10 +548,10 @@ Object.byString = function(o, s) {
     self.usedParams = getAllParameteres();
     removeHandler('.pagination-btn');
     self.init = function () {
-      var resPage = self.responseObject.page,
-        subcolumn,
-        listGroup,
-        title;
+        var resPage = responseObject.page,
+          subcolumn,
+          listGroup,
+          title;
 
       self.column = $([
         '<div class="api-column', colors[currentColumnColorIndex], (index ? ' transparent' : '') + '"></div>'// colorize column appropriately
@@ -555,11 +560,14 @@ Object.byString = function(o, s) {
       for (var i = 0; i < configObject.length; i++) { // iterate through method main subcolumns
         subcolumn = configObject[i]; // subcolumn
         listGroup = $('<div class="list-group"></div>'); //subcolumn future element
+        var isPage = subcolumn.title.toLowerCase() === 'page';
         title = $([
-          '<a class="list-group-item active', (isPage(subcolumn.title) ? ' pagination" id="api-explorer-pagination"' : '"'), '>',
+          '<a class="list-group-item active', (isPage ? ' pagination" id="api-explorer-pagination"' : '"'), '>',
             subcolumn["title"],
-            '<b id="next-page" class="pagination-btn next-page btn', (isLast(resPage) ? ' hide': ''),'">&nbsp;</b>',
-            '<b id="prev-page" class="pagination-btn prev-page btn', (isFirst(resPage) ? ' hide': ''),'">&nbsp;</b>',
+            isPage ?  [
+              '<b id="next-page" class="pagination-btn next-page btn', isLast(resPage) ? ' hide': '','">&nbsp;</b>',
+              '<b id="prev-page" class="pagination-btn prev-page btn', isFirst(resPage) ? ' hide': '','">&nbsp;</b>'
+            ].join(''): '',
           '</a>'
         ].join('')); // subcolumn title
 
@@ -571,6 +579,7 @@ Object.byString = function(o, s) {
 
         if (subcolumn["expandsTo"]){
           var nextIndex = getNextColorIndex();
+          var string = getFirstLowercase(subcolumn.title);
 
           title
             .append($([
@@ -578,13 +587,13 @@ Object.byString = function(o, s) {
                 'class="pull-right expand-new-method" ',// more button
                 'method="',subcolumn["expandsTo"],'" ',
                 'next-color-index="',nextIndex,'" ',
-                'data-id="',(destinationObject.id ? destinationObject.id : (destinationObject.segment ? destinationObject.segment.id : 'undefined')),
+                'data-id="',(destinationObject.id ? destinationObject.id : (destinationObject[string] ? destinationObject[string].id : 'undefined')),
               '"></a>'
             ].join('')))
             .append($(['<p class="pull-right color-circle', colors[nextIndex],'"></p>'].join('')));
         }
 
-        if (subcolumn["map"]){ // does subcolumn have latitude and longitude for map popup?
+        if (subcolumn["map"]) { // does subcolumn have latitude and longitude for map popup?
           var coordinatesDestination = subcolumn["map"]["coordinates"]["path"] ? Object.byString(destinationObject,  subcolumn["map"]["coordinates"]["path"]) : destinationObject, // if field has its additional path
             dataLat = coordinatesDestination ? coordinatesDestination[subcolumn["map"]["coordinates"]["latitude"]] : 'undefined', // latitude
             dataLng = coordinatesDestination ? coordinatesDestination[subcolumn["map"]["coordinates"]["longitude"]] : 'undefined', // longitude
@@ -614,7 +623,7 @@ Object.byString = function(o, s) {
         if (i === 0) // append link to log to the first subcolumn
           title.append($('<a href="#" data-guid="' + self.guId + '" class="log-btn pull-right"></a>'));
 
-        if (subcolumn["collection"]){
+        if (subcolumn["collection"]) {
           var itemCount = 0, // variable to store items count
             field = subcolumn["fields"][0], // field to be iterated in subcolumn
             expandsTo = field["expandsTo"],
@@ -641,7 +650,7 @@ Object.byString = function(o, s) {
           }
           title.prepend('<p class="subcolumn-count">' + itemCount + '</p>'); // show item count in sobcolumn title area
         } else {
-          for (var field in subcolumn["fields"]){
+          for (var field in subcolumn["fields"]) {
             var destinationDeep = subcolumn["fields"][field]["path"] ? Object.byString(destinationObject,  subcolumn["fields"][field]["path"]) : destinationObject, // if field has its additional path
               isThumbnail = subcolumn["fields"][field]["thumbnail"] ? true : false, // if there is a thumbnail
               thumbNailPath = isThumbnail ? (subcolumn["fields"][field]["thumbnail"]["path"] ? subcolumn["fields"][field]["thumbnail"]["path"] : '') : ''; // if there is a thumbnail path - save it
@@ -667,7 +676,9 @@ Object.byString = function(o, s) {
         }
       }
     };
+
     setPaginationlistener();
+
     self.render = function(){
       slider.slick('slickAdd', self.column);
       slider.slick('slickNext');
@@ -1196,15 +1207,6 @@ Object.byString = function(o, s) {
   }
 
   /**
-   * Checks for page section
-   * @param title {string}
-   * @returns {boolean}
-   */
-  function isPage(title) {
-    return title.toLowerCase() === 'page';
-  }
-
-  /**
    * Removes delegated handler
    * @param selector {string}
    * @param namespace {string}
@@ -1216,6 +1218,15 @@ Object.byString = function(o, s) {
     ].join(' ');
 
     $(document).undelegate(selector, eventName);
+  }
+
+  /**
+   * Makes transforms first letter to lowercase
+   * @param string
+   * @returns {string}
+   */
+  function getFirstLowercase(string) {
+    return string.charAt(0).toLowerCase() + string.slice(1);
   }
 
   /**
