@@ -2319,6 +2319,9 @@ class MonthScheduler {
                 }
                 outEnd.reverse();
                 table += outEnd.join('');
+                let tableRowMonth = 0;
+                let tail_ = 'tail';
+                let popup_ = 'popup ';
 
                 while (d.getMonth() == mon) {
                     table += '<td';
@@ -2329,18 +2332,10 @@ class MonthScheduler {
                         if (eventsCount === undefined) eventsCount = 1;
                         table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
 
-                        if (d.getDate() <= 10) {
-                            table += '<span class="tail"></span>';
-                            table += '<div class="popup ';
-                            if (eventsCount == 1) table += 'single ';
-                            table += 'ss" tabindex="-1">';
-                        }
-                        else {
-                            table += '<span class="tail-up"></span>';
-                            table += '<div class="popup-up ';
-                            if (eventsCount == 1) table += 'single ';
-                            table += 'ss" tabindex="-1">';
-                        }
+                        table += '<span class="' + tail_ + '"></span>';
+                        table += '<div class="' + popup_ + ' ';
+                        if (eventsCount == 1) table += 'single ';
+                        table += 'ss" tabindex="-1">';
 
                         table += '<div class="ss-container">';
 
@@ -2385,6 +2380,11 @@ class MonthScheduler {
                     table += '</td>';
 
                     if (d.getDay() % 7 == 6) {
+                        tableRowMonth++;
+                        if (tableRowMonth > 1) {
+                            tail_ = 'tail-up';
+                            popup_ = 'popup-up ';
+                        }
                         table += '</tr><tr>';
                     }
 
