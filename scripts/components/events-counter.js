@@ -1,7 +1,7 @@
 (function ($) {
   var apiKey = sessionStorage.getItem('tk-api-key') || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0"; //API Key
 
-  $(document).ready(function() {
+  $(function() {
     initEventCountersPanel(); // Counter panel init
   });
 
@@ -30,6 +30,9 @@
     if (url !== 'countries') {
       $.ajax({
         method: 'GET',
+        headers: {
+          Accept: 'application/json, text/javascript, */*;'
+        },
         url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join('')
       }).then(function (data) {
         var quantity = data.page && data.page.totalElements || 'none';
