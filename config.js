@@ -269,6 +269,7 @@ var venueDetails = function (version, isPrimary, notExpandable) {
         {
           "title": "Genre", // subcolumn title (required)
           "path": path, // path to fields (required)
+          "expandsTo": "discovery.v2.classifications.id.get",
           "fields": [
             {
               "id": "name",
@@ -279,12 +280,11 @@ var venueDetails = function (version, isPrimary, notExpandable) {
               "path": "genre"
             }
           ]
-        }
-      );
-      returnObj.push(
+        },
         {
           "title": "SubGenre", // subcolumn title (required)
           "path": path, // path to fields (required)
+          "expandsTo": "discovery.v2.classifications.id.get",
           "fields": [
             {
               "id": "name",
@@ -1418,6 +1418,7 @@ var CONFIG = {
     },
     pageDetails
   ],
+
   "discovery.v2.classifications.id.get": [
     {
       "title": "Segment", // subcolumn title (required)
