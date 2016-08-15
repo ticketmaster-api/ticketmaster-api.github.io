@@ -1,9 +1,19 @@
-Meta:
+Meta:kb
 
 Narrative:
 As a test enfineer
 I want to test Ticket Master Developer's site
 So that I test API Key is shown corectly on the pages
+
+Scenario: (APi Key - Geting Started page) Placeholder is shown when user is not logged in
+Given open Getting Started page
+When User is not logged to site (Getting Started)
+Then check that API key is provided for all placeholders on Getting Started page
+
+Scenario: (APi Key - Geting Started page) Custom API key is shown when user is logged in
+Given open Getting Started page
+When User is logged to site (Getting Started)
+Then check that API key is provided for all placeholders on Getting Started page
 
 Scenario: (APi Key - Interactive API Console page) Placeholder is shown when user is not logged in
 Given open Interactive API Console page

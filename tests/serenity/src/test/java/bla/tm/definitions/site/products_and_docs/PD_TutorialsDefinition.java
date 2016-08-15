@@ -7,6 +7,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static bla.tm.DevSiteTestsRunner.baseTestedUrl;
+
 public class PD_TutorialsDefinition {
 
     @Steps
@@ -34,7 +36,7 @@ public class PD_TutorialsDefinition {
 
     @Then("check that new page opened from Tutorials page has $url and $title")
     public void checkIfPageIsOpened(String url, String title){
-        anyPage.checkIfPageIsOpened(url,title);
+        anyPage.checkIfPageIsOpened(url,title,baseTestedUrl);
     }
 
 }
