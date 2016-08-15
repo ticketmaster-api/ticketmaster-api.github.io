@@ -5,6 +5,9 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @DefaultUrl("/products-and-docs/apis/getting-started/")
 public class PD_GettingStartedPage extends AncestorPage {
@@ -17,12 +20,21 @@ public class PD_GettingStartedPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='content getting-started']/ul[@class='events-tracker events-tracker_col-view']")
     private WebElementFacade summaryWidget;
 
+    @FindBy(xpath = "//div[@class='content getting-started']/figure/pre/code[@class='language-json']/span[@class='s2' and contains(., 'Rate limit quota violation. Quota limit  exceeded. Identifier :')]")
+    private WebElementFacade apikey01PlaceHolder;
+
     public WebElementFacade getAvailableResourcesTable() {
        return  availableResourcesTable;
     }
 
     public WebElementFacade getSummaryWidget() {
         return  summaryWidget;
+    }
+
+    public Map<String,WebElementFacade> getAPIKeyPlaceHoldersList() {
+        Map<String,WebElementFacade> elements = new HashMap<>();
+        elements.put("apikey01PlaceHolder", apikey01PlaceHolder);
+        return elements;
     }
 
 }

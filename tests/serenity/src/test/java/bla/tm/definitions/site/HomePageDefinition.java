@@ -8,6 +8,7 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static bla.tm.DevSiteTestsRunner.baseTestedUrl;
 import static org.junit.Assert.assertTrue;
 
 public class HomePageDefinition {
@@ -40,7 +41,7 @@ public class HomePageDefinition {
 
     @Then("check that new page opened from Home page has $url and $xpath")
     public void checkIfPageIsOpened(String url, String xpath){
-        anyPage.checkIfPageIsOpened(url,xpath);
+        anyPage.checkIfPageIsOpened(url,xpath,baseTestedUrl);
     }
 
     @Then("check general page elements for Home Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
