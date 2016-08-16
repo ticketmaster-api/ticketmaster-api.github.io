@@ -13,40 +13,37 @@ keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 # SDKs
 
 
-{% capture SDKJava_img %}
-/assets/img/products-and-docs/sdk-java-img.png
-{% endcapture %}
+{% capture SDKJava_img %}/assets/img/products-and-docs/sdk-java-img.png{% endcapture %}
+{% capture SDKJava_img_square %}/assets/img/products-and-docs/sdk-java-img-263.png{% endcapture %}
 {% capture SDKJava_title %}
 SDK-Java
 {% endcapture %}
 {% capture SDKJava_description %}
-
+Java SDK for the Ticketmaster Open Platform. 
 {% endcapture %}
 {% capture SDKJava_link %}
 https://github.com/ticketmaster-api/sdk-java
 {% endcapture %}
 
-{% capture SDK_JS_img %}
-/assets/img/products-and-docs/sdk-js-img.png
-{% endcapture %}
+{% capture SDK_JS_img %}/assets/img/products-and-docs/sdk-js-img.png{% endcapture %}
+{% capture SDK_JS_img_square %}/assets/img/products-and-docs/sdk-js-logo.png{% endcapture %}
 {% capture SDK_JS_title %}
 SDK-JavaScript
 {% endcapture %}
 {% capture SDK_JS_description %}
-
+Javascript SDK for the Ticketmaster Open Platform.
 {% endcapture %}
 {% capture SDK_JS_link %}
 https://github.com/ticketmaster-api/sdk-javascript
 {% endcapture %}
 
-{% capture SDK_scala_img %}
-/assets/img/products-and-docs/sdk-scala-img.png
-{% endcapture %}
+{% capture SDK_scala_img %}/assets/img/products-and-docs/sdk-scala-img.png{% endcapture %}
+{% capture SDK_scala_img_square %}/assets/img/products-and-docs/sdk-scala-img-263.png{% endcapture %}
 {% capture SDK_scala_title %}
 SDK-Scala
 {% endcapture %}
 {% capture SDK_scala_description %}
-
+Scala SDK for the Ticketmaster Open Platform. This SDK supports Discovery v2.
 {% endcapture %}
 {% capture SDK_scala_link %}
 https://github.com/ticketmaster-api/sdk-scala
@@ -68,7 +65,7 @@ season tickets all in one trusted place.
 {% endcapture %}
 
 
-
+<div class="no-desktop">
 <div class="raw" id="sdk-java" markdown="1"> 
   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
       <div class="tutorials-article">                
@@ -110,11 +107,70 @@ season tickets all in one trusted place.
   </div>
   <div class="clearfix" ></div>
 </div>
+</div>
+
+
+<div class="tiles-wrapper desktop">
+
+<div class="flip-container col-md-4 col-lg-4" >
+    <div class="flipper">
+        <div class="front">            
+            <div class="img-wrapper">
+                <img src="{{SDKJava_img_square}}" alt="{{SDKJava_title}}">              
+            </div>
+        </div>
+        <div class="back">
+          <a href="{{ SDKJava_link }}">
+            <h3>{{SDKJava_title}}</h3>            
+            <p>{{SDKJava_description}}</p>
+          </a>
+        </div>
+    </div>
+</div>
+
+<div class="flip-container col-md-4 col-lg-4" >
+    <div class="flipper">
+        <div class="front">  
+            <div class="img-wrapper">                
+                  <img src="{{SDK_JS_img_square}}" alt="{{SDK_JS_title}}">          
+            </div>
+        </div>
+        <div class="back">
+          <a href="{{ SDK_JS_link }}">
+            <h3>{{SDK_JS_title}}</h3>            
+            <p>{{SDK_JS_description}}</p>
+          </a>
+        </div>
+    </div>
+</div>
+
+<div class="flip-container col-md-4 col-lg-4" >
+    <div class="flipper">
+        <div class="front">            
+            <div class="img-wrapper">              
+                <img src="{{SDK_scala_img_square}}" alt="{{SDK_scala_title}}">              
+            </div>
+        </div>
+        <div class="back">
+            <a href="{{ SDK_scala_link }}">
+              <h3>{{SDK_scala_title}}</h3>            
+              <p>{{SDK_scala_description}}</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+</div><!--tiles-wrapper-->
+
 
 <div class="grey-box android" markdown="1">
 {{manager}}
 </div>
 
+
+<script>
+$(".flip-container").on('tap', 'this.classList.toggle("hover")');
+</script>
 
 <div id="disqus_thread" style="margin-top: 50px;"></div>
 <script>
