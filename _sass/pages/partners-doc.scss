@@ -50,16 +50,27 @@
   z-index: 2;
   /* for firefox 31 */
   transform: rotateY(0deg);
+
+  /*other*/
+  -ms-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
 .back {
   height: 100%;
   background: #FFF;
-  transform: rotateY(180deg);
   overflow: hidden;
   font-size: $small-font-size;
   max-height: 95%;
+  transform: rotateY(180deg);
+  /*other*/
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
 }
 
 
