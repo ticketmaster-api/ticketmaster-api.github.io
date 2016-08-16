@@ -40,6 +40,10 @@ All connections must be made over SSL using https.
 New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
     * 3F004ACD115F6B19
+    
+    
+### Production environment testing
+    * 000051048D991EE7: Use this event ID for production environment testing
 
 ### Best Practices
 
@@ -1490,6 +1494,16 @@ Sample credit-card information for use in the sandbox environment:
     <li>CC#: 4588883206000011</li>
     <li>CVV: 123</li>
     <li>Expiration: 12/2020</li>
+</ul>
+
+Sample credit-card information for use in the production environment for event id 000051048D991EE7:
+
+<ul>
+    <li>payment.card.issuer=DISCOVER</li>
+	<li>payment.card.number=6011993200001006</li>
+	<li>payment.card.cvv=123</li>
+	<li>payment.card.exp.month=12</li>
+	<li>payment.card.exp.year=2020</li>
 </ul>
 
 Sample code for salting 
