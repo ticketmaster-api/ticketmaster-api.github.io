@@ -23,7 +23,7 @@ layout: default
                 <div class="content" style="display: block;">
 
                     {% if page.categories[1] == "generated" %}
-                        {%comment%}{% include swagger.html %}{%endcomment%}
+                        {%comment%}{%endcomment%}{% include swagger.html %}
                     {% else %}
                         {{ content }}
                     {% endif %}
@@ -45,7 +45,7 @@ layout: default
         <div class="modal-content">
             <div class="modal-header">
                 <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
-                <h4 id="modal-title" class="modal-title"></h4>
+                <h2 id="modal-title" class="modal-title"></h2>
             </div>
             <div class="modal-body">
                 <div class="highlight"></div>
@@ -60,7 +60,6 @@ layout: default
 <script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/request-response.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/components/table-collapse.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/vendors/jstree.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/list-collapse.js" | prepend: site.baseurl }}"></script>
 

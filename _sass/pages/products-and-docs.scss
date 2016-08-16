@@ -85,6 +85,7 @@
 .sdk {
     margin-top: 50px;
     text-align: center;
+
     @media #{$max-768}{
       .sdk-elem{
         margin-bottom: 23px;
@@ -135,6 +136,193 @@
     }
 }
 
+.sdks {
+    h1 {
+        margin: 57px 0 45px;
+    }
+    .lead {
+        margin: 25px 0;
+        max-width: 850px;
+    }
+}
+.sdk-lead {
+    margin: 0;
+}
+.sdk-flip-container {
+    $steel-20: rgba(118, 134, 146, 0.2);
+    $size: 264px;
+
+    width: $size;
+    height: $size;
+    perspective: 1000px;
+    float: left;
+    margin: 25px 28px 73px 0;
+    .sdk-flipper {
+        width: $size;
+        height: $size;
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+        .sdk-front,
+        .sdk-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            border: solid 1px $steel-20;
+        }
+        .sdk-front {
+            width: $size;
+            height: $size;
+            z-index: 2;
+            transform: rotateY(0deg);
+            text-align: center;
+        }
+        .sdk-back {
+            .sdk-description__title {
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 1.33;
+                color: #414141;
+                margin: 0;
+            }
+            .sdk-description__text {
+                margin: 15px 0;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #768692;
+            }
+            width: $size;
+            height: $size;
+            padding: 18px 20px;
+            transform: rotateY(180deg);
+        }
+        .sdk-front-java {
+            background-color: rgba(94, 138, 165, 0.1);
+        }
+        .sdk-front-js {
+        }
+        .sdk-front-scala {
+        }
+        .sdk-img {
+            max-width: 100%;
+            min-height: 100%;
+        }
+        .sdk-img-java {
+            width: 110px;
+            object-fit: contain;
+        }
+        .sdk-img-js {
+        }
+        .sdk-img-scala {
+            width: 78px;
+        }
+        .mobile {
+            display: none;
+        }
+        .desktop {
+            display: block;
+        }
+    }
+    &:hover .sdk-flipper,
+    &.hover .sdk-flipper {
+        transform: rotateY(180deg);
+    }
+    .sdk-button {
+        display: none;
+    }
+
+    @media #{$max-1200} {
+        $size: 220px;
+        height: auto;
+        width: auto;
+        overflow: hidden;
+        float: none;
+        * {
+            transform: none !important;
+        }
+        .sdk-flipper {
+            width: auto;
+            height: $size;
+            position: static;
+            .sdk-front,
+            .sdk-back {
+                position: static;
+            }
+            .sdk-front {
+                width: $size;
+                height: $size;
+                float: left;
+            }
+            .sdk-back {
+                width: auto;
+                height: auto;
+                border: none;
+                padding: 0 0 0 30px;
+                &.mobile {
+                    display: block;
+                }
+                &.desktop {
+                    display: none;
+                }
+
+                .sdk-description__title {
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 1.33;
+                    color: #414141;
+                    margin: 0;
+                }
+                .sdk-description__text {
+                    margin: 15px 0 0;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #768692;
+                }
+            }
+            .sdk-front-java {
+            }
+            .sdk-front-js {
+            }
+            .sdk-front-scala {
+            }
+            .sdk-img {
+            }
+            .sdk-img-java {
+                width: 91px;
+                height: 79%;
+                object-fit: contain;
+            }
+            .sdk-img-js {
+            }
+            .sdk-img-scala {
+                height: 100%;
+            }
+        }
+        .sdk-button {
+            display: inline-block;
+            margin-left: 30px;
+        }
+    }
+    @media #{$max-768} {
+        margin: 10px 0;
+        .sdk-flipper {
+            height: auto;
+            .sdk-front {
+                display: none;
+            }
+            .sdk-back {
+                padding: 0;
+            }
+        }
+        .sdk-button {
+            margin: 26px 0 48px;
+        }
+    }
+}
 
 
 .slice-left.affilated {

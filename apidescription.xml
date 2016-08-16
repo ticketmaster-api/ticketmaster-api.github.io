@@ -890,8 +890,186 @@
         <apigee:example url="purchase/v2/events/00004F70F3D1C21D/offers.json"/>
         <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#event-offers">Event Offers!
         </doc>
+      <request>
+         <param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+            <doc>
+               The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+            </doc>
+         </param>
+      </request>
       </method>
     </resource>
+    <!-- Get Cart -->
+    <resource path="commerce/{version}/shopping/carts/{cartId}.{format}">
+      <param name="version" required="true" type="xsd:string" style="template" default="v2">
+        <doc>The API Version</doc>
+      </param>
+      <param name="cartId" required="true" type="xsd:string" style="template" default="">
+        <doc>The cart id</doc>
+      </param>
+      <param name="format" required="false" type="xsd:string" style="template" default="">
+        <doc>API Response Format</doc>
+      </param>
+      <method id="commerce.shopping.cart.get" name="GET" apigee:displayName="Get Cart">
+        <apigee:tags>
+          <apigee:tag primary="true">Commerce API</apigee:tag>
+          <apigee:tag>Commerce</apigee:tag>
+        </apigee:tags>
+        <apigee:authentication required="true"/>
+        <apigee:example url="commerce/v2/shopping/carts/c906b302-8248-4454-bca1-2dd938d8afa1.intqa.json"/>
+        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-cart">Get Cart!
+        </doc>
+      <request>
+         <param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+            <doc>
+               The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+            </doc>
+         </param>
+      </request>
+      </method>
+    </resource>
+    <!-- Empty Cart -->
+    <resource path="commerce/{version}/shopping/carts/{cartId}.{format}">
+      <param name="version" required="true" type="xsd:string" style="template" default="v2">
+        <doc>The API Version</doc>
+      </param>
+      <param name="cartId" required="true" type="xsd:string" style="template" default="">
+        <doc>The cart id</doc>
+      </param>
+      <param name="format" required="false" type="xsd:string" style="template" default="">
+        <doc>API Response Format</doc>
+      </param>
+      <method id="commerce.shopping.cart.empty" name="DELETE" apigee:displayName="Empty Cart">
+        <apigee:tags>
+          <apigee:tag primary="true">Commerce API</apigee:tag>
+          <apigee:tag>Commerce</apigee:tag>
+        </apigee:tags>
+        <apigee:authentication required="true"/>
+        <apigee:example url="commerce/v2/shopping/carts/c906b302-8248-4454-bca1-2dd938d8afa1.intqa.json"/>
+        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#empty-cart">Empty Cart!
+        </doc>
+      <request>
+         <param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+            <doc>
+               The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+            </doc>
+         </param>
+      </request>
+      </method>
+    </resource>
+    <!-- Create Cart -->
+    <resource path="commerce/{version}/shopping/carts.{format}">
+      <param name="version" required="true" type="xsd:string" style="template" default="v2">
+        <doc>The API Version</doc>
+      </param>
+      <param name="format" required="false" type="xsd:string" style="template" default="">
+        <doc>API Response Format</doc>
+      </param>
+      <method id="commerce.shopping.cart.create" name="POST" apigee:displayName="Create Cart">
+        <apigee:tags>
+          <apigee:tag primary="true">Commerce API</apigee:tag>
+          <apigee:tag>Commerce</apigee:tag>
+        </apigee:tags>
+        <apigee:authentication required="true"/>
+        <apigee:example url="commerce/v2/shopping/carts.json"/>
+        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#create-cart">Create Cart!
+        </doc>
+        <request>
+           <param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+              <doc>
+                 The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+              </doc>
+           </param>
+           <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json">
+           </param>
+           <representation>
+              <apigee:payload required="true">
+                 <doc apigee:url="https://developer.ticketmaster.com">
+                    The payload should contain a valid create cart in json format.
+                 </doc>
+                 <apigee:content>
+                    <![CDATA[
+                       {
+                          "pollingCallbackUrl" : "http://your.server:8080/your-webhook-uri/",
+                          "products" : [ {
+                             "offers" : [
+                             {
+                                "offer" : "000000000001"
+                             } 
+                             ],
+                             "product" : "00004F70F3D1C21D",
+                             "qty" : 1
+                          }  ]
+                       }
+                    ]]>
+                 </apigee:content>
+              </apigee:payload>
+           </representation>
+        </request>
+      </method>
+    </resource>
+    <!-- Update Cart Products -->
+    <resource path="commerce/{version}/shopping/carts/{cartId}/products.{format}">
+      <param name="version" required="true" type="xsd:string" style="template" default="v2">
+        <doc>The API Version</doc>
+      </param>
+      <param name="cartId" required="true" type="xsd:string" style="template" default="">
+        <doc>The Cart Id</doc>
+      </param>
+      <param name="format" required="true" type="xsd:string" style="template" default="json">
+        <doc>API Response Format</doc>
+      </param>
+      <method id="commerce.shopping.cart.update.products" name="POST" apigee:displayName="Update Cart Products">
+        <apigee:tags>
+          <apigee:tag primary="true">Commerce API</apigee:tag>
+          <apigee:tag>Commerce</apigee:tag>
+        </apigee:tags>
+        <apigee:authentication required="true"/>
+        <apigee:example url="commerce/v2/shopping/carts/4d1315c9-9220-48b3-9882-a295db25bfe3.jphx1/products.json"/>
+        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#create-cart">Create Cart!
+        </doc>
+        <request>
+           <param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+              <doc>
+                 The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+              </doc>
+           </param>
+           <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json">
+           </param>
+           <representation>
+              <apigee:payload required="true">
+                 <doc apigee:url="https://developer.ticketmaster.com">
+                    The payload should contain a valid create cart in json format.
+                 </doc>
+                 <apigee:content>
+                    <![CDATA[
+                       {
+                          "pollingCallbackUrl" : "http://your.server:8080/your-webhook-uri/",
+                          "products" : [ {
+                             "op": "add",
+                             "offers" : [
+                             {
+                                "offer" : "000000000001"
+                             } 
+                             ],
+                             "product" : "00004F70F3D1C21D",
+                             "qty" : 1
+                          },
+                          {
+                             "op": "remove",
+                             "reservation": "1",
+                             "product": "00004F70F3D1C21D"
+                          } ]
+                       }
+                    ]]>
+                 </apigee:content>
+              </apigee:payload>
+           </representation>
+        </request>
+      </method>
+    </resource>
+
+
     <!-- Publish API -->
     <resource path="publish/{version}/events.{format}">
       <param name="version" required="true" type="xsd:string" style="template" default="v2">

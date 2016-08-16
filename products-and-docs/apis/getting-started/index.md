@@ -9,12 +9,30 @@ excerpt: Everything you need to start playing with the Ticketmaster API
 keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
 
+<ul class="events-tracker events-tracker_col-view">
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Events: </div>
+        <div id="js-events-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Attractions: </div>
+        <div id="js-attractions-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Venues: </div>
+        <div id="js-venues-counter" class="events-tracker__counter"></div>
+    </li>
+    <li class="events-tracker__item">
+        <div class="events-tracker__title">Countries: </div>
+        <div id="js-countries-counter" class="events-tracker__counter">7</div>
+    </li>
+</ul>
 
 # GETTING STARTED
 
-
 {: .lead .double-margin}
 Everything you need to get up and running with the Ticketmaster API. Basic concepts are talked about here, so please keep reading :)
+
 
 {: #introduction}
 ## Introduction
@@ -24,7 +42,7 @@ To get the most out of your experience, [register for an API](https://live-liven
 
 We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event discovery experience for your fans.
 
-*Note: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2) and will be discontinued by the end of the year.*
+*Note: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2), therefore we recommend that developers plan to use this single service for access to global events.*
 
 Our APIs work against many platforms including Ticketmaster, TicketWeb, Universe, FrontGate, Ticketmaster Resale (TMR) and many more. 
 
@@ -125,7 +143,7 @@ http://app.ticketmaster.com/discovery/v1/events.json?keyword=Madonna&apikey=4dsf
 https://app.ticketmaster.com/commerce/v1/events/434343434/offers.json?apikey=4dsfsf94tyghf85jdhshwge334
 {: .code .red}
 
-{: .double-margin #rate-limit}
+{: #rate-limit}
 ## Rate Limit
 
 All API keys are issued with a _default quota_ of **5000 API calls/day**. We do increase rate limits on case-by-case basis. In order to increase the rate limit for a particular application, we need to verify the following:
@@ -144,34 +162,37 @@ You can see how much of your quota has been used by checking the following **res
 * **Rate-Limit-Over**: How many requests over your quota you've made.
 * **Rate-Limit-Reset**: The UTC date and time of when your quota will be reset.
 
-{: .code .red}
-	curl -I 'http://app.ticketmaster.com/discovery/v1/events.json?keyword=Queen&apikey=xxx'
 
-	HTTP/1.1 200 OK
-	Rate-Limit: 5000
-	Rate-Limit-Available: 4978
-	Rate-Limit-Over: 0
-	Rate-Limit-Reset: 1453180594367
+{% highlight bash %}
+curl -I 'http://app.ticketmaster.com/discovery/v1/events.json?keyword=Queen&apikey=xxx'
+
+HTTP/1.1 200 OK
+Rate-Limit: 5000
+Rate-Limit-Available: 4978
+Rate-Limit-Over: 0
+Rate-Limit-Reset: 1453180594367
+{% endhighlight %}
 
 ### API Response When Quota is Reached
 When you do go over your quota, you will get an HTTP status code 429 indicating you've made too many requests. The following is the API response you will receive:
 
-{: .code .red}
-	{
-		"fault": {
-			"faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {api key}",
-			"detail": {
-				"errorcode": "policies.ratelimit.QuotaViolation"
-			}
-		}
-	}
+{% highlight json %}
+{
+  "fault": {
+    "faultstring": "Rate limit quota violation. Quota limit  exceeded. Identifier : {apikey}",
+    "detail": {
+      "errorcode": "policies.ratelimit.QuotaViolation"
+    }
+  }
+}
+{% endhighlight %}
 
-{: .double-margin #cors-support}
+{: #cors-support}
 ## CORS Support
 
 The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing){:target="_blank"} which allows cross-domain requests to be made by JavaScript on a web page. Such "cross-domain" requests would otherwise be forbidden by web browsers, per the [same origin security policy](http://en.wikipedia.org/wiki/Same_origin_policy){:target="_blank"}. CORS is supported by all modern web browsers, and a full list of browser support can be found [here](http://caniuse.com/cors){:target="_blank"}.
 
-{: .double-margin #available-resources .no-mobile}
+{: #available-resources .no-mobile}
 ## Available Resources
 
 <div class="table-wrapper no-mobile">
@@ -260,16 +281,75 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: center; background: rgb(255, 255, 255);">
+      <td style="text-align: center; background: rgb(255, 255, 255);" rowspan="5">
         <a href="/products-and-docs/apis/commerce/">
           <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Commerce API">
         </a>
         <h4 style="margin-top:11px;text-">Commerce API</h4>
-        </td>
+      </td>
       <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#event-offers">Event Offers</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#get-cart">Get Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#create-cart">Create Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#empty-cart">Empty Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#update-cart-products">Update Cart Products</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; " class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px; "  class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    
+    
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#get-cart">Get Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#create-cart">Create Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#empty-cart">Empty Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#update-cart-products">Update Cart Products</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>

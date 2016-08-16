@@ -13,7 +13,7 @@ keywords: changelog, API
 {% capture changelog %}
 
 In this page you can find all updates of Ticketmaster APIs. 
-{: .lead}
+{: .lead .double-margin}
         
 {% endcapture %}
 

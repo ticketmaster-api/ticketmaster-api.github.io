@@ -1,7 +1,5 @@
 ---
 
-prime: true
-
 category: event
 title: "The Ticketmaster API Devjam in Hollywood, CA!"
 

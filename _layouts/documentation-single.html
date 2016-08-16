@@ -19,7 +19,7 @@ layout: default
             </div>
 
             <div class="col-xs-12 col-sm-12 col-lg-9 page-column " id="main-block">
-                <div class="content {% if page.categories[1] == 'sdks'%}sdks{% endif %}" style="display: block;">
+                <div class="content {% if page.categories[1] == 'sdks'%}sdks{% elsif page.categories[1] == 'getting-started' %}getting-started{% endif %}" style="display: block;">
                     {{ content }}
 
                     {% if page.categories[1] == 'changelog'%}
@@ -98,3 +98,4 @@ layout: default
     });
 </script>
 {% endif %}
+<script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>

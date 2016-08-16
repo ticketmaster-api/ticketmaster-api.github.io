@@ -53,6 +53,8 @@ https://github.com/ticketmaster-api/sdk-scala
 {% endcapture %}
 
 {% capture manager %}
+
+{: #account-manager}
 ### Account Manager
 
 {: .body}
@@ -67,10 +69,10 @@ season tickets all in one trusted place.
 
 
 
-<div class="raw" markdown="1"> 
+<div class="raw" id="sdk-java" markdown="1"> 
   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
       <div class="tutorials-article">                
-              <a href=" tutorials.link "><img src=" {{ SDKJava_img }} " class="image" alt="{{ SDKJava_title }}"/></a>                
+          <a href="{{ SDKJava_link }}"><img src=" {{ SDKJava_img }} " class="image" alt="{{ SDKJava_title }}"/></a>                
           <div class="announcement">
               <h3>{{ SDKJava_title }}</h3>
               <p>{{ SDKJava_description }}</p>
@@ -81,10 +83,10 @@ season tickets all in one trusted place.
   <div class="clearfix" ></div>
 </div>
 
-<div class="raw" markdown="1"> 
-  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10 double-margin-top">        
+<div class="raw" id="sdk-javascript" markdown="1"> 
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
       <div class="tutorials-article">                
-              <a href=" tutorials.link "><img src=" {{ SDK_JS_img }} " class="image" alt="{{ SDK_JS_title }}"/></a>                
+          <a href="{{ SDK_JS_link }}"><img src=" {{ SDK_JS_img }} " class="image" alt="{{ SDK_JS_title }}"/></a>                
           <div class="announcement">
               <h3>{{ SDK_JS_title }}</h3>
               <p>{{ SDK_JS_description }}</p>
@@ -95,10 +97,10 @@ season tickets all in one trusted place.
   <div class="clearfix" ></div>
 </div>
 
-<div class="raw" markdown="1"> 
+<div class="raw" id="sdk-scala" markdown="1"> 
   <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
       <div class="tutorials-article">                
-              <a href=" tutorials.link "><img src=" {{ SDK_scala_img }} " class="image" alt="{{ SDK_scala_title }}"/></a>                
+          <a href="{{ SDK_scala_link }}"><img src=" {{ SDK_scala_img }} " class="image" alt="{{ SDK_scala_title }}"/></a>                
           <div class="announcement">
               <h3>{{ SDK_scala_title }}</h3>
               <p>{{ SDK_scala_description }}</p>

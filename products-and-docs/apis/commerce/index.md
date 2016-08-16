@@ -26,6 +26,7 @@ Test this endpoint right now in the interactive docs:
 
 **Method:** GET.
 Authentication required.
+
 Returns Event Offers.
 
 commerce/{version}/events/{id}/offers.{format}
@@ -44,67 +45,25 @@ commerce/{version}/events/{id}/offers.{format}
 {: .nested-list}
 - `limits` (object) - limits for event.
     * `max` (object) - max limit.
-- `prices` (object) - prices.
-    * `_embedded` (array) - container for prices data.
+- `prices` (object) - set of distinct sellable prices for the event.
+    * `data` (array) - container for prices data.
         + `{array item object}` - price.
             - `type` (string) - type of price.
             - `attributes` (object) - attributes of price.
                 * `currency` (string) - currency of price.
+                * `value` (string) - the offered price.
             - `relationships` (object) - available relationships.
-                * `offers` (object) - related offers.
-                    - `_embedded` (array) - container for offers.
+                * `offers` (object) - offers that are sellable at this price.
+                    - `data` (array) - container for offers.
                         + `{array item object}` - offer.
                             * `id` (string) - id of offer.
                             * `type` (string) - type of offer.
-                * `price-zones` (object) - related price zones.
-                    - `_embedded` (array) - container for price zones.
+                * `price-zones` (object) - price-zones that are sellable at this price.
+                    - `data` (array) - container for price zones.
                         + `{array item object}` - price zone.
                             * `id` (string) - id of price zone.
                             * `type` (string) - type of price zone.                 
-- `areas` (object) - event areas.
-    - `_embedded` (array) - container for areas.
-        + `{array item object}` - area.
-            * `id` (string) - id of area.
-            * `type` (string) - type of area.
-            * `attributes` (object) - attributes of areas.
-                - `rank` (string) - rank of area.
-                - `name` (string) - name of area.
-                - `area-type` (string) - type of area.
-            * `relationships` (object) - available relationships.
-                - `areas` (object) - related areas.
-                    * `_embedded` (array) - areas.
-                        + `{array item object}` - container for areas.
-                            - `id` (string) - id of area.
-                            - `type` (string) - type of area.
-                - `offers` (object) - related offers.
-                    * `_embedded` (array) - container for offers.
-                        + `{array item object}` - offer.
-                            - `id` (string) - id of offer.
-                            - `type` (string) - type of offer.
-                - `price-zones` (object) - related price zones.
-                    * `_embedded` (array) - container for price zones.
-                        + `{array item object}` - price zone.
-                            - `id` (string) - id of price zone.
-                            - `type` (string) - type of price zone.
-- `passwords` (object) - passwords.
-    - `_embedded` (array) - container for passwords.
-        + `{array item object}` - password.
-            * `id` (string) - password id.
-            * `type` (string) - password type.
-            * `attributes` (object) - attributes of passwords.
-                - `name` (string) - name.
-                - `exclusive` (boolean) - is exclusive.
-                - `prompts` (array) - prompts.
-                    + `{array item object}` - prompt.
-                        * `text` (string) - text of prompt.
-                - `text-label` (string) - text label.
-            * `relationships` (object) - available relationships.
-                - `offers` (object) - related offers.
-                    * `_embedded` (array) - container for offers.
-                        + `{array item object}` - offer.
-                            - `id` (string) - id of offer.
-                            - `type` (string) - type of offer.
-- `_embedded` (array) - container for offers.
+- `offers` (array) - container for the set of sellable offers.
     + `{array item object}` - offer.
         * `id` (string) - id.
         * `type` (string) - type.
@@ -135,39 +94,83 @@ commerce/{version}/events/{id}/offers.{format}
             - `offer-type` (string) - offer type.       
         * `relationships` (object) - available relationships.
             * `areas` (object) - related areas.
-                - `_embedded` (array) - container for areas.
+                - `data` (array) - container for areas.
                     + `{array item object}` - area.
                         * `id` (string) - id of area.
                         * `type` (string) - type of area.            
             * `products` (object) - related products.
-                * `_embedded` (array) - container for products.
+                * `data` (array) - container for products.
                     + `{array item object}` - product.
                         - `id` (string) - id of product.
                         - `type` (string) - type of product.
             * `price-zones` (object) - related price zones.
-                * `_embedded` (array) - container for price zones.
+                * `data` (array) - container for price zones.
                     + `{array item object}` - price zone.
                         - `id` (string) - id of price zone.
                         - `type` (string) - type of price zone.
-- `price-zones` (object) - price zones.
-    - `_embedded` (array) - container for price zones.
-        + `{array item object}` - price zone.
-            * `id` (string) - price zone id.
-            * `type` (string) - price zone type.
-            * `attributes` (object) - attributes of price zone.
-                - `currency` (string) - currency of price zone.
-                - `name` (string) - name of price zone.
-            * `relationships` (object) - available relationships.
+- `_embedded` (object) - container for included (embedded) data.
+    - `areas` (object) - event areas.
+        - `data` (array) - container for areas.
+            + `{array item object}` - area.
+                * `id` (string) - id of area.
+                * `type` (string) - type of area.
+                * `attributes` (object) - attributes of areas.
+                    - `rank` (string) - rank of area.
+                    - `name` (string) - name of area.
+                    - `area-type` (string) - type of area.
+                * `relationships` (object) - available relationships.
+                    - `areas` (object) - related areas.
+                        * `data` (array) - areas.
+                            + `{array item object}` - container for areas.
+                                - `id` (string) - id of area.
+                                - `type` (string) - type of area.
+                    - `offers` (object) - related offers.
+                        * `data` (array) - container for offers.
+                            + `{array item object}` - offer.
+                                - `id` (string) - id of offer.
+                                - `type` (string) - type of offer.
+                    - `price-zones` (object) - related price zones.
+                        * `data` (array) - container for price zones.
+                            + `{array item object}` - price zone.
+                                - `id` (string) - id of price zone.
+                                - `type` (string) - type of price zone.
+    - `passwords` (object) - passwords.
+        - `data` (array) - container for passwords.
+            + `{array item object}` - password.
+                * `id` (string) - password id.
+                * `type` (string) - password type.
+                * `attributes` (object) - attributes of passwords.
+                - `name` (string) - name.
+                - `exclusive` (boolean) - is exclusive.
+                - `prompts` (array) - prompts.
+                    + `{array item object}` - prompt.
+                    * `text` (string) - text of prompt.
+                - `text-label` (string) - text label.
+                * `relationships` (object) - available relationships.
                 - `offers` (object) - related offers.
-                    * `_embedded` (array) - container for offers.
-                        + `{array item object}` - offer.
-                            - `id` (string) - id of offer.
-                            - `type` (string) - type of offer.
-                - `areas` (object) - related areas.
-                    - `_embedded` (array) - container for areas.
-                        + `{array item object}` - area.
-                            * `id` (string) - id of area.
-                            * `type` (string) - type of area.
+                    * `data` (array) - container for offers.
+                    + `{array item object}` - offer.
+                        - `id` (string) - id of offer.
+                        - `type` (string) - type of offer.
+    - `price-zones` (object) - price zones.
+        - `data` (array) - container for price zones.
+            + `{array item object}` - price zone.
+                * `id` (string) - price zone id.
+                * `type` (string) - price zone type.
+                * `attributes` (object) - attributes of price zone.
+                    - `currency` (string) - currency of price zone.
+                    - `name` (string) - name of price zone.
+                * `relationships` (object) - available relationships.
+                    - `offers` (object) - related offers.
+                        * `data` (array) - container for offers.
+                            + `{array item object}` - offer.
+                                - `id` (string) - id of offer.
+                                - `type` (string) - type of offer.
+                    - `areas` (object) - related areas.
+                        - `data` (array) - container for areas.
+                            + `{array item object}` - area.
+                                * `id` (string) - id of area.
+                                * `type` (string) - type of area.
 
 {: .aside}
 >[JS](#js)
@@ -177,7 +180,7 @@ commerce/{version}/events/{id}/offers.{format}
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?{apikey}",
+  url:"https://app.ticketmaster.com/commerce/v2/events/0B00508C829A3875/offers.json?{apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -193,7 +196,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/commerce/v2/events/05004F24E0B864B3/offers.json?{apikey}
+--include 'https://app.ticketmaster.com/commerce/v2/events/0B00508C829A3875/offers.json?{apikey}
 {% endhighlight %}
 
 
@@ -203,7 +206,7 @@ curl \
 {: .reqres}
 
 {% highlight HTTP %}
-GET /commerce/v2/events/05004F24E0B864B3/offers.json?{apikey} HTTP/1.1
+GET /commerce/v2/events/0B00508C829A3875/offers.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
@@ -211,49 +214,148 @@ Connection: Keep-Alive
 
 {% highlight HTTP %}
 HTTP/1.1 200 OK
-Content-Length: 8333
-Access-Control-Max-Age: 3628800
-Access-Control-Allow-Methods: GET, PUT, POST, DELETE
-Connection: keep-alive
-X-TM-SESSION-BID: commerce-offering
-Server: Apache-Coyote/1.1
-Access-Control-Allow-Headers: origin, x-requested-with, accept
-Date: Sat, 05 Dec 2015 13:18:15 GMT
-Access-Control-Allow-Origin: *
-X-TM-SESSION-SID: 1A007CBEA4E8A92DBF44801E2124FAB4
-Content-Type: application/json;charset=UTF-8
-X-Application-Context: commerce-api-commerce-offering:default,jphx1:8080
-Set-Cookie: ****
+Rate-Limit-Over:
+0
+Content-Length:
+21532
+Rate-Limit-Available:
+498399
+Set-Cookie:
+CMPS=EB55hDR95pURN1HyCaJoxuyEQcA8Sv2aKm4J/YaMBOYTHywQO/XHcWL6t8TWHLkL; path=/
+Access-Control-Allow-Methods:
+POST, PATCH, DELETE, GET, HEAD, OPTIONS
+X-TM-SESSION-BID:
+commerce-offering
+Connection:
+keep-alive
+Access-Control-Allow-Credentials:
+true
+Server:
+Apache-Coyote/1.1
+Rate-Limit-Reset:
+1468530242515
+Access-Control-Allow-Headers:
+Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers
+Date:
+Thu, 14 Jul 2016 18:15:12 GMT
+Access-Control-Allow-Origin:
+*
+X-TM-SESSION-SID:
+49D8E7AAEF70BE318E4CEB599C499675
+X-Application-Context:
+commerce-api-commerce-offering-v1:default,jash1:8080
+Content-Type:
+application/json;charset=UTF-8
+Rate-Limit:
+500000
 
 {
   "limits":  {
-    "max": 8
+    "max": 50
   },
   "prices":  {
-    "_embedded":  [
+    "data":  [
        {
         "type": "offered-prices",
         "attributes":  {
           "currency": "USD",
-          "value": "17.00"
+          "value": "14.00"
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
-                "id": "000062800006",
+                "id": "000000000001",
                 "type": "offers"
               },
                {
-                "id": "000062810006",
+                "id": "QMASK2ROLLUP",
                 "type": "offers"
               }
             ]
           },
-          "price-zones":  {
-            "_embedded":  [
+          "priceZones":  {
+            "data":  [
                {
-                "id": "1",
+                "id": "23",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "7",
+                "type": "areas"
+              },
+               {
+                "id": "22",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "18.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "000000000001",
+                "type": "offers"
+              },
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "20",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "7",
+                "type": "areas"
+              },
+               {
+                "id": "22",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "23.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "19",
                 "type": "price-zones"
               }
             ]
@@ -264,32 +366,482 @@ Set-Cookie: ****
         "type": "offered-prices",
         "attributes":  {
           "currency": "USD",
-          "value": "22.00"
+          "value": "25.00"
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000000000001",
                 "type": "offers"
               }
             ]
           },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "19",
+                "type": "price-zones"
+              }
+            ]
+          },
           "areas":  {
-            "_embedded":  [
+            "data":  [
+               {
+                "id": "6",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "26.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "17",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "6",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "28.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "15",
+                "type": "price-zones"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "30.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "000000000001",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "17",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "6",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "36.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "000000000001",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "15",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "5",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "37.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "13",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "5",
+                "type": "areas"
+              },
+               {
+                "id": "22",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "44.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "12",
+                "type": "price-zones"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "59.00"
+        },
+        "relationships":  {
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "11",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "22",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "66.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "11",
+                "type": "price-zones"
+              },
+               {
+                "id": "12",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "22",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "70.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "000000000001",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "13",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "5",
+                "type": "areas"
+              },
+               {
+                "id": "22",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "85.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "000000000001",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "12",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "4",
+                "type": "areas"
+              },
+               {
+                "id": "8",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "100.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "000000000001",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "11",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "4",
+                "type": "areas"
+              },
+               {
+                "id": "14",
+                "type": "areas"
+              },
+               {
+                "id": "22",
+                "type": "areas"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "125.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "10",
+                "type": "price-zones"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "142.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "QMASK2ROLLUP",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "9",
+                "type": "price-zones"
+              }
+            ]
+          }
+        }
+      },
+       {
+        "type": "offered-prices",
+        "attributes":  {
+          "currency": "USD",
+          "value": "150.00"
+        },
+        "relationships":  {
+          "offers":  {
+            "data":  [
+               {
+                "id": "000000000001",
+                "type": "offers"
+              }
+            ]
+          },
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "10",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "2",
+                "type": "areas"
+              },
                {
                 "id": "3",
                 "type": "areas"
               }
             ]
-          },
-          "price-zones":  {
-            "_embedded":  [
-               {
-                "id": "1",
-                "type": "price-zones"
-              }
-            ]
           }
         }
       },
@@ -297,124 +849,34 @@ Set-Cookie: ****
         "type": "offered-prices",
         "attributes":  {
           "currency": "USD",
-          "value": "122.00"
+          "value": "182.00"
         },
         "relationships":  {
           "offers":  {
-            "_embedded":  [
-               {
-                "id": "000050820004",
-                "type": "offers"
-              }
-            ]
-          },
-          "price-zones":  {
-            "_embedded":  [
-               {
-                "id": "1",
-                "type": "price-zones"
-              }
-            ]
-          }
-        }
-      },
-       {
-        "type": "offered-prices",
-        "attributes":  {
-          "currency": "USD",
-          "value": "250.00"
-        },
-        "relationships":  {
-          "offers":  {
-            "_embedded":  [
-               {
-                "id": "000052830004",
-                "type": "offers"
-              }
-            ]
-          },
-          "price-zones":  {
-            "_embedded":  [
-               {
-                "id": "1",
-                "type": "price-zones"
-              }
-            ]
-          }
-        }
-      },
-       {
-        "type": "offered-prices",
-        "attributes":  {
-          "currency": "USD",
-          "value": "500.00"
-        },
-        "relationships":  {
-          "offers":  {
-            "_embedded":  [
-               {
-                "id": "00006E840004",
-                "type": "offers"
-              }
-            ]
-          },
-          "price-zones":  {
-            "_embedded":  [
-               {
-                "id": "1",
-                "type": "price-zones"
-              }
-            ]
-          }
-        }
-      }
-    ]
-  },
-  "areas":  {
-    "_embedded":  [
-       {
-        "id": "3",
-        "type": "areas",
-        "attributes":  {
-          "rank": 0,
-          "name": "FLOOR",
-          "area-type": "AREA"
-        },
-        "relationships":  {
-          "areas":  {},
-          "offers":  {
-            "_embedded":  [
+            "data":  [
                {
                 "id": "000000000001",
                 "type": "offers"
-              },
-               {
-                "id": "000050820004",
-                "type": "offers"
-              },
-               {
-                "id": "000052830004",
-                "type": "offers"
-              },
-               {
-                "id": "000062800006",
-                "type": "offers"
-              },
-               {
-                "id": "000062810006",
-                "type": "offers"
-              },
-               {
-                "id": "00006E840004",
-                "type": "offers"
               }
             ]
           },
-          "price-zones":  {
-            "_embedded":  [
+          "priceZones":  {
+            "data":  [
+               {
+                "id": "9",
+                "type": "price-zones"
+              }
+            ]
+          },
+          "areas":  {
+            "data":  [
+               {
+                "id": "0",
+                "type": "areas"
+              },
                {
                 "id": "1",
-                "type": "price-zones"
+                "type": "areas"
               }
             ]
           }
@@ -422,19 +884,31 @@ Set-Cookie: ****
       }
     ]
   },
-  "_embedded":  [
+  "metadata":  {
+    "eventMapping":  {
+      "id": "vvG1iZfFweJN-g",
+      "type": "event",
+      "source":  {
+        "name": "ticketmaster",
+        "id": "0B00508C829A3875"
+      }
+    }
+  },
+  "offers":  [
      {
       "id": "000000000001",
       "type": "offers",
       "attributes":  {
         "name": "ADULT",
-        "description": "Advance Purchase Ticket",
+        "description": "Standard Adult",
         "rank": 0,
+        "offerType": "DEFAULT",
         "currency": "USD",
         "prices":  [
            {
-            "value": "19.75",
-            "total": "33.25",
+            "priceZone": "10",
+            "value": "150.00",
+            "total": "165.50",
             "fees":  [
                {
                 "value": "0.00",
@@ -442,7 +916,124 @@ Set-Cookie: ****
                 "type": "distance"
               },
                {
-                "value": "2.25",
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "15.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "11",
+            "value": "100.00",
+            "total": "111.00",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "11.00",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "12",
+            "value": "85.00",
+            "total": "94.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "9.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "13",
+            "value": "70.00",
+            "total": "79.00",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
                 "label": "Facility",
                 "type": "facility"
               },
@@ -468,56 +1059,365 @@ Set-Cookie: ****
                 "label": "Service Tax 2",
                 "type": "service_tax2"
               }
+            ]
+          },
+           {
+            "priceZone": "15",
+            "value": "36.00",
+            "total": "43.00",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "7.00",
+                "label": "Service",
+                "type": "service"
+              }
             ],
-            "price-zone": "1"
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "17",
+            "value": "30.00",
+            "total": "37.00",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "7.00",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "19",
+            "value": "25.00",
+            "total": "31.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "6.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "20",
+            "value": "18.00",
+            "total": "23.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "5.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "23",
+            "value": "14.00",
+            "total": "19.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "5.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "9",
+            "value": "182.00",
+            "total": "199.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "17.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
           }
         ],
         "limit":  {
           "min": 1,
-          "max": 8,
+          "max": 50,
           "multiples": 1
-        },
-        "offer-type": "DEFAULT"
+        }
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
+             {
+              "id": "0",
+              "type": "areas"
+            },
+             {
+              "id": "1",
+              "type": "areas"
+            },
+             {
+              "id": "2",
+              "type": "areas"
+            },
              {
               "id": "3",
+              "type": "areas"
+            },
+             {
+              "id": "4",
+              "type": "areas"
+            },
+             {
+              "id": "5",
+              "type": "areas"
+            },
+             {
+              "id": "6",
+              "type": "areas"
+            },
+             {
+              "id": "7",
+              "type": "areas"
+            },
+             {
+              "id": "8",
+              "type": "areas"
+            },
+             {
+              "id": "14",
+              "type": "areas"
+            },
+             {
+              "id": "22",
               "type": "areas"
             }
           ]
         },
-        "products":  {
-          "_embedded":  [
+        "priceZones":  {
+          "data":  [
              {
-              "id": "05004F24E0B864B3",
-              "type": "products"
+              "id": "10",
+              "type": "price-zones"
+            },
+             {
+              "id": "11",
+              "type": "price-zones"
+            },
+             {
+              "id": "12",
+              "type": "price-zones"
+            },
+             {
+              "id": "13",
+              "type": "price-zones"
+            },
+             {
+              "id": "15",
+              "type": "price-zones"
+            },
+             {
+              "id": "17",
+              "type": "price-zones"
+            },
+             {
+              "id": "19",
+              "type": "price-zones"
+            },
+             {
+              "id": "20",
+              "type": "price-zones"
+            },
+             {
+              "id": "23",
+              "type": "price-zones"
+            },
+             {
+              "id": "9",
+              "type": "price-zones"
             }
           ]
         },
-        "price-zones":  {
-          "_embedded":  [
+        "products":  {
+          "data":  [
              {
-              "id": "1",
-              "type": "price-zones"
+              "id": "0B00508C829A3875",
+              "type": "products"
             }
           ]
         }
       }
     },
      {
-      "id": "000050820004",
+      "id": "QMASK2ROLLUP",
       "type": "offers",
       "attributes":  {
-        "name": "VIP1",
-        "description": "SKEPTICS & TRUE BELIEVERS VIP Package",
+        "name": "QMASK2ROLLUP",
         "rank": 1,
+        "offerType": "SPECIAL",
         "currency": "USD",
         "prices":  [
            {
-            "value": "119.75",
-            "total": "124.25",
+            "priceZone": "10",
+            "value": "125.00",
+            "total": "137.50",
             "fees":  [
                {
                 "value": "0.00",
@@ -525,12 +1425,12 @@ Set-Cookie: ****
                 "type": "distance"
               },
                {
-                "value": "2.25",
+                "value": "0.00",
                 "label": "Facility",
                 "type": "facility"
               },
                {
-                "value": "0.00",
+                "value": "12.50",
                 "label": "Service",
                 "type": "service"
               }
@@ -551,441 +1451,1474 @@ Set-Cookie: ****
                 "label": "Service Tax 2",
                 "type": "service_tax2"
               }
+            ]
+          },
+           {
+            "priceZone": "11",
+            "value": "66.00",
+            "total": "74.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "8.50",
+                "label": "Service",
+                "type": "service"
+              }
             ],
-            "price-zone": "1"
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "12",
+            "value": "44.00",
+            "total": "51.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "7.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "13",
+            "value": "37.00",
+            "total": "44.00",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "7.00",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "15",
+            "value": "28.00",
+            "total": "34.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "6.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "17",
+            "value": "26.00",
+            "total": "32.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "6.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "19",
+            "value": "23.00",
+            "total": "29.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "6.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "20",
+            "value": "18.00",
+            "total": "23.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "5.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "23",
+            "value": "14.00",
+            "total": "19.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "5.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
+          },
+           {
+            "priceZone": "9",
+            "value": "142.00",
+            "total": "156.50",
+            "fees":  [
+               {
+                "value": "0.00",
+                "label": "Distance",
+                "type": "distance"
+              },
+               {
+                "value": "0.00",
+                "label": "Facility",
+                "type": "facility"
+              },
+               {
+                "value": "14.50",
+                "label": "Service",
+                "type": "service"
+              }
+            ],
+            "taxes":  [
+               {
+                "value": "0.00",
+                "label": "Face Value Tax",
+                "type": "face_value_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax",
+                "type": "service_tax"
+              },
+               {
+                "value": "0.00",
+                "label": "Service Tax 2",
+                "type": "service_tax2"
+              }
+            ]
           }
         ],
         "limit":  {
           "min": 1,
-          "max": 4,
+          "max": 50,
           "multiples": 1
-        },
-        "offer-details":  {
-          "link": "http://www.ticketmaster.com/promo/njrdzq?ac_link=ntm_theacademyis2015_tkt_type_vip",
-          "text": "Includes: a ticket to the show- individual polaroid with The Academy Is...- pre-signed and numbered Almost Here 10 Year Anniversary tour poster AND exclusive print custom made by The Butcher- limited edition The Academy Is... VIP cloth bracelet- and early venue entry.",
-          "link-text": "See Full VIP Details!"
-        },
-        "offer-type": "SPECIAL"
-      },
-      "relationships":  {
-        "areas":  {
-          "_embedded":  [
-             {
-              "id": "3",
-              "type": "areas"
-            }
-          ]
-        },
-        "products":  {
-          "_embedded":  [
-             {
-              "id": "05004F24E0B864B3",
-              "type": "products"
-            }
-          ]
-        },
-        "price-zones":  {
-          "_embedded":  [
-             {
-              "id": "1",
-              "type": "price-zones"
-            }
-          ]
         }
-      }
-    },
-     {
-      "id": "000052830004",
-      "type": "offers",
-      "attributes":  {
-        "name": "VIP2",
-        "description": "ATTENTION VIP Package",
-        "rank": 2,
-        "currency": "USD",
-        "prices":  [
-           {
-            "value": "247.75",
-            "total": "252.25",
-            "fees":  [
-               {
-                "value": "0.00",
-                "label": "Distance",
-                "type": "distance"
-              },
-               {
-                "value": "2.25",
-                "label": "Facility",
-                "type": "facility"
-              },
-               {
-                "value": "0.00",
-                "label": "Service",
-                "type": "service"
-              }
-            ],
-            "taxes":  [
-               {
-                "value": "0.00",
-                "label": "Face Value Tax",
-                "type": "face_value_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax",
-                "type": "service_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax 2",
-                "type": "service_tax2"
-              }
-            ],
-            "price-zone": "1"
-          }
-        ],
-        "limit":  {
-          "min": 1,
-          "max": 4,
-          "multiples": 1
-        },
-        "offer-details":  {
-          "link": "http://www.ticketmaster.com/promo/njrdzq?ac_link=ntm_theacademyis2015_tkt_type_vip",
-          "text": "Includes: Everything in the SKEPTICS & TRUE BELIEVERS VIP Package PLUS an exclusive The Academy Is... 'Sidestage Access' VIP laminate & lanyard- and you can watch the show from the side of the stage. This package is extremely limited! Don't be left down and out...",
-          "link-text": "See Full VIP Details!"
-        },
-        "offer-type": "SPECIAL"
       },
       "relationships":  {
         "areas":  {
-          "_embedded":  [
+          "data":  [
+             {
+              "id": "0",
+              "type": "areas"
+            },
+             {
+              "id": "1",
+              "type": "areas"
+            },
+             {
+              "id": "2",
+              "type": "areas"
+            },
              {
               "id": "3",
+              "type": "areas"
+            },
+             {
+              "id": "4",
+              "type": "areas"
+            },
+             {
+              "id": "5",
+              "type": "areas"
+            },
+             {
+              "id": "6",
+              "type": "areas"
+            },
+             {
+              "id": "7",
+              "type": "areas"
+            },
+             {
+              "id": "8",
+              "type": "areas"
+            },
+             {
+              "id": "14",
+              "type": "areas"
+            },
+             {
+              "id": "22",
               "type": "areas"
             }
           ]
         },
-        "products":  {
-          "_embedded":  [
+        "priceZones":  {
+          "data":  [
              {
-              "id": "05004F24E0B864B3",
-              "type": "products"
-            }
-          ]
-        },
-        "price-zones":  {
-          "_embedded":  [
+              "id": "10",
+              "type": "price-zones"
+            },
              {
-              "id": "1",
+              "id": "11",
+              "type": "price-zones"
+            },
+             {
+              "id": "12",
+              "type": "price-zones"
+            },
+             {
+              "id": "13",
+              "type": "price-zones"
+            },
+             {
+              "id": "15",
+              "type": "price-zones"
+            },
+             {
+              "id": "17",
+              "type": "price-zones"
+            },
+             {
+              "id": "19",
+              "type": "price-zones"
+            },
+             {
+              "id": "20",
+              "type": "price-zones"
+            },
+             {
+              "id": "23",
+              "type": "price-zones"
+            },
+             {
+              "id": "9",
               "type": "price-zones"
             }
           ]
-        }
-      }
-    },
-     {
-      "id": "00006E840004",
-      "type": "offers",
-      "attributes":  {
-        "name": "VIP3",
-        "description": "SLOW DOWN VIP Package",
-        "rank": 3,
-        "currency": "USD",
-        "prices":  [
-           {
-            "value": "497.75",
-            "total": "502.25",
-            "fees":  [
-               {
-                "value": "0.00",
-                "label": "Distance",
-                "type": "distance"
-              },
-               {
-                "value": "2.25",
-                "label": "Facility",
-                "type": "facility"
-              },
-               {
-                "value": "0.00",
-                "label": "Service",
-                "type": "service"
-              }
-            ],
-            "taxes":  [
-               {
-                "value": "0.00",
-                "label": "Face Value Tax",
-                "type": "face_value_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax",
-                "type": "service_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax 2",
-                "type": "service_tax2"
-              }
-            ],
-            "price-zone": "1"
-          }
-        ],
-        "limit":  {
-          "min": 1,
-          "max": 4,
-          "multiples": 1
         },
-        "offer-details":  {
-          "link": "http://www.ticketmaster.com/promo/njrdzq?ac_link=ntm_theacademyis2015_tkt_type_vip",
-          "text": "Includes: Everything in the ATTENTION VIP Package PLUS an intimate post-show hang out on the band's bus- acoustic performance by William & Mike- custom- original drawing by The Butcher while you're on the bus- and a high five from Adam.",
-          "link-text": "See Full VIP Details!"
-        },
-        "offer-type": "SPECIAL"
-      },
-      "relationships":  {
-        "areas":  {
-          "_embedded":  [
+        "passwords":  {
+          "data":  [
              {
-              "id": "3",
-              "type": "areas"
+              "id": "2b81df841235ca20f272acad674d6c71",
+              "type": "passwords"
             }
           ]
         },
         "products":  {
-          "_embedded":  [
+          "data":  [
              {
-              "id": "05004F24E0B864B3",
+              "id": "0B00508C829A3875",
               "type": "products"
-            }
-          ]
-        },
-        "price-zones":  {
-          "_embedded":  [
-             {
-              "id": "1",
-              "type": "price-zones"
-            }
-          ]
-        }
-      }
-    },
-     {
-      "id": "000062800006",
-      "type": "offers",
-      "attributes":  {
-        "name": "M4PAK",
-        "description": "4 Pack Ticket Offer",
-        "rank": 4,
-        "currency": "USD",
-        "prices":  [
-           {
-            "value": "14.75",
-            "total": "27.25",
-            "fees":  [
-               {
-                "value": "0.00",
-                "label": "Distance",
-                "type": "distance"
-              },
-               {
-                "value": "2.25",
-                "label": "Facility",
-                "type": "facility"
-              },
-               {
-                "value": "8.00",
-                "label": "Service",
-                "type": "service"
-              }
-            ],
-            "taxes":  [
-               {
-                "value": "0.00",
-                "label": "Face Value Tax",
-                "type": "face_value_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax",
-                "type": "service_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax 2",
-                "type": "service_tax2"
-              }
-            ],
-            "price-zone": "1"
-          }
-        ],
-        "limit":  {
-          "min": 4,
-          "max": 8,
-          "multiples": 4
-        },
-        "offer-type": "SPECIAL"
-      },
-      "relationships":  {
-        "areas":  {
-          "_embedded":  [
-             {
-              "id": "3",
-              "type": "areas"
-            }
-          ]
-        },
-        "products":  {
-          "_embedded":  [
-             {
-              "id": "05004F24E0B864B3",
-              "type": "products"
-            }
-          ]
-        },
-        "price-zones":  {
-          "_embedded":  [
-             {
-              "id": "1",
-              "type": "price-zones"
-            }
-          ]
-        }
-      }
-    },
-     {
-      "id": "000062810006",
-      "type": "offers",
-      "attributes":  {
-        "name": "TMNME3",
-        "description": "Me+3 4-Pack Offer",
-        "rank": 5,
-        "currency": "USD",
-        "prices":  [
-           {
-            "value": "14.75",
-            "total": "27.25",
-            "fees":  [
-               {
-                "value": "0.00",
-                "label": "Distance",
-                "type": "distance"
-              },
-               {
-                "value": "2.25",
-                "label": "Facility",
-                "type": "facility"
-              },
-               {
-                "value": "8.00",
-                "label": "Service",
-                "type": "service"
-              }
-            ],
-            "taxes":  [
-               {
-                "value": "0.00",
-                "label": "Face Value Tax",
-                "type": "face_value_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax",
-                "type": "service_tax"
-              },
-               {
-                "value": "0.00",
-                "label": "Service Tax 2",
-                "type": "service_tax2"
-              }
-            ],
-            "price-zone": "1"
-          }
-        ],
-        "limit":  {
-          "min": 4,
-          "max": 8,
-          "multiples": 4
-        },
-        "offer-type": "SPECIAL"
-      },
-      "relationships":  {
-        "areas":  {
-          "_embedded":  [
-             {
-              "id": "3",
-              "type": "areas"
-            }
-          ]
-        },
-        "products":  {
-          "_embedded":  [
-             {
-              "id": "05004F24E0B864B3",
-              "type": "products"
-            }
-          ]
-        },
-        "price-zones":  {
-          "_embedded":  [
-             {
-              "id": "1",
-              "type": "price-zones"
             }
           ]
         }
       }
     }
   ],
-  "price-zones":  {
-    "_embedded":  [
-       {
-        "id": "1",
-        "type": "price-zones",
-        "attributes":  {
-          "currency": "USD",
-          "name": "PRICE LEVEL 1"
-        },
-        "relationships":  {
-          "offers":  {
-            "_embedded":  [
-               {
-                "id": "000000000001",
-                "type": "offers"
-              },
-               {
-                "id": "000050820004",
-                "type": "offers"
-              },
-               {
-                "id": "000052830004",
-                "type": "offers"
-              },
-               {
-                "id": "000062800006",
-                "type": "offers"
-              },
-               {
-                "id": "000062810006",
-                "type": "offers"
-              },
-               {
-                "id": "00006E840004",
-                "type": "offers"
-              }
-            ]
+  "_embedded":  {
+    "priceZones":  {
+      "data":  [
+         {
+          "id": "17",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 7"
           },
-          "areas":  {
-            "_embedded":  [
-               {
-                "id": "3",
-                "type": "areas"
-              }
-            ]
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "6",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "20",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 9"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "7",
+                  "type": "areas"
+                },
+                 {
+                  "id": "22",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "10",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 2"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "2",
+                  "type": "areas"
+                },
+                 {
+                  "id": "3",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "11",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 3"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "4",
+                  "type": "areas"
+                },
+                 {
+                  "id": "14",
+                  "type": "areas"
+                },
+                 {
+                  "id": "22",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "23",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 10"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "7",
+                  "type": "areas"
+                },
+                 {
+                  "id": "22",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "13",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 5"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "5",
+                  "type": "areas"
+                },
+                 {
+                  "id": "22",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "9",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 1"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "0",
+                  "type": "areas"
+                },
+                 {
+                  "id": "1",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "12",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 4"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "4",
+                  "type": "areas"
+                },
+                 {
+                  "id": "8",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "15",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 6"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "5",
+                  "type": "areas"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "19",
+          "type": "price-zones",
+          "attributes":  {
+            "currency": "USD",
+            "name": "PRICE LEVEL 8"
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "areas":  {
+              "data":  [
+                 {
+                  "id": "6",
+                  "type": "areas"
+                }
+              ]
+            }
           }
         }
-      }
-    ]
+      ]
+    },
+    "areas":  {
+      "data":  [
+         {
+          "id": "7",
+          "type": "areas",
+          "attributes":  {
+            "rank": 0,
+            "name": "BENCH4",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "20",
+                  "type": "price-zones"
+                },
+                 {
+                  "id": "23",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "6",
+          "type": "areas",
+          "attributes":  {
+            "rank": 1,
+            "name": "BENCH3",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "17",
+                  "type": "price-zones"
+                },
+                 {
+                  "id": "19",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "5",
+          "type": "areas",
+          "attributes":  {
+            "rank": 2,
+            "name": "BENCH2",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "13",
+                  "type": "price-zones"
+                },
+                 {
+                  "id": "15",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "8",
+          "type": "areas",
+          "attributes":  {
+            "rank": 3,
+            "name": "RAMP",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "12",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "22",
+          "type": "areas",
+          "attributes":  {
+            "rank": 4,
+            "name": "BENCH",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "11",
+                  "type": "price-zones"
+                },
+                 {
+                  "id": "13",
+                  "type": "price-zones"
+                },
+                 {
+                  "id": "20",
+                  "type": "price-zones"
+                },
+                 {
+                  "id": "23",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "4",
+          "type": "areas",
+          "attributes":  {
+            "rank": 5,
+            "name": "BENCH1",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "11",
+                  "type": "price-zones"
+                },
+                 {
+                  "id": "12",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "14",
+          "type": "areas",
+          "attributes":  {
+            "rank": 6,
+            "name": "SUPER",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "11",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "2",
+          "type": "areas",
+          "attributes":  {
+            "rank": 7,
+            "name": "BOX2",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "10",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "3",
+          "type": "areas",
+          "attributes":  {
+            "rank": 8,
+            "name": "BOX3",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "10",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "0",
+          "type": "areas",
+          "attributes":  {
+            "rank": 9,
+            "name": "BOX",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "9",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        },
+         {
+          "id": "1",
+          "type": "areas",
+          "attributes":  {
+            "rank": 10,
+            "name": "BOX1",
+            "areaType": "AREA"
+          },
+          "relationships":  {
+            "areas":  {},
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "000000000001",
+                  "type": "offers"
+                },
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            },
+            "priceZones":  {
+              "data":  [
+                 {
+                  "id": "9",
+                  "type": "price-zones"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "passwords":  {
+      "data":  [
+         {
+          "id": "2b81df841235ca20f272acad674d6c71",
+          "type": "passwords",
+          "attributes":  {
+            "type": "level_two_mask_rollup",
+            "exclusive": false,
+            "prompts":  []
+          },
+          "relationships":  {
+            "offers":  {
+              "data":  [
+                 {
+                  "id": "QMASK2ROLLUP",
+                  "type": "offers"
+                }
+              ]
+            }
+          },
+          "metadata":  {
+            "type": "password-meta"
+          }
+        }
+      ]
+    }
   }
 }
 {% endhighlight %}
+
+
+## Get Cart
+{: .article .console-link #get-cart}
+
+**Method:** GET.
+Authentication required.
+
+Returns the cart.
+
+commerce/{version}/shopping/carts/{cartId}.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `cartId`   | Cart ID. Required.   | string            | "c5d3fb70-f7cb-489d-823d-8103222f0c17.jash1" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Response structure: {# cart-response}
+
+{: .nested-list }
+- `cart` (object) - the cart
+    * `id` (string) - the cart id.
+    * `type` (string) - '_carts_'.
+    * `attributes` (object) - the attributes of the cart.
+        + `reservations` (array) - container of reservations.    
+            + `{array item object}` - reservation.
+        + `fees` (array) - container of order level fees.
+            + `{array item object}` - order level fee.
+        + `taxes` (array) - container of order level taxes.
+            + `{array item object}` - order level tax.
+        + `totals` (object) - the total amounts for the cart.
+            + `currency` (string) - the code of the currency for the totals.
+            + `price` (string) - the total price of items in the cart.
+            + `fees` (string) - the total fees for the cart.
+            + `taxes` (string) - the total taxes for the cart.
+            + `deliveries` (string) - the total delivery costs for the cart.
+            + `upsells` (string) - the total cost of upsell items in the cart.
+            + `total` (string) - the grand total of the cart.
+    * `relationships` (object) - the relationships of the cart. 
+        + `events` (object) - container for event relationships.
+            + `data` (array) - container for event relationships.
+                + `{array item object}` - event reference.
+                    + `id` (string) - the event id.
+                    + `type` (string) - '_events_'.
+        + `products` (object) - container for product relationships.
+            + `data` (array) - container for product relationships.
+                + `{array item object}` - the product reference.
+                    + `id` (string) - the product id.
+                    + `type` (string) - '_products_'.
+        + `offers` (object) - container for offer relationships.
+            + `data` (array) - container for offer relationships.
+                + `{array item object}` - the offer reference.
+                    + `id` (string) - the offer id.
+                    + `type` (string) - '_offers_'.
+- `_embedded` (object) - container for included (embedded) data.
+    * `events` (object) - container for included events data.
+        + `data` (array)
+            - `{array item object}` - an event.
+                * `id` (string) - the event id.
+                * `type` (string) - '_events'.
+                * `attributes` (object) - event attributes.
+                    - `name` (string) - the event name.
+                * `relationships` (object) - event relationships.
+                    - `products` (object) - container for event-product relationships.
+                        * `data` (array)
+                            + `{array item object}` - product reference.
+                                - `id` (string) - the product id.
+                                - `type` (string) - '_products_'.
+                    - `offers` (object) - container for event-offer relationships.
+                        * `data` (array)
+                            + `{array item object}` - offer refernece.
+                                - `id` (string) - the offer id.
+                                - `type` (string) - '_offers_'.
+    * `products` (object) - container for included products data.
+        + `data` (array)
+            - `{array item object}` - a product.
+                * `id` (string) - the product id.
+                * `type` (string) - '_products_'.
+                * `attributes` (object) - the product attributes.
+                * `relationships` (object) - product relationships.
+                    - `offers` (object) - container for product-offer relationships.
+                        * `data` (array)
+                            + `{array item object}` - offer reference.
+                                - `id` (string) - the offer id.
+                                - `type` (string) - '_offers_'.
+                    - `events` (object) - container for product-event relationships.
+                        * `data` (array)
+                            + `{array item object}` - the event reference.
+                                - `id` (string) - the event id.
+                                - `type` (string) - '_events_'.
+    * `offers` (object) - container for included offers data.
+        + `data` (array)
+            - `{array item object}` - an offer.
+                * `id` (string) - the offer id.
+                * `type` (string) - '_offers_'.
+                * `attributes` (object) - the offer attributes.
+                    + `name` (string) - the offer name.
+                    + `description` (string) - the offer description.
+                * `relationships` (object) - the offer relationships.
+                    + `products` (object) - container for offer-product relationships.
+                        * `data` (array)
+                            + `{array item object}` - product reference.
+                                - `id` (string) - the product id.
+                                - `type` (string) - '_products_'.
+                    + `events` (object) - container for offer-event relationships.
+                        * `data` (array)
+                            + `{array item object}` - event reference.
+                                - `id` (string) - the event id.
+                                - `type` (string) - '_events_'.
+- `status` (string) - the Http status code for the response.
+
+## Create Cart
+{: .article .console-link #create-cart}
+
+**Method:** POST.
+Authentication required.
+
+This operation allows users to add products to a cart.
+
+This operation supports the following add product requests:
+{: .nested-list}
+* a number of items for an offer of a product.
+* a number of items for an offer in specific areas.
+* a number of items for an offer in a specific price range.
+* a specific set of inventory items (i.e. seats).
+
+This operation returns a new cart.
+
+commerce/{version}/shopping/carts.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Request body structure:
+
+{: .nested-list }
+* `pollingCallbackUrl` (string) - **Required** - client webhook URI where response will be posted if the operation polls.
+* `products` (array) - **Required (at least one)** - container of add product requests.
+    + `{array item object}` - an add product request.
+        - `product` (string) - **Required** - the product id.
+        - `qty` (string) - _**Required unless** specific items (by id) are being requested_ - the number of items requested.
+        - `items` (array) - _Optional_ - a list of inventory item ids.  Used to reserve specific inventory items (i.e. specific seats).
+        - `offers` (array) - **Required (at least one)** - list of offer ids.  Reserved inventory will come from one of these offer ids.
+            * `{array item object}` - an offer request.
+                + `offer` (string) - **Required** - the offer id.
+                + `code` (string) - _Optional_ - the offer code if one is required to unlock the offer.
+        - `filters` (object) - _Optional_ filters to apply when searching for inventory.
+            * `areas` (array) - _Optional_ - the set of areas (by id) to search for inventory.
+            * `maxPrice` (string) - _Optional_ - the maximum per item price.
+            * `minPrice` (string) - _Optional_ - the minimum per item price.
+
+### Response structure:
+
+Same as the [Get Cart API](#get-cart).
+
+
+## Empty Cart
+{: .article .console-link #empty-cart}
+
+**Method:** DELETE.
+Authentication required.
+
+This operation empties the cart.
+
+This operation returns the updated cart.
+
+commerce/{version}/shopping/carts/{cartId}.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `cartId`   | Cart ID. Required.   | string            | "c5d3fb70-f7cb-489d-823d-8103222f0c17.jash1" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Response structure:
+
+Same as the [Get Cart API](#get-cart).
+
+
+
+## Update Cart Products
+{: .article .console-link #update-cart-products}
+
+**Method:** PATCH
+Authentication required.
+
+This operation allows users to add or remove products to/from a cart.
+
+This operation supports add products in the same ways as the [Create Cart Operation](#create-cart).
+
+This operation supports the following removal requests:
+{: .nested-list}
+* all items in a reservation.
+* all items in a reservation for a specific product.
+* all items in a specified set of inventory item groups.
+* a set of specified inventory items.
+
+This operation returns the updated cart.
+
+commerce/{version}/shopping/carts/{cartId}/products.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `cartId`   | Cart ID. Required.   | string            | "c5d3fb70-f7cb-489d-823d-8103222f0c17.jash1" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+
+### Request body structure:
+
+{: .nested-list }
+* `pollingCallbackUrl` (string) - **Required** - client webhook URI where response will be posted if the operation polls.
+* `products` (array) - **Required (at least one)** - container of update product requests.
+    + `{array item object}` - an update product request.
+        - `op` (string) - **Required** - the operation code.  valid values - _add_, _remove_.
+        - `product` (string) - **Required when adding or removing a product** - the product id.
+        - `qty` (string) - _**Required when adding a product unless** specific items (by id) are being requested_ - the number of items requested.
+        - `items` (array) - _Optional_ - a list of inventory item ids.  Used to add/remove specific items (i.e. seats).
+        - `offers` (array) - **Required when adding a product** - list of offer ids.  Reserved inventory will come from one of these offer ids.
+            * `{array item object}` - an offer request.
+                + `offer` (string) - **Required** - the offer id.
+                + `code` (string) - _Optional_ - the offer code if one is required to unlock the offer.
+        - `filters` (object) - _Optional_ filters to apply when searching for inventory.
+            * `areas` (array) - _Optional_ - the set of areas (by id) to search for inventory.
+            * `maxPrice` (string) - _Optional_ - the maximum per item price.
+            * `minPrice` (string) - _Optional_ - the minimum per item price.
+        - `reservation` (string) - _Optional_ - the reservation to remove from the cart.
+        - `itemGroups` (array) - _Optional_ - list of item group ids to remove from the cart.
+
+### Response structure:
+
+Same as the [Get Cart API](#get-cart).
+
+

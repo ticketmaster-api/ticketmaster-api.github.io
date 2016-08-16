@@ -16,6 +16,7 @@ keywords: Partner API, host and API, reserve tickets, create a cart, order manag
 # Partner API
 
 The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket and event informaton.
+{: .article .lead}
 
 ## Overview
 {: #overview }
@@ -38,6 +39,7 @@ All connections must be made over SSL using https.
 
 New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
+<<<<<<< HEAD
     * 3F004ACD115F6B19: No order processing fee
     * 110050B273AB0C36: Canadian event, Has order processing fee
     * 3F005085F00474B7: Reserved seating only. No GA
@@ -45,6 +47,9 @@ New TM Developer accounts are automatically provisioned for the sandbox environm
     
 ### Production environment testing
     * 000051048D991EE7: Use this event ID for production environment testing
+=======
+    * 3F004ACD115F6B19
+>>>>>>> ticketmaster-api/dev
 
 ### Best Practices
 
@@ -1987,10 +1992,12 @@ Status 200
 ## Order management [GET]
 {: #order-mangement}
 
-Get detailed information about an order. For specifically-enabled accounts only. One of order_token or order_number is required.
+Get detailed information about an order. For specifically-enabled accounts only.
 
 /partners/v1/orders?order_token={order_token}?apikey={apikey}
 {: .code .red}
+
+*Polling: Yes*
 
 ### Parameters
 
@@ -1998,8 +2005,6 @@ Get detailed information about an order. For specifically-enabled accounts only.
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
 | `order_token`   | An order token         | string            |     "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D"          |  No     |
-| `order_number`   | A legacy Ticketmaster order account number (ex. 39-5234153/LA1) | string            |     "39-5234153/LA1"          | No      |
-
 
 
 >[Request](#req)
@@ -2172,7 +2177,7 @@ Example:
 {
     "error": {
         "message" : "Invalid input data type",
-        "code": 10002
+        "code": 10002,
         "http_code":400,
         "severity":"ERROR"
     }
@@ -2256,7 +2261,7 @@ Request body:
         "address": {
             "line1": "123 Main Street", 
             "line2": "",                
-            "unit": "1h"                
+            "unit": "1h",                
             "city": "Los Angeles",      
             "country": {                
                 "id": 840
