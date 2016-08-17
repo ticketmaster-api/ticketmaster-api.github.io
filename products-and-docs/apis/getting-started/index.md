@@ -281,7 +281,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: center; background: rgb(255, 255, 255);" rowspan="5">
+      <td style="text-align: center; background: rgb(255, 255, 255);" rowspan="9">
         <a href="/products-and-docs/apis/commerce/">
           <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Commerce API">
         </a>
