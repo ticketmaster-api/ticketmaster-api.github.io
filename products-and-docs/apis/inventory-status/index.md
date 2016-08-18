@@ -53,16 +53,11 @@ Retrieve availability status for comma separated list of events.
 /inventory-status/v1/availability?events={eventids}&apikey={apikey}
 {: .code .red}
 
-### URL Parameters
-
-| Parameter  | Description          | Type              | Example      | Required |
-|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
-| `events` | Comma separated list of the 16-digit alphanumeric event IDs. Maximum of 1000 event ids.     | string            |     "0B004ED9FC825ACB,0E0050B9BEB7498D"           | Yes      |
-
 ### Query Parameters
 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `events` | Comma separated list of the 16-digit alphanumeric event IDs. Maximum of 1000 event ids.     | string            |     "0B004ED9FC825ACB,0E0050B9BEB7498D"           | Yes      |
 | `apikey`   | Your API Key         | string            |     GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne          | Yes      |
 
 ### Response structure:
