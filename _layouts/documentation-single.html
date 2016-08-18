@@ -99,3 +99,13 @@ layout: default
 </script>
 {% endif %}
 <script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
+{% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
+<script src="{{"/scripts/vendors/flip-jquery-plugin.js" | prepend: site.baseurl }}"></script>
+<script>
+    $(document).ready(function() {
+        $('.card').flip({
+            trigger: "hover"
+        });
+    });
+</script>
+{% endif %}

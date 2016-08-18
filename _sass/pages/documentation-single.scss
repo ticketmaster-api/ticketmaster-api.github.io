@@ -103,18 +103,18 @@
   }
   &.sdks {
     .tiles-wrapper {
-      max-width: 876px;
+      max-width: 879px;
+      margin-bottom: 72px;
       .flipper {
         border: 0;
         height: 263px;
-        width: 263px;
       }
       .img-wrapper {
         width: 100%;
         height: 100%;
         img {
           width: 100%;
-          height: 100%;
+          height: 263px;
           border: 0;
         }
       }
