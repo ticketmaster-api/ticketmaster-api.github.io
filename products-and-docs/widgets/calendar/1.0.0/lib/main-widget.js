@@ -38,7 +38,7 @@ function LZ(x){return (x<0||x>9?"":"0")+x;}var MONTH_NAMES=['Jan','Feb','Mar','A
         this.eventsRootContainer.style.width  = `${this.config.width}px`;
         this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
         this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
-        */this.getCurrentWeek();this.eventsRootContainer.classList.remove("border");document.querySelector('.tab.active .events-root-container .spinner-container').classList.add('hide');if(this.config.hasOwnProperty("border")){this.eventsRootContainer.classList.add("border");}if(this.needToUpdate(this.config,oldTheme,this.updateExceptions)){this.clear(); /*
+        */this.getCurrentWeek();this.eventsRootContainer.classList.remove("border");var firstTab=document.querySelector('.tab');firstTab.querySelector('.events-root-container .spinner-container').classList.add('hide');if(this.config.hasOwnProperty("border")){this.eventsRootContainer.classList.add("border");}if(this.needToUpdate(this.config,oldTheme,this.updateExceptions)){this.clear(); /*
             if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
                 this.themeModificators[ this.widgetConfig.theme ]();
             }
