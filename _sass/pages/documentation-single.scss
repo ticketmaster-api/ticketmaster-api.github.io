@@ -81,7 +81,7 @@
 }
 .desktop {
   display: none;
-  @media (min-width: 1199px) {
+  @media (min-width: 1200px) {
     display: block;
   }
 }
@@ -424,4 +424,16 @@
       margin-top: -154px;
     }
   }/*offset END*/
+
+  .horizontal-events-tracker {
+    width: 85%;
+    @media (max-width: 1424px) {
+      span {
+        width: 47.5%;
+      }
+    }
+    .horizontal-events-tracker__title {
+      margin-right: 2%;
+    }
+  }
 }
