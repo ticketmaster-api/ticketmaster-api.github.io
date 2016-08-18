@@ -1,88 +1,3 @@
-/* entire container, keeps perspective */
-.flip-container {
-  perspective: 1000px;
-  margin-bottom: 30px;
-}
-/* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-  transform: rotateY(180deg);
-}
-
-.partner-logo img{
-  width: 100%;
-  max-width: 450px;
-}
-
-/* flip speed goes here */
-.flipper {
-  height: 265px;
-  border: 1px solid $steel-20;
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
-}
-
-/* hide back of pane during swap */
-.front, .back {
-  h3 {
-    margin-top:0;
-  }
-  &>p {
-    margin: 0;
-  }
-  top: 0;
-  left: 0;
-  padding: 15px;
-  position: absolute;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.tiles-wrapper{
-  margin: 0 -15px;
-}
-
-
-/* front pane, placed above back */
-.front {
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  transform: rotateY(0deg);/* for firefox 31 */
-  -ms-transform: rotateY(0deg);
-  -webkit-transform: -webkit-rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-  -o-transform: rotateY(0deg);
-  display: block;
-}
-
-/* back, initially hidden pane */
-.back {
-  height: 100%;
-  background: #FFF;
-  overflow: hidden;
-  font-size: $small-font-size;
-  max-height: 95%;
-  transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -webkit-transform: -webkit-rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  display: block;
-}
-
-
-.img-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  img {
-    max-width: none;
-  }
-}
-
-
 .big-tile {
   margin: 0 0 30px;
   .content-box{
@@ -126,3 +41,84 @@
     }
   }
 }
+
+/* entire container, keeps perspective */
+.flip-container {
+  perspective: 1000px;
+  margin-bottom: 30px;
+}
+/* flip the pane when hovered */
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+  transform: rotateY(180deg);
+}
+
+.partner-logo img{
+  width: 100%;
+  max-width: 450px;
+}
+
+/* flip speed goes here */
+.flipper {
+  height: 265px;
+  border: 1px solid $steel-20;
+  //transition: 0.6s;
+  margin-bottom: 15px;
+}
+
+.tiles-wrapper{
+  margin: 0 -15px;
+}
+
+.img-wrapper {
+  img {
+    max-width: 100%;
+  }
+}
+
+
+/*cards*/
+.card {
+  width: 263px;
+  height: 263px;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+.card a.thumb {
+  float: left;
+  width: 100px;
+  height: 60px;
+  margin: 0 5px 10px 0;
+}
+
+.card a.thumb img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* hide front of pane during swap */
+.front, .back {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-color: white;
+}
+.back {
+  padding: 20px;
+  border: 1px solid $n3;
+  &:hover {
+    border-color: $n2;
+  }
+  a {
+  display: block;
+  height: 100%;
+  }
+  h3 {
+    margin-top:0;
+  }
+  h3,p {
+    width: 100%;
+  }
+}
+/*cards END*/
