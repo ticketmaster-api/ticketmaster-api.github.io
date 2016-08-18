@@ -60,6 +60,7 @@ Here's a few examples of common use cases that most developers build apps agains
 | [Discovery API](/products-and-docs/apis/discovery/v2/)       	| Search events of a certain genre in a particular location for a certain promoter.							|
 | [Commerce API ](/products-and-docs/apis/commerce/)        	| Get available offers for a particular event.																|
 | [Partner API ](/products-and-docs/apis/partner/)         	| Transact against offers for a particular event (partners-only).											|
+| [Inventory Status API ](/products-and-docs/apis/inventory-status/)         	| 	Provides event status for primary Ticketmaster inventory with inventory.										|
 
 
 {: #data-model}
