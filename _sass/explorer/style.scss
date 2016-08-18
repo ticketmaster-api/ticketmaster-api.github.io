@@ -518,24 +518,19 @@
   }
 
   .horizontal-events-tracker {
-    background: #f1f4f6;
-    height: auto;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    .horizontal-events-tracker__section {
-      padding: 20px 10px;
-      font-weight: bold;
-      overflow: hidden;
+    @media (min-width: 561px) and (max-width: 990px) {
+      span {
+        width: 49%;
+        margin-right: 0;
+      }
     }
-    .horizontal-events-tracker__title {
-      color: #b7c9d3;
-      margin-right: 5%;
-      display: inline-block;
-    }
-    .horizontal-events-tracker__counter {
-      color: #768692;
+    @media (max-width: 560px) {
+      span {
+        width: 100%;
+      }
     }
   }
+
 }
 
 

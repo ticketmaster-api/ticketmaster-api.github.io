@@ -8,25 +8,35 @@ title: Getting Started
 excerpt: Everything you need to start playing with the Ticketmaster API
 keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
+<div class="row desktop">
+    <div class="row-container">
+        <section class="">
+            <div class="horizontal-events-tracker">
+                <div class="row">
+                    <div class="col-xs-12 horizontal-events-tracker__section">
+                        <span class="horizontal-events-tracker__title">
+                            Number of Events: 
+                            <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of Attractions: 
+                            <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of Venues: 
+                            <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Countries: 
+                            <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 
-<ul class="events-tracker events-tracker_col-view">
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Events: </div>
-        <div id="js-events-counter" class="events-tracker__counter"></div>
-    </li>
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Attractions: </div>
-        <div id="js-attractions-counter" class="events-tracker__counter"></div>
-    </li>
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Venues: </div>
-        <div id="js-venues-counter" class="events-tracker__counter"></div>
-    </li>
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Countries: </div>
-        <div id="js-countries-counter" class="events-tracker__counter">7</div>
-    </li>
-</ul>
 
 # GETTING STARTED
 
