@@ -827,6 +827,9 @@ class TicketmasterCalendarWidget {
         this.getCurrentWeek();
 
         this.eventsRootContainer.classList.remove("border");
+        let firstTab = document.querySelector('.tab');
+        firstTab.querySelector('.events-root-container .spinner-container').classList.add('hide');
+
         if( this.config.hasOwnProperty("border") ){
             this.eventsRootContainer.classList.add("border");
         }

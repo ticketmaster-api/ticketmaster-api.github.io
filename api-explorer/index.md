@@ -105,8 +105,8 @@ category: api-explorer
     <!--event counter bar-->
     <div class="row">
         <div class="row-container">
-            <section class="col-xs-12">
-                <div class="col-xs-12 horizontal-events-tracker">
+            <section class="">
+                <div class="horizontal-events-tracker">
                     <div class="row">
                         <div class="col-xs-12 horizontal-events-tracker__section">
                             <span class="horizontal-events-tracker__title">
@@ -121,6 +121,10 @@ category: api-explorer
                                 Number of Venues: 
                                 <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
                             </span>
+                            <span class="horizontal-events-tracker__title">
+                                Countries: 
+                                <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
                         </div>
                     </div>
                 </div>

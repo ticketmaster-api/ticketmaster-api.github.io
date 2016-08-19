@@ -1,0 +1,87 @@
+{
+    "before": 
+        {
+            "include": "discovery-api/before-api.md"
+        }
+    ,
+    "after": 
+        {
+            "include": "discovery-api/after-api.md"
+        }
+    ,
+    "method": [
+        {
+            "pathsParent":"/discovery/v2/attractions",
+            "id":"search-attractions",
+            "reqres": "discovery-api/reqres-search-attractions.md",
+            "codePath":"discovery-api/code-search-attractions.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/attractions/{id}",
+            "id":"attraction-details",
+            "reqres": "discovery-api/reqres-get-attraction.md",
+            "codePath":"discovery-api/code-get-attraction.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications",
+            "id":"search-classifications",
+            "reqres": "discovery-api/reqres-search-classifications.md",
+            "codePath":"discovery-api/code-search-classifications.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/genres/{id}",
+            "id":"genre-details",
+            "reqres": "discovery-api/reqres-get-genre.md",
+            "codePath":"discovery-api/code-get-genre.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/segments/{id}",
+            "id":"segment-details",
+            "reqres": "discovery-api/reqres-get-segment.md",
+            "codePath":"discovery-api/code-get-segment.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/subgenres/{id}",
+            "id":"subgenre-details",
+            "reqres": "discovery-api/reqres-get-subgenre.md",
+            "codePath":"discovery-api/code-get-subgenre.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/{id}",
+            "id":"classification-details",
+            "reqres": "discovery-api/reqres-get-classification.md",
+            "codePath":"discovery-api/code-get-classification.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/events",
+            "id":"search-events",
+            "reqres": "discovery-api/reqres-search-events.md",
+            "codePath":"discovery-api/code-search-events.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/events/{id}",
+            "id":"event-details",
+            "reqres": "discovery-api/reqres-get-event.md",
+            "codePath":"discovery-api/code-get-event.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/events/{id}/images",
+            "id":"event-images",
+            "reqres": "discovery-api/reqres-get-event-images.md",
+            "codePath":"discovery-api/code-get-event-images.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/venues",
+            "id":"search-venues",
+            "reqres": "discovery-api/reqres-search-venues.md",
+            "codePath":"discovery-api/code-search-venues.md"
+        },
+        {
+            "pathsParent":"/discovery/v2/venues/{id}",
+            "id":"venue-details",
+            "reqres": "discovery-api/reqres-get-venue.md",
+            "codePath":"discovery-api/code-get-venue.md"
+        }
+        
+    ]
+}

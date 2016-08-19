@@ -39,7 +39,14 @@ All connections must be made over SSL using https.
 
 New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
 
+    * 3F004ACD115F6B19: No order processing fee
+    * 110050B273AB0C36: Canadian event, Has order processing fee
+    * 3F005085F00474B7: Reserved seating only. No GA
     * 3F004ACD115F6B19
+    
+### Production environment testing
+    * 000051048D991EE7: Use this event ID for production environment testing
+
 
 ### Best Practices
 
@@ -1492,6 +1499,16 @@ Sample credit-card information for use in the sandbox environment:
     <li>Expiration: 12/2020</li>
 </ul>
 
+Sample credit-card information for use in the production environment for event id 000051048D991EE7:
+
+<ul>
+    <li>payment.card.issuer=DISCOVER</li>
+	<li>payment.card.number=6011993200001006</li>
+	<li>payment.card.cvv=123</li>
+	<li>payment.card.exp.month=12</li>
+	<li>payment.card.exp.year=2020</li>
+</ul>
+
 Sample code for salting 
 
 {% highlight java %}
@@ -1972,10 +1989,12 @@ Status 200
 ## Order management [GET]
 {: #order-mangement}
 
-Get detailed information about an order. For specifically-enabled accounts only. One of order_token or order_number is required.
+Get detailed information about an order. For specifically-enabled accounts only.
 
 /partners/v1/orders?order_token={order_token}?apikey={apikey}
 {: .code .red}
+
+*Polling: Yes*
 
 ### Parameters
 
