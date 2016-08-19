@@ -59,7 +59,7 @@ Format: `HTTPS://app.ticketmaster.com/{product}/{resource}?dsn={dsn}&apikey={api
 | Product\* (see details below) | A logical grouping of related database resources | Yes | sth-customer sth-inventory sth-hold sth-buy |
 | resource | Path to an API method | Yes | ticketing\_services.aspx |
 | dsn | Data Source Name | Yes | DSN (e.g., sandbox, test) |
-| API key | Authorized API Key | Yes | [Unique to each developer - Get your API key](https://live-livenation.devportal.apigee.com/user/login) |
+| API key | Authorized API Key | Yes | [Unique to each developer - Get your API key](https://developer-acct.ticketmaster.com/user/login) |
 
 **Sample URL:**
 

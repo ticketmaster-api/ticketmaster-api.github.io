@@ -35,7 +35,7 @@ Example: https://app.ticketmaster.com/discovery/v2/events.json?{apikey}
 
 ## Get an API key
 
-[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a Consumer Key that is used for authentication.
+[Register](https://developer-acct.ticketmaster.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a Consumer Key that is used for authentication.
 
 ![Disovery API application](/products-and-docs/tutorials/img/discovery-api-app.png)
 

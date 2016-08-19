@@ -5,7 +5,7 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
-@At("https://live-livenation.devportal.apigee.com/user/login")
+@At("https://developer-acct.ticketmaster.com/user/login")
 public class UserLogInPage extends AncestorPage {
 
     public final String pageHeader = "LOG IN";
