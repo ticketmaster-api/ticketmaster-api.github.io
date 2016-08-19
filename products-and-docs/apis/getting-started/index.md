@@ -9,7 +9,7 @@ excerpt: Everything you need to start playing with the Ticketmaster API
 keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
 <div class="row desktop">
-    <div class="row-container">
+    <div class="">
         <section class="">
             <div class="horizontal-events-tracker">
                 <div class="row">
