@@ -33,6 +33,19 @@ category: partners
         })();
     </script>
     {% endif %}
+    {% if page.categories[1] == "certified" %}
+    <script src="{{"/scripts/vendors/flip-jquery-plugin.js" | prepend: site.baseurl }}"></script>
+    <script>
+    //init fliper cards
+    $(document).ready(function() {
+        var $cards = $('.card');
+        $cards.flip({
+            trigger: "hover"
+        });
+        $cards.fadeIn('slow');
+    });
+    </script>
+    {% endif %}
     {% if page.categories[1] == "certified" and page.categories[2] == "nexus" %}
     <div id="disqus_thread"></div>
     <script>

@@ -43,14 +43,14 @@
 }
 
 /* entire container, keeps perspective */
-.flip-container {
+/*.flip-container {
   perspective: 1000px;
   margin-bottom: 30px;
 }
-/* flip the pane when hovered */
+
 .flip-container:hover .flipper, .flip-container.hover .flipper {
   transform: rotateY(180deg);
-}
+}*/
 
 .partner-logo img{
   width: 100%;
@@ -78,9 +78,11 @@
 
 /*cards*/
 .card {
-  width: 263px;
-  height: 263px;
-  padding: 30px;
+  display: none;//need for butify loading
+  //width: 263px;
+  //height: 263px;
+  //padding: 30px;
+  height: 100%;
   margin: 0 auto;
 }
 
@@ -107,6 +109,7 @@
 .back {
   padding: 20px;
   border: 1px solid $n3;
+  min-height: 263px;
   &:hover {
     border-color: $n2;
   }
