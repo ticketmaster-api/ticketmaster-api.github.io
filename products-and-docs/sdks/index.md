@@ -133,11 +133,6 @@ season tickets all in one trusted place.
 {{manager}}
 </div>
 
-
-<script>
-$(".flip-container").on('tap', 'this.classList.toggle("hover")');
-</script>
-
 <div id="disqus_thread" style="margin-top: 50px;"></div>
 <script>
     var disqus_config = function () {
