@@ -518,15 +518,17 @@
   }
 
   .horizontal-events-tracker {
-    @media (min-width: 561px) and (max-width: 990px) {
+    @media (min-width: 561px) and (max-width: 1070px) {
       span {
         width: 49%;
         margin-right: 0;
+        text-align: left;
       }
     }
     @media (max-width: 560px) {
       span {
         width: 100%;
+        text-align: left;
       }
     }
   }
