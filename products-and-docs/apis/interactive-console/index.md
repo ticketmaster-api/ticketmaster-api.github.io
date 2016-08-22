@@ -63,7 +63,7 @@ page layout goes here
 </div>
 
 <div id="get-key-callout">
-<a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-transparent" markdown="1">
+<a href="https://developer-acct.ticketmaster.com/user/login" class="tm-btn tm-btn-transparent" markdown="1">
 {{api_callout_button_text}}
 </a>
 </div>
