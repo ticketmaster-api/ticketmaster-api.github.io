@@ -1,6 +1,6 @@
 (function(){
   var apiKey = sessionStorage.getItem('tk-api-key');
-  var DOMAIN = "https://live-livenation.devportal.apigee.com";
+  var DOMAIN = "https://developer-acct.ticketmaster.com";
 
   if(apiKey === null){
     var onLoadHandler = function() {

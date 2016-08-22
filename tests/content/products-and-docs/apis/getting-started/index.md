@@ -100,7 +100,7 @@ _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API 
 		<td>Authorized API Key</td>
 		<td><strong>Yes</strong></td>
 		<td>
-			<a class="standart-btn" href="https://live-livenation.devportal.apigee.com/user/login" title="Get your API key">Get your API key</a> 
+			<a class="standart-btn" href="https://developer-acct.ticketmaster.com/user/login" title="Get your API key">Get your API key</a> 
 		</td>
 	</tr>
 
