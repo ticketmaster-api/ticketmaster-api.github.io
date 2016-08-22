@@ -48,7 +48,7 @@ Everything you need to get up and running with the Ticketmaster API. Basic conce
 ## Introduction
 
 {: .body}
-To get the most out of your experience, [register for an API](https://live-livenation.devportal.apigee.com/user/register) or [log in to your account](https://developer-acct.ticketmaster.com/user/login) now. We'll render links in examples and code samples into active link using your own API Key. If you prefer to jump right into the APIs and make live calls, check out the [API Explorer](/api-explorer/).
+To get the most out of your experience, [register for an API](https://developer-acct.ticketmaster.com/user/register) or [log in to your account](https://developer-acct.ticketmaster.com/user/login) now. We'll render links in examples and code samples into active link using your own API Key. If you prefer to jump right into the APIs and make live calls, check out the [API Explorer](/api-explorer/).
 
 We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event discovery experience for your fans.
 
@@ -136,7 +136,7 @@ _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API 
 		<td>Authorized API Key</td>
 		<td><strong>Yes</strong></td>
 		<td>
-			<a class="standart-btn" href="https://live-livenation.devportal.apigee.com/user/login" title="Get your API key">Get your API key</a> 
+			<a class="standart-btn" href="https://developer-acct.ticketmaster.com/user/login" title="Get your API key">Get your API key</a> 
 		</td>
 	</tr>
 

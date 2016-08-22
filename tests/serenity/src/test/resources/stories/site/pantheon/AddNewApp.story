@@ -5,7 +5,7 @@ As a test enfineer
 I want to test Ticket Master Developer's site
 So that I test Pantheon Add New App Page of Ticket Master Developer's site
 
-Scenario: (live-livenation.devportal.apigee.com/user/1554/apps/add) Verification for general page's elements
+Scenario: (developer-acct.ticketmaster.com/user/1554/apps/add) Verification for general page's elements
 Given open Home page
 When navigate to Pantheon LogIn page from Home page
 When navigate to Pantheon User Account page from LogIn page

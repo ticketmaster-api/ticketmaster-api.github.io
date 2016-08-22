@@ -2694,6 +2694,13 @@ class MonthScheduler {
                     Promise.all(prm).then(value => {
                         spinner.classList.add('hide');
                         let le = value.length + 1;
+                        var curMonth;
+                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,1) == '0') {
+                            curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6,1);
+                        }
+                        else {
+                            curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
+                        }
                         for (var e = 0; e <= le; e++) {
                             if(value[e] && value[e]._embedded && value[e]._embedded.events){
                                 value[e]._embedded.events.forEach(function (item) {
@@ -2724,18 +2731,21 @@ class MonthScheduler {
                                             index = i;
                                         }
                                     });
-                                    monthEvents.push({
-                                        'name': item.name,
-                                        'date': item.dates.start.localDate,
-                                        'time': item.dates.start.localTime,
-                                        'datetime': widget.formatDate({
-                                            day: item.dates.start.localDate,
-                                            time: item.dates.start.localTime
-                                        }),
-                                        'place': place + address,
-                                        'url': item.url,
-                                        'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                                    });
+                                    let newDate = item.dates.start.localDate.substr(5,2);
+                                    if (parseInt(curMonth) == parseInt(newDate))  {
+                                        monthEvents.push({
+                                            'name': item.name,
+                                            'date': item.dates.start.localDate,
+                                            'time': item.dates.start.localTime,
+                                            'datetime': widget.formatDate({
+                                                day: item.dates.start.localDate,
+                                                time: item.dates.start.localTime
+                                            }),
+                                            'place': place + address,
+                                            'url': item.url,
+                                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                        });
+                                    }
                                 });
                             }
                         }
@@ -2826,6 +2836,7 @@ class MonthScheduler {
                                 else eventsLenght = monthEventsSort[d.getDate()].length;
 
                                 for(let e=0, l = eventsLenght; e < l; e++) {
+                                    // if (d.getMonth() == new Date(monthEventsSort[d.getDate()][e].datetime).getMonth()) {
                                     if (monthEventsSort[d.getDate()] && monthEventsSort[d.getDate()][e]) {
                                         url = monthEventsSort[d.getDate()][e].url;
                                         img = monthEventsSort[d.getDate()][e].img;
