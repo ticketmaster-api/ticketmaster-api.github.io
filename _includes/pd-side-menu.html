@@ -16,13 +16,13 @@
                 </ul>
                 {% endif %}
             </li>
-           {% comment %}
+           {% comment %}{% endcomment %}
             <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "swagger" %}
                     {% include partials/autodoc/side-menu-generate.html%}
 
 
-                {%comment%}
+                {% comment %}
                 <!--faq-api menu item can be here-->
                 {% assign files = site.pages %}
                 {% for file in files %}
@@ -42,7 +42,7 @@
 
                 {% endif %}
             </li>
-	   {% endcomment %}
+
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
