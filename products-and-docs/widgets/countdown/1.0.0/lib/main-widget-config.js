@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(function ($) {
 
   var widget = widgetsCountdown[0];
   var themeConfig = {
@@ -181,7 +181,7 @@
       var _widgetNode = options.widgetNode;
       var _widget = options.widget;
 
-      inputApiKey.attr('value', userKey).val(userKey);
+      inputApiKey.attr('value', userKey).data('userAPIkey', userKey).val(userKey);
       _widgetNode.setAttribute("w-tm-api-key", userKey);
       _widget.update();
     }
@@ -193,6 +193,24 @@
     }
     var targetValue = event.target.value,
         targetName = event.target.name;
+
+    if (targetName === "w-tm-api-key") {
+      document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', targetValue);
+
+      if (sessionStorage.getItem('tk-api-key')) {
+        document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+        document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+      }
+      if (document.getElementById('w-tm-api-key').value == '') {
+        if (sessionStorage.getItem('tk-api-key')) {
+          document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+        } else {
+          document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+        }
+      }
+    }
 
     if (targetName === "w-theme") {
       var widthSlider = $('.js_widget_width_slider'),
@@ -322,7 +340,7 @@
     configForm.find("input[type='text']").each(function () {
       var $self = $(this),
           data = $self.data(),
-          value = data.defaultValue;
+          value = data.userAPIkey || data.defaultValue || '';
 
       if (data.sliderValue) {
         value = data.sliderValue;
@@ -457,7 +475,7 @@
   });
 
   init();
-})();
+})(jQuery);
 
 (function ($) {
   var $modal = $('#get-eventId-modal'),

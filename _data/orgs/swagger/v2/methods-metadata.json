@@ -1,4 +1,14 @@
 {
+    "overview": [
+        {
+            "title": "Autentification",
+            "description": "Test overview Autentification description Ticketmaster Autodoc API offers and products."
+        },
+        {
+            "title": "Format",
+            "description": "You can use Test format description Ticketmaster Autodoc API."
+        }
+    ],
     "method": [
         {
             "pathsParent":"/discovery/v2/attractions",

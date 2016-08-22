@@ -24,8 +24,8 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 
 
 {% if partner.type == blank or partner.type == nil or partner.type == "small" or partner.type == "wide" %}
-<div class="flip-container col-xs-12 {% if partner.type == "wide" %} col-sm-12 col-md-12 {% else %} col-sm-6 col-md-6 {% endif %}  col-lg-4" >
-    <div class="flipper">
+<div class="flipper col-xs-12 {% if partner.type == "wide" %} col-sm-12 col-md-12 {% else %} col-sm-6 col-md-6 {% endif %}  col-lg-4" >
+    <div class="card">
         <div class="front">
             {% capture fullpath %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
             <div class="img-wrapper">
@@ -67,7 +67,3 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
     {% endif %}
 {% endfor %}
 </div>
-
-<script>
-$(".flip-container").on('tap', 'this.classList.toggle("hover")');
-</script>

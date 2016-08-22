@@ -460,17 +460,6 @@
     }
   }
 
-  .btn-small {
-    top: 28px;
-    margin-left: 30px;
-    text-transform: uppercase;
-    font-family: $font-h4;
-    font-size: $size-h6;
-    padding: 5px 15px;
-    position: relative;
-    border-radius: 3px;
-  }
-
   #req-res-container{
     height: auto;
     padding-right: 10px;
@@ -482,10 +471,12 @@
       float: left;
       width: 100%;
       .panel-heading,
-      .panel-body{
+      .panel-body {
         background: none;
         border: none;
         padding-left: 0;
+        max-height: 400px;
+        overflow: auto;
       }
       .panel-heading{
         padding-left: 40px;
@@ -526,6 +517,39 @@
     }
   }
 
+  .horizontal-events-tracker {
+    @media (min-width: 561px) and (max-width: 990px) {
+      span {
+        width: 49%;
+        margin-right: 0;
+      }
+    }
+    @media (max-width: 560px) {
+      span {
+        width: 100%;
+      }
+    }
+  }
+
+}
+
+
+.documentation,
+#api-explorer {
+  .btn-small {
+    top: 28px;
+    margin-left: 30px;
+    text-transform: uppercase;
+    font-family: $font-h4;
+    font-size: $size-h6;
+    padding: 5px 15px;
+    position: relative;
+    border-radius: 3px;
+  }
+  .api-exp-param-button {
+    margin-left: 9px;
+    padding: 5px 10px;
+  }
 }
 
 .vertical-alignment-helper {
@@ -683,4 +707,35 @@
   }
 }
 
+.pagination {
+  padding-right: 10px;
+
+  .pagination-btn {
+    float: right;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      margin-top: -6px;
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .prev-page {
+    &::before {
+      background: url(../../assets/img/ic-shevron-left-white.svg) no-repeat;
+      left: 6px;
+    }
+  }
+  .next-page {
+    &::before {
+      background: url(../../assets/img/ic-shevron-right-white.svg) no-repeat;
+      right: 0;
+    }
+  }
+}
 

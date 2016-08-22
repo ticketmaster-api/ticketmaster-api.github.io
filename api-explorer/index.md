@@ -78,7 +78,7 @@ category: api-explorer
         <div class="row-container">
             <div class="col-xs-12">
                 <h1>THE API EXPLORER</h1>
-				<p>Make live API calls without writing a single line of code! The API Explorer currently works with the <a href="/products-and-docs/apis/discovery/v2">Discovery API</a>, <a href="/products-and-docs/apis/commerce/">Commerce API</a> and <a href="/products-and-docs/apis/publish/">Publish API</a> <strong>only</strong>. TAP is experimental.</p>
+				<p>Make live API calls without writing a single line of code! The API Explorer currently works with the <a href="/products-and-docs/apis/discovery/v2">Discovery API</a>, <a href="/products-and-docs/apis/commerce/">Commerce API</a> and <a href="/products-and-docs/apis/publish/">Publish API</a> <strong>only</strong>.</p>
             </div>
         </div>
     </div>
@@ -101,6 +101,37 @@ category: api-explorer
             </div>
         </div>
     </div>
+    
+    <!--event counter bar-->
+    <div class="row">
+        <div class="row-container">
+            <section class="">
+                <div class="horizontal-events-tracker">
+                    <div class="row">
+                        <div class="col-xs-12 horizontal-events-tracker__section">
+                            <span class="horizontal-events-tracker__title">
+                                Number of Events: 
+                                <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
+                            </span>
+                            <span class="horizontal-events-tracker__title">
+                                Number of Attractions: 
+                                <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
+                            </span>
+                            <span class="horizontal-events-tracker__title">
+                                Number of Venues: 
+                                <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
+                            </span>
+                            <span class="horizontal-events-tracker__title">
+                                Countries: 
+                                <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
     <!--selected method-->
     <div class="row">
         <div class="row-container" id="title">
@@ -137,7 +168,8 @@ category: api-explorer
             <div class="col-xs-12">
                 <a href="#" id="parameters-btn"></a>
                 <h3 style="float: left;">Parameters</h3>
-                <a href="#" class="btn-default btn-small" id="clear-params">Clear parameters</a>
+                <a href="#" class="btn-default btn-small api-exp-param-button" id="copy-request">Copy</a>
+                <a href="#" class="btn-default btn-small api-exp-param-button" id="clear-params">Clear</a>
             </div>
         </div>
     </div>

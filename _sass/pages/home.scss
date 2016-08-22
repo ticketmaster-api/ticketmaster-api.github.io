@@ -78,7 +78,7 @@
       }
     }
     @media #{$max-768} {
-      margin: 5px 0 -9px;
+      margin: 5px 0 -7px;
     }
   }
   .description {
@@ -130,6 +130,13 @@
     }
   }
 }
+.normal-float {
+  float: none;
+}
+.wrap-overflow {
+  overflow: hidden;
+}
+
 
 .social-buttons {
   margin-bottom: 27px;
@@ -146,6 +153,7 @@
   display: inline-block;
   border-radius: 5px;
   padding: 14px 30px 10px;
+  overflow: hidden;
 }
 
 .tm-btn-white {

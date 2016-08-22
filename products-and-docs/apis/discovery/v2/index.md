@@ -4,6 +4,7 @@ categories:
 - documentation
 - discovery
 - v2
+- replace_apikey
 title: Discovery API 2.0
 excerpt: Use the Discovery API to search, look up and find events, attractions and venues.
 keywords: API, search events, attraction details, event images, category details, venue details, support
@@ -19,7 +20,7 @@ redirect_from:
 {: .version-button }
 [V 1.0]({{"/products-and-docs/apis/discovery/v1/" | prepend: site.baseurl}})
 
-Use the Discovery API to search, look up and find events, attractions, venues and classifications. The API provides access to content sourced from various platform, including Ticketmaster, Universe, FrontGate Tickets and TMR. The content spans over seven countries including USA, UK, Mexico, Canada, Australia, New Zeleand and Ireland. More content and sources are added to the Discovery API daily.
+Search and look up events, attractions, venues and classifications across all supported sources, markets and locales.
 {: .lead .article}
 
 #### Developer Console
@@ -35,13 +36,48 @@ Make live API calls right now in the interactive docs:
 
 ### Authentication
 
-To run a successful API call, you will need to pass your API Key as the query parameter  __apikey__.
+To run a successful API call, you will need to pass your API Key in the `apikey` query parameter. **Your API Key should automatically appear in all URLs throughout this portal**.
 
 Example: `https://app.ticketmaster.com/discovery/v2/events.json?{apikey}`
 
+Without a valid API Key, you will receive a `401` Status Code with the following response:
+
+	{
+	    "fault": {
+	        "faultstring": "Invalid ApiKey",
+	        "detail": {
+	            "errorcode": "oauth.v2.InvalidApiKey"
+	        }
+	    }
+	}
+
 ### Root URL
 
-`https://app.ticketmaster.com/discovery/{API version}`
+`https://app.ticketmaster.com/discovery/v2/`
+
+### Event Sources
+
+The API provides access to content sourced from various platform, including **Ticketmaster**, **Universe**, **FrontGate Tickets** and **Ticketmaster Resale** (TMR). By default, the API returns events from all sources. To specify a specifc source(s), use the `&source=` parameter. Multiple, comma separated values are OK. 
+
+### Event Coverage
+
+With over 113K+ events available in the API, coverage spans all of the following countries: **United States**, **United Kingdom**, **Ireland**, **Australia**, **New Zealand**, **Mexico** and **Canada**. More events and more countries are added on continious basis.
+
+![event map](/assets/img/products-and-docs/map.png)
+
+### Examples
+
+**Get a list of all events in the United States**
+`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&{apikey}`
+
+**Search for events sourced by Universe in the United States with keyword "devjam"**
+`https://app.ticketmaster.com/discovery/v2/events.json?keyword=devjam&source=universe&countryCode=US&{apikey}`
+
+**Search for music events in the Los Angeles area**
+`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&{apikey}`
+
+**Get a list of all events for Adele in Canada**
+`https://app.ticketmaster.com/discovery/v2/events.json?attractionId=K8vZ917Gku7&countryCode=CA&{apikey}`
 
 
 ## Search Events
@@ -80,7 +116,7 @@ discovery/{version}/events.{format}
 | `includeTBA`   | 	Whether or not to return events with dates to be announced (TBA). Default is 'no', TBA events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
 | `includeTBD`   | Whether or not to return events with dates to be determined (TBD). Default is 'no', TBD events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
 | `includeTest`   | Whether or not to return test events. Default is 'no', test events are not returned. | string            |       "yes&#124;no&#124;only"       | No      |
-| `size`   | The number of events returned in the API response. | string            |       "10"       | No      |
+| `size`   | The number of events returned in the API response. (Max 500) | string            |       "10"       | No      |
 | `page`   | The page for paginating through the results. | string            |       "1"       | No      |
 | `sort`   | The search sort criteria. Values: "", "eventDate,date.desc", "eventDate,date.asc", "name,date.desc", "name,date.asc". | string            |              | No      |
 | `onsaleStartDateTime`   | Include events going onsale after this date. | string            |       "2017-01-01T00:00:00Z"       | No      |
@@ -3656,7 +3692,6 @@ discovery/{version}/venues.{format}
 | `countryCode`| The country code. |string | | No |
 | `includeTest`| Include test   |string, enum:["yes","no","only"]| | No |
 | `source`    | Source   |string | | No |
-| `extensions`| Availiable value: `geolocation` |string | | No |
 
 ### Response structure:
 
@@ -3683,21 +3718,6 @@ discovery/{version}/venues.{format}
             * `location` (object) - location.
                 - `longitude` (string) - address line 1.
                 - `latitude` (string) - address line 2.
-            * `extensions` (object) - extensions.
-                - `geolocation` (object) - geolocation.
-                    * `geocode` (object) -  geocode.             
-                      - `county` (string) - county.               
-                      - `geometry` (object) - geometry.             
-                        * `location` (object) - location. 
-                          - `longitude` (number) - longitude.    
-                          - `latitude` (number) - latitude.
-                      - `streetNumber` (string) - streetNumber of venue.              
-                      - `route` (string) - route.
-                      - `state` (string) - state of venue.
-                      - `postalCode` (string) - postalCode of venue.
-                      - `formattedAddress` (string) - formattedAddress 
-                      - `city` (string) - city of venue.
-                      - `country` (string) - country of venue.
             * `postalCode` (string) - postal code of venue.
             * `markets` (array) - markets.
                 - `{array item object}` - market.
@@ -3910,7 +3930,6 @@ discovery/{version}/venues/{id}.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
-| `extensions`| Availiable value: `geolocation` |string | | No |
 
 ### Response structure:
 
@@ -3929,21 +3948,6 @@ discovery/{version}/venues/{id}.{format}
 * `dmas` (array) - dmas venue.
     - `{array item object}` - dmas.
         * `id` (number) - id.
-* `extensions` (object) - extensions.
-    - `geolocation` (object) - geolocation.
-        * `geocode` (object) -  geocode.             
-            - `county` (string) - county.               
-            - `geometry` (object) - geometry.             
-              * `location` (object) - location. 
-                  - `longitude` (number) - longitude.    
-                  - `latitude` (number) - latitude.
-            - `streetNumber` (string) - streetNumber of venue.              
-            - `route` (string) - route.
-            - `state` (string) - state of venue.
-            - `postalCode` (string) - postalCode of venue.
-            - `formattedAddress` (string) - formattedAddress 
-            - `city` (string) - city of venue.
-            - `country` (string) - country of venue.
 * `id` (string) - id of venue.
 * `locale` (string) - locale of venue.
 * `location` (object) - location.
@@ -4065,7 +4069,7 @@ Rate-Limit: 5000
 {: .article #supported-country-codes}
 This the [ISO Alpha-2 Code](https://en.wikipedia.org/wiki/ISO_3166-1) country values:
 
-| Source				|
+| Country Code		|
 |:----------------------|
 | AU (Australia)		|
 | CA (Canada)			|
@@ -4205,6 +4209,7 @@ Markets can be used to filter events by larger regional demographic groupings. E
 | Source	|
 |:----------|
 | ticketmaster	|
+| tmr (ticketmaster resale platform) |
 | universe	|
 | frontgate |
 

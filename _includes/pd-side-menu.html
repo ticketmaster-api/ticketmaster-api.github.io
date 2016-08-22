@@ -7,7 +7,7 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#introduction">Introduction</a></li>
-					<li><a href="#data-model">Data Model</a></li>
+                    <li><a href="#data-model">Data Model</a></li>
                     <li><a href="#uri-format">URI Format</a></li>
                     <li><a href="#rate-limit">Rate Limit</a></li>
                     <li><a href="#cors-support">CORS Support</a></li>
@@ -16,54 +16,10 @@
                 </ul>
                 {% endif %}
             </li>
-           {% comment %}{% endcomment %}
+           {% comment %}
             <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
-                {% if page.categories[0] == "documentation" and page.categories[1] == "swagger" or page.categories[2] == "swagger" %}
-
-                {% assign pageMetaFolder        = page.categories[2] %}
-                {% assign pageMetaVersionFolder = page.categories[3] %}
-                {% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
-                {% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
-                {% if swagger.paths.size > 0 %}
-                    <ul class="sections menu-highlight">
-                    {% for route in swagger.paths %}
-
-                        {% for tag in methodsDescription.method %}
-                            {% if tag.pathsParent == route[0] %}
-                                {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
-                                {% assign _title = tag.title %}
-                                {% assign _reqres = tag.reqres %}
-                                {% assign _codePath = tag.codePath %}
-                            {% endif %}
-                        {% endfor %}
-
-                        {% assign indexLoop = forloop.index0 %}
-
-                            {% for method in route[1] %}
-                                <li><a href="{% if _id %}{{ _id | prepend: '#'}}{% else %}{{ method[1].summary
-                                    | lstrip
-                                    | downcase
-                                    | replace: ' ' , '-'
-                                    | replace: '[' , '-'
-                                    | replace: ']' , '-'
-                                    | replace: '/' , '-'
-                                    | replace: '\' , '-'
-                                    | replace: '(' , '-'
-                                    | replace: ')' , '-'
-                                    | prepend: '#'
-                                    | append: '-'
-                                    | append: indexLoop
-                                    | append: '-'
-                                    | append: page.categories[3] }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary | lstrip }}{% endif %}</a></li>
-                            {% endfor %}
-                        {% comment %}<!--Clear meta data -->{% endcomment %}
-                        {% assign _id = tag.id %}
-                        {% assign _title = tag.title %}
-                        {% assign _reqres = tag.resreq %}
-                        {% assign _codePath = tag.codePath %}
-                    {% endfor %}
-                    </ul>
-                {% endif %}
+                {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "swagger" %}
+                    {% include partials/autodoc/side-menu-generate.html%}
 
 
                 {%comment%}
@@ -86,7 +42,7 @@
 
                 {% endif %}
             </li>
-
+	   {% endcomment %}
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
@@ -99,8 +55,7 @@
                     <li><a href="#search-classifications-v2">Search Classifications</a></li>
                     <li><a href="#classifications-details-v2">Get Classification Details</a></li>
                     <li><a href="#search-venues-v2">Search Venues</a></li>
-					<li><a href="#venue-details-v2">Get Venue Details</a></li>
-                    <li><a href="#supported-country-codes">Supported Country Codes</a></li>
+                    <li><a href="#venue-details-v2">Get Venue Details</a></li>
                     <li><a href="#supported-country-codes">Supported Country Codes</a></li>
                     <li><a href="#supported-markets">Supported Markets</a></li>
                     <li><a href="#supported-sources">Supported Sources</a></li>
@@ -133,11 +88,44 @@
 
                 {% endif %}
             </li>
+            <!--
+            <li><a href="/products-and-docs/apis/discovery-api/v2/">Discovery API</a>
+                {% if page.categories[0] == "documentation" and page.categories[2] == "discovery-api" and page.categories[3] == "v2" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#search-attractions-v2">Search Attractions</a></li>
+                    <li><a href="#attraction-details-v2">Get Attraction Details</a></li>
+                    <li><a href="#search-classifications-v2">Search Classifications</a></li>
+                    <li><a href="#genre-details-v2">Get Genre Details</a></li>
+                    <li><a href="#segment-details-v2">Get Segment Details</a></li>
+                    <li><a href="#subgenre-details-v2">Get Subgenre Details</a></li>
+                    <li><a href="#classification-details-v2">Get Classification Details</a></li>
+                    <li><a href="#search-events-v2">Search Events</a></li>
+                    <li><a href="#event-details-v2">Get Event Details</a></li>
+                    <li><a href="#event-images-v2">Get Event Images</a></li>
+                    <li><a href="#search-venues-v2">Search Venues</a></li>
+                    <li><a href="#venue-details-v2">Get Venue Details</a></li>
+                    <li><a href="#supported-country-codes">Supported Country Codes</a></li>
+                    <li><a href="#supported-markets">Supported Markets</a></li>
+                    <li><a href="#supported-sources">Supported Sources</a></li>
+                    <li><a href="#supported-locales">Supported Locales</a></li>
+                    <li><a href="#supported-dma">Supported DMA</a></li>
+                    {% include partials/changelog-apis.html%}
+                    <li><a href="#disqus_thread">Disqus</a></li>
+                </ul>
+                {% endif %}
 
+
+            </li>
+            -->
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#event-offers">Event Offers</a></li>
+                    <li><a href="#get-cart">Get Cart</a></li>
+                    <li><a href="#create-cart">Create Cart</a></li>
+                    <li><a href="#empty-cart">Empty Cart</a></li>
+                    <li><a href="#update-cart-products">Update Cart Products</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
@@ -170,6 +158,13 @@
                         </ul>
                     </li>
                     <li class="sub-section">
+                        <span class="sub-section-label">Member Management</span>
+                        <ul class="sections menu-highlight">
+                            <li><a href="#add-payment">Add Member Payment Information</a></li>
+                            <li><a href="#view-payment">View Member Payment Information</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-section">
                         <span class="sub-section-label">Order Management</span>
                         <ul class="sections menu-highlight">
                             <li><a href="#order-mangement">Order information</a></li>
@@ -185,6 +180,18 @@
                 </ul>
                 {% endif %}
             </li>
+            <li><a href="/products-and-docs/apis/top-picks/">Top Picks API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "top-picks" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#top-picks-details">Top Picks Details</a></li>
+                    <li><a href="#snapshot-image">Snapshot Image</a></li>
+                    {% include partials/changelog-apis.html%}
+                    <li><a href="#disqus_thread">Disqus</a></li>
+                </ul>
+                {% endif %}
+            </li>
+
             <li><a href="/products-and-docs/apis/deals-api/">Deals API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "deals-api" %}
                 <ul class="sections menu-highlight">
@@ -229,6 +236,7 @@
                     </li>
                     <li><a href="#using-access-token">Using Access Token</a></li>
                     <li><a href="#getting-refresh-tokens">Getting Refresh Tokens</a></li>
+                    <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
                 {% endif %}
             </li>
@@ -259,22 +267,19 @@
                 </ul>
                 {% endif %}
             </li>
-            {% comment %}
-            <li><a href="/products-and-docs/apis/season-tix/">Season Tix API</a>
-                {% if page.categories[0] == "documentation" and page.categories[1] == "season-tix" %}
+            <li><a href="/products-and-docs/apis/season-ticketing/">Season Ticketing API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "season-ticketing" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#ping">PING</a></li>
-                    <li><a href="#customer-query">Customer Query</a></li>
-                    <li><a href="#event-search">Event Search</a></li>
-                    <li><a href="#event-details">Event Details</a></li>
-                    <li><a href="#seats-sold">Seats Sold</a></li>
+                    <li><a href="#getting-your-api-key">Getting Your API KEY</a></li>
+                    <li><a href="#construct-the-url">Construct the URL</a></li>
+                    <li><a href="#asynchronous-polling">Asynchronous Polling</a></li>
+                    <li><a href="#http-result-codes-and-meaning">HTTP Result Codes</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
                 {% endif %}
             </li>
-            {% endcomment %}
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>
             <li><a href="/api-explorer/">API Explorer</a></li>
             <li><a href="/products-and-docs/apis/changelog/">Changelog</a></li>
@@ -296,17 +301,19 @@
     </li>
     <li>
         <h4><a href="/products-and-docs/sdks/" {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %} class="active" {% endif %} >SDKs</a></h4>
-        <!--<ul class="categories">
-            <li><a href="/products-and-docs/under-development/">Getting Started</a></li>
-            <li><a href="/products-and-docs/under-development/">Installation instruction</a></li>
-            <li><a href="/products-and-docs/under-development/">Documentation</a></li>
-            <li><a href="/products-and-docs/under-development/">Code samples</a></li>
-        </ul>-->
+        {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
+        <ul class="sections menu-highlight">
+            <li><a href="https://github.com/ticketmaster-api/sdk-java">SDK-Java</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-javascript">SDK-JavaScript</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-scala">SDK-Scala</a></li>
+            <li><a href="#account-manager">Account Manager</a></li>
+        </ul>
+        {% endif %}
     </li>
     <li>
         <h4><a href="/products-and-docs/widgets/" {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %} class="active" {% endif %} >Widgets</a></h4>
         {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %}
-            <ul class="categories">
+            <ul class="categories menu-highlight">
                 <li><a href="https://www.universe.com/directpayments">Direct Payments</a></li>
                 <li><a href="/products-and-docs/widgets/event-discovery/">Event Discovery Widget</a></li>
                 <li><a href="/products-and-docs/widgets/countdown/">Countdown Widget</a></li>
@@ -317,9 +324,61 @@
         <h4><a href="/products-and-docs/tutorials/" {% if page.categories[1] == "tutorials" %} class="active" {% endif %} >Tutorials</a></h4>
         {% if page.categories[1] == "tutorials" or page.categories[0] == "tutorials" %}
         <ul class="categories">
-            <li><a href="/products-and-docs/tutorials/events-search/" {% if page.categories[2] == "events-search-tutorials" or page.categories[1] == "tutorials-events-search" %} class="active" {% endif %} >Events Search</a></li>
-            <li><a href="/products-and-docs/tutorials/widgets/" {% if page.categories[2] == "widgets-tutorials" or page.categories[1] == "tutorials-widgets" %} class="active" {% endif %} >Widgets</a></li>
+            <li>
+                <a href="/products-and-docs/tutorials/events-search/" {% if page.categories[2] == "events-search-tutorials" or page.categories[1] == "tutorials-events-search" %} class="active" {% endif %} >Events Search</a>
+                <ul class="sections menu-highlight sd-tags-list"></ul>
+            </li>
+            <li>
+                <a href="/products-and-docs/tutorials/widgets/" {% if page.categories[2] == "widgets-tutorials" or page.categories[1] == "tutorials-widgets" %} class="active" {% endif %} >Widgets</a>
+                <ul class="sections menu-highlight sd-tags-list"></ul>
+            </li>
         </ul>
         {% endif %}
     </li>
 </ul>
+
+<script>
+    $(document).ready(function () {
+
+        var uniqueUpcoming = [].map.call($(".tag-btn"), function(item){
+            return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';
+        }).filter( function(value, index, self) {
+            return self.indexOf(value) === index;
+        }).join("");
+
+        if(uniqueUpcoming !== ""){
+            $(".categories>li>a.active + .sd-tags-list").append(uniqueUpcoming);
+        }
+
+        var PartnerTagClickHandler = function() {
+            var currentItem = this.textContent;
+            var isActive = $(this).hasClass('active');
+            if(isActive){
+                $(".tag-btn, .tag-menu-btn").removeClass("active");
+                $(".tutorials-article").show();
+                if(this.tagName.toUpperCase() == "BUTTON"){
+                    this.blur();
+                }
+
+            }else{
+                $(".tag-btn").add(".tag-menu-btn").removeClass("active").map(function(){
+                    if (this.textContent == currentItem) {
+                        return this;
+                    }
+                }).addClass("active");
+
+                $(".tutorials-article").show().filter(function() {
+                    return $(this).find(".tag-btn.active").size() === 0;
+                }).hide();
+            }
+
+
+        };
+
+        $(".tutorials-article").on("click", ".tag-btn", PartnerTagClickHandler);
+        $(".categories").on("click", ".tag-menu-btn", PartnerTagClickHandler);
+    });
+
+
+
+</script>

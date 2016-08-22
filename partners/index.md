@@ -34,7 +34,7 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 ### Startups &amp; Developers
 
 {: .descr}
-Several words about startups and developers section. Main function and so on information
+Examples of apps and demos leveraging the Ticketmaster API, like Global Heatmap, API Explorer, etc.
 
 [See all showcases](/partners/startups-and-developers/)
 {% endcapture %}
@@ -63,7 +63,7 @@ Several words about startups and developers section. Main function and so on inf
 
 {% capture distribution_more %}
 {: .caption}
-Description information about Distribution Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
+Dedicated to the mission to promote and sell client tickets through a variety of new storefronts. We enable this through content and transactional solutions, building amazing user experiences with our partners to delight Fans and drive sales.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.
@@ -94,7 +94,7 @@ Have questions about our affiliate program? [Check out our FAQs!](/support/faq/#
 
 {% capture certified_more %}
 {: .caption}
-Description information about Certified Partners, what is it, how to became etc. Synth polaroid bitters chillwave pickled. Vegan disrupt tousled. For more information please contact us or visit FAQ section.
+At Ticketmaster, we are always looking for innovative products and services that complement Ticketmaster’s Ticketing Services; that’s why we’ve created the Nexus Certified Partner Program. Our goal is to work with best in breed solution providers.
 
 {: .caption}
 For more information please [contact us](mailto:distributedcommerce@ticketmaster.com){: .italic} or visit [FAQ](/support/faq){: .italic} section.

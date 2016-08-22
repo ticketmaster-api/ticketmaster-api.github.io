@@ -7,9 +7,6 @@
 
   p {
     width: 85%;
-    &.lead {
-      width: 100%;
-    }
     &.medium {
       width: 40.5%;
     }
@@ -76,6 +73,20 @@
   }
 }
 
+.no-desktop {
+  display: none;
+  @media (min-width: 320px) and (max-width: 1199px) {
+    display: block;
+  }
+}
+.desktop {
+  display: none;
+  @media (min-width: 1200px) {
+    display: block;
+  }
+}
+
+
 .noupper {
   text-transform: none;
 }
@@ -91,6 +102,23 @@
     }
   }
   &.sdks {
+    .tiles-wrapper {
+      max-width: 879px;
+      margin-bottom: 72px;
+      .flipper {
+        border: 0;
+        height: 263px;
+      }
+      .img-wrapper {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          //height: 263px;
+          border: 0;
+        }
+      }
+    }
     @media (max-width: 768px) {
       .tutorials-article  {
         margin-bottom: 0;
@@ -105,14 +133,20 @@
         width: 88.33333%;
       }
     }
+    @media (max-width: 1199px) {
+      .tiles-wrapper {
+        max-width: 100%;
+      }
+    }
   }
 }
 
 .grey-box {
+  clear: both;
   width: 847px;
   padding: 46px 46px 26px 46px;
   background: #f1f4f6;
-  margin-top: 75px;
+  margin-top: $base-margin;
   @media #{$max-1200} {
     width: 100%;
     margin-bottom: 80px;
@@ -122,12 +156,19 @@
   }
   h3 {
     margin-top: 0;
+    &:target:before {
+      content: "";
+      display: block;
+      height: 138px;
+      margin: -138px 0 0;
+    }
   }
   &.android {
     background-color: #f1f4f6;
     background-image: url('/assets/img/products-and-docs/android-mock-i-o-s-mock.png');
     background-position: right bottom;
     background-repeat: no-repeat;
+    overflow: hidden;
     @media #{$max-768} {
       background-image: none;
       margin-top: 10px;
@@ -202,7 +243,7 @@
 .widget_box {
   width: 850px;
   min-height: 438px;
-  margin-bottom: 72px;
+  margin-bottom: $base-margin*3;
   background-repeat: no-repeat;
   background-position: right top;
 
@@ -249,7 +290,7 @@
 
 
   h2{
-    padding: 72px 0 0 48px;
+    padding: $base-margin*3 0 0 $base-margin*2;
     color: #fff;
     font-size: 54px;
     line-height: 66px;
@@ -358,4 +399,41 @@
     }
   }/*offset END*/
 
+}
+
+.getting-started {
+  h2 {
+    margin-top: $base-margin*3;
+  }
+  h3 {
+    margin-top: $base-margin*2;
+  }
+  .lead {
+    margin-bottom: 0;
+  }
+  /*offset for fixed header*/
+  h2:target:before,
+  h3:target:before {
+    content: "";
+    display: block;
+    height: 100px;
+    margin: -100px 0 0;
+
+    @media #{$max-1200} {
+      height: 154px;
+      margin-top: -154px;
+    }
+  }/*offset END*/
+
+  .horizontal-events-tracker {
+    width: 85%;
+    @media (max-width: 1424px) {
+      span {
+        width: 47.5%;
+      }
+    }
+    .horizontal-events-tracker__title {
+      margin-right: 2%;
+    }
+  }
 }

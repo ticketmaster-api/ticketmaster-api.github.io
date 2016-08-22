@@ -15,3 +15,7 @@ npm-debug.log
 .DS_Store
 Gemfile.lock
 
+# Ignore Local automation files
+/tests/serenity/target
+/tests/serenity/.idea
+/tests/serenity/*.iml

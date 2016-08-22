@@ -12,6 +12,36 @@ body .top-bar.bg-header {
     padding: 0;
   }
 }
+.base-content-wrapper .tiles-wrapper {
+  .flipper {
+    border: 0;
+    margin-bottom: 30px;
+  }
+  .card {
+    width: 100%;
+    .front {
+      border: 1px solid $steel-20;
+    }
+    .back {
+      padding: 15px;
+      font-size: $base-font-size - 2;
+      overflow: hidden;
+      p { margin: 0;
+        max-height: 100%;
+        overflow: hidden;
+      }
+    }
+    .img-wrapper img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+    }
+  }
+}
 
 .top-content {
   text-align: center;

@@ -3,14 +3,14 @@
 category: event
 title: "The Ticketmaster API Devjam in Chantilly, VA!"
 
-date_title: "Saturday, September 24, 2016 @ 9am"
-date_start: "2016-09-24 17:30:00"
-date_end: "2016-09-24 23:59:00"
+date_title: "Saturday, October 1, 2016 @ 9am"
+date_start: "2016-09-30 17:30:00"
+date_end: "2016-10-01 23:59:00"
 
 img: "/assets/img/events/devjam9.png"
 
 place: 
-  - "TBD"
+  - "Ticketmaster Office"
   - ""
 
 city: "Chantilly, VA"

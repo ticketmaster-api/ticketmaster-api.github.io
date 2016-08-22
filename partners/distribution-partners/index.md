@@ -26,7 +26,7 @@ solutions, building amazing user experiences with our partners to delight Fans a
 Partner with Ticketmaster, the global leader in live event ticketing!
 
 {: .col-xs-12 .col-sm-4 .text-left}
-[PARTNER WITH US](mailto:distributedcommerce@ticketmaster.com){: .button}
+[PARTNER WITH US](mailto:distributionpartners@ticketmaster.com){: .button}
 {% endcapture %}
 
 {% capture headlines %}

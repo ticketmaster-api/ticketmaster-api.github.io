@@ -28,8 +28,8 @@ Instructions Header
 instructions list
 {:/comment}
 {% capture instructions_list %}
-1. Have your **[API Key](https://live-livenation.devportal.apigee.com/user/login)** handy. Get your API Key if you don’t have one.
-2. Under "Authentication" tab, choose "Custom Token".
+1. Have your **[API Key](https://live-livenation.devportal.apigee.com/user/login)** handy.
+2. Under "Authentication" tab, choose "**Custom Token**".
 3. Enter your API Key in the "value" field.
 4. Some calls require Oauth 2 authentication. You'll need to log in with your credentials to authenticate.
 {% endcapture %}
@@ -50,7 +50,7 @@ page layout goes here
 {{page_title}}
 
 <div id="pantheon-api-key" class="pantheon-api-key" style="display: none;">
-  Your API Key: <span id="copy-clip"></span>
+  Your API Key/Custom Token: <span id="copy-clip"></span>
   <div class="copy-btn" rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-text=""></div>  
 </div>
 <div id="instructions-header" class="double-margin-top" markdown="1">
@@ -68,4 +68,4 @@ page layout goes here
 </a>
 </div>
 
-<iframe id="console-iframe" src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 3em;"></iframe>
+<iframe id="console-iframe" src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="730" scrolling="no" style="margin-top: 3em;"></iframe>
