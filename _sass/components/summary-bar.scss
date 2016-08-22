@@ -89,11 +89,16 @@
   }
   .horizontal-events-tracker__title {
     color: $n3;
-    margin-right: 5%;
+    width: 24%;
     display: inline-block;
+    text-align: center;
+    //@media (min-width: 1440px) {
+    //  text-align: center;
+    //}
   }
   .horizontal-events-tracker__counter {
     color: $n2;
+    margin-left: 6px;
   }
 }
 

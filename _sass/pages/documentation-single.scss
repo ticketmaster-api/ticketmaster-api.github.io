@@ -426,14 +426,21 @@
   }/*offset END*/
 
   .horizontal-events-tracker {
-    width: 85%;
-    @media (max-width: 1424px) {
+    //width: 85%;
+    @media (max-width: 1435px) {
       span {
-        width: 47.5%;
+        width: 48%;
+        text-align: left;
       }
     }
+
+    .horizontal-events-tracker__section {
+      padding: 20px 0;
+      text-align: center;
+    }
+
     .horizontal-events-tracker__title {
-      margin-right: 2%;
+      //margin-right: 2%;
     }
   }
 }
