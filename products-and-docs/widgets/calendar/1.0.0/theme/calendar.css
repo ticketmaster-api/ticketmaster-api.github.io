@@ -1396,7 +1396,7 @@ div[w-theme="calendar"] #year .month {
     display: block;
     float: left;
     width: 70px;
-    height: 67px;
+    height: 65px;
     font-size: 14px;
     text-align: center;
 }
@@ -1425,6 +1425,153 @@ div[w-theme="calendar"] #year .month .count {
     border-radius: 15px;
     min-width: 28px;
     min-height: 28px;
+}
+
+/* Dark Theme */
+div[w-theme="calendar"][w-colorscheme="dark"] {
+    background: #48494a;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .events-root-container{
+    background-color: #414141;
+    border-style: solid;
+    border-color: transparent;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs {
+    background: #48494a;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span {
+    color: #919192;
+    border: 1px solid #919192;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span:first-child {
+    border-left: 1px solid #919192;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span.active {
+    background: #919192;
+    color: #48494a;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .selector-title {
+    color: #c8c8c9;
+    border-bottom: none;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .selector-title:hover {
+    color: #189ddc;
+    cursor: pointer;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .selector-content {
+    background: #768692;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler {
+    background: #414141;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .t {
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .d {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .d,
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .d.active,
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .tl {
+    color: #c8c8c9;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .d:last-child {
+    border-right: 0;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table tr:nth-child(odd) {
+    background: none;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round {
+    color: #d9d9d9;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round .count {
+    border-color: #414141;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover,
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover .count,
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round-holder.active .round,
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round-holder.active .count {
+    cursor: pointer;
+    background: #ba1079;
+    color: #fff !important;
+    border-color: #ba1079;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover .count {
+    border-color: #414141;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar td.dis {
+    color: #696969;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table th {
+    color: #c8c8c9;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table td {
+    color: #8d8d8d;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #year .month .name,
+div[w-theme="calendar"][w-colorscheme="dark"] #year .month .name.current {
+    color: #c8c8c9;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-box {
+    background: rgba(0,0,0,0.2);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo {
+    color: #fff;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo:before {
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-size: 98px;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c {
+    color: #fff;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c:after {
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-size: 98px;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .spinner-container {
+    width: 100%;
+    height: 275px;
+    margin: 0 auto;
+    text-align: center;
+    background: #48494a;
+    display: block;
+    position: absolute;
+    z-index: 10;
+}
+
+div[w-theme="calendar"] .spinner > div {
+    opacity: 0.5;
 }
 
 div[w-theme="calendar"] .spinner-container {

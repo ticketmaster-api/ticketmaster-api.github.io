@@ -7,6 +7,7 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static bla.tm.DevSiteTestsRunner.baseTestedUrl;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 
 public class PD_Tutorials_WidgetsDefinition {
@@ -101,7 +102,7 @@ public class PD_Tutorials_WidgetsDefinition {
 
     @Then("check that new page opened from Tutorials Widgets page has $url and $title")
     public void checkIfPageIsOpened(String url, String title){
-        anyPage.checkIfPageIsOpened(url,title);
+        anyPage.checkIfPageIsOpened(url,title,baseTestedUrl);
     }
 
     @Then("Feedback widget is shown")

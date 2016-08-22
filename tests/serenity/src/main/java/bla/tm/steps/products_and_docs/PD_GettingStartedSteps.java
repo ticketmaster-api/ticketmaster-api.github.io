@@ -8,9 +8,12 @@ import net.thucydides.core.annotations.Step;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import static bla.tm.staticmethods.StaticMethods.checkIfWebElementExist;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PD_GettingStartedSteps {
 
@@ -37,6 +40,11 @@ public class PD_GettingStartedSteps {
     }
 
     @Step
+    public void clickLogIn() {
+        gettingStartedPage.getLogInButton().click();
+    }
+
+    @Step
     public void compareCommerceAPIMethodsToSameGettingStartedMethodsList(){
         WebElementFacade availableResourcesTable = gettingStartedPage.getAvailableResourcesTable();
         List<MenuElements> leftMenuObject = Serenity.sessionVariableCalled("Commerce API");
@@ -60,5 +68,16 @@ public class PD_GettingStartedSteps {
     @Step
     public void checkSummaryWidgetVisible(){
         gettingStartedPage.getSummaryWidget().shouldBeVisible();
+    }
+
+    @Step
+    public void checkAPIKeyPlaceholders(String apikey) {
+        //First check for non hidden elements
+        for (Map.Entry<String, WebElementFacade> entry : gettingStartedPage.getAPIKeyPlaceHoldersList().entrySet()){
+            String key = entry.getKey();
+            WebElementFacade value = entry.getValue();
+            waitForSomeActionHappened(50);
+            assertTrue(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
+        }
     }
 }

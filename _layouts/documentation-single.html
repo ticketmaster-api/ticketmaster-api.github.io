@@ -99,3 +99,17 @@ layout: default
 </script>
 {% endif %}
 <script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
+
+{% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
+<script src="{{"/scripts/vendors/flip-jquery-plugin.js" | prepend: site.baseurl }}"></script>
+<script>
+    //init fliper cards
+    $(document).ready(function() {
+        var $cards = $('.card');
+        $cards.flip({
+            trigger: "hover"
+        });
+        $cards.fadeIn('slow');
+    });
+</script>
+{% endif %}

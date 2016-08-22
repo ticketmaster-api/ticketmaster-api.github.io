@@ -147,7 +147,7 @@ Raw html goes here (uses liquid variabled defined above)
 {{top_promo_desc}}
 </div>
 <div class="col-xs-12 button-block normal-float">
-    <a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
+    <a href="https://developer-acct.ticketmaster.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent rightarrow">REVIEW DOCUMENTATION</a>
     <a href="{{"/api-explorer/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE APIs</a>
 </div>

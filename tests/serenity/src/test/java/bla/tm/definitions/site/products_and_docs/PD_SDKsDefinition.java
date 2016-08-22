@@ -7,6 +7,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static bla.tm.DevSiteTestsRunner.baseTestedUrl;
+
 public class PD_SDKsDefinition {
 
     @Steps
@@ -28,7 +30,7 @@ public class PD_SDKsDefinition {
 
     @Then("check that new page opened from SDKs page has $url and $title")
     public void checkIfPageIsOpened(String url, String title){
-        anyPage.checkIfPageIsOpened(url,title);
+        anyPage.checkIfPageIsOpened(url,title,baseTestedUrl);
     }
 
     @Then("check general page elements for SDKs Page, where DISQUS = $disqus and LeftMenu = $leftMenu")

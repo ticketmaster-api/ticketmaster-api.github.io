@@ -8,25 +8,35 @@ title: Getting Started
 excerpt: Everything you need to start playing with the Ticketmaster API
 keywords: API, register for a key, live events core datasets, URI Format, URI Examples
 ---
+<div class="row desktop">
+    <div class="">
+        <section class="">
+            <div class="horizontal-events-tracker">
+                <div class="row">
+                    <div class="col-xs-12 horizontal-events-tracker__section">
+                        <span class="horizontal-events-tracker__title">
+                            Number of Events: 
+                            <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of Attractions: 
+                            <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of Venues: 
+                            <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of countries: 
+                            <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 
-<ul class="events-tracker events-tracker_col-view">
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Events: </div>
-        <div id="js-events-counter" class="events-tracker__counter"></div>
-    </li>
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Attractions: </div>
-        <div id="js-attractions-counter" class="events-tracker__counter"></div>
-    </li>
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Venues: </div>
-        <div id="js-venues-counter" class="events-tracker__counter"></div>
-    </li>
-    <li class="events-tracker__item">
-        <div class="events-tracker__title">Countries: </div>
-        <div id="js-countries-counter" class="events-tracker__counter">7</div>
-    </li>
-</ul>
 
 # GETTING STARTED
 
@@ -38,7 +48,7 @@ Everything you need to get up and running with the Ticketmaster API. Basic conce
 ## Introduction
 
 {: .body}
-To get the most out of your experience, [register for an API](https://live-livenation.devportal.apigee.com/user/register) or [log in to your account](https://live-livenation.devportal.apigee.com/user/login) now. We'll render links in examples and code samples into active link using your own API Key. If you prefer to jump right into the APIs and make live calls, check out the [API Explorer](/api-explorer/).
+To get the most out of your experience, [register for an API](https://developer-acct.ticketmaster.com/user/register) or [log in to your account](https://developer-acct.ticketmaster.com/user/login) now. We'll render links in examples and code samples into active link using your own API Key. If you prefer to jump right into the APIs and make live calls, check out the [API Explorer](/api-explorer/).
 
 We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event discovery experience for your fans.
 
@@ -126,7 +136,7 @@ _https://app.ticketmaster.com/{package}/{version}/{resource}.json?apikey=**{API 
 		<td>Authorized API Key</td>
 		<td><strong>Yes</strong></td>
 		<td>
-			<a class="standart-btn" href="https://live-livenation.devportal.apigee.com/user/login" title="Get your API key">Get your API key</a> 
+			<a class="standart-btn" href="https://developer-acct.ticketmaster.com/user/login" title="Get your API key">Get your API key</a> 
 		</td>
 	</tr>
 
@@ -325,6 +335,34 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     </tr>
     
     
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#get-cart">Get Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#create-cart">Create Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#empty-cart">Empty Cart</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#update-cart-products">Update Cart Products</a></td>
+      <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
+      <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
+    </tr>
     <tr>
       <td style="text-align: left"><a href="/products-and-docs/apis/commerce/#get-cart">Get Cart</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>

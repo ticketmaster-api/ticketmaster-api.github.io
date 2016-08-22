@@ -35,7 +35,7 @@ Example: https://app.ticketmaster.com/discovery/v2/events.json?{apikey}
 
 ## Get an API key
 
-[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a Consumer Key that is used for authentication.
+[Register](https://developer-acct.ticketmaster.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a Consumer Key that is used for authentication.
 
 ![Disovery API application](/products-and-docs/tutorials/img/discovery-api-app.png)
 
@@ -55,7 +55,7 @@ We have a very easy example of site with Event Discovery widget. This site has t
 
   <body>
     <div w-type="event-discovery" w-tmapikey="5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-keyword="zz top" w-theme="newschool" w-colorscheme="light" w-width="300" w-height="600" w-size="25" w-border="2" w-borderradius="7" w-postalcode="" w-radius="" w-country="" w-period="year" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="xxl"></div>
-    <script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>
+    <script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js?v=1"></script>
   
   </body>
 

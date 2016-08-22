@@ -28,7 +28,7 @@ Instructions Header
 instructions list
 {:/comment}
 {% capture instructions_list %}
-1. Have your **[API Key](https://live-livenation.devportal.apigee.com/user/login)** handy.
+1. Have your **[API Key](https://developer-acct.ticketmaster.com/user/login)** handy.
 2. Under "Authentication" tab, choose "**Custom Token**".
 3. Enter your API Key in the "value" field.
 4. Some calls require Oauth 2 authentication. You'll need to log in with your credentials to authenticate.
@@ -63,9 +63,9 @@ page layout goes here
 </div>
 
 <div id="get-key-callout">
-<a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-transparent" markdown="1">
+<a href="https://developer-acct.ticketmaster.com/user/login" class="tm-btn tm-btn-transparent" markdown="1">
 {{api_callout_button_text}}
 </a>
 </div>
 
-<iframe id="console-iframe" src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="900" scrolling="no" style="margin-top: 3em;"></iframe>
+<iframe id="console-iframe" src="https://apigee.com/ticketmaster/embed/console/tmapi" width="100%" height="730" scrolling="no" style="margin-top: 3em;"></iframe>

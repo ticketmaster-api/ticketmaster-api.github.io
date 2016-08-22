@@ -471,10 +471,12 @@
       float: left;
       width: 100%;
       .panel-heading,
-      .panel-body{
+      .panel-body {
         background: none;
         border: none;
         padding-left: 0;
+        max-height: 400px;
+        overflow: auto;
       }
       .panel-heading{
         padding-left: 40px;
@@ -516,24 +518,21 @@
   }
 
   .horizontal-events-tracker {
-    background: #f1f4f6;
-    height: auto;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    .horizontal-events-tracker__section {
-      padding: 20px 10px;
-      font-weight: bold;
-      overflow: hidden;
+    @media (min-width: 561px) and (max-width: 1070px) {
+      span {
+        width: 49%;
+        margin-right: 0;
+        text-align: left;
+      }
     }
-    .horizontal-events-tracker__title {
-      color: #b7c9d3;
-      margin-right: 5%;
-      display: inline-block;
-    }
-    .horizontal-events-tracker__counter {
-      color: #768692;
+    @media (max-width: 560px) {
+      span {
+        width: 100%;
+        text-align: left;
+      }
     }
   }
+
 }
 
 
@@ -730,14 +729,8 @@
   }
   .prev-page {
     &::before {
-      $angle: 180deg;
-      background: url(../../assets/img/ic-shevron-right-white.svg) no-repeat;
-      -webkit-transform: rotate($angle);
-      -moz-transform: rotate($angle);
-      -o-transform: rotate($angle);
-      -ms-transform: rotate($angle);
-      transform: rotate($angle);
-      margin-top: -8px;
+      background: url(../../assets/img/ic-shevron-left-white.svg) no-repeat;
+      left: 6px;
     }
   }
   .next-page {
@@ -747,5 +740,4 @@
     }
   }
 }
-
 

@@ -1,6 +1,7 @@
 class TicketmasterCalendarWidget {
 
     set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
+
     get config() { return this.widgetConfig; }
 
     set events(responce){ this.eventsList = this.parseEvents(responce);}
@@ -136,6 +137,11 @@ class TicketmasterCalendarWidget {
             let period = this.getDateFromPeriod(this.config.period);
             attrs.startDateTime = period[0];
             attrs.endDateTime = period[1];
+        }
+
+        if (sessionStorage.getItem('tk-api-key')) {
+            attrs.apikey = sessionStorage.getItem('tk-api-key');
+            document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", attrs.apikey);
         }
 
         if (this.config.period != 'week') {
@@ -339,21 +345,23 @@ class TicketmasterCalendarWidget {
                 // Used in builder
                 if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
                 widget.config.latlong = latlong;
+                if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
                 cb(widget.config.latlong);
+                // console.log(latlong);
                 document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", latlong);
             }
         }
 
         if(this.isConfigAttrExistAndNotEmpty('postalcode')){
-            let args = {components: `postal_code:${widget.config.postalcode}`};
+            let args = {language: 'en', components: `postal_code:${widget.config.postalcode}`};
             if(widget.config.googleapikey) args.key = widget.config.googleapikey;
             if(this.config.country) args.components += `|country:${this.config.country}`;
             this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
         }else{
             // Used in builder
             if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
-            widget.config.latlong = '';
-            widget.config.country = '';
+            widget.config.latlong = '34.0390107,-118.2672801';
+            widget.config.country = 'US';
             cb(widget.config.latlong);
             if (document.getElementById('w-keyword').value != '') {
                 document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", '');
@@ -819,6 +827,9 @@ class TicketmasterCalendarWidget {
         this.getCurrentWeek();
 
         this.eventsRootContainer.classList.remove("border");
+        let firstTab = document.querySelector('.tab');
+        firstTab.querySelector('.events-root-container .spinner-container').classList.add('hide');
+
         if( this.config.hasOwnProperty("border") ){
             this.eventsRootContainer.classList.add("border");
         }
@@ -1356,10 +1367,22 @@ class SelectorControls {
         this.selContent.addEventListener("click",function(e){
             if (e.target.classList.contains('selector-content') === false) {
                 this.parentNode.getElementsByClassName('selector-title')[0].innerHTML = e.target.innerHTML;
+                this.parentNode.getElementsByClassName('selector-title')[0].setAttribute("w-classificationid", e.target.getAttribute('w-classificationId'));
                 this.parentNode.getElementsByClassName('selector-title')[0].classList.remove('open');
                 this.parentNode.getElementsByClassName('selector-content')[0].classList.remove('show');
                 if (attribute == 'period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period', e.target.getAttribute('w-period'));
+                if (attribute == 'w-period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period-week', e.target.getAttribute('w-period-week'));
                 if (attribute == 'classificationId') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-classificationId', e.target.getAttribute('w-classificationId'));
+
+                /* Month fix by dates changing */
+                if (this.parentNode.classList.contains('sliderLeftSelector') === true) {
+                    if (this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid') != undefined) {
+                        if (this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid') != document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId")) {
+                            document.querySelector('[w-type="calendar"]').setAttribute("w-classificationId", this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid'));
+                        }
+                    }
+                }
+
                 update();
             }
             else {
@@ -1463,11 +1486,10 @@ class WeekScheduler {
         if (end.getDate() <=9) enddate = '0' + end.getDate(); else enddate = end.getDate();
         startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
         endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
-        // console.log(startDateTime + ' - ' + endDateTime);
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-            start = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
-            end = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
+        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period-week") != 'week') {
+            start = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
+            end = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
             end.setDate(end.getDate() + 6);
             if (start.getMonth()+1 <=9) startmonth = '0' + (start.getMonth()+1); else startmonth = start.getMonth()+1;
             if (start.getDate() <=9) startdate = '0' + start.getDate(); else startdate = start.getDate();
@@ -1480,6 +1502,10 @@ class WeekScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            if (sessionStorage.getItem('tk-api-key')) {
+                tmapikey = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
+            }
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
@@ -1498,7 +1524,6 @@ class WeekScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
-
         return {
             "apikey": tmapikey,
             "latlong": latlong,
@@ -1507,7 +1532,7 @@ class WeekScheduler {
             "endDateTime": endDateTime,
             "classificationId": classificationid,
             "radius": radius,
-            "size": "100"
+            "size": "500"
         }
 
     }
@@ -1588,6 +1613,26 @@ class WeekScheduler {
         this.xmlHTTP.send();
     }
 
+    getJsonAsync(url) {
+        return new Promise(function (resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    var result = JSON.parse(xhr.response);
+                    resolve(result);
+                } else {
+                    reject("Error loading JSON!");
+                }
+            }
+            xhr.onerror = () => {
+                reject("Error loading JSON!");
+            };
+            xhr.send();
+        });
+    }
+
     formatDate(date) {
         var result = '';
         if(!date.day) return result; // Day is required
@@ -1628,191 +1673,450 @@ class WeekScheduler {
         let address;
         let weekEvents = [];
         let spinner = document.querySelector('#weekSсheduler .spinner-container');
+        let prm = [];
         let messageContainer = document.querySelector('#weekSсheduler .event-message-container');
 
         if (this && this.readyState == XMLHttpRequest.DONE) {
-
-            spinner.classList.add('hide');
 
             if (this.status == 200) {
 
                 events = JSON.parse(this.responseText);
 
-                if (events.page.totalElements != 0) {
-                    events._embedded.events.forEach(function (item) {
-                        if(item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')){
-                            place = item._embedded.venues[0].name;
-                            if (item._embedded.venues[0].hasOwnProperty('address')) {
-                                address = item._embedded.venues[0].address.line1;
-                            } else {
+                if (events.page.totalPages <= 1) {
+                    spinner.classList.add('hide');
+                    if (events.page.totalElements != 0) {
+                        events._embedded.events.forEach(function (item) {
+                            if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
+                                if (item._embedded.venues[0].hasOwnProperty('name')) {
+                                    place = item._embedded.venues[0].name + ', ';
+                                }
+                                else {
+                                    place = '';
+                                }
+                                if (item._embedded.venues[0].hasOwnProperty('address')) {
+                                    address = item._embedded.venues[0].address.line1;
+                                } else {
+                                    address = '';
+                                }
+                            }
+                            else {
+                                place = '';
                                 address = '';
                             }
-                        }
-                        else {
-                            place = '';
-                            address = '';
-                        }
 
-                        let imgWidth;
-                        let index;
-                        item.images.forEach(function (img, i) {
-                            if (i == 0) imgWidth = img.width;
-                            if (imgWidth > img.width) {
-                                imgWidth = img.width;
-                                index = i;
+                            let imgWidth;
+                            let index;
+                            item.images.forEach(function (img, i) {
+                                if (i == 0) imgWidth = img.width;
+                                if (imgWidth > img.width) {
+                                    imgWidth = img.width;
+                                    index = i;
+                                }
+                            });
+
+                            if (item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
+                                weekEvents.push({
+                                    'name': item.name,
+                                    'date': item.dates.start.localDate,
+                                    'time': item.dates.start.localTime,
+                                    'datetime': widget.formatDate({
+                                        day: item.dates.start.localDate,
+                                        time: item.dates.start.localTime
+                                    }),
+                                    'place': place + address,
+                                    'url': item.url,
+                                    'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                    'count': 0
+                                });
                             }
                         });
+                    }
+                    else {
+                        weekEvents[0] = ({
+                            date: '',
+                            time: '',
+                        });
+                        messageContainer.classList.remove('hide');
+                        widget.showMessage("No results were found.<br/>Here other options for you.");
+                        widget.hideMessageWithDelay(widget.hideMessageDelay);
+                    }
+                    let tDate = weekEvents[0].date;
+                    let tTime = weekEvents[0].time.substr(0,2);
+                    let count = 0;
+                    let startFlag = 0;
+                    let endFlag = 0;
 
-                        if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
-                            weekEvents.push({
-                                'name': item.name,
-                                'date': item.dates.start.localDate,
-                                'time': item.dates.start.localTime,
-                                'datetime': widget.formatDate({
-                                    day: item.dates.start.localDate,
-                                    time: item.dates.start.localTime
-                                }),
-                                'place': place + ', ' + address,
-                                'url': item.url,
-                                'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                                'count': 0
-                            });
+                    for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                        if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0,2)) {
+                            weekEvents[e].count = count;
+                            endFlag = e;
+                            count++;
                         }
-                    });
+                        if (tDate == weekEvents[e].date && tTime != weekEvents[e].time.substr(0,2)) {
+                            for (let i = startFlag; i <= endFlag; i++) {
+                                weekEvents[i].count = count-1;
+                            }
+                            tTime = weekEvents[e].time.substr(0,2);
+                            startFlag = e;
+                            count = 0;
+                        }
+                        if (tDate != weekEvents[e].date || e == l-1) {
+                            for (let i = startFlag; i <= endFlag; i++) {
+                                weekEvents[i].count = count-1;
+                            }
+                            tDate = weekEvents[e].date;
+                            tTime = weekEvents[e].time.substr(0,2);
+                            startFlag = e;
+                            count = 0;
+                        }
+                    }
+
+                    var current = new Date();
+
+                    if (document.querySelector('[w-type="calendar"]').getAttribute("w-period-week") != 'week') {
+                        var weekstart = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
+                        weekstart.setDate(weekstart.getDate() - weekstart.getDay());
+                    }
+                    else {
+                        var weekstart = current.getDate() - current.getDay();
+                        weekstart = new Date(current.setDate(weekstart));
+                    }
+
+                    let currentSunday = weekstart;
+                    let daysDiv = '';
+                    let currentDayClass = '';
+                    let dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    let now = new Date();
+                    for (let i = 0; i <= 6; i++) {
+                        let day = new Date(new Date(currentSunday).getTime() + (i * 24 * 60 * 60 * 1000));
+                        if (day.getDay() == now.getDay() && day.getDate() == now.getDate()) currentDayClass = ' active'; else currentDayClass = '';
+                        daysDiv += `<span class="d${currentDayClass}">${dayOfWeek[i]} <span class="num">${day.getDate()}</span></span>`;
+                    }
+                    let zeroLead = '';
+                    let timeTmp = '';
+                    let dateTmp = '';
+                    let monthTmp = '';
+                    let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+
+                    for (let i = 13; i <= 23; i++) {
+                        if (i <= 9) {
+                            zeroLead = '0';
+                            timeTmp = '0' + i + ":00:00";
+                        } else {
+                            zeroLead = '';
+                            timeTmp = i + ":00:00"
+                        }
+                        timeDiv += `<div class="t t-${i}"><span class="tl">${zeroLead}${i} : 00</span>`;
+
+                        var dayTmp = new Date(currentSunday);
+
+                        for (let d = 0; d <= 6; d++) {
+                            let dayCount = 0;
+                            if (d!=0) dayTmp.setDate(dayTmp.getDate() + 1);
+                            if (parseInt(dayTmp.getMonth() + 1) <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1); else monthTmp = dayTmp.getMonth() + 1;
+                            if (parseInt(dayTmp.getDate()) <= 9) {
+                                dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + '0' + parseInt(dayTmp.getDate());
+                            }
+                            else {
+                                dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
+                            }
+                            timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
+
+                            for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                                if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0,2) == timeTmp.substr(0,2)) {
+                                    if (dayCount == 0) {
+                                        timeDiv += '<span class="round"></span>';
+                                        if (weekEvents[e].time.substring(0,2) < 18) {
+                                            timeDiv += '<span class="tail"></span>';
+                                            timeDiv += '<div class="popup ';
+                                            if (weekEvents[e].count == 0) timeDiv += 'single ';
+                                            timeDiv += 'ss" tabindex="-1">';
+                                            timeDiv += '<div class="ss-container">';
+                                        }
+                                        else {
+                                            timeDiv += '<span class="tail-up"></span>';
+                                            timeDiv += '<div class="popup-up ';
+                                            if (weekEvents[e].count == 0) timeDiv += 'single ';
+                                            timeDiv +=  'ss" tabindex="-1">';
+                                            timeDiv += '<div class="ss-container">';
+                                        }
+                                        dayCount = 1;
+                                    }
+                                    timeDiv += '<span class="event">';
+                                    timeDiv += '<span class="event-holder">';
+                                    timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
+                                    timeDiv += '<span class="img" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>';
+                                    timeDiv += '<span class="name">' + weekEvents[e].name + '</span>';
+                                    timeDiv += '</a>';
+                                    timeDiv += '<span class="date">' + weekEvents[e].datetime + '</span>';
+                                    timeDiv += '<span class="place">' + weekEvents[e].place + '</span>';
+                                    timeDiv += '</span>';
+                                    timeDiv += '</span>';
+                                }
+                            }
+                            if (dayCount == 1) timeDiv += '</div></div>';
+                            timeDiv += '</div>';
+                        }
+                        timeDiv += `</div>`;
+                    }
+                    timeDiv += `</div></div>`;
+                    daysDiv += timeDiv;
+                    widget.weekdaysRootContainer.innerHTML = daysDiv;
+                    widget.addScroll();
+                    var rounds = document.querySelectorAll("span.round");
+                    for (var x = 0; x < rounds.length; x++) {
+                        rounds[x].addEventListener("click", function (e) {
+                            document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "visible";
+                            document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "visible";
+                            this.nextElementSibling.classList.add("show");
+                            this.nextElementSibling.nextElementSibling.classList.add("show");
+                            this.nextElementSibling.nextElementSibling.focus();
+                        }, false);
+                    }
+
+                    var popups = document.querySelectorAll(".popup, .popup-up");
+                    for (var y = 0; y < popups.length; y++) {
+                        popups[y].addEventListener("blur", function (e) {
+                            let self = this;
+                            document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "hidden";
+                            document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "auto";
+                            setTimeout(function () {
+                                self.previousElementSibling.classList.remove("show");
+                                self.classList.remove("show");
+                            }, 127);
+                        }, false);
+                    }
                 }
                 else {
-                    weekEvents[0] = ({
-                        date : '',
-                        time : '',
-                    });
-                    messageContainer.classList.remove('hide');
-                    widget.showMessage("No results were found.<br/>Here other options for you.");
-                    widget.hideMessageWithDelay(widget.hideMessageDelay);
-                }
+                    weekEvents = [];
+                    let weekEventsConcat = [];
+                    let l = events.page.totalPages;
+                    for (i = 0; i <= l; i++) {
+                        let attrs = widget.eventReqAttrs;
+                        attrs.page = i;
+                        attrs = Object.keys(attrs).map(function (key) {
+                            return `${key}=${attrs[key]}`;
+                        }).join("&");
+                        let url = widget.apiUrl + [url, attrs].join("?");
 
-                let tDate = weekEvents[0].date;
-                let tTime = weekEvents[0].time.substr(0,2);
-                let count = 0;
-                let startFlag = 0;
-                let endFlag = 0;
-
-                for (let e = 0, l = weekEvents.length; e < l; ++e) {
-                    if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0,2)) {
-                        weekEvents[e].count = count;
-                        endFlag = e;
-                        count++;
+                        prm.push(widget.getJsonAsync(url));
                     }
-                    if (tDate == weekEvents[e].date && tTime != weekEvents[e].time.substr(0,2)) {
-                        for (let i = startFlag; i <= endFlag; i++) {
-                            weekEvents[i].count = count-1;
-                        }
-                        tTime = weekEvents[e].time.substr(0,2);
-                        startFlag = e;
-                        count = 0;
-                    }
-                    if (tDate != weekEvents[e].date || e == l-1) {
-                        for (let i = startFlag; i <= endFlag; i++) {
-                            weekEvents[i].count = count-1;
-                        }
-                        tDate = weekEvents[e].date;
-                        tTime = weekEvents[e].time.substr(0,2);
-                        startFlag = e;
-                        count = 0;
-                    }
-                }
-
-                var current = new Date();
-
-                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-                    var weekstart = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period"));
-                    weekstart.setDate(weekstart.getDate() - weekstart.getDay());
-                }
-                else {
-                    var weekstart = current.getDate() - current.getDay();
-                    weekstart = new Date(current.setDate(weekstart));
-                }
-
-                let currentSunday = weekstart;
-                let daysDiv = '';
-                let currentDayClass = '';
-                let dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-                let now = new Date();
-                for (let i = 0; i <= 6; i++) {
-                    let day = new Date(new Date(currentSunday).getTime() + (i * 24 * 60 * 60 * 1000));
-                    if (day.getDay() == now.getDay() && day.getDate() == now.getDate()) currentDayClass = ' active'; else currentDayClass = '';
-                    daysDiv += `<span class="d${currentDayClass}">${dayOfWeek[i]} <span class="num">${day.getDate()}</span></span>`;
-                }
-                let zeroLead = '';
-                let timeTmp = '';
-                let dateTmp = '';
-                let monthTmp = '';
-                let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
-
-                for (let i = 13; i <= 23; i++) {
-                    if (i <= 9) {
-                        zeroLead = '0';
-                        timeTmp = '0' + i + ":00:00";
-                    } else {
-                        zeroLead = '';
-                        timeTmp = i + ":00:00"
-                    }
-                    timeDiv += `<div class="t t-${i}"><span class="tl">${zeroLead}${i} : 00</span>`;
-
-                    var dayTmp = new Date(currentSunday);
-
-                    for (let d = 0; d <= 6; d++) {
-                        let dayCount = 0;
-                        if (d!=0) dayTmp.setDate(dayTmp.getDate() + 1);
-                        if (parseInt(dayTmp.getMonth() + 1) <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1); else monthTmp = dayTmp.getMonth() + 1;
-                        if (parseInt(dayTmp.getDate()) <= 9) {
-                            dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + '0' + parseInt(dayTmp.getDate());
-                        }
-                        else {
-                            dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
-                        }
-                        timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
-
-                        for (let e = 0, l = weekEvents.length; e < l; ++e) {
-                            if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0,2) == timeTmp.substr(0,2)) {
-                                if (dayCount == 0) {
-                                    timeDiv += '<span class="round"></span>';
-                                    if (weekEvents[e].time.substring(0,2) < 18) {
-                                        timeDiv += '<span class="tail"></span>';
-                                        timeDiv += '<div class="popup ';
-                                        if (weekEvents[e].count == 0) timeDiv += 'single ';
-                                        timeDiv += 'ss" tabindex="-1">';
-                                        timeDiv += '<div class="ss-container">';
+                    Promise.all(prm).then(value => {
+                        spinner.classList.add('hide');
+                        let le = value.length + 1;
+                        for (var e = 0; e <= le; e++) {
+                            if (events.page.totalElements != 0) {
+                                events._embedded.events.forEach(function (item) {
+                                    if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
+                                        if (item._embedded.venues[0].hasOwnProperty('name')) {
+                                            place = item._embedded.venues[0].name + ', ';
+                                        }
+                                        else {
+                                            place = '';
+                                        }
+                                        if (item._embedded.venues[0].hasOwnProperty('address')) {
+                                            address = item._embedded.venues[0].address.line1;
+                                        } else {
+                                            address = '';
+                                        }
                                     }
                                     else {
-                                        timeDiv += '<span class="tail-up"></span>';
-                                        timeDiv += '<div class="popup-up ';
-                                        if (weekEvents[e].count == 0) timeDiv += 'single ';
-                                        timeDiv +=  'ss" tabindex="-1">';
-                                        timeDiv += '<div class="ss-container">';
+                                        place = '';
+                                        address = '';
                                     }
-                                    dayCount = 1;
-                                }
-                                timeDiv += '<span class="event">';
-                                timeDiv += '<span class="event-holder">';
-                                timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
-                                timeDiv += '<span class="img" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>';
-                                timeDiv += '<span class="name">' + weekEvents[e].name + '</span>';
-                                timeDiv += '</a>';
-                                timeDiv += '<span class="date">' + weekEvents[e].datetime + '</span>';
-                                timeDiv += '<span class="place">' + weekEvents[e].place + '</span>';
-                                timeDiv += '</span>';
-                                timeDiv += '</span>';
+
+                                    let imgWidth;
+                                    let index;
+                                    item.images.forEach(function (img, i) {
+                                        if (i == 0) imgWidth = img.width;
+                                        if (imgWidth > img.width) {
+                                            imgWidth = img.width;
+                                            index = i;
+                                        }
+                                    });
+
+                                    if (item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
+                                        weekEvents.push({
+                                            'name': item.name,
+                                            'date': item.dates.start.localDate,
+                                            'time': item.dates.start.localTime,
+                                            'datetime': widget.formatDate({
+                                                day: item.dates.start.localDate,
+                                                time: item.dates.start.localTime
+                                            }),
+                                            'place': place + address,
+                                            'url': item.url,
+                                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                            'count': 0
+                                        });
+                                    }
+                                });
+                            }
+                            else {
+                                weekEvents[0] = ({
+                                    date: '',
+                                    time: '',
+                                });
+                                messageContainer.classList.remove('hide');
+                                widget.showMessage("No results were found.<br/>Here other options for you.");
+                                widget.hideMessageWithDelay(widget.hideMessageDelay);
                             }
                         }
-                        if (dayCount == 1) timeDiv += '</div></div>';
-                        timeDiv += '</div>';
-                    }
-                    timeDiv += `</div>`;
+                        weekEventsConcat.push(weekEvents);
+                        weekEvents = weekEventsConcat[0];
+
+                        let tDate = weekEvents[0].date;
+                        let tTime = weekEvents[0].time.substr(0, 2);
+                        let count = 0;
+                        let startFlag = 0;
+                        let endFlag = 0;
+
+                        for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                            if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0, 2)) {
+                                weekEvents[e].count = count;
+                                endFlag = e;
+                                count++;
+                            }
+                            if (tDate == weekEvents[e].date && tTime != weekEvents[e].time.substr(0, 2)) {
+                                for (let i = startFlag; i <= endFlag; i++) {
+                                    weekEvents[i].count = count - 1;
+                                }
+                                tTime = weekEvents[e].time.substr(0, 2);
+                                startFlag = e;
+                                count = 0;
+                            }
+                            if (tDate != weekEvents[e].date || e == l - 1) {
+                                for (let i = startFlag; i <= endFlag; i++) {
+                                    weekEvents[i].count = count - 1;
+                                }
+                                tDate = weekEvents[e].date;
+                                tTime = weekEvents[e].time.substr(0, 2);
+                                startFlag = e;
+                                count = 0;
+                            }
+                        }
+
+                        var current = new Date();
+
+                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period-week") != 'week') {
+                            var weekstart = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
+                            weekstart.setDate(weekstart.getDate() - weekstart.getDay());
+                        }
+                        else {
+                            var weekstart = current.getDate() - current.getDay();
+                            weekstart = new Date(current.setDate(weekstart));
+                        }
+
+                        let currentSunday = weekstart;
+                        let daysDiv = '';
+                        let currentDayClass = '';
+                        let dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                        let now = new Date();
+                        for (let i = 0; i <= 6; i++) {
+                            let day = new Date(new Date(currentSunday).getTime() + (i * 24 * 60 * 60 * 1000));
+                            if (day.getDay() == now.getDay() && day.getDate() == now.getDate()) currentDayClass = ' active'; else currentDayClass = '';
+                            daysDiv += `<span class="d${currentDayClass}">${dayOfWeek[i]} <span class="num">${day.getDate()}</span></span>`;
+                        }
+                        let zeroLead = '';
+                        let timeTmp = '';
+                        let dateTmp = '';
+                        let monthTmp = '';
+                        let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+
+                        for (let i = 13; i <= 23; i++) {
+                            if (i <= 9) {
+                                zeroLead = '0';
+                                timeTmp = '0' + i + ":00:00";
+                            } else {
+                                zeroLead = '';
+                                timeTmp = i + ":00:00"
+                            }
+                            timeDiv += `<div class="t t-${i}"><span class="tl">${zeroLead}${i} : 00</span>`;
+
+                            var dayTmp = new Date(currentSunday);
+
+                            for (let d = 0; d <= 6; d++) {
+                                let dayCount = 0;
+                                if (d != 0) dayTmp.setDate(dayTmp.getDate() + 1);
+                                if (parseInt(dayTmp.getMonth() + 1) <= 9) monthTmp = '0' + parseInt(dayTmp.getMonth() + 1); else monthTmp = dayTmp.getMonth() + 1;
+                                if (parseInt(dayTmp.getDate()) <= 9) {
+                                    dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + '0' + parseInt(dayTmp.getDate());
+                                }
+                                else {
+                                    dateTmp = dayTmp.getFullYear() + '-' + monthTmp + '-' + dayTmp.getDate();
+                                }
+                                timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
+
+                                for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                                    if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0, 2) == timeTmp.substr(0, 2)) {
+                                        if (dayCount == 0) {
+                                            timeDiv += '<span class="round"></span>';
+                                            if (weekEvents[e].time.substring(0, 2) < 18) {
+                                                timeDiv += '<span class="tail"></span>';
+                                                timeDiv += '<div class="popup ';
+                                                if (weekEvents[e].count == 0) timeDiv += 'single ';
+                                                timeDiv += 'ss" tabindex="-1">';
+                                                timeDiv += '<div class="ss-container">';
+                                            }
+                                            else {
+                                                timeDiv += '<span class="tail-up"></span>';
+                                                timeDiv += '<div class="popup-up ';
+                                                if (weekEvents[e].count == 0) timeDiv += 'single ';
+                                                timeDiv += 'ss" tabindex="-1">';
+                                                timeDiv += '<div class="ss-container">';
+                                            }
+                                            dayCount = 1;
+                                        }
+                                        timeDiv += '<span class="event">';
+                                        timeDiv += '<span class="event-holder">';
+                                        timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
+                                        timeDiv += '<span class="img" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>';
+                                        timeDiv += '<span class="name">' + weekEvents[e].name + '</span>';
+                                        timeDiv += '</a>';
+                                        timeDiv += '<span class="date">' + weekEvents[e].datetime + '</span>';
+                                        timeDiv += '<span class="place">' + weekEvents[e].place + '</span>';
+                                        timeDiv += '</span>';
+                                        timeDiv += '</span>';
+                                    }
+                                }
+                                if (dayCount == 1) timeDiv += '</div></div>';
+                                timeDiv += '</div>';
+                            }
+                            timeDiv += `</div>`;
+                        }
+                        timeDiv += `</div></div>`;
+                        daysDiv += timeDiv;
+                        widget.weekdaysRootContainer.innerHTML = daysDiv;
+                        widget.addScroll();
+
+                        var rounds = document.querySelectorAll("span.round");
+                        for (var x = 0; x < rounds.length; x++) {
+                            rounds[x].addEventListener("click", function (e) {
+                                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "visible";
+                                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "visible";
+                                this.nextElementSibling.classList.add("show");
+                                this.nextElementSibling.nextElementSibling.classList.add("show");
+                                this.nextElementSibling.nextElementSibling.focus();
+                            }, false);
+                        }
+
+                        var popups = document.querySelectorAll(".popup, .popup-up");
+                        for (var y = 0; y < popups.length; y++) {
+                            popups[y].addEventListener("blur", function (e) {
+                                let self = this;
+                                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "hidden";
+                                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "auto";
+                                setTimeout(function () {
+                                    self.previousElementSibling.classList.remove("show");
+                                    self.classList.remove("show");
+                                }, 127);
+                            }, false);
+                        }
+                    }, reason => {
+                        console.log(reason)
+                    });
                 }
-                timeDiv += `</div></div>`;
-                daysDiv += timeDiv;
-                widget.weekdaysRootContainer.innerHTML = daysDiv;
-                widget.addScroll();
+
             }
             else if (this.status == 400) {
                 console.log('There was an error 400');
@@ -1822,29 +2126,6 @@ class WeekScheduler {
             }
         }
 
-        var rounds = document.querySelectorAll("span.round");
-        for (var x = 0; x < rounds.length; x++) {
-            rounds[x].addEventListener("click", function (e) {
-                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "visible";
-                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "visible";
-                this.nextElementSibling.classList.add("show");
-                this.nextElementSibling.nextElementSibling.classList.add("show");
-                this.nextElementSibling.nextElementSibling.focus();
-            }, false);
-        }
-
-        var popups = document.querySelectorAll(".popup, .popup-up");
-        for (var y = 0; y < popups.length; y++) {
-            popups[y].addEventListener("blur", function (e) {
-                let self = this;
-                document.querySelectorAll("#weekSсheduler .ss-wrapper")[0].style.overflow = "hidden";
-                document.querySelectorAll("#weekSсheduler .ss-content")[0].style.overflow = "auto";
-                setTimeout(function () {
-                    self.previousElementSibling.classList.remove("show");
-                    self.classList.remove("show");
-                }, 127);
-            }, false);
-        }
     }
 
     update() {
@@ -1872,8 +2153,8 @@ class WeekScheduler {
         content += '<span class="selector-content" tabindex="-1">';
 
         for (var m=0; m<=5; m++) {
-            if (m==0) content += `<span class="active" w-period="${sunday}">`;
-            content += `<span w-period="${sunday}">`;
+            if (m==0) content += `<span class="active" w-period-week="${sunday}">`;
+            content += `<span w-period-week="${sunday}">`;
             content += monthNames[sunday.getMonth()] + ' ' + sunday.getDate();
             sunday.setDate(sunday.getDate() + 6);
             content += ' - ' + monthNames[sunday.getMonth()] + ' ' + sunday.getDate();
@@ -1896,7 +2177,7 @@ class WeekScheduler {
 
         this.getCurrentMonth();
 
-        let leftSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderLeftSelector', this.getCurrentMonth(), 'period', this.update.bind(this));
+        let leftSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderLeftSelector', this.getCurrentMonth(), 'w-period', this.update.bind(this));
         let RightSelector1 = new SelectorControls(document.getElementsByClassName('tab')[1], 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
 
         this.weekdaysRootContainer = document.createElement("div");
@@ -1953,6 +2234,10 @@ class MonthScheduler {
                 {
                     attr: 'segmentid',
                     verboseName: 'segmentId'
+                },
+                {
+                    attr: 'page',
+                    verboseName: 'page'
                 }
             ];
 
@@ -1977,18 +2262,29 @@ class MonthScheduler {
             else {
                 firstDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7), 0);
                 lastDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7), 0);
+                firstDay.setDate(new Date(firstDay).getDate() - 1);
+                lastDay.setDate(new Date(lastDay).getDate() + 1);
+                // console.log(firstDay);
+                // console.log(lastDay);
             }
             if (parseInt(firstDay.getMonth()+1) <= 9) startmonth = '0' + parseInt(firstDay.getMonth() + 1); else startmonth = parseInt(firstDay.getMonth() + 1);
             startdate = '0' + firstDay.getDate();
             if (lastDay.getMonth()+1 <= 9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
-            enddate = lastDay.getDate();
+            if (lastDay.getDate()+1 <= 9) enddate = '0' + parseInt(lastDay.getDate() + 1); else enddate = parseInt(lastDay.getDate()) + 1;
+            // enddate = '0' + lastDay.getDate();
+
             startDateTime = firstDay.getFullYear() + '-' + startmonth + '-01T00:00:00Z';
             endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
+            // console.log(startDateTime + ' - ' + endDateTime);
             // document.querySelector('[w-type="calendar"]').setAttribute("w-period", firstDay.getFullYear() + '-' + startmonth);
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            if (sessionStorage.getItem('tk-api-key')) {
+                tmapikey = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
+            }
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
@@ -2007,7 +2303,6 @@ class MonthScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
-
         return {
             "apikey": tmapikey,
             "latlong": latlong,
@@ -2016,7 +2311,8 @@ class MonthScheduler {
             "endDateTime": endDateTime,
             "classificationId": classificationid,
             "radius": radius,
-            "size": "400"
+            "size": "500",
+            "page": 0
         }
     }
 
@@ -2039,6 +2335,26 @@ class MonthScheduler {
         this.xmlHTTP.onreadystatechange = handler;
         this.xmlHTTP.open(method, url, true);
         this.xmlHTTP.send();
+    }
+
+    getJsonAsync(url) {
+        return new Promise(function (resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    var result = JSON.parse(xhr.response);
+                    resolve(result);
+                } else {
+                    reject("Error loading JSON!");
+                }
+            }
+            xhr.onerror = () => {
+                reject("Error loading JSON!");
+            };
+            xhr.send();
+        });
     }
 
     formatDate(date) {
@@ -2142,201 +2458,477 @@ class MonthScheduler {
         let address;
         let monthEvents = [];
         let spinner = document.querySelector('#monthScheduler .spinner-container');
+        let prm = [];
+        let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=aJVApdB1RoA41ejGebe0o4Ai9gufoCbd&latlong=36.1697096,-115.1236952&keyword=&startDateTime=2016-08-01T00:00:00Z&endDateTime=2016-09-02T23:59:59Z&classificationId=&radius=25&size=500&page=0';
 
         if (this && this.readyState == XMLHttpRequest.DONE) {
-
-            spinner.classList.add('hide');
 
             if (this.status == 200) {
                 events = JSON.parse(this.responseText);
 
-                if (events.page.totalElements != 0) {
+                if (events.page.totalPages <= 1) {
 
-                    events._embedded.events.forEach(function (item) {
-                        if(item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')){
-                            place = item._embedded.venues[0].name;
-                            if (item._embedded.venues[0].hasOwnProperty('address')) {
-                                address = item._embedded.venues[0].address.line1;
-                            } else {
-                                address = '';
-                            }
-                        }
-                        else {
-                            place = '';
-                            address = '';
+                    spinner.classList.add('hide');
+
+                    if (events.page.totalElements != 0) {
+
+                        let currentMonth = document.querySelector('[w-type="calendar"]').getAttribute('w-period').substr(5, 2);
+                        if (currentMonth == '') {
+                            currentMonth = new Date().getMonth() + 1;
+                            if (parseInt(currentMonth) <= 9) currentMonth = '0' + currentMonth;
                         }
 
-                        let imgWidth;
-                        let index;
-                        item.images.forEach(function (img, i) {
-                            if (i == 0) imgWidth = img.width;
-                            if (imgWidth > img.width) {
-                                imgWidth = img.width;
-                                index = i;
-                            }
-                        });
-
-                        // if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
-                            monthEvents.push({
-                                'name': item.name,
-                                'date': item.dates.start.localDate,
-                                'time': item.dates.start.localTime,
-                                'datetime': widget.formatDate({
-                                    day: item.dates.start.localDate,
-                                    time: item.dates.start.localTime
-                                }),
-                                'place': place + ', ' + address,
-                                'url': item.url,
-                                'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                            });
-                        // }
-                    });
-                }
-                else {
-                    monthEvents[0] = ({
-                        date : '',
-                        time : '',
-                    });
-                    widget.showMessage("No results were found.<br/>Here other options for you.");
-                    widget.hideMessageWithDelay(widget.hideMessageDelay);
-                }
-
-                let monthEventsSort = {};
-                let eventsArr = [];
-                let tDate = monthEvents[0].date;
-
-                for (let e = 0, l = monthEvents.length; e < l; e++) {
-                    if (tDate == monthEvents[e].date) {
-                        eventsArr.push(monthEvents[e]);
-                        let day = new Date(monthEvents[e].date).getDate();
-                        if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
-                        monthEventsSort[day] = monthEvents[e];
-                    }
-                    else {
-                        let day = new Date(monthEvents[e].date).getDate();
-                        if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
-                        monthEventsSort[day] = eventsArr;
-                        eventsArr = [];
-                        eventsArr.push(monthEvents[e]);
-                    }
-                    tDate = monthEvents[e].date;
-
-                    if (eventsArr.lenght != 0) {
-                        let dayNo = eventsArr[0].date.substr(8,2);
-                        if (dayNo.substr(0,1) == '0') dayNo = dayNo.substr(1,1);
-                        monthEventsSort[dayNo] = eventsArr;
-                    }
-                }
-
-
-                // console.log(monthEvents);
-                // console.log(monthEventsSort);
-
-                let id = 'calendar';
-                let year = new Date().getFullYear();
-                let month = new Date().getMonth() + 1;
-
-
-                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-                    if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length == 7) {
-                        year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4);
-                        month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7);
-                    }
-                }
-
-                var elem = document.getElementById(id);
-                var mon = parseInt(month) - 1;
-                var d = new Date(year, mon);
-                var table = '<table><tr><th>s</th><th>m</th><th>t</th><th>w</th><th>t</th><th>f</th><th>s</th></tr><tr>';
-                var tmpD = new Date(year, mon);
-                var outEnd = [];
-                for (var i = 0; i < d.getDay(); i++) {
-                    tmpD.setDate(tmpD.getDate() - 1);
-                    outEnd[i] = '<td class="dis">' + tmpD.getDate() + '</td>';
-                }
-                outEnd.reverse();
-                table += outEnd.join('');
-
-                while (d.getMonth() == mon) {
-                    table += '<td';
-                    if (new Date().getMonth() == d.getMonth() && new Date().getDate() == d.getDate()) table += ' class="today"';
-                    table += '>';
-                    if (monthEventsSort[d.getDate()] != undefined) {
-                        let eventsCount = monthEventsSort[d.getDate()].length;
-                        if (eventsCount === undefined) eventsCount = 1;
-                        table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
-
-                        if (d.getDate() <= 10) {
-                            table += '<span class="tail"></span>';
-                            table += '<div class="popup ';
-                            if (eventsCount == 1) table += 'single ';
-                            table += 'ss" tabindex="-1">';
-                        }
-                        else {
-                            table += '<span class="tail-up"></span>';
-                            table += '<div class="popup-up ';
-                            if (eventsCount == 1) table += 'single ';
-                            table += 'ss" tabindex="-1">';
-                        }
-
-                        table += '<div class="ss-container">';
-
-                        let url, img, name, datetime, place, eventsLenght;
-
-                        if (monthEventsSort[d.getDate()].length == undefined) eventsLenght = 1;
-                        else eventsLenght = monthEventsSort[d.getDate()].length;
-
-                        for(let e=0, l = eventsLenght; e < l; e++) {
-                            if (monthEventsSort[d.getDate()] && monthEventsSort[d.getDate()][e]) {
-                                url = monthEventsSort[d.getDate()][e].url;
-                                img = monthEventsSort[d.getDate()][e].img;
-                                name = monthEventsSort[d.getDate()][e].name;
-                                datetime = monthEventsSort[d.getDate()][e].datetime;
-                                place = monthEventsSort[d.getDate()][e].place;
+                        events._embedded.events.forEach(function (item) {
+                            if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
+                                if (item._embedded.venues[0].hasOwnProperty('name')) {
+                                    place = item._embedded.venues[0].name + ', ';
+                                }
+                                else {
+                                    place = '';
+                                }
+                                if (item._embedded.venues[0].hasOwnProperty('address')) {
+                                    address = item._embedded.venues[0].address.line1;
+                                } else {
+                                    address = '';
+                                }
                             }
                             else {
-                                url = monthEventsSort[d.getDate()].url;
-                                img = monthEventsSort[d.getDate()].img;
-                                name = monthEventsSort[d.getDate()].name;
-                                datetime = monthEventsSort[d.getDate()].datetime;
-                                place = monthEventsSort[d.getDate()].place;
+                                place = '';
+                                address = '';
                             }
-                            table += '<span class="event">';
-                            table += '<span class="event-holder">';
-                            table += '<a href="' + url + '" target="_blank">';
-                            table += '<span class="img" style="background: url(' + img + ') center center no-repeat"></span>';
-                            table += '<span class="name">' + name + '</span>';
-                            table += '</a>';
-                            table += '<span class="date">' + datetime + '</span>';
-                            table += '<span class="place">' + place + '</span>';
-                            table += '</span>';
-                            table += '</span>';
-                        }
 
-                        table += '</div>';
-                        table += '</div>';
+                            let imgWidth;
+                            let index;
+                            item.images.forEach(function (img, i) {
+                                if (i == 0) imgWidth = img.width;
+                                if (imgWidth > img.width) {
+                                    imgWidth = img.width;
+                                    index = i;
+                                }
+                            });
+
+                            // if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
+
+                            if (currentMonth == item.dates.start.localDate.substr(5, 2)) {
+
+                                monthEvents.push({
+                                    'name': item.name,
+                                    'date': item.dates.start.localDate,
+                                    'time': item.dates.start.localTime,
+                                    'datetime': widget.formatDate({
+                                        day: item.dates.start.localDate,
+                                        time: item.dates.start.localTime
+                                    }),
+                                    'place': place + address,
+                                    'url': item.url,
+                                    'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                });
+                            }
+
+                        });
                     }
                     else {
-                        table += d.getDate();
+                        monthEvents[0] = ({
+                            date: '',
+                            time: '',
+                        });
+                        widget.showMessage("No results were found.<br/>Here other options for you.");
+                        widget.hideMessageWithDelay(widget.hideMessageDelay);
                     }
-                    table += '</td>';
 
-                    if (d.getDay() % 7 == 6) {
-                        table += '</tr><tr>';
+                    let monthEventsSort = {};
+                    let eventsArr = [];
+                    let tDate = '';
+                    if (monthEvents[0]) {
+                        tDate = monthEvents[0].date;
+                    }
+                    else {
+                        tDate = '';
                     }
 
-                    d.setDate(d.getDate() + 1);
-                }
-                if (d.getDay() != 0) {
-                    d.setDate(d.getDate() - 1);
-                    for (var i = d.getDay(); i < 6; i++) {
+                    for (let e = 0, l = monthEvents.length; e < l; e++) {
+                        if (tDate == monthEvents[e].date) {
+                            eventsArr.push(monthEvents[e]);
+                            let day = new Date(monthEvents[e].date).getDate();
+                            if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                            monthEventsSort[day] = monthEvents[e];
+                        }
+                        else {
+                            let day = new Date(monthEvents[e].date).getDate();
+                            if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                            monthEventsSort[day] = eventsArr;
+                            eventsArr = [];
+                            eventsArr.push(monthEvents[e]);
+                        }
+                        tDate = monthEvents[e].date;
+
+                        if (eventsArr.lenght != 0) {
+                            let dayNo = eventsArr[0].date.substr(8,2);
+                            if (dayNo.substr(0,1) == '0') dayNo = dayNo.substr(1,1);
+                            monthEventsSort[dayNo] = eventsArr;
+                        }
+                    }
+
+                    let id = 'calendar';
+                    let year = new Date().getFullYear();
+                    let month = new Date().getMonth() + 1;
+
+
+                    if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length == 7) {
+                            year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4);
+                            month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7);
+                        }
+                    }
+
+                    var elem = document.getElementById(id);
+                    var mon = parseInt(month) - 1;
+                    var d = new Date(year, mon);
+                    var table = '<table><tr><th>s</th><th>m</th><th>t</th><th>w</th><th>t</th><th>f</th><th>s</th></tr><tr>';
+                    var tmpD = new Date(year, mon);
+                    var outEnd = [];
+                    for (var i = 0; i < d.getDay(); i++) {
+                        tmpD.setDate(tmpD.getDate() - 1);
+                        outEnd[i] = '<td class="dis">' + tmpD.getDate() + '</td>';
+                    }
+                    outEnd.reverse();
+                    table += outEnd.join('');
+                    let tableRowMonth = 0;
+                    let tail_ = 'tail';
+                    let popup_ = 'popup ';
+
+                    while (d.getMonth() == mon) {
+                        table += '<td';
+                        if (new Date().getMonth() == d.getMonth() && new Date().getDate() == d.getDate()) table += ' class="today"';
+                        table += '>';
+                        if (monthEventsSort[d.getDate()] != undefined) {
+                            let eventsCount = monthEventsSort[d.getDate()].length;
+                            if (eventsCount === undefined) eventsCount = 1;
+                            table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
+
+                            table += '<span class="' + tail_ + '"></span>';
+                            table += '<div class="' + popup_ + ' ';
+                            if (eventsCount == 1) table += 'single ';
+                            table += 'ss" tabindex="-1">';
+
+                            table += '<div class="ss-container">';
+
+                            let url, img, name, datetime, place, eventsLenght;
+
+                            if (monthEventsSort[d.getDate()].length == undefined) eventsLenght = 1;
+                            else eventsLenght = monthEventsSort[d.getDate()].length;
+
+                            for(let e=0, l = eventsLenght; e < l; e++) {
+                                if (monthEventsSort[d.getDate()] && monthEventsSort[d.getDate()][e]) {
+                                    url = monthEventsSort[d.getDate()][e].url;
+                                    img = monthEventsSort[d.getDate()][e].img;
+                                    name = monthEventsSort[d.getDate()][e].name;
+                                    datetime = monthEventsSort[d.getDate()][e].datetime;
+                                    place = monthEventsSort[d.getDate()][e].place;
+                                }
+                                else {
+                                    url = monthEventsSort[d.getDate()].url;
+                                    img = monthEventsSort[d.getDate()].img;
+                                    name = monthEventsSort[d.getDate()].name;
+                                    datetime = monthEventsSort[d.getDate()].datetime;
+                                    place = monthEventsSort[d.getDate()].place;
+                                }
+                                table += '<span class="event">';
+                                table += '<span class="event-holder">';
+                                table += '<a href="' + url + '" target="_blank">';
+                                table += '<span class="img" style="background: url(' + img + ') center center no-repeat"></span>';
+                                table += '<span class="name">' + name + '</span>';
+                                table += '</a>';
+                                table += '<span class="date">' + datetime + '</span>';
+                                table += '<span class="place">' + place + '</span>';
+                                table += '</span>';
+                                table += '</span>';
+                            }
+
+                            table += '</div>';
+                            table += '</div>';
+                        }
+                        else {
+                            table += d.getDate();
+                        }
+                        table += '</td>';
+
+                        if (d.getDay() % 7 == 6) {
+                            tableRowMonth++;
+                            if (tableRowMonth > 1) {
+                                tail_ = 'tail-up';
+                                popup_ = 'popup-up ';
+                            }
+                            table += '</tr><tr>';
+                        }
+
                         d.setDate(d.getDate() + 1);
-                        table += '<td class="dis">' + d.getDate() + '</td>';
                     }
+                    if (d.getDay() != 0) {
+                        d.setDate(d.getDate() - 1);
+                        for (var i = d.getDay(); i < 6; i++) {
+                            d.setDate(d.getDate() + 1);
+                            table += '<td class="dis">' + d.getDate() + '</td>';
+                        }
+                    }
+                    table += '</tr></table><span id="month-update"></span>';
+                    elem.innerHTML = table;
+                    widget.addScroll();
+
                 }
-                table += '</tr></table><span id="month-update"></span>';
-                elem.innerHTML = table;
-                widget.addScroll();
+                else {
+                    monthEvents = [];
+                    let monthEventsConcat = [];
+                    let l = events.page.totalPages;
+                    for (i = 0; i <= l; i++) {
+                        let attrs = widget.eventReqAttrs;
+                        attrs.page = i;
+                        attrs = Object.keys(attrs).map(function (key) {
+                            return `${key}=${attrs[key]}`;
+                        }).join("&");
+                        let url = widget.apiUrl + [url, attrs].join("?");
+
+                        prm.push(widget.getJsonAsync(url));
+                    }
+
+                    Promise.all(prm).then(value => {
+                        spinner.classList.add('hide');
+                        let le = value.length + 1;
+                        var curMonth;
+                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,1) == '0') {
+                            curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6,1);
+                        }
+                        else {
+                            curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
+                        }
+                        for (var e = 0; e <= le; e++) {
+                            if(value[e] && value[e]._embedded && value[e]._embedded.events){
+                                value[e]._embedded.events.forEach(function (item) {
+                                    if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
+                                        if (item._embedded.venues[0].hasOwnProperty('name')) {
+                                            place = item._embedded.venues[0].name + ', ';
+                                        }
+                                        else {
+                                            place = '';
+                                        }
+                                        if (item._embedded.venues[0].hasOwnProperty('address')) {
+                                            address = item._embedded.venues[0].address.line1;
+                                        } else {
+                                            address = '';
+                                        }
+                                    }
+                                    else {
+                                        place = '';
+                                        address = '';
+                                    }
+
+                                    let imgWidth;
+                                    let index;
+                                    item.images.forEach(function (img, i) {
+                                        if (i == 0) imgWidth = img.width;
+                                        if (imgWidth > img.width) {
+                                            imgWidth = img.width;
+                                            index = i;
+                                        }
+                                    });
+                                    let newDate = item.dates.start.localDate.substr(5,2);
+                                    if (parseInt(curMonth) == parseInt(newDate))  {
+                                        monthEvents.push({
+                                            'name': item.name,
+                                            'date': item.dates.start.localDate,
+                                            'time': item.dates.start.localTime,
+                                            'datetime': widget.formatDate({
+                                                day: item.dates.start.localDate,
+                                                time: item.dates.start.localTime
+                                            }),
+                                            'place': place + address,
+                                            'url': item.url,
+                                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                        monthEventsConcat.push(monthEvents);
+                        monthEvents = monthEventsConcat[0];
+                        // console.log(monthEvents);
+
+                        let monthEventsSort = {};
+                        let eventsArr = [];
+                        let tDate = '';
+                        if (monthEvents[0]) {
+                            tDate = monthEvents[0].date;
+                        }
+                        else {
+                            tDate = '';
+                        }
+
+                        for (let e = 0, l = monthEvents.length; e < l; e++) {
+                            if (tDate == monthEvents[e].date) {
+                                eventsArr.push(monthEvents[e]);
+                                let day = new Date(monthEvents[e].date).getDate();
+                                if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                                monthEventsSort[day] = monthEvents[e];
+                            }
+                            else {
+                                let day = new Date(monthEvents[e].date).getDate();
+                                if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                                monthEventsSort[day] = eventsArr;
+                                eventsArr = [];
+                                eventsArr.push(monthEvents[e]);
+                            }
+                            tDate = monthEvents[e].date;
+
+                            if (eventsArr.lenght != 0) {
+                                let dayNo = eventsArr[0].date.substr(8,2);
+                                if (dayNo.substr(0,1) == '0') dayNo = dayNo.substr(1,1);
+                                monthEventsSort[dayNo] = eventsArr;
+                            }
+                        }
+
+                        let id = 'calendar';
+                        let year = new Date().getFullYear();
+                        let month = new Date().getMonth() + 1;
+
+
+                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+                            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length == 7) {
+                                year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4);
+                                month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7);
+                            }
+                        }
+
+                        var elem = document.getElementById(id);
+                        var mon = parseInt(month) - 1;
+                        var d = new Date(year, mon);
+                        var table = '<table><tr><th>s</th><th>m</th><th>t</th><th>w</th><th>t</th><th>f</th><th>s</th></tr><tr>';
+                        var tmpD = new Date(year, mon);
+                        var outEnd = [];
+                        for (var i = 0; i < d.getDay(); i++) {
+                            tmpD.setDate(tmpD.getDate() - 1);
+                            outEnd[i] = '<td class="dis">' + tmpD.getDate() + '</td>';
+                        }
+                        outEnd.reverse();
+                        table += outEnd.join('');
+                        let tableRowMonth = 0;
+                        let tail_ = 'tail';
+                        let popup_ = 'popup ';
+
+                        while (d.getMonth() == mon) {
+                            table += '<td';
+                            if (new Date().getMonth() == d.getMonth() && new Date().getDate() == d.getDate()) table += ' class="today"';
+                            table += '>';
+                            if (monthEventsSort[d.getDate()] != undefined) {
+                                let eventsCount = monthEventsSort[d.getDate()].length;
+                                if (eventsCount === undefined) eventsCount = 1;
+                                table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
+
+                                table += '<span class="' + tail_ + '"></span>';
+                                table += '<div class="' + popup_ + ' ';
+                                if (eventsCount == 1) table += 'single ';
+                                table += 'ss" tabindex="-1">';
+
+                                table += '<div class="ss-container">';
+
+                                let url, img, name, datetime, place, eventsLenght;
+
+                                if (monthEventsSort[d.getDate()].length == undefined) eventsLenght = 1;
+                                else eventsLenght = monthEventsSort[d.getDate()].length;
+
+                                for(let e=0, l = eventsLenght; e < l; e++) {
+                                    // if (d.getMonth() == new Date(monthEventsSort[d.getDate()][e].datetime).getMonth()) {
+                                    if (monthEventsSort[d.getDate()] && monthEventsSort[d.getDate()][e]) {
+                                        url = monthEventsSort[d.getDate()][e].url;
+                                        img = monthEventsSort[d.getDate()][e].img;
+                                        name = monthEventsSort[d.getDate()][e].name;
+                                        datetime = monthEventsSort[d.getDate()][e].datetime;
+                                        place = monthEventsSort[d.getDate()][e].place;
+                                    }
+                                    else {
+                                        url = monthEventsSort[d.getDate()].url;
+                                        img = monthEventsSort[d.getDate()].img;
+                                        name = monthEventsSort[d.getDate()].name;
+                                        datetime = monthEventsSort[d.getDate()].datetime;
+                                        place = monthEventsSort[d.getDate()].place;
+                                    }
+                                    table += '<span class="event">';
+                                    table += '<span class="event-holder">';
+                                    table += '<a href="' + url + '" target="_blank">';
+                                    table += '<span class="img" style="background: url(' + img + ') center center no-repeat"></span>';
+                                    table += '<span class="name">' + name + '</span>';
+                                    table += '</a>';
+                                    table += '<span class="date">' + datetime + '</span>';
+                                    table += '<span class="place">' + place + '</span>';
+                                    table += '</span>';
+                                    table += '</span>';
+                                }
+
+                                table += '</div>';
+                                table += '</div>';
+                            }
+                            else {
+                                table += d.getDate();
+                            }
+                            table += '</td>';
+
+                            if (d.getDay() % 7 == 6) {
+                                tableRowMonth++;
+                                if (tableRowMonth > 1) {
+                                    tail_ = 'tail-up';
+                                    popup_ = 'popup-up ';
+                                }
+                                table += '</tr><tr>';
+                            }
+
+                            d.setDate(d.getDate() + 1);
+                        }
+                        if (d.getDay() != 0) {
+                            d.setDate(d.getDate() - 1);
+                            for (var i = d.getDay(); i < 6; i++) {
+                                d.setDate(d.getDate() + 1);
+                                table += '<td class="dis">' + d.getDate() + '</td>';
+                            }
+                        }
+                        table += '</tr></table><span id="month-update"></span>';
+                        elem.innerHTML = table;
+                        widget.addScroll();
+
+
+                        var rounds = document.querySelectorAll("span.round-holder");
+                        for (var x = 0; x < rounds.length; x++) {
+                            rounds[x].addEventListener("click", function (e) {
+                                this.classList.add("active");
+                                this.nextElementSibling.classList.add("show");
+                                this.nextElementSibling.nextElementSibling.classList.add("show");
+                                this.nextElementSibling.nextElementSibling.focus();
+                            }, false);
+                        }
+
+                        var popups = document.querySelectorAll(".popup, .popup-up");
+                        for (var y = 0; y < popups.length; y++) {
+                            popups[y].addEventListener("blur", function (e) {
+                                let self = this;
+                                setTimeout(function () {
+                                    self.previousElementSibling.classList.remove("show");
+                                    self.classList.remove("show");
+                                    self.previousElementSibling.previousElementSibling.classList.remove('active');
+                                }, 127);
+                            }, false);
+                        }
+
+                        var monthUpdate = document.getElementById('month-update');
+                        if (monthUpdate != null) {
+                            monthUpdate.addEventListener('click', function () {
+                                widget.update();
+                            });
+                        }
+
+
+                    }, reason => {
+                        console.log(reason)
+                    });
+                }
+
             }
             else if (this.status == 400) {
                 console.log('There was an error 400');
@@ -2426,6 +3018,7 @@ class MonthScheduler {
 
     getCategories() {
         let active = document.querySelector('[w-type="calendar"]').getAttribute('w-classificationid');
+        let activeId = document.querySelector('[w-type="calendar"]').getAttribute('w-classificationid');
         switch (active) {
             case 'KZFzniwnSyZfZ7v7na':
                 active = 'Arts & Theatre';
@@ -2445,7 +3038,7 @@ class MonthScheduler {
             default:
                 active = 'All Events';
         }
-        let content = '<span class="selector-title">';
+        let content = '<span class="selector-title" w-classificationid="' + activeId + '">';
         content += active;
         content += '</span>';
         content += '<span class="selector-content" tabindex="-1">';
@@ -2571,6 +3164,10 @@ class YearScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            if (sessionStorage.getItem('tk-api-key')) {
+                tmapikey = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
+            }
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {

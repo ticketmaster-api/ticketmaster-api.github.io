@@ -104,7 +104,7 @@
         }
 
         if (targetName === "w-radius") {
-            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '25';
+            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '5';
         }
 
         if (targetName === "w-theme") {
@@ -350,14 +350,18 @@
             isPostalCodeChanged = false;
 
             var $countrySelect = $('#w-country'),
-                $ul = $(".js_widget_custom__list"),
+                $ul = $("#w-country .js_widget_custom__list"),
                 options = "<option selected value=''>All</option>";
 
             $countrySelect.html('');
             $ul.html(''); //clear custom select list
             $countrySelect.prop('disabled', !results);
+
             if (results) {
-                $countrySelect.prop('disabled', !results.length);
+                var status = void 0;
+                if (results.length <= 1) status = true;else status = false;
+                $countrySelect.prop('disabled', status);
+                // $countrySelect.prop('disabled', !results.length);
                 options = '';
                 for (var i in results) {
                     var result = results[i];
@@ -380,9 +384,13 @@
         var $listOption = $(listWrapperId).find('option'),
             //update list
         $placeholder = $(".country-select").find(".custom_select__placeholder"),
-            $ul = listWrapperElement;
+
+        // $ul = listWrapperElement;
+        $ul = $('.country-select .custom_select__list');
 
         $placeholder.val($listOption.html());
+
+        $($ul).html('');
 
         $listOption.each(function () {
             var data = {

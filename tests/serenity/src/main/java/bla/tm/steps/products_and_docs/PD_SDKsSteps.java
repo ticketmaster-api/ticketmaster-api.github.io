@@ -33,8 +33,11 @@ public class PD_SDKsSteps {
 
     @Step
     public void validateAndClickElement(String key) {
+        WebElementFacade image = findWebElementByKey(key, sDKsPage.getClickableImages());
         WebElementFacade element = findWebElementByKey(key, sDKsPage.getClickableElements());
-        element.isEnabled();
+        image.click();
+        image.click();
+        image.click();
         element.click();
     }
 

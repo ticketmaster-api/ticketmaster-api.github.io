@@ -37,7 +37,7 @@ To run a successful API call, you will need to pass your API Key as the query pa
 
 ### Get an API key
 
-[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a `Consumer Key` that is used for authentication.
+[Register](https://developer-acct.ticketmaster.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a `Consumer Key` that is used for authentication.
 
 Your `Consumer Key` is your `API Key`.
 
@@ -78,7 +78,7 @@ Let's review the code (or you can also play with it on [Plunker](http://plnkr.co
 {: .t-lang-selector}
 
 
-{% highlight js %}
+{% highlight html %}
 <!DOCTYPE html>
 <html>
 

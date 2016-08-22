@@ -19,13 +19,13 @@ public class PD_CommerceAPIPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Offers')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey02PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/commerce/v2/events/05004F24E0B864B3/offers.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/commerce/v2/events/0B00508C829A3875/offers.json')]")
     private WebElementFacade apikey03PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/a")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Offers')]]/div/a")
     private WebElementFacade codeSection;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/blockquote/p/a[@href='#curl']")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Offers')]]/div/blockquote/p/a[@href='#curl']")
     private WebElementFacade switchToCUrlCode;
 
     public WebElementFacade getSwitchToCUrlCode() {

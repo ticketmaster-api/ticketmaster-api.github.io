@@ -13,29 +13,43 @@ public class PD_SDKsPage extends AncestorPage {
 
     public final String pageHeader = "SDKs";
 
-    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[1]/div/div/div/a")
-    private WebElementFacade sdkJavaButton;
+//    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[1]/div/div/div/a")
+//    private WebElementFacade sdkJavaButton;
+//
+//    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[2]/div/div/div/a")
+//    private WebElementFacade sdkJavaScriptButton;
+//
+//    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[3]/div/div/div/a")
+//    private WebElementFacade sdkScalaButton;
 
-    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[2]/div/div/div/a")
-    private WebElementFacade sdkJavaScriptButton;
-
-    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[3]/div/div/div/a")
-    private WebElementFacade sdkScalaButton;
-
-    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[1]/div/div/a/img")
+    @FindBy(xpath = "//div[@class='sdk-front sdk-front-java']/img")
     private WebElementFacade sdkJavaImage;
 
-    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[2]/div/div/a/img")
+    @FindBy(xpath = "//div[@class='sdk-front sdk-front-js']/img")
     private WebElementFacade sdkJavaScriptImage;
 
-    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[3]/div/div/a/img")
+    @FindBy(xpath = "//div[@class='sdk-front sdk-front-scala']/img")
     private WebElementFacade sdkScalaImage;
+
+    @FindBy(xpath = "//div[div[img[@class='sdk-img-java sdk-img image']]]/a[@class='sdk-back desktop']")
+    private WebElementFacade sdkJavaImageLink;
+
+    @FindBy(xpath = "//div[div[img[@class='sdk-img-js sdk-img image']]]/a[@class='sdk-back desktop']")
+    private WebElementFacade sdkJavaScriptImageLink;
+
+    @FindBy(xpath = "//div[div[img[@class='sdk-img-scala sdk-img image']]]/a[@class='sdk-back desktop']")
+    private WebElementFacade sdkScalaImageLink;
 
     public Map<String, WebElementFacade> getClickableElements() {
         Map<String, WebElementFacade> elements = new HashMap<String, WebElementFacade>();
-        elements.put("SDK-Java Button", sdkJavaButton);
-        elements.put("SDK-JavaScript Button", sdkJavaScriptButton);
-        elements.put("SDK-Scala Button", sdkScalaButton);
+        elements.put("SDK-Java Image", sdkJavaImageLink);
+        elements.put("SDK-JavaScript Image", sdkJavaScriptImageLink);
+        elements.put("SDK-Scala Image", sdkScalaImageLink);
+        return elements;
+    }
+
+    public Map<String, WebElementFacade> getClickableImages() {
+        Map<String, WebElementFacade> elements = new HashMap<String, WebElementFacade>();
         elements.put("SDK-Java Image", sdkJavaImage);
         elements.put("SDK-JavaScript Image", sdkJavaScriptImage);
         elements.put("SDK-Scala Image", sdkScalaImage);
