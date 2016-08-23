@@ -17,6 +17,16 @@ public class AncestorPage extends PageObject {
 
     public List<MenuElements> leftMenuElements;
 
+//    WIDGETS
+
+    @FindBy(xpath = "//div/ul[@id='scrollable-element']")
+    private LeftMenuWidget leftSideMenuWidget;
+
+    @FindBy(xpath = "//div[@id='feedback-modal']")
+    private FeedbackWidget feedbackWidget;
+
+//    PAGE ELEMENTS
+
     @FindBy(xpath = "//h1")
     public WebElementFacade titleText;
 
@@ -38,9 +48,6 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//button[@id='js_feedback_open']")
     private WebElementFacade feedbackButton;
 
-    @FindBy(xpath = "//div[@id='feedback-modal']")
-    private FeedbackWidget feedbackWidget;
-
     @FindBy(xpath = "//div[@id='disqus_thread']")
     private WebElementFacade disqusOption;
 
@@ -55,9 +62,6 @@ public class AncestorPage extends PageObject {
 
     @FindBy(xpath = "//div/ul[@id='scrollable-element']")
     private WebElementFacade leftSideMenu;
-
-    @FindBy(xpath = "//div/ul[@id='scrollable-element']")
-    private LeftMenuWidget leftSideMenuWidget;
 
     @FindBy(xpath = "//div[@class='search-container']/a[@href='https://live-livenation.devportal.apigee.com/user/login']")
     private WebElementFacade logInLink;

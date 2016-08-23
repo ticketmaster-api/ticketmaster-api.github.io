@@ -1,9 +1,9 @@
-Meta:kb
+Meta:
 
 Narrative:
 As a test enfineer
 I want to test Ticket Master Developer's site
-So that I test API Key is shown corectly on the pages
+So that I test API Key is NOT replaced on the page
 
 Scenario: (APi Key - Geting Started page) Placeholder is shown when user is not logged in
 Given open Getting Started page

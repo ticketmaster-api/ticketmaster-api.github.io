@@ -22,22 +22,22 @@ public class PD_SDKsPage extends AncestorPage {
 //    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[3]/div/div/div/a")
 //    private WebElementFacade sdkScalaButton;
 
-    @FindBy(xpath = "//div[@class='sdk-front sdk-front-java']/img")
+    @FindBy(xpath = "//div[@class='front']/div/img[@src='/assets/img/products-and-docs/sdk-java-img-263.png']")
     private WebElementFacade sdkJavaImage;
 
-    @FindBy(xpath = "//div[@class='sdk-front sdk-front-js']/img")
+    @FindBy(xpath = "//div[@class='front']/div/img[@src='/assets/img/products-and-docs/sdk-js-logo.png']")
     private WebElementFacade sdkJavaScriptImage;
 
-    @FindBy(xpath = "//div[@class='sdk-front sdk-front-scala']/img")
+    @FindBy(xpath = "//div[@class='front']/div/img[@src='/assets/img/products-and-docs/sdk-scala-img-263.png']")
     private WebElementFacade sdkScalaImage;
 
-    @FindBy(xpath = "//div[div[img[@class='sdk-img-java sdk-img image']]]/a[@class='sdk-back desktop']")
+    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'SDK-Java') and not(contains(h3,'SDK-JavaScript'))]")
     private WebElementFacade sdkJavaImageLink;
 
-    @FindBy(xpath = "//div[div[img[@class='sdk-img-js sdk-img image']]]/a[@class='sdk-back desktop']")
+    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'SDK-JavaScript')]")
     private WebElementFacade sdkJavaScriptImageLink;
 
-    @FindBy(xpath = "//div[div[img[@class='sdk-img-scala sdk-img image']]]/a[@class='sdk-back desktop']")
+    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'SDK-Scala')]")
     private WebElementFacade sdkScalaImageLink;
 
     public Map<String, WebElementFacade> getClickableElements() {
