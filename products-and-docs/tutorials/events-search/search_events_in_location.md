@@ -248,7 +248,7 @@ Assuming no errors are encountered, now we have your current location in a lat/l
 
 ## Passing location to the Discovery API
 
-Now we make an API call to [search for events within 25 miles from the latitude and longitude values](http://developer.ticketmaster.com/products-and-docs/apis/discovery/v2/#srch-events-v2) we received in the step above. We call the function `ShowPosition` to render that.
+Now we make an API call to [search for events within 25 miles from the latitude and longitude values](/products-and-docs/apis/discovery/v2/#srch-events-v2) we received in the step above. We call the function `ShowPosition` to render that.
 
 {: .tutorial-code}
 >[JavaScript](#js)

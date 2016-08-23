@@ -501,6 +501,8 @@ class TicketmasterCalendarWidget {
         let question = document.createElement('a');
         question.classList.add("event-question");
         question.target = '_blank';
+        question.alt = 'v. 3.0';
+        question.title = 'v .3.0';
         question.href = this.questionUrl;
         this.widgetRoot.appendChild(question);
     }
