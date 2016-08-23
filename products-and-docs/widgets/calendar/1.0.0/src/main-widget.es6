@@ -1479,7 +1479,7 @@ class WeekScheduler {
 
         let weekstart = current.getDate() - current.getDay();
         start = new Date(current.setDate(weekstart));
-        end.setDate(start.getDate() + 6);
+        end.setDate(start.getDate() + 7);
         if (start.getMonth()+1 <=9) startmonth = '0' + (start.getMonth()+1); else startmonth = start.getMonth()+1;
         if (start.getDate() <=9) startdate = '0' + start.getDate(); else startdate = start.getDate();
         if (end.getMonth()+1 <=9) endmonth = '0' + (end.getMonth()+1); else endmonth = end.getMonth()+1;
@@ -2679,7 +2679,7 @@ class MonthScheduler {
                 else {
                     monthEvents = [];
                     let monthEventsConcat = [];
-                    let l = events.page.totalPages;
+                    let l = parseInt(events.page.totalPages)-1;
                     for (i = 0; i <= l; i++) {
                         let attrs = widget.eventReqAttrs;
                         attrs.page = i;
@@ -2695,11 +2695,16 @@ class MonthScheduler {
                         spinner.classList.add('hide');
                         let le = value.length + 1;
                         var curMonth;
-                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,1) == '0') {
-                            curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6,1);
+                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") == 'week') {
+                            curMonth = new Date().getMonth() + 1;
                         }
                         else {
-                            curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
+                            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 1) == '0') {
+                                curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6, 1);
+                            }
+                            else {
+                                curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 2);
+                            }
                         }
                         for (var e = 0; e <= le; e++) {
                             if(value[e] && value[e]._embedded && value[e]._embedded.events){
@@ -2732,7 +2737,7 @@ class MonthScheduler {
                                         }
                                     });
                                     let newDate = item.dates.start.localDate.substr(5,2);
-                                    if (parseInt(curMonth) == parseInt(newDate))  {
+                                    if (parseInt(curMonth) === parseInt(newDate))  {
                                         monthEvents.push({
                                             'name': item.name,
                                             'date': item.dates.start.localDate,

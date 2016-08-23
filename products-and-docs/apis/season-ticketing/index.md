@@ -21,7 +21,7 @@ This is a collection of Open API calls that are used by external systems to acce
 ## Getting Your API KEY
 {: #getting-your-api-key}
 
-- Visit [developer.ticketmaster.com](http://developer.ticketmaster.com)  to get your API key
+- [Login](http://developer-acct.ticketmaster.com/user/login/)  to get your API key
 - Click "GET YOUR API KEY" button
 - On the Login screen, click "Create new account" button.
 - Fill out the form, using the name of a contact person in your organization.  Ticketmaster will contact you by this email address if you wish to become a Ticketmaster partner.  Recommendation - use your company&#39;s name or email domain name as your username.
