@@ -210,6 +210,16 @@
     {% assign contEmpty = 0 %}
     <!---->
 
+    <!--<p>order_list_length : {{order_list_length}}</p>-->
+    {%if order_list_length == 0%}
+        {% for method in route[1] %}
+            <!--<p class="red">** no in : <span class="blue">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->
+            {% include partials/autodoc/method.html%}
+        {% endfor %}
+
+        {% include partials/autodoc/method-post-content.html%}
+    {% endif %}
+
 
 <!--{% comment %} Clear meta data {% endcomment %}-->
     {% assign _id = tag.id %}
