@@ -77,9 +77,14 @@
     {% endif %}
 {% endcomment %}
 -->
+
 {% comment %}
 <div class="article">
 
+<!--sort by order_list -->
+{% assign inList = false %}
+{% assign contEmpty = 0 %}
+{% assign order_list_length =  methodsDescription.list | size  %}
 
 {% for route in swagger.paths %}
     <!---->
@@ -132,8 +137,12 @@
     <!--show item in list first-->
     {% if inList == false and order_list_length > 0 %}
         {% for listTag in methodsDescription.list %}
+
         <p>in order_list : {{listTag}}</p>
-         {% include partials/autodoc/method.html%}
+        {% if listTag == route[0] %}
+            {% include partials/autodoc/method.html%}
+        {% endif %}
+
         {% if forloop.index < forloop.length %}{% assign inList = true %}{% endif %}
         {% endfor %}
         <p> ** listIsFinish : {{inList}}</p>
