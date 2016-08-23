@@ -122,7 +122,7 @@ category: api-explorer
                                 <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
                             </span>
                             <span class="horizontal-events-tracker__title">
-                                Number of countries: 
+                                Number of Countries: 
                                 <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
                         </span>
                         </div>
