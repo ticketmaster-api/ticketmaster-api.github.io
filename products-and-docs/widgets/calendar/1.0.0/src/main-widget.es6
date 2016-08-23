@@ -3206,7 +3206,7 @@ class YearScheduler {
         }
     }
 
-    get messageRootContainer(){ return 'monthScheduler'; }
+    get messageRootContainer(){ return 'yearScheduler'; }
 
     get hideMessageDelay(){ return 3000; }
 
@@ -3341,6 +3341,7 @@ class YearScheduler {
         let MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let prm = [];
         let year;
+        let widget = this.widget;
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 4) {
             year = new Date().getFullYear();
         }
@@ -3368,6 +3369,8 @@ class YearScheduler {
             let month;
             let curMonth = new Date().getMonth();
             let curYear = new Date().getFullYear();
+            let noResults = true;
+            let messageContainer = document.querySelector('#yearSсheduler .event-message-container');
 
             for (var i = 0; i < MONTH_NAMES.length; i++) {
                 table += '<div class="month">';
@@ -3377,11 +3380,18 @@ class YearScheduler {
                 if (parseInt(i+1) <= 9) month = '0' + parseInt(i+1); else month = parseInt(i+1);
                 if (value[i] !=0) table += '<a href="javascript:void(0)" class="count" rel="' + year + '-' + month + '">' + value[i] + '</a>';
                 table += '</div>';
+                if (value[i] != 0) noResults = false;
             }
             table += '</div>';
             elem.innerHTML = table;
             let spinner = document.querySelector('#yearScheduler .spinner-container');
             spinner.classList.add('hide');
+
+            if (noResults === true) {
+                // messageContainer.classList.remove('hide');
+                this.showMessage("No results were found.<br/>Here other options for you.", true);
+                this.hideMessageWithDelay(this.hideMessageDelay);
+            }
 
             var rounds = document.querySelectorAll("a.count");
             for (var x = 0; x < rounds.length; x++) {
