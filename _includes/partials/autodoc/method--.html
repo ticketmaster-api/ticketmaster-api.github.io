@@ -1,0 +1,25 @@
+<h2 class="article {% if _title %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
+        | lstrip
+        | downcase
+        | replace: ' ' , '-'
+        | replace: '[' , '-'
+        | replace: ']' , '-'
+        | replace: '/' , '-'
+        | replace: '\' , '-'
+        | replace: '(' , '-'
+        | replace: ')' , '-'
+        | append: '-'
+        | append: indexLoop
+        | append: '-'
+        | append: page.categories[3] | lstrip }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
+<!--{% comment %} Add post content if it defined in metadata.json {% endcomment %}-->
+{% if _preContent %}
+{% assign preContent = _preContent | prepend: 'apis-code-examples/' %}
+    <div class="pre-content">
+    {% include {{ preContent }} %}
+</div>
+{% endif %}
+    <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
+    <p><strong>Summary: </strong>{{ method[1].summary }}</p>
+{%if method[1].description %}<p><strong>Description: </strong>{{ method[1].description }}</p>{% endif %}
+

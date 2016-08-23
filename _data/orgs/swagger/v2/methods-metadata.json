@@ -13,7 +13,7 @@
         {
             "pathsParent":"/discovery/v2/venues",
             "id":"assets",
-            "title":"Assets(test json)"
+            "title":"venues(test json)"
         },
         {
             "pathsParent":"/discovery/v2/attractions",
@@ -27,22 +27,22 @@
         {
             "pathsParent":"/discovery/v2/events",
             "id":"bulk-search",
-            "title":"bulk-search(test json)",
+            "title":"Search(events)",
             "reqres": "swagger/reqres-search-events.md",
             "codePath":"swagger/search-events.md"
         },
         {
             "pathsParent":"/discovery/v2/classifications",
             "id":"attraction-details",
-            "title":"search(test json)",
+            "title":"search(classifications)",
             "reqres": "swagger/reqres-search-events.md",
             "codePath":"swagger/search-events.md"
         }
     ],
     "list": [
-        "/discovery/v2/classifications",
         "/discovery/v2/events",
         "/discovery/v2/venues",
-        "/discovery/v2/attractions"
+        "/discovery/v2/attractions",
+        "/discovery/v2/classifications"
     ]
 }

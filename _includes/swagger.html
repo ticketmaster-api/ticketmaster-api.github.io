@@ -28,6 +28,7 @@
 
 <h4 class="aside gray" id="developer-console">Developer Console</h4><p>Make live API calls right now in the interactive docs:</p><p><a href="/products-and-docs/apis/interactive-console/" class="button">INTERACTIVE DOCS</a></p>
 <!--
+{% comment %}
 {% if swagger.host or swagger.basePath or methodsDescription.overview | size > 0 %}
 <h2 class="article" id="overview">Overview</h2>
 
@@ -57,6 +58,7 @@
     {% endcomment %}
     
 {% endif %}
+{% endcomment %}
 -->
 {% if methodsDescription.before %}
     {% if methodsDescription.before.include %}
@@ -78,17 +80,19 @@
 {% endcomment %}
 -->
 
+
+<!--
 {% comment %}
 <div class="article">
 
-<!--sort by order_list -->
+&lt;!&ndash;sort by order_list &ndash;&gt;
 {% assign inList = false %}
 {% assign contEmpty = 0 %}
 {% assign order_list_length =  methodsDescription.list | size  %}
 
 {% for route in swagger.paths %}
-    <!---->
-    <!--//show item in list first-->
+    &lt;!&ndash;&ndash;&gt;
+    &lt;!&ndash;//show item in list first&ndash;&gt;
     {% if inList == false and order_list_length > 0 %}
         {% for listTag in methodsDescription.list %}
         <p>in order_list : {{listTag}}</p>
@@ -98,7 +102,7 @@
     {% endif %}
 
 
-    <!--//show item that not in list-->
+    &lt;!&ndash;//show item that not in list&ndash;&gt;
     {% for tag in methodsDescription.list %}
         {% if tag != route[0] %}
         {% assign contEmpty  = contEmpty | plus: 1 %}
@@ -108,15 +112,16 @@
         {% endif %}
     {% endfor %}
     {% assign contEmpty = 0 %}
-    <!---->
+    &lt;!&ndash;&ndash;&gt;
 {% endfor %}
 </div>
-<!--order end-->
+&lt;!&ndash;order end&ndash;&gt;
 {% endcomment %}
+-->
 
 {% for route in swagger.paths %}
     {% for tag in methodsDescription.method %}
-        {% if tag.pathsParent == route[0] %}
+        {% if tag.pathsParent == routeInner[0] %}
             {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
             {% assign _title = tag.title %}
             {% assign _reqres = tag.reqres %}
@@ -138,24 +143,67 @@
     {% if inList == false and order_list_length > 0 %}
         {% for listTag in methodsDescription.list %}
 
-        <p>in order_list : {{listTag}}</p>
-        {% if listTag == route[0] %}
-            {% include partials/autodoc/method.html%}
+       <!--{% comment %}<p class="article">in order_list : {{listTag}}</p> {% endcomment %}-->
+
+            {% for routeInner in swagger.paths %}
+                {% for tag in methodsDescription.method %}
+                    {% if tag.pathsParent == routeInner[0] %}
+                        {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+                        {% assign _title = tag.title %}
+                        {% assign _reqres = tag.reqres %}
+                        {% assign _codePath = tag.codePath %}
+                        {% assign _preContent = tag.preContent %}
+                        {% assign _postContent = tag.postContent %}
+                    {% endif %}
+                {% endfor %}
+                <!--{% comment %}<p>routeInner : {{listTag}} == <span {% if listTag == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>{% endcomment %}-->
+                {% if listTag == routeInner[0] and indexLoop == 0 %}
+                    <!--{% comment %}<p class="red code">=== : <b>{{indexLoop}}</b> : {{listTag}}, {{ currrentMethodPath }}</p>{% endcomment %}-->
+                    {% for method in routeInner[1] %}
+                        {% include partials/autodoc/method.html%}
+                        <!--{% comment %}<p>indexLoop : {{indexLoop}} , forloop.index : {{ forloop.index }}</p>{% endcomment %}-->
+                    {% endfor %}
+
+                    {% include partials/autodoc/method-post-content.html%}
+
+                {%endif%}
+            {% endfor %}
+
+        <!--{% comment %}<p class="code">out loop indexLoop : {{indexLoop}} , forloop.index : {{ forloop.index }}</p>{% endcomment %}-->
+        {% if forloop.index == forloop.length %}
+            {% assign inList = true %}
+            <!--{% comment %}<p>{{forloop.index}} of {{forloop.length}}</p>{% endcomment %}-->
+            {% break %}
         {% endif %}
 
-        {% if forloop.index < forloop.length %}{% assign inList = true %}{% endif %}
         {% endfor %}
-        <p> ** listIsFinish : {{inList}}</p>
+
+        <!--{% comment %} Clear meta data {% endcomment %}-->
+        {% assign _id = false %}
+        {% assign _title = false %}
+        {% assign _reqres = false %}
+        {% assign _codePath = false %}
+        {% assign _preContent = false %}
+        {% assign _postContent = false %}
+
+        <!--<p> ** listIsFinish : {{inList}}</p>-->
     {% endif %}
-    <!---->
+    <!--show item in list first END-->
+
+<!--<hr>-->
 
     <!--show item that not in list-->
     {% for tag in methodsDescription.list %}
         {% if tag != route[0] %}
         {% assign contEmpty  = contEmpty | plus: 1 %}
             {% if contEmpty == order_list_length  %}
-                <p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>
-                {% include partials/autodoc/method.html%}
+                {% for method in route[1] %}
+                    <!--<p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->
+                    {% include partials/autodoc/method.html%}
+                {% endfor %}
+
+                {% include partials/autodoc/method-post-content.html%}
+
             {% endif %}
         {% endif %}
     {% endfor %}

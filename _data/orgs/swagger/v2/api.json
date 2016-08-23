@@ -39,7 +39,7 @@
     },
     "/discovery/v2/attractions/{id}" : {
       "get" : {
-        "summary" : "Get attraction",
+        "summary" : "Get attraction by id",
         "description" : "Since 1.0.0",
         "operationId" : "get",
         "parameters" : [ {
