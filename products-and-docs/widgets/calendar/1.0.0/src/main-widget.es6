@@ -501,8 +501,8 @@ class TicketmasterCalendarWidget {
         let question = document.createElement('a');
         question.classList.add("event-question");
         question.target = '_blank';
-        question.alt = 'v. 3.0';
-        question.title = 'v .3.0';
+        question.alt = 'v. 3.1';
+        question.title = 'v .3.1';
         question.href = this.questionUrl;
         this.widgetRoot.appendChild(question);
     }
@@ -1492,14 +1492,14 @@ class WeekScheduler {
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-period-week") != 'week') {
             start = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
             end = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period-week"));
-            end.setDate(end.getDate() + 6);
+            end.setDate(end.getDate() + 7);
             if (start.getMonth()+1 <=9) startmonth = '0' + (start.getMonth()+1); else startmonth = start.getMonth()+1;
             if (start.getDate() <=9) startdate = '0' + start.getDate(); else startdate = start.getDate();
             if (end.getMonth()+1 <=9) endmonth = '0' + (end.getMonth()+1); else endmonth = end.getMonth()+1;
             if (end.getDate() <=9) enddate = '0' + end.getDate(); else enddate = end.getDate();
             startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
             endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
-            // console.log(startDateTime + ' - ' + endDateTime);
+            console.log(startDateTime + ' - ' + endDateTime);
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
@@ -1893,7 +1893,7 @@ class WeekScheduler {
                     weekEvents = [];
                     let weekEventsConcat = [];
                     let l = events.page.totalPages;
-                    for (i = 0; i <= l; i++) {
+                    for (let i = 0; i <= l; i++) {
                         let attrs = widget.eventReqAttrs;
                         attrs.page = i;
                         attrs = Object.keys(attrs).map(function (key) {
@@ -2461,7 +2461,7 @@ class MonthScheduler {
         let monthEvents = [];
         let spinner = document.querySelector('#monthScheduler .spinner-container');
         let prm = [];
-        let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=aJVApdB1RoA41ejGebe0o4Ai9gufoCbd&latlong=36.1697096,-115.1236952&keyword=&startDateTime=2016-08-01T00:00:00Z&endDateTime=2016-09-02T23:59:59Z&classificationId=&radius=25&size=500&page=0';
+        let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=aJVApdB1RoA41ejGebe0o4Ai9gufoCbd&latlong=36.1697096,-115.1236952&keyword=&startDateTime=2016-08-01T00:00:00Z&endDateTime=2016-09-02T23:59:59Z&classificationId=&radius=5&size=500&page=0';
 
         if (this && this.readyState == XMLHttpRequest.DONE) {
 
