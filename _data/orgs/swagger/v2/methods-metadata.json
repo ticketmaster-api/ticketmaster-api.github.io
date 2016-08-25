@@ -38,11 +38,5 @@
             "reqres": "swagger/reqres-search-events.md",
             "codePath":"swagger/search-events.md"
         }
-    ],
-    "list": [
-        "/discovery/v2/events",
-        "/discovery/v2/venues",
-        "/discovery/v2/attractions",
-        "/discovery/v2/classifications"
     ]
 }

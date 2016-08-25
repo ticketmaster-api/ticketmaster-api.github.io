@@ -1,4 +1,4 @@
-{% for method in route[1] %}
+{% for method in route[1] %}{% endfor %}
 
     <h2 class="article {% if _title %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
             | lstrip
@@ -37,7 +37,7 @@
         </p>
     {% endif %}
 
-    <p class="code red">{{ route[0] }}</p>
+    <p class="code red">{{ routeInner[0] }}</p>
     <div class="">
         {% assign tableUrlParam = false %}
         {% assign tableQueryParam = false %}
@@ -454,4 +454,3 @@
     {% include {{codePath}} %}
     {%endif%}
 
-{% endfor %}

@@ -120,7 +120,7 @@
 -->
 
 {% for route in swagger.paths %}
-    {% for tag in methodsDescription.method %}
+    {% for tag in methodsDescription.method.pathsParent %}
         {% if tag.pathsParent == routeInner[0] %}
             {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
             {% assign _title = tag.title %}
@@ -137,16 +137,15 @@
     <!--sort by order_list -->
     {% assign inList = false %}
     {% assign contEmpty = 0 %}
-    {% assign order_list_length =  methodsDescription.list | size  %}
+    {% assign order_list_length =  methodsDescription.method | size  %}
 
     <!--show item in list first-->
     {% if inList == false and order_list_length > 0 %}
-        {% for listTag in methodsDescription.list %}
-
-       <!--{% comment %}<p class="article">in order_list : {{listTag}}</p> {% endcomment %}-->
+        {% for listTag in methodsDescription.method %}
 
             {% for routeInner in swagger.paths %}
                 {% for tag in methodsDescription.method %}
+<!--{% comment %}<p class="article">tag {{tag.pathsParent}} : listTag : {{listTag.pathsParent}}, routeInner[0] : {{routeInner[0]}}</p> {% endcomment %}-->
                     {% if tag.pathsParent == routeInner[0] %}
                         {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
                         {% assign _title = tag.title %}
@@ -156,9 +155,9 @@
                         {% assign _postContent = tag.postContent %}
                     {% endif %}
                 {% endfor %}
-                <!--{% comment %}<p>routeInner : {{listTag}} == <span {% if listTag == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>{% endcomment %}-->
-                {% if listTag == routeInner[0] and indexLoop == 0 %}
-                    <!--{% comment %}<p class="red code">=== : <b>{{indexLoop}}</b> : {{listTag}}, {{ currrentMethodPath }}</p>{% endcomment %}-->
+                <!--{% comment %}<p>routeInner : {{listTag.pathsParent}} == <span {% if listTag.pathsParent == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>{% endcomment %}-->
+                {% if listTag.pathsParent == routeInner[0] and indexLoop == 0 %}
+                    <!--{% comment %}<p class="red code">=== : <b>{{indexLoop}}</b> : {{listTag.pathsParent}}, {{ currrentMethodPath }}</p>{% endcomment %}-->
                     {% for method in routeInner[1] %}
                         {% include partials/autodoc/method.html%}
                         <!--{% comment %}<p>indexLoop : {{indexLoop}} , forloop.index : {{ forloop.index }}</p>{% endcomment %}-->
@@ -193,7 +192,7 @@
 <!--<hr>-->
 
     <!--show item that not in list-->
-    {% for tag in methodsDescription.list %}
+    {% for tag in methodsDescription.method.pathsParent %}
         {% if tag != route[0] %}
         {% assign contEmpty  = contEmpty | plus: 1 %}
             {% if contEmpty == order_list_length  %}
