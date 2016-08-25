@@ -11,6 +11,11 @@
     ],
     "method": [
         {
+            "pathsParent":"/discovery/v2/venues",
+            "id":"assets",
+            "title":"venues(test json)"
+        },
+        {
             "pathsParent":"/discovery/v2/attractions",
             "id":"search-attractions",
             "title":"Search Attractions(test json)",
@@ -20,21 +25,16 @@
             "postContent":"swagger/post-content-example.md"
         },
         {
-            "pathsParent":"/discovery/v2/attractions/legacy",
-            "id":"assets",
-            "title":"Assets(test json)"
-        },
-        {
-            "pathsParent":"/discovery/v2/attractions/legacy/{id}",
+            "pathsParent":"/discovery/v2/events",
             "id":"bulk-search",
-            "title":"bulk-search(test json)",
+            "title":"Search(events)",
             "reqres": "swagger/reqres-search-events.md",
             "codePath":"swagger/search-events.md"
         },
         {
-            "pathsParent":"/discovery/v2/attractions/{id}",
+            "pathsParent":"/discovery/v2/classifications",
             "id":"attraction-details",
-            "title":"search(test json)",
+            "title":"search(classifications)",
             "reqres": "swagger/reqres-search-events.md",
             "codePath":"swagger/search-events.md"
         }
