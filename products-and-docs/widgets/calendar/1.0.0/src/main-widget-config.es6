@@ -98,6 +98,7 @@
                 document.querySelector('[w-type="calendar"]').setAttribute('w-country', 'US');
                 document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', '34.0390107,-118.2672801');
             }
+            if (document.getElementById('w-postalcode').value.length <= 3) document.getElementById('w-postalcode').value = '90015';;
         }
 
         if(targetName === "w-radius"){
