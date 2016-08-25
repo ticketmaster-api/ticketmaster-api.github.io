@@ -120,16 +120,6 @@
 -->
 
 {% for route in swagger.paths %}
-    {% for tag in methodsDescription.method.pathsParent %}
-        {% if tag.pathsParent == routeInner[0] %}
-            {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
-            {% assign _title = tag.title %}
-            {% assign _reqres = tag.reqres %}
-            {% assign _codePath = tag.codePath %}
-            {% assign _preContent = tag.preContent %}
-            {% assign _postContent = tag.postContent %}
-        {% endif %}
-    {% endfor %}
 
     <!--get index to create uniq Id ,that will be used for side menu-->
     {% assign indexLoop = forloop.index0 %}
@@ -191,9 +181,19 @@
 
 <!--<hr>-->
 
-    <!--show item that not in list-->
     {% for tag in methodsDescription.method.pathsParent %}
-        {% if tag != route[0] %}
+        {% if tag.pathsParent == routeInner[0] %}
+            {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+            {% assign _title = tag.title %}
+            {% assign _reqres = tag.reqres %}
+            {% assign _codePath = tag.codePath %}
+            {% assign _preContent = tag.preContent %}
+            {% assign _postContent = tag.postContent %}
+        {% endif %}
+    {% endfor %}
+    <!--show item that not in list-->
+    {% for tag in methodsDescription.method %}
+        {% if tag.pathsParent != route[0] %}
         {% assign contEmpty  = contEmpty | plus: 1 %}
             {% if contEmpty == order_list_length  %}
                 {% for method in route[1] %}

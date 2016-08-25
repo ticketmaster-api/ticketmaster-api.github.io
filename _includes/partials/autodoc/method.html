@@ -37,7 +37,7 @@
         </p>
     {% endif %}
 
-    <p class="code red">{{ routeInner[0] }}</p>
+    <p class="code red">{% if routeInner[0] %}{{ routeInner[0] }}{% else %}{{ route[0] }}{% endif %}</p>
     <div class="">
         {% assign tableUrlParam = false %}
         {% assign tableQueryParam = false %}
