@@ -1,14 +1,12 @@
 {
-    "overview": [
-        {
-            "title": "Autentification",
-            "description": "Test overview Autentification description Ticketmaster Autodoc API offers and products."
-        },
-        {
-            "title": "Format",
-            "description": "You can use Test format description Ticketmaster Autodoc API."
-        }
-    ],
+    "before":
+    {
+        "include": "discovery-api/before-api.md"
+    },
+    "after":
+    {
+        "include": "discovery-api/after-api.md"
+    },
     "method": [
         {
             "pathsParent":"/discovery/v2/venues",
@@ -29,7 +27,8 @@
             "id":"bulk-search",
             "title":"Search(events)",
             "reqres": "swagger/reqres-search-events.md",
-            "codePath":"swagger/search-events.md"
+            "codePath":"swagger/search-events.md",
+            "HAL": true
         },
         {
             "pathsParent":"/discovery/v2/classifications",

@@ -47,11 +47,11 @@
         {% for parameter in method[1].parameters %}
             {% case parameter.in %}
             {% when 'path' %}
-            {% assign tableUrlParam = true %}
+                {% assign tableUrlParam = true %}
             {% when 'query' %}
-            {% assign tableQueryParam = true %}
+                {% assign tableQueryParam = true %}
             {% when 'body' or 'header' or 'formData'%}
-            {% assign tableBodyHeaderFormdataParam = true %}
+                {% assign tableBodyHeaderFormdataParam = true %}
             <!-- If 'in' is "header", "formData" or "body".-->
             {% else %}
             {% assign tableOtherParam = true %}
@@ -359,8 +359,12 @@
             </ul>
             {% endif %}<!--{% comment %} END response[1].schema['type'] {% endcomment %}-->
 
-            {% if response[1].schema['$ref'] %}
-            {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+            {% if response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref'] %}
+                {% if response[1].schema['$ref'] %}
+                    {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                {% else %}
+                    {% assign schemaRes = response[1].schema.items['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                {% endif %}
             {% assign schemaSplit = schemaRes | split: ' ' %}
             <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
             <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
@@ -370,9 +374,16 @@
                 {% endfor %}
             </h5>
             <ul class="nested-list">
+                {%if _HAL %}
+                    {% assign _HAL-part1 = true %}
+                        {% include partials/autodoc/hal-wrapper.html %}
+                    {% assign _HAL-part1 = false %}
+                {% endif %}
+
                 {% for pathFirsLvl in schemaSplit[0] %}
                 {% for pathScdLvl in schemaSplit[1] %}
                 {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+
                 <li>
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
@@ -407,24 +418,28 @@
                     </ul>
                     {% endif %}
                 </li>
+
                 {% endfor %}
                 {% endfor %}
                 {% endfor %}
+
+                {%if _HAL %}
+                    {% assign _HAL-part2 = true %}
+                        {% include partials/autodoc/hal-wrapper.html %}
+                    {% assign _HAL-part2 = false %}
+                {% endif %} <!--{% comment %} END _embedded{% endcomment %}-->
+
             </ul>
-            {% endif %}<!--{% comment %} END response[1].schema['$ref'] {% endcomment %}-->
-
-            {% if response[1].schema['type'] == 'array' %}
-            <p>schema['type'] is : {{response[1].schema['type']}}</p>
             {% endif %}
+            <!--{% comment %} END response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref']:
 
-            <!--{% comment %}
-            {% for schema_details in schemaRes %}
-                <p>{{ swagger.schema_details }}</p>
-                <h4 class="14"> schemaRes14 : {{ swagger.schema_details.schemaRes }}</h4>
-                <h4 class="15"> schemaRes15 : {{ swagger.schema_details.['schemaRes'] }}</h4>
-            {% endfor %}-->
+                {% if response[1].schema['type'] == 'array' %}
+                <p>schema['type'] is : {{response[1].schema['type']}}</p>
+                {% endif %}
 
-            <!--
+            {% endcomment %}-->
+
+            <!--{% comment %}//check content_type here:
             {% for content_type in swagger.produces %}
                 {% if response[1].examples[content_type] %}
                 {% assign example = response[1].examples[content_type] %}
