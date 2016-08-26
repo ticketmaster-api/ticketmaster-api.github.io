@@ -14,7 +14,7 @@ keywords: Partner API, Inventory Status, InventoryStatus
 
 The Inventory Status API provides event status for primary Ticketmaster inventory with inventory updates happening near real-time. For given set of events (maximum of 1000 per call), expected statuses are:
                               TICKETS_AVAILABLE,
-                              FEW_TICKETS_AVAILABLE,
+                              FEW_TICKETS_LEFT,
                               TICKETS_NOT_AVAILABLE,
                               UNKNOWN
 {: .article .lead}
