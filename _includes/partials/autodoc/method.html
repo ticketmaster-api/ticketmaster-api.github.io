@@ -394,7 +394,7 @@
                                 {% assign schemaSplitInner = schemaResInner | split: ' ' %}
                                 {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
                                     {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-                                    <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}
+                                    <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %} - {% if innerRef[1].description %}{{ innerRef[1].description }}{% elsif innerRef[1].format %}{{ innerRef[1].format }}{%else%}No description specified{% endif %}{% if innerRef[1].$ref %}{{ innerRef[1].$ref }}{% endif %}
                                     </li>
                                     {% endfor %}
                                 {% endfor %}
@@ -403,14 +403,20 @@
                         </li>
                         {% endfor %}
                         {% if property[1]['$ref'] %}
+                        {% assign schemaPageInner = false %}
+                        {% assign schemaPageSplitInner = false %}
                         <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
                             <ul>
-                                {% assign schemaPageInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                                {% assign schemaPageSplitInner = schemaResInner | split: ' ' %}
+                                {% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                                {% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
                                 {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
-                                    {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                    <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if property[1].type %}({{ property[1].type }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}</li>
-                                    {% endfor %}
+                                    {% if swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                        {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                        <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
+                                        {% endfor %}
+                                    {%else%}
+                                        <li><code class="highlighter-rouge">{{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
+                                    {%endif%}
                                 {% endfor %}
                             </ul>
                         </li>
