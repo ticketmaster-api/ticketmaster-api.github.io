@@ -342,12 +342,10 @@ class TicketmasterCalendarWidget {
                         }
                     }
                 }
-                // Used in builder
                 if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
                 widget.config.latlong = latlong;
                 if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
                 cb(widget.config.latlong);
-                // console.log(latlong);
                 document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", latlong);
             }
         }
@@ -1499,7 +1497,6 @@ class WeekScheduler {
             if (end.getDate() <=9) enddate = '0' + end.getDate(); else enddate = end.getDate();
             startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
             endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
-            console.log(startDateTime + ' - ' + endDateTime);
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
@@ -2266,19 +2263,14 @@ class MonthScheduler {
                 lastDay = new Date(document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4), document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7), 0);
                 firstDay.setDate(new Date(firstDay).getDate() - 1);
                 lastDay.setDate(new Date(lastDay).getDate() + 1);
-                // console.log(firstDay);
-                // console.log(lastDay);
             }
             if (parseInt(firstDay.getMonth()+1) <= 9) startmonth = '0' + parseInt(firstDay.getMonth() + 1); else startmonth = parseInt(firstDay.getMonth() + 1);
             startdate = '0' + firstDay.getDate();
             if (lastDay.getMonth()+1 <= 9) endmonth = '0' + parseInt(lastDay.getMonth() + 1); else endmonth = parseInt(lastDay.getMonth()) + 1;
             if (lastDay.getDate()+1 <= 9) enddate = '0' + parseInt(lastDay.getDate() + 1); else enddate = parseInt(lastDay.getDate()) + 1;
-            // enddate = '0' + lastDay.getDate();
 
             startDateTime = firstDay.getFullYear() + '-' + startmonth + '-01T00:00:00Z';
             endDateTime = lastDay.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
-            // console.log(startDateTime + ' - ' + endDateTime);
-            // document.querySelector('[w-type="calendar"]').setAttribute("w-period", firstDay.getFullYear() + '-' + startmonth);
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
@@ -2551,13 +2543,13 @@ class MonthScheduler {
                     for (let e = 0, l = monthEvents.length; e < l; e++) {
                         if (tDate == monthEvents[e].date) {
                             eventsArr.push(monthEvents[e]);
-                            let day = new Date(monthEvents[e].date).getDate();
-                            if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                            let day = tDate.toString().substr(8,2);
+                            if (day.substr(0,1) == '0') day = day.substr(1,1);
                             monthEventsSort[day] = monthEvents[e];
                         }
                         else {
-                            let day = new Date(monthEvents[e].date).getDate();
-                            if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                            let day = tDate.toString().substr(8,2);
+                            if (day.substr(0,1) == '0') day = day.substr(1,1);
                             monthEventsSort[day] = eventsArr;
                             eventsArr = [];
                             eventsArr.push(monthEvents[e]);
@@ -2570,6 +2562,9 @@ class MonthScheduler {
                             monthEventsSort[dayNo] = eventsArr;
                         }
                     }
+
+                    // console.log(monthEvents);
+                    // console.log(monthEventsSort);
 
                     let id = 'calendar';
                     let year = new Date().getFullYear();
@@ -2758,7 +2753,6 @@ class MonthScheduler {
                         }
                         monthEventsConcat.push(monthEvents);
                         monthEvents = monthEventsConcat[0];
-                        // console.log(monthEvents);
 
                         let monthEventsSort = {};
                         let eventsArr = [];
@@ -2773,13 +2767,13 @@ class MonthScheduler {
                         for (let e = 0, l = monthEvents.length; e < l; e++) {
                             if (tDate == monthEvents[e].date) {
                                 eventsArr.push(monthEvents[e]);
-                                let day = new Date(monthEvents[e].date).getDate();
-                                if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                                let day = tDate.toString().substr(8,2);
+                                if (day.substr(0,1) == '0') day = day.substr(1,1);
                                 monthEventsSort[day] = monthEvents[e];
                             }
                             else {
-                                let day = new Date(monthEvents[e].date).getDate();
-                                if (day.toString().substr(0,1) == '0') day = day.toString().substr(1,1);
+                                let day = tDate.toString().substr(8,2);
+                                if (day.substr(0,1) == '0') day = day.substr(1,1);
                                 monthEventsSort[day] = eventsArr;
                                 eventsArr = [];
                                 eventsArr.push(monthEvents[e]);

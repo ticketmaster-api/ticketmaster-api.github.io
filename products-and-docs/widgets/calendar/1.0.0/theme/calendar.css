@@ -1382,6 +1382,7 @@ div[w-theme="calendar"] #year {
     padding: 0;
     height: 273px;
     text-align: center;
+    position: relative;
 }
 
 div[w-theme="calendar"] #year .monthes-container {
