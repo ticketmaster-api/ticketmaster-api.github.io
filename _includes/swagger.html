@@ -135,7 +135,7 @@
 
             {% for routeInner in swagger.paths %}
                 {% for tag in methodsDescription.method %}
-<!--{% comment %}<p class="article">tag {{tag.pathsParent}} : listTag : {{listTag.pathsParent}}, routeInner[0] : {{routeInner[0]}}</p> {% endcomment %}-->
+                <!--{% comment %}<p class="article">tag {{tag.pathsParent}} : listTag : {{listTag.pathsParent}}, routeInner[0] : {{routeInner[0]}}</p> {% endcomment %}-->
                     {% if tag.pathsParent == routeInner[0] %}
                         {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
                         {% assign _title = tag.title %}
@@ -143,6 +143,7 @@
                         {% assign _codePath = tag.codePath %}
                         {% assign _preContent = tag.preContent %}
                         {% assign _postContent = tag.postContent %}
+                        {% assign _HAL = tag.HAL %}
                     {% endif %}
                 {% endfor %}
                 <!--{% comment %}<p>routeInner : {{listTag.pathsParent}} == <span {% if listTag.pathsParent == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>{% endcomment %}-->
@@ -174,6 +175,7 @@
         {% assign _codePath = false %}
         {% assign _preContent = false %}
         {% assign _postContent = false %}
+        {% assign _HAL = false %}
 
         <!--<p> ** listIsFinish : {{inList}}</p>-->
     {% endif %}
@@ -188,6 +190,7 @@
             {% assign _codePath = tag.codePath %}
             {% assign _preContent = tag.preContent %}
             {% assign _postContent = tag.postContent %}
+            {% assign _HAL = tag.HAL %}
         {% endif %}
     {% endfor %}
 
@@ -198,7 +201,7 @@
             {% if contEmpty == order_list_length  %}
                 {% for method in route[1] %}
                     <!--<p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->
-                    {% include partials/autodoc/method.html%}
+                    {% include partials/autodoc/method.html %}
                 {% endfor %}
 
                 {% include partials/autodoc/method-post-content.html%}
@@ -227,6 +230,7 @@
     {% assign _codePath = tag.codePath %}
     {% assign _preContent = tag.preContent %}
     {% assign _postContent = tag.postContent %}
+    {% assign _HAL = tag.HAL %}
 
 {% endfor %}
 

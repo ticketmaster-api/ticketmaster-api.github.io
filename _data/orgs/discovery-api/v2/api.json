@@ -16,7 +16,8 @@
         "summary" : "Find attractions",
         "description" : "Since 1.0.0",
         "operationId" : "find",
-        "parameters" : [ {
+        "parameters" : [
+          {
           "name" : "sort",
           "in" : "query",
           "description" : "sorting order of the search result",
@@ -35,7 +36,8 @@
           "pattern" : "^\\s*|yes|no|only$",
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
-        }, {
+        },
+          {
           "name" : "source",
           "in" : "query",
           "description" : "filter entity by its source name",
@@ -44,7 +46,8 @@
           "default" : "",
           "enum" : [ "ticketmaster", " ticketmaster-uk", " universe", " frontgate", " TMR" ],
           "x-example" : ""
-        }, {
+        },
+          {
           "name" : "keyword",
           "in" : "query",
           "description" : "Keyword to search on",
@@ -62,7 +65,8 @@
           "default" : "",
           "enum" : [ "ticketmaster", " geolocation" ],
           "x-example" : ""
-        }, {
+        },
+          {
           "name" : "locale",
           "in" : "query",
           "description" : "Locale the response content will be returned",
@@ -71,7 +75,8 @@
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
           "x-example" : ""
-        }, {
+        },
+          {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -80,7 +85,8 @@
           "default" : "0",
           "minimum" : 0.0,
           "x-example" : ""
-        }, {
+        },
+          {
           "name" : "size",
           "in" : "query",
           "description" : "Page size of the response",
