@@ -63,7 +63,7 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div/ul[@id='scrollable-element']")
     private WebElementFacade leftSideMenu;
 
-    @FindBy(xpath = "//div[@class='search-container']/a[@href='https://live-livenation.devportal.apigee.com/user/login']")
+    @FindBy(xpath = "//div[@class='search-container']//a[text()='Login']")
     private WebElementFacade logInLink;
 
     @FindBy(xpath = "//div[@class='user-control-section']/a[@href='/user/login']")
