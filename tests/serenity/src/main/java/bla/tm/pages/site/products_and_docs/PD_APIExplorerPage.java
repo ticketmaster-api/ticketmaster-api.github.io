@@ -13,7 +13,7 @@ public class PD_APIExplorerPage extends AncestorPage {
     @FindBy(xpath = "//input[@id='api-key']")
     private WebElementFacade apikeyTextField;
 
-    @FindBy(xpath = "//div[@class='row-container wrap-overflow']/ul[@class='events-tracker events-tracker_col-view events-tracker_col-blue']")
+    @FindBy(xpath = "//div[contains(@class,'horizontal-events-tracker__section')]")
     private WebElementFacade summaryWidget;
 
     public WebElementFacade getAPIKeyTextField() {
