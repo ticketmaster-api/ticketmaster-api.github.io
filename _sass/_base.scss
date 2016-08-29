@@ -942,3 +942,7 @@ input[type=range]:focus::-ms-fill-upper {
     font-family: $font-body;
   }
 }
+
+.clear-pull {
+  float: none !important;
+}

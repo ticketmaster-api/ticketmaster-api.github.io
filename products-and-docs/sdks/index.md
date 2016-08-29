@@ -15,6 +15,7 @@ keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 {% capture SDK_Java_img %}/assets/img/products-and-docs/sdk-java-img.png{% endcapture %}
 {% capture SDK_Java_img_square %}/assets/img/products-and-docs/sdk-java-img-263.png{% endcapture %}
 {% capture 1-SDK_Java_title %}
+
 SDK-Java
 {% endcapture %}
 {% capture SDK_Java_description %}
