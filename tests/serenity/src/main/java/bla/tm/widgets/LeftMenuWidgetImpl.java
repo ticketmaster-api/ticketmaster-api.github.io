@@ -14,7 +14,7 @@ public class LeftMenuWidgetImpl extends AnsestorWidgetImpl implements LeftMenuWi
 
     private MenuElements leftMenuElement = null;
 
-    @FindBy(xpath = ".//div[ul[@id='scrollable-element']]")
+    @FindBy(xpath = "//div[./ul[@id='scrollable-element']]")
     private WebElementFacade leftMenuWidget;
 
 
