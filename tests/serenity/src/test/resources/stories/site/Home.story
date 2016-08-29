@@ -1,4 +1,4 @@
-Meta:
+Meta:@debug
 
 Narrative:
 As a test enfineer
@@ -20,7 +20,7 @@ Then check that new page opened from Home page has <pageURL> and <elementLocatio
 
 Examples:
 elementKey           |pageURL                                                 |elementLocation                                                                     |
-Get Your API Key     |https://live-livenation.devportal.apigee.com/user/login |//div[@class='text-wrapper col-lg-6 col-sm-12 col-xs-12']/h1[@class='only-desktop'] |
+Get Your API Key     |https://developer-acct.ticketmaster.com/user/login      |//div[@class='text-wrapper col-lg-6 col-sm-12 col-xs-12']/h1[@class='only-desktop'] |
 Review Documentation |{url}/products-and-docs/apis/getting-started/           |//h1                                                                                |
 Explore The API      |{url}/api-explorer/                                     |//h1                                                                                |
 Android              |http://code.ticketmaster.com/#android-projects          |//h1                                                                                |
