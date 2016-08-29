@@ -2244,7 +2244,7 @@ class MonthScheduler {
         let startmonth, startdate, endmonth, enddate, startDateTime, endDateTime;
         let classificationid = '';
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        let lastDay = new Date(date.getFullYear(), date.getMonth() + 2, 0);
 
         if (firstDay.getMonth()+1 <=9) startmonth = '0' + (firstDay.getMonth()+1); else startmonth = firstDay.getMonth()+1;
         startdate = '0' + firstDay.getDate();
@@ -2726,13 +2726,15 @@ class MonthScheduler {
 
                                     let imgWidth;
                                     let index;
-                                    item.images.forEach(function (img, i) {
-                                        if (i == 0) imgWidth = img.width;
-                                        if (imgWidth > img.width) {
-                                            imgWidth = img.width;
-                                            index = i;
-                                        }
-                                    });
+                                    if (item.hasOwnProperty('images')) {
+                                        item.images.forEach(function (img, i) {
+                                            if (i == 0) imgWidth = img.width;
+                                            if (imgWidth > img.width) {
+                                                imgWidth = img.width;
+                                                index = i;
+                                            }
+                                        });
+                                    }
                                     let newDate = item.dates.start.localDate.substr(5,2);
                                     if (parseInt(curMonth) === parseInt(newDate))  {
                                         monthEvents.push({
