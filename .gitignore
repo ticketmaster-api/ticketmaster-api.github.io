@@ -16,6 +16,7 @@ npm-debug.log
 Gemfile.lock
 
 # Ignore Local automation files
-/tests/serenity/target
+/tests/serenity/target/*
+!/tests/serenity/target/site/
 /tests/serenity/.idea
 /tests/serenity/*.iml
