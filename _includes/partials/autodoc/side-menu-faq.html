@@ -1,0 +1,13 @@
+<!--faq-api menu item can be here-->
+{% assign files = site.pages %}
+{% for file in files %}
+    {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
+        {% if file.questions and file.title and file.content.size > 1 %}
+            {% for question in file.questions limit:1 %}
+            <ul class="sections menu-highlight">
+                <li><a href="#{{file.titleId}}">{{file.title}}</a></li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endfor %}

@@ -80,45 +80,6 @@
 {% endcomment %}
 -->
 
-
-<!--
-{% comment %}
-<div class="article">
-
-&lt;!&ndash;sort by order_list &ndash;&gt;
-{% assign inList = false %}
-{% assign contEmpty = 0 %}
-{% assign order_list_length =  methodsDescription.list | size  %}
-
-{% for route in swagger.paths %}
-    &lt;!&ndash;&ndash;&gt;
-    &lt;!&ndash;//show item in list first&ndash;&gt;
-    {% if inList == false and order_list_length > 0 %}
-        {% for listTag in methodsDescription.list %}
-        <p>in order_list : {{listTag}}</p>
-        {% if forloop.index < forloop.length %}{% assign inList = true %}{% endif %}
-        {% endfor %}
-        <p> ** listIsFinish : {{inList}}</p>
-    {% endif %}
-
-
-    &lt;!&ndash;//show item that not in list&ndash;&gt;
-    {% for tag in methodsDescription.list %}
-        {% if tag != route[0] %}
-        {% assign contEmpty  = contEmpty | plus: 1 %}
-            {% if contEmpty == order_list_length  %}
-                <p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>
-            {% endif %}
-        {% endif %}
-    {% endfor %}
-    {% assign contEmpty = 0 %}
-    &lt;!&ndash;&ndash;&gt;
-{% endfor %}
-</div>
-&lt;!&ndash;order end&ndash;&gt;
-{% endcomment %}
--->
-
 {% for route in swagger.paths %}
 
     <!--get index to create uniq Id ,that will be used for side menu-->
@@ -176,8 +137,6 @@
         {% assign _preContent = false %}
         {% assign _postContent = false %}
         {% assign _HAL = false %}
-
-        <!--<p> ** listIsFinish : {{inList}}</p>-->
     {% endif %}
     <!--show item in list first END-->
 
@@ -210,9 +169,7 @@
         {% endif %}
     {% endfor %}
     {% assign contEmpty = 0 %}
-    <!---->
 
-    <!--<p>order_list_length : {{order_list_length}}</p>-->
     {%if order_list_length == 0%}
         {% for method in route[1] %}
             <!--<p class="red">** no in : <span class="blue">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->

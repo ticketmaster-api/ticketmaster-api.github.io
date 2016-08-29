@@ -6,8 +6,8 @@
     {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
     <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}
         {% if innerRef[1]['$ref'] %}
-        <!--<code> *** {{ innerRef[1]['$ref'] }}</code>-->
-        <!--<code> ^^^ {{ schemaSplitInner | join: ' ' }}</code>-->
+        <!--{% comment %}<code> *** {{ innerRef[1]['$ref'] }}</code>-->
+        <!--<code> ^^^ {{ schemaSplitInner | join: ' ' }}</code>{% endcomment %}-->
             {%assign outer = innerRef[1]['$ref']%}
             {%include partials/autodoc/inner-item.html%}
         {%endif%}
