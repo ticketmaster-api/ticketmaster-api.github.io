@@ -12,21 +12,21 @@ keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 {: .noupper}
 # SDKs
 
-{% capture SDKJava_img %}/assets/img/products-and-docs/sdk-java-img.png{% endcapture %}
-{% capture SDKJava_img_square %}/assets/img/products-and-docs/sdk-java-img-263.png{% endcapture %}
-{% capture SDKJava_title %}
+{% capture SDK_Java_img %}/assets/img/products-and-docs/sdk-java-img.png{% endcapture %}
+{% capture SDK_Java_img_square %}/assets/img/products-and-docs/sdk-java-img-263.png{% endcapture %}
+{% capture 1-SDK_Java_title %}
 SDK-Java
 {% endcapture %}
-{% capture SDKJava_description %}
+{% capture SDK_Java_description %}
 Java SDK for the Ticketmaster Open Platform. 
 {% endcapture %}
-{% capture SDKJava_link %}
+{% capture SDK_Java_link %}
 https://github.com/ticketmaster-api/sdk-java
 {% endcapture %}
 
 {% capture SDK_JS_img %}/assets/img/products-and-docs/sdk-js-img.png{% endcapture %}
 {% capture SDK_JS_img_square %}/assets/img/products-and-docs/sdk-js-logo.png{% endcapture %}
-{% capture SDK_JS_title %}
+{% capture 2-SDK_JS_title %}
 SDK-JavaScript
 {% endcapture %}
 {% capture SDK_JS_description %}
@@ -38,7 +38,7 @@ https://github.com/ticketmaster-api/sdk-javascript
 
 {% capture SDK_scala_img %}/assets/img/products-and-docs/sdk-scala-img.png{% endcapture %}
 {% capture SDK_scala_img_square %}/assets/img/products-and-docs/sdk-scala-img-263.png{% endcapture %}
-{% capture SDK_scala_title %}
+{% capture 3-SDK_scala_title %}
 SDK-Scala
 {% endcapture %}
 {% capture SDK_scala_description %}
@@ -68,11 +68,11 @@ season tickets all in one trusted place.
   <div class="raw" id="sdk-java"> 
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">        
         <div class="tutorials-article">                
-            <a href="{{ SDKJava_link }}"><img src=" {{ SDKJava_img }} " class="image" alt="{{ SDKJava_title }}"/></a>                
+            <a href="{{ SDK_Java_link }}"><img src=" {{ SDK_Java_img }} " class="image" alt="{{ SDK_Java_title }}"/></a>                
             <div class="announcement">
-                <h3>{{ SDKJava_title }}</h3>
-                <p>{{ SDKJava_description }}</p>
-                <a class="button button-blue" href="{{ SDKJava_link }}">Learn more</a>              
+                <h3>{{ SDK_Java_title }}</h3>
+                <p>{{ SDK_Java_description }}</p>
+                <a class="button button-blue" href="{{ SDK_Java_link }}">Learn more</a>              
             </div>                
         </div>
     </div>
@@ -114,14 +114,14 @@ season tickets all in one trusted place.
     <div class="card" >    
         <div class="front">            
           <div class="img-wrapper">
-            <img src="{% cycle {{SDKJava_img_square}}, {{SDK_JS_img_square}},  {{SDK_scala_img_square}} %}" 
-                 alt="{% cycle {{SDKJava_title}}, {{SDK_JS_title}}, {{SDK_scala_title}} %}">
+            <img src="{% cycle {{SDK_Java_img_square}}, {{SDK_JS_img_square}},  {{SDK_scala_img_square}} %}" 
+                 alt="{% cycle {{SDK_Java_title}}, {{SDK_JS_title}}, {{SDK_scala_title}} %}">
           </div>
         </div>
         <div class="back">
-          <a href="{% cycle {{SDKJava_link}}, {{SDK_JS_link}}, {{SDK_scala_link}} %}">
-            <h3>{% cycle {{SDKJava_title}}, {{SDK_JS_title}}, {{SDK_scala_title}} %}</h3>           
-            <p>{% cycle {{SDKJava_description}}, {{SDK_JS_description}}, {{SDK_scala_description}} %}</p>
+          <a href="{% cycle {{SDK_Java_link}},        {{SDK_JS_link}},        {{SDK_scala_link}} %}">
+               <h3>{% cycle {{1-SDK_Java_title}},     {{2-SDK_JS_title}},     {{3-SDK_scala_title}} %}</h3>           
+                <p>{% cycle {{SDK_Java_description}}, {{SDK_JS_description}}, {{SDK_scala_description}} %}</p>
           </a>
         </div>      
     </div>
