@@ -1,12 +1,3 @@
----
-menu_items:
-- Supported Country Codes
-- Supported Markets
-- Supported Sources
-- Supported Locales
-- Supported DMA
----
-
 {% capture post_content %}
 
 
