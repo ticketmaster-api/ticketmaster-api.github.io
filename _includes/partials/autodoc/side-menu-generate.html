@@ -103,6 +103,13 @@
     {% assign _HAL = tag.HAL %}
 
 {% endfor %}
-
+    {% comment %}
+    {% if methodsDescription.after %}
+    <p>{{methodsDescription.after}}</p>
+        {% for item in page.menu_items %}
+            <li><a href="#{{item}}">item : {{item}} , {{ page.menu_items }}</a></li>
+        {% endfor %}
+    {% endif %}
+    {% endcomment %}
     <li><a href="#disqus_thread">Disqus</a></li>
 </ul>
