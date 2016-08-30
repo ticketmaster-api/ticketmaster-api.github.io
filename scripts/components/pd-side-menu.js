@@ -35,7 +35,7 @@
         };
 
         var scrollMenu = function(direction){
-            var scrollHeight = direction == "top" ? 10 : $(menu).height()*1.5;
+            var scrollHeight = direction == "top" ? 0 : $(menu).height()*1.5;
 
             //console.log('scrollHeight' , scrollHeight);
 
