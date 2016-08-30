@@ -8,6 +8,7 @@ namespace 'travis' do
   DEPLOY_BRANCH = 'master'
   REPORT_BRANCH = 'report'
 
+
   VERSION_URL = 'https://pages.github.com/versions.json'
 
   
@@ -80,6 +81,10 @@ namespace 'travis' do
     system 'git config credential.helper "store --file=.git/credentials"'
     File.open('.git/credentials', 'w') do |f|
       f.write("https://#{ENV['GH_TOKEN']}:x-oauth-basic@github.com")
+    end
+
+    if ENV['TRAVIS_BRANCH'] == 'master'
+      REPORT_BRANCH = 'report_master'
     end
 
     puts "Report from #{SOURCE_BRANCH} to #{REPORT_BRANCH} add files to 'tests/galen/reports/all'"
