@@ -35,9 +35,9 @@
         };
 
         var scrollMenu = function(direction){
-            var scrollHeight = direction == "top" ? 10 : $(menu).height()*1.0;
-            //scrollHeight =10;
-            console.log('scrollHeight' , scrollHeight);
+            var scrollHeight = direction == "top" ? 10 : $(menu).height()*1.5;
+
+            //console.log('scrollHeight' , scrollHeight);
 
             // Disable user scrolling just before animating scrollTop
             $(menu).disablescroll();
