@@ -160,18 +160,6 @@ $line-width: 356px;
   }
 }
 
-.star {
-  &::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    display: inline-block;
-    margin: 0 5px 0 0;
-    object-fit: contain;
-    background-image: url('/assets/img/products-and-docs/ic-star.svg');
-  }
-}
-
 .top-line {
   margin-top: 66px;
   border-top: 1px solid rgba(118, 134, 146, 0.2);
