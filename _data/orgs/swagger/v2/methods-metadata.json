@@ -20,7 +20,8 @@
             "reqres": "swagger/reqres-search-events.md",
             "codePath":"swagger/search-events.md",
             "preContent":"swagger/pre-content-example.md",
-            "postContent":"swagger/post-content-example.md"
+            "postContent":"swagger/post-content-example.md",
+            "HAL": true
         },
         {
             "pathsParent":"/discovery/v2/events",
