@@ -99,4 +99,4 @@ Status 200
 | `TICKETS_AVAILABLE`   | Indicates inventory is available for purchase through primary channels.         |
 | `FEW_TICKETS_LEFT`   | Indicates inventory is limited.       |
 | `TICKETS_NOT_AVAILABLE`   | Indicates inventory is not available for purchase through primary channels.         |
-| `UNKNOWN`   | Indicates inventory status is not available at this time for the corresponding event. It could also mean an invalid event id.       |
+| `UNKNOWN`   | Indicates the event id is invalid or the inventory status is not available for the corresponding event at this time.       |
