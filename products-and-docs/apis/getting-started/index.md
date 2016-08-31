@@ -338,7 +338,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="14">
         <a href="/products-and-docs/apis/partner/">
-          <img src="/assets/img/getting-started/ic-user.svg" alt="Partner API">
+          <img src="/assets/img/products-and-docs/ic-partners.svg" alt="Partner API">
         </a>
         <h4 style="margin-top:11px;text-">Partner API</h4>
       </td>
