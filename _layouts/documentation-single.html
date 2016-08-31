@@ -19,7 +19,7 @@ layout: default
             </div>
 
             <div class="col-xs-12 col-sm-12 col-lg-9 page-column " id="main-block">
-                <div class="content {% if page.categories[1] == 'sdks'%}sdks{% endif %}" style="display: block;">
+                <div class="content {% if page.categories[1] == 'sdks'%}sdks{% elsif page.categories[1] == 'getting-started' %}getting-started{% endif %}" style="display: block;">
                     {{ content }}
 
                     {% if page.categories[1] == 'changelog'%}
@@ -75,3 +75,28 @@ layout: default
 <script src="{{"/scripts/components/list-collapse.js" | prepend: site.baseurl }}"></script>
 
 {% endif %}
+
+{% if page.categories contains "replace_apikey" %}
+<script>
+    var userKey = sessionStorage.getItem('tk-api-key');
+    
+    function replaceText(selector, text, newText, flags) {
+        var matcher = new RegExp(text, flags);
+        $(selector).each(function () {
+            var $this = $(this);
+            if (!$this.children().length)
+                $this.text($this.text().replace(matcher, newText));
+        });
+    }
+    
+    if(userKey !== null) {
+        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+    }
+    
+    $(window).on('login',function(){
+        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+    });
+</script>
+{% endif %}
+<script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
+

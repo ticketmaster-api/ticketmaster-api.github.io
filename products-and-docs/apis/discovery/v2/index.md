@@ -4,6 +4,7 @@ categories:
 - documentation
 - discovery
 - v2
+- replace_apikey
 title: Discovery API 2.0
 excerpt: Use the Discovery API to search, look up and find events, attractions and venues.
 keywords: API, search events, attraction details, event images, category details, venue details, support
@@ -181,12 +182,6 @@ discovery/{version}/events.{format}
                     * `timeTBA` (boolean) - is time TBA.
                     * `noSpecificTime` (boolean) - is no specific time.
                 - `timezone` (string) - time zone of event.
-                {% comment %}
-                - `displayOptions` (object) - display options of event.
-                    * `range` (object) - range of event displayed.
-                        - `localStartDate` (string) - local start date of event displayed.
-                        - `localEndDate` (string) - local end date of event displayed.
-                {% endcomment %}
                 - `status` (object) - status of event.
                     * `code` (string) - code of status.
             * `classifications` (array) - classifications.
@@ -3691,7 +3686,6 @@ discovery/{version}/venues.{format}
 | `countryCode`| The country code. |string | | No |
 | `includeTest`| Include test   |string, enum:["yes","no","only"]| | No |
 | `source`    | Source   |string | | No |
-| `extensions`| Availiable value: `geolocation` |string | | No |
 
 ### Response structure:
 
@@ -3718,21 +3712,6 @@ discovery/{version}/venues.{format}
             * `location` (object) - location.
                 - `longitude` (string) - address line 1.
                 - `latitude` (string) - address line 2.
-            * `extensions` (object) - extensions.
-                - `geolocation` (object) - geolocation.
-                    * `geocode` (object) -  geocode.             
-                      - `county` (string) - county.               
-                      - `geometry` (object) - geometry.             
-                        * `location` (object) - location. 
-                          - `longitude` (number) - longitude.    
-                          - `latitude` (number) - latitude.
-                      - `streetNumber` (string) - streetNumber of venue.              
-                      - `route` (string) - route.
-                      - `state` (string) - state of venue.
-                      - `postalCode` (string) - postalCode of venue.
-                      - `formattedAddress` (string) - formattedAddress 
-                      - `city` (string) - city of venue.
-                      - `country` (string) - country of venue.
             * `postalCode` (string) - postal code of venue.
             * `markets` (array) - markets.
                 - `{array item object}` - market.
@@ -3945,7 +3924,6 @@ discovery/{version}/venues/{id}.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `locale`   | The event locale, including country and localization. Values: "", "en-us", "en-gb", "en-ca", "es-us", "en-mx", "es-mx", "en-au", "en-nz", "fr-fr", "fr-ca". | string            |              | No      |
-| `extensions`| Availiable value: `geolocation` |string | | No |
 
 ### Response structure:
 
@@ -3964,21 +3942,6 @@ discovery/{version}/venues/{id}.{format}
 * `dmas` (array) - dmas venue.
     - `{array item object}` - dmas.
         * `id` (number) - id.
-* `extensions` (object) - extensions.
-    - `geolocation` (object) - geolocation.
-        * `geocode` (object) -  geocode.             
-            - `county` (string) - county.               
-            - `geometry` (object) - geometry.             
-              * `location` (object) - location. 
-                  - `longitude` (number) - longitude.    
-                  - `latitude` (number) - latitude.
-            - `streetNumber` (string) - streetNumber of venue.              
-            - `route` (string) - route.
-            - `state` (string) - state of venue.
-            - `postalCode` (string) - postalCode of venue.
-            - `formattedAddress` (string) - formattedAddress 
-            - `city` (string) - city of venue.
-            - `country` (string) - country of venue.
 * `id` (string) - id of venue.
 * `locale` (string) - locale of venue.
 * `location` (object) - location.

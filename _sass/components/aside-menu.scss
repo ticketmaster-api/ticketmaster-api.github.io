@@ -189,12 +189,12 @@ body{
   }
   &.is-fixed {
     .wrapper-aside-menu{
-      height: 100%;
+      height: calc(100% - 80px);
       .aside-menu{
-        max-height: 80%;
+        max-height: calc(100% - 130px);
         overflow: auto;
         &>li:last-child {
-          margin-bottom: 15%;
+          /*margin-bottom: 15%;*/
         }
       }
       @media (min-width: 1200px) {
@@ -267,7 +267,7 @@ h3.menu-header {
 }
 
 .aside-menu {
-  width: 109%;
+  width: 109%; //109
   padding-right: 9%;
   margin-top: 0;
   padding-top: $menu-top;
@@ -335,6 +335,13 @@ h3.menu-header {
 
   a {
     color: $n2-grey-color;
+    &[href^="http://"]:not([href*="ticketmaster-api-staging.github.io"]):not([href*="developer.ticketmaster.com"]):after,
+    &[href^="https://"]:not([href*="ticketmaster-api-staging.github.io"]):not([href*="developer.ticketmaster.com"]):after,
+    &[href^="ftp://"]:not([href*="ticketmaster-api-staging.github.io"]):not([href*="developer.ticketmaster.com"]):after {
+      content: "" url('/assets/img/aside-menu/ic-new-tab.png');
+      padding-left:5px;
+      vertical-align: text-top;
+    }
 
     &:hover {
       color: $p1a;

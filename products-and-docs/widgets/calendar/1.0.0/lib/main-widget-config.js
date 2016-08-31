@@ -20,6 +20,10 @@
         return code || "AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA";
     }
 
+    function getTmApiKey() {
+        return document.getElementById('w-tm-api-key').value;
+    }
+
     var widget = widgetsCalendar[0],
         themeConfig = {
         sizes: {
@@ -50,7 +54,7 @@
         $colorSchemeSelector = $('.widget__color_scheme_control');
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-        $widthController.slider('relayout');
+        // $widthController.slider('relayout');
         $borderRadiusController.slider('relayout');
     });
 
@@ -62,9 +66,46 @@
             targetName = event.target.name,
             $tabButtons = $('.js-tab-buttons');
 
+        if (targetName === "w-tm-api-key") {
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', targetValue);
+
+            if (sessionStorage.getItem('tk-api-key')) {
+                document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+                document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+            }
+            if (document.getElementById('w-tm-api-key').value == '') {
+                if (sessionStorage.getItem('tk-api-key')) {
+                    document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+                } else {
+                    document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+                }
+            }
+        }
+
+        if (targetName === "w-keyword") {
+            isPostalCodeChanged = true;
+            if (document.getElementById('w-keyword').value == '') {
+                document.getElementById('w-postalcode').value = '90015';
+                document.querySelector('[w-type="calendar"]').setAttribute('w-country', 'US');
+                document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', '34.0390107,-118.2672801');
+            }
+        }
+
         if (targetName === "w-postalcode") {
             widgetNode.setAttribute('w-country', '');
             isPostalCodeChanged = true;
+            if (document.getElementById('w-keyword').value == '' && document.getElementById('w-postalcode').value == '') {
+                document.getElementById('w-postalcode').value = '90015';
+                document.querySelector('[w-type="calendar"]').setAttribute('w-country', 'US');
+                document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', '34.0390107,-118.2672801');
+            }
+            if (document.getElementById('w-postalcode').value.length <= 3) document.getElementById('w-postalcode').value = '90015';;
+        }
+
+        if (targetName === "w-radius") {
+            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '25';
         }
 
         if (targetName === "w-theme") {
@@ -141,6 +182,24 @@
 
         widgetNode.setAttribute(event.target.name, event.target.value);
         widget.update();
+        var spinner = document.querySelector('.events-root-container .spinner-container');
+        spinner.classList.add('hide');
+        setTimeout(function () {
+            weekScheduler.update();
+            monthScheduler.update();
+            yearScheduler.update();
+        }, 500);
+
+        /*
+        widget.update().then(function() {
+            console.log('Update Done');
+            weekScheduler.update();
+            // monthScheduler.update();
+            // yearScheduler.update();
+        }, function(error) {
+            console.log("Error!", error);
+        });
+        */
     };
 
     var resetWidget = function resetWidget(configForm) {
@@ -191,8 +250,9 @@
         if (layout === 'horizontal') {
             height = getHeightByTheme(theme);
         }
-        widgetNode.setAttribute('w-height', height);
-        widgetNode.setAttribute('w-border', 0);
+        // widgetNode.setAttribute('w-height', height);
+        widgetNode.setAttribute('w-height', '400');
+        // widgetNode.setAttribute('w-border', 0);
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
         widget.onLoadCoordinate();
@@ -220,6 +280,20 @@
         if ($self.is(':checked')) $self.data('is-checked', 'checked');
     });
 
+    if (sessionStorage.getItem('tk-api-key')) {
+        document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+        document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+    }
+    if (document.getElementById('w-tm-api-key').value == '') {
+        if (sessionStorage.getItem('tk-api-key')) {
+            document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+        } else {
+            document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+        }
+    }
+
     $('.js_get_widget_code').on('click', function () {
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
@@ -230,6 +304,7 @@
         }
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
+        htmlCode.setAttribute('w-tmapikey', getTmApiKey());
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
@@ -276,14 +351,18 @@
             isPostalCodeChanged = false;
 
             var $countrySelect = $('#w-country'),
-                $ul = $(".js_widget_custom__list"),
+                $ul = $("#w-country .js_widget_custom__list"),
                 options = "<option selected value=''>All</option>";
 
             $countrySelect.html('');
             $ul.html(''); //clear custom select list
             $countrySelect.prop('disabled', !results);
+
             if (results) {
-                $countrySelect.prop('disabled', !results.length);
+                var status = void 0;
+                if (results.length <= 1) status = true;else status = false;
+                $countrySelect.prop('disabled', status);
+                // $countrySelect.prop('disabled', !results.length);
                 options = '';
                 for (var i in results) {
                     var result = results[i];
@@ -306,9 +385,13 @@
         var $listOption = $(listWrapperId).find('option'),
             //update list
         $placeholder = $(".country-select").find(".custom_select__placeholder"),
-            $ul = listWrapperElement;
+
+        // $ul = listWrapperElement;
+        $ul = $('.country-select .custom_select__list');
 
         $placeholder.val($listOption.html());
+
+        $($ul).html('');
 
         $listOption.each(function () {
             var data = {

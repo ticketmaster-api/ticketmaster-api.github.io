@@ -7,7 +7,7 @@
                 {% if page.categories[0] == "documentation" and page.categories[1] == "getting-started" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#introduction">Introduction</a></li>
-					<li><a href="#data-model">Data Model</a></li>
+                    <li><a href="#data-model">Data Model</a></li>
                     <li><a href="#uri-format">URI Format</a></li>
                     <li><a href="#rate-limit">Rate Limit</a></li>
                     <li><a href="#cors-support">CORS Support</a></li>
@@ -16,32 +16,23 @@
                 </ul>
                 {% endif %}
             </li>
-           {% comment %}{% endcomment %}
-            <li><a href="/products-and-docs/apis/swagger/v2/">Swagger</a>
-                {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "swagger" %}
+           {% comment %}
+            <!--automenu for Swagger api-->
+            {% endcomment %}
+            <li><a href="/products-and-docs/apis/discovery-api/v2/">Discovery API(autodoc)</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "discovery-api" %}
                     {% include partials/autodoc/side-menu-generate.html%}
 
 
-                {%comment%}
-                <!--faq-api menu item can be here-->
-                {% assign files = site.pages %}
-                {% for file in files %}
-                    {% if 'faq-api' == file.categories[0] and page.categories[2] == file.categories[1] %}
-                        {% if file.questions and file.title and file.content.size > 1 %}
-                            {% for question in file.questions limit:1 %}
-                            <ul class="sections menu-highlight">
-                                <li><a href="#{{file.titleId}}">{{file.title}}</a></li>
-                            </ul>
-                            {% endfor %}
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-                {% endcomment %}
+                <!--{% comment %}<!--faq-api menu item can be here-->
+                <!--
+                    {% include partials/autodoc/side-menu-faq.html %}
+                {% endcomment %}-->
 
                 {% include partials/changelog-apis.html%}
 
                 {% endif %}
-            </li>
+            </li><!--END automenu-->
 
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
@@ -55,7 +46,7 @@
                     <li><a href="#search-classifications-v2">Search Classifications</a></li>
                     <li><a href="#classifications-details-v2">Get Classification Details</a></li>
                     <li><a href="#search-venues-v2">Search Venues</a></li>
-					<li><a href="#venue-details-v2">Get Venue Details</a></li>
+                    <li><a href="#venue-details-v2">Get Venue Details</a></li>
                     <li><a href="#supported-country-codes">Supported Country Codes</a></li>
                     <li><a href="#supported-markets">Supported Markets</a></li>
                     <li><a href="#supported-sources">Supported Sources</a></li>
@@ -88,11 +79,44 @@
 
                 {% endif %}
             </li>
+            <!--
+            <li><a href="/products-and-docs/apis/discovery-api/v2/">Discovery API</a>
+                {% if page.categories[0] == "documentation" and page.categories[2] == "discovery-api" and page.categories[3] == "v2" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#search-attractions-v2">Search Attractions</a></li>
+                    <li><a href="#attraction-details-v2">Get Attraction Details</a></li>
+                    <li><a href="#search-classifications-v2">Search Classifications</a></li>
+                    <li><a href="#genre-details-v2">Get Genre Details</a></li>
+                    <li><a href="#segment-details-v2">Get Segment Details</a></li>
+                    <li><a href="#subgenre-details-v2">Get Subgenre Details</a></li>
+                    <li><a href="#classification-details-v2">Get Classification Details</a></li>
+                    <li><a href="#search-events-v2">Search Events</a></li>
+                    <li><a href="#event-details-v2">Get Event Details</a></li>
+                    <li><a href="#event-images-v2">Get Event Images</a></li>
+                    <li><a href="#search-venues-v2">Search Venues</a></li>
+                    <li><a href="#venue-details-v2">Get Venue Details</a></li>
+                    <li><a href="#supported-country-codes">Supported Country Codes</a></li>
+                    <li><a href="#supported-markets">Supported Markets</a></li>
+                    <li><a href="#supported-sources">Supported Sources</a></li>
+                    <li><a href="#supported-locales">Supported Locales</a></li>
+                    <li><a href="#supported-dma">Supported DMA</a></li>
+                    {% include partials/changelog-apis.html%}
+                    <li><a href="#disqus_thread">Disqus</a></li>
+                </ul>
+                {% endif %}
 
+
+            </li>
+            -->
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#event-offers">Event Offers</a></li>
+                    <li><a href="#get-cart">Get Cart</a></li>
+                    <li><a href="#create-cart">Create Cart</a></li>
+                    <li><a href="#empty-cart">Empty Cart</a></li>
+                    <li><a href="#update-cart-products">Update Cart Products</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
@@ -118,8 +142,6 @@
                             <li><a href="#get-shipping-options">Get Shipping Options</a></li>
                             <li><a href="#add-shipping-option">Add Shipping Option</a></li>
                             <li><a href="#encrypt-cert">Encryption Certificate</a></li>
-                            <li><a href="#post-card-tm">Add TM payment information</a></li>
-                            <li><a href="#post-card">Add payment information</a></li>
                             <li><a href="#post-card">Add Billing Information</a></li>
                             <li><a href="#purchase-tickets">Commit Transactions</a></li>
                             <li><a href="#delete-cart">Delete Cart</a></li>
@@ -149,6 +171,28 @@
                 </ul>
                 {% endif %}
             </li>
+            <li><a href="/products-and-docs/apis/top-picks/">Top Picks API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "top-picks" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#top-picks-details">Top Picks Details</a></li>
+                    <li><a href="#snapshot-image">Snapshot Image</a></li>
+                    {% include partials/changelog-apis.html%}
+                    <li><a href="#disqus_thread">Disqus</a></li>
+                </ul>
+                {% endif %}
+            </li>
+
+            <li><a href="/products-and-docs/apis/inventory-status/">Inventory Status API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "inventory-status" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#inventory-status-details">Inventory Status Details</a></li>
+                    <li><a href="#disqus_thread">Disqus</a></li>
+                </ul>
+                {% endif %}
+            </li>
+
+
             <li><a href="/products-and-docs/apis/deals-api/">Deals API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "deals-api" %}
                 <ul class="sections menu-highlight">
@@ -193,6 +237,7 @@
                     </li>
                     <li><a href="#using-access-token">Using Access Token</a></li>
                     <li><a href="#getting-refresh-tokens">Getting Refresh Tokens</a></li>
+                    <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
                 {% endif %}
             </li>
@@ -223,22 +268,19 @@
                 </ul>
                 {% endif %}
             </li>
-            {% comment %}
-            <li><a href="/products-and-docs/apis/season-tix/">Season Tix API</a>
-                {% if page.categories[0] == "documentation" and page.categories[1] == "season-tix" %}
+            <li><a href="/products-and-docs/apis/season-ticketing/">Season Ticketing API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "season-ticketing" %}
                 <ul class="sections menu-highlight">
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#ping">PING</a></li>
-                    <li><a href="#customer-query">Customer Query</a></li>
-                    <li><a href="#event-search">Event Search</a></li>
-                    <li><a href="#event-details">Event Details</a></li>
-                    <li><a href="#seats-sold">Seats Sold</a></li>
+                    <li><a href="#getting-your-api-key">Getting Your API KEY</a></li>
+                    <li><a href="#construct-the-url">Construct the URL</a></li>
+                    <li><a href="#asynchronous-polling">Asynchronous Polling</a></li>
+                    <li><a href="#http-result-codes-and-meaning">HTTP Result Codes</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
                 {% endif %}
             </li>
-            {% endcomment %}
             <li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>
             <li><a href="/api-explorer/">API Explorer</a></li>
             <li><a href="/products-and-docs/apis/changelog/">Changelog</a></li>
@@ -262,9 +304,9 @@
         <h4><a href="/products-and-docs/sdks/" {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %} class="active" {% endif %} >SDKs</a></h4>
         {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
         <ul class="sections menu-highlight">
-            <li><a href="#sdk-java">SDK-Java</a></li>
-            <li><a href="#sdk-javascript">SDK-JavaScript</a></li>
-            <li><a href="#sdk-scala">SDK-Scala</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-java">SDK-Java</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-javascript">SDK-JavaScript</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-scala">SDK-Scala</a></li>
             <li><a href="#account-manager">Account Manager</a></li>
         </ul>
         {% endif %}

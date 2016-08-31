@@ -73,6 +73,20 @@
   }
 }
 
+.no-desktop {
+  display: none;
+  @media (min-width: 320px) and (max-width: 1199px) {
+    display: block;
+  }
+}
+.desktop {
+  display: none;
+  @media (min-width: 1200px) {
+    display: block;
+  }
+}
+
+
 .noupper {
   text-transform: none;
 }
@@ -88,17 +102,23 @@
     }
   }
   &.sdks {
-    #sdk-java,
-    #sdk-javascript,
-    #sdk-scala {
-      &:target:before {
-        content: "";
-        display: block;
-        height: 100px;
-        margin: -100px 0 0;
+    .tiles-wrapper {
+      max-width: 879px;
+      margin-bottom: 72px;
+      .flipper {
+        border: 0;
+        height: 263px;
+      }
+      .img-wrapper {
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          border: 0;
+        }
       }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       .tutorials-article  {
         margin-bottom: 0;
         .announcement {
@@ -112,10 +132,16 @@
         width: 88.33333%;
       }
     }
+    @media (max-width: 1199px) {
+      .tiles-wrapper {
+        max-width: 100%;
+      }
+    }
   }
 }
 
 .grey-box {
+  clear: both;
   width: 847px;
   padding: 46px 46px 26px 46px;
   background: #f1f4f6;
@@ -141,6 +167,7 @@
     background-image: url('/assets/img/products-and-docs/android-mock-i-o-s-mock.png');
     background-position: right bottom;
     background-repeat: no-repeat;
+    overflow: hidden;
     @media #{$max-768} {
       background-image: none;
       margin-top: 10px;
@@ -215,7 +242,7 @@
 .widget_box {
   width: 850px;
   min-height: 438px;
-  margin-bottom: 72px;
+  margin-bottom: $base-margin*3;
   background-repeat: no-repeat;
   background-position: right top;
 
@@ -262,7 +289,7 @@
 
 
   h2{
-    padding: 72px 0 0 48px;
+    padding: $base-margin*3 0 0 $base-margin*2;
     color: #fff;
     font-size: 54px;
     line-height: 66px;
@@ -371,4 +398,48 @@
     }
   }/*offset END*/
 
+}
+
+.getting-started {
+  h2 {
+    margin-top: $base-margin*3;
+  }
+  h3 {
+    margin-top: $base-margin*2;
+  }
+  .lead {
+    margin-bottom: 0;
+  }
+  /*offset for fixed header*/
+  h2:target:before,
+  h3:target:before {
+    content: "";
+    display: block;
+    height: 100px;
+    margin: -100px 0 0;
+
+    @media #{$max-1200} {
+      height: 154px;
+      margin-top: -154px;
+    }
+  }/*offset END*/
+
+  .horizontal-events-tracker {
+    //width: 85%;
+    @media (max-width: 1435px) {
+      span {
+        width: 48%;
+        text-align: left;
+      }
+    }
+
+    .horizontal-events-tracker__section {
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .horizontal-events-tracker__title {
+      //margin-right: 2%;
+    }
+  }
 }

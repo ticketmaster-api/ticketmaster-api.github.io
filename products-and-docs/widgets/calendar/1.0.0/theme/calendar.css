@@ -56,7 +56,19 @@ div[w-theme="calendar"] .event-pretended-link:hover {
     opacity: 0.7;
 }
 
-div[w-theme="calendar"] .event-message {
+div[w-theme="calendar"] .event-message-container {
+    width: 100%;
+    height: 273px;
+    overflow: hidden;
+    position: absolute;
+}
+
+div[w-theme="calendar"] .event-message-container.hide {
+    display: none;
+}
+
+div[w-theme="calendar"] .event-message,
+div[w-theme="calendar"] .event-message_ {
     position: absolute;
     padding: 16px 46px 16px 52px;
     left: 10px;
@@ -74,6 +86,11 @@ div[w-theme="calendar"] .event-message {
     -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+div[w-theme="calendar"] .event-message_-visible {
+    top: 10px;
+    opacity: 1;
 }
 
 div[w-theme="calendar"] .event-message-visible {
@@ -471,7 +488,7 @@ div[w-theme="calendar"] .event-buy-btn {
     z-index: 15;
     position: absolute;
     left: 30px;
-    bottom: 42px;
+    bottom: 27px;
     width: 74px;
     height: 24px;
     padding-top: 5px;
@@ -516,6 +533,9 @@ div[w-theme="calendar"]{
     background: #fff;
     border-radius: 5px;
     text-align: center;
+    overflow: hidden;
+    position: relative;
+    z-index:10;
 }
 
 div[w-theme="calendar"] .tabs {
@@ -559,13 +579,16 @@ div[w-theme="calendar"] .tab {
 
 div[w-theme="calendar"] #weekSсheduler {
     background: #fff;
-    padding-top: 15px;
+    padding-top: 0;
+    height: 273px;
+    position: relative;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days {
     width: 270px;
     height: 258px;
     margin-left: 17px;
+    padding-top: 15px;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .d {
@@ -586,6 +609,10 @@ div[w-theme="calendar"] #weekSсheduler .days .d .round {
     display: block;
     margin-left: -1px;
     margin-top: 2px;
+}
+
+div[w-theme="calendar"] #weekSсheduler .days .d .round:hover {
+    cursor: pointer;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .popup {
@@ -812,6 +839,11 @@ div[w-theme="calendar"] #weekSсheduler .popup-up .ss-content {
     width: 120% !important;
 }
 
+div[w-theme="calendar"] #weekSсheduler .popup.single .ss-content,
+div[w-theme="calendar"] #weekSсheduler .popup-up.single .ss-content {
+    width: 110% !important;
+}
+
 div[w-theme="calendar"] #weekSсheduler .popup .ss-scroll,
 div[w-theme="calendar"] #weekSсheduler .popup-up .ss-scroll {
     right: -243px !important;
@@ -1014,6 +1046,10 @@ div[w-theme="calendar"] #calendar {
     height: 273px;
 }
 
+div[w-theme="calendar"] #monthScheduler {
+    position: relative;
+}
+
 div[w-theme="calendar"] #calendar table {
     width: 100%;
     border: 0;
@@ -1059,6 +1095,12 @@ div[w-theme="calendar"] #calendar td.dis {
     color: #d9d9d9;
 }
 
+div[w-theme="calendar"] #calendar table td.today,
+div[w-theme="calendar"] #calendar table td.today .round {
+    color: #208dcf;
+    font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+}
+
 div[w-theme="calendar"] #calendar .round-holder {
     width: 33px;
     height: 33px;
@@ -1066,27 +1108,30 @@ div[w-theme="calendar"] #calendar .round-holder {
     position: relative;
 }
 div[w-theme="calendar"] #calendar .round {
-    width: 33px;
-    height: 33px;
-    background: #009cde;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    color: #768692;
     border-radius: 50%;
+    border: 1px solid #208dcf;
     display: block;
     position: absolute;
-    color: #fff;
-    font-weight: bold;
-    top: -5px;
-    padding-top: 5px;
+    font-weight: normal;
+    top: -4px;
+    padding-top: 3px;
 }
 
 div[w-theme="calendar"] #calendar .round .count {
     display: block;
     position: absolute;
     padding: 3px 5px;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
+    color: #fff;
     font-size: 10px;
     right: -7px;
-    background: #3E6BBB;
+    background: #208dcf;
     font-weight: normal;
+    font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
     border-radius: 12px;
     top: -6px;
     line-height: 10px;
@@ -1098,6 +1143,13 @@ div[w-theme="calendar"] #calendar .round-holder.active .round,
 div[w-theme="calendar"] #calendar .round-holder.active .count {
     cursor: pointer;
     background: #ba1079;
+    color: #fff !important;
+    border-color: #ba1079;
+}
+
+div[w-theme="calendar"] #calendar .round:hover .count,
+div[w-theme="calendar"] #calendar .round-holder.active .count {
+    border-color: #fff;
 }
 
 div[w-theme="calendar"] #calendar .popup {
@@ -1109,7 +1161,7 @@ div[w-theme="calendar"] #calendar .popup {
     background: #768692;
     color: #fff;
     left: 17px;
-    top: 25px;
+    top: 41px;
     z-index: 10;
     display: none;
     text-align: left;
@@ -1302,6 +1354,11 @@ div[w-theme="calendar"] #calendar .popup-up .ss-content {
     width: 120% !important;
 }
 
+div[w-theme="calendar"] #calendar .popup.single .ss-content,
+div[w-theme="calendar"] #calendar .popup-up.single .ss-content {
+    width: 110% !important;
+}
+
 div[w-theme="calendar"] #calendar .popup .ss-scroll,
 div[w-theme="calendar"] #calendar .popup-up .ss-scroll {
     right: -243px !important;
@@ -1314,4 +1371,278 @@ div[w-theme="calendar"] #calendar .ss-grabbed {
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
+}
+
+div[w-theme="calendar"] #calendar #month-update {
+    display: none;
+}
+
+div[w-theme="calendar"] #year {
+    margin: 0px auto;
+    padding: 0;
+    height: 273px;
+    text-align: center;
+    position: relative;
+}
+
+div[w-theme="calendar"] #year .monthes-container {
+    width: 225px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #b7c9d3;
+    padding-top: 20px;
+}
+
+div[w-theme="calendar"] #year .month {
+    display: block;
+    float: left;
+    width: 70px;
+    height: 65px;
+    font-size: 14px;
+    text-align: center;
+}
+
+div[w-theme="calendar"] #year .month .name {
+    display: block;
+    text-align: center;
+    clear: both;
+    margin: 0 auto 2px auto;
+}
+
+div[w-theme="calendar"] #year .month .name.current {
+    font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+    color: #768692;
+}
+
+div[w-theme="calendar"] #year .month .count {
+    display: inline-block;
+    clear: both;
+    padding: 5px 7px;
+    font-size: 12px;
+    font-family;
+    color: #fff;
+    background: #208dcf;
+    font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+    border-radius: 15px;
+    min-width: 28px;
+    min-height: 28px;
+}
+
+/* Dark Theme */
+div[w-theme="calendar"][w-colorscheme="dark"] {
+    background: #48494a;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .events-root-container{
+    background-color: #414141;
+    border-style: solid;
+    border-color: transparent;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs {
+    background: #48494a;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span {
+    color: #919192;
+    border: 1px solid #919192;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span:first-child {
+    border-left: 1px solid #919192;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span.active {
+    background: #919192;
+    color: #48494a;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .selector-title {
+    color: #c8c8c9;
+    border-bottom: none;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .selector-title:hover {
+    color: #189ddc;
+    cursor: pointer;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .selector-content {
+    background: #768692;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler {
+    background: #414141;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .t {
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .d {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .d,
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .d.active,
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .tl {
+    color: #c8c8c9;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .d:last-child {
+    border-right: 0;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table tr:nth-child(odd) {
+    background: none;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round {
+    color: #d9d9d9;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round .count {
+    border-color: #414141;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover,
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover .count,
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round-holder.active .round,
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round-holder.active .count {
+    cursor: pointer;
+    background: #ba1079;
+    color: #fff !important;
+    border-color: #ba1079;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover .count {
+    border-color: #414141;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar td.dis {
+    color: #696969;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table th {
+    color: #c8c8c9;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #calendar table td {
+    color: #8d8d8d;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] #year .month .name,
+div[w-theme="calendar"][w-colorscheme="dark"] #year .month .name.current {
+    color: #c8c8c9;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-box {
+    background: rgba(0,0,0,0.2);
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo {
+    color: #fff;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo:before {
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-size: 98px;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c {
+    color: #fff;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c:after {
+    background-image: url("http://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-size: 98px;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .spinner-container {
+    width: 100%;
+    height: 275px;
+    margin: 0 auto;
+    text-align: center;
+    background: #48494a;
+    display: block;
+    position: absolute;
+    z-index: 10;
+}
+
+div[w-theme="calendar"] .spinner > div {
+    opacity: 0.5;
+}
+
+div[w-theme="calendar"] .spinner-container {
+    width: 100%;
+    height: 275px;
+    margin: 0 auto;
+    text-align: center;
+    background: #e5e5e5;
+    display: block;
+    position: absolute;
+    z-index: 10;
+}
+
+div[w-theme="calendar"] .spinner-container.hide {
+    display: none;
+}
+
+div[w-theme="calendar"] .spinner {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 10px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -25px 0 0 -25px;
+}
+
+div[w-theme="calendar"] .spinner > div {
+    background-color: #f1f4f6;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    margin: 0 1px;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+div[w-theme="calendar"] .spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+div[w-theme="calendar"] .spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+div[w-theme="calendar"] .spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+div[w-theme="calendar"] .spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
 }

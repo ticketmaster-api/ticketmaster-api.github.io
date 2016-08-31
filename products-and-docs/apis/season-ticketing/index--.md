@@ -11,12 +11,13 @@ keywords: Season Tix API
 {: .article}
 # Season Tix API
 
-Season Tix API Specification
+Season Ticketing API
 {: .lead}
 
 ## Overview
 {: #overview }
-This is a sample of the many API calls that are used by external systems to access data from an Archtics (Ticketmaster) database. For additional information, please contact [archtics_integration_services@ticketmaster.com](mailto:archtics_integration_services@ticketmaster.com) during business hours.
+This is a collection of Open API calls that are used by external systems to access season ticketing data.  This is a RESTful system which communicates over HTTPS, and uses JSON command syntax.  This integration uses different API calls than other portions of the Ticketmaster API suite.   Each API call is a POST call, and is intended to access data from a specific client. The contents of the JSON payload contain the desired read or write operation.  
+
 
 ## PING
 {: #ping}

@@ -1,4 +1,4 @@
-(function(){
+($ => {
 
   let widget = widgetsCountdown[0];
   var themeConfig = {
@@ -179,7 +179,8 @@
     if(userKey !== null) {
       let {inputApiKey, widgetNode , widget } = options;
       inputApiKey
-        .attr('value',userKey)
+        .attr('value', userKey)
+        .data('userAPIkey', userKey)
         .val(userKey);
       widgetNode.setAttribute("w-tm-api-key", userKey);
       widget.update();
@@ -192,6 +193,25 @@
     }
     const targetValue = event.target.value,
           targetName = event.target.name;
+
+    if(targetName === "w-tm-api-key") {
+      document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', targetValue);
+
+      if (sessionStorage.getItem('tk-api-key')) {
+        document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+        document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+      }
+      if (document.getElementById('w-tm-api-key').value == '') {
+        if (sessionStorage.getItem('tk-api-key')) {
+          document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
+          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+        }
+        else {
+          document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
+          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+        }
+      }
+    }
 
     if(targetName === "w-theme" ){
       let widthSlider = $('.js_widget_width_slider'),
@@ -325,8 +345,8 @@
     configForm.find("input[type='text']").each(function(){
       let $self = $(this),
           data = $self.data(),
-          value = data.defaultValue;
-
+          value = data.userAPIkey || data.defaultValue || '';
+      
       if(data.sliderValue){
         value = data.sliderValue;
         $self.slider({
@@ -466,9 +486,9 @@
 
   init();
 
-})();
+})(jQuery);
 
-(function($){
+($ => {
   let $modal = $('#get-eventId-modal'),
     $form = $('#js_get_eventId_form', $modal),
     $ul = $('#js_get_eventId_list'),

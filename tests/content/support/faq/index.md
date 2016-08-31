@@ -16,7 +16,7 @@ keywords: FAQ, Ticketmaster affiliate program, datasets API cover
 [Why has Ticketmaster decided to open up its API?](#q-1)
 [How can I reach out to Ticketmaster to discuss a potential partnership opportunity?](#q-2)
 [How might I use the content that’s made available via the Ticketmaster API?](#q-3)
-[What is the default quota for API requests?](#q4)
+[What is the default quota for API requests?](#q-4)
 
 
 

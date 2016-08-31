@@ -99,52 +99,6 @@ var venueDetails = function (version, isPrimary, notExpandable) {
         "fields": fields
       },
       {
-        "title": "Extensions",
-        "path": (isPrimary ? "" : "_embedded.venue" + (version ? "s" : "")),
-        "fields": [
-          {
-            "id": "county",
-            "path": "extensions.geolocation.geocode"
-          },
-          {
-            "id": "longitude",
-            "path": "extensions.geolocation.geocode.geometry.location"
-          },
-          {
-            "id": "latitude",
-            "path": "extensions.geolocation.geocode.geometry.location"
-          },
-          {
-            "id": "streetNumber",
-            "path": "extensions.geolocation.geocode"
-          },
-          {
-            "id": "route",
-            "path": "extensions.geolocation.geocode"
-          },
-          {
-            "id": "state",
-            "path": "extensions.geolocation.geocode"
-          },
-          {
-            "id": "postalCode",
-            "path": "extensions.geolocation.geocode"
-          },
-          {
-            "id": "formattedAddress",
-            "path": "extensions.geolocation.geocode"
-          },
-          {
-            "id": "city",
-            "path": "extensions.geolocation.geocode"
-          },
-          {
-            "id": "country",
-            "path": "extensions.geolocation.geocode"
-          }
-        ]
-      },
-      {
         "title": "Markets",
         "path": (isPrimary ? "" : "_embedded.venue" + (version ? "s" : "")),
         "collection": true, // if array (not required)
@@ -315,6 +269,7 @@ var venueDetails = function (version, isPrimary, notExpandable) {
         {
           "title": "Genre", // subcolumn title (required)
           "path": path, // path to fields (required)
+          "expandsTo": "discovery.v2.classifications.id.get",
           "fields": [
             {
               "id": "name",
@@ -325,12 +280,11 @@ var venueDetails = function (version, isPrimary, notExpandable) {
               "path": "genre"
             }
           ]
-        }
-      );
-      returnObj.push(
+        },
         {
           "title": "SubGenre", // subcolumn title (required)
           "path": path, // path to fields (required)
+          "expandsTo": "discovery.v2.classifications.id.get",
           "fields": [
             {
               "id": "name",
@@ -1464,6 +1418,7 @@ var CONFIG = {
     },
     pageDetails
   ],
+
   "discovery.v2.classifications.id.get": [
     {
       "title": "Segment", // subcolumn title (required)

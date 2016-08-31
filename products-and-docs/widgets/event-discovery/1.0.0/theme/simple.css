@@ -599,7 +599,7 @@ div[w-theme="simple"][w-proportion="m"] .event-date-wraper {
 div[w-theme="simple"][w-proportion="m"] .address-wrapper {
     width: 252px;
     opacity: 0.7;
-    font-family: TMSansLEADINGFIXED-Regular;
+    font-family: "TMSans-Regular";
     font-size: 12px;
     line-height: 1.3;
     color: #ffffff;
@@ -622,7 +622,7 @@ div[w-theme="simple"][w-proportion="m"] .events-counter {
 div[w-theme="simple"][w-proportion="m"] .legal-notice {
 	left: 24px;
 	line-height: 36px;
-	font-family: TMSansLEADINGFIXED-Regular;
+	font-family: "TMSans-Regular";
 	font-size: 11px;
 	color: #ffffff;
 }

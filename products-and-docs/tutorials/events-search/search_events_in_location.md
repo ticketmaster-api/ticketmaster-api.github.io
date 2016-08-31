@@ -14,7 +14,6 @@ announcement: "Using both the Discovery API and Google Maps API to show events t
 
 tags: 
   - Discovery API
-  - My Tag
 
 excerpt: This tutorial goes through the steps needed to create a Google Map populated with events taking place in a specific area on the map.
 keywords: events, search, location, map, discovery, api
@@ -34,7 +33,7 @@ To run a successful API call, you will need to pass your API Key as the query pa
 
 ## Get an API key
 
-[Register](https://live-livenation.devportal.apigee.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a `Consumer Key` that is used for authentication.
+[Register](https://developer-acct.ticketmaster.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a `Consumer Key` that is used for authentication.
 
 Your `Consumer Key` is your `API Key`.
 
@@ -249,7 +248,7 @@ Assuming no errors are encountered, now we have your current location in a lat/l
 
 ## Passing location to the Discovery API
 
-Now we make an API call to [search for events within 25 miles from the latitude and longitude values](http://developer.ticketmaster.com/products-and-docs/apis/discovery/v2/#srch-events-v2) we received in the step above. We call the function `ShowPosition` to render that.
+Now we make an API call to [search for events within 25 miles from the latitude and longitude values](/products-and-docs/apis/discovery/v2/#srch-events-v2) we received in the step above. We call the function `ShowPosition` to render that.
 
 {: .tutorial-code}
 >[JavaScript](#js)

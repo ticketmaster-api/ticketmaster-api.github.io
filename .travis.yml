@@ -1,6 +1,9 @@
-language: node_js
+language: java
 node_js:
   - "4.1"
+
+jdk:
+  - oraclejdk8
 
 env:
   global:
@@ -25,10 +28,19 @@ script:
   - jekyll serve &
   - sleep 15 # give jekyll some time to start
   - sh ./tests/run-test-dispatch.sh
+  - rake travis:test --trace --verbose
 
-after_script:
+after_success:
+  - echo Success
   - rake travis:deploy --trace --verbose
   - rake travis:report --trace --verbose
+
+after_failure:
+  - echo FAIL
+  - rake travis:report --trace --verbose
+
+after_script:
+  - echo AFTER_SCRIPT
 
 cache:
   directories:
@@ -47,4 +59,5 @@ notifications:
 before_install:
   - '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages || true'
   - '[ ${TEST_SEVERITY} = "MEDIUM" ] || [ ${TEST_SEVERITY} = "HIGH" ] || [ ${TEST_SEVERITY} = "CRITICAL" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
+  - /usr/bin/Xvfb :99 -ac -screen 0 1600x900x16 -extension RANDR &
 
