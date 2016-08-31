@@ -1377,11 +1377,6 @@
 
 }
 
-/*.article-wrapper > .faq-api{
-  p {
-    margin-top: $base-margin/4;
-  }
-}*/
-
-
-
+.documentation + #footer {
+  margin-top: $base-margin * 3;
+}
