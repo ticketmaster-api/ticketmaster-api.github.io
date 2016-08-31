@@ -1368,6 +1368,7 @@ class SelectorControls {
             if (e.target.classList.contains('selector-content') === false) {
                 this.parentNode.getElementsByClassName('selector-title')[0].innerHTML = e.target.innerHTML;
                 this.parentNode.getElementsByClassName('selector-title')[0].setAttribute("w-classificationid", e.target.getAttribute('w-classificationId'));
+                console.log(e.target);
                 this.parentNode.getElementsByClassName('selector-title')[0].classList.remove('open');
                 this.parentNode.getElementsByClassName('selector-content')[0].classList.remove('show');
                 if (attribute == 'period') this.parentNode.parentNode.parentNode.parentNode.setAttribute('w-period', e.target.getAttribute('w-period'));
@@ -1408,10 +1409,12 @@ class SelectorControls {
 
         this.selContent.addEventListener("blur",function(e){
             var self = this;
-            setTimeout(function () {
-                self.classList.remove("show");
-                self.previousElementSibling.classList.remove("open");
-            }, 127);
+            if (self.classList.contains("show")) {
+                setTimeout(function () {
+                    self.classList.remove("show");
+                    self.previousElementSibling.classList.remove("open");
+                }, 127);
+            }
         },false);
 
     }
