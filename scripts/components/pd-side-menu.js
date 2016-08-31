@@ -179,16 +179,16 @@
         if (isFirefox) {              // Firefox only
             menu.scrollTop = 0;
             menu.addEventListener("DOMMouseScroll", wheelHandler, false);
-        }        
+        }
 
         function wheelHandler(event) {
             if (screenWidth >= 768 && asideBlock.hasClass('is-fixed')){
                 var e = event || window.event;  // Standard or IE event object
 
-                var deltaX = e.deltaX * -0.9 ||  // wheel event
+                var deltaX = e.deltaX * -30 ||  // wheel event
                     e.wheelDeltaX / 4 ||  // mousewheel
                     0;    // property not defined
-                var deltaY = e.deltaY * -0.9 ||  // wheel event
+                var deltaY = e.deltaY * -30 ||  // wheel event
                     e.wheelDeltaY / 4 ||  // mousewheel event in Webkit
                     (e.wheelDeltaY === undefined &&      // if there is no 2D property then
                     e.wheelDelta / 4) ||  // use the 1D wheel property
@@ -199,14 +199,9 @@
                     deltaX /= 30;
                     deltaY /= 30;
                 }
-
-                if (navigator.userAgent.indexOf("Firefox") != -1 && e.type !== "DOMMouseScroll") {
+                e.currentTarget.scrollTop -= deltaY;
+                if (isFirefox && e.type !== "DOMMouseScroll")
                     menu.removeEventListener("DOMMouseScroll", wheelHandler, false);
-                    deltaY = e.deltaY * -30;
-                    e.currentTarget.scrollTop -= deltaY;
-                }else {
-                    e.currentTarget.scrollTop -= deltaY;
-                }
 
                 if (e.preventDefault) e.preventDefault();
                 if (e.stopPropagation) e.stopPropagation();

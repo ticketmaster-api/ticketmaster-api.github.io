@@ -942,3 +942,19 @@ input[type=range]:focus::-ms-fill-upper {
     font-family: $font-body;
   }
 }
+
+.star {
+  &::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    object-fit: contain;
+    background-image: url('/assets/img/products-and-docs/ic-star.svg');
+  }
+}
+
+.clear-pull {
+  float: none !important;
+}

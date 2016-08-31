@@ -398,7 +398,7 @@ nav{
   top: 79px;
   max-height: 0;
   &.expanded {
-    max-height: 400px !important;
+    max-height: 100% !important;
     padding: 24px 0;
   }
   &>.row-container {
@@ -412,7 +412,11 @@ nav{
         a {
           color: $n3;
           margin-top: 0;
-          &:hover {
+        }
+
+        a:hover {
+          color: $white;
+          & h4 {
             color: $white;
           }
         }
@@ -428,6 +432,11 @@ nav{
           margin-bottom: 0;
           border-left: 2px solid $p1-border-grey;
           padding-left: 13px;
+        }
+        li {
+          h4 {
+            margin: 20px 0 0;
+          }
         }
       }
     }
