@@ -159,7 +159,7 @@
         {% assign contEmpty  = contEmpty | plus: 1 %}
             {% if contEmpty == order_list_length  %}
                 {% for method in route[1] %}
-                    <!--<p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->
+                    {% comment %}<!--<p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->{% endcomment %}
                     {% include partials/autodoc/method.html %}
                 {% endfor %}
 
@@ -172,7 +172,7 @@
 
     {%if order_list_length == 0%}
         {% for method in route[1] %}
-            <!--<p class="red">** no in : <span class="blue">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->
+            {% comment %}<!--<p class="red">** no in list: <span class="blue">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->{% endcomment %}
             {% include partials/autodoc/method.html%}
         {% endfor %}
 

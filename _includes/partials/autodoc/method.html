@@ -388,8 +388,7 @@
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
                         {% for item in property[1].items %}
-                        <li><code class="highlighter-rouge">{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}
-                            <ul>
+                        <!--<li><code class="highlighter-rouge">****{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}{%endif%}</li>-->
                                 {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
                                 {% assign schemaSplitInner = schemaResInner | split: ' ' %}
                                 {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
@@ -398,15 +397,12 @@
                                     </li>
                                     {% endfor %}
                                 {% endfor %}
-                            </ul>
-                            {%endif%}
-                        </li>
                         {% endfor %}
+
                         {% if property[1]['$ref'] %}
                         {% assign schemaPageInner = false %}
                         {% assign schemaPageSplitInner = false %}
-                        <li><code class="highlighter-rouge">$ref</code> - {{ property[1]['$ref'] }}
-                            <ul>
+                        <!--<li><code class="highlighter-rouge">-&#45;&#45;$ref</code> - {{ property[1]['$ref'] }}</li>-->
                                 {% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
                                 {% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
                                 {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
@@ -418,8 +414,7 @@
                                         <li><code class="highlighter-rouge">{{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
                                     {%endif%}
                                 {% endfor %}
-                            </ul>
-                        </li>
+
                         {% endif %}
                     </ul>
                     {% endif %}
