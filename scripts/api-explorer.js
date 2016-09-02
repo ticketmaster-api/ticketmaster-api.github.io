@@ -635,20 +635,63 @@ Object.byString = function(o, s) {
 
           for (var item in destinationDeep){ // iterate through response items collection
             var dimension = (subcolumn["fields"][0]["showDimension"] && isThumbnail ) ? ( ' ('+ destinationDeep[item]["width"] +'x'+ destinationDeep[item]["height"] +')' ) : '';
+            var firstFieldId = subcolumn.fields[0].id;
+            var selector = $('<a class="list-group-item"></a>');
+            var content = '';
 
-            var listItem = $('<a class="list-group-item' + (isExpandable ? ' expandable' : '') + '" ' // if field is expandable add class .expandable
-              + (isExpandable ? ('expand-path="' + (expandsToObject ? (i /*subcolumn*/ + '.fields.' + '0.expandsTo' ) : expandsTo) + '" ') : ' ') // path to object to be expanded
-              + (subcolumn["path"] ? ('subcolumn-path="' + subcolumn["path"] + '" ') : ' ') // path to object to be expanded
-              + 'index="' + item + '"' // index in array in case it expands to secondary
-              + '>' + (isThumbnail ? ('<img class="subcolumn-thumbnail" src="' // if there is thumbnail
-              + (thumbNailPath ? (Object.byString(destinationDeep[item], thumbNailPath)[subcolumn["fields"][0]["thumbnail"]["id"]] + '">') : destinationDeep[item][subcolumn["fields"][0]["thumbnail"]["id"]] + '">')) : '') // if thumbnail has its own destination
-              + (subcolumn["fields"][0]["id"] ? (subcolumn["fields"][0]["id"] + ': ') : '') + (destinationDeep[item][subcolumn["fields"][0]["id"]] ? destinationDeep[item][subcolumn["fields"][0]["id"]] : ('#' + item))
-              + '</br>' + dimension
-              + '</a>'); // get specified in config field value from response item
-            listGroup.append(listItem);
+            if (isExpandable) {
+              selector.addClass('expandable');
+              selector.attr('expand-path', expandsToObject ? i + '.fields.0.expandsTo': expandsTo);
+            }
+
+            if (subcolumn.path) {
+              selector.attr('subcolumn-path', subcolumn.path);
+            }
+
+            selector.attr('index', item);
+
+            if (isThumbnail) {
+              var thumbnail = $('<img class="subcolumn-thumbnail" src="">');
+
+              if (thumbNailPath) {
+                thumbnail.attr('src', Object.byString(destinationDeep[item], thumbNailPath)[subcolumn["fields"][0]["thumbnail"]["id"]]);
+              } else {
+                thumbnail.attr('src', destinationDeep[item][subcolumn["fields"][0]["thumbnail"]["id"]]);
+              }
+
+              selector.append(thumbnail);
+            }
+
+            if (firstFieldId) {
+              content = firstFieldId + ': '
+            }
+
+            if (destinationDeep[item][firstFieldId]) {
+              selector.append(content + destinationDeep[item][firstFieldId]);
+            } else {
+              selector.append(content + '#' + item);
+            }
+
+            selector.append('</br>' + dimension);
+
+            if (subcolumn.title.toLowerCase() == 'events') {
+              if (destinationDeep[item].dates.start.localDate) {
+                selector.append([
+                  '<span class="additional-info date">',
+                  destinationDeep[item].dates.start.localDate,
+                  '</span>'
+                ].join(''));
+              }
+              if (destinationDeep[item]._embedded && destinationDeep[item]._embedded.venues && destinationDeep[item]._embedded.venues[0]) {
+                selector.append('<span class="additional-info venue">' + destinationDeep[item]._embedded.venues[0].name + '</span>')
+              }
+            }
+
+            listGroup.append(selector);
             itemCount++;
           }
           title.prepend('<p class="subcolumn-count">' + itemCount + '</p>'); // show item count in sobcolumn title area
+
         } else {
           for (var field in subcolumn["fields"]) {
             var destinationDeep = subcolumn["fields"][field]["path"] ? Object.byString(destinationObject,  subcolumn["fields"][field]["path"]) : destinationObject, // if field has its additional path
