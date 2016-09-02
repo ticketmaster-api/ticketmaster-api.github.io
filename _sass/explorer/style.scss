@@ -183,6 +183,14 @@
         }
       }
     }
+    .additional-info {
+      color: #B7C9D3;
+      font-size: 12px;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 
   .log-btn {
