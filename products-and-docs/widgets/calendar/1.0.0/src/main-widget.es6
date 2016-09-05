@@ -1408,10 +1408,12 @@ class SelectorControls {
 
         this.selContent.addEventListener("blur",function(e){
             var self = this;
-            setTimeout(function () {
-                self.classList.remove("show");
-                self.previousElementSibling.classList.remove("open");
-            }, 127);
+            if (self.classList.contains("show")) {
+                setTimeout(function () {
+                    self.classList.remove("show");
+                    self.previousElementSibling.classList.remove("open");
+                }, 127);
+            }
         },false);
 
     }
@@ -1889,7 +1891,7 @@ class WeekScheduler {
                 else {
                     weekEvents = [];
                     let weekEventsConcat = [];
-                    let l = events.page.totalPages;
+                    let l = events.page.totalPages - 1;
                     for (let i = 0; i <= l; i++) {
                         let attrs = widget.eventReqAttrs;
                         attrs.page = i;
@@ -1902,10 +1904,10 @@ class WeekScheduler {
                     }
                     Promise.all(prm).then(value => {
                         spinner.classList.add('hide');
-                        let le = value.length + 1;
+                        let le = value.length;
                         for (var e = 0; e <= le; e++) {
-                            if (events.page.totalElements != 0) {
-                                events._embedded.events.forEach(function (item) {
+                            if(value[e] && value[e]._embedded && value[e]._embedded.events){
+                                value[e]._embedded.events.forEach(function (item) {
                                     if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
                                         if (item._embedded.venues[0].hasOwnProperty('name')) {
                                             place = item._embedded.venues[0].name + ', ';
@@ -1946,7 +1948,6 @@ class WeekScheduler {
                                             'place': place + address,
                                             'url': item.url,
                                             'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                                            'count': 0
                                         });
                                     }
                                 });
@@ -1956,13 +1957,17 @@ class WeekScheduler {
                                     date: '',
                                     time: '',
                                 });
-                                messageContainer.classList.remove('hide');
-                                widget.showMessage("No results were found.<br/>Here other options for you.");
-                                widget.hideMessageWithDelay(widget.hideMessageDelay);
                             }
                         }
+
                         weekEventsConcat.push(weekEvents);
                         weekEvents = weekEventsConcat[0];
+
+                        if (weekEvents.length == 0) {
+                            messageContainer.classList.remove('hide');
+                            widget.showMessage("No results were found.<br/>Here other options for you.");
+                            widget.hideMessageWithDelay(widget.hideMessageDelay);
+                        }
 
                         let tDate = weekEvents[0].date;
                         let tTime = weekEvents[0].time.substr(0, 2);

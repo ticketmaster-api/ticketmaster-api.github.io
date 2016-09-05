@@ -50,4 +50,9 @@ public class PD_APIExplorerSteps {
             assertEquals(apiExplorerPage.getAPIKeyTextField().getAttribute("value"), apikey);
         }
     }
+
+    @Step
+    public void checkSummaryWidgetVisible(){
+        apiExplorerPage.getSummaryWidget().shouldBeVisible();
+    }
 }

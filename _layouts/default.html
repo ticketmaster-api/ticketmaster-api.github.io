@@ -42,10 +42,10 @@
         <script>
             //init fliper cards
             $(function() {
-                console.log(window.screen.width);
                 var $cards = $('.card');
                 $cards.fadeIn('slow');
                 if (window.screen.width > 1200) {
+                    var back = $('.back').css('display', 'block');
                     $cards.flip({
                         trigger: "hover"
                     });

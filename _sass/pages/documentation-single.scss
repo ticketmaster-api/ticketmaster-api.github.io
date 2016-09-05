@@ -442,4 +442,31 @@
       //margin-right: 2%;
     }
   }
+  .table-wrapper {
+    img {
+      max-width: 48px;
+      max-height: 48px;
+    }
+    h4 {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.5;
+      text-align: center;
+      color: #768692;
+      margin-bottom: 5px;
+    }
+    .star {
+      &:before{
+        margin-right: 10px;
+      }
+    }
+    .rect-label {
+      padding: 3px 8px;
+      opacity: 0.6;
+      border-radius: 2px;
+      background-color: #b7c9d3;
+      font-size: 10px;
+      color: #ffffff;
+    }
+  }
 }

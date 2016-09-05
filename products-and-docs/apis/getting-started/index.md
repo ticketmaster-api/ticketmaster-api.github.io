@@ -227,7 +227,8 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
         <a href="/products-and-docs/apis/discovery/v2/">
           <img src="/assets/img/getting-started/ic-search-big.svg" alt="Discovery API">
         </a>
-      <h4 style="margin-top:11px;">Discovery API</h4>
+        <h4 class="star" style="margin-top:11px;">Discovery API</h4>
+        <span class="rect-label">OPEN API</span> 
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/discovery/v1/#srch-events">Search Events</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
@@ -296,7 +297,8 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
         <a href="/products-and-docs/apis/commerce/">
           <img src="/assets/img/getting-started/ic-commerce-api.svg" alt="Commerce API">
         </a>
-        <h4 style="margin-top:11px;text-">Commerce API</h4>
+        <h4 class="star" style="margin-top:11px;text-">Commerce API</h4>
+        <span class="rect-label">OPEN API</span>
       </td>
       <td style="text-align: left;"><a href="/products-and-docs/apis/commerce/#event-offers">Event Offers</a></td>
       <td style="text-align: center;border-right: 0px;" class="checked-td"></td>
@@ -338,9 +340,10 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
     <tr>
       <td style="text-align: center" rowspan="14">
         <a href="/products-and-docs/apis/partner/">
-          <img src="/assets/img/getting-started/ic-user.svg" alt="Partner API">
+          <img src="/assets/img/products-and-docs/ic-partners.svg" alt="Partner API">
         </a>
         <h4 style="margin-top:11px;text-">Partner API</h4>
+        <span class="rect-label">PARTNER API</span>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/partner/#event-details">Retrieve Event Details</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
@@ -445,6 +448,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
           <img src="/assets/img/getting-started/ic-cart.svg" alt="Deals API">
         </a>
         <h4 style="margin-top:11px;text-">Deals API</h4>
+        <span class="rect-label">PARTNER API</span>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/deals-api/#search-events-deals">Search for Events with Deals</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
@@ -465,6 +469,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
          <img src="/assets/img/getting-started/ic-publish.svg" alt="Publish API">
        </a>
        <h4 style="margin-top:11px;text-">Publish API</h4>
+       <span class="rect-label">OPEN API</span>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/publish/#publish-events">Publish Event</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
@@ -478,6 +483,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
           <img src="/assets/img/getting-started/ic-flag.svg" alt="International Discovery API">
         </a>
         <h4 style="margin-top:11px;text-">International Discovery API</h4>
+        <span class="rect-label">PARTNER API</span>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#event-search">Event Search</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
@@ -596,6 +602,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
          <img src="/assets/img/products-and-docs/ic-season-tix.svg" alt="Season Tix API">
        </a>
        <h4 style="margin-top:11px;text-">Season Tix API</h4>
+       <span class="rect-label">PARTNER API</span>
       </td>
       <td style="text-align: left"><a href="/products-and-docs/apis/season-tix/#customer-query">Customer query</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
