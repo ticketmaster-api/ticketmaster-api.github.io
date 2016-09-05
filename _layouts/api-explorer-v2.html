@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+<div id="spinner hide"></div>
+{% include home-header.html %}
+
+<div id="api-explorer-v2" class="api-explorer-v2">
+    <!--hints-->
+    <button id="cd-tour-trigger" class="btn feedback-btn scale-on-hover">Show hints</button>
+    <div class="cd-cover-layer"></div>
+    <!--bootstrap error popup-->
+    <div id="error-alert" class="modal fade" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="error-message">Whoa! Method returned an error. :(</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-default btn-small" data-dismiss="modal" style="top: 0 !important;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--bootstrap success popup-->
+    <div id="success-alert" class="modal fade" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <!-- Modal content-->
+                <div class="modal-content success">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="success-message">Data posted successfully :)</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-default btn-small" data-dismiss="modal"
+                                style="top: 0 !important;">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--bootstrap image popup-->
+    <div class="modal fade" id="image-popup" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-lg vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Image preview</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img id="image-element" src="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--bootstrap map popup-->
+    <div class="modal fade" id="map-popup" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog modal-lg vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Location</h4>
+                    </div>
+                    <div class="modal-body" id="map" style="width: 100%; height: 500px;"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--page header-->
+                <section class="api-exp-header">
+                    <h1 class="api-exp-header__title">TICKETMASTER API EXPLORER V2.0</h1>
+                    <p class="api-exp-header__sub-title">Make live API calls without writing a single line of code! The API Explorer currently works with the
+                        <a class="api-exp-header__link" href="/products-and-docs/apis/discovery/v2">Discovery API</a>,
+                        <a class="api-exp-header__link" href="/products-and-docs/apis/commerce/">Commerce API</a> and
+                        <a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
+                    </p>
+                </section>
+            </div>
+        </div>
+
+        <!--event counter bar-->
+        <div class="row">
+            <div class="col-xs-12">
+                <section class="horizontal-events-tracker">
+                    <div class="col-xs-12 horizontal-events-tracker__section">
+                <span class="horizontal-events-tracker__title">
+                    Number of Events:
+                    <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
+                </span>
+                <span class="horizontal-events-tracker__title">
+                    Number of Attractions:
+                    <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
+                </span>
+                <span class="horizontal-events-tracker__title">
+                    Number of Venues:
+                    <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
+                </span>
+                <span class="horizontal-events-tracker__title">
+                    Number of Countries:
+                    <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
+                </span>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="api-exp-side-menu-container clearfix">
+            <section class="api-exp-main">
+                <!--navigation bar-->
+                <aside class="api-exp-side-menu">
+                    <ul class="api-exp-side-menu__container nav nav-pills nav-stacked">
+                        <li role="presentation" class="api-exp-side-menu__item active"><a href="#" class="api-exp-side-menu__link">Discovery API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Commerce API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Publish API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Partner API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Top Picks API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Deals API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">OAuth API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">International Discovery API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Season Ticketing API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">New Version API</a></li>
+                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Another API</a></li>
+                    </ul>
+                </aside>
+
+                <!--content-->
+                <section class="api-exp-content">
+                    <section class="api-exp-main-filter clearfix">
+                        <section class="api-exp-filter">
+                            <!--api key-->
+                            <input type="text" id="api-key" class="form-control api-exp-filter__api-key" placeholder="Api key">
+                            <!--api methods-->
+                            <section class="api-exp-methods clearfix">
+                                <label class="api-exp-methods__label">Methods</label>
+                                <div class="api-exp-methods__radio-buttons radio-buttons">
+                                    <div class="api-exp-method">
+                                        <input class="api-exp-content-method__radio" checked="checked" id="api-exp-all" type="radio" value="All" name="api-exp-methods">
+                                        <label for="api-exp-all" class="radio-inline api-exp-method__label">All</label>
+                                    </div>
+                                    <div class="api-exp-method">
+                                        <input class="api-exp-content-method__radio" id="api-exp-get" type="radio" value="Get" name="api-exp-methods">
+                                        <label for="api-exp-get" class="radio-inline api-exp-method__label">Get</label>
+                                    </div>
+                                    <div class="api-exp-method">
+                                        <input class="api-exp-content-method__radio" id="api-exp-post" type="radio" value="Post" name="api-exp-methods">
+                                        <label for="api-exp-post" class="radio-inline api-exp-method__label">Post</label>
+                                    </div>
+                                    <div class="api-exp-method">
+                                        <input class="api-exp-content-method__radio" id="api-exp-put" type="radio" value="Put" name="api-exp-methods">
+                                        <label for="api-exp-put" class="radio-inline api-exp-method__label">Put</label>
+                                    </div>
+                                    <div class="api-exp-method">
+                                        <input class="api-exp-content-method__radio" id="api-exp-delete" type="radio" value="Delete" name="api-exp-methods">
+                                        <label for="api-exp-delete" class="radio-inline api-exp-method__label">Delete</label>
+                                    </div>
+                                </div>
+                                <!--select-->
+                                <div class="api-exp-methods__select">
+                                    <div class="js_custom_select custom_select">
+                                        <select id="api-exp-method" class="custom_select__field" name="api-exp-method">
+                                            <option selected="" value="AU">Get Attraction Details</option>
+                                            <option value="BE">Event Offers</option>
+                                        </select>
+                                        <input class="custom_select__placeholder" type="text" value="United States" readonly="">
+                                        <ul class="custom_select__list js_custom__list">
+                                            <li class="custom_select__item custom_select__item-active" data-value="AU">Get Attraction Details</li>
+                                            <li class="custom_select__item" data-value="BE">Event Offers</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                        <!--about-->
+                        <section class="api-exp-about">
+                            <article>
+                                <h5 class="api-exp-about__title">About API and Method:</h5>
+                                <section class="api-exp-about__description">
+                                    <p>Use the
+                                        <a class="api-exp-about__description-link" href="#">Commerce API</a>
+                                        to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
+                                    <p>Method
+                                        <a class="api-exp-about__description-link" href="#">GET</a>.
+                                        Authentication required. Returns the 20 most recent events for the authenticating user.
+                                    </p>
+                                </section>
+                            </article>
+                        </section>
+                    </section>
+                    <!--parameters-->
+                    <section class="api-exp-params">
+                        <!--params filter-->
+                        <section class="api-exp-params-filter">
+
+                            <section class="api-exp-params-headline">
+                                <h4 class="api-exp-params-headline__title">Parameters</h4>
+                                <div class="api-exp-params-headline-edit">
+                                    <button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
+                                    <button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
+                                </div>
+                            </section>
+
+                            <section class="api-exp-params-filter-fields">
+                                <div class="api-exp-params-filter__field">
+                                    <input type="text" id="api-exp-param_id" class="form-control" placeholder="Id">
+                                </div>
+                                <div class="api-exp-params-filter__field">
+                                    <input type="text" id="api-exp-param_attraction-id" class="form-control" placeholder="Attraction Id">
+                                </div>
+                                <div class="api-exp-params-filter__field">
+                                    <input type="text" id="api-exp-param_promoter-id" class="form-control" placeholder="Promoter Id">
+                                </div>
+                                <div class="api-exp-params-filter__field">
+                                    <input type="text" id="api-exp-param_onsalestartdatetime" class="form-control" placeholder="onsaleStartDateTime">
+                                </div>
+                                <div class="api-exp-params-filter__field">
+                                    <input type="text" id="api-exp-param_venue-id" class="form-control" placeholder="Venue Id">
+                                </div>
+                            </section>
+                        </section><!--params filter-->
+                        <!--about param-->
+                        <section class="api-exp-params-about">
+                            <article>
+                                <h5 class="api-exp-params-about__title">About API and Method:</h5>
+                                <section class="api-exp-params-about__description">
+                                    <p>Use the
+                                        <a class="api-exp-params-about__description-link" href="#">Commerce API</a>
+                                        to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
+                                    <p>Method
+                                        <a class="api-exp-params-about__description-link" href="#">GET</a>.
+                                        Authentication required. Returns the 20 most recent events for the authenticating user.
+                                    </p>
+                                </section>
+                            </article>
+                        </section><!--about param-->
+                    </section><!--parameters-->
+                </section><!--content-->
+
+            </section>
+        </div>
+        <section class="api-exp-get-btn clearfix">
+            <button class="api-exp-get-btn__button button button-blue">Get</button>
+        </section>
+    </div>
+
+</div>
+
+    <script src="../scripts/components/events-counter.js" async></script>
+    <!--<script src="../scripts/components/discqus-config.js"></script>-->
+
+    <div id="footer" class="xs-center slice-top-left">
+        {% include partials/footer.html %}
+    </div>
+
+    <div id="back-top">
+        <a href="#"><span></span></a>
+    </div>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+    <script src="../config.js"></script>
+    <script src="../scripts/vendors/jquery-1.11.3.min.js"></script>
+    <script src="../scripts/vendors/jquery-migrate-1.3.0.js"></script>
+    <script src="../scripts/components/intro.js"></script>
+    <script src="../scripts/vendors/bootstrap.min.js"></script>
+    <script src="../scripts/vendors/slick.min.js"></script>
+    <!--<script src="../scripts/api-explorer.js"></script>-->
+    <script src="../scripts/components/scroll-top.js"></script>
+    {% include feedback.html %}
+    <script src="../scripts/components/custom-select.js"></script>
+    <script src="../scripts/components/feedback.js"></script>
+    <script src="../scripts/load-api-key.js"></script>
+    <script src="../scripts/components/apikey-check.js"></script>
+    <script src="../scripts/components/feedback.js"></script>
+</body>
+</html>
