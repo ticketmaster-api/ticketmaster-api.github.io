@@ -78,4 +78,3 @@ When Name field is populated with bigger than 255 symbols text
 When click send button of Feedback widget
 Then check that email sent notification is shown
 Then click OK Feedback Widget button
-!--Then check that email is delivered

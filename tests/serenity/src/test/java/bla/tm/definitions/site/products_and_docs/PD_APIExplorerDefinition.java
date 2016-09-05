@@ -54,4 +54,9 @@ public class PD_APIExplorerDefinition {
         apiExplorerPage.checkAPIKeyPlaceholders(apiKey);
     }
 
+    @Then("Summary widget is shown for API Explorer page")
+    public void checkSummaryWidgetVisible(){
+        apiExplorerPage.checkSummaryWidgetVisible();
+    }
+
 }
