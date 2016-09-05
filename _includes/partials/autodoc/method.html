@@ -374,6 +374,7 @@
                 {% endfor %}
             </h5>
             <ul class="nested-list">
+                {%assign HALaddOnce = true%}
 
                 {% if _HAL and _add_HAL_to.size >= 0%}
                     {% include partials/autodoc/hal-wrapper-links.html %}
@@ -389,23 +390,22 @@
                 {% for pathScdLvl in schemaSplit[1] %}
                 {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
 
-                {% if _HAL and _add_HAL_to.size >= 0%}
-                    <li>_add_HAL_to : {{_add_HAL_to}}, property[0] : {{ property[0] }}</li>
-                {% endif %}
-
                 <li>
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
                         {% for item in property[1].items %}
                         <!--<li><code class="highlighter-rouge">****{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}{%endif%}</li>-->
-                                {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                                {% assign schemaSplitInner = schemaResInner | split: ' ' %}
-                                {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
-                                    {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-                                    <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %} - {% if innerRef[1].description %}{{ innerRef[1].description }}{% elsif innerRef[1].format %}{{ innerRef[1].format }}{%else%}No description specified{% endif %}{% if innerRef[1].$ref %}{{ innerRef[1].$ref }}{% endif %}
-                                    </li>
-                                    {% endfor %}
+                            {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                            {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+                            {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+                                {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+                                <li><code class="highlighter-rouge"><!--***-->{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %} - {% if innerRef[1].description %}{{ innerRef[1].description }}{% elsif innerRef[1].format %}{{ innerRef[1].format }}{%else%}No description specified{% endif %}{% if innerRef[1].$ref %}{{ innerRef[1].$ref }}{% endif %}
+                                </li>
                                 {% endfor %}
+                            {% endfor %}
+
+                            {% include partials/autodoc/hal-wrapper-links.html %}
+
                         {% endfor %}
 
                         {% if property[1]['$ref'] %}
@@ -417,12 +417,14 @@
                                 {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
                                     {% if swagger.definitions.[schemaPageSplitInnerEnd].properties %}
                                         {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                        <li><code class="highlighter-rouge">{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
+                                        <li><code class="highlighter-rouge"><!-- -&#45;&#45; -->{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
                                         {% endfor %}
                                     {%else%}
-                                        <li><code class="highlighter-rouge">{{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
+                                        <li><code class="highlighter-rouge"><!--+++ -->{{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
                                     {%endif%}
                                 {% endfor %}
+
+                            {% include partials/autodoc/hal-wrapper-links.html %}
 
                         {% endif %}
                     </ul>

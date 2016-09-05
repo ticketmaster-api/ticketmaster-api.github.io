@@ -1,14 +1,50 @@
+<!--recieve params method.html-->
 {%if _add_HAL_to %}
-    {%if _add_HAL_to contains "top_level" %}
+    {%if _add_HAL_to contains "_root_" %}
         <li><code class="highlighter-rouge">_links</code>(object) - links to data sets.
             <ul>
                 <li><code class="highlighter-rouge">self</code>(object) - link to this data set.
                     <ul>
                         <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
-                        <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated.</li>
                     </ul>
                 </li>
             </ul>
         </li>
     {% endif %}
 {% endif %}
+
+
+{% if _embeed_HAL.size >= 0 and HALaddOnce%}
+    <li><code class="highlighter-rouge">_embedded</code>(object) - container {{addOnce}}.
+        <ul>
+            {% for add_property_HAL in _embeed_HAL %}
+            <li><code class="highlighter-rouge">{{add_property_HAL}}</code>(array) - related {{add_property_HAL}}.
+                <ul>
+                    <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
+                    {%assign outer = add_property_HAL | capitalize | prepend: "#/definitions/" %}{%include partials/autodoc/inner-item.html%}
+                    </li>
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+
+{% if _HAL and _add_HAL_to.size >= 0 %}
+    {% for add_property_HAL in _add_HAL_to %}
+        {%if add_property_HAL == property[0] %}
+            <li><code class="highlighter-rouge">_links</code>(object) - links to data sets.
+                <ul>
+                    <li><code class="highlighter-rouge">self</code>(object) - link to this data set.
+                        <ul>
+                            <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{%assign HALaddOnce = false %}

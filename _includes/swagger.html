@@ -108,6 +108,7 @@
                         {% assign _postContent = tag.postContent %}
                         {% assign _HAL = tag.HAL %}
                         {% assign _add_HAL_to = tag.add_HAL_to %}
+                        {% assign _embeed_HAL = tag.embeed_HAL %}
                     {% endif %}
                 {% endfor %}
                 <!--{% comment %}<p>routeInner : {{listTag.pathsParent}} == <span {% if listTag.pathsParent == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>{% endcomment %}-->
@@ -141,6 +142,7 @@
         {% assign _postContent = false %}
         {% assign _HAL = false %}
         {% assign _add_HAL_to = false %}
+        {% assign _embeed_HAL = false %}
     {% endif %}
     <!--show item in list first END-->
 
@@ -194,6 +196,7 @@
     {% assign _postContent = tag.postContent %}
     {% assign _HAL = tag.HAL %}
     {% assign _add_HAL_to = tag.add_HAL_to %}
+    {% assign _embeed_HAL = tag.embeed_HAL %}
 
 {% endfor %}
 

@@ -21,7 +21,10 @@
             "pathsParent":"/discovery/v2/events/{id}",
             "id":"event-details",
             "reqres": "discovery-api/reqres-get-event.md",
-            "codePath":"discovery-api/code-get-event.md"
+            "codePath":"discovery-api/code-get-event.md",
+            "HAL":true,
+            "add_HAL_to" : ["_root_","_embeedded.attraction", "_embeedded.venue"],
+            "embeed_HAL":["attraction" , "venue"]
         },
         {
             "pathsParent":"/discovery/v2/events/{id}/images",
@@ -42,7 +45,7 @@
             "reqres": "discovery-api/reqres-get-attraction.md",
             "codePath":"discovery-api/code-get-attraction.md",
             "HAL":true,
-            "add_HAL_to" : ["top_level"]
+            "add_HAL_to" : ["_root_"]
         },
         {
             "pathsParent":"/discovery/v2/classifications",
@@ -81,7 +84,7 @@
             "reqres": "discovery-api/reqres-search-venues.md",
             "codePath":"discovery-api/code-search-venues.md",
             "HAL":true,
-            "add_HAL_to" : ["Venue.images"]
+            "add_HAL_to" : ["images","address"]
         },
         {
             "pathsParent":"/discovery/v2/venues/{id}",
@@ -89,7 +92,7 @@
             "reqres": "discovery-api/reqres-get-venue.md",
             "codePath":"discovery-api/code-get-venue.md",
             "HAL":true,
-            "add_HAL_to" : ["top_level"]
+            "add_HAL_to" : ["_root_"]
         }
         
     ]
