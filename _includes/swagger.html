@@ -1,4 +1,6 @@
-<!-- :api-name:{{page.categories[2]}}  api-version: {{page.categories[3]}} -->
+<!--api-name:{{page.categories[2]}}  api-version: {{page.categories[3]}} -->
+<!--last api.json update : 02 september 2016 -->
+<!--last site.time build: {{ site.time | date: '%B %d, %Y' }}-->
 
 {% assign pageMetaFolder        = page.categories[2] %}
 {% assign pageMetaVersionFolder = page.categories[3] %}
@@ -105,6 +107,7 @@
                         {% assign _preContent = tag.preContent %}
                         {% assign _postContent = tag.postContent %}
                         {% assign _HAL = tag.HAL %}
+                        {% assign _add_HAL_to = tag.add_HAL_to %}
                     {% endif %}
                 {% endfor %}
                 <!--{% comment %}<p>routeInner : {{listTag.pathsParent}} == <span {% if listTag.pathsParent == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>{% endcomment %}-->
@@ -137,6 +140,7 @@
         {% assign _preContent = false %}
         {% assign _postContent = false %}
         {% assign _HAL = false %}
+        {% assign _add_HAL_to = false %}
     {% endif %}
     <!--show item in list first END-->
 
@@ -150,6 +154,7 @@
             {% assign _preContent = tag.preContent %}
             {% assign _postContent = tag.postContent %}
             {% assign _HAL = tag.HAL %}
+            {% assign _add_HAL_to = tag.add_HAL_to %}
         {% endif %}
     {% endfor %}
 
@@ -188,6 +193,7 @@
     {% assign _preContent = tag.preContent %}
     {% assign _postContent = tag.postContent %}
     {% assign _HAL = tag.HAL %}
+    {% assign _add_HAL_to = tag.add_HAL_to %}
 
 {% endfor %}
 

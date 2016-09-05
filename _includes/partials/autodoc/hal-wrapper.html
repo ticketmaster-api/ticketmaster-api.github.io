@@ -1,3 +1,18 @@
+{%if _add_HAL_to %}
+    {%if _add_HAL_to contains "top" %}
+<li><code class="highlighter-rouge">_links - top </code>(object) - links to data sets.
+    <ul>
+        <li><code class="highlighter-rouge">self</code>(object) - link to this data set.
+            <ul>
+                <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated.</li>
+            </ul>
+        </li>
+    </ul>
+</li>
+    {% endif %}
+{% endif %}
+
 {%if _HAL-part1 %}
 <li><code class="highlighter-rouge">_links</code>(object) - links to data sets.
     <ul>

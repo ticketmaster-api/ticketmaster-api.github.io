@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=medium-dpi, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% endif %}">
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.title }}</title>
+    <title>{% if page.categories[1] == "generated" %}{% assign pageMetaFolder = page.categories[2] %}{% assign pageMetaVersionFolder = page.categories[3] %}{% assign autodocJson = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}{{ autodocJson.info.title | strip }} - {%else%}
+            {% if page.title %}{{ page.title | strip }} – {% endif %}{% endif %}{{ site.title }}</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">

@@ -374,15 +374,24 @@
                 {% endfor %}
             </h5>
             <ul class="nested-list">
-                {%if _HAL %}
-                    {% assign _HAL-part1 = true %}
-                        {% include partials/autodoc/hal-wrapper.html %}
-                    {% assign _HAL-part1 = false %}
+
+                {% if _HAL and _add_HAL_to.size >= 0%}
+                    {% include partials/autodoc/hal-wrapper-links.html %}
+                {%else%}
+                    {% if _HAL %}
+                        {% assign _HAL-part1 = true %}
+                            {% include partials/autodoc/hal-wrapper.html %}
+                        {% assign _HAL-part1 = false %}
+                    {% endif %}
                 {% endif %}
 
                 {% for pathFirsLvl in schemaSplit[0] %}
                 {% for pathScdLvl in schemaSplit[1] %}
                 {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+
+                {% if _HAL and _add_HAL_to.size >= 0%}
+                    <li>_add_HAL_to : {{_add_HAL_to}}, property[0] : {{ property[0] }}</li>
+                {% endif %}
 
                 <li>
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
@@ -424,10 +433,12 @@
                 {% endfor %}
                 {% endfor %}
 
+                {% if _HAL and _add_HAL_to.size >= 0%}{%else%}
                 {%if _HAL %}
                     {% assign _HAL-part2 = true %}
                         {% include partials/autodoc/hal-wrapper.html %}
                     {% assign _HAL-part2 = false %}
+                {% endif %}
                 {% endif %} <!--{% comment %} END _embedded{% endcomment %}-->
 
             </ul>
