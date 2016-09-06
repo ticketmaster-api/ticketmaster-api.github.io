@@ -31,20 +31,14 @@ Example: `https://app.ticketmaster.com/partners/v1/events/3F004EC9D1EBBC76/cart?
 
 Production: https://app.ticketmaster.com/partners/v1
 
-Staging: https://app.ticketmaster.com/partners-sandbox/v1
-
 All connections must be made over SSL using https.
 
-### Sandbox environment & testing
-
-New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
-
-    * 3F004ACD115F6B19: No order processing fee
-    * 110050B273AB0C36: Canadian event, Has order processing fee
-    * 3F005085F00474B7: Reserved seating only. No GA
-    * 3F004ACD115F6B19
     
 ### Production environment testing
+
+Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
+
+
     * 000051048D991EE7: Use this event ID for production environment testing
 
 
@@ -902,6 +896,43 @@ Status 200
 {% endhighlight %}
 
 
+
+{: .article}
+## Event Click Tracking Url [GET]
+{: #event-tracking}
+
+This is only available for partners signed up for affiliate tracking through Impact Radius
+
+/partners/v1/tracking?event_id={event_id}&apikey={apikey}
+{: .code .red}
+
+*Polling: No*
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `shared_id`| It can any string (example :the dev app id in apigee).This parameter should also be set on /commit cart body (as shared_id) parameter (optional, 32 chars max)  | string            |     "02a8127b-7a52"          | No      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/tracking?event_id=000051048D991EE7&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+
+The Response is a 1x1 gif pixel
+
+{% endhighlight %}
+
+
 {: .article}
 ## Get Event ID [GET]
 {: #retrieve-event}
@@ -1491,13 +1522,6 @@ Encrypt the credit card and cvv number using the following steps:
     <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
 
-Sample credit-card information for use in the sandbox environment:
-
-<ul>
-    <li>CC#: 4588883206000011</li>
-    <li>CVV: 123</li>
-    <li>Expiration: 12/2020</li>
-</ul>
 
 Sample credit-card information for use in the production environment for event id 000051048D991EE7:
 
@@ -1841,12 +1865,6 @@ Encrypt the credit card number using the following steps:
     <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
 
-Sample credit-card information for use in the sandbox environment:
-
-<ul>
-    <li>CC#: 4588883206000011</li>
-    <li>Expiration: 12/2020</li>
-</ul>
 
 The "id" you get in the response can be used in the [Add TM Payment Information](#post-card-tm) along with an encrypted cvv. The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`. 
 
