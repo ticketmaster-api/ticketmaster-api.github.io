@@ -129,28 +129,19 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void populateNameFieldWithMoreThanAccepted() {
-        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys("" +
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mauris in neque feugiat dapibus. \n" +
-                "Praesent eget placerat nisi. Praesent velit odio, congue eu pellentesque nec, pretium nec ex. \n" +
-                "Pellentesque magna libero, commodo vitae ex vitae, vehicula porttitor libero.");
+        String input = new String(new char[256]).replace('\0', 'w');
+        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys(input);
     }
 
     @Step
     public void checkNameTextWasTruncated() {
-        assertEquals(255, tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().getTextValue().length());
+        assertEquals("The length of Name does not equals 255 chars.", 255, tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().getTextValue().length());
     }
 
     @Step
     public void populateDescriptionFieldWithMoreThanAccepted() {
-        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et mauris in neque feugiat dapibus. Praesent eget placerat nisi. Praesent velit odio, congue eu pellentesque nec, pretium nec ex. Pellentesque magna libero, commodo vitae ex vitae, vehicula porttitor libero. Aenean ac rutrum mi. Proin lobortis tortor dignissim cursus luctus. Proin id sem et ligula venenatis suscipit. Sed scelerisque risus diam, eget ornare sem placerat et. Etiam bibendum pretium iaculis. Quisque in orci vitae quam viverra interdum. Nulla orci lectus, faucibus id sodales vel, gravida quis velit. Aliquam vitae mi magna. Integer nec lectus luctus, commodo nibh id, imperdiet urna.\n" +
-                "\n" +
-                "In sed enim accumsan, iaculis mauris a, sagittis ligula. Suspendisse a tempus arcu. Nunc varius lacus in tellus malesuada lacinia. Aenean eleifend faucibus tempus. Fusce sagittis sagittis dui egestas feugiat. Curabitur interdum sollicitudin sollicitudin. Nam id massa id quam hendrerit tempor. Mauris tempor arcu dolor, quis sagittis magna feugiat pulvinar. Vestibulum sit amet dolor elit. Ut dictum orci ac risus tincidunt, id rutrum neque mattis. Morbi blandit accumsan ligula. Integer sed augue id enim tempor bibendum.\n" +
-                "\n" +
-                "Proin eu ante ac velit posuere tincidunt ac sed magna. Morbi laoreet lacinia leo vel sodales. Ut faucibus, massa sed malesuada porttitor, turpis erat commodo diam, eget facilisis ligula velit sed turpis. Etiam a nibh eu ex cursus volutpat vel eu odio. Fusce porta nulla ac pharetra imperdiet. Pellentesque aliquet nec metus convallis porta. Maecenas sit amet sapien sit amet diam pulvinar lacinia. Nam sit amet rutrum dui, a placerat mauris. Morbi egestas eleifend urna, elementum egestas purus consequat ut. Aliquam aliquet fringilla purus ut finibus. Fusce hendrerit nisl sem, ac viverra tortor pulvinar sed. Phasellus lacinia in metus quis ultrices. Etiam sollicitudin egestas enim, sit amet lobortis tellus lobortis eu. Vestibulum consectetur, odio ut viverra congue, orci quam feugiat nulla, ac accumsan ex ligula ac orci.\n" +
-                "\n" +
-                "Mauris malesuada erat nec orci elementum elementum. Suspendisse in placerat mi. Proin sed imperdiet tellus, in consequat nisl. Quisque efficitur, neque eget maximus consequat, mi enim vehicula odio, sit amet egestas purus elit sed sem. Proin suscipit massa ut tempor interdum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sagittis lacinia neque at rhoncus. Mauris nec enim purus. In metus magna, auctor in arcu et, auctor hendrerit mauris. Nunc justo lectus, bibendum eu commodo quis, interdum nec odio. Quisque vitae odio mollis ligula ullamcorper vulputate. Pellentesque fringilla tempus dui, a hendrerit nisi accumsan nec. Donec euismod justo nisi, vel consectetur nisl scelerisque ac. Praesent accumsan nulla nunc, nec tincidunt sem vulputate fermentum. Donec interdum aliquet tincidunt.\n" +
-                "\n" +
-                "Aliquam erat volutpat. Donec in orci dolor. Etiam egestas felis sit amet leo lacinia sagittis. Proin pharetra pellentesque commodo. Phasellus ac tellus sem. Integer in fermentum dolor, eu scelerisque ipsum. Duis dignissim rhoncus purus, ut viverra magna ultrices quis. Sed velit nisl, feugiat sed tempus non, iaculis id felis. Etiam a ligula sodales libero iaculis pulvinar id a tellus.");
+        String input = new String(new char[3001]).replace('\0', 'w');
+        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys(input);
     }
 
     @Step
