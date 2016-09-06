@@ -460,6 +460,9 @@ div[w-theme="simple_countdown"] .events-count-down .events-count-down__day,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute,
 div[w-theme="simple_countdown"] .events-count-down .events-count-down__second{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     width: 24.25%;
     margin: 0 1% 0 0;
     height: 58px;

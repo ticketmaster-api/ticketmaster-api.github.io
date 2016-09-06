@@ -2,47 +2,114 @@
 {% assign pageMetaVersionFolder = page.categories[3] %}
 {% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
 {% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
-{% if swagger.paths.size > 0 %}
-    <ul class="sections menu-highlight">
-        {% if swagger.host or swagger.basePath %}
-        <li><a href="#overview">Overview</a></li>
+<ul class="sections menu-highlight">
+    {% if methodsDescription.before %}
+    <li><a href="#overview">Overview</a></li>
+    {% endif %}
+
+{% for route in swagger.paths %}
+    <!--get index to create uniq Id ,that will be used for side menu-->
+    {% assign indexLoop = forloop.index0 %}
+
+    <!--sort by order_list -->
+    {% assign inList = false %}
+    {% assign contEmpty = 0 %}
+    {% assign order_list_length =  methodsDescription.method | size  %}
+
+    <!--show item in list first-->
+    {% if inList == false and order_list_length > 0 %}
+        {% for listTag in methodsDescription.method %}
+
+            {% for routeInner in swagger.paths %}
+                {% for tag in methodsDescription.method %}
+                    {% if tag.pathsParent == routeInner[0] %}
+                        {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+                        {% assign _title = tag.title %}
+                        {% assign _reqres = tag.reqres %}
+                    {% endif %}
+                {% endfor %}
+                {% if listTag.pathsParent == routeInner[0] and indexLoop == 0 %}
+                    <!--{% comment %}<p class="red code">=== : <b>{{indexLoop}}</b> : {{listTag.pathsParent}}, {{ currrentMethodPath }}</p>{% endcomment %}-->
+                    {% for method in routeInner[1] %}
+                        {% include partials/autodoc/side-menu-layout.html%}
+                    {% endfor %}
+
+                {%endif%}
+            {% endfor %}
+
+        {% if forloop.index == forloop.length %}
+            {% assign inList = true %}
+            {% break %}
         {% endif %}
-        {% for route in swagger.paths %}
 
-            {% for tag in methodsDescription.method %}
-                {% if tag.pathsParent == route[0] %}
-                    {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
-                    {% assign _title = tag.title %}
-                    {% assign _reqres = tag.reqres %}
-                    {% assign _codePath = tag.codePath %}
-                {% endif %}
-            {% endfor %}
-
-            {% assign indexLoop = forloop.index0 %}
-
-            {% for method in route[1] %}
-            <li><a href="{% if _id %}{{ _id | prepend: '#'}}{% else %}{{ method[1].summary
-                            | lstrip
-                            | downcase
-                            | replace: ' ' , '-'
-                            | replace: '[' , '-'
-                            | replace: ']' , '-'
-                            | replace: '/' , '-'
-                            | replace: '\' , '-'
-                            | replace: '(' , '-'
-                            | replace: ')' , '-'
-                            | prepend: '#'
-                            | append: '-'
-                            | append: indexLoop
-                            | append: '-'
-                            | append: page.categories[3] }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary | lstrip }}{% endif %}</a></li>
-            {% endfor %}
-            {% comment %}<!--Clear meta data -->{% endcomment %}
-            {% assign _id = tag.id %}
-            {% assign _title = tag.title %}
-            {% assign _reqres = tag.resreq %}
-            {% assign _codePath = tag.codePath %}
         {% endfor %}
-        <li><a href="#disqus_thread">Disqus</a></li>
-    </ul>
-{% endif %}
+
+        <!--{% comment %} Clear meta data {% endcomment %}-->
+        {% assign _id = false %}
+        {% assign _title = false %}
+        {% assign _reqres = false %}
+        {% assign _codePath = false %}
+        {% assign _preContent = false %}
+        {% assign _postContent = false %}
+        {% assign _HAL = false %}<!--<p> ** listIsFinish : {{inList}}</p>-->
+    {% endif %}
+    <!--show item in list first END-->
+
+
+    {% for tag in methodsDescription.method.pathsParent %}
+        {% if tag.pathsParent == routeInner[0] %}
+            {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+            {% assign _title = tag.title %}
+            {% assign _reqres = tag.reqres %}
+            {% assign _codePath = tag.codePath %}
+            {% assign _preContent = tag.preContent %}
+            {% assign _postContent = tag.postContent %}
+            {% assign _HAL = tag.HAL %}
+        {% endif %}
+    {% endfor %}
+
+    <!--show item that not in list-->
+    {% for tag in methodsDescription.method %}
+        {% if tag.pathsParent != route[0] %}
+        {% assign contEmpty  = contEmpty | plus: 1 %}
+            {% if contEmpty == order_list_length  %}
+                {% for method in route[1] %}
+                    <!--<p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->
+                    {% include partials/autodoc/side-menu-layout.html %}
+                {% endfor %}
+
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% assign contEmpty = 0 %}
+    <!---->
+
+    <!--<p>order_list_length : {{order_list_length}}</p>-->
+    {%if order_list_length == 0%}
+        {% for method in route[1] %}
+            <!--<p class="red">** no in : <span class="blue">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->
+            {% include partials/autodoc/side-menu-layout.html %}
+        {% endfor %}
+    {% endif %}
+
+
+<!--{% comment %} Clear meta data {% endcomment %}-->
+    {% assign _id = tag.id %}
+    {% assign _title = tag.title %}
+    {% assign _reqres = tag.resreq %}
+    {% assign _codePath = tag.codePath %}
+    {% assign _preContent = tag.preContent %}
+    {% assign _postContent = tag.postContent %}
+    {% assign _HAL = tag.HAL %}
+
+{% endfor %}
+    {% comment %}
+    {% if methodsDescription.after %}
+    <p>{{methodsDescription.after}}</p>
+        {% for item in page.menu_items %}
+            <li><a href="#{{item}}">item : {{item}} , {{ page.menu_items }}</a></li>
+        {% endfor %}
+    {% endif %}
+    {% endcomment %}
+    <li><a href="#disqus_thread">Disqus</a></li>
+</ul>

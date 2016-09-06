@@ -39,7 +39,7 @@
     },
     "/discovery/v2/attractions/{id}" : {
       "get" : {
-        "summary" : "Get attraction",
+        "summary" : "Get attraction by id",
         "description" : "Since 1.0.0",
         "operationId" : "get",
         "parameters" : [ {
@@ -94,7 +94,7 @@
     },
     "/discovery/v2/classifications/genres/{id}" : {
       "get" : {
-        "summary" : "Get Genres",
+        "summary" : "Get Genres by id",
         "description" : "Since 2.0.0",
         "operationId" : "getGenre",
         "parameters" : [ {
@@ -123,7 +123,7 @@
     },
     "/discovery/v2/classifications/segments/{id}" : {
       "get" : {
-        "summary" : "Get Segments",
+        "summary" : "Get Segments by id",
         "description" : "Since 2.0.0",
         "operationId" : "getSegment",
         "parameters" : [ {
@@ -152,7 +152,7 @@
     },
     "/discovery/v2/classifications/subgenres/{id}" : {
       "get" : {
-        "summary" : "Get Subgenres",
+        "summary" : "Get Subgenres by id",
         "description" : "Since 2.0.0",
         "operationId" : "getSubgenre",
         "parameters" : [ {
@@ -181,7 +181,7 @@
     },
     "/discovery/v2/classifications/{id}" : {
       "get" : {
-        "summary" : "Get classification",
+        "summary" : "Get classification by id",
         "description" : "Since 2.0.0",
         "operationId" : "get",
         "parameters" : [ {
@@ -236,7 +236,7 @@
     },
     "/discovery/v2/events/{id}" : {
       "get" : {
-        "summary" : "Get event",
+        "summary" : "Get event by id",
         "description" : "Since 1.0.0",
         "operationId" : "get",
         "parameters" : [ {
@@ -320,7 +320,7 @@
     },
     "/discovery/v2/venues/{id}" : {
       "get" : {
-        "summary" : "Get venue",
+        "summary" : "Get venue by id",
         "description" : "Since 1.0.0",
         "operationId" : "get",
         "parameters" : [ {

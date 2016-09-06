@@ -182,12 +182,6 @@ discovery/{version}/events.{format}
                     * `timeTBA` (boolean) - is time TBA.
                     * `noSpecificTime` (boolean) - is no specific time.
                 - `timezone` (string) - time zone of event.
-                {% comment %}
-                - `displayOptions` (object) - display options of event.
-                    * `range` (object) - range of event displayed.
-                        - `localStartDate` (string) - local start date of event displayed.
-                        - `localEndDate` (string) - local end date of event displayed.
-                {% endcomment %}
                 - `status` (object) - status of event.
                     * `code` (string) - code of status.
             * `classifications` (array) - classifications.

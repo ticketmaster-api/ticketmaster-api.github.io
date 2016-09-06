@@ -5,6 +5,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
 import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
+import static bla.tm.staticmethods.StaticMethods.scrollToElement;
 import static org.junit.Assert.assertEquals;
 
 public class PD_Tutorials_EventSearchSteps {
@@ -35,6 +36,7 @@ public class PD_Tutorials_EventSearchSteps {
     public void validateAndClickElement(String key) {
         WebElementFacade element = findWebElementByKey(key, tutorialsEventSearchPage.getClickableElements());
         element.isEnabled();
+        scrollToElement(element);
         element.click();
     }
 }
