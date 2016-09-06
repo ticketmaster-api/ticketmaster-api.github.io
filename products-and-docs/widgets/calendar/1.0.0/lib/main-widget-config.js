@@ -105,7 +105,7 @@
         }
 
         if (targetName === "w-radius") {
-            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '25';
+            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '5';
         }
 
         if (targetName === "w-theme") {
