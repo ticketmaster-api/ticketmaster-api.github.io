@@ -18,45 +18,93 @@
             "id":"search-events",
             "reqres": "discovery-api/reqres-search-events.md",
             "codePath":"discovery-api/code-search-events.md",
-            "HAL":true
+            "NOT_CORRECT": true,
+            "HAL" : {
+                "wrappin": "events",
+                "links": [
+                    "#/definitions/Event",
+                    "#/definitions/Venue",
+                    "#/definitions/Attraction"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Venue", "as": "venues" },
+                    { "embed": "#/definitions/Attraction", "as": "attractions" }
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/events/{id}",
             "id":"event-details",
             "reqres": "discovery-api/reqres-get-event.md",
-            "codePath":"discovery-api/code-get-event.md"
+            "codePath":"discovery-api/code-get-event.md",
+            "NOT_CORRECT": true,
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Event",
+                    "#/definitions/Venue",
+                    "#/definitions/Attraction"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Venue", "as": "venues" },
+                    { "embed": "#/definitions/Attraction", "as": "attractions" }
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/events/{id}/images",
             "id":"event-images",
             "reqres": "discovery-api/reqres-get-event-images.md",
-            "codePath":"discovery-api/code-get-event-images.md"
+            "codePath":"discovery-api/code-get-event-images.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/EventImages"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/attractions",
             "id":"search-attractions",
             "reqres": "discovery-api/reqres-search-attractions.md",
             "codePath":"discovery-api/code-search-attractions.md",
-            "HAL":true
+            "HAL" : {
+                "wrappin": "attractions",
+                "links": [
+                    "#/definitions/Attraction"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/attractions/{id}",
             "id":"attraction-details",
             "reqres": "discovery-api/reqres-get-attraction.md",
-            "codePath":"discovery-api/code-get-attraction.md"
+            "codePath":"discovery-api/code-get-attraction.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Attraction"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications",
             "id":"search-classifications",
             "reqres": "discovery-api/reqres-search-classifications.md",
             "codePath":"discovery-api/code-search-classifications.md",
-            "HAL":true
+            "HAL" : {
+                "wrappin": "classifications",
+                "links": [
+                    "#/definitions/Classification"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications/{id}",
             "id":"classification-details",
             "reqres": "discovery-api/reqres-get-classification.md",
-            "codePath":"discovery-api/code-get-classification.md"
+            "codePath":"discovery-api/code-get-classification.md",
+            "NOT_CORRECT": true
         },
         {
             "pathsParent":"/discovery/v2/classifications/genres/{id}",
@@ -81,13 +129,25 @@
             "id":"search-venues",
             "reqres": "discovery-api/reqres-search-venues.md",
             "codePath":"discovery-api/code-search-venues.md",
-            "HAL":true
+            "HAL" : {
+                "wrappin": "venues",
+                "links": [
+                    "#/definitions/Venue"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/venues/{id}",
             "id":"venue-details",
             "reqres": "discovery-api/reqres-get-venue.md",
-            "codePath":"discovery-api/code-get-venue.md"
+            "codePath":"discovery-api/code-get-venue.md",
+            "NOT_CORRECT": true,
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Venue"
+                ]
+            }
         }
         
     ]
