@@ -372,6 +372,7 @@
         }else if(name === 'w-layout'){
           layout = val;
         }else if(name === 'w-proportion'){
+          $layoutBox.slideDown("fast");
           $tabButtons.slideDown("fast");
           widthSlider.slideDown("fast");
         }
@@ -384,7 +385,8 @@
         widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
         $('#w-id').val(excludeOption.id);//set val in cofigurator
     }
-
+    console.log($layoutBox);
+    $layoutBox.slideDown("fast");
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 
