@@ -18,6 +18,7 @@
             "id":"search-events",
             "reqres": "discovery-api/reqres-search-events.md",
             "codePath":"discovery-api/code-search-events.md",
+            "NOT_CORRECT": true,
             "HAL" : {
                 "wrappin": "events",
                 "links": [
@@ -36,6 +37,7 @@
             "id":"event-details",
             "reqres": "discovery-api/reqres-get-event.md",
             "codePath":"discovery-api/code-get-event.md",
+            "NOT_CORRECT": true,
             "HAL" : {
                 "wrappin": null,
                 "links": [
@@ -67,26 +69,42 @@
             "reqres": "discovery-api/reqres-search-attractions.md",
             "codePath":"discovery-api/code-search-attractions.md",
             "HAL" : {
-                "wrappin": "attractions"
+                "wrappin": "attractions",
+                "links": [
+                    "#/definitions/Attraction"
+                ]
             }
         },
         {
             "pathsParent":"/discovery/v2/attractions/{id}",
             "id":"attraction-details",
             "reqres": "discovery-api/reqres-get-attraction.md",
-            "codePath":"discovery-api/code-get-attraction.md"
+            "codePath":"discovery-api/code-get-attraction.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Attraction"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications",
             "id":"search-classifications",
             "reqres": "discovery-api/reqres-search-classifications.md",
-            "codePath":"discovery-api/code-search-classifications.md"
+            "codePath":"discovery-api/code-search-classifications.md",
+            "HAL" : {
+                "wrappin": "classifications",
+                "links": [
+                    "#/definitions/Classification"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications/{id}",
             "id":"classification-details",
             "reqres": "discovery-api/reqres-get-classification.md",
-            "codePath":"discovery-api/code-get-classification.md"
+            "codePath":"discovery-api/code-get-classification.md",
+            "NOT_CORRECT": true
         },
         {
             "pathsParent":"/discovery/v2/classifications/genres/{id}",
@@ -110,13 +128,26 @@
             "pathsParent":"/discovery/v2/venues",
             "id":"search-venues",
             "reqres": "discovery-api/reqres-search-venues.md",
-            "codePath":"discovery-api/code-search-venues.md"
+            "codePath":"discovery-api/code-search-venues.md",
+            "HAL" : {
+                "wrappin": "venues",
+                "links": [
+                    "#/definitions/Venue"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/venues/{id}",
             "id":"venue-details",
             "reqres": "discovery-api/reqres-get-venue.md",
-            "codePath":"discovery-api/code-get-venue.md"
+            "codePath":"discovery-api/code-get-venue.md",
+            "NOT_CORRECT": true,
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Venue"
+                ]
+            }
         }
         
     ]

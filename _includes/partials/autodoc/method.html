@@ -362,18 +362,27 @@
             {% if response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref'] %}
                 {% if response[1].schema['$ref'] %}
                     {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                    {% assign schemaType = swagger.definitions[schemaSplitType].type %}
                 {% else %}
                     {% assign schemaRes = response[1].schema.items['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                    {% assign schemaType = response[1].schema['type'] %}
                 {% endif %}
             {% assign schemaSplit = schemaRes | split: ' ' %}
             <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
+
+            {%if listTag.NOT_CORRECT %}
+            <p class="red" style="background: #7356a5; color: white; padding: 20px; border-radius: 4px;">
+                <b class='blue'>NOT CORRECT :</b> please compare api.json with <b class='blue'>real</b> response.
+            </p>
+            {% endif %}
+
             <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
                 {{ schemaSplit[1] }}
                 {% for schemaSplitType in schemaSplit[1] %}
-                    <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
+                    <span class="body">({%if response[1].schema['type']%}{{ response[1].schema.type }}{%else%}{{ swagger.definitions[schemaSplitType].type }}{%endif%})</span>
                 {% endfor %}
-                <p>_HAL.wrappin <span class="red">{{_HAL.wrappin}}</span></p>
-                <p>_HAL.links <span class="red">{{_HAL.links | split: ' ' }}</span> size= <span class="red">{{_HAL.links.size}}</span></p>
+                <!--<p>_HAL.wrappin <span class="red">{{_HAL.wrappin}}</span></p>
+                <p>_HAL.links <span class="red">{{_HAL.links | split: ' ' }}</span> size= <span class="red">{{_HAL.links.size}}</span></p>-->
             </h5>
             <ul class="nested-list">
 
@@ -413,8 +422,7 @@
 
                     {% for add_link_HAL in _HAL.links %}
                         {% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
-                        <li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>
-
+                        <!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->
                         {% if schemaSplit[1] == _link_HAL[1] %}
                             {% include partials/autodoc/hal-wrapper-links.html %}
                             {% assign isMultiLink = false %}
