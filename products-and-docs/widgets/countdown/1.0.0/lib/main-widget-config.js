@@ -383,7 +383,6 @@
       widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
       $('#w-id').val(excludeOption.id); //set val in cofigurator
     }
-    console.log($layoutBox);
     $layoutBox.slideDown("fast");
     $border_slider.slideDown("fast");
     $borderRadiusController.slider('setValue', 4);
