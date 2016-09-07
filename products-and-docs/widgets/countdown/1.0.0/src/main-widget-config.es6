@@ -338,6 +338,7 @@
         height = 600,
         theme,
         layout,
+        $border_slider = $('.js_widget_border_slider');
         $tabButtons = $('.js-tab-buttons');
 
     widgetContainerWrapper.removeAttr('style');
@@ -373,8 +374,11 @@
           layout = val;
         }else if(name === 'w-proportion'){
           $layoutBox.slideDown("fast");
+          $border_slider.slideDown("fast");
+          $borderRadiusController.slider('setValue', 4);
           $tabButtons.slideDown("fast");
           widthSlider.slideDown("fast");
+          $widthController.slider('refresh');
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
@@ -387,6 +391,9 @@
     }
     console.log($layoutBox);
     $layoutBox.slideDown("fast");
+    $border_slider.slideDown("fast");
+    $borderRadiusController.slider('setValue', 4);
+    $widthController.slider('refresh');
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 
