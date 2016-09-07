@@ -914,7 +914,8 @@ This is only available for partners signed up for affiliate tracking through Imp
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
-| `shared_id`| It can any string (example :the dev app id in apigee).This parameter should also be set on /commit cart body (as shared_id) parameter (optional, 32 chars max)  | string            |     "02a8127b-7a52"          | No      |
+| `shared_id`| ImpactRadius SharedId field in reports (32 chars max)  | string            |     "02a8127b-7a52"          | No      |
+| `sub_id1,sub_id2,sub_id3`| ImpactRadius SubId1, SubId2, SubId3 fields in reports(32 chars max each)  | string            |     "02a8127b-7a52"          | No      |
 
 
 >[Request](#req)
@@ -1741,7 +1742,13 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 
 { 
     "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
-    "source_account_id" : "30f86cd70ac7216bc596aa2d060a7064" // Your reference number (or hash) to correlate unredeemed orders
+    "source_account_id" : "30f86cd70ac7216bc596aa2d060a7064", // Optional, your reference number (or hash) to correlate unredeemed orders
+    "tracking" : { // Optional, report tracking variables (see GET /tracking endpoint)
+        "shared_id" : "1",
+        "sub_id1" : "3",
+        "sub_id2" : "4",
+        "sub_id3" : "5"
+    }
 }
 {% endhighlight %}
 
