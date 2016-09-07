@@ -13,7 +13,7 @@
     {% if file.categories[2] == 'releaseNotes' and file.categories[3] == apiName %}
         {% if file.categories[4] == apiVersion or file.categories[4] == 'v1'%}
             {% if thisCategory == file.categories[3]%}{%else%}
-                <li><a href="{{ file.title | lstrip | downcase | prepend: '#changelog-' | replace: ' ' , '-' | replace: '(' , '-' | replace: ')' , '-' }}">Changelog</a></li>
+                <li><a href="{{ file.title | lstrip | downcase | prepend: '#changelog-' | replace: ' ' , '-' }}">Changelog</a></li>
                 {% assign apiName = false %}
             {% endif %}
         {% endif %}
