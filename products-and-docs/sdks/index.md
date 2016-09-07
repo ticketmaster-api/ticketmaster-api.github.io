@@ -16,7 +16,7 @@ keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 {% capture SDK_Java_img_square %}/assets/img/products-and-docs/sdk-java-img-263.png{% endcapture %}
 {% capture 1-SDK_Java_title %}
 
-SDK-Java
+Java-SDK
 {% endcapture %}
 {% capture SDK_Java_description %}
 Java SDK for the Ticketmaster Open Platform. 
@@ -28,7 +28,7 @@ https://github.com/ticketmaster-api/sdk-java
 {% capture SDK_JS_img %}/assets/img/products-and-docs/sdk-js-img.png{% endcapture %}
 {% capture SDK_JS_img_square %}/assets/img/products-and-docs/sdk-js-logo.png{% endcapture %}
 {% capture 2-SDK_JS_title %}
-SDK-JavaScript
+JavaScript-SDK
 {% endcapture %}
 {% capture SDK_JS_description %}
 Javascript SDK for the Ticketmaster Open Platform.
@@ -40,7 +40,7 @@ https://github.com/ticketmaster-api/sdk-javascript
 {% capture SDK_scala_img %}/assets/img/products-and-docs/sdk-scala-img.png{% endcapture %}
 {% capture SDK_scala_img_square %}/assets/img/products-and-docs/sdk-scala-img-263.png{% endcapture %}
 {% capture 3-SDK_scala_title %}
-SDK-Scala
+Scala-SDK
 {% endcapture %}
 {% capture SDK_scala_description %}
 Scala SDK for the Ticketmaster Open Platform. This SDK supports Discovery v2.

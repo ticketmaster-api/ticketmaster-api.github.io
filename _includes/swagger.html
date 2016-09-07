@@ -33,8 +33,8 @@
 {% if methodsDescription.before %}
     {% if methodsDescription.before.include %}
         {% assign beforeInclude = methodsDescription.before.include | prepend: 'apis-code-examples/' %}
-                <div class="article">
-                    {% include {{ beforeInclude }} %}
+                <div class="article" >
+                    {% include {{ beforeInclude }}  %}
                 </div>
     {% endif %}
 {% endif %}

@@ -1,12 +1,15 @@
 {
     "before": 
         {
-            "include": "discovery-api/before-api.md"
+            "include": "discovery-api/before-api.md",
+            "menuItem":["Overwiew"]
         }
     ,
     "after": 
         {
-            "include": "discovery-api/after-api.md"
+            "include": "discovery-api/after-api.md",
+            "menuItem":["Supported Country Codes","Supported Markets","Supported Sources","Supported Locales","Supported DMA"],
+            "comment_for_developers": "'Supported DMA' will be transformed to '#supported-dma' - required for menu navigation"
         }
     ,
     "method": [

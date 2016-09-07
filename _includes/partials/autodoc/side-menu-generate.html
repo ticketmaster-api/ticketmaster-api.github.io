@@ -3,8 +3,21 @@
 {% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
 {% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
 <ul class="sections menu-highlight">
-    {% if methodsDescription.before %}
-    <li><a href="#overview">Overview</a></li>
+    <!--{% if methodsDescription.before %}
+        <li><a href="#overview">Overview</a></li>
+    {% endif %}-->
+    {% if methodsDescription.before.menuItem %}
+        {% for menuItemBefore in methodsDescription.before.menuItem | split: ' '%}
+        <li><a href="#{{ menuItemAfter | lstrip
+                            | downcase
+                            | replace: ' ' , '-'
+                            | replace: '[' , '-'
+                            | replace: ']' , '-'
+                            | replace: '/' , '-'
+                            | replace: '\' , '-'
+                            | replace: '(' , '-'
+                            | replace: ')' , '-' }}">{{ menuItemBefore }}</a></li>
+        {% endfor %}
     {% endif %}
 
 {% for route in swagger.paths %}
@@ -103,13 +116,20 @@
     {% assign _HAL = tag.HAL %}
 
 {% endfor %}
-    {% comment %}
-    {% if methodsDescription.after %}
-    <p>{{methodsDescription.after}}</p>
-        {% for item in page.menu_items %}
-            <li><a href="#{{item}}">item : {{item}} , {{ page.menu_items }}</a></li>
+
+    {% if methodsDescription.after.menuItem %}
+        {% for menuItemAfter in methodsDescription.after.menuItem | split: ' '%}
+            <li><a href="#{{ menuItemAfter | lstrip
+                        | downcase
+                        | replace: ' ' , '-'
+                        | replace: '[' , '-'
+                        | replace: ']' , '-'
+                        | replace: '/' , '-'
+                        | replace: '\' , '-' }}">{{ menuItemAfter }}</a></li>
         {% endfor %}
     {% endif %}
-    {% endcomment %}
+
+    {% include partials/changelog-apis.html%}
+
     <li><a href="#disqus_thread">Disqus</a></li>
 </ul>
