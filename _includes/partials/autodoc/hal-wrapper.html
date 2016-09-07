@@ -1,18 +1,3 @@
-{%if _add_HAL_to %}
-    {%if _add_HAL_to contains "top" %}
-<li><code class="highlighter-rouge">_links - top </code>(object) - links to data sets.
-    <ul>
-        <li><code class="highlighter-rouge">self</code>(object) - link to this data set.
-            <ul>
-                <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
-                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated.</li>
-            </ul>
-        </li>
-    </ul>
-</li>
-    {% endif %}
-{% endif %}
-
 {%if _HAL-part1 %}
 <li><code class="highlighter-rouge">_links</code>(object) - links to data sets.
     <ul>
@@ -32,10 +17,32 @@
 </li>
 <li><code class="highlighter-rouge">_embedded</code>(object) - container.
     <ul>
-        <li><code class="highlighter-rouge">{{ schemaSplit[1] }}</code><!--{% for schemaSplitType in schemaSplit[1] %}({{ swagger.definitions[schemaSplitType].type | strip }}){% endfor %}-->{% if response[1].schema['type'] == 'array' %}({{response[1].schema['type']}})
+        <li><code class="highlighter-rouge">{{ _HAL.wrappin }}</code><!--{% for schemaSplitType in schemaSplit[1] %}({{ swagger.definitions[schemaSplitType].type | strip }}){% endfor %}-->{% if response[1].schema['type'] == 'array' %}({{response[1].schema['type']}})
             <ul>
                 <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>{% endif %}
                     <ul>
+                        {%if _HAL.links.size > 0%}
+                            {%assign isMultiLink = true %}
+                                {% include partials/autodoc/hal-wrapper-links.html %}
+                            {%assign isMultiLink = false%}
+                        {% endif %}
+                        {%if _HAL.embed.size > 0%}
+                            <li><code class="highlighter-rouge">_embedded</code>(object) - container. <!-- start loop here {{ _HAL.embed.size }} -->
+                                <ul>
+                                    {% for add_property_HAL in _HAL.embed %}
+                                    <li><code class="highlighter-rouge">{{ add_property_HAL.as }}</code>(array) - related <!--{{add_property_HAL}}-->.
+                                        <ul>
+                                            <li><code class="highlighter-rouge" style="color: #768692">{array item object} </code>
+                                                {%assign outer = add_property_HAL.embed %}
+                                                {%include partials/autodoc/inner-item.html%}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+
 {% endif %}
 
 {% comment %} `_embedded` will be rendered here {% endcomment %}

@@ -372,24 +372,73 @@
                 {% for schemaSplitType in schemaSplit[1] %}
                     <span class="body">({{ swagger.definitions[schemaSplitType].type }})</span>
                 {% endfor %}
+                <p>_HAL.wrappin <span class="red">{{_HAL.wrappin}}</span></p>
+                <p>_HAL.links <span class="red">{{_HAL.links | split: ' ' }}</span> size= <span class="red">{{_HAL.links.size}}</span></p>
             </h5>
             <ul class="nested-list">
-                {%assign HALaddOnce = true%}
 
-                {% if _HAL and _add_HAL_to.size >= 0%}
+                <!--{% comment %}{% if _HAL.wrappin and _HAL.links.size >= 0%}
                     {% include partials/autodoc/hal-wrapper-links.html %}
-                {%else%}
-                    {% if _HAL %}
+                {% endif %}{% endcomment %}-->
+
+                {% if _HAL.wrappin != null %}
                         {% assign _HAL-part1 = true %}
                             {% include partials/autodoc/hal-wrapper.html %}
                         {% assign _HAL-part1 = false %}
+                {% endif %}
+
+                {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
+                <li><code class="highlighter-rouge">_embedded</code>(object) - container. <!-- start loop here {{ _HAL.embed.size }} -->
+                    <ul>
+                        {% for add_property_HAL in _HAL.embed %}
+                        <li><code class="highlighter-rouge">{{ add_property_HAL.as }}</code>(array) - related <!--{{add_property_HAL}}-->.
+                            <ul>
+                                <li><code class="highlighter-rouge" style="color: #768692">{array item object} </code>
+                                    {%assign outer = add_property_HAL.embed %}
+                                    {%include partials/autodoc/inner-item.html%}
+                                </li>
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endif %}
+
+                {% if _HAL.links.size > 0 and _HAL.wrappin == null %}
+                    {% if _HAL.links.size == 1 %}
+                        {% assign isSingleLink = true %}
+                    {% else %}
+                        {% assign isMultiLink = true %}
                     {% endif %}
+
+                    {% for add_link_HAL in _HAL.links %}
+                        {% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
+                        <li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>
+
+                        {% if schemaSplit[1] == _link_HAL[1] %}
+                            {% include partials/autodoc/hal-wrapper-links.html %}
+                            {% assign isMultiLink = false %}
+                            {% assign isSingleLink = false %}
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
 
                 {% for pathFirsLvl in schemaSplit[0] %}
                 {% for pathScdLvl in schemaSplit[1] %}
                 {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
 
+                {% if _HAL.wrappin or _HAL.embed.size > 0 %}
+                    {% for add_property_HAL in _HAL.embed %}
+                        {% assign methodNamebyRef = add_property_HAL.embed | downcase | replace : "#/","" | replace : "/"," " | split: " " %}
+                        {% assign methodName = add_property_HAL.as %}
+                        <!--<li>methodNamebyRef - {{ methodNamebyRef }}, methodName - {{methodName}} <span class="blue">property[0] - {{property[0]}}</span></li>-->
+                        {% if property[0] == methodName %}
+                            {% assign addThisFieldToEmbedded = true %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                {% if addThisFieldToEmbedded == false %}
                 <li>
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
@@ -403,8 +452,6 @@
                                 </li>
                                 {% endfor %}
                             {% endfor %}
-
-                            {% include partials/autodoc/hal-wrapper-links.html %}
 
                         {% endfor %}
 
@@ -423,25 +470,26 @@
                                         <li><code class="highlighter-rouge"><!--+++ -->{{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
                                     {%endif%}
                                 {% endfor %}
-
-                            {% include partials/autodoc/hal-wrapper-links.html %}
-
                         {% endif %}
                     </ul>
                     {% endif %}
                 </li>
+                {% endif %}
+                {% assign addThisFieldToEmbedded = false %}
+
 
                 {% endfor %}
                 {% endfor %}
                 {% endfor %}
 
-                {% if _HAL and _add_HAL_to.size >= 0%}{%else%}
-                {%if _HAL %}
+                {%if _HAL.wrappin != null %}
                     {% assign _HAL-part2 = true %}
                         {% include partials/autodoc/hal-wrapper.html %}
                     {% assign _HAL-part2 = false %}
                 {% endif %}
-                {% endif %} <!--{% comment %} END _embedded{% endcomment %}-->
+
+                <!--{% comment %}{% if _HAL.wrappin and _HAL.links.size >= 0%}{%else%}
+                {% endif %}  END _embedded{% endcomment %}-->
 
             </ul>
             {% endif %}

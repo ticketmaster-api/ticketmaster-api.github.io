@@ -1,5 +1,17 @@
-{% comment %}<!----><p class="code blue">outer0 : {{outer}} , {{property[0]}}</p>{% endcomment %}
+{% comment %}<!--<p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p>-->{% endcomment %}
 <ul>
+
+    {%if _HAL.links.size > 0 %}
+        {%assign isSingleLink = true %}
+        {% for add_links_HAL in _HAL.links %}
+            {%if add_links_HAL == outer %}
+                {% include partials/autodoc/hal-wrapper-links.html %}
+            {% endif %}
+        {% endfor %}
+        {%assign isSingleLink = false%}
+    {% endif %}
+
+
     {% assign schemaResInner = outer | replace: '#/',''  | replace:'/',' ' %}
     {% assign schemaSplitInner = schemaResInner | split: ' ' %}
     {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
@@ -24,33 +36,6 @@
                 </ul>
             </ul>
         {%endif%}
-
-        {% comment %}
-        {% if _HAL and _add_HAL_to.size >= 0 %}
-            {% for add_property_HAL_Inner in _add_HAL_to %}
-                {% assign schemaResInner = add_property_HAL_Inner | replace: '_embeedded.','' %}
-                {% assign schemaSplitInner = schemaResInner | split: ' ' %}
-
-                {%if add_property_HAL == schemaSplitInner %}<li><code class="highlighter-rouge">find: {{add_property_HAL}}</code>reference</li>{% endif %}
-
-                <li>add_property_HAL_Inner - {{ add_property_HAL }} *==* {{ schemaSplitInner }} {%if add_property_HAL == schemaSplitInner %}got it{% endif %} </li>
-
-                {%if add_property_HAL == add_property_HAL_Inner | replace: '_embeedded.','' %}
-                <li><code class="highlighter-rouge">_links</code>(object) - links to data sets {{ add_property_HAL_Inner}} ***:*** {{ schemaSplitInner }}.
-                    <ul>
-                        <li><code class="highlighter-rouge">self</code>(object) - link to this data set.
-                            <ul>
-                                <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                {% endif %}
-
-            {% endfor %}
-        {% endif %}
-        {% endcomment %}
-
     </li>
     {% endfor %}
     {% endfor %}

@@ -29,39 +29,7 @@
 <p class="lead article">{{ swagger.info.description }}</p>
 
 <h4 class="aside gray" id="developer-console">Developer Console</h4><p>Make live API calls right now in the interactive docs:</p><p><a href="/products-and-docs/apis/interactive-console/" class="button">INTERACTIVE DOCS</a></p>
-<!--
-{% comment %}
-{% if swagger.host or swagger.basePath or methodsDescription.overview | size > 0 %}
-<h2 class="article" id="overview">Overview</h2>
 
-    {% if methodsDescription.overview | size > 0%}
-        {% for overviewItem in methodsDescription.overview %}
-            {% if overviewItem.include %}
-                {% assign overviewInclude = overviewItem.include | prepend: 'apis-code-examples/' %}
-                <div class="overview-iclude">
-                    {% include {{ overviewInclude }} %}
-                </div>
-            {% else %}
-                <h3>{{overviewItem.title}}</h3>
-                <p>{{overviewItem.description}}</p>
-            {% endif %}
-        {%endfor%}
-    {%endif%}
-    
-    {% comment %}
-    {% if swagger.host %}
-    <p>
-        <strong>Host URL: </strong><code>{{ swagger.host }}</code>
-    </p>{% endif %}
-    {% if swagger.basePath %}
-    <p>
-        <strong>Base Path: </strong><code>{{ swagger.basePath }}</code>
-    </p>{% endif %}
-    {% endcomment %}
-    
-{% endif %}
-{% endcomment %}
--->
 {% if methodsDescription.before %}
     {% if methodsDescription.before.include %}
         {% assign beforeInclude = methodsDescription.before.include | prepend: 'apis-code-examples/' %}
@@ -107,8 +75,6 @@
                         {% assign _preContent = tag.preContent %}
                         {% assign _postContent = tag.postContent %}
                         {% assign _HAL = tag.HAL %}
-                        {% assign _add_HAL_to = tag.add_HAL_to %}
-                        {% assign _embeed_HAL = tag.embeed_HAL %}
                     {% endif %}
                 {% endfor %}
                 <!--{% comment %}<p>routeInner : {{listTag.pathsParent}} == <span {% if listTag.pathsParent == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>{% endcomment %}-->
@@ -141,8 +107,6 @@
         {% assign _preContent = false %}
         {% assign _postContent = false %}
         {% assign _HAL = false %}
-        {% assign _add_HAL_to = false %}
-        {% assign _embeed_HAL = false %}
     {% endif %}
     <!--show item in list first END-->
 
@@ -156,7 +120,6 @@
             {% assign _preContent = tag.preContent %}
             {% assign _postContent = tag.postContent %}
             {% assign _HAL = tag.HAL %}
-            {% assign _add_HAL_to = tag.add_HAL_to %}
         {% endif %}
     {% endfor %}
 
@@ -195,8 +158,6 @@
     {% assign _preContent = tag.preContent %}
     {% assign _postContent = tag.postContent %}
     {% assign _HAL = tag.HAL %}
-    {% assign _add_HAL_to = tag.add_HAL_to %}
-    {% assign _embeed_HAL = tag.embeed_HAL %}
 
 {% endfor %}
 
