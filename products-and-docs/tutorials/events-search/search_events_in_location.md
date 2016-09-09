@@ -43,6 +43,9 @@ Your `Consumer Key` is your `API Key`.
 
 Here's a simple page with a Google map and markers for events:
 
+{: .window-title}
+Events on a map
+
 {: .tutorial-code}
 >[HTML](#html)
 >[JavaScript](#js)
@@ -177,6 +180,9 @@ Inside the `body` element, there are two `div` elements. One with `id="map"` for
 
 Below the divs, we include our own script, which we will discuss later, and the Google Maps API `<script src="https://maps.googleapis.com/maps/api/js" async defer></script>`.
 
+{: .window-title}
+Using The Google Map API
+
 {: .tutorial-code}
 >[HTML](#html)
 {: .t-lang-selector}
@@ -199,12 +205,16 @@ Below the divs, we include our own script, which we will discuss later, and the 
 </html>
 {% endhighlight %}
 
+<p></p>
 
 ## Getting the browser's geolocation
 
 Geolocation is a standard feature in HTML5. [All modern browsers support it](http://www.w3schools.com/html/html5_geolocation.asp).
 
 When you try to use geolocation in JavaScript, a browser will ask a user for permission:
+
+{: .window-title}
+Getting The Browser’s Geolocation
 
 {: .tutorial-code}
 >[JavaScript](#js)
@@ -246,9 +256,14 @@ There are two functions defined above: `getLocation` and `showError`.
 
 Assuming no errors are encountered, now we have your current location in a lat/lon value pair.
 
+<p></p>
+
 ## Passing location to the Discovery API
 
 Now we make an API call to [search for events within 25 miles from the latitude and longitude values](/products-and-docs/apis/discovery/v2/#srch-events-v2) we received in the step above. We call the function `ShowPosition` to render that.
+
+{: .window-title}
+Passing Location To The Discovery API
 
 {: .tutorial-code}
 >[JavaScript](#js)
@@ -286,18 +301,6 @@ function showPosition(position) {
 
 {% endhighlight %}
 
-
-
-
-## Process the API response
-
-In a case of a succesful request to Discovery API, we call function `showEvents` that processes the response and displays the event list.
-Other function `initMap` initializes Google map and shows markers for events.
-
-
-{: .tutorial-code}
->[JavaScript](#js)
-{: .t-lang-selector}
 
 
 
