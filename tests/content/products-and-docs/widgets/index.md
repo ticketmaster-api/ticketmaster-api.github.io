@@ -23,11 +23,25 @@ Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually be
 ### Direct Payments
 
 {: .body}
-Visit Universe’s site to get everything you need to sell tickets 
+Visit Universe’s site to get everything you need to sell tickets
 directly on your website at no additional cost.
 
 [LEARN MORE!](https://www.universe.com/directpayments){:target="_blank" .button.button-blue}
 
+{% endcapture %}
+
+{% capture checkout-widget %}
+{: #event-checkout-widget }
+## Checkout Widget
+
+{: .body}
+Informational text about the widget and it abilities, functions and other information.
+
+{: .button_set}
+[CONFIGURE NOW](#){: .button.button-blue}
+{::comment}
+[LEARN MORE](#){: .button .button-default}
+{:/comment}
 {% endcapture %}
 
 {% capture discovery-widget %}
@@ -38,7 +52,7 @@ directly on your website at no additional cost.
 Informational text about the widget and it abilities, functions and other information.
 
 {: .button_set}
-[CONFIGURE NOW](#){: .button.button-blue}  
+[CONFIGURE NOW](#){: .button.button-blue}
 {::comment}
 [LEARN MORE](#){: .button .button-default}
 {:/comment}
@@ -52,4 +66,8 @@ Informational text about the widget and it abilities, functions and other inform
 
 <div class="discovery_widget_box" markdown="1">
 {{discovery-widget}}
+</div>
+
+<div class="checkout_widget_box" markdown="1">
+{{checkout-widget}}
 </div>
