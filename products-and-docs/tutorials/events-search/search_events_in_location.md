@@ -256,7 +256,6 @@ There are two functions defined above: `getLocation` and `showError`.
 
 Assuming no errors are encountered, now we have your current location in a lat/lon value pair.
 
-<p></p>
 
 ## Passing location to the Discovery API
 
@@ -301,6 +300,19 @@ function showPosition(position) {
 
 {% endhighlight %}
 
+<p></p>
+
+## Process the API response
+
+In a case of a succesful request to Discovery API, we call function `showEvents` that processes the response and displays the event list.
+Other function `initMap` initializes Google map and shows markers for events.
+
+{: .window-title}
+Process The API Response
+
+{: .tutorial-code}
+>[JavaScript](#js)
+{: .t-lang-selector}
 
 
 
