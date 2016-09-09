@@ -1,0 +1,51 @@
+
+.js_numeric-input-group {
+  position: relative;
+  margin-bottom: 24px;
+
+  input.js_numeric_input {
+    padding-right: 30px;
+  }
+  .arrow {
+    content: '';
+    position: absolute;
+    top: 30%;
+    right: 16px;
+    width: 15px;
+    height: 10px;
+    cursor: pointer;
+
+    &__inc {
+      top: 10%;
+      transform: scaleY(-1);
+      background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+
+    }
+    &__dec {
+      background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+    }
+
+    &__inc.disabled,
+    &__dec.disabled {
+        background: url("/assets/controls/ic-shevron-down-grey.svg") no-repeat;
+    }
+
+  }
+
+
+
+  @media (min-width: 767px){
+    &-opened {
+      .custom_select__arrow {
+        @include rotate(180deg)
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
