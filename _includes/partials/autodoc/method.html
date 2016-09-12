@@ -317,13 +317,10 @@
         <div class="swagger-response">
             <h3>Response structure:</h3>
             {% for response in method[1].responses %}
-            <p>
-                <span class="swagger-response-code">{{ response[0] }}</span>
-                {{ response[1].description }}
-            </p>
+
             {% if response[1].schema['type'] %}
 
-            <!--{% comment %} Parse inner prop if its obj or arr
+            {% comment %}<!-- Parse inner prop if its obj or arr
             <ul>
                 {% for item in response[1].schema  %}
                     {% assign collection = item[1] %}
@@ -335,7 +332,7 @@
                     {% assign collection = '' %}
                 {% endfor %}
             </ul>
-            {% endcomment %}-->
+            -->{% endcomment %}
 
             <ul class="nested-list">
                 {% if response[1].schema.type == 'string'%}
@@ -357,7 +354,8 @@
                 </li>
                 {% endif %}
             </ul>
-            {% endif %}<!--{% comment %} END response[1].schema['type'] {% endcomment %}-->
+            {% endif %}
+            {% comment %}<!-- END response[1].schema['type'] -->{% endcomment %}
 
             {% if response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref'] %}
                 {% if response[1].schema['$ref'] %}
@@ -368,22 +366,30 @@
                     {% assign schemaType = response[1].schema['type'] %}
                 {% endif %}
             {% assign schemaSplit = schemaRes | split: ' ' %}
-            <!--{% assign schemaJoin = schemaSplit | join '.'  %}-->
 
             {%if listTag.NOT_CORRECT %}
             <p class="red" style="background: #7356a5; color: white; padding: 20px; border-radius: 4px;">
                 <b class='blue'>NOT CORRECT :</b> please compare api.json with <b class='blue'>real</b> response.
+                <br>
+                * {{ listTag.NOT_CORRECT[0] }}
             </p>
             {% endif %}
 
-            <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
-                {{ schemaSplit[1] }}
-                {% for schemaSplitType in schemaSplit[1] %}
-                    <span class="body">({%if response[1].schema['type']%}{{ response[1].schema.type }}{%else%}{{ swagger.definitions[schemaSplitType].type }}{%endif%})</span>
-                {% endfor %}
-                <!--<p>_HAL.wrappin <span class="red">{{_HAL.wrappin}}</span></p>
-                <p>_HAL.links <span class="red">{{_HAL.links | split: ' ' }}</span> size= <span class="red">{{_HAL.links.size}}</span></p>-->
-            </h5>
+            {% comment %}
+                <p>
+                    <span class="swagger-response-code">{{ response[0] }}</span> {{ response[1].description }}
+                </p>
+
+                <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
+                    {{ schemaSplit[1] }}
+                    {% for schemaSplitType in schemaSplit[1] %}
+                        <span class="body">({%if response[1].schema['type']%}{{ response[1].schema.type }}{%else%}{{ swagger.definitions[schemaSplitType].type }}{%endif%})</span>
+                    {% endfor %}
+                    <!--<p>_HAL.wrappin <span class="red">{{_HAL.wrappin}}</span></p>
+                    <p>_HAL.links <span class="red">{{_HAL.links | split: ' ' }}</span> size= <span class="red">{{_HAL.links.size}}</span></p>-->
+                </h5>
+            {% endcomment %}
+
             <ul class="nested-list">
 
                 <!--{% comment %}{% if _HAL.wrappin and _HAL.links.size >= 0%}
@@ -422,7 +428,7 @@
 
                     {% for add_link_HAL in _HAL.links %}
                         {% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
-                        <!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->
+                        {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->{% endcomment %}
                         {% if schemaSplit[1] == _link_HAL[1] %}
                             {% include partials/autodoc/hal-wrapper-links.html %}
                             {% assign isMultiLink = false %}
@@ -439,7 +445,7 @@
                     {% for add_property_HAL in _HAL.embed %}
                         {% assign methodNamebyRef = add_property_HAL.embed | downcase | replace : "#/","" | replace : "/"," " | split: " " %}
                         {% assign methodName = add_property_HAL.as %}
-                        <!--<li>methodNamebyRef - {{ methodNamebyRef }}, methodName - {{methodName}} <span class="blue">property[0] - {{property[0]}}</span></li>-->
+                        {% comment %}<!--<li>methodNamebyRef - {{ methodNamebyRef }}, methodName - {{methodName}} <span class="blue">property[0] - {{property[0]}}</span></li>-->{% endcomment %}
                         {% if property[0] == methodName %}
                             {% assign addThisFieldToEmbedded = true %}
                         {% endif %}
@@ -450,36 +456,59 @@
                 <li>
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
-                        {% for item in property[1].items %}
-                        <!--<li><code class="highlighter-rouge">****{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}{%endif%}</li>-->
-                            {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                            {% assign schemaSplitInner = schemaResInner | split: ' ' %}
-                            {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
-                                {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-                                <li><code class="highlighter-rouge"><!--***-->{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %} - {% if innerRef[1].description %}{{ innerRef[1].description }}{% elsif innerRef[1].format %}{{ innerRef[1].format }}{%else%}No description specified{% endif %}{% if innerRef[1].$ref %}{{ innerRef[1].$ref }}{% endif %}
-                                </li>
+                        {% comment %}<!--
+                        {% if property[1].type == 'array' %}
+                            <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
+                                <ul>
+                            {% for item in property[1].items %}
+                            {% comment %}<!--<li><code class="highlighter-rouge">****{{ item[0] }}</code> - {{ item[1] }}{% if item[0] == '$ref'%}{%endif%}</li>--><!--{% endcomment %}
+                                {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+                                {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+                                {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+                                    {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+                                    <li><code class="highlighter-rouge">{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %} - {% if innerRef[1].description %}{{ innerRef[1].description }}{% elsif innerRef[1].format %}{{ innerRef[1].format }}{%else%}No description specified{% endif %}{% if innerRef[1].$ref %}{{ innerRef[1].$ref }}{% endif %}
+                                    </li>
+                                    {% endfor %}
                                 {% endfor %}
                             {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}-->
+                        {% endcomment %}
 
-                        {% endfor %}
+                        {% if property[1].type == 'array' %}
+                            <li><code class="highlighter-rouge" style="color: #768692">{ array item object } </code>
+                                {%assign outer = property[1].items.['$ref'] %}
+                                {%include partials/autodoc/inner-item.html%}
+                            </li>
+                        {% endif %}
 
+                        {% comment %}<!--
                         {% if property[1]['$ref'] %}
                         {% assign schemaPageInner = false %}
                         {% assign schemaPageSplitInner = false %}
-                        <!--<li><code class="highlighter-rouge">-&#45;&#45;$ref</code> - {{ property[1]['$ref'] }}</li>-->
+                        {% comment %}<!--<li><code class="highlighter-rouge">-&#45;&#45;$ref</code> - {{ property[1]['$ref'] }}</li>--><!--{% endcomment %}
                                 {% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
                                 {% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
                                 {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
                                     {% if swagger.definitions.[schemaPageSplitInnerEnd].properties %}
                                         {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                        <li><code class="highlighter-rouge"><!-- -&#45;&#45; -->{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
+                                        <li><code class="highlighter-rouge"> --- {{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
                                         {% endfor %}
                                     {%else%}
-                                        <li><code class="highlighter-rouge"><!--+++ -->{{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
+                                        <li><code class="highlighter-rouge"> +++ {{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
                                     {%endif%}
                                 {% endfor %}
-                        {% endif %}
+                        {% endif %}-->
+                        {% endcomment %}
                     </ul>
+                    {% endif %}<!-- if property[1].items or property[1]['$ref'] -->
+
+                    {% if property[1]['$ref'] %}
+                        <!--<li><code class="highlighter-rouge" style="color: #768692"> %%% {{ innerRefPage[0] }} , {{ schemaPageSplitInnerEnd }} </code></li>-->
+                            {%assign outer = property[1].['$ref'] %}
+                            {%include partials/autodoc/inner-item.html%}
+
                     {% endif %}
                 </li>
                 {% endif %}
@@ -496,8 +525,7 @@
                     {% assign _HAL-part2 = false %}
                 {% endif %}
 
-                <!--{% comment %}{% if _HAL.wrappin and _HAL.links.size >= 0%}{%else%}
-                {% endif %}  END _embedded{% endcomment %}-->
+                {% comment %}<!-- END _embedded-->{% endcomment %}
 
             </ul>
             {% endif %}

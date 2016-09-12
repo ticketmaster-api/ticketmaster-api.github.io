@@ -18,7 +18,7 @@
             "id":"search-events",
             "reqres": "discovery-api/reqres-search-events.md",
             "codePath":"discovery-api/code-search-events.md",
-            "NOT_CORRECT": true,
+            "NOT_CORRECT": ["field venue suppouse to be 'venues' "],
             "HAL" : {
                 "wrappin": "events",
                 "links": [
@@ -37,7 +37,7 @@
             "id":"event-details",
             "reqres": "discovery-api/reqres-get-event.md",
             "codePath":"discovery-api/code-get-event.md",
-            "NOT_CORRECT": true,
+            "NOT_CORRECT": ["field venue suppouse to be 'venues' "],
             "HAL" : {
                 "wrappin": null,
                 "links": [
@@ -96,15 +96,30 @@
                 "wrappin": "classifications",
                 "links": [
                     "#/definitions/Classification"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Level", "as": "genre" },
+                    { "embed": "#/definitions/Level", "as": "subGenre" }
                 ]
-            }
+            },
+            "NOT_CORRECT": ["can't find rule how obj is related (segment -> genres -> subgenres )<br> https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG "]
         },
         {
             "pathsParent":"/discovery/v2/classifications/{id}",
             "id":"classification-details",
             "reqres": "discovery-api/reqres-get-classification.md",
             "codePath":"discovery-api/code-get-classification.md",
-            "NOT_CORRECT": true
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Classification"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Level", "as": "genre" },
+                    { "embed": "#/definitions/Level", "as": "subGenre" }
+                ]
+            },
+            "NOT_CORRECT": ["not found `subType` field in : https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG"]
         },
         {
             "pathsParent":"/discovery/v2/classifications/genres/{id}",
@@ -141,7 +156,7 @@
             "id":"venue-details",
             "reqres": "discovery-api/reqres-get-venue.md",
             "codePath":"discovery-api/code-get-venue.md",
-            "NOT_CORRECT": true,
+            "NOT_CORRECT": ["unused fields such as : boxOfficeInfo, parkingDetail , accessibleSeatingDetail ... <br> link to test: https://app.ticketmaster.com/discovery/v2/venues/KovZpZAFnIEA.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG "],
             "HAL" : {
                 "wrappin": null,
                 "links": [
