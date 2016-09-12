@@ -311,7 +311,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/Level"
             }
           }
         }
@@ -342,7 +342,6 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object",
               "$ref" : "#/definitions/Classification"
             }
           }
@@ -642,7 +641,6 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object",
               "$ref" : "#/definitions/Event"
             }
           }
@@ -1015,15 +1013,15 @@
     "DateTimeField" : {
       "type" : "object",
       "properties" : {
-        "name" : {
-          "type" : "string"
-        },
-        "type" : {
-          "$ref" : "#/definitions/DateTimeFieldType"
-        },
-        "supported" : {
+        "lenient" : {
           "type" : "boolean",
           "default" : false
+        },
+        "rangeDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
+        "durationField" : {
+          "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
           "type" : "integer",
@@ -1033,44 +1031,44 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "lenient" : {
-          "type" : "boolean",
-          "default" : false
-        },
-        "durationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
         "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
-        "rangeDurationField" : {
-          "$ref" : "#/definitions/DurationField"
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/DateTimeFieldType"
+        },
+        "supported" : {
+          "type" : "boolean",
+          "default" : false
         }
       }
     },
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "name" : {
-          "type" : "string"
-        },
         "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
+        },
+        "name" : {
+          "type" : "string"
         }
       }
     },
     "DateTimeZone" : {
       "type" : "object",
       "properties" : {
-        "id" : {
-          "type" : "string"
-        },
         "fixed" : {
           "type" : "boolean",
           "default" : false
+        },
+        "id" : {
+          "type" : "string"
         }
       }
     },
@@ -1099,6 +1097,14 @@
     "DurationField" : {
       "type" : "object",
       "properties" : {
+        "precise" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "unitMillis" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "name" : {
           "type" : "string"
         },
@@ -1108,14 +1114,6 @@
         "supported" : {
           "type" : "boolean",
           "default" : false
-        },
-        "precise" : {
-          "type" : "boolean",
-          "default" : false
-        },
-        "unitMillis" : {
-          "type" : "integer",
-          "format" : "int64"
         }
       }
     },
@@ -1530,12 +1528,6 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "fields" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/DateTimeField"
-          }
-        },
         "values" : {
           "type" : "array",
           "items" : {
@@ -1547,6 +1539,12 @@
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/DateTimeFieldType"
+          }
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DateTimeField"
           }
         }
       }
