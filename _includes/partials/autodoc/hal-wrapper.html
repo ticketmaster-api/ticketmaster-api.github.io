@@ -25,8 +25,8 @@
     <ul>
         <li><code class="highlighter-rouge">{{ _HAL.wrappin }}</code><!--{% for schemaSplitType in schemaSplit[1] %}({{ swagger.definitions[schemaSplitType].type | strip }}){% endfor %}-->{% if response[1].schema['type'] == 'array' %}({{response[1].schema['type']}})
             <ul>
-                <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>{% endif %}
-                    <ul>
+                <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
+                    <ul>{% endif %}
                         {%if _HAL.links.size > 0%}
                             {%assign isMultiLink = true %}
                                 {% include partials/autodoc/hal-wrapper-links.html %}
