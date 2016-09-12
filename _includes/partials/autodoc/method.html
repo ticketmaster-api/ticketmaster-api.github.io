@@ -454,7 +454,7 @@
 
                 {% if addThisFieldToEmbedded == false %}
                 <li>
-                    <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+                    <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
                         {% comment %}<!--
                         {% if property[1].type == 'array' %}
@@ -502,14 +502,15 @@
                         {% endif %}-->
                         {% endcomment %}
                     </ul>
-                    {% endif %}<!-- if property[1].items or property[1]['$ref'] -->
+                    {% endif %}<!-- END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}-->
 
                     {% if property[1]['$ref'] %}
-                        <!--<li><code class="highlighter-rouge" style="color: #768692"> %%% {{ innerRefPage[0] }} , {{ schemaPageSplitInnerEnd }} </code></li>-->
+                        <!--<li><code class="highlighter-rouge" style="color: #768692"> property[1].['$ref'] -  {{ property[1].['$ref'] }}  </code></li>-->
                             {%assign outer = property[1].['$ref'] %}
                             {%include partials/autodoc/inner-item.html%}
 
                     {% endif %}
+
                 </li>
                 {% endif %}
                 {% assign addThisFieldToEmbedded = false %}
