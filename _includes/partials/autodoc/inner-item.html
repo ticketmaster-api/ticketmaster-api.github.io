@@ -1,6 +1,5 @@
-{% comment %}<!--<p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p>  -->{% endcomment %}
+{% comment %}<!-- <p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p> -->{% endcomment %}
 <ul>
-
     {%if _HAL.links.size > 0 %}
         {%assign isSingleLink = true %}
         {% for add_links_HAL in _HAL.links %}
@@ -16,8 +15,8 @@
     {% assign schemaSplitInner = schemaResInner | split: ' ' %}
     {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
     {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-    <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}{% if innerRef[1]['$ref'] %}{%assign outer = innerRef[1]['$ref']%}{%include partials/autodoc/inner-item.html%}{%endif%}
-        <!--{% comment %}{{ innerRef[1]['$ref'] }}, {{ schemaSplitInner | join: ' ' }} {% endcomment %}-->
+        <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){%else%}({{swagger.definitions.[schemaSplitInnerEnd].type}}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}{% if innerRef[1]['$ref'] %}{%assign outer = innerRef[1]['$ref']%}{%include partials/autodoc/inner-item.html%}{%endif%}
+        <!--innerRef[1] - {{ innerRef[1]['$ref'] }}, schemaSplitInner - {{ schemaSplitInner | join: ' ' }} , innerRef[0] - {{ innerRef[0] }}{% comment %}{% endcomment %}-->
         {% if innerRef[1].type =='array' %}
         <!--{% comment %}{{ innerRef[1]['$ref'] }}</code> <p class="blue">{{ innerRef[1] }}</p> {% endcomment %}-->
             <ul>
@@ -43,5 +42,12 @@
         {%endif%}
     </li>
     {% endfor %}
+        {%if swagger.definitions.[schemaSplitInnerEnd].properties %}{%else%}
+            {% for innerRef in swagger.definitions.[schemaSplitInnerEnd] %}
+                <li><code>{{innerRef[0]}}</code> - {{innerRef[1]}}</li>
+            {% endfor %}
+        {% endif %}
+
+
     {% endfor %}
 </ul>
