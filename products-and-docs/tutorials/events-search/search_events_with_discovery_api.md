@@ -72,6 +72,9 @@ In this example, we'll show an event list and display the attraction of the even
 
 Let's review the code (or you can also play with it on [Plunker](http://plnkr.co/edit/YX3fR7DdKCugKZ4uPmaC?p=preview)).
 
+{: .window-title}
+Example: Event Listings
+
 {: .tutorial-code}
 >[HTML](#html)
 >[JavaScript](#js)
@@ -84,10 +87,9 @@ Let's review the code (or you can also play with it on [Plunker](http://plnkr.co
 
   <head>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="<!-- path-to-your bootstrap.min.css -->" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="<!-- path-to-your bootstrap-theme.min.css -->" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
     <style>
       #attraction-panel {
@@ -165,13 +167,11 @@ Let's review the code (or you can also play with it on [Plunker](http://plnkr.co
 
 {% highlight js %}
 
-
 var page = 0;
 
 function getEvents(page) {
-
-  $('#events-panel').show();
-  $('#attraction-panel').hide();
+  $("#events-panel").show();
+  $("#attraction-panel").hide();
 
   if (page < 0) {
     page = 0;
@@ -199,7 +199,7 @@ function getEvents(page) {
 }
 
 function showEvents(json) {
-  var items = $('#events .list-group-item');
+  var items = $("#events .list-group-item");
   items.hide();
   var events = json._embedded.events;
   var item = items.first();
@@ -207,7 +207,7 @@ function showEvents(json) {
     item.children('.list-group-item-heading').text(events[i].name);
     item.children('.list-group-item-text').text(events[i].dates.start.localDate);
     try {
-      item.children('.venue').text(events[i]._embedded.venues[0].name + " in " + events[i]._embedded.venues[0].city.name);
+      item.children(".venue").text(events[i]._embedded.venues[0].name + " in " + events[i]._embedded.venues[0].city.name);
     } catch (err) {
       console.log(err);
     }
@@ -225,11 +225,11 @@ function showEvents(json) {
   }
 }
 
-$('#prev').click(function() {
+$("#prev").click(function() {
   getEvents(--page);
 });
 
-$('#next').click(function() {
+$("#next").click(function() {
   getEvents(++page);
 });
 
@@ -249,20 +249,22 @@ function getAttraction(id) {
 }
 
 function showAttraction(json) {
-  $('#events-panel').hide();
-  $('#attraction-panel').show();
+  $("#events-panel").hide();
+  $("#attraction-panel").show();
   
-  $('#attraction-panel').click(function() {
+  $("#attraction-panel").click(function() {
     getEvents(page);
   });
   
-  $('#attraction .list-group-item-heading').first().text(json.name);
-  $('#attraction img').first().attr('src',json.images[0].url);
-  $('#classification').text(json.classifications[0].segment.name + " - " + json.classifications[0].genre.name + " - " + json.classifications[0].subGenre.name);
+  $("#attraction .list-group-item-heading").first().text(json.name);
+  $("#attraction img").first().attr('src',json.images[0].url);
+  $("#classification").text(json.classifications[0].segment.name + " - " + json.classifications[0].genre.name + " - " + json.classifications[0].subGenre.name);
 }
 
 getEvents(page);
 {% endhighlight %}
+
+<p></p>
 
 This code will produce such layout.
 
@@ -272,9 +274,13 @@ This code will produce such layout.
 
 Great! Now let’s dive into the details:
 
+{: .w-title}
 ### Requesting events
 
 We call the [Search Events](/products-and-docs/apis/discovery/v2/#srch-events-v2) method to get a list of events. We do it in the JS function `getEvents`. This function has one parameter - a number of requested page. Code execution in our example starts from the call of `getEvents` function with page equal 0. We have global variable `page` with initial value 0. When we use pagination, this variable changes.
+
+{: .window-title}
+Requesting events
 
 {: .tutorial-code}
 >[JavaScript](#js)
@@ -315,7 +321,11 @@ function getEvents(page) {
 
 This function has three parts. In the first part, we show a panel with event list and hide a panel with attraction details. Then we work with the page number. `page` cannot be less that 0. After the last page, we go to the first page again. In the third part, we call Search Events method and call function `showEvents` in a case of success.
 
+{: .w-title}
 ### Layout for event list
+
+{: .window-title}
+Layout for event list
 
 {: .tutorial-code}
 >[HTML](#html)
@@ -364,9 +374,13 @@ This function has three parts. In the first part, we show a panel with event lis
 
 The panel has title section, body with a list of items and footer with pagination buttons.
 
+{: .w-title}
 ### Rendering the event list
 
 When we get events from the server we call function `showEvents`. It builds list item for each event. List item has click handler that calls function `getAttraction`. So after clicking on list item we call Search Attractions method with if of the first attraction for a current event.
+
+{: .window-title}
+Rendering the event list
 
 {: .tutorial-code}
 >[JavaScript](#js)
@@ -402,11 +416,15 @@ function showEvents(json) {
 }
 {% endhighlight %}
 
+<p></p>
 
 ### Attraction details
 
 We have `attraction-panel` to show attraction details. We show attraction name, the first picture, and classification.
 When we get attractions from the server we call function `showAttraction`. It fills panel with attraction values.
+
+{: .window-title}
+Attraction details
 
 {: .tutorial-code}
 >[HTML](#html)

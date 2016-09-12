@@ -125,7 +125,9 @@
                         | replace: '[' , '-'
                         | replace: ']' , '-'
                         | replace: '/' , '-'
-                        | replace: '\' , '-' }}">{{ menuItemAfter }}</a></li>
+                        | replace: '\' , '-'
+                        | replace: '(' , '-'
+                        | replace: ')' , '-'}}">{{ menuItemAfter }}</a></li>
         {% endfor %}
     {% endif %}
 
