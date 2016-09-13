@@ -274,6 +274,34 @@
     }
   }
 
+  &__calendar{
+    /* @include img-retina("/assets/img/products-and-docs/calendar-widget-image.png", "/assets/img/products-and-docs/calendar-widget-image@2x.png", 362px, 262px); */
+    background: url("/assets/img/products-and-docs/calendar-widget-image.png");
+    background-size: contain;
+    @media #{$max-1200} {
+      min-height: auto;
+      background-size: cover;
+    }
+    @media #{$max-768} {
+      background: url("/assets/img/products-and-docs/calendar-widget-image-m.png") top right;
+      background-size: cover;
+    }
+  }
+
+  &__wordpress{
+    /* @include img-retina("/assets/img/products-and-docs/wordpress-widget-image.png", "/assets/img/products-and-docs/wordpress-widget-image@2x.png", 362px, 262px); */
+    background: url("/assets/img/products-and-docs/wordpress-widget-image.png");
+    background-size: contain;
+    @media #{$max-1200} {
+      min-height: auto;
+      background-size: cover;
+    }
+    @media #{$max-768} {
+      background: url("/assets/img/products-and-docs/wordpress-widget-image-m.png") top right;
+      background-size: cover;
+    }
+  }
+
   @media #{$max-1200} {
     width: auto;
   }
