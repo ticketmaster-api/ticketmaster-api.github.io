@@ -32,6 +32,28 @@ keywords: widget, sell tickets, direct payments
 {% endcomment %} 
 {% endcapture %}
 
+{% capture calendar-widget %}
+{: #calendar-widget }
+## Calendar Widget
+
+{: .button_set}
+[CONFIGURE NOW](/products-and-docs/widgets/calendar/){: .button.button-blue} 
+{% comment %} 
+[LEARN MORE](#){: .button .button-transparent}
+{% endcomment %} 
+{% endcapture %}
+
+{% capture wordpress-widget %}
+{: #wordpress-widget }
+## WordPress Widget
+
+{: .button_set}
+[DOWNLOAD NOW](/products-and-docs/widgets/wordpress/ticketmaster.zip){: .button.button-blue} 
+{% comment %} 
+[LEARN MORE](#){: .button .button-transparent}
+{% endcomment %} 
+{% endcapture %}
+
 {% capture payments %}
 ### Direct Payments
 
@@ -49,6 +71,14 @@ directly on your website at no additional cost.
 
 <div class="widget_box widget_box__countdown" markdown="1">
 {{countdown-widget}}
+</div>
+
+<div class="widget_box widget_box__calendar" markdown="1">
+{{calendar-widget}}
+</div>
+
+<div class="widget_box widget_box__wordpress" markdown="1">
+{{wordpress-widget}}
 </div>
 
 <div class="grey-box android mask" markdown="1">
