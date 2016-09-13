@@ -69,7 +69,7 @@
                     <th>Type</th><!--Type-->
                     <th>Default Value</th><!--default-->
                     <th>Required</th><!--required-->
-                <tr>
+                </tr>
                 </thead>
                 <tbody>
                 {% for parameter in method[1].parameters %}
@@ -124,7 +124,7 @@
                     <th>Type</th><!--Type-->
                     <th>Default Value</th><!--default-->
                     <th>Required</th><!--required-->
-                <tr>
+                </tr>
                 </thead>
                 <tbody>
                 {% for parameter in method[1].parameters %}
@@ -144,19 +144,15 @@
                         {% if parameter.type %}
                         {{ parameter.type | capitalize }}
                         {% if parameter.items %}
-                        of {{ parameter.items.type | capitalize }}
+                            of {{ parameter.items.type | capitalize }}
                         {% endif %}
-
                         {% if parameter.enum %}
-                        {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
+                            {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
                         {% endif %}
-                        {% else %}
-                        <!--Not defined in json-->
+                        {% else %}<!--Not defined in api.json-->
                         {% endif %}
                     </td>
-                    <td>
-                        {% if parameter.default %}{{ parameter.default | capitalize | join: ', ' }}{% endif %}
-                    </td>
+                    <td>{% if parameter.default %}{{ parameter.default | capitalize | join: ', ' | strip }}{% endif %}</td>
                     <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
                 </tr>
@@ -179,7 +175,7 @@
                     <th>Type</th><!--Type-->
                     <th>Default Value</th><!--default-->
                     <th>Required</th><!--required-->
-                <tr>
+                </tr>
                 </thead>
                 <tbody>
                 {% for parameter in method[1].parameters %}
@@ -406,7 +402,7 @@
                 <li><code class="highlighter-rouge">_embedded</code>(object) - container. <!-- start loop here {{ _HAL.embed.size }} -->
                     <ul>
                         {% for add_property_HAL in _HAL.embed %}
-                        <li><code class="highlighter-rouge">{{ add_property_HAL.as }}</code>(array) - related <!--{{add_property_HAL}}-->.
+                        <li><code class="highlighter-rouge">{{ add_property_HAL.as }}</code>(array) - related {{add_property_HAL.as}}.
                             <ul>
                                 <li><code class="highlighter-rouge" style="color: #768692">{array item object} </code>
                                     {%assign outer = add_property_HAL.embed %}
