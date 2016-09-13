@@ -214,40 +214,23 @@ Connection: Keep-Alive
 
 {% highlight HTTP %}
 HTTP/1.1 200 OK
-Rate-Limit-Over:
-0
-Content-Length:
-21532
-Rate-Limit-Available:
-498399
-Set-Cookie:
-CMPS=EB55hDR95pURN1HyCaJoxuyEQcA8Sv2aKm4J/YaMBOYTHywQO/XHcWL6t8TWHLkL; path=/
-Access-Control-Allow-Methods:
-POST, PATCH, DELETE, GET, HEAD, OPTIONS
-X-TM-SESSION-BID:
-commerce-offering
-Connection:
-keep-alive
-Access-Control-Allow-Credentials:
-true
-Server:
-Apache-Coyote/1.1
-Rate-Limit-Reset:
-1468530242515
-Access-Control-Allow-Headers:
-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers
-Date:
-Thu, 14 Jul 2016 18:15:12 GMT
-Access-Control-Allow-Origin:
-*
-X-TM-SESSION-SID:
-49D8E7AAEF70BE318E4CEB599C499675
-X-Application-Context:
-commerce-api-commerce-offering-v1:default,jash1:8080
-Content-Type:
-application/json;charset=UTF-8
-Rate-Limit:
-500000
+Rate-Limit-Over: 0
+Content-Length: 21532
+Rate-Limit-Available: 498399
+Set-Cookie: CMPS=EB55hDR95pURN1HyCaJoxuyEQcA8Sv2aKm4J/YaMBOYTHywQO/XHcWL6t8TWHLkL; path=/
+Access-Control-Allow-Methods: POST, PATCH, DELETE, GET, HEAD, OPTIONS
+X-TM-SESSION-BID: commerce-offering
+Connection: keep-alive
+Access-Control-Allow-Credentials: true
+Server: Apache-Coyote/1.1
+Rate-Limit-Reset: 1468530242515
+Access-Control-Allow-Headers: Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers
+Date: Thu, 14 Jul 2016 18:15:12 GMT
+Access-Control-Allow-Origin: *
+X-TM-SESSION-SID: 49D8E7AAEF70BE318E4CEB599C499675
+X-Application-Context: commerce-api-commerce-offering-v1:default,jash1:8080
+Content-Type: application/json;charset=UTF-8
+Rate-Limit: 500000
 
 {
   "limits":  {

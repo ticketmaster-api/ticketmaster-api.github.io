@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static bla.tm.staticmethods.StaticMethods.checkIfWebElementExist;
+import static bla.tm.staticmethods.StaticMethods.scrollToElement;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -58,6 +59,7 @@ public class PD_GettingStartedSteps {
             WebElementFacade element = availableResourcesTable.thenFindAll("tr/td/a[contains(., '" + elementName + "')]").get(0);
 
             element.shouldBeVisible();
+            scrollToElement(element);
             element.click();
             waitForSomeActionHappened(50);
             assertEquals(gettingStartedPage.returnCurrentUrl(), elementUrl);

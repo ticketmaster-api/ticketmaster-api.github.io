@@ -45,6 +45,9 @@ We have a very easy example of site with Event Discovery widget. This site has t
 
 ![Event Discovery widget on a site](/products-and-docs/tutorials/img/edw-site.png)
 
+{: .window-title}
+Web site with Event Discovery widget
+
 {: .tutorial-code}
 >[HTML](#html)
 {: .t-lang-selector}
@@ -68,6 +71,9 @@ Let's go step by step through this site creation.
 
 Select good place for widget on your site. In our example the site is empty. So widget will be the first elemnt of the site.
 
+{: .window-title}
+Step 1. A place for widget on your site
+
 {: .tutorial-code}
 >[HTML](#html)
 {: .t-lang-selector}
@@ -82,6 +88,8 @@ Select good place for widget on your site. In our example the site is empty. So 
 
 </html>
 {% endhighlight %}
+
+<p></p>
 
 ## Step 2. Configure search parameters
 

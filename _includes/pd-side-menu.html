@@ -17,22 +17,17 @@
                 {% endif %}
             </li>
            {% comment %}
-            <!--automenu for Swagger api-->
-            {% endcomment %}
+            <!--automenu for Swagger api-->{% endcomment %}
             <li><a href="/products-and-docs/apis/discovery-api/v2/">Discovery API(autodoc)</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "discovery-api" %}
                     {% include partials/autodoc/side-menu-generate.html%}
 
-
-                <!--{% comment %}<!--faq-api menu item can be here-->
-                <!--
+                <!--{% comment %}<!--faq-api menu item can be here--><!--
                     {% include partials/autodoc/side-menu-faq.html %}
                 {% endcomment %}-->
-
-                {% include partials/changelog-apis.html%}
-
                 {% endif %}
             </li><!--END automenu-->
+
 
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
@@ -186,6 +181,7 @@
             <li><a href="/products-and-docs/apis/inventory-status/">Inventory Status API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "inventory-status" %}
                 <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
                     <li><a href="#inventory-status-details">Inventory Status Details</a></li>
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
@@ -304,9 +300,9 @@
         <h4><a href="/products-and-docs/sdks/" {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %} class="active" {% endif %} >SDKs</a></h4>
         {% if page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
         <ul class="sections menu-highlight">
-            <li><a href="https://github.com/ticketmaster-api/sdk-java">SDK-Java</a></li>
-            <li><a href="https://github.com/ticketmaster-api/sdk-javascript">SDK-JavaScript</a></li>
-            <li><a href="https://github.com/ticketmaster-api/sdk-scala">SDK-Scala</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-java">Java-SDK</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-javascript">JavaScript-SDK</a></li>
+            <li><a href="https://github.com/ticketmaster-api/sdk-scala">Scala-SDK</a></li>
             <li><a href="#account-manager">Account Manager</a></li>
         </ul>
         {% endif %}
@@ -318,6 +314,7 @@
                 <li><a href="https://www.universe.com/directpayments">Direct Payments</a></li>
                 <li><a href="/products-and-docs/widgets/event-discovery/">Event Discovery Widget</a></li>
                 <li><a href="/products-and-docs/widgets/countdown/">Countdown Widget</a></li>
+                <li><a href="/products-and-docs/widgets/calendar/">Calendar Widget</a></li>
             </ul>
         {% endif %}
     </li>

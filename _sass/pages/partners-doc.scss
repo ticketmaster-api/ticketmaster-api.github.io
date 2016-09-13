@@ -121,6 +121,11 @@
       @media #{$max-1200} {
         display: none;
       }
+      .flipper-title {
+        @media #{$max-1200} {
+          display: none;
+        }
+      }
     }
     .flipper-title {
       font-size: 16px;

@@ -104,6 +104,11 @@ Partner APIs, search and look up events, attractions, venues and classifications
 {% capture Season_Tix_API_description %}Season Ticketing API{% endcapture %}
 {% capture Season_Tix_API_link %}/products-and-docs/apis/season-ticketing/{% endcapture %}
 
+{% capture Inventory_Status_API %}/assets/img/products-and-docs/ic-inventory-status.svg{% endcapture %}
+{% capture Inventory_Status_API_title %}Inventory Status API{% endcapture %}
+{% capture Inventory_Status_API_description %}Inventory Status API{% endcapture %}
+{% capture Inventory_Status_API_link %}/products-and-docs/apis/inventory-status/{% endcapture %}
+
 {% capture api-button %}
 {: .top-line}
 [ACCESS API DOCS](/products-and-docs/apis/getting-started/){: .button.button-blue}
@@ -355,6 +360,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div><!--tiles-wrapper-->
+
 <div class="row tiles-wrapper limited-width-xs limited-width-md">
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
@@ -371,6 +377,25 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <a href="{{Season_Tix_API_link}}">
 <h3 class="flipper-title">{{Season_Tix_API_description}}</h3>
 <p class="flipper-description">{{Season_Tix_API_description}}</p>
+</a>
+</div>
+</div>
+</div>
+<div class="flipper flipper-rect flipper-rect-margin">
+<div class="card">
+<div class="front">
+<div class="img-wrapper">
+<img class="visible-lg" src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
+<a class="hidden-lg" href="{{Inventory_Status_API_link}}">
+<img src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
+<h3 class="flipper-title hidden-lg">{{Inventory_Status_API_description}}</h3>
+</a>
+</div>
+</div>
+<div class="back">
+<a href="{{Inventory_Status_API_link}}">
+<h3 class="flipper-title">{{Inventory_Status_API_description}}</h3>
+<p class="flipper-description">{{Inventory_Status_API_description}}</p>
 </a>
 </div>
 </div>

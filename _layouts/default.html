@@ -37,15 +37,15 @@
         <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/load-api-key.js?v=1' | prepend: site.baseurl }}"></script>
 
-{% if page.category == 'products-and-docs' or page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
+{% if page.category == 'products-and-docs' or page.categories[0] == "documentation" and page.categories[1] == "sdks"%}
         <script src="{{'/scripts/vendors/flip-jquery-plugin.js' | prepend: site.baseurl }}"></script>
         <script>
             //init fliper cards
             $(function() {
-                console.log(window.screen.width);
                 var $cards = $('.card');
                 $cards.fadeIn('slow');
                 if (window.screen.width > 1200) {
+                    var back = $('.back').css('display', 'block');
                     $cards.flip({
                         trigger: "hover"
                     });
