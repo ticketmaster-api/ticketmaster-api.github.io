@@ -4,6 +4,13 @@ jQuery.fn.customSelect = function(options ) {
     var defaults = {},
         settings = $.extend({}, defaults, options);
 
+    function setEditable(input) {
+        if( input.attr("contentEditable") ) {
+            input.removeAttr( "readonly" );
+            // console.log('1- input.attr("contentEditable")' , input.attr("contentEditable")  );
+        }
+    }
+
 
     return this.each(function () {
 
@@ -57,7 +64,14 @@ jQuery.fn.customSelect = function(options ) {
         $list.on('click', 'li', function(){            
             set(this, false);
         });
-        $placeholder.on('blur', blur);
+        $placeholder
+            .on('blur', blur)
+            .on('change',function () {
+                $placeholder.attr( "value", $placeholder.val() );
+                $list.append( $('<li style="display:none" data-value="'+ $placeholder.val()+'">'+$placeholder.val()+'</li>') );
+                $select.append($('<option>', {value: $placeholder.val(), text:$placeholder.val() })); 
+                $list.find('li:last').trigger('click');
+            });
         $custom_select.on({
             'click': toggle,
             'custom-reset': reset
@@ -67,11 +81,14 @@ jQuery.fn.customSelect = function(options ) {
             'show.bs.modal': reset
         });
 
+        setEditable($placeholder);
+
         reset();
         });
     };
 })(jQuery);
 
 $(document).on('ready', function () {
+    /* to set content editable need to add contenteditable="true" , markup example: <input class="custom_select__placeholder" type="text" contenteditable="true">*/
     $('.js_custom_select').customSelect();
 });
