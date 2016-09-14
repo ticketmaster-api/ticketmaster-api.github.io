@@ -145,7 +145,7 @@ function MethodsViewModel(base) {
   this.apikey = ko.observable('');
   this.radiosArr = ko.observableArray([]); // {method: 'str', checked: false}
   this.selectArr = ko.observableArray([]); // {name: 'str', checked: false, about: 'str'}
-  this.selected = ko.observable('')
+  this.data = ko.observable('vv')
 }
 
 /**
@@ -169,7 +169,15 @@ MethodsViewModel.prototype.updateModel = function (name) {
 
   methodsVM.radiosArr(radios);
   methodsVM.selectArr(options);
-  methodsVM.selected('Choose method...');
+  methodsVM.data('Choose method...');
+};
+
+/**
+ * Methods View-Model method
+ * @param name
+ */
+MethodsViewModel.prototype.selectItem = function (name) {
+  methodsVM.data(name);
 };
 
 

@@ -147,11 +147,13 @@
 
                                 <!--select-->
                                 <div class="api-exp-methods__select">
-                                    <div class="js_custom_select custom_select">
-                                        <select data-bind="options: selectArr, optionsText: name, value: name" class="custom_select__field" name="api-exp-method"></select>
-                                        <input data-bind="value: selected" class="custom_select__placeholder" type="text" value="" readonly="">
-                                        <ul data-bind="foreach: selectArr" class="custom_select__list js_custom__list">
-                                            <li data-bind="text: name" class="custom_select__item" data-value="BE">Event Offers</li>
+                                    <div class="api-exp-custom-select">
+                                        <select data-bind="options: selectArr, optionsText: name, value: data, optionsCaption: 'Choose...'" class="api-exp-custom-select__field" name="api-exp-method"></select>
+                                        <div class="api-exp-custom-select__placeholder">
+                                            <input data-bind="click: slideToggle, text: data, attr: {value: data}" type="text" value="" readonly="">
+                                        </div>
+                                        <ul data-bind="foreach: selectArr" class="api-exp-custom-select__list">
+                                            <li data-bind="click: $parent.selectItem.bind(null, name), text: name, attr: {'data-value': name}" class="api-exp-custom-select__item">Event Offers</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -174,6 +176,7 @@
                             </article>
                         </section>
                     </section>
+
                     <!--params-->
                     <section data-bind="with: params" class="api-exp-params">
                         <!--params filter-->
