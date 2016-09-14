@@ -17,7 +17,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
 
   .horizontal-events-tracker {
     margin-top: 20px;
-    margin-bottom: 48px;
+    margin-bottom: 68px;
     max-width: 1145px;
   }
 
@@ -134,7 +134,6 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
       min-width: 97px;
       &__label {
         text-transform: lowercase;
-        min-height: 43px;
         &::first-letter {
           text-transform: uppercase;
         }
