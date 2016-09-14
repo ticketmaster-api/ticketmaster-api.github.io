@@ -56,7 +56,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='RESET']")
     private WebElementFacade resetButton;
 
-    @FindBy(xpath = "//div[@class='event-content-wraper']")
+    @FindBy(xpath = "//span[contains(@class,'event-name')]")
     private WebElementFacade posterWindow;
 
     @FindBy(xpath = "//code[contains(@class,'language-html')]")

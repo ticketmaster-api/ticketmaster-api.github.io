@@ -143,11 +143,6 @@ public class PD_Widget_CountdownDefinition {
         countdownWidgetPage.setFullWidth();
     }
 
-    @Given("store theme")
-    public void givenStoreTheme() {
-        countdownWidgetPage.storeTheme();
-    }
-
     @Then("embedded html code contains stored theme")
     public void thenEmbeddedHtmlCodeContainsStoredTheme() {
         countdownWidgetPage.embeddedCodeContainsStoredTheme();
@@ -168,7 +163,6 @@ public class PD_Widget_CountdownDefinition {
         countdownWidgetPage.storeLayoutResolution();
     }
 
-
     @Then("embedded html code contains stored layout resolution")
     public void thenEmbeddedHtmlCodeContainsStoredLayoutResolution() {
         countdownWidgetPage.embeddedCodeContainsStoredResolution();
@@ -177,11 +171,6 @@ public class PD_Widget_CountdownDefinition {
     @Given("set layout orientation to $orientation")
     public void givenSetLayoutOrientationToorientation(String orientation) {
         countdownWidgetPage.setLayoutOrientation(orientation);
-    }
-
-    @Given("store layout orientation")
-    public void givenStoreLayoutOrientation() {
-        countdownWidgetPage.storeLayoutOrientation();
     }
 
     @Then("embedded html code contains stored layout orientation")

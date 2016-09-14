@@ -61,7 +61,7 @@ And set first eventId from list
 Then the event poster contains <keyword>
 Examples:
 |keyword|
-|Adele  |
+|ADELE  |
 
 Scenario: (/products-and-docs/widgets/countdown/) TECHNICAL TAB - Check links
 Given open Countdown Widget page
@@ -75,7 +75,6 @@ Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Full-width 
 Given open Countdown Widget page
 And switch to VISUAL Tab
 And set theme to full-width
-And store theme
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored theme
@@ -100,7 +99,6 @@ Given open Countdown Widget page
 And switch to VISUAL Tab
 And set theme to poster
 And set layout orientation to <orientation>
-And store layout orientation
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored layout orientation

@@ -156,7 +156,7 @@ public class PD_Widget_CountdownSteps {
 
     public void posterContainsKeyword(String keyword) {
         String posterText = countdownWidgetPage.getCountdownWidget().getPosterWindow().getText();
-        Assert.assertTrue(String.format("The poster does not contains %s but has text: %s", keyword, posterText), keyword.toLowerCase().contains(posterText.toLowerCase()));
+        Assert.assertTrue(String.format("The poster does not contains %s but has text: %s", keyword.toLowerCase(), posterText.toLowerCase()), keyword.toLowerCase().contains(posterText.toLowerCase()));
     }
 
     public void clickOnGetYourOwn() {
@@ -172,15 +172,18 @@ public class PD_Widget_CountdownSteps {
 
     public void switchToTab(String tab) {
         if(tab.contains("visual")){
+            scrollToElement(countdownWidgetPage.getCountdownWidget().getVisualTab());
             countdownWidgetPage.getCountdownWidget().getVisualTab().click();
         }
         if(tab.contains("technical")){
+            scrollToElement(countdownWidgetPage.getCountdownWidget().getTechnicalTab());
             countdownWidgetPage.getCountdownWidget().getTechnicalTab().click();
         }
     }
 
     public void setFullWidth() {
         countdownWidgetPage.getCountdownWidget().getFullWidthTab().click();
+        Serenity.getCurrentSession().put("theme", "full-width");
     }
 
     public void storeTheme() {
@@ -223,10 +226,14 @@ public class PD_Widget_CountdownSteps {
 
     public void setLayoutOrientation(String layoutOrientation) {
         if(layoutOrientation.equalsIgnoreCase("horizontal")){
+            scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab());
             countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab().click();
+            Serenity.getCurrentSession().put("orientation", layoutOrientation);
         }
         if(layoutOrientation.equalsIgnoreCase("vertical")){
+            scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab());
             countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab().click();
+            Serenity.getCurrentSession().put("orientation", layoutOrientation);
         }
     }
 
@@ -238,7 +245,7 @@ public class PD_Widget_CountdownSteps {
     public void embeddedCodeContainsStoredOrientation() {
         String embeddedOrientationValue = countdownWidgetPage.getCountdownWidget().getEmbeddedOrientation();
         String orientationValue = (String) Serenity.getCurrentSession().get("orientation");
-        Assert.assertTrue(String.format("The embedded code orientation value is: %s but the orientation value which was stored before is: %s ", embeddedOrientationValue, orientationValue), embeddedOrientationValue.equalsIgnoreCase(orientationValue));
+        Assert.assertTrue(String.format("The embedded code orientation value is: %s but the orientation value which was stored before is: %s ", embeddedOrientationValue.toLowerCase(), orientationValue), embeddedOrientationValue.equalsIgnoreCase(orientationValue));
     }
 
     public void isEventMessageShown(String eventMessage) {
