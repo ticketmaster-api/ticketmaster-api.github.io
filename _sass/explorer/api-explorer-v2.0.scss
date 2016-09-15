@@ -1,5 +1,8 @@
 $side-menu-bg: rgba(183, 201, 211, 0.1);
 #api-explorer-v2.api-explorer-v2 {
+  .row-container {
+    max-width: 1140px;
+  }
   h1 {
     margin: 72px auto 48px;
   }
@@ -29,7 +32,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
     }
     &-main {
       overflow: hidden;
-      width: 1170px;
+      width: 1140px;
       padding: 0 0 0 293px;
     }
 
@@ -39,7 +42,9 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
       &__sub-title {
         max-width: 840px;
       }
-      &__link {}
+      &__link {
+        white-space: nowrap;
+      }
     }
     // side-menu
     &-side-menu {
@@ -157,7 +162,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
     }
     &-about {
       float: left;
-      width: 265px;
+      width: 264px;
       &__title {
         margin: 13px 0;
         position: relative;
