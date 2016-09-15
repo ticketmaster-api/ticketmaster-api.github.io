@@ -141,14 +141,14 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
         -o-transition: opacity 0.2s ease-in-out;
         transition: opacity 0.2s ease-in-out;
 
-        border: 0 !important;
-        clip: rect(0 0 0 0) !important;
-        height: 1px !important;
-        margin: -1px !important;
-        overflow: hidden !important;
-        padding: 0 !important;
-        position: absolute !important;
-        width: 1px !important;
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
       }
       &__placeholder {
         position: relative;
@@ -177,7 +177,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
       &__list {
         display: none;
         position: absolute;
-        top: 45px;
+        top: 48px;
         left: 0;
         width: 100%;
         line-height: 24px;
@@ -190,14 +190,8 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
 
         border-radius: 4px;
         background-color: #b7c9d3;
-
-        &:hover,
-        &.active {
-          color: #009cde;
-        }
       }
       &__item {
-        padding: 12px 0;
         cursor: pointer;
         list-style: none;
         -webkit-transition: color 0.1s ease;
@@ -210,8 +204,18 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
         font-stretch: normal;
         line-height: 1.5;
         position: relative;
-        &:after {
-          content: '';
+        &-label {
+          color: $white;
+          display: block;
+          margin: 0 21px 0 0;
+          padding: 12px 0;
+
+          &:hover,
+          &.active {
+            color: #009cde;
+          }
+        }
+        &-link {
           position: absolute;
           right: 0;
           top: 50%;
