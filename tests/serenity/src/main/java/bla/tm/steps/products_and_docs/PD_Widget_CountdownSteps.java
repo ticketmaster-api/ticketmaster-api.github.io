@@ -80,9 +80,7 @@ public class PD_Widget_CountdownSteps {
 
     public void clickOnGetButton() {
         WebElementFacade getCodeBtn = countdownWidgetPage.getCountdownWidget().getGetCodeButton();
-        getDriver().manage().window().maximize();
         scrollToElement(getCodeBtn);
-        hoverToElement(getCodeBtn);
         getCodeBtn.click();
     }
 
@@ -122,9 +120,6 @@ public class PD_Widget_CountdownSteps {
     }
 
     public void clickResetButton() {
-        WebElementFacade resetBtn = countdownWidgetPage.getCountdownWidget().getResetButton();
-        scrollToElement(resetBtn);
-        hoverToElement(resetBtn);
         countdownWidgetPage.getCountdownWidget().getResetButton().click();
     }
 
@@ -186,11 +181,6 @@ public class PD_Widget_CountdownSteps {
         Serenity.getCurrentSession().put("theme", "full-width");
     }
 
-    public void storeTheme() {
-        String themeName = countdownWidgetPage.getCountdownWidget().getActiveTheme().getText();
-        Serenity.getCurrentSession().put("theme", themeName);
-    }
-
     public void embeddedCodeContainsStoredTheme() {
         String embeddedThemeValue = countdownWidgetPage.getCountdownWidget().getEmbeddedTheme();
         String themeValue = (String) Serenity.getCurrentSession().get("theme");
@@ -235,11 +225,6 @@ public class PD_Widget_CountdownSteps {
             countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab().click();
             Serenity.getCurrentSession().put("orientation", layoutOrientation);
         }
-    }
-
-    public void storeLayoutOrientation() {
-        String activeLayoutOrientation = countdownWidgetPage.getCountdownWidget().getActiveLayoutOrientation().getText();
-        Serenity.getCurrentSession().put("orientation", activeLayoutOrientation);
     }
 
     public void embeddedCodeContainsStoredOrientation() {
