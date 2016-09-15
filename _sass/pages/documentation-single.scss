@@ -246,6 +246,20 @@
   background-repeat: no-repeat;
   background-position: right top;
 
+  &__checkout{
+    /* @include img-retina("/assets/img/products-and-docs/checkout-widget-image.png", "/assets/img/products-and-docs/checkout-widget-image.png", 362px, 262px); */
+    background: url("/assets/img/products-and-docs/checkout-widget-image.png");
+    background-size: contain;
+    @media #{$max-1200} {
+      min-height: auto;
+      background-size: cover;
+    }
+    @media #{$max-768} {
+      background: url("/assets/img/products-and-docs/checkout-widget-image-m.png") top right;
+      background-size: cover;
+    }
+  }
+
   &__discovery{
     /* @include img-retina("/assets/img/products-and-docs/event-discovery-widget-image.png", "/assets/img/products-and-docs/event-discovery-widget-image.png", 362px, 262px); */
     background: url("/assets/img/products-and-docs/event-discovery-widget-image.png");
