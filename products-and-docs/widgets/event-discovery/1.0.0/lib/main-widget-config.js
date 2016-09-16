@@ -334,6 +334,7 @@
         $self.val(value);
       }
 
+      document.getElementById("w-country").disabled = true;
       widgetNode.setAttribute($self.attr('name'), value);
     });
 
