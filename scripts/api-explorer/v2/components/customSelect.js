@@ -51,7 +51,6 @@ module.exports = ko.components.register('custom-select', {
   template: ([
     '<div class="api-exp-custom-select">',
     '<select data-bind="options: selectArr, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
-    '<span data-bind="text: console.log(selected())" class="hide"></span>',
     '<span class="api-exp-custom-select__placeholder">',
     '<input data-bind="click: slideToggle, attr: {value: selected().name}" type="text" value="" readonly="">',
     '</span>',

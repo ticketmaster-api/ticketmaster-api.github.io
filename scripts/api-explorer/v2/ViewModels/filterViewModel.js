@@ -1,5 +1,3 @@
-var MethodsViewModel = require('./methodsViewModel');
-var ParamsViewModel = require('./paramsViewModel');
 
 /**
  * Filter View-Model
@@ -10,8 +8,6 @@ function FilterViewModel(base) {
     filterVM = this;
 
     // sub-models
-    this.methods = new MethodsViewModel(base);
-    this.params = new ParamsViewModel(base);
 
     // observables
     this.isEnabled = ko.observable(true);

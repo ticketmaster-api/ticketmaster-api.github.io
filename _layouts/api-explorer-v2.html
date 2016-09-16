@@ -6,231 +6,242 @@
 {% include home-header.html %}
 
 <div id="api-explorer-v2" class="api-explorer-v2">
-    <!--hints-->
-    <button id="cd-tour-trigger" class="btn feedback-btn scale-on-hover">Show hints</button>
-    <div class="cd-cover-layer"></div>
-    <!--bootstrap error popup-->
-    <div id="error-alert" class="modal fade" role="dialog">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog vertical-align-center">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="error-message">Whoa! Method returned an error. :(</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-default btn-small" data-dismiss="modal" style="top: 0 !important;">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--bootstrap success popup-->
-    <div id="success-alert" class="modal fade" role="dialog">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog vertical-align-center">
-                <!-- Modal content-->
-                <div class="modal-content success">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="success-message">Data posted successfully :)</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-default btn-small" data-dismiss="modal"
-                                style="top: 0 !important;">Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--bootstrap image popup-->
-    <div class="modal fade" id="image-popup" role="dialog">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog modal-lg vertical-align-center">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Image preview</h4>
-                    </div>
-                    <div class="modal-body">
-                        <img id="image-element" src="">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--bootstrap map popup-->
-    <div class="modal fade" id="map-popup" role="dialog">
-        <div class="vertical-alignment-helper">
-            <div class="modal-dialog modal-lg vertical-align-center">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Location</h4>
-                    </div>
-                    <div class="modal-body" id="map" style="width: 100%; height: 500px;"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!--hints-->
+	<button id="cd-tour-trigger" class="btn feedback-btn scale-on-hover">Show hints</button>
+	<div class="cd-cover-layer"></div>
+	<!--bootstrap error popup-->
+	<div id="error-alert" class="modal fade" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="error-message">Whoa! Method returned an error. :(</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn-default btn-small" data-dismiss="modal" style="top: 0 !important;">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--bootstrap success popup-->
+	<div id="success-alert" class="modal fade" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<!-- Modal content-->
+				<div class="modal-content success">
+					<div class="modal-header">
+						<h4 class="modal-title" id="success-message">Data posted successfully :)</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn-default btn-small" data-dismiss="modal"
+						        style="top: 0 !important;">Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--bootstrap image popup-->
+	<div class="modal fade" id="image-popup" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog modal-lg vertical-align-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Image preview</h4>
+					</div>
+					<div class="modal-body">
+						<img id="image-element" src="">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--bootstrap map popup-->
+	<div class="modal fade" id="map-popup" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog modal-lg vertical-align-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Location</h4>
+					</div>
+					<div class="modal-body" id="map" style="width: 100%; height: 500px;"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="row-container">
-        <!--page header-->
-        <section class="api-exp-header">
-            <h1 class="api-exp-header__title">TICKETMASTER API EXPLORER V2.0</h1>
-            <p class="api-exp-header__sub-title">Make live API calls without writing a single line of code! The API Explorer currently works with the
-                <a class="api-exp-header__link" href="/products-and-docs/apis/discovery/v2">Discovery API</a>,
-                <a class="api-exp-header__link" href="/products-and-docs/apis/commerce/">Commerce API</a> and
-                <a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
-            </p>
-        </section>
+	<div class="row-container api-exp-content">
+		<!--page header-->
+		<section class="api-exp-header">
+			<h1 class="api-exp-header__title">TICKETMASTER API EXPLORER V2.0</h1>
+			<p class="api-exp-header__sub-title">Make live API calls without writing a single line of code! The API Explorer currently works with the
+				<a class="api-exp-header__link" href="/products-and-docs/apis/discovery/v2">Discovery API</a>,
+				<a class="api-exp-header__link" href="/products-and-docs/apis/commerce/">Commerce API</a> and
+				<a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
+			</p>
+		</section>
 
-        <!--event counter bar-->
-        <section class="horizontal-events-tracker">
-            <div class="col-xs-12 horizontal-events-tracker__section">
-<span class="horizontal-events-tracker__title">
-Number of Events:
-<span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
-</span>
-<span class="horizontal-events-tracker__title">
-Number of Attractions:
-<span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
-</span>
-<span class="horizontal-events-tracker__title">
-Number of Venues:
-<span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
-</span>
-<span class="horizontal-events-tracker__title">
-Number of Countries:
-<span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
-</span>
-            </div>
-        </section>
+		<!--event counter bar-->
+		<section class="horizontal-events-tracker">
+			<div class="col-xs-12 horizontal-events-tracker__section">
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Events:
+					<b id="js-events-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Attractions:
+					<b id="js-attractions-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Venues:
+					<b id="js-venues-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Countries:
+					<b id="js-countries-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+			</div>
+		</section>
 
-        <div class="api-exp-side-menu-container clearfix">
-            <section class="api-exp-main">
+		<div class="api-exp-side-menu-container clearfix">
+			<!--about-->
+			<section class="api-exp-about">
+				<a href="#" class="api-exp-about__button"></a>
+				<article class="api-exp-about__content">
+					<h5 class="api-exp-about__title">About API and Method:</h5>
+					<section class="api-exp-about__description">
+						<p>Use the
+							<a class="api-exp-about__description-link" href="#">Commerce API</a>
+							to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
+						<p>Method
+							<a class="api-exp-about__description-link" href="#">GET</a>.
+							Authentication required. Returns the 20 most recent events for the authenticating user.
+						</p>
+					</section>
+				</article>
+			</section>
 
-                <!--menu-->
-                <aside data-bind="with: menu" class="api-exp-side-menu">
-                    <ul data-bind="foreach: categories" class="api-exp-side-menu__container nav nav-pills nav-stacked">
-                        <li data-bind="css: {active: checked}" role="presentation" class="api-exp-side-menu__item">
-                            <a data-bind="click: $parent.selectCategory.bind($parent, name), text: name" href="#" class="api-exp-side-menu__link"></a>
-                        </li>
-                    </ul>
-                </aside>
+			<!--content-wrapper-->
+			<section class="api-exp-main">
 
-                <!--filter-->
-                <section data-bind="with: filter" class="api-exp-content">
-                    <!--methods-->
-                    <section data-bind="with: methods" class="api-exp-main-filter clearfix">
-                        <section class="api-exp-filter">
-                            <!--api key-->
-                            <input type="text" id="api-key" class="form-control api-exp-filter__api-key" placeholder="Api key">
-                            <section class="api-exp-methods clearfix">
-                                <label class="api-exp-methods__label">Methods</label>
+				<!--menu-->
+				<aside data-bind="with: menu" class="api-exp-side-menu">
+					<ul data-bind="foreach: categories" class="api-exp-side-menu__container nav nav-pills nav-stacked visible-lg-block">
+						<li data-bind="css: {active: checked}" role="presentation" class="api-exp-side-menu__item">
+							<a data-bind="click: $parent.selectCategory.bind($parent, name), text: name" href="#" class="api-exp-side-menu__link"></a>
+						</li>
+					</ul>
+					<!--select-->
+					<div class="api-exp-side-menu__select hidden-lg">
+						<div data-bind="component: {name: 'custom-select', params: {options: categories}}"></div>
+					</div>
+				</aside>
 
-                                <!--radios-->
-                                <div data-bind="foreach: radiosArr" class="api-exp-methods__radio-buttons radio-buttons clearfix">
-                                    <div data-bind="css: {active: checked}" class="api-exp-method">
-                                        <input data-bind="attr: {id: 'api-exp-' + name, checked: checked}" class="api-exp-content-method__radio" type="radio" name="api-exp-methods">
-                                        <label data-bind="text: name, attr: {for: 'api-exp-' + name}" class="radio-inline api-exp-method__label"></label>
-                                    </div>
-                                </div>
+				<!--api key-->
+				<section class="api-exp-key">
+					<input type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
+					<a href="#" class="api-exp-key__about-button visible-xs-inline-block"></a>
+				</section>
 
-                                <!--select-->
-                                <div class="api-exp-methods__select">
-                                    <div data-bind="component: {name: 'custom-select', params: {options: selectArr}}"></div>
-                                </div>
+				<!--filter-->
+				<section data-bind="with: methods" class="api-exp-main-filter">
+					<section class="api-exp-filter">
+						<section class="api-exp-methods clearfix">
+							<label class="api-exp-methods__label">Methods</label>
 
-                            </section>
-                        </section>
-                        <!--about-->
-                        <section class="api-exp-about">
-                            <article>
-                                <h5 class="api-exp-about__title">About API and Method:</h5>
-                                <section class="api-exp-about__description">
-                                    <p>Use the
-                                        <a class="api-exp-about__description-link" href="#">Commerce API</a>
-                                        to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
-                                    <p>Method
-                                        <a class="api-exp-about__description-link" href="#">GET</a>.
-                                        Authentication required. Returns the 20 most recent events for the authenticating user.
-                                    </p>
-                                </section>
-                            </article>
-                        </section>
-                    </section>
+							<!--radios-->
+							<div data-bind="foreach: radiosArr" class="api-exp-methods__radio-buttons radio-buttons clearfix">
+								<div data-bind="css: {active: checked}" class="api-exp-method">
+									<input data-bind="attr: {id: 'api-exp-' + name, checked: checked}" class="api-exp-content-method__radio" type="radio" name="api-exp-methods">
+									<label data-bind="text: name, attr: {for: 'api-exp-' + name}" class="radio-inline api-exp-method__label"></label>
+								</div>
+							</div>
 
-                    <!--params-->
-                    <section data-bind="with: params" class="api-exp-params">
-                        <!--params filter-->
-                        <section class="api-exp-params-filter">
+							<!--select-->
+							<div class="api-exp-methods__select">
+								<div data-bind="component: {name: 'custom-select', params: {options: selectArr}}"></div>
+							</div>
+						</section>
+					</section>
+				</section>
 
-                            <section class="api-exp-params-headline">
-                                <h4 class="api-exp-params-headline__title">Parameters</h4>
-                                <div class="api-exp-params-headline-edit">
-                                    <button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
-                                    <button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
-                                </div>
-                            </section>
+			</section><!--content-wrapper-->
 
-                            <section class="api-exp-params-filter-fields">
-                                <div class="api-exp-params-filter__field">
-                                    <input type="text" id="api-exp-param_id" class="form-control" placeholder="Id">
-                                </div>
-                                <div class="api-exp-params-filter__field">
-                                    <input type="text" id="api-exp-param_attraction-id" class="form-control" placeholder="Attraction Id">
-                                </div>
-                                <div class="api-exp-params-filter__field">
-                                    <input type="text" id="api-exp-param_promoter-id" class="form-control" placeholder="Promoter Id">
-                                </div>
-                                <div class="api-exp-params-filter__field">
-                                    <input type="text" id="api-exp-param_onsalestartdatetime" class="form-control" placeholder="onsaleStartDateTime">
-                                </div>
-                                <div class="api-exp-params-filter__field">
-                                    <input type="text" id="api-exp-param_venue-id" class="form-control" placeholder="Venue Id">
-                                </div>
-                            </section>
-                        </section><!--params filter-->
-                        <!--about param-->
-                        <section class="api-exp-params-about">
-                            <article>
-                                <h5 class="api-exp-params-about__title">About API and Method:</h5>
-                                <section class="api-exp-params-about__description">
-                                    <p>Use the
-                                        <a class="api-exp-params-about__description-link" href="#">Commerce API</a>
-                                        to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
-                                    <p>Method
-                                        <a class="api-exp-params-about__description-link" href="#">GET</a>.
-                                        Authentication required. Returns the 20 most recent events for the authenticating user.
-                                    </p>
-                                </section>
-                            </article>
-                        </section><!--about param-->
-                    </section><!--parameters-->
-                </section><!--content-->
+		</div>
+		<!--params-->
+		<section data-bind="with: params" class="api-exp-params">
+			<div class="api-exp-params-wrapper clearfix">
+				<!--about-->
+				<section class="api-exp-about visible-lg-block">
+					<a href="#" class="api-exp-about__button"></a>
+					<article class="api-exp-about__content">
+						<h5 class="api-exp-about__title">About API and Method:</h5>
+						<section class="api-exp-about__description">
+							<p>Use the
+								<a class="api-exp-about__description-link" href="#">Commerce API</a>
+								to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
+							<p>Method
+								<a class="api-exp-about__description-link" href="#">GET</a>.
+								Authentication required. Returns the 20 most recent events for the authenticating user.
+							</p>
+						</section>
+					</article>
+				</section>
+				<!--params filter-->
+				<section class="api-exp-params-filter">
+						<section class="api-exp-params-headline">
+							<a data-bind="click: slideToggle" href="#">
+								<h4 class="api-exp-params-headline__title">Parameters</h4>
+							</a>
+							<div class="api-exp-params-headline-edit">
+								<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
+								<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
+							</div>
+						</section>
+						<section class="api-exp-params-filter-fields">
+							<div class="api-exp-params-filter__field">
+								<input type="text" id="api-exp-param_id" class="form-control" placeholder="Id">
+							</div>
+							<div class="api-exp-params-filter__field">
+								<input type="text" id="api-exp-param_attraction-id" class="form-control" placeholder="Attraction Id">
+							</div>
+							<div class="api-exp-params-filter__field">
+								<input type="text" id="api-exp-param_promoter-id" class="form-control" placeholder="Promoter Id">
+							</div>
+							<div class="api-exp-params-filter__field">
+								<input type="text" id="api-exp-param_onsalestartdatetime" class="form-control" placeholder="onsaleStartDateTime">
+							</div>
+							<div class="api-exp-params-filter__field">
+								<input type="text" id="api-exp-param_venue-id" class="form-control" placeholder="Venue Id">
+							</div>
+						</section>
+				</section><!--params filter-->
+			</div>
+		</section><!--parameters-->
 
-            </section>
-        </div>
-        <section class="api-exp-get-btn clearfix">
-            <button class="api-exp-get-btn__button button button-blue">Get</button>
-        </section>
-    </div>
+		<section class="api-exp-get-btn clearfix">
+			<button class="api-exp-get-btn__button button button-blue">Get</button>
+		</section>
+	</div>
 </div>
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
 <div id="footer" class="xs-center slice-top-left">
-    {% include partials/footer.html %}
+	{% include partials/footer.html %}
 </div>
 <div id="back-top">
-    <a href="#"><span></span></a>
+	<a href="#"><span></span></a>
 </div>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
 <!--<script src="{{'/config.js' | prepend: site.baseurl }}"></script>-->

@@ -1,4 +1,4 @@
-var methodsVM = require('./methodsViewModel');
+// var methodsVM = require('./methodsViewModel');
 var hf = require('../components/helperFunc');
 var self;
 var methodsVM;
@@ -8,9 +8,9 @@ var methodsVM;
  * @param base
  * @constructor
  */
-function MenuViewModel(base, filter) {
+function MenuViewModel(base, methods) {
     self = this;
-    methodsVM = filter.methods;
+    methodsVM = methods;
     this.categories = ko.observableArray(Object.keys(base).map(function (item) {
         return {
             checked: ko.observable(false),

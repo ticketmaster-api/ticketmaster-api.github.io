@@ -1,3 +1,4 @@
+var base =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -60,8 +61,10 @@
 	__webpack_require__(2);
 	
 	var base = __webpack_require__(4);
-	var FilterViewModel = __webpack_require__(5);
-	var MenuViewModel = __webpack_require__(8);
+	// var FilterViewModel = require('./../ViewModels/filterViewModel');
+	var MenuViewModel = __webpack_require__(5);
+	var ParamsViewModel = __webpack_require__(6);
+	var MethodsViewModel = __webpack_require__(7);
 	
 	/**
 	 * AppViewModel
@@ -72,8 +75,10 @@
 	  appVM = this;
 	
 	  // sub-models
-	  this.filter = new FilterViewModel(base);
-	  this.menu = new MenuViewModel(base, this.filter);
+	  // this.filter = new FilterViewModel(base);
+	  this.methods = new MethodsViewModel(base);
+	  this.menu = new MenuViewModel(base, this.methods);
+	  this.params = new ParamsViewModel(base);
 	}
 	
 	// Activates knockout.js
@@ -137,7 +142,6 @@
 	  template: ([
 	    '<div class="api-exp-custom-select">',
 	    '<select data-bind="options: selectArr, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
-	    '<span data-bind="text: console.log(selected())" class="hide"></span>',
 	    '<span class="api-exp-custom-select__placeholder">',
 	    '<input data-bind="click: slideToggle, attr: {value: selected().name}" type="text" value="" readonly="">',
 	    '</span>',
@@ -202,75 +206,88 @@
 	
 	//gets important elements from WADL document and writes them into global variables
 	var parseXMLDoc = function (xml) {
-	    //get all APIs
-	    var APIs = $(xml).find("resources"),
-	        isFirstMethod = true; //variable to store the very first method found
+	  //get all APIs
+	  var APIs = $(xml).find("resources"),
+	    isFirstMethod = true; //variable to store the very first method found
 	
-	    APIs.each(function(){
-	        //get all methods in the API
-	        var methods = $(this).find('resource');
+	  APIs.each(function(){
+	    //get all methods in the API
+	    var methods = $(this).find('resource');
 	
-	        methods.each(function(index, element){
-	            var me = $(element), //method
-	                method = $(me.find('method')[0]), //get method details object
-	                category = method.find('[primary="true"]').text(), //get API name
-	                params = me.find('param'), //method params
-	                parameters = {}; //temporary object to store param data
+	    methods.each(function(index, element){
+	      var me = $(element), //method
+	        method = $(me.find('method')[0]), //get method details object
+	        category = method.find('[primary="true"]').text(), //get API name
+	        params = me.find('param'), //method params
+	        parameters = {}; //temporary object to store param data
 	
-	            params.each(function(index, element){ //fill param object with required data
-	                var that = $(this);
-	                parameters[that.attr('name')] = {
-	                    'name': that.attr('name'),
-	                    'required': that.attr('required'),
-	                    'type': that.attr('type'),
-	                    'style': that.attr('style'),
-	                    'default': that.attr('default'),
-	                    'doc': that.first('doc').text().trim()
-	                }
-	            });
+	      params.each(function(index, element){ //fill param object with required data
+	        var that = $(this);
+	        parameters[that.attr('name')] = {
+	          'name': that.attr('name'),
+	          'required': that.attr('required'),
+	          'type': that.attr('type'),
+	          'style': that.attr('style'),
+	          'default': that.attr('default'),
+	          'doc': that.first('doc').text().trim()
+	        }
+	      });
 	
-	            if (!base[category]){
-	                base[category] = {}; // create new API in base object if there is none
-	            }
+	      if (!base[category]){
+	        base[category] = {}; // create new API in base object if there is none
+	      }
+	      base[category][method.attr("name")] = base[category][method.attr("name")] || {};
+	      base[category].ALL = base[category].ALL || {};
+	      base[category].ALL[method.attr("id")]= {
+	        'id' : method.attr("id"), // method id
+	        'name' : method.attr("apigee:displayName") ? method.attr("apigee:displayName") : method.attr("id"), // method name
+	        'method' : method.attr('name'), // GET or POST
+	        'category' : category, // API name
+	        'path': me.attr('path'), // method URL
+	        'parameters': parameters, // method parameters
+	        'base' : me.parent().attr('base'), // method base link
+	        'documentation' : $(method.find('doc')[0]).attr('apigee:url'), // link to documentation
+	        'description' : $(method.find('doc')[0]).text().trim() //method description
+	      };
 	
-	            base[category][method.attr("id")] = {
-	                'id' : method.attr("id"), // method id
-	                'name' : method.attr("apigee:displayName") ? method.attr("apigee:displayName") : method.attr("id"), // method name
-	                'method' : method.attr('name'), // GET or POST
-	                'category' : category, // API name
-	                'path': me.attr('path'), // method URL
-	                'parameters': parameters, // method parameters
-	                'base' : me.parent().attr('base'), // method base link
-	                'documentation' : $(method.find('doc')[0]).attr('apigee:url'), // link to documentation
-	                'description' : $(method.find('doc')[0]).text().trim() //method description
-	            };
-	        });
+	      base[category][method.attr("name")][method.attr("id")] = {
+	        'id' : method.attr("id"), // method id
+	        'name' : method.attr("apigee:displayName") ? method.attr("apigee:displayName") : method.attr("id"), // method name
+	        'method' : method.attr('name'), // GET or POST
+	        'category' : category, // API name
+	        'path': me.attr('path'), // method URL
+	        'parameters': parameters, // method parameters
+	        'base' : me.parent().attr('base'), // method base link
+	        'documentation' : $(method.find('doc')[0]).attr('apigee:url'), // link to documentation
+	        'description' : $(method.find('doc')[0]).text().trim() //method description
+	      };
 	    });
+	  });
 	};
 	
 	//gets document from WADL configuration file
 	var readFromWADL = function () {
-	    $.ajax({
-	        url: CONFIG_URL,
-	        async : false,
-	        dataType: ($.browser.msie) ? "text" : "xml",
-	        success : function(response){
-	            var xml;
+	  $.ajax({
+	    url: CONFIG_URL,
+	    async : false,
+	    dataType: ($.browser.msie) ? "text" : "xml",
+	    success : function(response){
+	      var xml;
 	
-	            if (typeof response == "string"){
-	                xml = new ActiveXObject("Microsoft.XMLDOM");
-	                xml.async = false;
-	                xml.loadXML(response);
-	            } else {
-	                xml = response;
-	            }
-	            parseXMLDoc(xml);
-	        },
+	      if (typeof response == "string"){
+	        xml = new ActiveXObject("Microsoft.XMLDOM");
+	        xml.async = false;
+	        xml.loadXML(response);
+	      } else {
+	        xml = response;
+	      }
+	      parseXMLDoc(xml);
+	    },
 	
-	        error: function(XMLHttpRequest, textStatus, errorThrown){
-	            alert('Data Could Not Be Loaded - '+ textStatus);
-	        }
-	    });
+	    error: function(XMLHttpRequest, textStatus, errorThrown){
+	      alert('Data Could Not Be Loaded - '+ textStatus);
+	    }
+	  });
 	};
 	readFromWADL();
 	module.exports = base;
@@ -280,101 +297,7 @@
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var MethodsViewModel = __webpack_require__(6);
-	var ParamsViewModel = __webpack_require__(7);
-	
-	/**
-	 * Filter View-Model
-	 * @param base
-	 * @constructor
-	 */
-	function FilterViewModel(base) {
-	    filterVM = this;
-	
-	    // sub-models
-	    this.methods = new MethodsViewModel(base);
-	    this.params = new ParamsViewModel(base);
-	
-	    // observables
-	    this.isEnabled = ko.observable(true);
-	}
-	
-	module.exports = FilterViewModel;
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var hf = __webpack_require__(3);
-	var self;
-	var base;
-	
-	/**
-	 * Methods View-Model
-	 * @param raw
-	 * @constructor
-	 */
-	function MethodsViewModel(raw) {
-	  self = this;
-	  base = raw;
-	  // observables
-	  this.apikey = ko.observable('');
-	  this.radiosArr = ko.observableArray([]); // {method: 'str', checked: false}
-	  this.selectArr = ko.observableArray([]); // {name: 'str', checked: false, link: 'str', about: 'str'}
-	  this.initialValue = ko.observable()
-	}
-	
-	/**
-	 * Methods View-Model method
-	 * @param name
-	 */
-	MethodsViewModel.prototype.updateModel = function (name) {
-	  var radios = hf.getModelArray({
-	    obj: base[name],
-	    arr: [{
-	      checked: true,
-	      name: 'ALL'
-	    }],
-	    prop: 'method'
-	  });
-	
-	  var options = hf.getModelArray({
-	    obj: base[name],
-	    prop: 'name'
-	  });
-	
-	  self.radiosArr(radios);
-	  self.selectArr(options);
-	  self.initialValue()
-	};
-	
-	module.exports = MethodsViewModel;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	var self;
-	
-	/**
-	 * Params View-Model
-	 * @param base
-	 * @constructor
-	 */
-	function ParamsViewModel(base) {
-	    self = this;
-	
-	    // observables
-	    this.fieldsArr = ko.observableArray([]); // {name: 'str', value: 'str', isDirty: false, valid: true, about: 'str'}
-	}
-	
-	module.exports = ParamsViewModel;
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var methodsVM = __webpack_require__(6);
+	// var methodsVM = require('./methodsViewModel');
 	var hf = __webpack_require__(3);
 	var self;
 	var methodsVM;
@@ -384,9 +307,9 @@
 	 * @param base
 	 * @constructor
 	 */
-	function MenuViewModel(base, filter) {
+	function MenuViewModel(base, methods) {
 	    self = this;
-	    methodsVM = filter.methods;
+	    methodsVM = methods;
 	    this.categories = ko.observableArray(Object.keys(base).map(function (item) {
 	        return {
 	            checked: ko.observable(false),
@@ -410,6 +333,112 @@
 	
 	module.exports = MenuViewModel;
 
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	var self;
+	
+	/**
+	 * Params View-Model
+	 * @param base
+	 * @constructor
+	 */
+	function ParamsViewModel(base) {
+	  self = this;
+	
+	  this.animationSpeed = 200;
+	
+	  // observables
+	  this.fieldsArr = ko.observableArray([]); // {name: 'str', value: 'str', isDirty: false, valid: true, about: 'str'}
+	}
+	
+	ParamsViewModel.prototype.slideToggle = function(viewModel, event) {
+	  console.log($(event.currentTarget));
+	
+	  $(event.currentTarget)
+	    .parent('.js-slide-wrapper')
+	    .slideToggle(viewModel.animationSpeed);
+	};
+	
+	module.exports = ParamsViewModel;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var hf = __webpack_require__(3);
+	var self;
+	var base;
+	
+	/**
+	 * Methods View-Model
+	 * @param raw
+	 * @constructor
+	 */
+	function MethodsViewModel(raw) {
+	  self = this;
+	  base = raw;
+	  
+	  // observables
+	  this.apikey = ko.observable('');
+	  this.radiosArr = ko.observableArray([]); // {method: 'str', checked: false}
+	  this.selectArr = ko.observableArray([]); // {name: 'str', checked: false, link: 'str', about: 'str'}
+	}
+	
+	/**
+	 * Methods View-Model method
+	 * @param name
+	 */
+	MethodsViewModel.prototype.updateModel = function (name) {
+	  self.updateOnMethodsType(base[name]);
+	  self.updateOnMethodsList();
+	};
+	
+	MethodsViewModel.prototype.updateOnMethodsType = function (param) {
+	  var obj = param || {},
+	    arr = [],
+	    count = 0;
+	
+	  for (var i in obj) {
+	    if (!obj.hasOwnProperty(i)) { continue; }
+	
+	    var item = {
+	      checked: ko.observable(!count),
+	      name: i
+	    };
+	
+	    if (i === 'ALL') {
+	      arr.unshift(item)
+	    } else {
+	      arr.push(item);
+	    }
+	  }
+	
+	  self.radiosArr(arr);
+	
+	  return arr;
+	};
+	
+	MethodsViewModel.prototype.updateOnMethodsList = function () {
+	  console.log(self.radiosArr());
+	  // var obj = self.radiosArr() || {},
+	  //   arr = [],
+	  //   count = 0;
+	  //
+	  // for (var i in obj) {
+	  //   if (!obj.hasOwnProperty(i)) { continue; }
+	  //
+	  //   arr.push({
+	  //     checked: ko.observable(!count),
+	  //     name: i
+	  //   });
+	  // }
+	  // self.selectArr(arr);
+	};
+	
+	module.exports = MethodsViewModel;
 
 /***/ }
 /******/ ]);

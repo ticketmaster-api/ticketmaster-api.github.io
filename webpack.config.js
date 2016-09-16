@@ -14,8 +14,8 @@ module.exports = {
 
   output: {
     path: './scripts/api-explorer/v2',
-    filename: '[name].js'
-    // library: "[name]" // global variable
+    filename: '[name].js',
+    library: "base" // global variable
   },
 
   devtool: 'source-map',
