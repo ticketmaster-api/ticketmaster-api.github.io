@@ -346,7 +346,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
 
       if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
-        var args = { components: 'postal_code:' + widget.config.postalcode };
+        var args = { language: 'en', components: 'postal_code:' + widget.config.postalcode };
         if (widget.config.googleapikey) args.key = widget.config.googleapikey;
         if (this.config.country) args.components += '|country:' + this.config.country;
         this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
