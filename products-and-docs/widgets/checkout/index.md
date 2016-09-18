@@ -46,7 +46,7 @@ Grab a small code snippet to insert into your website
           <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://embed.ticketmaster.com/tm.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
 
           <ul>
-            <li><strong>Step 2:</strong> Next, paste the snippet within the <em>&lt;head&gt;</em> tag of your website.  For example:</li>
+            <li><strong>Step 2:</strong> Next, paste the snippet within the <em>&lt;head&gt;</em> tag of your website.</li>
           </ul>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;head&gt;</span>
