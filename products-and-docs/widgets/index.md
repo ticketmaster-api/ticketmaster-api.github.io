@@ -53,11 +53,11 @@ directly on your website at no additional cost.
 
 {% endcapture %}
 
-<!--
+
 <div class="widget_box widget_box__checkout" markdown="1">
 {{checkout-widget}}
 </div>
- -->
+
 <div class="widget_box widget_box__discovery" markdown="1">
 {{discovery-widget}}
 </div>
