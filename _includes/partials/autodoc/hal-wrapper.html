@@ -33,12 +33,12 @@
                             {%assign isMultiLink = false%}
                         {% endif %}
 
-                        {% assign propToEmbed = 0 %}
+
+                        {% assign propToEmbed = [] %}
                         {% for add_property_HAL in _HAL.embed %}
                             {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
                         {%endfor%}
                         {%if propToEmbed.size > 0%}
-                            <!--<li><h4 class="blue">propToEmbed.size - {{propToEmbed.size}} , {{propToEmbed | split: ' '}}</h4></li>-->
                             {% assign removeEmbeddedFields = [""] %}
                             {%include partials/autodoc/wrap-embed-in.html%}
                         {% endif %}
@@ -60,7 +60,7 @@
                             </li>
                         {% endif %}
 
-                        {% assign propToEmbed = 0 %}
+                        {% assign propToEmbed = [] %}
 
 {% endif %}
 

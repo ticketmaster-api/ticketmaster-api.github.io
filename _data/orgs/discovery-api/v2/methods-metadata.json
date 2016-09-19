@@ -103,8 +103,7 @@
                     { "embed": "#/definitions/Level", "as": "genre" , "in":"#/definitions/Classification/segment"},
                     { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
                 ]
-            },
-            "NOT_CORRECT": ["can't find rule how obj is related (segment -> genres -> subgenres )<br> https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG "]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications/{id}",
@@ -122,8 +121,7 @@
                     { "embed": "#/definitions/Level", "as": "genre" , "in":"#/definitions/Classification/segment"},
                     { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
                 ]
-            },
-            "NOT_CORRECT": ["not found `subType` field in : https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG"]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications/genres/{id}",

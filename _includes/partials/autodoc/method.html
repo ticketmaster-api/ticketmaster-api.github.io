@@ -393,9 +393,9 @@
                 {% endif %}{% endcomment %}-->
 
                 {% if _HAL.wrappin != null %}
-                        {% assign _HAL-part1 = true %}
-                            {% include partials/autodoc/hal-wrapper.html %}
-                        {% assign _HAL-part1 = false %}
+                    {% assign _HAL-part1 = true %}
+                        {% include partials/autodoc/hal-wrapper.html %}
+                    {% assign _HAL-part1 = false %}
                 {% endif %}
 
                 {% if _HAL.links.size > 0 and _HAL.wrappin == null %}
@@ -426,6 +426,7 @@
                         {% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
                         {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->{% endcomment %}
                         {% if schemaSplit[1] == _link_HAL[1] %}
+                            <!--<li><b class="blue">isMultiLink</b> - {{isMultiLink}} ; <b>isSingleLink</b> -  {{isSingleLink}}</li>-->
                             {% include partials/autodoc/hal-wrapper-links.html %}
                             {% assign isMultiLink = false %}
                             {% assign isSingleLink = false %}
