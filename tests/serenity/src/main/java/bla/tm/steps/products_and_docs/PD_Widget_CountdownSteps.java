@@ -120,6 +120,7 @@ public class PD_Widget_CountdownSteps {
     }
 
     public void clickResetButton() {
+        scrollToElement(countdownWidgetPage.getCountdownWidget().getResetButton());
         countdownWidgetPage.getCountdownWidget().getResetButton().click();
     }
 
