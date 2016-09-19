@@ -1,11 +1,11 @@
 <!--recieve params from method.html-->
 {% if isMultiLink %}
-<li><code class="highlighter-rouge">_links</code>(object) - links to data sets.
+<li><code class="highlighter-rouge">_links</code>(object) - links to data sets
     <ul>
-        <li><code class="highlighter-rouge">self</code>(object) - link to this data set.
+        <li><code class="highlighter-rouge">self</code>(object) - link to this data set
             <ul>
-                <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
-                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated.</li>
+                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
             </ul>
         </li>
 
@@ -18,10 +18,10 @@
 
             <li><code class="highlighter-rouge">{% if methodNameLink[1] != schemaSplit[1] %}{{_embed_HAL.as}}{%else%}self{%endif%}</code>{% if methodNameLink[1] != schemaSplit[1] %}(array){%else%}(object){%endif%} - link to this data set.
                 <ul>
-                    <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code> - link.
+                    <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
                         <ul>
-                            <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
-                            <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated.</li>
+                            <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                            <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
                         </ul>
                     </li>
                 </ul>
@@ -35,12 +35,12 @@
 {% endif %}
 
 {% if isSingleLink %}
-<li><code class="highlighter-rouge">_links</code>(object) - links to data sets.
+<li><code class="highlighter-rouge">_links</code>(object) - links to data sets
     <ul>
-        <li><code class="highlighter-rouge">self</code>(object) - link to this data set.
+        <li><code class="highlighter-rouge">self</code>(object) - link to this data set
             <ul>
-                <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
-                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated.</li>
+                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
             </ul>
         </li>
     </ul>

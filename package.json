@@ -5,6 +5,7 @@
   "main": "_site/index.html",
   "scripts": {
     "start": "jekyll serve",
+    "start-with-limit-3": "jekyll serve --no-watch -I --limit_posts 3",
     "event-discovery-widget-1.0.0-once": "babel products-and-docs/widgets/event-discovery/1.0.0/src -d products-and-docs/widgets/event-discovery/1.0.0/lib --source-maps",
     "event-discovery-widget-1.0.0": "npm run event-discovery-widget-1.0.0-once -- -w",
     "countdown-widget-1.0.0-once": "babel products-and-docs/widgets/countdown/1.0.0/src -d products-and-docs/widgets/countdown/1.0.0/lib --source-maps",

@@ -1,0 +1,64 @@
+{% for add_property_HAL in _HAL.embed %}
+    {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+    {%assign exitLoop = false %}
+    {% if this_index == forloop.index or propToEmbed.size < 1 %}
+        {%assign exitLoop = true %}<!-- EXIT NOW-->
+    {%endif%}
+    {% if exitLoop == false %}
+        {% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: add_property_HAL.as | append: ' ' | append: propToEmbed[2] %}
+        {% assign propToEmbedLength = propToEmbed.size | minus: 1 %}
+        {% assign propLastInPath = propToEmbed[propToEmbedLength] %}
+        {% assign propToEmbedLength = 0 %}
+        {% assign innerRef = propToEmbed %}
+        {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath] %}
+
+        <li><code>{{propToEmbed[2]}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+            <ul>
+                <li><code class="highlighter-rouge">_embedded</code>(object) - container for {{ add_property_HAL.as }}. <!-- start loop here {{ add_property_HAL.size }} -->
+                    <ul>{% assign InPath = _HAL.embed[forloop.index0].as %}
+                        {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[InPath] %}
+                        <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+                            <ul>
+                                <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
+                            <ul>
+                                <li><code class="highlighter-rouge">_embedded</code>(object) - container for {{ _HAL.embed[forloop.index].as }}. <!-- start loop here {{ add_property_HAL.size }} -->
+                                    {% for inner in _HAL.embed %}
+                                        {% assign propToEmbedInner = inner.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+
+                                        {% if add_property_HAL.as == propToEmbedInner[forloop.index] %}
+                                        {% assign this_index = forloop.index %}
+                                        {% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _HAL.embed[forloop.index0].as %}
+                                        <ul>
+                                            <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
+                                                <ul>{% assign InPath = _HAL.embed[forloop.index0].as %}
+                                                    {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[InPath] %}
+                                                    <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+                                                        <!--<kbd>embed - {{add_property_HAL.embed}} as- {{add_property_HAL.as}} , forloop.index0 -{{forloop.index0}}</kbd>-->
+                                                        {%assign outer = _HAL.embed[forloop.index0].embed %}
+                                                        {%include partials/autodoc/inner-item.html%}
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        {%endif%}
+
+                                    {% endfor %}
+                                </li>
+                            </ul>
+                            {%assign outer = _HAL.embed[forloop.index0].embed %}
+                            {%include partials/autodoc/inner-item.html%}
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+            {% if topPath[1].$ref %} - {{ topPath[1].$ref }}{% endif %}{% if topPath['$ref']  %}
+            {%assign outer = swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath]%}
+            {%include partials/autodoc/inner-item.html%}
+            {%endif%}
+        </li>
+    {%endif%}
+
+{% endfor %}
