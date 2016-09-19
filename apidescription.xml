@@ -1068,6 +1068,126 @@
         </request>
       </method>
     </resource>
+    <!-- Select Payments -->
+    <resource path="commerce/{version}/shopping/carts/{cartId}/payments.{format}">
+      <param name="version" required="true" type="xsd:string" style="template" default="v2">
+        <doc>The API Version</doc>
+      </param>
+      <param name="cartId" required="true" type="xsd:string" style="template" default="">
+        <doc>The Cart Id</doc>
+      </param>
+      <param name="format" required="true" type="xsd:string" style="template" default="json">
+        <doc>API Response Format</doc>
+      </param>
+      <method id="commerce.shopping.cart.select.payments" name="POST" apigee:displayName="Select Payments">
+        <apigee:tags>
+          <apigee:tag primary="true">Commerce API</apigee:tag>
+          <apigee:tag>Commerce</apigee:tag>
+        </apigee:tags>
+        <apigee:authentication required="true"/>
+        <apigee:example url="commerce/v2/shopping/carts/4d1315c9-9220-48b3-9882-a295db25bfe3.jphx1/payments.json"/>
+        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#select-payments">Select Payments!
+        </doc>
+        <request>
+          <param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+            <doc>
+              The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+            </doc>
+          </param>
+          <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json">
+          </param>
+          <representation>
+            <apigee:payload required="true">
+              <doc apigee:url="https://developer.ticketmaster.com">
+                The payload should contain a valid payment in json format.
+              </doc>
+              <apigee:content>
+                <![CDATA[
+                       {
+                          "pollingCallbackUrl" : "http://your.server:8080/your-webhook-uri/",
+                          "payments" : [ {
+                             "type": "wallet",
+                             "amount" : {
+                                "amount" : "100.00",
+                                "currency" : "USD"
+                             },
+                             "token" : "wallet-token-id",
+                             "cvv" : "1234",
+                             "selectedItems" : [ {
+                                "reservations" : [ "reservation-id-1", "reservation-id-2" ]
+                             } ]
+                          } ]
+                       }
+                    ]]>
+              </apigee:content>
+            </apigee:payload>
+          </representation>
+        </request>
+      </method>
+    </resource>
+
+    <!-- Add Delivery -->
+    <resource path="commerce/{version}/shopping/carts/{cartId}/deliveries.{format}">
+      <param name="version" required="true" type="xsd:string" style="template" default="v2">
+        <doc>The API Version</doc>
+      </param>
+      <param name="cartId" required="true" type="xsd:string" style="template" default="">
+        <doc>The Cart Id</doc>
+      </param>
+      <param name="format" required="true" type="xsd:string" style="template" default="json">
+        <doc>API Response Format</doc>
+      </param>
+      <method id="commerce.shopping.cart.add.delivery" name="POST" apigee:displayName="Select Deliveries">
+        <apigee:tags>
+          <apigee:tag primary="true">Commerce API</apigee:tag>
+          <apigee:tag>Commerce</apigee:tag>
+        </apigee:tags>
+        <apigee:authentication required="true"/>
+        <apigee:example url="commerce/v2/shopping/carts/4d1315c9-9220-48b3-9882-a295db25bfe3.jphx1/deliveries.json"/>
+        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#select-deliveries">Select Delivery!
+        </doc>
+        <request>
+          <param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+            <doc>
+              The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+            </doc>
+          </param>
+          <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json">
+          </param>
+          <representation>
+            <apigee:payload required="true">
+              <doc apigee:url="https://developer.ticketmaster.com">
+                The payload should contain a valid create cart in json format.
+              </doc>
+              <apigee:content>
+                <![CDATA[
+                       {
+                        "deliveries": [
+                          {
+                            "deliveryId": "deliveryId1",
+                            "selectedItems": {
+                              "reservations": [
+                                "reservationId1"
+                              ]
+                            }
+                          },
+                          {
+                            "deliveryId": "deliveryId2",
+                            "selectedItems": {
+                              "reservations": [
+                                "reservationId1"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]]>
+              </apigee:content>
+            </apigee:payload>
+          </representation>
+        </request>
+      </method>
+    </resource>
 
 
     <!-- Publish API -->
@@ -1145,8 +1265,8 @@
     </resource>
   </resources>
   <!-- UWD API -->
-  
-  <resources base="https://uapi.ticketmaster.com/">
+  <!--
+  <resources base="https://uapi.ticketmaster.com/">-->
     <!-- Get info about access token -->
     <!--
     <resource path="tap/endpoint/restv1/events">
@@ -1158,7 +1278,7 @@
         <apigee:authentication required="true"/>
       </method>
     </resource>
-     -->
+     --><!--
   </resources>
- 
+        -->
 </application>
