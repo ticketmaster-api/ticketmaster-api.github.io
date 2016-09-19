@@ -83,109 +83,79 @@
     </div>
 
     <div class="row-container">
-        <div class="row">
-            <div class="col-xs-12">
-                <!--page header-->
-                <section class="api-exp-header">
-                    <h1 class="api-exp-header__title">TICKETMASTER API EXPLORER V2.0</h1>
-                    <p class="api-exp-header__sub-title">Make live API calls without writing a single line of code! The API Explorer currently works with the
-                        <a class="api-exp-header__link" href="/products-and-docs/apis/discovery/v2">Discovery API</a>,
-                        <a class="api-exp-header__link" href="/products-and-docs/apis/commerce/">Commerce API</a> and
-                        <a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
-                    </p>
-                </section>
-            </div>
-        </div>
+        <!--page header-->
+        <section class="api-exp-header">
+            <h1 class="api-exp-header__title">TICKETMASTER API EXPLORER V2.0</h1>
+            <p class="api-exp-header__sub-title">Make live API calls without writing a single line of code! The API Explorer currently works with the
+                <a class="api-exp-header__link" href="/products-and-docs/apis/discovery/v2">Discovery API</a>,
+                <a class="api-exp-header__link" href="/products-and-docs/apis/commerce/">Commerce API</a> and
+                <a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
+            </p>
+        </section>
 
         <!--event counter bar-->
-        <div class="row">
-            <div class="col-xs-12">
-                <section class="horizontal-events-tracker">
-                    <div class="col-xs-12 horizontal-events-tracker__section">
-                <span class="horizontal-events-tracker__title">
-                    Number of Events:
-                    <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
-                </span>
-                <span class="horizontal-events-tracker__title">
-                    Number of Attractions:
-                    <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
-                </span>
-                <span class="horizontal-events-tracker__title">
-                    Number of Venues:
-                    <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
-                </span>
-                <span class="horizontal-events-tracker__title">
-                    Number of Countries:
-                    <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
-                </span>
-                    </div>
-                </section>
+        <section class="horizontal-events-tracker">
+            <div class="col-xs-12 horizontal-events-tracker__section">
+                        <span class="horizontal-events-tracker__title">
+                            Number of Events:
+                            <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of Attractions:
+                            <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of Venues:
+                            <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
+                        <span class="horizontal-events-tracker__title">
+                            Number of Countries:
+                            <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
+                        </span>
             </div>
-        </div>
+        </section>
+
         <div class="api-exp-side-menu-container clearfix">
             <section class="api-exp-main">
-                <!--navigation bar-->
-                <aside class="api-exp-side-menu">
-                    <ul class="api-exp-side-menu__container nav nav-pills nav-stacked">
-                        <li role="presentation" class="api-exp-side-menu__item active"><a href="#" class="api-exp-side-menu__link">Discovery API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Commerce API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Publish API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Partner API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Top Picks API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Deals API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">OAuth API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">International Discovery API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Season Ticketing API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">New Version API</a></li>
-                        <li role="presentation" class="api-exp-side-menu__item"><a href="#" class="api-exp-side-menu__link">Another API</a></li>
+
+                <!--menu-->
+                <aside data-bind="with: menu" class="api-exp-side-menu">
+                    <ul data-bind="foreach: categories" class="api-exp-side-menu__container nav nav-pills nav-stacked">
+                        <li data-bind="css: {active: checked}" role="presentation" class="api-exp-side-menu__item">
+                            <a data-bind="click: $parent.selectCategory.bind(this, name), text: name" href="#" class="api-exp-side-menu__link"></a>
+                        </li>
                     </ul>
                 </aside>
 
-                <!--content-->
-                <section class="api-exp-content">
-                    <section class="api-exp-main-filter clearfix">
+                <!--filter-->
+                <section data-bind="with: filter" class="api-exp-content">
+                    <!--methods-->
+                    <section data-bind="with: methods" class="api-exp-main-filter clearfix">
                         <section class="api-exp-filter">
                             <!--api key-->
                             <input type="text" id="api-key" class="form-control api-exp-filter__api-key" placeholder="Api key">
-                            <!--api methods-->
                             <section class="api-exp-methods clearfix">
                                 <label class="api-exp-methods__label">Methods</label>
-                                <div class="api-exp-methods__radio-buttons radio-buttons">
-                                    <div class="api-exp-method">
-                                        <input class="api-exp-content-method__radio" checked="checked" id="api-exp-all" type="radio" value="All" name="api-exp-methods">
-                                        <label for="api-exp-all" class="radio-inline api-exp-method__label">All</label>
-                                    </div>
-                                    <div class="api-exp-method">
-                                        <input class="api-exp-content-method__radio" id="api-exp-get" type="radio" value="Get" name="api-exp-methods">
-                                        <label for="api-exp-get" class="radio-inline api-exp-method__label">Get</label>
-                                    </div>
-                                    <div class="api-exp-method">
-                                        <input class="api-exp-content-method__radio" id="api-exp-post" type="radio" value="Post" name="api-exp-methods">
-                                        <label for="api-exp-post" class="radio-inline api-exp-method__label">Post</label>
-                                    </div>
-                                    <div class="api-exp-method">
-                                        <input class="api-exp-content-method__radio" id="api-exp-put" type="radio" value="Put" name="api-exp-methods">
-                                        <label for="api-exp-put" class="radio-inline api-exp-method__label">Put</label>
-                                    </div>
-                                    <div class="api-exp-method">
-                                        <input class="api-exp-content-method__radio" id="api-exp-delete" type="radio" value="Delete" name="api-exp-methods">
-                                        <label for="api-exp-delete" class="radio-inline api-exp-method__label">Delete</label>
+
+                                <!--radios-->
+                                <div data-bind="foreach: radiosArr" class="api-exp-methods__radio-buttons radio-buttons clearfix">
+                                    <div data-bind="css: {active: checked}" class="api-exp-method">
+                                        <input data-bind="attr: {id: 'api-exp-' + name, checked: checked}" class="api-exp-content-method__radio" type="radio" name="api-exp-methods">
+                                        <label data-bind="text: name, attr: {for: 'api-exp-' + name}" class="radio-inline api-exp-method__label"></label>
                                     </div>
                                 </div>
+
                                 <!--select-->
                                 <div class="api-exp-methods__select">
                                     <div class="js_custom_select custom_select">
-                                        <select id="api-exp-method" class="custom_select__field" name="api-exp-method">
-                                            <option selected="" value="AU">Get Attraction Details</option>
-                                            <option value="BE">Event Offers</option>
-                                        </select>
-                                        <input class="custom_select__placeholder" type="text" value="United States" readonly="">
-                                        <ul class="custom_select__list js_custom__list">
-                                            <li class="custom_select__item custom_select__item-active" data-value="AU">Get Attraction Details</li>
-                                            <li class="custom_select__item" data-value="BE">Event Offers</li>
+                                        <select data-bind="options: selectArr, optionsText: name, value: name" class="custom_select__field" name="api-exp-method"></select>
+                                        <input data-bind="value: selected" class="custom_select__placeholder" type="text" value="" readonly="">
+                                        <ul data-bind="foreach: selectArr" class="custom_select__list js_custom__list">
+                                            <li data-bind="text: name" class="custom_select__item" data-value="BE">Event Offers</li>
                                         </ul>
                                     </div>
                                 </div>
+
                             </section>
                         </section>
                         <!--about-->
@@ -204,8 +174,8 @@
                             </article>
                         </section>
                     </section>
-                    <!--parameters-->
-                    <section class="api-exp-params">
+                    <!--params-->
+                    <section data-bind="with: params" class="api-exp-params">
                         <!--params filter-->
                         <section class="api-exp-params-filter">
 
@@ -259,33 +229,30 @@
             <button class="api-exp-get-btn__button button button-blue">Get</button>
         </section>
     </div>
-
 </div>
+<script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
+<div id="footer" class="xs-center slice-top-left">
+    {% include partials/footer.html %}
+</div>
+<div id="back-top">
+    <a href="#"><span></span></a>
+</div>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+<script src="{{'/config.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/jquery-1.11.3.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/intro.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/knockout-3.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/api-explorer/v2/main.js' | prepend: site.baseurl }}"></script>
 
-    <script src="../scripts/components/events-counter.js" async></script>
-    <!--<script src="../scripts/components/discqus-config.js"></script>-->
-
-    <div id="footer" class="xs-center slice-top-left">
-        {% include partials/footer.html %}
-    </div>
-
-    <div id="back-top">
-        <a href="#"><span></span></a>
-    </div>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
-    <script src="../config.js"></script>
-    <script src="../scripts/vendors/jquery-1.11.3.min.js"></script>
-    <script src="../scripts/vendors/jquery-migrate-1.3.0.js"></script>
-    <script src="../scripts/components/intro.js"></script>
-    <script src="../scripts/vendors/bootstrap.min.js"></script>
-    <script src="../scripts/vendors/slick.min.js"></script>
-    <!--<script src="../scripts/api-explorer.js"></script>-->
-    <script src="../scripts/components/scroll-top.js"></script>
-    {% include feedback.html %}
-    <script src="../scripts/components/custom-select.js"></script>
-    <script src="../scripts/components/feedback.js"></script>
-    <script src="../scripts/load-api-key.js"></script>
-    <script src="../scripts/components/apikey-check.js"></script>
-    <script src="../scripts/components/feedback.js"></script>
+<script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
+{% include feedback.html %}
+<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/apikey-check.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
 </body>
 </html>

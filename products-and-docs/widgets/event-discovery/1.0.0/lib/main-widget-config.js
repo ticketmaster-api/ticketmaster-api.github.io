@@ -334,6 +334,7 @@
         $self.val(value);
       }
 
+      document.getElementById("w-country").disabled = true;
       widgetNode.setAttribute($self.attr('name'), value);
     });
 
@@ -415,6 +416,7 @@
     $widgetModalNoCode.modal('hide');
   });
 
+  /*turn off validate cuz it moved to separate component*/
   /*$('.js_widget__number').on('change', function (e) {
     let $self = $(this),
       val = $self.val().trim(),

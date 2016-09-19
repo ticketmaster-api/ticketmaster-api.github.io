@@ -65,11 +65,11 @@
                 <thead>
                 <tr>
                     <th>Parameter</th><!--name-->
-                    <th>Description</th><!--in-->
+                    <th>Description</th><!--Description-->
                     <th>Type</th><!--Type-->
                     <th>Default Value</th><!--default-->
                     <th>Required</th><!--required-->
-                <tr>
+                </tr>
                 </thead>
                 <tbody>
                 {% for parameter in method[1].parameters %}
@@ -120,11 +120,11 @@
                 <thead>
                 <tr>
                     <th>Parameter</th><!--name-->
-                    <th>Description</th><!--in-->
+                    <th>Description</th><!--Description-->
                     <th>Type</th><!--Type-->
                     <th>Default Value</th><!--default-->
                     <th>Required</th><!--required-->
-                <tr>
+                </tr>
                 </thead>
                 <tbody>
                 {% for parameter in method[1].parameters %}
@@ -144,19 +144,15 @@
                         {% if parameter.type %}
                         {{ parameter.type | capitalize }}
                         {% if parameter.items %}
-                        of {{ parameter.items.type | capitalize }}
+                            of {{ parameter.items.type | capitalize }}
                         {% endif %}
-
                         {% if parameter.enum %}
-                        {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
+                            {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
                         {% endif %}
-                        {% else %}
-                        <!--Not defined in json-->
+                        {% else %}<!--Not defined in api.json-->
                         {% endif %}
                     </td>
-                    <td>
-                        {% if parameter.default %}{{ parameter.default | capitalize | join: ', ' }}{% endif %}
-                    </td>
+                    <td>{% if parameter.default %}{{ parameter.default | capitalize | join: ', ' | strip }}{% endif %}</td>
                     <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
                 </tr>
@@ -175,7 +171,7 @@
                 <tr>
                     <th>Parameter</th><!--name-->
                     <th>In</th><!--name-->
-                    <th>Description</th><!--in-->
+                    <th>Description</th><!--Description-->
                     <th>Type</th><!--Type-->
                     <th>Default Value</th><!--default-->
                     <th>Required</th><!--required-->

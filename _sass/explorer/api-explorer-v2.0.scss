@@ -1,5 +1,8 @@
 $side-menu-bg: rgba(183, 201, 211, 0.1);
 #api-explorer-v2.api-explorer-v2 {
+  .row-container {
+    max-width: 1140px;
+  }
   h1 {
     margin: 72px auto 48px;
   }
@@ -17,7 +20,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
 
   .horizontal-events-tracker {
     margin-top: 20px;
-    margin-bottom: 48px;
+    margin-bottom: 68px;
     max-width: 1145px;
   }
 
@@ -29,7 +32,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
     }
     &-main {
       overflow: hidden;
-      width: 1170px;
+      width: 1140px;
       padding: 0 0 0 293px;
     }
 
@@ -39,7 +42,9 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
       &__sub-title {
         max-width: 840px;
       }
-      &__link {}
+      &__link {
+        white-space: nowrap;
+      }
     }
     // side-menu
     &-side-menu {
@@ -58,7 +63,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
         font-stretch: normal;
         line-height: 1.5;
         color: #768692;
-        .active {
+        &.active {
           color: #009cde;
           background: none;
         }
@@ -97,7 +102,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
       &__select {
         float: left;
         width: 262px;
-        margin: 20px 0;
+        margin: 13px 0 20px;
         .custom_select {
           .custom_select__field {}
           .custom_select__placeholder {}
@@ -133,6 +138,10 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
       float: left;
       min-width: 97px;
       &__label {
+        text-transform: lowercase;
+        &::first-letter {
+          text-transform: uppercase;
+        }
         &:before {
           margin-left: -30px;
           margin-top: 2px;
@@ -153,7 +162,7 @@ $side-menu-bg: rgba(183, 201, 211, 0.1);
     }
     &-about {
       float: left;
-      width: 265px;
+      width: 264px;
       &__title {
         margin: 13px 0;
         position: relative;
