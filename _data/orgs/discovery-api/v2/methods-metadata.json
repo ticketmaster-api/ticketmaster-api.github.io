@@ -95,11 +95,13 @@
             "HAL" : {
                 "wrappin": "classifications",
                 "links": [
-                    "#/definitions/Classification"
+                    "#/definitions/Classification",
+                    "#/definitions/Segment",
+                    "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Level", "as": "genre" },
-                    { "embed": "#/definitions/Level", "as": "subGenre" }
+                    { "embed": "#/definitions/Level", "as": "genre" , "in":"#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
                 ]
             },
             "NOT_CORRECT": ["can't find rule how obj is related (segment -> genres -> subgenres )<br> https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG "]
@@ -112,11 +114,13 @@
             "HAL" : {
                 "wrappin": null,
                 "links": [
-                    "#/definitions/Classification"
+                    "#/definitions/Classification",
+                    "#/definitions/Segment",
+                    "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Level", "as": "genre" },
-                    { "embed": "#/definitions/Level", "as": "subGenre" }
+                    { "embed": "#/definitions/Level", "as": "genre" , "in":"#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
                 ]
             },
             "NOT_CORRECT": ["not found `subType` field in : https://app.ticketmaster.com/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG"]

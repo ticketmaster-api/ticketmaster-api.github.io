@@ -175,7 +175,7 @@
                     <th>Type</th><!--Type-->
                     <th>Default Value</th><!--default-->
                     <th>Required</th><!--required-->
-                </tr>
+                <tr>
                 </thead>
                 <tbody>
                 {% for parameter in method[1].parameters %}
@@ -398,28 +398,28 @@
                         {% assign _HAL-part1 = false %}
                 {% endif %}
 
-                {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
-                <li><code class="highlighter-rouge">_embedded</code>(object) - container. <!-- start loop here {{ _HAL.embed.size }} -->
-                    <ul>
-                        {% for add_property_HAL in _HAL.embed %}
-                        <li><code class="highlighter-rouge">{{ add_property_HAL.as }}</code>(array) - related {{add_property_HAL.as}}.
-                            <ul>
-                                <li><code class="highlighter-rouge" style="color: #768692">{array item object} </code>
-                                    {%assign outer = add_property_HAL.embed %}
-                                    {%include partials/autodoc/inner-item.html%}
-                                </li>
-                            </ul>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endif %}
-
                 {% if _HAL.links.size > 0 and _HAL.wrappin == null %}
                     {% if _HAL.links.size == 1 %}
                         {% assign isSingleLink = true %}
                     {% else %}
                         {% assign isMultiLink = true %}
+                    {% endif %}
+
+                    {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
+                        {% for pathFirsLvl in schemaSplit[0] %}
+                        {% for pathScdLvl in schemaSplit[1] %}
+                        {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+                            {% for add_property_HAL in _HAL.embed %}
+                                {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+                                {% if propToEmbed[2] == property[0] %}
+                                    {% assign isSingleLink = true %}
+                                    {% assign isMultiLink = false %}
+                                    <!--show Single Link obj cuz `HAL.embed.in` is exist-->
+                                {%endif%}
+                            {% endfor %}
+                        {% endfor %}
+                        {% endfor %}
+                        {% endfor %}
                     {% endif %}
 
                     {% for add_link_HAL in _HAL.links %}
@@ -435,9 +435,21 @@
 
                 {% for pathFirsLvl in schemaSplit[0] %}
                 {% for pathScdLvl in schemaSplit[1] %}
-                {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
 
+                {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
+                    {% assign removeEmbeddedFields = [""] %}
+                    {%include partials/autodoc/wrap-embed-in.html%}
+                    {% comment %}<!--wrap items if "HAL.embed.in" is exist-->{% endcomment %}
+                {% endif %}
+
+                {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+            {% if removeEmbeddedFields contains property[0] %}
+                <!--<li>
+                    <h4 class="blue">exclude property - {{property[0]}}</h4>
+                </li>-->
+            {%else%}
                 {% if _HAL.wrappin or _HAL.embed.size > 0 %}
+                    {% assign addThisFieldToEmbedded = false %}
                     {% for add_property_HAL in _HAL.embed %}
                         {% assign methodNamebyRef = add_property_HAL.embed | downcase | replace : "#/","" | replace : "/"," " | split: " " %}
                         {% assign methodName = add_property_HAL.as %}
@@ -445,14 +457,61 @@
                         {% if property[0] == methodName %}
                             {% assign addThisFieldToEmbedded = true %}
                         {% endif %}
+
+                        {% comment %}<!--
+                        {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+                        {% if propToEmbed[2] == property[0] %}
+                            <li><code class="highlighter-rouge">{{ propToEmbed[2] }}</code>(object){% if propToEmbed[2].description %} - {{ propToEmbed[2].description }}{% elsif propToEmbed[2].format %} - {{ propToEmbed[2].format }}{%else%} - ++++ No description specified{% endif %}{% if propToEmbed[2]['$ref'] %}
+                                    {%assign outer = add_property_HAL.in %}
+                                    {%include partials/autodoc/inner-item.html%}
+                                    {% assign addThisFieldToEmbedded = true %}
+                                {%endif%}
+                            </li>
+                        {%endif%}
+                        -->{% endcomment %}
+
                     {% endfor %}
                 {% endif %}
-
                 {% if addThisFieldToEmbedded == false %}
                 <li>
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
-                        {% comment %}<!--
+                        {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
+                            {% for add_property_HAL in _HAL.embed %}
+                                {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+                                {% if propToEmbed[2] == property[0] %}
+                                    <li><code class="highlighter-rouge">***** _embedded to {{ propToEmbed[2] }}</code>(object){% if property[1].description %} - {{ property[1].description }}{% elsif property[1].format %} - {{ property[1].format }}{%else%} - No description specified{% endif %}{% if property[1]['$ref'] %}{%assign outer = add_property_HAL.in %}{%include partials/autodoc/inner-item.html%}{%endif%}
+                                    </li>
+                                {%endif%}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if property[1].type == 'array' %}
+                            <li><code class="highlighter-rouge" style="color: #768692">{ array item object } </code>
+                                {%assign outer = property[1].items.['$ref'] %}
+                                {%include partials/autodoc/inner-item.html%}
+                            </li>
+                        {% endif %}
+
+                        {% comment %}
+                        <!--
+                        {% if property[1]['$ref'] %}
+                        {% assign schemaPageInner = false %}
+                        {% assign schemaPageSplitInner = false %}
+                        {% comment %}<!--<li><code class="highlighter-rouge">-&#45;&#45;$ref</code> - {{ property[1]['$ref'] }}</li>--><!--{% endcomment %}
+                                {% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+                                {% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
+                                {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
+                                    {% if swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                        {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+                                        <li><code class="highlighter-rouge"> --- {{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
+                                        {% endfor %}
+                                    {%else%}
+                                        <li><code class="highlighter-rouge"> +++ {{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
+                                    {%endif%}
+                                {% endfor %}
+                        {% endif %}-->
+                        <!--
                         {% if property[1].type == 'array' %}
                             <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
                                 <ul>
@@ -471,32 +530,6 @@
                             </li>
                         {% endif %}-->
                         {% endcomment %}
-
-                        {% if property[1].type == 'array' %}
-                            <li><code class="highlighter-rouge" style="color: #768692">{ array item object } </code>
-                                {%assign outer = property[1].items.['$ref'] %}
-                                {%include partials/autodoc/inner-item.html%}
-                            </li>
-                        {% endif %}
-
-                        {% comment %}<!--
-                        {% if property[1]['$ref'] %}
-                        {% assign schemaPageInner = false %}
-                        {% assign schemaPageSplitInner = false %}
-                        {% comment %}<!--<li><code class="highlighter-rouge">-&#45;&#45;$ref</code> - {{ property[1]['$ref'] }}</li>--><!--{% endcomment %}
-                                {% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
-                                {% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
-                                {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
-                                    {% if swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                        {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                        <li><code class="highlighter-rouge"> --- {{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
-                                        {% endfor %}
-                                    {%else%}
-                                        <li><code class="highlighter-rouge"> +++ {{ schemaPageSplitInnerEnd }}</code> {% if swagger.definitions.[schemaPageSplitInnerEnd].type %}({{ swagger.definitions.[schemaPageSplitInnerEnd].type }}){% endif %} - {% if swagger.definitions.[schemaPageSplitInnerEnd].description %}{{ swagger.definitions.[schemaPageSplitInnerEnd].description }}{% elsif swagger.definitions.[schemaPageSplitInnerEnd].format %}{{ swagger.definitions.[schemaPageSplitInnerEnd].format }}{%else%}No description specified{% endif %}{% if swagger.definitions.[schemaPageSplitInnerEnd].$ref %}{{ swagger.definitions.[schemaPageSplitInnerEnd].$ref }}{% endif %}</li>
-                                    {%endif%}
-                                {% endfor %}
-                        {% endif %}-->
-                        {% endcomment %}
                     </ul>
                     {% endif %}<!-- END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}-->
 
@@ -511,8 +544,10 @@
                 {% endif %}
                 {% assign addThisFieldToEmbedded = false %}
 
-
+            {% endif %}
                 {% endfor %}
+                {% assign removeEmbeddedFields = [""] %}
+
                 {% endfor %}
                 {% endfor %}
 
@@ -526,15 +561,15 @@
 
             </ul>
             {% endif %}
-            <!--{% comment %} END response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref']:
-
+            {% comment %}
+            <!--END response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref']:
                 {% if response[1].schema['type'] == 'array' %}
                 <p>schema['type'] is : {{response[1].schema['type']}}</p>
                 {% endif %}
+            -->
+            {% endcomment %}
 
-            {% endcomment %}-->
-
-            <!--{% comment %}//check content_type here:
+            {% comment %}<!--//check content_type here:
             {% for content_type in swagger.produces %}
                 {% if response[1].examples[content_type] %}
                 {% assign example = response[1].examples[content_type] %}
@@ -547,8 +582,8 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
-            {% endcomment %}
-            -->
+            -->{% endcomment %}
+
             {% endfor %}
         </div>
         {% endif %}
