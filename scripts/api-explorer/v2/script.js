@@ -61,7 +61,6 @@ var base =
 	__webpack_require__(2);
 	
 	var base = __webpack_require__(4);
-	// var FilterViewModel = require('./../ViewModels/filterViewModel');
 	var MenuViewModel = __webpack_require__(5);
 	var ParamsViewModel = __webpack_require__(6);
 	var MethodsViewModel = __webpack_require__(7);
@@ -72,13 +71,17 @@ var base =
 	 */
 	function AppViewModel(obj) {
 	  var base = obj || {};
-	  appVM = this;
+	  self = this;
 	
+	
+	  // observables
+	  this.selectedMethod = ko.observable('');
+	  this.selectedParams = ko.observableArray([]);
 	  // sub-models
-	  // this.filter = new FilterViewModel(base);
-	  this.methods = new MethodsViewModel(base);
+	  this.methods = new MethodsViewModel(base, this.selectedMethod);
 	  this.menu = new MenuViewModel(base, this.methods);
-	  this.params = new ParamsViewModel(base);
+	  this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
+	  // this.selectedMethod
 	}
 	
 	// Activates knockout.js
@@ -107,9 +110,10 @@ var base =
 	  this.animationSpeed = params.animationSpeed || 200;
 	
 	  //observables
-	  this.selectArr = params.options || ko.observableArray([]);
+	  this.selectModel = params.options || ko.observableArray([]);
 	  this.placeholder = ko.observable(params.placeholder || '');
-	  this.selected = ko.observable();
+	  this.onselect = params.onselect || function (item) { console.log(item +'selected!')};
+	  this.selected = ko.observable(this.selectModel()[0]);
 	}
 	
 	/**
@@ -130,7 +134,9 @@ var base =
 	 */
 	CustomSelect.prototype.selectItem = function (item, event) {
 	  this.selected(item);
-	  hf.checkActive(self.selectArr, item.name);
+	  // run handler
+	  this.onselect(item);
+	  // slide up
 	  $(event.currentTarget)
 	    .parents('.api-exp-custom-select')
 	    .find('input')
@@ -141,14 +147,15 @@ var base =
 	  viewModel: CustomSelect,
 	  template: ([
 	    '<div class="api-exp-custom-select">',
-	    '<select data-bind="options: selectArr, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
+	    '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
 	    '<span class="api-exp-custom-select__placeholder">',
 	    '<input data-bind="click: slideToggle, attr: {value: selected().name}" type="text" value="" readonly="">',
 	    '</span>',
-	    '<ul data-bind="foreach: selectArr" class="api-exp-custom-select__list">',
+	    '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list">',
 	    '<li class="api-exp-custom-select__item">',
-	    '<a data-bind="click: $parent.selectItem.bind($parent), text: name, attr: {\'data-value\': name}, css: {active: checked}"  class="api-exp-custom-select__item-label" href="#"></a>',
-	    '<a class="api-exp-custom-select__item-link" href="#">&nbsp;</a>',
+	    // '<span data-bind="text: console.log(\'checked - \', name, checked())"></span>',
+	    '<a data-bind="event: {click: $parent.selectItem.bind($parent), }, text: name, attr: {\'data-value\': name}, css: {active: checked()}"  class="api-exp-custom-select__item-label" href="#"></a>',
+	    '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link">&nbsp;</a>',
 	    '</li>',
 	    '</ul>',
 	    '</div>'
@@ -302,33 +309,42 @@ var base =
 	var self;
 	var methodsVM;
 	
+	
 	/**
 	 * Menu View-Model
 	 * @param base
+	 * @param methods
 	 * @constructor
 	 */
-	function MenuViewModel(base, methods) {
-	    self = this;
-	    methodsVM = methods;
-	    this.categories = ko.observableArray(Object.keys(base).map(function (item) {
-	        return {
-	            checked: ko.observable(false),
-	            name: item
-	        }
-	    }));
+	function MenuViewModel(base, methods, category) {
+	  // this.category = category;
+	  self = this;
+	  methodsVM = methods;
+	  this.categories = ko.observableArray(Object.keys(base).map(function (item) {
+	    return {
+	      checked: ko.observable(false),
+	      name: item,
+	      link: '#'
+	    }
+	  }));
 	
-	    // initial load
-	    this.selectCategory(Object.keys(base)[0]);
+	  // initial load
+	  this.selectCategory({
+	    checked: ko.observable(true),
+	    name: Object.keys(base)[0],
+	    link: '#'
+	  });
 	}
-	
 	
 	/**
 	 * Menu View-Model method
-	 * @param categoryName
+	 * @param category
 	 */
-	MenuViewModel.prototype.selectCategory = function (categoryName) {
-	    methodsVM.updateModel(categoryName);
-	    hf.checkActive(self.categories, categoryName);
+	MenuViewModel.prototype.selectCategory = function (category) {
+	  var categoryName = category.name;
+	  // self.category(categoryName);
+	  methodsVM.updateModel(categoryName);
+	  hf.checkActive(self.categories, categoryName);
 	};
 	
 	module.exports = MenuViewModel;
@@ -339,73 +355,130 @@ var base =
 /***/ function(module, exports) {
 
 	var self;
+	var base;
 	
 	/**
 	 * Params View-Model
-	 * @param base
+	 * @param raw
+	 * @param method
+	 * @param params
 	 * @constructor
 	 */
-	function ParamsViewModel(base) {
+	function ParamsViewModel(raw, method, params) {
+	  base = raw;
 	  self = this;
-	
+	  this.method = method;
 	  this.animationSpeed = 200;
-	
-	  // observables
-	  this.fieldsArr = ko.observableArray([]); // {name: 'str', value: 'str', isDirty: false, valid: true, about: 'str'}
+	  this.paramInFocus = ko.observable('');
+	  this.aboutParam = ko.observable('');
+	  this.paramsModel = ko.computed(self.updateParamsModel);
 	}
 	
-	ParamsViewModel.prototype.slideToggle = function(viewModel, event) {
-	  console.log($(event.currentTarget));
+	/**
+	 * Initial build of Select Model
+	 * @param item
+	 */
+	ParamsViewModel.prototype.updateParamsModel = function () {
+	  var obj = self.method().parameters || {},
+	    arr = [];
 	
+	  for (var i in obj) {
+	    if (!obj.hasOwnProperty(i)) { continue; }
+	    obj[i].value = ko.observable('');
+	    // var val = obj[i].value;
+	    obj[i].isDirty = ko.pureComputed(function () {
+	      return !!this.value().trim().length;
+	    }, obj[i]);
+	    arr.push(obj[i]);
+	  }
+	
+	  return arr;
+	};
+	
+	/**
+	 * Slide toggle for params container method
+	 * @param viewModel
+	 * @param event
+	 */
+	ParamsViewModel.prototype.slideToggle = function (viewModel, event) {
 	  $(event.currentTarget)
-	    .parent('.js-slide-wrapper')
+	    .parents('.js-slide-control')
+	    .find('.js-slide-wrapper')
 	    .slideToggle(viewModel.animationSpeed);
+	};
+	ParamsViewModel.prototype.onFocus = function (item) {
+	  self.paramInFocus(item.name);
+	  self.aboutParam(item.doc);
 	};
 	
 	module.exports = ParamsViewModel;
+
 
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var hf = __webpack_require__(3);
 	var self;
 	var base;
+	var category;
 	
 	/**
 	 * Methods View-Model
 	 * @param raw
+	 * @param method
 	 * @constructor
 	 */
-	function MethodsViewModel(raw) {
+	function MethodsViewModel(raw, method) {
 	  self = this;
 	  base = raw;
-	  
+	
 	  // observables
+	  this.method = method;
 	  this.apikey = ko.observable('');
-	  this.radiosArr = ko.observableArray([]); // {method: 'str', checked: false}
-	  this.selectArr = ko.observableArray([]); // {name: 'str', checked: false, link: 'str', about: 'str'}
+	  this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
+	  this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
 	}
 	
 	/**
+	 * On category change handler
 	 * Methods View-Model method
 	 * @param name
 	 */
 	MethodsViewModel.prototype.updateModel = function (name) {
-	  self.updateOnMethodsType(base[name]);
-	  self.updateOnMethodsList();
+	  category = name;
+	  // initial radios model
+	  this.updateRadiosModel(base[name]);
+	  // initial select model (first method in first section for start)
+	  this.updateSelect(this.radiosModel()[0]);
 	};
 	
-	MethodsViewModel.prototype.updateOnMethodsType = function (param) {
+	/**
+	 * Onchange handler for Radio buttons
+	 * @param item
+	 */
+	MethodsViewModel.prototype.onchangeRadios = function (item) {
+	  //update Radios Model
+	  hf.checkActive(self.radiosModel, item.name);
+	  //update Select Model
+	  self.updateSelect(item);
+	};
+	
+	/**
+	 * Initial build of Radios Model
+	 * @param param
+	 * @returns {Array}
+	 */
+	MethodsViewModel.prototype.updateRadiosModel = function (param) {
 	  var obj = param || {},
-	    arr = [],
-	    count = 0;
+	    arr = [];
 	
 	  for (var i in obj) {
 	    if (!obj.hasOwnProperty(i)) { continue; }
-	
 	    var item = {
-	      checked: ko.observable(!count),
+	      checked: ko.observable(i === 'ALL'),
 	      name: i
 	    };
 	
@@ -415,27 +488,42 @@ var base =
 	      arr.push(item);
 	    }
 	  }
-	
-	  self.radiosArr(arr);
-	
+	  this.radiosModel(arr);
 	  return arr;
 	};
 	
-	MethodsViewModel.prototype.updateOnMethodsList = function () {
-	  console.log(self.radiosArr());
-	  // var obj = self.radiosArr() || {},
-	  //   arr = [],
-	  //   count = 0;
-	  //
-	  // for (var i in obj) {
-	  //   if (!obj.hasOwnProperty(i)) { continue; }
-	  //
-	  //   arr.push({
-	  //     checked: ko.observable(!count),
-	  //     name: i
-	  //   });
-	  // }
-	  // self.selectArr(arr);
+	/**
+	 * Initial build of Select Model
+	 * @param item
+	 */
+	MethodsViewModel.prototype.updateSelect = function (item) {
+	  var obj = base[category][item.name]|| {},
+	    arr = [],
+	    count = 0;
+	
+	  for (var i in obj) {
+	    if (!obj.hasOwnProperty(i)) { continue; }
+	    var property = obj[i];
+	    arr.push({
+	      checked: ko.observable(!count),
+	      name: property.name,
+	      id: property.id,
+	      link: property.documentation,
+	      about: property.description,
+	      category: property.category,
+	      method: property.method
+	    });
+	    
+	    // set global observable
+	    this.method(base[property.category][property.method][property.id]);
+	    
+	    count++;
+	  }
+	  self.selectModel(arr);
+	};
+	
+	MethodsViewModel.prototype.onSelectMethod = function (item) {
+	  self.method(base[item.category][item.method][item.id]);
 	};
 	
 	module.exports = MethodsViewModel;

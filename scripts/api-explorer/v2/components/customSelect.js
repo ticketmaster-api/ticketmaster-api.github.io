@@ -16,9 +16,10 @@ function CustomSelect(params) {
   this.animationSpeed = params.animationSpeed || 200;
 
   //observables
-  this.selectArr = params.options || ko.observableArray([]);
+  this.selectModel = params.options || ko.observableArray([]);
   this.placeholder = ko.observable(params.placeholder || '');
-  this.selected = ko.observable();
+  this.onselect = params.onselect || function (item) { console.log(item +'selected!')};
+  this.selected = ko.observable(this.selectModel()[0]);
 }
 
 /**
@@ -39,7 +40,9 @@ CustomSelect.prototype.slideToggle = function(viewModel, event) {
  */
 CustomSelect.prototype.selectItem = function (item, event) {
   this.selected(item);
-  hf.checkActive(self.selectArr, item.name);
+  // run handler
+  this.onselect(item);
+  // slide up
   $(event.currentTarget)
     .parents('.api-exp-custom-select')
     .find('input')
@@ -50,14 +53,15 @@ module.exports = ko.components.register('custom-select', {
   viewModel: CustomSelect,
   template: ([
     '<div class="api-exp-custom-select">',
-    '<select data-bind="options: selectArr, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
+    '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
     '<span class="api-exp-custom-select__placeholder">',
     '<input data-bind="click: slideToggle, attr: {value: selected().name}" type="text" value="" readonly="">',
     '</span>',
-    '<ul data-bind="foreach: selectArr" class="api-exp-custom-select__list">',
+    '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list">',
     '<li class="api-exp-custom-select__item">',
-    '<a data-bind="click: $parent.selectItem.bind($parent), text: name, attr: {\'data-value\': name}, css: {active: checked}"  class="api-exp-custom-select__item-label" href="#"></a>',
-    '<a class="api-exp-custom-select__item-link" href="#">&nbsp;</a>',
+    // '<span data-bind="text: console.log(\'checked - \', name, checked())"></span>',
+    '<a data-bind="event: {click: $parent.selectItem.bind($parent), }, text: name, attr: {\'data-value\': name}, css: {active: checked()}"  class="api-exp-custom-select__item-label" href="#"></a>',
+    '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link">&nbsp;</a>',
     '</li>',
     '</ul>',
     '</div>'

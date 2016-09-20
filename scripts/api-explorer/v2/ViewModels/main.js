@@ -7,7 +7,6 @@
 require('./../components/customSelect');
 
 var base = require('./../components/config');
-// var FilterViewModel = require('./../ViewModels/filterViewModel');
 var MenuViewModel = require('./../ViewModels/menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
@@ -18,13 +17,17 @@ var MethodsViewModel = require('./methodsViewModel');
  */
 function AppViewModel(obj) {
   var base = obj || {};
-  appVM = this;
+  self = this;
 
+
+  // observables
+  this.selectedMethod = ko.observable('');
+  this.selectedParams = ko.observableArray([]);
   // sub-models
-  // this.filter = new FilterViewModel(base);
-  this.methods = new MethodsViewModel(base);
+  this.methods = new MethodsViewModel(base, this.selectedMethod);
   this.menu = new MenuViewModel(base, this.methods);
-  this.params = new ParamsViewModel(base);
+  this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
+  // this.selectedMethod
 }
 
 // Activates knockout.js
