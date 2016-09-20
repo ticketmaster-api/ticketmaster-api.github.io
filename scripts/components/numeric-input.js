@@ -1,3 +1,11 @@
+/**
+ * availiable option : {floatVal:true}
+ * $('.js_numeric_input').checkNumeric( {floatVal:true} );
+ * or add attribute to html: data-float="true"
+
+ * markup example:
+ * <input class="js_numeric_input" type="number" value="12" max="15" min="10" required="" step="2" data-float="true">
+ */
 (function($){
 
     jQuery.fn.checkNumeric = function(options ){
@@ -9,9 +17,10 @@
             $incButtonElement = '<span class="arrow arrow__inc"></span>',
             $decButtonElement = '<span class="arrow arrow__dec"></span>';
 
-        function init( numeric_input ) {
-            numeric_input.wrap('<div class="js_numeric-input-group"></div>');
-            numeric_input.after( $incButtonElement, $decButtonElement );
+        function init( numericInput ) {
+            numericInput.wrap('<div class="js_numeric-input-group"></div>');
+            numericInput.after( $incButtonElement, $decButtonElement );
+            numericInput.attr( 'inputmode', 'numeric' );
         }
 
         function checkInputAttr(input) {
@@ -40,12 +49,13 @@
             return val;
         }
 
-
         /**
-         * Check value when it entered from keybord
+         * Check value when it's entered from keyboard
          * @param inputElement - object
          * @param min - number
          * @param max - number
+         * @param incBtn - object (element)
+         * @param decBtn - object (element)
          */
         function checkValue(inputElement, min , max ,incBtn,  decBtn) {
             var val = getParsedValue(inputElement, min) ;
@@ -58,6 +68,9 @@
             } else if (val >= max){
                 val = max;
                 incBtn.addClass('disabled');
+                decBtn.removeClass('disabled');
+            } else {
+                incBtn.removeClass('disabled');
                 decBtn.removeClass('disabled');
             }
             if(!( $.isNumeric(val) )){
@@ -72,13 +85,12 @@
                 $max = ($numeric_input.attr('max')) ? parseInt($numeric_input.attr('max')) : Number.MAX_SAFE_INTEGER,
                 $min = ($numeric_input.attr('min')) ? parseInt($numeric_input.attr('min')) : Number.MIN_SAFE_INTEGER;
 
-
             init($numeric_input);
 
             incBtn =  $(this).siblings( ".arrow__inc" ); //find increment button
             decBtn =  $(this).siblings( ".arrow__dec" ); //find decrement button
 
-
+            //EVENTS
 
             /*
             $numeric_input.focus(function() {
@@ -146,13 +158,5 @@
 })(jQuery);
 
 $(document).on('ready', function () {
-    /*
-    availiable option : {floatVal:true}
-    $('.js_numeric_input').checkNumeric( {floatVal:true} );
-    or add attribute to html: data-float="true"
-
-    markup example:
-     <input class="js_numeric_input" type="number" value="12" max="15" min="10" required="" step="2" data-float="true">
-    */
     $('.js_numeric_input').checkNumeric( );
 });
