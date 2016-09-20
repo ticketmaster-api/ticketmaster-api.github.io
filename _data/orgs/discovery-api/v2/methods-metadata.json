@@ -118,7 +118,7 @@
                     "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Level", "as": "genre" , "in":"#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Genre", "as": "genre" , "in":"#/definitions/Classification/segment"},
                     { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
                 ]
             }
@@ -127,19 +127,45 @@
             "pathsParent":"/discovery/v2/classifications/genres/{id}",
             "id":"genre-details",
             "reqres": "discovery-api/reqres-get-genre.md",
-            "codePath":"discovery-api/code-get-genre.md"
+            "codePath":"discovery-api/code-get-genre.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Genre",
+                    "#/definitions/Level"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Level", "as": "subGenre"  }
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications/segments/{id}",
             "id":"segment-details",
             "reqres": "discovery-api/reqres-get-segment.md",
-            "codePath":"discovery-api/code-get-segment.md"
+            "codePath":"discovery-api/code-get-segment.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Segment"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Genre", "as": "genre" , "in": "root"},
+                    { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/classifications/subgenres/{id}",
             "id":"subgenre-details",
             "reqres": "discovery-api/reqres-get-subgenre.md",
-            "codePath":"discovery-api/code-get-subgenre.md"
+            "codePath":"discovery-api/code-get-subgenre.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Level"
+                ]
+            }
         },
         {
             "pathsParent":"/discovery/v2/venues",

@@ -1,5 +1,5 @@
 <!--recieve params from method.html-->
-{% if isMultiLink %}
+{% if isMultiLink == true%}
 <li><code class="highlighter-rouge">_links</code>(object) - links to data sets
     <ul>
         <li><code class="highlighter-rouge">self</code>(object) - link to this data set
@@ -34,7 +34,7 @@
 </li>
 {% endif %}
 
-{% if isSingleLink %}
+{% if isSingleLink == true%}
 <li><code class="highlighter-rouge">_links</code>(object) - links to data sets
     <ul>
         <li><code class="highlighter-rouge">self</code>(object) - link to this data set

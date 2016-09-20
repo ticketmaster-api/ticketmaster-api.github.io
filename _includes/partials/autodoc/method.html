@@ -398,7 +398,7 @@
                     {% assign _HAL-part1 = false %}
                 {% endif %}
 
-                {% if _HAL.links.size > 0 and _HAL.wrappin == null %}
+                {% if _HAL.links.size > 0 and _HAL.wrappin == null%}
                     {% if _HAL.links.size == 1 %}
                         {% assign isSingleLink = true %}
                     {% else %}
@@ -428,6 +428,7 @@
                         {% if schemaSplit[1] == _link_HAL[1] %}
                             <!--<li><b class="blue">isMultiLink</b> - {{isMultiLink}} ; <b>isSingleLink</b> -  {{isSingleLink}}</li>-->
                             {% include partials/autodoc/hal-wrapper-links.html %}
+                            {% include partials/autodoc/hal-wrapper-embed.html %}
                             {% assign isMultiLink = false %}
                             {% assign isSingleLink = false %}
                         {% endif %}
@@ -438,9 +439,23 @@
                 {% for pathScdLvl in schemaSplit[1] %}
 
                 {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
-                    {% assign removeEmbeddedFields = [""] %}
-                    {%include partials/autodoc/wrap-embed-in.html%}
-                    {% comment %}<!--wrap items if "HAL.embed.in" is exist-->{% endcomment %}
+                    {%assign isRootEmbed = false %}
+
+                    {% for add_property_HAL in _HAL.embed %}
+                        {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+                        {%if add_property_HAL.in == 'root'%}
+                            <!--<li><h3 class="blue">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}}</li>-->
+                            {%include partials/autodoc/wrap-embed-in-root.html%}
+                            {%assign isRootEmbed = true %}
+                        {%else%}
+                            {%if isRootEmbed == false %}
+                                <!--<li><h3 class="red">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}}</li>-->
+                                {% assign removeEmbeddedFields = [""] %}
+                                {%include partials/autodoc/wrap-embed-in.html%}
+                            {%endif%}
+                        {%endif%}
+                    {% endfor %}
+
                 {% endif %}
 
                 {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
@@ -477,16 +492,6 @@
                 <li>
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
-                        {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
-                            {% for add_property_HAL in _HAL.embed %}
-                                {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-                                {% if propToEmbed[2] == property[0] %}
-                                    <li><code class="highlighter-rouge">***** _embedded to {{ propToEmbed[2] }}</code>(object){% if property[1].description %} - {{ property[1].description }}{% elsif property[1].format %} - {{ property[1].format }}{%else%} - No description specified{% endif %}{% if property[1]['$ref'] %}{%assign outer = add_property_HAL.in %}{%include partials/autodoc/inner-item.html%}{%endif%}
-                                    </li>
-                                {%endif%}
-                            {% endfor %}
-                        {% endif %}
-
                         {% if property[1].type == 'array' %}
                             <li><code class="highlighter-rouge" style="color: #768692">{ array item object } </code>
                                 {%assign outer = property[1].items.['$ref'] %}
