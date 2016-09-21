@@ -1,5 +1,6 @@
 {% for add_property_HAL in _HAL.embed %}
     {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+    {% assign propEmbed = add_property_HAL.embed | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
     {%assign exitLoop = false %}
     {% if this_index == forloop.index or propToEmbed.size < 1 %}
         {%assign exitLoop = true %}<!-- EXIT NOW-->
@@ -16,11 +17,16 @@
             {% assign pathScdLvl_wrap = propToEmbed[1] %}
             {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[propLastInPath] %}
         {%endif%}
+        {% if topPath == '' or topPath.size < 1 or topPath == null %}
+            {% assign pathFirsLvl_wrap = propEmbed[0] %}
+            {% assign pathScdLvl_wrap = propEmbed[1] %}
+            {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[propLastInPath] %}
+        {%endif%}
 
         {%assign isRootEmbed = false %}
         {%if add_property_HAL.in == 'root'%}
             {%assign isRootEmbed = true %}<!-- _HAL.in is 'root' : EXIT NOW-->
-            <li><h4 class="blue">wrap-embed-in-root.html</h4><h5 class="blue"> propToEmbed - {{add_property_HAL.in}} , _HAL.embed - {{_HAL.embed}} , size - {{_HAL.embed.size}}, topPath - {{topPath}}</h5></li>
+            <!--<li><h4 class="blue">wrap-embed-in-root.html</h4><h5 class="blue"> propToEmbed - {{add_property_HAL.in}} , propEmbed[0] - {{propEmbed[0]}}; swagger - {{swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties}}</h5></li>-->
         {%endif%}
         {% if isRootEmbed == false %}
         <li><code>{{propToEmbed[2]}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
@@ -28,6 +34,13 @@
                 <li><code class="highlighter-rouge">_embedded</code>(object) - container for {{ add_property_HAL.as }}. <!-- start loop here {{ add_property_HAL.size }} -->
                     <ul>{% assign InPath = _HAL.embed[forloop.index0].as %}
                         {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[InPath] %}
+                        {% if topPath == '' or topPath.size < 1 or topPath == null %}
+                            {% assign pathFirsLvl_wrap = propEmbed[0] %}
+                            {% assign pathScdLvl_wrap = propEmbed[1] %}
+                            {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[InPath] %}
+                        {%endif%}
+                        <!--<li><h5 class="blue"> propToEmbed - {{add_property_HAL.in}} , _HAL.embed - {{_HAL.embed.embed}} , propToEmbed[0] - {{propToEmbed}}, topPath - {{topPath}}</h5></li>-->
+
                         <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                             <ul>
                                 <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
@@ -42,6 +55,11 @@
                                                 {% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _HAL.embed[forloop.index0].as %}
                                                 <ul>{% assign InPath = _HAL.embed[forloop.index0].as %}
                                                     {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[InPath] %}
+                                                    {% if topPath == '' or topPath.size < 1 or topPath == null %}
+                                                        {% assign pathFirsLvl_wrap = propEmbed[0] %}
+                                                        {% assign pathScdLvl_wrap = propEmbed[1] %}
+                                                        {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[InPath] %}
+                                                    {%endif%}
                                                     <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                                                         <ul>
                                                             <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
