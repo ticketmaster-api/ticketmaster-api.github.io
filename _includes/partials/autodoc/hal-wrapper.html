@@ -42,6 +42,7 @@
                         {%endfor%}
                         {%if propToEmbed.size > 0%}
                             {% assign removeEmbeddedFields = [""] %}
+                            <!--<li><h3 class="blue">inside hal-wrapper.html </h3> propToEmbed is - {{add_property_HAL.in}} , pathScdLvl - {{pathScdLvl}}</li>-->
                             {%include partials/autodoc/wrap-embed-in.html%}
                         {% endif %}
 

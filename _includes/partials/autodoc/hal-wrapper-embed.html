@@ -3,8 +3,8 @@
     {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
 {%endfor%}
 {%if propToEmbed.size > 0%}
-    <!--{ assign removeEmbeddedFields = [""] }
-    {include partials/autodoc/wrap-embed-in.html}-->
+    {% assign removeEmbeddedFields = [""] %}
+<!--{include partials/autodoc/wrap-embed-in.html}-->
 {% endif %}
 
 {%if _HAL.embed.size > 0 and propToEmbed.size == 0%}

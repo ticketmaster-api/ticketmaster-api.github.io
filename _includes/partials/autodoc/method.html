@@ -448,14 +448,13 @@
                             {%include partials/autodoc/wrap-embed-in-root.html%}
                             {%assign isRootEmbed = true %}
                         {%else%}
-                            {%if isRootEmbed == false %}
-                                <!--<li><h3 class="red">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}}</li>-->
+                            {%if isRootEmbed == false and forloop.index == 1%}
+                                <!--<li><h3 class="red">method->inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , pathScdLvl - {{pathScdLvl}}</li>-->
                                 {% assign removeEmbeddedFields = [""] %}
                                 {%include partials/autodoc/wrap-embed-in.html%}
                             {%endif%}
                         {%endif%}
                     {% endfor %}
-
                 {% endif %}
 
                 {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
