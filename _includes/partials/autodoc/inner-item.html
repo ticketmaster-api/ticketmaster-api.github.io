@@ -2,13 +2,29 @@
 <ul>
     {%if _HAL.links.size > 0 %}
         {%assign isSingleLink = true %}
+        <!--{ include partials/autodoc/hal-wrapper-links.html }-->
+
         {% for add_links_HAL in _HAL.links %}
             {%if add_links_HAL == outer %}
-                {% include partials/autodoc/hal-wrapper-links.html %}
+                <li><code class="highlighter-rouge">_links</code>(object) - links to data sets
+                    <ul>
+                        <li><code class="highlighter-rouge">self</code>(object) - link to this data set
+                            <ul>
+                                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             {% endif %}
         {% endfor %}
-        {%assign isSingleLink = false%}
+
+        {% assign isSingleLink = false %}
+        {% assign isMultiLink = false %}
+
     {% endif %}
+
+
 
 
     {% assign schemaResInner = outer | replace: '#/',''  | replace:'/',' ' %}

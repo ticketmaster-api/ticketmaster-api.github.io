@@ -28,9 +28,11 @@
                 <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
                     <ul>{% endif %}
                         {%if _HAL.links.size > 0%}
-                            {%assign isMultiLink = true %}
+                            {%assign isMultiLink = false %}
+                            {%assign isSingleLink = true %}
                                 {% include partials/autodoc/hal-wrapper-links.html %}
                             {%assign isMultiLink = false%}
+                            {%assign isSingleLink = false %}
                         {% endif %}
 
 
