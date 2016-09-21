@@ -82,6 +82,7 @@
 		</div>
 	</div>
 
+
 	<div class="row-container api-exp-content">
 		<!--page header-->
 		<section class="api-exp-header">
@@ -115,20 +116,14 @@
 			</div>
 		</section>
 
-		<div class="api-exp-side-menu-container clearfix">
+		<div class="api-exp-container clearfix">
 			<!--about-->
-			<section class="api-exp-about">
-				<a href="#" class="api-exp-about__button"></a>
+			<section data-bind="with: methods" class="api-exp-about">
+				<a data-bind="attr: {href: methodIsSelected().link}" href="#" class="api-exp-about__button" target="_blank"></a>
 				<article class="api-exp-about__content">
-					<h5 class="api-exp-about__title">About API and Method:</h5>
+					<h5 data-bind="text: methodIsSelected().name" class="api-exp-about__title">About API and Method:</h5>
 					<section class="api-exp-about__description">
-						<p>Use the
-							<a class="api-exp-about__description-link" href="#">Commerce API</a>
-							to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
-						<p>Method
-							<a class="api-exp-about__description-link" href="#">GET</a>.
-							Authentication required. Returns the 20 most recent events for the authenticating user.
-						</p>
+						<p data-bind="text: methodIsSelected().about"></p>
 					</section>
 				</article>
 			</section>
@@ -140,19 +135,21 @@
 				<aside data-bind="with: menu" class="api-exp-side-menu">
 					<ul data-bind="foreach: categories" class="api-exp-side-menu__container nav nav-pills nav-stacked visible-lg-block">
 						<li data-bind="css: {active: checked}" role="presentation" class="api-exp-side-menu__item">
-							<a data-bind="click: $parent.selectCategory.bind($parent, name), text: name" href="#" class="api-exp-side-menu__link"></a>
+							<a data-bind="click: $parent.selectCategory, text: name" href="#" class="api-exp-side-menu__link"></a>
 						</li>
 					</ul>
 					<!--select-->
 					<div class="api-exp-side-menu__select hidden-lg">
-						<div data-bind="component: {name: 'custom-select', params: {options: categories}}"></div>
+						<div data-bind="component: {name: 'custom-select', params: {options: categories, onselect: selectCategory}}"></div>
 					</div>
 				</aside>
 
 				<!--api key-->
 				<section class="api-exp-key">
-					<input type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
-					<a href="#" class="api-exp-key__about-button visible-xs-inline-block"></a>
+					<input data-bind="value: apikey" type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
+					<span data-bind="with: methods">
+						<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-key__about-button visible-xs-inline-block" target="_blank"></a>
+					</span>
 				</section>
 
 				<!--filter-->
@@ -162,16 +159,16 @@
 							<label class="api-exp-methods__label">Methods</label>
 
 							<!--radios-->
-							<div data-bind="foreach: radiosArr" class="api-exp-methods__radio-buttons radio-buttons clearfix">
+							<div data-bind="foreach: radiosModel" class="api-exp-methods__radio-buttons radio-buttons clearfix">
 								<div data-bind="css: {active: checked}" class="api-exp-method">
-									<input data-bind="attr: {id: 'api-exp-' + name, checked: checked}" class="api-exp-content-method__radio" type="radio" name="api-exp-methods">
+									<input data-bind="attr: {id: 'api-exp-' + name, checked: checked}, event: {change: $parent.onchangeRadios}" class="api-exp-content-method__radio" type="radio" name="api-exp-methods">
 									<label data-bind="text: name, attr: {for: 'api-exp-' + name}" class="radio-inline api-exp-method__label"></label>
 								</div>
 							</div>
 
 							<!--select-->
 							<div class="api-exp-methods__select">
-								<div data-bind="component: {name: 'custom-select', params: {options: selectArr}}"></div>
+								<div data-bind="component: {name: 'custom-select', params: {options: selectModel, onselect: onSelectMethod}}"></div>
 							</div>
 						</section>
 					</section>
@@ -180,51 +177,35 @@
 			</section><!--content-wrapper-->
 
 		</div>
+
 		<!--params-->
-		<section data-bind="with: params" class="api-exp-params">
-			<div class="api-exp-params-wrapper clearfix">
+		<section data-bind="with: params" class="api-exp-params js-slide-control">
+			<section class="api-exp-params-headline">
+				<a data-bind="click: slideToggle" href="#">
+					<h4 class="api-exp-params-headline__title">Parameters</h4>
+				</a>
+				<div class="api-exp-params-headline-edit">
+					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
+					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
+				</div>
+			</section>
+			<div class="api-exp-params-wrapper clearfix js-slide-wrapper">
 				<!--about-->
 				<section class="api-exp-about visible-lg-block">
-					<a href="#" class="api-exp-about__button"></a>
+					<a href="#" class="api-exp-about__button" target="_blank"></a>
 					<article class="api-exp-about__content">
-						<h5 class="api-exp-about__title">About API and Method:</h5>
+						<h5 data-bind="text: paramInFocus().name" class="api-exp-about__title">About API and Method:</h5>
 						<section class="api-exp-about__description">
-							<p>Use the
-								<a class="api-exp-about__description-link" href="#">Commerce API</a>
-								to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
-							<p>Method
-								<a class="api-exp-about__description-link" href="#">GET</a>.
-								Authentication required. Returns the 20 most recent events for the authenticating user.
-							</p>
+							<p data-bind="html: paramInFocus().doc"></p>
 						</section>
 					</article>
 				</section>
 				<!--params filter-->
 				<section class="api-exp-params-filter">
-						<section class="api-exp-params-headline">
-							<a data-bind="click: slideToggle" href="#">
-								<h4 class="api-exp-params-headline__title">Parameters</h4>
-							</a>
-							<div class="api-exp-params-headline-edit">
-								<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
-								<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
-							</div>
-						</section>
-						<section class="api-exp-params-filter-fields">
-							<div class="api-exp-params-filter__field">
-								<input type="text" id="api-exp-param_id" class="form-control" placeholder="Id">
-							</div>
-							<div class="api-exp-params-filter__field">
-								<input type="text" id="api-exp-param_attraction-id" class="form-control" placeholder="Attraction Id">
-							</div>
-							<div class="api-exp-params-filter__field">
-								<input type="text" id="api-exp-param_promoter-id" class="form-control" placeholder="Promoter Id">
-							</div>
-							<div class="api-exp-params-filter__field">
-								<input type="text" id="api-exp-param_onsalestartdatetime" class="form-control" placeholder="onsaleStartDateTime">
-							</div>
-							<div class="api-exp-params-filter__field">
-								<input type="text" id="api-exp-param_venue-id" class="form-control" placeholder="Venue Id">
+						<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
+							<div data-bind="css: {'dirty': isDirty}" class="api-exp-params-filter__field">
+								<input data-bind="textInput: value, event:{focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
+								<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
 							</div>
 						</section>
 				</section><!--params filter-->
@@ -232,7 +213,7 @@
 		</section><!--parameters-->
 
 		<section class="api-exp-get-btn clearfix">
-			<button class="api-exp-get-btn__button button button-blue">Get</button>
+			<button data-bind="text: sendButtonText, css: sendButtonText" class="api-exp-get-btn__button button button-blue">Get</button>
 		</section>
 	</div>
 </div>
@@ -246,7 +227,8 @@
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
 <!--<script src="{{'/config.js' | prepend: site.baseurl }}"></script>-->
 <script src="{{'/scripts/vendors/jquery-1.11.3.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.3.0.min.js"></script>
+<!--<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.js' | prepend: site.baseurl }}"></script>-->
 <script src="{{'/scripts/components/intro.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>

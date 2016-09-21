@@ -1,6 +1,16 @@
 $side-menu-bg: rgba(183, 201, 211, 0.1);
 $menu-width: 293px;
 
+// bg images
+
+$img-1: '../assets/img/api-explorer/question-ic-grey.svg';
+$img-2: '../assets/controls/ic-shevron-down.svg';
+$img-3: '../assets/img/api-explorer/ic-info.svg';
+$img-4: '../assets/img/api-explorer/chevron-copy-6.svg';
+$img-5: '../assets/img/api-explorer/ic-copy.svg';
+$img-6: '../assets/img/api-explorer/ic-clear.svg';
+
+
 #api-explorer-v2.api-explorer-v2 {
   .row-container {
     max-width: 1140px;
@@ -24,7 +34,8 @@ $menu-width: 293px;
     margin-top: 20px;
     margin-bottom: 68px;
     max-width: 1145px;
-    .horizontal-events-tracker__title {
+    border-radius: 4px;
+    &__title {
       .title-adds {
         color: #b7c9d3;
       }
@@ -32,7 +43,9 @@ $menu-width: 293px;
   }
 
   .api-exp {
-    &-side-menu-container {}
+    &-container {
+      margin: 0 0 60px;
+    }
     &-main {
       padding-right: 294px;
     }
@@ -57,7 +70,7 @@ $menu-width: 293px;
         padding: 10px;
         display: inline-block;
         line-height: 47px;
-        background: url('../assets/img/api-explorer/question-ic-grey.svg') no-repeat;
+        background: url($img-1) no-repeat;
       }
       &__title {
         margin: 0 0 13px;
@@ -95,6 +108,7 @@ $menu-width: 293px;
       min-height: 236px;
       background: $side-menu-bg;
       margin-right: 30px;
+      border-radius: 4px;
       &__container {
         padding: 10px 0;
         margin: 0;
@@ -181,7 +195,6 @@ $menu-width: 293px;
       position: relative;
       &__field {
         margin-bottom: 0;
-        padding-right: 50px;
         -webkit-transition: opacity 0.2s ease-in-out;
         -o-transition: opacity 0.2s ease-in-out;
         transition: opacity 0.2s ease-in-out;
@@ -203,21 +216,27 @@ $menu-width: 293px;
           -webkit-transition: opacity 0.2s ease-in-out;
           -o-transition: opacity 0.2s ease-in-out;
           transition: opacity 0.2s ease-in-out;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 0 35px 0 15px;
+          &[disabled] {
+            cursor: default;
+            color: #b7c9d3;
+          }
         }
-
-        &::after {
-          content: '';
-          position: absolute;
-          width: 15px;
-          height: 10px;
-          margin-top: -2px;
-          top: 50%;
-          right: 16px;
-          -webkit-transition: opacity 0.2s ease-in-out;
-          -o-transition: opacity 0.2s ease-in-out;
-          transition: opacity 0.2s ease-in-out;
-          background: url('../assets/controls/ic-shevron-down.svg') no-repeat;
-        }
+      }
+      &__chevron {
+        position: absolute;
+        width: 15px;
+        height: 10px;
+        margin-top: -2px;
+        top: 50%;
+        right: 16px;
+        -webkit-transition: opacity 0.2s ease-in-out;
+        -o-transition: opacity 0.2s ease-in-out;
+        transition: opacity 0.2s ease-in-out;
+        background: url($img-2) no-repeat;
       }
       &__list {
         display: none;
@@ -232,9 +251,7 @@ $menu-width: 293px;
         padding: 12px 16px;
         margin: 0;
         font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
-
         border-radius: 4px;
-        background-color: #b7c9d3;
       }
       &__item {
         cursor: pointer;
@@ -242,7 +259,6 @@ $menu-width: 293px;
         -webkit-transition: color 0.1s ease;
         -o-transition: color 0.1s ease;
         transition: color 0.1s ease;
-
         font-size: 16px;
         font-weight: normal;
         font-style: normal;
@@ -270,7 +286,7 @@ $menu-width: 293px;
           height: 16px;
           object-fit: contain;
           opacity: 0.5;
-          background: url('../assets/img/api-explorer/ic-info.svg') no-repeat;
+          background: url($img-3) no-repeat;
         }
       }
     }
@@ -278,14 +294,8 @@ $menu-width: 293px;
     &-params {
       padding: 1px 0;
       clear: both;
-      &-wrapper {
-        margin: 17px 0 0;
-        border-top: 2px dotted #b7c9d3;
-        border-bottom: 2px dotted #b7c9d3;
-        padding: 35px 0;
-        clear: both;
-        position: relative;
-      }
+      position: relative;
+      border-top: 2px dotted #b7c9d3;
       &-headline {
         position: absolute;
         top: -20px;
@@ -294,7 +304,7 @@ $menu-width: 293px;
         padding: 5px 5px 0 15px;
         &:before {
           content: '';
-          background: url('../assets/img/api-explorer/chevron-copy-6.svg') no-repeat;
+          background: url($img-4) no-repeat;
           position: absolute;
           left: 0;
           top: 16px;
@@ -323,14 +333,19 @@ $menu-width: 293px;
           border: none;
           display: inline-block;
           &-copy {
-            background: url('../assets/img/api-explorer/ic-copy.svg') no-repeat;
+            background: url($img-5) no-repeat;
           }
           &-clear {
             width: 28px;
             height: 28px;
-            background: url('../assets/img/api-explorer/ic-clear.svg') no-repeat;
+            background: url($img-6) no-repeat;
           }
         }
+      }
+      &-wrapper {
+        border-bottom: 2px dotted #b7c9d3;
+        padding: 35px 0;
+        clear: both;
       }
 
       &-filter {
@@ -343,7 +358,31 @@ $menu-width: 293px;
           margin-bottom: 25px;
           float: left;
           margin-right: 30px;
-          input[type="text"] {}
+          position: relative;
+          &.dirty {
+            input[type="text"] {}
+            span {
+              display: none;
+            }
+          }
+          input[type="text"] {
+            background: transparent;
+          }
+        }
+        &__placeholder {
+          position: absolute;
+          z-index: -1;
+          top: 50%;
+          left: 15px;
+          margin-top: -11px;
+          display: block;
+          font-size: 16px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.5;
+          text-align: left;
+          color: #b7c9d3;
         }
       }
 
@@ -369,6 +408,18 @@ $menu-width: 293px;
         font-stretch: normal;
         line-height: 1.5;
         letter-spacing: 0.8px;
+        &.get {
+          background-color: #009cde;
+        }
+        &.post {
+          background-color: #8bc34a;
+        }
+        &.put {
+          background-color: #ffc107;
+        }
+        &.delete {
+          background-color: #ff4000;
+        }
       }
     }
   }
@@ -408,7 +459,7 @@ $menu-width: 293px;
           }
         }
       }
-      &-side-menu-container {
+      &-container {
       }
       &-main {
         padding-right: 65px;
@@ -486,9 +537,7 @@ $menu-width: 293px;
 
       // params
       &-params {
-        padding: 45px 0 0;
         &-wrapper {
-          margin: 14px 0 0;
         }
         &-headline {
           &:before {
@@ -530,20 +579,22 @@ $menu-width: 293px;
       }
     }
   } //tablet
-
-
   //mobile
   @media #{$max-768} {
     .horizontal-events-tracker {
       margin: 45px -15px;
       &__section {
-        padding: 20px;
+        padding: 20px 15px;
       }
       &__title {
         width: 50%;
         float: left;
         text-align: left;
+        font-size: 14px;
         .title-adds {}
+      }
+      &__counter {
+        margin: 0;
       }
     }
 
@@ -569,7 +620,7 @@ $menu-width: 293px;
           }
         }
       }
-      &-side-menu-container {}
+      &-container {}
       &-main {
         padding: 0;
       }
@@ -604,7 +655,7 @@ $menu-width: 293px;
           line-height: 47px;
           right: -3px;
           margin-top: 3px;
-          background: url('../assets/img/api-explorer/question-ic-grey.svg') no-repeat;
+          background: url($img-1) no-repeat;
         }
       }
       &-main-filter {
