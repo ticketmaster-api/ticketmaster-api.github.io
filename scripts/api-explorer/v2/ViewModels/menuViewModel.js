@@ -1,33 +1,26 @@
-// var methodsVM = require('./methodsViewModel');
 var hf = require('../components/helperFunc');
 var self;
-var methodsVM;
 
 
 /**
  * Menu View-Model
  * @param base
- * @param methods
+ * @param category
  * @constructor
  */
-function MenuViewModel(base, methods, category) {
-  // this.category = category;
+function MenuViewModel(base, category) {
   self = this;
-  methodsVM = methods;
-  this.categories = ko.observableArray(Object.keys(base).map(function (item) {
+  this.category = category;
+  this.categories = ko.observableArray(Object.keys(base).map(function (item, index) {
     return {
-      checked: ko.observable(false),
+      checked: ko.observable(!index),
       name: item,
       link: '#'
     }
   }));
 
   // initial load
-  this.selectCategory({
-    checked: ko.observable(true),
-    name: Object.keys(base)[0],
-    link: '#'
-  });
+  this.selectCategory(this.categories()[0]);
 }
 
 /**
@@ -36,8 +29,7 @@ function MenuViewModel(base, methods, category) {
  */
 MenuViewModel.prototype.selectCategory = function (category) {
   var categoryName = category.name;
-  // self.category(categoryName);
-  methodsVM.updateModel(categoryName);
+  self.category(categoryName);
   hf.checkActive(self.categories, categoryName);
 };
 

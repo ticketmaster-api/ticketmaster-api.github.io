@@ -40,7 +40,6 @@ CustomSelect.prototype.slideToggle = function(viewModel, event) {
 };
 
 CustomSelect.prototype.slideUp = function(viewModel, event) {
-  console.log('hey');
   if (viewModel.isOneOption()) {return false;}
   findElement(event).slideUp(viewModel.animationSpeed);
 };
@@ -48,6 +47,7 @@ CustomSelect.prototype.slideUp = function(viewModel, event) {
 /**
  * Custom Select View-Model method
  * @param item
+ * @param event
  */
 CustomSelect.prototype.selectItem = function (item, event) {
   var self = this;
@@ -64,12 +64,12 @@ module.exports = ko.components.register('custom-select', {
     '<div data-bind="event: {blur: slideUp}" class="api-exp-custom-select js-custom-select">',
       '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
       '<span class="api-exp-custom-select__placeholder">',
-        '<input data-bind="click: slideToggle, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
+        '<input data-bind="event: {click: slideToggle}, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
         '<b data-bind="css: {hidden: isOneOption}" class="api-exp-custom-select__chevron">&nbsp;</b>',
       '</span>',
       '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
-        '<li class="api-exp-custom-select__item">',
-          '<a data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, attr: {\'data-value\': name}, css: {active: checked()}"  class="api-exp-custom-select__item-label" href="#"></a>',
+        '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
+          '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
           '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
         '</li>',
       '</ul>',

@@ -76,12 +76,14 @@ var base =
 	  this.apikey = ko.observable(apikey);
 	
 	  // observables
+	  this.selectedCategory = ko.observable('');
 	  this.selectedMethod = ko.observable('');
 	  this.selectedParams = ko.observableArray([]);
 	  // sub-models
-	  this.methods = new MethodsViewModel(base, this.selectedMethod);
-	  this.menu = new MenuViewModel(base, this.methods);
+	  this.menu = new MenuViewModel(base, this.selectedCategory);
+	  this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
 	  this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
+	  // computed
 	  this.sendButtonText = ko.pureComputed(function () {
 	    return this.selectedMethod().method.toLowerCase();
 	  }, this);
@@ -137,7 +139,6 @@ var base =
 	};
 	
 	CustomSelect.prototype.slideUp = function(viewModel, event) {
-	  console.log('hey');
 	  if (viewModel.isOneOption()) {return false;}
 	  findElement(event).slideUp(viewModel.animationSpeed);
 	};
@@ -145,6 +146,7 @@ var base =
 	/**
 	 * Custom Select View-Model method
 	 * @param item
+	 * @param event
 	 */
 	CustomSelect.prototype.selectItem = function (item, event) {
 	  var self = this;
@@ -161,12 +163,12 @@ var base =
 	    '<div data-bind="event: {blur: slideUp}" class="api-exp-custom-select js-custom-select">',
 	      '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
 	      '<span class="api-exp-custom-select__placeholder">',
-	        '<input data-bind="click: slideToggle, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
+	        '<input data-bind="event: {click: slideToggle}, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
 	        '<b data-bind="css: {hidden: isOneOption}" class="api-exp-custom-select__chevron">&nbsp;</b>',
 	      '</span>',
 	      '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
-	        '<li class="api-exp-custom-select__item">',
-	          '<a data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, attr: {\'data-value\': name}, css: {active: checked()}"  class="api-exp-custom-select__item-label" href="#"></a>',
+	        '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
+	          '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
 	          '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
 	        '</li>',
 	      '</ul>',
@@ -283,36 +285,29 @@ var base =
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// var methodsVM = require('./methodsViewModel');
 	var hf = __webpack_require__(6);
 	var self;
-	var methodsVM;
 	
 	
 	/**
 	 * Menu View-Model
 	 * @param base
-	 * @param methods
+	 * @param category
 	 * @constructor
 	 */
-	function MenuViewModel(base, methods, category) {
-	  // this.category = category;
+	function MenuViewModel(base, category) {
 	  self = this;
-	  methodsVM = methods;
-	  this.categories = ko.observableArray(Object.keys(base).map(function (item) {
+	  this.category = category;
+	  this.categories = ko.observableArray(Object.keys(base).map(function (item, index) {
 	    return {
-	      checked: ko.observable(false),
+	      checked: ko.observable(!index),
 	      name: item,
 	      link: '#'
 	    }
 	  }));
 	
 	  // initial load
-	  this.selectCategory({
-	    checked: ko.observable(true),
-	    name: Object.keys(base)[0],
-	    link: '#'
-	  });
+	  this.selectCategory(this.categories()[0]);
 	}
 	
 	/**
@@ -321,8 +316,7 @@ var base =
 	 */
 	MenuViewModel.prototype.selectCategory = function (category) {
 	  var categoryName = category.name;
-	  // self.category(categoryName);
-	  methodsVM.updateModel(categoryName);
+	  self.category(categoryName);
 	  hf.checkActive(self.categories, categoryName);
 	};
 	
@@ -452,16 +446,18 @@ var base =
 	 * @param method
 	 * @constructor
 	 */
-	function MethodsViewModel(raw, method) {
+	function MethodsViewModel(raw, category, method) {
 	  self = this;
 	  base = raw;
 	
 	  // observables
+	  this.category = category;
 	  this.method = method;
 	  this.apikey = ko.observable('');
 	  this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
 	  this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
-	  this.methodIsSelected = ko.observable('');
+	  this.updateModel(this.category());
+	  this.category.subscribe(this.updateModel);
 	}
 	
 	/**
@@ -469,13 +465,11 @@ var base =
 	 * Methods View-Model method
 	 * @param name
 	 */
-	MethodsViewModel.prototype.updateModel = function (name) {
-	  category = name;
+	MethodsViewModel.prototype.updateModel = function (category) {
 	  // initial radios model
-	  this.updateRadiosModel(base[name]);
+	  self.updateRadiosModel(base[category]);
 	  // initial select model (first method in first section for start)
-	  this.updateSelect(this.radiosModel()[0]);
-	  this.methodIsSelected(this.selectModel()[0]);
+	  self.updateSelect(self.radiosModel()[0]);
 	};
 	
 	/**
@@ -520,7 +514,7 @@ var base =
 	 * @param item
 	 */
 	MethodsViewModel.prototype.updateSelect = function (item) {
-	  var obj = base[category][item.name]|| {},
+	  var obj = base[self.category()][item.name]|| {},
 	    arr = [],
 	    count = 0;
 	
@@ -537,8 +531,8 @@ var base =
 	      method: property.method
 	    });
 	    
-	    // set global observable
-	    this.method(base[property.category][property.method][property.id]);
+	    // // set global observable
+	    !count && this.method(base[property.category][property.method][property.id]);
 	    
 	    count++;
 	  }
@@ -546,6 +540,7 @@ var base =
 	};
 	
 	MethodsViewModel.prototype.onSelectMethod = function (item) {
+	  hf.checkActive(self.selectModel, item.name);
 	  self.method(base[item.category][item.method][item.id]);
 	};
 	

@@ -22,12 +22,14 @@ function AppViewModel(obj) {
   this.apikey = ko.observable(apikey);
 
   // observables
+  this.selectedCategory = ko.observable('');
   this.selectedMethod = ko.observable('');
   this.selectedParams = ko.observableArray([]);
   // sub-models
-  this.methods = new MethodsViewModel(base, this.selectedMethod);
-  this.menu = new MenuViewModel(base, this.methods);
+  this.menu = new MenuViewModel(base, this.selectedCategory);
+  this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
+  // computed
   this.sendButtonText = ko.pureComputed(function () {
     return this.selectedMethod().method.toLowerCase();
   }, this);
