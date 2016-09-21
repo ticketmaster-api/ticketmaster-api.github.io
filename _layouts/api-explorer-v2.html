@@ -119,11 +119,11 @@
 		<div class="api-exp-container clearfix">
 			<!--about-->
 			<section data-bind="with: methods" class="api-exp-about">
-				<a data-bind="attr: {href: methodIsSelected().link}" href="#" class="api-exp-about__button" target="_blank"></a>
+				<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-about__button" target="_blank"></a>
 				<article class="api-exp-about__content">
-					<h5 data-bind="text: methodIsSelected().name" class="api-exp-about__title">About API and Method:</h5>
+					<h5 data-bind="text: method().name" class="api-exp-about__title">About API and Method:</h5>
 					<section class="api-exp-about__description">
-						<p data-bind="text: methodIsSelected().about"></p>
+						<p data-bind="text: method().description"></p>
 					</section>
 				</article>
 			</section>
@@ -202,12 +202,12 @@
 				</section>
 				<!--params filter-->
 				<section class="api-exp-params-filter">
-						<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
-							<div data-bind="css: {'dirty': isDirty}" class="api-exp-params-filter__field">
-								<input data-bind="textInput: value, event:{focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
-								<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
-							</div>
-						</section>
+					<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
+						<div data-bind="css: {'dirty': isDirty}" class="api-exp-params-filter__field">
+							<input data-bind="textInput: value, event:{focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
+							<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
+						</div>
+					</section>
 				</section><!--params filter-->
 			</div>
 		</section><!--parameters-->

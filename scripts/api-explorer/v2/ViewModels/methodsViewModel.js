@@ -11,16 +11,18 @@ var category;
  * @param method
  * @constructor
  */
-function MethodsViewModel(raw, method) {
+function MethodsViewModel(raw, category, method) {
   self = this;
   base = raw;
 
   // observables
+  this.category = category;
   this.method = method;
   this.apikey = ko.observable('');
   this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
   this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
-  this.methodIsSelected = ko.observable('');
+  this.updateModel(this.category());
+  this.category.subscribe(this.updateModel);
 }
 
 /**
@@ -28,13 +30,11 @@ function MethodsViewModel(raw, method) {
  * Methods View-Model method
  * @param name
  */
-MethodsViewModel.prototype.updateModel = function (name) {
-  category = name;
+MethodsViewModel.prototype.updateModel = function (category) {
   // initial radios model
-  this.updateRadiosModel(base[name]);
+  self.updateRadiosModel(base[category]);
   // initial select model (first method in first section for start)
-  this.updateSelect(this.radiosModel()[0]);
-  this.methodIsSelected(this.selectModel()[0]);
+  self.updateSelect(self.radiosModel()[0]);
 };
 
 /**
@@ -79,7 +79,7 @@ MethodsViewModel.prototype.updateRadiosModel = function (param) {
  * @param item
  */
 MethodsViewModel.prototype.updateSelect = function (item) {
-  var obj = base[category][item.name]|| {},
+  var obj = base[self.category()][item.name]|| {},
     arr = [],
     count = 0;
 
@@ -96,8 +96,8 @@ MethodsViewModel.prototype.updateSelect = function (item) {
       method: property.method
     });
     
-    // set global observable
-    this.method(base[property.category][property.method][property.id]);
+    // // set global observable
+    !count && this.method(base[property.category][property.method][property.id]);
     
     count++;
   }
@@ -105,6 +105,7 @@ MethodsViewModel.prototype.updateSelect = function (item) {
 };
 
 MethodsViewModel.prototype.onSelectMethod = function (item) {
+  hf.checkActive(self.selectModel, item.name);
   self.method(base[item.category][item.method][item.id]);
 };
 
