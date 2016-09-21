@@ -4,15 +4,15 @@ categories:
 - documentation
 - widgets
 - widget-checkout
-title: Checkout Widget
+title: Universal Checkout
 excerpt: Everything you need to start selling tickets on your website
-keywords: ticketmaster, checkout, widget, sell tickets, javascript, developer
+keywords: ticketmaster, universal checkout, widget, sell tickets, javascript, developer
 ---
 
-# CHECKOUT WIDGET
+# UNIVERSAL CHECKOUT
 
 {: .lead}
-This TM Widget allows clients, artists, and partners to setup and provide an enhanced experience for consumers within copy/paste distance.
+Ticketmaster Universal Checkout allows clients, artists, and partners to setup and provide an enhanced experience for consumers within copy/paste distance.
 
 ## Sell tickets directly on your website with no redirect
 
@@ -61,7 +61,7 @@ Grab a small code snippet to insert into your website
         <div class="tab-pane fade" id="widget-config-preview">
           <h3 id="google-chrome-extension">Google Chrome Extension</h3>
 
-          <p>Preview the Checkout Widget using our Widget Simulator extension for Google Chrome.  View the widget on your browser only without making any code changes to your live website.</p>
+          <p>Preview Ticketmaster Universal Checkout using our Widget Simulator extension for Google Chrome.  View the checkout experience on your browser only without making any code changes to your live website.</p>
 
           <ul>
             <li>
@@ -74,14 +74,14 @@ Grab a small code snippet to insert into your website
               <p><strong>Step 3:</strong> Click the Add To Chrome button</p>
             </li>
             <li>
-              <p><strong>Step 4:</strong> Visit the website where you’d like to simulate the checkout widget</p>
+              <p><strong>Step 4:</strong> Visit the website where you’d like to preview Universal Checkout</p>
             </li>
             <li>
               <p><strong>Step 5:</strong> Click the blue “TM” button in the top right of your Chrome browser, then click “Inject Widget” - you will see a pop up to let you know how many events were detected on this page</p>
             </li>
           </ul>
 
-          <p>Ticketmaster.com and livenation.com links that are eligible for the widget will glow blue, and clicking them will result in opening the checkout widget.</p>
+          <p>Ticketmaster.com and livenation.com links that are eligible for the widget will glow blue, and clicking them will result in opening Universal Checkout.</p>
       </div>
     </div>
 
@@ -124,4 +124,4 @@ Buyers see their order details
 
 ## Affiliate Tracking
 
-The Checkout Widget works seamlessly with the [Ticketmaster Certified Partners](/partners/distribution-partners/) program.  Any Impact Radius links on your site in theticketmaster.evyy.net format will be treated just like any other Ticketmaster link. When buyers click the link, the widget will attribute any sales to your existing partner account with no redirect.
+Ticketmaster Universal Checkout works seamlessly with the [Ticketmaster Certified Partners](/partners/distribution-partners/) program.  Any Impact Radius links on your site in theticketmaster.evyy.net format will be treated just like any other Ticketmaster link. When buyers click the link, Universal Checkout will attribute any sales to your existing partner account with no redirect.
