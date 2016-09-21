@@ -11,20 +11,31 @@
         {% assign propToEmbedLength = 0 %}
         {% assign innerRef = propToEmbed %}
         {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath] %}
+        {% if topPath == '' or topPath.size < 1 or topPath == null %}
+            {% assign pathFirsLvl_wrap = propToEmbed[0] %}
+            {% assign pathScdLvl_wrap = propToEmbed[1] %}
+            {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[propLastInPath] %}
+        {%endif%}
 
         {%assign isRootEmbed = false %}
         {%if add_property_HAL.in == 'root'%}
             {%assign isRootEmbed = true %}<!-- _HAL.in is 'root' : EXIT NOW-->
-            <li><h4 class="red"> 2- inside wrap-embed-in.html </h4> propToEmbed is - {{add_property_HAL.in}}</li>
+            <!--<li><h4 class="red"> 2- inside wrap-embed-in.html </h4> propToEmbed is - {{add_property_HAL.in}}</li>-->
         {%endif%}
         {% if isRootEmbed == false %}{% endif %}{% if isRootEmbed == false %}{% endif %}
         {% if isRootEmbed == false %}{% endif %}<!-- endif for isRootEmbed == false-->
+        <!--<li><h3  class="red"> 3 - inside wrap-embed-in.html </h3> topPath - {{topPath}} topPath.size - {{topPath.size}}, propLastInPath -{{propLastInPath}}; propToEmbed[0] - {{propToEmbed[0]}} ; propToEmbed[1] - {{propToEmbed[1]}}</li>-->
 
         <li><code>{{propToEmbed[2]}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
             <ul>
                 <li><code class="highlighter-rouge">_embedded</code>(object) - container for {{ add_property_HAL.as }}. <!-- start loop here {{ add_property_HAL.size }} -->
                     <ul>{% assign InPath = _HAL.embed[forloop.index0].as %}
                         {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[InPath] %}
+                        {% if topPath == '' or topPath.size < 1 or topPath == null %}
+                            {% assign pathFirsLvl_wrap = propToEmbed[0] %}
+                            {% assign pathScdLvl_wrap = propToEmbed[1] %}
+                            {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[InPath] %}
+                        {%endif%}
                         <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                             <ul>
                                 <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
@@ -39,6 +50,11 @@
                                                 {% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _HAL.embed[forloop.index0].as %}
                                                 <ul>{% assign InPath = _HAL.embed[forloop.index0].as %}
                                                     {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[InPath] %}
+                                                    {% if topPath == '' or topPath.size < 1 or topPath == null %}
+                                                        {% assign pathFirsLvl_wrap = propToEmbed[0] %}
+                                                        {% assign pathScdLvl_wrap = propToEmbed[1] %}
+                                                        {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[InPath] %}
+                                                    {%endif%}
                                                     <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                                                         <ul>
                                                             <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
@@ -81,19 +97,12 @@
                 {%endif%}
 
             </ul>
-            {% if topPath[1].$ref %} - {{ topPath[1].$ref }}{% endif %}
 
             {% if topPath['$ref']  %}
-                {%assign outer = topPath['$ref']]%}
+                {%assign outer = topPath['$ref']%}
                 {%include partials/autodoc/inner-item.html%}
             {%endif%}
 
-            {% if swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath]['$ref']  %}{%else%}
-                {% assign pathFirsLvl_wrap = propToEmbed[0] %}
-                {% assign pathScdLvl_wrap = propToEmbed[1] %}
-                {%assign outer = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[propLastInPath]['$ref']%}
-                {%include partials/autodoc/inner-item.html%}
-            {%endif%}
         </li>
     {%endif%}
 
