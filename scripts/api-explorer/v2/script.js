@@ -60,10 +60,11 @@ var base =
 	
 	__webpack_require__(2);
 	
-	var base = __webpack_require__(4);
+	var base = __webpack_require__(3);
+	var apikey = __webpack_require__(4);
 	var MenuViewModel = __webpack_require__(5);
-	var ParamsViewModel = __webpack_require__(6);
-	var MethodsViewModel = __webpack_require__(7);
+	var ParamsViewModel = __webpack_require__(7);
+	var MethodsViewModel = __webpack_require__(8);
 	
 	/**
 	 * AppViewModel
@@ -72,7 +73,7 @@ var base =
 	function AppViewModel(obj) {
 	  var base = obj || {};
 	  self = this;
-	
+	  this.apikey = ko.observable(apikey);
 	
 	  // observables
 	  this.selectedMethod = ko.observable('');
@@ -81,7 +82,9 @@ var base =
 	  this.methods = new MethodsViewModel(base, this.selectedMethod);
 	  this.menu = new MenuViewModel(base, this.methods);
 	  this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
-	  // this.selectedMethod
+	  this.sendButtonText = ko.pureComputed(function () {
+	    return this.selectedMethod().method.toLowerCase();
+	  }, this);
 	}
 	
 	// Activates knockout.js
@@ -90,13 +93,11 @@ var base =
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	/**
 	 * Custom Select component
 	 */
-	
-	var hf = __webpack_require__(3);
 	var self;
 	
 	/**
@@ -114,6 +115,15 @@ var base =
 	  this.placeholder = ko.observable(params.placeholder || '');
 	  this.onselect = params.onselect || function (item) { console.log(item +'selected!')};
 	  this.selected = ko.observable(this.selectModel()[0]);
+	  this.isOneOption = ko.pureComputed(function () {
+	    return this.selectModel().length < 2; // more than one option
+	  }, this);
+	}
+	
+	function findElement(event) {
+	  return $(event.currentTarget)
+	    .parents('.js-custom-select')
+	    .find('.js-custom-select-wrapper')
 	}
 	
 	/**
@@ -122,10 +132,14 @@ var base =
 	 * @param event
 	 */
 	CustomSelect.prototype.slideToggle = function(viewModel, event) {
-	  $(event.currentTarget)
-	    .parent()
-	    .next('ul')
-	    .slideToggle(viewModel.animationSpeed);
+	  if (viewModel.isOneOption()) {return false;}
+	  findElement(event).slideToggle(viewModel.animationSpeed);
+	};
+	
+	CustomSelect.prototype.slideUp = function(viewModel, event) {
+	  console.log('hey');
+	  if (viewModel.isOneOption()) {return false;}
+	  findElement(event).slideUp(viewModel.animationSpeed);
 	};
 	
 	/**
@@ -133,31 +147,29 @@ var base =
 	 * @param item
 	 */
 	CustomSelect.prototype.selectItem = function (item, event) {
+	  var self = this;
 	  this.selected(item);
 	  // run handler
 	  this.onselect(item);
 	  // slide up
-	  $(event.currentTarget)
-	    .parents('.api-exp-custom-select')
-	    .find('input')
-	    .trigger('click');
+	  this.slideUp(self, event);
 	};
 	
 	module.exports = ko.components.register('custom-select', {
 	  viewModel: CustomSelect,
 	  template: ([
-	    '<div class="api-exp-custom-select">',
-	    '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
-	    '<span class="api-exp-custom-select__placeholder">',
-	    '<input data-bind="click: slideToggle, attr: {value: selected().name}" type="text" value="" readonly="">',
-	    '</span>',
-	    '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list">',
-	    '<li class="api-exp-custom-select__item">',
-	    // '<span data-bind="text: console.log(\'checked - \', name, checked())"></span>',
-	    '<a data-bind="event: {click: $parent.selectItem.bind($parent), }, text: name, attr: {\'data-value\': name}, css: {active: checked()}"  class="api-exp-custom-select__item-label" href="#"></a>',
-	    '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link">&nbsp;</a>',
-	    '</li>',
-	    '</ul>',
+	    '<div data-bind="event: {blur: slideUp}" class="api-exp-custom-select js-custom-select">',
+	      '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
+	      '<span class="api-exp-custom-select__placeholder">',
+	        '<input data-bind="click: slideToggle, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
+	        '<b data-bind="css: {hidden: isOneOption}" class="api-exp-custom-select__chevron">&nbsp;</b>',
+	      '</span>',
+	      '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
+	        '<li class="api-exp-custom-select__item">',
+	          '<a data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, attr: {\'data-value\': name}, css: {active: checked()}"  class="api-exp-custom-select__item-label" href="#"></a>',
+	          '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
+	        '</li>',
+	      '</ul>',
 	    '</div>'
 	  ]).join('')
 	});
@@ -165,47 +177,6 @@ var base =
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
-
-	exports.getModelArray = function getModelArray(params) {
-	    var obj = params.obj || {},
-	        arr = params.arr || [],
-	        prop = params.prop || 'name';
-	
-	    for (var i in obj) {
-	        if (!obj.hasOwnProperty(i)) { continue; }
-	
-	        var item = arr.find(function (m1) {
-	            return m1.name === obj[i][prop];
-	        });
-	
-	        if (item) { continue; }
-	
-	        arr.push({
-	            checked: ko.observable(false),
-	            name: obj[i][prop]
-	        });
-	    }
-	    return arr;
-	};
-	
-	exports.checkActive = function checkActive(koArr, activeElem) {
-	    if (!koArr && !activeElem) {return false;}
-	
-	    koArr(koArr().map(function (obj) {
-	        if (obj.name === activeElem) {
-	            obj.checked(true);
-	        } else {
-	            obj.checked(false);
-	        }
-	        return obj;
-	    }));
-	};
-	
-
-
-/***/ },
-/* 4 */
 /***/ function(module, exports) {
 
 	var base = {};
@@ -301,11 +272,19 @@ var base =
 
 
 /***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	var apiKey = sessionStorage.getItem('tk-api-key') || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0"; //API Key
+	
+	module.exports = apiKey;
+
+/***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// var methodsVM = require('./methodsViewModel');
-	var hf = __webpack_require__(3);
+	var hf = __webpack_require__(6);
 	var self;
 	var methodsVM;
 	
@@ -354,6 +333,47 @@ var base =
 /* 6 */
 /***/ function(module, exports) {
 
+	exports.getModelArray = function getModelArray(params) {
+	    var obj = params.obj || {},
+	        arr = params.arr || [],
+	        prop = params.prop || 'name';
+	
+	    for (var i in obj) {
+	        if (!obj.hasOwnProperty(i)) { continue; }
+	
+	        var item = arr.find(function (m1) {
+	            return m1.name === obj[i][prop];
+	        });
+	
+	        if (item) { continue; }
+	
+	        arr.push({
+	            checked: ko.observable(false),
+	            name: obj[i][prop]
+	        });
+	    }
+	    return arr;
+	};
+	
+	exports.checkActive = function checkActive(koArr, activeElem) {
+	    if (!koArr && !activeElem) {return false;}
+	
+	    koArr(koArr().map(function (obj) {
+	        if (obj.name === activeElem) {
+	            obj.checked(true);
+	        } else {
+	            obj.checked(false);
+	        }
+	        return obj;
+	    }));
+	};
+	
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
 	var self;
 	var base;
 	
@@ -369,9 +389,10 @@ var base =
 	  self = this;
 	  this.method = method;
 	  this.animationSpeed = 200;
-	  this.paramInFocus = ko.observable('');
 	  this.aboutParam = ko.observable('');
+	  this.paramInFocus = ko.observable('');
 	  this.paramsModel = ko.computed(self.updateParamsModel);
+	  this.paramInFocus(this.paramsModel()[0]);
 	}
 	
 	/**
@@ -391,7 +412,7 @@ var base =
 	    }, obj[i]);
 	    arr.push(obj[i]);
 	  }
-	
+	  self.paramInFocus(arr[0]);
 	  return arr;
 	};
 	
@@ -406,21 +427,21 @@ var base =
 	    .find('.js-slide-wrapper')
 	    .slideToggle(viewModel.animationSpeed);
 	};
+	
 	ParamsViewModel.prototype.onFocus = function (item) {
-	  self.paramInFocus(item.name);
-	  self.aboutParam(item.doc);
+	  self.paramInFocus(item);
 	};
 	
 	module.exports = ParamsViewModel;
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var hf = __webpack_require__(3);
+	var hf = __webpack_require__(6);
 	var self;
 	var base;
 	var category;
@@ -440,6 +461,7 @@ var base =
 	  this.apikey = ko.observable('');
 	  this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
 	  this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
+	  this.methodIsSelected = ko.observable('');
 	}
 	
 	/**
@@ -453,6 +475,7 @@ var base =
 	  this.updateRadiosModel(base[name]);
 	  // initial select model (first method in first section for start)
 	  this.updateSelect(this.radiosModel()[0]);
+	  this.methodIsSelected(this.selectModel()[0]);
 	};
 	
 	/**

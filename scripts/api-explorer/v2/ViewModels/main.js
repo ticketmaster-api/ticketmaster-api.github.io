@@ -7,6 +7,7 @@
 require('./../components/customSelect');
 
 var base = require('./../components/config');
+var apikey = require('./../components/apikey');
 var MenuViewModel = require('./../ViewModels/menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
@@ -18,7 +19,7 @@ var MethodsViewModel = require('./methodsViewModel');
 function AppViewModel(obj) {
   var base = obj || {};
   self = this;
-
+  this.apikey = ko.observable(apikey);
 
   // observables
   this.selectedMethod = ko.observable('');
@@ -27,7 +28,9 @@ function AppViewModel(obj) {
   this.methods = new MethodsViewModel(base, this.selectedMethod);
   this.menu = new MenuViewModel(base, this.methods);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
-  // this.selectedMethod
+  this.sendButtonText = ko.pureComputed(function () {
+    return this.selectedMethod().method.toLowerCase();
+  }, this);
 }
 
 // Activates knockout.js

@@ -13,9 +13,10 @@ function ParamsViewModel(raw, method, params) {
   self = this;
   this.method = method;
   this.animationSpeed = 200;
-  this.paramInFocus = ko.observable('');
   this.aboutParam = ko.observable('');
+  this.paramInFocus = ko.observable('');
   this.paramsModel = ko.computed(self.updateParamsModel);
+  this.paramInFocus(this.paramsModel()[0]);
 }
 
 /**
@@ -35,7 +36,7 @@ ParamsViewModel.prototype.updateParamsModel = function () {
     }, obj[i]);
     arr.push(obj[i]);
   }
-
+  self.paramInFocus(arr[0]);
   return arr;
 };
 
@@ -50,9 +51,9 @@ ParamsViewModel.prototype.slideToggle = function (viewModel, event) {
     .find('.js-slide-wrapper')
     .slideToggle(viewModel.animationSpeed);
 };
+
 ParamsViewModel.prototype.onFocus = function (item) {
-  self.paramInFocus(item.name);
-  self.aboutParam(item.doc);
+  self.paramInFocus(item);
 };
 
 module.exports = ParamsViewModel;

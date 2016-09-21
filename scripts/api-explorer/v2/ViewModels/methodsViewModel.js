@@ -20,6 +20,7 @@ function MethodsViewModel(raw, method) {
   this.apikey = ko.observable('');
   this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
   this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
+  this.methodIsSelected = ko.observable('');
 }
 
 /**
@@ -33,6 +34,7 @@ MethodsViewModel.prototype.updateModel = function (name) {
   this.updateRadiosModel(base[name]);
   // initial select model (first method in first section for start)
   this.updateSelect(this.radiosModel()[0]);
+  this.methodIsSelected(this.selectModel()[0]);
 };
 
 /**

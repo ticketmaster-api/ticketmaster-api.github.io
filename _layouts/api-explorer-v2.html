@@ -119,17 +119,11 @@
 		<div class="api-exp-container clearfix">
 			<!--about-->
 			<section data-bind="with: methods" class="api-exp-about">
-				<a href="#" class="api-exp-about__button"></a>
+				<a data-bind="attr: {href: methodIsSelected().link}" href="#" class="api-exp-about__button" target="_blank"></a>
 				<article class="api-exp-about__content">
-					<h5 class="api-exp-about__title">About API and Method:</h5>
+					<h5 data-bind="text: methodIsSelected().name" class="api-exp-about__title">About API and Method:</h5>
 					<section class="api-exp-about__description">
-						<p>Use the
-							<a class="api-exp-about__description-link" href="#">Commerce API</a>
-							to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
-						<p>Method
-							<a class="api-exp-about__description-link" href="#">GET</a>.
-							Authentication required. Returns the 20 most recent events for the authenticating user.
-						</p>
+						<p data-bind="text: methodIsSelected().about"></p>
 					</section>
 				</article>
 			</section>
@@ -152,8 +146,10 @@
 
 				<!--api key-->
 				<section class="api-exp-key">
-					<input type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
-					<a href="#" class="api-exp-key__about-button visible-xs-inline-block"></a>
+					<input data-bind="value: apikey" type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
+					<span data-bind="with: methods">
+						<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-key__about-button visible-xs-inline-block" target="_blank"></a>
+					</span>
 				</section>
 
 				<!--filter-->
@@ -196,17 +192,11 @@
 			<div class="api-exp-params-wrapper clearfix js-slide-wrapper">
 				<!--about-->
 				<section class="api-exp-about visible-lg-block">
-					<a href="#" class="api-exp-about__button"></a>
+					<a href="#" class="api-exp-about__button" target="_blank"></a>
 					<article class="api-exp-about__content">
-						<h5 data-bind="text: paramInFocus" class="api-exp-about__title">About API and Method:</h5>
-						<section data-bind="html: aboutParam" class="api-exp-about__description">
-							<p>Use the
-								<a class="api-exp-about__description-link" href="#">Commerce API</a>
-								to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.</p>
-							<p>Method
-								<a class="api-exp-about__description-link" href="#">GET</a>.
-								Authentication required. Returns the 20 most recent events for the authenticating user.
-							</p>
+						<h5 data-bind="text: paramInFocus().name" class="api-exp-about__title">About API and Method:</h5>
+						<section class="api-exp-about__description">
+							<p data-bind="html: paramInFocus().doc"></p>
 						</section>
 					</article>
 				</section>
@@ -214,7 +204,8 @@
 				<section class="api-exp-params-filter">
 						<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
 							<div data-bind="css: {'dirty': isDirty}" class="api-exp-params-filter__field">
-								<input data-bind="textInput: value, event:{focus: $parent.onFocus}, attr: {placeholder: name, id: 'api-exp-param_' + name}" type="text" class="form-control">
+								<input data-bind="textInput: value, event:{focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
+								<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
 							</div>
 						</section>
 				</section><!--params filter-->
@@ -222,7 +213,7 @@
 		</section><!--parameters-->
 
 		<section class="api-exp-get-btn clearfix">
-			<button class="api-exp-get-btn__button button button-blue">Get</button>
+			<button data-bind="text: sendButtonText, css: sendButtonText" class="api-exp-get-btn__button button button-blue">Get</button>
 		</section>
 	</div>
 </div>

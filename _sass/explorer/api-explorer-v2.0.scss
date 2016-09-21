@@ -220,21 +220,23 @@ $img-6: '../assets/img/api-explorer/ic-clear.svg';
           overflow: hidden;
           text-overflow: ellipsis;
           padding: 0 35px 0 15px;
+          &[disabled] {
+            cursor: default;
+            color: #b7c9d3;
+          }
         }
-
-        &::after {
-          content: '';
-          position: absolute;
-          width: 15px;
-          height: 10px;
-          margin-top: -2px;
-          top: 50%;
-          right: 16px;
-          -webkit-transition: opacity 0.2s ease-in-out;
-          -o-transition: opacity 0.2s ease-in-out;
-          transition: opacity 0.2s ease-in-out;
-          background: url($img-2) no-repeat;
-        }
+      }
+      &__chevron {
+        position: absolute;
+        width: 15px;
+        height: 10px;
+        margin-top: -2px;
+        top: 50%;
+        right: 16px;
+        -webkit-transition: opacity 0.2s ease-in-out;
+        -o-transition: opacity 0.2s ease-in-out;
+        transition: opacity 0.2s ease-in-out;
+        background: url($img-2) no-repeat;
       }
       &__list {
         display: none;
@@ -356,10 +358,31 @@ $img-6: '../assets/img/api-explorer/ic-clear.svg';
           margin-bottom: 25px;
           float: left;
           margin-right: 30px;
+          position: relative;
           &.dirty {
             input[type="text"] {}
+            span {
+              display: none;
+            }
           }
-          input[type="text"] {}
+          input[type="text"] {
+            background: transparent;
+          }
+        }
+        &__placeholder {
+          position: absolute;
+          z-index: -1;
+          top: 50%;
+          left: 15px;
+          margin-top: -11px;
+          display: block;
+          font-size: 16px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.5;
+          text-align: left;
+          color: #b7c9d3;
         }
       }
 
@@ -385,6 +408,18 @@ $img-6: '../assets/img/api-explorer/ic-clear.svg';
         font-stretch: normal;
         line-height: 1.5;
         letter-spacing: 0.8px;
+        &.get {
+          background-color: #009cde;
+        }
+        &.post {
+          background-color: #8bc34a;
+        }
+        &.put {
+          background-color: #ffc107;
+        }
+        &.delete {
+          background-color: #ff4000;
+        }
       }
     }
   }
