@@ -1,3 +1,6 @@
+<!--check fields to hide-->
+{% include partials/autodoc/fields-to-hide.html %}
+
 {% for add_property_HAL in _HAL.embed %}
     {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
     {%assign exitLoop = false %}

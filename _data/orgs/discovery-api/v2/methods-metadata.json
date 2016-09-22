@@ -100,7 +100,7 @@
                     "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in":"#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in":"#/definitions/Classification/classifications"},
                     { "embed": "#/definitions/Classification/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
                 ]
             }
@@ -118,7 +118,7 @@
                     "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in":"#/definitions/Classification"},
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in":"#/definitions/Classification/classifications"},
                     { "embed": "#/definitions/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
                 ]
             }
