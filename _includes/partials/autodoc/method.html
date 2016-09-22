@@ -363,6 +363,7 @@
                 {% endif %}
             {% assign schemaSplit = schemaRes | split: ' ' %}
 
+            {% comment %}
             {%if listTag.NOT_CORRECT %}
             <p class="red" style="background: #7356a5; color: white; padding: 20px; border-radius: 4px;">
                 <b class='blue'>NOT CORRECT :</b> please compare api.json with <b class='blue'>real</b> response.
@@ -371,7 +372,7 @@
             </p>
             {% endif %}
 
-            {% comment %}
+            
                 <p>
                     <span class="swagger-response-code">{{ response[0] }}</span> {{ response[1].description }}
                 </p>
