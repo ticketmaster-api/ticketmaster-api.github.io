@@ -36,7 +36,7 @@
                             {% assign pathScdLvl_wrap = propToEmbed[1] %}
                             {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[InPath] %}
                         {%endif%}
-                        <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+                        <li><code>{%if _HAL.embed[forloop.index0].as == 'genre' or _HAL.embed[forloop.index0].as == 'subGenre'%}{{_HAL.embed[forloop.index0].as | downcase | append:'s' }}{%else%}{{_HAL.embed[forloop.index0].as}}{%endif%}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                             <ul>
                                 <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
 
@@ -55,7 +55,7 @@
                                                         {% assign pathScdLvl_wrap = propToEmbed[1] %}
                                                         {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[InPath] %}
                                                     {%endif%}
-                                                    <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+                                                    <li><code>{%if _HAL.embed[forloop.index0].as == 'genre' or _HAL.embed[forloop.index0].as == 'subGenre' %}{{_HAL.embed[forloop.index0].as | downcase | append:'s' }}{%else%}{{_HAL.embed[forloop.index0].as}}{%endif%}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                                                         <ul>
                                                             <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
                                                                 <!--<kbd>embed - {{add_property_HAL.embed}} as- {{add_property_HAL.as}} , forloop.index0 -{{forloop.index0}}</kbd>-->

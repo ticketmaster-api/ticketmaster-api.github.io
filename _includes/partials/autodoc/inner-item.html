@@ -1,6 +1,8 @@
 {% comment %}<!-- <p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p> -->{% endcomment %}
 <ul>
     {%if _HAL.links.size > 0 %}
+
+    {% comment %}
         {%assign isSingleLink = true %}
         <!--{ include partials/autodoc/hal-wrapper-links.html }-->
 
@@ -21,8 +23,18 @@
 
         {% assign isSingleLink = false %}
         {% assign isMultiLink = false %}
+    {% endcomment %}
 
+        {%assign isSingleLink = true %}
+        {% for add_links_HAL in _HAL.links %}
+            <!--<li>outer - {{outer}} , <h6>add_links_HAL - {{add_links_HAL}}</h6>_HAL.links - {{_HAL.links}}</li>-->
+            {%if add_links_HAL == outer %}
+                {% include partials/autodoc/hal-wrapper-links.html %}
+            {% endif %}
+        {% endfor %}
+        {%assign isSingleLink = false%}
     {% endif %}
+
 
 
 

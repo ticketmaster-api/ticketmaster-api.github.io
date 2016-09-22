@@ -30,6 +30,11 @@
                         {%if _HAL.links.size > 0%}
                             {%assign isMultiLink = false %}
                             {%assign isSingleLink = true %}
+                                {%if _HAL.embed[0].link == true or _HAL.embed[1].link == true %}
+                                    {%assign isMultiLink = true %}
+                                    {%assign isSingleLink = false %}
+                                    <!--<li><code>_HAL.embed.link</code> 0 - {{_HAL.embed[0].link}} ; 1 - {{_HAL.embed[1].link}} </li>-->
+                                {% endif %}
                                 {% include partials/autodoc/hal-wrapper-links.html %}
                             {%assign isMultiLink = false%}
                             {%assign isSingleLink = false %}

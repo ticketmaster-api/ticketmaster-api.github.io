@@ -363,6 +363,7 @@
                 {% endif %}
             {% assign schemaSplit = schemaRes | split: ' ' %}
 
+            {% comment %}
             {%if listTag.NOT_CORRECT %}
             <p class="red" style="background: #7356a5; color: white; padding: 20px; border-radius: 4px;">
                 <b class='blue'>NOT CORRECT :</b> please compare api.json with <b class='blue'>real</b> response.
@@ -371,7 +372,7 @@
             </p>
             {% endif %}
 
-            {% comment %}
+
                 <p>
                     <span class="swagger-response-code">{{ response[0] }}</span> {{ response[1].description }}
                 </p>
@@ -427,6 +428,14 @@
                         {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->{% endcomment %}
                         {% if schemaSplit[1] == _link_HAL[1] %}
                             <!--<li><b class="blue">isMultiLink</b> - {{isMultiLink}} ; <b>isSingleLink</b> -  {{isSingleLink}}</li>-->
+                            {%if _HAL.embed[0].link == true or _HAL.embed[1].link == true %}
+                                {%assign isMultiLink = true %}
+                                {%assign isSingleLink = false %}
+                                <!--<li><code>_HAL.embed.link</code> 0 - {{_HAL.embed[0].link}} ; 1 - {{_HAL.embed[1].link}} </li>-->
+                            {% else %}
+                                {%assign isMultiLink = false %}
+                                {%assign isSingleLink = true %}
+                            {% endif %}
                             {% include partials/autodoc/hal-wrapper-links.html %}
                             {% include partials/autodoc/hal-wrapper-embed.html %}
                             {% assign isMultiLink = false %}

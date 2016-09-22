@@ -7,11 +7,13 @@
 <!--{include partials/autodoc/wrap-embed-in.html}-->
 {% endif %}
 
+<!--<li><h4 class="red">inside hal-wrapper-embed.html</h4> _HAL.wrappin - {{_HAL.wrappin}}</li>-->
+
 {%if _HAL.embed.size > 0 and propToEmbed.size == 0%}
 <li><code class="highlighter-rouge">_embedded</code>(object) - container <!-- start loop here {{ _HAL.embed.size }} -->
     <ul>
         {% for add_property_HAL in _HAL.embed %}
-        <li><code class="highlighter-rouge">{{ add_property_HAL.as }}</code>(array) - related <!--{{add_property_HAL}}-->
+        <li><code class="highlighter-rouge">{%if add_property_HAL.as == 'genre' or _HAL.embed[forloop.index0].as == 'subGenre' %}{{add_property_HAL.as | downcase | append:'s' }}{%else%}{{add_property_HAL.as}}{%endif%}</code>(array) - related <!--{{add_property_HAL}}-->
             <ul>
                 <li><code class="highlighter-rouge" style="color: #768692">{array item object} </code>
                     {%assign outer = add_property_HAL.embed %}

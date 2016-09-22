@@ -41,11 +41,14 @@
                         {%endif%}
                         <!--<li><h5 class="blue"> propToEmbed - {{add_property_HAL.in}} , _HAL.embed - {{_HAL.embed.embed}} , propToEmbed[0] - {{propToEmbed}}, topPath - {{topPath}}</h5></li>-->
 
-                        <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+                        <li><code>{%if _HAL.embed[forloop.index0].as == 'genre' or _HAL.embed[forloop.index0].as == 'subGenre'%}{{_HAL.embed[forloop.index0].as | downcase | append:'s' }}{%else%}{{_HAL.embed[forloop.index0].as}}{%endif%}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                             <ul>
                                 <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
                                     {% if isRootEmbed == false %}{% endif %}
                                     <ul>
+                                        {%assign isMultiLink = false %}
+                                        {%assign isSingleLink = true %}
+                                        {% include partials/autodoc/hal-wrapper-links.html %}
                                         <li><code class="highlighter-rouge">_embedded</code>(object) - container for {{ _HAL.embed[forloop.index].as }}. <!-- start loop here {{ add_property_HAL.size }} -->
                                             {% for inner in _HAL.embed %}
                                                 {% assign propToEmbedInner = inner.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
@@ -60,10 +63,11 @@
                                                         {% assign pathScdLvl_wrap = propEmbed[1] %}
                                                         {% assign topPath = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[InPath] %}
                                                     {%endif%}
-                                                    <li><code>{{_HAL.embed[forloop.index0].as}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+                                                    <li><code>{%if _HAL.embed[forloop.index0].as == 'genre' or _HAL.embed[forloop.index0].as == 'subGenre'%}{{_HAL.embed[forloop.index0].as | downcase | append:'s' }}{%else%}{{_HAL.embed[forloop.index0].as}}{%endif%}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
                                                         <ul>
                                                             <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
                                                                 <!--<kbd>embed - {{add_property_HAL.embed}} as- {{add_property_HAL.as}} , forloop.index0 -{{forloop.index0}}</kbd>-->
+
                                                                 {%assign outer = _HAL.embed[forloop.index0].embed %}
                                                                 {%include partials/autodoc/inner-item.html%}
                                                             </li>
