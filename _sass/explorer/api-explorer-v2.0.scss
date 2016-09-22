@@ -57,7 +57,17 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
   .api-exp {
 
     &-custom-select {
-      position: relative;
+      &-wrapper {
+        position: relative;
+      }
+      &-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 500;
+      }
       &__field {
         @include transition(opacity 0.2s ease-in-out);
         margin-bottom: 0;
@@ -212,7 +222,7 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
           }
         }
         &-link {
-          color: #009cde;
+          display: none;
         }
       }
     }
@@ -727,6 +737,13 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
       &-content {
         padding: 0 15px;
       }
+      &-header {
+        &__title {
+          margin: 48px 0;
+        }
+        &__sub-title {}
+        &__link {}
+      }
       // side-menu
       &-side-menu {
         max-width: 100%;
@@ -880,4 +897,9 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
     }
   } //mobile
 
+}
+@media #{$max-768} {
+  .top-bar.bg-header {
+    margin: 0 0 48px;
+  }
 }

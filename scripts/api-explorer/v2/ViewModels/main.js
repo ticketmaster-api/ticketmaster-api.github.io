@@ -3,14 +3,18 @@
  * For development please use Webpack to bundle all modules
  * It can be made using npm scripts cmd - 'webpack'
  */
-
-require('./../components/customSelect');
-
+// Components
 var base = require('./../components/config');
 var apikey = require('./../components/apikey');
+var ajaxService = require('./../components/ajaxService');
+
+// View Models
 var MenuViewModel = require('./../ViewModels/menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
+
+// Modules
+require('./../components/customSelect');
 
 /**
  * AppViewModel
@@ -33,7 +37,15 @@ function AppViewModel(obj) {
   this.sendButtonText = ko.pureComputed(function () {
     return this.selectedMethod().method.toLowerCase();
   }, this);
+
+  this.URL = ko.computed(function () {
+    return [this.selectedMethod(),this.selectedParams()];
+  }, this);
 }
+
+AppViewModel.prototype.onClickSendBtn = function () {
+  ajaxService(this.URL);
+};
 
 // Activates knockout.js
 ko.applyBindings(new AppViewModel(base));

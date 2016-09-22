@@ -12,6 +12,8 @@ function ParamsViewModel(raw, method, params) {
   base = raw;
   self = this;
   this.method = method;
+  this.params = params;
+  
   this.animationSpeed = 200;
   this.isHidden = ko.observable(true);
   this.paramInFocus = ko.observable('');
@@ -34,7 +36,7 @@ ParamsViewModel.prototype.updateParamsModel = function () {
 
   for (var i in obj) {
     if (!obj.hasOwnProperty(i)) { continue; }
-    obj[i].value = ko.observable('');
+    obj[i].value = obj[i].value || ko.observable('');
     obj[i].isDirty = ko.pureComputed(function () {
       return !!this.value().trim().length;
     }, obj[i]);
@@ -42,6 +44,17 @@ ParamsViewModel.prototype.updateParamsModel = function () {
     obj[i].hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
     arr.push(obj[i]);
   }
+
+  self.params(arr.map(function (item) {
+    return [
+      item.name,
+      '=',
+      item.value() || item.default
+    ].join('')
+  }).filter(function (item) {
+    return item.length > 0
+  }));
+
   self.paramInFocus(arr[0]);
   return arr;
 };

@@ -64,13 +64,9 @@ MethodsViewModel.prototype.updateRadiosModel = function (param) {
       checked: ko.observable(i === 'ALL'),
       name: i
     };
-
-    if (i === 'ALL') {
-      arr.unshift(item)
-    } else {
-      arr.push(item);
-    }
+    arr.push(item);
   }
+  arr.sort(compareMethods);
   this.radiosModel(arr);
   return arr;
 };
@@ -114,4 +110,24 @@ MethodsViewModel.prototype.onAboutClick = function (model, event) {
   model.togglePopUp(!model.togglePopUp());
 };
 
+
+/**
+ * Sort function for methods aray
+ * @param f
+ * @param s
+ * @returns {number}
+ */
+function compareMethods(f,s) {
+  var a = f.name.toUpperCase();
+  var b = s.name.toUpperCase();
+
+  if (a === b) {return 0;}
+  if (a === 'ALL' ||
+    (a === 'GET' && (b === 'POST' || b === 'PUT' || b === 'DELETE')) ||
+    (a === 'POST' && (b === 'PUT' || b === 'DELETE')) ||
+    (a === 'PUT' && b === 'DELETE')) {
+    return -1;
+  }
+  return 1;
+}
 module.exports = MethodsViewModel;
