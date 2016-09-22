@@ -363,6 +363,7 @@
                 {% endif %}
             {% assign schemaSplit = schemaRes | split: ' ' %}
 
+            {% comment %}
             {%if listTag.NOT_CORRECT %}
             <p class="red" style="background: #7356a5; color: white; padding: 20px; border-radius: 4px;">
                 <b class='blue'>NOT CORRECT :</b> please compare api.json with <b class='blue'>real</b> response.
@@ -370,6 +371,7 @@
                 * {{ listTag.NOT_CORRECT[0] }}
             </p>
             {% endif %}
+            {% endcomment %}
 
             {% comment %}
                 <p>
@@ -424,8 +426,25 @@
 
                     {% for add_link_HAL in _HAL.links %}
                         {% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
-                        {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->{% endcomment %}
+                        {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li> -->{% endcomment %}
                         {% if schemaSplit[1] == _link_HAL[1] %}
+                            {%if isMultiLink == true and isSingleLink == true %}{%endif%}
+
+                                {% if _HAL.embed[0].as == 'subgenres' %}
+                                    {% assign isMultiLink = false %}
+                                    {% assign isSingleLink = true %}
+                                <!--<li><p> in_HAL - {{ in_HAL.as }} , _HAL.embed[0].as :  **as - subgenres</p></li>-->
+                                {%endif%}
+
+                                {% for in_HAL in _HAL.embed %}
+                                    {%assign in_HAL_lenght = in_HAL.in.size%}
+                                    {%if in_HAL.in != null %}
+                                        {% assign isMultiLink = false %}
+                                        {% assign isSingleLink = true %}
+                                        <!--<li> in_HAL - {{ in_HAL.in }}, in_HAL_lenght - {{in_HAL_lenght}} </li>-->
+                                    {%endif%}
+
+                                {% endfor %}
                             <!--<li><b class="blue">isMultiLink</b> - {{isMultiLink}} ; <b>isSingleLink</b> -  {{isSingleLink}}</li>-->
                             {% include partials/autodoc/hal-wrapper-links.html %}
                             {% include partials/autodoc/hal-wrapper-embed.html %}
@@ -443,7 +462,7 @@
 
                     {% for add_property_HAL in _HAL.embed %}
                         {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-                        {%if add_property_HAL.in == 'root'%}
+                        {%if add_property_HAL.in == '#/definitions/Classification/segment' %}
                             <!--<li><h3 class="blue">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}}</li>-->
                             {%include partials/autodoc/wrap-embed-in-root.html%}
                             {%assign isRootEmbed = true %}
