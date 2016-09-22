@@ -169,7 +169,7 @@ var base =
 	      '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
 	        '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
 	          '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
-	          '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
+	          '<a data-bind="attr: {href: link}, css: {\'hidden\': !link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
 	        '</li>',
 	      '</ul>',
 	    '</div>'
@@ -302,7 +302,7 @@ var base =
 	    return {
 	      checked: ko.observable(!index),
 	      name: item,
-	      link: '#'
+	      link: false
 	    }
 	  }));
 	
@@ -383,15 +383,20 @@ var base =
 	  self = this;
 	  this.method = method;
 	  this.animationSpeed = 200;
-	  this.aboutParam = ko.observable('');
+	  this.isHidden = ko.observable(true);
 	  this.paramInFocus = ko.observable('');
 	  this.paramsModel = ko.computed(self.updateParamsModel);
 	  this.paramInFocus(this.paramsModel()[0]);
+	  this.isDirty = ko.computed(function () {
+	    var dirty = this.paramsModel().filter(function (item) {
+	        return item.isDirty() === true;
+	      });
+	    return dirty.length > 0;
+	  }, this);
 	}
 	
 	/**
 	 * Initial build of Select Model
-	 * @param item
 	 */
 	ParamsViewModel.prototype.updateParamsModel = function () {
 	  var obj = self.method().parameters || {},
@@ -400,10 +405,11 @@ var base =
 	  for (var i in obj) {
 	    if (!obj.hasOwnProperty(i)) { continue; }
 	    obj[i].value = ko.observable('');
-	    // var val = obj[i].value;
 	    obj[i].isDirty = ko.pureComputed(function () {
 	      return !!this.value().trim().length;
 	    }, obj[i]);
+	    obj[i].hasCalendar = i.search(/(date|time)/gmi) != -1;
+	    obj[i].hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
 	    arr.push(obj[i]);
 	  }
 	  self.paramInFocus(arr[0]);
@@ -419,9 +425,15 @@ var base =
 	  $(event.currentTarget)
 	    .parents('.js-slide-control')
 	    .find('.js-slide-wrapper')
-	    .slideToggle(viewModel.animationSpeed);
+	    .slideToggle(viewModel.animationSpeed, function () {
+	      viewModel.isHidden(!viewModel.isHidden());
+	    });
 	};
 	
+	/**
+	 * Maches focused param
+	 * @param item
+	 */
 	ParamsViewModel.prototype.onFocus = function (item) {
 	  self.paramInFocus(item);
 	};
@@ -454,6 +466,7 @@ var base =
 	  this.category = category;
 	  this.method = method;
 	  this.apikey = ko.observable('');
+	  this.togglePopUp = ko.observable(false);
 	  this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
 	  this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
 	  this.updateModel(this.category());
@@ -542,6 +555,10 @@ var base =
 	MethodsViewModel.prototype.onSelectMethod = function (item) {
 	  hf.checkActive(self.selectModel, item.name);
 	  self.method(base[item.category][item.method][item.id]);
+	};
+	
+	MethodsViewModel.prototype.onAboutClick = function (model, event) {
+	  model.togglePopUp(!model.togglePopUp());
 	};
 	
 	module.exports = MethodsViewModel;

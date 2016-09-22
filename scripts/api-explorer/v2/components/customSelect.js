@@ -70,7 +70,7 @@ module.exports = ko.components.register('custom-select', {
       '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
         '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
           '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
-          '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
+          '<a data-bind="attr: {href: link}, css: {\'hidden\': !link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
         '</li>',
       '</ul>',
     '</div>'
