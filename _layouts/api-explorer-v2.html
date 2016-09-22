@@ -118,15 +118,19 @@
 
 		<div class="api-exp-container clearfix">
 			<!--about-->
-			<section data-bind="with: methods" class="api-exp-about">
-				<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-about__button" target="_blank"></a>
-				<article class="api-exp-about__content">
-					<h5 data-bind="text: method().name" class="api-exp-about__title">About API and Method:</h5>
-					<section class="api-exp-about__description">
-						<p data-bind="text: method().description"></p>
-					</section>
-				</article>
-			</section>
+			<div data-bind="with: methods">
+				<section data-bind="css: {active: togglePopUp}" class="api-exp-about">
+					<button data-bind="click: onAboutClick" class="api-exp-about__button devices-button"></button>
+					<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-about__button" target="_blank"></a>
+					<article class="api-exp-about__content">
+						<h5 data-bind="text: method().name" class="api-exp-about__title">About API and Method:</h5>
+						<section class="api-exp-about__description">
+							<p data-bind="text: method().description"></p>
+							<p><a data-bind="attr: {href: method().documentation, target: '_blank'}" href="#" class="api-exp-about__description-link">Read mode</a></p>
+						</section>
+					</article>
+				</section>
+			</div>
 
 			<!--content-wrapper-->
 			<section class="api-exp-main">
@@ -179,38 +183,41 @@
 		</div>
 
 		<!--params-->
-		<section data-bind="with: params" class="api-exp-params js-slide-control">
-			<section class="api-exp-params-headline">
-				<a data-bind="click: slideToggle" href="#">
-					<h4 class="api-exp-params-headline__title">Parameters</h4>
-				</a>
-				<div class="api-exp-params-headline-edit">
-					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
-					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
-				</div>
-			</section>
-			<div class="api-exp-params-wrapper clearfix js-slide-wrapper">
-				<!--about-->
-				<section class="api-exp-about visible-lg-block">
-					<a href="#" class="api-exp-about__button" target="_blank"></a>
-					<article class="api-exp-about__content">
-						<h5 data-bind="text: paramInFocus().name" class="api-exp-about__title">About API and Method:</h5>
-						<section class="api-exp-about__description">
-							<p data-bind="html: paramInFocus().doc"></p>
-						</section>
-					</article>
+		<div data-bind="with: params">
+			<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
+				<section class="api-exp-params-headline">
+					<a data-bind="click: slideToggle" href="#">
+						<h4 class="api-exp-params-headline__title">Parameters</h4>
+					</a>
+					<div class="api-exp-params-headline-edit">
+						<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
+						<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
+					</div>
 				</section>
-				<!--params filter-->
-				<section class="api-exp-params-filter">
-					<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
-						<div data-bind="css: {'dirty': isDirty}" class="api-exp-params-filter__field">
-							<input data-bind="textInput: value, event:{focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
-							<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
-						</div>
+				<div class="api-exp-params-wrapper clearfix js-slide-wrapper">
+					<!--about-->
+					<section class="api-exp-about visible-lg-block">
+						<span class="api-exp-about__button"></span>
+						<article class="api-exp-about__content">
+							<h5 data-bind="text: paramInFocus().name" class="api-exp-about__title">About API and Method:</h5>
+							<section class="api-exp-about__description">
+								<p data-bind="html: paramInFocus().doc"></p>
+							</section>
+						</article>
 					</section>
-				</section><!--params filter-->
-			</div>
-		</section><!--parameters-->
+					<!--params filter-->
+					<section class="api-exp-params-filter">
+						<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
+							<div data-bind="css: {'dirty': isDirty, calendar: hasCalendar, popup: hasPopUp}" class="api-exp-params-filter__field">
+								<input data-bind="textInput: value, event: {focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
+								<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
+								<button class="api-exp-params-filter__button">&nbsp;</button>
+							</div>
+						</section>
+					</section><!--params filter-->
+				</div>
+			</section><!--parameters-->
+		</div>
 
 		<section class="api-exp-get-btn clearfix">
 			<button data-bind="text: sendButtonText, css: sendButtonText" class="api-exp-get-btn__button button button-blue">Get</button>

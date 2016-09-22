@@ -19,6 +19,7 @@ function MethodsViewModel(raw, category, method) {
   this.category = category;
   this.method = method;
   this.apikey = ko.observable('');
+  this.togglePopUp = ko.observable(false);
   this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
   this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
   this.updateModel(this.category());
@@ -107,6 +108,10 @@ MethodsViewModel.prototype.updateSelect = function (item) {
 MethodsViewModel.prototype.onSelectMethod = function (item) {
   hf.checkActive(self.selectModel, item.name);
   self.method(base[item.category][item.method][item.id]);
+};
+
+MethodsViewModel.prototype.onAboutClick = function (model, event) {
+  model.togglePopUp(!model.togglePopUp());
 };
 
 module.exports = MethodsViewModel;
