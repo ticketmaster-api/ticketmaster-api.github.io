@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+<div id="spinner hide"></div>
+{% include home-header.html %}
+
+<div id="api-explorer-v2" class="api-explorer-v2">
+	<!--hints-->
+	<button id="cd-tour-trigger" class="btn feedback-btn scale-on-hover">Show hints</button>
+	<div class="cd-cover-layer"></div>
+	<!--bootstrap error popup-->
+	<div id="error-alert" class="modal fade" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="error-message">Whoa! Method returned an error. :(</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn-default btn-small" data-dismiss="modal" style="top: 0 !important;">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--bootstrap success popup-->
+	<div id="success-alert" class="modal fade" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<!-- Modal content-->
+				<div class="modal-content success">
+					<div class="modal-header">
+						<h4 class="modal-title" id="success-message">Data posted successfully :)</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn-default btn-small" data-dismiss="modal"
+						        style="top: 0 !important;">Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--bootstrap image popup-->
+	<div class="modal fade" id="image-popup" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog modal-lg vertical-align-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Image preview</h4>
+					</div>
+					<div class="modal-body">
+						<img id="image-element" src="">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--bootstrap map popup-->
+	<div class="modal fade" id="map-popup" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog modal-lg vertical-align-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Location</h4>
+					</div>
+					<div class="modal-body" id="map" style="width: 100%; height: 500px;"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" style="top: 0 !important;">
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row-container api-exp-content">
+		<!--page header-->
+		<section class="api-exp-header">
+			<h1 class="api-exp-header__title">TICKETMASTER API EXPLORER V2.0</h1>
+			<p class="api-exp-header__sub-title">Make live API calls without writing a single line of code! The API Explorer currently works with the
+				<a class="api-exp-header__link" href="/products-and-docs/apis/discovery/v2">Discovery API</a>,
+				<a class="api-exp-header__link" href="/products-and-docs/apis/commerce/">Commerce API</a> and
+				<a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
+			</p>
+		</section>
+
+		<!--event counter bar-->
+		<section class="horizontal-events-tracker">
+			<div class="col-xs-12 horizontal-events-tracker__section">
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Events:
+					<b id="js-events-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Attractions:
+					<b id="js-attractions-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Venues:
+					<b id="js-venues-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Countries:
+					<b id="js-countries-counter" class="horizontal-events-tracker__counter"></b>
+				</span>
+			</div>
+		</section>
+
+		<div class="api-exp-container clearfix">
+			<!--about-->
+			<section data-bind="with: methods" class="api-exp-about">
+				<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-about__button" target="_blank"></a>
+				<article class="api-exp-about__content">
+					<h5 data-bind="text: method().name" class="api-exp-about__title">About API and Method:</h5>
+					<section class="api-exp-about__description">
+						<p data-bind="text: method().description"></p>
+					</section>
+				</article>
+			</section>
+
+			<!--content-wrapper-->
+			<section class="api-exp-main">
+
+				<!--menu-->
+				<aside data-bind="with: menu" class="api-exp-side-menu">
+					<ul data-bind="foreach: categories" class="api-exp-side-menu__container nav nav-pills nav-stacked visible-lg-block">
+						<li data-bind="css: {active: checked}" role="presentation" class="api-exp-side-menu__item">
+							<a data-bind="click: $parent.selectCategory, text: name" href="#" class="api-exp-side-menu__link"></a>
+						</li>
+					</ul>
+					<!--select-->
+					<div class="api-exp-side-menu__select hidden-lg">
+						<div data-bind="component: {name: 'custom-select', params: {options: categories, onselect: selectCategory}}"></div>
+					</div>
+				</aside>
+
+				<!--api key-->
+				<section class="api-exp-key">
+					<input data-bind="value: apikey" type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
+					<span data-bind="with: methods">
+						<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-key__about-button visible-xs-inline-block" target="_blank"></a>
+					</span>
+				</section>
+
+				<!--filter-->
+				<section data-bind="with: methods" class="api-exp-main-filter">
+					<section class="api-exp-filter">
+						<section class="api-exp-methods clearfix">
+							<label class="api-exp-methods__label">Methods</label>
+
+							<!--radios-->
+							<div data-bind="foreach: radiosModel" class="api-exp-methods__radio-buttons radio-buttons clearfix">
+								<div data-bind="css: {active: checked}" class="api-exp-method">
+									<input data-bind="attr: {id: 'api-exp-' + name, checked: checked}, event: {change: $parent.onchangeRadios}" class="api-exp-content-method__radio" type="radio" name="api-exp-methods">
+									<label data-bind="text: name, attr: {for: 'api-exp-' + name}" class="radio-inline api-exp-method__label"></label>
+								</div>
+							</div>
+
+							<!--select-->
+							<div class="api-exp-methods__select">
+								<div data-bind="component: {name: 'custom-select', params: {options: selectModel, onselect: onSelectMethod}}"></div>
+							</div>
+						</section>
+					</section>
+				</section>
+
+			</section><!--content-wrapper-->
+
+		</div>
+
+		<!--params-->
+		<section data-bind="with: params" class="api-exp-params js-slide-control">
+			<section class="api-exp-params-headline">
+				<a data-bind="click: slideToggle" href="#">
+					<h4 class="api-exp-params-headline__title">Parameters</h4>
+				</a>
+				<div class="api-exp-params-headline-edit">
+					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
+					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
+				</div>
+			</section>
+			<div class="api-exp-params-wrapper clearfix js-slide-wrapper">
+				<!--about-->
+				<section class="api-exp-about visible-lg-block">
+					<a href="#" class="api-exp-about__button" target="_blank"></a>
+					<article class="api-exp-about__content">
+						<h5 data-bind="text: paramInFocus().name" class="api-exp-about__title">About API and Method:</h5>
+						<section class="api-exp-about__description">
+							<p data-bind="html: paramInFocus().doc"></p>
+						</section>
+					</article>
+				</section>
+				<!--params filter-->
+				<section class="api-exp-params-filter">
+					<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
+						<div data-bind="css: {'dirty': isDirty}" class="api-exp-params-filter__field">
+							<input data-bind="textInput: value, event:{focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
+							<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
+						</div>
+					</section>
+				</section><!--params filter-->
+			</div>
+		</section><!--parameters-->
+
+		<section class="api-exp-get-btn clearfix">
+			<button data-bind="text: sendButtonText, css: sendButtonText" class="api-exp-get-btn__button button button-blue">Get</button>
+		</section>
+	</div>
+</div>
+<script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
+<div id="footer" class="xs-center slice-top-left">
+	{% include partials/footer.html %}
+</div>
+<div id="back-top">
+	<a href="#"><span></span></a>
+</div>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+<!--<script src="{{'/config.js' | prepend: site.baseurl }}"></script>-->
+<script src="{{'/scripts/vendors/jquery-1.11.3.min.js' | prepend: site.baseurl }}"></script>
+<!--<script src="https://code.jquery.com/jquery-migrate-1.3.0.min.js"></script>-->
+<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/intro.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/knockout-3.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
+
+<script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
+{% include feedback.html %}
+<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/apikey-check.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+</body>
+</html>

@@ -311,7 +311,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/Level"
             }
           }
         }
@@ -342,7 +342,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/Classification"
             }
           }
         }
@@ -641,7 +641,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/Event"
             }
           }
         }
@@ -848,7 +848,7 @@
           "default" : false
         }
       },
-      "description" : "This class defines Event's Access Date on the Discovery API"
+      "description" : "Event's Access Date"
     },
     "Address" : {
       "type" : "object",
@@ -861,9 +861,14 @@
           "type" : "string",
           "position" : 3,
           "description" : "Address second line"
+        },
+        "line3" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Address third line"
         }
       },
-      "description" : "This class defines an Address on the Discovery/Publish API"
+      "description" : "Address"
     },
     "Area" : {
       "type" : "object",
@@ -874,7 +879,7 @@
           "description" : "Name of the entity"
         }
       },
-      "description" : "This class defines an Area on the Discovery/Publish API"
+      "description" : "Area"
     },
     "Attraction" : {
       "type" : "object",
@@ -939,11 +944,11 @@
           "default" : false
         }
       },
-      "description" : "This class defines an Attraction on the Discovery/Publish API"
+      "description" : "Attraction"
     },
     "AttractionExtensions" : {
       "type" : "object",
-      "description" : "This class defines all possible extension on an attraction in the Discovery API"
+      "description" : "All Attraction's extensions"
     },
     "Chronology" : {
       "type" : "object",
@@ -962,7 +967,7 @@
           "description" : "Name of the entity"
         }
       },
-      "description" : "This class defines a City on the Discovery/Publish API"
+      "description" : "City"
     },
     "Classification" : {
       "type" : "object",
@@ -986,14 +991,9 @@
           "position" : 3,
           "description" : "Tertiary Genre for additional detail when describring an entity (Alternative Rock, Ambient Pop, etc)",
           "$ref" : "#/definitions/Level"
-        },
-        "subType" : {
-          "position" : 6,
-          "description" : "Secondary Type to further categorize an entity (Band, Choir, Chorus, etc)",
-          "$ref" : "#/definitions/Level"
         }
       },
-      "description" : "This class defines a Classification on the Discovery/Publish API"
+      "description" : "Classification"
     },
     "Country" : {
       "type" : "object",
@@ -1008,20 +1008,20 @@
           "description" : "Name of the entity"
         }
       },
-      "description" : "This class defines a country on the Discovery/Publish API"
+      "description" : "Country"
     },
     "DateTimeField" : {
       "type" : "object",
       "properties" : {
-        "name" : {
-          "type" : "string"
-        },
-        "type" : {
-          "$ref" : "#/definitions/DateTimeFieldType"
-        },
-        "supported" : {
+        "lenient" : {
           "type" : "boolean",
           "default" : false
+        },
+        "leapDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
+        "durationField" : {
+          "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
           "type" : "integer",
@@ -1031,32 +1031,32 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "lenient" : {
-          "type" : "boolean",
-          "default" : false
-        },
-        "durationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
-        "leapDurationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
         "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/DateTimeFieldType"
+        },
+        "supported" : {
+          "type" : "boolean",
+          "default" : false
         }
       }
     },
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "name" : {
-          "type" : "string"
-        },
         "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
+        },
+        "name" : {
+          "type" : "string"
         }
       }
     },
@@ -1081,7 +1081,7 @@
           "default" : false
         }
       },
-      "description" : "This class defines event's display settings extension in the Discovery API"
+      "description" : "Event's display settings extension"
     },
     "Dma" : {
       "type" : "object",
@@ -1092,11 +1092,19 @@
           "description" : "DMS's id"
         }
       },
-      "description" : "This class defines a DMA on the Discovery/Publish API"
+      "description" : "DMA (Designated Market Area)"
     },
     "DurationField" : {
       "type" : "object",
       "properties" : {
+        "unitMillis" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "precise" : {
+          "type" : "boolean",
+          "default" : false
+        },
         "name" : {
           "type" : "string"
         },
@@ -1106,14 +1114,6 @@
         "supported" : {
           "type" : "boolean",
           "default" : false
-        },
-        "precise" : {
-          "type" : "boolean",
-          "default" : false
-        },
-        "unitMillis" : {
-          "type" : "integer",
-          "format" : "int64"
         }
       }
     },
@@ -1147,7 +1147,7 @@
           "default" : false
         }
       },
-      "description" : "This class defines Event's End Dates on the Discovery API"
+      "description" : "Event's End Dates"
     },
     "EntityChanges" : {
       "type" : "object",
@@ -1173,11 +1173,6 @@
           "type" : "string",
           "description" : "Type of the entity",
           "enum" : [ "event", "venue", "attraction" ]
-        },
-        "extensions" : {
-          "position" : 101,
-          "description" : "Event's extension",
-          "$ref" : "#/definitions/EventExtensions"
         },
         "id" : {
           "type" : "string",
@@ -1265,19 +1260,6 @@
           "description" : "Place has the information on where the event happens. It can be set if there is no venue",
           "$ref" : "#/definitions/Place"
         },
-        "venue" : {
-          "position" : 52,
-          "description" : "Venue information",
-          "$ref" : "#/definitions/Venue"
-        },
-        "attractions" : {
-          "type" : "array",
-          "position" : 53,
-          "description" : "Ordered Attraction related to the event",
-          "items" : {
-            "$ref" : "#/definitions/Attraction"
-          }
-        },
         "test" : {
           "type" : "boolean",
           "position" : 96,
@@ -1285,7 +1267,7 @@
           "default" : false
         }
       },
-      "description" : "This class defines an Event on the Discovery/Publish API"
+      "description" : "Event"
     },
     "EventDates" : {
       "type" : "object",
@@ -1315,11 +1297,11 @@
           "$ref" : "#/definitions/EventStatus"
         }
       },
-      "description" : "This class defines Event's Dates on the Discovery/Publish API"
+      "description" : "Event's Dates"
     },
     "EventExtensions" : {
       "type" : "object",
-      "description" : "This class defines all possible extension on an event in the Discovery API"
+      "description" : "All Event's extensions"
     },
     "EventImages" : {
       "type" : "object",
@@ -1363,7 +1345,7 @@
           }
         }
       },
-      "description" : "This class defines Event's Sales Dates on the Discovery/Publish API"
+      "description" : "Event's Sales Dates"
     },
     "EventStatus" : {
       "type" : "object",
@@ -1374,7 +1356,7 @@
           "enum" : [ "onsale", "offsale", "canceled", "postponed", "rescheduled" ]
         }
       },
-      "description" : "This class defines Event's Status on the Discovery API"
+      "description" : "Event's Status"
     },
     "Extension" : {
       "type" : "object"
@@ -1392,7 +1374,7 @@
           "description" : "The Name of the classification's level"
         }
       },
-      "description" : "This class defines Secondary Genre on the Discovery/Publish API"
+      "description" : "Secondary Genre"
     },
     "GeocodeExtension" : {
       "type" : "object",
@@ -1434,7 +1416,7 @@
           "$ref" : "#/definitions/GeocodeExtension"
         }
       },
-      "description" : "This class defines extension on a venue for a gelocation source in the Discovery API"
+      "description" : "Venue's geocode extension"
     },
     "Geometry" : {
       "type" : "object",
@@ -1446,7 +1428,7 @@
     },
     "HostExtension" : {
       "type" : "object",
-      "description" : "This class defines event's Host extension in the Discovery API"
+      "description" : "Event's Host extension"
     },
     "Image" : {
       "type" : "object",
@@ -1486,7 +1468,7 @@
           "description" : "Attribution of the image"
         }
       },
-      "description" : "This class defines an Image on the Discovery/Publish API"
+      "description" : "Image"
     },
     "Level" : {
       "type" : "object",
@@ -1505,9 +1487,6 @@
     "LocalTime" : {
       "type" : "object",
       "properties" : {
-        "chronology" : {
-          "$ref" : "#/definitions/Chronology"
-        },
         "millisOfSecond" : {
           "type" : "integer",
           "format" : "int32"
@@ -1528,11 +1507,8 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "fields" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/DateTimeField"
-          }
+        "chronology" : {
+          "$ref" : "#/definitions/Chronology"
         },
         "values" : {
           "type" : "array",
@@ -1546,15 +1522,18 @@
           "items" : {
             "$ref" : "#/definitions/DateTimeFieldType"
           }
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DateTimeField"
+          }
         }
       }
     },
     "Locale" : {
       "type" : "object",
       "properties" : {
-        "language" : {
-          "type" : "string"
-        },
         "script" : {
           "type" : "string"
         },
@@ -1605,6 +1584,9 @@
         },
         "displayName" : {
           "type" : "string"
+        },
+        "language" : {
+          "type" : "string"
         }
       }
     },
@@ -1620,7 +1602,7 @@
           "description" : "Latitude"
         }
       },
-      "description" : "This class defines a Location on the Discovery/Publish API"
+      "description" : "Location"
     },
     "Market" : {
       "type" : "object",
@@ -1630,7 +1612,7 @@
           "description" : "Market's id"
         }
       },
-      "description" : "This class defines a Market on the Discovery/Publish API"
+      "description" : "Market"
     },
     "Parking" : {
       "type" : "object",
@@ -1646,7 +1628,7 @@
           "description" : "Url to the web page of the parking"
         }
       },
-      "description" : "This class defines a parking on the Discovery/Publish API"
+      "description" : "Parking"
     },
     "Place" : {
       "type" : "object",
@@ -1691,7 +1673,7 @@
           "description" : "Name of the entity"
         }
       },
-      "description" : "This class defines a Place on the Discovery/Publish API"
+      "description" : "Place"
     },
     "Presale" : {
       "type" : "object",
@@ -1723,7 +1705,7 @@
           "description" : "Presale's end dates. The date and time when the presale will end"
         }
       },
-      "description" : "This class defines Event's Presale Info on the Discovery API"
+      "description" : "Event's Presale Info"
     },
     "PriceRange" : {
       "type" : "object",
@@ -1751,7 +1733,7 @@
           "description" : "Maximum price"
         }
       },
-      "description" : "This class defines a PriceRange on the Discovery/Publish API"
+      "description" : "PriceRange"
     },
     "Promoter" : {
       "type" : "object",
@@ -1771,7 +1753,7 @@
           "description" : "Description of the promoter"
         }
       },
-      "description" : "This class defines a Promoter on the Discovery/Publish API"
+      "description" : "Promoter"
     },
     "PublicSaleDates" : {
       "type" : "object",
@@ -1794,7 +1776,7 @@
           "default" : false
         }
       },
-      "description" : "This class defines Event's Public Onsales Dates on the Discovery API"
+      "description" : "Event's Public Onsales Dates"
     },
     "PublicVisibility" : {
       "type" : "object",
@@ -1819,7 +1801,7 @@
           "description" : "The ID of the related entity"
         }
       },
-      "description" : "This class defines a Relationship on the Discovery/Publish API"
+      "description" : "Relationship"
     },
     "Segment" : {
       "type" : "object",
@@ -1834,7 +1816,7 @@
           "description" : "The Name of the classification's level"
         }
       },
-      "description" : "This class defines Genre on the Discovery/Publish API"
+      "description" : "Segment"
     },
     "Social" : {
       "type" : "object",
@@ -1848,7 +1830,7 @@
     },
     "Source" : {
       "type" : "object",
-      "description" : "This class defines a source on the Discovery/Publish API"
+      "description" : "Source"
     },
     "StartDates" : {
       "type" : "object",
@@ -1897,7 +1879,7 @@
           "default" : false
         }
       },
-      "description" : "This class defines Event's Starts Dates on the Discovery API"
+      "description" : "Event's Start Dates"
     },
     "State" : {
       "type" : "object",
@@ -1912,15 +1894,15 @@
           "description" : "Name of the entity"
         }
       },
-      "description" : "This class defines a State on the Discovery/Publish API"
+      "description" : "State"
     },
     "TatExtension" : {
       "type" : "object",
-      "description" : "This class defines The Attraction Tool (TAT) extension in the Discovery API"
+      "description" : "The Attraction Tool (TAT) extension"
     },
     "TicketmasterAttractionExtensions" : {
       "type" : "object",
-      "description" : "This class defines extension on an attraction for a ticketmaster source in the Discovery API"
+      "description" : "Attraction's extension (ticketmaster source)"
     },
     "TicketmasterEventExtensions" : {
       "type" : "object",
@@ -1930,11 +1912,11 @@
           "$ref" : "#/definitions/DisplaySettingExtension"
         }
       },
-      "description" : "This class defines extension on an event for a ticketmaster source in the Discovery API"
+      "description" : "Event's extension (ticketmaster source)"
     },
     "TicketmasterVenueExtensions" : {
       "type" : "object",
-      "description" : "This class defines extension on a venue for a ticketmaster source in the Discovery API"
+      "description" : "Venue's extension (ticketmaster source)"
     },
     "Twitter" : {
       "type" : "object",
@@ -1965,11 +1947,6 @@
           "type" : "string",
           "description" : "Type of the entity",
           "enum" : [ "event", "venue", "attraction" ]
-        },
-        "extensions" : {
-          "position" : 101,
-          "description" : "Venue's extensions",
-          "$ref" : "#/definitions/VenueExtensions"
         },
         "id" : {
           "type" : "string",
@@ -2098,7 +2075,7 @@
           "default" : false
         }
       },
-      "description" : "This class defines a Venue on the Discovery/Publish API"
+      "description" : "Venue"
     },
     "VenueBoxOfficeInfo" : {
       "type" : "object",
@@ -2124,7 +2101,7 @@
           "description" : "Venue box office will call details"
         }
       },
-      "description" : "This class defines a Venue box office info"
+      "description" : "Venue box office information"
     },
     "VenueExtensions" : {
       "type" : "object",
@@ -2135,7 +2112,7 @@
           "$ref" : "#/definitions/GeolocationVenueExtensions"
         }
       },
-      "description" : "This class defines all possible extension on a venue in the Discovery API"
+      "description" : "All Venue's extensions"
     },
     "VenueGeneralInfo" : {
       "type" : "object",
@@ -2151,7 +2128,7 @@
           "description" : "Venue children rule"
         }
       },
-      "description" : "This class defines a Venue general info"
+      "description" : "Venue general information"
     }
   }
 }

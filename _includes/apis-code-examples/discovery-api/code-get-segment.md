@@ -1,7 +1,21 @@
 {% highlight js %}
-TODO
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v2/classifications/segments/KZazBEonSMnZfZ7vFta.json?{apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
 {% endhighlight %}
 
 {% highlight bash %}
-TODO
+curl \ 
+--include 'https://app.ticketmaster.com/discovery/v2/classifications/segments/KZazBEonSMnZfZ7vFta.json?{apikey}'
 {% endhighlight %}

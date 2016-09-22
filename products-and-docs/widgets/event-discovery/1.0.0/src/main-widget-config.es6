@@ -338,7 +338,10 @@
         $self.val(value);
       }
 
+      document.getElementById("w-country").disabled = true;
       widgetNode.setAttribute($self.attr('name'), value);
+
+
     });
 
     configForm.find("input[type='radio']").each(function(){
@@ -421,7 +424,8 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $('.js_widget__number').on('change', function (e) {
+  /*turn off validate cuz it moved to separate component*/
+  /*$('.js_widget__number').on('change', function (e) {
     let $self = $(this),
       val = $self.val().trim(),
       max = parseInt($self.attr('max')),
@@ -439,7 +443,7 @@
       }else{
       $self.removeClass(errorCssClass);
     }
-  });
+  });*/
 
   widget.onLoadCoordinate = function (results, countryShortName = '') {
     widget.config['country'] = countryShortName;

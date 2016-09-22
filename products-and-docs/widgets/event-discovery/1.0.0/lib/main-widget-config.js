@@ -334,6 +334,7 @@
         $self.val(value);
       }
 
+      document.getElementById("w-country").disabled = true;
       widgetNode.setAttribute($self.attr('name'), value);
     });
 
@@ -415,25 +416,24 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $('.js_widget__number').on('change', function (e) {
-    var $self = $(this),
-        val = $self.val().trim(),
-        max = parseInt($self.attr('max')),
-        min = parseInt($self.attr('min')),
-        required = !!$self.attr('required'),
-        regNumberOrEmpty = /^(\s*|\d+)$/,
-        errorCssClass = 'error';
-
-    // if(val === '') $self.val('');
-
-    if (max && val > max || min && val < min || required && val === '' || !regNumberOrEmpty.test(val)) {
+  /*turn off validate cuz it moved to separate component*/
+  /*$('.js_widget__number').on('change', function (e) {
+    let $self = $(this),
+      val = $self.val().trim(),
+      max = parseInt($self.attr('max')),
+      min = parseInt($self.attr('min')),
+      required = !!$self.attr('required'),
+      regNumberOrEmpty = /^(\s*|\d+)$/,
+      errorCssClass = 'error';
+      // if(val === '') $self.val('');
+      if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
       $self.addClass(errorCssClass);
       e.preventDefault();
       e.stopPropagation();
-    } else {
+      }else{
       $self.removeClass(errorCssClass);
     }
-  });
+  });*/
 
   widget.onLoadCoordinate = function (results) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];

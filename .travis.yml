@@ -50,7 +50,7 @@ cache:
 notifications:
   email:
     recipients: #will receive notification, if admin turn it on, in https://github.com/settings/
-        - pavlo_oliinyk1@epam.com
+        - ievgen_tsekhmeistruk@epam.com
         - de.gratnik@gmail.com
     on_success: never
     on_failure: always

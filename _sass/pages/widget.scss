@@ -400,6 +400,16 @@
 .widget__various-width {
   min-width: 100px;
   max-width: 130px;
+
+  @media (min-width: 1200px){
+    .js_numeric-input-group input.js_numeric_input {
+      padding-right: 26px;
+      padding-left: 12px;
+    }
+    .js_numeric-input-group .arrow {
+      right: 10px;
+    }
+  }
 }
 .main-widget-config-form .country-select .custom_select__item {
   list-style: none;
