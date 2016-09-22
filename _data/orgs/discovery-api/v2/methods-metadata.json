@@ -27,8 +27,8 @@
                     "#/definitions/Attraction"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Venue", "as": "venues" },
-                    { "embed": "#/definitions/Attraction", "as": "attractions" }
+                    { "embed": "#/definitions/Venue", "as": "venues", "link":true },
+                    { "embed": "#/definitions/Attraction", "as": "attractions", "link":true }
                 ]
             }
         },
@@ -46,8 +46,8 @@
                     "#/definitions/Attraction"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Venue", "as": "venues" },
-                    { "embed": "#/definitions/Attraction", "as": "attractions" }
+                    { "embed": "#/definitions/Venue", "as": "venues", "link":true },
+                    { "embed": "#/definitions/Attraction", "as": "attractions", "link":true }
                 ]
             }
         },
@@ -147,7 +147,8 @@
             "HAL" : {
                 "wrappin": null,
                 "links": [
-                    "#/definitions/Segment"
+                    "#/definitions/Segment",
+                    "#/definitions/Level"
                 ],
                 "embed": [
                     { "embed": "#/definitions/Genre", "as": "genre" , "in": "root"},
