@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static bla.tm.staticmethods.StaticMethods.*;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class PD_Widget_CountdownSteps {
 
@@ -58,34 +60,42 @@ public class PD_Widget_CountdownSteps {
         }
     }
 
+    @Step
     public void apiKeyFieldIsNotEmpty() {
         String apiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getValue();
-        Assert.assertFalse(apiKey == null || apiKey.length() == 0);
+        assertFalse(apiKey == null || apiKey.length() == 0);
     }
 
-    public void eventIdFieldIsNotEmpty() {
+    @Step
+    public void checkThatEventIdFieldIsNotEmpty() {
         String eventId = countdownWidgetPage.getCountdownWidget().getEventIDTextField().getValue();
-        Assert.assertFalse(eventId == null || eventId.length() == 0);
+        assertFalse(eventId == null || eventId.length() == 0);
     }
 
+    @Step
     public void storeCurrentApiKey() {
         String apiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getValue();
         Serenity.getCurrentSession().put("apiKey", apiKey);
     }
 
+    @Step
     public void storeCurrentEventId() {
         String eventId = countdownWidgetPage.getCountdownWidget().getEventIDTextField().getValue();
         Serenity.getCurrentSession().put("eventId", eventId);
     }
 
+    @Step
     public void clickOnGetButton() {
-        WebElementFacade getCodeBtn = countdownWidgetPage.getCountdownWidget().getGetCodeButton();
-        scrollToElement(getCodeBtn);
-        getCodeBtn.click();
+        WebElementFacade getCodeButton = countdownWidgetPage.getCountdownWidget().getGetCodeButton();
+        scrollToElement(getCodeButton);
+        getCodeButton.click();
     }
 
-    public void thePopupEmbeddedCodeIsOpened() {
-        Assert.assertTrue(countdownWidgetPage.getCountdownWidget().getEmbeddedHtmlCode().isDisplayed());
+    @Step
+    public void checkThatPopupEmbeddedCodeIsOpened() {
+        assertTrue(countdownWidgetPage.getCountdownWidget().getEmbeddedHtmlCode().isDisplayed());
+
+        //Wait for uploading snipped code attributes values
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -93,149 +103,181 @@ public class PD_Widget_CountdownSteps {
         }
     }
 
-    public void embeddedCodeContainsStoredApiKey() {
+    @Step
+    public void checkThatEmbeddedCodeContainsStoredApiKey() {
         String embeddedApiKeyValue = countdownWidgetPage.getCountdownWidget().getEmbeddedApiKey();
         String apiKeyValue = (String) Serenity.getCurrentSession().get("apiKey");
-        Assert.assertEquals(String.format("The embedded code api key value is: %s but the apiKey value which was stored before is: %s ", embeddedApiKeyValue, apiKeyValue), apiKeyValue, embeddedApiKeyValue);
+        assertEquals(String.format("The embedded code api key value is: %s but the apiKey value which was stored before is: %s ", embeddedApiKeyValue, apiKeyValue), apiKeyValue, embeddedApiKeyValue);
     }
 
-    public void embeddedCodeContainsStoredEventId() {
+    @Step
+    public void checkThatEmbeddedCodeContainsStoredEventId() {
         String embeddedEventIdValue = countdownWidgetPage.getCountdownWidget().getEmbeddedEventId();
         String eventIdValue = (String) Serenity.getCurrentSession().get("eventId");
-        Assert.assertEquals(String.format("The embedded code eventId value is: %s but the eventId value which was stored before is: %s ", embeddedEventIdValue, eventIdValue), eventIdValue, embeddedEventIdValue);
+        assertEquals(String.format("The embedded code eventId value is: %s but the eventId value which was stored before is: %s ", embeddedEventIdValue, eventIdValue), eventIdValue, embeddedEventIdValue);
     }
 
+    @Step
     public void submitForm() {
         countdownWidgetPage.getCountdownWidget().getEventIDTextField().sendKeys(Keys.ENTER);
     }
 
+    @Step
     public void setApiKey(String apiKey) {
         countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().clear();
-        countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().sendKeys(apiKey);
+        countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().sendKeys(apiKey, Keys.ENTER);
     }
 
+    @Step
     public void setEventId(String eventId) {
         countdownWidgetPage.getCountdownWidget().getEventIDTextField().clear();
         countdownWidgetPage.getCountdownWidget().getEventIDTextField().sendKeys(eventId);
     }
 
+    @Step
     public void clickResetButton() {
         scrollToElement(countdownWidgetPage.getCountdownWidget().getResetButton());
         countdownWidgetPage.getCountdownWidget().getResetButton().click();
     }
 
-    public void apiKeyFieldContainsStoredValue() {
+    @Step
+    public void checkThatApiKeyFieldContainsStoredValue() {
         String actualApiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getValue();
         String expectedApiKey = (String) Serenity.getCurrentSession().get("apiKey");
         Assert.assertEquals(String.format("The apiKey should be %s but %s", expectedApiKey, actualApiKey), expectedApiKey, actualApiKey);
     }
 
-    public void eventIdFieldContainsStoredValue() {
+    @Step
+    public void checkThatEventIdFieldContainsStoredValue() {
         String actualEventId = countdownWidgetPage.getCountdownWidget().getEventIDTextField().getValue();
         String expectedEventId = (String) Serenity.getCurrentSession().get("eventId");
         Assert.assertEquals(String.format("The eventId should be %s but %s", expectedEventId, actualEventId), expectedEventId, actualEventId);
     }
 
+    @Step
     public void clickOnGetEventId() {
         scrollToElement(countdownWidgetPage.getCountdownWidget().getEventIdLink());
         countdownWidgetPage.getCountdownWidget().getEventIdLink().click();
     }
 
+    @Step
     public void enterKeyword(String keyword) {
         countdownWidgetPage.getCountdownWidget().getKeywordField().sendKeys(keyword);
         countdownWidgetPage.getCountdownWidget().getKeywordField().sendKeys(Keys.ENTER);
     }
 
+    @Step
     public void clickSetThisIdOnFirstEvent() {
         countdownWidgetPage.getCountdownWidget().getSetThisId().click();
     }
 
-    public void posterContainsKeyword(String keyword) {
+    @Step
+    public void checkThatPosterContainsKeyword(String keyword) {
         String posterText = countdownWidgetPage.getCountdownWidget().getPosterWindow().getText();
-        Assert.assertTrue(String.format("The poster does not contains %s but has text: %s", keyword.toLowerCase(), posterText.toLowerCase()), keyword.toLowerCase().contains(posterText.toLowerCase()));
+        assertTrue(String.format("The poster does not contains %s but has text: %s", keyword.toLowerCase(), posterText.toLowerCase()), keyword.toLowerCase().contains(posterText.toLowerCase()));
     }
 
+    @Step
     public void clickOnGetYourOwn() {
         countdownWidgetPage.getCountdownWidget().getGetYourOwn().click();
     }
 
-    public void pageIsOpenedWithUrl(String url) {
+    @Step
+    public void checkThatPageIsOpenedWithUrl(String url) {
         WebDriverWait wait = new WebDriverWait(getDriver(), 10);
         wait.until(ExpectedConditions.urlContains(url));
         String currentUrl = countdownWidgetPage.returnCurrentUrl();
-        Assert.assertTrue(String.format("Current URl does not contain %s", currentUrl) ,currentUrl.contains(url));
+        assertTrue(String.format("Current URl does not contain %s", currentUrl) ,currentUrl.contains(url));
     }
 
+    @Step
     public void switchToTab(String tab) {
-        if(tab.contains("visual")){
-            scrollToElement(countdownWidgetPage.getCountdownWidget().getVisualTab());
-            countdownWidgetPage.getCountdownWidget().getVisualTab().click();
-        }
-        if(tab.contains("technical")){
-            scrollToElement(countdownWidgetPage.getCountdownWidget().getTechnicalTab());
-            countdownWidgetPage.getCountdownWidget().getTechnicalTab().click();
+        switch (tab){
+            case "visual": {
+                scrollToElement(countdownWidgetPage.getCountdownWidget().getVisualTab());
+                countdownWidgetPage.getCountdownWidget().getVisualTab().click();
+            }
+            break;
+            case "technical": {
+                scrollToElement(countdownWidgetPage.getCountdownWidget().getTechnicalTab());
+                countdownWidgetPage.getCountdownWidget().getTechnicalTab().click();
+            }
+            break;
+            default: throw new IllegalArgumentException(String.format("The tab name: '%s' is illegal.", tab));
         }
     }
 
+    @Step
     public void setFullWidth() {
         countdownWidgetPage.getCountdownWidget().getFullWidthTab().click();
         Serenity.getCurrentSession().put("theme", "full-width");
     }
 
-    public void embeddedCodeContainsStoredTheme() {
+    @Step
+    public void checkThatEmbeddedCodeContainsStoredTheme() {
         String embeddedThemeValue = countdownWidgetPage.getCountdownWidget().getEmbeddedTheme();
         String themeValue = (String) Serenity.getCurrentSession().get("theme");
-        Assert.assertTrue(String.format("The embedded code theme value is: %s but the theme value which was stored before is: %s ", embeddedThemeValue, themeValue), embeddedThemeValue.equalsIgnoreCase(themeValue));
+        assertTrue(String.format("The embedded code theme value is: %s but the theme value which was stored before is: %s ", embeddedThemeValue, themeValue), embeddedThemeValue.equalsIgnoreCase(themeValue));
     }
 
+    @Step
     public void setPosterTheme() {
         countdownWidgetPage.getCountdownWidget().getPosterTab().click();
     }
 
     public void setLayoutResolutionTo(String layoutResolution) {
-        if (layoutResolution == "300x250") {
-            countdownWidgetPage.getCountdownWidget().getLayout300x250Tab().click();
-        }
-        if (layoutResolution == "300x600") {
-            countdownWidgetPage.getCountdownWidget().getLayout300x600Tab().click();
-        }
-        if (layoutResolution == "custom") {
-            countdownWidgetPage.getCountdownWidget().getLayoutCustomTab().click();
+        switch(layoutResolution){
+            case "300x250": countdownWidgetPage.getCountdownWidget().getLayout300x250Tab().click();
+                break;
+            case "300x600": countdownWidgetPage.getCountdownWidget().getLayout300x600Tab().click();
+                break;
+            case "custom": countdownWidgetPage.getCountdownWidget().getLayoutCustomTab().click();
+                break;
+            default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", layoutResolution));
         }
     }
 
+    @Step
     public void storeLayoutResolution() {
         String activeLayoutResolution = countdownWidgetPage.getCountdownWidget().getActiveLayoutResolution().getText();
         Serenity.getCurrentSession().put("resolution", activeLayoutResolution);
     }
 
-    public void embeddedCodeContainsStoredResolution() {
+    @Step
+    public void checkThatEmbeddedCodeContainsStoredResolution() {
         String embeddedResolutionValue = countdownWidgetPage.getCountdownWidget().getEmbeddedResolution();
         String resolutionValue = (String) Serenity.getCurrentSession().get("resolution");
-        Assert.assertTrue(String.format("The embedded code resolution value is: %s but the resulution value which was stored before is: %s ", embeddedResolutionValue, resolutionValue), embeddedResolutionValue.equalsIgnoreCase(resolutionValue));
+        assertTrue(String.format("The embedded code resolution value is: %s but the resulution value which was stored before is: %s ", embeddedResolutionValue, resolutionValue), embeddedResolutionValue.equalsIgnoreCase(resolutionValue));
     }
 
+    @Step
     public void setLayoutOrientation(String layoutOrientation) {
-        if(layoutOrientation.equalsIgnoreCase("horizontal")){
-            scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab());
-            countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab().click();
-            Serenity.getCurrentSession().put("orientation", layoutOrientation);
+        switch (layoutOrientation){
+            case "horizontal": {
+                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab());
+                countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab().click();
+            }
+            break;
+            case "vertical": {
+                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab());
+                countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab().click();
+            }
+            break;
+            default: throw new IllegalArgumentException(String.format("Illegal layout orientation: '%s'", layoutOrientation));
         }
-        if(layoutOrientation.equalsIgnoreCase("vertical")){
-            scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab());
-            countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab().click();
-            Serenity.getCurrentSession().put("orientation", layoutOrientation);
-        }
+        Serenity.getCurrentSession().put("orientation", layoutOrientation);
     }
 
-    public void embeddedCodeContainsStoredOrientation() {
+    @Step
+    public void checkThatEmbeddedCodeContainsStoredOrientation() {
         String embeddedOrientationValue = countdownWidgetPage.getCountdownWidget().getEmbeddedOrientation();
         String orientationValue = (String) Serenity.getCurrentSession().get("orientation");
-        Assert.assertTrue(String.format("The embedded code orientation value is: %s but the orientation value which was stored before is: %s ", embeddedOrientationValue.toLowerCase(), orientationValue), embeddedOrientationValue.equalsIgnoreCase(orientationValue));
+        assertTrue(String.format("The embedded code orientation value is: %s but the orientation value which was stored before is: %s ", embeddedOrientationValue.toLowerCase(), orientationValue), embeddedOrientationValue.equalsIgnoreCase(orientationValue));
     }
 
-    public void isEventMessageShown(String eventMessage) {
+    @Step
+    public void checkThatEventMessageIsShown(String eventMessage) {
         String actualEventMessage = countdownWidgetPage.getCountdownWidget().getEventMessage().getText();
-        Assert.assertTrue(actualEventMessage.contains(eventMessage));
+        assertTrue(actualEventMessage.contains(eventMessage));
     }
 }

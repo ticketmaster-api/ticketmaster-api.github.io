@@ -14,6 +14,4 @@ public class PD_Widget_CountdownPage extends AncestorPage {
     private CountdownWidget countdownWidget;
 
     public CountdownWidget getCountdownWidget() {return countdownWidget;}
-
-
 }

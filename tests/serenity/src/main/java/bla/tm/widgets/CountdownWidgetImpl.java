@@ -9,14 +9,16 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
 
 public class CountdownWidgetImpl extends AnsestorWidgetImpl implements CountdownWidget{
-    private String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
-    private String HTML_CODE_ATTRIBUTE_EVENTID = "id";
-    private String HTML_CODE_ATTRIBUTE_WIDTH = "w-width";
-    private String HTML_CODE_ATTRIBUTE_HEIGHT = "w-height";
-    private String HTML_CODE_ATTRIBUTE_ORIENTATION = "w-layout";
-    private String HTML_CODE_ATTRIBUTE_THEME = "theme";
-    private String HTML_CODE_ATTRIBUTE_PROPORTION = "w-proportion";
+    //Constants
+    private final String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
+    private final String HTML_CODE_ATTRIBUTE_EVENTID = "id";
+    private final String HTML_CODE_ATTRIBUTE_WIDTH = "w-width";
+    private final String HTML_CODE_ATTRIBUTE_HEIGHT = "w-height";
+    private final String HTML_CODE_ATTRIBUTE_ORIENTATION = "w-layout";
+    private final String HTML_CODE_ATTRIBUTE_THEME = "theme";
+    private final String HTML_CODE_ATTRIBUTE_PROPORTION = "w-proportion";
 
+    //WebElements
     @FindBy(xpath = ".//input[@id='w-tm-api-key']")
     private WebElementFacade apiKeyTextField;
 
@@ -35,10 +37,10 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = ".//div[@class='tab-buttons']/label[@for='w-theme-fullwidth']")
     private WebElementFacade fullWidthTab;
 
-    @FindBy(xpath = ".//div[@class='row']/div/input[@id='w-fixed-300x600']")
+    @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x600']")
     private WebElementFacade layout300x600Tab;
 
-    @FindBy(xpath = ".//div[@class='row']/div/input[@id='w-fixed-300x250']")
+    @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x250']")
     private WebElementFacade layout300x250Tab;
 
     @FindBy(xpath = "//input[@id='w-layout-vertical']/following-sibling::label")
@@ -47,7 +49,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = "//input[@id='w-layout-horizontal']/following-sibling::label")
     private WebElementFacade layoutHorisontalTab;
 
-    @FindBy(id = "w-custom")
+    @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-custom']")
     private WebElementFacade layoutCustomTab;
 
     @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='GET CODE']")
@@ -58,9 +60,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
 
     @FindBy(xpath = "//span[contains(@class,'event-name')]")
     private WebElementFacade posterWindow;
-
-    @FindBy(xpath = "//code[contains(@class,'language-html')]")
-    private WebElementFacade embeddedCode;
 
     @FindBy(xpath = "//a[text()='Get event ID']")
     private WebElementFacade getEventIdLink;
@@ -74,19 +73,14 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = "//a[text()='Get your own']")
     private WebElementFacade getYourOwnLink;
 
-    @FindBy(xpath = "//input[@name='w-theme'][@checked]/following-sibling::label[1]")
-    private WebElementFacade activeTheme;
-
     @FindBy(xpath = "//label[text()='Layout']/following-sibling::div[contains(@class,'js-fixed-size-buttons')]//input[@checked]/following-sibling::label")
     private WebElementFacade activeLayoutResolution;
-
-    @FindBy(xpath = "//label[text()='Layout']/following-sibling::div[contains(@class,'js-tab-buttons')]//input[@checked]/following-sibling::label")
-    private WebElementFacade activeLayoutOrientation;
 
     @FindBy(xpath = "//div[contains(@class,'event-message-visible')]/div[@class='event-message__content']")
     private WebElementFacade eventMessage;
 
 
+    //Constructors
     public CountdownWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
                                final long timeoutInMilliseconds) {
         super(page, locator, webElement, timeoutInMilliseconds);
@@ -97,6 +91,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
         super(page, locator, timeoutInMilliseconds);
     }
 
+    //Countdown Widget Interface Implementation
     @Override
     public WebElementFacade getAPIKeyTextField() {
         return apiKeyTextField;
@@ -168,12 +163,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     }
 
     @Override
-    public WebElementFacade getEmbeddedHtmlCode() {
-        embeddedCode.shouldBeVisible();
-        return embeddedCode;
-    }
-
-    @Override
     public WebElementFacade getEventIdLink() {
         return getEventIdLink;
     }
@@ -194,18 +183,8 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     }
 
     @Override
-    public WebElementFacade getActiveTheme() {
-        return activeTheme;
-    }
-
-    @Override
     public WebElementFacade getActiveLayoutResolution() {
         return activeLayoutResolution;
-    }
-
-    @Override
-    public WebElementFacade getActiveLayoutOrientation() {
-        return activeLayoutOrientation;
     }
 
     @Override

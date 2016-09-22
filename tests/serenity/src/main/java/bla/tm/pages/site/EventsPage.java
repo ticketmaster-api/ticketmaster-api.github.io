@@ -6,5 +6,5 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/events/")
 public class EventsPage extends AncestorPage {
 
-    public final String pageHeader = "The Ticketmaster API Devjam in San Jose, CA!";
+    public final String pageHeader = "The Ticketmaster API Devjam in Santa Monica, CA!";
 }
