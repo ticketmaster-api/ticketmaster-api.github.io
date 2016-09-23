@@ -152,7 +152,7 @@
                         {% else %}<!--Not defined in api.json-->
                         {% endif %}
                     </td>
-                    <td>{% if parameter.default %}{{ parameter.default | capitalize | join: ', ' | strip }}{% endif %}</td>
+                    <td>{% if parameter.default %}{{ parameter.default | join: ', ' | strip }}{% endif %}</td>
                     <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
                 </tr>
@@ -297,7 +297,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% if parameter.default %}{{ parameter.default | capitalize | join: ', ' }}{% endif %}
+                        {% if parameter.default %}{{ parameter.default | join: ', ' }}{% endif %}
                     </td>
                     <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
