@@ -115,6 +115,7 @@
                 "links": [
                     "#/definitions/Classification",
                     "#/definitions/Segment",
+                    "#/definitions/Genre",
                     "#/definitions/Level"
                 ],
                 "embed": [
