@@ -35,27 +35,34 @@ ParamsViewModel.prototype.updateParamsModel = function () {
     arr = [];
 
   for (var i in obj) {
-    if (!obj.hasOwnProperty(i)) { continue; }
-    obj[i].value = obj[i].value || ko.observable('');
-    obj[i].isDirty = ko.pureComputed(function () {
+    var value = obj[i];
+
+    if (!obj.hasOwnProperty(i)) {
+      continue;
+    }
+
+    value.value = value.value || ko.observable('');
+
+    // 'dirty' flag watcher for current field
+    value.isDirty = ko.pureComputed(function () {
       return !!this.value().trim().length;
-    }, obj[i]);
-    obj[i].hasCalendar = i.search(/(date|time)/gmi) != -1;
-    obj[i].hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
-    arr.push(obj[i]);
+    }, value);
+
+    // add calendar btn for current field
+    value.hasCalendar = i.search(/(date|time)/gmi) != -1;
+
+    // add pop-up btn for current field
+    value.hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
+
+    arr.push(value);
   }
 
-  self.params(arr.map(function (item) {
-    return [
-      item.name,
-      '=',
-      item.value() || item.default
-    ].join('')
-  }).filter(function (item) {
-    return item.length > 0
-  }));
+  // prepare output for request
+  self.prepareUrlPairs(arr, self.params);
 
+  // catch params focus for about section
   self.paramInFocus(arr[0]);
+
   return arr;
 };
 
@@ -79,6 +86,22 @@ ParamsViewModel.prototype.slideToggle = function (viewModel, event) {
  */
 ParamsViewModel.prototype.onFocus = function (item) {
   self.paramInFocus(item);
+};
+
+/**
+ * Filters params by defined value
+ * @param arr
+ * @param koObs
+ * @returns {boolean}
+ */
+ParamsViewModel.prototype.prepareUrlPairs = function (arr, koObs) {
+  if (!arr && !koObs) {
+    return false;
+  }
+
+  return koObs(arr.filter(function (item) {
+    return (item.value() || item.default);
+  }));
 };
 
 module.exports = ParamsViewModel;
