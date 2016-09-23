@@ -94,13 +94,7 @@ public class PD_Widget_CountdownSteps {
     @Step
     public void checkThatPopupEmbeddedCodeIsOpened() {
         assertTrue(countdownWidgetPage.getCountdownWidget().getEmbeddedHtmlCode().isDisplayed());
-
-        //Wait for uploading snipped code attributes values
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForSomeActionHappened(2000);
     }
 
     @Step
