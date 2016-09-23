@@ -6,6 +6,9 @@ import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
+import static org.junit.Assert.assertEquals;
+
 public class PD_Widget_CalendarSteps {
 
     PD_Widget_CalendarPage calendarWidgetPage;
@@ -16,6 +19,11 @@ public class PD_Widget_CalendarSteps {
     }
 
     @Step
+    public void clickLogIn() {
+        calendarWidgetPage.getLogInButton().click();
+    }
+
+    @Step
     public void checkIfTitleIsCorrect() {
         Assert.assertEquals(calendarWidgetPage.getTitleText(), calendarWidgetPage.pageHeader);
     }
@@ -23,6 +31,17 @@ public class PD_Widget_CalendarSteps {
     @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu) {
         calendarWidgetPage.checkGeneralPageElements(disqus, leftMenu);
+    }
+
+    @Step
+    public void checkAPIKeyPlaceholders(String apikey) {
+        if ("{apikey}".equals(apikey)){
+            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().getAttribute("value"), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
+        }
+        else {
+            waitForSomeActionHappened(50);
+            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().getAttribute("value"), apikey);
+        }
     }
 
     @Step

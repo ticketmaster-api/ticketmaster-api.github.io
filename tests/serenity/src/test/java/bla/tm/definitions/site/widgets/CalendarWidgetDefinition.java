@@ -23,26 +23,13 @@ public class CalendarWidgetDefinition {
     @Steps
     UserAccountSteps userAccountSteps;
 
-    @Then("the required fields are not empty on the Calendar Widget page")
-    public void checkThatRequiredFieldsAreNotEmptyOnTheCalendarWidgetPage() {
-        calendarWidgetPage.apiKeyFieldIsNotEmpty();
-        calendarWidgetPage.zipCodeIsNotEmpty();
-    }
-
+    //Given
     @Given("store values of: $valueNames")
     public void storeValuesOf(List<String> valueNames) {
         for (String valueName : valueNames){
             calendarWidgetPage.storeValue(valueName);
         }
     }
-
-    @Then("embedded html code contains stored values of: $valueNames")
-    public void checkThatEmbeddedHtmlCodeContainsStoredValuesOf(List<String> valueNames) {
-        for (String valueName : valueNames){
-            calendarWidgetPage.embeddedCodeContainsStoredValueFor(valueName);
-        }
-    }
-
     @Given("change values for: $valueNames")
     public void changeValuesFor(List<String> valueNames) {
         for (String valueName : valueNames){
@@ -50,9 +37,33 @@ public class CalendarWidgetDefinition {
         }
     }
 
+    //When
     @When("change value of Zip Code $zipCode")
     public void changeValueOfZipCode(String zipCode) {
         calendarWidgetPage.setZipCodeValue(zipCode);
+    }
+
+    @When("User is not logged to site (Calendar Widget)")
+    public void openLogInPageAndCheckUserIsNotLoggedIn() {
+        calendarWidgetPage.clickLogIn();
+        userLogInPage.isPageOpened();
+        calendarWidgetPage.openPage();
+    }
+
+    @When("User is logged to site (Calendar Widget)")
+    public void openLogInPageAndLogIn() {
+        calendarWidgetPage.clickLogIn();
+        userLogInPage.logInToAccount();
+        apiKey = userAccountSteps.getAPIKeyOfUser();
+        calendarWidgetPage.openPage();
+    }
+
+    //Then
+    @Then("embedded html code contains stored values of: $valueNames")
+    public void checkThatEmbeddedHtmlCodeContainsStoredValuesOf(List<String> valueNames) {
+        for (String valueName : valueNames){
+            calendarWidgetPage.embeddedCodeContainsStoredValueFor(valueName);
+        }
     }
 
     @Then("the Country field contains appropriate value $countryName")
@@ -65,5 +76,16 @@ public class CalendarWidgetDefinition {
         for (String fieldName : fieldNames){
             calendarWidgetPage.fieldEqualsStoredValue(fieldName);
         }
+    }
+
+    @Then("the required fields are not empty on the Calendar Widget page")
+    public void checkThatRequiredFieldsAreNotEmptyOnTheCalendarWidgetPage() {
+        calendarWidgetPage.apiKeyFieldIsNotEmpty();
+        calendarWidgetPage.zipCodeIsNotEmpty();
+    }
+
+    @Then("check that API key is provided for all placeholders on Calendar Widget page")
+    public void checkAPIKeyPlaceholders(){
+        calendarWidgetPage.checkAPIKeyPlaceholders(apiKey);
     }
 }

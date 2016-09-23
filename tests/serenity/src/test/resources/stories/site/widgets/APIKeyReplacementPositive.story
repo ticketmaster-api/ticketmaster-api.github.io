@@ -55,6 +55,16 @@ Given open Event Discovery Widget page
 When User is logged to site (Event Discovery Widget)
 Then check that API key is provided for all placeholders on Event Discovery Widget page
 
+Scenario: (APi Key - Calendar Widget) Placeholder is shown when user is not logged in
+Given open Calendar Widget page
+When User is not logged to site (Calendar Widget)
+Then check that API key is provided for all placeholders on Calendar Widget page
+
+Scenario: (APi Key - Calendar Widget) Custom API key is shown when user is logged in
+Given open Calendar Widget page
+When User is logged to site (Calendar Widget)
+Then check that API key is provided for all placeholders on Calendar Widget page
+
 Scenario: (APi Key - Discovery API v2 page) Placeholder is shown when user is not logged in
 Given open Discovery API v2 page
 When User is not logged to site (Discovery API v2)
