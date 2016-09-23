@@ -101,7 +101,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% if parameter.default %}{{ parameter.default | capitalize | join: ', ' }}{% endif %}
+                        {% if parameter.default %}{{ parameter.default | join: ', ' }}{% endif %}
                     </td>
                     <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
 
