@@ -5,7 +5,7 @@
  */
 // Components
 var base = require('./../components/config');
-var apikey = require('./../components/apikey');
+var apiKey = require('./../components/apikey');
 var ajaxService = require('./../components/ajaxService');
 
 // View Models
@@ -14,7 +14,7 @@ var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
 
 // Modules
-require('./../components/customSelect');
+var customSelect = require('./../components/customSelect');
 
 /**
  * AppViewModel
@@ -23,7 +23,7 @@ require('./../components/customSelect');
 function AppViewModel(obj) {
   var base = obj || {};
   self = this;
-  this.apikey = ko.observable(apikey);
+  this.apiKey = apiKey;
 
   // observables
   this.selectedCategory = ko.observable('');
@@ -33,18 +33,22 @@ function AppViewModel(obj) {
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
+
   // computed
   this.sendButtonText = ko.pureComputed(function () {
     return this.selectedMethod().method.toLowerCase();
   }, this);
-
   this.URL = ko.computed(function () {
-    return [this.selectedMethod(),this.selectedParams()];
+    return [
+      this.selectedMethod(),
+      this.apiKey,
+      this.selectedParams()
+    ];
   }, this);
 }
 
 AppViewModel.prototype.onClickSendBtn = function () {
-  ajaxService(this.URL);
+  ajaxService(this.URL());
 };
 
 // Activates knockout.js
