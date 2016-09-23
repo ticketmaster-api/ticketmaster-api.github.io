@@ -57,14 +57,18 @@ var base =
 	 * For development please use Webpack to bundle all modules
 	 * It can be made using npm scripts cmd - 'webpack'
 	 */
+	// Components
+	var base = __webpack_require__(2);
+	var apikey = __webpack_require__(3);
+	var ajaxService = __webpack_require__(4);
 	
-	__webpack_require__(2);
-	
-	var base = __webpack_require__(3);
-	var apikey = __webpack_require__(4);
+	// View Models
 	var MenuViewModel = __webpack_require__(5);
 	var ParamsViewModel = __webpack_require__(7);
 	var MethodsViewModel = __webpack_require__(8);
+	
+	// Modules
+	__webpack_require__(9);
 	
 	/**
 	 * AppViewModel
@@ -87,7 +91,15 @@ var base =
 	  this.sendButtonText = ko.pureComputed(function () {
 	    return this.selectedMethod().method.toLowerCase();
 	  }, this);
+	
+	  this.URL = ko.computed(function () {
+	    return [this.selectedMethod(),this.selectedParams()];
+	  }, this);
 	}
+	
+	AppViewModel.prototype.onClickSendBtn = function () {
+	  ajaxService(this.URL);
+	};
 	
 	// Activates knockout.js
 	ko.applyBindings(new AppViewModel(base));
@@ -95,90 +107,6 @@ var base =
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
-
-	/**
-	 * Custom Select component
-	 */
-	var self;
-	
-	/**
-	 * Custom Select View-Model
-	 * @param params
-	 * @constructor
-	 */
-	function CustomSelect(params) {
-	  self = this;
-	
-	  this.animationSpeed = params.animationSpeed || 200;
-	
-	  //observables
-	  this.selectModel = params.options || ko.observableArray([]);
-	  this.placeholder = ko.observable(params.placeholder || '');
-	  this.onselect = params.onselect || function (item) { console.log(item +'selected!')};
-	  this.selected = ko.observable(this.selectModel()[0]);
-	  this.isOneOption = ko.pureComputed(function () {
-	    return this.selectModel().length < 2; // more than one option
-	  }, this);
-	}
-	
-	function findElement(event) {
-	  return $(event.currentTarget)
-	    .parents('.js-custom-select')
-	    .find('.js-custom-select-wrapper')
-	}
-	
-	/**
-	 * Custom Select View-Model method
-	 * @param viewModel
-	 * @param event
-	 */
-	CustomSelect.prototype.slideToggle = function(viewModel, event) {
-	  if (viewModel.isOneOption()) {return false;}
-	  findElement(event).slideToggle(viewModel.animationSpeed);
-	};
-	
-	CustomSelect.prototype.slideUp = function(viewModel, event) {
-	  if (viewModel.isOneOption()) {return false;}
-	  findElement(event).slideUp(viewModel.animationSpeed);
-	};
-	
-	/**
-	 * Custom Select View-Model method
-	 * @param item
-	 * @param event
-	 */
-	CustomSelect.prototype.selectItem = function (item, event) {
-	  var self = this;
-	  this.selected(item);
-	  // run handler
-	  this.onselect(item);
-	  // slide up
-	  this.slideUp(self, event);
-	};
-	
-	module.exports = ko.components.register('custom-select', {
-	  viewModel: CustomSelect,
-	  template: ([
-	    '<div data-bind="event: {blur: slideUp}" class="api-exp-custom-select js-custom-select">',
-	      '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
-	      '<span class="api-exp-custom-select__placeholder">',
-	        '<input data-bind="event: {click: slideToggle}, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
-	        '<b data-bind="css: {hidden: isOneOption}" class="api-exp-custom-select__chevron">&nbsp;</b>',
-	      '</span>',
-	      '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
-	        '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
-	          '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
-	          '<a data-bind="attr: {href: link}, css: {\'hidden\': !link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
-	        '</li>',
-	      '</ul>',
-	    '</div>'
-	  ]).join('')
-	});
-
-
-/***/ },
-/* 3 */
 /***/ function(module, exports) {
 
 	var base = {};
@@ -274,12 +202,85 @@ var base =
 
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	var apiKey = sessionStorage.getItem('tk-api-key') || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0"; //API Key
 	
 	module.exports = apiKey;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	// forms URL for 1st column, based on base URL, template, template parameters and additional query parameters
+	
+	var formURL = function (method) {
+	  var params = getAllParameteres(), // parameter values from 1st column
+	    url = method.path, // selected method's url
+	    query = ""; // string with non required parameters
+	
+	  $(params).each(function(){
+	    var each = this,
+	      val = each.value ? true : false;
+	    if (method.parameters[each.id].style === "template"){
+	      // embed parameter into base url if it has template style
+	      url = url.replace('{' + each.id + '}', val ? each.value : method.parameters[each.id].default);
+	      primaryColumn.find('#' + each.id).val(val ? each.value : method.parameters[each.id].default); // set value to template param text boxes
+	    } else {
+	      // form string with additional parameters
+	      query = val ? (query + '&' + each.id + '=' + each.value) : query;
+	    }
+	  });
+	
+	  url = method.base + '/' + url + '?apikey' + '=' + apiKey + query;
+	  return url;
+	};
+	
+	/**
+	 * Ajax Service
+	 * @param url
+	 * @param method
+	 * @param callback
+	 */
+	var ajaxService = function (url, method, callback) {
+	  $.ajax({
+	    type: method,
+	    url: url,
+	    async: true,
+	    dataType: "json",
+	    success: callback,
+	    error: function(xhr, status, err) {
+	      console.error(err);
+	    }
+	  });
+	};
+	
+	
+	// sends request to get the second column
+	var sendPrimaryRequest = function (kofn) {
+	  var o = kofn();
+	  var url = [
+	    o[0].base,
+	    o[0].path.replace('{format}', 'json')
+	  ].join('/');
+	
+	
+	  var params = o[1];
+	
+	  // console.log(o[1]);
+	  console.log(params);
+	
+	  // 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0'
+	
+	  // var url = formPrimaryURL(selectedMethod);
+	  // ajaxService(url, selectedMethod.method, function(response, guid) {
+	  //   console.log(response);
+	  // });
+	};
+	
+	
+	module.exports = sendPrimaryRequest;
 
 /***/ },
 /* 5 */
@@ -382,6 +383,8 @@ var base =
 	  base = raw;
 	  self = this;
 	  this.method = method;
+	  this.params = params;
+	  
 	  this.animationSpeed = 200;
 	  this.isHidden = ko.observable(true);
 	  this.paramInFocus = ko.observable('');
@@ -404,7 +407,7 @@ var base =
 	
 	  for (var i in obj) {
 	    if (!obj.hasOwnProperty(i)) { continue; }
-	    obj[i].value = ko.observable('');
+	    obj[i].value = obj[i].value || ko.observable('');
 	    obj[i].isDirty = ko.pureComputed(function () {
 	      return !!this.value().trim().length;
 	    }, obj[i]);
@@ -412,6 +415,17 @@ var base =
 	    obj[i].hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
 	    arr.push(obj[i]);
 	  }
+	
+	  self.params(arr.map(function (item) {
+	    return [
+	      item.name,
+	      '=',
+	      item.value() || item.default
+	    ].join('')
+	  }).filter(function (item) {
+	    return item.length > 0
+	  }));
+	
 	  self.paramInFocus(arr[0]);
 	  return arr;
 	};
@@ -511,13 +525,9 @@ var base =
 	      checked: ko.observable(i === 'ALL'),
 	      name: i
 	    };
-	
-	    if (i === 'ALL') {
-	      arr.unshift(item)
-	    } else {
-	      arr.push(item);
-	    }
+	    arr.push(item);
 	  }
+	  arr.sort(compareMethods);
 	  this.radiosModel(arr);
 	  return arr;
 	};
@@ -561,7 +571,120 @@ var base =
 	  model.togglePopUp(!model.togglePopUp());
 	};
 	
+	
+	/**
+	 * Sort function for methods aray
+	 * @param f
+	 * @param s
+	 * @returns {number}
+	 */
+	function compareMethods(f,s) {
+	  var a = f.name.toUpperCase();
+	  var b = s.name.toUpperCase();
+	
+	  if (a === b) {return 0;}
+	  if (a === 'ALL' ||
+	    (a === 'GET' && (b === 'POST' || b === 'PUT' || b === 'DELETE')) ||
+	    (a === 'POST' && (b === 'PUT' || b === 'DELETE')) ||
+	    (a === 'PUT' && b === 'DELETE')) {
+	    return -1;
+	  }
+	  return 1;
+	}
 	module.exports = MethodsViewModel;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	/**
+	 * Custom Select component
+	 */
+	var self;
+	
+	/**
+	 * Custom Select View-Model
+	 * @param params
+	 * @constructor
+	 */
+	function CustomSelect(params) {
+	  self = this;
+	
+	  this.animationSpeed = params.animationSpeed || 200;
+	
+	  //observables
+	  this.selectModel = params.options || ko.observableArray([]);
+	  this.placeholder = ko.observable(params.placeholder || '');
+	  this.onselect = params.onselect || function (item) { console.log(item +'selected!')};
+	  this.selected = ko.observable(this.selectModel()[0]);
+	  this.isOneOption = ko.pureComputed(function () {
+	    return this.selectModel().length < 2; // more than one option
+	  }, this);
+	}
+	
+	function findElement(event) {
+	  var parent = $(event.currentTarget).parents('.js-custom-select');
+	  return {
+	    wrapper: parent.find('.js-custom-select-wrapper'),
+	    layer: parent.find('.js-custom-select-layer')
+	  }
+	}
+	
+	/**
+	 * Custom Select View-Model method
+	 * @param viewModel
+	 * @param event
+	 */
+	CustomSelect.prototype.slideToggle = function(viewModel, event) {
+	  if (viewModel.isOneOption()) {return false;}
+	  var el = findElement(event);
+	    el.wrapper.slideToggle(viewModel.animationSpeed);
+	    el.layer.toggleClass('hidden');
+	};
+	
+	CustomSelect.prototype.slideUp = function(viewModel, event) {
+	  if (viewModel.isOneOption()) {return false;}
+	  var el = findElement(event);
+	  el.wrapper.slideUp(viewModel.animationSpeed);
+	  el.layer.removeClass('hidden').addClass('hidden');
+	};
+	
+	/**
+	 * Custom Select View-Model method
+	 * @param item
+	 * @param event
+	 */
+	CustomSelect.prototype.selectItem = function (item, event) {
+	  var self = this;
+	  this.selected(item);
+	  // run handler
+	  this.onselect(item);
+	  // slide up
+	  this.slideUp(self, event);
+	};
+	
+	module.exports = ko.components.register('custom-select', {
+	  viewModel: CustomSelect,
+	  template: ([
+	    '<div class="api-exp-custom-select js-custom-select">',
+	      '<div class="api-exp-custom-select-wrapper">',
+	        '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
+	        '<span class="api-exp-custom-select__placeholder">',
+	          '<input data-bind="event: {click: slideToggle}, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
+	          '<b data-bind="css: {hidden: isOneOption}" class="api-exp-custom-select__chevron">&nbsp;</b>',
+	        '</span>',
+	        '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
+	          '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
+	            '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
+	            '<a data-bind="attr: {href: link}, css: {\'hidden\': !link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
+	          '</li>',
+	        '</ul>',
+	      '</div>',
+	      '<div data-bind="click: slideUp, css: {}" class="api-exp-custom-select-layer js-custom-select-layer hidden"></div>',
+	    '</div>'
+	  ]).join('')
+	});
+
 
 /***/ }
 /******/ ]);
