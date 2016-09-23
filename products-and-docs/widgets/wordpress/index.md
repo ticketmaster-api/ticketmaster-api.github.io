@@ -11,7 +11,7 @@ keywords: ticketmaster, checkout, widget, sell tickets, javascript, developer
 
 # WORDPRESS WIDGET
 
-{: .lead}
+{: .lead .double-margin-top}
 It was a humorously perilous business for both of us. For, before we proceed further, it must be said that the monkey-rope was fast at both ends; fast to Queequeg's broad canvas belt.
 
 ## Introduction
