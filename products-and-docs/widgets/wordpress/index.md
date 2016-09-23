@@ -58,7 +58,7 @@ Adding a Google Map to your web page is very easy, once you've been shown how! T
 
           <ul>
             <li>
-              <p><strong>Step 1:</strong> Open </p>
+              <p><strong>Step 1:</strong> Download <a href="/products-and-docs/widgets/wordpress/ticketmaster.zip">this file</a></p>
             </li>
             <li>
               <p><strong>Step 2:</strong> Visit: <a href="http://www.ticketmaster.com">http://www.ticketmaster.com</a></p>
