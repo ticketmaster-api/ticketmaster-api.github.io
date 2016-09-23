@@ -50,7 +50,6 @@ keywords: widget, sell tickets, direct payments
 [CONFIGURE NOW](/products-and-docs/widgets/calendar/){: .button.button-blue} 
 {% comment %} 
 [LEARN MORE](#){: .button .button-transparent}
-[LEARN MORE](#){: .tm-btn.tm-btn-transparent}
 {% endcomment %} 
 {% endcapture %}
 
@@ -61,7 +60,6 @@ keywords: widget, sell tickets, direct payments
 {: .button_set}
 [DOWNLOAD NOW](/products-and-docs/widgets/wordpress/ticketmaster.zip){: .button.button-blue} 
 [LEARN MORE](/products-and-docs/widgets/wordpress/){: .button .button-transparent}
-{% comment %} {% endcomment %} 
 {% endcapture %}
 
 {% capture payments %}
