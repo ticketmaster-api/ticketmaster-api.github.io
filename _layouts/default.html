@@ -25,7 +25,8 @@
             ga('create', 'UA-72344127-1', 'auto');
             ga('send', 'pageview');
             (function () {
-                var item = sessionStorage.getItem('tk-api-email');
+                // var item = sessionStorage.getItem('tk-api-email');
+                var item = getCookie('tmemail');
                 document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
             })();
         </script>
