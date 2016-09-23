@@ -1,0 +1,126 @@
+
+.lazy-selector-wrapper {
+  position: relative;
+  margin-bottom: 24px;
+
+  .icon {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    margin-top: -5px;
+    cursor: pointer;
+
+    &:before,
+    &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      @include transition(opacity 0.2s ease-in-out);
+    }
+
+    &:before{
+      background: url("/assets/controls/ic-id.svg") no-repeat;
+      opacity: 0;
+    }
+
+    &:after{
+      background: url("/assets/controls/ic-id.svg") no-repeat;
+    }
+  }
+
+  @media (min-width: 767px){
+    &-opened {
+      .custom_select__arrow {
+        @include rotate(180deg)
+      }
+    }
+  }
+
+  &__list {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    line-height: 24px;
+    color: $white;
+    z-index: 1051; // bigger then on dialog
+    background: $n3;
+    padding: 12px 16px;
+    margin: 0;
+    font-family: $font-lead-regular;
+
+    @media (max-width: 767px){
+      display: none !important; // reset inline style
+    }
+  }
+
+  &__item {
+    padding: 12px 0;
+    cursor: pointer;
+    list-style: none;
+    @include transition(color 0.1s ease);
+    &:hover,
+    &-active{
+      color: $blue;
+    }
+  }
+
+  &__placeholder {
+    margin-bottom: 0;
+    cursor: pointer;
+    @include transition(opacity 0.2s ease-in-out);
+    @media (max-width: 767px){
+      display: none;
+    }
+  }
+
+  &__field {
+    margin-bottom: 0;
+    padding-right: 50px;
+    @include transition(opacity 0.2s ease-in-out);
+
+    @media (min-width: 767px){
+      // make select invisible
+      border: 0 !important;
+      clip: rect(0 0 0 0) !important;
+      height: 1px !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important;
+      width: 1px !important;
+    }
+
+    &[disabled]{
+      opacity: 0.5;
+      cursor: default;
+      &+.custom_select__placeholder{
+        opacity: 0.5;
+        cursor: default;
+        &:focus{
+          border-color: #ccc;
+        }
+        &+.custom_select__list{
+          display: none!important;
+          &+.custom_select__arrow{
+            @include rotate(0);
+            &:before{
+              opacity: 0.5;
+            }
+            &:after{
+              opacity: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
