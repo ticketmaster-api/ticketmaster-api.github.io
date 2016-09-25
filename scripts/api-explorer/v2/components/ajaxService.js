@@ -5,15 +5,14 @@
  * @param callback
  */
 var ajaxService = function (url, method, callback) {
+  var escapedURL = encodeURI(url);
+  console.log(escapedURL);
+
   $.ajax({
     type: method,
-    url: url,
+    url: escapedURL,
     async: true,
     dataType: "json",
-    // success: callback,
-    // error: function(xhr, status, err) {
-    //   // console.error(status, err);
-    // },
     complete: callback
   });
 };
@@ -40,12 +39,7 @@ var prepareUrl = function (arr) {
   });
 
   // arr of template marks
-  replacement = path
-    .replace(/[\w/]+[^{a-z}]/gmi, ' ')
-    .split(/[\s{}]/)
-    .filter(function (i){
-      return i.length;
-    });
+  replacement = path.match(/([^{]*?)\w(?=\})/gmi);
 
   // arr of template params
   var templatesArr = arr[2].filter(function (item) {
@@ -79,14 +73,18 @@ var prepareUrl = function (arr) {
 var sendPrimaryRequest = function (arr) {
   console.clear();
   var url = prepareUrl(arr);
-  console.log(url);
+  // console.log(url);
 
   ajaxService(url, arr[0].method, function(response, message) {
     if (message == 'error') {
-      var err = response.responseJSON.errors[0];
-      console.log(message, response.status);
-      console.log(err.code);
-      console.log(err.detail);
+      var err = response && response.responseJSON && response.responseJSON.errors && response.responseJSON.errors[0];
+      console.warn(message, response.status);
+      if (err) {
+        console.warn(err.code);
+        console.warn(err.detail);
+      } else {
+        console.warn(response);
+      }
     } else {
       console.log(message, response.status);
       console.log(response.responseJSON);
