@@ -17,11 +17,11 @@ module.exports = {
 
   devtool: 'inline-source-map',
   plugins: [
-    new webpack.NoErrorsPlugin()
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: true
-    //   }
-    // })
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ]
 };
