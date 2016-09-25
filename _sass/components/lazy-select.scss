@@ -14,7 +14,7 @@
     cursor: pointer;
 
     &:before,
-    &:after{
+    &:after {
       content: '';
       position: absolute;
       left: 0;
@@ -24,17 +24,17 @@
       @include transition(opacity 0.2s ease-in-out);
     }
 
-    &:before{
+    &:before {
       background: url("/assets/controls/ic-id.svg") no-repeat;
       opacity: 0;
     }
 
-    &:after{
+    &:after {
       background: url("/assets/controls/ic-id.svg") no-repeat;
     }
   }
 
-  @media (min-width: 767px){
+  @media (min-width: 767px) {
     &-opened {
       .custom_select__arrow {
         @include rotate(180deg)
@@ -56,7 +56,7 @@
     margin: 0;
     font-family: $font-lead-regular;
 
-    @media (max-width: 767px){
+    @media (max-width: 767px) {
       display: none !important; // reset inline style
     }
   }
@@ -67,7 +67,7 @@
     list-style: none;
     @include transition(color 0.1s ease);
     &:hover,
-    &-active{
+    &-active {
       color: $blue;
     }
   }
@@ -76,7 +76,7 @@
     margin-bottom: 0;
     cursor: pointer;
     @include transition(opacity 0.2s ease-in-out);
-    @media (max-width: 767px){
+    @media (max-width: 767px) {
       display: none;
     }
   }
@@ -86,7 +86,7 @@
     padding-right: 50px;
     @include transition(opacity 0.2s ease-in-out);
 
-    @media (min-width: 767px){
+    @media (min-width: 767px) {
       // make select invisible
       border: 0 !important;
       clip: rect(0 0 0 0) !important;
@@ -98,29 +98,132 @@
       width: 1px !important;
     }
 
-    &[disabled]{
+    &[disabled] {
       opacity: 0.5;
       cursor: default;
-      &+.custom_select__placeholder{
+      & + .custom_select__placeholder {
         opacity: 0.5;
         cursor: default;
-        &:focus{
+        &:focus {
           border-color: #ccc;
         }
-        &+.custom_select__list{
-          display: none!important;
-          &+.custom_select__arrow{
+        & + .custom_select__list {
+          display: none !important;
+          & + .custom_select__arrow {
             @include rotate(0);
-            &:before{
+            &:before {
               opacity: 0.5;
             }
-            &:after{
+            &:after {
               opacity: 0;
             }
           }
         }
       }
     }
+  }
+
+}
+
+#js_ls-modal {
+  .modal-content {
+    position: absolute;
+    border: 0;
+    width: 100%;
+    transition-duration: 1s;
+
+    &.narrow {
+      width: 60%;
+    }
+  }
+
+  .modal-body {
+    .get_eventId_results {
+      margin-top: -24px;
+      font-size: 0.75em;
+      span {
+        font-weight: bold;
+      }
+    }
+    #spinner-ls {
+      width: 100px;
+      height: 100px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-top: -50px;
+      margin-left: -50px;
+      background: url("../../assets/img/loader.gif");
+      background-size: 100px 100px;
+      z-index: 1000;
+    }
+    .list-group {
+      overflow-y: scroll;
+      max-height: 500px;
+      width: 100%;
+      padding: 0 10px 0 15px;
+    }
+    .list-group-item {
+      .thumbnail {
+        position: relative;
+        width: 100px;
+        height: 66px;
+        overflow: hidden;
+        float: left;
+        display: block;
+        margin: 2px 12px 0 0;
+
+        img {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 100%;
+          height: auto;
+          -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          margin: 0;
+        }
+      }
+      .event-text-wrapper {
+        padding-right: 110px;
+        @media (max-width: 468px) {
+          padding-right: 0;
+          margin-bottom: 10px;
+        }
+      }
+      .event-time {
+        margin-bottom: 0;
+      }
+      .wrapper-set-eventId_btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        @media (max-width: 468px) {
+          position: relative;
+          bottom: 0;
+          left: 0;
+        }
+        .btn-submit {
+          width: auto;
+          height: auto;
+        }
+      }
+      &-heading {
+        margin-left: 110px;
+        min-height: 60px;
+      }
+    }
+  }
+
+  #map-canvas {
+    //min-width: 200px;
+    width: 50%;
+    left: 60%;
+    z-index: -1;
+    min-height: 200px;
+    height: 80%;
+    border: 1px solid blue;
   }
 
 }

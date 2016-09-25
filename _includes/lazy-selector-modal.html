@@ -10,23 +10,28 @@
       </div>
       <div class="modal-body">
 
-        <form id="js_get_eventId_form" accept-charset="UTF-8"  method="GET">
+        <form id="js_lazy-sel_form" accept-charset="UTF-8"  method="GET">
           <div class="col-sm-8">
             <input required type="text" placeholder="keyword" id="keyword" autofocus >
-            <!--<div class="get_eventId_results" style="display: none;">result found:<span>0</span></div>-->
           </div>
           <div class="col-sm-4 text-right">
             <button id="js_ls-modal_btn" type="button" class="btn btn-submit">GET</button>
           </div>
-
         </form>
-        <div id="spinner" style="display: none;"></div>
-        <ul id="js_get_eventId_list" class="list-group"></ul>
+
+        <div id="spinner-ls" style="display: none;"></div>
+        <ul id="js_lazy-sel_list" class="list-group"></ul>
       </div>
       <!--<div class="modal-footer"></div>-->
-
-
     </div><!-- /.modal-content -->
+
+    <div id="map-canvas" style="
+        width: 40%;
+        height: 779px;">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <button id="close1" class="buttonControl" aria-controls="m1">Close</button>
+    </div><!--map-->
+
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
