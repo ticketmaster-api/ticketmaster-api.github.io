@@ -210,7 +210,7 @@
 					<section class="api-exp-params-filter">
 						<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
 							<div data-bind="css: {'dirty': isDirty, calendar: hasCalendar, popup: hasPopUp}" class="api-exp-params-filter__field">
-								<input data-bind="textInput: value, event: {focus: $parent.onFocus}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
+								<input data-bind="textInput: value, event: {focus: $parent.onFocus, keydown: $parent.onEnterKeyDown}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
 								<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
 								<button class="api-exp-params-filter__button">&nbsp;</button>
 							</div>
@@ -221,7 +221,7 @@
 		</div>
 
 		<section class="api-exp-get-btn clearfix">
-			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn" class="api-exp-get-btn__button button button-blue">Get</button>
+			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
 		</section>
 	</div>
 </div>
