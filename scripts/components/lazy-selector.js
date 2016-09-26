@@ -385,12 +385,12 @@
        //submitForm when go to bottom of list
        if($form.get(0).checkValidity()) {
        if (this.scrollTop + this.clientHeight == this.scrollHeight && stateConf.loadingFlag === 'KEEP_LOAD') {
-       stateConf.pageIncrement++;
-       $btn.attr('disabled', true);
-       loading('on');
-       submitForm(stateConf.pageIncrement);
-       }
-       }
+         stateConf.pageIncrement++;
+         $btn.attr('disabled', true);
+         loading('on');
+         submitForm(stateConf.pageIncrement);
+          }
+         }
        });*/
 
       $form.on("change", function () {
