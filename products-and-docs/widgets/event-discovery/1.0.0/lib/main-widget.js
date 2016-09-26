@@ -1275,6 +1275,13 @@ var TicketmasterEventDiscoveryWidget = function () {
             win.focus();
           }
         });
+        el.addEventListener('touchstart', function () {
+          var url = this.getAttribute('data-url');
+          if (url) {
+            var win = window.open(url, isBlank ? '_blank' : '_self');
+            win.focus();
+          }
+        });
       }
       return el;
     }
