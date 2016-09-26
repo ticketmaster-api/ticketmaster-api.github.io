@@ -306,6 +306,18 @@
     /* @include img-retina("/assets/img/products-and-docs/wordpress-widget-image.png", "/assets/img/products-and-docs/wordpress-widget-image@2x.png", 362px, 262px); */
     background: url("/assets/img/products-and-docs/wordpress-widget-image.png");
     background-size: contain;
+
+    .button-transparent {
+      color: $white-70;
+      border-color: $white-70;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $white;
+        border-color: $white;
+      }
+    }
+
     @media #{$max-1200} {
       min-height: auto;
       background-size: cover;

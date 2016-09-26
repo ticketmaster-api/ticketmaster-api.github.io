@@ -1,439 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
   <resources base="https://app.ticketmaster.com">
-
-    <!-- Discovery REST API Version 1 -->
-
-    <!-- Search Events -->
-    <!--
-    <resource path="discovery/v1/events.{format}">
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="keyword" required="false" style="query" type="xsd:string">
-        <doc>A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.
-                </doc>
-      </param>
-      <param name="attractionId" required="false" style="query" type="xsd:string" default="768011">
-        <doc>Attraction ID(s) separated by comma.
-                </doc>
-      </param>
-      <param name="venueId" required="false" style="query" type="xsd:string" default="115378">
-        <doc>Venue ID(s) separated by comma.
-                </doc>
-      </param>
-      <param name="promoterId" required="false" style="query" type="xsd:string" default="494">
-        <doc>Promoter ID(s) separated by comma.
-                </doc>
-      </param>
-      <param name="postalCode" required="false" style="query" type="xsd:string" default="90069">
-        <doc>Zipcode or Postal Code of the venue in which the event is taking place.
-                </doc>
-      </param>
-      <param name="latlong" required="false" style="query" type="xsd:string" default="34.0928090,-118.3286610">
-        <doc>The longitude/Latitude coordinates for the venue in which this event is taking place.
-                </doc>
-      </param>
-      <param name="radius" required="false" style="query" type="xsd:integer" default="25">
-        <doc>The radius of the area in which we want to search for events.
-                </doc>
-      </param>
-      <param name="size" required="false" style="query" type="xsd:integer" default="10">
-        <doc>The number of events returned in the API response.</doc>
-      </param>
-      <param name="page" required="false" style="query" type="xsd:integer" default="1">
-        <doc>The page for paginating through the results.</doc>
-      </param>
-      <param name="sort" required="false" style="query" type="xsd:string">
-        <doc>The search sort criteria.
-                </doc>
-        <option value=""/>
-        <option value="eventDate,desc"/>
-        <option value="eventDate,asc"/>
-        <option value="name,desc"/>
-        <option value="name,asc"/>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The event locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <param name="marketId" required="false" style="query" type="xsd:integer" default="27">
-        <doc>The city/area in which this event takes place.
-                </doc>
-      </param>
-      <param name="deviceId" required="false" style="query" type="xsd:integer" default="1">
-        <doc>The device making the API call.
-                </doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:integer" default="ticketmaster.com">
-        <doc>The entity interested in this event (special use case).
-                </doc>
-      </param>
-      <method id="discovery.events.get" name="GET" apigee:displayName="Search Events">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Events</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/events.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#srch-events">Returns the 20
-                    most recent events for the authenticating user.
-                </doc>
-      </method>
-    </resource>
-     -->
-    <!-- Event Details -->
-    <!--
-    <resource path="discovery/v1/events/{id}.{format}">
-      <param name="id" required="true" type="xsd:string" style="template" default="29004F223C406ABF">
-        <doc>Event ID</doc>
-      </param>
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:string" default="ticketmaster.com">
-        <doc>The entity interested in this event (special use case).
-                </doc>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The event locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <method id="discovery.events.id.get" name="GET" apigee:displayName="Get Event Details">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Events</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/events/29004F223C406ABF.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#event-details">Returns the event detail by event ID.
-                </doc>
-      </method>
-    </resource>
-    -->
-    <!-- Event Images -->
-    <!--
-    <resource path="discovery/v1/events/{id}/images.{format}">
-      <param name="id" required="true" type="xsd:string" style="template" default="0B004F0401BD55E5">
-        <doc>Event ID</doc>
-      </param>
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <method id="discovery.events.id.images.get" name="GET" apigee:displayName="Search Event Images">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Events</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/events/29004F223C406ABF/images.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#event-img">Returns all the images for an event by ID. If an event does not have an image for a supported resolution, the event's major category image will be returned instead.
-                </doc>
-      </method>
-    </resource>
-     -->
-    <!-- Search Attractions -->
-    <!--
-    <resource path="discovery/v1/attractions.{format}">
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="keyword" required="false" style="query" type="xsd:string">
-        <doc>A string to search against attractions. The keyword will be checked against titles, descriptions, names and other logical fields.
-                </doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:string" default="ticketmaster.com">
-        <doc>The entity interested in this event (special use case).
-                </doc>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The attraction locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <param name="size" required="false" style="query" type="xsd:integer" default="10">
-        <doc>The number of attractions returned in the API response.
-                </doc>
-      </param>
-      <param name="page" required="false" style="query" type="xsd:integer" default="1">
-        <doc>The page for paginating through the results.
-                </doc>
-      </param>
-      <param name="sort" required="false" style="query" type="xsd:string">
-        <doc>The search sort criteria.
-                </doc>
-        <option value=""/>
-        <option value="name,desc"/>
-        <option value="name,asc"/>
-      </param>
-      <method id="discovery.attractions.get" name="GET" apigee:displayName="Search Attractions">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Attractions</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/attractions.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#search-attractions">Search Attractions!
-                </doc>
-      </method>
-    </resource>
-    -->
-    <!-- Attraction Details -->
-    <!--
-    <resource path="discovery/v1/attractions/{id}.{format}">
-      <param name="id" required="true" type="xsd:string" style="template" default="768011">
-        <doc>Attraction ID</doc>
-      </param>
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:string" default="ticketmaster.com">
-        <doc>The entity interested in this attraction (special use case).
-                </doc>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The attraction locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <method id="discovery.attractions.id.get" name="GET" apigee:displayName="Get Attraction Details">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Events</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/attractions/768011.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#attraction-details">Returns the attraction detail by ID.
-                </doc>
-      </method>
-    </resource>
-    -->
-    <!-- Search Categories -->
-    <!--
-    <resource path="discovery/v1/categories.{format}">
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="keyword" required="false" style="query" type="xsd:string">
-        <doc>A string to search against categories. The keyword will be checked against titles, descriptions, names and other logical fields.
-                </doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:string" default="ticketmaster.com">
-        <doc>The entity interested in this event (special use case).
-                </doc>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The category locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <param name="size" required="false" style="query" type="xsd:integer" default="10">
-        <doc>The number of categories returned in the API response.
-                </doc>
-      </param>
-      <param name="page" required="false" style="query" type="xsd:integer" default="1">
-        <doc>The page for paginating through the results.
-                </doc>
-      </param>
-      <param name="sort" required="false" style="query" type="xsd:string">
-        <doc>The search sort criteria.
-                </doc>
-        <option value=""/>
-        <option value="name,desc"/>
-        <option value="name,asc"/>
-      </param>
-      <method id="discovery.categories.get" name="GET" apigee:displayName="Search Categories">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Attractions</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/categories.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#search-categories">Search Categories!
-                </doc>
-      </method>
-    </resource>
-    -->
-    <!-- Category Details -->
-    <!--
-    <resource path="discovery/v1/categories/{id}.{format}">
-      <param name="id" required="true" type="xsd:string" style="template" default="203">
-        <doc>Category ID</doc>
-      </param>
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:string" default="ticketmaster.com">
-        <doc>The entity interested in this attraction (special use case).</doc>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The attraction locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <method id="discovery.categories.id.get" name="GET" apigee:displayName="Get Category Details">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Events</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/categories/203.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#category-details">Returns the category detail by ID.
-                </doc>
-      </method>
-    </resource>
-    -->
-    <!-- Search Venues -->
-    <!--
-    <resource path="discovery/v1/venues.{format}">
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="keyword" required="false" style="query" type="xsd:string">
-        <doc>A string to search against venues. The keyword will be checked against titles, descriptions, names and other logical fields.
-                </doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:string" default="ticketmaster.com">
-        <doc>The entity interested in this event (special use case).
-                </doc>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The category locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <param name="size" required="false" style="query" type="xsd:integer" default="10">
-        <doc>The number of categories returned in the API response.
-                </doc>
-      </param>
-      <param name="page" required="false" style="query" type="xsd:integer" default="1">
-        <doc>The page for paginating through the results.
-                </doc>
-      </param>
-      <param name="sort" required="false" style="query" type="xsd:string">
-        <doc>The search sort criteria.
-                </doc>
-        <option value=""/>
-        <option value="name,desc"/>
-        <option value="name,asc"/>
-      </param>
-      <method id="discovery.venues.get" name="GET" apigee:displayName="Search Venues">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Attractions</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/venues.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#search-venues">Search Venues!
-                </doc>
-      </method>
-    </resource>
-    -->
-    <!-- Venue Details -->
-    <!--
-    <resource path="discovery/v1/venues/{id}.{format}">
-      <param name="id" required="true" type="xsd:string" style="template" default="90150">
-        <doc>Venue ID</doc>
-      </param>
-      <param name="format" required="true" type="xsd:string" style="template" default="json">
-        <doc>API Response Format</doc>
-      </param>
-      <param name="domain" required="false" style="query" type="xsd:string" default="ticketmaster.com">
-        <doc>The entity interested in this attraction (special use case).
-                </doc>
-      </param>
-      <param name="locale" required="false" type="xsd:string" style="query">
-        <doc>The attraction locale, including country and localization.</doc>
-        <option value=""/>
-        <option value="en-us"/>
-        <option value="en-gb"/>
-        <option value="en-ca"/>
-        <option value="es-us"/>
-        <option value="en-mx"/>
-        <option value="es-mx"/>
-        <option value="en-au"/>
-        <option value="en-nz"/>
-        <option value="fr-fr"/>
-        <option value="fr-ca"/>
-      </param>
-      <method id="discovery.venues.id.get" name="GET" apigee:displayName="Get Venue Details">
-        <apigee:tags>
-          <apigee:tag primary="true">Discovery API v1</apigee:tag>
-          <apigee:tag>Events</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-        <apigee:example url="discovery/v1/venues/90150.json"/>
-        <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/#venue-details">Returns the venue detail by ID.
-                </doc>
-      </method>
-    </resource>
-    -->
-
     <!-- Discovery REST API Version 2 -->
 
     <!-- Search Events -->
@@ -444,22 +11,22 @@
       <param name="keyword" required="false" style="query" type="xsd:string">
         <doc>A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.</doc>
       </param>
-      <param name="attractionId" required="false" style="query" type="xsd:string" default="“K8vZ91713eV”">
+      <param name="attractionId" required="false" style="query" type="xsd:string" default="">
         <doc>Attraction ID(s) separated by comma.</doc>
       </param>
-      <param name="venueId" required="false" style="query" type="xsd:string" default="“KovZpZAEdFtJ”">
+      <param name="venueId" required="false" style="query" type="xsd:string" default="">
         <doc>Venue ID(s) separated by comma.</doc>
       </param>
-      <param name="postalCode" required="false" style="query" type="xsd:string" default="90069">
+      <param name="postalCode" required="false" style="query" type="xsd:string" default="">
         <doc>Zipcode or Postal Code of the venue in which the event is taking place.</doc>
       </param>
-      <param name="latlong" required="false" style="query" type="xsd:string" default="34.0928090,-118.3286610">
+      <param name="latlong" required="false" style="query" type="xsd:string" default="">
         <doc>The Latitude,Longitude coordinates for the venue in which this event is taking place.</doc>
       </param>
-      <param name="radius" required="false" style="query" type="xsd:integer" default="25">
+      <param name="radius" required="false" style="query" type="xsd:integer" default="">
         <doc>The radius of the area in which we want to search for events.</doc>
       </param>
-      <param name="unit" required="false" style="query" type="xsd:string" default="miles">
+      <param name="unit" required="false" style="query" type="xsd:string" default="">
         <doc>The radius distance unit. Possible values: miles, km.</doc>
       </param>
       <param name="source" required="false" style="query" type="xsd:string" default="">
@@ -479,7 +46,7 @@
         <option value="fr-fr"/>
         <option value="fr-ca"/>
       </param>
-      <param name="marketId" required="false" style="query" type="xsd:integer" default="27">
+      <param name="marketId" required="false" style="query" type="xsd:integer" default="">
         <doc>The city/area in which this event takes place.</doc>
       </param>
       <param name="startDateTime" required="false" style="query" type="xsd:string">
@@ -743,6 +310,7 @@
         <doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/v2/#search-classifications-v2">Search Classifications!</doc>
       </method>
     </resource>
+
     <!-- Classifications Details -->
     <resource path="discovery/v2/classifications/{id}.{format}">
       <param name="id" required="true" type="xsd:string" style="template" default="203">
@@ -836,6 +404,7 @@
         </doc>
       </method>
     </resource>
+
     <!-- Venue Details -->
     <resource path="discovery/v2/venues/{id}.{format}">
       <param name="id" required="true" type="xsd:string" style="template" default="KovZpZAFnIEA">
@@ -875,7 +444,7 @@
       <param name="version" required="true" type="xsd:string" style="template" default="v2">
         <doc>The API Version</doc>
       </param>
-      <param name="id" required="true" type="xsd:string" style="template" default="05004F24E0B864B3">
+      <param name="id" required="true" type="xsd:string" style="template" default="LvZ184-QEP3xtOkePZvJR">
         <doc>Event ID</doc>
       </param>
       <param name="format" required="true" type="xsd:string" style="template" default="json">
@@ -899,6 +468,7 @@
       </request>
       </method>
     </resource>
+
     <!-- Get Cart -->
     <resource path="commerce/{version}/shopping/carts/{cartId}.{format}">
       <param name="version" required="true" type="xsd:string" style="template" default="v2">
@@ -928,6 +498,7 @@
       </request>
       </method>
     </resource>
+
     <!-- Empty Cart -->
     <resource path="commerce/{version}/shopping/carts/{cartId}.{format}">
       <param name="version" required="true" type="xsd:string" style="template" default="v2">
@@ -957,6 +528,7 @@
       </request>
       </method>
     </resource>
+
     <!-- Create Cart -->
     <resource path="commerce/{version}/shopping/carts.{format}">
       <param name="version" required="true" type="xsd:string" style="template" default="v2">
@@ -1008,6 +580,7 @@
         </request>
       </method>
     </resource>
+
     <!-- Update Cart Products -->
     <resource path="commerce/{version}/shopping/carts/{cartId}/products.{format}">
       <param name="version" required="true" type="xsd:string" style="template" default="v2">
@@ -1068,6 +641,7 @@
         </request>
       </method>
     </resource>
+
     <!-- Select Payments -->
     <resource path="commerce/{version}/shopping/carts/{cartId}/payments.{format}">
       <param name="version" required="true" type="xsd:string" style="template" default="v2">
@@ -1189,7 +763,6 @@
       </method>
     </resource>
 
-
     <!-- Publish API -->
     <resource path="publish/{version}/events.{format}">
       <param name="version" required="true" type="xsd:string" style="template" default="v2">
@@ -1264,21 +837,4 @@
       </method>
     </resource>
   </resources>
-  <!-- UWD API -->
-  <!--
-  <resources base="https://uapi.ticketmaster.com/">-->
-    <!-- Get info about access token -->
-    <!--
-    <resource path="tap/endpoint/restv1/events">
-      <method id="tap.events" name="GET" apigee:displayName="Get Events">
-        <apigee:tags>
-          <apigee:tag primary="true">TAP</apigee:tag>
-          <apigee:tag>Events</apigee:tag>
-        </apigee:tags>
-        <apigee:authentication required="true"/>
-      </method>
-    </resource>
-     --><!--
-  </resources>
-        -->
 </application>

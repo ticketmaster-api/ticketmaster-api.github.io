@@ -43,13 +43,6 @@ CustomSelect.prototype.slideToggle = function(viewModel, event) {
     el.layer.toggleClass('hidden');
 };
 
-CustomSelect.prototype.slideUp = function(viewModel, event) {
-  if (viewModel.isOneOption()) {return false;}
-  var el = findElement(event);
-  el.wrapper.slideUp(viewModel.animationSpeed);
-  el.layer.removeClass('hidden').addClass('hidden');
-};
-
 /**
  * Custom Select View-Model method
  * @param item
@@ -61,7 +54,7 @@ CustomSelect.prototype.selectItem = function (item, event) {
   // run handler
   this.onselect(item);
   // slide up
-  this.slideUp(self, event);
+  this.slideToggle(self, event);
 };
 
 module.exports = ko.components.register('custom-select', {
@@ -81,7 +74,7 @@ module.exports = ko.components.register('custom-select', {
           '</li>',
         '</ul>',
       '</div>',
-      '<div data-bind="click: slideUp, css: {}" class="api-exp-custom-select-layer js-custom-select-layer hidden"></div>',
+      '<div data-bind="click: slideToggle" class="api-exp-custom-select-layer js-custom-select-layer hidden"></div>',
     '</div>'
   ]).join('')
 });

@@ -26,7 +26,14 @@
             ga('create', 'UA-72344127-1', 'auto');
             ga('send', 'pageview');
             (function () {
-                var item = sessionStorage.getItem('tk-api-email');
+                // var item = sessionStorage.getItem('tk-api-email');
+                function getCookie(name) {
+                    var matches = document.cookie.match(new RegExp(
+                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                    ));
+                    return matches ? decodeURIComponent(matches[1]) : undefined;
+                }
+                var item = getCookie('tmemail');
                 document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
             })();
         </script>
