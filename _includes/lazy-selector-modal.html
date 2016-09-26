@@ -20,17 +20,21 @@
         </form>
 
         <div id="spinner-ls" style="display: none;"></div>
-        <ul id="js_lazy-sel_list" class="list-group"></ul>
+        <hr id="js_ls-top-hr" style="display: none;">
+        <ul id="js_lazy-sel_list" class="list-group">
+          <div class="list-footer text-center" style="display: none;">
+            <button id="js_ls-more_btn" type="button" class="btn btn-submit">SHOW MORE EVENTS</button>
+          </div>
+        </ul>
       </div>
-      <!--<div class="modal-footer"></div>-->
+      <!--<div class="modal-footer" >-->
+      <!--</div>-->
     </div><!-- /.modal-content -->
 
     <div id="map-canvas" style="
-        width: 40%;
-        height: 779px;">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-        <button id="close1" class="buttonControl" aria-controls="m1">Close</button>
+        width: 40%;">
     </div><!--map-->
+    <!--<button id="close1" class="buttonControl" aria-controls="m1"></button>-->
 
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
