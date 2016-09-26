@@ -11,27 +11,32 @@ var base;
 function ParamsViewModel(raw, method, params) {
   base = raw;
   self = this;
+  this.animationSpeed = 200;
+
+  // observables
   this.method = method;
   this.params = params;
-  
-  this.animationSpeed = 200;
   this.isHidden = ko.observable(true);
   this.paramInFocus = ko.observable('');
-  this.paramsModel = ko.computed(self.updateParamsModel);
+
+  // computed
+  this.paramsModel = ko.computed(this.updateParamsModel, this);
   this.paramInFocus(this.paramsModel()[0]);
-  this.isDirty = ko.computed(function () {
-    var dirty = this.paramsModel().filter(function (item) {
-        return item.isDirty() === true;
-      });
-    return dirty.length > 0;
-  }, this);
+  this.isDirty = ko.computed(this.checkDirty, this);
 }
+
+ParamsViewModel.prototype.checkDirty = function () {
+  var dirty = this.paramsModel().filter(function (item) {
+    return item.isDirty() === true;
+  });
+  return dirty.length > 0;
+};
 
 /**
  * Initial build of Select Model
  */
-ParamsViewModel.prototype.updateParamsModel = function () {
-  var obj = self.method().parameters || {},
+ParamsViewModel.prototype.updateParamsModel = function (a,b) {
+  var obj = this.method().parameters || {},
     arr = [];
 
   for (var i in obj) {
@@ -58,12 +63,25 @@ ParamsViewModel.prototype.updateParamsModel = function () {
   }
 
   // prepare output for request
-  self.prepareUrlPairs(arr, self.params);
+  this.prepareUrlPairs(arr, this.params);
 
   // catch params focus for about section
-  self.paramInFocus(arr[0]);
-
+  this.paramInFocus(arr[0]);
+  // this.onEnterKeyDown()
   return arr;
+};
+
+/**
+ * Enter key handler
+ * @param model
+ * @param event
+ */
+ParamsViewModel.prototype.onEnterKeyDown = function (model, event) {
+  if (event.keyCode === 13) {
+    $('#api-exp-get-btn').trigger('click');
+  } else {
+    return true;
+  }
 };
 
 /**
