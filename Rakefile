@@ -18,6 +18,7 @@ namespace 'travis' do
     if ENV['TRAVIS_BRANCH'] == 'master'
       puts "Test all"
       result = system("mvn verify -f ./tests/serenity/pom.xml")
+      result = result and system("rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true")
       puts 'test mvn result'
       puts result
       if result == false
