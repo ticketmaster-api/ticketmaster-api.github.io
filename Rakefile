@@ -16,12 +16,15 @@ namespace 'travis' do
   task :test do
     result = 0
     if ENV['TRAVIS_BRANCH'] == 'master'
-      puts "Test all"
-      result = system("mvn verify -f ./tests/serenity/pom.xml")
-      result = result and system("./tests/run-test-dispatch.sh")
-      puts 'test mvn result'
-      puts result
-      if result == false
+      puts "Test serenity"
+      resultS = system("mvn verify -f ./tests/serenity/pom.xml")
+      puts resultS
+      puts "Test galen"
+      resultG = system("./tests/run-test-dispatch.sh")
+      puts "Test serenity"
+      puts resultG
+      puts 'test result'
+      if (resultS and resultG) == false
         puts 'test failed'
         exit 1
       end
