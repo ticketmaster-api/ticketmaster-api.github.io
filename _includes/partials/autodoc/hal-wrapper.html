@@ -30,12 +30,25 @@
                         {%if _HAL.links.size > 0%}
                             {%assign isMultiLink = false %}
                             {%assign isSingleLink = true %}
-                                {%if _HAL.embed[0].link == true or _HAL.embed[1].link == true %}
+
+                                {%assign isLinkExist = false%}
+                                {% for embed in _HAL.embed %}
+                                    <!--<li>embed.link - {{embed.link}}</li>-->
+                                    {%if embed.link == true %}
+                                        {%assign isLinkExist = true%}
+                                    {% endif %}
+                                {% endfor %}
+                                {%if isLinkExist == true %}
                                     {%assign isMultiLink = true %}
                                     {%assign isSingleLink = false %}
-                                    <!--<li><code>_HAL.embed.link</code> 0 - {{_HAL.embed[0].link}} ; 1 - {{_HAL.embed[1].link}} </li>-->
+                                    <!--<li><code class="blue">_HAL.embed.link</code> 0 - {{_HAL.embed[0].link}} ; 1 - {{_HAL.embed[1].link}} </li>-->
+                                {% else %}
+                                    {%assign isMultiLink = false %}
+                                    {%assign isSingleLink = true %}
                                 {% endif %}
+                                {%assign isLinkExist = false%}
                                 {% include partials/autodoc/hal-wrapper-links.html %}
+
                             {%assign isMultiLink = false%}
                             {%assign isSingleLink = false %}
                         {% endif %}

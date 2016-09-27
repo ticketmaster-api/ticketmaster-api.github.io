@@ -47,6 +47,10 @@
         {% if propToEmbed[2] == innerRef[0] %}
             {% assign excludeThisField = true %}
         {%endif%}
+        {% if removeEmbeddedFields contains innerRef[0]%}
+            {% assign excludeThisField = true %}
+        {% endif %}
+        <!--<li><code>innerRef[0] - {{innerRef[0]}}</code></li>-->
         {% if excludeThisField == false %}
             <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){%else%}({{swagger.definitions.[schemaSplitInnerEnd].type}}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}{% if innerRef[1]['$ref'] %}{%assign outer = innerRef[1]['$ref']%}{%include partials/autodoc/inner-item.html%}{%endif%}
             <!--innerRef[1] - {{ innerRef[1]['$ref'] }}, schemaSplitInner - {{ schemaSplitInner | join: ' ' }} , innerRef[0] - {{ innerRef[0] }}{% comment %}{% endcomment %}-->
