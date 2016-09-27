@@ -14,7 +14,8 @@
         {% for _embed_HAL in _HAL.embed %}
             {% assign methodNameLink = _link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
             {% assign methodNameEmbed = _embed_HAL.embed | replace : "#/","" | replace : "/"," " | split: " " %}
-            {% if methodNameLink == methodNameEmbed %}
+            {% assign isAddLink = _embed_HAL.link %}
+            {% if methodNameLink == methodNameEmbed and isAddLink%}
 
             <li><code class="highlighter-rouge">{% if methodNameLink[1] != schemaSplit[1] %}{{_embed_HAL.as}}{%else%}self{%endif%}</code>{% if methodNameLink[1] != schemaSplit[1] %}(array){%else%}(object){%endif%} - link to this data set.
                 <ul>
