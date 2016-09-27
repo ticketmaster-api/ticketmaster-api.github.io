@@ -20,8 +20,7 @@ namespace 'travis' do
       resultS = system("mvn verify -f ./tests/serenity/pom.xml")
       puts resultS
       puts "Test galen"
-      resultG = system("./tests/run-test-dispatch.sh")
-      puts "Test serenity"
+      resultG = system("sh ./tests/run-test-dispatch.sh")
       puts resultG
       puts 'test result'
       if (resultS and resultG) == false
