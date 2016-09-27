@@ -112,7 +112,7 @@ Buyers see their order details
 [![Step3](/assets/img/products-and-docs/checkout-widget-step-3.png)](/assets/img/products-and-docs/checkout-widget-step-3.png)
 {% endcapture %}
 
-<div id="carousel" class="col-xs-12" markdown="1">
+<div id="carousel" class="col-xs-12" markdown="1" style="margin-top: 0px; margin-bottom: 0px;">
   <div class="carousel-controls">
     <div class="carousel-prev"></div>
     <div class="carousel-next"></div>
