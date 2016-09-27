@@ -55,9 +55,6 @@ Examples of apps and demos leveraging the Ticketmaster API, like Global Heatmap,
 [![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](/partners/distribution-partners/)
 
 {: .logo .logo-bottom}
-[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](/partners/distribution-partners/)
-
-{: .logo .logo-bottom}
 [![Bandsintown](/assets/img/partners/logos/bandsintown-logo-black-w-bounding-box@2x.png)](/partners/distribution-partners/)
 {% endcapture %}
 
