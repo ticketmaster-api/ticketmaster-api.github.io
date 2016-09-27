@@ -12,7 +12,7 @@ keywords: widget, sell tickets, direct payments
 # WIDGETS
 
 {% capture checkout-widget %}
-## Checkout Widget
+## Universal Checkout
 
 {: .button_set}
 [CONFIGURE NOW](/products-and-docs/widgets/checkout/){: .button.button-blue}
@@ -47,10 +47,10 @@ keywords: widget, sell tickets, direct payments
 ## Calendar Widget
 
 {: .button_set}
-[CONFIGURE NOW](/products-and-docs/widgets/calendar/){: .button.button-blue} 
-{% comment %} 
+[CONFIGURE NOW](/products-and-docs/widgets/calendar/){: .button.button-blue}
+{% comment %}
 [LEARN MORE](#){: .button .button-transparent}
-{% endcomment %} 
+{% endcomment %}
 {% endcapture %}
 
 {% capture wordpress-widget %}
@@ -58,7 +58,7 @@ keywords: widget, sell tickets, direct payments
 ## WordPress Widget
 
 {: .button_set}
-[DOWNLOAD NOW](/products-and-docs/widgets/wordpress/ticketmaster.zip){: .button.button-blue} 
+[DOWNLOAD NOW](/products-and-docs/widgets/wordpress/ticketmaster.zip){: .button.button-blue}
 [LEARN MORE](/products-and-docs/widgets/wordpress/){: .button .button-transparent}
 {% endcapture %}
 
