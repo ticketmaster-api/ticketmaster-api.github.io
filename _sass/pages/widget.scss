@@ -414,3 +414,26 @@
 .main-widget-config-form .country-select .custom_select__item {
   list-style: none;
 }
+
+.widget-wordpress-page {
+  h2 {
+    margin-top: $base-margin*2;
+  }
+  h6 {
+    width: 85%;
+  }
+  .margin-bottom {
+    margin-bottom: $base-margin;
+  }
+
+  .list-inset-bullet {
+    li{
+      &:before {
+        content: "\2022";
+        font-size: 11px;
+        line-height: 24px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

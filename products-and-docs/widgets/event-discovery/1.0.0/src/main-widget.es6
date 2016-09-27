@@ -1188,6 +1188,13 @@ class TicketmasterEventDiscoveryWidget {
           win.focus();
         }
       });
+      el.addEventListener('touchstart', function(){
+        let url = this.getAttribute('data-url');
+        if(url){
+          let win = window.open(url, (isBlank ? '_blank' : '_self'));
+          win.focus();
+        }
+      });
     }
     return el;
   }

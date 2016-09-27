@@ -112,6 +112,8 @@
                     <li><a href="#create-cart">Create Cart</a></li>
                     <li><a href="#empty-cart">Empty Cart</a></li>
                     <li><a href="#update-cart-products">Update Cart Products</a></li>
+                    <li><a href="#select-deliveries">Select Deliveries</a></li>
+                    <li><a href="#select-payments">Select Payments</a></li>
                     {% include partials/changelog-apis.html%}
                     <li><a href="#disqus_thread">Disqus</a></li>
                 </ul>
@@ -311,10 +313,12 @@
         <h4><a href="/products-and-docs/widgets/" {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %} class="active" {% endif %} >Widgets</a></h4>
         {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %}
             <ul class="categories menu-highlight">
-                <li><a href="https://www.universe.com/directpayments">Direct Payments</a></li>
+                <li><a href="/products-and-docs/widgets/checkout/">Checkout Widget</a></li>
                 <li><a href="/products-and-docs/widgets/event-discovery/">Event Discovery Widget</a></li>
                 <li><a href="/products-and-docs/widgets/countdown/">Countdown Widget</a></li>
                 <li><a href="/products-and-docs/widgets/calendar/">Calendar Widget</a></li>
+                <li><a href="/products-and-docs/widgets/wordpress/">WordPress Widget</a></li>
+                <li><a href="https://www.universe.com/directpayments">Direct Payments</a></li>
             </ul>
         {% endif %}
     </li>

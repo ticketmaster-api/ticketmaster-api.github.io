@@ -1,0 +1,60 @@
+
+<div class="modal modal-common fade" id="js_ls-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <div class="row">
+          <h3 class="modal-title col-lg-12">Find event by keyword</h3>
+        </div>
+      </div>
+      <div class="modal-body">
+
+        <form id="js_lazy-sel_form" accept-charset="UTF-8"  method="GET">
+          <div class="col-sm-8">
+            <input required type="text" placeholder="keyword" id="keyword" autofocus >
+          </div>
+          <div class="col-sm-4 text-right">
+            <button id="js_ls-modal_btn" type="button" class="btn btn-submit">GET</button>
+          </div>
+        </form>
+
+        <div id="spinner-ls" style="display: none;"></div>
+        <hr id="js_ls-top-hr" style="display: none;">
+        <ul id="js_lazy-sel_list" class="list-group">
+          <div class="list-footer text-center" style="display: none;">
+            <button id="js_ls-more_btn" type="button" class="btn btn-submit">SHOW MORE EVENTS</button>
+          </div>
+        </ul>
+      </div>
+      <!--<div class="modal-footer" >-->
+      <!--</div>-->
+    </div><!-- /.modal-content -->
+
+    <div id="map-canvas" style="
+        width: 40%;">
+    </div><!--map-->
+    <!--<button id="close1" class="buttonControl" aria-controls="m1"></button>-->
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal alert-->
+<!--<div id="get-eventId-alert-modal" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
+
+    &lt;!&ndash; Modal content&ndash;&gt;
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Thank you for contacting us!</h3>
+        <p class="text-center">We will review and respond promptly.</p>
+        <div class="modal-footer">
+          <button id="js_get-eventId_btn_alert_ok" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>-->
+<!-- Modal alert end-->
