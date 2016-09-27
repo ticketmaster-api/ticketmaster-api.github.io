@@ -8,7 +8,7 @@ jdk:
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
-  - TEST_SEVERITY=LOW # set: LOW , MEDIUM , HIGH , CRITICAL
+  - TEST_SEVERITY=CRITICAL # set: LOW , MEDIUM , HIGH , CRITICAL
   - secure: "S0LPAFWXDLDDDzBLh2ptfxUNUvE4q6gEWTuS2TCiq8ZAoeR9jwMKQuT5scAKqQeKSjEWfTXdNJRKuvwKsruWfYLtXz4yoMjPz7/WMmJLedRLp9nh7lIJP7/p/Fs3zJwMYE/twvOlnNUXCSQaL7FMefrvXf52Tn34i3edRTsx2x0ALGHEcj+nv7ISCN7+IAOC4C2Fyc0UXZ8KQECtHIJ94ZXrbMRWKR2tYeVsa9Z4QVIXBzQ+ku64t4ccQvw/mFAj/qqrys0+ayF1sWjvU3Nn8mfiuB1OZdrpJ5dwNE5LEm/CbJIl2hYbwhGXa23FtZr1mLQeNChzcKffk9TR+xYk6s2ndYkLdgeSX9GM71DPk0d3NEXWfugL2Hcf585W5gjdY2WIoJO6cHGrcsGmJ7dHAr2XwDD0wuO7Vqdkk6rCxLjFnJ3MJtGNwjDujxtrlXTuR/K4vI+sMB4fKCfIFZfDJHYCqh2bcQnOQJchlWR80AAkbJ1ApbE3uuFS7sgCHjyqJI49MyWAjCRTfyhtLvj37KaCEZTZht2Ye27sR/6P4qruPfHCU8DbH5bAYd4IZ5QPWzsSgO3Y9y6yUh5k21fcIjfQ+CR+Sjp1D5Ck8ycwNJcHiUVX0yjLjK4ZJT/zJ8A87hNACyjKJMtyer7DqW2d9cmACPBqHT4lMOdaTKEz/sU="
 
 # whitelist
@@ -57,7 +57,7 @@ notifications:
   #slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
 
 before_install:
-  - '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.2.4 && gem install html-proofer && gem install github-pages || true'
-  - '[ ${TEST_SEVERITY} = "MEDIUM" ] || [ ${TEST_SEVERITY} = "HIGH" ] || [ ${TEST_SEVERITY} = "CRITICAL" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
+  #- '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.2.4 && gem install html-proofer && gem install github-pages || true'
+  #- '[ ${TEST_SEVERITY} = "MEDIUM" ] || [ ${TEST_SEVERITY} = "HIGH" ] || [ ${TEST_SEVERITY} = "CRITICAL" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
   - /usr/bin/Xvfb :99 -ac -screen 0 1600x900x16 -extension RANDR &
 
