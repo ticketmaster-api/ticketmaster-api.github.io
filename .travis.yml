@@ -27,7 +27,6 @@ before_script:
 script:
   - jekyll serve &
   - sleep 15 # give jekyll some time to start
-  - sh ./tests/run-test-dispatch.sh
   - rake travis:test --trace --verbose
 
 after_success:
@@ -57,7 +56,9 @@ notifications:
   #slack: ticketmaster:iRbg43K4KnpMyku2u35IIMRg
 
 before_install:
-  #- '[ "${TEST_SEVERITY}" = "LOW" ] && rvm install 2.2.4 && gem install html-proofer && gem install github-pages || true'
-  #- '[ ${TEST_SEVERITY} = "MEDIUM" ] || [ ${TEST_SEVERITY} = "HIGH" ] || [ ${TEST_SEVERITY} = "CRITICAL" ] && rvm install 2.1.5 && gem install html-proofer && gem install github-pages && npm install -g galenframework-cli || true'
+  - rvm install 2.2.4
+  - gem install html-proofer
+  - gem install github-pages
+  - npm install -g galenframework-cli
   - /usr/bin/Xvfb :99 -ac -screen 0 1600x900x16 -extension RANDR &
 
