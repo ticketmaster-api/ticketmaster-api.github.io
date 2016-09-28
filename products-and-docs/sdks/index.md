@@ -138,7 +138,8 @@ season tickets all in one trusted place.
 <script>
     var disqus_config = function () {
         this.page.url = document.URL || "http://developer.ticketmaster.com/";
-        this.page.identifier = "{{page.title}}";
+        // this.page.identifier = "{{page.title}}";
+        this.page.identifier = "http://developer.ticketmaster.com/products-and-docs/sdks/";
     };
     (function() { // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
