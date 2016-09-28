@@ -1144,10 +1144,16 @@ Status 200
 ## Captcha [GET]
 {: #ticket-reservation}
 
-If your integration requires captcha, use this endpoint to retreive a basic Google NoCaptcha page to render to the user.  All ticketing operations require the client to first solve a captcha to establish a secure session. Upon posting the Captcha solution, a cart id will be returned and required for further cart operations.
+Request captcha status and details for a given event. If captcha is currently enabled for the event, the response will include the captcha type plus other details on rendering the captcha.  Currently only ["Google NoCaptcha"](https://www.google.com/recaptcha/intro/index.html) is supported.  If captcha_required=true, then a solution token must be added to the cart reserve request and can be obtained through the following steps:
+
+    1. Request captcha status and details via this endpoint
+    2. If captcha_required=true, render the captcha page in a browser window or app webview.
+    3. A callback to the location uri below will be made when the user solves the captcha. Capture the callback uri and parse out the solution token
+       Example: ticketmaster-g-recaptcha-response://03AHJ_VuvOEHl06BZOuNzaJCgSyVi3QfgwPQ8gJxSAa6IEJ3Fjn1D-5eSe2
+    4. Provide the solution token via the 'token' parameter in the reserve request
 
 
-/partners/v1/captcha?apikey={apikey}
+/partners/v1/captcha?apikey={apikey}&event_id={event_id}
 {: .code .red}
 
 *Polling: No*
@@ -1157,20 +1163,23 @@ If your integration requires captcha, use this endpoint to retreive a basic Goog
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `event_id`   | TM event id         | string            |     "3F004CBB88958BF9"          | Yes      |
 
 
->[Request](#req)
+>[Request (html)](#req)
 >[Response](#res)
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/captcha?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+GET /partners/v1/captcha?apikey={apikey}&event_id={event_id}
+Accept: text/html
 {% endhighlight %}
 
 {% highlight html %}
 Status 200
-Header: X-TM-CAPTCHA-V2-SITEKEY: <sitekey>
-Header: X-TM-CAPTCHA-V2-STOKEN: <secure token>
+Header: X-TM-CAPTCHA-V2-SITEKEY: <string>
+Header: X-TM-CAPTCHA-V2-STOKEN: <string>
+Header: X-TM-CAPTCHA-REQUIRED: <boolean true/false>
 
 <html>
     <head>
@@ -1186,8 +1195,34 @@ Header: X-TM-CAPTCHA-V2-STOKEN: <secure token>
 </body>
 </html>
 
-{ "token" : "<token received from captcha solution>" }
 {% endhighlight %}
+
+>[Request (json)](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+GET /partners/v1/captcha?apikey={apikey}&event_id={event_id}
+Accept: application/json
+{% endhighlight %}
+
+{% highlight html %}
+Status 200
+Header: X-TM-CAPTCHA-V2-SITEKEY: <string>
+Header: X-TM-CAPTCHA-V2-STOKEN: <string>
+Header: X-TM-CAPTCHA-REQUIRED: <boolean true/false>
+
+{
+  "captcha_required" : true,
+  "captcha_details" : {
+    "type" : 2,
+    "site_key" : "c0d60e1f4a711b710dc3dbe74fbd449c"
+  }
+}
+
+{% endhighlight %}
+
+
 
 
 {: .article}
@@ -1757,7 +1792,6 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 Status 200
 {
     "redemption_url" : "https://myorder.ticketmaster.com/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
-    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "grand_total" : 57.39,
     "order_token" : "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "order_number" : "35-46145/LA1"
@@ -2208,7 +2242,8 @@ Example:
 
 | message  | code  | http_code              | Note
 |:-----------|:---------------------|:----------------- |
-| Event is not API transactable | 90001 | 403 | |
+| Unauthorized access | 10004 | 401 | Captcha solution token required |
+| Event is not API transactable | 90001 | 403 | Event type is not supported through this API. Offer redirect to https://www.ticketmaster.com/event/{eventId} |
 | No inventory found to match request | 20052 | 400 | Example of sold-out tickets, per ticket id. Can also occur if the number of available continuous seats cannot be fulfilled |
 | Unauthorized Access | 10004 | 401 | Missing captcha token |
 | Invalid captcha solution | 10031 | 400 | Invalid captcha solution |
@@ -2324,7 +2359,6 @@ Response:
 {% highlight js %}
 {
     "redemption_url" : "http://myorder-qa.ticketmaster.net/redeem?event_id=3F004EC9D1EBBC76&token=d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
-    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "order_token" : "d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
     "order_number" : "35-46145/LA1",
     "grand_total":68.74

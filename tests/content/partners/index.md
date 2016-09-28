@@ -17,9 +17,6 @@ keywords: partners, certified partners, become an affilate
 {: .col-xs-4 .logo .logo-small}
 [![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](#)
 
-{: .col-xs-4 .logo .logo-small}
-[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](#)
-
 {: .col-xs-6 .logo .text-right .logo-small}
 [![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](#)
 
