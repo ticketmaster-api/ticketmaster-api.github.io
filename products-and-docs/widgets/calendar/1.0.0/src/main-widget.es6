@@ -768,7 +768,8 @@ class TicketmasterCalendarWidget {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day + ' ' + date.time).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
@@ -1654,7 +1655,8 @@ class WeekScheduler {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day + ' ' + date.time).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
@@ -2376,7 +2378,8 @@ class MonthScheduler {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day + ' ' + date.time).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
@@ -3251,7 +3254,8 @@ class YearScheduler {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day + ' ' + date.time).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
