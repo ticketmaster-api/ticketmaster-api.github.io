@@ -95,8 +95,13 @@
         //console.log('$input', $input);
 
         function init(input) {
-          console.log('lazySelector init');
-          console.log('selector', selector );
+          // console.log('lazySelector init');
+          // console.log('selector', selector );
+          if(selector === 'venues'){
+            $('.modal-title span', $modal).text(selector),
+            $('#js_ls-more_btn' , $ul).text('SHOW MORE ' + selector)
+
+          }
           input.wrap('<div class="lazy-selector-wrapper"></div>');
           input.after($iconButton);
         }
@@ -352,7 +357,7 @@
 
         var renderResults = function (data, ulElement) {
           var items = (selector === 'events') ? data._embedded.events : (data && data._embedded && data._embedded.venues) ? data._embedded.venues:[''] ;
-          console.log('selector * renderResults', selector , 'items' , items);
+          // console.log('selector * renderResults', selector , 'items' , items);
 
           function showMessage(element, message, /*optional*/clearList) {
             $btn.attr('disabled', false);
@@ -398,13 +403,13 @@
             $ul.css({overflowY: "hidden"});
           } else $ul.css({overflowY: "scroll"});
 
-          if ( (stateConf.pageIncrement + 1) === data.page.totalPages ) {
-            console.log( ' 0 pageIncrement' , stateConf.pageIncrement);
-          }
+          // if ( (stateConf.pageIncrement + 1) === data.page.totalPages ) {
+          //   console.log( ' 0 pageIncrement' , stateConf.pageIncrement);
+          // }
 
           if (data && data.page && data.page.totalElements > 20 ) {
             // console.log('$hr.show', '$liFooter.show', 'totalElements', data.page.totalElements, stateConf.loadingFlag, stateConf.pageIncrement);
-            console.log( 'pageIncrement' , stateConf.pageIncrement , stateConf.pageIncrement === data.page.totalPages , data.page.totalPages );
+            // console.log( 'pageIncrement' , stateConf.pageIncrement , stateConf.pageIncrement === data.page.totalPages , data.page.totalPages );
             $hr.show();
             $liFooter.show();
           } else {
@@ -532,7 +537,7 @@
          });*/
 
         $form.on("change", function () {
-          console.log('change start')
+          // console.log('change start')
           if ($form.get(0).checkValidity()) {
             stateConf.pageIncrement = 0;
             stateConf.loadingFlag = 'KEEP_LOAD';
@@ -540,7 +545,7 @@
             resetForm();
             submitForm(stateConf.pageIncrement);
           }
-          console.log('change end')
+          // console.log('change end')
         });
         // Mobile devices. Force 'change' by 'Go' press
 
