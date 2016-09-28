@@ -297,7 +297,7 @@
                 .appendTo($wrapCol);
 
             if(item.dates) {
-              console.log('item.dates' , item.dates);
+              // console.log('item.dates' , item.dates);
               /*add time*/
               var currentEvent = {};
               currentEvent.date = {
