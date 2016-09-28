@@ -291,7 +291,7 @@
 
             var $wrapCol = $('<div class="event-text-wrapper clear-margin-left"/>')
                 .appendTo(li);
-            var title = $('<h4/>')
+            var title = $('<h3/>')
                 .addClass('list-group-item-heading')
                 .text(item.name)
                 .appendTo($wrapCol);
@@ -306,25 +306,30 @@
                 dateTime: item.dates.start.dateTime
               };
 
-              //var time = widgetsCountdown[0].formatDate(currentEvent.date);
+              var time = formatDate(currentEvent.date);
               var eventTime = $('<h4 class="event-time gray"/>')
               //.addClass('event-time')
-                  .text('time go here ****')
+                  .text(time)
                   .appendTo($wrapCol);
               /*add time end*/
             }
 
             if (item) {
               var venue = item; // item._embedded.venues[0];
-              var addressName = $('<span/>')
+              var contryStateName = $('<h4/>')
+                  .addClass('country-name gray')
+                  .text((venue.country && venue.country.name) ? venue.country.name + '. ' : '')
+                  .append((venue.state && venue.state.name) ? venue.state.name + '. ' : '')
+                  .appendTo($wrapCol);
+              var cityName = $('<span/>')
                   .addClass('address-name')
-                  .text(venue.name + '. ')
+                  .text((venue.city && venue.city.name) ? venue.city.name + '. ' : '')
                   .appendTo($wrapCol);
 
               if ('address' in venue && 'line1' in venue.address) {
                 var addressline1 = $('<span/>')
                     .addClass('address-line1')
-                    .text(venue.address.line1)
+                    .text(venue.address.line1 + '.')
                     .appendTo($wrapCol);
                 if ('line2' in venue.address) {
                   var addressline1 = $('<span/>')
