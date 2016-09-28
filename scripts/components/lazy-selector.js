@@ -297,7 +297,7 @@
                 .appendTo($wrapCol);
 
             if(item.dates) {
-              console.log('item.dates' , item.dates);
+              // console.log('item.dates' , item.dates);
               /*add time*/
               var currentEvent = {};
               currentEvent.date = {
@@ -406,11 +406,7 @@
 
           if (data && data.page && data.page.totalElements <= 2) {
             $ul.css({overflowY: "hidden"});
-          } else $ul.css({overflowY: "scroll"});
-
-          // if ( (stateConf.pageIncrement + 1) === data.page.totalPages ) {
-          //   console.log( ' 0 pageIncrement' , stateConf.pageIncrement);
-          // }
+          } else $ul.css({overflowY: "scroll"});         
 
           if (data && data.page && data.page.totalElements > 20 ) {
             // console.log('$hr.show', '$liFooter.show', 'totalElements', data.page.totalElements, stateConf.loadingFlag, stateConf.pageIncrement);
