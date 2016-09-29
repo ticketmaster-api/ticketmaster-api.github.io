@@ -67,6 +67,10 @@
             M = parseInt(dayArray[1]);
 
         var E = new Date(date.day).getDay();
+
+        //var E1 = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
+        //if(E !== E1) console.log('\t alarm equal - ' , E === E1);
+
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
@@ -167,8 +171,7 @@
                 loading('off');
                 renderResults(result, $ul); //add message at bottom of list
                 return false;
-              }
-              ;
+              };
 
               renderResults(result, $ul);
               loading('off');
@@ -196,6 +199,7 @@
         }
 
         function renderListEvents (items) {
+          var src ;
           items.map(function (item) {
             var li = $('<li/>')
                 .addClass('list-group-item row')
@@ -204,16 +208,25 @@
             var leftCol = $('<div class="clear-padding" />').appendTo(li);
             var spanImg = $('<span class="thumbnail" />')
                 .appendTo(leftCol);
-            var img = $('<img src=' + getImageForEvent(item.images) + ' />')
+
+            if(item.images){
+              src = "src=" + getImageForEvent(item.images);
+            } else {
+              src = 'style="background-color: #f7f9fa;width: 120px; border: none;"' ;
+            }
+
+            var img = $('<img ' +src+ ' />')
                 .addClass('list-group-item-heading')
                 .appendTo(spanImg);
 
             var $wrapCol = $('<div class="event-text-wrapper"/>')
                 .appendTo(li);
-            var title = $('<h4/>')
-                .addClass('list-group-item-heading')
-                .text(item.name)
-                .appendTo($wrapCol);
+            if(item.name) {
+              var title = $('<h4/>')
+                  .addClass('list-group-item-heading')
+                  .text(item.name)
+                  .appendTo($wrapCol);
+            }
 
             /*add time*/
             var currentEvent = {};
@@ -265,11 +278,13 @@
               }
             }
 
+          if(item.id){
             var buttonSetId = $("<button data-event=" + item.id + "/>")
                 .addClass('js_lazy-sel_btn btn btn-submit')
                 .text('Set this ID')
                 .appendTo(li)
                 .wrap('<div class ="wrapper-btns text-right"/>');
+          }
 
           });
         }
@@ -361,7 +376,9 @@
         }
 
         var renderResults = function (data, ulElement) {
-          var items = (selector === 'events') ? data._embedded.events : (data && data._embedded && data._embedded.venues) ? data._embedded.venues:[''] ;
+          var items = (selector === 'events')
+              ? (data && data._embedded && data._embedded.events) ? data._embedded.events:['']
+              : (data && data._embedded && data._embedded.venues) ? data._embedded.venues:[''] ;
           // console.log('selector * renderResults', selector , 'items' , items);
 
           function showMessage(element, message, /*optional*/clearList) {
@@ -376,7 +393,6 @@
                 .text(message)
                 .appendTo(ulElement);
           }
-
 
 
           if (stateConf.loadingFlag === "FINAL_PAGE") return false;
@@ -397,7 +413,6 @@
             showMessage(ulElement, 'No results found.', true);
             return false;
           }
-          //var selector = options || 'events';
 
           //start render data
           if(selector === 'events') {
@@ -427,7 +442,6 @@
 
 
           //var hs1 = new hideShow('.js_lazy-sel_btn', 'close1');
-
 
           function initMap(ltd, lgt) {
             var mapCanvas = document.getElementById("map-canvas");
