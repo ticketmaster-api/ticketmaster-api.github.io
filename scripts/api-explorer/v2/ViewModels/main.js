@@ -4,7 +4,7 @@
  * It can be made using npm scripts cmd - 'webpack'
  */
 // Components
-var base = require('./../components/config');
+var base = require('./../components/base');
 var apiKey = require('./../components/apikey');
 var ajaxService = require('./../components/ajaxService');
 

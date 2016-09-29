@@ -20,8 +20,8 @@ gulp.task('watch', function () {
   ], ['js']);
 
   gulp.watch([
-    '_layouts/*.html',
-    'scripts/api-explorer/v2/*.js',
+    '/**/*.html',
+    'scripts/**/*.js',
     '_sass/**/*.scss'
   ], ['serve']);
 });
