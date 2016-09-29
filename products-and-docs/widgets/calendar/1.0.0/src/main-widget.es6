@@ -1325,20 +1325,23 @@ class TicketmasterCalendarWidget {
 
 class TabsControls {
 
-    removeActiveTab() {
-        let tabs = document.querySelectorAll('.tb');
+    removeActiveTab(this_) {
+        // let tabs = document.querySelectorAll('.tb');
+        let tabs = this_.querySelectorAll('.tb');
         Array.from(tabs).forEach(tab => {
             if (tab.classList.contains("active")) tab.classList.remove("active");
         });
-        let tab = document.querySelectorAll('.tab');
+        // let tab = document.querySelectorAll('.tab');
+        let tab = this_.nextSibling.querySelectorAll('.tab');
         Array.from(tab).forEach(tb => {
             if (tb.classList.contains("active")) tb.classList.remove("active");
         });
     }
 
-    selActiveTab(activeTab) {
-        let nodeList = document.getElementsByClassName('tabs-container');
-        nodeList[0].children[activeTab].classList.add('active');
+    selActiveTab(activeTab, this_) {
+        // let nodeList = document.getElementsByClassName('tabs-container');
+        let tabs = this_.nextSibling;
+        tabs.children[activeTab].classList.add('active');
     }
 
     constructor() {
@@ -1347,10 +1350,11 @@ class TabsControls {
         var tabsList = document.getElementsByClassName('tabs');
         Array.from(tabs).forEach(tab => {
             tab.addEventListener('click', function (e) {
-                self.removeActiveTab();
-                let index = Array.prototype.indexOf.call(tabsList[0].children, e.target);
+                let this_ = e.target.parentNode;
+                self.removeActiveTab(this_);
+                let index = Array.prototype.indexOf.call(this_.children, e.target);
                 this.classList.add("active");
-                self.selActiveTab(index);
+                self.selActiveTab(index, this_);
             });
         });
     }
