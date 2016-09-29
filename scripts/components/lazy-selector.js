@@ -93,6 +93,39 @@
         return (val < 0 || val > 9 ? "" : "0") + val
       }
 
+      function initMap(ltd, lgt) {
+        var mapCanvas = document.getElementById("map-canvas");
+        var myCenter = new google.maps.LatLng(ltd || 55, lgt || 43);
+        var mapOptions = {center: myCenter, zoom: 8};
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+        var marker = new google.maps.Marker({
+          position: myCenter
+          //icon: "/assets/controls/ic-id.svg"
+        });
+
+        marker.setMap(map);
+
+        // google.maps.event.addDomListener(mapCanvas, 'tilesloaded', initMap);
+
+        google.maps.event.addDomListener(mapCanvas, 'click', function() {
+          // google.maps.event.trigger(map, "idle");
+          // google.maps.event.trigger(map, "tilesloaded");
+          google.maps.event.trigger(map, "bounds_changed");
+        });
+
+
+        console.log('inside myMap', ltd, lgt);
+        // listen for the window resize event & trigger Google Maps to update too
+        $(window).resize(function () {
+          // (the 'map' here is the result of the created 'var map = ...' above)
+          google.maps.event.trigger(map, "resize");
+        });
+
+      }
+
+      initMap();
+
       return this.each(function () {
         var $input = $(this);
         init($input);
@@ -306,10 +339,13 @@
 
             var $wrapCol = $('<div class="event-text-wrapper clear-margin-left"/>')
                 .appendTo(li);
+
+            if(item.name){
             var title = $('<h3/>')
                 .addClass('list-group-item-heading')
                 .text(item.name)
                 .appendTo($wrapCol);
+            }
 
             if(item.dates) {
               // console.log('item.dates' , item.dates);
@@ -353,24 +389,27 @@
                       .appendTo(addressline1);
                 }
               }
-              if ('location' in venue) {
-                //console.log('venue - ' ,venue);
-                var buttonMap = $("<button style='display: none;' data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
-                    .addClass('js_open-map_btn btn btn-submit')
-                    .text('Show location')
-                    //.insertAfter($wrapCol)
-                    .appendTo(buttonSetId)
-                    .wrap('<div class ="wrapper-location_btn"/>');
-              }
+
             }else {
               console.log('no _embedded found');
             }
 
-            var buttonSetId = $("<button data-event=" + item.id + "/>")
+            if(item.id){
+              var buttonSetId = $("<button data-event=" + item.id + "/>")
                 .addClass('js_lazy-sel_btn btn btn-submit')
                 .text('Set this ID')
                 .appendTo(li)
                 .wrap('<div class ="wrapper-btns text-right"/>');
+              if ('location' in venue && venue.location.latitude && venue.location.longitude) {
+                //console.log('venue.location - ' , venue.location);
+                var buttonMap = $("<button style='float: right;' data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
+                    .addClass('js_open-map_btn btn btn-submit')
+                    .text('Show location')
+                    .insertAfter(buttonSetId)
+                    //.appendTo(buttonSetId)
+                    .wrap('<div class ="wrapper-location_btn"/>');
+              }
+            }
 
           });
         }
@@ -443,27 +482,6 @@
 
           //var hs1 = new hideShow('.js_lazy-sel_btn', 'close1');
 
-          function initMap(ltd, lgt) {
-            var mapCanvas = document.getElementById("map-canvas");
-            var myCenter = new google.maps.LatLng(ltd || 55, lgt || 43);
-            var mapOptions = {center: myCenter, zoom: 5};
-            var map = new google.maps.Map(mapCanvas, mapOptions);
-
-            var marker = new google.maps.Marker({
-              position: myCenter,
-              icon: "/assets/controls/ic-id.svg"
-            });
-            marker.setMap(map);
-            console.log('inside myMap', ltd, lgt);
-
-
-            // listen for the window resize event & trigger Google Maps to update too
-            $(window).resize(function () {
-              // (the 'map' here is the result of the created 'var map = ...' above)
-              //google.maps.event.trigger(map, "resize");
-            });
-
-          }
 
 
           $('.js_open-map_btn').on('click', function (e) {

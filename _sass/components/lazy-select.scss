@@ -39,11 +39,15 @@
 }
 
 #js_ls-modal {
+  img, embed, object, video {
+    max-width: none;
+  }
   .modal-content {
     display: table-cell;
     border: 0;
     width: 100%;
     transition-duration: 1s;
+    z-index: 1;
 
     &.narrow {
       width: 60%;
@@ -196,14 +200,13 @@
   #map-canvas {
     display: table-cell;
     width: 50%;
-    z-index: -1;
     min-height: 200px;
-    height: 80%;
-    /*tmp*/
+    height: 100%;
+
     border-left: 1px solid #fff;
     left: -1px;
     position: relative;
-    /*tmp end*/
+    /*tmp*//*tmp end*/
   }
 
   .buttonControl {
