@@ -46,8 +46,9 @@
           $liFooter = $('.list-footer'),
           $hr = $('#js_ls-top-hr'),
           $btn = $modal.find('#js_ls-modal_btn'),
-      //$resultsCount = $form.find('.get_eventId_results'),
+          btnCloseMap = $('.button-close-map',$modal),
           cssValidationClass = 'get-eventId_form-validation';
+      var modalContent = $('.modal-content' , $modal);
 
       var keyword = $form.find('#keyword'),
           apikey = $('#w-tm-api-key').val() || '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0',
@@ -93,38 +94,64 @@
         return (val < 0 || val > 9 ? "" : "0") + val
       }
 
-      function initMap(ltd, lgt) {
-        var mapCanvas = document.getElementById("map-canvas");
-        var myCenter = new google.maps.LatLng(ltd || 55, lgt || 43);
-        var mapOptions = {center: myCenter, zoom: 8};
-        var map = new google.maps.Map(mapCanvas, mapOptions);
+      // map or button click listener
+      var mapPopUpListener = function (e) {
+        e.preventDefault();
+        var lat = $(e.target).attr('data-latitude') != "undefined" ? parseFloat($(e.target).attr('data-latitude')) : null,
+            lng = $(e.target).attr('data-longitude') != "undefined" ? parseFloat($(e.target).attr('data-longitude')) : null,
+            address = lat && lng ? null : $(e.target).attr('data-address');
 
-        var marker = new google.maps.Marker({
-          position: myCenter
-          //icon: "/assets/controls/ic-id.svg"
+        // console.log("lat");
+        if(lat && lng || address) {
+          initMap(lat, lng, address);
+        }else{
+          initMap(0, 0, address);
+          console.log("Coordinates are not defined :(");
+        }
+      };
+
+      // shows google maps popup
+      var initMap = function(lat, lng, address){
+        var map,
+            marker,
+            mapEl = $('#js_ls-modal'),
+            geocoder = new google.maps.Geocoder(),
+            mapCenter = new google.maps.LatLng(lat || 55, lng || 43),
+            latLng = (lat && lng ? {lat: lat, lng: lng} : new google.maps.LatLng(0, 0));
+
+        // initialize map object
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: mapCenter,
+          zoom: 8
         });
+        /*if (address){ // if there was address provided
+          geocodeAddress(geocoder, map, address, function(result){ // geocode address and center the map
+            latLng = result;
+          });
+        } else { // if not (means lat and long were provided)*/
+        //}
 
-        marker.setMap(map);
+        marker = new google.maps.Marker({ //Create a marker and set its position.
+            map: map,
+            position: mapCenter
+          });
 
-        // google.maps.event.addDomListener(mapCanvas, 'tilesloaded', initMap);
-
-        google.maps.event.addDomListener(mapCanvas, 'click', function() {
-          // google.maps.event.trigger(map, "idle");
-          // google.maps.event.trigger(map, "tilesloaded");
-          google.maps.event.trigger(map, "bounds_changed");
-        });
-
-
-        console.log('inside myMap', ltd, lgt);
-        // listen for the window resize event & trigger Google Maps to update too
-        $(window).resize(function () {
-          // (the 'map' here is the result of the created 'var map = ...' above)
+        // when map popup is shown
+        mapEl.on("shown.bs.modal", function () {
           google.maps.event.trigger(map, "resize");
+          // Recenter the map now that it's been redrawn
+          map.setCenter(mapCenter);
         });
+        mapEl.modal(); // show map popup
+      };
 
+      function closeMapListener() {
+        modalContent.removeClass('narrow');
+        // $(this).hide();
+        btnCloseMap.hide();
       }
 
-      initMap();
+      btnCloseMap.on('click', closeMapListener)
 
       return this.each(function () {
         var $input = $(this);
@@ -297,21 +324,21 @@
                         .appendTo(addressline1);
                   }
                 }
-                if ('location' in venue) {
-                  //console.log('venue - ' ,venue);
+                /*if ('location' in venue) {
+                  //add button <Show on map> if 'location' exist
                   var buttonMap = $("<button style='display: none;' data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
                       .addClass('js_open-map_btn btn btn-submit')
                       .text('Show location')
-                      //.insertAfter($wrapCol)
                       .appendTo(buttonSetId)
                       .wrap('<div class ="wrapper-location_btn"/>');
-                }
+                }*/
               } else {
                 console.log('no _embedded found');
               }
             }
 
           if(item.id){
+            //add button <Set this ID> if 'location' exist
             var buttonSetId = $("<button data-event=" + item.id + "/>")
                 .addClass('js_lazy-sel_btn btn btn-submit')
                 .text('Set this ID')
@@ -403,8 +430,8 @@
               if ('location' in venue && venue.location.latitude && venue.location.longitude) {
                 //console.log('venue.location - ' , venue.location);
                 var buttonMap = $("<button style='float: right;' data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
-                    .addClass('js_open-map_btn btn btn-submit')
-                    .text('Show location')
+                    .addClass('js_open-map_btn btn btn-transparent')
+                    .text('Show on map')
                     .insertAfter(buttonSetId)
                     //.appendTo(buttonSetId)
                     .wrap('<div class ="wrapper-location_btn"/>');
@@ -434,8 +461,9 @@
           }
 
 
-          if (stateConf.loadingFlag === "FINAL_PAGE") return false;
+          if (stateConf.loadingFlag === "FINAL_PAGE") return false; //exit if has reached last page
 
+          //show fail msg
           if (data === 'FAIL') {
             showMessage($ul, 'Failure, possible key not correct.', true);
             return false;
@@ -456,15 +484,17 @@
           //start render data
           if(selector === 'events') {
             renderListEvents(items)
-          } else{ renderListVenues(items); }
+          } else{
+            renderListVenues(items);
+          }
 
+          //hide scroll if recive less then 2 items
           if (data && data.page && data.page.totalElements <= 2) {
             $ul.css({overflowY: "hidden"});
-          } else $ul.css({overflowY: "scroll"});         
+          } else $ul.css({overflowY: "scroll"});
 
+          // hide/show horisontal line and button <load more>
           if (data && data.page && data.page.totalElements > 20 ) {
-            // console.log('$hr.show', '$liFooter.show', 'totalElements', data.page.totalElements, stateConf.loadingFlag, stateConf.pageIncrement);
-            // console.log( 'pageIncrement' , stateConf.pageIncrement , stateConf.pageIncrement === data.page.totalPages , data.page.totalPages );
             $hr.show();
             $liFooter.show();
           } else {
@@ -473,26 +503,22 @@
             if (data.page.totalElements > 0 || items.length > 0) $hr.show();
           }
 
+          // hide button <load more> if nothing left to load
           if (stateConf.loadingFlag === 'STOP_LOAD' || (stateConf.pageIncrement + 1)  === data.page.totalPages ) {
             //console.log('.modal-footer  ---- hide', stateConf.loadingFlag);
             $hr.hide();
             $liFooter.hide();
           }
 
-
-          //var hs1 = new hideShow('.js_lazy-sel_btn', 'close1');
-
-
-
+          //<show map> button
           $('.js_open-map_btn').on('click', function (e) {
             var mapCanvas = $("#map-canvas");
             var ltd = e.target.getAttribute('data-latitude'),
                 lgt = e.target.getAttribute('data-longitude');
-            var modalContent = $('#js_ls-modal .modal-content');
-            console.log('myMap show ', ltd, lgt);
+            // console.log('myMap show ', ltd, lgt);
+            mapPopUpListener(e);
             modalContent.addClass('narrow');
-            mapCanvas.addClass('narrow');
-            initMap(ltd, lgt);
+            btnCloseMap.show();
           });
 
           $('.js_lazy-sel_btn').on('click', function (e) {
@@ -523,13 +549,15 @@
             $modal.modal('hide');
           });
 
+          //set availible <Get> button after load is finished
           $btn.attr('disabled', false);
 
         };
 
         // EVENTS
 
-        $btn.on('click', function () {
+        $btn.on('click', function (e) {
+          mapPopUpListener(e);
           var form = $form.get(0);
           //console.log('click $btn' ,$btn);
           if (!$btn.is(':disabled')) {
@@ -589,6 +617,7 @@
         $modal.on('hidden.bs.modal', function (e) {
           resetForm();
           keyword.val('');//clear search input
+          closeMapListener();
         });
       });
 
