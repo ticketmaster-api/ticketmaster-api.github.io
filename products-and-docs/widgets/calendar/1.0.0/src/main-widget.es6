@@ -1438,7 +1438,6 @@ class WeekScheduler {
 
     get eventReqAttrs(){
         let tmapikey = '',
-            latlong = '',
             keyword = '',
             radius;
 
@@ -1490,7 +1489,7 @@ class WeekScheduler {
         let classificationid = '';
         let startDateTime = '2016-06-27T00:00:00Z';
         let endDateTime = '2016-07-02T23:59:59Z';
-        latlong = '34.0390107,-118.2672801';
+        let latlong = '34.0390107,-118.2672801';
 
         let current = new Date();
         let start = new Date();
@@ -3119,7 +3118,6 @@ class YearScheduler {
 
     get eventReqAttrs(){
         let tmapikey = '',
-            latlong = '',
             keyword = '',
             radius;
         let attrs = {},
@@ -3167,6 +3165,7 @@ class YearScheduler {
         let classificationid = '';
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        let latlong = '34.0390107,-118.2672801';
 
         if (firstDay.getMonth()+1 <=9) startmonth = '0' + (firstDay.getMonth()+1); else startmonth = firstDay.getMonth()+1;
         startdate = '0' + firstDay.getDate();
@@ -3212,6 +3211,8 @@ class YearScheduler {
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
+
+        console.log(latlong);
 
 
         return {
