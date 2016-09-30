@@ -666,6 +666,14 @@ div[w-theme="calendar"] #weekSсheduler .days .tail-up {
     z-index: 10;
 }
 
+div[w-theme="calendar"] .tail.show, div[w-theme="calendar"] .tail-up.show {
+    display: block !important;
+}
+
+div[w-theme="calendar"] .popup, div[w-theme="calendar"] .popup-up {
+    box-sizing: border-box;
+}
+
 div[w-theme="calendar"] #weekSсheduler .days .tail:before {
     content: " ";
     display: block;
