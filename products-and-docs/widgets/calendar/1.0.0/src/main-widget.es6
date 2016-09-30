@@ -1449,6 +1449,10 @@ class WeekScheduler {
                     verboseName: 'apikey'
                 },
                 {
+                    attr: 'latlong',
+                    verboseName: 'latlong'
+                },
+                {
                     attr: 'keyword',
                     verboseName: 'keyword'
                 },
