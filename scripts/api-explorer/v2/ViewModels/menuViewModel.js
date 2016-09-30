@@ -15,7 +15,7 @@ function MenuViewModel(base, category) {
     return {
       checked: ko.observable(!index),
       name: item,
-      link: '#'
+      link: false
     }
   }));
 

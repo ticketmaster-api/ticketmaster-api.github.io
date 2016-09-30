@@ -11,33 +11,77 @@ var base;
 function ParamsViewModel(raw, method, params) {
   base = raw;
   self = this;
-  this.method = method;
   this.animationSpeed = 200;
-  this.aboutParam = ko.observable('');
+
+  // observables
+  this.method = method;
+  this.params = params;
+  this.isHidden = ko.observable(true);
   this.paramInFocus = ko.observable('');
-  this.paramsModel = ko.computed(self.updateParamsModel);
+
+  // computed
+  this.paramsModel = ko.computed(this.updateParamsModel, this);
   this.paramInFocus(this.paramsModel()[0]);
+  this.isDirty = ko.computed(this.checkDirty, this);
 }
+
+ParamsViewModel.prototype.checkDirty = function () {
+  var dirty = this.paramsModel().filter(function (item) {
+    return item.isDirty() === true;
+  });
+  return dirty.length > 0;
+};
 
 /**
  * Initial build of Select Model
- * @param item
  */
-ParamsViewModel.prototype.updateParamsModel = function () {
-  var obj = self.method().parameters || {},
+ParamsViewModel.prototype.updateParamsModel = function (a,b) {
+  var obj = this.method().parameters || {},
     arr = [];
 
   for (var i in obj) {
-    if (!obj.hasOwnProperty(i)) { continue; }
-    obj[i].value = ko.observable('');
-    // var val = obj[i].value;
-    obj[i].isDirty = ko.pureComputed(function () {
+    var value = obj[i];
+
+    if (!obj.hasOwnProperty(i)) {
+      continue;
+    }
+
+    value.value = value.value || ko.observable('');
+
+    // 'dirty' flag watcher for current field
+    value.isDirty = ko.pureComputed(function () {
       return !!this.value().trim().length;
-    }, obj[i]);
-    arr.push(obj[i]);
+    }, value);
+
+    // add calendar btn for current field
+    value.hasCalendar = i.search(/(date|time)/gmi) != -1;
+
+    // add pop-up btn for current field
+    value.hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
+
+    arr.push(value);
   }
-  self.paramInFocus(arr[0]);
+
+  // prepare output for request
+  this.prepareUrlPairs(arr, this.params);
+
+  // catch params focus for about section
+  this.paramInFocus(arr[0]);
+  // this.onEnterKeyDown()
   return arr;
+};
+
+/**
+ * Enter key handler
+ * @param model
+ * @param event
+ */
+ParamsViewModel.prototype.onEnterKeyDown = function (model, event) {
+  if (event.keyCode === 13) {
+    $('#api-exp-get-btn').trigger('click');
+  } else {
+    return true;
+  }
 };
 
 /**
@@ -49,11 +93,33 @@ ParamsViewModel.prototype.slideToggle = function (viewModel, event) {
   $(event.currentTarget)
     .parents('.js-slide-control')
     .find('.js-slide-wrapper')
-    .slideToggle(viewModel.animationSpeed);
+    .slideToggle(viewModel.animationSpeed, function () {
+      viewModel.isHidden(!viewModel.isHidden());
+    });
 };
 
+/**
+ * Maches focused param
+ * @param item
+ */
 ParamsViewModel.prototype.onFocus = function (item) {
   self.paramInFocus(item);
+};
+
+/**
+ * Filters params by defined value
+ * @param arr
+ * @param koObs
+ * @returns {boolean}
+ */
+ParamsViewModel.prototype.prepareUrlPairs = function (arr, koObs) {
+  if (!arr && !koObs) {
+    return false;
+  }
+
+  return koObs(arr.filter(function (item) {
+    return (item.value() || item.default);
+  }));
 };
 
 module.exports = ParamsViewModel;

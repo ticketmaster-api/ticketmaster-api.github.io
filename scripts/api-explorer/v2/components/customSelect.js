@@ -24,9 +24,11 @@ function CustomSelect(params) {
 }
 
 function findElement(event) {
-  return $(event.currentTarget)
-    .parents('.js-custom-select')
-    .find('.js-custom-select-wrapper')
+  var parent = $(event.currentTarget).parents('.js-custom-select');
+  return {
+    wrapper: parent.find('.js-custom-select-wrapper'),
+    layer: parent.find('.js-custom-select-layer')
+  }
 }
 
 /**
@@ -36,12 +38,9 @@ function findElement(event) {
  */
 CustomSelect.prototype.slideToggle = function(viewModel, event) {
   if (viewModel.isOneOption()) {return false;}
-  findElement(event).slideToggle(viewModel.animationSpeed);
-};
-
-CustomSelect.prototype.slideUp = function(viewModel, event) {
-  if (viewModel.isOneOption()) {return false;}
-  findElement(event).slideUp(viewModel.animationSpeed);
+  var el = findElement(event);
+    el.wrapper.slideToggle(viewModel.animationSpeed);
+    el.layer.toggleClass('hidden');
 };
 
 /**
@@ -55,24 +54,27 @@ CustomSelect.prototype.selectItem = function (item, event) {
   // run handler
   this.onselect(item);
   // slide up
-  this.slideUp(self, event);
+  this.slideToggle(self, event);
 };
 
 module.exports = ko.components.register('custom-select', {
   viewModel: CustomSelect,
   template: ([
-    '<div data-bind="event: {blur: slideUp}" class="api-exp-custom-select js-custom-select">',
-      '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
-      '<span class="api-exp-custom-select__placeholder">',
-        '<input data-bind="event: {click: slideToggle}, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
-        '<b data-bind="css: {hidden: isOneOption}" class="api-exp-custom-select__chevron">&nbsp;</b>',
-      '</span>',
-      '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
-        '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
-          '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
-          '<a data-bind="attr: {href: link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
-        '</li>',
-      '</ul>',
+    '<div class="api-exp-custom-select js-custom-select">',
+      '<div class="api-exp-custom-select-wrapper">',
+        '<select data-bind="options: selectModel, optionsText: \'name\', value: selected" class="api-exp-custom-select__field" name="api-exp-method"></select>',
+        '<span class="api-exp-custom-select__placeholder">',
+          '<input data-bind="event: {click: slideToggle}, attr: {value: selected().name, disabled: isOneOption}" type="text" value="" readonly="">',
+          '<b data-bind="css: {hidden: isOneOption}" class="api-exp-custom-select__chevron">&nbsp;</b>',
+        '</span>',
+        '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
+          '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
+            '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
+            '<a data-bind="attr: {href: link}, css: {\'hidden\': !link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
+          '</li>',
+        '</ul>',
+      '</div>',
+      '<div data-bind="click: slideToggle" class="api-exp-custom-select-layer js-custom-select-layer hidden"></div>',
     '</div>'
   ]).join('')
 });

@@ -873,7 +873,8 @@ var TicketmasterEventDiscoveryWidget = function () {
           d = parseInt(dayArray[2]),
           M = parseInt(dayArray[1]);
 
-      var E = new Date(date.day).getDay();
+      // var E = new Date(date.day).getDay();
+      var E = new Date(+date.day.split('-')[0], +date.day.split('-')[1] - 1, +date.day.split('-')[2]).getDay();
       result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
       if (!date.time) return result;
@@ -1269,6 +1270,13 @@ var TicketmasterEventDiscoveryWidget = function () {
         el.setAttribute('data-url', url);
         el.classList.add("event-pretended-link");
         el.addEventListener('click', function () {
+          var url = this.getAttribute('data-url');
+          if (url) {
+            var win = window.open(url, isBlank ? '_blank' : '_self');
+            win.focus();
+          }
+        });
+        el.addEventListener('touchstart', function () {
           var url = this.getAttribute('data-url');
           if (url) {
             var win = window.open(url, isBlank ? '_blank' : '_self');
