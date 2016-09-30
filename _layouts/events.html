@@ -72,7 +72,7 @@ layout: default
 
     // Get list of upcoming events
     var uniqueUpcoming = [].map.call($(".event").not(".past").find(".tag-btn"),function(item){
-        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
+        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';
     }).filter( function(value, index, self) {
         return self.indexOf(value) === index;
     }).join("");
@@ -83,7 +83,7 @@ layout: default
 
     // Get list of past events
     var uniquePast =[].map.call($(".event.past").find(".tag-btn"),function(item){
-        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
+        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';
     }).filter( function(value, index, self) {
         return self.indexOf(value) === index;
     }).join("");
@@ -94,14 +94,17 @@ layout: default
 
 
     var getActiveEvents = function(element) {
-      if( $(element).hasClass("tag-menu-btn") ){
-        return $(element).parents(".tag-group").data("type")
-      }
-      else if($(element).hasClass("tag-btn")){
-        return $(element).parents(".event").hasClass("past") ? "past" : "upcoming";
-      }else if($(element).hasClass("group-title")){
-        return $(element).parent().data("type");
-      }
+        var $element = $(element);
+        if( $element.hasClass("tag-menu-btn") ){
+          return $element.closest(".tag-group").data("type");
+        }
+        else if($element.hasClass("tag-btn")){
+          return $element.closest(".event").hasClass("past") ? "past" : "upcoming";
+        }else if($element.hasClass("group-title")){
+          return $element.parent().data("type");
+        }else if($element.hasClass("trans-btn")){
+          return 'upcoming';
+        }
     };
 
     var tagClickHandler = function(){
