@@ -586,7 +586,7 @@ div[w-theme="calendar"] #weekSсheduler .days {
 
 div[w-theme="calendar"] #weekSсheduler .days .d {
     display: inline-block;
-    width: 24px;
+    width: 25px;
     height: 28px;
     text-align: center;
     font-size: 12px;
@@ -631,7 +631,8 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up.single {
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .popup-up {
-    width: 265px;
+    /* width: 265px; */
+    width: 243px;
     height: 185px;
     overflow: hidden;
     padding: 13px 10px;
@@ -772,7 +773,7 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up.show {
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .d:first-child {
-    margin-left:13px;
+    margin-left: 24px;
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .d:nth-child(7) {
@@ -1111,6 +1112,7 @@ div[w-theme="calendar"] #calendar .round {
     font-weight: normal;
     top: -4px;
     padding-top: 3px;
+    box-sizing: border-box;
 }
 
 div[w-theme="calendar"] #calendar .round .count {
