@@ -3199,6 +3199,9 @@ class YearScheduler {
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
+        else {
+            latlong = '34.0390107,-118.2672801';
+        }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-keyword") != '') {
             keyword = document.querySelector('[w-type="calendar"]').getAttribute("w-keyword");
