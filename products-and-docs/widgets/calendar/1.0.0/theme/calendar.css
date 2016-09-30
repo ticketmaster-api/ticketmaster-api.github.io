@@ -1428,6 +1428,7 @@ div[w-theme="calendar"] #year .month .count {
     border-radius: 15px;
     min-width: 28px;
     min-height: 28px;
+    box-sizing: border-box;
 }
 
 /* Dark Theme */
