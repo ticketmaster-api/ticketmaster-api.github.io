@@ -863,7 +863,7 @@ div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder {
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .t {
-    width:263px;
+    width: 272px;
     border-top: 1px dashed rgba(183, 201, 211, 0.6);
     margin: 0;
     padding: 0;
