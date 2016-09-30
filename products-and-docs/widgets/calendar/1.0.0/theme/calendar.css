@@ -1086,6 +1086,7 @@ div[w-theme="calendar"] #calendar table tr {
 div[w-theme="calendar"] #calendar table td {
     position: static;
     vertical-align: middle;
+    box-sizing: border-box;
 }
 
 div[w-theme="calendar"] #calendar table tr:nth-child(even) {
