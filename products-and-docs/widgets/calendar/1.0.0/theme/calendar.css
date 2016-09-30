@@ -631,8 +631,7 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up.single {
 }
 
 div[w-theme="calendar"] #weekSсheduler .days .popup-up {
-    /* width: 265px; */
-    width: 243px;
+    width: 265px;
     height: 185px;
     overflow: hidden;
     padding: 13px 10px;
@@ -1078,6 +1077,7 @@ div[w-theme="calendar"] #calendar table tr {
 
 div[w-theme="calendar"] #calendar table td {
     position: static;
+    vertical-align: middle;
 }
 
 div[w-theme="calendar"] #calendar table tr:nth-child(even) {
