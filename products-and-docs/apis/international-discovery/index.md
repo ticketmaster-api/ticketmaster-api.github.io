@@ -160,7 +160,7 @@ location, venue, date, availability, attraction (artist, sport, package, play an
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -647,7 +647,7 @@ https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -1066,7 +1066,7 @@ https://app.ticketmaster.eu/mfxapi/v1/event/updated
 |`rows` | The number of rows to return in the response. Example: 100. | Integer | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -1601,7 +1601,7 @@ https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}/prices
 |`price_level_ids` | The unique identifier for the price level. If no price level ID is specified, all applicable price levels for the event are returned. Example: 1,2. | string | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -2001,7 +2001,7 @@ https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}/seatmap
 
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -2349,7 +2349,7 @@ https://app.ticketmaster.eu/mfxapi/v1/event/{event_id}/areas
 |`lang` | The language in ISO code format. Example: no-no. | string | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -2751,7 +2751,7 @@ There are additional parameters which allow you to filter the search by attracti
 |`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -3112,7 +3112,7 @@ https://app.ticketmaster.eu/mfxapi/v1/attraction/{attraction_ids}
 |`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | Yes |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -3467,7 +3467,7 @@ https://app.ticketmaster.eu/mfxapi/v1/attractions/suggestions
 |`has_events` | A flag which when set to 'true' gives only attractions with events on sale. | boolean | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -3835,7 +3835,7 @@ https://app.ticketmaster.eu/mfxapi/v1/attractions/similar
 |`rows` | The number of rows to return. The default is 10. | Integer | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -4269,7 +4269,7 @@ the lat and long) with ascending or descending order. The default is eventdate a
 There are additional parameters which allow you to filter the search by venue name, and location including proximity to a lat / long.
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -4626,7 +4626,7 @@ https://app.ticketmaster.eu/mfxapi/v1/venue/{venue_id}
 |`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | Yes |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -4982,7 +4982,7 @@ https://app.ticketmaster.eu/mfxapi/v1/countries
 |`lang` | The language in ISO code format. Example: en-us. | string | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -5437,7 +5437,7 @@ https://app.ticketmaster.eu/mfxapi/v1/domains
 |`country_id` | A unique identifier for the country. Example: 56. | string | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -6005,7 +6005,7 @@ https://app.ticketmaster.eu/mfxapi/v1/cities
 |`lang` | The language in ISO code format. Example: 56. | string | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
@@ -6488,7 +6488,7 @@ https://app.ticketmaster.eu/mfxapi/v1/categories
 |`subcategories` | A flag used in combination with category_id. Where set to 'true' a list of subcategories such as 'Festivals' will be returned for the specified major category. Example: en-us. | boolean | No |
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 >[Java](#java)
 >[Node.js](#node)
