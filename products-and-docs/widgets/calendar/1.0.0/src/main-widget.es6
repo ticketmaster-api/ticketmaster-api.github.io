@@ -1486,6 +1486,7 @@ class WeekScheduler {
         let classificationid = '';
         let startDateTime = '2016-06-27T00:00:00Z';
         let endDateTime = '2016-07-02T23:59:59Z';
+        latlong = '34.0390107,-118.2672801';
 
         let current = new Date();
         let start = new Date();
