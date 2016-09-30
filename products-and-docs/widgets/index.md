@@ -12,7 +12,7 @@ keywords: widget, sell tickets, direct payments
 # WIDGETS
 
 {% capture checkout-widget %}
-## Universal Checkout
+## Ticketmaster Universal Checkout
 
 {: .button_set}
 [CONFIGURE NOW](/products-and-docs/widgets/checkout/){: .button.button-blue}

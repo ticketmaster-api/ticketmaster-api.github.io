@@ -4,15 +4,15 @@ categories:
 - documentation
 - widgets
 - widget-checkout
-title: Universal Checkout
+title: Ticketmaster Universal Checkout
 excerpt: Everything you need to start selling tickets on your website
 keywords: ticketmaster, universal checkout, widget, sell tickets, javascript, developer
 ---
 
-# UNIVERSAL CHECKOUT
+# TICKETMASTER UNIVERSAL CHECKOUT
 
 {: .lead}
-Ticketmaster Universal Checkout allows clients, artists, and partners to setup and provide an enhanced experience for consumers within copy/paste distance.
+Ticketmaster Universal Checkout ("Universal Checkout") allows clients, artists, and partners to setup and provide an enhanced experience for consumers within copy/paste distance.
 
 ## Sell tickets directly on your website with no redirect
 
@@ -61,7 +61,7 @@ Grab a small code snippet to insert into your website
         <div class="tab-pane fade" id="widget-config-preview">
           <h3 id="google-chrome-extension">Google Chrome Extension</h3>
 
-          <p>Preview Ticketmaster Universal Checkout using our Widget Simulator extension for Google Chrome.  View the checkout experience on your browser only without making any code changes to your live website.</p>
+          <p>Preview Universal Checkout using our Widget Simulator extension for Google Chrome.  View the checkout experience on your browser only without making any code changes to your live website.</p>
 
           <ul>
             <li>
@@ -128,20 +128,20 @@ Any Impact Radius links on your site in the `ticketmaster.evyy.net` format will 
 
 ## Client Tracking / Came From Codes
 
-Ticketmaster Universal Checkout supports _Came From Codes (CFC)_, which are commonly used by Ticketmaster clients to tag and identify the order source (i.e. ad campaign, or A/B test).  Any link which includes a `?camefrom=YOURCODE` URL parameter will be attributed to the order.
+Universal Checkout supports _Came From Codes (CFC)_, which are commonly used by Ticketmaster clients to tag and identify the order source (i.e. ad campaign, or A/B test).  Any link which includes a `?camefrom=YOURCODE` URL parameter will be attributed to the order.
 
 ## Password-Protected Offers, Presales, and DID Codes
 
-Ticketmaster Universal Checkout supports password-protected offers and presales.  Events which support passwords will show a password entry field with event-specific messaging.
+Universal Checkout supports password-protected offers and presales.  Events which support passwords will show a password entry field with event-specific messaging.
 
 Ticketmaster _DID Codes_ are also supported.  Any link which includes a `?did=YOURCODE` URL parameter will be used to unlock any additional offers as well.
 
 ## Deep Linking: Ticket Types
 
-Ticketmaster Universal Checkout supports passing in a specific _Ticket Type ID_, ensuring it is the default Ticket Type when the widget opens.  This is specifically useful in combination with a _DID Code_, if you want to pre-select the newly-unlocked _Ticket Type ID_ on Step 1 of the checkout process.  To enable this behaviour, append the`?ticket=TICKET_TYPE_ID` URL parameter on the Ticketmaster event link.
+Universal Checkout supports passing in a specific _Ticket Type ID_, ensuring it is the default Ticket Type when the widget opens.  This is specifically useful in combination with a _DID Code_, if you want to pre-select the newly-unlocked _Ticket Type ID_ on Step 1 of the checkout process.  To enable this behaviour, append the`?ticket=TICKET_TYPE_ID` URL parameter on the Ticketmaster event link.
 
 ## Security Recommendations
 
-Ticketmaster Universal Checkout is secured by bank-grade 256-byte SSL encryption for all communications.  The architecture of Universal Checkout ensures the entire checkout flow happens securely via HTTPS, even when the 3rd party site (which is embedding the widget) only uses HTTP.
+Universal Checkout is secured by bank-grade 256-byte SSL encryption for all communications.  The architecture of Universal Checkout ensures the entire checkout flow happens securely via HTTPS, even when the 3rd party site (which is embedding the widget) only uses HTTP.
 
 As a security best practice, we strongly recommend that all pages which embed Universal Checkout __also__ implement SSL / HTTPS.  As of Fall 2016, browsers are beginning to encourage the use of SSL / HTTPS everywhere, and in 2017 will begin to show HTTP as "Insecure" in the browser's toolbar.  This is important for all websites to prevent "man in the middle" attacks, which are theoretically possible on all insecure webpages when on an untrusted Internet connection (public wifi, Internet cafe, etc).  Fortunately, [Let's Encrypt](https://letsencrypt.org/) is an open project sponsored by Google, Facebook, Mozilla, and others, which offers free SSL/TLS certificates to all.
