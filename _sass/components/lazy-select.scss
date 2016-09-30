@@ -65,7 +65,8 @@
       transition-duration: 1s;
       width: 100%;
       @media (min-width: 768px) {
-        width: 165px;
+        width: 110px;
+        margin-right: 16px;
       }
     }
   }
@@ -73,6 +74,9 @@
   .modal-body {
     .clear-padding {
       padding: 0;
+      &-right {
+        padding-right: 0;
+      }
     }
     hr {
       min-width: calc(100% + 30px);
@@ -99,10 +103,15 @@
       background-size: 100px 100px;
       z-index: 1000;
     }
-    .list-group {
-      overflow-y: scroll;
+    .wrapper-list-group {
+      overflow-y: auto;
+      overflow-x: hidden;
       max-height: 500px;
       width: 100%;
+      margin: 0;
+    }
+    .list-group {
+      overflow: hidden;
       padding: 0 15px;
       margin: 0;
     }
@@ -114,7 +123,7 @@
 
       &-heading {
       }
-      &:last-child,
+
       &:first-child{
         border-top: 0;
       }
@@ -147,7 +156,7 @@
         }
       }
       .event-text-wrapper {
-        margin-right: 103px;
+        margin-right: 110px;
         margin-left: 140px;
         left: 140px;
         right: 110px;

@@ -43,7 +43,7 @@
       var $modal = $('#js_ls-modal'),
           $form = $('#js_lazy-sel_form', $modal),
           $ul = $('#js_lazy-sel_list'),
-          $liFooter = $('.list-footer'),
+          $liFooter = $('#load-more-box'),
           $hr = $('#js_ls-top-hr'),
           $btn = $modal.find('#js_ls-modal_btn'),
           btnCloseMap = $('.button-close-map',$modal),
@@ -163,7 +163,7 @@
           // console.log('selector', selector );
           if(selector === 'venues'){
             $('.modal-title span', $modal).text(selector),
-            $('#js_ls-more_btn' , $ul).text('SHOW MORE ' + selector)
+            $('#js_ls-more_btn' , $modal).text('SHOW MORE ' + selector)
 
           }
           input.wrap('<div class="lazy-selector-wrapper"></div>');
@@ -263,8 +263,9 @@
           items.map(function (item) {
             var li = $('<li/>')
                 .addClass('list-group-item row')
-                .insertBefore($liFooter);
-            // .appendTo(ulElement);
+                //.insertBefore($liFooter);
+                .appendTo($ul);
+
             var leftCol = $('<div class="clear-padding" />').appendTo(li);
             var spanImg = $('<span class="thumbnail" />')
                 .appendTo(leftCol);
@@ -353,8 +354,9 @@
 
             var li = $('<li/>')
                 .addClass('list-group-item row')
-                .insertBefore($liFooter);
-            // .appendTo(ulElement);
+                //.insertBefore($liFooter)
+                .appendTo($ul);
+
             if(item.images){
               var leftCol = $('<div class="clear-padding" />').appendTo(li);
               var spanImg = $('<span class="thumbnail" />')
@@ -466,6 +468,7 @@
           //show fail msg
           if (data === 'FAIL') {
             showMessage($ul, 'Failure, possible key not correct.', true);
+            modalContent.removeClass('narrow');
             return false;
           }
 
@@ -478,6 +481,7 @@
 
           if (data === null || !data._embedded) {
             showMessage(ulElement, 'No results found.', true);
+            modalContent.removeClass('narrow');
             return false;
           }
 
@@ -489,9 +493,9 @@
           }
 
           //hide scroll if recive less then 2 items
-          if (data && data.page && data.page.totalElements <= 2) {
-            $ul.css({overflowY: "hidden"});
-          } else $ul.css({overflowY: "scroll"});
+          // if (data && data.page && data.page.totalElements <= 3) {
+          //   $ul.css({"overflowY": "hidden" , "width": "100%"});
+          // } else $ul.css({"overflowY": "scroll" , "width": "100%"});
 
           // hide/show horisontal line and button <load more>
           if (data && data.page && data.page.totalElements > 20 ) {
@@ -500,7 +504,6 @@
           } else {
             $hr.hide();
             $liFooter.hide();
-            if (data.page.totalElements > 0 || items.length > 0) $hr.show();
           }
 
           // hide button <load more> if nothing left to load
@@ -509,6 +512,7 @@
             $hr.hide();
             $liFooter.hide();
           }
+          if (data.page.totalElements > 0 || items.length > 0) { $hr.show(); }
 
           //<show map> button
           $('.js_open-map_btn').on('click', function (e) {
@@ -526,24 +530,6 @@
             $input.val(selectedID);
             $input.attr('value',selectedID);
             $input.trigger('change');  //update widget:
-            // console.log('$input ', $input);
-
-            /*
-             //update widget:
-
-             //find configurator and widget
-             var  widget = widgetsCountdown[0],
-             widgetNode = document.querySelector("div[w-tmapikey]");
-             var isFullWidthTheme = function (){ return widgetNode.getAttribute('w-theme') === "fullwidth" };
-
-             $('#w-id').val(selectedID);
-             widgetNode.setAttribute('w-id',selectedID);
-             if(isFullWidthTheme){
-             widgetNode.style.width = '100%';
-             }
-
-             widget.update(isFullWidthTheme);
-             */
 
             // Close dialog
             $modal.modal('hide');
@@ -557,7 +543,10 @@
         // EVENTS
 
         $btn.on('click', function (e) {
-          mapPopUpListener(e);
+          if(selector === 'venues') {
+            mapPopUpListener(e);
+          }
+          modalContent.removeClass('narrow');
           var form = $form.get(0);
           //console.log('click $btn' ,$btn);
           if (!$btn.is(':disabled')) {
@@ -576,7 +565,7 @@
           }
         });
 
-        $('#js_ls-more_btn').on('click', function (elm) {
+        $('#js_ls-more_btn',$liFooter).on('click', function (elm) {
           stateConf.pageIncrement++;
           $btn.attr('disabled', true);
           loading('on');
@@ -598,7 +587,7 @@
          });*/
 
         $form.on("change", function () {
-          // console.log('change start')
+          modalContent.removeClass('narrow');
           if ($form.get(0).checkValidity()) {
             stateConf.pageIncrement = 0;
             stateConf.loadingFlag = 'KEEP_LOAD';
