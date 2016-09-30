@@ -8,6 +8,7 @@ var category;
 /**
  * Methods View-Model
  * @param raw
+ * @param category
  * @param method
  * @constructor
  */
@@ -18,9 +19,9 @@ function MethodsViewModel(raw, category, method) {
   // observables
   this.category = category;
   this.method = method;
-  this.apikey = ko.observable('');
-  this.radiosModel = ko.observableArray([]); // {name: 'str', checked: false}
-  this.selectModel = ko.observableArray([]); // {id: 'str', name: 'str', checked: false, link: 'str', about: 'str'}
+  this.togglePopUp = ko.observable(false);
+  this.radiosModel = ko.observableArray([]);
+  this.selectModel = ko.observableArray([]);
   this.updateModel(this.category());
   this.category.subscribe(this.updateModel);
 }
@@ -28,7 +29,7 @@ function MethodsViewModel(raw, category, method) {
 /**
  * On category change handler
  * Methods View-Model method
- * @param name
+ * @param category
  */
 MethodsViewModel.prototype.updateModel = function (category) {
   // initial radios model
@@ -95,10 +96,10 @@ MethodsViewModel.prototype.updateSelect = function (item) {
       category: property.category,
       method: property.method
     });
-    
+
     // // set global observable
     !count && this.method(base[property.category][property.method][property.id]);
-    
+
     count++;
   }
   self.selectModel(arr);
@@ -107,6 +108,10 @@ MethodsViewModel.prototype.updateSelect = function (item) {
 MethodsViewModel.prototype.onSelectMethod = function (item) {
   hf.checkActive(self.selectModel, item.name);
   self.method(base[item.category][item.method][item.id]);
+};
+
+MethodsViewModel.prototype.onAboutClick = function (model, event) {
+  model.togglePopUp(!model.togglePopUp());
 };
 
 module.exports = MethodsViewModel;

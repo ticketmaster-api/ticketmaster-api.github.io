@@ -768,7 +768,8 @@ class TicketmasterCalendarWidget {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
@@ -1155,6 +1156,13 @@ class TicketmasterCalendarWidget {
                     win.focus();
                 }
             });
+            el.addEventListener('touchstart', function(){
+                let url = this.getAttribute('data-url');
+                if(url){
+                    let win = window.open(url, (isBlank ? '_blank' : '_self'));
+                    win.focus();
+                }
+            });
         }
         return el;
     }
@@ -1317,20 +1325,23 @@ class TicketmasterCalendarWidget {
 
 class TabsControls {
 
-    removeActiveTab() {
-        let tabs = document.querySelectorAll('.tb');
+    removeActiveTab(this_) {
+        // let tabs = document.querySelectorAll('.tb');
+        let tabs = this_.querySelectorAll('.tb');
         Array.from(tabs).forEach(tab => {
             if (tab.classList.contains("active")) tab.classList.remove("active");
         });
-        let tab = document.querySelectorAll('.tab');
+        // let tab = document.querySelectorAll('.tab');
+        let tab = this_.nextSibling.querySelectorAll('.tab');
         Array.from(tab).forEach(tb => {
             if (tb.classList.contains("active")) tb.classList.remove("active");
         });
     }
 
-    selActiveTab(activeTab) {
-        let nodeList = document.getElementsByClassName('tabs-container');
-        nodeList[0].children[activeTab].classList.add('active');
+    selActiveTab(activeTab, this_) {
+        // let nodeList = document.getElementsByClassName('tabs-container');
+        let tabs = this_.nextSibling;
+        tabs.children[activeTab].classList.add('active');
     }
 
     constructor() {
@@ -1339,10 +1350,11 @@ class TabsControls {
         var tabsList = document.getElementsByClassName('tabs');
         Array.from(tabs).forEach(tab => {
             tab.addEventListener('click', function (e) {
-                self.removeActiveTab();
-                let index = Array.prototype.indexOf.call(tabsList[0].children, e.target);
+                let this_ = e.target.parentNode;
+                self.removeActiveTab(this_);
+                let index = Array.prototype.indexOf.call(this_.children, e.target);
                 this.classList.add("active");
-                self.selActiveTab(index);
+                self.selActiveTab(index, this_);
             });
         });
     }
@@ -1647,7 +1659,8 @@ class WeekScheduler {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
@@ -2369,7 +2382,8 @@ class MonthScheduler {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;
@@ -3244,7 +3258,8 @@ class YearScheduler {
             d = parseInt(dayArray[2]),
             M = parseInt(dayArray[1]);
 
-        var E = new Date(date.day).getDay();
+        // var E = new Date(date.day).getDay();
+        var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
         result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
         if(!date.time) return result;

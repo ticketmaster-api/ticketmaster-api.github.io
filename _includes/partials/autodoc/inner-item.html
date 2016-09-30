@@ -1,6 +1,8 @@
 {% comment %}<!-- <p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p> -->{% endcomment %}
 <ul>
     {%if _HAL.links.size > 0 %}
+
+    {% comment %}
         {%assign isSingleLink = true %}
         <!--{ include partials/autodoc/hal-wrapper-links.html }-->
 
@@ -21,8 +23,18 @@
 
         {% assign isSingleLink = false %}
         {% assign isMultiLink = false %}
+    {% endcomment %}
 
+        {%assign isSingleLink = true %}
+        {% for add_links_HAL in _HAL.links %}
+            <!--<li>outer - {{outer}} , <h6>add_links_HAL - {{add_links_HAL}}</h6>_HAL.links - {{_HAL.links}}</li>-->
+            {%if add_links_HAL == outer %}
+                {% include partials/autodoc/hal-wrapper-links.html %}
+            {% endif %}
+        {% endfor %}
+        {%assign isSingleLink = false%}
     {% endif %}
+
 
 
 
@@ -35,6 +47,10 @@
         {% if propToEmbed[2] == innerRef[0] %}
             {% assign excludeThisField = true %}
         {%endif%}
+        {% if removeEmbeddedFields contains innerRef[0]%}
+            {% assign excludeThisField = true %}
+        {% endif %}
+        <!--<li><code>innerRef[0] - {{innerRef[0]}}</code></li>-->
         {% if excludeThisField == false %}
             <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){%else%}({{swagger.definitions.[schemaSplitInnerEnd].type}}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}{% if innerRef[1]['$ref'] %}{%assign outer = innerRef[1]['$ref']%}{%include partials/autodoc/inner-item.html%}{%endif%}
             <!--innerRef[1] - {{ innerRef[1]['$ref'] }}, schemaSplitInner - {{ schemaSplitInner | join: ' ' }} , innerRef[0] - {{ innerRef[0] }}{% comment %}{% endcomment %}-->

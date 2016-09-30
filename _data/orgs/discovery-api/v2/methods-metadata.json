@@ -27,8 +27,8 @@
                     "#/definitions/Attraction"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Venue", "as": "venues" },
-                    { "embed": "#/definitions/Attraction", "as": "attractions" }
+                    { "embed": "#/definitions/Venue", "as": "venues", "link":true },
+                    { "embed": "#/definitions/Attraction", "as": "attractions", "link":true }
                 ]
             }
         },
@@ -46,8 +46,8 @@
                     "#/definitions/Attraction"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Venue", "as": "venues" },
-                    { "embed": "#/definitions/Attraction", "as": "attractions" }
+                    { "embed": "#/definitions/Venue", "as": "venues", "link":true },
+                    { "embed": "#/definitions/Attraction", "as": "attractions", "link":true }
                 ]
             }
         },
@@ -100,8 +100,8 @@
                     "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Level", "as": "genre" , "in":"#/definitions/Classification/segment"},
-                    { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in": "#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Classification/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
                 ]
             }
         },
@@ -115,11 +115,12 @@
                 "links": [
                     "#/definitions/Classification",
                     "#/definitions/Segment",
+                    "#/definitions/Genre",
                     "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Genre", "as": "genre" , "in":"#/definitions/Classification/segment"},
-                    { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in": "segment"},
+                    { "embed": "#/definitions/Classification/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
                 ]
             }
         },
@@ -135,7 +136,7 @@
                     "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Level", "as": "subGenre"  }
+                    { "embed": "#/definitions/Level", "as": "subgenres" }
                 ]
             }
         },
@@ -147,11 +148,13 @@
             "HAL" : {
                 "wrappin": null,
                 "links": [
-                    "#/definitions/Segment"
+                    "#/definitions/Segment",
+                    "#/definitions/Genre",
+                    "#/definitions/Level"
                 ],
                 "embed": [
-                    { "embed": "#/definitions/Genre", "as": "genre" , "in": "root"},
-                    { "embed": "#/definitions/Level", "as": "subGenre" , "in":"#/definitions/Classification/genre"}
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in": "#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Classification/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
                 ]
             }
         },

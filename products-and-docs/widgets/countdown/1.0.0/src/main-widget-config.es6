@@ -496,6 +496,7 @@
 
 })(jQuery);
 
+/*
 ($ => {
   let $modal = $('#get-eventId-modal'),
     $form = $('#js_get_eventId_form', $modal),
@@ -526,19 +527,19 @@
     pageIncrement = 0;
     let listItems = $ul.find('li');
     listItems.remove();
-    /*$form.find('input').each(function(){
-      var $self = $(this);
-      if($self.attr('id','keyword')){
-        $self.val('');
-      }
-    });*/
+    // $form.find('input').each(function(){
+    //   var $self = $(this);
+    //   if($self.attr('id','keyword')){
+    //     $self.val('');
+    //   }
+    // });
 
     // Clear highlight
     $form.removeClass(cssValidationClass);
   }
 
   var renderResults = function(data, ulElement){
-    function showMessage(element,message, /*optional*/clearList) {
+    function showMessage(element,message, /*optional*//*clearList) {
       $btn.attr('disabled',false);
 
       if(clearList) $('li',element).remove();
@@ -596,7 +597,7 @@
         .text(` ${item.name}`)
         .appendTo($wrapCol);
 
-      /*add time*/
+      //add time
       let currentEvent = {};
       currentEvent.date = {
         day: item.dates.start.localDate,
@@ -609,7 +610,7 @@
         .addClass('event-time')
         .text(time)
         .appendTo($wrapCol);
-      /*add time end*/
+      //add time end
 
       if (item._embedded && item._embedded.venues) {
         let venue = item._embedded.venues[0];
@@ -656,14 +657,14 @@
         widgetNode.style.width = '100%';
       }
 
-      /*
+
       //toggle $getCodeButton
-      if ( widgetNode.getAttribute('w-id') === '') {
-        $getCodeButton.prop("disabled",true);
-      }else {
-        $getCodeButton.prop('disabled',false);
-      }
-      */
+      // if ( widgetNode.getAttribute('w-id') === '') {
+      //   $getCodeButton.prop("disabled",true);
+      // }else {
+      //   $getCodeButton.prop('disabled',false);
+      // }
+
 
       widget.update(isFullWidthTheme);
 
@@ -675,7 +676,7 @@
 
   };
 
-  function submitForm( /*optional*/pageNumero){
+  function submitForm( /*optional*//*pageNumero){
     pageNumero = parseInt(pageNumero);
 
     let url = ( Number.isNaN(pageNumero) )
@@ -775,3 +776,4 @@
   });
 
 })(jQuery);
+*/

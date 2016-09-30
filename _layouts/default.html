@@ -17,6 +17,7 @@
         <div id="back-top">
             <a href="javascript:void(0)"><span></span></a>
         </div>
+
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -33,7 +34,6 @@
                     return matches ? decodeURIComponent(matches[1]) : undefined;
                 }
                 var item = getCookie('tmemail');
-                console.log(item);
                 document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
             })();
         </script>
@@ -61,5 +61,12 @@
             });
         </script>
 {% endif %}
+
+        {% if page.categories[0] == "documentation" and page.categories[1] == "widgets"%}
+            {% include lazy-selector-modal.html %}
+            <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
+            <!--<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA&callback=initMap'></script>-->
+        {%endif%}
+
     </body>
 </html>

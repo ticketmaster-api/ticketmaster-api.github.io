@@ -1,0 +1,19 @@
+{% if swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath]['$ref']  %}
+    {%assign outer = swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath]['$ref']%}
+    {%include partials/autodoc/inner-item.html%}
+{%else%}
+
+    {% assign propEmbed = add_property_HAL.embed | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+    {% assign propEmbed_size = propEmbed.size | minus: 1 %}
+    {% assign propLastInPath = propEmbed[propEmbed_size] %}
+    {%if propEmbed_size == 2%}<!--3 level path like: #/definitions/Classification/genre -->
+        {% assign pathFirsLvl_wrap = propEmbed[0] %}
+        {% assign pathScdLvl_wrap = propEmbed[1] %}
+        {%assign outer = swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties[propLastInPath]['$ref']%}
+    {%endif%}
+    <!--<li>
+        <h5 class="blue"> propToEmbed - {{add_property_HAL.in}} , pathFirsLvl - {{_HAL.embed[forloop.index0].embed}} , pathScdLvl - {{pathScdLvl_wrap}},  propLastInPath - {{propLastInPath}}, {{propEmbed_size}} </h5>
+        <h4 class="red">outer - {{outer}} , swagger - {{ swagger.[pathFirsLvl_wrap][pathScdLvl_wrap].properties }}</h4>
+    </li>-->
+    {%include partials/autodoc/inner-item.html%}
+{%endif%}
