@@ -37,7 +37,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = ".//div[@class='tab-buttons']/label[@for='w-theme-fullwidth']")
     private WebElementFacade fullWidthTab;
 
-    @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x600']")
+        @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x600']")
     private WebElementFacade layout300x600Tab;
 
     @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x250']")
@@ -61,13 +61,13 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = "//span[contains(@class,'event-name')]")
     private WebElementFacade posterWindow;
 
-    @FindBy(xpath = "//a[text()='Get event ID']")
+    @FindBy(xpath = "//a[@id='get-event-by-Id']")
     private WebElementFacade getEventIdLink;
 
-    @FindBy(id= "keyword")
+    @FindBy(xpath = "//input[@id='keyword']")
     private WebElementFacade keywordField;
 
-    @FindBy(xpath = "//ul[@id='js_get_eventId_list']/li[1]//button")
+    @FindBy(xpath = "//ul[@id='js_lazy-sel_list']/li[1]//button")
     private WebElementFacade setThisIdBtn;
 
     @FindBy(xpath = "//a[text()='Get your own']")
@@ -220,8 +220,8 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
         } else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase("250") &&
                    getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase("300")){
             return "300x250";
-        } if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase("300") &&
-              getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase("600")){
+        } if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase("600") &&
+              getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase("300")){
             return "300x600";
         } else return null;
     }

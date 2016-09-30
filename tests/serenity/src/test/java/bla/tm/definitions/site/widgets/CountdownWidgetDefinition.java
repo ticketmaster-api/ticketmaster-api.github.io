@@ -39,7 +39,7 @@ public class CountdownWidgetDefinition {
     @Given("get eventId by keyword $keyword")
     public void getEventIdByKeyword(String keyword) {
         countdownWidgetPage.clickOnGetEventId();
-        countdownWidgetPage.enterKeyword(keyword); //and submit
+        countdownWidgetPage.enterKeyword(keyword);
     }
 
     @Given("switch to VISUAL Tab")
@@ -60,11 +60,6 @@ public class CountdownWidgetDefinition {
     @Given("set layout resolution to $layoutResolution")
     public void setLayoutResolution(String layoutResolution) {
         countdownWidgetPage.setLayoutResolutionTo(layoutResolution);
-    }
-
-    @Given("store layout resolution $layoutResolution")
-    public void storeLayoutResolution(String layoutResolution) {
-        countdownWidgetPage.storeLayoutResolution();
     }
 
     @Given("set layout orientation to $orientation")

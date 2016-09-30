@@ -68,7 +68,6 @@ Given open Countdown Widget page
 And switch to VISUAL Tab
 And set theme to poster
 And set layout resolution to <layoutResolution>
-And store layout resolution <layoutResolution>
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored layout resolution

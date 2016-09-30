@@ -156,8 +156,7 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void enterKeyword(String keyword) {
-        countdownWidgetPage.getCountdownWidget().getKeywordField().sendKeys(keyword);
-        countdownWidgetPage.getCountdownWidget().getKeywordField().sendKeys(Keys.ENTER);
+        countdownWidgetPage.getCountdownWidget().getKeywordField().sendKeys(keyword, Keys.ENTER);
     }
 
     @Step
@@ -229,12 +228,7 @@ public class PD_Widget_CountdownSteps {
                 break;
             default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", layoutResolution));
         }
-    }
-
-    @Step
-    public void storeLayoutResolution() {
-        String activeLayoutResolution = countdownWidgetPage.getCountdownWidget().getActiveLayoutResolution().getText();
-        Serenity.getCurrentSession().put("resolution", activeLayoutResolution);
+        Serenity.getCurrentSession().put("resolution", layoutResolution);
     }
 
     @Step
