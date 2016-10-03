@@ -1543,7 +1543,11 @@ class WeekScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
-        console.log(startDateTime + ' - ' + endDateTime);
+        if (startDateTime == '1970-01-01T00:00:00Z') {
+            startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
+            endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
+            console.log(startDateTime + ' - ' + endDateTime);
+        }
 
         return {
             "apikey": tmapikey,
