@@ -1823,9 +1823,9 @@ class WeekScheduler {
                     }
 
                     if (weekstart.getFullYear() == '1969') {
-                        weekstart = new Date();
-                        weekstart = weekstart.getDate() - weekstart.getDay();
-                        weekstart = new Date(weekstart.setDate(weekstart));
+                        current = new Date();
+                        weekstart = current.getDate() - current.getDay();
+                        weekstart = new Date(current.setDate(weekstart));
                     }
 
                     let currentSunday = weekstart;
