@@ -549,7 +549,7 @@
 
             var genre = $('<span/>')
               .addClass('classifications-name')
-              .append(( _genre && _genre.name && _genre.name !== 'Undefined') ? $('<span class="add-dot">' +_genre.name+ '</>'): '')
+              .append(( _genre && _genre.name && _genre.name !== 'Undefined') ? $('<span >' +_genre.name+ '</>'): '')
               .append(( _subgenre && _subgenre.name && _subgenre.name !== 'Undefined') ? $('<span class="add-dot">' +_subgenre.name+ '</>'): '')
               .appendTo($wrapCol);
           }
