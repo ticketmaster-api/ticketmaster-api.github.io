@@ -12,9 +12,11 @@ function CustomSelect(params) {
   self = this;
 
   this.animationSpeed = params.animationSpeed || 200;
-
+	this.curentSelectData = params.data || null;
+	this.onFocus = params.focus || null;
+	
   //observables
-  this.selectModel = params.options || ko.observableArray([]);
+  this.selectModel = typeof params.options !=='function' ? ko.observableArray(params.options):  params.options;
   this.placeholder = ko.observable(params.placeholder || '');
   this.onselect = params.onselect || function (item) { console.log(item +'selected!')};
   this.selected = ko.observable(this.selectModel()[0]);
@@ -37,7 +39,10 @@ function findElement(event) {
  * @param event
  */
 CustomSelect.prototype.slideToggle = function(viewModel, event) {
-  if (viewModel.isOneOption()) {return false;}
+	// elem in focus emulation
+	this.onFocus && this.onFocus(this.curentSelectData);
+
+	if (this.isOneOption()) {return false;}
   var el = findElement(event);
     el.wrapper.slideToggle(viewModel.animationSpeed);
     el.layer.toggleClass('hidden');
@@ -53,7 +58,7 @@ CustomSelect.prototype.selectItem = function (item, event) {
   this.selected(item);
   // run handler
   this.onselect(item);
-  // slide up
+	// slide up
   this.slideToggle(self, event);
 };
 
@@ -70,7 +75,9 @@ module.exports = ko.components.register('custom-select', {
         '<ul data-bind="foreach: selectModel" class="api-exp-custom-select__list js-custom-select-wrapper">',
           '<li data-bind="css: {\'active\': checked}" class="api-exp-custom-select__item">',
             '<button data-bind="event: {click: $parent.selectItem.bind($parent)}, text: name, css: {\'active\': checked()}, attr: {\'data-value\': name}"  class="api-exp-custom-select__item-label" href="#"></button>',
-            '<a data-bind="attr: {href: link}, css: {\'hidden\': !link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
+            // '<span data-bind="if: link">',
+            	'<a data-bind="attr: {href: link}, css: {\'hidden\': !link}" class="api-exp-custom-select__item-link" target="_blank">&nbsp;</a>',
+            // '</span>',
           '</li>',
         '</ul>',
       '</div>',

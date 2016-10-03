@@ -1,6 +1,6 @@
 var self;
 var base;
-
+var hf = require('../components/helperFunc');
 /**
  * Params View-Model
  * @param raw
@@ -18,58 +18,77 @@ function ParamsViewModel(raw, method, params) {
   this.params = params;
   this.isHidden = ko.observable(true);
   this.paramInFocus = ko.observable('');
+	this.paramsModel = ko.observableArray([]);
 
-  // computed
-  this.paramsModel = ko.computed(this.updateParamsModel, this);
-  this.paramInFocus(this.paramsModel()[0]);
-  this.isDirty = ko.computed(this.checkDirty, this);
+	// computed
+	// this.paramsModel = ko.computed(this.updateParamsModel, this);
+	this.updateViewModel();
+	this.method.subscribe(this.updateViewModel, this);
+
+	this.isDirty = ko.computed(this.checkDirty, this);
 }
 
-ParamsViewModel.prototype.checkDirty = function () {
-  var dirty = this.paramsModel().filter(function (item) {
-    return item.isDirty() === true;
-  });
-  return dirty.length > 0;
-};
 
 /**
  * Initial build of Select Model
  */
-ParamsViewModel.prototype.updateParamsModel = function (a,b) {
-  var obj = this.method().parameters || {},
-    arr = [];
+ParamsViewModel.prototype.updateViewModel = function () {
+	var obj = this.method().parameters || {},
+		arr = [];
 
-  for (var i in obj) {
-    var value = obj[i];
+	for (var i in obj) {
+		if (!obj.hasOwnProperty(i)) {continue;}
 
-    if (!obj.hasOwnProperty(i)) {
-      continue;
-    }
+		// copies all values from model to view-model
+		var vmParam = $.extend({}, obj[i]);
 
-    value.value = value.value || ko.observable('');
+		vmParam.value = ko.observable(vmParam.value || (vmParam.select && vmParam.default) || '');
 
-    // 'dirty' flag watcher for current field
-    value.isDirty = ko.pureComputed(function () {
-      return !!this.value().trim().length;
-    }, value);
+		//add observable for selected options
+		if (vmParam.select) {
+			vmParam.options = ko.observableArray(obj[i].options.map(function (item) {
+				var obj = $.extend({}, item);
+				obj.checked = ko.observable(item.checked);
+				return obj;
+			}))
+		}
 
-    // add calendar btn for current field
-    value.hasCalendar = i.search(/(date|time)/gmi) != -1;
+		// 'dirty' flag watcher for current field
+		vmParam.isDirty = ko.pureComputed(function () {
+			if (this.select) {
+				return this.value() !== this.default && this.value() !== 'none';
+			}
+			return !!this.value().trim().length;
+		}, vmParam);
 
-    // add pop-up btn for current field
-    value.hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
+		// add calendar btn for current field
+		vmParam.hasCalendar = i.search(/(date|time)/gmi) != -1;
 
-    arr.push(value);
-  }
+		// add pop-up btn for current field
+		vmParam.hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
 
-  // prepare output for request
-  this.prepareUrlPairs(arr, this.params);
+		arr.push(vmParam);
+	}
 
-  // catch params focus for about section
-  this.paramInFocus(arr[0]);
-  // this.onEnterKeyDown()
-  return arr;
+	// prepare output for request
+	this.paramsModel(arr);
+	this.paramInFocus(this.paramsModel()[0]);
+	this.prepareUrlPairs(arr, this.params);
+	return arr;
 };
+
+/**
+ * Dirty params form observable method
+ * @returns {boolean}
+ */
+ParamsViewModel.prototype.checkDirty = function () {
+	this.prepareUrlPairs(this.paramsModel(), this.params);
+	var dirty = this.paramsModel().filter(function (item) {
+		return item.isDirty() === true;
+	});
+	return dirty.length > 0;
+};
+
 
 /**
  * Enter key handler
@@ -113,13 +132,30 @@ ParamsViewModel.prototype.onFocus = function (item) {
  * @returns {boolean}
  */
 ParamsViewModel.prototype.prepareUrlPairs = function (arr, koObs) {
-  if (!arr && !koObs) {
-    return false;
-  }
+  if (!arr && !koObs) {return false;}
 
   return koObs(arr.filter(function (item) {
     return (item.value() || item.default);
   }));
+};
+
+/**
+ * On select value handler for params select
+ * @param param {object} parameter view-model
+ * @param option {object} option view-model
+ */
+ParamsViewModel.prototype.onSelectParamValue = function (param, option) {
+	hf.checkActive(param.options, option.name);
+	param.value(option.name);
+};
+
+/**
+ * Params clear button handler
+ * @param vm {object} view model
+ * @param e {object} event
+ */
+ParamsViewModel.prototype.onParamsClear = function (vm, e) {
+	this.updateViewModel();
 };
 
 module.exports = ParamsViewModel;

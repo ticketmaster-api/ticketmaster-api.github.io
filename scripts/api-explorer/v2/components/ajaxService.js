@@ -5,12 +5,9 @@
  * @param callback
  */
 var ajaxService = function (url, method, callback) {
-  var escapedURL = encodeURI(url);
-  console.log(escapedURL);
-
   $.ajax({
     type: method,
-    url: escapedURL,
+    url: url,
     async: true,
     dataType: "json",
     complete: callback
@@ -20,8 +17,6 @@ var ajaxService = function (url, method, callback) {
 /**
  * Filters and prepares params pairs
  * @param arr
- * @param obj
- * @param koObs
  * @returns {boolean}
  */
 var prepareUrl = function (arr) {
@@ -66,11 +61,11 @@ var prepareUrl = function (arr) {
 
   url = [domain, '/', path, '?', params].join('');
 
-  return url;
+  return encodeURI(url);
 };
 
 // sends request to get the second column
-var sendPrimaryRequest = function (arr) {
+var sendPrimaryRequest = function (arr, requests) {
   console.clear();
   var url = prepareUrl(arr);
   // console.log(url);
@@ -86,8 +81,29 @@ var sendPrimaryRequest = function (arr) {
         console.warn(response);
       }
     } else {
-      console.log(message, response.status);
-      console.log(response.responseJSON);
+
+			var colors = [
+				'column-color-1',
+				'column-color-2',
+				'column-color-3',
+				'column-color-4',
+				'column-color-5',
+				'column-color-6',
+				'column-color-7',
+				'column-color-8',
+				'column-color-9',
+				'column-color-10',
+				'column-color-11',
+				'column-color-12'
+			];
+			var max = colors.length - 1;
+			var index = requests.length;
+
+			requests.push({
+				request: url,
+				color: colors[index % max],
+				response: response.responseJSON
+			})
     }
   });
 };

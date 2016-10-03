@@ -22,7 +22,7 @@ var parseData = function (xml) {
 				category : methodElem.find('[primary="true"]').text().trim(), // API name
 				path: resource.attr('path'), // method URL
 				base : resourcesEl.attr('base'), // method base link
-				documentation : methodElem.find('doc').eq(0).attr('apigee:url'), // link to documentation
+				link : methodElem.find('doc').eq(0).attr('apigee:url'), // link to documentation
 				description : methodElem.find('doc').eq(0).text().trim(), //method description
 				parameters: {}
 			};
@@ -41,13 +41,17 @@ var parseData = function (xml) {
 						doc: param.first('doc').text().trim(),
 						style: param.attr('style'),
 						required: param.attr('required'),
-						default: param.attr('default'),
+						default: param.attr('default') === 'none' && isSelect ? '' : param.attr('default'),
 						select: isSelect
 					};
 
 					if (isSelect) {
 						parameter.options = options.get().map(function (option) {
-							return $(option).attr('value');
+							return {
+								name: $(option).attr('value'),
+								checked: $(option).attr('value') === parameter.default || $(option).attr('value') === 'none',
+								link: false
+							};
 						});
 					}
 

@@ -12,6 +12,7 @@ var ajaxService = require('./../components/ajaxService');
 var MenuViewModel = require('./../ViewModels/menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
+var RequestsListViewModel = require('./requestsListViewModel');
 
 // Modules
 var customSelect = require('./../components/customSelect');
@@ -29,11 +30,13 @@ function AppViewModel(obj) {
   this.selectedCategory = ko.observable('');
   this.selectedMethod = ko.observable('');
   this.selectedParams = ko.observableArray([]);
+	this.requests = ko.observableArray([]);
 
   // sub-models
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
+  this.requestsList = new RequestsListViewModel(this.requests);
 
   // computed
   this.sendButtonText = ko.pureComputed(this.getMethodName, this);
@@ -45,7 +48,7 @@ function AppViewModel(obj) {
  * Send request method
  */
 AppViewModel.prototype.onClickSendBtn = function () {
-  ajaxService(this.URL());
+  ajaxService(this.URL(), this.requests);
 };
 
 /**

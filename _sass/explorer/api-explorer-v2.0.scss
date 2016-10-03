@@ -3,15 +3,17 @@ $menu-width: 293px;
 
 // bg images
 
-$img-1: '../assets/img/api-explorer/question-ic-grey.svg';
-$img-9: '../assets/img/api-explorer/question-ic-blue.svg';
-$img-2: '../assets/controls/ic-shevron-down.svg';
-$img-3: '../assets/img/api-explorer/ic-info.svg';
-$img-4: '../assets/img/api-explorer/chevron-copy-6.svg';
-$img-5: '../assets/img/api-explorer/ic-copy.svg';
-$img-6: '../assets/img/api-explorer/ic-clear.svg';
-$img-7: '../assets/img/api-explorer/ic-calendar.svg';
-$img-8: '../assets/img/api-explorer/ic-id.svg';
+$img-question-grey: '../assets/img/api-explorer/question-ic-grey.svg';
+$img-question-blue: '../assets/img/api-explorer/question-ic-blue.svg';
+$img-shevron-down-blue: '../assets/controls/ic-shevron-down.svg';
+$img-info: '../assets/img/api-explorer/ic-info.svg';
+$img-shevron-up-gray: '../assets/img/api-explorer/chevron-copy-6.svg';
+$img-copy: '../assets/img/api-explorer/ic-copy.svg';
+$img-clear: '../assets/img/api-explorer/ic-clear.svg';
+$img-calendar: '../assets/img/api-explorer/ic-calendar.svg';
+$img-id: '../assets/img/api-explorer/ic-id.svg';
+$img-share: '../assets/img/api-explorer/ic-share.svg';
+$img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 
 
 #api-explorer-v2.api-explorer-v2 {
@@ -109,7 +111,7 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
         -webkit-transition: opacity 0.2s ease-in-out;
         -o-transition: opacity 0.2s ease-in-out;
         transition: opacity 0.2s ease-in-out;
-        background: url($img-2) no-repeat;
+        background: url($img-shevron-down-blue) no-repeat;
         z-index: -1;
       }
       &__list {
@@ -166,7 +168,7 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
           height: 16px;
           object-fit: contain;
           opacity: 0.5;
-          background: url($img-3) no-repeat;
+          background: url($img-info) no-repeat;
         }
       }
     }
@@ -184,13 +186,13 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
         padding: 10px;
         display: inline-block;
         line-height: 47px;
-        background: url($img-1) no-repeat;
+        background: url($img-question-grey) no-repeat;
 
         &.devices-button:hover,
         &.devices-button:active,
         &[href^="http"]:hover,
         &[href^="http"]:active {
-          background: url($img-9) no-repeat;
+          background: url($img-question-blue) no-repeat;
         }
 
         &.devices-button {
@@ -352,16 +354,7 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
         top: -20px;
         left: 0;
         background: #fff;
-        padding: 5px 5px 0 15px;
-        &:before {
-          content: '';
-          background: url($img-4) no-repeat;
-          position: absolute;
-          left: 0;
-          top: 16px;
-          width: 10px;
-          height: 10px;
-        }
+        padding: 5px 5px 0 0;
         &__title {
           margin: 0 10px 0 0;
           font-size: 16px;
@@ -374,7 +367,7 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
           float: left;
         }
         &-edit {
-          float: left;
+          float: right;
           display: none;
           opacity: 0;
           @include transition(all, 300ms)
@@ -386,12 +379,12 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
           border: none;
           display: inline-block;
           &-copy {
-            background: url($img-5) no-repeat;
+            background: url($img-copy) no-repeat;
           }
           &-clear {
             width: 28px;
             height: 28px;
-            background: url($img-6) no-repeat;
+            background: url($img-clear) no-repeat;
           }
         }
       }
@@ -404,7 +397,7 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
       &-filter {
         margin-right: 264px;
         &-fields {
-          overflow: hidden;
+          //overflow: hidden;
         }
         &__field {
           width: 262px;
@@ -452,13 +445,13 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
         .calendar {
           .api-exp-params-filter__button {
             display: block;
-            background: url($img-7) 50% 50% no-repeat;
+            background: url($img-calendar) 50% 50% no-repeat;
           }
         }
         .popup {
           .api-exp-params-filter__button {
             display: block;
-            background: url($img-8) 50% 50% no-repeat;
+            background: url($img-id) 50% 50% no-repeat;
           }
         }
       }
@@ -486,22 +479,186 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
         font-stretch: normal;
         line-height: 1.5;
         letter-spacing: 0.8px;
-        //&.get {
-        //  background-color: #009cde;
-        //}
-        //&.post {
-        //  background-color: #8bc34a;
-        //}
-        //&.put {
-        //  background-color: #ffc107;
-        //}
-        //&.delete {
-        //  background-color: #ff4000;
-        //}
       }
     }
+
+		&-request-list {
+			&-headline {
+				margin: 7px 0;
+				padding: 0;
+				clear: both;
+				overflow: hidden;
+				.title {
+					float: left;
+					font: {
+						size: 16px;
+						weight: bold;
+						style: normal;
+						stretch: normal;
+						family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+					}
+					line-height: 1.7;
+					text-align: left;
+					color: #b7c9d3;
+					margin: 0 25px 0 0;
+				}
+				.headline-edit {
+					float: left;
+				}
+			}
+			&-item {
+				border-top: 1px solid #dadddf;
+				padding: 19px 100px 19px 78px;
+				border-bottom: 1px solid #dadddf;
+				position: relative;
+				min-height: 65px;
+
+				.edit-controls {
+					position: absolute;
+					top: 50%;
+					right: 0;
+					margin-top: -12px;
+					.btn {
+						margin-left: 15px;
+					}
+				}
+				.view-control {
+					position: absolute;
+					top: 50%;
+					margin-top: -7px;
+				}
+				.shevron-up {
+					left: 14px;
+					width: 15px;
+					height: 10px;
+					margin-top: -10px;
+					background: {
+						image: url($img-shevron-down-blue);
+						position: 50% 50%;
+					}
+				}
+				.color-indicator {
+					width: 14px;
+					height: 14px;
+					border-radius: 100px;
+					left: 48px;
+				}
+				.item_text {
+					margin: 0;
+					font-size: 16px;
+					font-weight: bold;
+					font-style: normal;
+					font-stretch: normal;
+					line-height: 1.5;
+					color: #768692;
+				}
+			}
+		}
   }
 
+	.btn-icon {
+		padding: 10px;
+		width: auto;
+		height: auto;
+		background: {
+			color: transparent;
+			position: 50% 50%;
+		}
+		outline: none;
+		border: none;
+		&:hover,
+		&:active{
+			box-shadow: none;
+		}
+	}
+
+	.toggle-btn {
+		margin: 0 10px 0 0;
+		font: {
+			size: 16px;
+			weight: bold;
+			style: normal;
+			stretch: normal;
+			family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+		}
+		line-height: 1.7;
+		text-align: left;
+		color: #b7c9d3;
+		padding: 0 10px 0 15px;
+		background: {
+			position: 0 50%;
+		};
+	}
+
+	.shevron-up {
+		background: {
+			image: url($img-shevron-up-gray);
+			repeat: no-repeat;
+		}
+	}
+
+	.btn-clear {
+		background: {
+			image: url($img-clear);
+			repeat: no-repeat;
+		}
+	}
+
+	.btn-share {
+		background: {
+			image: url($img-share);
+			repeat: no-repeat;
+		}
+	}
+	.btn-copy {
+		background: {
+			image: url($img-copy);
+			repeat: no-repeat;
+		}
+	}
+	.btn-raw {
+		background: {
+			image: url($img-raw);
+			repeat: no-repeat;
+		}
+	}
+
+	.column-color-1 {
+		background-color: $n2-grey-color;
+	}
+	.column-color-2 {
+		background-color: #7d3e9b;
+	}
+	.column-color-3 {
+		background-color: #c05785;
+	}
+	.column-color-4 {
+		background-color: #a3a64f;
+	}
+	.column-color-5 {
+		background-color: #d0236f;
+	}
+	.column-color-6 {
+		background-color: $s1b;
+	}
+	.column-color-7 {
+		background-color: #4fb9b5;
+	}
+	.column-color-8 {
+		background-color: #b94f5e;
+	}
+	.column-color-9 {
+		background-color: #545db1;
+	}
+	.column-color-10 {
+		background-color: $green;
+	}
+	.column-color-11 {
+		background-color: #dba555;
+	}
+	.column-color-12 {
+		background-color: #db6b55;
+	}
   //tablet
   @media #{$max-1200} {
     .horizontal-events-tracker {
@@ -539,7 +696,7 @@ $img-8: '../assets/img/api-explorer/ic-id.svg';
             }
             &__button.devices-button {
               @include transition(all, 400ms);
-              background: url($img-9) 50% no-repeat;
+              background: url($img-share) 50% no-repeat;
             }
             &-layer {
               display: block;

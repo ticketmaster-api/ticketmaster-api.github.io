@@ -3,6 +3,7 @@ _site
 .idea
 .sass-cache
 .jekyll-metadata
+.vscode/
 
 tests/galen/reports-local
 

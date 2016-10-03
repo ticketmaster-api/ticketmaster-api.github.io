@@ -21,9 +21,9 @@ function MethodsViewModel(raw, category, method) {
   this.method = method;
   this.togglePopUp = ko.observable(false);
   this.radiosModel = ko.observableArray([]);
-  this.selectModel = ko.observableArray([]);
+  this.methodsViewModel = ko.observableArray([]);
   this.updateModel(this.category());
-  this.category.subscribe(this.updateModel);
+  this.category.subscribe(this.updateModel, this);
 }
 
 /**
@@ -71,6 +71,7 @@ MethodsViewModel.prototype.updateRadiosModel = function (param) {
       arr.push(item);
     }
   }
+	arr = arr.sort(compareMethods);
   this.radiosModel(arr);
   return arr;
 };
@@ -87,31 +88,53 @@ MethodsViewModel.prototype.updateSelect = function (item) {
   for (var i in obj) {
     if (!obj.hasOwnProperty(i)) { continue; }
     var property = obj[i];
-    arr.push({
-      checked: ko.observable(!count),
-      name: property.name,
-      id: property.id,
-      link: property.documentation,
-      about: property.description,
-      category: property.category,
-      method: property.method
-    });
+		// copies all values from model to view-model
+		var vmMethod = $.extend({}, property);
 
-    // // set global observable
+		delete vmMethod.parameters;
+		vmMethod.checked = ko.observable(!count);
+
+		arr.push(vmMethod);
+
+    // set global observable
     !count && this.method(base[property.category][property.method][property.id]);
 
     count++;
+
   }
-  self.selectModel(arr);
+
+	this.methodsViewModel(arr);
+	console.log(this.methodsViewModel());
+	return arr;
 };
 
 MethodsViewModel.prototype.onSelectMethod = function (item) {
-  hf.checkActive(self.selectModel, item.name);
+  hf.checkActive(self.methodsViewModel, item.name);
   self.method(base[item.category][item.method][item.id]);
 };
 
 MethodsViewModel.prototype.onAboutClick = function (model, event) {
   model.togglePopUp(!model.togglePopUp());
 };
+
+/**
+ * Sort function for methods aray
+ * @param f
+ * @param s
+ * @returns {number}
+ */
+function compareMethods(f,s) {
+	var a = f.name.toUpperCase();
+	var b = s.name.toUpperCase();
+
+	if (a === b) {return 0;}
+	if (a === 'ALL' ||
+		(a === 'GET' && (b === 'POST' || b === 'PUT' || b === 'DELETE')) ||
+		(a === 'POST' && (b === 'PUT' || b === 'DELETE')) ||
+		(a === 'PUT' && b === 'DELETE')) {
+		return -1;
+	}
+	return 1;
+}
 
 module.exports = MethodsViewModel;
