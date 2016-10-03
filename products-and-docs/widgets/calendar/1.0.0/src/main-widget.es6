@@ -2325,10 +2325,12 @@ class MonthScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            /*
             if (sessionStorage.getItem('tk-api-key')) {
                 tmapikey = sessionStorage.getItem('tk-api-key');
                 document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
             }
+            */
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
@@ -3220,10 +3222,12 @@ class YearScheduler {
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
             tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+            /*
             if (sessionStorage.getItem('tk-api-key')) {
                 tmapikey = sessionStorage.getItem('tk-api-key');
                 document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
             }
+            */
         }
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
