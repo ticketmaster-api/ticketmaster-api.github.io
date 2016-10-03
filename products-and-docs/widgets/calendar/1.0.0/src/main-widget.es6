@@ -1529,6 +1529,8 @@ class WeekScheduler {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
 
+        if (latlong === null) latlong = '34.0390107,-118.2672801';
+
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-keyword") != '') {
             keyword = document.querySelector('[w-type="calendar"]').getAttribute("w-keyword");
         }
@@ -2306,6 +2308,8 @@ class MonthScheduler {
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
+
+        if (latlong === null) latlong = '34.0390107,-118.2672801';
 
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-keyword") != '') {
             keyword = document.querySelector('[w-type="calendar"]').getAttribute("w-keyword");
@@ -3213,9 +3217,6 @@ class YearScheduler {
         if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
-
-        console.log('latlong = ' + latlong);
-
 
         return {
             "apikey": tmapikey,
