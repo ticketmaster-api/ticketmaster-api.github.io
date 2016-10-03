@@ -1822,6 +1822,8 @@ class WeekScheduler {
                         weekstart = new Date(current.setDate(weekstart));
                     }
 
+                    console.log(weekstart.getFullYear());
+
                     if (weekstart.getFullYear() == '1969') {
                         current = new Date();
                         weekstart = current.getDate() - current.getDay();
