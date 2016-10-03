@@ -1546,7 +1546,7 @@ class WeekScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
-        if (startDateTime == '1970-01-01T00:00:00Z') {
+        if (new Date(startDateTime).getFullYear() == '1969' || new Date(startDateTime).getFullYear() == '1970') {
             current = new Date();
             start = new Date();
             end = new Date();
@@ -1822,12 +1822,10 @@ class WeekScheduler {
                         weekstart = new Date(current.setDate(weekstart));
                     }
 
-                    console.log(weekstart.getFullYear());
-
                     if (weekstart.getFullYear() == '1969') {
-                        current = new Date();
-                        weekstart = current.getDate() - current.getDay();
-                        weekstart = new Date(current.setDate(weekstart));
+                        weekstart = new Date();
+                        weekstart = weekstart.getDate() - weekstart.getDay();
+                        weekstart = new Date(weekstart.setDate(weekstart));
                     }
 
                     let currentSunday = weekstart;
