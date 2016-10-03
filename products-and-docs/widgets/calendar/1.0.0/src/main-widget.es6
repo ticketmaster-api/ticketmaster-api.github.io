@@ -1820,7 +1820,12 @@ class WeekScheduler {
                         weekstart = new Date(current.setDate(weekstart));
                     }
 
-                    console.log(weekstart);
+                    if (weekstart.getFullYear() == '1969') {
+                        current = new Date();
+                        weekstart = current.getDate() - current.getDay();
+                        weekstart = new Date(current.setDate(weekstart));
+                        console.log(weekstart);
+                    }
 
                     let currentSunday = weekstart;
                     let daysDiv = '';
