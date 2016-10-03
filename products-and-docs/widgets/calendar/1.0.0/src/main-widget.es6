@@ -1543,6 +1543,8 @@ class WeekScheduler {
             classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
         }
 
+        console.log(startDateTime + ' - ' + endDateTime);
+
         return {
             "apikey": tmapikey,
             "latlong": latlong,
