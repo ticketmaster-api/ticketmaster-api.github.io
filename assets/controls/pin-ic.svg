@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="36px" height="54px" viewBox="0 0 36 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
+    <title>16DC85A3-96A2-431C-8D3F-D3BE712C719D</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M230,477 C230,477 247,451.81517 247,442.630435 C247,433.445699 239.388841,426 230,426 C220.611159,426 213,433.445699 213,442.630435 C213,451.81517 230,477 230,477 Z M230,449.282609 C233.755536,449.282609 236.8,446.304329 236.8,442.630435 C236.8,438.956541 233.755536,435.978261 230,435.978261 C226.244464,435.978261 223.2,438.956541 223.2,442.630435 C223.2,446.304329 226.244464,449.282609 230,449.282609 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-1" y="-1" width="36" height="53">
+            <rect x="212" y="425" width="36" height="53" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="12.6.x-ID-Selection" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="12.7.3-API-Explorer-V2.0-Venue-ID---Popup-Map" transform="translate(-1070.000000, -908.000000)">
+            <g id="Map" transform="translate(858.000000, 483.000000)">
+                <g id="pin_ic">
+                    <use fill="#009CDE" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <use stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

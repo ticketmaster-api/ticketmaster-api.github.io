@@ -399,6 +399,7 @@ Object.byString = function(o, s) {
       if (callback) {
         callback();
       }
+      $(document).trigger( "finishInit", [ "loadLazySelectPlugin" ] );
     }, isPrimaryVisible ? 500 : 0);
   };
 
@@ -1289,5 +1290,8 @@ Object.byString = function(o, s) {
     
     $(document).on(events, selector, callback);
   }
+
+  
+  
 }(jQuery));
 

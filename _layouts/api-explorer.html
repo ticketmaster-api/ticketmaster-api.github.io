@@ -38,17 +38,18 @@
 <script src="{{'/scripts/components/intro.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
+{% if page.category == "api-explorer"%}
+  {% include lazy-selector-modal.html %}
+  <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
+  <!--<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'></script>-->
+{%endif%}
 <script src="{{'/scripts/api-explorer/script.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
 {% include feedback.html %}
 <script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
-{% if page.category == "api-explorer"%}
-  {% include lazy-selector-modal.html %}
-  <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
-  <!--<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA&callback=initMap'></script>-->
-{%endif%}
+
 <script>
 
 function checkUserKey() {
@@ -74,10 +75,6 @@ function replaceApiKey(options) {
 }
 
 checkUserKey();
-
-setTimeout(function () {
-  $('#venueId').lazySelector('venues');
-},2000)
 
 </script>
 <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
