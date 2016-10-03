@@ -10,7 +10,7 @@ Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check th
 Given open Event Discovery Widget page
 Then the required fields are not empty and have default values on the Event Discovery Widget page
 
-Scenario: (/products-and-docs/widgets/calendar/) TECHNICAL TAB - Check that embed code functionality works properly
+Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that embed code functionality works properly
 Given open Event Discovery Widget page
 And change values for all possible fields on the Event Discovery Widget page
 When click on "Get code" button
@@ -106,8 +106,8 @@ Examples:
 |horizontal |
 |vertical   |
 
-Scenario: (/products-and-docs/widgets/calendar/) Event message - Check event message for invalid Keyword
-Given open Calendar Widget page
+Scenario: (/products-and-docs/widgets/event-discovery/) Event message - Check event message for invalid Keyword
+Given open Event Discovery Widget page
 When search events by keyword ABRAKADABRA on Event Discovery Widget page
 Then the event message is shown "No results were found. Here other options for you."
 
