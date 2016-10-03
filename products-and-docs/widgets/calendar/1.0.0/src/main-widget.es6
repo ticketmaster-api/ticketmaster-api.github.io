@@ -1777,6 +1777,9 @@ class WeekScheduler {
                         widget.showMessage("No results were found.<br/>Here other options for you.");
                         widget.hideMessageWithDelay(widget.hideMessageDelay);
                     }
+
+                    console.log(weekEvents);
+
                     let tDate = weekEvents[0].date;
                     let tTime = weekEvents[0].time.substr(0,2);
                     let count = 0;
