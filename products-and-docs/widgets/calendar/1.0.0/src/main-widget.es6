@@ -1544,9 +1544,20 @@ class WeekScheduler {
         }
 
         if (startDateTime == '1970-01-01T00:00:00Z') {
+            current = new Date();
+            start = new Date();
+            end = new Date();
+
+            weekstart = current.getDate() - current.getDay();
+            start = new Date(current.setDate(weekstart));
+            end.setDate(start.getDate() + 7);
+            if (start.getMonth()+1 <=9) startmonth = '0' + (start.getMonth()+1); else startmonth = start.getMonth()+1;
+            if (start.getDate() <=9) startdate = '0' + start.getDate(); else startdate = start.getDate();
+            if (end.getMonth()+1 <=9) endmonth = '0' + (end.getMonth()+1); else endmonth = end.getMonth()+1;
+            if (end.getDate() <=9) enddate = '0' + end.getDate(); else enddate = end.getDate();
             startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
             endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
-            console.log(startDateTime + ' - ' + endDateTime);
+            console.log(startDateTime + ' ' + endDateTime);
         }
 
         return {
