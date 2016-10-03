@@ -1557,7 +1557,6 @@ class WeekScheduler {
             if (end.getDate() <=9) enddate = '0' + end.getDate(); else enddate = end.getDate();
             startDateTime = start.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
             endDateTime = end.getFullYear() + '-' + endmonth + '-' + enddate + 'T23:59:59Z';
-            console.log(startDateTime + ' ' + endDateTime);
         }
 
         return {
@@ -1824,7 +1823,6 @@ class WeekScheduler {
                         current = new Date();
                         weekstart = current.getDate() - current.getDay();
                         weekstart = new Date(current.setDate(weekstart));
-                        console.log(weekstart);
                     }
 
                     let currentSunday = weekstart;
