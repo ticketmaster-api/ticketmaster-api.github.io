@@ -1778,8 +1778,6 @@ class WeekScheduler {
                         widget.hideMessageWithDelay(widget.hideMessageDelay);
                     }
 
-                    console.log(weekEvents);
-
                     let tDate = weekEvents[0].date;
                     let tTime = weekEvents[0].time.substr(0,2);
                     let count = 0;
@@ -1821,6 +1819,8 @@ class WeekScheduler {
                         var weekstart = current.getDate() - current.getDay();
                         weekstart = new Date(current.setDate(weekstart));
                     }
+
+                    console.log(weekstart);
 
                     let currentSunday = weekstart;
                     let daysDiv = '';
