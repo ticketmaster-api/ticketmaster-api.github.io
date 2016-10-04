@@ -108,8 +108,11 @@
       // console.log("lat");
       if (lat && lng ) {
         initMap(lat, lng);
+        google.maps.event.trigger(map, "resize");
+        // console.log('second init');
       } else {
-        initMap(0, 0); // console.log("map is init");
+        initMap(0, 0);
+        // console.log("first init");
       }
     };
 
@@ -159,8 +162,8 @@
 
       // when map popup is shown
       mapEl.on("shown.bs.modal", function () {
-        google.maps.event.trigger(map, "resize");
         // Recenter the map now that it's been redrawn
+        google.maps.event.trigger(map, "resize");
         map.setCenter(mapCenter);
       });
       mapEl.modal(); // show map popup
