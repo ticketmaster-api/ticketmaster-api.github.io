@@ -30,7 +30,9 @@
     if (url !== 'countries') {
       $.ajax({
         method: 'GET',
-        url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join('')
+        url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join(''),
+        async: true,
+        dataType: "json"
       }).then(function (data) {
         var quantity = data.page && data.page.totalElements || 'none';
         setSessionStorage(url, quantity);
