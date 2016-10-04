@@ -134,7 +134,7 @@
       // initialize map object
       map = new google.maps.Map(document.getElementById('map-canvas'), {
         center: mapCenter,
-        zoom: 6,
+        zoom: 10,
         mapTypeControl: false,
         scaleControl: false,
         streetViewControl: false,
