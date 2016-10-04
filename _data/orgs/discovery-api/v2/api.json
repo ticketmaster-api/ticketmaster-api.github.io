@@ -13,7 +13,7 @@
   "paths" : {
     "/discovery/v2/attractions" : {
       "get" : {
-        "summary" : "Find attractions",
+        "summary" : "Search Attractions",
         "description" : "Since 1.0.0",
         "operationId" : "find",
         "parameters" : [ {
@@ -104,7 +104,7 @@
     },
     "/discovery/v2/attractions/{id}" : {
       "get" : {
-        "summary" : "Get attraction",
+        "summary" : "Get Attraction Details",
         "description" : "Since 1.0.0",
         "operationId" : "get",
         "parameters" : [ {
@@ -135,7 +135,7 @@
     },
     "/discovery/v2/classifications" : {
       "get" : {
-        "summary" : "Find classifications",
+        "summary" : "Search Classifications",
         "description" : "Since 2.0.0",
         "operationId" : "find",
         "parameters" : [ {
@@ -226,7 +226,7 @@
     },
     "/discovery/v2/classifications/genres/{id}" : {
       "get" : {
-        "summary" : "Get Genres",
+        "summary" : "Get Genre Details",
         "description" : "Since 2.0.0",
         "operationId" : "getGenre",
         "parameters" : [ {
@@ -257,7 +257,7 @@
     },
     "/discovery/v2/classifications/segments/{id}" : {
       "get" : {
-        "summary" : "Get Segments",
+        "summary" : "Get Segment Details",
         "description" : "Since 2.0.0",
         "operationId" : "getSegment",
         "parameters" : [ {
@@ -288,7 +288,7 @@
     },
     "/discovery/v2/classifications/subgenres/{id}" : {
       "get" : {
-        "summary" : "Get Subgenres",
+        "summary" : "Get Subgenre Details",
         "description" : "Since 2.0.0",
         "operationId" : "getSubgenre",
         "parameters" : [ {
@@ -319,7 +319,7 @@
     },
     "/discovery/v2/classifications/{id}" : {
       "get" : {
-        "summary" : "Get classification",
+        "summary" : "Get Classification Details",
         "description" : "Since 2.0.0",
         "operationId" : "get",
         "parameters" : [ {
@@ -350,7 +350,7 @@
     },
     "/discovery/v2/events" : {
       "get" : {
-        "summary" : "Find events",
+        "summary" : "Search Events",
         "description" : "Since 1.0.0",
         "operationId" : "find",
         "parameters" : [ {
@@ -378,7 +378,7 @@
           "required" : false,
           "type" : "string",
           "default" : "",
-          "pattern" : "^\\s*$|^1?\\d{1,4}$",
+          "pattern" : "^\\s*$|^0*1?\\d{1,4}$",
           "x-example" : ""
         }, {
           "name" : "unit",
@@ -618,7 +618,7 @@
     },
     "/discovery/v2/events/{id}" : {
       "get" : {
-        "summary" : "Get event",
+        "summary" : "Get Event Details",
         "description" : "Since 1.0.0",
         "operationId" : "get",
         "parameters" : [ {
@@ -649,7 +649,7 @@
     },
     "/discovery/v2/events/{id}/images" : {
       "get" : {
-        "summary" : "Get event images only",
+        "summary" : "Get Event Images",
         "description" : "Since 1.0.0",
         "operationId" : "getImages",
         "parameters" : [ {
@@ -680,7 +680,7 @@
     },
     "/discovery/v2/venues" : {
       "get" : {
-        "summary" : "Find venues",
+        "summary" : "Search Venues",
         "description" : "Since 1.0.0",
         "operationId" : "find",
         "parameters" : [ {
@@ -787,7 +787,7 @@
     },
     "/discovery/v2/venues/{id}" : {
       "get" : {
-        "summary" : "Get venue",
+        "summary" : "Get Venue Details",
         "description" : "Since 1.0.0",
         "operationId" : "get",
         "parameters" : [ {
@@ -1017,7 +1017,7 @@
           "type" : "boolean",
           "default" : false
         },
-        "leapDurationField" : {
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "durationField" : {
@@ -1031,7 +1031,7 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "rangeDurationField" : {
+        "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "name" : {
@@ -1049,10 +1049,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
@@ -1063,12 +1063,12 @@
     "DateTimeZone" : {
       "type" : "object",
       "properties" : {
-        "id" : {
-          "type" : "string"
-        },
         "fixed" : {
           "type" : "boolean",
           "default" : false
+        },
+        "id" : {
+          "type" : "string"
         }
       }
     },
@@ -1487,6 +1487,9 @@
     "LocalTime" : {
       "type" : "object",
       "properties" : {
+        "chronology" : {
+          "$ref" : "#/definitions/Chronology"
+        },
         "millisOfSecond" : {
           "type" : "integer",
           "format" : "int32"
@@ -1506,9 +1509,6 @@
         "hourOfDay" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "chronology" : {
-          "$ref" : "#/definitions/Chronology"
         },
         "values" : {
           "type" : "array",
@@ -1534,6 +1534,9 @@
     "Locale" : {
       "type" : "object",
       "properties" : {
+        "language" : {
+          "type" : "string"
+        },
         "script" : {
           "type" : "string"
         },
@@ -1583,9 +1586,6 @@
           "type" : "string"
         },
         "displayName" : {
-          "type" : "string"
-        },
-        "language" : {
           "type" : "string"
         }
       }
