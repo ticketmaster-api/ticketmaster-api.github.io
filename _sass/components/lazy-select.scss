@@ -62,7 +62,10 @@
       .btn-submit{
         max-width: 165px;
         width: 100%;
-
+      }
+      #js_ls-more_btn {
+        width: auto;
+        max-width: initial;
       }
     }
     form .btn-submit{
