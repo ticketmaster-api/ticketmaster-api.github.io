@@ -47,8 +47,8 @@
       $hr = $('#js_ls-top-hr'),
       $btnGET = $modal.find('#js_ls-modal_btn'),
       btnCloseMap = $('.button-close-map', $modal),
-      cssValidationClass = 'get-eventId_form-validation';
-    var modalContent = $('.modal-content', $modal);
+      cssValidationClass = 'get-eventId_form-validation',
+      modalContent = $('.modal-content', $modal);
 
     var keyword = $form.find('#keyword'),
       apikey = $('#w-tm-api-key').val() || '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0',
@@ -95,9 +95,8 @@
       return (val < 0 || val > 9 ? "" : "0") + val
     }
 
-
     /**
-     * show or init map listener
+     * Show or init map listener
      * @param e
      */
     var mapPopUpListener = function (e) {
@@ -107,11 +106,10 @@
         address = lat && lng ? null : $(e.target).attr('data-address');
 
       // console.log("lat");
-      if (lat && lng || address) {
-        initMap(lat, lng, address);
+      if (lat && lng ) {
+        initMap(lat, lng);
       } else {
-        initMap(0, 0, address);
-        console.log("Coordinates are not defined :(");
+        initMap(0, 0); // console.log("map is init");
       }
     };
 
@@ -122,37 +120,42 @@
      * @param lng - float
      * @param address - not used @deprecated
      */
-    var initMap = function (lat, lng, address) {
-      var map,
-        marker,
-        mapEl = $('#js_ls-modal'),
-        geocoder = new google.maps.Geocoder(),
-        mapCenter = new google.maps.LatLng(lat || 55, lng || 43),
-        latLng = (lat && lng ? {lat: lat, lng: lng} : new google.maps.LatLng(0, 0));
+    var map = null;
+    var markers = [];
+    var initMap = function (lat, lng) {
+    var mapEl = $('#js_ls-modal'),
+        mapCenter = new google.maps.LatLng(lat || 55, lng || 43);
+      // geocoder = new google.maps.Geocoder(),
+      // latLng = (lat && lng ? {lat: lat, lng: lng} : new google.maps.LatLng(0, 0));
+
+      if(map === null){
+        // initialize map object
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: mapCenter,
+          zoom: 10,
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: false
+        });
+      }else {
+        clearMarkers();
+
+        //set new center
+        map.panTo(mapCenter); //smooth center. If the change is less than both the width and height of the map, the transition will be smoothly animated.
+        map.setCenter(mapCenter);
+      }
+
+      // Adds a marker at the center of the map.
+      addMarker(mapCenter);
 
 
-      // initialize map object
-      map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: mapCenter,
-        zoom: 10,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false
-      });
       /*if (address){ // if there was address provided
        geocodeAddress(geocoder, map, address, function(result){ // geocode address and center the map
        latLng = result;
        });
        } else { // if not (means lat and long were provided)*/
       //}
-
-      marker = new google.maps.Marker({ //Create a marker and set its position.
-        map: map,
-        position: mapCenter,
-        icon: new google.maps.MarkerImage('../../../../assets/controls/pin-ic.svg',
-          null, null, null, new google.maps.Size(34, 52)),
-      });
 
       // when map popup is shown
       mapEl.on("shown.bs.modal", function () {
@@ -163,13 +166,29 @@
       mapEl.modal(); // show map popup
     };
 
-    function closeMapListener() {
-      modalContent.removeClass('narrow');
-      // $(this).hide();
-      btnCloseMap.hide();
+    // Adds a marker to the map and push to the array.
+    function addMarker(mapCenter) {
+      var marker = new google.maps.Marker({ //Create a marker and set its position.
+        map: map,
+        position: mapCenter,
+        icon: new google.maps.MarkerImage('../../../../assets/controls/pin-ic.svg',
+          null, null, null, new google.maps.Size(34, 52))
+      });
+      markers.push(marker);
     }
 
-    btnCloseMap.on('click', closeMapListener);
+    // Removes the markers from the map, but keeps them in the array.
+    function clearMarkers() {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+      markers = [];
+    }
+
+    function closeMapListener() {
+      modalContent.removeClass('narrow');
+      btnCloseMap.hide(); // 'X' -button
+    }
 
     /**
      * change <Load_More> button text
@@ -694,10 +713,9 @@
 
       //<show map> button
       $('.js_open-map_btn').on('click', function (e) {
-        var mapCanvas = $("#map-canvas");
+        // var mapCanvas = $("#map-canvas");
         var ltd = e.target.getAttribute('data-latitude'),
           lgt = e.target.getAttribute('data-longitude');
-        // console.log('myMap show ', ltd, lgt);
         mapPopUpListener(e);
         modalContent.addClass('narrow');
         btnCloseMap.show();
@@ -721,16 +739,11 @@
     // EVENTS
     $btnGET.on('click', function (e) {
       e.preventDefault();
-      // var getBtnhAttr = $btnGET.attr('data-selector');
-      // console.log('click data-selector $btnGET' , $btnGET.attr('data-selector'));
-
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false; //stop request
 
-      if (selector === 'venues') {
-        mapPopUpListener(e);
-      }
-      // eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + $iconButton.attr('data-selector') + '.json';
-      // console.log('$btnGET eventUrl - ', eventUrl);
+      /*if (selector === 'venues') {
+         mapPopUpListener(e);
+      }*/
       modalContent.removeClass('narrow');
       var form = $form.get(0);
       if (!$btnGET.is(':disabled')) {
@@ -748,6 +761,9 @@
         }
       }
     });
+
+    //Close Map button
+    btnCloseMap.on('click', closeMapListener);
 
     $('#js_ls-more_btn', $liFooter).on('click', function (elm) {
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
@@ -833,7 +849,7 @@ $(document).on('ready', function () {
 
 
 /**
- * add lazy selector to api-explorer v1
+ * add lazy selector to api-explorer v1 (made by V.Menshutin)
  */
 $(document).on( "finishInit", function( event, flag ) {
   $('#venueId').lazySelector('venues');
