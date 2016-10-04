@@ -1,8 +1,10 @@
 
 .lazy-selector-wrapper {
   position: relative;
-  margin-bottom: 24px;
-
+  //margin-bottom: 24px;
+  input {
+    padding: 8px 31px 8px 16px;
+  }
   .icon {
     content: '';
     position: absolute;

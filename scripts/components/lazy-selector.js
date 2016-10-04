@@ -134,7 +134,7 @@
       // initialize map object
       map = new google.maps.Map(document.getElementById('map-canvas'), {
         center: mapCenter,
-        zoom: 8,
+        zoom: 6,
         mapTypeControl: false,
         scaleControl: false,
         streetViewControl: false,
@@ -150,7 +150,7 @@
       marker = new google.maps.Marker({ //Create a marker and set its position.
         map: map,
         position: mapCenter,
-        icon: new google.maps.MarkerImage('../assets/controls/pin-ic.svg',
+        icon: new google.maps.MarkerImage('../../../../assets/controls/pin-ic.svg',
           null, null, null, new google.maps.Size(34, 52)),
       });
 
@@ -827,6 +827,8 @@
  */
 $(document).on('ready', function () {
   $('.js_lazy-selector').lazySelector();
+  $('.js_lazy-selector-attractions').lazySelector('attractions');
+  $('.js_lazy-selector-venues').lazySelector('venues');
 });
 
 
