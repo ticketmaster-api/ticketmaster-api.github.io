@@ -190,8 +190,6 @@
       btnCloseMap.hide(); // 'X' -button
     }
 
-    btnCloseMap.on('click', closeMapListener);
-
     /**
      * change <Load_More> button text
      * set data-selector gor "GET" button
@@ -764,6 +762,9 @@
       }
     });
 
+    //Close Map button
+    btnCloseMap.on('click', closeMapListener);
+
     $('#js_ls-more_btn', $liFooter).on('click', function (elm) {
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
       // eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + $iconButton.attr('data-selector') + '.json';
@@ -848,7 +849,7 @@ $(document).on('ready', function () {
 
 
 /**
- * add lazy selector to api-explorer v1
+ * add lazy selector to api-explorer v1 (made by V.Menshutin)
  */
 $(document).on( "finishInit", function( event, flag ) {
   $('#venueId').lazySelector('venues');
