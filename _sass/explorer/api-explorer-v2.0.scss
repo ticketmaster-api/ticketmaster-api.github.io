@@ -1,3 +1,5 @@
+@import "scroll";
+
 $side-menu-bg: rgba(183, 201, 211, 0.1);
 $menu-width: 293px;
 
@@ -558,16 +560,21 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 					background-color: rgba(183, 201, 211, 0.1);
 					@include transition(all, 0.4s);
 					.container {
+						height: 100%;
 						width: 1140px;
 						border-top: 1px solid #dadddf;
+						position: relative;
 					}
 					.nav {
 						margin: 0;
-						padding: 15px 0 0 50px;
+						padding: 15px 0 0 0;
 						border-bottom: 2px solid rgba(183, 201, 211, 0.2);
-						position: relative;
+
 						.tab {
 							position: static;
+							&:first-child {
+								margin-left: 50px;
+							}
 							.tab-btn{
 								line-height: 1.5;
 								text-align: left;
@@ -590,6 +597,10 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 								}
 							}
 							.details {
+								top: 56px;
+								bottom: 0;
+								left: 0;
+								right: 0;
 								position: absolute;
 								display: none;
 							}
@@ -636,7 +647,6 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 			box-shadow: none;
 		}
 	}
-
 	.toggle-btn {
 		margin: 0 10px 0 0;
 		font: {
@@ -654,14 +664,12 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 			position: 0 50%;
 		};
 	}
-
 	.shevron-up {
 		background: {
 			image: url($img-shevron-up-gray);
 			repeat: no-repeat;
 		}
 	}
-
 	.btn-clear {
 		background: {
 			image: url($img-clear);

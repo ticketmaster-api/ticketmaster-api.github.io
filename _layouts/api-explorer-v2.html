@@ -183,7 +183,7 @@
 									<ul class="nav nav-tabs" data-bind="foreach: {data: tabs , as: 'tab'}">
 										<li data-bind="css: {active: tab.isActive}" role="presentation" class="tab">
 											<button data-bind="click: $parents[1].onTabClick.bind($parent, $data), text: tab.name" role="button" class="tab-btn">Json</button>
-											<section class="details">
+											<section data-bind="scroll: {x:false, y:true}" class="details">
 												<p data-bind="html: tab.resHTML"></p>
 											</section>
 										</li>
@@ -197,7 +197,6 @@
 		</section>
 	</div>
 </div>
-
 
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
 <div id="footer" class="xs-center slice-top-left">
@@ -215,6 +214,7 @@
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/knockout-3.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/knockout-scrollbar.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
 
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
