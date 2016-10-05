@@ -14,7 +14,14 @@ module.exports = {
     filename: '[name].js',
     library: "base" // global variable
   },
-
+	module: {
+		loaders: [
+			{
+				test: /\.worker\.js$/,
+				loader: "worker-loader?inline"
+			}
+		]
+	},
   devtool: 'inline-source-map',
   plugins: [
     new webpack.NoErrorsPlugin()

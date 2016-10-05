@@ -38,7 +38,7 @@
 				</span>
 			</div>
 		</section>
-
+		<!--main filter-->
 		<div class="api-exp-container clearfix">
 			<!--about-->
 			<div data-bind="with: methods">
@@ -103,7 +103,6 @@
 
 			</section><!--content-wrapper-->
 		</div>
-
 		<!--params-->
 		<div data-bind="with: params">
 			<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
@@ -149,39 +148,57 @@
 				</div>
 			</section><!--parameters-->
 		</div>
-
+		<!--request btn-->
 		<section class="api-exp-get-btn clearfix">
 			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
 		</section>
-
+		<!--request list-->
 		<section data-bind="with: requestsList" class="clearfix">
+			<section data-bind="if: clearBtnIsVisible">
+				<!--headline-->
+				<section class="api-exp-request-list-headline">
+					<h4 class="title">Request list</h4>
+					<div class="headline-edit">
+						<button data-bind="click: onClearRequests" class="btn btn-icon btn-clear" type="button"></button>
+					</div>
+				</section>
+				<!--requests-->
+				<section>
+					<ul data-bind="foreach: {data: viewModel, as: 'request'}" class="api-exp-request-list">
+						<li data-bind="css: {active: request.active}" class="api-exp-request-list-item clearfix">
 
-			<section class="api-exp-request-list-headline">
-				<h4 class="title">Request list</h4>
-				<div data-bind="if: clearBtnIsVisible" class="headline-edit">
-					<button data-bind="click: onClearRequests" class="btn btn-icon btn-clear" type="button"></button>
-				</div>
+							<section class="request">
+								<div class="edit-controls">
+									<button class="btn btn-icon btn-share" type="button"></button>
+									<button class="btn btn-icon btn-copy" type="button"></button>
+									<button class="btn btn-icon btn-raw" type="button"></button>
+								</div>
+								<button data-bind="click: $parent.getDetails" class="btn btn-icon shevron-up view-control" type="button"></button>
+								<span data-bind="css: request.color" class="color-indicator view-control"></span>
+								<p data-bind="text: request.req" class="item_text"></p>
+							</section>
+
+							<section class="response">
+								<div class="container">
+									<ul class="nav nav-tabs" data-bind="foreach: {data: tabs , as: 'tab'}">
+										<li data-bind="css: {active: tab.isActive}" role="presentation" class="tab">
+											<button data-bind="click: $parents[1].onTabClick.bind($parent, $data), text: tab.name" role="button" class="tab-btn">Json</button>
+											<section class="details">
+												<p data-bind="html: tab.resHTML"></p>
+											</section>
+										</li>
+									</ul>
+								</div>
+							</section>
+						</li>
+					</ul>
+				</section>
 			</section>
-
-			<section>
-				<ul data-bind="foreach: requests" class="api-exp-request-list">
-					<li class="api-exp-request-list-item clearfix">
-						<div class="edit-controls">
-							<button class="btn btn-icon btn-share" type="button"></button>
-							<button class="btn btn-icon btn-copy" type="button"></button>
-							<button class="btn btn-icon btn-raw" type="button"></button>
-						</div>
-						<button class="btn btn-icon shevron-up view-control" type="button"></button>
-						<span data-bind="css: 'column-color-' + ($index() + 1)" class="color-indicator view-control"></span>
-						<p data-bind="text: request" class="item_text"></p>
-					</li>
-				</ul>
-			</section>
-
 		</section>
-
 	</div>
 </div>
+
+
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
 <div id="footer" class="xs-center slice-top-left">
 	{% include partials/footer.html %}
