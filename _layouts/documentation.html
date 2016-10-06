@@ -93,7 +93,6 @@ layout: default
             userApiKey = apiKeys[apiKeys.length-1];
             userApiKey = userApiKey[userApiKey.length-1];
         }
-	    console.log('** userKey' , userApiKey);
         return userApiKey;
     }
 
@@ -124,13 +123,12 @@ layout: default
         });
     }
 
-    if(checkCookie() !== null) {
-	console.log('userKey' , userKey);
-        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+    if(userKey !== null) {
+        replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     }
 
     $(window).on('login',function(){
-        //replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+        replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     });
 </script>
 {% endif %}
