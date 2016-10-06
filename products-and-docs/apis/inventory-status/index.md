@@ -3,7 +3,7 @@ layout: documentation
 categories:
 - documentation
 - inventory-status
-title: Inventory Status API
+title: The Inventory Status API
 excerpt: Provides event status for primary Ticketmaster inventory with inventory updates happening near real-time.
 
 keywords: Partner API, Inventory Status, InventoryStatus
