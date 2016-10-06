@@ -5,7 +5,7 @@ categories:
 - oauth
 redirect_from:
 - "/apis/oauth/"
-title: OAuth API
+title: The OAuth API
 excerpt: The Ticketmaster OAuth API provides a secure and standardized way to authenticate Ticketmaster users.
 keywords: Oauth API, member details, access token
 ---
