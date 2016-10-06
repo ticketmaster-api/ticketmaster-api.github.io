@@ -4,7 +4,7 @@ categories:
   - tutorials
   - tutorials-widgets
 
-title: Adding Event Discovery widget to your website
+title: Adding Event Discovery widget to a website
 
 img: "/products-and-docs/tutorials/img/event-discovery-widget-image264x216.png"
 
