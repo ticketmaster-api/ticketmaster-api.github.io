@@ -4,7 +4,7 @@ categories:
   - tutorials
   - tutorials-events-search
 
-title: Locate events on a map
+title: Tutorial: Locate events on a map
 
 img: "/products-and-docs/tutorials/img/img-1.png"
 
