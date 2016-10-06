@@ -17,21 +17,15 @@ function RequestsListViewModel(requests) {
 		'column-color-12'
 	];
 	this.requests = requests;
-	
+	this.isActiveTab = ko.observable(false);
 	this.viewModel = ko.observableArray([]);
+	this.blocksViewModel = ko.observableArray([]);
 	this.clearBtnIsVisible = ko.computed(this._isVisible, this);
 	this.requests.subscribe(this.updateModel, this);
 }
 
 
 RequestsListViewModel.prototype.method = function () {
-};
-
-RequestsListViewModel.prototype.onTabClick = function (tab) {
-	this.tabs(this.tabs().map(function (item) {
-		return item.isActive(false)
-	}));
-	tab.isActive(true);
 };
 
 /**
@@ -49,25 +43,29 @@ RequestsListViewModel.prototype._isVisible = function () {
  */
 RequestsListViewModel.prototype.updateModel = function (arr) {
 	var self = this;
+	
 	var newModel = this.requests()
 		.map(function (obj) {
-
 			var item =  $.extend({
 				color: self.colors[obj.index % self.colors.length],
 				active: ko.observable(false),
-				tabs: ko.observableArray([
+				resHTML: ko.observable(''),
+				blocks: [
 					{
-						name: 'Json',
-						resHTML: ko.observable(''),
+						name: 'Events',
+						panelType: 'list-group',
+						items: ko.observableArray(Object.getProp(obj,'res._embedded.events') || []),
+						totalElements: ko.observable(Object.getProp(obj,'res.page.totalElements')||''),
 						isActive: ko.observable(false)
 					},
 					{
-						name: 'Blocks',
-						isActive: ko.observable(true)
+						name: 'Page',
+						panelType: 'clear',
+						items: obj.error || obj.res.page,
+						isActive: ko.observable(false)
 					}
-				])
+				]
 			}, obj);
-
 			return item;
 		});
 
@@ -89,7 +87,9 @@ RequestsListViewModel.prototype.onClearRequests = function (vm, event) {
  * @param event
  */
 RequestsListViewModel.prototype.getDetails = function (vm, event) {
-	jsonHighlight(this.tabs()[0].resHTML, this.res);
+	if (!this.resHTML().length) {
+		jsonHighlight(this.resHTML, this.res);
+	}
 	this.active(!this.active());
 };
 

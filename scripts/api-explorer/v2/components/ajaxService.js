@@ -65,7 +65,7 @@ var prepareUrl = function (arr) {
 };
 
 // sends request to get the second column
-var sendPrimaryRequest = function (arr, requests) {
+var sendPrimaryRequest = function (arr, requests, global) {
   // console.clear();
   var url = prepareUrl(arr);
   // console.log(url);
@@ -87,6 +87,7 @@ var sendPrimaryRequest = function (arr, requests) {
 				message: err ? err.detail: 'No responce data!'
 			}
 		} else {
+			global.lastResponse = res.responseJSON;
 			resObj.res = res.responseJSON;
 		}
 

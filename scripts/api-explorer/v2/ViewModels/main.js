@@ -3,20 +3,23 @@
  * For development please use Webpack to bundle all modules
  * It can be made using npm scripts cmd - 'webpack'
  */
+// custom bindings
+require('../customBindings/foreachProp');
 
 // Components
-var base = require('./../components/base');
-var apiKey = require('./../components/apikey');
-var ajaxService = require('./../components/ajaxService');
+var base = require('../components/base');
+var apiKey = require('../components/apikey');
+var ajaxService = require('../components/ajaxService');
 
 // View Models
-var MenuViewModel = require('./../ViewModels/menuViewModel');
+var MenuViewModel = require('../ViewModels/menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
 var RequestsListViewModel = require('./requestsListViewModel');
 
 // Modules
-var customSelect = require('./../components/customSelect');
+var accordion = require('../components/accordion.component');
+var customSelect = require('../components/customSelect');
 
 /**
  * Main application view-model
@@ -49,7 +52,7 @@ function AppViewModel(obj) {
  * Send request method
  */
 AppViewModel.prototype.onClickSendBtn = function () {
-  ajaxService(this.URL(), this.requests);
+  ajaxService(this.URL(), this.requests, base);
 };
 
 /**
@@ -70,6 +73,29 @@ AppViewModel.prototype.getUrl = function () {
     this.apiKey,
     this.selectedParams()
   ];
+};
+
+/**
+ * Gets deep prop
+ * @returns {*[]}
+ */
+Object.getProp = function(o, s) {
+	if (typeof o !== 'object' || !s) {
+		console.log(o,s);
+		return;
+	}
+	s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+	s = s.replace(/^\./, '');           // strip a leading dot
+	var a = s.split('.');
+	for (var i = 0, n = a.length; i < n; ++i) {
+		var k = a[i];
+		if (k in o) {
+			o = o[k];
+		} else {
+			return;
+		}
+	}
+	return o;
 };
 
 /**

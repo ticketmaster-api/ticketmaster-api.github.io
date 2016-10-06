@@ -16,7 +16,13 @@ module.exports = {
   },
 	module: {
 		loaders: [
-			{ test: /\.worker\.js$/,loader: "worker-loader?inline&output.filename=[name].js" }
+			{
+				test: /\.worker\.js$/, loader: "worker-loader",
+				query: {
+					inline: true,
+					name: "[name].js"
+				}
+			}
 		]
 	},
   devtool: 'inline-source-map',
