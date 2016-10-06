@@ -29,6 +29,8 @@
         email: userEmail
       }]);
     } else {
+      sessionStorage.setItem('tk-api-key', '');
+      sessionStorage.setItem('tk-api-email', '');
       console.log("no coockie found");
     }
   }
