@@ -3,7 +3,7 @@ layout: base-content
 categories:
 - support
 - branding-guide
-title: Branding guide
+title: The branding guide
 excerpt: This guide explains how to properly represent the Ticketmaster brand in your sites and apps that use our developer products.
 keywords: guide, explain, represent Ticketmaster brand, logo, verified tickets
 ---
