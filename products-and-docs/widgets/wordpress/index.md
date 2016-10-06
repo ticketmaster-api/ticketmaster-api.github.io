@@ -46,4 +46,16 @@ Go to Plugins into your Wordpress admin panel and configure the widget.
 
 ![wordpress4](/assets/img/products-and-docs/wp-t-4.jpg)
 
+### Step 5: 
+
+Select a widget and configure it. 
+
+![wordpress5](/assets/img/products-and-docs/wp-t-5.jpg)
+
+### Step 6: 
+
+Add widget on a page. 
+
+![wordpress6](/assets/img/products-and-docs/wp-t-6.jpg)
+
 
