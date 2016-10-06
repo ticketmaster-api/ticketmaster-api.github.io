@@ -84,7 +84,7 @@ layout: default
 {% if page.categories contains "replace_apikey" %}
 <script>
     //var userKey = sessionStorage.getItem('tk-api-key');
-    var userKey=[], userEmail=null;
+    var userKey=null, userEmail=null;
     function checkCookie() {
         var userApiKey;
         var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
@@ -128,7 +128,7 @@ layout: default
     }
 
     $(window).on('login',function(){
-        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+        //replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
     });
 </script>
 {% endif %}
