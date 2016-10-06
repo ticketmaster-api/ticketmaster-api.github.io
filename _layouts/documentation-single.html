@@ -117,12 +117,14 @@ layout: default
 
     userKey = checkCookie();
 
+    console.log('userKey' , userKey);
     if(userKey !== null) {
+        console.log('userKey' , userKey);
         replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     }
     
     $(window).on('login',function(){
-        replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
+        //replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     });
 </script>
 {% endif %}
