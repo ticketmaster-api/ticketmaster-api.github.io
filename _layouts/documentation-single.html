@@ -78,18 +78,16 @@ layout: default
 
 {% if page.categories contains "replace_apikey" %}
 <script>
-    var userKey = null;
-    var userApiKey=[];
+   var userKey=[], userEmail=null;
     function checkCookie() {
-        var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"), //decode and convert string to array
-            userEmail = window.atob(getCookie("tk-api-email")) ;//decode email string
+        var userApiKey;
+        var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
 
-        if (apiKeys != "" && userEmail != "") {
+        if (apiKeys != "") {
             userApiKey = apiKeys[apiKeys.length-1];
-            userKey = userApiKey[userApiKey.length-1];
-        } else {
-            console.log("no coockie found");
+            userApiKey = userApiKey[userApiKey.length-1];
         }
+        return userApiKey;
     }
 
     //get Cookie by name
@@ -117,7 +115,7 @@ layout: default
         });
     }
 
-    checkCookie();
+    userKey = checkCookie();
 
     if(userKey !== null) {
         replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
