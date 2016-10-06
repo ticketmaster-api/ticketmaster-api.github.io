@@ -93,6 +93,7 @@ layout: default
             userApiKey = apiKeys[apiKeys.length-1];
             userApiKey = userApiKey[userApiKey.length-1];
         }
+	    console.log('** userKey' , userApiKey);
         return userApiKey;
     }
 
@@ -123,7 +124,8 @@ layout: default
         });
     }
 
-    if(userKey !== null) {
+    if(checkCookie() !== null) {
+	console.log('userKey' , userKey);
         replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
     }
 
