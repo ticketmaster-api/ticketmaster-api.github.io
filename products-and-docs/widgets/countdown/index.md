@@ -4,5 +4,5 @@ categories:
 - documentation
 - widgets
 - widget-countdown
-title: Widget countdown
+title: Countdown widget
 ---
