@@ -2,7 +2,8 @@
   var apiKey = sessionStorage.getItem('tk-api-key');
   var DOMAIN = "https://developer-acct.ticketmaster.com";
 
-  if(apiKey === null){
+  /*
+	if(apiKey === null){
     var onLoadHandler = function() {
       var win = window.frames.target;
       win.postMessage("", DOMAIN);
@@ -17,7 +18,7 @@
     var body = document.getElementsByTagName("body")[0];
     body.appendChild(iframe);
   }
-  // Wait for response
+  /* Wait for response
   checkResponse = function(event){
     var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
     if (origin == DOMAIN) {
@@ -27,7 +28,7 @@
         sessionStorage.setItem('tk-api-email', event.data.email);
         document.getElementsByClassName("apigee-login")[0].textContent = event.data.email;
 
-        /*add custom login event for widget*/
+        /*add custom login event for widget
         $(window).trigger('login', [{
           key: event.data.key,
           email: event.data.email
@@ -37,12 +38,15 @@
       console.warn(origin + " is not allowed");
     }
   };
+  */
 
+  /*
   if (window.addEventListener) {
     window.addEventListener("message", checkResponse);
   } else {
     // IE8
     window.attachEvent("onmessage", checkResponse);
   }
+  */
 
 })();

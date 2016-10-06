@@ -570,21 +570,21 @@ div[w-theme="calendar"] .tab {
     display: none;
 }
 
-div[w-theme="calendar"] #weekSсheduler {
+div[w-theme="calendar"] .weekSсheduler {
     background: #fff;
     padding-top: 0;
     height: 273px;
     position: relative;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days {
+div[w-theme="calendar"] .weekSсheduler .days {
     width: 270px;
     height: 258px;
     margin-left: 17px;
     padding-top: 15px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d {
+div[w-theme="calendar"] .weekSсheduler .days .d {
     display: inline-block;
     width: 25px;
     height: 28px;
@@ -594,7 +594,7 @@ div[w-theme="calendar"] #weekSсheduler .days .d {
     margin: 0 5px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d .round {
+div[w-theme="calendar"] .weekSсheduler .days .d .round {
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -604,11 +604,11 @@ div[w-theme="calendar"] #weekSсheduler .days .d .round {
     margin-top: 2px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d .round:hover {
+div[w-theme="calendar"] .weekSсheduler .days .d .round:hover {
     cursor: pointer;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup {
+div[w-theme="calendar"] .weekSсheduler .days .popup {
     width: 265px;
     height: 185px;
     overflow: hidden;
@@ -624,13 +624,13 @@ div[w-theme="calendar"] #weekSсheduler .days .popup {
     border-radius: 4px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup.single,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up.single {
+div[w-theme="calendar"] .weekSсheduler .days .popup.single,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up.single {
     height: auto;
     max-height: 185px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup-up {
+div[w-theme="calendar"] .weekSсheduler .days .popup-up {
     width: 265px;
     height: 185px;
     overflow: hidden;
@@ -646,7 +646,7 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up {
     border-radius: 4px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .tail {
+div[w-theme="calendar"] .weekSсheduler .days .tail {
     width:10px;
     height: 5px;
     display: block;
@@ -656,7 +656,7 @@ div[w-theme="calendar"] #weekSсheduler .days .tail {
     z-index: 10;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .tail-up {
+div[w-theme="calendar"] .weekSсheduler .days .tail-up {
     width:10px;
     height: 5px;
     display: block;
@@ -674,7 +674,7 @@ div[w-theme="calendar"] .popup, div[w-theme="calendar"] .popup-up {
     box-sizing: border-box;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .tail:before {
+div[w-theme="calendar"] .weekSсheduler .days .tail:before {
     content: " ";
     display: block;
     width: 0;
@@ -686,7 +686,7 @@ div[w-theme="calendar"] #weekSсheduler .days .tail:before {
     top: -5px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .tail-up:before {
+div[w-theme="calendar"] .weekSсheduler .days .tail-up:before {
     content: " ";
     display: block;
     width: 0;
@@ -698,8 +698,8 @@ div[w-theme="calendar"] #weekSсheduler .days .tail-up:before {
     top: -5px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event {
+div[w-theme="calendar"] .weekSсheduler .days .popup .event,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event {
     display: block;
     overflow: hidden;
     border-bottom: 1px solid rgba(65, 65, 65, 0.2);
@@ -707,15 +707,15 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up .event {
     margin-bottom: 10px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event:last-child,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event:last-child {
+div[w-theme="calendar"] .weekSсheduler .days .popup .event:last-child,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event:last-child {
     border-bottom: 0;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .img,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .img {
+div[w-theme="calendar"] .weekSсheduler .days .popup .event .img,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event .img {
     width: 30px;
     height: 30px;
     float: left;
@@ -724,16 +724,16 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .img {
     margin-top: 2px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder {
+div[w-theme="calendar"] .weekSсheduler .days .popup .event .event-holder,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event .event-holder {
     overflow: hidden;
     display: block;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name,
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .name:hover,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .name,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .name:hover {
+div[w-theme="calendar"] .weekSсheduler .days .popup .event .event-holder .name,
+div[w-theme="calendar"] .weekSсheduler .days .popup .event .event-holder .name:hover,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event .event-holder .name,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event .event-holder .name:hover {
     font-family: "TMSans-Bold";
     font-size: 14px;
     line-height: 18px;
@@ -747,8 +747,8 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .na
     -webkit-line-clamp: 2;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .date,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .date {
+div[w-theme="calendar"] .weekSсheduler .days .popup .event .event-holder .date,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event .event-holder .date {
     font-family: "TMSans-Bold";
     font-size: 11px;
     line-height: 14px;
@@ -758,8 +758,8 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .da
     margin-bottom: 4px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup .event .event-holder .place,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .place {
+div[w-theme="calendar"] .weekSсheduler .days .popup .event .event-holder .place,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up .event .event-holder .place {
     font-family: "TMSans-Light";
     font-size: 11px;
     line-height: 14px;
@@ -768,40 +768,40 @@ div[w-theme="calendar"] #weekSсheduler .days .popup-up .event .event-holder .pl
     display: block;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup:focus,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up:focus {
+div[w-theme="calendar"] .weekSсheduler .days .popup:focus,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up:focus {
     outline: none;
     border: none;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .popup.show,
-div[w-theme="calendar"] #weekSсheduler .days .popup-up.show {
+div[w-theme="calendar"] .weekSсheduler .days .popup.show,
+div[w-theme="calendar"] .weekSсheduler .days .popup-up.show {
     display: block;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d:first-child {
+div[w-theme="calendar"] .weekSсheduler .days .d:first-child {
     margin-left: 24px;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d:nth-child(7) {
+div[w-theme="calendar"] .weekSсheduler .days .d:nth-child(7) {
     margin-right: 0;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .d:last-child {
+div[w-theme="calendar"] .weekSсheduler .days .time-wrapper .time-holder .d:last-child {
     margin-right:0;
     border-right: none;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d.active {
+div[w-theme="calendar"] .weekSсheduler .days .d.active {
     font-family: 'TMSans-Bold', Arial, serif;
     color: #768692;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .d .num {
+div[w-theme="calendar"] .weekSсheduler .days .d .num {
     display: block;
 }
 
-div[w-theme="calendar"] #weekSсheduler .ss-wrapper {
+div[w-theme="calendar"] .weekSсheduler .ss-wrapper {
     overflow : hidden;
     height   : 100%;
     position : relative;
@@ -809,7 +809,7 @@ div[w-theme="calendar"] #weekSсheduler .ss-wrapper {
     float: left;
 }
 
-div[w-theme="calendar"] #weekSсheduler .ss-content {
+div[w-theme="calendar"] .weekSсheduler .ss-content {
     height          : 100%;
     width           : 100%;
     padding         : 0 32px 0 0;
@@ -819,7 +819,7 @@ div[w-theme="calendar"] #weekSсheduler .ss-content {
     box-sizing      : border-box;
 }
 
-div[w-theme="calendar"] #weekSсheduler .ss-scroll {
+div[w-theme="calendar"] .weekSсheduler .ss-scroll {
     position            : relative;
     background          : rgba(153, 153, 153, .2);
     width               : 6px;
@@ -831,27 +831,27 @@ div[w-theme="calendar"] #weekSсheduler .ss-scroll {
     transition: opacity 0.25s linear;
 }
 
-div[w-theme="calendar"] #weekSсheduler .ss-container:hover .ss-scroll {
+div[w-theme="calendar"] .weekSсheduler .ss-container:hover .ss-scroll {
     opacity: 1;
 }
 
-div[w-theme="calendar"] #weekSсheduler .popup .ss-content,
-div[w-theme="calendar"] #weekSсheduler .popup-up .ss-content {
+div[w-theme="calendar"] .weekSсheduler .popup .ss-content,
+div[w-theme="calendar"] .weekSсheduler .popup-up .ss-content {
     width: 120% !important;
 }
 
-div[w-theme="calendar"] #weekSсheduler .popup.single .ss-content,
-div[w-theme="calendar"] #weekSсheduler .popup-up.single .ss-content {
+div[w-theme="calendar"] .weekSсheduler .popup.single .ss-content,
+div[w-theme="calendar"] .weekSсheduler .popup-up.single .ss-content {
     width: 110% !important;
 }
 
-div[w-theme="calendar"] #weekSсheduler .popup .ss-scroll,
-div[w-theme="calendar"] #weekSсheduler .popup-up .ss-scroll {
+div[w-theme="calendar"] .weekSсheduler .popup .ss-scroll,
+div[w-theme="calendar"] .weekSсheduler .popup-up .ss-scroll {
     right: -243px !important;
     background-color: rgba(255,255,255,0.2);
 }
 
-div[w-theme="calendar"] #weekSсheduler .ss-grabbed {
+div[w-theme="calendar"] .weekSсheduler .ss-grabbed {
     user-select: none;
     -o-user-select: none;
     -moz-user-select: none;
@@ -859,18 +859,18 @@ div[w-theme="calendar"] #weekSсheduler .ss-grabbed {
     -webkit-user-select: none;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .time-wrapper {
+div[w-theme="calendar"] .weekSсheduler .days .time-wrapper {
     width: 275px;
     height: 220px;
     margin: 0 auto;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder {
+div[w-theme="calendar"] .weekSсheduler .days .time-wrapper .time-holder {
     width:280px;
     height: auto;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .t {
+div[w-theme="calendar"] .weekSсheduler .days .time-wrapper .time-holder .t {
     width: 272px;
     border-top: 1px dashed rgba(183, 201, 211, 0.6);
     margin: 0;
@@ -880,7 +880,7 @@ div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .t {
     overflow: visible;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .tl {
+div[w-theme="calendar"] .weekSсheduler .days .time-wrapper .time-holder .tl {
     display: block;
     float: left;
     text-align: left;
@@ -892,7 +892,7 @@ div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .tl {
     padding: 0;
 }
 
-div[w-theme="calendar"] #weekSсheduler .days .time-wrapper .time-holder .d {
+div[w-theme="calendar"] .weekSсheduler .days .time-wrapper .time-holder .d {
     display: block;
     float: left;
     width: 24px;
@@ -1046,7 +1046,7 @@ div[w-theme="calendar"] #calendar {
     height: 273px;
 }
 
-div[w-theme="calendar"] #monthScheduler {
+div[w-theme="calendar"] .monthScheduler {
     position: relative;
 }
 
@@ -1475,25 +1475,25 @@ div[w-theme="calendar"][w-colorscheme="dark"] .selector-content {
     background: #768692;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler {
+div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler {
     background: #414141;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .t {
+div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .days .time-wrapper .time-holder .t {
     border-top: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .d {
+div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .days .time-wrapper .time-holder .d {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .d,
-div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .d.active,
-div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .tl {
+div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .days .d,
+div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .days .d.active,
+div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .days .time-wrapper .time-holder .tl {
     color: #c8c8c9;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #weekSсheduler .days .time-wrapper .time-holder .d:last-child {
+div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .days .time-wrapper .time-holder .d:last-child {
     border-right: 0;
 }
 
