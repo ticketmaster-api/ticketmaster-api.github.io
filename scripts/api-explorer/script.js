@@ -32,7 +32,7 @@ Object.byString = function(o, s) {
   var base = {}, //base object with parsed API data
     defaultMethod, //the very first method found (rendered by default)
     selectedMethod, //currently selected method
-    apiKey = sessionStorage.getItem('tk-api-key') || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0", //API Key
+    apiKey = checkCookie() || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0", //API Key
     apiKeyDefault = apiKey, // default api key (temporarily used when there is no other api key available)
     slider, // slider with response columns
     spinner, // spinner
@@ -56,11 +56,36 @@ Object.byString = function(o, s) {
     nextCircleColorIndex = currentColumnColorIndex, // color index used to display in circles
     screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization),
     worker = new Worker('../scripts/components/highlight-worker.js'); // Json-formatter worker
+  
+    function checkCookie() {
+          var userApiKey;
+          var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+          if (apiKeys != "") {
+              userApiKey = apiKeys[apiKeys.length-1];
+              userApiKey = userApiKey[userApiKey.length-1];
+          }
+          return userApiKey;
+      }
+      //get Cookie by name
+      function getCookie(cname) {
+          var name = cname + "=";
+          var ca = document.cookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length,c.length);
+              }
+          }
+          return "";
+      }
 
   /* INITIALIZATION PHASE */
 
-  $(function () {
-    var item = sessionStorage.getItem('tk-api-email');
+  $(function () {    
+    var item = window.atob(getCookie("tk-api-email"));
     document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
     readFromWADL(); //parse WADL file when document is ready
     setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
