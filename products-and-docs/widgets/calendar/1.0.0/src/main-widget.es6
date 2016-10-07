@@ -2459,8 +2459,8 @@ class MonthScheduler {
         }
     }
 
-    initMessage(parentContainer) {
-        this.eventsRootContainer = parentContainer;
+    initMessage(schedulerRoot) {
+        this.eventsRootContainer = schedulerRoot;
         this.messageDialogContainer = document.createElement('div');
         this.messageDialogContainer.classList.add("event-message-container");
         // this.messageDialogContainer.classList.add("hide");
@@ -2508,7 +2508,7 @@ class MonthScheduler {
     startMonth() {
         let spinner = this.monthSchedulerRoot.querySelector('.spinner-container');
         spinner.classList.remove('hide');
-        this.getJSON( this.getMonthEventsHandler(), this.apiUrl, this.eventReqAttrs );
+        this.getJSON( this.getMonthEventsHandler, this.apiUrl, this.eventReqAttrs );
     }
 
     getMonthEventsHandler() {
@@ -2516,9 +2516,10 @@ class MonthScheduler {
         let place;
         let address;
         let monthEvents = [];
-        // let widget = this.widget;
-        let schedulerRoot = this.monthSchedulerRoot;
-        let calendarWidgetRoot = this.monthSchedulerRoot.parentNode.parentNode.parentNode;
+        let widget = this.widget;
+        let schedulerRoot = widget.monthSchedulerRoot;
+        let calendarWidgetRoot = this.widget.calendarRootContainer.parentNode.parentNode.parentNode.parentNode;
+        let spinner = schedulerRoot.querySelector('.spinner-container');
         let prm = [];
         let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=aJVApdB1RoA41ejGebe0o4Ai9gufoCbd&latlong=36.1697096,-115.1236952&keyword=&startDateTime=2016-08-01T00:00:00Z&endDateTime=2016-09-02T23:59:59Z&classificationId=&radius=5&size=500&page=0';
 
@@ -2533,7 +2534,7 @@ class MonthScheduler {
 
                     if (events.page.totalElements != 0) {
 
-                        let currentMonth = document.querySelector('[w-type="calendar"]').getAttribute('w-period').substr(5, 2);
+                        let currentMonth = calendarWidgetRoot.getAttribute('w-period').substr(5, 2);
                         if (currentMonth == '') {
                             currentMonth = new Date().getMonth() + 1;
                             if (parseInt(currentMonth) <= 9) currentMonth = '0' + currentMonth;
@@ -2638,10 +2639,10 @@ class MonthScheduler {
                     let month = new Date().getMonth() + 1;
 
 
-                    if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length == 7) {
-                            year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4);
-                            month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7);
+                    if (calendarWidgetRoot.getAttribute("w-period") != 'week') {
+                        if (calendarWidgetRoot.getAttribute("w-period").length == 7) {
+                            year = calendarWidgetRoot.getAttribute("w-period").substr(0, 4);
+                            month = calendarWidgetRoot.getAttribute("w-period").substr(5, 7);
                         }
                     }
 
@@ -2759,15 +2760,15 @@ class MonthScheduler {
                         spinner.classList.add('hide');
                         let le = value.length + 1;
                         var curMonth;
-                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") == 'week') {
+                        if (calendarWidgetRoot.getAttribute("w-period") == 'week') {
                             curMonth = new Date().getMonth() + 1;
                         }
                         else {
-                            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 1) == '0') {
-                                curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6, 1);
+                            if (calendarWidgetRoot.getAttribute("w-period").substr(5, 1) == '0') {
+                                curMonth = calendarWidgetRoot.getAttribute("w-period").substr(6, 1);
                             }
                             else {
-                                curMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 2);
+                                curMonth = calendarWidgetRoot.getAttribute("w-period").substr(5, 2);
                             }
                         }
                         for (var e = 0; e <= le; e++) {
@@ -2861,10 +2862,10 @@ class MonthScheduler {
                         let month = new Date().getMonth() + 1;
 
 
-                        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
-                            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length == 7) {
-                                year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0, 4);
-                                month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5, 7);
+                        if (calendarWidgetRoot.getAttribute("w-period") != 'week') {
+                            if (calendarWidgetRoot.getAttribute("w-period").length == 7) {
+                                year = calendarWidgetRoot.getAttribute("w-period").substr(0, 4);
+                                month = calendarWidgetRoot.getAttribute("w-period").substr(5, 7);
                             }
                         }
 
