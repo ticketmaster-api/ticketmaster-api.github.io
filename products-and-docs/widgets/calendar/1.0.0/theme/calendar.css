@@ -1040,23 +1040,23 @@ div[w-theme="calendar"] .selector-content span:hover {
     cursor: pointer;
 }
 
-div[w-theme="calendar"] #calendar {
-    margin: 0px auto;
-    padding: 0;
-    height: 273px;
-}
-
 div[w-theme="calendar"] .monthScheduler {
     position: relative;
 }
 
-div[w-theme="calendar"] #calendar table {
+div[w-theme="calendar"] .monthScheduler .calendar {
+	margin: 0px auto;
+	padding: 0;
+	height: 273px;
+}
+
+div[w-theme="calendar"] .monthScheduler .calendar table {
     width: 100%;
     border: 0;
 }
 
-div[w-theme="calendar"] #calendar table td,
-div[w-theme="calendar"] #calendar table th {
+div[w-theme="calendar"] .monthScheduler .calendar table td,
+div[w-theme="calendar"] .monthScheduler .calendar table th {
     width: 36px;
     height: 36px;
     padding: 0;
@@ -1070,7 +1070,7 @@ div[w-theme="calendar"] #calendar table th {
     margin: 0 2px;
 }
 
-div[w-theme="calendar"] #calendar table th {
+div[w-theme="calendar"] .monthScheduler .calendar table th {
     font-weight: normal;
     background: none;
     text-transform: uppercase;
@@ -1078,38 +1078,38 @@ div[w-theme="calendar"] #calendar table th {
     margin-top: 21px;
 }
 
-div[w-theme="calendar"] #calendar table tr {
+div[w-theme="calendar"] .monthScheduler .calendar table tr {
     position: relative;
     display: block;
 }
 
-div[w-theme="calendar"] #calendar table td {
+div[w-theme="calendar"] .monthScheduler .calendar table td {
     position: static;
     vertical-align: middle;
     box-sizing: border-box;
 }
 
-div[w-theme="calendar"] #calendar table tr:nth-child(even) {
+div[w-theme="calendar"] .monthScheduler .calendar table tr:nth-child(even) {
     background: none;
 }
 
-div[w-theme="calendar"] #calendar td.dis {
+div[w-theme="calendar"] .monthScheduler .calendar td.dis {
     color: #d9d9d9;
 }
 
-div[w-theme="calendar"] #calendar table td.today,
-div[w-theme="calendar"] #calendar table td.today .round {
+div[w-theme="calendar"] .monthScheduler .calendar table td.today,
+div[w-theme="calendar"] .monthScheduler .calendar table td.today .round {
     color: #208dcf;
     font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
 }
 
-div[w-theme="calendar"] #calendar .round-holder {
+div[w-theme="calendar"] .monthScheduler .calendar .round-holder {
     width: 33px;
     height: 33px;
     display: block;
     position: relative;
 }
-div[w-theme="calendar"] #calendar .round {
+div[w-theme="calendar"] .monthScheduler .calendar .round {
     width: 30px;
     height: 30px;
     background: #fff;
@@ -1124,7 +1124,7 @@ div[w-theme="calendar"] #calendar .round {
     box-sizing: border-box;
 }
 
-div[w-theme="calendar"] #calendar .round .count {
+div[w-theme="calendar"] .monthScheduler .calendar .round .count {
     display: block;
     position: absolute;
     padding: 3px 5px;
@@ -1140,22 +1140,22 @@ div[w-theme="calendar"] #calendar .round .count {
     line-height: 10px;
 }
 
-div[w-theme="calendar"] #calendar .round:hover,
-div[w-theme="calendar"] #calendar .round:hover .count,
-div[w-theme="calendar"] #calendar .round-holder.active .round,
-div[w-theme="calendar"] #calendar .round-holder.active .count {
+div[w-theme="calendar"] .monthScheduler .calendar .round:hover,
+div[w-theme="calendar"] .monthScheduler .calendar .round:hover .count,
+div[w-theme="calendar"] .monthScheduler .calendar .round-holder.active .round,
+div[w-theme="calendar"] .monthScheduler .calendar .round-holder.active .count {
     cursor: pointer;
     background: #ba1079;
     color: #fff !important;
     border-color: #ba1079;
 }
 
-div[w-theme="calendar"] #calendar .round:hover .count,
-div[w-theme="calendar"] #calendar .round-holder.active .count {
+div[w-theme="calendar"] .monthScheduler .calendar .round:hover .count,
+div[w-theme="calendar"] .monthScheduler .calendar .round-holder.active .count {
     border-color: #fff;
 }
 
-div[w-theme="calendar"] #calendar .popup {
+div[w-theme="calendar"] .monthScheduler .calendar .popup {
     width: 265px;
     height: 185px;
     overflow: hidden;
@@ -1171,13 +1171,13 @@ div[w-theme="calendar"] #calendar .popup {
     border-radius: 4px;
 }
 
-div[w-theme="calendar"] #calendar .popup.single,
-div[w-theme="calendar"] #calendar .popup-up.single {
+div[w-theme="calendar"] .monthScheduler .calendar .popup.single,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up.single {
     height: auto;
     max-height: 185px;
 }
 
-div[w-theme="calendar"] #calendar .popup-up {
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up {
     width: 265px;
     height: 185px;
     overflow: hidden;
@@ -1193,7 +1193,7 @@ div[w-theme="calendar"] #calendar .popup-up {
     border-radius: 4px;
 }
 
-div[w-theme="calendar"] #calendar .tail {
+div[w-theme="calendar"] .monthScheduler .calendar .tail {
     width:10px;
     height: 5px;
     display: block;
@@ -1203,7 +1203,7 @@ div[w-theme="calendar"] #calendar .tail {
     z-index: 10;
 }
 
-div[w-theme="calendar"] #calendar .tail-up {
+div[w-theme="calendar"] .monthScheduler .calendar .tail-up {
     width:10px;
     height: 5px;
     display: block;
@@ -1213,7 +1213,7 @@ div[w-theme="calendar"] #calendar .tail-up {
     z-index: 10;
 }
 
-div[w-theme="calendar"] #calendar .tail:before {
+div[w-theme="calendar"] .monthScheduler .calendar .tail:before {
     content: " ";
     display: block;
     width: 0;
@@ -1225,7 +1225,7 @@ div[w-theme="calendar"] #calendar .tail:before {
     top: -5px;
 }
 
-div[w-theme="calendar"] #calendar .tail-up:before {
+div[w-theme="calendar"] .monthScheduler .calendar .tail-up:before {
     content: " ";
     display: block;
     width: 0;
@@ -1237,8 +1237,8 @@ div[w-theme="calendar"] #calendar .tail-up:before {
     top: -5px;
 }
 
-div[w-theme="calendar"] #calendar .popup .event,
-div[w-theme="calendar"] #calendar .popup-up .event {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event {
     display: block;
     overflow: hidden;
     border-bottom: 1px solid rgba(65, 65, 65, 0.2);
@@ -1246,15 +1246,15 @@ div[w-theme="calendar"] #calendar .popup-up .event {
     margin-bottom: 10px;
 }
 
-div[w-theme="calendar"] #calendar .popup .event:last-child,
-div[w-theme="calendar"] #calendar .popup-up .event:last-child {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event:last-child,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event:last-child {
     border-bottom: 0;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-div[w-theme="calendar"] #calendar .popup .event .img,
-div[w-theme="calendar"] #calendar .popup-up .event .img {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event .img,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event .img {
     width: 30px;
     height: 30px;
     float: left;
@@ -1263,16 +1263,16 @@ div[w-theme="calendar"] #calendar .popup-up .event .img {
     margin-top: 2px;
 }
 
-div[w-theme="calendar"] #calendar .popup .event .event-holder,
-div[w-theme="calendar"] #calendar .popup-up .event .event-holder {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event .event-holder,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event .event-holder {
     overflow: hidden;
     display: block;
 }
 
-div[w-theme="calendar"] #calendar .popup .event .event-holder .name,
-div[w-theme="calendar"] #calendar .popup .event .event-holder .name:hover,
-div[w-theme="calendar"] #calendar .popup-up .event .event-holder .name,
-div[w-theme="calendar"] #calendar .popup-up .event .event-holder .name:hover {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event .event-holder .name,
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event .event-holder .name:hover,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event .event-holder .name,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event .event-holder .name:hover {
     font-family: "TMSans-Bold";
     font-size: 14px;
     line-height: 18px;
@@ -1286,8 +1286,8 @@ div[w-theme="calendar"] #calendar .popup-up .event .event-holder .name:hover {
     -webkit-line-clamp: 2;
 }
 
-div[w-theme="calendar"] #calendar .popup .event .event-holder .date,
-div[w-theme="calendar"] #calendar .popup-up .event .event-holder .date {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event .event-holder .date,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event .event-holder .date {
     font-family: "TMSans-Bold";
     font-size: 11px;
     line-height: 14px;
@@ -1297,8 +1297,8 @@ div[w-theme="calendar"] #calendar .popup-up .event .event-holder .date {
     margin-bottom: 4px;
 }
 
-div[w-theme="calendar"] #calendar .popup .event .event-holder .place,
-div[w-theme="calendar"] #calendar .popup-up .event .event-holder .place {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .event .event-holder .place,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .event .event-holder .place {
     font-family: "TMSans-Light";
     font-size: 11px;
     line-height: 14px;
@@ -1307,18 +1307,18 @@ div[w-theme="calendar"] #calendar .popup-up .event .event-holder .place {
     display: block;
 }
 
-div[w-theme="calendar"] #calendar .popup:focus,
-div[w-theme="calendar"] #calendar .popup-up:focus {
+div[w-theme="calendar"] .monthScheduler .calendar .popup:focus,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up:focus {
     outline: none;
     border: none;
 }
 
-div[w-theme="calendar"] #calendar .popup.show,
-div[w-theme="calendar"] #calendar .popup-up.show {
+div[w-theme="calendar"] .monthScheduler .calendar .popup.show,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up.show {
     display: block;
 }
 
-div[w-theme="calendar"] #calendar .ss-wrapper {
+div[w-theme="calendar"] .monthScheduler .calendar .ss-wrapper {
     overflow : hidden;
     height   : 100%;
     position : relative;
@@ -1326,7 +1326,7 @@ div[w-theme="calendar"] #calendar .ss-wrapper {
     float: left;
 }
 
-div[w-theme="calendar"] #calendar .ss-content {
+div[w-theme="calendar"] .monthScheduler .calendar .ss-content {
     height          : 100%;
     width           : 100%;
     padding         : 0 32px 0 0;
@@ -1336,7 +1336,7 @@ div[w-theme="calendar"] #calendar .ss-content {
     box-sizing      : border-box;
 }
 
-div[w-theme="calendar"] #calendar .ss-scroll {
+div[w-theme="calendar"] .monthScheduler .calendar .ss-scroll {
     position            : relative;
     background          : rgba(153, 153, 153, .2);
     width               : 6px;
@@ -1348,27 +1348,27 @@ div[w-theme="calendar"] #calendar .ss-scroll {
     transition: opacity 0.25s linear;
 }
 
-div[w-theme="calendar"] #calendar .ss-container:hover .ss-scroll {
+div[w-theme="calendar"] .monthScheduler .calendar .ss-container:hover .ss-scroll {
     opacity: 1;
 }
 
-div[w-theme="calendar"] #calendar .popup .ss-content,
-div[w-theme="calendar"] #calendar .popup-up .ss-content {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .ss-content,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .ss-content {
     width: 120% !important;
 }
 
-div[w-theme="calendar"] #calendar .popup.single .ss-content,
-div[w-theme="calendar"] #calendar .popup-up.single .ss-content {
+div[w-theme="calendar"] .monthScheduler .calendar .popup.single .ss-content,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up.single .ss-content {
     width: 110% !important;
 }
 
-div[w-theme="calendar"] #calendar .popup .ss-scroll,
-div[w-theme="calendar"] #calendar .popup-up .ss-scroll {
+div[w-theme="calendar"] .monthScheduler .calendar .popup .ss-scroll,
+div[w-theme="calendar"] .monthScheduler .calendar .popup-up .ss-scroll {
     right: -243px !important;
     background-color: rgba(255,255,255,0.2);
 }
 
-div[w-theme="calendar"] #calendar .ss-grabbed {
+div[w-theme="calendar"] .monthScheduler .calendar .ss-grabbed {
     user-select: none;
     -o-user-select: none;
     -moz-user-select: none;
@@ -1376,7 +1376,7 @@ div[w-theme="calendar"] #calendar .ss-grabbed {
     -webkit-user-select: none;
 }
 
-div[w-theme="calendar"] #calendar #month-update {
+div[w-theme="calendar"] .monthScheduler .calendar .month-update {
     display: none;
 }
 
@@ -1497,43 +1497,43 @@ div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .days .time-wrappe
     border-right: 0;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar table tr:nth-child(odd) {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar table tr:nth-child(odd) {
     background: none;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar .round {
     color: #d9d9d9;
     background: none;
     border: 1px solid rgba(255,255,255,0.3);
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round .count {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar .round .count {
     border-color: #414141;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover,
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover .count,
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round-holder.active .round,
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round-holder.active .count {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar .round:hover,
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar .round:hover .count,
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar .round-holder.active .round,
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar .round-holder.active .count {
     cursor: pointer;
     background: #ba1079;
     color: #fff !important;
     border-color: #ba1079;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar .round:hover .count {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar .round:hover .count {
     border-color: #414141;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar td.dis {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar td.dis {
     color: #696969;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar table th {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar table th {
     color: #c8c8c9;
 }
 
-div[w-theme="calendar"][w-colorscheme="dark"] #calendar table td {
+div[w-theme="calendar"][w-colorscheme="dark"] .monthScheduler .calendar table td {
     color: #8d8d8d;
 }
 

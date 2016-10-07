@@ -2518,7 +2518,7 @@ class MonthScheduler {
         let monthEvents = [];
         let widget = this.widget;
         let schedulerRoot = widget.monthSchedulerRoot;
-        let calendarWidgetRoot = this.widget.calendarRootContainer.parentNode.parentNode.parentNode.parentNode;
+        let calendarWidgetRoot = schedulerRoot.parentNode.parentNode.parentNode;
         let spinner = schedulerRoot.querySelector('.spinner-container');
         let prm = [];
         let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=aJVApdB1RoA41ejGebe0o4Ai9gufoCbd&latlong=36.1697096,-115.1236952&keyword=&startDateTime=2016-08-01T00:00:00Z&endDateTime=2016-09-02T23:59:59Z&classificationId=&radius=5&size=500&page=0';
@@ -2646,7 +2646,7 @@ class MonthScheduler {
                         }
                     }
 
-                    var elem = schedulerRoot.getElementsByClassName(calendarClass);
+                    var elem = schedulerRoot.getElementsByClassName(calendarClass)[0];
                     var mon = parseInt(month) - 1;
                     var d = new Date(year, mon);
                     var table = '<table><tr><th>s</th><th>m</th><th>t</th><th>w</th><th>t</th><th>f</th><th>s</th></tr><tr>';
@@ -2869,7 +2869,7 @@ class MonthScheduler {
                             }
                         }
 
-                        var elem = schedulerRoot.getElementsByClassName(calendarClass);
+                        var elem = schedulerRoot.getElementsByClassName(calendarClass)[0];
                         var mon = parseInt(month) - 1;
                         var d = new Date(year, mon);
                         var table = '<table><tr><th>s</th><th>m</th><th>t</th><th>w</th><th>t</th><th>f</th><th>s</th></tr><tr>';
@@ -2987,12 +2987,18 @@ class MonthScheduler {
                             }, false);
                         }
 
+                        // console.log(monthUpdate = schedulerRoot.querySelector('month-update'));
+
+                        // console.log(this);
+
+                        /*
                         var monthUpdate = schedulerRoot.getElementsByClassName('month-update');
                         if (monthUpdate != null) {
                             monthUpdate.addEventListener('click', function () {
                                 widget.update();
                             });
                         }
+                        */
 
 
                     }, reason => {
@@ -3035,7 +3041,7 @@ class MonthScheduler {
         if (monthUpdate != null) {
             /*
             monthUpdate[0].addEventListener('click', function () {
-                widget.update(schedulerRoot);
+                widget.update();
             });
             */
         }
@@ -3048,20 +3054,21 @@ class MonthScheduler {
         let month = new Date().getMonth();
         let nowMonth = new Date().getMonth();
         let nowMonthTmp = nowMonth;
+        let calendarWidgetRoot = this.monthSchedulerRoot.parentNode.parentNode.parentNode;
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+        if (calendarWidgetRoot.getAttribute("w-period") != 'week') {
 
-            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 7) {
+            if (calendarWidgetRoot.getAttribute("w-period").length != 7) {
                 year =  new Date().getFullYear();
                 month = new Date().getMonth() + 1;
                 if (month <= 9) month = '0' + month;
                 nowMonth = new Date().getMonth();
             }
             else {
-                year = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(0,4);
-                month = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
-                nowMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,2);
-                if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(5,1) == '0') nowMonth = document.querySelector('[w-type="calendar"]').getAttribute("w-period").substr(6,1);
+                year = calendarWidgetRoot.getAttribute("w-period").substr(0,4);
+                month = calendarWidgetRoot.getAttribute("w-period").substr(5,2);
+                nowMonth = calendarWidgetRoot.getAttribute("w-period").substr(5,2);
+                if (calendarWidgetRoot.getAttribute("w-period").substr(5,1) == '0') nowMonth = calendarWidgetRoot.getAttribute("w-period").substr(6,1);
                 nowMonth = parseInt(nowMonth - 1);
             }
             nowMonthTmp = nowMonth;
@@ -3090,8 +3097,9 @@ class MonthScheduler {
     }
 
     getCategories() {
-        let active = document.querySelector('[w-type="calendar"]').getAttribute('w-classificationid');
-        let activeId = document.querySelector('[w-type="calendar"]').getAttribute('w-classificationid');
+        let calendarWidgetRoot = this.monthSchedulerRoot.parentNode.parentNode.parentNode;
+        let active = calendarWidgetRoot.getAttribute('w-classificationid');
+        let activeId = calendarWidgetRoot.getAttribute('w-classificationid');
         switch (active) {
             case 'KZFzniwnSyZfZ7v7na':
                 active = 'Arts & Theatre';
@@ -3126,21 +3134,20 @@ class MonthScheduler {
     }
 
     update() {
-        let parentLeftselector = document.getElementsByClassName('tab')[2];
-        let delLeftselector = parentLeftselector.getElementsByClassName('sliderLeftSelector')[0];
+        let schedulerRoot = this.monthSchedulerRoot;
+        let delLeftselector = schedulerRoot.parentNode.getElementsByClassName('sliderLeftSelector')[0];
         delLeftselector.parentElement.removeChild(delLeftselector);
-        let delRightselector = parentLeftselector.getElementsByClassName('sliderRightSelector')[0];
+        let delRightselector = schedulerRoot.parentNode.getElementsByClassName('sliderRightSelector')[0];
         delRightselector.parentElement.removeChild(delRightselector);
 
-        let selector = schedulerRoot.getElementsByClassName('calendar');
-        let leftSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
-        let RightSelector = new SelectorControls(document.getElementsByClassName('tab')[2], 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
-        let month = schedulerRoot.getElementsByClassName('calendar');
+        let leftSelector = new SelectorControls(schedulerRoot.parentNode, 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
+        let RightSelector = new SelectorControls(schedulerRoot.parentNode, 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
+        let month = schedulerRoot.getElementsByClassName('calendar')[0];
         schedulerRoot.removeChild(month);
         this.monthRootContainer = document.createElement("div");
-        this.monthRootContainer.classList.add = "calendar";
-        this.monthSchedulerRoot.appendChild(this.monthRootContainer);
-        // this.startMonth();
+        this.monthRootContainer.classList.add("calendar");
+        schedulerRoot.appendChild(this.monthRootContainer);
+        this.startMonth();
     }
 
     constructor(root) {
@@ -3148,12 +3155,11 @@ class MonthScheduler {
         this.monthSchedulerRoot = root;
         let leftSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
         let RightSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
+        this.initMessage(this.monthSchedulerRoot);
         this.calendarRootContainer = document.createElement("div");
-        this.calendarRootContainer.classList.add = "calendar";
+        this.calendarRootContainer.classList.add("calendar");
         this.monthSchedulerRoot.appendChild(this.calendarRootContainer);
         this.startMonth();
-        this.initMessage(this.calendarRootContainer);
-
     }
 
 
