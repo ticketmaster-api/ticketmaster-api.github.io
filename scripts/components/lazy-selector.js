@@ -32,8 +32,8 @@
 
   $.fn.lazySelector = function (options) {
     var defaults = {},
-      settings = $.extend({}, $.fn.lazySelector.defaults, options),
-      $iconButton = $('<a class="icon" id="get-event-by-Id-' + options + '" data-toggle="modal" data-target="#js_ls-modal" />');
+        settings = $.extend({}, $.fn.lazySelector.defaults, options),
+        $iconButton = $('<a class="icon" id="get-event-by-Id-' + options + '" data-toggle="modal" data-target="#js_ls-modal" />');
 
     var stateConf = {
       pageIncrement: 0,
@@ -249,7 +249,7 @@
      * @param eventUrl - url of request
      * @returns {boolean} - done/fail
      */
-    function submitForm(/*optional*/pageNumero, eventUrl1) {
+    function submitForm(/*optional*/pageNumero) {
       pageNumero = parseInt(pageNumero);
 
       var url = ( isNaN(pageNumero) )
@@ -626,13 +626,12 @@
     }
 
     function hasScrollBar(element, wrapper) {
-      // console.log(element.get(0).scrollHeight > element.parent().innerHeight());
       return element.get(0).scrollHeight > element.parent().innerHeight();
     }
 
     var renderResults = function (data, ulElement) {
       var items;
-      /*= (selector === 'events')
+      /*items= (selector === 'events')
        ? (data && data._embedded && data._embedded.events) ? data._embedded.events:['']
        : (data && data._embedded && data._embedded.venues) ? data._embedded.venues:[''] ;*/
       // console.log('selector * renderResults', selector , 'items' , items);
@@ -782,17 +781,18 @@
     /*
      $ul.on('scroll', function (elm){
      //submitForm when go to bottom of list
-     if($form.get(0).checkValidity()) {
-     if (this.scrollTop + this.clientHeight == this.scrollHeight && stateConf.loadingFlag === 'KEEP_LOAD') {
-     stateConf.pageIncrement++;
-     $btnGET.attr('disabled', true);
-     loading('on');
-     submitForm(stateConf.pageIncrement);
-     }
-     }
+       if($form.get(0).checkValidity()) {
+         if (this.scrollTop + this.clientHeight == this.scrollHeight && stateConf.loadingFlag === 'KEEP_LOAD') {
+         stateConf.pageIncrement++;
+         $btnGET.attr('disabled', true);
+         loading('on');
+         submitForm(stateConf.pageIncrement);
+         }
+       }
      });*/
 
     $form.on("change", function (e) {
+      $btnGET.attr('disabled', true); //disable btn to prevent double request
       e.preventDefault();
       modalContent.removeClass('narrow');
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
