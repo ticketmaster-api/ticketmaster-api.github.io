@@ -17,8 +17,11 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.worker\.js$/,
-				loader: "worker-loader?inline"
+				test: /\.worker\.js$/, loader: "worker-loader",
+				query: {
+					inline: true,
+					name: "[name].js"
+				}
 			}
 		]
 	},

@@ -4,6 +4,7 @@
  */
 // var highlightJson()
 var highlightJson = require('./json-parse');
+
 onmessage = function(event) {
   var code = event.data;
   // importScripts('json-parse.js');
