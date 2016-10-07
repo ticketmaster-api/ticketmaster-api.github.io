@@ -791,21 +791,27 @@
        }
      });*/
 
-    $form.on("change", function (e) {
-      $btnGET.attr('disabled', true); //disable btn to prevent double request
-      e.preventDefault();
-      modalContent.removeClass('narrow');
-      if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
-      // eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + $iconButton.attr('data-selector') + '.json';
+    $form.on("keyup", function (e) {
+      var input = $(e.target);
+      if (e.target.tagName === "INPUT"){
+        if (e.keyCode == 13){
+          input.blur();
 
-      if ($form.get(0).checkValidity()) {
-        stateConf.pageIncrement = 0;
-        stateConf.loadingFlag = 'KEEP_LOAD';
-        loading('on');
-        resetForm();
-        submitForm(stateConf.pageIncrement, eventUrl);
+          modalContent.removeClass('narrow');
+          if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
+
+          if ($form.get(0).checkValidity()) {
+            stateConf.pageIncrement = 0;
+            stateConf.loadingFlag = 'KEEP_LOAD';
+            loading('on');
+            resetForm();
+            submitForm(stateConf.pageIncrement, eventUrl);
+          }
+        }
       }
+      return false;
     });
+
     // Mobile devices. Force 'change' by 'Go' press
 
     $form.on("submit", function (e) {
