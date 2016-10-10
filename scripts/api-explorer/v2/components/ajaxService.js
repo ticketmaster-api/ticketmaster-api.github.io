@@ -65,46 +65,34 @@ var prepareUrl = function (arr) {
 };
 
 // sends request to get the second column
-var sendPrimaryRequest = function (arr, requests) {
-  console.clear();
+var sendPrimaryRequest = function (arr, requests, global) {
+  // console.clear();
   var url = prepareUrl(arr);
   // console.log(url);
 
-  ajaxService(url, arr[0].method, function(response, message) {
-    if (message == 'error') {
-      var err = response && response.responseJSON && response.responseJSON.errors && response.responseJSON.errors[0];
-      console.warn(message, response.status);
-      if (err) {
-        console.warn(err.code);
-        console.warn(err.detail);
-      } else {
-        console.warn(response);
-      }
-    } else {
+  ajaxService(url, arr[0].method, function(res, msg) {
+		var resObj = {
+			req: url,
+			index: requests().length
+		};
 
-			var colors = [
-				'column-color-1',
-				'column-color-2',
-				'column-color-3',
-				'column-color-4',
-				'column-color-5',
-				'column-color-6',
-				'column-color-7',
-				'column-color-8',
-				'column-color-9',
-				'column-color-10',
-				'column-color-11',
-				'column-color-12'
-			];
-			var max = colors.length - 1;
-			var index = requests.length;
+		if (msg == 'error') {
+			var err = res &&
+				res.responseJSON &&
+				res.responseJSON.errors &&
+				res.responseJSON.errors[0];
 
-			requests.push({
-				request: url,
-				color: colors[index % max],
-				response: response.responseJSON
-			})
-    }
+			resObj.error = {
+				code: err ? err.code: 500,
+				message: err ? err.detail: 'No responce data!'
+			}
+		} else {
+			global.lastResponse = res.responseJSON;
+			resObj.res = res.responseJSON;
+		}
+
+		// exporting data using observable
+		requests.unshift(resObj);
   });
 };
 

@@ -104,7 +104,6 @@ MethodsViewModel.prototype.updateSelect = function (item) {
   }
 
 	this.methodsViewModel(arr);
-	console.log(this.methodsViewModel());
 	return arr;
 };
 

@@ -16,7 +16,6 @@
 				<a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
 			</p>
 		</section>
-
 		<!--event counter bar-->
 		<section class="horizontal-events-tracker">
 			<div class="col-xs-12 horizontal-events-tracker__section">
@@ -38,7 +37,7 @@
 				</span>
 			</div>
 		</section>
-
+		<!--main filter-->
 		<div class="api-exp-container clearfix">
 			<!--about-->
 			<div data-bind="with: methods">
@@ -103,7 +102,6 @@
 
 			</section><!--content-wrapper-->
 		</div>
-
 		<!--params-->
 		<div data-bind="with: params">
 			<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
@@ -149,39 +147,101 @@
 				</div>
 			</section><!--parameters-->
 		</div>
-
+		<!--request btn-->
 		<section class="api-exp-get-btn clearfix">
 			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
 		</section>
+	</div>
 
-		<section data-bind="with: requestsList" class="clearfix">
-
-			<section class="api-exp-request-list-headline">
+	<!--request list-->
+	<section data-bind="with: requestsList" class="clearfix">
+		<section data-bind="if: clearBtnIsVisible">
+			<!--headline-->
+			<section class="row-container api-exp-request-list-headline">
 				<h4 class="title">Request list</h4>
-				<div data-bind="if: clearBtnIsVisible" class="headline-edit">
+				<div class="headline-edit">
 					<button data-bind="click: onClearRequests" class="btn btn-icon btn-clear" type="button"></button>
 				</div>
 			</section>
-
+			<!--requests-->
 			<section>
-				<ul data-bind="foreach: requests" class="api-exp-request-list">
-					<li class="api-exp-request-list-item clearfix">
-						<div class="edit-controls">
-							<button class="btn btn-icon btn-share" type="button"></button>
-							<button class="btn btn-icon btn-copy" type="button"></button>
-							<button class="btn btn-icon btn-raw" type="button"></button>
-						</div>
-						<button class="btn btn-icon shevron-up view-control" type="button"></button>
-						<span data-bind="css: 'column-color-' + ($index() + 1)" class="color-indicator view-control"></span>
-						<p data-bind="text: request" class="item_text"></p>
+				<ul data-bind="foreach: viewModel"
+				    class="panel-group api-exp-request-list"
+				    id="response"
+				    role="tablist"
+				    aria-multiselectable="true">
+
+					<li data-bind="css: {active: active}" class="panel panel-default api-exp-request-list-item clearfix">
+
+						<section class="row-container request"
+						         data-bind="attr: {id: $parent.getStr('heading', $index)}"
+						         role="tab">
+
+							<div class="edit-controls">
+								<button class="btn btn-icon btn-share" type="button"></button>
+								<button class="btn btn-icon btn-copy" type="button"></button>
+								<button class="btn btn-icon btn-raw" type="button"></button>
+							</div>
+							<div class="panel-title">
+								<button class="btn btn-icon shevron shevron-up view-control"
+								        type="button"
+								        data-bind="click: $parent.getDetails,
+								                    attr: {
+								                      'data-target': $parent.getStr('#collapse', $index),
+							                        'aria-controls': $parent.getStr('collapse', $index)
+						                        }"
+								        data-toggle="collapse"
+								        data-parent="#response"
+								        data-target="#collapseOne"
+								        aria-expanded="false">
+								</button>
+							</div>
+							<span data-bind="css: color" class="color-indicator view-control"></span>
+							<p data-bind="text: req" class="item_text"></p>
+						</section>
+
+						<section class="response collapse"
+						         data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}"
+						         id="collapseOne"
+						         role="tabpanel"
+						         aria-labelledby="headingOne">
+							<div class="container">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="tab">
+										<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
+									</li>
+									<li role="presentation" class="tab active">
+										<a data-bind="attr: {href: '#blocks-' + $index(), 'aria-controls': 'blocks-' + $index()}" class="tab-btn" href="#blocks" aria-controls="blocks" role="tab" data-toggle="tab">Blocks</a>
+									</li>
+									<li class="tab">
+										<span class="tab-label">Structure</span>
+									</li>
+									<li class="tab">
+										<span class="breadcrumbs truncate">… Events /er.com/discovery/v1/events/1D004F92642F0C7D.json?{apikey} / https://app.ticketmaster.com/discovery/v1/events/1D004F926</span>
+									</li>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content col-xs-12">
+									<div data-bind="scroll: {x:false, y:true}, attr: {id: 'json-' + $index()}" role="tabpanel" class="tab-pane prety-json" id="json">
+										<p data-bind="html: resHTML"></p>
+									</div>
+									<div data-bind="attr: {id: 'blocks-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
+										<section data-bind="component: {name: 'accordion', params: { data: blocks, color: color, index: $index()}}"></section>
+									</div>
+								</div>
+							</div>
+						</section>
+
 					</li>
 				</ul>
 			</section>
-
 		</section>
+	</section>
 
-	</div>
 </div>
+
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
 <div id="footer" class="xs-center slice-top-left">
 	{% include partials/footer.html %}
@@ -198,6 +258,7 @@
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/knockout-3.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/knockout-scrollbar.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
 
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>

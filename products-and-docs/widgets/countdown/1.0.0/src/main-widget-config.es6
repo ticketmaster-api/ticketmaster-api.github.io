@@ -102,7 +102,10 @@
     var max_move = $configBlock.offset().top + $configBlock.height() - $containerWidget.height() - topCss - headerOffset;
     var min_move = $configBlock.offset().top - headerOffset;
 
-    $containerWidget.attr("data-min", min_move).attr("data-max",max_move);
+    $containerWidget
+      .data('min', min_move)
+      .data('max',max_move);
+
     //window thresholds so the movement isn't called when its not needed!
     window_min = min_move - threshold_offset;
     window_max = max_move + $containerWidget.height() + threshold_offset;
@@ -155,22 +158,18 @@
    * Handles moving the container if needed.
    **/
   function containerMove(){
-    var wst = $window.scrollTop();
-    //if the window scroll is within the min and max (the container will be "sticky";
-    if( wst >= $containerWidget.attr("data-min") && wst <= $containerWidget.attr("data-max") ){
-      //work out the margin offset
-      var margin_top = $window.scrollTop() - $containerWidget.attr("data-min");
-      //margin it down!
-      $containerWidget.css("margin-top", margin_top);
-      //if the window scroll is below the minimum
-    }else if( wst <= $containerWidget.attr("data-min") ){
-      //fix the container to the top.
-      $containerWidget.css("margin-top",0);
-      //if the window scroll is above the maximum
-    }else if( wst > $containerWidget.attr("data-max") ){
-      //fix the container to the top
-      $containerWidget.css("margin-top", $containerWidget.attr("data-max")-$containerWidget.attr("data-min")+"px" );
+    let marginTop = 0;
+    const wst = $window.scrollTop(),
+      {min, max} = $containerWidget.data();
+
+    //if the window scroll is within the min and max (the container will be 'sticky';
+    if( wst >= min && wst <= max ){
+      //if the window scroll is below the minimum move it down!
+      marginTop = wst - min;
+    }else if( wst > max ){
+      marginTop = max - min;
     }
+    $containerWidget.css('marginTop', (marginTop > 0 ? marginTop : 0));
   }
 
   var replaceApiKey = function (options) {

@@ -1,6 +1,8 @@
-
+var jsonHighlight = require('./../components/json-highlight');
+var self;
 function RequestsListViewModel(requests) {
-	var colors = [
+	self = this;
+	this.colors = [
 		'column-color-1',
 		'column-color-2',
 		'column-color-3',
@@ -14,26 +16,90 @@ function RequestsListViewModel(requests) {
 		'column-color-11',
 		'column-color-12'
 	];
-
 	this.requests = requests;
-
-	this.clearBtnIsVisible = ko.computed(function () {
-		return this.requests().length > 0;
-	}, this);
-	
-	this.requests(this.requests().map(function (obj, index) {
-		var max = colors.length - 1;
-		obj.color = colors[index % max];
-		return obj;
-	}));
+	this.isActiveTab = ko.observable(false);
+	this.viewModel = ko.observableArray([]);
+	this.blocksViewModel = ko.observableArray([]);
+	this.clearBtnIsVisible = ko.computed(this._isVisible, this);
+	this.requests.subscribe(this.updateModel, this);
 }
 
+
+RequestsListViewModel.prototype.method = function () {
+};
+
+/**
+ * Visibility flag for Clear btn
+ * @returns {boolean}
+ * @private
+ */
+RequestsListViewModel.prototype._isVisible = function () {
+	return this.requests().length > 0;
+};
+
+/**
+ * Update Viewmodel of request list
+ * @param arr
+ */
+RequestsListViewModel.prototype.updateModel = function (arr) {
+	var self = this;
+	
+	var newModel = this.requests()
+		.map(function (obj) {
+			var item =  $.extend({
+				color: self.colors[obj.index % self.colors.length],
+				active: ko.observable(false),
+				resHTML: ko.observable(''),
+				blocks: [
+					{
+						name: 'Events',
+						panelType: 'list-group',
+						items: ko.observableArray(Object.getProp(obj,'res._embedded.events') || []),
+						totalElements: ko.observable(Object.getProp(obj,'res.page.totalElements')||''),
+						isActive: ko.observable(false)
+					},
+					{
+						name: 'Page',
+						panelType: 'clear',
+						items: obj.error || obj.res.page,
+						isActive: ko.observable(false)
+					}
+				]
+			}, obj);
+			return item;
+		});
+
+	self.viewModel(newModel);
+};
+
+/**
+ * Clear requeststs list handler
+ * @param vm
+ * @param event
+ */
 RequestsListViewModel.prototype.onClearRequests = function (vm, event) {
 	this.requests([]);
 };
 
+/**
+ * Details toggle handler
+ * @param vm
+ * @param event
+ */
+RequestsListViewModel.prototype.getDetails = function (vm, event) {
+	if (!this.resHTML().length) {
+		jsonHighlight(this.resHTML, this.res);
+	}
+	this.active(!this.active());
+};
 
-RequestsListViewModel.prototype.method = function (category) {
+RequestsListViewModel.prototype.getStr = function (s, i) {
+	var str = s;
+	var i1 = i ? i() : '';
+	return [
+		str,
+		i1
+	].join('-');
 };
 
 module.exports = RequestsListViewModel;

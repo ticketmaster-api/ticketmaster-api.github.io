@@ -1,39 +1,18 @@
 /**
- * availiable option : {floatVal:true}
- * $('.js_numeric_input').checkNumeric( {floatVal:true} );
- * or add attribute to html: data-float="true"
-
- * markup example:
- * <input class="js_numeric_input" type="number" value="12" max="15" min="10" required="" step="2" data-float="true">
- */
-
-/*
- (function($){
- var isModalLoad = false;
- // load the html file using ajax
- $.get("/scripts/components/templates/lazy-selector-modal.html", function(resp){
- var data = $('body').append(resp);
- console.log('data' , data);
- //data.modal();
- }).done(function() {
- isModalLoad = true;
- console.log( "second success" );
- });
-
- //$("body").load("/scripts/components/templates/lazy-selector-modal.html");
-
- if(isModalLoad) {}
- console.log('data 2', isModalLoad);
-
- })(jQuery);
+ * required to include: lazy-selector-modal.html
+ *
+ * availiable option : {enum:'attractions' , 'venues', ''}
+ * $('.js_lazy-selector').lazySelector();
+ * $('.js_lazy-selector-attractions').lazySelector('attractions');
+ * $('.js_lazy-selector-venues').lazySelector('venues');
  */
 
 (function ($) {
 
   $.fn.lazySelector = function (options) {
     var defaults = {},
-      settings = $.extend({}, $.fn.lazySelector.defaults, options),
-      $iconButton = $('<a class="icon" id="get-event-by-Id-' + options + '" data-toggle="modal" data-target="#js_ls-modal" />');
+        settings = $.extend({}, $.fn.lazySelector.defaults, options),
+        $iconButton = $('<a class="icon" id="get-event-by-Id-' + options + '" data-toggle="modal" data-target="#js_ls-modal" />');
 
     var stateConf = {
       pageIncrement: 0,
@@ -51,7 +30,7 @@
       modalContent = $('.modal-content', $modal);
 
     var keyword = $form.find('#keyword'),
-      apikey = $('#w-tm-api-key').val() || '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0',
+      apikey = checkCookie() || $('#w-tm-api-key').val() || '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0',
       selector = options || 'events',
       eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json';
 
@@ -249,14 +228,14 @@
      * @param eventUrl - url of request
      * @returns {boolean} - done/fail
      */
-    function submitForm(/*optional*/pageNumero, eventUrl1) {
+    function submitForm(/*optional*/pageNumero) {
       pageNumero = parseInt(pageNumero);
 
       var url = ( isNaN(pageNumero) )
         ? eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val()
         : eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() + '&page=' + pageNumero;
 
-      // console.log('eventUrl 2 : ', eventUrl);
+       // console.log('url : ', url);
 
       //stop load
       if (isNaN(pageNumero) && pageNumero !== 0 && stateConf.loadingFlag === 'STOP_LOAD') {
@@ -290,7 +269,7 @@
           console.log('no result found');
         }
       }).fail(function (e) {
-        console.log('There was an fail status - ${e.status}');
+        console.log('There was an fail status - ' , e.status);
         loading('off');
         renderResults('FAIL', $ul);
       });
@@ -626,13 +605,12 @@
     }
 
     function hasScrollBar(element, wrapper) {
-      // console.log(element.get(0).scrollHeight > element.parent().innerHeight());
       return element.get(0).scrollHeight > element.parent().innerHeight();
     }
 
     var renderResults = function (data, ulElement) {
       var items;
-      /*= (selector === 'events')
+      /*items= (selector === 'events')
        ? (data && data._embedded && data._embedded.events) ? data._embedded.events:['']
        : (data && data._embedded && data._embedded.venues) ? data._embedded.venues:[''] ;*/
       // console.log('selector * renderResults', selector , 'items' , items);
@@ -739,6 +717,46 @@
 
     };
 
+    /**/
+
+    function checkCookie() {
+      var userApiKey,
+          apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+
+      /*todo: delete me*/
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+      }
+      if (apiKeys != "") {
+        userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
+      }else {
+        /*todo: delete me*/
+        // apiKeys = JSON.parse("[" + window.atob( 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0' ) + "]"); //decode and convert string to array
+        // userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
+        // setCookie("tk-api-key", 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0', 2);
+      }
+      return userApiKey;
+    }
+
+    //get Cookie by name
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length,c.length);
+        }
+      }
+      return "";
+    }
+
     // EVENTS
     $btnGET.on('click', function (e) {
       e.preventDefault();
@@ -782,30 +800,37 @@
     /*
      $ul.on('scroll', function (elm){
      //submitForm when go to bottom of list
-     if($form.get(0).checkValidity()) {
-     if (this.scrollTop + this.clientHeight == this.scrollHeight && stateConf.loadingFlag === 'KEEP_LOAD') {
-     stateConf.pageIncrement++;
-     $btnGET.attr('disabled', true);
-     loading('on');
-     submitForm(stateConf.pageIncrement);
-     }
-     }
+       if($form.get(0).checkValidity()) {
+         if (this.scrollTop + this.clientHeight == this.scrollHeight && stateConf.loadingFlag === 'KEEP_LOAD') {
+         stateConf.pageIncrement++;
+         $btnGET.attr('disabled', true);
+         loading('on');
+         submitForm(stateConf.pageIncrement);
+         }
+       }
      });*/
 
-    $form.on("change", function (e) {
-      e.preventDefault();
-      modalContent.removeClass('narrow');
-      if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
-      // eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + $iconButton.attr('data-selector') + '.json';
+    $form.on("keyup", function (e) {
+      var input = $(e.target);
+      if (e.target.tagName === "INPUT"){
+        if (e.keyCode == 13){
+          input.blur();
 
-      if ($form.get(0).checkValidity()) {
-        stateConf.pageIncrement = 0;
-        stateConf.loadingFlag = 'KEEP_LOAD';
-        loading('on');
-        resetForm();
-        submitForm(stateConf.pageIncrement, eventUrl);
+          modalContent.removeClass('narrow');
+          if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
+
+          if ($form.get(0).checkValidity()) {
+            stateConf.pageIncrement = 0;
+            stateConf.loadingFlag = 'KEEP_LOAD';
+            loading('on');
+            resetForm();
+            submitForm(stateConf.pageIncrement, eventUrl);
+          }
+        }
       }
+      return false;
     });
+
     // Mobile devices. Force 'change' by 'Go' press
 
     $form.on("submit", function (e) {

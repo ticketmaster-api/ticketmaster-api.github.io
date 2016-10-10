@@ -41,6 +41,9 @@
 }
 
 #js_ls-modal {
+  .close {
+    opacity: inherit;
+  }
   .modal-dialog{
     @media (min-width: 768px) {
       width: 740px;

@@ -103,7 +103,8 @@
     var max_move = $configBlock.offset().top + $configBlock.height() - $containerWidget.height() - topCss - headerOffset;
     var min_move = $configBlock.offset().top - headerOffset;
 
-    $containerWidget.attr("data-min", min_move).attr("data-max", max_move);
+    $containerWidget.data('min', min_move).data('max', max_move);
+
     //window thresholds so the movement isn't called when its not needed!
     window_min = min_move - threshold_offset;
     window_max = max_move + $containerWidget.height() + threshold_offset;
@@ -155,22 +156,23 @@
    * Handles moving the container if needed.
    **/
   function containerMove() {
+    var marginTop = 0;
     var wst = $window.scrollTop();
-    //if the window scroll is within the min and max (the container will be "sticky";
-    if (wst >= $containerWidget.attr("data-min") && wst <= $containerWidget.attr("data-max")) {
-      //work out the margin offset
-      var margin_top = $window.scrollTop() - $containerWidget.attr("data-min");
-      //margin it down!
-      $containerWidget.css("margin-top", margin_top);
-      //if the window scroll is below the minimum
-    } else if (wst <= $containerWidget.attr("data-min")) {
-        //fix the container to the top.
-        $containerWidget.css("margin-top", 0);
-        //if the window scroll is above the maximum
-      } else if (wst > $containerWidget.attr("data-max")) {
-          //fix the container to the top
-          $containerWidget.css("margin-top", $containerWidget.attr("data-max") - $containerWidget.attr("data-min") + "px");
-        }
+
+    var _$containerWidget$dat = $containerWidget.data();
+
+    var min = _$containerWidget$dat.min;
+    var max = _$containerWidget$dat.max;
+
+    //if the window scroll is within the min and max (the container will be 'sticky';
+
+    if (wst >= min && wst <= max) {
+      //if the window scroll is below the minimum move it down!
+      marginTop = wst - min;
+    } else if (wst > max) {
+      marginTop = max - min;
+    }
+    $containerWidget.css('marginTop', marginTop > 0 ? marginTop : 0);
   }
 
   var replaceApiKey = function replaceApiKey(options) {
@@ -282,8 +284,8 @@
 
     //Check fixed sizes for 'simple_countdown' theme
     if (targetName === "w-proportion") {
-      var _widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
-      var _sizeConfig = {
+      var widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
+      var sizeConfig = {
         width: themeConfig.simple_countdown.sizes[targetValue].width,
         height: themeConfig.simple_countdown.sizes[targetValue].height,
         maxWidth: 600,
@@ -295,27 +297,27 @@
 
       if (targetValue !== 'custom') {
         $tabButtons.slideUp("fast");
-        _widthSlider.slideUp("fast");
+        widthSlider.slideUp("fast");
       } else {
         $tabButtons.slideDown("fast");
-        _widthSlider.slideDown("fast");
+        widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
+        sizeConfig = { //default size
           width: themeConfig.simple_countdown.initSliderSize.width, //350
           height: themeConfig.simple_countdown.initSliderSize.height, //600
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
@@ -331,8 +333,8 @@
     var widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $('.widget-container-wrapper'),
         height = 600,
-        theme = void 0,
-        layout = void 0,
+        theme = undefined,
+        layout = undefined,
         $border_slider = $('.js_widget_border_slider');
     $tabButtons = $('.js-tab-buttons');
 
