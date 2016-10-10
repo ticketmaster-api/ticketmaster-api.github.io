@@ -24,15 +24,20 @@ AccordionComponent.prototype.setActive = function (vm, event) {
 module.exports = ko.components.register('accordion', {
 	viewModel: AccordionComponent,
 	template:
-	`<section data-bind="foreach: sections, attr: {id: getStr('accordion')}" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	`<section data-bind="foreach: sections" class="panel-group">
 			<section data-bind="css: {active: isActive}" class="panel panel-primary">
-				<div data-bind="css: $parent.panelColor, attr: {id: $parent.getStr('heading', $index)}" class="panel-heading" role="tab" id="headingOne">
+				<div data-bind="css: $parent.panelColor, attr: {id: $parent.getStr('heading', $index)}"
+						class="panel-heading"
+						role="tab">
 					<div class="panel-title">
-						<button class="btn btn-icon" data-bind="click: $parent.setActive, attr: {'data-target': $parent.getStr('#collapse', $index), 'aria-labelledby': $parent.getStr('collapse', $index), 'data-parent': $parent.getStr('#accordion')}" type="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true">
+						<button class="btn btn-icon"
+										data-bind="click: $parent.setActive, attr: {'data-target': $parent.getStr('#collapse', $index), 'aria-controls': $parent.getStr('collapse', $index)}"
+										type="button"
+										data-toggle="collapse"
+										aria-expanded="true">
 							<span data-bind="css: {down: isActive}" class="btn btn-icon shevron white-shevron-up"></span>
 							<span class="title" data-bind="text: name">Title</span>
-						</button>
-						<span data-bind="text: console.log($data)"></span>					
+						</button>				
 						<span data-bind="if: panelType === 'list-group'">						
 							<span data-bind="text: totalElements" class="counter"></span>
 						</span>
@@ -40,7 +45,8 @@ module.exports = ko.components.register('accordion', {
 				</div>
 				
 				<div data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}"
-					id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					class="panel-collapse collapse"
+					role="tabpanel">
 					<div class="panel-body"> 
 						<div data-bind="if: panelType && panelType === 'list-group'">
 							<ul data-bind="foreach: items" class="list-group">
