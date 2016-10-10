@@ -93,4 +93,13 @@ RequestsListViewModel.prototype.getDetails = function (vm, event) {
 	this.active(!this.active());
 };
 
+RequestsListViewModel.prototype.getStr = function (s, i) {
+	var str = s;
+	var i1 = i ? i() : '';
+	return [
+		str,
+		i1
+	].join('-');
+};
+
 module.exports = RequestsListViewModel;
