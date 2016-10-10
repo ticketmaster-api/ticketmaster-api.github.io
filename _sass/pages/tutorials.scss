@@ -3,7 +3,9 @@
 }
 
 .single-column.tutorials #main-block {
-  padding-right: 40px;
+  @media #{$min-1200} {
+    padding-right: 40px;
+  }
 }
 
 .tutorials-article {
