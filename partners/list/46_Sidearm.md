@@ -1,7 +1,7 @@
 ---
 layout: partners-doc
 
-pname: "Sideearm Sports"
+pname: "Sidearm Sports"
 
 categories: 
   - partner
