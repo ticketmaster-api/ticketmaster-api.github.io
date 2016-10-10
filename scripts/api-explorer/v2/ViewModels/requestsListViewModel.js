@@ -1,6 +1,10 @@
 var jsonHighlight = require('./../components/json-highlight');
 var self;
-function RequestsListViewModel(requests) {
+
+var setSlider = require('../components/slider');
+
+function RequestsListViewModel(requests, url) {
+	this.url = url;
 	self = this;
 	this.colors = [
 		'column-color-1',
@@ -25,8 +29,21 @@ function RequestsListViewModel(requests) {
 }
 
 
-RequestsListViewModel.prototype.getMore = function () {
-	console.log(this)
+RequestsListViewModel.prototype.getMore = function (parent, data, event) {
+	var groupComponent = this;
+	var slider = $(event.currentTarget).parents('.slider');
+	var component = $('<section data-bind="component: {name: \'card\', params: params}"></section>');
+	ko.applyBindings({
+		params: {
+			data: parent,
+			color: groupComponent.color,
+			index: groupComponent.index,
+			getMore: groupComponent.getMore,
+			url: groupComponent.url
+		}
+	}, component[0]);
+
+	slider.slick('slickAdd', component);
 };
 
 /**
@@ -70,7 +87,7 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
 			return item;
 		});
 	self.viewModel(newModel);
-	// $('#collapse-0').collapse();
+	setSlider('.slider');
 	setTimeout(function () {
 		$('#show-details-0').trigger('click');
 	}, 10);

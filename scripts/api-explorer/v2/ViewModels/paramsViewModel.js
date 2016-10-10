@@ -58,7 +58,7 @@ ParamsViewModel.prototype.updateViewModel = function () {
 			if (this.select) {
 				return this.value() !== this.default && this.value() !== 'none';
 			}
-			return !!this.value().trim().length;
+			return !!(this.value().toString()).trim().length;
 		}, vmParam);
 
 		// add calendar btn for current field

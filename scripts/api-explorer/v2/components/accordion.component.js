@@ -1,8 +1,9 @@
 function cardGroupComponent(params) {
 	self = this;
+	this.url = params.url;
 	this.panelType = params.panelType || 'clear'; // list,
 	this.getMore = params.getMore || false;
-	this.panelColor = params.color;
+	this.color = params.color;
 	this.index = params.index;
 	this.sections = ko.observable(params.data || []);
 }
@@ -18,8 +19,26 @@ cardGroupComponent.prototype.getStr = function (s, i) {
 	].join('');
 };
 
-cardGroupComponent.prototype.setActive = function (vm, event) {
+cardGroupComponent.prototype.setActive = function () {
 	this.isActive(!this.isActive());
+};
+
+cardGroupComponent.prototype.getPrevPage = function () {
+	var pageParam = self.url().find(function (item) {
+		return item.name === 'page';
+	});
+	var val = +pageParam.value();
+	pageParam.value(val > 0? val - 1: 0);
+	$('#api-exp-get-btn').trigger('click');
+};
+
+cardGroupComponent.prototype.getNextPage = function (vm, event) {
+	var pageParam = self.url().find(function (item) {
+		return item.name === 'page';
+	});
+	var val = +pageParam.value();
+	pageParam.value(val < this.items.totalPages - 1 ? val  + 1: val);
+	$('#api-exp-get-btn').trigger('click');
 };
 
 module.exports = ko.components.register('cardGroup', {
@@ -27,12 +46,14 @@ module.exports = ko.components.register('cardGroup', {
 	template:
 	`<section data-bind="foreach: sections" class="panel-group">
 			<section data-bind="css: {active: isActive}" class="panel panel-primary">
-				<div data-bind="css: $parent.panelColor, attr: {id: $parent.getStr('heading', $index)}"
+			
+				<!--panel-heading-->
+				<div data-bind="css: $component.color, attr: {id: $component.getStr('heading', $index)}"
 						class="panel-heading"
 						role="tab">
 					<div class="panel-title">
 						<button class="btn btn-icon"
-										data-bind="click: $parent.setActive, attr: {'data-target': $parent.getStr('#collapse', $index), 'aria-controls': $parent.getStr('collapse', $index)}"
+										data-bind="click: $component.setActive, attr: {'data-target': $component.getStr('#collapse', $index), 'aria-controls': $component.getStr('collapse', $index)}"
 										type="button"
 										data-toggle="collapse"
 										aria-expanded="true">
@@ -42,27 +63,39 @@ module.exports = ko.components.register('cardGroup', {
 						<span data-bind="if: panelType === 'list-group'">						
 							<span data-bind="text: totalElements" class="counter"></span>
 						</span>
+						<!--pager-->
+						<span data-bind="if: name === 'Page'" >
+							<span class="navigation-wrapper">
+								<button data-bind="click: $component.getPrevPage, enable: !!+items.number" type="button" class="navigation prev"></button>
+								<button  data-bind="click: $component.getNextPage, enable: +items.number < +items.totalPages - 1" type="button" class="navigation next"></button>
+							</span>
+						</span>
 					</div>
-				</div>
+				</div><!--panel-heading-->
 				
-				<div data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}"
+				<!--panel-body-->
+				<div data-bind="attr: {id: $component.getStr('collapse', $index), 'aria-labelledby': $component.getStr('heading', $index)}"
 					class="panel-collapse collapse"
 					role="tabpanel">
-					<div class="panel-body"> 
+					<div class="panel-body">
+					  
+						<!--list-group-->
 						<div data-bind="if: panelType && panelType === 'list-group'">
 							<ul data-bind="foreach: items" class="list-group">
 								<li class="list-group-item">
-									<span data-bind="text: name" class="name">event name</span>
+									<span data-bind="text: name" class="name truncate">event name</span>
 									<div class="additional-info">
 										<p data-bind="text: Object.getProp($data, 'dates.start.localDate')" class="date">event date</p>
 										<span data-bind="if: Object.getProp($data, '_embedded.venues[0].name')">
 											<p data-bind="text: Object.getProp($data, '_embedded.venues[0].name')" class="venue">event venue</p>
 										</span>
 									</div>
-									<button data-bind="click: $component.getMore" type="button" class="btn btn-icon blue-shevron-right"></button>
+									<button data-bind="click: $component.getMore.bind($component, $data)" type="button" class="btn btn-icon blue-shevron-right"></button>
 								</li>
 							</ul>
 						</div>
+						
+						<!--clear-->
 						<div data-bind="if: panelType === 'clear'">
 							<div data-bind="foreachprop: items" class="clear">
 								<p>
@@ -72,11 +105,10 @@ module.exports = ko.components.register('cardGroup', {
 									<span data-bind="text: value" class="value"></span>
 								</p>
 							</div>
-							</div>
 						</div>
-					</div>
+					</div><!--panel-body-->
+					
 				</div>
 			</section>
-		</div>
 	</section>`
 });
