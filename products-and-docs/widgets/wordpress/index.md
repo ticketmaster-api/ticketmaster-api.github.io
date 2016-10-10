@@ -47,3 +47,6 @@ Go to Plugins into your Wordpress admin panel and configure the widget.
 ![wordpress4](/assets/img/products-and-docs/wp-t-4.jpg)
 
 
+{% include disqus.html %}
+
+
