@@ -1,12 +1,13 @@
-function AccordionComponent(params) {
+function cardGroupComponent(params) {
 	self = this;
 	this.panelType = params.panelType || 'clear'; // list,
+	this.getMore = params.getMore || false;
 	this.panelColor = params.color;
 	this.index = params.index;
 	this.sections = ko.observable(params.data || []);
 }
 
-AccordionComponent.prototype.getStr = function (s, i) {
+cardGroupComponent.prototype.getStr = function (s, i) {
 	var str = s;
 	var i0 = this.index;
 	var i1 = i ? i() : '';
@@ -17,12 +18,12 @@ AccordionComponent.prototype.getStr = function (s, i) {
 	].join('');
 };
 
-AccordionComponent.prototype.setActive = function (vm, event) {
+cardGroupComponent.prototype.setActive = function (vm, event) {
 	this.isActive(!this.isActive());
 };
 
-module.exports = ko.components.register('accordion', {
-	viewModel: AccordionComponent,
+module.exports = ko.components.register('cardGroup', {
+	viewModel: cardGroupComponent,
 	template:
 	`<section data-bind="foreach: sections" class="panel-group">
 			<section data-bind="css: {active: isActive}" class="panel panel-primary">
@@ -58,7 +59,7 @@ module.exports = ko.components.register('accordion', {
 											<p data-bind="text: Object.getProp($data, '_embedded.venues[0].name')" class="venue">event venue</p>
 										</span>
 									</div>
-									<button type="button" class="btn btn-icon blue-shevron-right"></button>
+									<button data-bind="click: $component.getMore" type="button" class="btn btn-icon blue-shevron-right"></button>
 								</li>
 							</ul>
 						</div>
