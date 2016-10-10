@@ -22,6 +22,12 @@ $img-id: '../assets/img/api-explorer/ic-id.svg';
 $img-share: '../assets/img/api-explorer/ic-share.svg';
 $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 
+.truncate {
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 #api-explorer-v2.api-explorer-v2 {
 	.shevron {
@@ -581,6 +587,11 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 
 						.tab {
 							position: static;
+							padding: 7px 23px;
+							* {
+								margin: 0;
+								padding: 0;
+							}
 							&:first-child {
 								margin-left: 30px;
 							}
@@ -591,7 +602,6 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 								color: #b7c9d3;
 								outline: none;
 								border: none;
-								padding: 7px 23px;
 								font: {
 									size: 16px;
 									weight: normal;
@@ -605,6 +615,28 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 									background: none;
 									color: #009cde;
 								}
+							}
+							.tab-label {
+								font: {
+									size: 14px;
+									weight: bold;
+									style: normal;
+									stretch: normal;
+								}
+								line-height: 1.5;
+								color: #b7c9d3;
+							}
+							.breadcrumbs {
+								margin-top: 2px;
+								font: {
+									size: 14px;
+									weight: normal;
+									style: normal;
+									stretch: normal;
+								}
+								line-height: 1.5;
+								color: #768692;
+								width: 770px;
 							}
 							&.active {
 								.details {
