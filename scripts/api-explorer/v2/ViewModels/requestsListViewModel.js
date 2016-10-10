@@ -25,7 +25,8 @@ function RequestsListViewModel(requests) {
 }
 
 
-RequestsListViewModel.prototype.method = function () {
+RequestsListViewModel.prototype.getMore = function () {
+	console.log(this)
 };
 
 /**
@@ -68,8 +69,11 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
 			}, obj);
 			return item;
 		});
-
 	self.viewModel(newModel);
+	// $('#collapse-0').collapse();
+	setTimeout(function () {
+		$('#show-details-0').trigger('click');
+	}, 10);
 };
 
 /**
