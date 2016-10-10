@@ -894,7 +894,6 @@ class TicketmasterCalendarWidget {
                 document.getElementsByTagName("head")[0].appendChild(style);
             }
             else {
-                //alert("theme wasn't loaded");
                 console.log("theme wasn't loaded");
             }
         }
@@ -1333,12 +1332,10 @@ class TicketmasterCalendarWidget {
 class TabsControls {
 
     removeActiveTab(this_) {
-        // let tabs = document.querySelectorAll('.tb');
         let tabs = this_.querySelectorAll('.tb');
         Array.from(tabs).forEach(tab => {
             if (tab.classList.contains("active")) tab.classList.remove("active");
         });
-        // let tab = document.querySelectorAll('.tab');
         let tab = this_.nextSibling.querySelectorAll('.tab');
         Array.from(tab).forEach(tb => {
             if (tb.classList.contains("active")) tb.classList.remove("active");
@@ -1346,7 +1343,6 @@ class TabsControls {
     }
 
     selActiveTab(activeTab, this_) {
-        // let nodeList = document.getElementsByClassName('tabs-container');
         let tabs = this_.nextSibling;
         tabs.children[activeTab].classList.add('active');
     }
@@ -1396,7 +1392,6 @@ class SelectorControls {
                 /* Month fix by dates changing */
                 if (this.parentNode.classList.contains('sliderLeftSelector') === true) {
                     if (this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid') != undefined) {
-                        // console.log(this.parentNode.parentNode.parentNode.parentNode);
                         if (this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid') != this.parentNode.parentNode.parentNode.parentNode.getAttribute("w-classificationId")) {
                             this.parentNode.parentNode.parentNode.parentNode.setAttribute("w-classificationId", this.parentNode.nextElementSibling.querySelector('.selector-title').getAttribute('w-classificationid'));
                         }
@@ -1599,7 +1594,6 @@ class WeekScheduler {
         this.eventsRootContainer = schedulerRoot;
         this.messageDialogContainer = document.createElement('div');
         this.messageDialogContainer.classList.add("event-message-container");
-        // this.messageDialogContainer.classList.add("hide");
         this.messageDialog = document.createElement('div');
         this.messageDialog.classList.add("event-message_");
         this.messageContent = document.createElement('div');
@@ -2463,7 +2457,6 @@ class MonthScheduler {
         this.eventsRootContainer = schedulerRoot;
         this.messageDialogContainer = document.createElement('div');
         this.messageDialogContainer.classList.add("event-message-container");
-        // this.messageDialogContainer.classList.add("hide");
         this.messageDialog = document.createElement('div');
         this.messageDialog.classList.add("event-message_");
         this.messageContent = document.createElement('div');
@@ -2569,8 +2562,6 @@ class MonthScheduler {
                                 }
                             });
 
-                            // if(item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
-
                             if (currentMonth == item.dates.start.localDate.substr(5, 2)) {
 
                                 monthEvents.push({
@@ -2630,9 +2621,6 @@ class MonthScheduler {
                             monthEventsSort[dayNo] = eventsArr;
                         }
                     }
-
-                    // console.log(monthEvents);
-                    // console.log(monthEventsSort);
 
                     let calendarClass = 'calendar';
                     let year = new Date().getFullYear();
@@ -2907,7 +2895,6 @@ class MonthScheduler {
                                 else eventsLenght = monthEventsSort[d.getDate()].length;
 
                                 for(let e=0, l = eventsLenght; e < l; e++) {
-                                    // if (d.getMonth() == new Date(monthEventsSort[d.getDate()][e].datetime).getMonth()) {
                                     if (monthEventsSort[d.getDate()] && monthEventsSort[d.getDate()][e]) {
                                         url = monthEventsSort[d.getDate()][e].url;
                                         img = monthEventsSort[d.getDate()][e].img;
@@ -2987,19 +2974,12 @@ class MonthScheduler {
                             }, false);
                         }
 
-                        // console.log(monthUpdate = schedulerRoot.querySelector('month-update'));
-
-                        // console.log(this);
-
-                        /*
-                        var monthUpdate = schedulerRoot.getElementsByClassName('month-update');
+                        var monthUpdate = schedulerRoot.getElementsByClassName('month-update')[0];
                         if (monthUpdate != null) {
                             monthUpdate.addEventListener('click', function () {
                                 widget.update();
                             });
                         }
-                        */
-
 
                     }, reason => {
                         console.log(reason)
@@ -3037,13 +3017,11 @@ class MonthScheduler {
             }, false);
         }
 
-        var monthUpdate = schedulerRoot.getElementsByClassName('month-update');
+        var monthUpdate = schedulerRoot.getElementsByClassName('month-update')[0];
         if (monthUpdate != null) {
-            /*
-            monthUpdate[0].addEventListener('click', function () {
+            monthUpdate.addEventListener('click', function () {
                 widget.update();
             });
-            */
         }
 
     }
@@ -3170,6 +3148,7 @@ class YearScheduler {
     get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
     get eventReqAttrs(){
+        let calendarWidgetRoot = this.yearSchedulerRoot.parentNode.parentNode.parentNode;
         let tmapikey = '',
             keyword = '',
             radius;
@@ -3227,46 +3206,46 @@ class YearScheduler {
         startDateTime = firstDay.getFullYear() + '-' + startmonth + '-' + startdate + 'T00:00:00Z';
         endDateTime = lastDay.getFullYear() + '-12-31T23:59:59Z';
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period") != 'week') {
+        if (calendarWidgetRoot.getAttribute("w-period") != 'week') {
 
-            if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 4) {
+            if (calendarWidgetRoot.getAttribute("w-period").length != 4) {
                 firstDay =  new Date(date.getFullYear()) + '-01-01T00:00:00Z';
                 lastDay = new Date(date.getFullYear()) + '-12-31T23:59:59Z';
             }
             else {
-                firstDay = document.querySelector('[w-type="calendar"]').getAttribute("w-period") + '-01-01T00:00:00Z';
+                firstDay = calendarWidgetRoot.getAttribute("w-period") + '-01-01T00:00:00Z';
                 lastDay = parseInt(firstDay + 1) + '-12-31T23:59:59Z';
             }
             startDateTime = firstDay;
             endDateTime = lastDay;
         }
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey") != '') {
-            tmapikey = document.querySelector('[w-type="calendar"]').getAttribute("w-tmapikey");
+        if (calendarWidgetRoot.getAttribute("w-tmapikey") != '') {
+            tmapikey = calendarWidgetRoot.getAttribute("w-tmapikey");
             /*
             if (sessionStorage.getItem('tk-api-key')) {
                 tmapikey = sessionStorage.getItem('tk-api-key');
-                document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", tmapikey);
+                calendarWidgetRoot.setAttribute("w-tmapikey", tmapikey);
             }
             */
         }
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") != '') {
+        if (calendarWidgetRoot.getAttribute("w-latlong") != '') {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
 
         if (latlong === null) latlong = '34.0390107,-118.2672801';
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-keyword") != '') {
-            keyword = document.querySelector('[w-type="calendar"]').getAttribute("w-keyword");
+        if (calendarWidgetRoot.getAttribute("w-keyword") != '') {
+            keyword = calendarWidgetRoot.getAttribute("w-keyword");
         }
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-radius") != '') {
-            radius = document.querySelector('[w-type="calendar"]').getAttribute("w-radius");
+        if (calendarWidgetRoot.getAttribute("w-radius") != '') {
+            radius = calendarWidgetRoot.getAttribute("w-radius");
         }
 
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId") != '') {
-            classificationid = document.querySelector('[w-type="calendar"]').getAttribute("w-classificationId");
+        if (calendarWidgetRoot.getAttribute("w-classificationId") != '') {
+            classificationid = calendarWidgetRoot.getAttribute("w-classificationId");
         }
 
         return {
@@ -3352,7 +3331,6 @@ class YearScheduler {
         this.eventsRootContainer = parentContainer;
         this.messageDialogContainer = document.createElement('div');
         this.messageDialogContainer.classList.add("event-message-container");
-        // this.messageDialogContainer.classList.add("hide");
         this.messageDialog = document.createElement('div');
         this.messageDialog.classList.add("event-message_");
         this.messageContent = document.createElement('div');
@@ -3413,12 +3391,13 @@ class YearScheduler {
         return date.getDate();
     }
 
-    startYear(schedulerRoot) {
+    startYear() {
         let MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let prm = [];
         let year;
         let widget = this.widget;
-        if (document.querySelector('[w-type="calendar"]').getAttribute("w-period").length != 4) {
+        let schedulerRoot = this.yearSchedulerRoot.parentNode.parentNode.parentNode;
+        if (schedulerRoot.getAttribute("w-period").length != 4) {
             year = new Date().getFullYear();
         }
         else {
@@ -3440,13 +3419,13 @@ class YearScheduler {
 
 
         Promise.all(prm).then(value => {
-            var elem = document.getElementById("year");
+            var elem = this.yearSchedulerRoot.querySelector(".year");
             let table = '<div class="monthes-container">';
             let month;
             let curMonth = new Date().getMonth();
             let curYear = new Date().getFullYear();
             let noResults = true;
-            let messageContainer = document.querySelector('#yearSсheduler .event-message-container');
+            let messageContainer = schedulerRoot.querySelector('.event-message-container');
 
             for (var i = 0; i < MONTH_NAMES.length; i++) {
                 table += '<div class="month">';
@@ -3460,11 +3439,10 @@ class YearScheduler {
             }
             table += '</div>';
             elem.innerHTML = table;
-            let spinner = schedulerRoot.querySelector('.spinner-container');
-            spinner.classList.add('hide');
+
+            this.yearSchedulerRoot.getElementsByClassName('spinner-container')[0].classList.add('hide');
 
             if (noResults === true) {
-                // messageContainer.classList.remove('hide');
                 this.showMessage("No results were found.<br/>Here other options for you.", true);
                 this.hideMessageWithDelay(this.hideMessageDelay);
             }
@@ -3472,8 +3450,8 @@ class YearScheduler {
             var rounds = schedulerRoot.querySelectorAll("a.count");
             for (var x = 0; x < rounds.length; x++) {
                 rounds[x].addEventListener("click", function (e) {
-                    document.querySelector('[w-type="calendar"]').setAttribute('w-period', e.target.getAttribute('rel'));
-                    document.querySelectorAll('.tb')[2].click();
+                    schedulerRoot.setAttribute('w-period', e.target.getAttribute('rel'));
+                    schedulerRoot.querySelectorAll('.tb')[2].click();
                     schedulerRoot.getElementsByClassName('month-update')[0].click();
                 }, false);
             }
@@ -3485,29 +3463,29 @@ class YearScheduler {
 
     }
 
-    update(schedulerRoot) {
-        let widget = this.widget;
+    update() {
+        let schedulerRoot = this.yearSchedulerRoot;
         let spinner = schedulerRoot.querySelector('.spinner-container');
         spinner.classList.remove('hide');
-        let year = schedulerRoot;
-        schedulerRoot.getElementsByClassName('yearScheduler').removeChild(year);
+        let year = schedulerRoot.querySelector('.year');
+        schedulerRoot.removeChild(year);
         this.yearRootContainer = document.createElement("div");
-        this.yearRootContainer.classList.add = "year";
+        this.yearRootContainer.classList.add("year");
         this.yearSchedulerRoot.appendChild(this.yearRootContainer);
-        this.startYear(schedulerRoot);
+        this.startYear();
     }
 
     constructor(root) {
         if (!root) return;
         this.yearSchedulerRoot = root;
 
-        let leftSelector = new SelectorControls(document.getElementsByClassName('tab')[3], 'sliderLeftSelector', this.getYears(), 'period', this.update.bind(this));
-        let RightSelector = new SelectorControls(document.getElementsByClassName('tab')[3], 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+        let leftSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderLeftSelector', this.getYears(), 'period', this.update.bind(this));
+        let RightSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
 
         this.yearRootContainer = document.createElement("div");
-        this.yearRootContainer.id = "year";
+        this.yearRootContainer.classList.add("year");
         this.yearSchedulerRoot.appendChild(this.yearRootContainer);
-        this.startYear(this.yearSchedulerRoot);
+        this.startYear();
         this.initMessage(this.yearRootContainer);
     }
 }
@@ -3529,8 +3507,3 @@ let yearSchedulers = [];
 })();
 
 let controls = new TabsControls;
-/*
-let weekScheduler = new WeekScheduler(document.getElementById('weekSсheduler'));
-let monthScheduler = new MonthScheduler(document.getElementById('monthScheduler'));
-let yearScheduler = new YearScheduler(document.getElementById('yearScheduler'));
-*/
