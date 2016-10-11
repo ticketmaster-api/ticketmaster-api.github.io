@@ -25,6 +25,9 @@
     }
 
     var widget = widgetsCalendar[0],
+        weekScheduler = weekSchedulers[0],
+        monthScheduler = monthSchedulers[0],
+        yearScheduler = yearSchedulers[0],
         themeConfig = {
         sizes: {
             standart: {
@@ -184,6 +187,7 @@
         widget.update();
         var spinner = document.querySelector('.events-root-container .spinner-container');
         spinner.classList.add('hide');
+        console.log(widget);
         setTimeout(function () {
             weekScheduler.update();
             monthScheduler.update();
