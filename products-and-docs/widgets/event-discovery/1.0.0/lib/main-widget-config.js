@@ -205,8 +205,6 @@
     });
   });
 
-  var setApiKey = function setApiKey() {};
-
   var changeState = function changeState(event) {
     if (!event.target.name || event.target.name === "w-googleapikey") return;
 
