@@ -20,9 +20,17 @@ class TicketmasterEventDiscoveryWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
+  get themeUrl() {
+    return (window.location.host === 'developer.ticketmaster.com')
+      ? `http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
+      : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/`;
+  }
 
-  get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
+  get portalUrl(){
+    return (window.location.host === 'developer.ticketmaster.com')
+      ? `http://developer.ticketmaster.com/`
+      : `http://ticketmaster-api-staging.github.io/`;
+  }
 
   get logoUrl() { return "http://www.ticketmaster.com/"; }
 
