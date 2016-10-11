@@ -28,14 +28,18 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.shevron {
+	@include transition(all 0.2s linear);
+
+	&.down,
+	&[aria-expanded="true"] {
+		@include rotate(180deg);
+	}
+
+}
 
 #api-explorer-v2.api-explorer-v2 {
-	.shevron {
-		@include transition(all 0.2s linear);
-		&.down {
-			@include rotate(180deg);
-		}
-	}
+
 
 
 	.row-container {
@@ -524,6 +528,7 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 			&-item {
 				padding-bottom: 0;
 				@include transition(all, 0.4s);
+				border:none;
 				.request {
 					position: relative;
 					padding: 19px 100px 19px 78px;
@@ -571,9 +576,8 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 				}
 				.response {
 					overflow: hidden;
-					height: 1px;
 					background-color: rgba(183, 201, 211, 0.1);
-					@include transition(all, 0.4s);
+					//@include transition(all, 0.4s);
 					.container {
 						height: 100%;
 						max-width: 1140px;
@@ -639,6 +643,12 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 								width: 770px;
 							}
 							&.active {
+								.tab-btn {
+									border-bottom: 2px solid #009cde;
+									margin-bottom: -2px;
+									background: none;
+									color: #009cde;
+								}
 								.details {
 									display: block;
 								}

@@ -165,21 +165,43 @@
 			</section>
 			<!--requests-->
 			<section>
-				<ul data-bind="foreach: viewModel" class="api-exp-request-list">
-					<li data-bind="css: {active: active}" class="api-exp-request-list-item clearfix">
+				<ul data-bind="foreach: viewModel"
+				    class="panel-group api-exp-request-list"
+				    id="response"
+				    role="tablist"
+				    aria-multiselectable="true">
 
-						<section class="row-container request">
+					<li data-bind="css: {active: active}" class="panel panel-default api-exp-request-list-item clearfix">
+
+						<section class="row-container request"
+						         data-bind="attr: {id: $parent.getStr('heading', $index)}"
+						         role="tab">
+
 							<div class="edit-controls">
 								<button class="btn btn-icon btn-share" type="button"></button>
 								<button class="btn btn-icon btn-copy" type="button"></button>
 								<button class="btn btn-icon btn-raw" type="button"></button>
 							</div>
-							<button data-bind="click: $parent.getDetails, css: {down: active}" class="btn btn-icon shevron shevron-up view-control" type="button"></button>
+							<div class="panel-title">
+								<button class="btn btn-icon shevron shevron-up view-control"
+								        type="button"
+								        data-bind="click: $parent.getDetails,
+								                    attr: {
+							                        id: $parent.getStr('show-details', $index),
+								                      'data-target': $parent.getStr('#collapse', $index),
+							                        'aria-controls': $parent.getStr('collapse', $index)
+						                        }"
+								        data-toggle="collapse"
+								        data-parent="#response"
+								        aria-expanded="false">
+								</button>
+							</div>
 							<span data-bind="css: color" class="color-indicator view-control"></span>
 							<p data-bind="text: req" class="item_text"></p>
 						</section>
-
-						<section class="response">
+						<section class="response collapse"
+						         data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}"
+						         role="tabpanel">
 							<div class="container">
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs" role="tablist">
@@ -203,7 +225,7 @@
 										<p data-bind="html: resHTML"></p>
 									</div>
 									<div data-bind="attr: {id: 'blocks-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
-										<section data-bind="component: {name: 'accordion', params: { data: blocks, color: color, index: $index()}}"></section>
+										<section data-bind="component: {name: 'cardGroup', params: { data: blocks, color: color, index: $index(), getMore: $parent.getMore}}"></section>
 									</div>
 								</div>
 							</div>

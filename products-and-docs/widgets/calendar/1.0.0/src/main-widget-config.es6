@@ -23,6 +23,9 @@
     }
 
     let widget = widgetsCalendar[0],
+        weekScheduler = weekSchedulers[0],
+        monthScheduler = monthSchedulers[0],
+        yearScheduler = yearSchedulers[0],
         themeConfig = {
             sizes: {
                 standart: {

@@ -25,7 +25,8 @@ function RequestsListViewModel(requests) {
 }
 
 
-RequestsListViewModel.prototype.method = function () {
+RequestsListViewModel.prototype.getMore = function () {
+	console.log(this)
 };
 
 /**
@@ -68,8 +69,11 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
 			}, obj);
 			return item;
 		});
-
 	self.viewModel(newModel);
+	// $('#collapse-0').collapse();
+	setTimeout(function () {
+		$('#show-details-0').trigger('click');
+	}, 10);
 };
 
 /**
@@ -91,6 +95,15 @@ RequestsListViewModel.prototype.getDetails = function (vm, event) {
 		jsonHighlight(this.resHTML, this.res);
 	}
 	this.active(!this.active());
+};
+
+RequestsListViewModel.prototype.getStr = function (s, i) {
+	var str = s;
+	var i1 = i ? i() : '';
+	return [
+		str,
+		i1
+	].join('-');
 };
 
 module.exports = RequestsListViewModel;
