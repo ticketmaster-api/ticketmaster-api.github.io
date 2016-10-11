@@ -273,7 +273,7 @@
     //Check fixed sizes for 'simple' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var _sizeConfig = {
+      var sizeConfig = {
         width: themeConfig.sizes[targetValue].width,
         height: themeConfig.sizes[targetValue].height,
         maxWidth: 600,
@@ -291,21 +291,21 @@
         widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        _sizeConfig = { //default size
+        sizeConfig = { //default size
           width: themeConfig.initSliderSize.width, //350
           height: themeConfig.initSliderSize.height, //600
           maxWidth: themeConfig.initSliderSize.maxWidth, //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', _sizeConfig.width);
-      widgetNode.setAttribute('w-height', _sizeConfig.height);
+      widgetNode.setAttribute('w-width', sizeConfig.width);
+      widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value);
@@ -317,8 +317,8 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 600,
-        theme = void 0,
-        layout = void 0;
+        theme = undefined,
+        layout = undefined;
     var widthSlider = $('.js_widget_width_slider'),
         $tabButtons = $('.js-tab-buttons');
 
@@ -454,7 +454,7 @@
       $ul.html(''); //clear custom select list
       $countrySelect.prop('disabled', !results);
       if (results) {
-        var status = void 0;
+        var status = undefined;
         if (results.length <= 1) status = true;else status = false;
         $countrySelect.prop('disabled', status);
         // $countrySelect.prop('disabled', !results.length);
