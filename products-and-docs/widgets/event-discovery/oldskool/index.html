@@ -41,6 +41,8 @@
     <div class="events-counter">1 event</div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ticketmaster-api-staging.github.io/scripts/components/api-key-service.js"></script>
+
   <script>
     function formatDate(date) {
       var result = '';
@@ -65,10 +67,15 @@
       }
       return result + ' ' + (H) + ':' + m + ' ' + a;
     }
+
+    var defaultApiKey = apiKeyService.getApiWidgetsKey();
     var myParam = location.search.split('?id=')[1];
+
+    $('[w-type=event-discovery]').attr('w-tmapikey', defaultApiKey);
+
     $.ajax({
       type: "GET",
-      url: "https://app.ticketmaster.com/discovery/v2/events/"+myParam+"?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+      url: "https://app.ticketmaster.com/discovery/v2/events/"+ myParam +"?apikey=" + defaultApiKey,
       async: true,
       dataType: "json",
       success: function(json) {

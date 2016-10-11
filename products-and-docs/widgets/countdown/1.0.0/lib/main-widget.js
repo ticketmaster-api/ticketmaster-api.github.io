@@ -738,8 +738,8 @@ var TicketmasterCountdownWidget = function () {
           widget.onEventLoadError.call(widget, this.status);
         }
         // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
-        var _ref = void 0,
-            _ref2 = void 0;
+        var _ref = undefined,
+            _ref2 = undefined;
         widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime || _ref2.day : void 0 : void 0);
       }
       widget.setBuyBtnUrl();

@@ -251,4 +251,5 @@ Raw html goes here (uses liquid variabled defined above)
         </div>
     </div>
 </div>
+<script src="{{"/scripts/components/api-key-service.js" | prepend: site.baseurl }}" async></script>
 <script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>

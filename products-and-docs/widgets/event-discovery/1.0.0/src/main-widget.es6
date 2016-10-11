@@ -157,8 +157,6 @@ class TicketmasterEventDiscoveryWidget {
     return attrs;
   }
 
-  //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG
-
   constructor(root) {
     if(!root) return;
     this.widgetRoot = root;

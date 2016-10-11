@@ -32,7 +32,8 @@ Object.byString = function(o, s) {
   var base = {}, //base object with parsed API data
     defaultMethod, //the very first method found (rendered by default)
     selectedMethod, //currently selected method
-    apiKey = sessionStorage.getItem('tk-api-key') || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0", //API Key
+    defaultApiKey = apiKeyService.getApiExploreKey(), // Default API Key if no one is used
+    apiKey = sessionStorage.getItem('tk-api-key') || defaultApiKey, //API Key
     apiKeyDefault = apiKey, // default api key (temporarily used when there is no other api key available)
     slider, // slider with response columns
     spinner, // spinner

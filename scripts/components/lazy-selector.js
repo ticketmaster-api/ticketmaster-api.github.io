@@ -30,7 +30,8 @@
       modalContent = $('.modal-content', $modal);
 
     var keyword = $form.find('#keyword'),
-      apikey = checkCookie() || $('#w-tm-api-key').val() || '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0',
+      defaultApiKey = apiKeyService.getApiExploreKey(),
+      apikey = checkCookie() || $('#w-tm-api-key').val() || defaultApiKey,
       selector = options || 'events',
       eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json';
 
