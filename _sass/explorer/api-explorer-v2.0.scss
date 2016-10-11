@@ -643,6 +643,12 @@ $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 								width: 770px;
 							}
 							&.active {
+								.tab-btn {
+									border-bottom: 2px solid #009cde;
+									margin-bottom: -2px;
+									background: none;
+									color: #009cde;
+								}
 								.details {
 									display: block;
 								}

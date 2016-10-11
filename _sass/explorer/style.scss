@@ -645,6 +645,9 @@
       height: 25px;
       top: 20px;
     }
+    &:focus{
+      background: $n3;
+    }
     &:hover{
       background: $p1;
       width: 80px;
@@ -653,9 +656,22 @@
       display: none !important;
     }
   }
+
+  .slick-disabled {
+    cursor: pointer;
+    opacity: 0.3;
+    width: 45px;
+    background: $n3;
+    pointer-events: none;
+    &:hover{
+      width: 45px;
+      background: $n3;
+    }
+  }
+
   .slick-dots {
     bottom: inherit;
-    top: 0px;
+    top: 0;
     li {
       button {
         &:hover:before,
