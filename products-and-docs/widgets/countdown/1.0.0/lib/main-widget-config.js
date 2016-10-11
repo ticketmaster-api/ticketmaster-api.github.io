@@ -2,6 +2,8 @@
 
 (function ($) {
 
+  var DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
   var widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
@@ -208,8 +210,8 @@
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
         } else {
-          document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+          document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
       }
     }

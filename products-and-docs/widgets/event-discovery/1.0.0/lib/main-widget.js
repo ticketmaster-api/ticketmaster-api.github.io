@@ -195,9 +195,6 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       return attrs;
     }
-
-    //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG
-
   }]);
 
   function TicketmasterEventDiscoveryWidget(root) {

@@ -1,5 +1,7 @@
 (function(){
 
+    const DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
     function getHeightByTheme(theme){
         return (theme === 'simple' ? 286 : 339);
     }
@@ -75,8 +77,8 @@
                     document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
                 }
                 else {
-                    document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+                    document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
                 }
             }
         }
@@ -294,8 +296,8 @@
             document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
         }
         else {
-            document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+            document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
     }
 
