@@ -187,7 +187,6 @@
         widget.update();
         var spinner = document.querySelector('.events-root-container .spinner-container');
         spinner.classList.add('hide');
-        console.log(widget);
         setTimeout(function () {
             weekScheduler.update();
             monthScheduler.update();
