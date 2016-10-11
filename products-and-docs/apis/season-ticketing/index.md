@@ -225,7 +225,6 @@ If further interest, contact Ticketmaster for discussion about more sophisticate
     -	`Customer_Add` – Create a new customer account.
     -	`Customer_Update` - Update an existing customer’s account.
     -	… and others.
-    
     Through this self-service process you will have access to the sth-customer product using these APIs: ats_ext_test_polling, event_search, event_details, customer_query, seats_sold, and ping. To become a partner and gain access to our other products, please contact Nexus_CPP@ticketmaster.com.
     
 +	**Inventory** – This product contains a number of API calls that provide available inventory, ticket pricing, and allow callers to request seats.  This product includes all the API calls in the “customer” product (above), plus:
