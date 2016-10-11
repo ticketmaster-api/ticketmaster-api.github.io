@@ -74,12 +74,12 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'themeUrl',
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/";
+      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/' : 'http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/';
     }
   }, {
     key: 'portalUrl',
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/";
+      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/' : 'http://ticketmaster-api-staging.github.io/';
     }
   }, {
     key: 'logoUrl',
@@ -392,7 +392,7 @@ var TicketmasterEventDiscoveryWidget = function () {
           el.classList.add("right-logo");
           el.classList.remove("centered-logo");
         } else if (el) {
-          var i = undefined;
+          var i = void 0;
           for (i = 0; i < el.length - 1; i++) {
             el[i].classList.remove("centered-logo");
           }
@@ -403,9 +403,9 @@ var TicketmasterEventDiscoveryWidget = function () {
           el.classList.remove("right-logo");
           el.classList.add("centered-logo");
         } else if (el) {
-          var i = undefined;
-          for (i = 0; i < el.length - 1; i++) {
-            el[i].classList.add("centered-logo");
+          var _i = void 0;
+          for (_i = 0; _i < el.length - 1; _i++) {
+            el[_i].classList.add("centered-logo");
           }
         }
       }
@@ -736,24 +736,24 @@ var TicketmasterEventDiscoveryWidget = function () {
       // right btn
       this.nextEventX = document.createElement("div");
       var nextEventXClass = [coreCssClass, coreCssClass + '-horizontal', coreCssClass + '-right', this.controlHiddenClass];
-      for (var i in nextEventXClass) {
-        this.nextEventX.classList.add(nextEventXClass[i]);
+      for (var _i2 in nextEventXClass) {
+        this.nextEventX.classList.add(nextEventXClass[_i2]);
       }
       this.eventsRootContainer.appendChild(this.nextEventX);
 
       // top btn
       this.prevEventY = document.createElement("div");
       var prevEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-top', this.controlHiddenClass];
-      for (var i in prevEventYClass) {
-        this.prevEventY.classList.add(prevEventYClass[i]);
+      for (var _i3 in prevEventYClass) {
+        this.prevEventY.classList.add(prevEventYClass[_i3]);
       }
       this.eventsRootContainer.appendChild(this.prevEventY);
 
       // bottom btn
       this.nextEventY = document.createElement("div");
       var nextEventYClass = [coreCssClass, coreCssClass + '-vertical', coreCssClass + '-bottom', this.controlHiddenClass];
-      for (var i in nextEventYClass) {
-        this.nextEventY.classList.add(nextEventYClass[i]);
+      for (var _i4 in nextEventYClass) {
+        this.nextEventY.classList.add(nextEventYClass[_i4]);
       }
       this.eventsRootContainer.appendChild(this.nextEventY);
 
@@ -777,8 +777,8 @@ var TicketmasterEventDiscoveryWidget = function () {
         if (_this7.eventsRoot !== e.target) return;
         var eventGroup = _this7.eventsRoot.getElementsByClassName("event-group");
         // Reset all groups. We don't know what event group was visible before.
-        for (var i = 0; eventGroup.length > i; i++) {
-          eventGroup[i].style.marginTop = 0;
+        for (var _i5 = 0; eventGroup.length > _i5; _i5++) {
+          eventGroup[_i5].style.marginTop = 0;
         }
       });
 
