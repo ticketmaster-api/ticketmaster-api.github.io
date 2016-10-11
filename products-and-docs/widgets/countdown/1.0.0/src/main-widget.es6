@@ -115,9 +115,17 @@ class TicketmasterCountdownWidget {
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : `https://app.ticketmaster.com/discovery/v2/events/${this.eventId}.json`; }
 
   //get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/"; }
+  get themeUrl() {
+    return (window.location.host === 'developer.ticketmaster.com')
+      ? `http://developer.ticketmaster.com/products-and-docs/widgets/countdown/1.0.0/theme/`
+      : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/`;
+  }
 
-  get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
+  get portalUrl(){
+    return (window.location.host === 'developer.ticketmaster.com')
+      ? `http://developer.ticketmaster.com/`
+      : `http://ticketmaster-api-staging.github.io/`;
+  }
 
   get logoUrl() { return "http://www.ticketmaster.com/"; }
 
@@ -131,7 +139,7 @@ class TicketmasterCountdownWidget {
 
   get tmWidgetWhiteList(){ return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"]; }
 
-  get eventIdDefault(){ return '1Ad0ZfdGkMoCQHJ';}
+  //get eventIdDefault(){ return '1Ad0ZfdGkMoCQHJ';}
 
   isConfigAttrExistAndNotEmpty(attr) {
     if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
