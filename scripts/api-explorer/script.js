@@ -63,7 +63,7 @@ Object.byString = function(o, s) {
           if (apiKeys != "") {
               userApiKey = apiKeys[apiKeys.length-1];
               userApiKey = userApiKey[userApiKey.length-1];
-              $('#api-key').val('userApiKey');
+              $('#api-key').val(userApiKey);
           }
           return userApiKey;
       }
