@@ -4,7 +4,7 @@ categories:
   - tutorials
   - tutorials-events-search
 
-title: Get started with the Discovery API
+title: Get started with The Discovery API
 
 img: "/products-and-docs/tutorials/img/tutorial-img.png"
 

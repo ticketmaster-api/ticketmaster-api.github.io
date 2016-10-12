@@ -3,7 +3,7 @@ layout: base-content
 categories:
 - support
 - terms-of-use-partner
-title: Partner API terms of use
+title: Partner API Terms of Use
 excerpt: The following terms and conditions govern the use of the Ticketmaster application programming interfaces.
 keywords: Partner, terms, conditions, licensed uses, restrictions, warranty disclaimer, ownership, relationship of parties
 ---

@@ -1,7 +1,7 @@
 (function(){
-  var apiKey = sessionStorage.getItem('tk-api-key');
-  var DOMAIN = "https://developer-acct.ticketmaster.com";
 
+   function checkCookie(userApiKey, userEmail) {
+    var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
   /*
 	if(apiKey === null){
     var onLoadHandler = function() {
@@ -9,14 +9,14 @@
       win.postMessage("", DOMAIN);
     };
 
-    var iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.setAttribute("src", DOMAIN + "/user/");
-    iframe.setAttribute("name","target");
-    iframe.addEventListener("load", onLoadHandler);
-
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(iframe);
+    if (apiKeys != "" && userEmail != "") {
+      userApiKey = apiKeys[apiKeys.length-1];
+      userApiKey = userApiKey[userApiKey.length-1];
+      userEmail = window.atob(getCookie("tk-api-email")) ;//decode string
+      try {
+        document.getElementsByClassName("apigee-login")[0].textContent = userEmail;
+      } catch(e){
+        //console.log(e);
   }
   /* Wait for response
   checkResponse = function(event){
@@ -30,23 +30,33 @@
 
         /*add custom login event for widget
         $(window).trigger('login', [{
-          key: event.data.key,
-          email: event.data.email
+        key: userApiKey,
+        email: userEmail
         }]);
-      }
     } else {
-      console.warn(origin + " is not allowed");
+      //console.log("no coockie found");
     }
-  };
-  */
-
-  /*
-  if (window.addEventListener) {
-    window.addEventListener("message", checkResponse);
-  } else {
-    // IE8
-    window.attachEvent("onmessage", checkResponse);
   }
   */
+
+  }
+  //get Cookie by name
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') {
+        c = c.substring(1);
+  }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length,c.length);
+      }
+    }
+    return "";
+  }
+
+  var userKey=[], userEmail=null;
+  checkCookie(userKey,userEmail);
 
 })();

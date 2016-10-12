@@ -3,7 +3,7 @@ layout: documentation
 categories:
 - documentation
 - top-picks
-title: Top Picks API
+title: The Top Picks API
 excerpt: Seat recommendations based on current availability, sampling across various areas of a venue and available price points.
 keywords: Partner API, TopPicks, Top Picks, host and API, reserve tickets
 ---
