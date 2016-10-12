@@ -78,7 +78,33 @@ layout: default
 
 {% if page.categories contains "replace_apikey" %}
 <script>
-    var userKey = sessionStorage.getItem('tk-api-key');
+   var userKey=[], userEmail=null;
+    function checkCookie() {
+        var userApiKey;
+        var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+
+        if (apiKeys != "") {
+            userApiKey = apiKeys[apiKeys.length-1];
+            userApiKey = userApiKey[userApiKey.length-1];
+        }
+        return userApiKey;
+    }
+
+    //get Cookie by name
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length,c.length);
+            }
+        }
+        return "";
+    }
     
     function replaceText(selector, text, newText, flags) {
         var matcher = new RegExp(text, flags);
@@ -88,13 +114,17 @@ layout: default
                 $this.text($this.text().replace(matcher, newText));
         });
     }
-    
+
+    userKey = checkCookie();
+
+    console.log('userKey' , userKey);
     if(userKey !== null) {
-        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+        console.log('userKey' , userKey);
+        replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     }
     
     $(window).on('login',function(){
-        replaceText('*', '\{apikey\}', "apikey=" + sessionStorage.getItem('tk-api-key'), 'g');
+        //replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     });
 </script>
 {% endif %}

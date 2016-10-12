@@ -58,10 +58,35 @@ Object.byString = function(o, s) {
     screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization),
     worker = new Worker('../scripts/components/highlight-worker.js'); // Json-formatter worker
 
+    function checkCookie() {
+          var userApiKey;
+          var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+          if (apiKeys != "") {
+              userApiKey = apiKeys[apiKeys.length-1];
+              userApiKey = userApiKey[userApiKey.length-1];
+          }
+          return userApiKey;
+      }
+      //get Cookie by name
+      function getCookie(cname) {
+          var name = cname + "=";
+          var ca = document.cookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length,c.length);
+              }
+          }
+          return "";
+      }
+
   /* INITIALIZATION PHASE */
 
   $(function () {
-    var item = sessionStorage.getItem('tk-api-email');
+    var item = window.atob(getCookie("tk-api-email"));
     document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
     readFromWADL(); //parse WADL file when document is ready
     setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
