@@ -234,8 +234,10 @@ Object.byString = function(o, s) {
       var container = $('#req-res-container'),
         items = container.find('.req-resp-temp');
       items.fadeOut(300);
+
       setTimeout(function(){
         items.remove();
+				slider.slick("slickRemove", 0);
       }, 300);
     });
 
@@ -589,7 +591,7 @@ Object.byString = function(o, s) {
         listGroup = $('<div class="list-group"></div>'); //subcolumn future element
         var isPage = subcolumn.title.toLowerCase() === 'page';
         title = $([
-          '<a class="list-group-item active', (isPage ? ' pagination" id="api-explorer-pagination"' : '"'), '>',
+          '<a class="list-group-item active', (isPage ? ' api-explorer-pagination" id="api-explorer-pagination"' : '"'), '>',
             subcolumn["title"],
             isPage ?  [
               '<b id="next-page" class="pagination-btn next-page btn', isLast(resPage) ? ' hide': '','">&nbsp;</b>',
