@@ -19,6 +19,7 @@ var RequestsListViewModel = require('./requestsListViewModel');
 
 // Modules
 var accordion = require('../components/accordion.component');
+var card = require('../components/card.component');
 var customSelect = require('../components/customSelect');
 
 /**
@@ -36,16 +37,15 @@ function AppViewModel(obj) {
   this.selectedParams = ko.observableArray([]);
 	this.requests = ko.observableArray([]);
 
+	// computed
+  this.URL = ko.computed(this.getUrl, this);
+  this.sendButtonText = ko.pureComputed(this.getMethodName, this);
+
   // sub-models
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
-  this.requestsList = new RequestsListViewModel(this.requests);
-
-  // computed
-  this.sendButtonText = ko.pureComputed(this.getMethodName, this);
-  
-  this.URL = ko.computed(this.getUrl, this);
+  this.requestsList = new RequestsListViewModel(this.requests, this.selectedParams);
 }
 
 /**

@@ -541,7 +541,7 @@ Object.byString = function(o, s) {
   // column constructor
   var Column = function(configObject, responseObject, index, guId) {
     var self = this;
-
+		console.log('config',configObject);
     self.guId = guId;
     self.responseObject = responseObject;
     self.destinationObject = {};

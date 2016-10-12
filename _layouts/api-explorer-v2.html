@@ -163,6 +163,7 @@
 					<button data-bind="click: onClearRequests" class="btn btn-icon btn-clear" type="button"></button>
 				</div>
 			</section>
+
 			<!--requests-->
 			<section>
 				<ul data-bind="foreach: viewModel"
@@ -172,7 +173,6 @@
 				    aria-multiselectable="true">
 
 					<li data-bind="css: {active: active}" class="panel panel-default api-exp-request-list-item clearfix">
-
 						<section class="row-container request"
 						         data-bind="attr: {id: $parent.getStr('heading', $index)}"
 						         role="tab">
@@ -199,33 +199,42 @@
 							<span data-bind="css: color" class="color-indicator view-control"></span>
 							<p data-bind="text: req" class="item_text"></p>
 						</section>
+
 						<section class="response collapse"
 						         data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}"
 						         role="tabpanel">
-							<div class="container">
-								<!-- Nav tabs -->
-								<ul class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="tab">
-										<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
-									</li>
-									<li role="presentation" class="tab active">
-										<a data-bind="attr: {href: '#blocks-' + $index(), 'aria-controls': 'blocks-' + $index()}" class="tab-btn" href="#blocks" aria-controls="blocks" role="tab" data-toggle="tab">Blocks</a>
-									</li>
-									<li class="tab">
-										<span class="tab-label">Structure</span>
-									</li>
-									<li class="tab">
-										<span class="breadcrumbs truncate">… Events /er.com/discovery/v1/events/1D004F92642F0C7D.json?{apikey} / https://app.ticketmaster.com/discovery/v1/events/1D004F926</span>
-									</li>
-								</ul>
-
-								<!-- Tab panes -->
-								<div class="tab-content col-xs-12">
-									<div data-bind="scroll: {x:false, y:true}, attr: {id: 'json-' + $index()}" role="tabpanel" class="tab-pane prety-json" id="json">
-										<p data-bind="html: resHTML"></p>
+							<div class="row">
+								<div class="container">
+									<div class="row">
+										<!-- Nav tabs -->
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="tab">
+												<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
+											</li>
+											<li role="presentation" class="tab active">
+												<a data-bind="attr: {href: '#blocks-' + $index(), 'aria-controls': 'blocks-' + $index()}" class="tab-btn" href="#blocks" aria-controls="blocks" role="tab" data-toggle="tab">Blocks</a>
+											</li>
+											<li class="tab">
+												<span class="tab-label">Structure</span>
+											</li>
+											<li class="tab">
+												<span class="breadcrumbs truncate">… Events /er.com/discovery/v1/events/1D004F92642F0C7D.json?{apikey} / https://app.ticketmaster.com/discovery/v1/events/1D004F926</span>
+											</li>
+										</ul>
 									</div>
-									<div data-bind="attr: {id: 'blocks-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
-										<section data-bind="component: {name: 'cardGroup', params: { data: blocks, color: color, index: $index(), getMore: $parent.getMore}}"></section>
+
+									<!-- Tab panes -->
+									<div class="row">
+										<div class="tab-content col-xs-12">
+											<div data-bind="scroll: {x:false, y:true}, attr: {id: 'json-' + $index()}" role="tabpanel" class="tab-pane prety-json" id="json">
+												<p data-bind="html: resHTML"></p>
+											</div>
+											<div data-bind="attr: {id: 'blocks-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
+												<div class="slider">
+													<section data-bind="component: {name: 'cardGroup', params: { data: blocks, color: color, index: $index(), getMore: $parent.getMore, url: $parent.url}}"></section>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -248,23 +257,18 @@
 	<a href="#"><span></span></a>
 </div>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
-<!--<script src="{{'/config.js' | prepend: site.baseurl }}"></script>-->
 <script src="{{'/scripts/vendors/jquery-1.11.3.min.js' | prepend: site.baseurl }}"></script>
-<!--<script src="https://code.jquery.com/jquery-migrate-1.3.0.min.js"></script>-->
 <script src="{{'/scripts/vendors/jquery-migrate-1.3.0.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/components/intro.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
+<script  type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+<!--<script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>-->
 <script src="{{'/scripts/vendors/knockout-3.3.0.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/knockout-scrollbar.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
-
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
 {% include feedback.html %}
 <script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/apikey-check.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
 </body>
 </html>
