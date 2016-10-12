@@ -1,13 +1,7 @@
 (function(){
 
    function checkCookie(userApiKey, userEmail) {
-    var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
-  /*
-	if(apiKey === null){
-    var onLoadHandler = function() {
-      var win = window.frames.target;
-      win.postMessage("", DOMAIN);
-    };
+   var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
 
     if (apiKeys != "" && userEmail != "") {
       userApiKey = apiKeys[apiKeys.length-1];
@@ -17,29 +11,18 @@
         document.getElementsByClassName("apigee-login")[0].textContent = userEmail;
       } catch(e){
         //console.log(e);
-  }
-  /* Wait for response
-  checkResponse = function(event){
-    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-    if (origin == DOMAIN) {
-      console.warn('Event data on postMessage()\nkey - ', event.data.key, '\nemail - ', event.data.email);
-      if (event.data.key && event.data.email) {
-        sessionStorage.setItem('tk-api-key', event.data.key);
-        sessionStorage.setItem('tk-api-email', event.data.email);
-        document.getElementsByClassName("apigee-login")[0].textContent = event.data.email;
+      }
 
-        /*add custom login event for widget
-        $(window).trigger('login', [{
+      /*add custom login event for widget*/
+      $(window).trigger('login', [{
         key: userApiKey,
         email: userEmail
-        }]);
+      }]);
     } else {
       //console.log("no coockie found");
     }
   }
-  */
-
-  }
+	
   //get Cookie by name
   function getCookie(cname) {
     var name = cname + "=";
