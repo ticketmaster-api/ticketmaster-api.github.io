@@ -37,6 +37,20 @@
                 document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
             })();
         </script>
+
+        <h3>category - {{page.category}}</h3>
+        <h3>layout -{{page.layout}}</h3>
+        <h3>{{page.categories[0]}}</h3>
+        <h3>{{page.categories[1]}}</h3>
+
+        {%if page.layout == 'documentation-single' or page.layout == 'home'%}
+            <!--{%if page.layout == 'widget' or page.layout == 'widget-calendar' or page.layout == 'widget-countdown' %}{%else%}{%endif%}-->
+            <script src="{{"/scripts/components/api-key-service.js" | prepend: site.baseurl }}" async></script>
+        {% endif %}
+        {% if page.category == 'home' or page.layout == 'documentation-single' %}
+            <script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
+        {% endif %}
+
         <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
         {% include feedback.html %}
@@ -58,7 +72,7 @@
 
         {% if page.categories[0] == "documentation" and page.categories[1] == "widgets"%}
             {% include lazy-selector-modal.html %}
-            <script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+            <!--<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>-->
             <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
         {%endif%}

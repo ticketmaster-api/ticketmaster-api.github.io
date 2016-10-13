@@ -41,10 +41,11 @@
 
     config.forEach(function (el) {
       var val = el === 'countries' && 7;
-
       renderValue(el, val);
-      updateEventpanelCounters(el);
-      intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
+      if(val !== null || val !== false) {
+        updateEventpanelCounters(el);
+      }
+      //intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
     });
   }
 
@@ -114,7 +115,7 @@
   }
 
   function renderValue(el, val) {
-    var value = val || getSessionStorage(el) || '';
+    var value = getSessionStorage(el) || val || '';
     var formattedNumber = addCommas(value);
     $(['#js-', el,'-counter'].join('')).text(formattedNumber);
   }
