@@ -25,7 +25,9 @@ var apiKeyService = {};
   if(livePattern.test(host)){
     tmApiKeys = LIVE_KEYS;
   }else if(stagingPattern.test(host)){
-    tmApiKeys = STAGING_KEYS;
+    // FIXME: Temporary solution for unlock testing on staging instance. Revert before release !!!
+    // tmApiKeys = STAGING_KEYS;
+    tmApiKeys = LIVE_KEYS;
   }
 
   apiKeyService.getApiKeys = function () {
