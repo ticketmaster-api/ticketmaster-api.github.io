@@ -237,7 +237,9 @@ Object.byString = function(o, s) {
 
       setTimeout(function(){
         items.remove();
-				slider.slick("slickRemove", 0);
+				while (getColumnCount() > 0 ){
+					slider.slick("slickRemove", 0);
+				}
       }, 300);
     });
 
