@@ -286,8 +286,8 @@
 
     //Check fixed sizes for 'simple_countdown' theme
     if (targetName === "w-proportion") {
-      var widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
-      var sizeConfig = {
+      var _widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
+      var _sizeConfig = {
         width: themeConfig.simple_countdown.sizes[targetValue].width,
         height: themeConfig.simple_countdown.sizes[targetValue].height,
         maxWidth: 600,
@@ -299,27 +299,27 @@
 
       if (targetValue !== 'custom') {
         $tabButtons.slideUp("fast");
-        widthSlider.slideUp("fast");
+        _widthSlider.slideUp("fast");
       } else {
         $tabButtons.slideDown("fast");
-        widthSlider.slideDown("fast");
+        _widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        sizeConfig = { //default size
+        _sizeConfig = { //default size
           width: themeConfig.simple_countdown.initSliderSize.width, //350
           height: themeConfig.simple_countdown.initSliderSize.height, //600
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: sizeConfig.width,
-          max: sizeConfig.maxWidth,
-          min: sizeConfig.minWidth
+          setValue: _sizeConfig.width,
+          max: _sizeConfig.maxWidth,
+          min: _sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', sizeConfig.width);
-      widgetNode.setAttribute('w-height', sizeConfig.height);
+      widgetNode.setAttribute('w-width', _sizeConfig.width);
+      widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
@@ -335,8 +335,8 @@
     var widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $('.widget-container-wrapper'),
         height = 600,
-        theme = undefined,
-        layout = undefined,
+        theme = void 0,
+        layout = void 0,
         $border_slider = $('.js_widget_border_slider');
     $tabButtons = $('.js-tab-buttons');
 

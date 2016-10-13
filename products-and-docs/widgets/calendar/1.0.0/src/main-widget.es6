@@ -1,3 +1,7 @@
+var _Promise = typeof Promise === 'undefined'
+    ? require('es6-promise').Promise
+    : Promise
+
 class TicketmasterCalendarWidget {
 
     set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }
@@ -173,7 +177,12 @@ class TicketmasterCalendarWidget {
     constructor(root) {
         if(!root) return;
         this.widgetRoot = root;
-
+        var scriptPromise = document.createElement("script");
+        scriptPromise.setAttribute('src', 'https://unpkg.com/es6-promise@3.2.1/dist/es6-promise.min.js');
+        var scriptFetch = document.createElement("script");
+        scriptFetch.setAttribute('src', 'https://unpkg.com/whatwg-fetch@1.0.0/fetch.js');
+        // window.Promise || this.widgetRoot.appendChild(scriptPromise);
+        // window.fetch || this.widgetRoot.appendChild(scriptFetch);
         this.tabsRootContainer = document.createElement("div");
         this.tabsRootContainer.classList.add("tabs");
         this.tabsRootContainer.innerHTML = '<span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span>';
@@ -2318,8 +2327,8 @@ class MonthScheduler {
 
         if (calendarWidgetRoot.getAttribute("w-period") != 'week') {
             if (calendarWidgetRoot.getAttribute("w-period").length != 7) {
-                firstDay =  new Date(date.getFullYear(), date.getMonth() + 1, 1);
-                lastDay = new Date(date.getFullYear(), date.getMonth() + 2, 0);
+                firstDay =  new Date(date.getFullYear(), date.getMonth(), 1);
+                lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 1);
             }
             else {
                 firstDay = new Date(calendarWidgetRoot.getAttribute("w-period").substr(0, 4), calendarWidgetRoot.getAttribute("w-period").substr(5, 7), 0);
@@ -2536,11 +2545,12 @@ class MonthScheduler {
                     if (events.page.totalElements != 0) {
 
                         let currentMonth = calendarWidgetRoot.getAttribute('w-period').substr(5, 2);
-                        if (currentMonth == '') {
-                            currentMonth = new Date().getMonth() + 1;
-                            if (parseInt(currentMonth) <= 9) currentMonth = '0' + currentMonth;
-                        }
-
+                        let currentMonthDef = new Date(calendarWidgetRoot.getAttribute('w-period')).getMonth() + 1;
+                        if (currentMonthDef <= 9) currentMonthDef = '0' + currentMonthDef;
+                            if (currentMonth == '') {
+                              currentMonth = new Date().getMonth() + 1;
+                              if (parseInt(currentMonth) <= 9) currentMonth = '0' + currentMonth;
+                            }
                         events._embedded.events.forEach(function (item) {
                             if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
                                 if (item._embedded.venues[0].hasOwnProperty('name')) {
@@ -2570,7 +2580,7 @@ class MonthScheduler {
                                 }
                             });
 
-                            if (currentMonth == item.dates.start.localDate.substr(5, 2)) {
+                            if (currentMonth == item.dates.start.localDate.substr(5, 2) || currentMonthDef == item.dates.start.localDate.substr(5, 2)) {
 
                                 monthEvents.push({
                                     'name': item.name,
