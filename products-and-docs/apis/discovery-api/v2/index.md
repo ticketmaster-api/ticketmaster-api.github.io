@@ -6,6 +6,7 @@ categories:
 - discovery-api
 - v2
 - replace_apikey
+title: Discovery API 2.0
 redirect_from:
 - "/products-and-docs/apis/discovery-api/"
 ---

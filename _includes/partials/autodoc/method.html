@@ -480,7 +480,7 @@
 
                     {% for add_link_HAL in _HAL.links %}
                         {% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
-                        {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li> -->{% endcomment %}
+                        {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->{% endcomment %}
                         {% if schemaSplit[1] == _link_HAL[1] %}
 
                             {%assign isLinkExist = false%}
@@ -558,7 +558,7 @@
                                 {%include partials/autodoc/inner-item.html%}
                             </li>
                         {% endif %}
-                    </ul>
+                                </ul>
                     {% endif %}<!-- END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}-->
 
                     {% if property[1]['$ref'] %}

@@ -32,7 +32,7 @@ directly on your website at no additional cost.
 
 {% capture checkout-widget %}
 {: #event-checkout-widget }
-## Universal Checkout
+## Ticketmaster Universal Checkout
 
 {: .body}
 Informational text about the widget and it abilities, functions and other information.
