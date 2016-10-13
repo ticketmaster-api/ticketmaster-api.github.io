@@ -26,6 +26,20 @@
         return document.getElementById('w-tm-api-key').value;
     }
 
+    var replaceApiKey = function replaceApiKey(options) {
+        var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+
+        if (userKey !== null) {
+            var inputApiKey = options.inputApiKey;
+            var widgetNode = options.widgetNode;
+            var _widget = options.widget;
+
+            inputApiKey.attr('value', userKey).data('userAPIkey', userKey).val(userKey);
+            widgetNode.setAttribute("w-tm-api-key", userKey);
+            _widget.update();
+        }
+    };
+
     var widget = widgetsCalendar[0],
         weekScheduler = weekSchedulers[0],
         monthScheduler = monthSchedulers[0],
@@ -298,6 +312,19 @@
             document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
     }
+
+    /**
+     * check if user logged just before enter widget page
+     */
+    $(window).on('login', function (e, data) {
+        var widgetNode = document.querySelector("div[w-tmapikey]");
+        replaceApiKey({
+            userKey: data.key,
+            inputApiKey: $('#w-tm-api-key'),
+            widgetNode: widgetNode,
+            widget: widget
+        });
+    });
 
     $('.js_get_widget_code').on('click', function () {
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
