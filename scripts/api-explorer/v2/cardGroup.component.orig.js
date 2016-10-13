@@ -59,10 +59,12 @@ module.exports = ko.components.register('cardGroup', {
 										aria-expanded="true">
 							<span data-bind="css: {down: isActive}" class="btn btn-icon shevron white-shevron-up"></span>
 							<span class="title" data-bind="text: name">Title</span>
-						</button>				
+						</button>	
+									
 						<span data-bind="if: panelType === 'list-group'">						
 							<span data-bind="text: totalElements" class="counter"></span>
 						</span>
+						
 						<!--pager-->
 						<span data-bind="if: name === 'Page'" >
 							<span class="navigation-wrapper">

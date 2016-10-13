@@ -1,6 +1,6 @@
 'use strict';
 
-var hf = require('../components/helperFunc');
+var hf = require('../modules/helperFunc');
 var self;
 var base;
 var category;

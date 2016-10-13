@@ -6,10 +6,10 @@
 // custom bindings
 require('../customBindings/foreachProp');
 
-// Components
-var base = require('../components/base');
-var apiKey = require('../components/apikey');
-var ajaxService = require('../components/ajaxService');
+// Modules
+var base = require('../modules/base');
+var apiKey = require('../modules/apikey');
+var ajaxService = require('../modules/ajaxService');
 
 // View Models
 var MenuViewModel = require('../ViewModels/menuViewModel');
@@ -17,10 +17,8 @@ var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
 var RequestsListViewModel = require('./requestsListViewModel');
 
-// Modules
-var accordion = require('../components/accordion.component');
-var card = require('../components/card.component');
-var customSelect = require('../components/customSelect');
+// Components
+require('../components/index');
 
 /**
  * Main application view-model

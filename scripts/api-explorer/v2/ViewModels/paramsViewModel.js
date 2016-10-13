@@ -1,6 +1,6 @@
 var self;
 var base;
-var hf = require('../components/helperFunc');
+var hf = require('../modules/helperFunc');
 /**
  * Params View-Model
  * @param raw
