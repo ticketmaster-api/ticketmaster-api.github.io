@@ -119,25 +119,26 @@ Follow us on our exciting journey as we open up the Ticketmaster ticketing platf
 {::comment}
 Raw html goes here (uses liquid variabled defined above)
 {:/comment}
+{% assign initialValue = site.data.variables.summaryWidget %}
 <div id="top-promo" class="slice-top-right slice-bottom-right promo xs-center">
     <div class="row">
         <div class="row-container wrap-overflow">
         <ul class="events-tracker events-tracker_col-view events-tracker_col-blue">
             <li class="events-tracker__item">
                 <div class="events-tracker__title">Events: </div>
-                <div id="js-events-counter" class="events-tracker__counter"></div>
+                <div id="js-events-counter" class="events-tracker__counter">{{initialValue.events}}</div>
             </li>
             <li class="events-tracker__item">
                 <div class="events-tracker__title">Attractions: </div>
-                <div id="js-attractions-counter" class="events-tracker__counter"></div>
+                <div id="js-attractions-counter" class="events-tracker__counter">{{initialValue.attractions}}</div>
             </li>
             <li class="events-tracker__item">
                 <div class="events-tracker__title">Venues: </div>
-                <div id="js-venues-counter" class="events-tracker__counter"></div>
+                <div id="js-venues-counter" class="events-tracker__counter">{{initialValue.venues}}</div>
             </li>
             <li class="events-tracker__item">
                 <div class="events-tracker__title">Countries: </div>
-                <div id="js-countries-counter" class="events-tracker__counter"></div>
+                <div id="js-countries-counter" class="events-tracker__counter">{{initialValue.countries}}</div>
             </li>
         </ul>
 <div class="col-xs-12 white normal-float" markdown="1">
@@ -251,5 +252,3 @@ Raw html goes here (uses liquid variabled defined above)
         </div>
     </div>
 </div>
-<script src="{{"/scripts/components/api-key-service.js" | prepend: site.baseurl }}" async></script>
-<script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
