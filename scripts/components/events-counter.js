@@ -139,16 +139,14 @@
   }
 
   function countAnimate(selectorEl,val) {
-
-      $('#js-'+selectorEl+'-counter').prop('Counter',  initialVal[selectorEl] ).animate({
-        Counter: val
-      }, {
-        duration: 3000,
-        easing: 'swing',
-        step: function (now) {
-          $(this).text(Math.ceil(now).toLocaleString());
-        }
-      });
-
+    $('#js-'+selectorEl+'-counter').prop('Counter',  initialVal[selectorEl] ).animate({
+      Counter: val
+    }, {
+      duration: 3000,
+      easing: 'swing',
+      step: function (now) {
+        $(this).text(Math.ceil(now).toLocaleString());
+      }
+    });
   }
 }(jQuery));
