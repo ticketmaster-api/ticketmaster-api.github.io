@@ -474,6 +474,17 @@ div[w-theme="simple_countdown"] .events-count-down .events-count-down__second{
     display: inline-block;
     position: relative;
 }
+
+@media (max-width: 1199px) {
+    div[w-theme="simple_countdown"] .events-count-down .events-count-down__month,
+    div[w-theme="simple_countdown"] .events-count-down .events-count-down__day,
+    div[w-theme="simple_countdown"] .events-count-down .events-count-down__hour,
+    div[w-theme="simple_countdown"] .events-count-down .events-count-down__minute,
+    div[w-theme="simple_countdown"] .events-count-down .events-count-down__second{
+        font-family: TMSans-Bold, Arial, serif;
+    }
+}
+
 div[w-theme="simple_countdown"] .events-count-down span:last-child {
     margin-right: 0;
 }
