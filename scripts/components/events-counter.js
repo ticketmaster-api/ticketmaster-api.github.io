@@ -1,5 +1,15 @@
 (function ($) {
   var apiKey = checkCookie() || apiKeyService.getApiExploreKey(); //API Key
+  var initialVal = initialVal();
+  function initialVal() {
+    var config = ['events', 'venues', 'attractions', 'countries'];
+    var values = {};
+    config.forEach(function (el) {      
+      values[el] = $('#js-'+el+'-counter').text();
+    });
+    return values
+  };
+
   function checkCookie() {
       var userApiKey;
       var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
@@ -47,7 +57,7 @@
         intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
       }
     });
-
+    
     //clear requests when user leave current page
     $(window).unload(function(){
       for(var i = 1; i < intervals.length; i++) {
@@ -71,6 +81,7 @@
         var quantity = data.page && data.page.totalElements || 'none';
         setSessionStorage(url, quantity);
         renderValue(url, quantity);
+        countAnimate(url, quantity);
       }).fail(function (err) {
         console.error('Error: ', err);
       })
@@ -125,5 +136,19 @@
     var value = getSessionStorage(el) || val || '';
     var formattedNumber = addCommas(value);
     $(['#js-', el,'-counter'].join('')).text(formattedNumber);
+  }
+
+  function countAnimate(selectorEl,val) {
+
+      $('#js-'+selectorEl+'-counter').prop('Counter',  initialVal[selectorEl] ).animate({
+        Counter: val
+      }, {
+        duration: 3000,
+        easing: 'swing',
+        step: function (now) {
+          $(this).text(Math.ceil(now).toLocaleString());
+        }
+      });
+
   }
 }(jQuery));
