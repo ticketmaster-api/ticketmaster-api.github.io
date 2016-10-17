@@ -16,6 +16,10 @@
   }
 }
 
+.single-column+ #footer {
+  margin-top: $base-margin*3;
+}
+
 
 @media (max-width: 1199px) {
   .single-column {
