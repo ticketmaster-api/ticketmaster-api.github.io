@@ -43,9 +43,16 @@
       var val = el === 'countries' && 7;
       renderValue(el, val);
       if(val !== null || val !== false) {
-        updateEventpanelCounters(el);
+        updateEventpanelCounters(el,intervals);
+        intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
       }
-      //intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
+    });
+
+    //clear requests when user leave current page
+    $(window).unload(function(){
+      for(var i = 1; i < intervals.length; i++) {
+        clearTimeout(i);
+      }
     });
   }
 
