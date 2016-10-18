@@ -61,7 +61,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = "//span[contains(@class,'event-name')]")
     private WebElementFacade posterWindow;
 
-    @FindBy(xpath = "//a[@id='get-event-by-Id']")
+    @FindBy(xpath = "//a[contains(@id,'get-event-by-Id')]")
     private WebElementFacade getEventIdLink;
 
     @FindBy(xpath = "//input[@id='keyword']")

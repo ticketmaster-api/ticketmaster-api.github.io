@@ -29,23 +29,23 @@ public class UserLogInPage extends AncestorPage {
     private WebElementFacade forgotYourPasswordLink;
 
     public WebElementFacade getCreateNewAccountButton() {
-        return createNewAccountButton;
+        return waitFor(createNewAccountButton);
     }
 
     public WebElementFacade getNameTextField() {
-        return nameTextField;
+        return waitFor(nameTextField);
     }
 
     public WebElementFacade getPasswordTextField() {
-        return passwordTextField;
+        return waitFor(passwordTextField);
     }
 
     public WebElementFacade getLogInButton() {
-        return logInButton;
+        return waitFor(logInButton);
     }
 
     public WebElementFacade getForgotYourPasswordLink() {
-        return forgotYourPasswordLink;
+        return waitFor(forgotYourPasswordLink);
     }
 
     public String getTitleText() {

@@ -16,19 +16,19 @@ public class PD_Tutorials_EventSearchPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='announcement']/a[@href='/products-and-docs/tutorials/events-search/search_events_in_location.html' and text()='Learn more']")
     private WebElementFacade locateEventOnMapWidgetButton;
 
-    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Locate events on a map']")
+    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Tutorial - Locate events on a map']")
     private WebElementFacade locateEventOnMapWidgetHeaderLink;
 
-    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Locate events on a map']")
+    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Tutorial - Locate events on a map']")
     private WebElementFacade locateEventOnMapWidgetImageLink;
 
     @FindBy(xpath = "//div[@class='announcement']/a[@href='/products-and-docs/tutorials/events-search/search_events_with_discovery_api.html' and text()='Learn more']")
     private WebElementFacade getStartedWithDiscoveryAPIWidgetButton;
 
-    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Get started with the Discovery API']")
+    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Get started with The Discovery API']")
     private WebElementFacade getStartedWithDiscoveryAPIWidgetHeaderLink;
 
-    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Get started with the Discovery API']")
+    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Get started with The Discovery API']")
     private WebElementFacade getStartedWithDiscoveryAPIWidgetImageLink;
 
     public Map<String, WebElementFacade> getClickableElements() {

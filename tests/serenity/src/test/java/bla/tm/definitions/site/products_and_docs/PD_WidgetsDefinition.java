@@ -43,6 +43,5 @@ public class PD_WidgetsDefinition {
     public void checkDirectPaymentButton(){
         widgetsPage.switchToNewTab();
         anyPage.checkIfPageIsOpened("https://www.universe.com/directpayments","//h1",baseTestedUrl);
-        widgetsPage.closeAllTabs();
     }
 }

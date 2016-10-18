@@ -50,8 +50,4 @@ public class PD_WidgetsPage extends AncestorPage {
         ArrayList<String> newTab = new ArrayList<String>(this.getDriver().getWindowHandles());
         this.getDriver().switchTo().window(newTab.get(1));
     }
-
-    public void closeAllTabs() {
-        this.getDriver().close();
-    }
 }

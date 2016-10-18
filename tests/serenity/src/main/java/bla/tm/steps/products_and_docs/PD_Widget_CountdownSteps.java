@@ -220,11 +220,20 @@ public class PD_Widget_CountdownSteps {
 
     public void setLayoutResolutionTo(String layoutResolution) {
         switch(layoutResolution){
-            case "300x250": countdownWidgetPage.getCountdownWidget().getLayout300x250Tab().click();
+            case "300x250": {
+                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
+                countdownWidgetPage.getCountdownWidget().getLayout300x250Tab().click();
+            }
                 break;
-            case "300x600": countdownWidgetPage.getCountdownWidget().getLayout300x600Tab().click();
+            case "300x600": {
+                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
+                countdownWidgetPage.getCountdownWidget().getLayout300x600Tab().click();
+            }
                 break;
-            case "custom": countdownWidgetPage.getCountdownWidget().getLayoutCustomTab().click();
+            case "custom": {
+                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
+                countdownWidgetPage.getCountdownWidget().getLayoutCustomTab().click();
+            }
                 break;
             default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", layoutResolution));
         }
