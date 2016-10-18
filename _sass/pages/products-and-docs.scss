@@ -143,6 +143,7 @@ $line-width: 356px;
   border-top: solid 1px rgba(118, 134, 146, 0.2);
   margin: 0;
   padding: 15px 0;
+  display: block;
   @media #{$min-768} and #{$max-1400} {
     padding: 20px 0 16px;
     max-width: $line-width;

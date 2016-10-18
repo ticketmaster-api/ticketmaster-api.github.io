@@ -524,6 +524,16 @@ div[w-theme="fullwidth"] .events-count-down .events-count-down__second {
     position: relative;
 }
 
+@media (max-width: 1199px) {
+    div[w-theme="fullwidth"] .events-count-down .events-count-down__month,
+    div[w-theme="fullwidth"] .events-count-down .events-count-down__day,
+    div[w-theme="fullwidth"] .events-count-down .events-count-down__hour,
+    div[w-theme="fullwidth"] .events-count-down .events-count-down__minute,
+    div[w-theme="fullwidth"] .events-count-down .events-count-down__second {
+        font-family: TMSans-Bold, Arial, serif;
+    }
+}
+
 div[w-theme="fullwidth"] .events-count-down span:last-child {
     margin-right: 0;
 }

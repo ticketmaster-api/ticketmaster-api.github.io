@@ -183,6 +183,14 @@
         }
       }
     }
+    .additional-info {
+      color: #B7C9D3;
+      font-size: 12px;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 
   .log-btn {
@@ -413,7 +421,7 @@
     }
   }
 
-  input{
+  input[type="text"] {
     padding: 0 12px;
     font-family: $font-body;
     color: $n2-grey-color;
@@ -631,11 +639,14 @@
     transform: inherit;
     &:before{
       content: '';
-      background: url('../../assets/img/arrows.svg');
+      background: url('../../assets/img/arrows-left.svg');
       position: absolute;
       width: 23px;
       height: 25px;
       top: 20px;
+    }
+    &:focus{
+      background: $n3;
     }
     &:hover{
       background: $p1;
@@ -645,9 +656,22 @@
       display: none !important;
     }
   }
+
+  .slick-disabled {
+    cursor: pointer;
+    opacity: 0.3;
+    width: 45px;
+    background: $n3;
+    pointer-events: none;
+    &:hover{
+      width: 45px;
+      background: $n3;
+    }
+  }
+
   .slick-dots {
     bottom: inherit;
-    top: 0px;
+    top: 0;
     li {
       button {
         &:hover:before,
@@ -709,7 +733,7 @@
   }
 }
 
-.pagination {
+.api-explorer-pagination {
   padding-right: 10px;
 
   .pagination-btn {

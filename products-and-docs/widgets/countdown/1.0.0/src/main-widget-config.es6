@@ -1,5 +1,7 @@
 ($ => {
 
+  const DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
   let widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
@@ -102,7 +104,10 @@
     var max_move = $configBlock.offset().top + $configBlock.height() - $containerWidget.height() - topCss - headerOffset;
     var min_move = $configBlock.offset().top - headerOffset;
 
-    $containerWidget.attr("data-min", min_move).attr("data-max",max_move);
+    $containerWidget
+      .data('min', min_move)
+      .data('max',max_move);
+
     //window thresholds so the movement isn't called when its not needed!
     window_min = min_move - threshold_offset;
     window_max = max_move + $containerWidget.height() + threshold_offset;
@@ -155,22 +160,18 @@
    * Handles moving the container if needed.
    **/
   function containerMove(){
-    var wst = $window.scrollTop();
-    //if the window scroll is within the min and max (the container will be "sticky";
-    if( wst >= $containerWidget.attr("data-min") && wst <= $containerWidget.attr("data-max") ){
-      //work out the margin offset
-      var margin_top = $window.scrollTop() - $containerWidget.attr("data-min");
-      //margin it down!
-      $containerWidget.css("margin-top", margin_top);
-      //if the window scroll is below the minimum
-    }else if( wst <= $containerWidget.attr("data-min") ){
-      //fix the container to the top.
-      $containerWidget.css("margin-top",0);
-      //if the window scroll is above the maximum
-    }else if( wst > $containerWidget.attr("data-max") ){
-      //fix the container to the top
-      $containerWidget.css("margin-top", $containerWidget.attr("data-max")-$containerWidget.attr("data-min")+"px" );
+    let marginTop = 0;
+    const wst = $window.scrollTop(),
+      {min, max} = $containerWidget.data();
+
+    //if the window scroll is within the min and max (the container will be 'sticky';
+    if( wst >= min && wst <= max ){
+      //if the window scroll is below the minimum move it down!
+      marginTop = wst - min;
+    }else if( wst > max ){
+      marginTop = max - min;
     }
+    $containerWidget.css('marginTop', (marginTop > 0 ? marginTop : 0));
   }
 
   var replaceApiKey = function (options) {
@@ -207,8 +208,8 @@
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
         }
         else {
-          document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+          document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
       }
     }
@@ -338,6 +339,7 @@
         height = 600,
         theme,
         layout,
+        $border_slider = $('.js_widget_border_slider');
         $tabButtons = $('.js-tab-buttons');
 
     widgetContainerWrapper.removeAttr('style');
@@ -372,8 +374,12 @@
         }else if(name === 'w-layout'){
           layout = val;
         }else if(name === 'w-proportion'){
+          $layoutBox.slideDown("fast");
+          $border_slider.slideDown("fast");
+          $borderRadiusController.slider('setValue', 4);
           $tabButtons.slideDown("fast");
           widthSlider.slideDown("fast");
+          $widthController.slider('refresh');
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
@@ -383,8 +389,11 @@
     if(typeof excludeOption !== 'undefined' && typeof excludeOption.id !== 'undefined'){
         widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
         $('#w-id').val(excludeOption.id);//set val in cofigurator
-    }
-
+    }    
+    $layoutBox.slideDown("fast");
+    $border_slider.slideDown("fast");
+    $borderRadiusController.slider('setValue', 4);
+    $widthController.slider('refresh');
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 
@@ -488,6 +497,7 @@
 
 })(jQuery);
 
+/*
 ($ => {
   let $modal = $('#get-eventId-modal'),
     $form = $('#js_get_eventId_form', $modal),
@@ -518,19 +528,19 @@
     pageIncrement = 0;
     let listItems = $ul.find('li');
     listItems.remove();
-    /*$form.find('input').each(function(){
-      var $self = $(this);
-      if($self.attr('id','keyword')){
-        $self.val('');
-      }
-    });*/
+    // $form.find('input').each(function(){
+    //   var $self = $(this);
+    //   if($self.attr('id','keyword')){
+    //     $self.val('');
+    //   }
+    // });
 
     // Clear highlight
     $form.removeClass(cssValidationClass);
   }
 
   var renderResults = function(data, ulElement){
-    function showMessage(element,message, /*optional*/clearList) {
+    function showMessage(element,message, /*optional*//*clearList) {
       $btn.attr('disabled',false);
 
       if(clearList) $('li',element).remove();
@@ -588,7 +598,7 @@
         .text(` ${item.name}`)
         .appendTo($wrapCol);
 
-      /*add time*/
+      //add time
       let currentEvent = {};
       currentEvent.date = {
         day: item.dates.start.localDate,
@@ -601,7 +611,7 @@
         .addClass('event-time')
         .text(time)
         .appendTo($wrapCol);
-      /*add time end*/
+      //add time end
 
       if (item._embedded && item._embedded.venues) {
         let venue = item._embedded.venues[0];
@@ -648,14 +658,14 @@
         widgetNode.style.width = '100%';
       }
 
-      /*
+
       //toggle $getCodeButton
-      if ( widgetNode.getAttribute('w-id') === '') {
-        $getCodeButton.prop("disabled",true);
-      }else {
-        $getCodeButton.prop('disabled',false);
-      }
-      */
+      // if ( widgetNode.getAttribute('w-id') === '') {
+      //   $getCodeButton.prop("disabled",true);
+      // }else {
+      //   $getCodeButton.prop('disabled',false);
+      // }
+
 
       widget.update(isFullWidthTheme);
 
@@ -667,7 +677,7 @@
 
   };
 
-  function submitForm( /*optional*/pageNumero){
+  function submitForm( /*optional*//*pageNumero){
     pageNumero = parseInt(pageNumero);
 
     let url = ( Number.isNaN(pageNumero) )
@@ -767,3 +777,4 @@
   });
 
 })(jQuery);
+*/

@@ -23,7 +23,33 @@ layout: documentation-single
         <div class="col-lg-8 col-lg-widget">
             <div class="widget-container-wrapper">
                 <div class="widget-container widget-container--calendar">
-                    <div w-type="calendar" w-tmapikey="5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG" w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA" w-keyword="" w-theme="calendar" w-colorscheme="light" w-width="298" w-height="400" w-size="25" w-border="1" w-borderradius="4" w-postalcode="90015"  w-radius="25" w-country="US" w-latlong="34.0390107,-118.2672801" w-period="week" w-period-week="week" w-layout="vertical" w-classificationid="" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="standart"></div>
+                    <div
+                      w-type="calendar"
+                      w-tmapikey=""
+                      w-googleapikey="AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA"
+                      w-keyword=""
+                      w-theme="calendar"
+                      w-colorscheme="light"
+                      w-width="298"
+                      w-height="400"
+                      w-size="25"
+                      w-border="1"
+                      w-borderradius="4"
+                      w-postalcode="90015"
+                      w-radius="25"
+                      w-country="US"
+                      w-latlong="34.0390107,-118.2672801"
+                      w-period="week"
+                      w-period-week="week"
+                      w-layout="vertical"
+                      w-classificationid=""
+                      w-attractionid=""
+                      w-promoterid=""
+                      w-venueid=""
+                      w-affiliateid=""
+                      w-segmentid=""
+                      w-proportion="standart"
+                    ></div>
                 </div>
             </div>
             <div class="row hidden-lg row-mobile-control">
@@ -94,9 +120,17 @@ layout: documentation-single
 </div>
 <!-- Modal has no code end-->
 
+{% include disqus.html %}
 
+
+<script type="text/javascript" src="{{"/scripts/components/api-key-service.js?v=1" | prepend: site.baseurl }}"></script>
+<script type="text/javascript">
+    // Get default widget API_KEY
+    var defaultApiKey = apiKeyService.getApiWidgetsKey();
+    // Set default widget API_KEY for config. input and widget
+    $('[w-type=calendar]').attr('w-tmapikey', defaultApiKey);
+    $('#w-tm-api-key').val(defaultApiKey);
+</script>
 <script src="{{"/products-and-docs/widgets/calendar/1.0.0/lib/main-widget.js?v=1" | prepend: site.baseurl }}"></script>
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
 <script src="{{"/products-and-docs/widgets/calendar/1.0.0/lib/main-widget-config.js?v=1" | prepend: site.baseurl }}"></script>

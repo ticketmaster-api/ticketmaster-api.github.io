@@ -1,11 +1,14 @@
 h1 {
   color: $n1;
   font-family: $font-h1;
-  font-size:$size-h1;
+  font-size: $size-h1;
   line-height: $line-height-h1;
   text-transform: uppercase;
+  @media #{$max-1200} {
+    font-family: $font-h2;
+  }
   @media (max-width: 767px){
-    font-size:$size-h3;
+    font-size: $size-h3;
     line-height: $line-height-h3;
     padding: 0;
   }

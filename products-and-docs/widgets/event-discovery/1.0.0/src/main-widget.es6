@@ -20,9 +20,17 @@ class TicketmasterEventDiscoveryWidget {
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
-  get themeUrl() { return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/"; }
+  get themeUrl() {
+    return (window.location.host === 'developer.ticketmaster.com')
+      ? `http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
+      : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/`;
+  }
 
-  get portalUrl(){ return "http://ticketmaster-api-staging.github.io/"; }
+  get portalUrl(){
+    return (window.location.host === 'developer.ticketmaster.com')
+      ? `http://developer.ticketmaster.com/`
+      : `http://ticketmaster-api-staging.github.io/`;
+  }
 
   get logoUrl() { return "http://www.ticketmaster.com/"; }
 
@@ -148,8 +156,6 @@ class TicketmasterEventDiscoveryWidget {
 
     return attrs;
   }
-
-  //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG
 
   constructor(root) {
     if(!root) return;
@@ -291,7 +297,7 @@ class TicketmasterEventDiscoveryWidget {
     }
 
     if(this.isConfigAttrExistAndNotEmpty('postalcode')){
-      let args = {components: `postal_code:${widget.config.postalcode}`};
+      let args = {language: 'en', components: `postal_code:${widget.config.postalcode}`};
       if(widget.config.googleapikey) args.key = widget.config.googleapikey;
       if(this.config.country) args.components += `|country:${this.config.country}`;
       this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
@@ -777,7 +783,8 @@ class TicketmasterEventDiscoveryWidget {
         d = parseInt(dayArray[2]),
         M = parseInt(dayArray[1]);
 
-    var E = new Date(date.day).getDay();
+    // var E = new Date(date.day).getDay();
+    var E = new Date(+date.day.split('-')[0],(+date.day.split('-')[1])-1,+date.day.split('-')[2]).getDay();
     result = DAY_NAMES[E] + ', ' + MONTH_NAMES[M - 1] + ' ' + d + ', ' + dayArray[0];
 
     if(!date.time) return result;
@@ -1182,6 +1189,13 @@ class TicketmasterEventDiscoveryWidget {
       el.setAttribute('data-url', url);
       el.classList.add("event-pretended-link");
       el.addEventListener('click', function(){
+        let url = this.getAttribute('data-url');
+        if(url){
+          let win = window.open(url, (isBlank ? '_blank' : '_self'));
+          win.focus();
+        }
+      });
+      el.addEventListener('touchstart', function(){
         let url = this.getAttribute('data-url');
         if(url){
           let win = window.open(url, (isBlank ? '_blank' : '_self'));

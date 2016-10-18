@@ -48,7 +48,10 @@ body .top-bar.bg-header {
   h1, h2 {
     font-size: 54px;
     color: #fff;
-    @media (max-width: 767px) {
+    @media #{$max-1200} {
+      font-size: 2em;
+    }
+    @media #{$max-768} {
       font-size: 1.5em;
     }
 
@@ -73,6 +76,7 @@ body .top-bar.bg-header {
     float: none;
     margin: 20px auto 150px auto;
     @media #{$max-1200} {
+      font-size: 1.3em;
       width: 80%;
       margin-bottom: 100px;
     }

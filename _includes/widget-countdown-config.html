@@ -23,7 +23,7 @@
             </label>
             <a href="https://developer-acct.ticketmaster.com/user/login" class="pull-right">Get your own</a>
             <div class="widget_api_key__field">
-              <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG">
+              <input type="text" id="w-tm-api-key" name="w-tm-api-key" value="">
               <a href="/support/faq/" class="widget_api_key__question"></a>
             </div>
           </div>
@@ -32,10 +32,18 @@
           <label for="w-id">
             Event Id <span class="config_field__description">(Required)</span>
           </label>
-          <a id="js_get-eventId_open" type="button" class="pull-right" data-toggle="modal" data-target="#get-eventId-modal">Get event ID</a>
-
-          <input type="text" id="w-id" name="w-id" value="vvG1YZfG-wF-o2" class="double-margin-bottom">
+          <!--<a id="js_get-eventId_open" type="button" class="pull-right" data-toggle="modal" data-target="#get-eventId-modal">Get event ID</a>-->
+          <input type="text" id="w-id" name="w-id" value="vvG1YZfG-wF-o2" class="js_lazy-selector double-margin-bottom">
         </div>
+        <!--tmp del me-->
+        <!--<div class="col-lg-12 col-md-6 col-sm-6">
+          <label for="w-id">
+            Event Id <span class="config_field__description">(Required)</span>
+          </label>
+          <a id="js_get-eventId_open-tmp" type="button" class="pull-right" data-toggle="modal" data-target="#lazy-selector-modal">Get event ID</a>
+          <input type="text" id="w-id-tmp" name="w-id-tmp" value="vvG1YZfG-wF-o2" class="js_lazy-selector double-margin-bottom">
+        </div>-->
+        <!--tmp del me-->
       </div>
 
     </div>
@@ -143,4 +151,4 @@
 
 </form>
 
-{% include widget-countdown-modal.html %}
+{%comment%}<!--{% include widget-countdown-modal.html %}-->{%endcomment%}

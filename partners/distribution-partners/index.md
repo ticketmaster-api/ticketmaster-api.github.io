@@ -4,7 +4,7 @@ logos_url: "/assets/img/partners/logos/"
 categories:
   - partners
   - distribution
-title: Distribution partners
+title: TM distribution partners
 excerpt: Ticketmaster is dedicated to the mission to promote and sell client tickets through a variety of new storefronts.
 keywords: Affiliate partners, promote, sell client tickets
 ---
@@ -96,18 +96,6 @@ Ticketmaster’s Partner API allows partners to seamlessly enable purchasing off
 {: .col-xs-6 .col-sm-3}
 Jerome Kane,
 Broadway.com
-{% endcapture %}
-
-{% capture transactional3 %}
-{: .col-sm-8 .col-xs-12 .text-right}
-![broadway](/assets/img/partners/distribution/score-big.png)
-
-{: .col-sm-4 .col-xs-12 .pull-quote}
-"Ticketmaster's transactional APIs allow Clients to easily sell tickets through ScoreBig's Name a Ticket Price channel, while simultaneously ensuring that all customer data flows seamlessly back into client databases. With the APIs, ScoreBig can more fluidly optimize client yield, and clients can ensure continuity in customer relations and access management."
-
-{: .col-xs-6 .col-sm-3}
-George Waterstraat,
-Scorebig.com
 {% endcapture %}
 
 {% capture partnerbottom %}

@@ -2,6 +2,8 @@
 
 (function () {
 
+  var DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
   function getHeightByTheme(theme) {
     return theme === 'simple' ? 286 : 339;
   }
@@ -97,7 +99,8 @@
     var max_move = $configBlock.offset().top + $configBlock.height() - $containerWidget.height() - topCss - headerOffset;
     var min_move = $configBlock.offset().top - headerOffset;
 
-    $containerWidget.attr("data-min", min_move).attr("data-max", max_move);
+    $containerWidget.data('min', min_move).data('max', max_move);
+
     //window thresholds so the movement isn't called when its not needed!
     window_min = min_move - threshold_offset;
     window_max = max_move + $containerWidget.height() + threshold_offset;
@@ -150,22 +153,23 @@
    * Handles moving the container if needed.
    **/
   function containerMove() {
+    var marginTop = 0;
     var wst = $window.scrollTop();
-    //if the window scroll is within the min and max (the container will be "sticky";
-    if (wst >= $containerWidget.attr("data-min") && wst <= $containerWidget.attr("data-max")) {
-      //work out the margin offset
-      var margin_top = $window.scrollTop() - $containerWidget.attr("data-min");
-      //margin it down!
-      $containerWidget.css("margin-top", margin_top);
-      //if the window scroll is below the minimum
-    } else if (wst <= $containerWidget.attr("data-min")) {
-        //fix the container to the top.
-        $containerWidget.css("margin-top", 0);
-        //if the window scroll is above the maximum
-      } else if (wst > $containerWidget.attr("data-max")) {
-          //fix the container to the top
-          $containerWidget.css("margin-top", $containerWidget.attr("data-max") - $containerWidget.attr("data-min") + "px");
-        }
+
+    var _$containerWidget$dat = $containerWidget.data();
+
+    var min = _$containerWidget$dat.min;
+    var max = _$containerWidget$dat.max;
+
+    //if the window scroll is within the min and max (the container will be 'sticky';
+
+    if (wst >= min && wst <= max) {
+      //if the window scroll is below the minimum move it down!
+      marginTop = wst - min;
+    } else if (wst > max) {
+      marginTop = max - min;
+    }
+    $containerWidget.css('marginTop', marginTop > 0 ? marginTop : 0);
   }
   //do one container move on load
   containerMove();
@@ -221,8 +225,8 @@
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
         } else {
-          document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-          document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+          document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+          document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
       }
     }
@@ -334,6 +338,7 @@
         $self.val(value);
       }
 
+      document.getElementById("w-country").disabled = true;
       widgetNode.setAttribute($self.attr('name'), value);
     });
 
@@ -415,25 +420,24 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  $('.js_widget__number').on('change', function (e) {
-    var $self = $(this),
-        val = $self.val().trim(),
-        max = parseInt($self.attr('max')),
-        min = parseInt($self.attr('min')),
-        required = !!$self.attr('required'),
-        regNumberOrEmpty = /^(\s*|\d+)$/,
-        errorCssClass = 'error';
-
-    // if(val === '') $self.val('');
-
-    if (max && val > max || min && val < min || required && val === '' || !regNumberOrEmpty.test(val)) {
+  /*turn off validate cuz it moved to separate component*/
+  /*$('.js_widget__number').on('change', function (e) {
+    let $self = $(this),
+      val = $self.val().trim(),
+      max = parseInt($self.attr('max')),
+      min = parseInt($self.attr('min')),
+      required = !!$self.attr('required'),
+      regNumberOrEmpty = /^(\s*|\d+)$/,
+      errorCssClass = 'error';
+      // if(val === '') $self.val('');
+      if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
       $self.addClass(errorCssClass);
       e.preventDefault();
       e.stopPropagation();
-    } else {
+      }else{
       $self.removeClass(errorCssClass);
     }
-  });
+  });*/
 
   widget.onLoadCoordinate = function (results) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];

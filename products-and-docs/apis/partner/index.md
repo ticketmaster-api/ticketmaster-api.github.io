@@ -31,20 +31,14 @@ Example: `https://app.ticketmaster.com/partners/v1/events/3F004EC9D1EBBC76/cart?
 
 Production: https://app.ticketmaster.com/partners/v1
 
-Staging: https://app.ticketmaster.com/partners-sandbox/v1
-
 All connections must be made over SSL using https.
 
-### Sandbox environment & testing
-
-New TM Developer accounts are automatically provisioned for the sandbox environment. Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
-
-    * 3F004ACD115F6B19: No order processing fee
-    * 110050B273AB0C36: Canadian event, Has order processing fee
-    * 3F005085F00474B7: Reserved seating only. No GA
-    * 3F004ACD115F6B19
     
 ### Production environment testing
+
+Here you can test API transactions for different scenarios like credit card and invoice payment, captcha, etc.  The following event ids are available for use:
+
+
     * 000051048D991EE7: Use this event ID for production environment testing
 
 
@@ -902,6 +896,44 @@ Status 200
 {% endhighlight %}
 
 
+
+{: .article}
+## Event Click Tracking Url [GET]
+{: #event-tracking}
+
+This is only available for partners signed up for affiliate tracking through Impact Radius
+
+/partners/v1/tracking?event_id={event_id}&apikey={apikey}
+{: .code .red}
+
+*Polling: No*
+
+### Parameters
+
+| Parameter  | Description          | Type              | Example      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+| `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `shared_id`| ImpactRadius SharedId field in reports (32 chars max)  | string            |     "02a8127b-7a52"          | No      |
+| `sub_id1,sub_id2,sub_id3`| ImpactRadius SubId1, SubId2, SubId3 fields in reports(32 chars max each)  | string            |     "02a8127b-7a52"          | No      |
+
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+https://app.ticketmaster.com/partners/v1/tracking?event_id=000051048D991EE7&apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+{% endhighlight %}
+
+{% highlight js %}
+Status 200
+
+The Response is a 1x1 gif pixel
+
+{% endhighlight %}
+
+
 {: .article}
 ## Get Event ID [GET]
 {: #retrieve-event}
@@ -1112,10 +1144,16 @@ Status 200
 ## Captcha [GET]
 {: #ticket-reservation}
 
-If your integration requires captcha, use this endpoint to retreive a basic Google NoCaptcha page to render to the user.  All ticketing operations require the client to first solve a captcha to establish a secure session. Upon posting the Captcha solution, a cart id will be returned and required for further cart operations.
+Request captcha status and details for a given event. If captcha is currently enabled for the event, the response will include the captcha type plus other details on rendering the captcha.  Currently only ["Google NoCaptcha"](https://www.google.com/recaptcha/intro/index.html) is supported.  If captcha_required=true, then a solution token must be added to the cart reserve request and can be obtained through the following steps:
+
+    1. Request captcha status and details via this endpoint
+    2. If captcha_required=true, render the captcha page in a browser window or app webview.
+    3. A callback to the location uri below will be made when the user solves the captcha. Capture the callback uri and parse out the solution token
+       Example: ticketmaster-g-recaptcha-response://03AHJ_VuvOEHl06BZOuNzaJCgSyVi3QfgwPQ8gJxSAa6IEJ3Fjn1D-5eSe2
+    4. Provide the solution token via the 'token' parameter in the reserve request
 
 
-/partners/v1/captcha?apikey={apikey}
+/partners/v1/captcha?apikey={apikey}&event_id={event_id}
 {: .code .red}
 
 *Polling: No*
@@ -1125,20 +1163,23 @@ If your integration requires captcha, use this endpoint to retreive a basic Goog
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+| `event_id`   | TM event id         | string            |     "3F004CBB88958BF9"          | Yes      |
 
 
->[Request](#req)
+>[Request (html)](#req)
 >[Response](#res)
 {: .reqres}
 
 {% highlight bash %}
-https://app.ticketmaster.com/partners/v1/captcha?apikey=GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne
+GET /partners/v1/captcha?apikey={apikey}&event_id={event_id}
+Accept: text/html
 {% endhighlight %}
 
 {% highlight html %}
 Status 200
-Header: X-TM-CAPTCHA-V2-SITEKEY: <sitekey>
-Header: X-TM-CAPTCHA-V2-STOKEN: <secure token>
+Header: X-TM-CAPTCHA-V2-SITEKEY: <string>
+Header: X-TM-CAPTCHA-V2-STOKEN: <string>
+Header: X-TM-CAPTCHA-REQUIRED: <boolean true/false>
 
 <html>
     <head>
@@ -1154,8 +1195,34 @@ Header: X-TM-CAPTCHA-V2-STOKEN: <secure token>
 </body>
 </html>
 
-{ "token" : "<token received from captcha solution>" }
 {% endhighlight %}
+
+>[Request (json)](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+GET /partners/v1/captcha?apikey={apikey}&event_id={event_id}
+Accept: application/json
+{% endhighlight %}
+
+{% highlight html %}
+Status 200
+Header: X-TM-CAPTCHA-V2-SITEKEY: <string>
+Header: X-TM-CAPTCHA-V2-STOKEN: <string>
+Header: X-TM-CAPTCHA-REQUIRED: <boolean true/false>
+
+{
+  "captcha_required" : true,
+  "captcha_details" : {
+    "type" : 2,
+    "site_key" : "c0d60e1f4a711b710dc3dbe74fbd449c"
+  }
+}
+
+{% endhighlight %}
+
+
 
 
 {: .article}
@@ -1491,13 +1558,6 @@ Encrypt the credit card and cvv number using the following steps:
     <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
 
-Sample credit-card information for use in the sandbox environment:
-
-<ul>
-    <li>CC#: 4588883206000011</li>
-    <li>CVV: 123</li>
-    <li>Expiration: 12/2020</li>
-</ul>
 
 Sample credit-card information for use in the production environment for event id 000051048D991EE7:
 
@@ -1717,7 +1777,13 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 
 { 
     "cart_id" : "bzJVZURoNit1UkhQQ25pcE5KSHh1K09SVE9lQ0k2RktwSEZFdnAwTlNJYS82ZE5WWldiREtSTQo=",
-    "source_account_id" : "30f86cd70ac7216bc596aa2d060a7064" // Your reference number (or hash) to correlate unredeemed orders
+    "source_account_id" : "30f86cd70ac7216bc596aa2d060a7064", // Optional, your reference number (or hash) to correlate unredeemed orders
+    "tracking" : { // Optional, report tracking variables (see GET /tracking endpoint)
+        "shared_id" : "1",
+        "sub_id1" : "3",
+        "sub_id2" : "4",
+        "sub_id3" : "5"
+    }
 }
 {% endhighlight %}
 
@@ -1726,7 +1792,6 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
 Status 200
 {
     "redemption_url" : "https://myorder.ticketmaster.com/redeem?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
-    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "grand_total" : 57.39,
     "order_token" : "28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "order_number" : "35-46145/LA1"
@@ -1841,12 +1906,6 @@ Encrypt the credit card number using the following steps:
     <li>Base64 encode the result of the RSA encryption. This is the literal value to provide to the API.</li>
 </ol>
 
-Sample credit-card information for use in the sandbox environment:
-
-<ul>
-    <li>CC#: 4588883206000011</li>
-    <li>Expiration: 12/2020</li>
-</ul>
 
 The "id" you get in the response can be used in the [Add TM Payment Information](#post-card-tm) along with an encrypted cvv. The request requires Member Authentication as a header with the request `Authorization: Bearer <access token>`. 
 
@@ -2183,7 +2242,8 @@ Example:
 
 | message  | code  | http_code              | Note
 |:-----------|:---------------------|:----------------- |
-| Event is not API transactable | 90001 | 403 | |
+| Unauthorized access | 10004 | 401 | Captcha solution token required |
+| Event is not API transactable | 90001 | 403 | Event type is not supported through this API. Offer redirect to https://www.ticketmaster.com/event/{eventId} |
 | No inventory found to match request | 20052 | 400 | Example of sold-out tickets, per ticket id. Can also occur if the number of available continuous seats cannot be fulfilled |
 | Unauthorized Access | 10004 | 401 | Missing captcha token |
 | Invalid captcha solution | 10031 | 400 | Invalid captcha solution |
@@ -2299,7 +2359,6 @@ Response:
 {% highlight js %}
 {
     "redemption_url" : "http://myorder-qa.ticketmaster.net/redeem?event_id=3F004EC9D1EBBC76&token=d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
-    "tm_app_url" : "ticketmaster:///redeem/partners?token=28a67e13-7233-45a5lsGPQy0MZ3J7ZOQRjcW52NHhG083D",
     "order_token" : "d2999e02-4936-41d2-zhNgdH2B7xGuuv50sAJsrJZCMY",
     "order_number" : "35-46145/LA1",
     "grand_total":68.74

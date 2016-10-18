@@ -27,7 +27,30 @@ layout: documentation-single
     <div class="col-lg-8 col-lg-widget">
       <div class="widget-container-wrapper">
         <div class="widget-container widget-container--discovery">
-          <div w-type="event-discovery" w-tmapikey="5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG" w-googleapikey="" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="350" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-postalcode="90015"  w-radius="25" w-country="US" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom"></div>
+          <div
+            w-type="event-discovery"
+            w-tmapikey=""
+            w-googleapikey=""
+            w-keyword=""
+            w-theme="simple"
+            w-colorscheme="light"
+            w-width="350"
+            w-height="600"
+            w-size="25"
+            w-border="0"
+            w-borderradius="4"
+            w-postalcode="90015"
+            w-radius="25"
+            w-country="US"
+            w-period="week"
+            w-layout="vertical"
+            w-attractionid=""
+            w-promoterid=""
+            w-venueid=""
+            w-affiliateid=""
+            w-segmentid=""
+            w-proportion="custom"
+          ></div>
         </div>
       </div>
       <div class="row hidden-lg row-mobile-control">
@@ -115,8 +138,14 @@ layout: documentation-single
 <!-- Modal has no code end-->
 
 
+<script type="text/javascript" src="{{"/scripts/components/api-key-service.js?v=1" | prepend: site.baseurl }}"></script>
+<script type="text/javascript">
+  // Get default widget API_KEY
+  var defaultApiKey = apiKeyService.getApiWidgetsKey();
+  // Set default widget API_KEY for config. input and widget
+  $('[w-type=event-discovery]').attr('w-tmapikey', defaultApiKey);
+  $('#w-tm-api-key').val(defaultApiKey);
+</script>
 <script src="{{"/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js?v=1" | prepend: site.baseurl }}"></script>
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
-<script src="{{"/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget-config.js?v=1" | prepend: site.baseurl }}"></script>
+<script src="{{"/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget-config.js?v=2" | prepend: site.baseurl }}"></script>

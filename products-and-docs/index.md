@@ -104,6 +104,11 @@ Partner APIs, search and look up events, attractions, venues and classifications
 {% capture Season_Tix_API_description %}Season Ticketing API{% endcapture %}
 {% capture Season_Tix_API_link %}/products-and-docs/apis/season-ticketing/{% endcapture %}
 
+{% capture Inventory_Status_API %}/assets/img/products-and-docs/ic-inventory-status.svg{% endcapture %}
+{% capture Inventory_Status_API_title %}Inventory Status API{% endcapture %}
+{% capture Inventory_Status_API_description %}Inventory Status API{% endcapture %}
+{% capture Inventory_Status_API_link %}/products-and-docs/apis/inventory-status/{% endcapture %}
+
 {% capture api-button %}
 {: .top-line}
 [ACCESS API DOCS](/products-and-docs/apis/getting-started/){: .button.button-blue}
@@ -186,7 +191,8 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="row tiles-wrapper limited-width-xs limited-width-md">
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{Discovery_API}}" alt="{{Discovery_API_title}}"/>
 <a class="hidden-lg" href="{{Discovery_API_link}}">
@@ -195,7 +201,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{Discovery_API_link}}">
 <h3 class="flipper-title">{{Discovery_API_title}}</h3>
 <p class="flipper-description">{{Discovery_API_description}}</p>
@@ -203,9 +209,11 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div>
+</div>
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{Commerce_API}}" alt="{{Commerce_API_title}}"/>
 <a class="hidden-lg" href="{{Commerce_API_link}}">
@@ -214,11 +222,12 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{Commerce_API_link}}">
 <h3 class="flipper-title">{{Commerce_API_description}}</h3>
 <p class="flipper-description">{{Commerce_API_description}}</p>
 </a>
+</div>
 </div>
 </div>
 </div>
@@ -227,7 +236,8 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="row tiles-wrapper limited-width-xs limited-width-md">
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{Publish_API}}" alt="{{Publish_API_title}}"/>
 <a class="hidden-lg" href="{{Publish_API_link}}">
@@ -236,7 +246,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{Publish_API_link}}">
 <h3 class="flipper-title">{{Publish_API_description}}</h3>
 <p class="flipper-description">{{Publish_API_description}}</p>
@@ -244,9 +254,12 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div>
+</div>
+
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{OAuth_API}}" alt="{{OAuth_API_title}}"/>
 <a class="hidden-lg" href="{{OAuth_API_link}}">
@@ -255,11 +268,12 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{OAuth_API_link}}">
 <h3 class="flipper-title">{{OAuth_API_description}}</h3>
 <p class="flipper-description">{{OAuth_API_description}}</p>
 </a>
+</div>
 </div>
 </div>
 </div>
@@ -277,7 +291,8 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="row tiles-wrapper limited-width-xs limited-width-md">
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{Partner_API}}" alt="{{Partner_API_title}}"/>
 <a class="hidden-lg" href="{{Partner_API_link}}">
@@ -286,7 +301,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{Partner_API_link}}">
 <h3 class="flipper-title">{{Partner_API_title}}</h3>
 <p class="flipper-description">{{Partner_API_description}}</p>
@@ -294,9 +309,11 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div>
+</div>
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{Top_Picks_API}}" alt="{{Top_Picks_API_title}}"/>
 <a class="hidden-lg" href="{{Top_Picks_API_link}}">
@@ -305,11 +322,12 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{Top_Picks_API_link}}">
 <h3 class="flipper-title">{{Top_Picks_API_description}}</h3>
 <p class="flipper-description">{{Top_Picks_API_description}}</p>
 </a>
+</div>
 </div>
 </div>
 </div>
@@ -318,7 +336,8 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <div class="row tiles-wrapper limited-width-xs limited-width-md">
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{International_Discovery_API}}" alt="{{International_Discovery_API_title}}"/>
 <a class="hidden-lg" href="{{International_Discovery_API_link}}">
@@ -327,7 +346,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{International_Discovery_API_link}}">
 <h3 class="flipper-title">{{International_Discovery_API_description}}</h3>
 <p class="flipper-description">{{International_Discovery_API_description}}</p>
@@ -335,9 +354,11 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div>
+</div>
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{Deals_API}}" alt="{{Deals_API_title}}"/>
 <a class="hidden-lg" href="{{Deals_API_link}}">
@@ -346,7 +367,7 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{Deals_API_link}}">
 <h3 class="flipper-title">{{Deals_API_description}}</h3>
 <p class="flipper-description">{{Deals_API_description}}</p>
@@ -354,11 +375,14 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div>
+</div>
 </div><!--tiles-wrapper-->
+
 <div class="row tiles-wrapper limited-width-xs limited-width-md">
 <div class="flipper flipper-rect flipper-rect-margin">
 <div class="card">
-<div class="front">
+<div class="content">
+<div class="front cardFront">
 <div class="img-wrapper">
 <img class="visible-lg" src="{{Season_Tix_API}}" alt="{{Season_Tix_API_title}}"/>
 <a class="hidden-lg" href="{{Season_Tix_API_link}}">
@@ -367,11 +391,33 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </a>
 </div>
 </div>
-<div class="back">
+<div class="back cardBack">
 <a href="{{Season_Tix_API_link}}">
 <h3 class="flipper-title">{{Season_Tix_API_description}}</h3>
 <p class="flipper-description">{{Season_Tix_API_description}}</p>
 </a>
+</div>
+</div>
+</div>
+</div>
+<div class="flipper flipper-rect flipper-rect-margin">
+<div class="card">
+<div class="content">
+<div class="front cardFront">
+<div class="img-wrapper">
+<img class="visible-lg" src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
+<a class="hidden-lg" href="{{Inventory_Status_API_link}}">
+<img src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
+<h3 class="flipper-title hidden-lg">{{Inventory_Status_API_description}}</h3>
+</a>
+</div>
+</div>
+<div class="back cardBack">
+<a href="{{Inventory_Status_API_link}}">
+<h3 class="flipper-title">{{Inventory_Status_API_description}}</h3>
+<p class="flipper-description">{{Inventory_Status_API_description}}</p>
+</a>
+</div>
 </div>
 </div>
 </div>

@@ -2,6 +2,8 @@
 
 (function () {
 
+    var DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
     function getHeightByTheme(theme) {
         return theme === 'simple' ? 286 : 339;
     }
@@ -24,7 +26,24 @@
         return document.getElementById('w-tm-api-key').value;
     }
 
+    var replaceApiKey = function replaceApiKey(options) {
+        var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+
+        if (userKey !== null) {
+            var inputApiKey = options.inputApiKey;
+            var widgetNode = options.widgetNode;
+            var _widget = options.widget;
+
+            inputApiKey.attr('value', userKey).data('userAPIkey', userKey).val(userKey);
+            widgetNode.setAttribute("w-tm-api-key", userKey);
+            _widget.update();
+        }
+    };
+
     var widget = widgetsCalendar[0],
+        weekScheduler = weekSchedulers[0],
+        monthScheduler = monthSchedulers[0],
+        yearScheduler = yearSchedulers[0],
         themeConfig = {
         sizes: {
             standart: {
@@ -78,8 +97,8 @@
                     document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
                     document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
                 } else {
-                    document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+                    document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
                 }
             }
         }
@@ -105,7 +124,7 @@
         }
 
         if (targetName === "w-radius") {
-            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '25';
+            if (document.getElementById('w-radius').value == '') document.getElementById('w-radius').value = '5';
         }
 
         if (targetName === "w-theme") {
@@ -289,10 +308,23 @@
             document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
             document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
         } else {
-            document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+            document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
     }
+
+    /**
+     * check if user logged just before enter widget page
+     */
+    $(window).on('login', function (e, data) {
+        var widgetNode = document.querySelector("div[w-tmapikey]");
+        replaceApiKey({
+            userKey: data.key,
+            inputApiKey: $('#w-tm-api-key'),
+            widgetNode: widgetNode,
+            widget: widget
+        });
+    });
 
     $('.js_get_widget_code').on('click', function () {
         var codeCont = document.querySelector(".language-html.widget_dialog__code");

@@ -52,7 +52,36 @@
             sessionStorage.setItem('console_visited', 'true');
         }
         function showUserApiKeySessionStorage(isResized) {
-            userApiKeySessionStorage = sessionStorage.getItem('tk-api-key');
+            //userApiKeySessionStorage = sessionStorage.getItem('tk-api-key');
+            function checkCookie() {
+                var userApiKey;
+                var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+
+                if (apiKeys != "") {
+                    userApiKey = apiKeys[apiKeys.length-1];
+                    userApiKey = userApiKey[userApiKey.length-1];
+                }
+                return userApiKey;
+            }
+
+            //get Cookie by name
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length,c.length);
+                    }
+                }
+                return "";
+            }
+
+            userApiKeySessionStorage = checkCookie();
+            
             if(userApiKeySessionStorage !== null) {
                 if(isResized) {
                     getKeyButton.hide();

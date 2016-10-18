@@ -16,7 +16,7 @@ keywords: API, SDK, AccountManager SDK, integration, iOS, Android
 {% capture SDK_Java_img_square %}/assets/img/products-and-docs/sdk-java-img-263.png{% endcapture %}
 {% capture 1-SDK_Java_title %}
 
-SDK-Java
+Java-SDK
 {% endcapture %}
 {% capture SDK_Java_description %}
 Java SDK for the Ticketmaster Open Platform. 
@@ -28,7 +28,7 @@ https://github.com/ticketmaster-api/sdk-java
 {% capture SDK_JS_img %}/assets/img/products-and-docs/sdk-js-img.png{% endcapture %}
 {% capture SDK_JS_img_square %}/assets/img/products-and-docs/sdk-js-logo.png{% endcapture %}
 {% capture 2-SDK_JS_title %}
-SDK-JavaScript
+JavaScript-SDK
 {% endcapture %}
 {% capture SDK_JS_description %}
 Javascript SDK for the Ticketmaster Open Platform.
@@ -40,7 +40,7 @@ https://github.com/ticketmaster-api/sdk-javascript
 {% capture SDK_scala_img %}/assets/img/products-and-docs/sdk-scala-img.png{% endcapture %}
 {% capture SDK_scala_img_square %}/assets/img/products-and-docs/sdk-scala-img-263.png{% endcapture %}
 {% capture 3-SDK_scala_title %}
-SDK-Scala
+Scala-SDK
 {% endcapture %}
 {% capture SDK_scala_description %}
 Scala SDK for the Ticketmaster Open Platform. This SDK supports Discovery v2.
@@ -113,19 +113,21 @@ season tickets all in one trusted place.
 {% for i in (1..3) %}   
   <div class="col-md-4 col-lg-4 flipper" >      
     <div class="card" >    
-        <div class="front">            
-          <div class="img-wrapper">
-            <img src="{% cycle {{SDK_Java_img_square}}, {{SDK_JS_img_square}},  {{SDK_scala_img_square}} %}" 
-                 alt="{% cycle {{SDK_Java_title}}, {{SDK_JS_title}}, {{SDK_scala_title}} %}">
-          </div>
+        <div class="content">
+            <div class="front cardFront">            
+              <div class="img-wrapper">
+                <img src="{% cycle {{SDK_Java_img_square}}, {{SDK_JS_img_square}},  {{SDK_scala_img_square}} %}" 
+                     alt="{% cycle {{SDK_Java_title}}, {{SDK_JS_title}}, {{SDK_scala_title}} %}">
+              </div>
+            </div>
+            <div class="back cardBack">
+              <a href="{% cycle {{SDK_Java_link}},        {{SDK_JS_link}},        {{SDK_scala_link}} %}">
+                   <h3>{% cycle {{1-SDK_Java_title}},     {{2-SDK_JS_title}},     {{3-SDK_scala_title}} %}</h3>           
+                    <p>{% cycle {{SDK_Java_description}}, {{SDK_JS_description}}, {{SDK_scala_description}} %}</p>
+              </a>
+            </div>      
         </div>
-        <div class="back">
-          <a href="{% cycle {{SDK_Java_link}},        {{SDK_JS_link}},        {{SDK_scala_link}} %}">
-               <h3>{% cycle {{1-SDK_Java_title}},     {{2-SDK_JS_title}},     {{3-SDK_scala_title}} %}</h3>           
-                <p>{% cycle {{SDK_Java_description}}, {{SDK_JS_description}}, {{SDK_scala_description}} %}</p>
-          </a>
-        </div>      
-    </div>
+    </div> 
   </div>  
 {% endfor %}
 </div><!--tiles-wrapper-->
@@ -138,7 +140,8 @@ season tickets all in one trusted place.
 <script>
     var disqus_config = function () {
         this.page.url = document.URL || "http://developer.ticketmaster.com/";
-        this.page.identifier = "{{page.title}}";
+        // this.page.identifier = "{{page.title}}";
+        this.page.identifier = "http://developer.ticketmaster.com/products-and-docs/sdks/";
     };
     (function() { // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');

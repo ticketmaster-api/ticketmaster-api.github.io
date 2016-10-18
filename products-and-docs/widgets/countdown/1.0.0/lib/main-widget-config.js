@@ -2,6 +2,8 @@
 
 (function ($) {
 
+  var DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
   var widget = widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
@@ -103,7 +105,8 @@
     var max_move = $configBlock.offset().top + $configBlock.height() - $containerWidget.height() - topCss - headerOffset;
     var min_move = $configBlock.offset().top - headerOffset;
 
-    $containerWidget.attr("data-min", min_move).attr("data-max", max_move);
+    $containerWidget.data('min', min_move).data('max', max_move);
+
     //window thresholds so the movement isn't called when its not needed!
     window_min = min_move - threshold_offset;
     window_max = max_move + $containerWidget.height() + threshold_offset;
@@ -155,22 +158,23 @@
    * Handles moving the container if needed.
    **/
   function containerMove() {
+    var marginTop = 0;
     var wst = $window.scrollTop();
-    //if the window scroll is within the min and max (the container will be "sticky";
-    if (wst >= $containerWidget.attr("data-min") && wst <= $containerWidget.attr("data-max")) {
-      //work out the margin offset
-      var margin_top = $window.scrollTop() - $containerWidget.attr("data-min");
-      //margin it down!
-      $containerWidget.css("margin-top", margin_top);
-      //if the window scroll is below the minimum
-    } else if (wst <= $containerWidget.attr("data-min")) {
-        //fix the container to the top.
-        $containerWidget.css("margin-top", 0);
-        //if the window scroll is above the maximum
-      } else if (wst > $containerWidget.attr("data-max")) {
-          //fix the container to the top
-          $containerWidget.css("margin-top", $containerWidget.attr("data-max") - $containerWidget.attr("data-min") + "px");
-        }
+
+    var _$containerWidget$dat = $containerWidget.data();
+
+    var min = _$containerWidget$dat.min;
+    var max = _$containerWidget$dat.max;
+
+    //if the window scroll is within the min and max (the container will be 'sticky';
+
+    if (wst >= min && wst <= max) {
+      //if the window scroll is below the minimum move it down!
+      marginTop = wst - min;
+    } else if (wst > max) {
+      marginTop = max - min;
+    }
+    $containerWidget.css('marginTop', marginTop > 0 ? marginTop : 0);
   }
 
   var replaceApiKey = function replaceApiKey(options) {
@@ -206,8 +210,8 @@
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
         } else {
-          document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+          document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
       }
     }
@@ -333,7 +337,8 @@
         height = 600,
         theme = void 0,
         layout = void 0,
-        $tabButtons = $('.js-tab-buttons');
+        $border_slider = $('.js_widget_border_slider');
+    $tabButtons = $('.js-tab-buttons');
 
     widgetContainerWrapper.removeAttr('style');
 
@@ -366,8 +371,12 @@
         } else if (name === 'w-layout') {
           layout = val;
         } else if (name === 'w-proportion') {
+          $layoutBox.slideDown("fast");
+          $border_slider.slideDown("fast");
+          $borderRadiusController.slider('setValue', 4);
           $tabButtons.slideDown("fast");
           widthSlider.slideDown("fast");
+          $widthController.slider('refresh');
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
@@ -378,7 +387,10 @@
       widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
       $('#w-id').val(excludeOption.id); //set val in cofigurator
     }
-
+    $layoutBox.slideDown("fast");
+    $border_slider.slideDown("fast");
+    $borderRadiusController.slider('setValue', 4);
+    $widthController.slider('refresh');
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 
@@ -477,247 +489,241 @@
   init();
 })(jQuery);
 
-(function ($) {
-  var $modal = $('#get-eventId-modal'),
-      $form = $('#js_get_eventId_form', $modal),
-      $ul = $('#js_get_eventId_list'),
-      $btn = $modal.find('#js_get-eventId_btn'),
+/*
+($ => {
+  let $modal = $('#get-eventId-modal'),
+    $form = $('#js_get_eventId_form', $modal),
+    $ul = $('#js_get_eventId_list'),
+    $btn = $modal.find('#js_get-eventId_btn'),
+    //$resultsCount = $form.find('.get_eventId_results'),
+    cssValidationClass = 'get-eventId_form-validation';
 
-  //$resultsCount = $form.find('.get_eventId_results'),
-  cssValidationClass = 'get-eventId_form-validation';
-
-  var keyword = $form.find('#keyword'),
-      apikey = $('#w-tm-api-key'),
-      eventUrl = function eventUrl() {
-    return 'https://app.ticketmaster.com/discovery/v2/events.json';
-  },
+  let keyword = $form.find('#keyword'),
+      apikey =  $('#w-tm-api-key'),
+      eventUrl = ()=>{ return 'https://app.ticketmaster.com/discovery/v2/events.json' },
       pageIncrement = 0,
       loadingFlag = false;
 
-  var loading = function loading(action) {
+
+  let loading = function(action) {
     // add the overlay with loading image to the page
-    if (action == "on") {
+    if(action=="on"){
       $('#spinner').show();
-    } else if (action == "off") {
+    }
+    else if(action=="off"){
       $('#spinner').hide();
     }
+
   };
 
-  function resetForm() {
+  function resetForm(){
     pageIncrement = 0;
-    var listItems = $ul.find('li');
+    let listItems = $ul.find('li');
     listItems.remove();
-    /*$form.find('input').each(function(){
-      var $self = $(this);
-      if($self.attr('id','keyword')){
-        $self.val('');
-      }
-    });*/
+    // $form.find('input').each(function(){
+    //   var $self = $(this);
+    //   if($self.attr('id','keyword')){
+    //     $self.val('');
+    //   }
+    // });
 
     // Clear highlight
     $form.removeClass(cssValidationClass);
   }
 
-  var renderResults = function renderResults(data, ulElement) {
-    function showMessage(element, message, /*optional*/clearList) {
-      $btn.attr('disabled', false);
-
-      if (clearList) $('li', element).remove();
-      element.css({
-        'overflow': 'auto'
-      });
-      $('<li/>').addClass('list-group-item').text('' + message).appendTo(ulElement);
-    };
-
-    function getImageForEvent(images) {
-      images.sort(function (a, b) {
-        if (a.width < b.width) return -1;else if (a.width > b.width) return 1;else return 0;
-      });
-      return images[0].url;
-    }
-
-    if (loadingFlag === "FINAL_PAGE") return false;
-
-    if (data === 'FAIL') {
-      showMessage($ul, 'Failure, possible key not correct.', true);return false;
-    }
-
-    if (loadingFlag === 'STOP_LOAD' && data.length !== 0) {
-      loadingFlag = "FINAL_PAGE";
-      showMessage(ulElement, 'No more results.', false);
-      return false;
-    }
-
-    if (data === null || !data._embedded) {
-      showMessage(ulElement, 'No results found.', true);return false;
-    }
-
-    //start render data
-    var items = data._embedded.events;
-
-    items.map(function (item) {
-      var li = $('<li/>').addClass('list-group-item row').appendTo(ulElement);
-
-      var spanImg = $('<span class="thumbnail" />').appendTo(li);
-      var img = $('<img src=' + getImageForEvent(item.images) + ' />').addClass('list-group-item-heading').appendTo(spanImg);
-
-      var $wrapCol = $('<div class="event-text-wrapper"/>').appendTo(li);
-      var title = $('<h3/>').addClass('list-group-item-heading').text(' ' + item.name).appendTo($wrapCol);
-
-      /*add time*/
-      var currentEvent = {};
-      currentEvent.date = {
-        day: item.dates.start.localDate,
-        time: item.dates.start.localTime,
-        dateTime: item.dates.start.dateTime
-      };
-
-      var time = widgetsCountdown[0].formatDate(currentEvent.date);
-      var eventTime = $('<h4/>').addClass('event-time').text(time).appendTo($wrapCol);
-      /*add time end*/
-
-      if (item._embedded && item._embedded.venues) {
-        var venue = item._embedded.venues[0];
-        var addressName = $('<span/>').addClass('address-name').text(venue.name + '. ').appendTo($wrapCol);
-
-        if ('address' in venue && 'line1' in venue.address) {
-          var addressline1 = $('<span/>').addClass('address-line1').text(venue.address.line1).appendTo($wrapCol);
-          if ('line2' in venue.address) {
-            var _addressline = $('<span/>').addClass('address-line2').text(venue.address.line2).appendTo(_addressline);
-          }
-        }
-      } else {
-        console.log('no _embedded found');
-      }
-
-      var buttonSetId = $('<button data-event="' + item.id + '"/>').addClass('js_set-eventId_btn btn btn-submit').text('Set this ID').appendTo(li).wrap('<div class ="wrapper-set-eventId_btn text-right"/>');
-    });
-
-    $('.js_set-eventId_btn').on('click', function (e) {
-      var selectedID = e.target.getAttribute('data-event'),
-
-      //find configurator and widget
-      widget = widgetsCountdown[0],
-          widgetNode = document.querySelector("div[w-tmapikey]");
-      var isFullWidthTheme = function isFullWidthTheme() {
-        return widgetNode.getAttribute('w-theme') === "fullwidth";
-      };
-
-      $('#w-id').val(selectedID);
-      widgetNode.setAttribute('w-id', selectedID);
-      if (isFullWidthTheme) {
-        widgetNode.style.width = '100%';
-      }
-
-      /*
-      //toggle $getCodeButton
-      if ( widgetNode.getAttribute('w-id') === '') {
-        $getCodeButton.prop("disabled",true);
-      }else {
-        $getCodeButton.prop('disabled',false);
-      }
-      */
-
-      widget.update(isFullWidthTheme);
-
-      // Close dialog
-      $modal.modal('hide');
-    });
-
-    $btn.attr('disabled', false);
-  };
-
-  function submitForm( /*optional*/pageNumero) {
-    pageNumero = parseInt(pageNumero);
-
-    var url = Number.isNaN(pageNumero) ? eventUrl() + '?apikey=' + apikey.val() + '&keyword=' + keyword.val() : eventUrl() + '?apikey=' + apikey.val() + '&keyword=' + keyword.val() + '&page=' + pageNumero;
-
-    //stop load
-    if (Number.isNaN(pageNumero) && pageNumero !== 0 && loadingFlag === 'STOP_LOAD') {
-      renderResults(null, $ul);
-      return false;
-    };
-
-    if (loadingFlag === 'FINAL_PAGE') return false;
-
-    $.ajax({
-      dataType: 'json',
-      async: true,
-      url: url,
-      data: $form.serialize()
-    }).done(function (result) {
-      if (result) {
-
-        //last page reached
-        if (pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
-          loadingFlag = 'STOP_LOAD';
-          loading('off');
-          renderResults(result, $ul); //add message at bottom of list
-          return false;
-        };
-
-        renderResults(result, $ul);
-        loading('off');
-      } else {
-        console.log('no result found');
-      }
-    }).fail(function (e) {
-      console.log('There was an fail status - ' + e.status);
-      loading('off');
-      renderResults('FAIL', $ul);
-    });
-  }
-
-  $ul.on('scroll', function (elm) {
-    //submitForm when go to bottom of list
-    if ($form.get(0).checkValidity()) {
-
-      if (this.scrollTop + this.clientHeight == this.scrollHeight && loadingFlag === 'KEEP_LOAD') {
-        pageIncrement++;
-        $btn.attr('disabled', true);
-        loading('on');
-        submitForm(pageIncrement);
-      }
-    }
-  });
-
-  // EVENTS
-  $btn.on('click', function () {
-    var form = $form.get(0);
-    if (!$btn.is(':disabled')) {
-      if (form.checkValidity()) {
-        $btn.attr('disabled', true);
-        pageIncrement = 0;
-        loadingFlag = 'KEEP_LOAD';
-        loading('on'); //show loading-spinner
-        resetForm(); //clear
-        submitForm(pageIncrement);
-      } else {
-        // Highlight errors
-        if (form.reportValidity) form.reportValidity();
-        $form.addClass(cssValidationClass);
-      }
-    }
-  });
-
-  $form.on("change", function () {
-    if ($form.get(0).checkValidity()) {
-      pageIncrement = 0;
-      loadingFlag = 'KEEP_LOAD';
-      loading('on');
-      resetForm();
-      submitForm(pageIncrement);
-    }
-  });
-  // Mobile devices. Force 'change' by 'Go' press
-
-  $form.on("submit", function (e) {
-    e.preventDefault();
-  });
-
-  $modal.on('hidden.bs.modal', function (e) {
-    resetForm();
-    keyword.val(''); //clear search input
-  });
-})(jQuery);
+  var renderResults = function(data, ulElement){
+    function showMessage(element,message, /*optional*/ /*clearList) {
+                                                       $btn.attr('disabled',false);
+                                                       if(clearList) $('li',element).remove();
+                                                       element.css({
+                                                       'overflow': 'auto'
+                                                       });
+                                                       $('<li/>')
+                                                       .addClass('list-group-item')
+                                                       .text(`${message}`)
+                                                       .appendTo(ulElement);
+                                                       };
+                                                       function getImageForEvent(images){
+                                                       images.sort(function(a,b) {
+                                                       if (a.width < b.width)
+                                                       return -1;
+                                                       else if (a.width > b.width)
+                                                       return 1;
+                                                       else
+                                                       return 0;
+                                                       });
+                                                       return images[0].url;
+                                                       }
+                                                       if(loadingFlag === "FINAL_PAGE") return false;
+                                                       if(data === 'FAIL'){ showMessage($ul, 'Failure, possible key not correct.' ,true); return false; }
+                                                       if(loadingFlag === 'STOP_LOAD' && data.length !== 0 ){
+                                                       loadingFlag = "FINAL_PAGE";
+                                                       showMessage(ulElement, 'No more results.', false);
+                                                       return false;
+                                                       }
+                                                       if(data === null || !data._embedded){ showMessage(ulElement, 'No results found.' ,true); return false; }
+                                                       //start render data
+                                                       let items = data._embedded.events;
+                                                       items.map( (item) => {
+                                                       let li = $('<li/>')
+                                                       .addClass('list-group-item row')
+                                                       .appendTo(ulElement);
+                                                       let spanImg = $('<span class="thumbnail" />')
+                                                       .appendTo(li);
+                                                       let img = $('<img src='+ getImageForEvent(item.images)+' />')
+                                                       .addClass('list-group-item-heading')
+                                                       .appendTo(spanImg);
+                                                       let $wrapCol = $('<div class="event-text-wrapper"/>')
+                                                       .appendTo(li);
+                                                       let title = $('<h3/>')
+                                                       .addClass('list-group-item-heading')
+                                                       .text(` ${item.name}`)
+                                                       .appendTo($wrapCol);
+                                                       //add time
+                                                       let currentEvent = {};
+                                                       currentEvent.date = {
+                                                       day: item.dates.start.localDate,
+                                                       time: item.dates.start.localTime,
+                                                       dateTime: item.dates.start.dateTime
+                                                       };
+                                                       let time = widgetsCountdown[0].formatDate(currentEvent.date);
+                                                       let eventTime = $('<h4/>')
+                                                       .addClass('event-time')
+                                                       .text(time)
+                                                       .appendTo($wrapCol);
+                                                       //add time end
+                                                       if (item._embedded && item._embedded.venues) {
+                                                       let venue = item._embedded.venues[0];
+                                                       let addressName = $('<span/>')
+                                                       .addClass('address-name')
+                                                       .text(venue.name+'. ')
+                                                       .appendTo($wrapCol);
+                                                       if ('address' in venue && 'line1' in venue.address) {
+                                                       let addressline1 = $('<span/>')
+                                                       .addClass('address-line1')
+                                                       .text(venue.address.line1)
+                                                       .appendTo($wrapCol);
+                                                       if ('line2' in venue.address) {
+                                                       let addressline1 = $('<span/>')
+                                                       .addClass('address-line2')
+                                                       .text(venue.address.line2)
+                                                       .appendTo(addressline1);
+                                                       }
+                                                       }
+                                                       }else{
+                                                       console.log(`no _embedded found`);
+                                                       }
+                                                       let buttonSetId = $(`<button data-event="${item.id}"/>`)
+                                                       .addClass('js_set-eventId_btn btn btn-submit')
+                                                       .text(`Set this ID`)
+                                                       .appendTo(li)
+                                                       .wrap('<div class ="wrapper-set-eventId_btn text-right"/>');
+                                                       });
+                                                       $('.js_set-eventId_btn').on('click',(e)=>{
+                                                       let selectedID = e.target.getAttribute('data-event'),
+                                                       //find configurator and widget
+                                                       widget = widgetsCountdown[0],
+                                                       widgetNode = document.querySelector("div[w-tmapikey]");
+                                                       let isFullWidthTheme = function (){ return widgetNode.getAttribute('w-theme') === "fullwidth" };
+                                                       $('#w-id').val(selectedID);
+                                                       widgetNode.setAttribute('w-id',selectedID);
+                                                       if(isFullWidthTheme){
+                                                       widgetNode.style.width = '100%';
+                                                       }
+                                                       //toggle $getCodeButton
+                                                       // if ( widgetNode.getAttribute('w-id') === '') {
+                                                       //   $getCodeButton.prop("disabled",true);
+                                                       // }else {
+                                                       //   $getCodeButton.prop('disabled',false);
+                                                       // }
+                                                       widget.update(isFullWidthTheme);
+                                                       // Close dialog
+                                                       $modal.modal('hide');
+                                                       });
+                                                       $btn.attr('disabled',false);
+                                                       };
+                                                       function submitForm( /*optional*/ /*pageNumero){
+                                                                                         pageNumero = parseInt(pageNumero);
+                                                                                         let url = ( Number.isNaN(pageNumero) )
+                                                                                         ? `${eventUrl()}?apikey=${apikey.val()}&keyword=${keyword.val()}`
+                                                                                         : `${eventUrl()}?apikey=${apikey.val()}&keyword=${keyword.val()}&page=${pageNumero}`;
+                                                                                         //stop load
+                                                                                         if( Number.isNaN(pageNumero) && pageNumero !== 0 && loadingFlag==='STOP_LOAD') {
+                                                                                         renderResults(null, $ul);
+                                                                                         return false
+                                                                                         };
+                                                                                         if(loadingFlag === 'FINAL_PAGE') return false;
+                                                                                         $.ajax({
+                                                                                         dataType: 'json',
+                                                                                         async: true,
+                                                                                         url: url,
+                                                                                         data: $form.serialize()
+                                                                                         }).done(function(result) {
+                                                                                         if(result) {
+                                                                                         //last page reached
+                                                                                         if(pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
+                                                                                         loadingFlag = 'STOP_LOAD';
+                                                                                         loading('off');
+                                                                                         renderResults(result, $ul); //add message at bottom of list
+                                                                                         return false;
+                                                                                         };
+                                                                                         renderResults(result, $ul);
+                                                                                         loading('off');
+                                                                                         }else {
+                                                                                         console.log(`no result found` );
+                                                                                         }
+                                                                                         }).fail(function(e) {
+                                                                                         console.log(`There was an fail status - ${e.status}` );
+                                                                                         loading('off');
+                                                                                         renderResults('FAIL', $ul);
+                                                                                         });
+                                                                                         }
+                                                                                         $ul.on('scroll', function (elm){
+                                                                                         //submitForm when go to bottom of list
+                                                                                         if($form.get(0).checkValidity()) {
+                                                                                         if (this.scrollTop + this.clientHeight == this.scrollHeight && loadingFlag === 'KEEP_LOAD') {
+                                                                                         pageIncrement++;
+                                                                                         $btn.attr('disabled', true);
+                                                                                         loading('on');
+                                                                                         submitForm(pageIncrement);
+                                                                                         }
+                                                                                         }
+                                                                                         });
+                                                                                         // EVENTS
+                                                                                         $btn.on('click', function(){
+                                                                                         var form = $form.get(0);
+                                                                                         if(!$btn.is(':disabled')){
+                                                                                         if(form.checkValidity()) {
+                                                                                         $btn.attr('disabled', true);
+                                                                                         pageIncrement = 0;
+                                                                                         loadingFlag = 'KEEP_LOAD';
+                                                                                         loading('on'); //show loading-spinner
+                                                                                         resetForm(); //clear
+                                                                                         submitForm(pageIncrement);
+                                                                                         }else{
+                                                                                         // Highlight errors
+                                                                                         if(form.reportValidity) form.reportValidity();
+                                                                                         $form.addClass(cssValidationClass);
+                                                                                         }
+                                                                                         }
+                                                                                         });
+                                                                                         $form.on("change", function(){
+                                                                                         if($form.get(0).checkValidity()) {
+                                                                                         pageIncrement = 0;
+                                                                                         loadingFlag = 'KEEP_LOAD';
+                                                                                         loading('on');
+                                                                                         resetForm();
+                                                                                         submitForm(pageIncrement);
+                                                                                         }
+                                                                                         } );
+                                                                                         // Mobile devices. Force 'change' by 'Go' press
+                                                                                         $form.on("submit", function (e) {
+                                                                                         e.preventDefault();
+                                                                                         });
+                                                                                         $modal.on('hidden.bs.modal',function (e) {
+                                                                                         resetForm();
+                                                                                         keyword.val('');//clear search input
+                                                                                         });
+                                                                                         })(jQuery);
+                                                                                         */
 //# sourceMappingURL=main-widget-config.js.map

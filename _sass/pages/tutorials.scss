@@ -3,7 +3,9 @@
 }
 
 .single-column.tutorials #main-block {
-  padding-right: 40px;
+  @media #{$min-1200} {
+    padding-right: 40px;
+  }
 }
 
 .tutorials-article {
@@ -37,6 +39,7 @@
       height: auto;
       margin-left: 0;
       margin-bottom: 24px;
+      padding-left: 0;
     }
     a {
       font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
@@ -145,4 +148,9 @@
   .screen-btn {
     right: 0;
   }
+}
+
+.modal-content .modal-header .modal-title {
+  font-size: 36px;
+  text-align: left;
 }

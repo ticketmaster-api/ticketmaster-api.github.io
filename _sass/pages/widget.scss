@@ -400,7 +400,40 @@
 .widget__various-width {
   min-width: 100px;
   max-width: 130px;
+
+  @media (min-width: 1200px){
+    .js_numeric-input-group input.js_numeric_input {
+      padding-right: 26px;
+      padding-left: 12px;
+    }
+    .js_numeric-input-group .arrow {
+      right: 10px;
+    }
+  }
 }
 .main-widget-config-form .country-select .custom_select__item {
   list-style: none;
+}
+
+.widget-wordpress-page {
+  h2 {
+    margin-top: $base-margin*2;
+  }
+  h6 {
+    width: 85%;
+  }
+  .margin-bottom {
+    margin-bottom: $base-margin;
+  }
+
+  .list-inset-bullet {
+    li{
+      &:before {
+        content: "\2022";
+        font-size: 11px;
+        line-height: 24px;
+        margin-right: 10px;
+      }
+    }
+  }
 }

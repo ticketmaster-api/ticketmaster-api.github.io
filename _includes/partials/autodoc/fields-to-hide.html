@@ -1,0 +1,23 @@
+{% for add_property_HAL in _HAL.embed %}
+<!--<li><code class="blue"> add_property_HAL.in.size - {{ add_property_HAL.in.size }} , {{add_property_HAL.in}}</code></li>-->
+
+{%if add_property_HAL.in.size > 0 %}
+    {% for itemEmbed in add_property_HAL.embed %}
+        {% assign propToEmbed = itemEmbed | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+        {% assign propToEmbedLength = propToEmbed.size | minus: 1 %}
+        {% assign _inToExclude = propToEmbed[propToEmbedLength] %}
+        {% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _inToExclude %}
+        <!--<li><code class="red">_inToExclude1 - {{_inToExclude}}; itemEmbed - {{itemEmbed}} </code></li>-->
+    {% endfor %}
+
+    {% for itemIn in add_property_HAL.in %}
+        {% assign propToEmbed = itemIn | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+        {% assign propToEmbedLength = propToEmbed.size | minus: 1 %}
+        {% assign _inToExclude = propToEmbed[propToEmbedLength] %}
+        {% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _inToExclude %}
+        <!--<li><code class="red">_inToExclude2 - {{_inToExclude}} ; itemIn2 - {{itemIn}}</code></li>-->
+    {% endfor %}
+{%endif%}
+
+<!--<li><kbd>removeEmbeddedFields - {{ removeEmbeddedFields }}</kbd></li>-->
+{% endfor %}

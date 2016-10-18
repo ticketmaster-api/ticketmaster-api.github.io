@@ -17,6 +17,7 @@
         <div id="back-top">
             <a href="javascript:void(0)"><span></span></a>
         </div>
+
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,10 +26,25 @@
             ga('create', 'UA-72344127-1', 'auto');
             ga('send', 'pageview');
             (function () {
-                var item = sessionStorage.getItem('tk-api-email');
-                document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
+                // var item = sessionStorage.getItem('tk-api-email');
+                function getCookie(name) {
+                    var matches = document.cookie.match(new RegExp(
+                        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                    ));
+                    return matches ? decodeURIComponent(matches[1]) : undefined;
+                }
+                var item = getCookie('tmemail');
+                $(".apigee-login").text(item && (item !== 'undefined') ?  item : "Login");
             })();
         </script>
+
+        {%if page.layout == 'documentation-single' or page.layout == 'home'%}
+            <script src="{{"/scripts/components/api-key-service.js" | prepend: site.baseurl }}"></script>
+        {% endif %}
+        {% if page.category == 'home' or page.layout == 'documentation-single' %}
+            <script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
+        {% endif %}
+
         <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
         {% include feedback.html %}
@@ -37,21 +53,23 @@
         <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/load-api-key.js?v=1' | prepend: site.baseurl }}"></script>
 
-{% if page.category == 'products-and-docs' or page.categories[0] == "documentation" and page.categories[1] == "sdks" %}
-        <script src="{{'/scripts/vendors/flip-jquery-plugin.js' | prepend: site.baseurl }}"></script>
-        <script>
-            //init fliper cards
-            $(function() {
-                console.log(window.screen.width);
-                var $cards = $('.card');
-                $cards.fadeIn('slow');
-                if (window.screen.width > 1200) {
-                    $cards.flip({
-                        trigger: "hover"
-                    });
-                }
+{% if page.category == 'products-and-docs' or page.categories[0] == "documentation" and page.categories[1] == "sdks"%}
+    <script>
+        $('.card').each(function () {
+            var me = $(this);
+            me.hover(function(){
+                me.toggleClass('applyflip');
             });
-        </script>
+        });
+    </script>
 {% endif %}
+
+        {% if page.categories[0] == "documentation" and page.categories[1] == "widgets"%}
+            {% include lazy-selector-modal.html %}
+            <!--<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>-->
+            <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+        {%endif%}
+
     </body>
 </html>

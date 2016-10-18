@@ -17,7 +17,7 @@ category: partners
     <div class="col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == "partners" and page.categories[1] == "distribution" %} distribution{% endif %}">
         {{ content }}
     {% if page.categories[1] != "certified" %}
-    <div id="disqus_thread"></div>
+    <div id="disqus_thread" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %}col-sm-12{% endif %}"></div>
     <script>
         var disqus_config = function () {
             this.page.url = document.URL || "http://developer.ticketmaster.com/";
@@ -34,17 +34,14 @@ category: partners
     </script>
     {% endif %}
     {% if page.categories[1] == "certified" %}
-    <script src="{{"/scripts/vendors/flip-jquery-plugin.js" | prepend: site.baseurl }}"></script>
-    <script>
-    //init fliper cards
-    $(document).ready(function() {
-        var $cards = $('.card');
-        $cards.flip({
-            trigger: "hover"
+      <script>
+        $('.card').each(function () {
+            var me = $(this);
+            me.hover(function(){
+                me.toggleClass('applyflip');
+            });
         });
-        $cards.fadeIn('slow');
-    });
-    </script>
+      </script>
     {% endif %}
     {% if page.categories[1] == "certified" and page.categories[2] == "nexus" %}
     <div id="disqus_thread"></div>
