@@ -1,17 +1,17 @@
 var self;
 
 function objectPanelBodyComponent(params) {
-	self = this;
 	this.title = params.data.key;
-	this.data = params.data.value;
+	this.data = this.data || ko.observable(params.data.value);
 	this.cardGroup = params.cardGroup;
 	this.getMore = this.cardGroup.getMore;
 	this.pageParam = params.pageParam;
+	self = this;
 }
 
 objectPanelBodyComponent.prototype.onEnterKeyDown = function (model, event) {
-	var pageNumber = Math.abs(~~model.value);
-	self.pageParam(pageNumber < +self.data.totalPages ? pageNumber : +self.data.totalPages - 2);
+	var pageNumber = ~~model.value < 0 ? 0 : ~~model.value;
+	self.pageParam(pageNumber < ko.utils.unwrapObservable(self.data).totalPages ? pageNumber : ko.utils.unwrapObservable(self.data).totalPages - 1);
 	if (event.keyCode === 13) {
 		$('#api-exp-get-btn').trigger('click');
 	} else {
