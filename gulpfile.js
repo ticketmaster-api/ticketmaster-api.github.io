@@ -15,8 +15,8 @@ gulp.task('serve', shell.task([
 
 gulp.task('watch', function () {
 	gulp.watch([
-		'scripts/api-explorer/v2/components/*.js',
-		'scripts/api-explorer/v2/ViewModels/*.js'
+		'scripts/api-explorer/v2/**/**/*.js',
+		'scripts/api-explorer/v2/*.json'
 	], ['revers']);
 
 	gulp.watch([

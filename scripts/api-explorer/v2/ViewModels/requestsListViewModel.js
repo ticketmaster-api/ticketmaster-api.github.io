@@ -1,7 +1,6 @@
-var jsonHighlight = require('./../components/json-highlight');
+var jsonHighlight = require('./../modules/json-highlight');
 var self;
-
-var setSlider = require('../components/slider');
+var slider = require('../modules/slider');
 
 function RequestsListViewModel(requests, url) {
 	this.url = url;
@@ -23,37 +22,9 @@ function RequestsListViewModel(requests, url) {
 	this.requests = requests;
 	this.isActiveTab = ko.observable(false);
 	this.viewModel = ko.observableArray([]);
-	this.blocksViewModel = ko.observableArray([]);
 	this.clearBtnIsVisible = ko.computed(this._isVisible, this);
 	this.requests.subscribe(this.updateModel, this);
 }
-
-
-RequestsListViewModel.prototype.getMore = function (parent, data, event) {
-	var groupComponent = this;
-	var slider = $(event.currentTarget).parents('.slider');
-	var component = $('<section data-bind="component: {name: \'card\', params: params}"></section>');
-	ko.applyBindings({
-		params: {
-			data: parent,
-			color: groupComponent.color,
-			index: groupComponent.index,
-			getMore: groupComponent.getMore,
-			url: groupComponent.url
-		}
-	}, component[0]);
-
-	slider.slick('slickAdd', component);
-};
-
-/**
- * Visibility flag for Clear btn
- * @returns {boolean}
- * @private
- */
-RequestsListViewModel.prototype._isVisible = function () {
-	return this.requests().length > 0;
-};
 
 /**
  * Update Viewmodel of request list
@@ -64,33 +35,71 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
 	
 	var newModel = this.requests()
 		.map(function (obj) {
-			var item =  $.extend({
+			var item =  $.extend({}, obj, {
 				color: self.colors[obj.index % self.colors.length],
 				active: ko.observable(false),
-				resHTML: ko.observable(''),
-				blocks: [
-					{
-						name: 'Events',
-						panelType: 'list-group',
-						items: ko.observableArray(Object.getProp(obj,'res._embedded.events') || []),
-						totalElements: ko.observable(Object.getProp(obj,'res.page.totalElements')||''),
-						isActive: ko.observable(false)
-					},
-					{
-						name: 'Page',
-						panelType: 'clear',
-						items: obj.error || obj.res.page,
-						isActive: ko.observable(false)
-					}
-				]
-			}, obj);
+				resHTML: ko.observable('')
+			});
 			return item;
 		});
+	slider.remove(self.viewModel().length);
 	self.viewModel(newModel);
-	setSlider('.slider');
 	setTimeout(function () {
+		slider.set(self.viewModel().length);
 		$('#show-details-0').trigger('click');
 	}, 10);
+};
+
+/**
+ * get details
+ * @param data
+ */
+RequestsListViewModel.prototype.getMore = function (data) {
+	var card = this;
+	var currentSlider = $('#slider-' + card.sectionIndex);
+	var component = $('<section data-bind="component: {name: \'panel-group\', params: params}"></section>');
+	var curslick = currentSlider.slick('getSlick');
+	var newData = {};
+	
+	// gathering all primitive props in additional panel
+	for (var key in data) {
+		if (!data.hasOwnProperty(key)) {
+			continue;
+		}
+		var val = data[key];
+		if (typeof val !== 'object') {
+			newData[data.type || Object.keys(data)[0]] = newData[data.type || Object.keys(data)[0]] || {};
+			newData[data.type || Object.keys(data)[0]][key] = val;
+		} else {
+			newData[key] = val;
+		}
+	}
+	
+	// extending additional data (copy)
+	var params = $.extend({}, card, {cards: newData, groupIndex: card.groupIndex + 1});
+	// apply component data bindings
+	ko.applyBindings({
+		params: params
+	}, component[0]);
+	
+	// add slide with selected data
+	currentSlider.slick('slickAdd', component);
+	
+	// remove outstanding slides
+	for (var i = curslick.slideCount - 2; i > card.groupIndex; i--) {
+		currentSlider.slick('slickRemove', i, false);
+	}
+	// move to next slide
+	currentSlider.slick('slickNext');
+};
+
+/**
+ * Visibility flag for Clear btn
+ * @returns {boolean}
+ * @private
+ */
+RequestsListViewModel.prototype._isVisible = function () {
+	return this.requests().length > 0;
 };
 
 /**
@@ -114,6 +123,12 @@ RequestsListViewModel.prototype.getDetails = function (vm, event) {
 	this.active(!this.active());
 };
 
+/**
+ * Join string for id's
+ * @param s
+ * @param i
+ * @returns {string}
+ */
 RequestsListViewModel.prototype.getStr = function (s, i) {
 	var str = s;
 	var i1 = i ? i() : '';

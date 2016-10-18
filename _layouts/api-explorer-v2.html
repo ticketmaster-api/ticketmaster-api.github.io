@@ -212,7 +212,7 @@
 												<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
 											</li>
 											<li role="presentation" class="tab active">
-												<a data-bind="attr: {href: '#blocks-' + $index(), 'aria-controls': 'blocks-' + $index()}" class="tab-btn" href="#blocks" aria-controls="blocks" role="tab" data-toggle="tab">Blocks</a>
+												<a data-bind="attr: {href: '#slider-' + $index(), 'aria-controls': 'blocks-' + $index()}" class="tab-btn" href="#blocks" aria-controls="blocks" role="tab" data-toggle="tab">Blocks</a>
 											</li>
 											<li class="tab">
 												<span class="tab-label">Structure</span>
@@ -229,10 +229,8 @@
 											<div data-bind="scroll: {x:false, y:true}, attr: {id: 'json-' + $index()}" role="tabpanel" class="tab-pane prety-json" id="json">
 												<p data-bind="html: resHTML"></p>
 											</div>
-											<div data-bind="attr: {id: 'blocks-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
-												<div class="slider">
-													<section data-bind="component: {name: 'cardGroup', params: { data: blocks, color: color, index: $index(), getMore: $parent.getMore, url: $parent.url}}"></section>
-												</div>
+											<div data-bind="attr: {id: 'slider-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
+												<panel-group params="reqId: res.id, cards: res.res, colorClass: color, sectionIndex: $index, getMore: $parent.getMore, url: $parent.url"></panel-group>
 											</div>
 										</div>
 									</div>
@@ -248,7 +246,7 @@
 
 </div>
 
-<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}" async></script>
+<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
 <div id="footer" class="xs-center slice-top-left">
 	{% include partials/footer.html %}
@@ -258,7 +256,7 @@
 </div>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
 <script src="{{'/scripts/vendors/jquery-1.11.3.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <!--<script  type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>-->
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>

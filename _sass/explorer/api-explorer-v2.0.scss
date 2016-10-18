@@ -1,13 +1,23 @@
 @import "scroll";
-@import "components/accordion.component";
+@import "components/panels.component";
 
-$colors: $n2-grey-color, #7d3e9b, #c05785, #a3a64f, #d0236f, $s1b, #4fb9b5, #b94f5e, #545db1, $green, #dba555, #db6b55;
+$colors: #768692,
+					#7d3e9b,
+					#c05785,
+					#a3a64f,
+					#d0236f,
+					#a61f84,
+					#4fb9b5,
+					#b94f5e,
+					#545db1,
+					#57ad56,
+					#dba555,
+					#db6b55;
 
 $side-menu-bg: rgba(183, 201, 211, 0.1);
 $menu-width: 293px;
 
 // bg images
-
 $img-question-grey: '../assets/img/api-explorer/question-ic-grey.svg';
 $img-question-blue: '../assets/img/api-explorer/question-ic-blue.svg';
 $img-shevron-down-blue: '../assets/controls/ic-shevron-down.svg';
@@ -812,9 +822,28 @@ $img-arrows-right: '../assets/img/arrows-right-small.svg';
 		}
 	}
 
-	@mixin column-color($color) {
-		background-color: $color;
-		border-color: $color;
+	@mixin column-color($color, $opacity: 0.7) {
+		border-color: rgba($color, $opacity);
+		background-color: rgba($color, $opacity);
+		.panel-heading {
+			background-color: rgba($color, $opacity);
+			border-color: rgba($color, $opacity);
+		}
+		.panel-body {
+			border-top-color: rgba($color, $opacity);
+		}
+
+		&.active,
+		&:hover {
+			border-color: $color;
+			.panel-heading {
+				background-color: $color;
+				border-color: $color;
+			}
+			.panel-body {
+				border-top-color: $color;
+			}
+		}
 	}
 
 	@for $i from 1 through length($colors) {
