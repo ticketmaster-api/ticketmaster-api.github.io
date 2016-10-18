@@ -182,19 +182,18 @@
       &.active {
         color: $p1c;
       }
-      &.apgee-login {
+      &.apigee-login {
         display: block;
+        float: none;
         height: 27px;
+        line-height: 24px;
         max-width: 280px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
         text-transform: none;
         font-family: "TMSans-Regular",​Helvetica,​Arial,​sans-serif;
         font-weight: 400;
         color: #009cde;
-        background: url('/assets/img/header/ic-user.svg') 0 0 no-repeat;
         padding-left: 35px;
+        margin-top: 0;
         margin-bottom: 5px;
         &:hover {
           opacity: 0.7;

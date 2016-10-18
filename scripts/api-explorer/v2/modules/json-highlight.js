@@ -1,4 +1,4 @@
-var Worker = require('./highlightJson.worker'); // Json-formatter worker
+var Worker = require('./highlightJson.worker.js'); // Json-formatter worker
 
 module.exports = function (observable, code) {
 	var animTime = 100;

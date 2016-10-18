@@ -16,6 +16,10 @@
   }
 }
 
+.single-column+ #footer {
+  margin-top: $base-margin*3;
+}
+
 
 @media (max-width: 1199px) {
   .single-column {
@@ -347,8 +351,9 @@
     color: #fff;
     font-size: 54px;
     line-height: 66px;
-    font-family: "InterstateWGL-Black", Arial, serif;
+    font-family: $font-h1;
     @media #{$max-1200} {
+      font-family: $font-h2;
       font-size: 36px;
       line-height: 46px;
       width: 40% !important;

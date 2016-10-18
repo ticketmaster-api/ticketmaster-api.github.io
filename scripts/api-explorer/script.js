@@ -87,7 +87,7 @@ Object.byString = function(o, s) {
 
   $(function () {
     var item = window.atob(getCookie("tk-api-email"));
-    document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
+    $(".apigee-login").text(item && (item !== 'undefined') ?  item : "Login");
     readFromWADL(); //parse WADL file when document is ready
     setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
     spinner = $('#spinner');

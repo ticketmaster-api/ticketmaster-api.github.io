@@ -33,3 +33,16 @@ exports.checkActive = function checkActive(koArr, activeElem) {
     }));
 };
 
+exports.iterate = function (obj) {
+	for (var property in obj) {
+		if (obj.hasOwnProperty(property)) {
+			if (typeof obj[property] == "object") {
+				iterate(obj[property]);
+			}
+			else {
+				console.log('|' + property + " |  " + obj[property] + '|');
+			}
+		}
+	}
+};
+

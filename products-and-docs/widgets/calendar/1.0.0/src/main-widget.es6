@@ -1,7 +1,3 @@
-var _Promise = typeof Promise === 'undefined'
-    ? require('es6-promise').Promise
-    : Promise
-
 class TicketmasterCalendarWidget {
 
     set config(attrs) { this.widgetConfig = this.loadConfig(attrs); }

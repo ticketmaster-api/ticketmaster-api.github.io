@@ -66,9 +66,7 @@ var prepareUrl = function (arr) {
 
 // sends request to get the second column
 var sendPrimaryRequest = function (arr, requests, global) {
-  // console.clear();
   var url = prepareUrl(arr);
-  // console.log(url);
 
   ajaxService(url, arr[0].method, function(res, msg) {
 		var resObj = {
@@ -87,8 +85,10 @@ var sendPrimaryRequest = function (arr, requests, global) {
 				message: err ? err.detail: 'No responce data!'
 			}
 		} else {
-			global.lastResponse = res.responseJSON;
-			resObj.res = res.responseJSON;
+			global.lastResponse = resObj.res = {
+				id: arr[0].id, // method id was used
+				res: res.responseJSON // response
+			};
 		}
 
 		// exporting data using observable
