@@ -1,6 +1,6 @@
 var jsonHighlight = require('./../modules/json-highlight');
-var self;
 var slider = require('../modules/slider');
+var self;
 
 function RequestsListViewModel(requests, url) {
 	this.url = url;
@@ -54,7 +54,7 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
  * get details
  * @param data
  */
-RequestsListViewModel.prototype.getMore = function (data) {
+RequestsListViewModel.prototype.getMore = function (data, index) {
 	var card = this;
 	var currentSlider = $('#slider-' + card.sectionIndex);
 	var component = $('<section data-bind="component: {name: \'panel-group\', params: params}"></section>');
@@ -76,7 +76,11 @@ RequestsListViewModel.prototype.getMore = function (data) {
 	}
 	
 	// extending additional data (copy)
-	var params = $.extend({}, card, {cards: newData, groupIndex: card.groupIndex + 1});
+	var params = $.extend({}, card, {
+		cards: newData,
+		groupIndex: card.groupIndex + 1,
+		config: {}
+	});
 	// apply component data bindings
 	ko.applyBindings({
 		params: params
@@ -136,6 +140,17 @@ RequestsListViewModel.prototype.getStr = function (s, i) {
 		str,
 		i1
 	].join('-');
+};
+
+/**
+ * Get raw response data
+ * @param model {object}
+ * @returns {string}
+ */
+RequestsListViewModel.prototype.getRawData = function (model) {
+	var content = model.res.res;
+	var rawWindow = window.open("data:text/json," + encodeURI(JSON.stringify(content, null, 2)), '_blank');
+	rawWindow.focus();
 };
 
 module.exports = RequestsListViewModel;

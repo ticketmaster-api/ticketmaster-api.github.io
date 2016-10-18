@@ -3,18 +3,10 @@
     {
       "title": "events",
       "items": [
-        {
-          "title": "event"
-        },
-        {
-          "title": "images"
-        },
-        {
-          "title": "sales"
-        },
-        {
-          "title": "venues"
-        },
+        {"title": "event"},
+        {"title": "images"},
+        {"title": "sales"},
+        {"title": "venues"},
         {
           "title": "dates",
           "items" : [

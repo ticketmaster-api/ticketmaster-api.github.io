@@ -5,12 +5,12 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     script: [
-      './scripts/api-explorer/v2/ViewModels/main.js'
+      './scripts/api-explorer/v2/src/ViewModels/main.js'
     ]
   },
 
   output: {
-    path: './scripts/api-explorer/v2',
+    path: './scripts/api-explorer/v2/',
     filename: '[name].js',
     library: "base" // global variable
   },

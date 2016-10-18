@@ -12,7 +12,7 @@ var apiKey = require('../modules/apikey');
 var ajaxService = require('../modules/ajaxService');
 
 // View Models
-var MenuViewModel = require('../ViewModels/menuViewModel');
+var MenuViewModel = require('./menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
 var RequestsListViewModel = require('./requestsListViewModel');
@@ -100,7 +100,6 @@ Object.getProp = function(o, s) {
  * Activates knockout.js
  */
 ko.applyBindings(new AppViewModel(base));
-
 /**
  * exports global variable
  */

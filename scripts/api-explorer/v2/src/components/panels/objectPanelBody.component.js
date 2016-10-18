@@ -3,6 +3,7 @@ var self;
 function objectPanelBodyComponent(params) {
 	this.title = params.data.key;
 	this.data = this.data || ko.observable(params.data.value);
+	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
 	this.cardGroup = params.cardGroup;
 	this.getMore = this.cardGroup.getMore;
 	this.pageParam = params.pageParam;
@@ -43,7 +44,7 @@ module.exports = ko.components.register('object-panel-body', {
 				<!-- /ko -->
 				
 				<!-- ko if: typeof value === 'object' -->
-					<button data-bind="click: $component.getMore.bind($component.cardGroup, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+					<button data-bind="click: $component.getMore.bind($component.cardGroup, value, $component.cardIndex)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
 				<!-- /ko -->
 				
 			</li>
