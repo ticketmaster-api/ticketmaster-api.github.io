@@ -1770,19 +1770,21 @@ class WeekScheduler {
                             });
 
                             if (item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
-                                weekEvents.push({
-                                    'name': item.name,
-                                    'date': item.dates.start.localDate,
-                                    'time': item.dates.start.localTime,
-                                    'datetime': widget.formatDate({
-                                        day: item.dates.start.localDate,
-                                        time: item.dates.start.localTime
-                                    }),
-                                    'place': place + address,
-                                    'url': item.url,
-                                    'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                                    'count': 0
-                                });
+                                if (+new Date( +new Date().getFullYear(), +new Date().getMonth(), +new Date().getDate()) <= +new Date(+item.dates.start.localDate.split('-')[0],(+item.dates.start.localDate.split('-')[1])-1,+item.dates.start.localDate.split('-')[2])) {
+                                    weekEvents.push({
+                                        'name': item.name,
+                                        'date': item.dates.start.localDate,
+                                        'time': item.dates.start.localTime,
+                                        'datetime': widget.formatDate({
+                                            day: item.dates.start.localDate,
+                                            time: item.dates.start.localTime
+                                        }),
+                                        'place': place + address,
+                                        'url': item.url,
+                                        'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                        'count': 0
+                                    });
+                                }
                             }
                         });
                     }
@@ -1998,18 +2000,20 @@ class WeekScheduler {
                                     });
 
                                     if (item.hasOwnProperty('dates') && item.dates.hasOwnProperty('start') && item.dates.start.hasOwnProperty('localTime')) {
-                                        weekEvents.push({
-                                            'name': item.name,
-                                            'date': item.dates.start.localDate,
-                                            'time': item.dates.start.localTime,
-                                            'datetime': widget.formatDate({
-                                                day: item.dates.start.localDate,
-                                                time: item.dates.start.localTime
-                                            }),
-                                            'place': place + address,
-                                            'url': item.url,
-                                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                                        });
+                                        if (+new Date( +new Date().getFullYear(), +new Date().getMonth(), +new Date().getDate()) <= +new Date(+item.dates.start.localDate.split('-')[0],(+item.dates.start.localDate.split('-')[1])-1,+item.dates.start.localDate.split('-')[2])) {
+                                            weekEvents.push({
+                                                'name': item.name,
+                                                'date': item.dates.start.localDate,
+                                                'time': item.dates.start.localTime,
+                                                'datetime': widget.formatDate({
+                                                    day: item.dates.start.localDate,
+                                                    time: item.dates.start.localTime
+                                                }),
+                                                'place': place + address,
+                                                'url': item.url,
+                                                'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                            });
+                                        }
                                     }
                                 });
                             }
@@ -2577,19 +2581,20 @@ class MonthScheduler {
                             });
 
                             if (currentMonth == item.dates.start.localDate.substr(5, 2) || currentMonthDef == item.dates.start.localDate.substr(5, 2)) {
-
-                                monthEvents.push({
-                                    'name': item.name,
-                                    'date': item.dates.start.localDate,
-                                    'time': item.dates.start.localTime,
-                                    'datetime': widget.formatDate({
-                                        day: item.dates.start.localDate,
-                                        time: item.dates.start.localTime
-                                    }),
-                                    'place': place + address,
-                                    'url': item.url,
-                                    'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                                });
+                                if (+new Date( +new Date().getFullYear(), +new Date().getMonth(), +new Date().getDate()) <= +new Date(+item.dates.start.localDate.split('-')[0],(+item.dates.start.localDate.split('-')[1])-1,+item.dates.start.localDate.split('-')[2])) {
+                                    monthEvents.push({
+                                        'name': item.name,
+                                        'date': item.dates.start.localDate,
+                                        'time': item.dates.start.localTime,
+                                        'datetime': widget.formatDate({
+                                            day: item.dates.start.localDate,
+                                            time: item.dates.start.localTime
+                                        }),
+                                        'place': place + address,
+                                        'url': item.url,
+                                        'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                    });
+                                }
                             }
 
                         });
@@ -2807,18 +2812,20 @@ class MonthScheduler {
                                     }
                                     let newDate = item.dates.start.localDate.substr(5,2);
                                     if (parseInt(curMonth) === parseInt(newDate))  {
-                                        monthEvents.push({
-                                            'name': item.name,
-                                            'date': item.dates.start.localDate,
-                                            'time': item.dates.start.localTime,
-                                            'datetime': widget.formatDate({
-                                                day: item.dates.start.localDate,
-                                                time: item.dates.start.localTime
-                                            }),
-                                            'place': place + address,
-                                            'url': item.url,
-                                            'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
-                                        });
+                                        if (+new Date( +new Date().getFullYear(), +new Date().getMonth(), +new Date().getDate()) <= +new Date(+item.dates.start.localDate.split('-')[0],(+item.dates.start.localDate.split('-')[1])-1,+item.dates.start.localDate.split('-')[2])) {
+                                            monthEvents.push({
+                                                'name': item.name,
+                                                'date': item.dates.start.localDate,
+                                                'time': item.dates.start.localTime,
+                                                'datetime': widget.formatDate({
+                                                    day: item.dates.start.localDate,
+                                                    time: item.dates.start.localTime
+                                                }),
+                                                'place': place + address,
+                                                'url': item.url,
+                                                'img': (item.hasOwnProperty('images') && item.images[index] != undefined) ? item.images[index].url : '',
+                                            });
+                                        }
                                     }
                                 });
                             }
