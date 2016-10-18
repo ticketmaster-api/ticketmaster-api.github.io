@@ -8,7 +8,7 @@
       userApiKey = userApiKey[userApiKey.length-1];
       userEmail = window.atob(getCookie("tk-api-email")) ;//decode string
       try {
-        document.getElementsByClassName("apigee-login")[0].textContent = userEmail;
+        $(".apigee-login").text(userEmail);
       } catch(e){
         //console.log(e);
       }
