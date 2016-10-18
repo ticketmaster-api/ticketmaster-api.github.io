@@ -10,6 +10,9 @@
   cursor: pointer;
   display: inline-block;
   margin-top: $base-margin;
+  @media #{$max-1200} {
+    width: 100%;
+  }
   p {
     display: inline;
   }
@@ -51,7 +54,7 @@
       margin-top: -$base-margin;
     }
 
-  @media #{$max-768} {
+  @media #{$max-1200} {
     position: relative;
     margin-top: 0;
     left: 0;
