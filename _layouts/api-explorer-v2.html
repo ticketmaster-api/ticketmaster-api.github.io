@@ -103,6 +103,7 @@
 
 			</section><!--content-wrapper-->
 		</div>
+
 		<!--params-->
 		<div data-bind="with: params">
 			<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
@@ -169,11 +170,12 @@
 			<section>
 				<ul data-bind="foreach: viewModel" class="panel-group api-exp-request-list" id="response" role="tablist" aria-multiselectable="true">
 					<li data-bind="css: {active: active}" class="panel panel-default api-exp-request-list-item clearfix">
+
 						<section class="row-container request" data-bind="attr: {id: $parent.getStr('heading', $index)}" role="tab">
 							<div class="edit-controls">
 								<button class="btn btn-icon btn-share" type="button"></button>
 								<button class="btn btn-icon btn-copy" type="button"></button>
-								<button data-bind="click: $parent.getRawData" class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="Tooltip on top" data-original-title="View Raw"></button>
+								<button data-bind="click: $parent.getRawData" class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="View Raw" data-original-title="View Raw"></button>
 							</div>
 							<div class="panel-title">
 								<button class="btn btn-icon shevron shevron-up view-control"
@@ -192,6 +194,7 @@
 							<span data-bind="css: color" class="color-indicator view-control"></span>
 							<p data-bind="text: req" class="item_text"></p>
 						</section>
+
 						<section class="response collapse" data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}" role="tabpanel">
 							<div class="row">
 								<div class="container">
@@ -220,7 +223,7 @@
 												<p data-bind="html: resHTML"></p>
 											</div>
 											<div data-bind="attr: {id: 'slider-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
-												<panel-group params="reqId: res.id, cards: res.res, colorClass: color, sectionIndex: $index, getMore: $parent.getMore, url: $parent.url"></panel-group>
+												<panel-group params="filter: $root.config, reqId: res.id, data: res.res, colorClass: color, sectionIndex: $index, getMore: $parent.getMore, url: $parent.url"></panel-group>
 											</div>
 										</div>
 									</div>
@@ -249,12 +252,13 @@
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <!--<script  type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>-->
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/vendors/knockout-3.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/knockout-3.4.0.debug.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/knockout-scrollbar.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/clipboard.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
 {% include feedback.html %}
-<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
+<!--<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>-->
 <script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
 <!--not used-->
 <!--<script src="{{'/scripts/components/apikey-check.js' | prepend: site.baseurl }}"></script>-->

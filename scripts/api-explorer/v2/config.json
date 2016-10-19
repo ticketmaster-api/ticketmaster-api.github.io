@@ -1,0 +1,157 @@
+{
+  "discovery.v2.events.get": {
+    "events": {
+      "object": {
+        "_CONFIG": {
+          "title": "Event",
+          "copyBtn": {
+            "name": true
+          },
+          "index": 0
+        }
+      },
+      "images": {
+        "object": {
+          "_CONFIG": {
+            "title": "image"
+          }
+        },
+        "_CONFIG": {
+          "index": 1,
+          "collapsed": true
+        }
+      },
+      "sales": {
+        "_CONFIG": {
+          "index": 2
+        }
+      },
+      "venues": {
+        "object": {
+          "_CONFIG": {
+            "title": "venue",
+            "index": 0
+          }
+        },
+        "city": {
+          "_CONFIG": {
+            "index": 2
+          }
+        },
+        "state": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "country": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "address": {
+          "_CONFIG": {
+            "index": 3
+          }
+        },
+        "location": {
+          "_CONFIG": {
+            "index": 4
+          }
+        },
+        "_CONFIG": {
+          "index": 3
+        }
+      },
+      "dates": {
+        "start": {
+          "_CONFIG": {
+            "index": 0,
+            "copyBtn": {
+              "dateTime": true
+            }
+          }
+        },
+        "status": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "end": {
+          "_CONFIG": {
+            "index": 2,
+            "copyBtn": {
+              "dateTime": true
+            }
+          }
+        },
+
+        "_CONFIG": {
+          "index": 4,
+          "copyBtn": {
+            "timezone": true
+          },
+          "allInside": true
+        }
+      },
+
+      "_CONFIG": {
+        "events": true,
+        "index": 0
+      }
+    },
+    "page": {
+
+      "_CONFIG": {
+        "index": 1,
+        "collapsed": true
+      }
+    },
+
+    "_CONFIG": {
+      "method": "discovery.v2.events.get"
+    }
+  },
+
+  "discovery.v2.attractions.get": {
+    "attractions": {
+      "object": {
+        "_CONFIG": {
+          "index": 0
+        }
+      },
+      "images": {
+        "_CONFIG": {
+          "index": 2
+        }
+      },
+      "classifications": {
+        "_CONFIG": {
+          "index": 1
+        }
+      },
+      "_CONFIG": {
+        "index": 0
+      }
+    },
+    "page": {
+      "_CONFIG": {
+        "index": 1
+      }
+    },
+    "_CONFIG": {
+      "methodConfig": true
+    }
+  },
+
+  "_GLOBAL_CONFIG": {
+    "copyBtn": {
+      "id": true
+    },
+    "deprecated": [
+      "_links"
+    ],
+    "unwrapp": [
+      "_embedded"
+    ]
+  }
+}

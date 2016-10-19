@@ -1,5 +1,6 @@
 var jsonHighlight = require('./../modules/json-highlight');
 var slider = require('../modules/slider');
+var filter = require('../../config.json');
 var self;
 
 function RequestsListViewModel(requests, url) {
@@ -54,33 +55,21 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
  * get details
  * @param data
  */
-RequestsListViewModel.prototype.getMore = function (data, index) {
-	var card = this;
-	var currentSlider = $('#slider-' + card.sectionIndex);
+RequestsListViewModel.prototype.getMore = function (id, data) {
+	var panelGroup = this.panelGroup;
+	var panel = this;
+	var currentSlider = $('#slider-' + panelGroup.sectionIndex);
 	var component = $('<section data-bind="component: {name: \'panel-group\', params: params}"></section>');
 	var curslick = currentSlider.slick('getSlick');
-	var newData = {};
-	
-	// gathering all primitive props in additional panel
-	for (var key in data) {
-		if (!data.hasOwnProperty(key)) {
-			continue;
-		}
-		var val = data[key];
-		if (typeof val !== 'object') {
-			newData[data.type || Object.keys(data)[0]] = newData[data.type || Object.keys(data)[0]] || {};
-			newData[data.type || Object.keys(data)[0]][key] = val;
-		} else {
-			newData[key] = val;
-		}
-	}
 	
 	// extending additional data (copy)
-	var params = $.extend({}, card, {
-		cards: newData,
-		groupIndex: card.groupIndex + 1,
-		config: {}
+	var params = $.extend({}, panelGroup, {
+		data: data,
+		groupIndex: panelGroup.groupIndex + 1,
+		_propTitle: typeof id === 'string' && id,
+		config: panel.config
 	});
+
 	// apply component data bindings
 	ko.applyBindings({
 		params: params
@@ -90,7 +79,7 @@ RequestsListViewModel.prototype.getMore = function (data, index) {
 	currentSlider.slick('slickAdd', component);
 	
 	// remove outstanding slides
-	for (var i = curslick.slideCount - 2; i > card.groupIndex; i--) {
+	for (var i = curslick.slideCount - 2; i > panelGroup.groupIndex; i--) {
 		currentSlider.slick('slickRemove', i, false);
 	}
 	// move to next slide
@@ -103,7 +92,7 @@ RequestsListViewModel.prototype.getMore = function (data, index) {
  * @private
  */
 RequestsListViewModel.prototype._isVisible = function () {
-	return this.requests().length > 0;
+	return ko.utils.unwrapObservable(this.requests).length > 0;
 };
 
 /**
