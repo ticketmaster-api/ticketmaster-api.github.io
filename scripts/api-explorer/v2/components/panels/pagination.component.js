@@ -19,8 +19,8 @@ function pagination(params) {
  */
 pagination.prototype.getPrevPage = function () {
 	var val = this.pageParam();
-	self.pageParam(val > 0 ? val - 1 : 0);
-	self.requestBtn.trigger('click');
+	this.pageParam(val > 0 ? val - 1 : 0);
+	this.requestBtn.trigger('click');
 };
 
 /**
@@ -28,8 +28,8 @@ pagination.prototype.getPrevPage = function () {
  */
 pagination.prototype.getNextPage = function () {
 	var val = this.number;
-	self.pageParam(val < self.totalPages - 1 ? val  + 1: val);
-	self.requestBtn.trigger('click');
+	this.pageParam(val < this.totalPages - 1 ? val  + 1: val);
+	this.requestBtn.trigger('click');
 };
 
 module.exports = ko.components.register('pagination', {

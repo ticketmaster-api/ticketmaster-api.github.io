@@ -33,17 +33,8 @@ public class PD_WidgetsSteps {
     }
 
     @Step
-    public String returnCurrentUrl() {
-        return widgetsPage.returnCurrentUrl();
-    }
-
-    @Step
     public void switchToNewTab() {
         widgetsPage.switchToNewTab();
-    }
-
-    public void closeAllTabs () {
-        widgetsPage.closeAllTabs();
     }
 
     @Step

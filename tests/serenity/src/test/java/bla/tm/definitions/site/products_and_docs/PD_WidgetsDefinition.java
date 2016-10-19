@@ -9,7 +9,6 @@ import org.jbehave.core.annotations.When;
 
 import static bla.tm.DevSiteTestsRunner.baseTestedUrl;
 
-
 public class PD_WidgetsDefinition {
 
     @Steps
@@ -44,6 +43,5 @@ public class PD_WidgetsDefinition {
     public void checkDirectPaymentButton(){
         widgetsPage.switchToNewTab();
         anyPage.checkIfPageIsOpened("https://www.universe.com/directpayments","//h1",baseTestedUrl);
-        widgetsPage.closeAllTabs();
     }
 }
