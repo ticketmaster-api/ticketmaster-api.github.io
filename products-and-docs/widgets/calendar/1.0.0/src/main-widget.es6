@@ -186,22 +186,27 @@ class TicketmasterCalendarWidget {
         var parentDiv = document.querySelector('[w-type="calendar"]').parentNode;
         window.Promise || document.querySelector('[w-type="calendar"]').parentNode.insertBefore(scriptPromise, document.querySelector('[w-type="calendar"]'));
         */
-        this.tabsRootContainer = document.createElement("div");
-        this.tabsRootContainer.classList.add("tabs");
-        this.tabsRootContainer.innerHTML = '<span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span>';
-        this.widgetRoot.appendChild(this.tabsRootContainer);
 
-        this.tabsRootContainer = document.createElement("div");
-        this.tabsRootContainer.classList.add("tabs-container");
-        this.widgetRoot.appendChild(this.tabsRootContainer);
+        if (this.widgetRoot.querySelector('.tabs-container') == null) {
 
-        this.tab1RootContainer = document.createElement("div");
-        this.tab1RootContainer.classList.add("tab");
-        this.tab1RootContainer.classList.add("active");
-        this.tabsRootContainer.appendChild(this.tab1RootContainer);
+            this.tabsRootContainer = document.createElement("div");
+            this.tabsRootContainer.classList.add("tabs");
+            this.tabsRootContainer.innerHTML = '<span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span>';
+            this.widgetRoot.appendChild(this.tabsRootContainer);
 
-        let leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', this.getCurrentWeek(), 'period', this.update.bind(this));
-        let RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+            this.tabsRootContainer = document.createElement("div");
+            this.tabsRootContainer.classList.add("tabs-container");
+            this.widgetRoot.appendChild(this.tabsRootContainer);
+
+            this.tab1RootContainer = document.createElement("div");
+            this.tab1RootContainer.classList.add("tab");
+            this.tab1RootContainer.classList.add("active");
+            this.tabsRootContainer.appendChild(this.tab1RootContainer);
+
+            let leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', this.getCurrentWeek(), 'period', this.update.bind(this));
+            let RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+
+        }
 
         this.tab2RootContainer = document.createElement("div");
         this.tab2RootContainer.classList.add("tab");
