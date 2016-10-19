@@ -62,6 +62,12 @@
             <artifactId>selenium-java</artifactId>
             <version>2.53.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+            <version>2.23</version>
+        </dependency>
     </dependencies>
 
     <build>

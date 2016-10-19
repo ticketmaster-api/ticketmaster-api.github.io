@@ -34,8 +34,11 @@ public class PD_PartnerAPIPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Captcha [GET]')]]/p[contains(.,'/partners/v1/captcha?apikey')]")
     private WebElementFacade apikey07PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-bash' and contains(.,'https://app.ticketmaster.com/partners/v1/captcha?apikey=')]")
+    @FindBy(xpath = "//h2[contains(text(),'Captcha')]/following-sibling::div[@class='reqres-wrapper'][.//a[contains(text(),'html')]]//code[contains(.,'/partners/v1/captcha?apikey=')]")
     private WebElementFacade apikey08PlaceHolder;
+
+    @FindBy(xpath = "//h2[contains(text(),'Captcha')]/following-sibling::div[@class='reqres-wrapper'][.//a[contains(text(),'json')]]//code[contains(.,'/partners/v1/captcha?apikey=')]")
+    private WebElementFacade apikey081PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Reserve tickets and create a Cart [POST]')]]/p[contains(.,'/partners/v1/events/{event_id}/cart?apikey=')]")
     private WebElementFacade apikey09PlaceHolder;
@@ -67,17 +70,11 @@ public class PD_PartnerAPIPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-bash' and contains(.,'https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey') and contains(.,'70561111')]")
     private WebElementFacade apikey18PlaceHolder;
 
-//    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Add payment information [PUT]')]]/p[contains(.,'/partners/v1/events/{event_id}/cart/payment?apikey=')]")
-//    private WebElementFacade apikey19PlaceHolder;
-
     @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-bash' and contains(.,'https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?apikey') and contains(.,'john.doe@ticketmaster.com')]")
     private WebElementFacade apikey20PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Commit Cart [PUT]')]]/p[contains(.,'/partners/v1/events/{event_id}/cart?apikey')]")
     private WebElementFacade apikey21PlaceHolder;
-
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js' and contains(.,'Your reference number')]/span[@class='c1' and contains(.,'//app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=')]")
-    private WebElementFacade apikey22PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Delete Cart [DELETE]')]]/p[contains(.,'/partners/v1/events/0B004ED9FC825ACB/cart?apikey=')]")
     private WebElementFacade apikey23PlaceHolder;
@@ -118,57 +115,42 @@ public class PD_PartnerAPIPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-bash' and contains(.,'https://app.ticketmaster.com/partners/v1/orders/unredeemed?apikey=')]")
     private WebElementFacade apikey35PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/a")
-    private WebElementFacade codeSection;
-
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/blockquote/p/a[@href='#curl']")
-    private WebElementFacade switchToCUrlCode;
-
-    public WebElementFacade getSwitchToCUrlCode() {
-        return switchToCUrlCode;
-    }
-
-    public WebElementFacade getCodeSection() {
-        return codeSection;
-    }
-
     public Map<String,WebElementFacade> getAPIKeyPlaceHoldersList() {
         Map<String,WebElementFacade> elements = new HashMap<>();
-        elements.put("apikey01PlaceHolder", apikey01PlaceHolder);
+//        elements.put("apikey01PlaceHolder", apikey01PlaceHolder);
         elements.put("apikey02PlaceHolder", apikey02PlaceHolder);
-        elements.put("apikey03PlaceHolder", apikey03PlaceHolder);
-        elements.put("apikey04PlaceHolder", apikey04PlaceHolder);
-        elements.put("apikey05PlaceHolder", apikey05PlaceHolder);
-        elements.put("apikey06PlaceHolder", apikey06PlaceHolder);
+//        elements.put("apikey03PlaceHolder", apikey03PlaceHolder);
+//        elements.put("apikey04PlaceHolder", apikey04PlaceHolder);
+//        elements.put("apikey05PlaceHolder", apikey05PlaceHolder);
+//        elements.put("apikey06PlaceHolder", apikey06PlaceHolder);
         elements.put("apikey07PlaceHolder", apikey07PlaceHolder);
         elements.put("apikey08PlaceHolder", apikey08PlaceHolder);
+        elements.put("apikey081PlaceHolder", apikey08PlaceHolder);
         elements.put("apikey09PlaceHolder", apikey09PlaceHolder);
-        elements.put("apikey10PlaceHolder", apikey10PlaceHolder);
+//        elements.put("apikey10PlaceHolder", apikey10PlaceHolder);
         elements.put("apikey11PlaceHolder", apikey11PlaceHolder);
-        elements.put("apikey12PlaceHolder", apikey12PlaceHolder);
+//        elements.put("apikey12PlaceHolder", apikey12PlaceHolder);
         elements.put("apikey13PlaceHolder", apikey13PlaceHolder);
-        elements.put("apikey14PlaceHolder", apikey14PlaceHolder);
+//        elements.put("apikey14PlaceHolder", apikey14PlaceHolder);
         elements.put("apikey15PlaceHolder", apikey15PlaceHolder);
-        elements.put("apikey16PlaceHolder", apikey16PlaceHolder);
+//        elements.put("apikey16PlaceHolder", apikey16PlaceHolder);
         elements.put("apikey17PlaceHolder", apikey17PlaceHolder);
-        elements.put("apikey18PlaceHolder", apikey18PlaceHolder);
-//        elements.put("apikey19PlaceHolder", apikey19PlaceHolder);
-        elements.put("apikey20PlaceHolder", apikey20PlaceHolder);
+//        elements.put("apikey18PlaceHolder", apikey18PlaceHolder);
+//        elements.put("apikey20PlaceHolder", apikey20PlaceHolder);
         elements.put("apikey21PlaceHolder", apikey21PlaceHolder);
-        elements.put("apikey22PlaceHolder", apikey22PlaceHolder);
         elements.put("apikey23PlaceHolder", apikey23PlaceHolder);
-        elements.put("apikey24PlaceHolder", apikey24PlaceHolder);
-        elements.put("apikey25PlaceHolder", apikey25PlaceHolder);
+//        elements.put("apikey24PlaceHolder", apikey24PlaceHolder);
+//        elements.put("apikey25PlaceHolder", apikey25PlaceHolder);
         elements.put("apikey26PlaceHolder", apikey26PlaceHolder);
-        elements.put("apikey27PlaceHolder", apikey27PlaceHolder);
+//        elements.put("apikey27PlaceHolder", apikey27PlaceHolder);
         elements.put("apikey28PlaceHolder", apikey28PlaceHolder);
-        elements.put("apikey29PlaceHolder", apikey29PlaceHolder);
+//        elements.put("apikey29PlaceHolder", apikey29PlaceHolder);
         elements.put("apikey30PlaceHolder", apikey30PlaceHolder);
-        elements.put("apikey31PlaceHolder", apikey31PlaceHolder);
+//        elements.put("apikey31PlaceHolder", apikey31PlaceHolder);
         elements.put("apikey32PlaceHolder", apikey32PlaceHolder);
-        elements.put("apikey33PlaceHolder", apikey33PlaceHolder);
+//        elements.put("apikey33PlaceHolder", apikey33PlaceHolder);
         elements.put("apikey34PlaceHolder", apikey34PlaceHolder);
-        elements.put("apikey35PlaceHolder", apikey35PlaceHolder);
+//        elements.put("apikey35PlaceHolder", apikey35PlaceHolder);
         return elements;
     }
 }

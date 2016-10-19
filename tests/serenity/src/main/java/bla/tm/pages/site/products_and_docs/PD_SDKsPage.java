@@ -31,13 +31,13 @@ public class PD_SDKsPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='front']/div/img[@src='/assets/img/products-and-docs/sdk-scala-img-263.png']")
     private WebElementFacade sdkScalaImage;
 
-    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'SDK-Java') and not(contains(h3,'SDK-JavaScript'))]")
+    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'Java-SDK')]")
     private WebElementFacade sdkJavaImageLink;
 
-    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'SDK-JavaScript')]")
+    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'JavaScript-SDK')]")
     private WebElementFacade sdkJavaScriptImageLink;
 
-    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'SDK-Scala')]")
+    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'Scala-SDK')]")
     private WebElementFacade sdkScalaImageLink;
 
     public Map<String, WebElementFacade> getClickableElements() {

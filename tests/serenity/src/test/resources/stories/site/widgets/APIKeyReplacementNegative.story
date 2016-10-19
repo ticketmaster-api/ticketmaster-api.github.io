@@ -39,3 +39,8 @@ Scenario: (APi Key - Partner API page) Custom API key is not replaced when user 
 Given open Partner API page
 When User is logged to site (Partner API)
 Then check that API key is provided for all placeholders on Partner API page
+
+Scenario: (APi Key - Inventory Status API page) Custom API key is not replaced when user is logged in
+Given open Inventory Status API page
+When User is logged to site (Inventory Status API)
+Then check that API key is provided for all placeholder on Inventory Status API page

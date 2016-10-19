@@ -180,7 +180,7 @@
 							<div class="edit-controls">
 								<button class="btn btn-icon btn-share" type="button"></button>
 								<button class="btn btn-icon btn-copy" type="button"></button>
-								<button class="btn btn-icon btn-raw" type="button"></button>
+								<button class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="Tooltip on top" data-original-title="View Raw" data-content-text="res.res"></button>
 							</div>
 							<div class="panel-title">
 								<button class="btn btn-icon shevron shevron-up view-control"
@@ -267,6 +267,7 @@
 {% include feedback.html %}
 <script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/components/apikey-check.js' | prepend: site.baseurl }}"></script>
+<!--not used-->
+<!--<script src="{{'/scripts/components/apikey-check.js' | prepend: site.baseurl }}"></script>-->
 </body>
 </html>

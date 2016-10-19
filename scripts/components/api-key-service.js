@@ -41,6 +41,33 @@ var apiKeyService = {};
   apiKeyService.getApiWidgetsKey = function () {
     return tmApiKeys.widgets;
   };
+
+  apiKeyService.checkApiKeyCookie = function (cookieSelector) {
+    var userApiKey,
+      apiKeys = JSON.parse("[" + window.atob(getCookie(cookieSelector)) + "]"); //decode and convert string to array
+    if (getCookie(cookieSelector) === "") {return null}
+    if (apiKeys != "") {
+      userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
+    }
+    return userApiKey;
+  };
+
+  //get Cookie by name
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length,c.length);
+      }
+    }
+    return "";
+  }
+
 })();
 
 

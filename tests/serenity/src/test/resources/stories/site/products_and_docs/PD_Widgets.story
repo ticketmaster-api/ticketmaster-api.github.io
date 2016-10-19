@@ -20,6 +20,9 @@ When check visibility and click <elementKey> element of Widgets page
 Then check that new page opened from Widgets page has <pageURL> and <pageTitle>
 
 Examples:
-|       elementKey      |                       pageURL                     |   pageTitle    |
-|Discovery Widget Button|  {url}/products-and-docs/widgets/event-discovery/ |      //h1      |
-|Countdown Widget Button|     {url}/products-and-docs/widgets/countdown/    |      //h1      |
+|       elementKey              |                       pageURL                     |   pageTitle    |
+|Checkout Widget Button         |  {url}/products-and-docs/widgets/checkout/        |      //h1      |
+|Discovery Widget Button        |  {url}/products-and-docs/widgets/event-discovery/ |      //h1      |
+|Countdown Widget Button        |  {url}/products-and-docs/widgets/countdown/       |      //h1      |
+|Calendar Widget Button         |  {url}/products-and-docs/widgets/calendar/        |      //h1      |
+|WordPress Widget Learn Button  |  {url}/products-and-docs/widgets/wordpress/       |      //h1      |
