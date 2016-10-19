@@ -17,23 +17,24 @@
 			</p>
 		</section>
 		<!--event counter bar-->
+		{% assign initialValue = site.data.variables.summaryWidget %}
 		<section class="horizontal-events-tracker">
 			<div class="col-xs-12 horizontal-events-tracker__section">
 				<span class="horizontal-events-tracker__title">
 					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Events:
-					<b id="js-events-counter" class="horizontal-events-tracker__counter"></b>
+					<b id="js-events-counter" class="horizontal-events-tracker__counter">{{initialValue.events}}</b>
 				</span>
 				<span class="horizontal-events-tracker__title">
 					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Attractions:
-					<b id="js-attractions-counter" class="horizontal-events-tracker__counter"></b>
+					<b id="js-attractions-counter" class="horizontal-events-tracker__counter">{{initialValue.attractions}}</b>
 				</span>
 				<span class="horizontal-events-tracker__title">
 					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Venues:
-					<b id="js-venues-counter" class="horizontal-events-tracker__counter"></b>
+					<b id="js-venues-counter" class="horizontal-events-tracker__counter">{{initialValue.venues}}</b>
 				</span>
 				<span class="horizontal-events-tracker__title">
 					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Countries:
-					<b id="js-countries-counter" class="horizontal-events-tracker__counter"></b>
+					<b id="js-countries-counter" class="horizontal-events-tracker__counter">{{initialValue.countries}}</b>
 				</span>
 			</div>
 		</section>

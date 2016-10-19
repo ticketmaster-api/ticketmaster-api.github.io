@@ -1,41 +1,14 @@
 (function ($) {
-  var apiKey = checkCookie() || apiKeyService.getApiExploreKey(); //API Key
-  var initialVal = initialVal();
+  var apiKey = apiKeyService.checkApiKeyCookie("tk-api-key") || apiKeyService.getApiExploreKey(); //API Key
+  var initialValObj;
   function initialVal() {
     var config = ['events', 'venues', 'attractions', 'countries'];
     var values = {};
     config.forEach(function (el) {      
       values[el] = $('#js-'+el+'-counter').text();
     });
-    return values
+    initialValObj = values;
   };
-
-  function checkCookie() {
-      var userApiKey;
-      var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
-
-      if (apiKeys != "") {
-          userApiKey = apiKeys[apiKeys.length-1];
-          userApiKey = userApiKey[userApiKey.length-1];
-      }
-      return userApiKey;
-  }
-
-  //get Cookie by name
-  function getCookie(cname) {
-      var name = cname + "=";
-      var ca = document.cookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0)==' ') {
-              c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-              return c.substring(name.length,c.length);
-          }
-      }
-      return "";
-  }
 
   $(function() {
     initEventCountersPanel(); // Counter panel init
@@ -49,6 +22,7 @@
       config = ['events', 'venues', 'attractions', 'countries'],
       timeLeap = 60000;
 
+    initialVal();
     config.forEach(function (el) {
       var val = el === 'countries' && 7;
       renderValue(el, val);
@@ -138,8 +112,16 @@
     $(['#js-', el,'-counter'].join('')).text(formattedNumber);
   }
 
+  function removeCommas(str) {
+    while (str.search(",") >= 0) {
+      str = (str + "").replace(',', '');
+    }
+    parseInt(str,10);
+    return str;
+  };
+
   function countAnimate(selectorEl,val) {
-    $('#js-'+selectorEl+'-counter').prop('Counter',  initialVal[selectorEl] ).animate({
+    $('#js-'+selectorEl+'-counter').prop('Counter',  initialValObj[selectorEl] ).animate({
       Counter: val
     }, {
       duration: 3000,
@@ -148,5 +130,15 @@
         $(this).text(Math.ceil(now).toLocaleString());
       }
     });
+
+    //RemoveCommas from recived values to parse as integer
+    //Update values after animation is finished (animation duration: 3000)
+    setTimeout(function () {
+      initialValObj[selectorEl] = removeCommas ( $('#js-'+selectorEl+'-counter').text() );
+      }, 3100
+    );
+
+
+
   }
 }(jQuery));
