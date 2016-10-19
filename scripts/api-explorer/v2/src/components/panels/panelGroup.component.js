@@ -1,29 +1,34 @@
 var self;
 
 function cardGroupComponent(params) {
-	self = this;
 	var url = params.url;
+
 	this.filter = require('../../config.json');
+	this.reqId = this.reqId || params.reqId;
+	this.config = params.config || this.filter[this.reqId];
+
 	this.cards = this.removeCards(params.cards);
+
 	this.groupIndex = params.groupIndex || 0;
 	this.cardIndex = params.cardIndex;
 	this.sectionIndex = ko.utils.unwrapObservable(params.sectionIndex);
-	this.data = params.data;
+
 	this.colorClass = params.colorClass;
 	this.getMore = params.getMore;
-	this.reqId = this.reqId || params.reqId;
+
 	this.cardSize = params.cardSize || this.cards.page.size;
 	this.pageParam = (params.pageParam || ko.utils.unwrapObservable(url).find(function (item) {
 		return item.name === 'page';
 	})).value;
-	
+
 	this.collapseId = [
 		'card-panel-body-',
 		this.sectionIndex,
 		this.groupIndex
 	].join('');
-	
+
 	this.isActive = ko.observable(false);
+	self = this;
 }
 
 cardGroupComponent.prototype.removeCards = function (obj) {
@@ -63,7 +68,8 @@ cardGroupComponent.prototype.setActive = function (vm, e) {
 };
 
 cardGroupComponent.prototype.sortByConfig = function sortFunc(a, b) {
-	var config = self.filter[self.reqId];
+	var config = self.config;
+
 	var o1 = config.find(function (obj) {
 		return obj.title === a.key;
 	});
@@ -85,11 +91,11 @@ module.exports = ko.components.register('panel-group', {
 					<div class="panel-body">
 					
 						<!-- ko if: (typeof value === 'object' && !$.isArray(value)) -->
-							<object-panel-body params="data: $data, cardGroup: $component, pageParam: $component.pageParam"></object-panel-body>
+							<object-panel-body params="data: $data, index: $index, cardGroup: $component, pageParam: $component.pageParam"></object-panel-body>
 						<!-- /ko -->
 						
 						<!-- ko if: (typeof value === 'object' && $.isArray(value)) -->
-							<array-panel-body params="data: $data, cardGroup: $component"></array-panel-body>
+							<array-panel-body params="data: $data, index: $index, cardGroup: $component"></array-panel-body>
 						<!-- /ko -->
 					</div>
 				</section>

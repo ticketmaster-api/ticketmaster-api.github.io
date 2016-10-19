@@ -156,7 +156,7 @@
 
 	<!--request list-->
 	<section data-bind="with: requestsList" class="clearfix">
-		<section data-bind="if: clearBtnIsVisible">
+		<!--ko if: clearBtnIsVisible-->
 			<!--headline-->
 			<section class="row-container api-exp-request-list-headline">
 				<h4 class="title">Request list</h4>
@@ -167,21 +167,13 @@
 
 			<!--requests-->
 			<section>
-				<ul data-bind="foreach: viewModel"
-				    class="panel-group api-exp-request-list"
-				    id="response"
-				    role="tablist"
-				    aria-multiselectable="true">
-
+				<ul data-bind="foreach: viewModel" class="panel-group api-exp-request-list" id="response" role="tablist" aria-multiselectable="true">
 					<li data-bind="css: {active: active}" class="panel panel-default api-exp-request-list-item clearfix">
-						<section class="row-container request"
-						         data-bind="attr: {id: $parent.getStr('heading', $index)}"
-						         role="tab">
-
+						<section class="row-container request" data-bind="attr: {id: $parent.getStr('heading', $index)}" role="tab">
 							<div class="edit-controls">
 								<button class="btn btn-icon btn-share" type="button"></button>
 								<button class="btn btn-icon btn-copy" type="button"></button>
-								<button class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="Tooltip on top" data-original-title="View Raw" data-content-text="res.res"></button>
+								<button data-bind="click: $parent.getRawData" class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="Tooltip on top" data-original-title="View Raw"></button>
 							</div>
 							<div class="panel-title">
 								<button class="btn btn-icon shevron shevron-up view-control"
@@ -200,10 +192,7 @@
 							<span data-bind="css: color" class="color-indicator view-control"></span>
 							<p data-bind="text: req" class="item_text"></p>
 						</section>
-
-						<section class="response collapse"
-						         data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}"
-						         role="tabpanel">
+						<section class="response collapse" data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}" role="tabpanel">
 							<div class="row">
 								<div class="container">
 									<div class="row">
@@ -238,11 +227,10 @@
 								</div>
 							</div>
 						</section>
-
 					</li>
 				</ul>
 			</section>
-		</section>
+		<!-- /ko -->
 	</section>
 
 </div>

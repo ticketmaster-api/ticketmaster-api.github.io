@@ -4,6 +4,7 @@ function objectPanelBodyComponent(params) {
 	self = this;
 	this.title = params.data.key;
 	this.data = params.data.value;
+	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
 	this.cardGroup = params.cardGroup;
 	this.getMore = this.cardGroup.getMore;
 }
@@ -24,7 +25,7 @@ module.exports = ko.components.register('array-panel-body', {
 				<!-- /ko -->
 				
 				<!-- ko if: typeof $data === 'object' -->
-					<button data-bind="click: $component.getMore.bind($component.cardGroup)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+					<button data-bind="click: $component.getMore.bind($component.cardGroup, $component.cardIndex)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
 				<!-- /ko -->
 				
 			</li>
