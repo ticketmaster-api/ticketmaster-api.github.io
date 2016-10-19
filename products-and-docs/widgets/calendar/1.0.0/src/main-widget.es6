@@ -174,11 +174,10 @@ class TicketmasterCalendarWidget {
         if(!root) return;
         this.widgetRoot = root;
         var scriptPromise = document.createElement("script");
-        scriptPromise.setAttribute('src', 'https://unpkg.com/es6-promise@3.2.1/dist/es6-promise.min.js');
-        var scriptFetch = document.createElement("script");
-        scriptFetch.setAttribute('src', 'https://unpkg.com/whatwg-fetch@1.0.0/fetch.js');
-        // window.Promise || this.widgetRoot.appendChild(scriptPromise);
-        // window.fetch || this.widgetRoot.appendChild(scriptFetch);
+        scriptPromise.setAttribute('src', 'https://www.promisejs.org/polyfills/promise-6.1.0.min.js');
+        var parentDiv = document.querySelector('[w-type="calendar"]').parentNode;
+        window.Promise || parentDiv.appendChild(scriptPromise);
+        // window.Promise || document.querySelector('[w-type="calendar"]').appendChild(scriptPromise);
         this.tabsRootContainer = document.createElement("div");
         this.tabsRootContainer.classList.add("tabs");
         this.tabsRootContainer.innerHTML = '<span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span>';
@@ -1344,27 +1343,13 @@ class TicketmasterCalendarWidget {
 
 class TabsControls {
 
-    removeActiveTab(this_) {
-        let tabs = this_.querySelectorAll('.tb');
-        Array.from(tabs).forEach(tab => {
-            if (tab.classList.contains("active")) tab.classList.remove("active");
-        });
-        let tab = this_.nextSibling.querySelectorAll('.tab');
-        Array.from(tab).forEach(tb => {
-            if (tb.classList.contains("active")) tb.classList.remove("active");
-        });
-    }
-
-    selActiveTab(activeTab, this_) {
-        let tabs = this_.nextSibling;
-        tabs.children[activeTab].classList.add('active');
-    }
-
     constructor() {
         let self = this;
         var tabs = document.querySelectorAll('.tb');
+        var tLenght = tabs.length;
         var tabsList = document.getElementsByClassName('tabs');
-        Array.from(tabs).forEach(tab => {
+        for (let i = 0; i < tLenght; i++) {
+            let tab = tabs[i];
             tab.addEventListener('click', function (e) {
                 let this_ = e.target.parentNode;
                 self.removeActiveTab(this_);
@@ -1372,9 +1357,28 @@ class TabsControls {
                 this.classList.add("active");
                 self.selActiveTab(index, this_);
             });
-        });
+        }
     }
 
+    removeActiveTab(this_) {
+        let tabs = this_.querySelectorAll('.tb');
+        var tLenght = tabs.length;
+        for (let i = 0; i < tLenght; i++) {
+            let tab = tabs[i];
+            if (tab.classList.contains("active")) tab.classList.remove("active");
+        }
+        let tab = this_.nextSibling.querySelectorAll('.tab');
+        var tabsLenght = tab.length;
+        for (let i = 0; i < tabsLenght; i++) {
+            let tb = tab[i];
+            if (tb.classList.contains("active")) tb.classList.remove("active");
+        }
+    }
+
+    selActiveTab(activeTab, this_) {
+        let tabs = this_.nextSibling;
+        tabs.children[activeTab].classList.add('active');
+    }
 }
 
 class SelectorControls {
