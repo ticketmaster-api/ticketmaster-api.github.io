@@ -2265,11 +2265,13 @@ class WeekScheduler {
             let leftSelector1 = new SelectorControls(this.weekSchedulerRoot.parentNode, 'sliderLeftSelector', this.getCurrentMonth(), 'w-period', this.update.bind(this));
             let RightSelector1 = new SelectorControls(this.weekSchedulerRoot.parentNode, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
         }
-        this.weekdaysRootContainer = document.createElement("div");
-        this.weekdaysRootContainer.classList.add("days");
-        this.initMessage(this.weekSchedulerRoot);
-        this.startMonth();
-        this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
+        if (this.weekSchedulerRoot.querySelector('.days') == null) {
+            this.weekdaysRootContainer = document.createElement("div");
+            this.weekdaysRootContainer.classList.add("days");
+            this.initMessage(this.weekSchedulerRoot);
+            this.startMonth();
+            this.weekSchedulerRoot.appendChild(this.weekdaysRootContainer);
+        }
     }
 }
 
@@ -3171,11 +3173,13 @@ class MonthScheduler {
             let leftSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
             let RightSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
         }
-        this.initMessage(this.monthSchedulerRoot);
-        this.calendarRootContainer = document.createElement("div");
-        this.calendarRootContainer.classList.add("calendar");
-        this.monthSchedulerRoot.appendChild(this.calendarRootContainer);
-        this.startMonth();
+        if (this.monthSchedulerRoot.querySelector('.calendar') == null) {
+            this.initMessage(this.monthSchedulerRoot);
+            this.calendarRootContainer = document.createElement("div");
+            this.calendarRootContainer.classList.add("calendar");
+            this.monthSchedulerRoot.appendChild(this.calendarRootContainer);
+            this.startMonth();
+        }
     }
 
 
@@ -3520,11 +3524,13 @@ class YearScheduler {
             let leftSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderLeftSelector', this.getYears(), 'period', this.update.bind(this));
             let RightSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
         }
-        this.yearRootContainer = document.createElement("div");
-        this.yearRootContainer.classList.add("year");
-        this.yearSchedulerRoot.appendChild(this.yearRootContainer);
-        this.startYear();
-        this.initMessage(this.yearRootContainer);
+        if (this.yearSchedulerRoot.querySelector('.year') == null) {
+            this.yearRootContainer = document.createElement("div");
+            this.yearRootContainer.classList.add("year");
+            this.yearSchedulerRoot.appendChild(this.yearRootContainer);
+            this.startYear();
+            this.initMessage(this.yearRootContainer);
+        }
     }
 }
 
