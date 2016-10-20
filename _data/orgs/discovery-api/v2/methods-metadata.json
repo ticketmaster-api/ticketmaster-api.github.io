@@ -81,7 +81,7 @@
         },
         {
             "pathsParent":"/discovery/v2/attractions/{id}",
-            "id":"attraction-details",
+            "id":"attraction-details-v2",
             "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-attraction.md",
             "codePath":"discovery-api/code-get-attraction.md",
@@ -134,7 +134,6 @@
         {
             "pathsParent":"/discovery/v2/classifications/genres/{id}",
             "id":"genre-details-v2",
-            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-genre.md",
             "codePath":"discovery-api/code-get-genre.md",
             "HAL" : {
@@ -150,8 +149,7 @@
         },
         {
             "pathsParent":"/discovery/v2/classifications/segments/{id}",
-            "id":"segment-details",
-            "interactiveConsole": true,
+            "id":"segment-details-v2",
             "reqres": "discovery-api/reqres-get-segment.md",
             "codePath":"discovery-api/code-get-segment.md",
             "HAL" : {
@@ -170,7 +168,6 @@
         {
             "pathsParent":"/discovery/v2/classifications/subgenres/{id}",
             "id":"subgenre-details-v2",
-            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-subgenre.md",
             "codePath":"discovery-api/code-get-subgenre.md",
             "HAL" : {
