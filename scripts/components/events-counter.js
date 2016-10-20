@@ -28,7 +28,7 @@
       renderValue(el, val);
       if(val !== null || val !== false) {
         updateEventpanelCounters(el,intervals);
-        intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
+        //intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
       }
     });
     
