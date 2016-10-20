@@ -33,7 +33,7 @@ Object.byString = function(o, s) {
     defaultMethod, //the very first method found (rendered by default)
     selectedMethod, //currently selected method
     defaultApiKey = apiKeyService.getApiExploreKey(), // Default API Key if no one is used
-    apiKey = apiKeyService.checkApiKeyCookie('tk-api-key') || defaultApiKey, //API Key
+    apiKey = checkCookie('tk-api-key') || defaultApiKey, //API Key
     apiKeyDefault = apiKey, // default api key (temporarily used when there is no other api key available)
     slider, // slider with response columns
     spinner, // spinner
@@ -58,7 +58,6 @@ Object.byString = function(o, s) {
     screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization),
     worker = new Worker('../scripts/components/highlight-worker.js'); // Json-formatter worker
 
-    /*
 		function checkCookie() {
           var userApiKey;
           var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
@@ -84,7 +83,7 @@ Object.byString = function(o, s) {
           }
           return "";
       }
-			*/
+			
 
   /* INITIALIZATION PHASE */
 
