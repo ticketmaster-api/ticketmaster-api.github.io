@@ -179,13 +179,9 @@ class TicketmasterCalendarWidget {
     constructor(root) {
         if(!root) return;
         this.widgetRoot = root;
-        /*
-        var scriptPromise = document.createElement("script");
-        scriptPromise.setAttribute('src', 'https://www.promisejs.org/polyfills/promise-6.1.0.min.js');
-        scriptPromise.setAttribute('async', 'false');
-        var parentDiv = document.querySelector('[w-type="calendar"]').parentNode;
-        window.Promise || document.querySelector('[w-type="calendar"]').parentNode.insertBefore(scriptPromise, document.querySelector('[w-type="calendar"]'));
-        */
+
+        if (this.widgetRoot.querySelector('.tabs-container') != null) return;
+
         this.tabsRootContainer = document.createElement("div");
         this.tabsRootContainer.classList.add("tabs");
         this.tabsRootContainer.innerHTML = '<span class="tb active">Day</span><span class="tb">Week</span><span class="tb">Month</span><span class="tb">Year</span>';
@@ -202,6 +198,8 @@ class TicketmasterCalendarWidget {
 
         let leftSelector = new SelectorControls(this.tab1RootContainer, 'sliderLeftSelector', this.getCurrentWeek(), 'period', this.update.bind(this));
         let RightSelector = new SelectorControls(this.tab1RootContainer, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+
+
 
         this.tab2RootContainer = document.createElement("div");
         this.tab2RootContainer.classList.add("tab");
@@ -2262,12 +2260,11 @@ class WeekScheduler {
     constructor(root) {
         if (!root) return;
         this.weekSchedulerRoot = root;
-
         this.getCurrentMonth();
-
-        let leftSelector1 = new SelectorControls(this.weekSchedulerRoot.parentNode, 'sliderLeftSelector', this.getCurrentMonth(), 'w-period', this.update.bind(this));
-        let RightSelector1 = new SelectorControls(this.weekSchedulerRoot.parentNode, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
-
+        if (this.weekSchedulerRoot.parentNode.querySelector('.sliderLeftSelector') == null) {
+            let leftSelector1 = new SelectorControls(this.weekSchedulerRoot.parentNode, 'sliderLeftSelector', this.getCurrentMonth(), 'w-period', this.update.bind(this));
+            let RightSelector1 = new SelectorControls(this.weekSchedulerRoot.parentNode, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+        }
         this.weekdaysRootContainer = document.createElement("div");
         this.weekdaysRootContainer.classList.add("days");
         this.initMessage(this.weekSchedulerRoot);
@@ -3170,8 +3167,10 @@ class MonthScheduler {
     constructor(root) {
         if (!root) return;
         this.monthSchedulerRoot = root;
-        let leftSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
-        let RightSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
+        if (this.monthSchedulerRoot.parentNode.querySelector('.sliderLeftSelector') == null) {
+            let leftSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderLeftSelector', this.getMonthes(), 'period', this.update.bind(this));
+            let RightSelector = new SelectorControls(this.monthSchedulerRoot.parentNode, 'sliderRightSelector', this.getCategories(), 'classificationId', this.update.bind(this));
+        }
         this.initMessage(this.monthSchedulerRoot);
         this.calendarRootContainer = document.createElement("div");
         this.calendarRootContainer.classList.add("calendar");
@@ -3517,10 +3516,10 @@ class YearScheduler {
     constructor(root) {
         if (!root) return;
         this.yearSchedulerRoot = root;
-
-        let leftSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderLeftSelector', this.getYears(), 'period', this.update.bind(this));
-        let RightSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
-
+        if (this.yearSchedulerRoot.parentNode.querySelector('.sliderLeftSelector') == null) {
+            let leftSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderLeftSelector', this.getYears(), 'period', this.update.bind(this));
+            let RightSelector = new SelectorControls(this.yearSchedulerRoot.parentNode, 'sliderRightSelector', '<span class="selector-title">All Events</span><span class="selector-content" tabindex="-1"><span class="active" w-classificationId="">All Events</span><span w-classificationId="KZFzniwnSyZfZ7v7na">Arts & Theatre</span><span w-classificationId="KZFzniwnSyZfZ7v7nn">Film</span><span w-classificationId="KZFzniwnSyZfZ7v7n1">Miscellaneous</span><span w-classificationId="KZFzniwnSyZfZ7v7nJ">Music</span><span w-classificationId="KZFzniwnSyZfZ7v7nE">Sports</span></span>', 'classificationId', this.update.bind(this));
+        }
         this.yearRootContainer = document.createElement("div");
         this.yearRootContainer.classList.add("year");
         this.yearSchedulerRoot.appendChild(this.yearRootContainer);
