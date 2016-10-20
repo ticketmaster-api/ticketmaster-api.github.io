@@ -1,13 +1,15 @@
 
 .lazy-selector-wrapper {
   position: relative;
-  margin-bottom: 24px;
-
+  //margin-bottom: 24px;
+  input {
+    padding: 8px 31px 8px 16px;
+  }
   .icon {
     content: '';
     position: absolute;
     top: 15px;
-    right: 16px;
+    right: 8px;
     width: 30px;
     height: 30px;
     margin-top: -5px;
@@ -39,34 +41,63 @@
 }
 
 #js_ls-modal {
+  .close {
+    opacity: inherit;
+  }
+  .modal-dialog{
+    @media (min-width: 768px) {
+      width: 740px;
+    }
+  }
+  .modal-header {
+    padding-bottom: 9px;
+  }
+
   .modal-content {
-    display: table-cell;
     border: 0;
-    width: 100%;
+    margin-left: 0;
     transition-duration: 1s;
+    z-index: 1;
+    width:100%;
 
     &.narrow {
       width: 60%;
       .btn-submit{
         max-width: 165px;
         width: 100%;
-
+      }
+      #js_ls-more_btn {
+        width: auto;
+        max-width: initial;
       }
     }
     form .btn-submit{
       margin-bottom: 48px;
+      transition-duration: 1s;
+      //width: 100%;
+      @media (min-width: 768px) {
+        width: 110px;
+        margin-right: 16px;
+      }
     }
   }
 
   .modal-body {
     .clear-padding {
       padding: 0;
+      &-right {
+        padding-right: 0;
+        @media (max-width: 768px) {
+          padding-right: 15px;
+        }
+      }
     }
     hr {
       min-width: calc(100% + 30px);
       border-top: 2px solid $n3;
       margin: 0 -15px;
       text-align: center;
+      float: left;
     }
     .get_eventId_results {
       margin-top: -24px;
@@ -87,12 +118,24 @@
       background-size: 100px 100px;
       z-index: 1000;
     }
-    .list-group {
-      overflow-y: scroll;
+    .wrapper-list-group {
+      overflow-y: auto;
+      overflow-x: hidden;
       max-height: 500px;
       width: 100%;
+      margin: 0;
+      &.low-height {
+        max-height: 400px;
+      }
+    }
+    .list-group {
+      overflow: hidden;
       padding: 0 15px;
       margin: 0;
+
+      &.no-scroll {
+        padding-right: 31px;
+      }
     }
     .list-group-item {
       border: 0;
@@ -100,9 +143,6 @@
       border-top: 1px solid $n3;
       padding: 24px 0;
 
-      &-heading {
-      }
-      &:last-child,
       &:first-child{
         border-top: 0;
       }
@@ -114,9 +154,8 @@
         overflow: hidden;
         float: left;
         display: block;
-        margin: 2px 12px 0 0;
+        margin: 2px 20px 0 0;
         min-height: 120px;
-        margin-right: 5px;
 
         img {
           position: absolute;
@@ -135,10 +174,10 @@
         }
       }
       .event-text-wrapper {
-        margin-right: 103px;
-        margin-left: 140px;
-        left: 140px;
-        right: 110px;
+        margin-right: 110px;
+        //margin-left: 140px;
+        //left: 140px;
+        //right: 110px;
         @media (max-width: 560px) {
           width: 100%;
           margin-left: 0;
@@ -149,15 +188,32 @@
         &.clear-margin-left {
           margin-left: 0;
         }
+        .classifications-name,
         .country-name {
           margin: 5px 0;
+          line-height: 1em;
+          .add-dot{
+            margin-left: 12px;
+            &:before {
+              background-color: $n2;
+              content: '';
+              position: absolute;
+              width: 3px;
+              height: 3px;
+              display: inline-block;
+              margin-top: 7px;
+              margin-left: -7px;
+              border-radius: 50%;
+            }
+          }
         }
+        .classifications-name .add-dot:before { margin-top: 10px; }
       }
       .event-time {
         margin-bottom: 0;
       }
       .wrapper-btns {
-        width: 100px;
+        width: 110px;
         right: 0;
         position: absolute;
         top: 24px;
@@ -168,9 +224,29 @@
           top: 0;
           text-align: left;
         }
-        .btn-submit {
-          width: auto;
-          height: auto;
+        .btn-submit,
+        .btn-transparent {
+          width: 110px;
+          height: 24px;
+          border-radius: 4px;
+          padding: 2px 6px;
+          text-transform: uppercase;
+          font-family: $font-lead-bold ;
+          font-size: 12px;
+        }
+        .btn-transparent{
+          margin-top: 10px;
+          border: solid 2px #b7c9d3;
+          background-color: transparent;
+          color: $n1-grey-color;
+
+          &:focus,
+          &:active,
+          &:hover{
+            color: $n1;
+            background-color: $white;
+            outline: none;
+          }
         }
       }
 
@@ -188,25 +264,38 @@
       border: solid 2px #b7c9d3;
       background-color: transparent;
       color: $n1-grey-color;
-      padding: 0px;
+      padding: 0 20px;
       margin: 0;
+      width: inherit;
+      &:focus,
+      &:active,
+      &:hover{
+        color: $n1;
+        background-color: $white;
+        outline: none;
+      }
     }
   }
 
-  #map-canvas {
-    display: table-cell;
-    width: 50%;
-    z-index: -1;
-    min-height: 200px;
-    height: 80%;
-    /*tmp*/
+  .wrapper-map-canvas {
+    width:100%;
+    height:100%;
+    background-color: blue;
+    position: relative;
+    min-height: 100%;
     border-left: 1px solid #fff;
     left: -1px;
-    position: relative;
-    /*tmp end*/
   }
 
-  .buttonControl {
+  #map-canvas {
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    left: 60%;
+    top: 0;
+  }
+
+  .button-close-map {
     position: absolute;
     top: 14px;
     right: 12px;
@@ -217,34 +306,12 @@
     width: 24px;
     z-index: 9999;
     background-image: url("/assets/controls/ic-close-grey.svg");
-  }
 
-  /*.buttonControl:after,
-  .buttonControl:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 24px;
-    height: 24px;
-    content: '';
-    background-repeat: no-repeat;
-    background-position: center center;
-    -webkit-transition: opacity 0.2s ease-in-out;
-    -o-transition: opacity 0.2s ease-in-out;
-    transition: opacity 0.2s ease-in-out;
-  }*/
-  .buttonControl:hover {
-    opacity: 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url("/assets/controls/ic-close-grey-hover.svg");
+    &:hover {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("/assets/controls/ic-close-grey-hover.svg");
+    }
   }
-  /*.buttonControl:before {
-    background-image: url("/assets/controls/ic-close-grey.svg");
-  }
-  .buttonControl:after {
-    opacity: 0;
-    background-image: url("/assets/controls/ic-close-grey-hover.svg");
-  }*/
 
 }

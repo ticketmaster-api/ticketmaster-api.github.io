@@ -21,7 +21,7 @@ keywords: events
         {{ event.content | markdownify }}
         <div class="tags">
             {% for tag in event.tags %}
-                <button class="tag-btn" tag="{{tag}}">{{tag}}</button>
+                <a href="{{tag}}" class="tag-btn" tag="{{tag}}">{{tag}}</a>
             {% endfor %}
         </div>
     </div>

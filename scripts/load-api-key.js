@@ -1,7 +1,7 @@
 (function(){
-  
+
    function checkCookie(userApiKey, userEmail) {
-    var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+   var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
     if (getCookie("tk-api-key") === '') { return }
 
     if (apiKeys != "" && userEmail != "") {
@@ -9,7 +9,7 @@
       userApiKey = userApiKey[userApiKey.length-1];
       userEmail = window.atob(getCookie("tk-api-email")) ;//decode string
       try {
-        document.getElementsByClassName("apigee-login")[0].textContent = userEmail;
+        $(".apigee-login").text(userEmail);
       } catch(e){
         //console.log(e);
       }
@@ -23,7 +23,7 @@
       //console.log("no coockie found");
     }
   }
-
+	
   //get Cookie by name
   function getCookie(cname) {
     var name = cname + "=";
@@ -32,7 +32,7 @@
       var c = ca[i];
       while (c.charAt(0)==' ') {
         c = c.substring(1);
-      }
+  }
       if (c.indexOf(name) == 0) {
         return c.substring(name.length,c.length);
       }

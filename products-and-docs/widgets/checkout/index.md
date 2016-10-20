@@ -145,3 +145,6 @@ Universal Checkout supports passing in a specific _Ticket Type ID_, ensuring it 
 Universal Checkout is secured by bank-grade 256-byte SSL encryption for all communications.  The architecture of Universal Checkout ensures the entire checkout flow happens securely via HTTPS, even when the 3rd party site (which is embedding the widget) only uses HTTP.
 
 As a security best practice, we strongly recommend that all pages which embed Universal Checkout __also__ implement SSL / HTTPS.  As of Fall 2016, browsers are beginning to encourage the use of SSL / HTTPS everywhere, and in 2017 will begin to show HTTP as "Insecure" in the browser's toolbar.  This is important for all websites to prevent "man in the middle" attacks, which are theoretically possible on all insecure webpages when on an untrusted Internet connection (public wifi, Internet cafe, etc).  Fortunately, [Let's Encrypt](https://letsencrypt.org/) is an open project sponsored by Google, Facebook, Mozilla, and others, which offers free SSL/TLS certificates to all.
+
+
+{% include disqus.html %}

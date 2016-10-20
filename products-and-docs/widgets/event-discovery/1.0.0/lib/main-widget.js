@@ -74,12 +74,12 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'themeUrl',
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/";
+      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/' : 'http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/';
     }
   }, {
     key: 'portalUrl',
     get: function get() {
-      return "http://ticketmaster-api-staging.github.io/";
+      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/' : 'http://ticketmaster-api-staging.github.io/';
     }
   }, {
     key: 'logoUrl',
@@ -195,9 +195,6 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       return attrs;
     }
-
-    //https://app.ticketmaster.com/discovery/v1/events/10004F84CD1C5395/images.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG
-
   }]);
 
   function TicketmasterEventDiscoveryWidget(root) {
@@ -823,9 +820,9 @@ var TicketmasterEventDiscoveryWidget = function () {
           if (xDiff > 0) this.nextSlideX(); // left swipe
           else this.prevSlideX(); // right swipe
         } else {
-            if (yDiff > 0) this.nextSlideY(); // up swipe
-            else this.prevSlideY(); // down swipe
-          }
+          if (yDiff > 0) this.nextSlideY(); // up swipe
+          else this.prevSlideY(); // down swipe
+        }
 
         xDown = null;
         yDown = null;

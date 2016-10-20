@@ -1,6 +1,6 @@
 {% for method in route[1] %}{% endfor %}
 
-    <h2 class="article {% if _title %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
+    <h2 class="article {% if _interactiveConsole %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
             | lstrip
             | downcase
             | replace: ' ' , '-'

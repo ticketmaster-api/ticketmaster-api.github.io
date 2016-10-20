@@ -173,7 +173,7 @@ commerce/{version}/events/{id}/offers.{format}
                                 * `type` (string) - type of area.
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -2772,7 +2772,7 @@ commerce/{version}/shopping/carts/{cartId}.{format}
 - `status` (string) - the Http status code for the response.
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -3127,7 +3127,7 @@ commerce/{version}/shopping/carts.{format}
 Same as the [Get Cart API](#get-cart).
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -3477,7 +3477,7 @@ commerce/{version}/shopping/carts/{cartId}.{format}
 Same as the [Get Cart API](#get-cart).
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -3641,7 +3641,7 @@ commerce/{version}/shopping/carts/{cartId}/products.{format}
 Same as the [Get Cart API](#get-cart).
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -4182,7 +4182,7 @@ commerce/{version}/shopping/carts/{cartId}/deliveries.{format}
 - `status` (string) - the Http status code for the response.
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 
@@ -4588,7 +4588,7 @@ commerce/{version}/shopping/carts/{cartId}/payments.{format}
 Same as the [Get Cart API](#get-cart).
 
 {: .aside}
->[JS](#js)
+>[JavaScript](#js)
 >[cURL](#curl)
 {: .lang-selector}
 

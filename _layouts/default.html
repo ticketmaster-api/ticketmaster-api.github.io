@@ -29,14 +29,22 @@
                 // var item = sessionStorage.getItem('tk-api-email');
                 function getCookie(name) {
                     var matches = document.cookie.match(new RegExp(
-                            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
                     ));
                     return matches ? decodeURIComponent(matches[1]) : undefined;
                 }
                 var item = getCookie('tmemail');
-                document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
+                $(".apigee-login").text(item && (item !== 'undefined') ?  item : "Login");
             })();
         </script>
+
+        {%if page.layout == 'documentation-single' or page.layout == 'home'%}
+            <script src="{{"/scripts/components/api-key-service.js" | prepend: site.baseurl }}"></script>
+        {% endif %}
+        {% if page.category == 'home' or page.layout == 'documentation-single' %}
+            <script src="{{"/scripts/components/events-counter.js" | prepend: site.baseurl }}" async></script>
+        {% endif %}
+
         <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
         {% include feedback.html %}
@@ -46,26 +54,21 @@
         <script src="{{'/scripts/load-api-key.js?v=1' | prepend: site.baseurl }}"></script>
 
 {% if page.category == 'products-and-docs' or page.categories[0] == "documentation" and page.categories[1] == "sdks"%}
-        <script src="{{'/scripts/vendors/flip-jquery-plugin.js' | prepend: site.baseurl }}"></script>
-        <script>
-            //init fliper cards
-            $(function() {
-                var $cards = $('.card');
-                $cards.fadeIn('slow');
-                if (window.screen.width > 1200) {
-                    var back = $('.back').css('display', 'block');
-                    $cards.flip({
-                        trigger: "hover"
-                    });
-                }
+    <script>
+        $('.card').each(function () {
+            var me = $(this);
+            me.hover(function(){
+                me.toggleClass('applyflip');
             });
-        </script>
+        });
+    </script>
 {% endif %}
 
         {% if page.categories[0] == "documentation" and page.categories[1] == "widgets"%}
             {% include lazy-selector-modal.html %}
+            <!--<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>-->
             <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
-            <!--<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA&callback=initMap'></script>-->
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
         {%endif%}
 
     </body>

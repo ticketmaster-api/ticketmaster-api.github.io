@@ -16,10 +16,10 @@ public class PD_Tutorials_WidgetsPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='announcement']/a[text()='Learn more']")
     private WebElementFacade addingEventDiscoveryWidgetButton;
 
-    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Adding Event Discovery widget to your website']")
+    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Adding Event Discovery widget to a website']")
     private WebElementFacade addingEventDiscoveryWidgetHeaderLink;
 
-    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Adding Event Discovery widget to your website']")
+    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Adding Event Discovery widget to a website']")
     private WebElementFacade addingEventDiscoveryWidgetImageLink;
 
     @FindBy(xpath = ".//button[@id='js_feedback_btn_alert_ok']")

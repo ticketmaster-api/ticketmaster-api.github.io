@@ -1,5 +1,6 @@
 package bla.tm.widgets;
 
+import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.core.pages.WidgetObjectImpl;
@@ -19,5 +20,14 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
 
     public boolean isVisible(final boolean expectedResult) {
         return expectedResult ? this.isVisible() : this.isCurrentlyVisible();
+    }
+
+    @FindBy(xpath = "//code[contains(@class,'language-html')]")
+    private WebElementFacade embeddedCode;
+
+    @Override
+    public WebElementFacade getEmbeddedHtmlCode() {
+        embeddedCode.shouldBeVisible();
+        return embeddedCode;
     }
 }

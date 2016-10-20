@@ -1,5 +1,7 @@
 (function(){
 
+    const DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
     function getHeightByTheme(theme){
         return (theme === 'simple' ? 286 : 339);
     }
@@ -20,7 +22,24 @@
         return document.getElementById('w-tm-api-key').value;
     }
 
+    var replaceApiKey = function (options) {
+        let userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+
+        if(userKey !== null) {
+            let {inputApiKey, widgetNode , widget } = options;
+            inputApiKey
+              .attr('value', userKey)
+              .data('userAPIkey', userKey)
+              .val(userKey);
+            widgetNode.setAttribute("w-tm-api-key", userKey);
+            widget.update();
+        }
+    };
+
     let widget = widgetsCalendar[0],
+        weekScheduler = weekSchedulers[0],
+        monthScheduler = monthSchedulers[0],
+        yearScheduler = yearSchedulers[0],
         themeConfig = {
             sizes: {
                 standart: {
@@ -75,8 +94,8 @@
                     document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
                 }
                 else {
-                    document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+                    document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+                    document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
                 }
             }
         }
@@ -294,10 +313,23 @@
             document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
         }
         else {
-            document.getElementById('w-tm-api-key').value = '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG';
-            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG');
+            document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
+            document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
     }
+
+    /**
+     * check if user logged just before enter widget page
+     */
+    $(window).on('login', function (e, data) {
+        let widgetNode = document.querySelector("div[w-tmapikey]");
+        replaceApiKey({
+            userKey: data.key,
+            inputApiKey:$('#w-tm-api-key'),
+            widgetNode,
+            widget
+        });
+    });
 
     $('.js_get_widget_code').on('click', function(){
         var codeCont = document.querySelector(".language-html.widget_dialog__code");

@@ -1,12 +1,13 @@
 <script src="/scripts/vendors/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/scripts/components/api-key-service.js"></script>
 <script>
+  var apiKey = apiKeyService.getApiWidgetsKey();
   var eventId = window.location.href.toString().split("?");
-
   if (eventId[1] && eventId[1] != '') {
 
     $.ajax({
       type:"GET",
-      url:"https://app.ticketmaster.com/discovery/v2/events/" + eventId[1] + ".json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG",
+      url:"https://app.ticketmaster.com/discovery/v2/events/" + eventId[1] + ".json?apikey=" + apiKey,
       async:true,
       dataType: "json",
       success: function(json) {

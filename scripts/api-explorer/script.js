@@ -32,7 +32,8 @@ Object.byString = function(o, s) {
   var base = {}, //base object with parsed API data
     defaultMethod, //the very first method found (rendered by default)
     selectedMethod, //currently selected method
-    apiKey = checkCookie() || "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0", //API Key
+    defaultApiKey = apiKeyService.getApiExploreKey(), // Default API Key if no one is used
+    apiKey = sessionStorage.getItem('tk-api-key') || defaultApiKey, //API Key
     apiKeyDefault = apiKey, // default api key (temporarily used when there is no other api key available)
     slider, // slider with response columns
     spinner, // spinner
@@ -56,7 +57,7 @@ Object.byString = function(o, s) {
     nextCircleColorIndex = currentColumnColorIndex, // color index used to display in circles
     screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization),
     worker = new Worker('../scripts/components/highlight-worker.js'); // Json-formatter worker
-  
+
     function checkCookie() {
           var userApiKey;
           var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
@@ -85,9 +86,9 @@ Object.byString = function(o, s) {
 
   /* INITIALIZATION PHASE */
 
-  $(function () {    
+  $(function () {
     var item = window.atob(getCookie("tk-api-email"));
-    document.getElementsByClassName("apigee-login")[0].textContent = item && (item !== 'undefined') ?  item : "Login";
+    $(".apigee-login").text(item && (item !== 'undefined') ?  item : "Login");
     readFromWADL(); //parse WADL file when document is ready
     setListeners(); //click event for GET/POST button + clear buttons + api key + alert message timeouts + enter listeners
     spinner = $('#spinner');
@@ -234,8 +235,12 @@ Object.byString = function(o, s) {
       var container = $('#req-res-container'),
         items = container.find('.req-resp-temp');
       items.fadeOut(300);
+
       setTimeout(function(){
         items.remove();
+				while (getColumnCount() > 0 ){
+					slider.slick("slickRemove", 0);
+				}
       }, 300);
     });
 
@@ -425,6 +430,7 @@ Object.byString = function(o, s) {
       if (callback) {
         callback();
       }
+      $(document).trigger( "finishInit", [ "loadLazySelectPlugin" ] );
     }, isPrimaryVisible ? 500 : 0);
   };
 
@@ -565,7 +571,7 @@ Object.byString = function(o, s) {
   // column constructor
   var Column = function(configObject, responseObject, index, guId) {
     var self = this;
-
+		console.log('config',configObject);
     self.guId = guId;
     self.responseObject = responseObject;
     self.destinationObject = {};
@@ -588,7 +594,7 @@ Object.byString = function(o, s) {
         listGroup = $('<div class="list-group"></div>'); //subcolumn future element
         var isPage = subcolumn.title.toLowerCase() === 'page';
         title = $([
-          '<a class="list-group-item active', (isPage ? ' pagination" id="api-explorer-pagination"' : '"'), '>',
+          '<a class="list-group-item active', (isPage ? ' api-explorer-pagination" id="api-explorer-pagination"' : '"'), '>',
             subcolumn["title"],
             isPage ?  [
               '<b id="next-page" class="pagination-btn next-page btn', isLast(resPage) ? ' hide': '','">&nbsp;</b>',
@@ -1315,5 +1321,8 @@ Object.byString = function(o, s) {
     
     $(document).on(events, selector, callback);
   }
+
+  
+  
 }(jQuery));
 

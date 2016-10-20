@@ -113,19 +113,21 @@ season tickets all in one trusted place.
 {% for i in (1..3) %}   
   <div class="col-md-4 col-lg-4 flipper" >      
     <div class="card" >    
-        <div class="front">            
-          <div class="img-wrapper">
-            <img src="{% cycle {{SDK_Java_img_square}}, {{SDK_JS_img_square}},  {{SDK_scala_img_square}} %}" 
-                 alt="{% cycle {{SDK_Java_title}}, {{SDK_JS_title}}, {{SDK_scala_title}} %}">
-          </div>
+        <div class="content">
+            <div class="front cardFront">            
+              <div class="img-wrapper">
+                <img src="{% cycle {{SDK_Java_img_square}}, {{SDK_JS_img_square}},  {{SDK_scala_img_square}} %}" 
+                     alt="{% cycle {{SDK_Java_title}}, {{SDK_JS_title}}, {{SDK_scala_title}} %}">
+              </div>
+            </div>
+            <div class="back cardBack">
+              <a href="{% cycle {{SDK_Java_link}},        {{SDK_JS_link}},        {{SDK_scala_link}} %}">
+                   <h3>{% cycle {{1-SDK_Java_title}},     {{2-SDK_JS_title}},     {{3-SDK_scala_title}} %}</h3>           
+                    <p>{% cycle {{SDK_Java_description}}, {{SDK_JS_description}}, {{SDK_scala_description}} %}</p>
+              </a>
+            </div>      
         </div>
-        <div class="back">
-          <a href="{% cycle {{SDK_Java_link}},        {{SDK_JS_link}},        {{SDK_scala_link}} %}">
-               <h3>{% cycle {{1-SDK_Java_title}},     {{2-SDK_JS_title}},     {{3-SDK_scala_title}} %}</h3>           
-                <p>{% cycle {{SDK_Java_description}}, {{SDK_JS_description}}, {{SDK_scala_description}} %}</p>
-          </a>
-        </div>      
-    </div>
+    </div> 
   </div>  
 {% endfor %}
 </div><!--tiles-wrapper-->

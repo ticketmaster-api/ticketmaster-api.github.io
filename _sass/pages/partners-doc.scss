@@ -118,14 +118,6 @@
     }
     .back {
       border: solid 1px #768692;
-      @media #{$max-1200} {
-        display: none;
-      }
-      .flipper-title {
-        @media #{$max-1200} {
-          display: none;
-        }
-      }
     }
     .flipper-title {
       font-size: 16px;
@@ -165,10 +157,6 @@
 
 /*cards*/
 .card {
-  display: none;//need for butify loading
-  //width: 263px;
-  //height: 263px;
-  //padding: 30px;
   height: 100%;
   margin: 0 auto;
 }

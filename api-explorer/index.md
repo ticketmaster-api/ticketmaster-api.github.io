@@ -103,6 +103,7 @@ category: api-explorer
     </div>
     
     <!--event counter bar-->
+    {% assign initialValue = site.data.variables.summaryWidget %}
     <div class="row">
         <div class="row-container">
             <section class="">
@@ -111,19 +112,19 @@ category: api-explorer
                         <div class="col-xs-12 horizontal-events-tracker__section">
                             <span class="horizontal-events-tracker__title">
                                 Number of Events: 
-                                <span id="js-events-counter" class="horizontal-events-tracker__counter"></span>
+                                <span id="js-events-counter" class="horizontal-events-tracker__counter">{{initialValue.events}}</span>
                             </span>
                             <span class="horizontal-events-tracker__title">
                                 Number of Attractions: 
-                                <span id="js-attractions-counter" class="horizontal-events-tracker__counter"></span>
+                                <span id="js-attractions-counter" class="horizontal-events-tracker__counter">{{initialValue.attractions}}</span>
                             </span>
                             <span class="horizontal-events-tracker__title">
                                 Number of Venues: 
-                                <span id="js-venues-counter" class="horizontal-events-tracker__counter"></span>
+                                <span id="js-venues-counter" class="horizontal-events-tracker__counter">{{initialValue.venues}}</span>
                             </span>
                             <span class="horizontal-events-tracker__title">
                                 Number of Countries: 
-                                <span id="js-countries-counter" class="horizontal-events-tracker__counter"></span>
+                                <span id="js-countries-counter" class="horizontal-events-tracker__counter">{{initialValue.countries}}</span>
                         </span>
                         </div>
                     </div>

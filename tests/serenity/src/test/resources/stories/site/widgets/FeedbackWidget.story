@@ -48,7 +48,6 @@ Given open Tutorials Widgets page
 Given click Feedback button of Tutorials Widgets page
 When all fields except Name are populated
 When Name field is populated with bigger than 255 symbols text
-When click send button of Feedback widget
 Then check that text was truncated to 255 symbols for Feedback widget
 
 Scenario: (feedback widget) Feedback widget error notifications when Description length bigger than 3000

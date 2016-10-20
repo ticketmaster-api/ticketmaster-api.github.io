@@ -1,7 +1,9 @@
 
 <div class="modal modal-common fade" id="js_ls-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div></div><!--map-->
+
+      <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
         <div class="row">
@@ -11,30 +13,33 @@
       <div class="modal-body">
 
         <form id="js_lazy-sel_form" accept-charset="UTF-8"  method="GET">
-          <div class="col-sm-8">
+          <div class="col-sm-9 clear-padding-right">
             <input required type="text" placeholder="keyword" id="keyword" autofocus >
           </div>
-          <div class="col-sm-4 text-right">
+          <div class="col-sm-3 text-right">
             <button id="js_ls-modal_btn" type="button" class="btn btn-submit">GET</button>
           </div>
         </form>
 
         <div id="spinner-ls" style="display: none;"></div>
         <hr id="js_ls-top-hr" style="display: none;">
-        <ul id="js_lazy-sel_list" class="list-group">
-          <div class="list-footer text-center" style="display: none;">
+
+        <div class="wrapper-list-group">
+          <ul id="js_lazy-sel_list" class="list-group"></ul>
+          <div class="list-footer text-center" style="display: none;" id="load-more-box">
             <button id="js_ls-more_btn" type="button" class="btn btn-submit">SHOW MORE EVENTS</button>
           </div>
-        </ul>
+        </div>
+
       </div>
       <!--<div class="modal-footer" >-->
       <!--</div>-->
     </div><!-- /.modal-content -->
 
-    <div id="map-canvas" style="
-        width: 40%;">
-    </div><!--map-->
-    <!--<button id="close1" class="buttonControl" aria-controls="m1"></button>-->
+      <div class="wrapper-map" class="" style="background-color: aliceblue;">
+        <button style="display: none;" id="close1" class="button-close-map" aria-controls="m1"></button>
+        <div id="map-canvas" class="" style="background-color: aliceblue;"></div>
+      </div>
 
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

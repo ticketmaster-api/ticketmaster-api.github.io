@@ -20,4 +20,17 @@ public interface CountdownWidget extends AnsestorWidget{
     WebElementFacade getGetCodeButton();
     WebElementFacade getResetButton();
     WebElementFacade getPosterWindow();
+
+    WebElementFacade getEventIdLink();
+    WebElementFacade getKeywordField();
+    WebElementFacade getSetThisId();
+    WebElementFacade getGetYourOwn();
+    WebElementFacade getActiveLayoutResolution();
+    WebElementFacade getEventMessage();
+
+    String getEmbeddedApiKey();
+    String getEmbeddedEventId();
+    String getEmbeddedTheme();
+    String getEmbeddedResolution();
+    String getEmbeddedOrientation();
 }
