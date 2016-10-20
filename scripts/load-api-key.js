@@ -2,6 +2,7 @@
 
    function checkCookie(userApiKey, userEmail) {
    var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+    if (getCookie("tk-api-key") === '') { return }
 
     if (apiKeys != "" && userEmail != "") {
       userApiKey = apiKeys[apiKeys.length-1];
