@@ -512,12 +512,12 @@
           width: 16px;
           height: 16px;
           position: absolute;
-          left: 0;
-          top: 8px;
+          left: 16px;
+          top: 16px;
         }
         &[aria-expanded='true']{
           .caret{
-            top: 1px;
+            top: 11px;
             @include rotate-180();
           }
         }
