@@ -8,6 +8,25 @@
  */
 
 (function ($) {
+  var config = ['events', 'venues', 'attractions'],
+    tagsIds ={};
+
+  /*function setIdsListener($input, $modal, selector){
+    var selectedID = tagsIds[selector];
+    // console.log('selectedID', tagsIds[selector], '\n tagsIds',tagsIds);
+    console.log($input,selector);
+    $input.val(selectedID);
+    $input.attr('value', selectedID);
+    $input.trigger('change');  //update widget:
+
+    // Close dialog
+    $modal.modal('hide');
+
+  }*/
+
+  config.forEach(function (el) {
+    tagsIds[el] = [];
+  });
 
   $.fn.lazySelector = function (options) {
     var defaults = {},
@@ -27,13 +46,18 @@
       $btnGET = $modal.find('#js_ls-modal_btn'),
       btnCloseMap = $('.button-close-map', $modal),
       cssValidationClass = 'get-eventId_form-validation',
-      modalContent = $('.modal-content', $modal);
+      modalContent = $('.modal-content', $modal),
+      $msSelection = $('.ms-selection'),
+      $msList = $('.ms-list',$msSelection),
+      $msBtnUse = $('#js_ms-use-btn',$msSelection)
+      ;
 
     var keyword = $form.find('#keyword'),
       defaultApiKey = apiKeyService.getApiExploreKey(),
-      apikey = checkCookie() || $('#w-tm-api-key').val() || defaultApiKey,
+      apikey = apiKeyService.checkApiKeyCookie('tk-api-key') || $('#w-tm-api-key').val() || defaultApiKey,
       selector = options || 'events',
-      eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json';
+      eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json'
+      ;
 
     var $input = $(this);
 
@@ -173,6 +197,40 @@
       btnCloseMap.hide(); // 'X' -button
     }
 
+    function toggleTags() {
+
+      $('li',$msList).each(function (i) {
+        var listItem = $(this);
+        var inputValArray = $input.val().split(",");
+
+        // var result = tagsIds[selector].filter(function(fs) {
+        //   return inputValArray.some(function(ff) { return fs.indexOf(ff) > -1 });
+        // });
+        //
+        // console.log('result' , result,'\n');
+        // console.log('____inputValArray' , inputValArray);
+        // console.log('tagsIds[selector]' , tagsIds[selector]);
+
+
+
+        if(listItem.data('selector-'+selector)){
+           // console.log('show listItem inArray ', jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) );
+          if( jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) === 0) {
+            listItem.show();
+          }else{
+            // console.log('exlude listItem' , listItem.data('selector-'+selector));
+            // console.log('index' , i, 'clear:' ,tagsIds[selector][i]);
+            tagsIds[selector].splice(i, 1);
+            listItem.remove();
+          }
+        }else {
+          listItem.hide();
+        }
+      });
+
+      // console.log('each end');
+    }
+
     /**
      * change <Load_More> button text
      * set data-selector gor "GET" button
@@ -187,6 +245,9 @@
       }else {
         $('.wrapper-list-group', $modal).removeClass('low-height');
       }
+
+      toggleTags();
+
       $btnGET.attr('data-selector', selector);
     }
 
@@ -221,6 +282,15 @@
 
       // Clear highlight
       $form.removeClass(cssValidationClass);
+
+      // Clear tags
+      //$( 'li' , $msList ,$msSelection ).remove();
+
+      // Clear Listener
+      $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
+
+      //tagsIds[selector] = [];
+      console.log('resetForm end', selector, ' --- ', tagsIds[selector]);
     }
 
     /**
@@ -385,6 +455,9 @@
             .text('Use this ID')
             .appendTo(li)
             .wrap('<div class ="wrapper-btns text-right"/>');
+
+          var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
+          addMsButton( addToEl , item.id);
         }
 
       });
@@ -482,6 +555,8 @@
               //.appendTo(buttonSetId)
               .wrap('<div class ="wrapper-location_btn"/>');
           }
+          var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
+          addMsButton( addToEl , item.id);
         }
 
       });
@@ -600,7 +675,10 @@
               //.appendTo(buttonSetId)
               .wrap('<div class ="wrapper-location_btn"/>');
           }
+          var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
+          addMsButton( addToEl , item.id);
         }
+
 
       });
     }
@@ -703,28 +781,96 @@
         btnCloseMap.show();
       });
 
-      $('.js_lazy-sel_btn').on('click', function (e) {
-        var selectedID = e.target.getAttribute('data-event');
-        $input.val(selectedID);
-        $input.attr('value', selectedID);
-        $input.trigger('change');  //update widget:
+      $('.js_lazy-sel_btn').on('click', setIdListener);
 
-        // Close dialog
-        $modal.modal('hide');
-      });
+      $( "#js_ls-modal" ).on( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
 
       //set availible <Get> button after load is finished
       $btnGET.attr('disabled', false);
 
     };
 
-    /**/
+    function addMsButton(el, data){
+      // console.log('add' , el.buttonSetIdWrapper);
 
+      //add button <ADD to list>
+      var buttonAddIdToList = $("<button data-id=" + data + "/>")
+        .addClass('js_ms-add-list_btn btn btn-transparent')
+        .text('ADD to list')
+        .appendTo( el.li.find(el.buttonSetIdWrapper) );
+    }
+    function setIdListener(e){
+      var selectedID = e.target.getAttribute('data-event');
+      $input.val(selectedID);
+      $input.attr('value', selectedID);
+      $input.trigger('change');  //update widget:
+
+      // Close dialog
+      $modal.modal('hide');
+    }
+    function setIdsListener(e){
+      if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
+      var selectedID = tagsIds[selector];
+      console.log('selectedID', tagsIds[selector], '\n tagsIds',tagsIds ,$input);
+      console.log('$input',$input);
+      $input.val(selectedID);
+      $input.attr('value', selectedID);
+      $input.trigger('change');  //update widget:
+
+      // Close dialog
+      $modal.modal('hide');
+
+    }
+
+    function addMsButtonListener(event){
+      event.preventDefault();
+      var me = $( this );
+
+     /* console.log('me ', me,
+        '\n data-id', me.data('id'),'\n',
+        me.text() , '\n',
+        me.data('id')
+      );*/
+
+      var item ;
+      $('<li/>')
+        .addClass('ms-elem-selection')
+        .text(me.data('id'))
+        .attr('data-selector-'+selector, me.data('id'))
+        .appendTo($msList);
+
+      me.addClass('checked');
+
+      tagsIds[selector].push(me.data('id'));
+    }
+    function deselect(value){}
+    function select(value, method){}
+    function addOption(options){
+      var that = this;
+
+      if (options.value !== undefined && options.value !== null){
+        options = [options];
+      }
+      $.each(options, function(index, option){
+        if (option.value !== undefined && option.value !== null &&
+          that.$element.find("option[value='"+option.value+"']").length === 0){
+          var $option = $('<option value="'+option.value+'">'+option.text+'</option>'),
+            index = parseInt((typeof option.index === 'undefined' ? that.$element.children().length : option.index)),
+            $container = option.nested === undefined ? that.$element : $("optgroup[label='"+option.nested+"']");
+
+          $option.insertAt(index, $container);
+          that.generateLisFromOption($option.get(0), index, option.nested);
+        }
+      });
+    }
+
+
+    /*
     function checkCookie() {
       var userApiKey,
           apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
 
-      /*todo: delete me*/
+      //todo: delete me
       function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -734,7 +880,7 @@
       if (apiKeys != "") {
         userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
       }else {
-        /*todo: delete me*/
+        //todo: delete me
         // apiKeys = JSON.parse("[" + window.atob( 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0' ) + "]"); //decode and convert string to array
         // userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
         // setCookie("tk-api-key", 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0', 2);
@@ -757,6 +903,7 @@
       }
       return "";
     }
+    */
 
     // EVENTS
     $btnGET.on('click', function (e) {
@@ -784,6 +931,8 @@
       }
     });
 
+    $msBtnUse.on('click', setIdsListener);
+
     //Close Map button
     btnCloseMap.on('click', closeMapListener);
 
@@ -796,6 +945,8 @@
       loading('on');
       submitForm(stateConf.pageIncrement, eventUrl);
     });
+
+    //multiple selector events
 
     /*on scroll bottom of list*/
     /*
@@ -842,12 +993,15 @@
       resetForm();
       keyword.val('');//clear search input
       closeMapListener();
+
+      // $( 'li' , $msList ,$msSelection ).off();
+      // $( "#js_ls-modal.modal" ).off(addMsButtonListener);
     });
 
     return this.each(function (i) {
       var $input = $(this);
 
-      init($input);  //console.log('$input', $input);
+      init($input);
 
       function init(input) {
         if (selector !== 'events') {
@@ -859,6 +1013,7 @@
         $iconButton.attr('data-selector', selector);
 
         $('#get-event-by-Id-' + options + '').on('click', changeModalTextListener);
+        tagsIds[selector] = [];
 
       }
     });
@@ -868,7 +1023,7 @@
 })(jQuery);
 
 /**
- * add lazy selector to Contdown widget
+ * add lazy selector to Countdown widget
  */
 $(document).on('ready', function () {
   $('.js_lazy-selector').lazySelector();
