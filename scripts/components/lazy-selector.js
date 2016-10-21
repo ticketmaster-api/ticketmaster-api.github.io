@@ -290,7 +290,7 @@
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
 
       //tagsIds[selector] = [];
-      console.log('resetForm end', selector, ' --- ', tagsIds[selector]);
+      // console.log('resetForm end', selector, ' --- ', tagsIds[selector]);
     }
 
     /**
@@ -811,8 +811,8 @@
     function setIdsListener(e){
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
       var selectedID = tagsIds[selector];
-      console.log('selectedID', tagsIds[selector], '\n tagsIds',tagsIds ,$input);
-      console.log('$input',$input);
+      // console.log('selectedID', tagsIds[selector], '\n tagsIds',tagsIds ,$input);
+      // console.log('$input',$input);
       $input.val(selectedID);
       $input.attr('value', selectedID);
       $input.trigger('change');  //update widget:
