@@ -11,19 +11,6 @@
   var config = ['events', 'venues', 'attractions'],
     tagsIds ={};
 
-  /*function setIdsListener($input, $modal, selector){
-    var selectedID = tagsIds[selector];
-    // console.log('selectedID', tagsIds[selector], '\n tagsIds',tagsIds);
-    console.log($input,selector);
-    $input.val(selectedID);
-    $input.attr('value', selectedID);
-    $input.trigger('change');  //update widget:
-
-    // Close dialog
-    $modal.modal('hide');
-
-  }*/
-
   config.forEach(function (el) {
     tagsIds[el] = [];
   });
@@ -198,38 +185,40 @@
     }
 
     function toggleTags() {
+			var indToRemove =[];
 
       $('li',$msList).each(function (i) {
         var listItem = $(this);
         var inputValArray = $input.val().split(",");
 
-        // var result = tagsIds[selector].filter(function(fs) {
-        //   return inputValArray.some(function(ff) { return fs.indexOf(ff) > -1 });
-        // });
-        //
-        // console.log('result' , result,'\n');
-        // console.log('____inputValArray' , inputValArray);
-        // console.log('tagsIds[selector]' , tagsIds[selector]);
-
-
-
         if(listItem.data('selector-'+selector)){
-           // console.log('show listItem inArray ', jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) );
-          if( jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) === 0) {
-            listItem.show();
-          }else{
-            // console.log('exlude listItem' , listItem.data('selector-'+selector));
-            // console.log('index' , i, 'clear:' ,tagsIds[selector][i]);
-            tagsIds[selector].splice(i, 1);
+					listItem.show();
+
+          if( jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) === -1) {
+						console.log('hide listItem' , listItem.data('selector-'+selector) ,'tagsIds[selector][i]',tagsIds[selector][i] );
+						indToRemove.push(i);
             listItem.remove();
           }
+					//else{
+          //   console.log('**else show listItem' , listItem.data('selector-'+selector));
+          //   console.log( jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) );
+          // }
         }else {
           listItem.hide();
         }
+
       });
 
-      // console.log('each end');
-    }
+			// console.log('each end',tagsIds > indToRemove.length, indToRemove);
+
+			if(tagsIds[selector].length > indToRemove.length) {
+				indToRemove.map(function (item) {
+					console.log('splice ', item);
+					tagsIds[selector].splice(item, 1);
+				});
+			}
+			// console.log('tagsIds:' ,tagsIds[selector]);
+		}
 
     /**
      * change <Load_More> button text
@@ -306,18 +295,15 @@
         ? eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val()
         : eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() + '&page=' + pageNumero;
 
-       // console.log('url : ', url);
-
       //stop load
       if (isNaN(pageNumero) && pageNumero !== 0 && stateConf.loadingFlag === 'STOP_LOAD') {
         renderResults(null, $ul);
-        // console.log('stateConf.loadingFlag - top', stateConf.loadingFlag);
         return false
       };
 
+			//stop load
       if (stateConf.loadingFlag === 'FINAL_PAGE') return false;
 
-      // console.log('ajax - start');
       $.ajax({
         dataType: 'json',
         async: true,
@@ -325,7 +311,6 @@
         data: $form.serialize()
       }).done(function (result) {
         if (result) {
-
           //last page reached
           if (stateConf.pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
             stateConf.loadingFlag = 'STOP_LOAD';
@@ -679,7 +664,6 @@
           addMsButton( addToEl , item.id);
         }
 
-
       });
     }
 
@@ -689,10 +673,6 @@
 
     var renderResults = function (data, ulElement) {
       var items;
-      /*items= (selector === 'events')
-       ? (data && data._embedded && data._embedded.events) ? data._embedded.events:['']
-       : (data && data._embedded && data._embedded.venues) ? data._embedded.venues:[''] ;*/
-      // console.log('selector * renderResults', selector , 'items' , items);
 
       function showMessage(element, message, /*optional*/clearList) {
         $btnGET.attr('disabled', false);
@@ -743,16 +723,13 @@
       }
 
       //hide scroll if recive less then 2 items
-      // if (data && data.page && data.page.totalElements <= 3) {
-      //   $ul.css({"overflowY": "hidden" , "width": "100%"});
-      // } else $ul.css({"overflowY": "scroll" , "width": "100%"});
       if (hasScrollBar($ul)) {
         $ul.removeClass('no-scroll');
       } else {
         $ul.addClass('no-scroll');
       }
 
-      // hide/show horisontal line and button <load more>
+      // hide/show horizontal line and button <load more>
       if (data && data.page && data.page.totalElements > 20) {
         $hr.show();
         $liFooter.show();
@@ -791,7 +768,6 @@
     };
 
     function addMsButton(el, data){
-      // console.log('add' , el.buttonSetIdWrapper);
 
       //add button <ADD to list>
       var buttonAddIdToList = $("<button data-id=" + data + "/>")
@@ -811,11 +787,14 @@
     function setIdsListener(e){
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
       var selectedID = tagsIds[selector];
-      // console.log('selectedID', tagsIds[selector], '\n tagsIds',tagsIds ,$input);
-      // console.log('$input',$input);
-      $input.val(selectedID);
-      $input.attr('value', selectedID);
-      $input.trigger('change');  //update widget:
+
+			// set isable=true to all items in tags-list
+			$('li',$msList)
+				.each(  function() { $(this).attr('data-isable',true)}  );
+
+      $input.val(selectedID)
+      	.attr('value', selectedID)
+      	.trigger('change');  //update widget:
 
       // Close dialog
       $modal.modal('hide');
@@ -825,85 +804,19 @@
     function addMsButtonListener(event){
       event.preventDefault();
       var me = $( this );
+     /* console.log('me ', me, '\n data-id', me.data('id'), '\n',me.text() , '\n', me.data('id') );*/
 
-     /* console.log('me ', me,
-        '\n data-id', me.data('id'),'\n',
-        me.text() , '\n',
-        me.data('id')
-      );*/
-
-      var item ;
-      $('<li/>')
+      var item = $('<li/>')
         .addClass('ms-elem-selection')
         .text(me.data('id'))
         .attr('data-selector-'+selector, me.data('id'))
+        .attr('data-isable',false)
         .appendTo($msList);
 
       me.addClass('checked');
 
       tagsIds[selector].push(me.data('id'));
     }
-    function deselect(value){}
-    function select(value, method){}
-    function addOption(options){
-      var that = this;
-
-      if (options.value !== undefined && options.value !== null){
-        options = [options];
-      }
-      $.each(options, function(index, option){
-        if (option.value !== undefined && option.value !== null &&
-          that.$element.find("option[value='"+option.value+"']").length === 0){
-          var $option = $('<option value="'+option.value+'">'+option.text+'</option>'),
-            index = parseInt((typeof option.index === 'undefined' ? that.$element.children().length : option.index)),
-            $container = option.nested === undefined ? that.$element : $("optgroup[label='"+option.nested+"']");
-
-          $option.insertAt(index, $container);
-          that.generateLisFromOption($option.get(0), index, option.nested);
-        }
-      });
-    }
-
-
-    /*
-    function checkCookie() {
-      var userApiKey,
-          apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
-
-      //todo: delete me
-      function setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires="+d.toUTCString();
-        document.cookie = cname + "=" + cvalue + "; " + expires;
-      }
-      if (apiKeys != "") {
-        userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
-      }else {
-        //todo: delete me
-        // apiKeys = JSON.parse("[" + window.atob( 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0' ) + "]"); //decode and convert string to array
-        // userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
-        // setCookie("tk-api-key", 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0', 2);
-      }
-      return userApiKey;
-    }
-
-    //get Cookie by name
-    function getCookie(cname) {
-      var name = cname + "=";
-      var ca = document.cookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length,c.length);
-        }
-      }
-      return "";
-    }
-    */
 
     // EVENTS
     $btnGET.on('click', function (e) {
@@ -948,20 +861,6 @@
 
     //multiple selector events
 
-    /*on scroll bottom of list*/
-    /*
-     $ul.on('scroll', function (elm){
-     //submitForm when go to bottom of list
-       if($form.get(0).checkValidity()) {
-         if (this.scrollTop + this.clientHeight == this.scrollHeight && stateConf.loadingFlag === 'KEEP_LOAD') {
-         stateConf.pageIncrement++;
-         $btnGET.attr('disabled', true);
-         loading('on');
-         submitForm(stateConf.pageIncrement);
-         }
-       }
-     });*/
-
     $form.on("keyup", function (e) {
       var input = $(e.target);
       if (e.target.tagName === "INPUT"){
@@ -984,7 +883,6 @@
     });
 
     // Mobile devices. Force 'change' by 'Go' press
-
     $form.on("submit", function (e) {
       e.preventDefault();
     });
