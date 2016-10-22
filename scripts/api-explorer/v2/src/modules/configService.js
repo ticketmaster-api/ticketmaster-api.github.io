@@ -14,7 +14,6 @@ $.ajax({
 		if (msg == 'error') {
 			console.error('can\'t load config.json!');
 		} else {
-			console.log(res.responseJSON);
 			config(res.responseJSON);
 		}
 	}
