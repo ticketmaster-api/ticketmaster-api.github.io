@@ -1,6 +1,3 @@
-@import "scroll";
-@import "components/panels.component";
-
 $colors: #768692,
 					#7d3e9b,
 					#c05785,
@@ -33,6 +30,14 @@ $img-share: '../assets/img/api-explorer/ic-share.svg';
 $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 $img-arrows-left: '../assets/img/arrows-left-small.svg';
 $img-arrows-right: '../assets/img/arrows-right-small.svg';
+$img-green-checkmark: '../assets/img/ic-chekmark.svg';
+$img-green-error: '../assets/img/ic-allert-red.svg';
+
+@import "scroll";
+@import "components/panels.component";
+
+
+
 .truncate {
 	display: inline-block;
 	white-space: nowrap;
@@ -43,10 +48,10 @@ $img-arrows-right: '../assets/img/arrows-right-small.svg';
 	@include transition(all 0.2s linear);
 
 	&.down,
-	&[aria-expanded="true"] {
+	&[aria-expanded="true"],
+	.panel.panel-primary.active & {
 		@include rotate(180deg);
 	}
-
 }
 
 #api-explorer-v2.api-explorer-v2 {

@@ -10,6 +10,7 @@ require('../customBindings/foreachProp');
 var base = require('../modules/base');
 var apiKey = require('../modules/apikey');
 var ajaxService = require('../modules/ajaxService');
+var config = require('../modules/configService');
 
 // View Models
 var MenuViewModel = require('./menuViewModel');
@@ -28,7 +29,7 @@ function AppViewModel(obj) {
   var base = obj || {};
   self = this;
   this.apiKey = apiKey;
-
+	this.config = config;
   // observables
   this.selectedCategory = ko.observable('');
   this.selectedMethod = ko.observable('');

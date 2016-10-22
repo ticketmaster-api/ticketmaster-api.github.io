@@ -228,6 +228,21 @@ $border-radius: 7px;
 						font-size: 12px;
 					}
 				}
+				.btn-copy {
+					@include transition(all, 300ms);
+					&.copied {
+						background: {
+							image: url($img-green-checkmark) !important;
+							repeat: no-repeat;
+						}
+					}
+					&.error {
+						background: {
+							image: url($img-green-error) !important;
+							repeat: no-repeat;
+						}
+					}
+				}
 			}
 
 			&:last-child {
