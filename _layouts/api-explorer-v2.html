@@ -173,8 +173,8 @@
 
 						<section class="row-container request" data-bind="attr: {id: $parent.getStr('heading', $index)}" role="tab">
 							<div class="edit-controls">
-								<button class="btn btn-icon btn-share" type="button"></button>
-								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': req, id: 'copy-url' + $index()}" class="btn btn-icon btn-copy" type="button"></button>
+								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': $parent.sharePath}" class="btn btn-icon btn-share" type="button"></button>
+								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': req}" class="btn btn-icon btn-copy" type="button"></button>
 								<button data-bind="click: $parent.getRawData" class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="View Raw" data-original-title="View Raw"></button>
 							</div>
 							<div class="panel-title">

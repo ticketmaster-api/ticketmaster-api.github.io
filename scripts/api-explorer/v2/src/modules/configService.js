@@ -4,7 +4,7 @@ $.ajax({
 	type: 'GET',
 	url: [
 		'http://',
-		document.location.hostname || document.location.host,
+		document.location.hostname,
 		document.location.port && ':' + document.location.port,
 		'/scripts/api-explorer/v2/config.json'
 	].join(''),
