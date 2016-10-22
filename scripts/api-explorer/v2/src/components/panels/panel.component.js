@@ -16,9 +16,7 @@ function cardComponent(params) {
 }
 
 cardComponent.prototype.setActive = function (model, event) {
-	console.log('before - ', this.isActive());
 	this.isActive(!this.isActive());
-	console.log('after - ', this.isActive())
 };
 
 /**
@@ -50,7 +48,6 @@ module.exports = ko.components.register('panel', {
 			<panel-heading params="config: config, data: $data, index: $index, page: page, setActive: setActive.bind($component), collapseId: collapseId"></panel-heading>
 			
 			<!--panel-body-->
-			<!-- ko if: console.log(collapseId, $index) --><!-- /ko -->
 			<section data-bind="attr: {'id': collapseId}, css: {'in': isExpanded}" class="panel-collapse collapse">
 				<div class="panel-body">
 				

@@ -39,6 +39,7 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
 			var item =  $.extend({}, obj, {
 				color: self.colors[obj.index % self.colors.length],
 				active: ko.observable(false),
+				copied: ko.observable(false),
 				resHTML: ko.observable('')
 			});
 			return item;
@@ -140,6 +141,30 @@ RequestsListViewModel.prototype.getRawData = function (model) {
 	var content = model.res.res;
 	var rawWindow = window.open("data:text/json," + encodeURI(JSON.stringify(content, null, 2)), '_blank');
 	rawWindow.focus();
+};
+
+RequestsListViewModel.prototype.copyUrl = function (model, event) {
+	var currentField = this;
+	self.clipboard = new Clipboard(event.currentTarget);
+	self.clipboard.on('success', function onSuccessCopy(e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		currentField.copied(true);
+		setTimeout(function () {
+			currentField.copied(false);
+		}, 1000);
+		e.clearSelection();
+	})
+		.on('error', function onErrorCopy(e) {
+			console.error('Action:', e.action);
+			console.error('Trigger:', e.trigger);
+		});
+};
+
+RequestsListViewModel.prototype.removeHandler = function () {
+	self.clipboard && self.clipboard.destroy();
+	delete self.clipboard;
 };
 
 module.exports = RequestsListViewModel;

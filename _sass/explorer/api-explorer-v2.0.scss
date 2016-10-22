@@ -819,6 +819,19 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 			image: url($img-copy);
 			repeat: no-repeat;
 		}
+		@include transition(all, 300ms);
+		&.copied {
+			background: {
+				image: url($img-green-checkmark);
+				repeat: no-repeat;
+			}
+		}
+		&.error {
+			background: {
+				image: url($img-green-error);
+				repeat: no-repeat;
+			}
+		}
 	}
 	.btn-raw {
 		background: {
