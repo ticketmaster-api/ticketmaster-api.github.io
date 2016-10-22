@@ -2,24 +2,26 @@ var jsonHighlight = require('./../modules/json-highlight');
 var slider = require('../modules/slider');
 var filter = require('../../config.json');
 var self;
+var colors = [
+	'column-color-1',
+	'column-color-2',
+	'column-color-3',
+	'column-color-4',
+	'column-color-5',
+	'column-color-6',
+	'column-color-7',
+	'column-color-8',
+	'column-color-9',
+	'column-color-10',
+	'column-color-11',
+	'column-color-12'
+];
 
-function RequestsListViewModel(requests, url) {
-	this.url = url;
+function RequestsListViewModel(requests, selectedParams, sharePath) {
+	this.url = selectedParams;
 	self = this;
-	this.colors = [
-		'column-color-1',
-		'column-color-2',
-		'column-color-3',
-		'column-color-4',
-		'column-color-5',
-		'column-color-6',
-		'column-color-7',
-		'column-color-8',
-		'column-color-9',
-		'column-color-10',
-		'column-color-11',
-		'column-color-12'
-	];
+	this.colors = colors;
+	this.sharePath = ko.utils.unwrapObservable(sharePath);
 	this.requests = requests;
 	this.isActiveTab = ko.observable(false);
 	this.viewModel = ko.observableArray([]);
