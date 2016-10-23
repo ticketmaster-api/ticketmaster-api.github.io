@@ -1,15 +1,13 @@
 /*
 todo: single - first load;
-todo: inheritance of config
 todo: paging (params)
-todo: copy btn
 todo: ulr parse
 todo: fields validation
  */
 
 var self;
 
-function cardGroupComponent(params) {
+function CardGroup(params) {
 	self = this;
 	this.url = this.url || params.url;
 	this.config = getConfig(params);
@@ -20,9 +18,10 @@ function cardGroupComponent(params) {
 	this.getMore = params.getMore;
 	this.page = getPagingInfo(params, this.data.page, this.url);
 	this.collapseId = getCollapseId();
+	this._hasEventsPanel = false;
 }
 
-cardGroupComponent.prototype.sortByConfig = function (a, b) {
+CardGroup.prototype.sortByConfig = function (a, b) {
 	if (self.config && self.config[a.key] && self.config[b.key] && self.config[a.key]._CONFIG && self.config[b.key]._CONFIG) {
 		var i1 = self.config[a.key]._CONFIG.index;
 		var i2 = self.config[b.key]._CONFIG.index;
@@ -31,18 +30,18 @@ cardGroupComponent.prototype.sortByConfig = function (a, b) {
 	return 0;
 };
 
+CardGroup.prototype.checkIfHasEventsList = function (key) {
+	return self._hasEventsPanel = key === 'events' || self._hasEventsPanel;
+};
+
 module.exports = ko.components.register('panel-group', {
-	viewModel: cardGroupComponent,
+	viewModel: CardGroup,
 	template:`
 		<section data-bind="foreachprop: {data: data, sortFn: sortByConfig}" class="panel-group">
-			<panel params="$data: $data,
-										$index: $index,
-										page: $component.page,
-										colorClass: $component.colorClass,
-										panelGroup: $component,
-										collapseId: $component.collapseId,
-										config: $component.config">
-			</panel>
+			<div data-bind="css: {'has-events-list': $component.checkIfHasEventsList(key)}">			
+				<!--panel-->
+				<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
+			</div>
 		</section>
 `});
 

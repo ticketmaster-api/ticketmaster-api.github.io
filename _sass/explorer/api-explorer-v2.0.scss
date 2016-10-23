@@ -33,6 +33,48 @@ $img-arrows-right: '../assets/img/arrows-right-small.svg';
 $img-green-checkmark: '../assets/img/ic-chekmark.svg';
 $img-green-error: '../assets/img/ic-allert-red.svg';
 
+
+@mixin column-color($color, $opacity: 0.7) {
+	border-color: rgba($color, $opacity);
+	background-color: rgba($color, $opacity);
+	.panel-heading {
+		background-color: rgba($color, $opacity);
+		border-color: rgba($color, $opacity);
+	}
+	.panel-body {
+		border-top-color: rgba($color, $opacity);
+		.panel {
+			border-color: rgba($color, $opacity - 0.3);
+			background-color: rgba($color, $opacity - 0.3);
+			.panel-heading {
+				background-color: rgba($color, $opacity - 0.3);
+				border-color: rgba($color, $opacity - 0.3);
+			}
+			.panel-body {
+				border-top-color: rgba($color, $opacity - 0.3);
+			}
+		}
+	}
+
+	&.active,
+	&:hover {
+		border-color: $color;
+		.panel-heading {
+			background-color: $color;
+			border-color: $color;
+		}
+		.panel-body {
+			border-top-color: $color;
+		}
+	}
+}
+
+@for $i from 1 through length($colors) {
+	.column-color-#{$i} {
+		@include column-color(nth($colors, $i));
+	}
+}
+
 @import "scroll";
 @import "components/panels.component";
 
@@ -55,20 +97,17 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 }
 
 #api-explorer-v2.api-explorer-v2 {
+  //common styles
 	.row {
 		margin-left: -15px;
 		margin-right: -15px;
 	}
-
-
 	.row-container {
     max-width: 1140px;
   }
   h1 {
     margin: 72px auto 48px;
   }
-
-  //common styles
   input[type="text"] {
     padding: 0 15px;
     font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
@@ -578,9 +617,6 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 						}
 					}
 					.color-indicator {
-						width: 14px;
-						height: 14px;
-						border-radius: 100px;
 						left: 48px;
 					}
 					.item_text {
@@ -839,37 +875,30 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 			repeat: no-repeat;
 		}
 	}
-
-	@mixin column-color($color, $opacity: 0.7) {
-		border-color: rgba($color, $opacity);
-		background-color: rgba($color, $opacity);
-		.panel-heading {
-			background-color: rgba($color, $opacity);
-			border-color: rgba($color, $opacity);
-		}
-		.panel-body {
-			border-top-color: rgba($color, $opacity);
-		}
-
-		&.active,
-		&:hover {
-			border-color: $color;
-			.panel-heading {
-				background-color: $color;
-				border-color: $color;
-			}
-			.panel-body {
-				border-top-color: $color;
-			}
+	.color-indicator {
+		width: 14px;
+		height: 14px;
+    display: inline-block;
+		border: {
+			radius: 100px;
+			width: 1px;
+			style: solid;
+			color: #fff !important;
 		}
 	}
-
-	@for $i from 1 through length($colors) {
-		.column-color-#{$i} {
-			@include column-color(nth($colors, $i));
+	//copy
+	.copied {
+		background: {
+			image: url($img-green-checkmark);
+			repeat: no-repeat;
 		}
 	}
-
+	.error {
+		background: {
+			image: url($img-green-error);
+			repeat: no-repeat;
+		}
+	}
   //tablet
   @media #{$max-1200} {
     .horizontal-events-tracker {
