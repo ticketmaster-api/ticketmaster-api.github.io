@@ -22,10 +22,9 @@ Given open Event Discovery Widget page
 When change value of Zip Code <zipCode>
 Then the Country field contains appropriate value <countryName>
 Examples:
- |zipCode|countryName  |
- |01000  |France       |
- |00000  |All          |
- |90012  |United States|
+|zipCode|countryName  |
+|5555   |Australia    |
+|90012  |United States|
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that KEYWORD field functionality works properly
 Given open Event Discovery Widget page
