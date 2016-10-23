@@ -10,9 +10,10 @@ require('../customBindings/foreachProp');
 var base = require('../modules/base');
 var apiKey = require('../modules/apikey');
 var ajaxService = require('../modules/ajaxService');
+var config = require('../modules/configService');
 
 // View Models
-var MenuViewModel = require('../ViewModels/menuViewModel');
+var MenuViewModel = require('./menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
 var RequestsListViewModel = require('./requestsListViewModel');
@@ -28,7 +29,7 @@ function AppViewModel(obj) {
   var base = obj || {};
   self = this;
   this.apiKey = apiKey;
-
+	this.config = config;
   // observables
   this.selectedCategory = ko.observable('');
   this.selectedMethod = ko.observable('');
@@ -43,7 +44,8 @@ function AppViewModel(obj) {
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
-  this.requestsList = new RequestsListViewModel(this.requests, this.selectedParams);
+	this.sharePath = ko.pureComputed(formDeepLinkingUrl, this);
+  this.requestsList = new RequestsListViewModel(this.requests, this.selectedParams, this.sharePath);
 }
 
 /**
@@ -100,8 +102,37 @@ Object.getProp = function(o, s) {
  * Activates knockout.js
  */
 ko.applyBindings(new AppViewModel(base));
-
 /**
  * exports global variable
  */
 module.exports = base;
+
+function formDeepLinkingUrl() {
+	var location = window.location;
+	var category = ko.utils.unwrapObservable(self.selectedCategory);
+	var method = ko.utils.unwrapObservable(self.selectedMethod);
+	var params = ko.utils.unwrapObservable(self.selectedParams);
+
+	var querys = [
+		'api=' + encodeURI(category),
+		'method='+ encodeURI(method.id)
+	];
+
+	params.map(function (param) {
+		var value = ko.utils.unwrapObservable(param.value);
+		var defaultValue = ko.utils.unwrapObservable(param.default);
+		querys.push([
+			param.name,
+			'=',
+			value !== '' ? value : defaultValue //todo: remove default from here when set up it in source like value by default
+		].join(''));
+		return param;
+	});
+
+	return [
+		location.origin,
+		location.pathname.replace(/\/$/gmi, ''),
+		'?',
+		querys.join('&')
+	].join('');
+}

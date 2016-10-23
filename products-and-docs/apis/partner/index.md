@@ -59,18 +59,23 @@ Any API calls which require member authorization, refer to [Ticketmaster OAuth A
 ### Terms and Conditions
 By using the Ticketmaster Developer Portal, you understand and agree to our [Terms of Use](/support/terms-of-use/partner).
 
+### Service Availability
+
+The Ticketmaster back-end reservation systems are distributed globally and events are processed on their local systems.  These systems go into a nightly maintenance mode between 12AM and 2AM local time. This means a show playing at Madison Square Garden will not be transactable between 12AM-2AM Eastern Time.  Use the timezone value from the event details response to note when these events may be unavailable for transactions.
+
+### Channel Partners
+See ["Channel Partners"](#channel-partner-overview)
+
 ### Contact
 
 Ticketmaster Developer Program [developer@ticketmaster.com](mailto:developer@ticketmaster.com).
 
-### Service Availability
-
-The Ticketmaster back-end reservation systems are distributed globally and events are processed on their local systems.  These systems go into a nightly maintenance mode at 2AM local time. This means a show playing at Madison Square Garden will not be transactable between 2-3AM Eastern Time.  Use the timezone value from the event details response to note when these events may be unavailable for transactions.
-
-
 {: .article}
-## Event Details  [GET]
+## Event Details  [GET] (Deprecated)
 {: #event-details}
+
+<i>This endpoint is deprecated.  Please use the ["Event Offers API"](http://developer.ticketmaster.com/products-and-docs/apis/commerce/#event-offers) for price level and ticket type information and the ["Discovery API"](http://developer.ticketmaster.com/products-and-docs/apis/discovery) for event meta data.</i>
+
 
 Retrieve details for a given event including the ticket type & pricing details. The boolean field `api_transactable` indicates if this event can be sold through the API.  If not, clients should be forwarded to the Ticketmaster event details page (https://www.ticketmaster.com/event/{eventId}).
 
@@ -973,10 +978,16 @@ Status 200
 
 
 {: .article}
+## Channel Partners
+{: #channel-partner-overview}
+
+Ticketmaster works with various "channel partners" who deal directly with venues, clients, and promoters to source inventory, often at discounted prices and available for sale exclusively through their own platforms.  Ticketmaster provides additional APIs to service their needs and requires specific agreements on usage.  Contact Ticketmaster for enabling the following APIs.
+
+
+{: .article}
 ## Event Inventory [GET]
 {: #inventory-management}
-
-Discover events available to transact on. For specifically-enabled accounts only.
+For use by Channel Partners only. Discover events available to transact on. For specifically-enabled accounts only.
 
 /partners/v1/events
 {: .code .red}
@@ -1027,8 +1038,9 @@ Status 200
 {: .article}
 ## Ticket Inventory and Seat Availability [GET]
 {: #ticket-availability}
+For use by Channel Partners only. Get total allocated and remaining ticket amounts for each ticket type per event. Current un-sold seat inventory is also included along with the current ticket reservation limit.
 
-Get total allocated and remaining ticket amounts for each ticket type per event. Current un-sold seat inventory is also included along with the current ticket reservation limit. For specifically-enabled accounts only.
+Channel partners are expected to maintain their own inventory counts and should only periodically check this service to sync inventory with their internal systems.  This service should not be used in real-time in line with an active purchase being made. The data available by this service may be cached for extended periods of time. Usage should be in accordance with agreed-upon rate limits between TM and the Channel Partner.  Contact Ticketmaster for enablement.
 
 /partners/v1/events/{event_id}/availability
 {: .code .red}

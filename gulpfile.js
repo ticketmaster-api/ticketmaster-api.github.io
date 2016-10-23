@@ -15,13 +15,14 @@ gulp.task('serve', shell.task([
 
 gulp.task('watch', function () {
 	gulp.watch([
-		'scripts/api-explorer/v2/**/**/*.js',
-		'scripts/api-explorer/v2/*.json'
-	], ['revers']);
+		'scripts/api-explorer/v2/src/**/*.js',
+		'scripts/api-explorer/v2/**/*.json'
+	], ['js']);
 
 	gulp.watch([
 		'_layouts/*.html',
-		'scripts/**/*.js',
+		'scripts/api-explorer/v2/highlightJson.worker.js',
+		'scripts/api-explorer/v2/script.js',
 		'_sass/**/*.scss'
 	], ['serve']);
 });

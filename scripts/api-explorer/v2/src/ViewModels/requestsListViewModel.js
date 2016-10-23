@@ -1,24 +1,27 @@
 var jsonHighlight = require('./../modules/json-highlight');
-var self;
 var slider = require('../modules/slider');
+var filter = require('../../config.json');
+var self;
+var colors = [
+	'column-color-1',
+	'column-color-2',
+	'column-color-3',
+	'column-color-4',
+	'column-color-5',
+	'column-color-6',
+	'column-color-7',
+	'column-color-8',
+	'column-color-9',
+	'column-color-10',
+	'column-color-11',
+	'column-color-12'
+];
 
-function RequestsListViewModel(requests, url) {
-	this.url = url;
+function RequestsListViewModel(requests, selectedParams, sharePath) {
+	this.url = selectedParams;
 	self = this;
-	this.colors = [
-		'column-color-1',
-		'column-color-2',
-		'column-color-3',
-		'column-color-4',
-		'column-color-5',
-		'column-color-6',
-		'column-color-7',
-		'column-color-8',
-		'column-color-9',
-		'column-color-10',
-		'column-color-11',
-		'column-color-12'
-	];
+	this.colors = colors;
+	this.sharePath = ko.utils.unwrapObservable(sharePath);
 	this.requests = requests;
 	this.isActiveTab = ko.observable(false);
 	this.viewModel = ko.observableArray([]);
@@ -38,6 +41,7 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
 			var item =  $.extend({}, obj, {
 				color: self.colors[obj.index % self.colors.length],
 				active: ko.observable(false),
+				copied: ko.observable(false),
 				resHTML: ko.observable('')
 			});
 			return item;
@@ -54,29 +58,21 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
  * get details
  * @param data
  */
-RequestsListViewModel.prototype.getMore = function (data) {
-	var card = this;
-	var currentSlider = $('#slider-' + card.sectionIndex);
+RequestsListViewModel.prototype.getMore = function (id, data) {
+	var panelGroup = this.panelGroup;
+	var panel = this;
+	var currentSlider = $('#slider-' + panelGroup.sectionIndex);
 	var component = $('<section data-bind="component: {name: \'panel-group\', params: params}"></section>');
 	var curslick = currentSlider.slick('getSlick');
-	var newData = {};
-	
-	// gathering all primitive props in additional panel
-	for (var key in data) {
-		if (!data.hasOwnProperty(key)) {
-			continue;
-		}
-		var val = data[key];
-		if (typeof val !== 'object') {
-			newData[data.type || Object.keys(data)[0]] = newData[data.type || Object.keys(data)[0]] || {};
-			newData[data.type || Object.keys(data)[0]][key] = val;
-		} else {
-			newData[key] = val;
-		}
-	}
 	
 	// extending additional data (copy)
-	var params = $.extend({}, card, {cards: newData, groupIndex: card.groupIndex + 1});
+	var params = $.extend({}, panelGroup, {
+		data: data,
+		groupIndex: panelGroup.groupIndex + 1,
+		_propTitle: typeof id === 'string' && id,
+		config: panel.config
+	});
+
 	// apply component data bindings
 	ko.applyBindings({
 		params: params
@@ -86,7 +82,7 @@ RequestsListViewModel.prototype.getMore = function (data) {
 	currentSlider.slick('slickAdd', component);
 	
 	// remove outstanding slides
-	for (var i = curslick.slideCount - 2; i > card.groupIndex; i--) {
+	for (var i = curslick.slideCount - 2; i > panelGroup.groupIndex; i--) {
 		currentSlider.slick('slickRemove', i, false);
 	}
 	// move to next slide
@@ -99,7 +95,7 @@ RequestsListViewModel.prototype.getMore = function (data) {
  * @private
  */
 RequestsListViewModel.prototype._isVisible = function () {
-	return this.requests().length > 0;
+	return ko.utils.unwrapObservable(this.requests).length > 0;
 };
 
 /**
@@ -136,6 +132,41 @@ RequestsListViewModel.prototype.getStr = function (s, i) {
 		str,
 		i1
 	].join('-');
+};
+
+/**
+ * Get raw response data
+ * @param model {object}
+ * @returns {string}
+ */
+RequestsListViewModel.prototype.getRawData = function (model) {
+	var content = model.res.res;
+	var rawWindow = window.open("data:text/json," + encodeURI(JSON.stringify(content, null, 2)), '_blank');
+	rawWindow.focus();
+};
+
+RequestsListViewModel.prototype.copyUrl = function (model, event) {
+	var currentField = this;
+	self.clipboard = new Clipboard(event.currentTarget);
+	self.clipboard.on('success', function onSuccessCopy(e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		currentField.copied(true);
+		setTimeout(function () {
+			currentField.copied(false);
+		}, 1000);
+		e.clearSelection();
+	})
+		.on('error', function onErrorCopy(e) {
+			console.error('Action:', e.action);
+			console.error('Trigger:', e.trigger);
+		});
+};
+
+RequestsListViewModel.prototype.removeHandler = function () {
+	self.clipboard && self.clipboard.destroy();
+	delete self.clipboard;
 };
 
 module.exports = RequestsListViewModel;

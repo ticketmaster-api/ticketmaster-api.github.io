@@ -68,7 +68,8 @@
                 {% for tag in methodsDescription.method %}
                 {% comment %}<!--<p class="article">tag {{tag.pathsParent}} : listTag : {{listTag.pathsParent}}, routeInner[0] : {{routeInner[0]}}</p> -->{% endcomment %}
                     {% if tag.pathsParent == routeInner[0] %}
-                        {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+                        {% assign _id = tag.id %} {% comment %}<!--{% assign _id = tag.id | append: '-' | append: page.categories[3] %}-->{% endcomment %}
+                        {% assign _interactiveConsole = tag.interactiveConsole %}
                         {% assign _title = tag.title %}
                         {% assign _reqres = tag.reqres %}
                         {% assign _codePath = tag.codePath %}
@@ -113,7 +114,8 @@
 
     {% for tag in methodsDescription.method.pathsParent %}
         {% if tag.pathsParent == routeInner[0] %}
-            {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+            {% assign _id = tag.id %}
+            {% assign _interactiveConsole = tag.interactiveConsole %}
             {% assign _title = tag.title %}
             {% assign _reqres = tag.reqres %}
             {% assign _codePath = tag.codePath %}
@@ -152,6 +154,7 @@
 
 {% comment %}<!-- Clear meta data -->{% endcomment %}
     {% assign _id = tag.id %}
+    {% assign _interactiveConsole = tag.interactiveConsole %}
     {% assign _title = tag.title %}
     {% assign _reqres = tag.resreq %}
     {% assign _codePath = tag.codePath %}

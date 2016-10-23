@@ -15,7 +15,8 @@
     "method": [
         {
             "pathsParent":"/discovery/v2/events",
-            "id":"search-events",
+            "id":"search-events-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-search-events.md",
             "codePath":"discovery-api/code-search-events.md",
             "NOT_CORRECT": ["field venue suppouse to be 'venues' "],
@@ -34,7 +35,8 @@
         },
         {
             "pathsParent":"/discovery/v2/events/{id}",
-            "id":"event-details",
+            "id":"event-details-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-event.md",
             "codePath":"discovery-api/code-get-event.md",
             "NOT_CORRECT": ["field venue suppouse to be 'venues' <br> * expect that object `#/definitions/EventExtensions` contains 'properties' in api.json(line 1322)"],
@@ -53,7 +55,8 @@
         },
         {
             "pathsParent":"/discovery/v2/events/{id}/images",
-            "id":"event-images",
+            "id":"event-images-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-event-images.md",
             "codePath":"discovery-api/code-get-event-images.md",
             "HAL" : {
@@ -65,7 +68,8 @@
         },
         {
             "pathsParent":"/discovery/v2/attractions",
-            "id":"search-attractions",
+            "id":"search-attractions-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-search-attractions.md",
             "codePath":"discovery-api/code-search-attractions.md",
             "HAL" : {
@@ -77,7 +81,8 @@
         },
         {
             "pathsParent":"/discovery/v2/attractions/{id}",
-            "id":"attraction-details",
+            "id":"attraction-details-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-attraction.md",
             "codePath":"discovery-api/code-get-attraction.md",
             "HAL" : {
@@ -89,7 +94,8 @@
         },
         {
             "pathsParent":"/discovery/v2/classifications",
-            "id":"search-classifications",
+            "id":"search-classifications-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-search-classifications.md",
             "codePath":"discovery-api/code-search-classifications.md",
             "HAL" : {
@@ -107,7 +113,8 @@
         },
         {
             "pathsParent":"/discovery/v2/classifications/{id}",
-            "id":"classification-details",
+            "id":"classification-details-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-classification.md",
             "codePath":"discovery-api/code-get-classification.md",
             "HAL" : {
@@ -126,7 +133,7 @@
         },
         {
             "pathsParent":"/discovery/v2/classifications/genres/{id}",
-            "id":"genre-details",
+            "id":"genre-details-v2",
             "reqres": "discovery-api/reqres-get-genre.md",
             "codePath":"discovery-api/code-get-genre.md",
             "HAL" : {
@@ -142,7 +149,7 @@
         },
         {
             "pathsParent":"/discovery/v2/classifications/segments/{id}",
-            "id":"segment-details",
+            "id":"segment-details-v2",
             "reqres": "discovery-api/reqres-get-segment.md",
             "codePath":"discovery-api/code-get-segment.md",
             "HAL" : {
@@ -160,7 +167,7 @@
         },
         {
             "pathsParent":"/discovery/v2/classifications/subgenres/{id}",
-            "id":"subgenre-details",
+            "id":"subgenre-details-v2",
             "reqres": "discovery-api/reqres-get-subgenre.md",
             "codePath":"discovery-api/code-get-subgenre.md",
             "HAL" : {
@@ -172,7 +179,8 @@
         },
         {
             "pathsParent":"/discovery/v2/venues",
-            "id":"search-venues",
+            "id":"search-venues-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-search-venues.md",
             "codePath":"discovery-api/code-search-venues.md",
             "HAL" : {
@@ -184,7 +192,8 @@
         },
         {
             "pathsParent":"/discovery/v2/venues/{id}",
-            "id":"venue-details",
+            "id":"venue-details-v2",
+            "interactiveConsole": true,
             "reqres": "discovery-api/reqres-get-venue.md",
             "codePath":"discovery-api/code-get-venue.md",
             "NOT_CORRECT": ["unused fields such as : boxOfficeInfo, parkingDetail , accessibleSeatingDetail ... <br> link to test: https://app.ticketmaster.com/discovery/v2/venues/KovZpZAFnIEA.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG "],

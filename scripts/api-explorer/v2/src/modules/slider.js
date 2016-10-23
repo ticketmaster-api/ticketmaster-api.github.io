@@ -3,7 +3,7 @@ function slick(times) {
 	var selector = '#slider-';
 	
 	for (var i = 0; i < times; i++) {
-		$(selector + i).slick({
+		$(selector + i).length && $(selector + i).slick({
 			dots: false,
 			infinite: false,
 			speed: 300,
@@ -37,12 +37,12 @@ function slick(times) {
 
 function unslick(times) {
 	"use strict";
-	var selector = '#slider-';
-	
+
 	for (var i = 0; i < times; i++) {
-		$(selector + i).slick('unslick');
+		var selector = '#slider-' + i;
+		$(selector) && $(selector).length && $(selector).slick('unslick');
 	}
-	console.log('cleared');
+	console.info('cleared');
 }
 
 module.exports = {

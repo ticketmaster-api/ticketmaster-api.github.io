@@ -11,8 +11,8 @@ date_end: "2016-10-29 23:59:00"
 img: "/assets/img/events/devjam6.png"
 
 place: 
-  - "TBD"
-  - ""
+  - "EPAM HQ"
+  - "https://www.google.com/maps/place/2950+31st+St,+Santa+Monica,+CA+90405/@34.0184065,-118.4536642,17z/data=!3m1!4b1!4m5!3m4!1s0x80c2bb1d2aec0827:0xfc18eaf8720bfd0b!8m2!3d34.0184021!4d-118.4514702"
 
 city: "Santa Monica, CA"
 
