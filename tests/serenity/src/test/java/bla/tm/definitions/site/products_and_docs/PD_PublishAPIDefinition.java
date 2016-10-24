@@ -23,8 +23,6 @@ public class PD_PublishAPIDefinition {
 
     @Given("open Publish API page")
     public void openPublishAPIPage() {
-        publishAPIPage.closePage();
-        publishAPIPage.maximiseBrowserWindow();
         publishAPIPage.openPage();
     }
 

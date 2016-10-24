@@ -23,8 +23,6 @@ public class PD_SeasonTicketingAPIDefinition {
 
     @Given("open Season Ticketing API page")
     public void openSeasonTicketingAPIPage() {
-        seasonTicketingAPIPage.closePage();
-        seasonTicketingAPIPage.maximiseBrowserWindow();
         seasonTicketingAPIPage.openPage();
     }
 

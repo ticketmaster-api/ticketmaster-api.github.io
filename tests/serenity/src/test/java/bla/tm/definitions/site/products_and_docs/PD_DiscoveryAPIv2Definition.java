@@ -23,8 +23,6 @@ public class PD_DiscoveryAPIv2Definition {
 
     @Given("open Discovery API v2 page")
     public void openDiscoveryAPIv2Page() {
-        discoveryAPIv2Page.closePage();
-        discoveryAPIv2Page.maximiseBrowserWindow();
         discoveryAPIv2Page.openPage();
     }
 

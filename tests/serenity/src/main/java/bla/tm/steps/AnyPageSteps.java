@@ -29,4 +29,9 @@ public class AnyPageSteps {
         anyPage.getDriver().manage().deleteAllCookies();
         ((JavascriptExecutor)anyPage.getDriver()).executeScript(String.format("window.localStorage.clear();"));
     }
+
+    @Step
+    public void maximizeWindow(){
+        anyPage.maximisePageWindow();
+    }
 }

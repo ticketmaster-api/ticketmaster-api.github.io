@@ -23,8 +23,6 @@ public class PD_DealsAPIDefinition {
 
     @Given("open Deals API page")
     public void openDealsAPIPage() {
-        dealsAPIPage.closePage();
-        dealsAPIPage.maximiseBrowserWindow();
         dealsAPIPage.openPage();
     }
 

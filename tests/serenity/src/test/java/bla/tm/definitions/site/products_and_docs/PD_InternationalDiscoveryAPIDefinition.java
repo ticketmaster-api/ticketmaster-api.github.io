@@ -23,8 +23,6 @@ public class PD_InternationalDiscoveryAPIDefinition {
 
     @Given("open International Discovery API page")
     public void openInternationalDiscoveryAPIPage() {
-        internationalDiscoveryAPIPage.closePage();
-        internationalDiscoveryAPIPage.maximiseBrowserWindow();
         internationalDiscoveryAPIPage.openPage();
     }
 
