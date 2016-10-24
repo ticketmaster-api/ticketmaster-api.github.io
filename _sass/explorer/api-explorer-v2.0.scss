@@ -69,8 +69,12 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 	}
 }
 
+.slick-slider .slick-slide {
+	padding: 0 10px;
+}
+
 @for $i from 1 through length($colors) {
-	.column-color-#{$i} {
+	.color-#{$i} {
 		@include column-color(nth($colors, $i));
 	}
 }
@@ -91,7 +95,7 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 
 	&.down,
 	&[aria-expanded="true"],
-	.panel.panel-primary.active & {
+	[aria-expanded="true"] > & {
 		@include rotate(180deg);
 	}
 }

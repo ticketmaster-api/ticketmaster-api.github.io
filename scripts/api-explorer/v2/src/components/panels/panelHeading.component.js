@@ -6,6 +6,7 @@ function PanelHeading(params) {
 	this.config = params.config && params.config._CONFIG;
 	var page = params.page;
 	this.setActive = params.setActive;
+	this.isExpanded = params.isExpanded;
 	this._panelName = params.data.key;
 	this.title = this.config && this.config.title || this._panelName;
 	this.data = params.data.value;
@@ -30,7 +31,7 @@ module.exports = ko.components.register('panel-heading', {
 		<section class="panel-heading">
 			<div class="panel-title">
 				
-				<a data-bind="click: setActive, attr: {href: '#' + collapseId, 'aria-controls': collapseId}" class="btn btn-icon btn-title" type="button" data-toggle="collapse" aria-expanded="false">
+				<a data-bind="click: setActive, attr: {href: '#' + collapseId, 'aria-controls': collapseId, 'aria-expanded': isExpanded}" class="btn btn-icon btn-title" type="button" data-toggle="collapse" aria-expanded="false">
 					<span class="btn btn-icon shevron white-shevron-up"></span>
 					<p data-bind="text: title" class="title">Panel title</p>
 				</a>
