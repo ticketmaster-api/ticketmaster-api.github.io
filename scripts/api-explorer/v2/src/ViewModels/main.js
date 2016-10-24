@@ -43,9 +43,6 @@ function AppViewModel(obj) {
   this.URL = ko.computed(this.getUrl, this);
   this.sendButtonText = ko.pureComputed(this.getMethodName, this);
 	this.sharePath = ko.pureComputed(formDeepLinkingUrl, this);
-	this.sharePath.subscribe(function (val) {
-		console.log(val);
-	}, this);
   // sub-models
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
