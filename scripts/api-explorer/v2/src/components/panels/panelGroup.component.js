@@ -157,9 +157,6 @@ function unwrappObjects(obj, config) {
 function getPagingInfo(params, pageObj, url) {
 	var pageParam, size;
 
-	if (params.page) {
-		return params.page;
-	}
 	if (pageObj){
 		size = params.cardSize || pageObj.size;
 		pageParam = params.pageParam || ko.utils.unwrapObservable(url).find(function (item) {

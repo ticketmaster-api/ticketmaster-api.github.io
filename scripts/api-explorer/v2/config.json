@@ -101,7 +101,7 @@
       },
 
       "_CONFIG": {
-        "events": true,
+        "collapsed": true,
         "index": 0
       }
     },
@@ -109,7 +109,7 @@
 
       "_CONFIG": {
         "index": 1,
-        "collapsed": true
+        "collapsed": false
       }
     },
 

@@ -19,7 +19,7 @@ ObjectPanelBody.prototype.onEnterKeyDown = function (model, event) {
 		var value = +event.currentTarget.value;
 		value = Number.isNaN(value) ? 0 : value;
 		var pageNumber = ~~value < 0 ? 0 : ~~value;
-		self.pageParam(pageNumber < ko.utils.unwrapObservable(self.data).totalPages ? pageNumber : ko.utils.unwrapObservable(self.data).totalPages - 1);
+		this.pageParam(pageNumber < ko.unwrap(this.data).totalPages ? pageNumber : ko.unwrap(this.data).totalPages - 1);
 		$('#api-exp-get-btn').trigger('click');
 	} else {
 		return true;
@@ -81,7 +81,7 @@ module.exports = ko.components.register('object-panel-body', {
 					
 					<!-- ko if: $component._panelName === 'page' && key === 'number'-->
 						<div class="form-inline">
-							<input id="pagination-input" data-bind="event: {keydown: $component.onEnterKeyDown}, attr: {placeholder: value}" type="text" pattern="[0-9]+" class="form-control">
+							<input id="pagination-input" data-bind="event: {keydown: $component.onEnterKeyDown.bind($component)}, attr: {placeholder: value}" type="text" pattern="[0-9]+" class="form-control">
 						</div>
 					<!-- /ko -->
 					
