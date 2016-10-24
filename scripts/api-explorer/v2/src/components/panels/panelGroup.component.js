@@ -22,9 +22,9 @@ function CardGroup(params) {
 }
 
 CardGroup.prototype.sortByConfig = function (a, b) {
-	if (self.config && self.config[a.key] && self.config[b.key] && self.config[a.key]._CONFIG && self.config[b.key]._CONFIG) {
-		var i1 = self.config[a.key]._CONFIG.index;
-		var i2 = self.config[b.key]._CONFIG.index;
+	if (this.config && this.config[a.key] && this.config[b.key] && this.config[a.key]._CONFIG && this.config[b.key]._CONFIG) {
+		var i1 = this.config[a.key]._CONFIG.index;
+		var i2 = this.config[b.key]._CONFIG.index;
 		return i1 - i2;
 	}
 	return 0;
@@ -37,11 +37,9 @@ CardGroup.prototype.checkIfHasEventsList = function (key) {
 module.exports = ko.components.register('panel-group', {
 	viewModel: CardGroup,
 	template:`
-		<section data-bind="foreachprop: {data: data, sortFn: sortByConfig}" class="panel-group">
-			<div data-bind="css: {'has-events-list': $component.checkIfHasEventsList(key)}">			
-				<!--panel-->
-				<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
-			</div>
+		<section data-bind="foreachprop: {data: data, sortFn: sortByConfig.bind($component)}" class="panel-group">
+			<!--panel-->
+			<panel data-bind="css: {'has-events-list': $component.checkIfHasEventsList(key)}" params="$data: $data, $index: $index, panelGroup: $component, sortByConfig: $component.sortByConfig"></panel>
 		</section>
 `});
 

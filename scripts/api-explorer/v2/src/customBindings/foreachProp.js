@@ -4,11 +4,8 @@
 		var properties = [];
 		var obj, sortFn = params.sortFn;
 
-		if (sortFn) {
-			obj = params.data;
-		} else {
-			obj = params;
-		}
+		obj = sortFn ? params.data: params;
+		obj = ko.utils.unwrapObservable(obj);
 
 		ko.utils.objectForEach(obj, function (key, value) {
 			properties.push({

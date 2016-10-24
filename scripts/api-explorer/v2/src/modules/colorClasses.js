@@ -1,25 +1,24 @@
-var colors = [
-	'column-color-1',
-	'column-color-2',
-	'column-color-3',
-	'column-color-4',
-	'column-color-5',
-	'column-color-6',
-	'column-color-7',
-	'column-color-8',
-	'column-color-9',
-	'column-color-10',
-	'column-color-11',
-	'column-color-12'
-];
+var NUM = 12;
+var PREFIX = 'color-';
+
+var colors = getColors(NUM, PREFIX);
+
+function getColors(num, classPrefix) {
+	var colors = new Array(num);
+
+	for (var i = 0; i < colors.length; i++) {
+		colors[i] = classPrefix + (i + 1);
+	}
+	return colors;
+}
 
 function getRandomColor(color) {
 	var randomNumber;
 	do {
 		randomNumber = getRandomInt(1, colors.length);
-	} while ('column-color-' + randomNumber === color);
+	} while (PREFIX + randomNumber === color);
 
-	return 'column-color-' + randomNumber;
+	return PREFIX + randomNumber;
 }
 
 /**
