@@ -23,16 +23,28 @@ function RequestsListViewModel(requests, selectedParams, sharePath) {
 RequestsListViewModel.prototype.updateModel = function (arr) {
 	var self = this;
 	
-	var newModel = this.requests()
+	var newModel = ko.unwrap(this.requests)
 		.map(function (obj) {
-			var item =  $.extend({}, obj, {
+			var newObj = {
 				color: self.colors[obj.index % self.colors.length],
 				active: ko.observable(false),
 				copiedForShare: ko.observable(false),
 				copiedUrl: ko.observable(false),
 				resHTML: ko.observable('')
-			});
-			return item;
+			};
+
+			// error popover
+			if (obj.error) {
+				var errorObj = obj.error;
+				newObj.error = ko.observable([
+					Object.getProp(errorObj, '.responseJSON.errors[0].status') || errorObj.status + '',
+					Object.getProp(errorObj, '.responseJSON.errors[0].statusText') || '',
+					Object.getProp(errorObj, '.responseJSON.errors[0].detail') || 'unnown',
+					Object.getProp(errorObj, '.responseJSON') || {}
+				])
+			}
+
+			return $.extend({}, obj, newObj);
 		});
 	slider.remove(self.viewModel().length);
 	self.viewModel(newModel);
@@ -128,7 +140,7 @@ RequestsListViewModel.prototype.getStr = function (s, i) {
  * @returns {string}
  */
 RequestsListViewModel.prototype.getRawData = function (model) {
-	var content = model.res.res;
+	var content = Object.getProp(model, '.res.res') || ko.unwrap(model.error)[3] || {};
 	var rawWindow = window.open("data:text/json," + encodeURI(JSON.stringify(content, null, 2)), '_blank');
 	rawWindow.focus();
 };
