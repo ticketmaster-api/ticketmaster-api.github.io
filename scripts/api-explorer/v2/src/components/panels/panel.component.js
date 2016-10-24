@@ -4,14 +4,13 @@ function cardComponent(params) {
 	self = this;
 	this.key = params.$data.key;
 	this.$data = params.$data;
-	this.$data = params.$data;
 	this.$index = ko.utils.unwrapObservable(params.$index);
-	this.page = params.page;
-	this.colorClass = params.colorClass;
 	this.panelGroup = params.panelGroup;
-	this.config = getPanelConfig(params.config, this.key);
+	this.page = this.panelGroup.page;
+	this.colorClass = this.panelGroup.colorClass || '';
+	this.config = getPanelConfig(this.panelGroup.config, this.key);
 	this.isExpanded = isExpanded(this.config);
-	this.collapseId = params.collapseId + this.$index;
+	this.collapseId = this.panelGroup.collapseId + this.$index;
 	this.isActive = ko.observable(this.isExpanded);
 }
 
@@ -45,19 +44,16 @@ module.exports = ko.components.register('panel', {
 	template:`
 		<section data-bind="css: {[colorClass]: true, active: isActive}" class="panel panel-primary">
 			<!--panel-heading-->
-			<panel-heading params="config: config, data: $data, index: $index, page: page, setActive: setActive.bind($component), collapseId: collapseId"></panel-heading>
+			<panel-heading params="config: config, data: $data, index: $index, page: page, setActive: setActive.bind($component), collapseId: collapseId, colorClass: colorClass"></panel-heading>
 			
 			<!--panel-body-->
-			<section data-bind="attr: {'id': collapseId}, css: {'in': isExpanded}" class="panel-collapse collapse">
-				<div class="panel-body">
-				
-					<!-- ko if: (typeof $data.value === 'object' && !$.isArray($data.value)) -->
-						<object-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup, page: page"></object-panel-body>
-					<!-- /ko -->
-					<!-- ko if: (typeof $data.value === 'object' && $.isArray($data.value)) -->
-						<array-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup"></array-panel-body>
-					<!-- /ko -->
-				</div>
+			<section data-bind="attr: {'id': collapseId}, css: {'in': isExpanded}" class="panel-collapse collapse">				
+				<!-- ko if: (typeof $data.value === 'object' && !$.isArray($data.value)) -->
+					<object-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup, page: page, collapseId: collapseId"></object-panel-body>
+				<!-- /ko -->
+				<!-- ko if: (typeof $data.value === 'object' && $.isArray($data.value)) -->
+					<array-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup"></array-panel-body>
+				<!-- /ko -->
 			</section>
 		</section>
 `});
