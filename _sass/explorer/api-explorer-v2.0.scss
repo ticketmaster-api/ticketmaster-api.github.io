@@ -880,8 +880,9 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 		}
 	}
 	.color-indicator {
-		width: 14px;
-		height: 14px;
+		$size: 16px;
+		width: $size;
+		height: $size;
     display: inline-block;
 		border: {
 			radius: 100px;

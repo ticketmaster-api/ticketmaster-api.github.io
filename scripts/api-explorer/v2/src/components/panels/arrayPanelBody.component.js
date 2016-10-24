@@ -23,7 +23,7 @@ ArrayPanelBody.prototype.getVenueName = function ($data) {
 module.exports = ko.components.register('array-panel-body', {
 	viewModel: ArrayPanelBody,
 	template:`
-		<section class="panel-body no-padding">
+		<section class="panel-body no-padding array-panel-body">
 			<ul data-bind="foreach: data" class="list-group">
 				<li class="list-group-item">
 				

@@ -10,7 +10,7 @@ function ObjectPanelBody(params) {
 	this.getMore = this.panelGroup.getMore;
 	this.pageParam = params.page && params.page.parameter;
 	this.collapseId = params.collapseId;
-	this._allInside = !!Object.getProp(ko.utils.unwrapObservable(this.config), '._CONFIG.allInside');
+	this._allInside = !!Object.getProp(ko.unwrap(this.config), '._CONFIG.allInside');
 	this.sortByConfig = this.panelGroup.sortByConfig;
 }
 
@@ -63,8 +63,8 @@ ObjectPanelBody.prototype.removeHandler = function () {
 module.exports = ko.components.register('object-panel-body', {
 	viewModel:  ObjectPanelBody,
 	template:`
-		<section data-bind="css: {'all-inside': $component._allInside}" class="panel-body">
-			<!-- ko if: $component._panelName === 'image' -->
+		<section data-bind="css: {'all-inside': $component._allInside}" class="panel-body object-panel-body">
+			<!-- ko if: $component._panelName === 'object' && !!Object.getProp(ko.unwrap(data), '.ratio')-->
 				<img data-bind="attr: {src: ko.utils.unwrapObservable(data).url, alt: 'image-' + ko.utils.unwrapObservable(data).ratio}" alt="img" class="img img-thumbnail">
 			<!-- /ko -->
 			
