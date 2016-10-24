@@ -82,38 +82,8 @@ layout: default
 <script>new Clipboard('.copy-btn');</script>
 
 {% if page.categories contains "replace_apikey" %}
+<script src="{{site.baseurl }}/scripts/components/api-key-service.js"></script>
 <script>
-    //var userKey = sessionStorage.getItem('tk-api-key');
-    var userKey=null, userEmail=null;
-    function checkCookie() {
-        var userApiKey;
-        var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
-	if (getCookie("tk-api-key") === "") {return null}
-        if (apiKeys != "") {
-            userApiKey = apiKeys[apiKeys.length-1];
-            userApiKey = userApiKey[userApiKey.length-1];
-        }
-        return userApiKey;
-    }
-
-    //get Cookie by name
-    function getCookie(cname) {
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0)==' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length,c.length);
-            }
-        }
-        return "";
-    }
-    
-    userKey = checkCookie();
-
     function replaceText(selector, text, newText, flags) {
         var matcher = new RegExp(text, flags);
         $(selector).each(function () {
@@ -123,12 +93,9 @@ layout: default
         });
     }
 
-    if(userKey !== null) {
+    var userKey = apiKeyService.checkApiKeyCookie('tk-api-key');
+    if(userKey) {
         replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     }
-
-    $(window).on('login',function(){
-        replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
-    });
 </script>
 {% endif %}
