@@ -2,26 +2,13 @@ var jsonHighlight = require('./../modules/json-highlight');
 var slider = require('../modules/slider');
 var filter = require('../../config.json');
 var self;
-var colors = [
-	'column-color-1',
-	'column-color-2',
-	'column-color-3',
-	'column-color-4',
-	'column-color-5',
-	'column-color-6',
-	'column-color-7',
-	'column-color-8',
-	'column-color-9',
-	'column-color-10',
-	'column-color-11',
-	'column-color-12'
-];
+var colors = require('../modules/colorClasses').colors;
 
 function RequestsListViewModel(requests, selectedParams, sharePath) {
 	this.url = selectedParams;
 	self = this;
 	this.colors = colors;
-	this.sharePath = ko.utils.unwrapObservable(sharePath);
+	this.sharePath = sharePath;
 	this.requests = requests;
 	this.isActiveTab = ko.observable(false);
 	this.viewModel = ko.observableArray([]);
@@ -41,7 +28,8 @@ RequestsListViewModel.prototype.updateModel = function (arr) {
 			var item =  $.extend({}, obj, {
 				color: self.colors[obj.index % self.colors.length],
 				active: ko.observable(false),
-				copied: ko.observable(false),
+				copiedForShare: ko.observable(false),
+				copiedUrl: ko.observable(false),
 				resHTML: ko.observable('')
 			});
 			return item;
@@ -147,15 +135,16 @@ RequestsListViewModel.prototype.getRawData = function (model) {
 
 RequestsListViewModel.prototype.copyUrl = function (model, event) {
 	var currentField = this;
-	self.clipboard = new Clipboard(event.currentTarget);
+	var element = event.currentTarget;
+	self.clipboard = new Clipboard(element);
 	self.clipboard.on('success', function onSuccessCopy(e) {
 		console.info('Action:', e.action);
 		console.info('Text:', e.text);
 		console.info('Trigger:', e.trigger);
-		currentField.copied(true);
+		$(element).hasClass('btn-share') ? currentField.copiedForShare(true) : currentField.copiedUrl(true);
 		setTimeout(function () {
-			currentField.copied(false);
-		}, 1000);
+			$(element).hasClass('btn-share') ? currentField.copiedForShare(false) : currentField.copiedUrl(false);
+		}, 500);
 		e.clearSelection();
 	})
 		.on('error', function onErrorCopy(e) {

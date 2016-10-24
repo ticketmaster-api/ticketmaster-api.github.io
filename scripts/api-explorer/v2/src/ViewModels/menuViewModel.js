@@ -1,26 +1,27 @@
 var hf = require('../modules/helperFunc');
 var self;
 
-
 /**
  * Menu View-Model
  * @param base
  * @param category
  * @constructor
  */
-function MenuViewModel(base, category) {
+function MenuViewModel(base, selectedCategory) {
   self = this;
-  this.category = category;
-  this.categories = ko.observableArray(Object.keys(base).map(function (item, index) {
-    return {
-      checked: ko.observable(!index),
-      name: item,
-      link: false
-    }
-  }));
 
-  // initial load
-  this.selectCategory(this.categories()[0]);
+	this.selectedCategory = selectedCategory;
+	var initCategory = ko.utils.unwrapObservable(selectedCategory);
+	this.categories = ko.observableArray(Object.keys(base).map(function (item, index) {
+		var checked = initCategory ? item === initCategory: !index;
+		// initial load
+		checked && self.selectedCategory(item);
+		return {
+			checked: ko.observable(checked),
+			name: item,
+			link: false
+		}
+	}));
 }
 
 /**
@@ -29,7 +30,7 @@ function MenuViewModel(base, category) {
  */
 MenuViewModel.prototype.selectCategory = function (category) {
   var categoryName = category.name;
-  self.category(categoryName);
+  self.selectedCategory(categoryName);
   hf.checkActive(self.categories, categoryName);
 };
 

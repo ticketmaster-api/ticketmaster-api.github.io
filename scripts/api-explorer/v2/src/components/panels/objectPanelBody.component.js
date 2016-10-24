@@ -1,6 +1,6 @@
 var self;
 
-function objectPanelBodyComponent(params) {
+function ObjectPanelBody(params) {
 	self = this;
 	this.data = this.data || ko.observable(params.data.value);
 	this.config = params.config;
@@ -9,9 +9,11 @@ function objectPanelBodyComponent(params) {
 	this.panelGroup = params.panelGroup;
 	this.getMore = this.panelGroup.getMore;
 	this.pageParam = params.page && params.page.parameter;
+	this.collapseId = params.collapseId;
+	this._allInside = !!Object.getProp(ko.utils.unwrapObservable(this.config), '._CONFIG.allInside');
 }
 
-objectPanelBodyComponent.prototype.onEnterKeyDown = function (model, event) {
+ObjectPanelBody.prototype.onEnterKeyDown = function (model, event) {
 	if (event.keyCode === 13) {
 		var value = +event.currentTarget.value;
 		value = Number.isNaN(value) ? 0 : value;
@@ -23,7 +25,7 @@ objectPanelBodyComponent.prototype.onEnterKeyDown = function (model, event) {
 	}
 };
 
-objectPanelBodyComponent.prototype.canBeCopied = function () {
+ObjectPanelBody.prototype.canBeCopied = function () {
 	if (typeof this.value === 'object') return false;
 	this.copied = ko.observable(false);
 	if (Object.getProp(self.config, '._CONFIG.copyBtn.' + this.key)) {
@@ -33,7 +35,7 @@ objectPanelBodyComponent.prototype.canBeCopied = function () {
 	return false;
 };
 
-objectPanelBodyComponent.prototype.copyValue = function (model, event) {
+ObjectPanelBody.prototype.copyValue = function (model, event) {
 	var currentField = this;
 	self.clipboard = new Clipboard(event.currentTarget);
 	self.clipboard.on('success', function onSuccessCopy(e) {
@@ -43,7 +45,7 @@ objectPanelBodyComponent.prototype.copyValue = function (model, event) {
 			currentField.copied(true);
 			setTimeout(function () {
 				currentField.copied(false);
-			}, 2000);
+			}, 500);
 			e.clearSelection();
 		})
 		.on('error', function onErrorCopy(e) {
@@ -52,25 +54,26 @@ objectPanelBodyComponent.prototype.copyValue = function (model, event) {
 		});
 };
 
-objectPanelBodyComponent.prototype.removeHandler = function () {
+ObjectPanelBody.prototype.removeHandler = function () {
 	self.clipboard && self.clipboard.destroy();
 	delete self.clipboard;
 };
 
+ObjectPanelBody.prototype.sortProps = function (a, b) {
+	console.log(a,b);
+};
+
 module.exports = ko.components.register('object-panel-body', {
-	viewModel:  objectPanelBodyComponent,
+	viewModel:  ObjectPanelBody,
 	template:`
-		<section>
-		
+		<section class="panel-body">
 			<!-- ko if: $component._panelName === 'image' -->
 				<img data-bind="attr: {src: ko.utils.unwrapObservable(data).url, alt: 'image-' + ko.utils.unwrapObservable(data).ratio}" alt="img" class="img img-thumbnail">
 			<!-- /ko -->
 			
 			<ul data-bind="foreachprop: data">
-				<li class="clearfix">
-					<b class="key">
-						<span data-bind="text: typeof value === 'object' ? key: key + ':'"></span>
-					</b>
+				<li data-bind="css: {'allInside': $component._allInside}" class="clearfix pading">
+					<span data-bind="text: typeof value === 'object' ? key: key + ':'" class="key"></span>
 					
 					<!-- ko ifnot: typeof value === 'object' || $component._panelName === 'page' && key === 'number' -->
 						<span data-bind="text: value" class="value"></span>
@@ -86,8 +89,14 @@ module.exports = ko.components.register('object-panel-body', {
 						<button data-bind="event: {mouseover: $component.copyValue, mouseout: $component.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': value.toString(), id: 'prop-value-' + key + $index()}" type="button" class="btn btn-icon btn-copy"></button>
 					<!-- /ko -->
 					
+					
 					<!-- ko if: typeof value === 'object' -->
-						<button data-bind="click: $component.getMore.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+						<!-- ko if: $component._allInside -->
+							<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
+						<!-- /ko -->
+						<!-- ko ifnot: $component._allInside -->
+							<button data-bind="click: $component.getMore.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+						<!-- /ko -->
 					<!-- /ko -->
 				</li>
 			</ul>

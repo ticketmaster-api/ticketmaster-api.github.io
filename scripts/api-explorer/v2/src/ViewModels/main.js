@@ -26,25 +26,29 @@ require('../components/index');
  * @param obj {object} global data object
  */
 function AppViewModel(obj) {
-  var base = obj || {};
   self = this;
+  var base = obj || {};
+	var parsedUrl = parseUrl();
   this.apiKey = apiKey;
 	this.config = config;
+
   // observables
-  this.selectedCategory = ko.observable('');
-  this.selectedMethod = ko.observable('');
+  this.selectedCategory = ko.observable(parsedUrl.apiCategory || '');
+  this.selectedMethod = ko.observable(parsedUrl.methodId || '');
   this.selectedParams = ko.observableArray([]);
 	this.requests = ko.observableArray([]);
 
 	// computed
   this.URL = ko.computed(this.getUrl, this);
   this.sendButtonText = ko.pureComputed(this.getMethodName, this);
-
+	this.sharePath = ko.pureComputed(formDeepLinkingUrl, this);
+	this.sharePath.subscribe(function (val) {
+		console.log(val);
+	}, this);
   // sub-models
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
-	this.sharePath = ko.pureComputed(formDeepLinkingUrl, this);
   this.requestsList = new RequestsListViewModel(this.requests, this.selectedParams, this.sharePath);
 }
 
@@ -114,8 +118,8 @@ function formDeepLinkingUrl() {
 	var params = ko.utils.unwrapObservable(self.selectedParams);
 
 	var querys = [
-		'api=' + encodeURI(category),
-		'method='+ encodeURI(method.id)
+		'apiCategory=' + encodeURI(category),
+		'methodId='+ encodeURI(method.id)
 	];
 
 	params.map(function (param) {
@@ -135,4 +139,33 @@ function formDeepLinkingUrl() {
 		'?',
 		querys.join('&')
 	].join('');
+}
+
+function parseUrl() {
+	var location = window.location.search;
+	if (location) {
+		var querys = location.replace(/^\?/g, '').split('&');
+		var obj = {
+			apiCategory: '',
+			methodId: '',
+			selectedParams: []
+		};
+
+		querys.map(function (e) {
+			var a = decodeURI(e).split('=');
+			var key = a[0];
+			var val = a[1];
+
+			if (key === 'apiCategory' || key === 'methodId') {
+				obj[key] = val;
+			} else {
+				obj.selectedParams.push({
+					name: key,
+					value: val
+				})
+			}
+		});
+		return obj;
+	}
+	return {};
 }

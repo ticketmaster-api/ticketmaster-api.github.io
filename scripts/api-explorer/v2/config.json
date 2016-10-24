@@ -7,6 +7,7 @@
           "copyBtn": {
             "name": true
           },
+          "request": "http://www.google.com",
           "index": 0
         }
       },
@@ -63,9 +64,14 @@
         }
       },
       "dates": {
+        "timezone": {
+          "_CONFIG": {
+            "index": 0
+          }
+        },
         "start": {
           "_CONFIG": {
-            "index": 0,
+            "index": 1,
             "copyBtn": {
               "dateTime": true
             }
@@ -73,12 +79,12 @@
         },
         "status": {
           "_CONFIG": {
-            "index": 1
+            "index": 2
           }
         },
         "end": {
           "_CONFIG": {
-            "index": 2,
+            "index": 3,
             "copyBtn": {
               "dateTime": true
             }
@@ -87,9 +93,6 @@
 
         "_CONFIG": {
           "index": 4,
-          "copyBtn": {
-            "timezone": true
-          },
           "allInside": true
         }
       },
