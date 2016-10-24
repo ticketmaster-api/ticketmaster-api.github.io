@@ -123,6 +123,25 @@
           font-family: $font-lead-bold;
           font-size: $size-h6;
           margin: 0px 5px 5px 0px;
+          span{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            margin-left: 5px;
+            margin-top: 3px;
+            &:after{
+              content: '';
+              height: 10px;
+              width: 10px;
+              display: block;
+              background-image: url("../../assets/controls/ic-close-small-grey.svg");
+            }
+            &:hover:after{
+              cursor: pointer;
+              opacity: 0.7;
+            }
+          }
+
         }
       }
       .btn-submit {

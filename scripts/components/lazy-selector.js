@@ -1,10 +1,14 @@
 /**
  * required to include: lazy-selector-modal.html
  *
- * availiable option : {enum:'attractions' , 'venues', ''}
+ * availiable option :
+ * {
+ *    selector: 'attractions' , 'venues', '',
+ *    hideMultiSelector: true, false
+ * }
  * $('.js_lazy-selector').lazySelector();
- * $('.js_lazy-selector-attractions').lazySelector('attractions');
- * $('.js_lazy-selector-venues').lazySelector('venues');
+ * $('.js_lazy-selector-attractions').lazySelector('{selector: 'attractions'});
+ * $('.js_lazy-selector-venues').lazySelector({selector:'venues', hideMultiSelector:true});
  */
 
 (function ($) {
@@ -179,47 +183,63 @@
       btnCloseMap.hide(); // 'X' -button
     }
 
+    //remove duplicates from an array of strings
+    function unique(list) {
+      var result = [];
+      $.each(list, function(i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
+      });
+      return result;
+    }
+
     function toggleTags() {
 			var indToRemove =[];
 
       $('li',$msList).each(function (i) {
-        var listItem = $(this);
-        var inputValArray = $input.val().split(",");
+        var listItem = $(this),
+          id = listItem.data('selector-'+selector),
+        inputValArray = $input.val().split(",");
 
         if(listItem.data('selector-'+selector)){
 					listItem.show();
 
-          if( jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) === -1) {
-						console.log('hide listItem' , listItem.data('selector-'+selector) ,'tagsIds[selector][i]',tagsIds[selector][i] );
-						indToRemove.push(i);
+          if( jQuery.inArray( id, inputValArray ) === -1) {
+						// console.log('hide listItem' , id );
+						// console.log('tagsIds[selector][i]',tagsIds[selector][i] );
+						indToRemove.push(id);
             listItem.remove();
           }
-					//else{
-          //   console.log('**else show listItem' , listItem.data('selector-'+selector));
-          //   console.log( jQuery.inArray( listItem.data('selector-'+selector), inputValArray ) );
-          // }
         }else {
           listItem.hide();
         }
 
       });
-			// console.log('each end',tagsIds > indToRemove.length, indToRemove);
 
-			if(tagsIds[selector].length >= indToRemove.length) {
-				indToRemove.map(function (item) {
-					console.log('splice ', item);
-					tagsIds[selector].splice(item, 1);
-				});
-			}
-			console.log('__toggleTags start $msList length :',$('li',$msList).length);
-			console.log('add check by [data-selector]');
-			if($('li',$msList).length<1){
-				$msSelection.hide();
-				console.log('__hide $msList',$('li',$msList).length);
-			}
-			// console.log('tagsIds:' ,tagsIds[selector]);
+      //filter by : [indToRemove]
+      tagsIds[selector] = tagsIds[selector].filter( function( el ) {
+        return !indToRemove.includes( el );
+      } );
+
+
 		}
 
+    function toggleMsSelectionBox() {
+      // console.log('length' , $('li',$msList).length );
+      if($('li',$msList).length<1){
+        $msSelection.hide();
+        return;
+      }
+
+      $('li',$msList).each(function (i) {
+        var listItem = $(this);
+        if (listItem.data('selector-' + selector)) {
+          // console.log( selector, '$msSelection.show' );
+          $msSelection.show();
+          return false;
+        }
+        else $msSelection.hide();
+      });
+    }
     /**
      * change <Load_More> button text
      * set data-selector gor "GET" button
@@ -237,15 +257,14 @@
 
 			if(options.hideMultiSelector) {
 				$msSelection.hide();
-				console.log('hide $msSelection');
+				// console.log('hide $msSelection');
 			} else {
 				if($('li',$msList).length>0){
 					$msSelection.show();
-					console.log('show $msList',$('li',$msList).length);
-					console.log('show $msSelection',$('li',$msSelection).length);
+					// console.log('show $msList',$('li',$msList).length);
 				}
 					toggleTags();
-
+          toggleMsSelectionBox();
 			}
 
       $btnGET.attr('data-selector', selector);
@@ -278,6 +297,7 @@
       $form.removeClass(cssValidationClass);
 
       // Clear Listener
+      // console.log('Clear Listener : addMsButtonListener');
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
 
     }
@@ -790,7 +810,6 @@
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
       var selectedID = tagsIds[selector];
 
-
 			// set isable=true to all items in tags-list
 			$('li',$msList)
 				.each(  function() { $(this).attr('data-isable',true)}  );
@@ -804,30 +823,55 @@
 
     }
 
+    function delIdListener(event){
+      console.log('add delIdListener ' );
+      event.preventDefault();
+      var me = $( this ),
+        tagID = me.parents('li').data('selector-'+selector);
+       // console.log('me > li', tagID );
+
+      me.parents('li').remove();
+
+      var indToRemove =[];
+      indToRemove.push(tagID);
+
+      // console.log('___ splice: ', indToRemove );
+      // console.log('tagsIds[selector]',tagsIds[selector] , selector );
+
+      if(tagsIds[selector].length >= indToRemove.length) {
+        indToRemove.map(function (item) {
+          tagsIds[selector].splice(tagsIds[selector].indexOf(item), 1);
+        });
+      }
+
+      toggleMsSelectionBox();
+
+      // console.log('me > li  length: ', me.parents('li').length );
+      // console.log('tagsIds[selector]',tagsIds[selector] , selector );
+      //toDO: check for deleted items
+    }
+
     function addMsButtonListener(event){
       event.preventDefault();
       var me = $( this );
-     /* console.log('me ', me, '\n data-id', me.data('id'), '\n',me.text() , '\n', me.data('id') );*/
+      var title = me.parents('li').find('.list-group-item-heading','.event-text-wrapper').text();
+      // console.log('me ', me, '\n data-id', me.parents('li'));
+      // console.log('title',title);
 
       var item = $('<li/>')
         .addClass('ms-elem-selection')
-        .text(me.data('id'))
+        .text(title)
         .attr('data-selector-'+selector, me.data('id'))
         .attr('data-isable',false)
         .appendTo($msList);
 
+      var deleteBtn = $('<span/>').appendTo(item);
+
+      deleteBtn.on('click', item, delIdListener);
+
       me.addClass('checked');
-
-			if($('li',$msList).length <0){
-				console.log('hide $msSelection');
-				$msSelection.hide();
-			} else {
-				console.log('show *addMsButton msList length',$('li',$msList).length);
-				$msSelection.show();
-			}
-
+      toggleMsSelectionBox();
 			tagsIds[selector].push(me.data('id'));
-			console.log('tagsIds[selector]',tagsIds[selector] , selector);
 
     }
 
@@ -859,6 +903,7 @@
 
     $msBtnUse.on('click', setIdsListener);
 
+
     //Close Map button
     btnCloseMap.on('click', closeMapListener);
 
@@ -870,6 +915,9 @@
       $btnGET.attr('disabled', true);
       loading('on');
       submitForm(stateConf.pageIncrement, eventUrl);
+      //Clear Listener
+      // console.log('Clear Listener : addMsButtonListener');
+      $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
     });
 
     //multiple selector events
@@ -905,29 +953,27 @@
       keyword.val('');//clear search input
       closeMapListener();
 
-			var indToRemove =[];
+			var indToRemove =[],
+        selector = $btnGET.data('selector'),
+        tagsArr = tagsIds[selector];
+
       $( 'li' , $msList ).each( function(i) {
-				console.log( $(this).attr('data-isable') );
-				if ( $(this).attr('data-isable') === 'false' ){
-					// console.log('tagsIds[selector]', tagsIds[$btnGET.data('selector')]);
-					// console.log( 'del ',   );
-					indToRemove.push($(this).data('selector-' + $btnGET.attr('data-selector')));
+				if ( $(this).data('isable') === 'false' ){
+					indToRemove.push( $(this).data('selector-' + selector) );
 					$(this).remove();
 				}
       });
 
-			console.log('indToRemove ', indToRemove);
-			console.log('tagsIds[$btnGET.data(selector)] ', tagsIds[$btnGET.data('selector')]);
-
-			if(tagsIds[$btnGET.data('selector')].length >= indToRemove.length) {
+			if(tagsArr.length >= indToRemove.length) {
 				indToRemove.map(function (item) {
-					console.log('splice ', item);
-					tagsIds[$btnGET.data('selector')].splice(item, 1);
+          tagsArr.splice(tagsArr.indexOf(item), 1);
 				});
 			}
 
-			var diff = $(tagsIds[$btnGET.data('selector')]).not(indToRemove).get();
-			console.log(diff);
+      // console.log('tagsArr.length',tagsArr.length , 'val-> ', $input.val());
+      // console.log('tagsArr',tagsArr );
+
+
     });
 
     return this.each(function (i) {
@@ -936,10 +982,6 @@
       init($input);
 
       function init(input) {
-        // if (selector !== 'events') {
-        //   $('.modal-title span', $modal).text(selector);
-        //   $('#js_ls-more_btn', $modal).text('SHOW MORE ' + selector);
-        // }
         input.wrap('<div class="lazy-selector-wrapper"></div>');
         input.after($iconButton);
         $iconButton.attr('data-selector', selector);
