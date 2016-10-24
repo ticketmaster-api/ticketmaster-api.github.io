@@ -18,14 +18,15 @@
   $.fn.lazySelector = function (options) {
     var defaults = {},
         settings = $.extend({}, $.fn.lazySelector.defaults, options),
-        $iconButton = $('<a class="icon" id="get-event-by-Id-' + options + '" data-toggle="modal" data-target="#js_ls-modal" />');
+        $iconButton = $('<a class="icon" id="get-event-by-Id-' + options.selector + '" data-toggle="modal" data-target="#js_ls-modal" />');
 
     var stateConf = {
       pageIncrement: 0,
       loadingFlag: false
     };
 
-    var $modal = $('#js_ls-modal'),
+    var $input = $(this),
+			$modal = $('#js_ls-modal'),
       $form = $('#js_lazy-sel_form', $modal),
       $ul = $('#js_lazy-sel_list'),
       $liFooter = $('#load-more-box'),
@@ -42,11 +43,9 @@
     var keyword = $form.find('#keyword'),
       defaultApiKey = apiKeyService.getApiExploreKey(),
       apikey = apiKeyService.checkApiKeyCookie('tk-api-key') || $('#w-tm-api-key').val() || defaultApiKey,
-      selector = options || 'events',
+      selector = options.selector || 'events',
       eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json'
       ;
-
-    var $input = $(this);
 
     function formatDate(date) {
       var result = '';
@@ -107,20 +106,17 @@
       }
     };
 
-
     /**
      * Init map google maps
      * @param lat - float
      * @param lng - float
      * @param address - not used @deprecated
      */
-    var map = null;
-    var markers = [];
+    var map = null, markers = [];
+
     var initMap = function (lat, lng) {
-    var mapEl = $('#js_ls-modal'),
+    	var modal = $modal,
         mapCenter = new google.maps.LatLng(lat || 55, lng || 43);
-      // geocoder = new google.maps.Geocoder(),
-      // latLng = (lat && lng ? {lat: lat, lng: lng} : new google.maps.LatLng(0, 0));
 
       if(map === null){
         // initialize map object
@@ -143,7 +139,6 @@
       // Adds a marker at the center of the map.
       addMarker(mapCenter);
 
-
       /*if (address){ // if there was address provided
        geocodeAddress(geocoder, map, address, function(result){ // geocode address and center the map
        latLng = result;
@@ -152,12 +147,12 @@
       //}
 
       // when map popup is shown
-      mapEl.on("shown.bs.modal", function () {
+      modal.on("shown.bs.modal", function () {
         // Recenter the map now that it's been redrawn
         google.maps.event.trigger(map, "resize");
         map.setCenter(mapCenter);
       });
-      mapEl.modal(); // show map popup
+      modal.modal(); // show map popup
     };
 
     // Adds a marker to the map and push to the array.
@@ -208,14 +203,19 @@
         }
 
       });
-
 			// console.log('each end',tagsIds > indToRemove.length, indToRemove);
 
-			if(tagsIds[selector].length > indToRemove.length) {
+			if(tagsIds[selector].length >= indToRemove.length) {
 				indToRemove.map(function (item) {
 					console.log('splice ', item);
 					tagsIds[selector].splice(item, 1);
 				});
+			}
+			console.log('__toggleTags start $msList length :',$('li',$msList).length);
+			console.log('add check by [data-selector]');
+			if($('li',$msList).length<1){
+				$msSelection.hide();
+				console.log('__hide $msList',$('li',$msList).length);
 			}
 			// console.log('tagsIds:' ,tagsIds[selector]);
 		}
@@ -230,12 +230,23 @@
         $('#js_ls-more_btn', $modal).text('SHOW MORE ' + selector);
       }
       if(selector === 'venues'){
-        $('.wrapper-list-group', $modal).addClass('low-height');
+				$('.wrapper-list-group', $modal).addClass('low-height');
       }else {
         $('.wrapper-list-group', $modal).removeClass('low-height');
       }
 
-      toggleTags();
+			if(options.hideMultiSelector) {
+				$msSelection.hide();
+				console.log('hide $msSelection');
+			} else {
+				if($('li',$msList).length>0){
+					$msSelection.show();
+					console.log('show $msList',$('li',$msList).length);
+					console.log('show $msSelection',$('li',$msSelection).length);
+				}
+					toggleTags();
+
+			}
 
       $btnGET.attr('data-selector', selector);
     }
@@ -262,24 +273,13 @@
       listItems.remove();
       $hr.hide();
       $liFooter.hide();
-      /*$form.find('input').each(function(){
-         var $self = $(this);
-         if($self.attr('id','keyword')){
-         $self.val('');
-          }
-       });*/
 
       // Clear highlight
       $form.removeClass(cssValidationClass);
 
-      // Clear tags
-      //$( 'li' , $msList ,$msSelection ).remove();
-
       // Clear Listener
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
 
-      //tagsIds[selector] = [];
-      // console.log('resetForm end', selector, ' --- ', tagsIds[selector]);
     }
 
     /**
@@ -441,8 +441,8 @@
             .appendTo(li)
             .wrap('<div class ="wrapper-btns text-right"/>');
 
-          var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
-          addMsButton( addToEl , item.id);
+						var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
+						addMsButton( addToEl , item.id);
         }
 
       });
@@ -768,12 +768,14 @@
     };
 
     function addMsButton(el, data){
+			if(options.hideMultiSelector) return false;
 
-      //add button <ADD to list>
-      var buttonAddIdToList = $("<button data-id=" + data + "/>")
-        .addClass('js_ms-add-list_btn btn btn-transparent')
-        .text('ADD to list')
-        .appendTo( el.li.find(el.buttonSetIdWrapper) );
+			//add button <ADD to list>
+			var buttonAddIdToList = $("<button data-id=" + data + "/>")
+				.addClass('js_ms-add-list_btn btn btn-transparent')
+				.text('ADD to list')
+				.appendTo(el.li.find(el.buttonSetIdWrapper));
+
     }
     function setIdListener(e){
       var selectedID = e.target.getAttribute('data-event');
@@ -787,6 +789,7 @@
     function setIdsListener(e){
       if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
       var selectedID = tagsIds[selector];
+
 
 			// set isable=true to all items in tags-list
 			$('li',$msList)
@@ -815,7 +818,17 @@
 
       me.addClass('checked');
 
-      tagsIds[selector].push(me.data('id'));
+			if($('li',$msList).length <0){
+				console.log('hide $msSelection');
+				$msSelection.hide();
+			} else {
+				console.log('show *addMsButton msList length',$('li',$msList).length);
+				$msSelection.show();
+			}
+
+			tagsIds[selector].push(me.data('id'));
+			console.log('tagsIds[selector]',tagsIds[selector] , selector);
+
     }
 
     // EVENTS
@@ -892,8 +905,29 @@
       keyword.val('');//clear search input
       closeMapListener();
 
-      // $( 'li' , $msList ,$msSelection ).off();
-      // $( "#js_ls-modal.modal" ).off(addMsButtonListener);
+			var indToRemove =[];
+      $( 'li' , $msList ).each( function(i) {
+				console.log( $(this).attr('data-isable') );
+				if ( $(this).attr('data-isable') === 'false' ){
+					// console.log('tagsIds[selector]', tagsIds[$btnGET.data('selector')]);
+					// console.log( 'del ',   );
+					indToRemove.push($(this).data('selector-' + $btnGET.attr('data-selector')));
+					$(this).remove();
+				}
+      });
+
+			console.log('indToRemove ', indToRemove);
+			console.log('tagsIds[$btnGET.data(selector)] ', tagsIds[$btnGET.data('selector')]);
+
+			if(tagsIds[$btnGET.data('selector')].length >= indToRemove.length) {
+				indToRemove.map(function (item) {
+					console.log('splice ', item);
+					tagsIds[$btnGET.data('selector')].splice(item, 1);
+				});
+			}
+
+			var diff = $(tagsIds[$btnGET.data('selector')]).not(indToRemove).get();
+			console.log(diff);
     });
 
     return this.each(function (i) {
@@ -902,15 +936,15 @@
       init($input);
 
       function init(input) {
-        if (selector !== 'events') {
-          $('.modal-title span', $modal).text(selector);
-          $('#js_ls-more_btn', $modal).text('SHOW MORE ' + selector);
-        }
+        // if (selector !== 'events') {
+        //   $('.modal-title span', $modal).text(selector);
+        //   $('#js_ls-more_btn', $modal).text('SHOW MORE ' + selector);
+        // }
         input.wrap('<div class="lazy-selector-wrapper"></div>');
         input.after($iconButton);
         $iconButton.attr('data-selector', selector);
 
-        $('#get-event-by-Id-' + options + '').on('click', changeModalTextListener);
+        $('#get-event-by-Id-' + options.selector + '').on('click', changeModalTextListener);
         tagsIds[selector] = [];
 
       }
@@ -921,12 +955,12 @@
 })(jQuery);
 
 /**
- * add lazy selector to Countdown widget
+ * add lazy selector to widgets
  */
 $(document).on('ready', function () {
-  $('.js_lazy-selector').lazySelector();
-  $('.js_lazy-selector-attractions').lazySelector('attractions');
-  $('.js_lazy-selector-venues').lazySelector('venues');
+  $('.js_lazy-selector').lazySelector({selector:''});
+  $('.js_lazy-selector-attractions').lazySelector({selector: 'attractions'});
+  $('.js_lazy-selector-venues').lazySelector({selector:'venues', hideMultiSelector:true});
 });
 
 
@@ -934,6 +968,6 @@ $(document).on('ready', function () {
  * add lazy selector to api-explorer v1 (made by V.Menshutin)
  */
 $(document).on( "finishInit", function( event, flag ) {
-  $('#venueId').lazySelector('venues');
-  $('#attractionId').lazySelector('attractions');
+  $('#venueId').lazySelector({selector:'venues'});
+  $('#attractionId').lazySelector({selector:'attractions'});
 });
