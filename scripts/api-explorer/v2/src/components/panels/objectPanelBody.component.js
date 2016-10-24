@@ -6,11 +6,12 @@ function ObjectPanelBody(params) {
 	this.config = params.config;
 	this._panelName = params.data.key;
 	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
-	this.panelGroup = params.panelGroup;
+	this.panelGroup = params.panelGroup || {};
 	this.getMore = this.panelGroup.getMore;
 	this.pageParam = params.page && params.page.parameter;
 	this.collapseId = params.collapseId;
-	this._allInside = !!Object.getProp(ko.utils.unwrapObservable(this.config), '._CONFIG.allInside');
+	this._allInside = !!Object.getProp(ko.unwrap(this.config), '._CONFIG.allInside');
+	this.sortByConfig = this.panelGroup.sortByConfig;
 }
 
 ObjectPanelBody.prototype.onEnterKeyDown = function (model, event) {
@@ -18,7 +19,7 @@ ObjectPanelBody.prototype.onEnterKeyDown = function (model, event) {
 		var value = +event.currentTarget.value;
 		value = Number.isNaN(value) ? 0 : value;
 		var pageNumber = ~~value < 0 ? 0 : ~~value;
-		self.pageParam(pageNumber < ko.utils.unwrapObservable(self.data).totalPages ? pageNumber : ko.utils.unwrapObservable(self.data).totalPages - 1);
+		this.pageParam(pageNumber < ko.unwrap(this.data).totalPages ? pageNumber : ko.unwrap(this.data).totalPages - 1);
 		$('#api-exp-get-btn').trigger('click');
 	} else {
 		return true;
@@ -59,21 +60,20 @@ ObjectPanelBody.prototype.removeHandler = function () {
 	delete self.clipboard;
 };
 
-ObjectPanelBody.prototype.sortProps = function (a, b) {
-	console.log(a,b);
-};
-
 module.exports = ko.components.register('object-panel-body', {
 	viewModel:  ObjectPanelBody,
 	template:`
-		<section class="panel-body">
-			<!-- ko if: $component._panelName === 'image' -->
+		<section data-bind="css: {'all-inside': $component._allInside}" class="panel-body object-panel-body">
+			<!-- ko if: $component._panelName === 'object' && !!Object.getProp(ko.unwrap(data), '.ratio')-->
 				<img data-bind="attr: {src: ko.utils.unwrapObservable(data).url, alt: 'image-' + ko.utils.unwrapObservable(data).ratio}" alt="img" class="img img-thumbnail">
 			<!-- /ko -->
 			
-			<ul data-bind="foreachprop: data">
-				<li data-bind="css: {'allInside': $component._allInside}" class="clearfix pading">
+			<ul data-bind="foreachprop: {data: data, sortFn: $component.sortByConfig.bind($component)}">
+				<li data-bind="css: {'object': typeof value === 'object', 'primitive': typeof value !== 'object'}" class="clearfix pading">
+				
+					<!-- ko ifnot: typeof value === 'object' && $component._allInside -->
 					<span data-bind="text: typeof value === 'object' ? key: key + ':'" class="key"></span>
+					<!-- /ko -->
 					
 					<!-- ko ifnot: typeof value === 'object' || $component._panelName === 'page' && key === 'number' -->
 						<span data-bind="text: value" class="value"></span>
@@ -81,7 +81,7 @@ module.exports = ko.components.register('object-panel-body', {
 					
 					<!-- ko if: $component._panelName === 'page' && key === 'number'-->
 						<div class="form-inline">
-							<input id="pagination-input" data-bind="event: {keydown: $component.onEnterKeyDown}, attr: {placeholder: value}" type="text" pattern="[0-9]+" class="form-control">
+							<input id="pagination-input" data-bind="event: {keydown: $component.onEnterKeyDown.bind($component)}, attr: {placeholder: value}" type="text" pattern="[0-9]+" class="form-control">
 						</div>
 					<!-- /ko -->
 					
@@ -89,15 +89,12 @@ module.exports = ko.components.register('object-panel-body', {
 						<button data-bind="event: {mouseover: $component.copyValue, mouseout: $component.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': value.toString(), id: 'prop-value-' + key + $index()}" type="button" class="btn btn-icon btn-copy"></button>
 					<!-- /ko -->
 					
-					
-					<!-- ko if: typeof value === 'object' -->
-						<!-- ko if: $component._allInside -->
+						<!-- ko if: typeof value === 'object' && $component._allInside -->
 							<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
 						<!-- /ko -->
-						<!-- ko ifnot: $component._allInside -->
+						<!-- ko if: typeof value === 'object' && !$component._allInside -->
 							<button data-bind="click: $component.getMore.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
 						<!-- /ko -->
-					<!-- /ko -->
 				</li>
 			</ul>
 		</section>

@@ -1,3 +1,5 @@
+var clamp = require('../../../../vendors/clamp.min');
+
 /**
  * Main file for Api Explrer v2.0
  * For development please use Webpack to bundle all modules
@@ -5,19 +7,18 @@
  */
 // custom bindings
 require('../customBindings/foreachProp');
-
+require('../customBindings/blockEllipsis');
 // Modules
 var base = require('../modules/base');
 var apiKey = require('../modules/apikey');
 var ajaxService = require('../modules/ajaxService');
-var config = require('../modules/configService');
 
+var config = require('../modules/configService');
 // View Models
 var MenuViewModel = require('./menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
 var RequestsListViewModel = require('./requestsListViewModel');
-
 // Components
 require('../components/index');
 
@@ -42,9 +43,6 @@ function AppViewModel(obj) {
   this.URL = ko.computed(this.getUrl, this);
   this.sendButtonText = ko.pureComputed(this.getMethodName, this);
 	this.sharePath = ko.pureComputed(formDeepLinkingUrl, this);
-	this.sharePath.subscribe(function (val) {
-		console.log(val);
-	}, this);
   // sub-models
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);

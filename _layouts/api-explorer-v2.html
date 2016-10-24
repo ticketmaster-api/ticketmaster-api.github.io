@@ -223,7 +223,16 @@
 												<p data-bind="html: resHTML"></p>
 											</div>
 											<div data-bind="attr: {id: 'slider-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
-												<panel-group params="filter: $root.config, reqId: res.id, data: res.res, colorClass: color, sectionIndex: $index, getMore: $parent.getMore, url: $parent.url"></panel-group>
+												<panel-group params="
+													NEWDATA: $data,
+													reqId: res.id,
+													data: res.res,
+													filter: $root.config,
+													colorClass: color,
+													sectionIndex: $index,
+													getMore: $parent.getMore,
+													url: $parent.url">
+												</panel-group>
 											</div>
 										</div>
 									</div>

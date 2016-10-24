@@ -8,11 +8,13 @@ function ArrayPanelBody(params) {
 	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
 	this.panelGroup = params.panelGroup;
 	this.getMore = this.panelGroup.getMore;
+
 }
 
 ArrayPanelBody.prototype.getStartData = function ($data) {
 	return Object.getProp($data, 'dates.start.localDate') || ''
 };
+
 ArrayPanelBody.prototype.getVenueName = function ($data) {
 	return Object.getProp($data, '_embedded.venues[0].name') || ''
 };
@@ -21,7 +23,7 @@ ArrayPanelBody.prototype.getVenueName = function ($data) {
 module.exports = ko.components.register('array-panel-body', {
 	viewModel: ArrayPanelBody,
 	template:`
-		<section class="panel-body no-padding">
+		<section class="panel-body no-padding array-panel-body">
 			<ul data-bind="foreach: data" class="list-group">
 				<li class="list-group-item">
 				
@@ -30,7 +32,9 @@ module.exports = ko.components.register('array-panel-body', {
 					<!-- /ko -->
 					
 					<!-- ko ifnot: $component._panelName === 'images' -->
-						<span data-bind="text: name || '#' + $index()" class="name">event name</span>
+						<div class="name-wrapper">
+							<span data-bind="text: name || '#' + $index(), blockEllipsis: {clamp: 2}" class="name">label</span>
+						</div>			
 						
 						<!-- ko if: $component._panelName === 'events' -->
 							<div class="additional-info">
