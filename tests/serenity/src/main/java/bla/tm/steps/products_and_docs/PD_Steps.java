@@ -15,11 +15,6 @@ public class PD_Steps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        productsAndDocstPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (productsAndDocstPage.getTitleText(), productsAndDocstPage.pageHeader);
     }

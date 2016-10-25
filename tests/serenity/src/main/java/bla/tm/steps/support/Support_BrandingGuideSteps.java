@@ -15,11 +15,6 @@ public class Support_BrandingGuideSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        brandingGuidePage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (brandingGuidePage.getTitleText(), brandingGuidePage.pageHeader);
     }

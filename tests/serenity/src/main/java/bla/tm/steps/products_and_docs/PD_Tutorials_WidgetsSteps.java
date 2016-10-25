@@ -18,11 +18,6 @@ public class PD_Tutorials_WidgetsSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        tutorialsWidgetsPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (tutorialsWidgetsPage.getTitleText(), tutorialsWidgetsPage.pageHeader);
     }

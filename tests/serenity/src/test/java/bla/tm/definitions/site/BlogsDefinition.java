@@ -12,7 +12,6 @@ public class BlogsDefinition {
 
     @Given("open Blogs page")
     public void openBlogsPage() {
-        blogsPage.maximiseBrowserWindow();
         blogsPage.openPage();
     }
 

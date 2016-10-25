@@ -15,11 +15,6 @@ public class SupportSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        supportPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (supportPage.getTitleText(), supportPage.pageHeader);
     }

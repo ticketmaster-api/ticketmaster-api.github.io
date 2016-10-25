@@ -22,11 +22,6 @@ public class PD_SDKsSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        sDKsPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (sDKsPage.getTitleText(), sDKsPage.pageHeader);
     }

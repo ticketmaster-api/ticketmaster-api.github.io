@@ -20,11 +20,6 @@ public class PD_TutorialsSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        tutorialsPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (tutorialsPage.getTitleText(), tutorialsPage.pageHeader);
     }

@@ -19,7 +19,6 @@ public class PD_WidgetsDefinition {
 
     @Given("open Widgets page")
     public void openWidgetsPage() {
-        widgetsPage.maximiseBrowserWindow();
         widgetsPage.openPage();
     }
 

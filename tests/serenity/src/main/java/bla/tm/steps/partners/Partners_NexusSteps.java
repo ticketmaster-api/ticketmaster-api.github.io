@@ -13,11 +13,6 @@ public class Partners_NexusSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        nexusPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         nexusPage.checkGeneralPageElements(disqus, leftMenu);
     }

@@ -17,11 +17,6 @@ public class SearchSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        searchPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         searchPage.checkGeneralPageElements(disqus, leftMenu);
     }

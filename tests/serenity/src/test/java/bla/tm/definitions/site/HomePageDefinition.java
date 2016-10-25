@@ -24,7 +24,6 @@ public class HomePageDefinition {
 
     @Given("open Home page")
     public void openHomePage() {
-        homePage.maximiseBrowserWindow();
         homePage.openPage();
     }
 

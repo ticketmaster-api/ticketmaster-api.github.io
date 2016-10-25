@@ -20,7 +20,6 @@ public class PD_Tutorials_WidgetsDefinition {
 
     @Given("open Tutorials Widgets page")
     public void openTutorialsWidgetsPage() {
-        tutorialsWidgetsPage.maximiseBrowserWindow();
         tutorialsWidgetsPage.openPage();
     }
 

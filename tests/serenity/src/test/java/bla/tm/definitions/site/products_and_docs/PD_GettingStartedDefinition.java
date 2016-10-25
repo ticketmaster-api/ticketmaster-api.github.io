@@ -24,7 +24,6 @@ public class PD_GettingStartedDefinition {
     @Given("open Getting Started page")
     @When("open Getting Started page")
     public void openGettingStartedPage() {
-        gettingStartedPage.maximiseBrowserWindow();
         gettingStartedPage.openPage();
     }
 

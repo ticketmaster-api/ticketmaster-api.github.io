@@ -12,7 +12,6 @@ public class PD_OauthAPIDefinition {
 
     @Given("open Oauth API page")
     public void openOauthAPIPage() {
-        oauthPage.maximiseBrowserWindow();
         oauthPage.openPage();
     }
 

@@ -15,11 +15,6 @@ public class PD_OauthAPISteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        oauthLogPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (oauthLogPage.getTitleText(), oauthLogPage.pageHeader);
     }

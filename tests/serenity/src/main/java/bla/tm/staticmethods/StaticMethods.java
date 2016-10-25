@@ -2,7 +2,6 @@ package bla.tm.staticmethods;
 
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.interactions.Actions;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,11 +37,6 @@ public class StaticMethods {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void hoverToElement(WebElementFacade element){
-        Actions action = new Actions(getDriver());
-        action.moveToElement(element).build().perform();
     }
 
     public static String getEmbeddedCodeAttributeValue(String rawString, String attributeName){

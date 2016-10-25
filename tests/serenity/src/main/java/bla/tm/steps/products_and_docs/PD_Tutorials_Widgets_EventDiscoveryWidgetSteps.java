@@ -15,11 +15,6 @@ public class PD_Tutorials_Widgets_EventDiscoveryWidgetSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        tutorialsWidgetsEventDiscoveryWidgetPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (tutorialsWidgetsEventDiscoveryWidgetPage.getTitleText(), tutorialsWidgetsEventDiscoveryWidgetPage.pageHeader);
     }

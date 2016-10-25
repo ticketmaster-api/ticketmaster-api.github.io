@@ -21,16 +21,6 @@ public class PD_InternationalDiscoveryAPISteps {
     }
 
     @Step
-    public void closePage() {
-        internationalDiscoveryAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        internationalDiscoveryAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (internationalDiscoveryAPIPage.getTitleText(), internationalDiscoveryAPIPage.pageHeader);
     }

@@ -15,11 +15,6 @@ public class Partners_StartupsDevelopersSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        startupsDevelopersPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (startupsDevelopersPage.getTitleText(), startupsDevelopersPage.pageHeader);
     }

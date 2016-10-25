@@ -17,16 +17,6 @@ public class PD_InteractiveAPIConsoleSteps {
     }
 
     @Step
-    public void closePage() {
-        interactiveAPIConsolePage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        interactiveAPIConsolePage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (interactiveAPIConsolePage.getTitleText(), interactiveAPIConsolePage.pageHeader);
     }

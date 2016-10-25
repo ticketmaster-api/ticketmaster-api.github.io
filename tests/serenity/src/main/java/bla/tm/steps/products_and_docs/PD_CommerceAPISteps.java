@@ -22,16 +22,6 @@ public class PD_CommerceAPISteps {
     }
 
     @Step
-    public void closePage() {
-        commerceAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        commerceAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (commerceAPIPage.getTitleText(), commerceAPIPage.pageHeader);
     }

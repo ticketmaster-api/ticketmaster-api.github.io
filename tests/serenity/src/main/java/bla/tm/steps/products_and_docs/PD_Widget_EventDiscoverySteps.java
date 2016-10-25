@@ -16,16 +16,6 @@ public class PD_Widget_EventDiscoverySteps {
     }
 
     @Step
-    public void closePage() {
-        eventDiscoveryWidgetPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        eventDiscoveryWidgetPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (eventDiscoveryWidgetPage.getTitleText(), eventDiscoveryWidgetPage.pageHeader);
     }

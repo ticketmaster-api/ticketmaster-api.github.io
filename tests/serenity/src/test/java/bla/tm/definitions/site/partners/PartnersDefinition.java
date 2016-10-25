@@ -12,7 +12,6 @@ public class PartnersDefinition {
 
     @Given("open Partners page")
     public void openPartnersPage() {
-        partnersPage.maximiseBrowserWindow();
         partnersPage.openPage();
     }
 

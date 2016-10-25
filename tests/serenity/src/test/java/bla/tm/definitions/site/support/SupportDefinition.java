@@ -12,7 +12,6 @@ public class SupportDefinition {
 
     @Given("open Support page")
     public void openSupportPage() {
-        supportPage.maximiseBrowserWindow();
         supportPage.openPage();
     }
 

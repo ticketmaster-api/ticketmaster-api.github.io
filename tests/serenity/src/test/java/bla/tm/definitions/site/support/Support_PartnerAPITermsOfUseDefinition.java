@@ -12,7 +12,6 @@ public class Support_PartnerAPITermsOfUseDefinition {
 
     @Given("open Partner API Terms Of Use page")
     public void givenOpenPartnerAPITermsOfUsePage() {
-        partnerAPITermsOfUsePage.maximiseBrowserWindow();
         partnerAPITermsOfUsePage.openPage();
     }
 
