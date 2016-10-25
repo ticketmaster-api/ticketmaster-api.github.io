@@ -1,25 +1,36 @@
 /**
  * required to include: lazy-selector-modal.html
  *
- * availiable option : {enum:'attractions' , 'venues', ''}
+ * availiable option :
+ * {
+ *    selector: 'attractions' , 'venues', '',
+ *    hideMultiSelector: true, false
+ * }
  * $('.js_lazy-selector').lazySelector();
- * $('.js_lazy-selector-attractions').lazySelector('attractions');
- * $('.js_lazy-selector-venues').lazySelector('venues');
+ * $('.js_lazy-selector-attractions').lazySelector('{selector: 'attractions'});
+ * $('.js_lazy-selector-venues').lazySelector({selector:'venues', hideMultiSelector:true});
  */
 
 (function ($) {
+  var config = ['events', 'venues', 'attractions'],
+    tagsIds ={};
+
+  config.forEach(function (el) {
+    tagsIds[el] = [];
+  });
 
   $.fn.lazySelector = function (options) {
     var defaults = {},
         settings = $.extend({}, $.fn.lazySelector.defaults, options),
-        $iconButton = $('<a class="icon" id="get-event-by-Id-' + options + '" data-toggle="modal" data-target="#js_ls-modal" />');
+        $iconButton = $('<a class="icon" id="get-event-by-Id-' + options.selector + '" data-toggle="modal" data-target="#js_ls-modal" />');
 
     var stateConf = {
       pageIncrement: 0,
       loadingFlag: false
     };
 
-    var $modal = $('#js_ls-modal'),
+    var $input = $(this),
+			$modal = $('#js_ls-modal'),
       $form = $('#js_lazy-sel_form', $modal),
       $ul = $('#js_lazy-sel_list'),
       $liFooter = $('#load-more-box'),
@@ -27,15 +38,18 @@
       $btnGET = $modal.find('#js_ls-modal_btn'),
       btnCloseMap = $('.button-close-map', $modal),
       cssValidationClass = 'get-eventId_form-validation',
-      modalContent = $('.modal-content', $modal);
+      modalContent = $('.modal-content', $modal),
+      $msSelection = $('.ms-selection'),
+      $msList = $('.ms-list',$msSelection),
+      $msBtnUse = $('#js_ms-use-btn',$msSelection)
+      ;
 
     var keyword = $form.find('#keyword'),
       defaultApiKey = apiKeyService.getApiExploreKey(),
-      apikey = checkCookie() || $('#w-tm-api-key').val() || defaultApiKey,
-      selector = options || 'events',
-      eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json';
-
-    var $input = $(this);
+      apikey = apiKeyService.checkApiKeyCookie('tk-api-key') || $('#w-tm-api-key').val() || defaultApiKey,
+      selector = options.selector || 'events',
+      eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json'
+      ;
 
     function formatDate(date) {
       var result = '';
@@ -96,20 +110,17 @@
       }
     };
 
-
     /**
      * Init map google maps
      * @param lat - float
      * @param lng - float
      * @param address - not used @deprecated
      */
-    var map = null;
-    var markers = [];
+    var map = null, markers = [];
+
     var initMap = function (lat, lng) {
-    var mapEl = $('#js_ls-modal'),
+    	var modal = $modal,
         mapCenter = new google.maps.LatLng(lat || 55, lng || 43);
-      // geocoder = new google.maps.Geocoder(),
-      // latLng = (lat && lng ? {lat: lat, lng: lng} : new google.maps.LatLng(0, 0));
 
       if(map === null){
         // initialize map object
@@ -132,7 +143,6 @@
       // Adds a marker at the center of the map.
       addMarker(mapCenter);
 
-
       /*if (address){ // if there was address provided
        geocodeAddress(geocoder, map, address, function(result){ // geocode address and center the map
        latLng = result;
@@ -141,12 +151,12 @@
       //}
 
       // when map popup is shown
-      mapEl.on("shown.bs.modal", function () {
+      modal.on("shown.bs.modal", function () {
         // Recenter the map now that it's been redrawn
         google.maps.event.trigger(map, "resize");
         map.setCenter(mapCenter);
       });
-      mapEl.modal(); // show map popup
+      modal.modal(); // show map popup
     };
 
     // Adds a marker to the map and push to the array.
@@ -173,6 +183,58 @@
       btnCloseMap.hide(); // 'X' -button
     }
 
+    //remove duplicates from an array of strings
+    function unique(list) {
+      var result = [];
+      $.each(list, function(i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
+      });
+      return result;
+    }
+
+    function toggleTags() {
+			var indToRemove =[], 
+        inputValArray = $input.val().split(",");
+
+      $('li',$msList).each(function (i) {
+        var listItem = $(this),
+            id = listItem.data('selector-'+selector);
+
+        if(listItem.data('selector-'+selector)){
+					listItem.show();
+          if( jQuery.inArray( id, inputValArray ) === -1) {
+						indToRemove.push(id);
+            listItem.remove();
+          }
+        }else {
+          listItem.hide();
+        }
+      });
+
+      //filter by : [indToRemove]
+      tagsIds[selector] = tagsIds[selector].filter( function( el ) {
+        return !indToRemove.includes( el );
+      });
+
+		}
+
+    function toggleMsSelectionBox() {
+      // console.log('length' , $('li',$msList).length );
+      if($('li',$msList).length<1){
+        $msSelection.hide();
+        return;
+      }
+
+      $('li',$msList).each(function (i) {
+        var listItem = $(this);
+        if (listItem.data('selector-' + selector)) {
+          $msSelection.show();
+          return false;
+        }
+        else $msSelection.hide();
+      });
+    }
+
     /**
      * change <Load_More> button text
      * set data-selector gor "GET" button
@@ -183,10 +245,22 @@
         $('#js_ls-more_btn', $modal).text('SHOW MORE ' + selector);
       }
       if(selector === 'venues'){
-        $('.wrapper-list-group', $modal).addClass('low-height');
-      }else {
+				$('.wrapper-list-group', $modal).addClass('low-height');
+      }else{
         $('.wrapper-list-group', $modal).removeClass('low-height');
       }
+
+			if(options.hideMultiSelector) {
+				$msSelection.hide();
+				// console.log('hide $msSelection');
+			}else{
+				if($('li',$msList).length>0){
+					$msSelection.show(); // console.log('show $msList',$('li',$msList).length);
+				}
+        toggleTags();
+        toggleMsSelectionBox();
+			}
+
       $btnGET.attr('data-selector', selector);
     }
 
@@ -212,15 +286,13 @@
       listItems.remove();
       $hr.hide();
       $liFooter.hide();
-      /*$form.find('input').each(function(){
-         var $self = $(this);
-         if($self.attr('id','keyword')){
-         $self.val('');
-          }
-       });*/
 
       // Clear highlight
       $form.removeClass(cssValidationClass);
+
+      // Clear Listener, prevent memory leak
+      $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
+
     }
 
     /**
@@ -236,18 +308,15 @@
         ? eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val()
         : eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() + '&page=' + pageNumero;
 
-       // console.log('url : ', url);
-
       //stop load
       if (isNaN(pageNumero) && pageNumero !== 0 && stateConf.loadingFlag === 'STOP_LOAD') {
         renderResults(null, $ul);
-        // console.log('stateConf.loadingFlag - top', stateConf.loadingFlag);
         return false
       };
 
+			//stop load
       if (stateConf.loadingFlag === 'FINAL_PAGE') return false;
 
-      // console.log('ajax - start');
       $.ajax({
         dataType: 'json',
         async: true,
@@ -255,7 +324,6 @@
         data: $form.serialize()
       }).done(function (result) {
         if (result) {
-
           //last page reached
           if (stateConf.pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
             stateConf.loadingFlag = 'STOP_LOAD';
@@ -385,6 +453,9 @@
             .text('Use this ID')
             .appendTo(li)
             .wrap('<div class ="wrapper-btns text-right"/>');
+
+						var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
+						addMsButton( addToEl , item.id);
         }
 
       });
@@ -482,6 +553,8 @@
               //.appendTo(buttonSetId)
               .wrap('<div class ="wrapper-location_btn"/>');
           }
+          var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
+          addMsButton( addToEl , item.id);
         }
 
       });
@@ -518,7 +591,6 @@
         }
 
         if (item.dates) {
-          // console.log('item.dates' , item.dates);
           /*add time*/
           var currentEvent = {};
           currentEvent.date = {
@@ -529,7 +601,6 @@
 
           var time = formatDate(currentEvent.date);
           var eventTime = $('<h4 class="event-time gray"/>')
-          //.addClass('event-time')
             .text(time)
             .appendTo($wrapCol);
           /*add time end*/
@@ -600,6 +671,8 @@
               //.appendTo(buttonSetId)
               .wrap('<div class ="wrapper-location_btn"/>');
           }
+          var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
+          addMsButton( addToEl , item.id);
         }
 
       });
@@ -611,10 +684,6 @@
 
     var renderResults = function (data, ulElement) {
       var items;
-      /*items= (selector === 'events')
-       ? (data && data._embedded && data._embedded.events) ? data._embedded.events:['']
-       : (data && data._embedded && data._embedded.venues) ? data._embedded.venues:[''] ;*/
-      // console.log('selector * renderResults', selector , 'items' , items);
 
       function showMessage(element, message, /*optional*/clearList) {
         $btnGET.attr('disabled', false);
@@ -628,7 +697,6 @@
           .text(message)
           .appendTo(ulElement);
       }
-
 
       if (stateConf.loadingFlag === "FINAL_PAGE") return false; //exit if has reached last page
 
@@ -665,16 +733,13 @@
       }
 
       //hide scroll if recive less then 2 items
-      // if (data && data.page && data.page.totalElements <= 3) {
-      //   $ul.css({"overflowY": "hidden" , "width": "100%"});
-      // } else $ul.css({"overflowY": "scroll" , "width": "100%"});
       if (hasScrollBar($ul)) {
         $ul.removeClass('no-scroll');
       } else {
         $ul.addClass('no-scroll');
       }
 
-      // hide/show horisontal line and button <load more>
+      // hide/show horizontal line and button <load more>
       if (data && data.page && data.page.totalElements > 20) {
         $hr.show();
         $liFooter.show();
@@ -703,59 +768,108 @@
         btnCloseMap.show();
       });
 
-      $('.js_lazy-sel_btn').on('click', function (e) {
-        var selectedID = e.target.getAttribute('data-event');
-        $input.val(selectedID);
-        $input.attr('value', selectedID);
-        $input.trigger('change');  //update widget:
+      $('.js_lazy-sel_btn').on('click', setIdListener);
 
-        // Close dialog
-        $modal.modal('hide');
-      });
+      $( "#js_ls-modal" ).on( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
 
       //set availible <Get> button after load is finished
       $btnGET.attr('disabled', false);
 
     };
 
-    /**/
+    function addMsButton(el, data){
+			if(options.hideMultiSelector) return false;
 
-    function checkCookie() {
-      var userApiKey,
-          apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+			//add button <ADD to list>
+			var buttonAddIdToList = $("<button data-id=" + data + "/>")
+				.addClass('js_ms-add-list_btn btn btn-transparent')
+				.text('ADD to list')
+				.appendTo(el.li.find(el.buttonSetIdWrapper));
 
-      /*todo: delete me*/
-      function setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires="+d.toUTCString();
-        document.cookie = cname + "=" + cvalue + "; " + expires;
-      }
-      if (apiKeys != "") {
-        userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
-      }else {
-        /*todo: delete me*/
-        // apiKeys = JSON.parse("[" + window.atob( 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0' ) + "]"); //decode and convert string to array
-        // userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
-        // setCookie("tk-api-key", 'WyJWNHRQcGxaM1lKYXFwQUwzNFpJZ3ZYZ2Nxand1ZWttTiIsIjkyWVprT0poeWhvVmJNWkM1NDFsNHUwaDNNQnJ5U2lTIl0', 2);
-      }
-      return userApiKey;
+    }
+    function setIdListener(e){
+      var selectedID = e.target.getAttribute('data-event');
+      $input.val(selectedID);
+      $input.attr('value', selectedID);
+      $input.trigger('change');  //update widget:
+
+      // Close dialog
+      $modal.modal('hide');
+    }
+    function setIdsListener(e){
+      if ($btnGET.attr('data-selector') !== $iconButton.attr('data-selector')) return false;
+      var selectedID = tagsIds[selector];
+
+			// set isable=true to all items in tags-list
+			$('li',$msList)
+				.each(  function() { $(this).attr('data-isable',true)}  );
+
+      $input.val(selectedID)
+      	.attr('value', selectedID)
+      	.trigger('change');  //update widget:
+
+      // Close dialog
+      $modal.modal('hide');
     }
 
-    //get Cookie by name
-    function getCookie(cname) {
-      var name = cname + "=";
-      var ca = document.cookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length,c.length);
-        }
+    function claerByArrVal(selectedID, indToRemove) {
+      function mapAny(array) {
+        array.map(function (item) {
+          selectedID.splice(selectedID.indexOf(item), 1);
+        });
       }
-      return "";
+
+      if(selectedID.length >= indToRemove.length) {
+        mapAny(indToRemove);
+      }else{
+        mapAny(selectedID);
+      }
+    }
+
+    function delIdListener(event){
+      event.preventDefault();
+      var me = $( this ),
+        tagID = me.parents('li').data('selector-'+selector),
+        //isAble = me.parents('li').data('isable'),
+        selectedID = tagsIds[selector];
+      var indToRemove =[];
+
+      // console.group('___ indToRemove: ', indToRemove );
+      me.parents('li').remove();
+      indToRemove.push(tagID);
+      claerByArrVal(selectedID, indToRemove);
+
+      //update input values
+      $input.val(selectedID)
+        .attr('value', selectedID)
+        .trigger('change');  //update widget:
+
+      toggleMsSelectionBox();
+
+      // console.groupEnd('___ indToRemove: ', indToRemove );
+      // console.log('add delIdListener ' );
+    }
+
+    function addMsButtonListener(event){
+      event.preventDefault();
+      var me = $( this );
+      var title = me.parents('li').find('.list-group-item-heading','.event-text-wrapper').text();
+      // console.log('me ', me, '\n data-id', me.parents('li'));
+
+      var item = $('<li/>')
+        .addClass('ms-elem-selection')
+        .text(title)
+        .attr('data-selector-'+selector, me.data('id'))
+        .attr('data-isable',false)
+        .appendTo($msList);
+
+      var deleteBtn = $('<span/>')
+        .appendTo(item)
+        .on('click', item, delIdListener);
+
+      me.addClass('checked');
+      toggleMsSelectionBox();
+			tagsIds[selector].push(me.data('id')); // console.log( 'tagsIds[selector] ' , tagsIds[selector] );
     }
 
     // EVENTS
@@ -784,6 +898,8 @@
       }
     });
 
+    $msBtnUse.on('click', setIdsListener);
+
     //Close Map button
     btnCloseMap.on('click', closeMapListener);
 
@@ -795,21 +911,12 @@
       $btnGET.attr('disabled', true);
       loading('on');
       submitForm(stateConf.pageIncrement, eventUrl);
+
+      //Clear Listener, prevent memory leak
+      $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
     });
 
-    /*on scroll bottom of list*/
-    /*
-     $ul.on('scroll', function (elm){
-     //submitForm when go to bottom of list
-       if($form.get(0).checkValidity()) {
-         if (this.scrollTop + this.clientHeight == this.scrollHeight && stateConf.loadingFlag === 'KEEP_LOAD') {
-         stateConf.pageIncrement++;
-         $btnGET.attr('disabled', true);
-         loading('on');
-         submitForm(stateConf.pageIncrement);
-         }
-       }
-     });*/
+    //multiple selector events
 
     $form.on("keyup", function (e) {
       var input = $(e.target);
@@ -833,7 +940,6 @@
     });
 
     // Mobile devices. Force 'change' by 'Go' press
-
     $form.on("submit", function (e) {
       e.preventDefault();
     });
@@ -842,24 +948,48 @@
       resetForm();
       keyword.val('');//clear search input
       closeMapListener();
+
+			var indToRemove =[],
+        selectorBtn = $btnGET.data('selector'),
+        tagsArr = tagsIds[selectorBtn];
+
+
+      $( 'li' , $msList ).each( function(i) {
+				if ( $(this).data('isable') === false ){
+					indToRemove.push( $(this).data('selector-' + selectorBtn) );
+					$(this).remove();
+				}//else {}
+      });
+
+			// if(tagsArr.length >= indToRemove.length) {
+			// 	indToRemove.map(function (item) {
+      //    tagsArr.splice(tagsArr.indexOf(item), 1);
+			// 	});
+			// }
+
+        claerByArrVal(tagsArr, indToRemove);
+
+      if(selector === selectorBtn) {
+        $input.val(tagsArr)
+          .attr('value', tagsArr)
+          .trigger('change');  //update widget:
+        // console.log( '$input' , $input);
+      }
+
     });
 
     return this.each(function (i) {
       var $input = $(this);
 
-      init($input);  //console.log('$input', $input);
+      init($input);
 
       function init(input) {
-        if (selector !== 'events') {
-          $('.modal-title span', $modal).text(selector);
-          $('#js_ls-more_btn', $modal).text('SHOW MORE ' + selector);
-        }
         input.wrap('<div class="lazy-selector-wrapper"></div>');
         input.after($iconButton);
         $iconButton.attr('data-selector', selector);
 
-        $('#get-event-by-Id-' + options + '').on('click', changeModalTextListener);
-
+        $('#get-event-by-Id-' + options.selector + '').on('click', changeModalTextListener);
+        tagsIds[selector] = [];
       }
     });
 
@@ -868,12 +998,12 @@
 })(jQuery);
 
 /**
- * add lazy selector to Contdown widget
+ * add lazy selector to widgets
  */
 $(document).on('ready', function () {
-  $('.js_lazy-selector').lazySelector();
-  $('.js_lazy-selector-attractions').lazySelector('attractions');
-  $('.js_lazy-selector-venues').lazySelector('venues');
+  $('.js_lazy-selector').lazySelector({selector:'', hideMultiSelector:true});
+  $('.js_lazy-selector-attractions').lazySelector({selector: 'attractions'});
+  $('.js_lazy-selector-venues').lazySelector({selector:'venues'});
 });
 
 
@@ -881,6 +1011,6 @@ $(document).on('ready', function () {
  * add lazy selector to api-explorer v1 (made by V.Menshutin)
  */
 $(document).on( "finishInit", function( event, flag ) {
-  $('#venueId').lazySelector('venues');
-  $('#attractionId').lazySelector('attractions');
+  $('#venueId').lazySelector({selector:'venues'});
+  $('#attractionId').lazySelector({selector:'attractions'});
 });
