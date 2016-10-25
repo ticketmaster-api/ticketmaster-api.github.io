@@ -23,8 +23,6 @@ public class PD_ComerceAPIDefinition {
 
     @Given("open Commerce API page")
     public void openCommerceAPIPage() {
-        commerceAPIPage.closePage();
-        commerceAPIPage.maximiseBrowserWindow();
         commerceAPIPage.openPage();
     }
 

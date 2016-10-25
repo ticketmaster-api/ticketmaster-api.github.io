@@ -1,3 +1,5 @@
+var clamp = require('../../../../vendors/clamp.min');
+
 /**
  * Main file for Api Explrer v2.0
  * For development please use Webpack to bundle all modules
@@ -5,18 +7,18 @@
  */
 // custom bindings
 require('../customBindings/foreachProp');
-
+require('../customBindings/blockEllipsis');
 // Modules
 var base = require('../modules/base');
 var apiKey = require('../modules/apikey');
 var ajaxService = require('../modules/ajaxService');
 
+var config = require('../modules/configService');
 // View Models
 var MenuViewModel = require('./menuViewModel');
 var ParamsViewModel = require('./paramsViewModel');
 var MethodsViewModel = require('./methodsViewModel');
 var RequestsListViewModel = require('./requestsListViewModel');
-
 // Components
 require('../components/index');
 
@@ -25,25 +27,27 @@ require('../components/index');
  * @param obj {object} global data object
  */
 function AppViewModel(obj) {
-  var base = obj || {};
   self = this;
+  var base = obj || {};
+	var parsedUrl = parseUrl();
   this.apiKey = apiKey;
+	this.config = config;
 
   // observables
-  this.selectedCategory = ko.observable('');
-  this.selectedMethod = ko.observable('');
+  this.selectedCategory = ko.observable(parsedUrl.apiCategory || '');
+  this.selectedMethod = ko.observable(parsedUrl.methodId || '');
   this.selectedParams = ko.observableArray([]);
 	this.requests = ko.observableArray([]);
 
 	// computed
   this.URL = ko.computed(this.getUrl, this);
   this.sendButtonText = ko.pureComputed(this.getMethodName, this);
-
+	this.sharePath = ko.pureComputed(formDeepLinkingUrl, this);
   // sub-models
   this.menu = new MenuViewModel(base, this.selectedCategory);
   this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
   this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
-  this.requestsList = new RequestsListViewModel(this.requests, this.selectedParams);
+  this.requestsList = new RequestsListViewModel(this.requests, this.selectedParams, this.sharePath);
 }
 
 /**
@@ -104,3 +108,62 @@ ko.applyBindings(new AppViewModel(base));
  * exports global variable
  */
 module.exports = base;
+
+function formDeepLinkingUrl() {
+	var location = window.location;
+	var category = ko.utils.unwrapObservable(self.selectedCategory);
+	var method = ko.utils.unwrapObservable(self.selectedMethod);
+	var params = ko.utils.unwrapObservable(self.selectedParams);
+
+	var querys = [
+		'apiCategory=' + encodeURI(category),
+		'methodId='+ encodeURI(method.id)
+	];
+
+	params.map(function (param) {
+		var value = ko.utils.unwrapObservable(param.value);
+		var defaultValue = ko.utils.unwrapObservable(param.default);
+		querys.push([
+			param.name,
+			'=',
+			value !== '' ? value : defaultValue //todo: remove default from here when set up it in source like value by default
+		].join(''));
+		return param;
+	});
+
+	return [
+		location.origin,
+		location.pathname.replace(/\/$/gmi, ''),
+		'?',
+		querys.join('&')
+	].join('');
+}
+
+function parseUrl() {
+	var location = window.location.search;
+	if (location) {
+		var querys = location.replace(/^\?/g, '').split('&');
+		var obj = {
+			apiCategory: '',
+			methodId: '',
+			selectedParams: []
+		};
+
+		querys.map(function (e) {
+			var a = decodeURI(e).split('=');
+			var key = a[0];
+			var val = a[1];
+
+			if (key === 'apiCategory' || key === 'methodId') {
+				obj[key] = val;
+			} else {
+				obj.selectedParams.push({
+					name: key,
+					value: val
+				})
+			}
+		});
+		return obj;
+	}
+	return {};
+}

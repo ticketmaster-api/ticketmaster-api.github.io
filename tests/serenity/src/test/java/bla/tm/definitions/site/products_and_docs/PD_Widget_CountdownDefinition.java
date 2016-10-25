@@ -13,8 +13,6 @@ public class PD_Widget_CountdownDefinition {
     //Given
     @Given("open Countdown Widget page")
     public void openCountdownWidgetPage() {
-        countdownWidgetPage.closePage();
-        countdownWidgetPage.maximiseBrowserWindow();
         countdownWidgetPage.openPage();
     }
 

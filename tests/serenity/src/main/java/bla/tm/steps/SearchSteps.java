@@ -38,5 +38,4 @@ public class SearchSteps {
         searchPage.getSearchTextInput().sendKeys(Keys.ENTER);
         //searchPage.getSearchButton().click();
     }
-
 }

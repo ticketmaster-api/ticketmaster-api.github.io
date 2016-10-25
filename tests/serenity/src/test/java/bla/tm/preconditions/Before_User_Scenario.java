@@ -1,16 +1,16 @@
-//package bla.tm.preconditions;
-//
-//import bla.tm.steps.pantheon.UserLogInSteps;
-//import org.jbehave.core.annotations.BeforeScenario;
-//
-//public class Before_User_Scenario {
-//
-//    //UserLogInSteps stepsUserLogIn;
-//
-//    @BeforeScenario()
-//    public void beforeEachScenario (){
-//        System.out.println("There are some setting Before Scenario started");
-//
-//    }
-//
-//}
+package bla.tm.preconditions;
+
+import bla.tm.steps.AnyPageSteps;
+import net.thucydides.core.annotations.Steps;
+import org.jbehave.core.annotations.BeforeScenario;
+
+public class Before_User_Scenario {
+
+    @Steps
+    AnyPageSteps anyPageSteps;
+
+    @BeforeScenario()
+    public void beforeEachScenario (){
+        anyPageSteps.maximizeWindow();
+    }
+}

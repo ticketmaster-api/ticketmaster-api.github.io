@@ -23,8 +23,6 @@ public class PD_TopPicksAPIDefinition {
 
     @Given("open Top Picks API page")
     public void openTopPicksAPIPage() {
-        topPicksAPIPage.closePage();
-        topPicksAPIPage.maximiseBrowserWindow();
         topPicksAPIPage.openPage();
     }
 

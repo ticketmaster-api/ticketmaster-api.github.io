@@ -23,8 +23,6 @@ public class PD_Widget_EventDiscoveryDefinition {
 
     @Given("open Event Discovery Widget page")
     public void openEventDiscoveryWidgetPage() {
-        eventDiscoveryWidgetPage.closePage();
-        eventDiscoveryWidgetPage.maximiseBrowserWindow();
         eventDiscoveryWidgetPage.openPage();
     }
 

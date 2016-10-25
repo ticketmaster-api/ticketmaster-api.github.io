@@ -35,7 +35,7 @@ module.exports = function (observable, code) {
 			})
 	};
 	worker.onerror = function (event) {
-		console.log(event);
+		console.error(event);
 	};
 
 	worker.postMessage(code);

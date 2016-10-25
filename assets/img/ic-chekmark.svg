@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="14px" height="10px" viewBox="0 0 14 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: sketchtool 3.4.4 (395) - http://www.bohemiancoding.com/sketch -->
-    <title>ic_chekmark</title>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>6ACD0E81-F5B2-4E2E-94CC-142FCF36B343</title>
     <desc>Created with sketchtool.</desc>
     <defs></defs>
-    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-46.000000, -601.000000)" fill="#7ED321">
-            <path d="M59.2109091,602.9425 C59.2109091,603.16625 59.132,603.35625 58.9729091,603.5125 L52.8027273,609.5725 L51.642,610.71 C51.4829091,610.86625 51.2907273,610.945 51.0629091,610.945 C50.8363636,610.945 50.6429091,610.86625 50.4838182,610.71 L49.3243636,609.5725 L46.2392727,606.54125 C46.0801818,606.385 46,606.19625 46,605.9725 C46,605.75 46.0801818,605.56 46.2392727,605.40375 L47.3987273,604.265 C47.5578182,604.10875 47.7512727,604.03125 47.9778182,604.03125 C48.2043636,604.03125 48.3978182,604.10875 48.5569091,604.265 L51.0629091,606.735 L56.6527273,601.235 C56.8118182,601.07875 57.0065455,601 57.2318182,601 C57.4609091,601 57.6543636,601.07875 57.8134545,601.235 L58.9729091,602.37375 C59.132,602.53 59.2109091,602.72 59.2109091,602.9425" id="ic_chekmark" sketch:type="MSShapeGroup"></path>
+    <g id="Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-43.000000, -307.000000)" fill="#7ED321">
+            <g id="ic_chekmark" transform="translate(43.000000, 307.000000)">
+                <path d="M18.2109091,8.9425 C18.2109091,9.16625 18.132,9.35625 17.9729091,9.5125 L11.8027273,15.5725 L10.642,16.71 C10.4829091,16.86625 10.2907273,16.945 10.0629091,16.945 C9.83636364,16.945 9.64290909,16.86625 9.48381818,16.71 L8.32436364,15.5725 L5.23927273,12.54125 C5.08018182,12.385 5,12.19625 5,11.9725 C5,11.75 5.08018182,11.56 5.23927273,11.40375 L6.39872727,10.265 C6.55781818,10.10875 6.75127273,10.03125 6.97781818,10.03125 C7.20436364,10.03125 7.39781818,10.10875 7.55690909,10.265 L10.0629091,12.735 L15.6527273,7.235 C15.8118182,7.07875 16.0065455,7 16.2318182,7 C16.4609091,7 16.6543636,7.07875 16.8134545,7.235 L17.9729091,8.37375 C18.132,8.53 18.2109091,8.72 18.2109091,8.9425" id="ic_chekmark_green"></path>
+            </g>
         </g>
     </g>
 </svg>
