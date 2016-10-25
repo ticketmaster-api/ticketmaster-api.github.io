@@ -12,7 +12,6 @@ public class PD_Tutorials_EventSearch_SearchEventWithDiscoveryAPIDefinition {
 
     @Given("open Tutorials EventSearch SearchEventWithDiscoveryAPI page")
     public void openTutorialsEventSearchEventWithDiscoveryAPIPage() {
-        tutorialsEventSearchSearchEventWithDiscoveryAPIPage.maximiseBrowserWindow();
         tutorialsEventSearchSearchEventWithDiscoveryAPIPage.openPage();
     }
 

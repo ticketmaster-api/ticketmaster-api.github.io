@@ -12,7 +12,6 @@ public class EventsDefinition {
 
     @Given("open Events page")
     public void openEventsPage() {
-        eventsPage.maximiseBrowserWindow();
         eventsPage.openPage();
     }
 

@@ -12,7 +12,6 @@ public class Support_GeneralTermsOfUseDefinition {
 
     @Given("open General Terms Of Use page")
     public void givenOpenGeneralTermsOfUsePage() {
-        generalTermsOfUsePage.maximiseBrowserWindow();
         generalTermsOfUsePage.openPage();
     }
 

@@ -19,7 +19,6 @@ public class PD_TutorialsDefinition {
 
     @Given("open Tutorials page")
     public void openTutorialsPage() {
-        tutorialsPage.maximiseBrowserWindow();
         tutorialsPage.openPage();
     }
 

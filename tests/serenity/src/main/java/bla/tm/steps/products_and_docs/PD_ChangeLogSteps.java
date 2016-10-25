@@ -15,11 +15,6 @@ public class PD_ChangeLogSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        changeLogPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (changeLogPage.getTitleText(), changeLogPage.pageHeader);
     }

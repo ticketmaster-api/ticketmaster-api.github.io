@@ -21,16 +21,6 @@ public class PD_DealsAPISteps {
     }
 
     @Step
-    public void closePage() {
-        dealsAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        dealsAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (dealsAPIPage.getTitleText(), dealsAPIPage.pageHeader);
     }

@@ -22,16 +22,6 @@ public class PD_DiscoveryAPIv2Steps {
     }
 
     @Step
-    public void closePage() {
-        discoveryAPIv2Page.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        discoveryAPIv2Page.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (discoveryAPIv2Page.getTitleText(), discoveryAPIv2Page.pageHeader);
     }

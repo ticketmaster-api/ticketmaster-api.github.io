@@ -12,7 +12,6 @@ public class Partners_NexusDefinition {
 
     @Given("open Join The Nexus Program page")
     public void openNexusPage() {
-        nexusPage.maximiseBrowserWindow();
         nexusPage.openPage();
     }
 

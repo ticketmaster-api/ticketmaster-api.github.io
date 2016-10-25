@@ -12,7 +12,6 @@ public class Partners_CertifiedPartnersDefinition {
 
     @Given("open Certified Partners page")
     public void openCertifiedPartnersPage() {
-        certifiedPartnersPage.maximiseBrowserWindow();
         certifiedPartnersPage.openPage();
     }
 

@@ -21,16 +21,6 @@ public class PD_PartnerAPISteps {
     }
 
     @Step
-    public void closePage() {
-        partnerAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        partnerAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (partnerAPIPage.getTitleText(), partnerAPIPage.pageHeader);
     }

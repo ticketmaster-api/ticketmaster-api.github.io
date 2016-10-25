@@ -15,11 +15,6 @@ public class EventsSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        eventsPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         eventsPage.checkGeneralPageElements(disqus, leftMenu);
     }

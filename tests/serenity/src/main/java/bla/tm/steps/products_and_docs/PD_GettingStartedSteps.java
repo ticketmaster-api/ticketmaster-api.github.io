@@ -26,11 +26,6 @@ public class PD_GettingStartedSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        gettingStartedPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (gettingStartedPage.getTitleText(), gettingStartedPage.pageHeader);
     }

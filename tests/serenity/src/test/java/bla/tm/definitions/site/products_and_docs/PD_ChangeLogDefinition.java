@@ -12,7 +12,6 @@ public class PD_ChangeLogDefinition {
 
     @Given("open ChangeLog page")
     public void openChangeLogPage() {
-        changeLogPage.maximiseBrowserWindow();
         changeLogPage.openPage();
     }
 

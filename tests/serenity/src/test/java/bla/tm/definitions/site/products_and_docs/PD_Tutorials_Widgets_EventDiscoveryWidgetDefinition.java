@@ -12,7 +12,6 @@ public class PD_Tutorials_Widgets_EventDiscoveryWidgetDefinition {
 
     @Given("open Tutorials Widgets EventDiscoveryWidget page")
     public void openTutorialsWidgetsEventDiscoveryWidgetPage() {
-        tutorialsWidgetsEventDiscoveryWidgetPage.maximiseBrowserWindow();
         tutorialsWidgetsEventDiscoveryWidgetPage.openPage();
     }
 

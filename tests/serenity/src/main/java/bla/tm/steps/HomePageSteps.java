@@ -17,11 +17,6 @@ public class HomePageSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        homePage.maximisePageWindow();
-    }
-
-    @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         homePage.checkGeneralPageElements(disqus, leftMenu);
     }

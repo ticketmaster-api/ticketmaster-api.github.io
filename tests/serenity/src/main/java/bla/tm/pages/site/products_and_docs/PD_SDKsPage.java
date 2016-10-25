@@ -13,31 +13,22 @@ public class PD_SDKsPage extends AncestorPage {
 
     public final String pageHeader = "SDKs";
 
-//    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[1]/div/div/div/a")
-//    private WebElementFacade sdkJavaButton;
-//
-//    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[2]/div/div/div/a")
-//    private WebElementFacade sdkJavaScriptButton;
-//
-//    @FindBy(xpath = "//div[@id='main-block']/div[@class='content sdks']/div[3]/div/div/div/a")
-//    private WebElementFacade sdkScalaButton;
-
-    @FindBy(xpath = "//div[@class='front']/div/img[@src='/assets/img/products-and-docs/sdk-java-img-263.png']")
+    @FindBy(xpath = "//div/img[@src='/assets/img/products-and-docs/sdk-java-img-263.png']")
     private WebElementFacade sdkJavaImage;
 
-    @FindBy(xpath = "//div[@class='front']/div/img[@src='/assets/img/products-and-docs/sdk-js-logo.png']")
+    @FindBy(xpath = "//div/img[@src='/assets/img/products-and-docs/sdk-js-logo.png']")
     private WebElementFacade sdkJavaScriptImage;
 
-    @FindBy(xpath = "//div[@class='front']/div/img[@src='/assets/img/products-and-docs/sdk-scala-img-263.png']")
+    @FindBy(xpath = "//div/img[@src='/assets/img/products-and-docs/sdk-scala-img-263.png']")
     private WebElementFacade sdkScalaImage;
 
-    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'Java-SDK')]")
+    @FindBy(xpath = "//div[@class='back cardBack']/a[contains(h3,'Java-SDK')]")
     private WebElementFacade sdkJavaImageLink;
 
-    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'JavaScript-SDK')]")
+    @FindBy(xpath = "//div[@class='back cardBack']/a[contains(h3,'JavaScript-SDK')]")
     private WebElementFacade sdkJavaScriptImageLink;
 
-    @FindBy(xpath = "//div[@class='back']/a[contains(h3,'Scala-SDK')]")
+    @FindBy(xpath = "//div[@class='back cardBack']/a[contains(h3,'Scala-SDK')]")
     private WebElementFacade sdkScalaImageLink;
 
     public Map<String, WebElementFacade> getClickableElements() {

@@ -21,16 +21,6 @@ public class PD_InventoryStatusAPISteps {
     }
 
     @Step
-    public void closePage() {
-        inventoryStatusAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        inventoryStatusAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (inventoryStatusAPIPage.getTitleText(), inventoryStatusAPIPage.pageHeader);
     }

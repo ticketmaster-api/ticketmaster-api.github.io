@@ -25,16 +25,6 @@ public class PD_Widget_CountdownSteps {
     }
 
     @Step
-    public void closePage() {
-        countdownWidgetPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        countdownWidgetPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (countdownWidgetPage.getTitleText(), countdownWidgetPage.pageHeader);
     }

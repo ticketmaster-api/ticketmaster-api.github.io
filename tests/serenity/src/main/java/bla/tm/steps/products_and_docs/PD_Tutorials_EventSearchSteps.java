@@ -18,11 +18,6 @@ public class PD_Tutorials_EventSearchSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        tutorialsEventSearchPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (tutorialsEventSearchPage.getTitleText(), tutorialsEventSearchPage.pageHeader);
     }

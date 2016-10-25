@@ -15,11 +15,6 @@ public class Support_FAQSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        faqPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (faqPage.getTitleText(), faqPage.pageHeader);
     }

@@ -31,7 +31,7 @@ public class AnyPageSteps {
     }
 
     @Step
-    public void maximizeWindow(){
-        anyPage.maximisePageWindow();
+    public void quitBrowser(){
+        anyPage.getDriver().quit();
     }
 }

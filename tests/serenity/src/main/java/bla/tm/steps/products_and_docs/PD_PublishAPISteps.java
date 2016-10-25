@@ -21,16 +21,6 @@ public class PD_PublishAPISteps {
     }
 
     @Step
-    public void closePage() {
-        publishAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        publishAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (publishAPIPage.getTitleText(), publishAPIPage.pageHeader);
     }
