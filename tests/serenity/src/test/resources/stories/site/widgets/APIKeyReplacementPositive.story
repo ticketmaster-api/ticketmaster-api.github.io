@@ -1,4 +1,4 @@
-Meta:kb
+Meta:
 
 Narrative:
 As a test enfineer
