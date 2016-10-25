@@ -198,28 +198,23 @@
 
       $('li',$msList).each(function (i) {
         var listItem = $(this),
-          id = listItem.data('selector-'+selector);
+            id = listItem.data('selector-'+selector);
 
         if(listItem.data('selector-'+selector)){
 					listItem.show();
-
           if( jQuery.inArray( id, inputValArray ) === -1) {
-						// console.log('hide listItem' , id );
-						// console.log('tagsIds[selector][i]',tagsIds[selector][i] );
 						indToRemove.push(id);
             listItem.remove();
           }
         }else {
           listItem.hide();
         }
-
       });
 
       //filter by : [indToRemove]
       tagsIds[selector] = tagsIds[selector].filter( function( el ) {
         return !indToRemove.includes( el );
-      } );
-
+      });
 
 		}
 
@@ -233,7 +228,6 @@
       $('li',$msList).each(function (i) {
         var listItem = $(this);
         if (listItem.data('selector-' + selector)) {
-          // console.log( selector, '$msSelection.show' );
           $msSelection.show();
           return false;
         }
@@ -252,20 +246,19 @@
       }
       if(selector === 'venues'){
 				$('.wrapper-list-group', $modal).addClass('low-height');
-      }else {
+      }else{
         $('.wrapper-list-group', $modal).removeClass('low-height');
       }
 
 			if(options.hideMultiSelector) {
 				$msSelection.hide();
 				// console.log('hide $msSelection');
-			} else {
+			}else{
 				if($('li',$msList).length>0){
-					$msSelection.show();
-					// console.log('show $msList',$('li',$msList).length);
+					$msSelection.show(); // console.log('show $msList',$('li',$msList).length);
 				}
-					toggleTags();
-          toggleMsSelectionBox();
+        toggleTags();
+        toggleMsSelectionBox();
 			}
 
       $btnGET.attr('data-selector', selector);
@@ -598,7 +591,6 @@
         }
 
         if (item.dates) {
-          // console.log('item.dates' , item.dates);
           /*add time*/
           var currentEvent = {};
           currentEvent.date = {
@@ -609,7 +601,6 @@
 
           var time = formatDate(currentEvent.date);
           var eventTime = $('<h4 class="event-time gray"/>')
-          //.addClass('event-time')
             .text(time)
             .appendTo($wrapCol);
           /*add time end*/
@@ -706,7 +697,6 @@
           .text(message)
           .appendTo(ulElement);
       }
-
 
       if (stateConf.loadingFlag === "FINAL_PAGE") return false; //exit if has reached last page
 
@@ -822,33 +812,42 @@
       $modal.modal('hide');
     }
 
+    function claerByArrVal(selectedID, indToRemove) {
+      function mapAny(array) {
+        array.map(function (item) {
+          selectedID.splice(selectedID.indexOf(item), 1);
+        });
+      }
+
+      if(selectedID.length >= indToRemove.length) {
+        mapAny(indToRemove);
+      }else{
+        mapAny(selectedID);
+      }
+    }
+
     function delIdListener(event){
-      // console.log('add delIdListener ' );
       event.preventDefault();
       var me = $( this ),
         tagID = me.parents('li').data('selector-'+selector),
+        //isAble = me.parents('li').data('isable'),
         selectedID = tagsIds[selector];
-       // console.log('me > li', tagID );
-
-      me.parents('li').remove();
-
       var indToRemove =[];
+
+      // console.group('___ indToRemove: ', indToRemove );
+      me.parents('li').remove();
       indToRemove.push(tagID);
+      claerByArrVal(selectedID, indToRemove);
 
-      // console.log('___ splice: ', indToRemove );
-      // console.log('tagsIds[selector]',tagsIds[selector] , selector );
+      //update input values
+      $input.val(selectedID)
+        .attr('value', selectedID)
+        .trigger('change');  //update widget:
 
-      if(selectedID.length >= indToRemove.length) {
-        indToRemove.map(function (item) {
-          selectedID.splice(selectedID.indexOf(item), 1);
-        });
-      }else {
-        //update input values
-        $input.val(selectedID)
-          .attr('value', selectedID)
-          .trigger('change');  //update widget:
-      }
       toggleMsSelectionBox();
+
+      // console.groupEnd('___ indToRemove: ', indToRemove );
+      // console.log('add delIdListener ' );
     }
 
     function addMsButtonListener(event){
@@ -856,7 +855,6 @@
       var me = $( this );
       var title = me.parents('li').find('.list-group-item-heading','.event-text-wrapper').text();
       // console.log('me ', me, '\n data-id', me.parents('li'));
-      // console.log('title',title);
 
       var item = $('<li/>')
         .addClass('ms-elem-selection')
@@ -865,14 +863,13 @@
         .attr('data-isable',false)
         .appendTo($msList);
 
-      var deleteBtn = $('<span/>').appendTo(item);
-
-      deleteBtn.on('click', item, delIdListener);
+      var deleteBtn = $('<span/>')
+        .appendTo(item)
+        .on('click', item, delIdListener);
 
       me.addClass('checked');
       toggleMsSelectionBox();
-			tagsIds[selector].push(me.data('id'));
-
+			tagsIds[selector].push(me.data('id')); // console.log( 'tagsIds[selector] ' , tagsIds[selector] );
     }
 
     // EVENTS
@@ -953,21 +950,31 @@
       closeMapListener();
 
 			var indToRemove =[],
-        selector = $btnGET.data('selector'),
-        tagsArr = tagsIds[selector];
+        selectorBtn = $btnGET.data('selector'),
+        tagsArr = tagsIds[selectorBtn];
+
 
       $( 'li' , $msList ).each( function(i) {
-				if ( $(this).data('isable') === 'false' ){
-					indToRemove.push( $(this).data('selector-' + selector) );
+				if ( $(this).data('isable') === false ){
+					indToRemove.push( $(this).data('selector-' + selectorBtn) );
 					$(this).remove();
-				}
+				}//else {}
       });
 
-			if(tagsArr.length >= indToRemove.length) {
-				indToRemove.map(function (item) {
-          tagsArr.splice(tagsArr.indexOf(item), 1);
-				});
-			}
+			// if(tagsArr.length >= indToRemove.length) {
+			// 	indToRemove.map(function (item) {
+      //    tagsArr.splice(tagsArr.indexOf(item), 1);
+			// 	});
+			// }
+
+        claerByArrVal(tagsArr, indToRemove);
+
+      if(selector === selectorBtn) {
+        $input.val(tagsArr)
+          .attr('value', tagsArr)
+          .trigger('change');  //update widget:
+        // console.log( '$input' , $input);
+      }
 
     });
 
@@ -983,7 +990,6 @@
 
         $('#get-event-by-Id-' + options.selector + '').on('click', changeModalTextListener);
         tagsIds[selector] = [];
-
       }
     });
 
