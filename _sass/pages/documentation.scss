@@ -1000,7 +1000,10 @@
     margin-top: -45px;
     right: 67px;
     @media (max-width: 767px) {
-      right: 0px;
+      right: 0;
+    }
+    @media (max-width: 500px) {
+      margin-top: -32px;
     }
   }
   .raw-btn, .raw-btn-w {
@@ -1023,7 +1026,6 @@
 }
 
 .reqres-wrapper {
-  /*margin-bottom: $base-margin;*/
   position: relative;
 
   .highlight {
@@ -1075,11 +1077,19 @@
       color: $n3;
       background: #fff;
       outline: none;
+      @media (max-width: 500px) {
+        font-size: 0.9em;
+        padding: 0 9px;
+      }
       &:first-of-type {
         margin-left: 22px;
         margin-right: -8px;
         @media (max-width: 767px) {
           margin-left: 0;
+        }
+        @media (max-width: 500px) {
+          margin-right: -4px;
+          margin-left: 8px;
         }
       }
       &:focus,
@@ -1087,22 +1097,16 @@
         outline: none;
       }
       &:after {
-        content: " ";
+        content: "";
         position: relative;
-        color: red;
         border-bottom: 2px solid #f1f5f7;
-        margin: 0 -22px;
+        margin: 0 -5px;
         display: block;
       }
       &.active {
         color: $p1;
         &:after {
-          content: " ";
-          position: relative;
-          color: red;
           border-bottom: 2px solid #009cde;
-          margin: 0 -22px;
-          display: block;
         }
       }
     }
