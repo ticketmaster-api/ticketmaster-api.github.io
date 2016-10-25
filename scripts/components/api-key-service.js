@@ -43,11 +43,13 @@ var apiKeyService = {};
   };
 
   apiKeyService.checkApiKeyCookie = function (cookieSelector) {
-    var userApiKey,
-      apiKeys = JSON.parse("[" + window.atob(getCookie(cookieSelector)) + "]"); //decode and convert string to array
-    if (getCookie(cookieSelector) === "") {return null}
-    if (apiKeys != "") {
-      userApiKey = apiKeys[0][apiKeys[0].length-1]; //convert to array
+    var key = getCookie("tk-api-key");
+    if (!key) {return;}
+
+    var userApiKey;
+    var apiKeys = JSON.parse("[" + window.atob(key) + "]"); //decode and convert string to array
+    if (apiKeys && apiKeys.length && apiKeys[0].length) {
+      userApiKey = apiKeys[0][apiKeys[0].length - 1];
     }
     return userApiKey;
   };
