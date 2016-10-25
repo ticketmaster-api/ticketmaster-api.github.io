@@ -8,8 +8,13 @@ public class After_User_Scenario {
     @Steps
     AnyPageSteps anyPageSteps;
 
-    @AfterScenario(uponOutcome=AfterScenario.Outcome.FAILURE)
-    public void afterFailedScenario() {
+//    @AfterScenario(uponOutcome=AfterScenario.Outcome.FAILURE)
+//    public void afterFailedScenario() {
+//        anyPageSteps.quitBrowser();
+//    }
+
+    @AfterScenario()
+    public void quitBrowser() {
         anyPageSteps.quitBrowser();
     }
 
