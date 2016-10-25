@@ -123,12 +123,18 @@
           font-family: $font-lead-bold;
           font-size: $size-h6;
           margin: 0px 5px 5px 0px;
+          position: relative;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          max-width: 320px;
           span{
             width: 10px;
             height: 10px;
             position: absolute;
             margin-left: 5px;
             margin-top: 3px;
+            right: 12px;
             &:after{
               content: '';
               height: 10px;

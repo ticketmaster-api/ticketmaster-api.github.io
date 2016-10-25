@@ -193,12 +193,12 @@
     }
 
     function toggleTags() {
-			var indToRemove =[];
+			var indToRemove =[], 
+        inputValArray = $input.val().split(",");
 
       $('li',$msList).each(function (i) {
         var listItem = $(this),
-          id = listItem.data('selector-'+selector),
-        inputValArray = $input.val().split(",");
+          id = listItem.data('selector-'+selector);
 
         if(listItem.data('selector-'+selector)){
 					listItem.show();
@@ -240,6 +240,7 @@
         else $msSelection.hide();
       });
     }
+
     /**
      * change <Load_More> button text
      * set data-selector gor "GET" button
@@ -296,8 +297,7 @@
       // Clear highlight
       $form.removeClass(cssValidationClass);
 
-      // Clear Listener
-      // console.log('Clear Listener : addMsButtonListener');
+      // Clear Listener, prevent memory leak
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
 
     }
@@ -820,14 +820,14 @@
 
       // Close dialog
       $modal.modal('hide');
-
     }
 
     function delIdListener(event){
-      console.log('add delIdListener ' );
+      // console.log('add delIdListener ' );
       event.preventDefault();
       var me = $( this ),
-        tagID = me.parents('li').data('selector-'+selector);
+        tagID = me.parents('li').data('selector-'+selector),
+        selectedID = tagsIds[selector];
        // console.log('me > li', tagID );
 
       me.parents('li').remove();
@@ -838,17 +838,17 @@
       // console.log('___ splice: ', indToRemove );
       // console.log('tagsIds[selector]',tagsIds[selector] , selector );
 
-      if(tagsIds[selector].length >= indToRemove.length) {
+      if(selectedID.length >= indToRemove.length) {
         indToRemove.map(function (item) {
-          tagsIds[selector].splice(tagsIds[selector].indexOf(item), 1);
+          selectedID.splice(selectedID.indexOf(item), 1);
         });
+      }else {
+        //update input values
+        $input.val(selectedID)
+          .attr('value', selectedID)
+          .trigger('change');  //update widget:
       }
-
       toggleMsSelectionBox();
-
-      // console.log('me > li  length: ', me.parents('li').length );
-      // console.log('tagsIds[selector]',tagsIds[selector] , selector );
-      //toDO: check for deleted items
     }
 
     function addMsButtonListener(event){
@@ -903,7 +903,6 @@
 
     $msBtnUse.on('click', setIdsListener);
 
-
     //Close Map button
     btnCloseMap.on('click', closeMapListener);
 
@@ -915,8 +914,8 @@
       $btnGET.attr('disabled', true);
       loading('on');
       submitForm(stateConf.pageIncrement, eventUrl);
-      //Clear Listener
-      // console.log('Clear Listener : addMsButtonListener');
+
+      //Clear Listener, prevent memory leak
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
     });
 
@@ -970,10 +969,6 @@
 				});
 			}
 
-      // console.log('tagsArr.length',tagsArr.length , 'val-> ', $input.val());
-      // console.log('tagsArr',tagsArr );
-
-
     });
 
     return this.each(function (i) {
@@ -1000,9 +995,9 @@
  * add lazy selector to widgets
  */
 $(document).on('ready', function () {
-  $('.js_lazy-selector').lazySelector({selector:''});
+  $('.js_lazy-selector').lazySelector({selector:'', hideMultiSelector:true});
   $('.js_lazy-selector-attractions').lazySelector({selector: 'attractions'});
-  $('.js_lazy-selector-venues').lazySelector({selector:'venues', hideMultiSelector:true});
+  $('.js_lazy-selector-venues').lazySelector({selector:'venues'});
 });
 
 
