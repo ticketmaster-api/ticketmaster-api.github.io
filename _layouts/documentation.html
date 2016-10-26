@@ -55,6 +55,8 @@ layout: default
     <textarea name="copy-clip" id="copy-clip" class="copy-clip"></textarea>
 </div>
 
+<script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/clipboard-fallback.js" | prepend: site.baseurl }}"></script>
 <script src="{{site.baseurl }}/scripts/components/parser.js"></script>
 <script src="{{"/scripts/vendors/user-scroll-disabler.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
@@ -77,9 +79,6 @@ layout: default
 	(d.head || d.body).appendChild(s);
 })();
 </script>
-
-<script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
-<script>new Clipboard('.copy-btn');</script>
 
 {% if page.categories contains "replace_apikey" %}
 <script>
