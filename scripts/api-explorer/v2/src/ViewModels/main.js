@@ -6,8 +6,8 @@ var clamp = require('../../../../vendors/clamp.min');
  * It can be made using npm scripts cmd - 'webpack'
  */
 // custom bindings
-require('../customBindings/foreachProp');
-require('../customBindings/blockEllipsis');
+require('../customBindings/index');
+
 // Modules
 var base = require('../modules/base');
 var apiKey = require('../modules/apikey');
@@ -38,6 +38,7 @@ function AppViewModel(obj) {
   this.selectedMethod = ko.observable(parsedUrl.methodId || '');
   this.selectedParams = ko.observableArray([]);
 	this.requests = ko.observableArray([]);
+	this.onError = ko.observable({});
 
 	// computed
   this.URL = ko.computed(this.getUrl, this);
@@ -54,7 +55,7 @@ function AppViewModel(obj) {
  * Send request method
  */
 AppViewModel.prototype.onClickSendBtn = function () {
-  ajaxService(this.URL(), this.requests, base);
+  ajaxService(this.URL(), this.requests, this.onError, base);
 };
 
 /**
@@ -82,16 +83,13 @@ AppViewModel.prototype.getUrl = function () {
  * @returns {*[]}
  */
 Object.getProp = function(o, s) {
-	if (typeof o !== 'object' || !s) {
-		console.log(o,s);
-		return;
-	}
+	if ((typeof o !== 'object' || o == null) && !s) {return;}
 	s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
 	s = s.replace(/^\./, '');           // strip a leading dot
 	var a = s.split('.');
 	for (var i = 0, n = a.length; i < n; ++i) {
 		var k = a[i];
-		if (k in o) {
+		if (o && k in o) {
 			o = o[k];
 		} else {
 			return;
