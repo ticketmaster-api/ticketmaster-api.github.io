@@ -19,6 +19,81 @@
     tagsIds[el] = [];
   });
 
+  /**
+   * mediator pattern
+   * currently not used
+   * */
+  /*Storage*/
+  function TagsBox() { }
+  TagsBox.prototype =
+  {
+    constructor: TagsBox,
+
+    getTag: function ()
+    {
+      if (!ms_tagsIds.takeOneTag())
+      {
+        console.log("TagsBox: Who the hell drank all my beer?");
+        return false;
+      }
+
+      console.log("TagsBox: Yeeah! My beer!");
+      ms_tagsIds.oneBeerHasGone();
+      return true;
+    },
+    addTag: function ()
+    {
+      if (!ms_tagsIds.takeOneTag())
+      {
+        console.log("TagsBox: Who take all my tags?");
+        return false;
+      }
+
+      console.log("TagsBox: Yeeah! My tag!");
+      ms_tagsIds.addOneTag();
+      return true;
+    },
+    argue_back: function () { console.log("TagsBox: it's my last tag, for shure!"); }
+  }
+
+  /*refrigerator , stash*/
+  function msStorage(tags_count)
+  {
+    this._tags_count = tags_count;
+  }
+  msStorage.prototype =
+  {
+    constructor: msStorage,
+
+    takeOneTag: function ()
+    {
+      if (this._tags_count == 0) return false;
+      this._tags_count--;
+      return true;
+    },
+    addOneTag: function (){ this.refrigerator.addOneTag(); }
+  };
+
+  var ms_tagsIds =
+  {
+    tagsBox: new TagsBox(),
+    // mammy: new Mammy(),
+    refrigerator: new msStorage(3),
+    stash: new msStorage(2),
+
+    takeOneTag: function ()
+    {
+      if (this.refrigerator.takeOneTag()) return true;
+      if (this.stash.takeOneTag()) return true;
+
+      return false
+    },
+    oneBeerHasGone: function (){ /*this.mammy.argue();*/ },
+    addOneTag: function (){ this.refrigerator.addOneTag(); },
+    disputeStarted: function (){ this.tagsBox.argue_back(); }
+  };
+  /*mediator pattern END*/
+
   $.fn.lazySelector = function (options) {
     var defaults = {},
         settings = $.extend({}, $.fn.lazySelector.defaults, options),
@@ -26,7 +101,8 @@
 
     var stateConf = {
       pageIncrement: 0,
-      loadingFlag: false
+      loadingFlag: false,
+      setSingleVal: false
     };
 
     var $input = $(this),
@@ -792,7 +868,7 @@
       $input.val(selectedID);
       $input.attr('value', selectedID);
       $input.trigger('change');  //update widget:
-
+      stateConf.setSingleVal = true;
       // Close dialog
       $modal.modal('hide');
     }
@@ -944,7 +1020,7 @@
       e.preventDefault();
     });
 
-    $modal.on('hidden.bs.modal', function (e) {
+    $modal.on('hidden.bs.modal', function (e,val1) {
       resetForm();
       keyword.val('');//clear search input
       closeMapListener();
@@ -967,14 +1043,19 @@
 			// 	});
 			// }
 
-        claerByArrVal(tagsArr, indToRemove);
+      claerByArrVal(tagsArr, indToRemove);
 
-      if(selector === selectorBtn) {
+      //console.log( 'stateConf.setSingleVal:' , stateConf.setSingleVal);
+      // console.log( 'selector' , selector , 'selectorBtn' , selectorBtn);
+
+      if(selector === selectorBtn && !stateConf.setSingleVal) {
         $input.val(tagsArr)
           .attr('value', tagsArr)
           .trigger('change');  //update widget:
-        // console.log( '$input' , $input);
+        //console.log(  selectorBtn , 'clear $input' , $input.val());
+        stateConf.setSingleVal = false;
       }
+
 
     });
 
