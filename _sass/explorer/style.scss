@@ -88,6 +88,19 @@
     }
   }
 
+	.dt-ico {
+	    position: absolute;
+		  top: 9px;
+		  right: 21px;
+		  display: block;
+		  width: 30px;
+		  height: 30px;
+		  background: url('../..//assets/img/api-explorer/ic-calendar.svg') center center no-repeat;
+		  &:hover {
+				cursor: pointer;
+			}
+	}
+
   #title {
     #selected-method-name{
       min-height: $line-height-h2;

@@ -34,11 +34,11 @@ var CellWidth = 36;// width of day cell.
 var TimeMode = 24;// TimeMode value. 12 or 24
 var StartYear = parseInt(new Date().getFullYear()); //First Year in drop down year selection
 var EndYear = 5; // The last year of pickable date. if current year is 2011, the last year that still picker will be 2016 (2011+5)
-var CalPosOffsetX = -1; //X position offset relative to calendar icon, can be negative value
-var CalPosOffsetY = 0; //Y position offset relative to calendar icon, can be negative value
+var CalPosOffsetX = -227; //X position offset relative to calendar icon, can be negative value
+var CalPosOffsetY = -247; //Y position offset relative to calendar icon, can be negative value
 var showMonthInHead = "display:none;";
 //Configurable parameters start
-var SpanBorderColor = "#a9b3ba";//span border color
+var SpanBorderColor = "#cccccc";//span border color
 var SpanBgColor = "#FFFFFF"; //span background color
 var MonthYearColor = "#cc0033"; //Font Color of Month and Year in Calendar header.
 var WeekHeadColor = "#b7c9d3"; //var WeekHeadColor="#18861B";//Background Color in Week header.
@@ -551,7 +551,7 @@ function RenderCssCal(bNewCal)
 	// Set the default cursor for the calendar
 
 	winCalData = "<span style='cursor:auto;'>";
-	vCalHeader = "<table style='background-color:"+CalBgColor+";width:auto;padding:0;margin:5px;border:none;'><tbody>";
+	vCalHeader = "<table style='background-color:"+CalBgColor+";width:auto;padding:0;margin:5px 5px 5px 4px;border:none;'><tbody>";
 
 	//Table for Month & Year Selector
 
@@ -857,7 +857,7 @@ function RenderCssCal(bNewCal)
 		// add stylesheet to the span cal
 
 		cssStr = ".calTD {text-align: center; border:0; width:36px; height:36px; border-radius:50%}\n";
-		cssStr += "#calBorder {font-size: 14px;}\n";
+		cssStr += "#calBorder {font-size: 14px; border-radius:0px 0px 4px 4px}\n";
 		cssStr += ".calR {text-align: center; font-weight: bold;"+showMonthInHead+"}\n";
 		cssStr += "#calBorder table, #calBorder table th, #calBorder table td {margin:0; padding:0; border-spacing:0; border-collapse:collapse; border:0; box-sizing:border-box;}\n";
 		cssStr += "#calBorder input, #calBorder select {height:auto;}\n";
@@ -887,7 +887,7 @@ function RenderCssCal(bNewCal)
 		span.style.left = (xpos + CalPosOffsetX) + 'px';
 		span.style.top = (ypos - CalPosOffsetY) + 'px';
 		span.style.width = CalWidth + 'px';
-		span.style.border = "solid 1pt " + SpanBorderColor;
+		span.style.border = "solid 1px " + SpanBorderColor;
 		span.style.padding = "0";
 		span.style.cursor = "move";
 		span.style.backgroundColor = SpanBgColor;
@@ -1205,6 +1205,18 @@ function selectDate(element, date) {
     RenderCssCal();
 }
 
+function findPos(obj) {
+	var curleft = 0, curtop = 0;
+	if (obj.offsetParent) {
+		do {
+			curleft += obj.offsetLeft;
+			curtop += obj.offsetTop;
+		} while (obj = obj.offsetParent);
+		return { x: curleft, y: curtop };
+	}
+	return undefined;
+}
+
 function pickIt(evt)
 {
 	var objectID,
@@ -1215,6 +1227,7 @@ function pickIt(evt)
 	if (document.addEventListener)
 	{ // w3c
 		objectID = evt.target.id;
+		/*
 		if (objectID.indexOf(calSpanID) !== -1)
 		{
 			dom = document.getElementById(objectID);
@@ -1227,10 +1240,15 @@ function pickIt(evt)
 				cnTop = (cnTop - dom.offsetTop);
 			}
 		}
-
+		*/
 		// get mouse position on click
+		/*
 		xpos = (evt.pageX);
 		ypos = (evt.pageY);
+		*/
+		xpos = findPos(evt.target).x;
+		ypos = findPos(evt.target).y;
+
 	}
 
 	else
@@ -1345,5 +1363,7 @@ function dropIt()
 // Default events configuration
 
 document.onmousedown = pickIt;
+/*
 document.onmousemove = dragIt;
 document.onmouseup = dropIt;
+*/
