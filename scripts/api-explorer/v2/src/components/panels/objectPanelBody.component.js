@@ -86,7 +86,7 @@ module.exports = ko.components.register('object-panel-body', {
 					<!-- /ko -->
 					
 					<!-- ko if: $component.canBeCopied.call($data, '#prop-value-' + key + $index()) -->
-						<button data-bind="event: {mouseover: $component.copyValue, mouseout: $component.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': value.toString(), id: 'prop-value-' + key + $index()}" type="button" class="btn btn-icon btn-copy"></button>
+						<button data-bind="event: {mouseover: $component.copyValue, mouseout: $component.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': value.toString(), id: 'prop-value-' + key + $index()}, popover: {type: 'tooltip', title: 'Copy value'}" type="button" class="btn btn-icon btn-copy"></button>
 					<!-- /ko -->
 					
 						<!-- ko if: typeof value === 'object' && $component._allInside -->

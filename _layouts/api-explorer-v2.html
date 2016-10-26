@@ -5,6 +5,8 @@
 <div id="spinner hide"></div>
 {% include home-header.html %}
 
+<error-pop-up params="onError: onError"></error-pop-up>
+
 <div id="api-explorer-v2" class="api-explorer-v2">
 	<div class="row-container api-exp-content">
 		<!--page header-->
@@ -162,7 +164,7 @@
 			<section class="row-container api-exp-request-list-headline">
 				<h4 class="title">Request list</h4>
 				<div class="headline-edit">
-					<button data-bind="click: onClearRequests" class="btn btn-icon btn-clear" type="button"></button>
+					<button data-bind="click: onClearRequests, popover: {type: 'tooltip', title: 'Clear requests history'}" class="btn btn-icon btn-clear" type="button"></button>
 				</div>
 			</section>
 
@@ -173,28 +175,45 @@
 
 						<section class="row-container request" data-bind="attr: {id: $parent.getStr('heading', $index)}" role="tab">
 							<div class="edit-controls">
-								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler}, css: {'copied': copiedForShare}, attr: {'data-clipboard-text': $parent.sharePath}" class="btn btn-icon btn-share" type="button"></button>
-								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler}, css: {'copied': copiedUrl}, attr: {'data-clipboard-text': req}" class="btn btn-icon btn-copy" type="button"></button>
-								<button data-bind="click: $parent.getRawData" class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="View Raw" data-original-title="View Raw"></button>
+								<button data-bind="popover: {type: 'tooltip', title: 'Repeat settings of this request'}"
+								        class="btn btn-icon btn-preset"
+								        type="button"></button>
+								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler},
+																	css: {'copied': copiedForShare}, attr: {'data-clipboard-text': $parent.sharePath},
+																	popover: {type: 'tooltip', title: 'Copy request share link'}"
+								        class="btn btn-icon btn-share"
+								        type="button"></button>
+								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler},
+																	popover: {type: 'tooltip',title: 'Copy request URL'},
+																	css: {'copied': copiedUrl},
+																	attr: {'data-clipboard-text': req}"
+								        class="btn btn-icon btn-copy"
+								        type="button"></button>
+								<button data-bind="click: $parent.getRawData,
+																	popover: {type: 'tooltip', title: 'Show raw response data'}"
+								        class="btn btn-icon btn-raw"
+								        type="button"
+								        data-toggle="tooltip"></button>
 							</div>
 							<div class="panel-title">
-								<button class="btn btn-icon shevron shevron-up view-control"
+								<!-- ko if: !!$data.res -->
+								<button class="btn btn-icon shevron shevron-up blue view-control"
 								        type="button"
 								        data-bind="click: $parent.getDetails,
-								                    attr: {
-							                        id: $parent.getStr('show-details', $index),
-								                      'data-target': $parent.getStr('#collapse', $index),
-							                        'aria-controls': $parent.getStr('collapse', $index)
-						                        }"
+								        attr: {id: $parent.getStr('show-details', $index),'data-target': $parent.getStr('#collapse', $index),'aria-controls': $parent.getStr('collapse', $index)}"
 								        data-toggle="collapse"
 								        data-parent="#response"
 								        aria-expanded="false">
 								</button>
+								<!-- /ko -->
+								<!-- ko if: !$data.res -->
+								<button data-bind="popover: {type: 'popover', trigger: 'click', data: error}" class="btn btn-icon btn-alert view-control"></button>
+								<!-- /ko -->
 							</div>
 							<span data-bind="css: color" class="color-indicator view-control"></span>
 							<p data-bind="text: req" class="item_text"></p>
 						</section>
-
+						<!-- ko if: !!$data.res -->
 						<section class="response collapse" data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}" role="tabpanel">
 							<div class="row">
 								<div class="container">
@@ -224,7 +243,6 @@
 											</div>
 											<div data-bind="attr: {id: 'slider-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
 												<panel-group params="
-													NEWDATA: $data,
 													reqId: res.id,
 													data: res.res,
 													filter: $root.config,
@@ -239,6 +257,7 @@
 								</div>
 							</div>
 						</section>
+						<!-- /ko-->
 					</li>
 				</ul>
 			</section>

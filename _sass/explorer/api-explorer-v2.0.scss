@@ -28,11 +28,12 @@ $img-calendar: '../assets/img/api-explorer/ic-calendar.svg';
 $img-id: '../assets/img/api-explorer/ic-id.svg';
 $img-share: '../assets/img/api-explorer/ic-share.svg';
 $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
+$img-parameters: '../assets/img/ic-parameters.svg';
 $img-arrows-left: '../assets/img/arrows-left-small.svg';
 $img-arrows-right: '../assets/img/arrows-right-small.svg';
 $img-green-checkmark: '../assets/img/ic-chekmark.svg';
-$img-green-error: '../assets/img/ic-allert-red.svg';
-
+$img-alert: '../assets/img/ic-allert-red.svg';
+$img-attention: '../assets/img/ic-attention.svg';
 
 @mixin column-color($color, $opacity: 0.7) {
 	border-color: rgba($color, $opacity);
@@ -97,6 +98,101 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 	&[aria-expanded="true"],
 	[aria-expanded="true"] > & {
 		@include rotate(180deg);
+	}
+}
+.error-pop-up {
+	width: 420px;
+	min-height: 246px;
+	padding: 30px;
+	.modal-header {
+		padding: 0;
+		overflow: hidden;
+	}
+	.error-title {
+		font: {
+			size: 24px;
+			weight: bold;
+			style: normal;
+			stretch: normal;
+		}
+		line-height: 1.33;
+		text-align: center;
+		color: #d0021b;
+		margin: 14px auto;
+	}
+	.modal-body {
+		padding: 8px;
+		.error-details {
+			font-size: 16px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1.5;
+			text-align: center;
+			color: #768692;
+			margin: 0 0 5px;
+		}
+	}
+	.modal-footer {
+		.btn-accept {
+			width: 164px;
+			height: 48px;
+			border-radius: 4px;
+			background-color: #009cde;
+			display: block;
+			margin: auto;
+			font: {
+				size: 16px;
+				weight: bold;
+				style: normal;
+				stretch: normal;
+			}
+			line-height: 1.5;
+			letter-spacing: 0.8px;
+			text-align: center;
+			color: #ffffff;
+		}
+	}
+}
+.popover {
+	opacity: 0.9;
+	border-radius: 4px;
+	background-color: #7356a5;
+	&-title {
+		padding: 8px 14px 8px 50px;
+		position: relative;
+		font-size: 16px;
+		font-weight: bold;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1.5;
+		color: #ffffff;
+		background: none;
+		border: none;
+		&:before {
+			content: '';
+			width: 22px;
+			height: 22px;
+			position: absolute;
+			top: 10px;
+			left: 13px;
+			background: {
+				image: url($img-attention);
+				repeat: no-repeat;
+				position: 50% 50%;
+			}
+		}
+	}
+	&-content {
+		font-size: 14px;
+		font-weight: bold;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1.57;
+		color: #ffffff;
+	}
+	.arrow:after {
+		border-bottom-color: #7356a5 !important;
 	}
 }
 
@@ -593,7 +689,7 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 				border:none;
 				.request {
 					position: relative;
-					padding: 19px 100px 19px 78px;
+					padding: 19px 145px 19px 78px;
 					min-height: 65px;
 
 					.edit-controls {
@@ -610,13 +706,12 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 						top: 50%;
 						margin-top: -7px;
 					}
-					.shevron-up {
+					.btn.btn-icon.view-control {
 						left: 14px;
 						width: 15px;
 						height: 10px;
 						margin-top: -10px;
 						background: {
-							image: url($img-shevron-down-blue);
 							position: 50% 50%;
 						}
 					}
@@ -785,7 +880,6 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 			}
 		}
   }
-
 	.btn-icon {
 		padding: 10px;
 		width: auto;
@@ -819,9 +913,17 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 		};
 	}
 	.shevron-up {
-		background: {
-			image: url($img-shevron-up-gray);
-			repeat: no-repeat;
+		&.blue {
+			background: {
+				image: url($img-shevron-down-blue);
+				repeat: no-repeat;
+			}
+		}
+		&.grey {
+			background: {
+				image: url($img-shevron-up-gray);
+				repeat: no-repeat;
+			}
 		}
 	}
 	.white-shevron-up {
@@ -848,6 +950,18 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 			repeat: no-repeat;
 		}
 	}
+	.btn-alert {
+		background: {
+			image: url($img-alert);
+			repeat: no-repeat;
+		}
+	}
+	.btn-preset {
+		background: {
+			image: url($img-parameters);
+			repeat: no-repeat;
+		}
+	}
 	.btn-share {
 		background: {
 			image: url($img-share);
@@ -868,7 +982,7 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 		}
 		&.error {
 			background: {
-				image: url($img-green-error);
+				image: url($img-alert);
 				repeat: no-repeat;
 			}
 		}
@@ -900,7 +1014,7 @@ $img-green-error: '../assets/img/ic-allert-red.svg';
 	}
 	.error {
 		background: {
-			image: url($img-green-error);
+			image: url($img-alert);
 			repeat: no-repeat;
 		}
 	}
