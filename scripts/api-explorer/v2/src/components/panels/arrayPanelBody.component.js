@@ -29,7 +29,7 @@ module.exports = ko.components.register('array-panel-body', {
 	viewModel: ArrayPanelBody,
 	template:`
 		<section class="panel-body no-padding array-panel-body">
-			<ul data-bind="foreach: data" class="list list-group">
+			<ul data-bind="foreach: data, css: {'events': $component._panelName === 'events'}" class="list list-group">
 				<li data-bind="css: {'object': typeof $data === 'object'}" class="list-group-item item">
 				
 					<!-- ko if: $component._panelName === 'images' -->
