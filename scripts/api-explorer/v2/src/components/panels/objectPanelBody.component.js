@@ -59,6 +59,11 @@ ObjectPanelBody.prototype.removeHandler = function () {
 	self.clipboard && self.clipboard.destroy();
 	delete self.clipboard;
 };
+ObjectPanelBody.prototype.setActive = function (key, value, model, e) {
+	$(e.currentTarget).parents('.slick-slide').find('.item.object').removeClass('active');
+	$(e.currentTarget).parent('.item').addClass('active');
+	this.getMore.call(this, key, value);
+};
 
 module.exports = ko.components.register('object-panel-body', {
 	viewModel:  ObjectPanelBody,
@@ -68,8 +73,8 @@ module.exports = ko.components.register('object-panel-body', {
 				<img data-bind="attr: {src: ko.utils.unwrapObservable(data).url, alt: 'image-' + ko.utils.unwrapObservable(data).ratio}" alt="img" class="img img-thumbnail">
 			<!-- /ko -->
 			
-			<ul data-bind="foreachprop: {data: data, sortFn: $component.sortByConfig.bind($component)}">
-				<li data-bind="css: {'object': typeof value === 'object', 'primitive': typeof value !== 'object'}" class="clearfix pading">
+			<ul data-bind="foreachprop: {data: data, sortFn: $component.sortByConfig.bind($component)}" class="list object-list">
+				<li data-bind="css: {'object': typeof value === 'object', 'primitive': typeof value !== 'object'}" class="clearfix pading item">
 				
 					<!-- ko ifnot: typeof value === 'object' && $component._allInside -->
 					<span data-bind="text: typeof value === 'object' ? key: key + ':'" class="key"></span>
@@ -93,7 +98,7 @@ module.exports = ko.components.register('object-panel-body', {
 							<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
 						<!-- /ko -->
 						<!-- ko if: typeof value === 'object' && !$component._allInside -->
-							<button data-bind="click: $component.getMore.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+							<button data-bind="click: $component.setActive.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
 						<!-- /ko -->
 				</li>
 			</ul>

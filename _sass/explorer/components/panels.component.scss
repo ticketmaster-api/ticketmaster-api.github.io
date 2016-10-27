@@ -156,6 +156,14 @@ $border-radius: 7px;
 					.img.img-thumbnail {
 						margin: auto;
 					}
+					&:not(.all-inside) {
+						.list {
+							.item.object {
+								padding: 9px 15px;
+								margin: 0 -15px;
+							}
+						}
+					}
 				}
 				&.no-padding {
 					padding: 0;
@@ -286,6 +294,26 @@ $border-radius: 7px;
 						}
 					}
 				}
+				&:not(.all-inside) {
+					.list {
+						.item.object {
+							&:hover,
+							&.active {
+								color: $white;
+								background: #009cde;
+								.key {
+									color: #fff;
+								}
+								.btn {
+									background: {
+										image: url($img) !important;
+									}
+								}
+							}
+						}
+					}
+				}
+
 				.key {
 					font: {
 						size: 14px;;

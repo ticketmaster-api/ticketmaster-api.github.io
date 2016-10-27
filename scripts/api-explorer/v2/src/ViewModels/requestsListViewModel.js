@@ -114,7 +114,7 @@ RequestsListViewModel.prototype.onClearRequests = function (vm, event) {
  */
 RequestsListViewModel.prototype.getDetails = function (vm, event) {
 	if (!this.resHTML().length) {
-		jsonHighlight(this.resHTML, this.res);
+		jsonHighlight(this.resHTML, this.res.res);
 	}
 	this.active(!this.active());
 };
