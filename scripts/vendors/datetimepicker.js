@@ -832,7 +832,7 @@ function RenderCssCal(bNewCal)
 	funcCalback = "function callback(id, datum) {";
 	funcCalback += " var CalId = document.getElementById(id);if (datum=== 'undefined') { var d = new Date(); datum = d.getDate() + '/' +(d.getMonth()+1) + '/' + d.getFullYear(); } window.calDatum=datum;CalId.value=datum;";
 	funcCalback += " if(Cal.ShowTime){";
-	funcCalback += " CalId.value+=' '+Cal.getShowHour()+':'+Cal.Minutes;";
+	funcCalback += " CalId.value+='T'+Cal.getShowHour()+':'+Cal.Minutes+':00Z';";
 	funcCalback += " if (Cal.ShowSeconds)  CalId.value+=':'+Cal.Seconds;";
 	funcCalback += " if (TimeMode === 12)  CalId.value+=''+Cal.getShowAMorPM();";
 	funcCalback += "}if(CalId.onchange!=undefined) CalId.onchange();CalId.focus();winCal.style.visibility='hidden';}";
@@ -1168,8 +1168,7 @@ function closewin(id) {
                 callback(id, Cal.FormatDate(Cal.Date));
         }
     }
-    
-	var CalId = document.getElementById(id);
+    var CalId = document.getElementById(id);
 	CalId.focus();
 	winCal.style.visibility = 'hidden';
 }
@@ -1246,8 +1245,10 @@ function pickIt(evt)
 		xpos = (evt.pageX);
 		ypos = (evt.pageY);
 		*/
-		xpos = findPos(evt.target).x;
-		ypos = findPos(evt.target).y;
+		 if (objectID == '') {
+			 xpos = findPos(evt.target).x;
+			 ypos = findPos(evt.target).y;
+		 }
 
 	}
 
