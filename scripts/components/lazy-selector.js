@@ -1020,13 +1020,13 @@
       e.preventDefault();
     });
 
-    $modal.on('hidden.bs.modal', function (e,val1) {
+    $modal.on('hidden.bs.modal', function (e) {
       resetForm();
       keyword.val('');//clear search input
       closeMapListener();
 
 			var indToRemove =[],
-        selectorBtn = $btnGET.data('selector'),
+        selectorBtn = $btnGET.attr('data-selector'),
         tagsArr = tagsIds[selectorBtn];
 
 
@@ -1036,12 +1036,6 @@
 					$(this).remove();
 				}//else {}
       });
-
-			// if(tagsArr.length >= indToRemove.length) {
-			// 	indToRemove.map(function (item) {
-      //    tagsArr.splice(tagsArr.indexOf(item), 1);
-			// 	});
-			// }
 
       claerByArrVal(tagsArr, indToRemove);
 
