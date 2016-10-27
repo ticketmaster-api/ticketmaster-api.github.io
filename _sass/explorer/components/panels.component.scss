@@ -152,6 +152,7 @@ $border-radius: 7px;
 				border-top: none !important;
 				background: #fff;
 				overflow: hidden;
+				padding: 0 15px;
 				&.object-panel-body {
 					.img.img-thumbnail {
 						margin: auto;
@@ -159,9 +160,17 @@ $border-radius: 7px;
 					&:not(.all-inside) {
 						.list {
 							.item.object {
-								padding: 9px 15px;
+								padding: 15px;
 								margin: 0 -15px;
 							}
+						}
+					}
+					.primitive {
+						&:first-child {
+							padding-top: 15px;
+						}
+						&:last-child {
+							padding-bottom: 15px;
 						}
 					}
 				}
@@ -207,9 +216,11 @@ $border-radius: 7px;
 				}
 				.list-group {
 					margin: 0;
+					&.events > .list-group-item.item {
+						padding: 10px 40px 10px 15px;
+					}
 					.list-group-item {
 						position: relative;
-						padding-right: 40px;
 						clear: both;
 						overflow: hidden;
 						color: #768692;
@@ -217,6 +228,7 @@ $border-radius: 7px;
 						border-radius: 0;
 						display: table;
 						width: 100%;
+						padding: 15px 40px 15px 15px;
 						&:not(:first-child) {
 							border-top: solid 1px #b7c9d3;
 						}
