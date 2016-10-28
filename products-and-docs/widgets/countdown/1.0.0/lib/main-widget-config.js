@@ -48,6 +48,20 @@
     }
   };
 
+  // function getHeightByTheme(theme){
+  //   return (theme === 'simple_countdown' ? 238 : 300);
+  // }
+
+  // function getBorderByTheme(theme) {
+  //   switch (theme) {
+  //     case "oldschool":
+  //       return 2;
+  //       break;
+  //     default:
+  //       return 0;
+  //   }
+  // }
+
   var $widthController = $('#w-width').slider({
     tooltip: 'always',
     handle: 'square'
@@ -60,6 +74,14 @@
       widgetNode = document.querySelector("div[w-tmapikey]"),
       $tabButtons = $('.js-tab-buttons'),
       $layoutBox = $('#js-layout-box');
+
+  // function toggleDisabled(widgetNode){
+  //   if ( widgetNode.getAttribute('w-id') === '') {
+  //     $getCodeButton.prop("disabled",true);
+  //   }else {
+  //     $getCodeButton.prop('disabled',false);
+  //   }
+  // }
 
   var $configForm = $(".main-widget-config-form"),
       $widgetModal = $('#js_widget_modal'),
@@ -170,7 +192,6 @@
   };
 
   var changeState = function changeState(event) {
-    console.log('event', event);
     if (!event.target.name) {
       return;
     }
@@ -231,12 +252,22 @@
       }
     }
 
+    /*
+    //set attr for 'seconds' radio-btn
+    if(targetName === "w-seconds"){
+      if (targetValue !== 'showSeconds') {
+        widgetNode.setAttribute('w-seconds', 'hideSeconds');
+      }
+    }
+    */
+
     if (targetName === "w-layout") {
       var sizeConfig = themeConfig.simple_countdown.initSliderSize;
 
       if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
+          // height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
           height: 252,
           maxWidth: 900,
           minWidth: 620
