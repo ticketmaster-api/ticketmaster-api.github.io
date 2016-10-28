@@ -12,7 +12,7 @@ function PanelHeading(params) {
 	this.data = params.data.value;
 	if (page) {
 		this.cardSize = page.size;
-		this.pageParam = page.pageParam;
+		this.pageParam = page.parameter;
 	}
 	this.collapseId = params.collapseId;
 	if (this.config.request) {
