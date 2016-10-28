@@ -32,7 +32,7 @@
     });
     
     //clear requests when user leave current page
-    $(window).unload(function(){
+    $(window).on('unload', function(){
       for(var i = 1; i < intervals.length; i++) {
         clearTimeout(i);
       }

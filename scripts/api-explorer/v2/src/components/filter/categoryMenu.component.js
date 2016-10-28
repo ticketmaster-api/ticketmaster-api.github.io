@@ -1,27 +1,33 @@
 var self;
 
-function CategoryMenu(params) {
-	self = this;
+class CategoryMenu {
+	constructor(params) {
+		self = this;
 
-	this.selectedCategory = params.selectedCategory;
-	var initCategory = ko.unwrap(params.selectedCategory);
-	this.categories = ko.observableArray(Object.keys(params.data).map(function (item, index) {
-		var checked = initCategory ? item === initCategory: !index;
-		// initial load
-		checked && self.selectedCategory(item);
-		return {
-			checked: ko.observable(checked),
-			name: item,
-			link: false
-		}
-	}));
+		this.selectedCategory = params.selectedCategory;
+		var initCategory = ko.unwrap(params.selectedCategory);
+		this.categories = ko.observableArray(Object.keys(params.data).map(function (item, index) {
+			var checked = initCategory ? item === initCategory: !index;
+			// initial load
+			checked && self.selectedCategory(item);
+			return {
+				checked: ko.observable(checked),
+				name: item,
+				link: false
+			}
+		}));
+
+		params.selectedCategory.subscribe(categoryName => {
+			checkActive(self.categories, categoryName);
+		})
+	}
+
+	selectCategory(category) {
+		var categoryName = category.name;
+		self.selectedCategory(categoryName);
+		checkActive(self.categories, categoryName);
+	}
 }
-
-CategoryMenu.prototype.selectCategory = function (category) {
-	var categoryName = category.name;
-	self.selectedCategory(categoryName);
-	checkActive(self.categories, categoryName);
-};
 
 module.exports = ko.components.register('category-menu', {
 	viewModel: CategoryMenu,
