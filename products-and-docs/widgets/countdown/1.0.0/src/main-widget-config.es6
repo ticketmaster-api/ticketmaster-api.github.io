@@ -45,7 +45,7 @@
         }
       }
   };
-  
+
   // function getHeightByTheme(theme){
   //   return (theme === 'simple_countdown' ? 238 : 300);
   // }
@@ -494,6 +494,11 @@
   });
 
   init();
+
+  // Set min widget size on mobile devices
+  if(parseInt($(window).width(), 10) < 767){
+    $('#w-fixed-300x250').trigger('click');
+  }
 
 })(jQuery);
 
