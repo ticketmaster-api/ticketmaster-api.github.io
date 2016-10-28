@@ -259,15 +259,6 @@
       btnCloseMap.hide(); // 'X' -button
     }
 
-    //remove duplicates from an array of strings
-    function unique(list) {
-      var result = [];
-      $.each(list, function(i, e) {
-        if ($.inArray(e, result) == -1) result.push(e);
-      });
-      return result;
-    }
-
     function toggleTags() {
 			var indToRemove =[], 
         inputValArray = $input.val().split(",");
@@ -928,24 +919,48 @@
 
     function addMsButtonListener(event){
       event.preventDefault();
-      var me = $( this );
-      var title = me.parents('li').find('.list-group-item-heading','.event-text-wrapper').text();
-      // console.log('me ', me, '\n data-id', me.parents('li'));
 
-      var item = $('<li/>')
-        .addClass('ms-elem-selection')
-        .text(title)
-        .attr('data-selector-'+selector, me.data('id'))
-        .attr('data-isable',false)
-        .appendTo($msList);
+      function isUnique(list) {
+        var result = [],
+          unique = false;
 
-      var deleteBtn = $('<span/>')
-        .appendTo(item)
-        .on('click', item, delIdListener);
+        $.each(list, function(i, e) {
+          if ($.inArray(e, result) == -1){
+            result.push(e);
+            unique = true;
+          }
+          else {
+            unique = false;
+          }
+        });
+        return unique;
+      }
+
+      var me = $( this ),
+          title = me.parents('li').find('.list-group-item-heading','.event-text-wrapper').text(),
+          uniqueUpcoming,
+          currentList = tagsIds[selector];
+
+      currentList.push(me.data('id'));
+      uniqueUpcoming = isUnique(currentList); // Get list of upcoming events
+
+      if( uniqueUpcoming ){
+        var item = $('<li/>')
+          .addClass('ms-elem-selection')
+          .text(title)
+          .attr('data-selector-'+selector, me.data('id'))
+          .attr('data-isable',false)
+          .appendTo($msList);
+        $('<span/>')
+          .appendTo(item)
+          .on('click', item, delIdListener);
+      }else {
+        currentList.splice(currentList.length-1 ,1);
+      }
+      // console.log('uniqueUpcoming',uniqueUpcoming );
 
       me.addClass('checked');
       toggleMsSelectionBox();
-			tagsIds[selector].push(me.data('id')); // console.log( 'tagsIds[selector] ' , tagsIds[selector] );
     }
 
     // EVENTS
