@@ -90,6 +90,11 @@ jQuery.fn.customSelect = function(options ) {
             $list.find('li:last').trigger('click');
         }
 
+        // function selectOption() {
+        //     $("#autofill").val($(".selected a").text());
+        //     $(".services").hide();
+        // }
+
         // Events
         $list.on('click', 'li', function(){            
             set(this, false);
@@ -101,6 +106,37 @@ jQuery.fn.customSelect = function(options ) {
         $custom_select.on({
             'click': toggle,
             'custom-reset': reset
+        }).keydown(function( e ) {
+            console.log('keypress Enter',e.which , e.keyCode);
+            if ( e.which == 13 ) {
+                e.preventDefault();
+                if ($(".custom_select__list ").is(":visible")) {
+                    set($('.custom_select__item-active',this), false);
+                    toggle();
+                } else {
+                    toggle();
+                }
+            }
+            if (e.which == 38) { // up
+                e.preventDefault();
+                var selected = $(".custom_select__item-active");
+                $(".custom_select__list li").removeClass("custom_select__item-active");
+                if (selected.prev().length == 0) {
+                    selected.siblings().last().addClass("custom_select__item-active");
+                } else {
+                    selected.prev().addClass("custom_select__item-active");
+                }
+            }
+            if (e.which == 40) { // down
+                e.preventDefault();
+                var selected = $(".custom_select__item-active");
+                $(".custom_select__list li").removeClass("custom_select__item-active");
+                if (selected.next().length == 0) {
+                    selected.siblings().first().addClass("custom_select__item-active");
+                } else {
+                    selected.next().addClass("custom_select__item-active");
+                }
+            }
         });
         $feedbackModal.on({
             'hide.bs.modal': reset,

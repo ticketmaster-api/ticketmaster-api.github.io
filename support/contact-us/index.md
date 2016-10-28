@@ -62,7 +62,7 @@ Attn: Trademark Department, Legal 
         <option value="losAngeles" data-ltd="34.052235" data-lng="-118.243683" data-tooltip="7060 Hollywood Blvd, Los Angeles, California, 90028, US" selected>Los Angeles</option>
         <option value="phoenix" data-ltd="33.533482" data-lng="-112.107254" data-tooltip="1375 N Scottsdale Rd, Scottsdale, AZ 85257, US">Phoenix</option>        
       </select>
-      <input class="custom_select__placeholder" type="text" value="Los Angeles" readonly="">      
+      <input class="custom_select__placeholder" type="text" value="Los Angeles" readonly="" tabindex="6">      
     </div>
 </div>
 
@@ -92,13 +92,13 @@ Attn: Trademark Department, Legal 
     <div class="col-sm-12">
         <label for="subject">Subject</label>
         <div class="js_custom_select custom_select">
-          <select required="" class="custom_select__field" name="subject" id="subject">
+          <select required="" class="custom_select__field" name="subject" id="subject" tabindex="-1">
             <option value="Developer Relations">Developer Relations</option>
             <option value="Business Opportunities and Partnerships">Business Opportunities and Partnerships</option>
             <option value="API Bugs and Questions">API Bugs and Questions</option>
             <option value="Join Ticketmaster!">Join Ticketmaster!</option>
           </select>
-          <input class="custom_select__placeholder" type="text" value="Developer Relations" readonly="">
+          <input class="custom_select__placeholder" type="text" value="Developer Relations" readonly="" tabindex="3">
           <ul class="custom_select__list">
             <li class="custom_select__item custom_select__item-active" data-value="Developer Relations">Developer Relations</li>
             <li class="custom_select__item" data-value="Business Opportunities and Partnerships">Business Opportunities and Partnerships</li>
@@ -109,7 +109,7 @@ Attn: Trademark Department, Legal 
     </div>
     <div class="col-sm-12">
         <label for="descriptions">Descriptions</label>
-        <textarea name="descriptions" id="message-detail-text" tabindex="3" required></textarea>
+        <textarea name="descriptions" id="message-detail-text" tabindex="4" required></textarea>
     </div>
     <div class="col-sm-12">
         <p id="message-success" class="text-overflow-message text-overflow-message__green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
