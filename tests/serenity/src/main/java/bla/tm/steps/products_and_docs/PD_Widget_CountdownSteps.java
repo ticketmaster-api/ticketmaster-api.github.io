@@ -7,10 +7,8 @@ import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static bla.tm.staticmethods.StaticMethods.*;
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -77,7 +75,7 @@ public class PD_Widget_CountdownSteps {
     @Step
     public void clickOnGetButton() {
         WebElementFacade getCodeButton = countdownWidgetPage.getCountdownWidget().getGetCodeButton();
-        scrollToElement(getCodeButton);
+        countdownWidgetPage.scrollToElement(getCodeButton);
         getCodeButton.click();
     }
 
@@ -120,7 +118,7 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void clickResetButton() {
-        scrollToElement(countdownWidgetPage.getCountdownWidget().getResetButton());
+        countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getResetButton());
         countdownWidgetPage.getCountdownWidget().getResetButton().click();
     }
 
@@ -140,7 +138,7 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void clickOnGetEventId() {
-        scrollToElement(countdownWidgetPage.getCountdownWidget().getEventIdLink());
+        countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getEventIdLink());
         countdownWidgetPage.getCountdownWidget().getEventIdLink().click();
     }
 
@@ -167,22 +165,19 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void checkThatPageIsOpenedWithUrl(String url) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
-        wait.until(ExpectedConditions.urlContains(url));
-        String currentUrl = countdownWidgetPage.returnCurrentUrl();
-        assertTrue(String.format("Current URl does not contain %s", currentUrl) ,currentUrl.contains(url));
+        countdownWidgetPage.waitFor(ExpectedConditions.urlContains(url));
     }
 
     @Step
     public void switchToTab(String tab) {
         switch (tab){
             case "visual": {
-                scrollToElement(countdownWidgetPage.getCountdownWidget().getVisualTab());
+                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getVisualTab());
                 countdownWidgetPage.getCountdownWidget().getVisualTab().click();
             }
             break;
             case "technical": {
-                scrollToElement(countdownWidgetPage.getCountdownWidget().getTechnicalTab());
+                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getTechnicalTab());
                 countdownWidgetPage.getCountdownWidget().getTechnicalTab().click();
             }
             break;
@@ -211,17 +206,17 @@ public class PD_Widget_CountdownSteps {
     public void setLayoutResolutionTo(String layoutResolution) {
         switch(layoutResolution){
             case "300x250": {
-                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
+                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
                 countdownWidgetPage.getCountdownWidget().getLayout300x250Tab().click();
             }
                 break;
             case "300x600": {
-                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
+                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
                 countdownWidgetPage.getCountdownWidget().getLayout300x600Tab().click();
             }
                 break;
             case "custom": {
-                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
+                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
                 countdownWidgetPage.getCountdownWidget().getLayoutCustomTab().click();
             }
                 break;
@@ -241,12 +236,12 @@ public class PD_Widget_CountdownSteps {
     public void setLayoutOrientation(String layoutOrientation) {
         switch (layoutOrientation){
             case "horizontal": {
-                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab());
+                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab());
                 countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab().click();
             }
             break;
             case "vertical": {
-                scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab());
+                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab());
                 countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab().click();
             }
             break;

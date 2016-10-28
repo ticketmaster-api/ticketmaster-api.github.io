@@ -6,6 +6,7 @@ import bla.tm.widgets.LeftMenuWidget;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.List;
@@ -146,4 +147,13 @@ public class AncestorPage extends PageObject {
 
     public LeftMenuWidget getLeftSideMenuWidget() {return leftSideMenuWidget;}
 
+    public void scrollToElement(WebElementFacade element){
+        int screenHeight = getDriver().manage().window().getSize().getHeight();
+        ((JavascriptExecutor)getDriver()).executeScript("window.scrollTo(0," + (element.getLocation().y - screenHeight / 2) + ")");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

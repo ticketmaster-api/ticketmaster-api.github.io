@@ -3,11 +3,8 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_TutorialsPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.JavascriptExecutor;
 
 import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
-import static bla.tm.staticmethods.StaticMethods.scrollToElement;
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.junit.Assert.assertEquals;
 
 public class PD_TutorialsSteps {
@@ -33,7 +30,7 @@ public class PD_TutorialsSteps {
     public void validateAndClickElement(String key) {
         WebElementFacade element = findWebElementByKey(key, tutorialsPage.getClickableElements());
         element.isEnabled();
-        scrollToElement(element);
+        tutorialsPage.scrollToElement(element);
         element.click();
     }
 }
