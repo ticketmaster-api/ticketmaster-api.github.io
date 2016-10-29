@@ -1,7 +1,7 @@
 ---
 category: event
 
-title: "The Ticketmaster API Devjam in Scottsdale, AZ!"
+title: "The Ticketmaster API Devjam at ASU!"
 
 date_title: "Saturday, November 19, 2016 @ 9am"
 date_start: "2016-11-19 9:30:00"
@@ -10,9 +10,9 @@ date_end: "2016-11-20 12:24:00"
 img: "/assets/img/events/devjam.jpg"
 
 place: 
-  - "Ticketmaster HQ"
-  - "https://www.google.com/maps/place/Ticketmaster/@33.4636158,-111.9255313,17z/data=!4m6!1m3!3m2!1s0x872b0b1e9a288da9:0xff2655399901fb58!2sTicketmaster!3m1!1s0x872b0b1e9a288da9:0xff2655399901fb58"
-city: " Scottsdale, AZ"
+  - "ASU"
+  - "https://www.google.com/maps/place/451+E+Tyler+Mall,+Tempe,+AZ+85281/@33.4202872,-111.9335146,17z/data=!3m1!4b1!4m5!3m4!1s0x872b08ddad452c01:0xee646208206c4b7c!8m2!3d33.4202872!4d-111.9313259?hl=en&authuser=0"
+city: " Tempe, AZ"
 
 rsvp: "http://universe.com/tmdevjam"
 link: "http://universe.com/tmdevjam"
