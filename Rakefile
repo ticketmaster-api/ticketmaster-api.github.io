@@ -17,7 +17,7 @@ namespace 'travis' do
     result = 0
     if ENV['TRAVIS_BRANCH'] == 'master'
       puts "Test serenity"
-      resultS = system("mvn verify -f ./tests/serenity/pom.xml -Dbrowserstack.url=https://ievgentsekhmeist1:Chtr6Rst5ruCxXb5Y9Ho@hub-cloud.browserstack.com/wd/hub -Dmetafilter=+functional -Dbrowserstack.debug=true -Dbrowserstack.os=WINDOWS -Dbrowserstack.os_version=8.1 -Dbrowserstack.project=Ticketmaster -Dbrowserstack.browser=firefox -Dbrowserstack.browser_version=46")
+      resultS = system("mvn verify -f ./tests/serenity/pom.xml -Dbrowserstack.url=https://ievgentsekhmeist1:Chtr6Rst5ruCxXb5Y9Ho@hub-cloud.browserstack.com/wd/hub -Dbrowserstack.debug=true -Dbrowserstack.os=WINDOWS -Dbrowserstack.os_version=8.1 -Dbrowserstack.project=Ticketmaster -Dbrowserstack.browser=firefox -Dbrowserstack.browser_version=46")
       puts resultS
       puts "Test galen"
       resultG = system("sh ./tests/run-test-dispatch.sh")
