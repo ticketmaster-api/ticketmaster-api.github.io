@@ -1,4 +1,4 @@
-Meta:@debug
+Meta:
 
 Narrative:
 In order to setup Calendar Widget
@@ -35,10 +35,11 @@ When click reset button
 Then values of fields: apiKey,keyword,zipCode,radius equals stored values
 
 Scenario: (/products-and-docs/widgets/calendar/) Check RESET button functionality on Embedded Code Pop-up window
+
 Given open Calendar Widget page
 And store values of: apiKey,keyword,zipCode,radius
 And change values for: apiKey,keyword,zipCode,radius
-When click reset button
+When click reset button on Calendar Widget Page
 And click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored values of: apiKey,keyword,zipCode,radius

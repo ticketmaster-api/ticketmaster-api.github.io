@@ -2,10 +2,8 @@ package bla.tm.steps.products_and_docs;
 
 import bla.tm.pages.site.products_and_docs.PD_Widget_CountdownPage;
 import net.serenitybdd.core.Serenity;
-import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static bla.tm.staticmethods.StaticMethods.*;
@@ -40,43 +38,41 @@ public class PD_Widget_CountdownSteps {
     @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         if ("{apikey}".equals(apikey)){
-            assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getAttribute("value"), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
+            assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextFieldValue(), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
         }
         else {
             waitForSomeActionHappened(50);
-            assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getAttribute("value"), apikey);
+            assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextFieldValue(), apikey);
         }
     }
 
     @Step
     public void apiKeyFieldIsNotEmpty() {
-        String apiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getValue();
+        String apiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextFieldValue();
         assertFalse(apiKey == null || apiKey.length() == 0);
     }
 
     @Step
     public void checkThatEventIdFieldIsNotEmpty() {
-        String eventId = countdownWidgetPage.getCountdownWidget().getEventIDTextField().getValue();
+        String eventId = countdownWidgetPage.getCountdownWidget().getEventIDTextFieldValue();
         assertFalse(eventId == null || eventId.length() == 0);
     }
 
     @Step
     public void storeCurrentApiKey() {
-        String apiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getValue();
+        String apiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextFieldValue();
         Serenity.getCurrentSession().put("apiKey", apiKey);
     }
 
     @Step
     public void storeCurrentEventId() {
-        String eventId = countdownWidgetPage.getCountdownWidget().getEventIDTextField().getValue();
+        String eventId = countdownWidgetPage.getCountdownWidget().getEventIDTextFieldValue();
         Serenity.getCurrentSession().put("eventId", eventId);
     }
 
     @Step
     public void clickOnGetButton() {
-        WebElementFacade getCodeButton = countdownWidgetPage.getCountdownWidget().getGetCodeButton();
-        countdownWidgetPage.scrollToElement(getCodeButton);
-        getCodeButton.click();
+        countdownWidgetPage.getCountdownWidget().clickOnGetButton();
     }
 
     @Step
@@ -101,66 +97,61 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void submitForm() {
-        countdownWidgetPage.getCountdownWidget().getEventIDTextField().sendKeys(Keys.ENTER);
+        countdownWidgetPage.getCountdownWidget().submitForm();
     }
 
     @Step
     public void setApiKey(String apiKey) {
-        countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().clear();
-        countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().sendKeys(apiKey, Keys.ENTER);
+        countdownWidgetPage.getCountdownWidget().setApiKey(apiKey);
     }
 
     @Step
     public void setEventId(String eventId) {
-        countdownWidgetPage.getCountdownWidget().getEventIDTextField().clear();
-        countdownWidgetPage.getCountdownWidget().getEventIDTextField().sendKeys(eventId);
+        countdownWidgetPage.getCountdownWidget().setEventId(eventId);
     }
 
     @Step
-    public void clickResetButton() {
-        countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getResetButton());
-        countdownWidgetPage.getCountdownWidget().getResetButton().click();
+    public void resetForm() {
+        countdownWidgetPage.getCountdownWidget().clickResetButton();
     }
 
     @Step
     public void checkThatApiKeyFieldContainsStoredValue() {
-        String actualApiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextField().getValue();
+        String actualApiKey = countdownWidgetPage.getCountdownWidget().getAPIKeyTextFieldValue();
         String expectedApiKey = (String) Serenity.getCurrentSession().get("apiKey");
         Assert.assertEquals(String.format("The apiKey should be %s but %s", expectedApiKey, actualApiKey), expectedApiKey, actualApiKey);
     }
 
     @Step
     public void checkThatEventIdFieldContainsStoredValue() {
-        String actualEventId = countdownWidgetPage.getCountdownWidget().getEventIDTextField().getValue();
+        String actualEventId = countdownWidgetPage.getCountdownWidget().getEventIDTextFieldValue();
         String expectedEventId = (String) Serenity.getCurrentSession().get("eventId");
         Assert.assertEquals(String.format("The eventId should be %s but %s", expectedEventId, actualEventId), expectedEventId, actualEventId);
     }
 
     @Step
     public void clickOnGetEventId() {
-        countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getEventIdLink());
-        countdownWidgetPage.getCountdownWidget().getEventIdLink().click();
+        countdownWidgetPage.getCountdownWidget().clickOnGetEventId();
     }
 
     @Step
     public void enterKeyword(String keyword) {
-        countdownWidgetPage.getCountdownWidget().getKeywordField().sendKeys(keyword, Keys.ENTER);
+        countdownWidgetPage.getCountdownWidget().enterKeyword(keyword);
     }
 
     @Step
-    public void clickSetThisIdOnFirstEvent() {
-        countdownWidgetPage.getCountdownWidget().getSetThisId().click();
+    public void applyFirstEventId() {
+        countdownWidgetPage.getCountdownWidget().clickSetThisIdOnFirstEvent();
     }
 
     @Step
-    public void checkThatPosterContainsKeyword(String keyword) {
-        String posterText = countdownWidgetPage.getCountdownWidget().getPosterWindow().getText();
-        assertTrue(String.format("The poster does not contains %s but has text: %s", keyword.toLowerCase(), posterText.toLowerCase()), keyword.toLowerCase().contains(posterText.toLowerCase()));
+    public void checkThatPosterContainsText(String text) {
+        assertTrue(String.format("The poster does not contains text: %s", text), countdownWidgetPage.getCountdownWidget().isPosterContainsText(text));
     }
 
     @Step
-    public void clickOnGetYourOwn() {
-        countdownWidgetPage.getCountdownWidget().getGetYourOwn().click();
+    public void getYourOwnApiKeyLink() {
+        countdownWidgetPage.getCountdownWidget().clickOnGetYourOwnLink();
     }
 
     @Step
@@ -170,24 +161,12 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void switchToTab(String tab) {
-        switch (tab){
-            case "visual": {
-                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getVisualTab());
-                countdownWidgetPage.getCountdownWidget().getVisualTab().click();
-            }
-            break;
-            case "technical": {
-                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getTechnicalTab());
-                countdownWidgetPage.getCountdownWidget().getTechnicalTab().click();
-            }
-            break;
-            default: throw new IllegalArgumentException(String.format("The tab name: '%s' is illegal.", tab));
-        }
+        countdownWidgetPage.getCountdownWidget().switchToTab(tab);
     }
 
     @Step
     public void setFullWidth() {
-        countdownWidgetPage.getCountdownWidget().getFullWidthTab().click();
+        countdownWidgetPage.getCountdownWidget().setFullWidthMode();
         Serenity.getCurrentSession().put("theme", "full-width");
     }
 
@@ -200,28 +179,11 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void setPosterTheme() {
-        countdownWidgetPage.getCountdownWidget().getPosterTab().click();
+        countdownWidgetPage.getCountdownWidget().setPosterTheme();
     }
 
     public void setLayoutResolutionTo(String layoutResolution) {
-        switch(layoutResolution){
-            case "300x250": {
-                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
-                countdownWidgetPage.getCountdownWidget().getLayout300x250Tab().click();
-            }
-                break;
-            case "300x600": {
-                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
-                countdownWidgetPage.getCountdownWidget().getLayout300x600Tab().click();
-            }
-                break;
-            case "custom": {
-                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayout300x250Tab());
-                countdownWidgetPage.getCountdownWidget().getLayoutCustomTab().click();
-            }
-                break;
-            default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", layoutResolution));
-        }
+        countdownWidgetPage.getCountdownWidget().setLayoutResolution(layoutResolution);
         Serenity.getCurrentSession().put("resolution", layoutResolution);
     }
 
@@ -234,19 +196,7 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void setLayoutOrientation(String layoutOrientation) {
-        switch (layoutOrientation){
-            case "horizontal": {
-                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab());
-                countdownWidgetPage.getCountdownWidget().getLayoutHorisontalTab().click();
-            }
-            break;
-            case "vertical": {
-                countdownWidgetPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab());
-                countdownWidgetPage.getCountdownWidget().getLayoutVerticalTab().click();
-            }
-            break;
-            default: throw new IllegalArgumentException(String.format("Illegal layout orientation: '%s'", layoutOrientation));
-        }
+        countdownWidgetPage.getCountdownWidget().setLayoutOrientation(layoutOrientation);
         Serenity.getCurrentSession().put("orientation", layoutOrientation);
     }
 
@@ -259,7 +209,6 @@ public class PD_Widget_CountdownSteps {
 
     @Step
     public void checkThatEventMessageIsShown(String eventMessage) {
-        String actualEventMessage = countdownWidgetPage.getCountdownWidget().getEventMessage().getText();
-        assertTrue(actualEventMessage.contains(eventMessage));
+        assertTrue(String.format("Event message does not contains %s", eventMessage), countdownWidgetPage.getCountdownWidget().isEventMessageContains(eventMessage));
     }
 }

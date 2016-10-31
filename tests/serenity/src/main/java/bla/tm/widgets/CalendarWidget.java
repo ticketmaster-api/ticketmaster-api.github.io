@@ -1,14 +1,23 @@
 package bla.tm.widgets;
 
 import net.serenitybdd.core.annotations.ImplementedBy;
-import net.serenitybdd.core.pages.WebElementFacade;
 
 @ImplementedBy(CalendarWidgetImpl.class)
 public interface CalendarWidget extends AnsestorWidget {
-    WebElementFacade getAPIKeyTextField();
-    WebElementFacade getZipCodeTextField();
-    WebElementFacade getKeywordTextField();
+    String getAPIKeyTextFieldValue();
+    void setAPIKeyTextFieldValue(String apiKey);
+
+    String getZipCodeTextFieldValue();
+    void setZipCodeTextFieldValue(String zipCode);
+
+    String getKeywordTextFieldValue();
+    void setKeywordTextFieldValue(String keyword);
+
+    String getRadiusDropdownValue();
+    void setRadiusDropdownValueTo15();
+
+    String getSelectedCountry();
     String getEmbeddedValueOf(String valueName);
-    WebElementFacade getRadiusDropdown();
-    WebElementFacade getCountryDropdown();
+    void clickResetButton();
+
 }
