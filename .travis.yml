@@ -25,9 +25,15 @@ before_script:
   - sh ./tests/levels/before-run-test.sh #copy content & build
 
 script:
+  - echo Memory usage before Jekyll serve
+  - free -m
   - jekyll serve &
   - sleep 15 # give jekyll some time to start
+  - echo Memory usage after jekyll serve and before test run
+  - free -m
   - rake travis:test --trace --verbose
+  - echo Memory usage after test run
+  - free -m
 
 after_success:
   - echo Success
