@@ -193,12 +193,6 @@
                         copyBtn.setAttribute("rel", "tooltip");
                         copyBtn.setAttribute("data-placement", "top");
                         copyBtn.setAttribute("data-original-title", "Copy to Clipboard");
-                        copyBtn.addEventListener("click", function () {
-                            this.classList.add("copied")
-                            window.setTimeout(function(){
-                                document.getElementsByClassName("copied")[0].classList.remove("copied");
-                            }, 2000);
-                        });
 
                     var html = this.outerHTML;
                     var proxyItem = document.createElement("div");
@@ -294,37 +288,11 @@
             }, 127);
         });
 
-        // Modal Copy button click
-        $(".fs-modal .modal-body").on("click", ".copy-btn-fs", function() {
-            var copyBtn = this;
-            var content = copyBtn.dataset !== undefined ? this.dataset.clipboardText : copyBtn.getAttribute("data-clipboard-text");
+        var clipboard = new Clipboard('.copy-btn'),
+          clipboardFs = new Clipboard('.copy-btn-fs');
 
-            if (window.clipboardData) {
-                window.clipboardData.setData("Text", content);
-            } else {
-
-                $('#copy-clip').html(content);
-
-                var copyTextarea = document.querySelector('.copy-clip');
-                copyTextarea.select();
-
-                try {
-                    var successful = document.execCommand('copy');
-                    var msg = successful ? 'successful' : 'unsuccessful';
-                    console.log('Copying text command was ' + msg);
-                } catch (err) {
-                    console.log('Oops, unable to copy');
-                }
-            }
-
-
-            $(this).addClass('copied').delay(2000).queue(function(){
-                $(this).removeClass('copied');
-            });
-
-            // $('#copy-clip').html('');
-
-        });
+        new ClipboardFallback(clipboard);
+        new ClipboardFallback(clipboardFs);
 
         // Modal Raw button click
         $(".fs-modal .modal-body").on("click", ".raw-btn", function() {

@@ -8,23 +8,8 @@ public class After_User_Scenario {
     @Steps
     AnyPageSteps anyPageSteps;
 
-//    @AfterScenario(uponOutcome=AfterScenario.Outcome.FAILURE)
-//    public void afterFailedScenario() {
-//        anyPageSteps.quitBrowser();
-//    }
-
     @AfterScenario()
-    public void quitBrowser() {
-        anyPageSteps.quitBrowser();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void clearCookiesAndLocalStorage (){
+        anyPageSteps.clearCookiesAndLocalStorage();
     }
-
-//    @AfterScenario()
-//    public void clearCookiesAndLocalStorage (){
-//        anyPageSteps.clearCookiesAndLocalStorage();
-//    }
 }

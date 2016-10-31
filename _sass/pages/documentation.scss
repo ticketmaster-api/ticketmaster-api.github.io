@@ -888,8 +888,8 @@
       }
     }
 
-    @media (max-width: 767px) {
-      right: 15px;
+    @media #{$max-1200} {
+      display: none;
     }
   }
   .raw-btn, .raw-btn-w  {
@@ -936,7 +936,7 @@
       }
     }
 
-    @media (max-width: 767px) {
+    @media #{$max-1200} {
       display: none;
     }
   }
@@ -984,7 +984,7 @@
       }
     }
 
-    @media (max-width: 767px) {
+    @media #{$max-1200} {
       display: none;
     }
   }
@@ -1164,6 +1164,9 @@
         opacity: 0;
       }
     }
+    @media #{$max-1200} {
+      display: none;
+    }
   }
   .raw-btn, .raw-btn-w {
     position: absolute;
@@ -1208,6 +1211,9 @@
         opacity: 0;
       }
     }
+    @media #{$max-1200} {
+      display: none;
+    }
   }
   .screen-btn {
     position: absolute;
@@ -1251,6 +1257,9 @@
       &:after {
         opacity: 0;
       }
+    }
+    @media #{$max-1200} {
+      display: none;
     }
   }
 

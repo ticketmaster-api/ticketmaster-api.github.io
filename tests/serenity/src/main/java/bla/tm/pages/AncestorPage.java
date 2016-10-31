@@ -146,4 +146,13 @@ public class AncestorPage extends PageObject {
 
     public LeftMenuWidget getLeftSideMenuWidget() {return leftSideMenuWidget;}
 
+    public void scrollToElement(WebElementFacade element){
+        int screenHeight = getDriver().manage().window().getSize().getHeight();
+            evaluateJavascript("window.scrollTo(0," + (element.getLocation().y - screenHeight / 2) + ")");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

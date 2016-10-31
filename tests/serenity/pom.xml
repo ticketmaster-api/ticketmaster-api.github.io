@@ -13,8 +13,8 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>1.1.42</serenity.version>
-        <serenity.jbehave.version>1.13.0</serenity.jbehave.version>
+		  	<serenity.version>1.1.39</serenity.version>
+			  <serenity.jbehave.version>1.13.0</serenity.jbehave.version>
         <maven-failsafe-plugin.version>2.11</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
         <webdriver.driver>firefox</webdriver.driver>
@@ -57,16 +57,12 @@
             <artifactId>selenium-server</artifactId>
             <version>2.53.0</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.seleniumhq.selenium</groupId>-->
-            <!--<artifactId>selenium-java</artifactId>-->
-            <!--<version>2.53.0</version>-->
-        <!--</dependency>-->
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-firefox-driver</artifactId>
-				<version>2.53.0</version>
-			</dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.53.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -83,6 +79,9 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
+										<argLine>
+											-Xmx256m
+										</argLine>
                     <includes>
                         <include>**/*Runner.java</include>
                         <!--<include>**/*TestSuite.java</include>-->
@@ -130,6 +129,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

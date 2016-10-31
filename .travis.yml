@@ -41,11 +41,6 @@ after_failure:
 after_script:
   - echo AFTER_SCRIPT
 
-cache:
-  directories:
-    - node_modules
-    - bundler
-
 notifications:
   email:
     recipients: #will receive notification, if admin turn it on, in https://github.com/settings/
