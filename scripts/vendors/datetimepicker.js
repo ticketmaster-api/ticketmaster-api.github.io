@@ -54,7 +54,7 @@ var MthSelColor = "#cc0033"; //color of font of Month selector if "MonthSelector
 var HoverColor = "#E0FF38"; //color when mouse move over.
 var DisableColor = "#999966"; //color of disabled cell.
 var CalBgColor = "#ffffff"; //Background color of Calendar window.
-var topSelectorBg = "#ffffff";
+var topSelectorBg = "#f1f4f6";
 
 var WeekChar = 2;//number of character for week day. if 2 then Mo,Tu,We. if 3 then Mon,Tue,Wed.
 var DateSeparator = "-";//Date Separator, you can change it to "-" if you want.
@@ -551,7 +551,7 @@ function RenderCssCal(bNewCal)
 	// Set the default cursor for the calendar
 
 	winCalData = "<span style='cursor:auto;'>";
-	vCalHeader = "<table style='background-color:"+CalBgColor+";width:auto;padding:0;margin:5px 5px 5px 4px;border:none;'><tbody>";
+	vCalHeader = "<table style='background-color:"+CalBgColor+";width:auto;padding:0;border:none;'><tbody>";
 
 	//Table for Month & Year Selector
 
@@ -560,7 +560,8 @@ function RenderCssCal(bNewCal)
 
 	if (Cal.Scroller === "DROPDOWN")
 	{
-	    vCalHeader += "<td align='left' style='padding:10px 5px 10px 10px;margin:0;background:"+topSelectorBg+"'><select name='MonthSelector' style='margin-bottom:5px;' onChange='javascript:Cal.SwitchMth(this.selectedIndex);RenderCssCal();'>";
+	    vCalHeader += "<td align='left' style='padding:10px 5px 10px 10px;margin:0;background:"+topSelectorBg+"'>\n";
+		vCalHeader += "<select name='MonthSelector' id='MonthSelectorSelect' style='margin-bottom:5px; display: none;' onChange='javascript:Cal.SwitchMth(this.selectedIndex);RenderCssCal();'>";
 		for (i = 0; i < 12; i += 1)
 		{
 			if (i === Cal.Month)
@@ -573,11 +574,29 @@ function RenderCssCal(bNewCal)
 			}
 			vCalHeader += "<option " + SelectStr + " value=" + i + ">" + MonthName[i] + "</option>";
 		}
+		vCalHeader += '</select>';
 
-		vCalHeader += "</select></td>";
+		/* ul month for custom select */
+		vCalHeader += '<span class="MonthSelectorTitle">' +  MonthName[Cal.Month] + '</span>';
+		vCalHeader += '<ul name="MonthSelector" class="MonthSelector" onChange="javascript:Cal.SwitchMth(this.selectedIndex);RenderCssCal();">';
+		for (i = 0; i < 12; i += 1)
+		{
+			if (i === Cal.Month)
+			{
+				SelectStr = "Selected";
+			}
+			else
+			{
+				SelectStr = "";
+			}
+			vCalHeader += '<li>' + MonthName[i] + '</li>';
+		}
+		vCalHeader += "</ul>";
+		vCalHeader += "</td>";
 		//Year selector
 
-		vCalHeader += "<td align='right' style='padding:10px 10px 10px 5px;margin:0;background:"+topSelectorBg+"'><select name='YearSelector' style='margin-bottom:5px;' size='1' onChange='javascript:Cal.SwitchYear(this.value);RenderCssCal();'>";
+		vCalHeader += "<td align='right' style='padding:10px 10px 10px 5px;margin:0;background:"+topSelectorBg+"'>";
+		vCalHeader += "<select name='YearSelector' style='display:none; margin-bottom:5px;' size='1' onChange='javascript:Cal.SwitchYear(this.value);RenderCssCal();'>";
 		for (i = StartYear; i <= (dtToday.getFullYear() + EndYear); i += 1)
 		{
 			if (i === Cal.Year)
@@ -590,7 +609,25 @@ function RenderCssCal(bNewCal)
 			}
 			vCalHeader += "<option " + SelectStr + " value=" + i + ">" + i + "</option>\n";
 		}
-		vCalHeader += "</select></td>\n";
+		vCalHeader += "</select>";
+
+		/* ul year for custom select */
+		vCalHeader += '<span class="MonthSelectorTitle Year">' + Cal.Year + '</span>';
+		vCalHeader += '<ul name="YearSelector" class="MonthSelector Year" onChange="javascript:Cal.SwitchMth(this.selectedIndex);RenderCssCal();">';
+		for (i = StartYear; i <= (dtToday.getFullYear() + EndYear); i += 1)
+		{
+			if (i === Cal.Year)
+			{
+				SelectStr = 'selected="selected"';
+			}
+			else
+			{
+				SelectStr = '';
+			}
+			vCalHeader += '<li>' + i + '</li>';
+		}
+		vCalHeader += "</ul>";
+		vCalHeader += "</td>\n";
 		calHeight += 30;
 	}
 
@@ -633,7 +670,7 @@ function RenderCssCal(bNewCal)
 
 	//Week day header
 
-	vCalHeader += "<tr><td colspan=\"7\"><table style='border-spacing:0;border-collapse:collapse;box-sizing:border-box;'><tr>";
+	vCalHeader += "<tr><td colspan=\"7\"><table style='border-spacing:0;border-collapse:collapse;box-sizing:border-box; margin: 5px 5px 5px 4px;'><tr>";
 	if (MondayFirstDay === true)
 	{
 		WeekDayName = WeekDayName2;
@@ -863,7 +900,22 @@ function RenderCssCal(bNewCal)
 		cssStr += "#calBorder input, #calBorder select {height:auto;}\n";
 		cssStr += "#calBorder select { -webkit-appearance: menulist; -moz-appearance: menulist;}\n";
 		cssStr += "#calBorder table tr:nth-child(even) {background: none;}\n";
-		cssStr += '#calBorder input[type="button"], #calBorderinput[type="reset"], #calBorder input[type="submit"] {margin-top: 15px; font-family:"TMSans-Bold",Helvetica,Arial,sans-serif; font-size:12px; width:45%; border:2px solid #b7c9d3; border-radius:4px; text-transform:uppercase; color:#b7c9d3; padding:4px; margin-bottom:12px;}';
+		cssStr += '#calBorder input[type="button"], #calBorderinput[type="reset"], #calBorder input[type="submit"] {margin-top: 15px; font-family:"TMSans-Bold",Helvetica,Arial,sans-serif; font-size:12px; width:45%; border:2px solid #b7c9d3; border-radius:4px; text-transform:uppercase; color:#b7c9d3; padding:4px; margin-bottom:12px;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle {position: relative; font-family: "TMSans-Bold", Arial, serif; font-size: 14px; color: #b7c9d3; display: block; float: left; margin-left: 5px; padding-right:24px; -webkit-transition: color 0.3s ease-in-out; -o-transition: color 0.3s ease-in-out; transition: color 0.3s ease-in-out;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle:hover {color: #189ddc; cursor: pointer;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle:hover:before {opacity:1;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle:hover:after {opacity:0;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle:hover:after {color: #189ddc; cursor: pointer;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle.Year {float: right;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle:before, #calBorder .MonthSelectorTitle:after {content: ""; position: absolute; right: 0; top: 50%; width: 15px; height: 10px; margin-top: -5px; background-position: center center; background-repeat: no-repeat; -webkit-transition: opacity 0.2s ease-in-out; -o-transition: opacity 0.2s ease-in-out; transition: opacity 0.2s ease-in-out;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle:before {opacity:0; background: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron-hover.svg") center center no-repeat;\n}';
+		cssStr += '#calBorder .MonthSelectorTitle:after {background: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron.svg") center center no-repeat;}\n';
+		cssStr += '#calBorder ul.MonthSelector {display: none; background:#b7c9d2; margin-bottom:5px; font-family: "TMSans-Bold", Arial, serif; font-size: 14px; padding: 10px 15px; margin:0; top:35px; left:0; position: absolute;}\n';
+		cssStr += '#calBorder ul.MonthSelector.show {display: block;}\n';
+		cssStr += '#calBorder ul.MonthSelector.Year {left:auto; right:0; padding: 10px 34px;}\n';
+		cssStr += '#calBorder ul.MonthSelector.Year.show {display: block;}\n';
+		cssStr += '#calBorder ul.MonthSelector li { font-family: "TMSans-Bold", Arial, serif; font-size: 14px; margin:0; padding:0; line-height:28px; color: #fff;}\n';
+		cssStr += '#calBorder ul.MonthSelector li:hover {color: #189ddc; cursor: pointer;}\n';
 
 		style = document.createElement("style");
 		style.type = "text/css";
@@ -1368,3 +1420,51 @@ document.onmousedown = pickIt;
 document.onmousemove = dragIt;
 document.onmouseup = dropIt;
 */
+
+document.addEventListener('click', function(e){
+
+		if (document.querySelector('#calBorder .MonthSelector') !== null) {
+
+				 var targetClass = e.target.classList[0];
+			   if (e.target.classList[1] !== undefined) targetClass = e.target.classList[1];
+			   if (targetClass === undefined) targetClass = e.target.parentNode.classList[0];
+
+				 if (targetClass == 'MonthSelectorTitle') {
+						 if (document.querySelector('#calBorder .MonthSelector').classList.contains("show")) {
+								 document.querySelector('#calBorder .MonthSelector').classList.remove("show");
+						 }
+						 else {
+								 document.querySelector('#calBorder .MonthSelector').classList.add("show");
+							   document.querySelector('#calBorder .MonthSelector.Year').classList.remove("show");
+						 }
+				 };
+
+				 if (targetClass == 'MonthSelector') {
+
+					   var selectClass = e.target.parentNode.classList[1];
+
+					   if (e.target.tagName === 'LI' && selectClass === 'show') {
+							   document.querySelector('#calBorder .MonthSelectorTitle').innerHTML = e.target.innerHTML;
+							   Cal.SwitchMth([].indexOf.call(e.target.parentNode.children, (e ? e.target : e.srcElement)));
+							   RenderCssCal();
+						 }
+						 if (e.target.tagName === 'LI' && selectClass === 'Year') {
+							 document.querySelector('#calBorder .MonthSelectorTitle.Year').innerHTML = e.target.innerHTML;
+							 Cal.SwitchYear(e.target.innerHTML);
+							 RenderCssCal();
+						 }
+				 };
+
+				 if (targetClass == 'Year') {
+				     if (document.querySelector('#calBorder .MonthSelector.Year').classList.contains("show")) {
+						     document.querySelector('#calBorder .MonthSelector.Year').classList.remove("show");
+					   }
+					   else {
+						     document.querySelector('#calBorder .MonthSelector.Year').classList.add("show");
+							   document.querySelector('#calBorder .MonthSelector').classList.remove("show");
+					   }
+		     };
+
+    }
+
+});
