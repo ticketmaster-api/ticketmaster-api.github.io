@@ -79,6 +79,9 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
+										<argLine>
+											-Xmx256m
+										</argLine>
                     <includes>
                         <include>**/*Runner.java</include>
                         <!--<include>**/*TestSuite.java</include>-->
