@@ -17,7 +17,7 @@ namespace 'travis' do
     result = 0
     if ENV['TRAVIS_BRANCH'] == 'master'
       puts "Test serenity"
-      resultS = system("mvn verify -f ./tests/serenity/pom.xml)
+      resultS = system("mvn verify -f ./tests/serenity/pom.xml")
       puts resultS
       puts "Test galen"
       resultG = system("sh ./tests/run-test-dispatch.sh")
