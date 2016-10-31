@@ -19,6 +19,81 @@
     tagsIds[el] = [];
   });
 
+  /**
+   * mediator pattern
+   * currently not used
+   * */
+  /*Storage*/
+  function TagsBox() { }
+  TagsBox.prototype =
+  {
+    constructor: TagsBox,
+
+    getTag: function ()
+    {
+      if (!ms_tagsIds.takeOneTag())
+      {
+        console.log("TagsBox: Who the hell drank all my beer?");
+        return false;
+      }
+
+      console.log("TagsBox: Yeeah! My beer!");
+      ms_tagsIds.oneBeerHasGone();
+      return true;
+    },
+    addTag: function ()
+    {
+      if (!ms_tagsIds.takeOneTag())
+      {
+        console.log("TagsBox: Who take all my tags?");
+        return false;
+      }
+
+      console.log("TagsBox: Yeeah! My tag!");
+      ms_tagsIds.addOneTag();
+      return true;
+    },
+    argue_back: function () { console.log("TagsBox: it's my last tag, for shure!"); }
+  }
+
+  /*refrigerator , stash*/
+  function msStorage(tags_count)
+  {
+    this._tags_count = tags_count;
+  }
+  msStorage.prototype =
+  {
+    constructor: msStorage,
+
+    takeOneTag: function ()
+    {
+      if (this._tags_count == 0) return false;
+      this._tags_count--;
+      return true;
+    },
+    addOneTag: function (){ this.refrigerator.addOneTag(); }
+  };
+
+  var ms_tagsIds =
+  {
+    tagsBox: new TagsBox(),
+    // mammy: new Mammy(),
+    refrigerator: new msStorage(3),
+    stash: new msStorage(2),
+
+    takeOneTag: function ()
+    {
+      if (this.refrigerator.takeOneTag()) return true;
+      if (this.stash.takeOneTag()) return true;
+
+      return false
+    },
+    oneBeerHasGone: function (){ /*this.mammy.argue();*/ },
+    addOneTag: function (){ this.refrigerator.addOneTag(); },
+    disputeStarted: function (){ this.tagsBox.argue_back(); }
+  };
+  /*mediator pattern END*/
+
   $.fn.lazySelector = function (options) {
     var defaults = {},
         settings = $.extend({}, $.fn.lazySelector.defaults, options),
@@ -26,7 +101,8 @@
 
     var stateConf = {
       pageIncrement: 0,
-      loadingFlag: false
+      loadingFlag: false,
+      setSingleVal: false
     };
 
     var $input = $(this),
@@ -181,15 +257,6 @@
     function closeMapListener() {
       modalContent.removeClass('narrow');
       btnCloseMap.hide(); // 'X' -button
-    }
-
-    //remove duplicates from an array of strings
-    function unique(list) {
-      var result = [];
-      $.each(list, function(i, e) {
-        if ($.inArray(e, result) == -1) result.push(e);
-      });
-      return result;
     }
 
     function toggleTags() {
@@ -792,7 +859,7 @@
       $input.val(selectedID);
       $input.attr('value', selectedID);
       $input.trigger('change');  //update widget:
-
+      stateConf.setSingleVal = true;
       // Close dialog
       $modal.modal('hide');
     }
@@ -852,24 +919,48 @@
 
     function addMsButtonListener(event){
       event.preventDefault();
-      var me = $( this );
-      var title = me.parents('li').find('.list-group-item-heading','.event-text-wrapper').text();
-      // console.log('me ', me, '\n data-id', me.parents('li'));
 
-      var item = $('<li/>')
-        .addClass('ms-elem-selection')
-        .text(title)
-        .attr('data-selector-'+selector, me.data('id'))
-        .attr('data-isable',false)
-        .appendTo($msList);
+      function isUnique(list) {
+        var result = [],
+          unique = false;
 
-      var deleteBtn = $('<span/>')
-        .appendTo(item)
-        .on('click', item, delIdListener);
+        $.each(list, function(i, e) {
+          if ($.inArray(e, result) == -1){
+            result.push(e);
+            unique = true;
+          }
+          else {
+            unique = false;
+          }
+        });
+        return unique;
+      }
+
+      var me = $( this ),
+          title = me.parents('li').find('.list-group-item-heading','.event-text-wrapper').text(),
+          uniqueUpcoming,
+          currentList = tagsIds[selector];
+
+      currentList.push(me.data('id'));
+      uniqueUpcoming = isUnique(currentList); // Get list of upcoming events
+
+      if( uniqueUpcoming ){
+        var item = $('<li/>')
+          .addClass('ms-elem-selection')
+          .text(title)
+          .attr('data-selector-'+selector, me.data('id'))
+          .attr('data-isable',false)
+          .appendTo($msList);
+        $('<span/>')
+          .appendTo(item)
+          .on('click', item, delIdListener);
+      }else {
+        currentList.splice(currentList.length-1 ,1);
+      }
+      // console.log('uniqueUpcoming',uniqueUpcoming );
 
       me.addClass('checked');
       toggleMsSelectionBox();
-			tagsIds[selector].push(me.data('id')); // console.log( 'tagsIds[selector] ' , tagsIds[selector] );
     }
 
     // EVENTS
@@ -950,7 +1041,7 @@
       closeMapListener();
 
 			var indToRemove =[],
-        selectorBtn = $btnGET.data('selector'),
+        selectorBtn = $btnGET.attr('data-selector'),
         tagsArr = tagsIds[selectorBtn];
 
 
@@ -961,20 +1052,19 @@
 				}//else {}
       });
 
-			// if(tagsArr.length >= indToRemove.length) {
-			// 	indToRemove.map(function (item) {
-      //    tagsArr.splice(tagsArr.indexOf(item), 1);
-			// 	});
-			// }
+      claerByArrVal(tagsArr, indToRemove);
 
-        claerByArrVal(tagsArr, indToRemove);
+      //console.log( 'stateConf.setSingleVal:' , stateConf.setSingleVal);
+      // console.log( 'selector' , selector , 'selectorBtn' , selectorBtn);
 
-      if(selector === selectorBtn) {
+      if(selector === selectorBtn && !stateConf.setSingleVal) {
         $input.val(tagsArr)
           .attr('value', tagsArr)
           .trigger('change');  //update widget:
-        // console.log( '$input' , $input);
+        //console.log(  selectorBtn , 'clear $input' , $input.val());
+        stateConf.setSingleVal = false;
       }
+
 
     });
 

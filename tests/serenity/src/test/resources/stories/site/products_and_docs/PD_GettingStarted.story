@@ -1,4 +1,4 @@
-Meta:
+Meta:@functional
 
 Narrative:
 As a test enfineer
@@ -8,7 +8,7 @@ So that I test Getting Started Page of Ticket Master Developer's site
 Scenario: (/products-and-docs/apis/getting-started/) TKMDPA-874 Commerce API links in Available Resources table
 Given open Commerce API page
 When Commerce API menu has list of methods
-When open Getting Started page
+And open Getting Started page
 Then all the Commerce API methods are shown on Getting Started page
 
 

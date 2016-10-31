@@ -167,10 +167,6 @@ $(document).ready(function() {
             $('body').tooltip({
                 selector: '[rel="tooltip"]'
             });
-            /* $('[rel="tooltip"]').tooltip({
-                animation: true
-            });
-            */
         })
 
 });

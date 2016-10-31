@@ -65,7 +65,7 @@ var prepareUrl = function (arr) {
 };
 
 // sends request to get the second column
-var sendPrimaryRequest = function (arr, requests, global) {
+var sendPrimaryRequest = function (arr, requests, onError, global) {
   var url = prepareUrl(arr);
 
   ajaxService(url, arr[0].method, function(res, msg) {
@@ -75,15 +75,10 @@ var sendPrimaryRequest = function (arr, requests, global) {
 		};
 
 		if (msg == 'error') {
-			var err = res &&
-				res.responseJSON &&
-				res.responseJSON.errors &&
-				res.responseJSON.errors[0];
-
-			resObj.error = {
-				code: err ? err.code: 500,
-				message: err ? err.detail: 'No responce data!'
-			}
+			// notifying error modal
+			onError.notifySubscribers(res, 'error');
+			// error popover of request
+			resObj.error = res;
 		} else {
 			global.lastResponse = resObj.res = {
 				id: arr[0].id, // method id was used

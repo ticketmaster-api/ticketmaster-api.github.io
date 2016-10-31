@@ -64,6 +64,13 @@
         }
       },
       "dates": {
+        "access": {
+          "_CONFIG": {
+            "index": 3,
+            "copyBtn": {},
+            "collapsed": true
+          }
+        },
         "timezone": {
           "_CONFIG": {
             "index": 0
@@ -101,7 +108,7 @@
       },
 
       "_CONFIG": {
-        "collapsed": true,
+        "collapsed": false,
         "index": 0
       }
     },
@@ -109,7 +116,7 @@
 
       "_CONFIG": {
         "index": 1,
-        "collapsed": false
+        "collapsed": true
       }
     },
 

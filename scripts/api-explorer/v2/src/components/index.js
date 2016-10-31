@@ -1,9 +1,10 @@
 module.exports = (function () {
-	require('./customSelect.component.js');
-	require('./panels/panelGroup.component.js');
-	require('./panels/panel.component.js');
-	require('./panels/pagination.component.js');
-	require('./panels/panelHeading.component.js');
-	require('./panels/objectPanelBody.component.js');
-	require('./panels/arrayPanelBody.component.js');
+	require('./customSelect.component');
+	require('./popups/error.component');
+	require('./panels/panelGroup.component');
+	require('./panels/panel.component');
+	require('./panels/pagination.component');
+	require('./panels/panelHeading.component');
+	require('./panels/objectPanelBody.component');
+	require('./panels/arrayPanelBody.component');
 }());

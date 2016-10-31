@@ -172,37 +172,10 @@
             }, 127);
         });
 
-        // Modal Copy button click
-        $(".fs-modal .modal-body").on("click", ".copy-btn-fs", function() {
-            var copyBtn = this;
-            var content = copyBtn.dataset !== undefined ? this.dataset.clipboardText : copyBtn.getAttribute("data-clipboard-text");
-
-            if (window.clipboardData) {
-                window.clipboardData.setData("Text", content);
-            } else {
-
-                $('#copy-clip').html(content);
-
-                var copyTextarea = document.querySelector('.copy-clip');
-                copyTextarea.select();
-
-                try {
-                    var successful = document.execCommand('copy');
-                    var msg = successful ? 'successful' : 'unsuccessful';
-                    console.log('Copying text command was ' + msg);
-                } catch (err) {
-                    console.log('Oops, unable to copy');
-                }
-            }
-
-
-            $(this).addClass('copied').delay(2000).queue(function(){
-                $(this).removeClass('copied');
-            });
-
-            // $('#copy-clip').html('');
-
-        });
+        var clipboard = new Clipboard('.copy-btn'),
+          clipboardFs = new Clipboard('.copy-btn-fs');
+        new ClipboardFallback(clipboard);
+        new ClipboardFallback(clipboardFs);
 
         // Modal Raw button click
         $(".fs-modal .modal-body").on("click", ".raw-btn", function() {

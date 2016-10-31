@@ -83,23 +83,6 @@
     z-index: 1;
     width:100%;
 
-    &.narrow {
-      width: 60%;
-      .btn-submit{
-        max-width: 165px;
-        width: 100%;
-      }
-      #js_ls-more_btn {
-        width: auto;
-        max-width: initial;
-      }
-    }
-   /* form .btn-submit.transparent{
-      border: 2px solid $n3;
-      color: $n3;
-      background-color: $white;
-    }*/
-
     .ms-selection .btn-submit,
     form .btn-transparent{
       height: 50px;
@@ -108,6 +91,19 @@
       @media (min-width: 768px) {
         width: 110px;
         margin-right: 16px;
+      }
+    }
+
+    &.narrow {
+      width: 60%;
+      .btn-submit,
+      .btn-transparent{
+        max-width: 165px;
+        width: 100%;
+      }
+      #js_ls-more_btn {
+        width: auto;
+        max-width: initial;
       }
     }
 
@@ -128,7 +124,7 @@
           text-overflow: ellipsis;
           overflow: hidden;
           max-width: 320px;
-          //border: 1px transparent dashed;
+          border: 1px $n3 solid;
           span{
             width: 10px;
             height: 10px;

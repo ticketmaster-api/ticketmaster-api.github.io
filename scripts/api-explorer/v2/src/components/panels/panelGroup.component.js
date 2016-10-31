@@ -76,7 +76,7 @@ function getConfig(params) {
  * @returns {*|{}}
  */
 function prepareData(params, config) {
-	var data = params && params.data || {};
+	var data = params && $.extend(true, {}, params.data) || {};
 	unwrappObjects(data, config);
 	removeDeprecated(data, config);
 	return wrappPrimitives(data, params._propTitle);

@@ -1,4 +1,4 @@
-Meta:
+Meta:@functional
 
 Narrative:
 As a test engineer
