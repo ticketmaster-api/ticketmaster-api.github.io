@@ -90,10 +90,57 @@ jQuery.fn.customSelect = function(options ) {
             $list.find('li:last').trigger('click');
         }
 
-        // function selectOption() {
-        //     $("#autofill").val($(".selected a").text());
-        //     $(".services").hide();
-        // }
+        function keyboardListener(e) {
+            function setSelector(list ,me){
+                $.each(list, function(i, el) {
+                    if ($.inArray(el) == -1){
+                        if( $(el).data('value') !== $placeholder.val() ) {
+                            selected = $(".custom_select__item",me).eq(i);
+                        }
+                    }
+                    else {
+                        console.info('error' , i, el );
+                    }
+                });
+              return list;
+            }
+
+            if ( e.which == 13 ) {
+                e.preventDefault();
+                if ($(".custom_select__list ").is(":visible")) {
+                    set($('.custom_select__item-active',$(this) ), false);
+                    toggle();
+                } else {
+                    toggle();
+                }
+            }
+            if (e.which == 38) { // up
+                e.preventDefault();
+                var selected = $(".custom_select__item-active", $(this , 'ul') );
+                if(selected.length < 1){
+                    selected = setSelector($(".custom_select__item",this) ,this);
+                }
+                $(".custom_select__list li").removeClass("custom_select__item-active");
+                if (selected.prev().length == 0) {
+                    selected.siblings().last().addClass("custom_select__item-active");
+                } else {
+                    selected.prev().addClass("custom_select__item-active");
+                }
+            }
+            if (e.which == 40) { // down
+                e.preventDefault();
+                var selected = $(".custom_select__item-active",  $(this , 'ul'));
+                if(selected.length < 1){
+                    selected = setSelector($(".custom_select__item",this),this);
+                }
+                $(".custom_select__list li").removeClass("custom_select__item-active");
+                if (selected.next().length == 0) {
+                    selected.siblings().first().addClass("custom_select__item-active");
+                } else {
+                    selected.next().addClass("custom_select__item-active");
+                }
+            }
+        }
 
         // Events
         $list.on('click', 'li', function(){            
@@ -105,38 +152,8 @@ jQuery.fn.customSelect = function(options ) {
        
         $custom_select.on({
             'click': toggle,
-            'custom-reset': reset
-        }).keydown(function( e ) {
-            console.log('keypress Enter',e.which , e.keyCode);
-            if ( e.which == 13 ) {
-                e.preventDefault();
-                if ($(".custom_select__list ").is(":visible")) {
-                    set($('.custom_select__item-active',this), false);
-                    toggle();
-                } else {
-                    toggle();
-                }
-            }
-            if (e.which == 38) { // up
-                e.preventDefault();
-                var selected = $(".custom_select__item-active");
-                $(".custom_select__list li").removeClass("custom_select__item-active");
-                if (selected.prev().length == 0) {
-                    selected.siblings().last().addClass("custom_select__item-active");
-                } else {
-                    selected.prev().addClass("custom_select__item-active");
-                }
-            }
-            if (e.which == 40) { // down
-                e.preventDefault();
-                var selected = $(".custom_select__item-active");
-                $(".custom_select__list li").removeClass("custom_select__item-active");
-                if (selected.next().length == 0) {
-                    selected.siblings().first().addClass("custom_select__item-active");
-                } else {
-                    selected.next().addClass("custom_select__item-active");
-                }
-            }
+            'custom-reset': reset,
+            'keydown' : keyboardListener
         });
         $feedbackModal.on({
             'hide.bs.modal': reset,
