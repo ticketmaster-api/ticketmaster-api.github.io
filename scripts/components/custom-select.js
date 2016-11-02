@@ -102,13 +102,17 @@ jQuery.fn.customSelect = function(options ) {
                         console.info('error' , i, el );
                     }
                 });
-              return list;
+              return selected;
             }
 
             if ( e.which == 13 ) {
                 e.preventDefault();
                 if ($(".custom_select__list ").is(":visible")) {
-                    set($('.custom_select__item-active',$(this) ), false);
+                    var selected = $(".custom_select__item-active", $(this , 'ul') );
+                    if(selected.length < 1)
+                        set( $(".custom_select__item", $(this , 'ul')).first(), false);
+                    else
+                        set( $(".custom_select__item-active", $(this , 'ul')), false);
                     toggle();
                 } else {
                     toggle();
