@@ -453,7 +453,6 @@
       $countrySelect.html('');
       $ul.html(''); //clear custom select list
       $countrySelect.prop('disabled', !results);
-
       if (results) {
         var status = void 0;
         if (results.length <= 1) status = true;else status = false;
@@ -474,7 +473,6 @@
 
       $countrySelect.append(options);
       addCustomList($ul, '#w-country', countryShortName);
-      console.log('$ul', $ul);
     }
   };
 
