@@ -96,6 +96,7 @@
 		  width: 30px;
 		  height: 30px;
 		  background: url('../..//assets/img/api-explorer/ic-calendar.svg') center center no-repeat;
+		  z-index: 1;
 		  &:hover {
 				cursor: pointer;
 			}
