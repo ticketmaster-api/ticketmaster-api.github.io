@@ -340,6 +340,11 @@
       }
 
       document.getElementById("w-country").disabled = true;
+
+      ["#w-countryCode","#w-source"].map((item)=> {
+        $(item).prop("selectedIndex", -1);
+      } );
+      
       widgetNode.setAttribute($self.attr('name'), value);
 
 
