@@ -425,26 +425,6 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  /*turn off validate cuz it moved to separate component*/
-  /*$('.js_widget__number').on('change', function (e) {
-    let $self = $(this),
-      val = $self.val().trim(),
-      max = parseInt($self.attr('max')),
-      min = parseInt($self.attr('min')),
-      required = !!$self.attr('required'),
-      regNumberOrEmpty = /^(\s*|\d+)$/,
-      errorCssClass = 'error';
-
-    // if(val === '') $self.val('');
-
-    if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
-      $self.addClass(errorCssClass);
-      e.preventDefault();
-      e.stopPropagation();
-      }else{
-      $self.removeClass(errorCssClass);
-    }
-  });*/
 
   widget.onLoadCoordinate = function (results, countryShortName = '') {
     widget.config['country'] = countryShortName;
