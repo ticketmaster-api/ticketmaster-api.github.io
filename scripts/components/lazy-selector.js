@@ -331,6 +331,30 @@
       $btnGET.attr('data-selector', selector);
     }
 
+    function getBrowserHeight(){
+      return $( window ).height();
+    }
+    function setHeightList() {
+      var newModalHeight ;
+      var listWrapper = $('.wrapper-list-group', modalContent);
+      var $mHeaderHeight = $('.modal-header',$modal).outerHeight() + keyword.parent().outerHeight() + 15/*top padding of modal-body*/ + 48/*list padding*/ + 72/*tags box*/;
+      // console.log(' modalContent height' , modalContent.height());
+      // console.log(' getBrowserHeight() ' ,getBrowserHeight());
+      // console.log(' $mHeader ' ,$('.modal-header',$modal) );
+      // console.log(' __outerHeight ' ,$('.modal-header',$modal).outerHeight() );
+      // console.log( keyword.parent().outerHeight() ,'+' ,$('.modal-header',$modal).outerHeight());
+      // console.log( $modal.height());
+
+      if(getBrowserHeight()*0.8 < $modal.height()){
+        newModalHeight = getBrowserHeight()*0.8;
+        modalContent.height(newModalHeight);
+        listWrapper.height( listWrapper.height()- $mHeaderHeight );
+
+        // console.log('get $mHeaderHeight , listWrapper' ,  $mHeaderHeight , listWrapper.height()- $mHeaderHeight );
+        // console.log('set listWrapper' , listWrapper.height()- $mHeaderHeight );
+      }
+    }
+
     /**
      * show/hide loader
      * @param action - string ('on' or 'off')
@@ -368,7 +392,7 @@
      * @param eventUrl - url of request
      * @returns {boolean} - done/fail
      */
-    function submitForm(/*optional*/pageNumero) {
+    function submitForm(/*optional*/pageNumero , isSetHeightList) {
       pageNumero = parseInt(pageNumero);
 
       var url = ( isNaN(pageNumero) )
@@ -400,6 +424,7 @@
           };
 
           renderResults(result, $ul);
+          if(isSetHeightList) setHeightList();
           loading('off');
         } else {
           console.log('no result found');
@@ -409,6 +434,8 @@
         loading('off');
         renderResults('FAIL', $ul);
       });
+
+
 
     }
 
@@ -980,7 +1007,7 @@
           stateConf.loadingFlag = 'KEEP_LOAD';
           loading('on'); //show loading-spinner
           resetForm(); //clear
-          submitForm(stateConf.pageIncrement, eventUrl);
+          submitForm(stateConf.pageIncrement,  true);
         } else {
           // Highlight errors
           if (form.reportValidity) form.reportValidity();
@@ -1001,7 +1028,7 @@
       stateConf.pageIncrement++;
       $btnGET.attr('disabled', true);
       loading('on');
-      submitForm(stateConf.pageIncrement, eventUrl);
+      submitForm(stateConf.pageIncrement);
 
       //Clear Listener, prevent memory leak
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
@@ -1023,7 +1050,7 @@
             stateConf.loadingFlag = 'KEEP_LOAD';
             loading('on');
             resetForm();
-            submitForm(stateConf.pageIncrement, eventUrl);
+            submitForm(stateConf.pageIncrement);
           }
         }
       }

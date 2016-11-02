@@ -110,6 +110,8 @@
     .ms-selection {
       .ms-list{
         margin-top: 0;
+        max-height: 76px;
+        overflow-y: auto;
         .ms-elem-selection{
           display: inline-block;
           background-color: $n3;
