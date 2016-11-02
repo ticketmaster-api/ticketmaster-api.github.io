@@ -497,6 +497,13 @@
     });
   }
 
+  // clearDropDownInput(['#w-countryCode','#w-source']);
+  function clearDropDownInput(elemIds) {
+    elemIds.map((item)=> {
+      $(item).val('');
+    } );
+  }
+
 
   // Set min widget size on mobile devices
   if(parseInt($(window).width(), 10) < 767){
