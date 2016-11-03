@@ -68,23 +68,13 @@ public class PD_Tutorials_WidgetsDefinition {
 
     @When("Name field is populated with bigger than 255 symbols text")
     public void populateNameFieldWithMoreThanAccepted() {
-        waitForSomeActionHappened(50);
+        waitForSomeActionHappened(500);
         tutorialsWidgetsPage.populateNameFieldWithMoreThanAccepted();
     }
 
     @When("Description field is populated with bigger than 3000 symbols text")
     public void populateDescriptionFieldWithMoreThanAccepted() {
         tutorialsWidgetsPage.populateDescriptionFieldWithMoreThanAccepted();
-    }
-
-    @When("Email is not correctly populated 1")
-    public void populateEmailFieldIncorrectly1() {
-        tutorialsWidgetsPage.populateEmailFieldIncorrectly1();
-    }
-
-    @When("Email is not correctly populated 2")
-    public void populateEmailFieldIncorrectly2() {
-        tutorialsWidgetsPage.populateEmailFieldIncorrectly2();
     }
 
     @When("click OK Feedback Widget button")

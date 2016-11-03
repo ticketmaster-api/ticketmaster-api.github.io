@@ -1,4 +1,4 @@
-Meta:@functional
+Meta:
 
 Narrative:
 As a test enfineer

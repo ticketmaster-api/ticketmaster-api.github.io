@@ -2,7 +2,7 @@ Meta:
 
 Narrative:
 In order to setup Event Discovery Widget
-As a developer
+As a user of Ticketmaster Developer Portal
 I want to use the widget configurator to customize the layout of the widget,
 and have ability to grab a small code snippet to insert into 3-rd party websites
 
