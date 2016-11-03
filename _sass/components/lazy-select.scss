@@ -226,13 +226,13 @@
 
       .thumbnail {
         position: relative;
-        width: 120px;
-        height: 120px;
+        width: 122px;
         overflow: hidden;
         float: left;
         display: block;
+        padding: 0;
         margin: 2px 20px 0 0;
-        min-height: 120px;
+        min-height: 102px;
         border-radius: 0px;
 
         img {
