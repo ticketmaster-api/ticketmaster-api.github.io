@@ -289,6 +289,7 @@
       // console.log('length' , $('li',$msList).length );
       if($('li',$msList).length<1){
         $msSelection.hide();
+        //setHeightList();
         return;
       }
 
@@ -331,6 +332,31 @@
       $btnGET.attr('data-selector', selector);
     }
 
+    //redraw modal size
+    /*function setHeightList(addToList) {
+      var newModalHeight ;
+      var listWrapper = $('.wrapper-list-group', modalContent);
+      var $mHeaderHeight = $('.modal-header',$modal).outerHeight() + keyword.parent().outerHeight() + 15/!*top padding of modal-body*!/ + 48/!*list padding*!/;
+      var listWrapperHeihgt = listWrapper.height();
+      // console.log( 'addToList' , addToList ,'$mHeaderHeight',$mHeaderHeight);
+      function getBrowserHeight(){
+        return $( window ).height();
+      }
+
+      if(getBrowserHeight()*0.8 < $modal.height()){
+        newModalHeight = getBrowserHeight()*0.8;
+
+        if(addToList){
+          if(listWrapperHeihgt > $mHeaderHeight ) {
+            listWrapper.height( listWrapperHeihgt - 100/!*tags box*!/ );
+          }
+        }else{
+          modalContent.height(newModalHeight);
+          listWrapper.height( listWrapperHeihgt - $mHeaderHeight + 48/!*list padding*!/ );
+        }
+      }
+    }*/
+
     /**
      * show/hide loader
      * @param action - string ('on' or 'off')
@@ -368,7 +394,7 @@
      * @param eventUrl - url of request
      * @returns {boolean} - done/fail
      */
-    function submitForm(/*optional*/pageNumero) {
+    function submitForm(/*optional*/pageNumero /*,isSetHeightList*/) {
       pageNumero = parseInt(pageNumero);
 
       var url = ( isNaN(pageNumero) )
@@ -400,6 +426,7 @@
           };
 
           renderResults(result, $ul);
+          // if(isSetHeightList) setHeightList();
           loading('off');
         } else {
           console.log('no result found');
@@ -409,6 +436,8 @@
         loading('off');
         renderResults('FAIL', $ul);
       });
+
+
 
     }
 
@@ -912,9 +941,6 @@
         .trigger('change');  //update widget:
 
       toggleMsSelectionBox();
-
-      // console.groupEnd('___ indToRemove: ', indToRemove );
-      // console.log('add delIdListener ' );
     }
 
     function addMsButtonListener(event){
@@ -961,6 +987,7 @@
 
       me.addClass('checked');
       toggleMsSelectionBox();
+      // setHeightList(true); //redraw modal size
     }
 
     // EVENTS
@@ -980,7 +1007,7 @@
           stateConf.loadingFlag = 'KEEP_LOAD';
           loading('on'); //show loading-spinner
           resetForm(); //clear
-          submitForm(stateConf.pageIncrement, eventUrl);
+          submitForm(stateConf.pageIncrement,  true);
         } else {
           // Highlight errors
           if (form.reportValidity) form.reportValidity();
@@ -1001,7 +1028,7 @@
       stateConf.pageIncrement++;
       $btnGET.attr('disabled', true);
       loading('on');
-      submitForm(stateConf.pageIncrement, eventUrl);
+      submitForm(stateConf.pageIncrement);
 
       //Clear Listener, prevent memory leak
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
@@ -1023,7 +1050,7 @@
             stateConf.loadingFlag = 'KEEP_LOAD';
             loading('on');
             resetForm();
-            submitForm(stateConf.pageIncrement, eventUrl);
+            submitForm(stateConf.pageIncrement);
           }
         }
       }
@@ -1049,19 +1076,15 @@
 				if ( $(this).data('isable') === false ){
 					indToRemove.push( $(this).data('selector-' + selectorBtn) );
 					$(this).remove();
-				}//else {}
+				}
       });
 
       claerByArrVal(tagsArr, indToRemove);
-
-      //console.log( 'stateConf.setSingleVal:' , stateConf.setSingleVal);
-      // console.log( 'selector' , selector , 'selectorBtn' , selectorBtn);
 
       if(selector === selectorBtn && !stateConf.setSingleVal) {
         $input.val(tagsArr)
           .attr('value', tagsArr)
           .trigger('change');  //update widget:
-        //console.log(  selectorBtn , 'clear $input' , $input.val());
         stateConf.setSingleVal = false;
       }
 
