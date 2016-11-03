@@ -3369,8 +3369,8 @@ class YearScheduler {
         }
     }
 
-    initMessage(parentContainer){
-        this.eventsRootContainer = parentContainer;
+    initMessage(schedulerRoot){
+        this.eventsRootContainer = schedulerRoot;
         this.messageDialogContainer = document.createElement('div');
         this.messageDialogContainer.classList.add("event-message-container");
         this.messageDialog = document.createElement('div');
@@ -3528,8 +3528,8 @@ class YearScheduler {
             this.yearRootContainer = document.createElement("div");
             this.yearRootContainer.classList.add("year");
             this.yearSchedulerRoot.appendChild(this.yearRootContainer);
+            this.initMessage(this.yearSchedulerRoot);
             this.startYear();
-            this.initMessage(this.yearRootContainer);
         }
     }
 }
