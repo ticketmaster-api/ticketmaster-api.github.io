@@ -1054,6 +1054,48 @@ Channel partners are expected to maintain their own inventory counts and should 
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
 
 
+### Response structure:
+
+{: .nested-list}
+
+- `event` (object)  - Event.
+    * `id` (string) - Event ID
+    * `restrictSingle` (boolean) - true/false. Indicates a reserve cannot leave 1 seat remaining among a contiguous set of seats
+    * `eventTicketLimit` (number) - 0 means unlimited, but reserves may still be limited by current seat inventory (currentTicketLimit)
+    * `onsale` (datetime) - Event onsale date and time in UTC format
+    *  `offsale` (datetime) - Event off sale date and time in UTC format
+    * `eventDateTime` (datetime) - Event Date & Time in UTC format
+    - `tickets` (array) - tickets
+        - {arrayitemobject} - ticket
+            * `offers` (array) - Offers
+                - {arrayitemobject} - offer
+                    * `ticketTypeId` (text) - Ticket Type Id
+                    * `priceLevelId` (number) - Price Level Id
+                    * `currency` (text) - currency
+                    * `faceValue` (number) - Face Value of the ticket
+                    * `charges` (array) - Charges
+                        - {arrayitemobject} - charge
+                            * `reason` (text) - Charge reason. Eg. 'facility'
+                            * `type` (text) - type of charge. Eg. 'fee'
+                            * `amount` (number) - charge amount in the currency
+                    * `offerName` (text) - Name of the offer
+                    * `offerDescription` (text) - Description of the offer
+            * `available` (number) - number of seats available
+            * `total` (number) - total number of seats
+            * `seating` (number) - type of seat "reserved" or "general"
+            * `inventory` (array) - Inventory
+                - {arrayitemobject} - Inventory item
+                    * `section` (text) - Section prefix
+                    * `row` (text) -  Row name
+                    - `seats` (array) - seats
+                        - {arrayitemobject} - seat number
+                    - `places` (array) - places
+                        - {arrayitemobject} - place
+                    * `hasEvenOddMix` (boolean) - true/false. 'false' if row has only even or only odd numbered seating.
+            * `eventTicketLimit` (number) - Ticket Limit for this offer.
+            * `currentTicketLimit` (number) - Capped by available inventory and eventTicketLimit.
+
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
