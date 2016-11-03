@@ -370,6 +370,8 @@
     }
     widgetNode.setAttribute('w-height', height);
     widgetNode.setAttribute('w-border', 0);
+    widgetNode.removeAttribute('w-countryCode');
+    widgetNode.removeAttribute('w-source');
 
     $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
     widget.onLoadCoordinate();
