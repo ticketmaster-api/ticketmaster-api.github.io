@@ -274,6 +274,9 @@
         // widgetNode.setAttribute('w-border', 0);
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
+        $('#w-country').children().remove().end().append('<option selected value="US">United States</option>');
+        $('#w-country').attr('disabled', 'disabled');
+        $('.custom_select__list li').removeClass('custom_select__item-active'); //reset custom select
         widget.onLoadCoordinate();
         widget.update();
     };
