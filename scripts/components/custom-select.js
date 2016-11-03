@@ -61,9 +61,15 @@ jQuery.fn.customSelect = function(options ) {
             var $self = $(self);
             $placeholder.val($self.text());
             $select.val($self.data('value'));
-            if(!isInit) $select.trigger('change');
             $list.find('li').removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
+
+            //set value on real select
+            $('option',$select).filter(function(i) {
+                return ($(this).text() == $self.text()); //To select $self.text()
+            }).prop('selected', true);
+
+            if(!isInit) $select.trigger('change');
         }
 
         function toggle() {
