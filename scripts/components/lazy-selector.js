@@ -289,6 +289,7 @@
       // console.log('length' , $('li',$msList).length );
       if($('li',$msList).length<1){
         $msSelection.hide();
+        //setHeightList();
         return;
       }
 
@@ -331,29 +332,30 @@
       $btnGET.attr('data-selector', selector);
     }
 
-    function getBrowserHeight(){
-      return $( window ).height();
-    }
-    function setHeightList() {
+    //redraw modal size
+    /*function setHeightList(addToList) {
       var newModalHeight ;
       var listWrapper = $('.wrapper-list-group', modalContent);
-      var $mHeaderHeight = $('.modal-header',$modal).outerHeight() + keyword.parent().outerHeight() + 15/*top padding of modal-body*/ + 48/*list padding*/ + 72/*tags box*/;
-      // console.log(' modalContent height' , modalContent.height());
-      // console.log(' getBrowserHeight() ' ,getBrowserHeight());
-      // console.log(' $mHeader ' ,$('.modal-header',$modal) );
-      // console.log(' __outerHeight ' ,$('.modal-header',$modal).outerHeight() );
-      // console.log( keyword.parent().outerHeight() ,'+' ,$('.modal-header',$modal).outerHeight());
-      // console.log( $modal.height());
+      var $mHeaderHeight = $('.modal-header',$modal).outerHeight() + keyword.parent().outerHeight() + 15/!*top padding of modal-body*!/ + 48/!*list padding*!/;
+      var listWrapperHeihgt = listWrapper.height();
+      // console.log( 'addToList' , addToList ,'$mHeaderHeight',$mHeaderHeight);
+      function getBrowserHeight(){
+        return $( window ).height();
+      }
 
       if(getBrowserHeight()*0.8 < $modal.height()){
         newModalHeight = getBrowserHeight()*0.8;
-        modalContent.height(newModalHeight);
-        listWrapper.height( listWrapper.height()- $mHeaderHeight );
 
-        // console.log('get $mHeaderHeight , listWrapper' ,  $mHeaderHeight , listWrapper.height()- $mHeaderHeight );
-        // console.log('set listWrapper' , listWrapper.height()- $mHeaderHeight );
+        if(addToList){
+          if(listWrapperHeihgt > $mHeaderHeight ) {
+            listWrapper.height( listWrapperHeihgt - 100/!*tags box*!/ );
+          }
+        }else{
+          modalContent.height(newModalHeight);
+          listWrapper.height( listWrapperHeihgt - $mHeaderHeight + 48/!*list padding*!/ );
+        }
       }
-    }
+    }*/
 
     /**
      * show/hide loader
@@ -392,7 +394,7 @@
      * @param eventUrl - url of request
      * @returns {boolean} - done/fail
      */
-    function submitForm(/*optional*/pageNumero , isSetHeightList) {
+    function submitForm(/*optional*/pageNumero /*,isSetHeightList*/) {
       pageNumero = parseInt(pageNumero);
 
       var url = ( isNaN(pageNumero) )
@@ -424,7 +426,7 @@
           };
 
           renderResults(result, $ul);
-          if(isSetHeightList) setHeightList();
+          // if(isSetHeightList) setHeightList();
           loading('off');
         } else {
           console.log('no result found');
@@ -939,9 +941,6 @@
         .trigger('change');  //update widget:
 
       toggleMsSelectionBox();
-
-      // console.groupEnd('___ indToRemove: ', indToRemove );
-      // console.log('add delIdListener ' );
     }
 
     function addMsButtonListener(event){
@@ -988,6 +987,7 @@
 
       me.addClass('checked');
       toggleMsSelectionBox();
+      // setHeightList(true); //redraw modal size
     }
 
     // EVENTS
@@ -1076,19 +1076,15 @@
 				if ( $(this).data('isable') === false ){
 					indToRemove.push( $(this).data('selector-' + selectorBtn) );
 					$(this).remove();
-				}//else {}
+				}
       });
 
       claerByArrVal(tagsArr, indToRemove);
-
-      //console.log( 'stateConf.setSingleVal:' , stateConf.setSingleVal);
-      // console.log( 'selector' , selector , 'selectorBtn' , selectorBtn);
 
       if(selector === selectorBtn && !stateConf.setSingleVal) {
         $input.val(tagsArr)
           .attr('value', tagsArr)
           .trigger('change');  //update widget:
-        //console.log(  selectorBtn , 'clear $input' , $input.val());
         stateConf.setSingleVal = false;
       }
 
