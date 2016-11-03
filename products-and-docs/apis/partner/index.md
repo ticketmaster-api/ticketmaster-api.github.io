@@ -18,6 +18,12 @@ keywords: Partner API, host and API, reserve tickets, create a cart, order manag
 The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket and event informaton.
 {: .article .lead}
 
+
+Make live API calls right now in the interactive docs:
+
+[INTERACTIVE DOCS](/products-and-docs/apis/partner/interactive-console/){: .button}
+
+
 ## Overview
 {: #overview }
 
