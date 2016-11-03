@@ -273,7 +273,7 @@
     //Check fixed sizes for 'simple' theme
     if (targetName === "w-proportion") {
       var widthSlider = $('.js_widget_width_slider');
-      var sizeConfig = {
+      var _sizeConfig = {
         width: themeConfig.sizes[targetValue].width,
         height: themeConfig.sizes[targetValue].height,
         maxWidth: 600,
@@ -291,21 +291,21 @@
         widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        sizeConfig = { //default size
+        _sizeConfig = { //default size
           width: themeConfig.initSliderSize.width, //350
           height: themeConfig.initSliderSize.height, //600
           maxWidth: themeConfig.initSliderSize.maxWidth, //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-          setValue: sizeConfig.width,
-          max: sizeConfig.maxWidth,
-          min: sizeConfig.minWidth
+          setValue: _sizeConfig.width,
+          max: _sizeConfig.maxWidth,
+          min: _sizeConfig.minWidth
         }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', sizeConfig.width);
-      widgetNode.setAttribute('w-height', sizeConfig.height);
+      widgetNode.setAttribute('w-width', _sizeConfig.width);
+      widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value);
@@ -317,8 +317,8 @@
   var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 600,
-        theme = undefined,
-        layout = undefined;
+        theme = void 0,
+        layout = void 0;
     var widthSlider = $('.js_widget_width_slider'),
         $tabButtons = $('.js-tab-buttons');
 
@@ -339,6 +339,11 @@
       }
 
       document.getElementById("w-country").disabled = true;
+
+      ["#w-countryCode", "#w-source"].map(function (item) {
+        $(item).prop("selectedIndex", -1);
+      });
+
       widgetNode.setAttribute($self.attr('name'), value);
     });
 
@@ -420,25 +425,6 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  /*turn off validate cuz it moved to separate component*/
-  /*$('.js_widget__number').on('change', function (e) {
-    let $self = $(this),
-      val = $self.val().trim(),
-      max = parseInt($self.attr('max')),
-      min = parseInt($self.attr('min')),
-      required = !!$self.attr('required'),
-      regNumberOrEmpty = /^(\s*|\d+)$/,
-      errorCssClass = 'error';
-      // if(val === '') $self.val('');
-      if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
-      $self.addClass(errorCssClass);
-      e.preventDefault();
-      e.stopPropagation();
-      }else{
-      $self.removeClass(errorCssClass);
-    }
-  });*/
-
   widget.onLoadCoordinate = function (results) {
     var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
 
@@ -447,14 +433,14 @@
       isPostalCodeChanged = false;
 
       var $countrySelect = $('#w-country'),
-          $ul = $(".js_widget_custom__list"),
+          $ul = $(".country-select .js_widget_custom__list"),
           options = "<option selected value=''>All</option>";
 
       $countrySelect.html('');
       $ul.html(''); //clear custom select list
       $countrySelect.prop('disabled', !results);
       if (results) {
-        var status = undefined;
+        var status = void 0;
         if (results.length <= 1) status = true;else status = false;
         $countrySelect.prop('disabled', status);
         // $countrySelect.prop('disabled', !results.length);
@@ -489,6 +475,13 @@
         value: $(this).val()
       };
       $ul.append('<li class="custom_select__item ' + (activeVal === data.value ? 'custom_select__item-active' : '') + '" data-value="' + data.value + '">' + $(this).text() + '</li>');
+    });
+  }
+
+  // clearDropDownInput(['#w-countryCode','#w-source']);
+  function clearDropDownInput(elemIds) {
+    elemIds.map(function (item) {
+      $(item).val('');
     });
   }
 

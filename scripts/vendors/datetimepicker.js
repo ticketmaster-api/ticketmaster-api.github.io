@@ -35,7 +35,7 @@ var TimeMode = 24;// TimeMode value. 12 or 24
 var StartYear = parseInt(new Date().getFullYear()); //First Year in drop down year selection
 var EndYear = 5; // The last year of pickable date. if current year is 2011, the last year that still picker will be 2016 (2011+5)
 var CalPosOffsetX = -227; //X position offset relative to calendar icon, can be negative value
-var CalPosOffsetY = -247; //Y position offset relative to calendar icon, can be negative value
+var CalPosOffsetY = -230; //Y position offset relative to calendar icon, can be negative value
 var showMonthInHead = "display:none;";
 //Configurable parameters start
 var SpanBorderColor = "#cccccc";//span border color
@@ -916,6 +916,8 @@ function RenderCssCal(bNewCal)
 		cssStr += '#calBorder ul.MonthSelector.Year.show {display: block;}\n';
 		cssStr += '#calBorder ul.MonthSelector li { font-family: "TMSans-Bold", Arial, serif; font-size: 14px; margin:0; padding:0; line-height:28px; color: #fff;}\n';
 		cssStr += '#calBorder ul.MonthSelector li:hover {color: #189ddc; cursor: pointer;}\n';
+		cssStr += '#calOverlay {width: 100%; height: 100%; position: fixed; top: 0; left: 0; display: none;}\n';
+		cssStr += '#calOverlay.show {display: block;}\n';
 
 		style = document.createElement("style");
 		style.type = "text/css";
@@ -944,7 +946,11 @@ function RenderCssCal(bNewCal)
 		span.style.cursor = "move";
 		span.style.backgroundColor = SpanBgColor;
 		span.style.zIndex = 1;
+		var overlay = document.createElement("div");
+		overlay.id = "calOverlay";
+		overlay.classList.add("show");
 		document.body.appendChild(span);
+		document.body.appendChild(overlay);
 		winCal = document.getElementById(calSpanID);
 	}
 
@@ -1422,6 +1428,25 @@ document.onmouseup = dropIt;
 */
 
 document.addEventListener('click', function(e){
+
+    if (e.target.classList[0] == 'dt-ico') {
+		    if (e.target.classList[1] !== undefined) {
+			      e.target.classList.remove('active');
+					  document.getElementById('calBorder').style.visibility = 'hidden';
+					  document.getElementById('calOverlay').classList.remove('show');
+		    }
+		    else {
+			      e.target.classList.add('active');
+					  document.getElementById('calBorder').style.visibility = 'visible';
+					  document.getElementById('calOverlay').classList.add('show');
+		    }
+	  }
+
+	  if (e.target.id === 'calOverlay') {
+			  document.getElementById('calBorder').style.visibility = 'hidden';
+			  document.getElementById('calOverlay').classList.remove('show');
+			  document.querySelector('.dt-ico').classList.remove('active');
+	  }
 
 		if (document.querySelector('#calBorder .MonthSelector') !== null) {
 

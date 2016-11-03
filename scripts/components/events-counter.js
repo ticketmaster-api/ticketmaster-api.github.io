@@ -1,8 +1,7 @@
 (function ($) {
   var apiKey = apiKeyService.checkApiKeyCookie("tk-api-key") || apiKeyService.getApiExploreKey(); //API Key
   var initialValObj;
-  function initialVal() {
-    var config = ['events', 'venues', 'attractions', 'countries'];
+  function initialVal(config) {    
     var values = {};
     config.forEach(function (el) {      
       values[el] = $('#js-'+el+'-counter').text();
@@ -22,7 +21,7 @@
       config = ['events', 'venues', 'attractions', 'countries'],
       timeLeap = 60000;
 
-    initialVal();
+    initialVal(config);
     config.forEach(function (el) {
       var val = el === 'countries' && 7;
       renderValue(el, val);
@@ -107,7 +106,7 @@
   }
 
   function renderValue(el, val) {
-    var value = getSessionStorage(el) || val || '';
+    var value = getSessionStorage(el) || val || initialValObj[el] || '';
     var formattedNumber = addCommas(value);
     $(['#js-', el,'-counter'].join('')).text(formattedNumber);
   }

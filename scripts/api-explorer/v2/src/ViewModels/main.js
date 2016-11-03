@@ -1,5 +1,6 @@
 var clamp = require('../../../../vendors/clamp.min');
 
+
 /**
  * Main file for Api Explrer v2.0
  * For development please use Webpack to bundle all modules
@@ -14,11 +15,10 @@ var apiKey = require('../modules/apikey');
 var ajaxService = require('../modules/ajaxService');
 
 var config = require('../modules/configService');
+
 // View Models
-var MenuViewModel = require('./menuViewModel');
-var ParamsViewModel = require('./paramsViewModel');
-var MethodsViewModel = require('./methodsViewModel');
 var RequestsListViewModel = require('./requestsListViewModel');
+
 // Components
 require('../components/index');
 
@@ -28,42 +28,52 @@ require('../components/index');
  */
 function AppViewModel(obj) {
   self = this;
-  var base = obj || {};
-	var parsedUrl = parseUrl();
-  this.apiKey = apiKey;
+	this.base = obj || {};
+	this.apiKey = apiKey;
 	this.config = config;
+
+	var parsedUrl = parseUrl();
 
   // observables
   this.selectedCategory = ko.observable(parsedUrl.apiCategory || '');
+	this.selectedMethodType = ko.observable('ALL');
   this.selectedMethod = ko.observable(parsedUrl.methodId || '');
   this.selectedParams = ko.observableArray([]);
 	this.requests = ko.observableArray([]);
 	this.onError = ko.observable({});
+	this.selectedMethodData = ko.observable(getMethodData());
 
 	// computed
   this.URL = ko.computed(this.getUrl, this);
-  this.sendButtonText = ko.pureComputed(this.getMethodName, this);
+
+  this.sendButtonText = ko.pureComputed(function () {
+		return ko.unwrap(self.selectedMethodData).method;
+	});
+
 	this.sharePath = ko.pureComputed(formDeepLinkingUrl, this);
-  // sub-models
-  this.menu = new MenuViewModel(base, this.selectedCategory);
-  this.methods = new MethodsViewModel(base, this.selectedCategory, this.selectedMethod);
-  this.params = new ParamsViewModel(base, this.selectedMethod, this.selectedParams);
   this.requestsList = new RequestsListViewModel(this.requests, this.selectedParams, this.sharePath);
+	init();
+}
+
+function init() {
+	self.selectedMethod.subscribe(function (val) {
+		this.selectedMethodData(getMethodData({methodId: val}));
+
+	}, self);
+}
+
+function getMethodData(params) {
+	var category = ko.unwrap(params && params.apiCategory || self.selectedCategory);
+	var type = ko.unwrap(params && params.type || self.selectedMethodType || 'ALL');
+	var method = ko.unwrap(params && params.methodId || self.selectedMethod);
+	return self.base[category] && self.base[category][type] && self.base[category][type][method] || {};
 }
 
 /**
  * Send request method
  */
 AppViewModel.prototype.onClickSendBtn = function () {
-  ajaxService(this.URL(), this.requests, this.onError, base);
-};
-
-/**
- * Gets current method name
- * @returns {string}
- */
-AppViewModel.prototype.getMethodName = function () {
-  return this.selectedMethod().method.toLowerCase();
+  ajaxService(this.URL(), this.requests, this.onError, self.base);
 };
 
 /**
@@ -72,9 +82,9 @@ AppViewModel.prototype.getMethodName = function () {
  */
 AppViewModel.prototype.getUrl = function () {
   return [
-    this.selectedMethod(),
+    ko.unwrap(this.selectedMethodData),
     this.apiKey,
-    this.selectedParams()
+		ko.unwrap(this.selectedParams)
   ];
 };
 
@@ -98,29 +108,21 @@ Object.getProp = function(o, s) {
 	return o;
 };
 
-/**
- * Activates knockout.js
- */
-ko.applyBindings(new AppViewModel(base));
-/**
- * exports global variable
- */
-module.exports = base;
 
 function formDeepLinkingUrl() {
 	var location = window.location;
-	var category = ko.utils.unwrapObservable(self.selectedCategory);
-	var method = ko.utils.unwrapObservable(self.selectedMethod);
-	var params = ko.utils.unwrapObservable(self.selectedParams);
+	var category = ko.unwrap(self.selectedCategory);
+	var method = ko.unwrap(self.selectedMethod);
+	var params = ko.unwrap(self.selectedParams);
 
 	var querys = [
 		'apiCategory=' + encodeURI(category),
-		'methodId='+ encodeURI(method.id)
+		'methodId='+ encodeURI(method)
 	];
 
 	params.map(function (param) {
-		var value = ko.utils.unwrapObservable(param.value);
-		var defaultValue = ko.utils.unwrapObservable(param.default);
+		var value = ko.unwrap(param.value);
+		var defaultValue = ko.unwrap(param.default);
 		querys.push([
 			param.name,
 			'=',
@@ -144,7 +146,7 @@ function parseUrl() {
 		var obj = {
 			apiCategory: '',
 			methodId: '',
-			selectedParams: []
+			parameters: []
 		};
 
 		querys.map(function (e) {
@@ -155,13 +157,35 @@ function parseUrl() {
 			if (key === 'apiCategory' || key === 'methodId') {
 				obj[key] = val;
 			} else {
-				obj.selectedParams.push({
+				obj.parameters.push({
 					name: key,
 					value: val
 				})
 			}
 		});
+
+		var methodData = getMethodData(obj);
+		var parameters = methodData.parameters;
+
+		obj.parameters.map(function (obj) {
+			parameters[obj.name].value = obj.value;
+			return obj;
+		});
+		obj.parameters = parameters;
 		return obj;
 	}
 	return {};
 }
+
+
+
+
+/**
+ * Activates knockout.js
+ */
+ko.applyBindings(new AppViewModel(base));
+
+/**
+ * exports global variable
+ */
+module.exports = base;
