@@ -12,7 +12,7 @@ public class CountdownWidgetDefinition {
     private String apiKey = "{apikey}";
 
     @Steps
-    PD_Widget_CountdownSteps countdownWidgetPage;
+    PD_Widget_CountdownSteps countdownWidgetSteps;
 
     @Steps
     UserLogInSteps userLogInPage;
@@ -23,163 +23,163 @@ public class CountdownWidgetDefinition {
     //Given
     @Given("store ApiKey and EventId on Countdown Widget page")
     public void storeApiKeyAndEventIdOnCountdownWidgetPage() {
-        countdownWidgetPage.storeCurrentApiKey();
-        countdownWidgetPage.storeCurrentEventId();
+        countdownWidgetSteps.storeCurrentApiKey();
+        countdownWidgetSteps.storeCurrentEventId();
     }
 
     @Given("change value for ApiKey and EventId on Countdown Widget page")
     public void changeValueForApiKeyAndEventIdOnCountdownWidgetPage() {
         String apiKey = "anyApiKey";
         String eventId = "anyEventId";
-        countdownWidgetPage.setApiKey(apiKey);
-        countdownWidgetPage.setEventId(eventId);
+        countdownWidgetSteps.setApiKey(apiKey);
+        countdownWidgetSteps.setEventId(eventId);
     }
 
     @When("get eventId by keyword $keyword")
     @Given("get eventId by keyword $keyword")
     public void getEventIdByKeyword(String keyword) {
-        countdownWidgetPage.clickOnGetEventId();
-        countdownWidgetPage.enterKeyword(keyword);
+        countdownWidgetSteps.clickOnGetEventId();
+        countdownWidgetSteps.enterKeyword(keyword);
     }
 
     @Given("switch to VISUAL Tab")
     public void switchToVisualTab() {
-        countdownWidgetPage.switchToTab("visual");
+        countdownWidgetSteps.switchToTab("visual");
     }
 
     @Given("set theme to full-width")
     public void setThemeToFullWidth() {
-        countdownWidgetPage.setFullWidth();
+        countdownWidgetSteps.setFullWidth();
     }
 
     @Given("set theme to poster")
     public void setThemeToPoster() {
-        countdownWidgetPage.setPosterTheme();
+        countdownWidgetSteps.setPosterTheme();
     }
 
     @Given("set layout resolution to $layoutResolution")
     public void setLayoutResolution(String layoutResolution) {
-        countdownWidgetPage.setLayoutResolutionTo(layoutResolution);
+        countdownWidgetSteps.setLayoutResolutionTo(layoutResolution);
     }
 
     @Given("set layout orientation to $orientation")
     public void setLayoutOrientation(String orientation) {
-        countdownWidgetPage.setLayoutOrientation(orientation);
+        countdownWidgetSteps.setLayoutOrientation(orientation);
     }
 
     @Given("enter custom ApiKey $apiKey")
     public void enterCustomApiKey(String apiKey) {
-        countdownWidgetPage.setApiKey(apiKey);
+        countdownWidgetSteps.setApiKey(apiKey);
     }
 
     @Given("enter custom EventId $eventId")
     public void enterCustomEventId(String eventId) {
-        countdownWidgetPage.setEventId(eventId);
+        countdownWidgetSteps.setEventId(eventId);
     }
 
     //When
     @When("User is not logged to site (Countdown Widget)")
     public void openLogInPageAndCheckUserIsNotLoggedIn() {
-        countdownWidgetPage.clickLogIn();
+        countdownWidgetSteps.clickLogIn();
         userLogInPage.isPageOpened();
-        countdownWidgetPage.openPage();
+        countdownWidgetSteps.openPage();
     }
 
     @When("User is logged to site (Countdown Widget)")
     public void openLogInPageAndLogIn() {
-        countdownWidgetPage.clickLogIn();
+        countdownWidgetSteps.clickLogIn();
         userLogInPage.logInToAccount();
         apiKey = userAccountSteps.getAPIKeyOfUser();
-        countdownWidgetPage.openPage();
+        countdownWidgetSteps.openPage();
     }
 
     @When("click on \"Get code\" button")
     public void clickOnGetCodeButton() {
-        countdownWidgetPage.clickOnGetButton();
+        countdownWidgetSteps.clickOnGetButton();
     }
 
     @When("submit form")
     public void submitForm() {
-        countdownWidgetPage.submitForm();
+        countdownWidgetSteps.submitForm();
     }
 
     @When("click reset button")
     public void clickResetButton() {
-        countdownWidgetPage.clickResetButton();
+        countdownWidgetSteps.resetForm();
     }
 
     @When("set first eventId from list")
     public void setFirstEventIdFromList() {
-        countdownWidgetPage.clickSetThisIdOnFirstEvent();
+        countdownWidgetSteps.applyFirstEventId();
     }
 
     @When("I click on the 'Get your own' link to get api key")
     public void clickOnTheGetYourOwnLinkToGetApiKey() {
-        countdownWidgetPage.clickOnGetYourOwn();
+        countdownWidgetSteps.getYourOwnApiKeyLink();
     }
 
     //Then
     @Then("check general page elements for Countdown Widget Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
-        countdownWidgetPage.checkIfTitleIsCorrect();
-        countdownWidgetPage.checkGeneralPageElements(disqus, leftMenu);
+        countdownWidgetSteps.checkIfTitleIsCorrect();
+        countdownWidgetSteps.checkGeneralPageElements(disqus, leftMenu);
     }
 
     @Then("check that API key is provided for all placeholders on Countdown Widget page")
     public void checkAPIKeyPlaceholders(){
-        countdownWidgetPage.checkAPIKeyPlaceholders(apiKey);
+        countdownWidgetSteps.checkAPIKeyPlaceholders(apiKey);
     }
 
     @Then("the required fields are not empty on the Countdown Widget page")
     public void checkThatRequiredFieldsAreNotEmptyOnTheCountdownWidgetPage() {
-        countdownWidgetPage.apiKeyFieldIsNotEmpty();
-        countdownWidgetPage.checkThatEventIdFieldIsNotEmpty();
+        countdownWidgetSteps.apiKeyFieldIsNotEmpty();
+        countdownWidgetSteps.checkThatEventIdFieldIsNotEmpty();
     }
 
     @Then("the pop-up Embedded Code is opened")
     public void checkThatPopupEmbeddedCodeIsOpened() {
-        countdownWidgetPage.checkThatPopupEmbeddedCodeIsOpened();
+        countdownWidgetSteps.checkThatPopupEmbeddedCodeIsOpened();
     }
 
     @Then("embedded html code contains stored ApiKey and EventId")
     public void checkThatEmbeddedHtmlCodeContainsStoredApiKeyAndEvendId() {
-        countdownWidgetPage.checkThatEmbeddedCodeContainsStoredApiKey();
-        countdownWidgetPage.checkThatEmbeddedCodeContainsStoredEventId();
+        countdownWidgetSteps.checkThatEmbeddedCodeContainsStoredApiKey();
+        countdownWidgetSteps.checkThatEmbeddedCodeContainsStoredEventId();
     }
 
     @Then("the ApiKey and EventId fields have stored values")
     public void checkThatApiKeyAndEventIdFieldsHaveStoredValues() {
-        countdownWidgetPage.checkThatApiKeyFieldContainsStoredValue();
-        countdownWidgetPage.checkThatEventIdFieldContainsStoredValue();
+        countdownWidgetSteps.checkThatApiKeyFieldContainsStoredValue();
+        countdownWidgetSteps.checkThatEventIdFieldContainsStoredValue();
     }
 
     @Then("the event poster contains $keyword")
     public void checkThatEventPosterContainskeyword(String keyword) {
-        countdownWidgetPage.checkThatPosterContainsKeyword(keyword);
+        countdownWidgetSteps.checkThatPosterContainsText(keyword);
     }
 
     @Then("The page is opened with url $url")
     public void checkThatPageIsOpenedWithUrl(String url) {
-        countdownWidgetPage.checkThatPageIsOpenedWithUrl(url);
+        countdownWidgetSteps.checkThatPageIsOpenedWithUrl(url);
     }
 
     @Then("embedded html code contains stored theme")
     public void checkThatEmbeddedHtmlCodeContainsStoredTheme() {
-        countdownWidgetPage.checkThatEmbeddedCodeContainsStoredTheme();
+        countdownWidgetSteps.checkThatEmbeddedCodeContainsStoredTheme();
     }
 
     @Then("embedded html code contains stored layout resolution")
     public void checkThatEmbeddedHtmlCodeContainsStoredLayoutResolution() {
-        countdownWidgetPage.checkThatEmbeddedCodeContainsStoredResolution();
+        countdownWidgetSteps.checkThatEmbeddedCodeContainsStoredResolution();
     }
 
     @Then("embedded html code contains stored layout orientation")
     public void checkThatEmbeddedHtmlCodeContainsStoredLayoutOrientation() {
-        countdownWidgetPage.checkThatEmbeddedCodeContainsStoredOrientation();
+        countdownWidgetSteps.checkThatEmbeddedCodeContainsStoredOrientation();
     }
 
     @Then("the event message is shown \"$message\"")
     public void checkThatEventMessageIsShown(String message) {
-        countdownWidgetPage.checkThatEventMessageIsShown(message);
+        countdownWidgetSteps.checkThatEventMessageIsShown(message);
     }
 }

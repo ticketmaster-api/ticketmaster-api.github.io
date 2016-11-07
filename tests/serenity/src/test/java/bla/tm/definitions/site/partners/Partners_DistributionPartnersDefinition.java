@@ -12,7 +12,6 @@ public class Partners_DistributionPartnersDefinition {
 
     @Given("open Distribution Partners page")
     public void openDistributionPartnersPage() {
-        distributionPartnersPage.maximiseBrowserWindow();
         distributionPartnersPage.openPage();
     }
 

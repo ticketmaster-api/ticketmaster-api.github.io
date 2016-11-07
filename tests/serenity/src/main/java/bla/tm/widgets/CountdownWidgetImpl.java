@@ -4,6 +4,7 @@ package bla.tm.widgets;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
@@ -93,103 +94,140 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
 
     //Countdown Widget Interface Implementation
     @Override
-    public WebElementFacade getAPIKeyTextField() {
-        return apiKeyTextField;
+    public void clickOnGetButton() {
+        scrollToElement(getCodeButton);
+        getCodeButton.click();
     }
 
     @Override
-    public WebElementFacade getEventIDTextField() {
-        return eventIDTextField;
+    public void submitForm() {
+        eventIDTextField.sendKeys(Keys.ENTER);
     }
 
     @Override
-    public WebElementFacade getTechnicalTab() {
-        return technicalTab;
+    public void setApiKey(String apiKey) {
+        apiKeyTextField.clear();
+        apiKeyTextField.sendKeys(apiKey, Keys.ENTER);
     }
 
     @Override
-    public WebElementFacade getVisualTab() {
-        return visualTab;
+    public void setEventId(String eventId) {
+        eventIDTextField.clear();
+        eventIDTextField.sendKeys(eventId,Keys.ENTER);
     }
 
     @Override
-    public WebElementFacade getPosterTab() {
-        return posterTab;
+    public void clickResetButton() {
+        scrollToElement(resetButton);
+        resetButton.click();
     }
 
     @Override
-    public WebElementFacade getFullWidthTab() {
-        return fullWidthTab;
+    public String getAPIKeyTextFieldValue() {
+        return apiKeyTextField.getValue();
     }
 
     @Override
-    public WebElementFacade getLayout300x600Tab() {
-        return layout300x600Tab;
+    public String getEventIDTextFieldValue() {
+        return eventIDTextField.getValue();
     }
 
     @Override
-    public WebElementFacade getLayout300x250Tab() {
-        return layout300x250Tab;
+    public void clickOnGetEventId() {
+        scrollToElement(getEventIdLink);
+        getEventIdLink.click();
     }
 
     @Override
-    public WebElementFacade getLayoutVerticalTab() {
-        return layoutVerticalTab;
+    public void enterKeyword(String keyword) {
+        keywordField.sendKeys(keyword, Keys.ENTER);
     }
 
     @Override
-    public WebElementFacade getLayoutHorisontalTab() {
-        return layoutHorisontalTab;
+    public void clickSetThisIdOnFirstEvent() {
+        setThisIdBtn.click();
     }
 
     @Override
-    public WebElementFacade getLayoutCustomTab() {
-        return layoutCustomTab;
+    public boolean isPosterContainsText(String text) {
+        return posterWindow.getText().contains(text);
     }
 
     @Override
-    public WebElementFacade getGetCodeButton() {
-        return getCodeButton;
+    public void clickOnGetYourOwnLink() {
+        getYourOwnLink.click();
     }
 
     @Override
-    public WebElementFacade getResetButton() {
-        return resetButton;
+    public void switchToTab(String tab) {
+        switch (tab){
+            case "visual": {
+                scrollToElement(visualTab);
+                visualTab.click();
+            }
+            break;
+            case "technical": {
+                scrollToElement(technicalTab);
+                technicalTab.click();
+            }
+            break;
+            default: throw new IllegalArgumentException(String.format("The tab name: '%s' is illegal.", tab));
+        }
     }
 
     @Override
-    public WebElementFacade getPosterWindow() {
-        return posterWindow;
+    public void setFullWidthMode() {
+        fullWidthTab.click();
     }
 
     @Override
-    public WebElementFacade getEventIdLink() {
-        return getEventIdLink;
+    public void setPosterTheme() {
+        posterTab.click();
     }
 
     @Override
-    public WebElementFacade getKeywordField() {
-        return keywordField;
+    public void setLayoutResolution(String resolution) {
+        WebElementFacade resolutionRadioButton;
+        switch(resolution){
+            case "300x250": {
+                resolutionRadioButton = layout300x250Tab;
+            }
+            break;
+            case "300x600": {
+                resolutionRadioButton = layout300x600Tab;
+            }
+            break;
+            case "custom": {
+                resolutionRadioButton = layoutCustomTab;
+            }
+            break;
+            default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", resolution));
+        }
+        scrollToElement(resolutionRadioButton);
+        resolutionRadioButton.click();
     }
 
     @Override
-    public WebElementFacade getSetThisId() {
-        return setThisIdBtn;
+    public void setLayoutOrientation(String orientation) {
+        WebElementFacade orientationRadioButton;
+        switch (orientation){
+            case "horizontal": {
+                orientationRadioButton = layoutHorisontalTab;
+            }
+            break;
+            case "vertical": {
+                orientationRadioButton = layoutVerticalTab;
+            }
+            break;
+            default: throw new IllegalArgumentException(String.format("Illegal layout orientation: '%s'", orientation));
+        }
+        scrollToElement(orientationRadioButton);
+        orientationRadioButton.click();
     }
 
     @Override
-    public WebElementFacade getGetYourOwn() {
-        return getYourOwnLink;
-    }
-
-    @Override
-    public WebElementFacade getActiveLayoutResolution() {
-        return activeLayoutResolution;
-    }
-
-    @Override
-    public WebElementFacade getEventMessage() {
-        return eventMessage;
+    public boolean isEventMessageContains(String text) {
+        return eventMessage.getText().contains(text);
     }
 
     @Override

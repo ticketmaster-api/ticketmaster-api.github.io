@@ -820,9 +820,9 @@ var TicketmasterEventDiscoveryWidget = function () {
           if (xDiff > 0) this.nextSlideX(); // left swipe
           else this.prevSlideX(); // right swipe
         } else {
-          if (yDiff > 0) this.nextSlideY(); // up swipe
-          else this.prevSlideY(); // down swipe
-        }
+            if (yDiff > 0) this.nextSlideY(); // up swipe
+            else this.prevSlideY(); // down swipe
+          }
 
         xDown = null;
         yDown = null;

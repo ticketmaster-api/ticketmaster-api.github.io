@@ -18,11 +18,6 @@ public class PD_Tutorials_WidgetsSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        tutorialsWidgetsPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (tutorialsWidgetsPage.getTitleText(), tutorialsWidgetsPage.pageHeader);
     }
@@ -112,13 +107,13 @@ public class PD_Tutorials_WidgetsSteps {
     @Step
     public void populateAllFieldsExceptName() {
         tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys("test@test.com");
-        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test test test test test!!!");
+        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test!");
     }
 
     @Step
     public void populateAllFieldsExceptEmail() {
         tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys("test user");
-        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test test test test test!!!");
+        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test test!");
     }
 
     @Step
@@ -142,21 +137,12 @@ public class PD_Tutorials_WidgetsSteps {
     public void populateDescriptionFieldWithMoreThanAccepted() {
         String input = new String(new char[3001]).replace('\0', 'w');
         tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys(input);
+        waitForSomeActionHappened(1000);
     }
 
     @Step
     public void checkDescriptionErrorMessageIsShown() {
         assertTrue(tutorialsWidgetsPage.getFeedbackWidget().getDescriptionErrorMessage().isVisible());
-    }
-
-    @Step
-    public void populateEmailFieldIncorrectly1() {
-        tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys("test");
-    }
-
-    @Step
-    public void populateEmailFieldIncorrectly2() {
-        tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys("test@test");
     }
 
     @Step

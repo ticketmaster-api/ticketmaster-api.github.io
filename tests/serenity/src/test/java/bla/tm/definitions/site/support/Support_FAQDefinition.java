@@ -12,7 +12,6 @@ public class Support_FAQDefinition {
 
     @Given("open FAQ page")
     public void givenOpenFAQPage() {
-        faqPage.maximiseBrowserWindow();
         faqPage.openPage();
     }
 

@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}" async></script>
+<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
 
 <script>
@@ -35,11 +35,13 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
 <script src="{{'/config.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/jquery-1.11.3.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/jquery-migrate-1.3.0.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/intro.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/datetimepicker.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/api-explorer-datetimepicker.js' | prepend: site.baseurl }}"></script>
 {% if page.category == "api-explorer"%}
   {% include lazy-selector-modal.html %}
   <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>

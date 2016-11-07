@@ -12,7 +12,6 @@ public class PD_Definition {
 
     @Given("open Products and Docs page")
     public void openPDPage() {
-        productsAndDocsPage.maximiseBrowserWindow();
         productsAndDocsPage.openPage();
     }
 

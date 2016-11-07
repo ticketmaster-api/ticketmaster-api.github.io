@@ -2,23 +2,44 @@ $img: './../assets/img/ic-shevron-right-white.svg';
 $border-radius: 7px;
 .tab-content {
 	.panel-group {
+		.has-events-list {
+			.panel {
+				width: 360px;
+				.list-group {
+					.list-group-item {
+						.name {
+							width: 180px !important;
+						}
+						.additional-info {}
+						.btn {}
+					}
+				}
+			}
+		}
+		panel {
+			&:first-child .panel{
+				border-radius: $border-radius $border-radius 0 0;
+			}
+			&:last-child .panel {
+				border-radius: 0 0 $border-radius $border-radius;
+			}
+			&:only-child .panel {
+				border-radius: $border-radius;
+			}
+		}
 		.panel {
 			width: 340px;
-			margin: auto;
+			margin: 1px auto 0;
 			border-radius: 0;
 			background: none !important;
+			overflow: hidden;
 			ul {
 				margin: 0;
 			}
 			& + .panel {
 				margin-top: 1px;
 			}
-			&:first-child {
-				border-radius: $border-radius $border-radius 0 0;
-			}
-			&:last-child {
-				border-radius: 0 0 $border-radius $border-radius;
-			}
+
 			&:hover,
 			&.active {
 				.panel-heading {
@@ -28,9 +49,10 @@ $border-radius: 7px;
 			.panel-heading {
 				padding: 0;
 				height: 40px;
+				border-radius: 0;
 				.panel-title {
 					position: relative;
-					.btn {
+					.btn-title {
 						margin: 0;
 						font: {
 							weight: bold;
@@ -70,6 +92,30 @@ $border-radius: 7px;
 						display: block;
 						color: #fff;
 					}
+					.follow-request {
+						float: right;
+						margin: 7px 5px 0;
+						.color-indicator {
+							margin: 6px 11px 0;
+						}
+						.btn-request {
+							float: right;
+							width: 150px;
+							height: 26px;
+							border-radius: 2px;
+							background-color: #ffffff;
+							line-height: 13px;
+							clear: both;
+							font: {
+								size: 11px;
+								weight: bold;
+								style: normal;
+								stretch: normal;
+							}
+							text-align: center;
+							color: #b7c9d3;
+						}
+					}
 				}
 				.navigation {
 					width: 0;
@@ -92,22 +138,89 @@ $border-radius: 7px;
 						margin-right: 15px;
 					}
 					&.next {
-						border:{
+						border: {
 							width: 7.5px 0 7.5px 8px;
 							color: transparent transparent transparent #fff;
 						}
 					}
 				}
 			}
-
+			.panel-collapse {
+				clear: both;
+			}
 			.panel-body {
 				border-top: none !important;
+				background: #fff;
 				overflow: hidden;
+				padding: 0 15px;
+				&.object-panel-body {
+					.img.img-thumbnail {
+						margin: auto;
+					}
+					&:not(.all-inside) {
+						.list {
+							.item.object {
+								padding: 15px;
+								margin: 0 -15px;
+							}
+						}
+					}
+					.primitive {
+						&:first-child {
+							padding-top: 15px;
+						}
+						&:last-child {
+							padding-bottom: 15px;
+						}
+					}
+				}
+				&.no-padding {
+					padding: 0;
+				}
+				&.all-inside {
+					padding: 0 15px;
+					.primitive {
+						padding: 7px 0;
+						&:first-child{
+							padding-top: 15px;
+						}
+						&:last-child {
+							padding-bottom: 15px;
+						}
+					}
+					.object + .primitive,
+					.primitive + .object {
+						padding-top: 8px;
+					}
+					// allInside
+					.panel {
+						margin-right: -15px;
+						margin-left: -15px;
+						border-right: none;
+						border-radius: 0;
+						.panel-heading {
+							border-right: none;
+							.btn-title {
+								margin: 0 0 0 35px;
+							}
+						}
+						.panel-body {
+							.key {
+								display: block !important;
+							}
+						}
+					}
+				}
+				.padding {
+					padding: 7px 15px;
+				}
 				.list-group {
 					margin: 0;
+					&.events > .list-group-item.item {
+						padding: 10px 40px 10px 15px;
+					}
 					.list-group-item {
 						position: relative;
-						padding-right: 40px;
 						clear: both;
 						overflow: hidden;
 						color: #768692;
@@ -115,6 +228,7 @@ $border-radius: 7px;
 						border-radius: 0;
 						display: table;
 						width: 100%;
+						padding: 15px 40px 15px 15px;
 						&:not(:first-child) {
 							border-top: solid 1px #b7c9d3;
 						}
@@ -128,8 +242,12 @@ $border-radius: 7px;
 								}
 							}
 						}
+						.name-wrapper {
+							float: left;
+							max-height: 42px;
+							overflow: hidden;
+						}
 						.name {
-							display: inline-block;
 							font: {
 								size: 14px;
 								weight: normal;
@@ -137,8 +255,12 @@ $border-radius: 7px;
 								stretch: normal;
 							}
 							line-height: 1.57;
-							width: 230px;
+							overflow: hidden;
 							padding: 0 10px 0 0;
+							display: table-cell;
+							vertical-align: middle;
+							height: 100%;
+							width: 100%;
 						}
 						.additional-info {
 							font: {
@@ -161,18 +283,19 @@ $border-radius: 7px;
 								line-height: 10px;
 							}
 							.venue {
+								margin-top: 5px;
 								font: {
 									size: 12px;
 									weight: normal;
 								}
 								line-height: 12px;
+								width: 100px;
 							}
-							clear: both;
 						}
 						.btn {
 							position: absolute;
 							top: 50%;
-							right: 5px;
+							right: 15px;
 							z-index: 5;
 							margin-top: -10px;
 						}
@@ -183,14 +306,37 @@ $border-radius: 7px;
 						}
 					}
 				}
-
-				.clear {
-					padding: 15px;
-					* {
-						margin: 0 0 5px;
+				&:not(.all-inside) {
+					.list {
+						.item.object {
+							&:hover,
+							&.active {
+								color: $white;
+								background: #009cde;
+								.key {
+									color: #fff;
+								}
+								.btn {
+									background: {
+										image: url($img) !important;
+									}
+								}
+							}
+						}
 					}
 				}
 
+				.key {
+					font: {
+						size: 14px;;
+						style: normal;
+						stretch: normal;
+						weight: bold;
+					}
+					margin: 1px 10px 0 0;
+					color: #768692;
+					float: left;
+				}
 				.value {
 					font-size: 14px;
 					font-weight: normal;
@@ -199,17 +345,14 @@ $border-radius: 7px;
 					line-height: 1.57;
 					color: #768692;
 					overflow-wrap: break-word;
-					display: inline-block;
 					max-width: 310px;
 					word-break: break-all;
 				}
-				.key {
-					font-size: 14px;;
-					font-style: normal;
-					font-stretch: normal;
-					line-height: 1.57;
-					color: #768692;
-					font-weight: bold;
+				.btn.blue-shevron-right {
+					margin-right: 7px;
+				}
+				.btn-copy {
+					margin-left: 15px;
 				}
 				.img {
 					max-width: 100%;
@@ -229,7 +372,6 @@ $border-radius: 7px;
 					}
 				}
 			}
-
 			&:last-child {
 				.panel-body {
 					.list-group {

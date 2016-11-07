@@ -12,7 +12,6 @@ public class Partners_StartupsDevelopersDefinition {
 
     @Given("open Startups and Developers page")
     public void openStartupsDevelopersPage() {
-        startupsDevelopersPage.maximiseBrowserWindow();
         startupsDevelopersPage.openPage();
     }
 

@@ -16,16 +16,6 @@ public class PD_APIExplorerSteps {
     }
 
     @Step
-    public void closePage() {
-        apiExplorerPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        apiExplorerPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (apiExplorerPage.getTitleText(), apiExplorerPage.pageHeader);
     }

@@ -21,16 +21,6 @@ public class PD_TopPicksAPISteps {
     }
 
     @Step
-    public void closePage() {
-        topPicksAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        topPicksAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (topPicksAPIPage.getTitleText(), topPicksAPIPage.pageHeader);
     }

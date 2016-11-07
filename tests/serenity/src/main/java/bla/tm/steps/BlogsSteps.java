@@ -13,11 +13,6 @@ public class BlogsSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        blogsPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         blogsPage.checkGeneralPageElements(disqus, leftMenu);
     }

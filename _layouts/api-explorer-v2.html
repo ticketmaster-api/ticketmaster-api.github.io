@@ -5,6 +5,8 @@
 <div id="spinner hide"></div>
 {% include home-header.html %}
 
+<error-pop-up params="onError: onError"></error-pop-up>
+
 <div id="api-explorer-v2" class="api-explorer-v2">
 	<div class="row-container api-exp-content">
 		<!--page header-->
@@ -38,116 +40,34 @@
 				</span>
 			</div>
 		</section>
+		
 		<!--main filter-->
 		<div class="api-exp-container clearfix">
-			<!--about-->
-			<div data-bind="with: methods">
-				<section data-bind="css: {active: togglePopUp}" class="api-exp-about">
-					<div class="api-exp-about-wrapper">
-						<button data-bind="click: onAboutClick" class="api-exp-about__button devices-button"></button>
-						<a data-bind="attr: {href: method().documentation}" href="#" class="api-exp-about__button" target="_blank"></a>
-						<article class="api-exp-about__content">
-							<h5 data-bind="text: method().name" class="api-exp-about__title">About API and Method:</h5>
-							<section class="api-exp-about__description">
-								<p data-bind="text: method().description"></p>
-								<p><a data-bind="attr: {href: method().documentation, target: '_blank'}" href="#" class="api-exp-about__description-link">Read mode</a></p>
-							</section>
-						</article>
-						<div data-bind="click: onAboutClick" class="api-exp-about-layer"></div>
-					</div>
-				</section>
-			</div>
+			<about-method params="selectedMethodData: selectedMethodData"></about-method>
 
 			<!--content-wrapper-->
 			<section class="api-exp-main">
-
 				<!--menu-->
-				<aside data-bind="with: menu" class="api-exp-side-menu">
-					<ul data-bind="foreach: categories" class="api-exp-side-menu__container nav nav-pills nav-stacked visible-lg-block">
-						<li data-bind="css: {active: checked}" role="presentation" class="api-exp-side-menu__item">
-							<a data-bind="click: $parent.selectCategory, text: name" href="#" class="api-exp-side-menu__link"></a>
-						</li>
-					</ul>
-					<!--select-->
-					<div class="api-exp-side-menu__select hidden-lg">
-						<div data-bind="component: {name: 'custom-select', params: {options: categories, onselect: selectCategory}}"></div>
-					</div>
-				</aside>
-
+				<category-menu params="data: base, selectedCategory: selectedCategory">
+					<custom-select params="options: categories, onselect: selectCategory, selected: selectedCategory"></custom-select>
+				</category-menu>
+				
 				<!--api key-->
 				<section class="api-exp-key">
 					<input data-bind="value: apiKey.value" type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
 				</section>
 
 				<!--filter-->
-				<section data-bind="with: methods" class="api-exp-main-filter">
-					<section class="api-exp-filter">
-						<section class="api-exp-methods clearfix">
-							<label class="api-exp-methods__label">Methods</label>
-
-							<!--radios-->
-							<div data-bind="foreach: radiosModel" class="api-exp-methods__radio-buttons radio-buttons clearfix">
-								<div data-bind="css: {active: checked}" class="api-exp-method">
-									<input data-bind="attr: {id: 'api-exp-' + name, checked: checked}, event: {change: $parent.onchangeRadios}" class="api-exp-content-method__radio" type="radio" name="api-exp-methods">
-									<label data-bind="text: name, attr: {for: 'api-exp-' + name}" class="radio-inline api-exp-method__label"></label>
-								</div>
-							</div>
-
-							<!--select-->
-							<div class="api-exp-methods__select">
-								<div data-bind="component: {name: 'custom-select', params: {options: methodsViewModel, onselect: onSelectMethod}}"></div>
-							</div>
-						</section>
-					</section>
-				</section>
-
+				<methods-filter params="data: base, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType, selectedMethod: selectedMethod">
+					<radio-filter params="data: data, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType"></radio-filter>
+					<custom-select params="options: methodsViewModel, onselect: onSelectMethod, selected: selectedMethodName"></custom-select>
+				</methods-filter>
 			</section><!--content-wrapper-->
 		</div>
+		
 		<!--params-->
-		<div data-bind="with: params">
-			<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
-				<section class="api-exp-params-headline">
-					<button data-bind="click: slideToggle" class="btn shevron-up toggle-btn btn-icon" type="button">Parameters</button>
-					<div class="api-exp-params-headline-edit">
-						<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
-						<button data-bind="click: onParamsClear" class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
-					</div>
-				</section>
-				<div class="api-exp-params-wrapper clearfix js-slide-wrapper">
-					<!--about-->
-					<section class="api-exp-about visible-lg-block">
-						<div class="api-exp-about-wrapper">
-							<span class="api-exp-about__button"></span>
-							<article class="api-exp-about__content">
-								<h5 data-bind="text: paramInFocus().name" class="api-exp-about__title">About API and Method:</h5>
-								<section class="api-exp-about__description">
-									<p data-bind="html: paramInFocus().doc"></p>
-								</section>
-							</article>
-						</div>
-					</section>
-					<!--params filter-->
-					<section class="api-exp-params-filter">
-						<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
-							<!--select-->
-							<div data-bind="if: select">
-								<div class="api-exp-params-filter__field">
-									<div data-bind="component: {name: 'custom-select', params: {data: $data, options: options, onselect: $parent.onSelectParamValue.bind($data, $data), focus: $parent.onFocus}},"></div>
-								</div>
-							</div>
-							<!-- text field -->
-							<div data-bind="ifnot: select">
-								<div data-bind="css: {'dirty': isDirty, calendar: hasCalendar, popup: hasPopUp}" class="api-exp-params-filter__field">
-									<input data-bind="textInput: value, event: {focus: $parent.onFocus, keydown: $parent.onEnterKeyDown}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
-									<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
-									<button class="api-exp-params-filter__button">&nbsp;</button>
-								</div>
-							</div>
-						</section>
-					</section><!--params filter-->
-				</div>
-			</section><!--parameters-->
-		</div>
+		<params-filter params="selectedMethodData: selectedMethodData, selectedMethod: selectedMethod, selectedParams: selectedParams"></params-filter>
+		
 		<!--request btn-->
 		<section class="api-exp-get-btn clearfix">
 			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
@@ -161,7 +81,7 @@
 			<section class="row-container api-exp-request-list-headline">
 				<h4 class="title">Request list</h4>
 				<div class="headline-edit">
-					<button data-bind="click: onClearRequests" class="btn btn-icon btn-clear" type="button"></button>
+					<button data-bind="click: onClearRequests, popover: {type: 'tooltip', title: 'Clear requests history'}" class="btn btn-icon btn-clear" type="button"></button>
 				</div>
 			</section>
 
@@ -169,29 +89,49 @@
 			<section>
 				<ul data-bind="foreach: viewModel" class="panel-group api-exp-request-list" id="response" role="tablist" aria-multiselectable="true">
 					<li data-bind="css: {active: active}" class="panel panel-default api-exp-request-list-item clearfix">
+
 						<section class="row-container request" data-bind="attr: {id: $parent.getStr('heading', $index)}" role="tab">
 							<div class="edit-controls">
-								<button class="btn btn-icon btn-share" type="button"></button>
-								<button class="btn btn-icon btn-copy" type="button"></button>
-								<button data-bind="click: $parent.getRawData" class="btn btn-icon btn-raw" type="button" data-toggle="tooltip" data-placement="top" title="Tooltip on top" data-original-title="View Raw"></button>
+								<button data-bind="popover: {type: 'tooltip', title: 'Repeat settings of this request'}"
+								        class="btn btn-icon btn-preset"
+								        type="button"></button>
+								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler},
+																	css: {'copied': copiedForShare}, attr: {'data-clipboard-text': $parent.sharePath},
+																	popover: {type: 'tooltip', title: 'Copy request share link'}"
+								        class="btn btn-icon btn-share"
+								        type="button"></button>
+								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler},
+																	popover: {type: 'tooltip', title: 'Copy request URL'},
+																	css: {'copied': copiedUrl},
+																	attr: {'data-clipboard-text': req}"
+								        class="btn btn-icon btn-copy"
+								        type="button"></button>
+								<button data-bind="click: $parent.getRawData,
+																	popover: {type: 'tooltip', title: 'Show raw response data'}"
+								        class="btn btn-icon btn-raw"
+								        type="button"
+								        data-toggle="tooltip"></button>
 							</div>
 							<div class="panel-title">
-								<button class="btn btn-icon shevron shevron-up view-control"
+								<!-- ko if: !!$data.res -->
+								<button class="btn btn-icon shevron shevron-up blue view-control"
 								        type="button"
 								        data-bind="click: $parent.getDetails,
-								                    attr: {
-							                        id: $parent.getStr('show-details', $index),
-								                      'data-target': $parent.getStr('#collapse', $index),
-							                        'aria-controls': $parent.getStr('collapse', $index)
-						                        }"
+								                    attr: {id: $parent.getStr('show-details', $index),'data-target': $parent.getStr('#collapse', $index),'aria-controls': $parent.getStr('collapse', $index)}"
 								        data-toggle="collapse"
 								        data-parent="#response"
 								        aria-expanded="false">
 								</button>
+								<!-- /ko -->
+								<!-- ko if: !$data.res -->
+								<button data-bind="popover: {type: 'popover', trigger: 'click', data: error}" class="btn btn-icon btn-alert view-control"></button>
+								<!-- /ko -->
 							</div>
 							<span data-bind="css: color" class="color-indicator view-control"></span>
 							<p data-bind="text: req" class="item_text"></p>
 						</section>
+						
+						<!-- ko if: !!$data.res -->
 						<section class="response collapse" data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}" role="tabpanel">
 							<div class="row">
 								<div class="container">
@@ -220,13 +160,22 @@
 												<p data-bind="html: resHTML"></p>
 											</div>
 											<div data-bind="attr: {id: 'slider-' + $index()}" role="tabpanel" class="tab-pane blocks active" id="blocks">
-												<panel-group params="reqId: res.id, cards: res.res, colorClass: color, sectionIndex: $index, getMore: $parent.getMore, url: $parent.url"></panel-group>
+												<panel-group params="
+													reqId: res.id,
+													data: res.res,
+													filter: $root.config,
+													colorClass: color,
+													sectionIndex: $index,
+													getMore: $parent.getMore,
+													url: $parent.url">
+												</panel-group>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</section>
+						<!-- /ko-->
 					</li>
 				</ul>
 			</section>
@@ -249,12 +198,13 @@
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <!--<script  type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>-->
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/vendors/knockout-3.3.0.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/knockout-3.4.0.debug.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/knockout-scrollbar.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/clipboard.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
 {% include feedback.html %}
-<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
+<!--<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>-->
 <script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
 <!--not used-->
 <!--<script src="{{'/scripts/components/apikey-check.js' | prepend: site.baseurl }}"></script>-->

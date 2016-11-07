@@ -1,33 +1,62 @@
 var self;
 
-function objectPanelBodyComponent(params) {
+function ArrayPanelBody(params) {
 	self = this;
-	this.title = params.data.key;
 	this.data = params.data.value;
+	this.config = params.config;
+	this._panelName = params.data.key;
 	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
-	this.cardGroup = params.cardGroup;
-	this.getMore = this.cardGroup.getMore;
+	this.panelGroup = params.panelGroup;
+	this.getMore = this.panelGroup.getMore;
+
 }
 
+ArrayPanelBody.prototype.getStartData = function ($data) {
+	return Object.getProp($data, 'dates.start.localDate') || ''
+};
+
+ArrayPanelBody.prototype.getVenueName = function ($data) {
+	return Object.getProp($data, '_embedded.venues[0].name') || ''
+};
+
+ArrayPanelBody.prototype.setActive = function ($index, model, e) {
+	$(e.currentTarget).parents('.slick-slide').find('.item.object').removeClass('active');
+	$(e.currentTarget).parent('.item').addClass('active');
+	this.getMore.call(this, $index, model);
+};
 
 module.exports = ko.components.register('array-panel-body', {
-	viewModel:  objectPanelBodyComponent,
+	viewModel: ArrayPanelBody,
 	template:`
-		<ul data-bind="foreach: data" class="list-group">
-			<li class="list-group-item">
-			
-				<!-- ko if: $parent.title === 'images' -->
-					<img data-bind="attr: {src: url, alt: 'image-' + ratio}" alt="img" class="img">
-				<!-- /ko -->
+		<section class="panel-body no-padding array-panel-body">
+			<ul data-bind="foreach: data, css: {'events': $component._panelName === 'events'}" class="list list-group">
+				<li data-bind="css: {'object': typeof $data === 'object'}" class="list-group-item item">
 				
-				<!-- ko ifnot: $parent.title === 'images' -->
-				<span data-bind="text: name || '#' + $index()" class="name truncate">event name</span>
-				<!-- /ko -->
-				
-				<!-- ko if: typeof $data === 'object' -->
-					<button data-bind="click: $component.getMore.bind($component.cardGroup, $component.cardIndex)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
-				<!-- /ko -->
-				
-			</li>
-		</ul>
+					<!-- ko if: $component._panelName === 'images' -->
+						<img data-bind="attr: {src: url, alt: 'image-' + ratio}" alt="img" class="img">
+					<!-- /ko -->
+					
+					<!-- ko ifnot: $component._panelName === 'images' -->
+						<div class="name-wrapper">
+							<span data-bind="text: name || '#' + $index(), blockEllipsis: {clamp: 2}" class="name">label</span>
+						</div>			
+						
+						<!-- ko if: $component._panelName === 'events' -->
+							<div class="additional-info">
+								<p data-bind="text: $component.getStartData($data)" class="date">event date</p>
+								<!-- ko if: $component.getVenueName($data)-->
+									<p data-bind="text: $component.getVenueName($data)" class="venue truncate">event venue</p>
+								<!--/ko-->
+							</div>
+						<!-- /ko -->
+						
+					<!-- /ko -->
+					
+					<!-- ko if: typeof $data === 'object' -->
+						<button data-bind="click: $component.setActive.bind($component, $index())" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+					<!-- /ko -->
+					
+				</li>
+			</ul>
+		</section>
 `});

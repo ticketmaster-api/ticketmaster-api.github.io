@@ -69,14 +69,6 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[@class='user-control-section']/a[@href='/user/login']")
     private WebElementFacade logInLinkPantheon;
 
-    public void closeWindow() {
-        super.getDriver().close();
-    }
-
-    public void maximisePageWindow() {
-        super.getDriver().manage().window().maximize();
-    }
-
     public String returnCurrentUrl(){
         return this.getDriver().getCurrentUrl();
     }
@@ -154,4 +146,13 @@ public class AncestorPage extends PageObject {
 
     public LeftMenuWidget getLeftSideMenuWidget() {return leftSideMenuWidget;}
 
+    public void scrollToElement(WebElementFacade element){
+        int screenHeight = getDriver().manage().window().getSize().getHeight();
+            evaluateJavascript("window.scrollTo(0," + (element.getLocation().y - screenHeight / 2) + ")");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

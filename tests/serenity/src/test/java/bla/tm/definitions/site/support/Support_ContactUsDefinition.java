@@ -12,7 +12,6 @@ public class Support_ContactUsDefinition {
 
     @Given("open Contact Us page")
     public void givenOpenContactUsPage() {
-        contactUsPage.maximiseBrowserWindow();
         contactUsPage.openPage();
     }
 

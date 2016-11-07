@@ -397,7 +397,6 @@
           "required" : false,
           "type" : "string",
           "default" : "",
-          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
           "x-example" : ""
         }, {
           "name" : "endDateTime",
@@ -406,7 +405,6 @@
           "required" : false,
           "type" : "string",
           "default" : "",
-          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
           "x-example" : ""
         }, {
           "name" : "onsaleStartDateTime",
@@ -415,7 +413,6 @@
           "required" : false,
           "type" : "string",
           "default" : "",
-          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
           "x-example" : ""
         }, {
           "name" : "onsaleEndDateTime",
@@ -424,7 +421,6 @@
           "required" : false,
           "type" : "string",
           "default" : "",
-          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
           "x-example" : ""
         }, {
           "name" : "countryCode",
@@ -1017,10 +1013,13 @@
           "type" : "boolean",
           "default" : false
         },
-        "rangeDurationField" : {
+        "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "durationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
@@ -1030,9 +1029,6 @@
         "maximumValue" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "leapDurationField" : {
-          "$ref" : "#/definitions/DurationField"
         },
         "name" : {
           "type" : "string"

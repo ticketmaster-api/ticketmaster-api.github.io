@@ -15,11 +15,6 @@ public class Support_GeneralTermsOfUseSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        generalTermsOfUsePage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (generalTermsOfUsePage.getTitleText(), generalTermsOfUsePage.pageHeader);
     }

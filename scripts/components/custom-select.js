@@ -61,9 +61,15 @@ jQuery.fn.customSelect = function(options ) {
             var $self = $(self);
             $placeholder.val($self.text());
             $select.val($self.data('value'));
-            if(!isInit) $select.trigger('change');
             $list.find('li').removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
+
+            //set value on real select
+            $('option',$select).filter(function(i) {
+                return ($(this).text() == $self.text()); //To select $self.text()
+            }).prop('selected', true);
+
+            if(!isInit) $select.trigger('change');
         }
 
         function toggle() {
@@ -90,6 +96,62 @@ jQuery.fn.customSelect = function(options ) {
             $list.find('li:last').trigger('click');
         }
 
+        function keyboardListener(e) {
+            function setSelector(list ,me){
+                $.each(list, function(i, el) {
+                    if ($.inArray(el) == -1){
+                        if( $(el).data('value') !== $placeholder.val() ) {
+                            selected = $(".custom_select__item",me).eq(i);
+                        }
+                    }
+                    else {
+                        console.info('error' , i, el );
+                    }
+                });
+              return selected;
+            }
+
+            if ( e.which == 13 ) {
+                e.preventDefault();
+                if ($(".custom_select__list ").is(":visible")) {
+                    var selected = $(".custom_select__item-active", $(this , 'ul') );
+                    if(selected.length < 1)
+                        set( $(".custom_select__item", $(this , 'ul')).first(), false);
+                    else
+                        set( $(".custom_select__item-active", $(this , 'ul')), false);
+                    toggle();
+                } else {
+                    toggle();
+                }
+            }
+            if (e.which == 38) { // up
+                e.preventDefault();
+                var selected = $(".custom_select__item-active", $(this , 'ul') );
+                if(selected.length < 1){
+                    selected = setSelector($(".custom_select__item",this) ,this);
+                }
+                $(".custom_select__list li").removeClass("custom_select__item-active");
+                if (selected.prev().length == 0) {
+                    selected.siblings().last().addClass("custom_select__item-active");
+                } else {
+                    selected.prev().addClass("custom_select__item-active");
+                }
+            }
+            if (e.which == 40) { // down
+                e.preventDefault();
+                var selected = $(".custom_select__item-active",  $(this , 'ul'));
+                if(selected.length < 1){
+                    selected = setSelector($(".custom_select__item",this),this);
+                }
+                $(".custom_select__list li").removeClass("custom_select__item-active");
+                if (selected.next().length == 0) {
+                    selected.siblings().first().addClass("custom_select__item-active");
+                } else {
+                    selected.next().addClass("custom_select__item-active");
+                }
+            }
+        }
+
         // Events
         $list.on('click', 'li', function(){            
             set(this, false);
@@ -100,7 +162,8 @@ jQuery.fn.customSelect = function(options ) {
        
         $custom_select.on({
             'click': toggle,
-            'custom-reset': reset
+            'custom-reset': reset,
+            'keydown' : keyboardListener
         });
         $feedbackModal.on({
             'hide.bs.modal': reset,

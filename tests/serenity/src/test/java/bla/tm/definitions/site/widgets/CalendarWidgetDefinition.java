@@ -15,7 +15,7 @@ public class CalendarWidgetDefinition {
     private String apiKey = "{apikey}";
 
     @Steps
-    PD_Widget_CalendarSteps calendarWidgetPage;
+    PD_Widget_CalendarSteps calendarWidgetSteps;
 
     @Steps
     UserLogInSteps userLogInPage;
@@ -27,65 +27,70 @@ public class CalendarWidgetDefinition {
     @Given("store values of: $valueNames")
     public void storeValuesOf(List<String> valueNames) {
         for (String valueName : valueNames){
-            calendarWidgetPage.storeValue(valueName);
+            calendarWidgetSteps.storeValue(valueName);
         }
     }
     @Given("change values for: $valueNames")
     public void changeValuesFor(List<String> valueNames) {
         for (String valueName : valueNames){
-            calendarWidgetPage.setRandomValueFor(valueName);
+            calendarWidgetSteps.setRandomValueFor(valueName);
         }
     }
 
     //When
     @When("change value of Zip Code $zipCode")
     public void changeValueOfZipCode(String zipCode) {
-        calendarWidgetPage.setZipCodeValue(zipCode);
+        calendarWidgetSteps.setZipCodeValue(zipCode);
     }
 
     @When("User is not logged to site (Calendar Widget)")
     public void openLogInPageAndCheckUserIsNotLoggedIn() {
-        calendarWidgetPage.clickLogIn();
+        calendarWidgetSteps.clickLogIn();
         userLogInPage.isPageOpened();
-        calendarWidgetPage.openPage();
+        calendarWidgetSteps.openPage();
     }
 
     @When("User is logged to site (Calendar Widget)")
     public void openLogInPageAndLogIn() {
-        calendarWidgetPage.clickLogIn();
+        calendarWidgetSteps.clickLogIn();
         userLogInPage.logInToAccount();
         apiKey = userAccountSteps.getAPIKeyOfUser();
-        calendarWidgetPage.openPage();
+        calendarWidgetSteps.openPage();
+    }
+
+    @When("click reset button on Calendar Widget Page")
+    public void clickResetButton(){
+        calendarWidgetSteps.resetForm();
     }
 
     //Then
     @Then("embedded html code contains stored values of: $valueNames")
     public void checkThatEmbeddedHtmlCodeContainsStoredValuesOf(List<String> valueNames) {
         for (String valueName : valueNames){
-            calendarWidgetPage.embeddedCodeContainsStoredValueFor(valueName);
+            calendarWidgetSteps.embeddedCodeContainsStoredValueFor(valueName);
         }
     }
 
     @Then("the Country field contains appropriate value $countryName")
     public void checkThatCountryFieldContainsAppropriateValue(String countryName) {
-        calendarWidgetPage.fieldCountryContains(countryName);
+        calendarWidgetSteps.fieldCountryContains(countryName);
     }
 
     @Then("values of fields: $fieldNames equals stored values")
     public void checkThatFieldsEqualStoredValues(List<String> fieldNames) {
         for (String fieldName : fieldNames){
-            calendarWidgetPage.fieldEqualsStoredValue(fieldName);
+            calendarWidgetSteps.fieldEqualsStoredValue(fieldName);
         }
     }
 
     @Then("the required fields are not empty on the Calendar Widget page")
     public void checkThatRequiredFieldsAreNotEmptyOnTheCalendarWidgetPage() {
-        calendarWidgetPage.apiKeyFieldIsNotEmpty();
-        calendarWidgetPage.zipCodeIsNotEmpty();
+        calendarWidgetSteps.apiKeyFieldIsNotEmpty();
+        calendarWidgetSteps.zipCodeIsNotEmpty();
     }
 
     @Then("check that API key is provided for all placeholders on Calendar Widget page")
     public void checkAPIKeyPlaceholders(){
-        calendarWidgetPage.checkAPIKeyPlaceholders(apiKey);
+        calendarWidgetSteps.checkAPIKeyPlaceholders(apiKey);
     }
 }

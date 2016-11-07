@@ -21,16 +21,6 @@ public class PD_SeasonTicketingAPISteps {
     }
 
     @Step
-    public void closePage() {
-        seasonTicketingAPIPage.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        seasonTicketingAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (seasonTicketingAPIPage.getTitleText(), seasonTicketingAPIPage.pageHeader);
     }

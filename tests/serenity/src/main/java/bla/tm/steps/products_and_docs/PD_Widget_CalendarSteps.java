@@ -3,11 +3,8 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_Widget_CalendarPage;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
-import org.junit.Assert;
-import org.openqa.selenium.Keys;
-
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class PD_Widget_CalendarSteps {
 
@@ -25,7 +22,7 @@ public class PD_Widget_CalendarSteps {
 
     @Step
     public void checkIfTitleIsCorrect() {
-        Assert.assertEquals(calendarWidgetPage.getTitleText(), calendarWidgetPage.pageHeader);
+        assertEquals(calendarWidgetPage.getTitleText(), calendarWidgetPage.pageHeader);
     }
 
     @Step
@@ -36,37 +33,37 @@ public class PD_Widget_CalendarSteps {
     @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         if ("{apikey}".equals(apikey)){
-            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().getAttribute("value"), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
+            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue(), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
         }
         else {
             waitForSomeActionHappened(50);
-            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().getAttribute("value"), apikey);
+            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue(), apikey);
         }
     }
 
     @Step
     public void apiKeyFieldIsNotEmpty() {
-        String apiKey = calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().getValue();
-        Assert.assertFalse("ApiKey field is null or empty.", apiKey == null || apiKey.length() == 0);
+        String apiKey = calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue();
+        assertFalse("ApiKey field is null or empty.", apiKey == null || apiKey.length() == 0);
     }
 
     @Step
     public void zipCodeIsNotEmpty() {
-        String zipCode = calendarWidgetPage.getCalendarWidget().getZipCodeTextField().getValue();
-        Assert.assertFalse("ZipCode field is null or empty.", zipCode == null || zipCode.length() == 0);
+        String zipCode = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
+        assertFalse("ZipCode field is null or empty.", zipCode == null || zipCode.length() == 0);
     }
 
     @Step
     public void storeValue(String valueName) {
         String value;
         switch (valueName){
-            case "apiKey": value = calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().getValue();
+            case "apiKey": value = calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue();
                 break;
-            case "keyword": value = calendarWidgetPage.getCalendarWidget().getKeywordTextField().getValue();
+            case "keyword": value = calendarWidgetPage.getCalendarWidget().getKeywordTextFieldValue();
                 break;
-            case "zipCode": value = calendarWidgetPage.getCalendarWidget().getZipCodeTextField().getValue();
+            case "zipCode": value = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
                 break;
-            case "radius": value = calendarWidgetPage.getCalendarWidget().getRadiusDropdown().getSelectedValue();
+            case "radius": value = calendarWidgetPage.getCalendarWidget().getRadiusDropdownValue();
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name %s", valueName));
         }
@@ -77,30 +74,23 @@ public class PD_Widget_CalendarSteps {
     public void embeddedCodeContainsStoredValueFor(String valueName) {
         String embeddedValue = calendarWidgetPage.getCalendarWidget().getEmbeddedValueOf(valueName);
         String storedValue = (String) Serenity.getCurrentSession().get(valueName);
-        Assert.assertEquals(String.format("The %s in embedded code is: %s but stored value is: %s ", valueName, embeddedValue, storedValue), storedValue, embeddedValue);
+        assertEquals(String.format("The %s in embedded code is: %s but stored value is: %s ", valueName, embeddedValue, storedValue), storedValue, embeddedValue);
     }
 
     @Step
     public void setRandomValueFor(String randomValueFor) {
+        String randomApi = "randomApi";
+        String randomKeyword = "randomKeyword";
+        String randomZipCode = "randomZipCode";
+
         switch (randomValueFor) {
-            case "apiKey": {
-                calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().clear();
-                calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().sendKeys("randomApi", Keys.ENTER);
-            }
+            case "apiKey": calendarWidgetPage.getCalendarWidget().setAPIKeyTextFieldValue(randomApi);
                 break;
-            case "keyword": {
-                calendarWidgetPage.getCalendarWidget().getKeywordTextField().clear();
-                calendarWidgetPage.getCalendarWidget().getKeywordTextField().sendKeys("randomKeyword", Keys.ENTER);
-            }
+            case "keyword": calendarWidgetPage.getCalendarWidget().setKeywordTextFieldValue(randomKeyword);
                 break;
-            case "zipCode": {
-                calendarWidgetPage.getCalendarWidget().getZipCodeTextField().clear();
-                calendarWidgetPage.getCalendarWidget().getZipCodeTextField().sendKeys("1234", Keys.ENTER);
-            }
+            case "zipCode": calendarWidgetPage.getCalendarWidget().setZipCodeTextFieldValue(randomZipCode);
                 break;
-            case "radius": {
-                calendarWidgetPage.getCalendarWidget().getRadiusDropdown();
-            }
+            case "radius": calendarWidgetPage.getCalendarWidget().setRadiusDropdownValueTo15();
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", randomValueFor));
         }
@@ -108,8 +98,8 @@ public class PD_Widget_CalendarSteps {
 
     @Step
     public void fieldCountryContains(String countryName) {
-        String countryValue = calendarWidgetPage.getCalendarWidget().getCountryDropdown().getSelectedVisibleTextValue();
-        Assert.assertTrue(String.format("Country field contains %s but expected result is: %s", countryValue, countryName), countryValue.equalsIgnoreCase(countryName));
+        String countryValue = calendarWidgetPage.getCalendarWidget().getSelectedCountry();
+        assertTrue(String.format("Country field contains %s but expected result is: %s", countryValue, countryName), countryValue.equalsIgnoreCase(countryName));
     }
 
     @Step
@@ -117,22 +107,27 @@ public class PD_Widget_CalendarSteps {
         String storedValue = (String) Serenity.getCurrentSession().get(fieldName);
         String fieldValue;
         switch (fieldName){
-            case "apiKey": fieldValue = calendarWidgetPage.getCalendarWidget().getAPIKeyTextField().getValue();
+            case "apiKey": fieldValue = calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue();
                 break;
-            case "keyword": fieldValue = calendarWidgetPage.getCalendarWidget().getKeywordTextField().getValue();
+            case "keyword": fieldValue = calendarWidgetPage.getCalendarWidget().getKeywordTextFieldValue();
                 break;
-            case "zipCode": fieldValue = calendarWidgetPage.getCalendarWidget().getZipCodeTextField().getValue();
+            case "zipCode": fieldValue = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
                 break;
-            case "radius": fieldValue = calendarWidgetPage.getCalendarWidget().getRadiusDropdown().getSelectedVisibleTextValue();
+            case "radius": fieldValue = calendarWidgetPage.getCalendarWidget().getRadiusDropdownValue();
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", fieldName));
         }
-        Assert.assertTrue(String.format("The %s field (%s) does not equal stored value (%s).", fieldName, fieldName, storedValue), storedValue.equalsIgnoreCase(fieldValue));
+        assertTrue(String.format("The field (%s) does not equal stored value (%s).", fieldName, storedValue), storedValue.equalsIgnoreCase(fieldValue));
     }
 
     @Step
     public void setZipCodeValue(String zipCodeValue) {
-        calendarWidgetPage.getCalendarWidget().getZipCodeTextField().clear();
-        calendarWidgetPage.getCalendarWidget().getZipCodeTextField().sendKeys(zipCodeValue, Keys.ENTER);
+        calendarWidgetPage.getCalendarWidget().setZipCodeTextFieldValue(zipCodeValue);
+    }
+
+    @Step
+    public void resetForm(){
+        calendarWidgetPage.getCalendarWidget().clickResetButton();
+        waitForSomeActionHappened(500);
     }
 }

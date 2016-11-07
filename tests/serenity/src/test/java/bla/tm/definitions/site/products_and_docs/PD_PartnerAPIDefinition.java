@@ -23,8 +23,6 @@ public class PD_PartnerAPIDefinition {
 
     @Given("open Partner API page")
     public void openPartnerAPIPage() {
-        partnerAPIPage.closePage();
-        partnerAPIPage.maximiseBrowserWindow();
         partnerAPIPage.openPage();
     }
 

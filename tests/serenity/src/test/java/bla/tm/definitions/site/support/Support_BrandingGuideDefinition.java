@@ -12,7 +12,6 @@ public class Support_BrandingGuideDefinition {
 
     @Given("open Branding Guide page")
     public void givenOpenBrandingGuidePage() {
-        brandingGuidePag.maximiseBrowserWindow();
         brandingGuidePag.openPage();
     }
 

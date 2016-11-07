@@ -15,11 +15,6 @@ public class PD_Tutorials_EventSearch_SearchEventWithDiscoveryAPISteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        tutorialsEventSearchSearchEventWithDiscoveryAPIPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (tutorialsEventSearchSearchEventWithDiscoveryAPIPage.getTitleText(), tutorialsEventSearchSearchEventWithDiscoveryAPIPage.pageHeader);
     }

@@ -15,11 +15,6 @@ public class Partners_DistributionPartnersSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        distributionPartnersPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (distributionPartnersPage.getTitleText(), distributionPartnersPage.pageHeader);
     }

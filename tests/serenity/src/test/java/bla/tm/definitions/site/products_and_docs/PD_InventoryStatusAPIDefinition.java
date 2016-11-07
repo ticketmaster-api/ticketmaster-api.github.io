@@ -23,8 +23,6 @@ public class PD_InventoryStatusAPIDefinition {
 
     @Given("open Inventory Status API page")
     public void openInventoryStatusAPIPage() {
-        inventoryStatusAPIPage.closePage();
-        inventoryStatusAPIPage.maximiseBrowserWindow();
         inventoryStatusAPIPage.openPage();
     }
 

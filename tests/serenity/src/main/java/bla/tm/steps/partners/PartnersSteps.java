@@ -15,11 +15,6 @@ public class PartnersSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        partnersPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (partnersPage.getTitleText(), partnersPage.pageHeader);
     }

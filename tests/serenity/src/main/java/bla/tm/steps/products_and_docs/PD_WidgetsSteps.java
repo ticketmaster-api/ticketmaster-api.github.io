@@ -5,7 +5,6 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
 import static bla.tm.staticmethods.StaticMethods.findWebElementByKey;
-import static bla.tm.staticmethods.StaticMethods.scrollToElement;
 import static org.junit.Assert.assertEquals;
 
 public class PD_WidgetsSteps {
@@ -15,11 +14,6 @@ public class PD_WidgetsSteps {
     @Step
     public void openPage() {
         widgetsPage.open();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        widgetsPage.maximisePageWindow();
     }
 
     @Step
@@ -41,7 +35,7 @@ public class PD_WidgetsSteps {
     public void validateAndClickElement(String key) {
         WebElementFacade element = findWebElementByKey(key, widgetsPage.getClickableElements());
         element.isEnabled();
-        scrollToElement(element);
+        widgetsPage.scrollToElement(element);
         element.click();
     }
 }

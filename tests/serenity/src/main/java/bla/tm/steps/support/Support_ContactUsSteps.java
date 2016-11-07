@@ -15,11 +15,6 @@ public class Support_ContactUsSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        contactUsPage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (contactUsPage.getTitleText(), contactUsPage.pageHeader);
     }

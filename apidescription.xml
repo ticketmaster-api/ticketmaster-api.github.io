@@ -223,7 +223,7 @@
 			<param name="size" required="false" style="query" type="xsd:integer" default="20">
 				<doc>The number of attractions returned in the API response.</doc>
 			</param>
-			<param name="page" required="false" style="query" type="xsd:integer" default="1">
+			<param name="page" required="false" style="query" type="xsd:integer" default="0">
 				<doc>The page for paginating through the results.</doc>
 			</param>
 			<param name="sort" required="false" style="query" type="xsd:string"  default="none">
@@ -297,7 +297,7 @@
 			<param name="size" required="false" style="query" type="xsd:integer" default="20">
 				<doc>The number of categories returned in the API response.</doc>
 			</param>
-			<param name="page" required="false" style="query" type="xsd:integer" default="1">
+			<param name="page" required="false" style="query" type="xsd:integer" default="0">
 				<doc>The page for paginating through the results.</doc>
 			</param>
 			<param name="sort" required="false" style="query" type="xsd:string"  default="none">
@@ -377,7 +377,7 @@
 			<param name="size" required="false" style="query" type="xsd:integer" default="20">
 				<doc>The number of venues returned in the API response.</doc>
 			</param>
-			<param name="page" required="false" style="query" type="xsd:integer" default="1">
+			<param name="page" required="false" style="query" type="xsd:integer" default="0">
 				<doc>The page for paginating through the results.</doc>
 			</param>
 			<param name="sort" required="false" style="query" type="xsd:string"  default="none">

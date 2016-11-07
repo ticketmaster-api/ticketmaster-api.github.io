@@ -30,4 +30,14 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
         embeddedCode.shouldBeVisible();
         return embeddedCode;
     }
+
+    public void scrollToElement(WebElementFacade element){
+        int screenHeight = getPage().getDriver().manage().window().getSize().getHeight();
+        getPage().evaluateJavascript("window.scrollTo(0," + (element.getLocation().y - screenHeight / 2) + ")");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

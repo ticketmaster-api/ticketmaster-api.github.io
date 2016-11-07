@@ -1132,6 +1132,7 @@ Object.byString = function(o, s) {
       url: url,
       async: true,
       dataType: "json",
+      headers: {'Accept-Language':'en-US,en'},
       data: $('#post-json').is(':visible') ? prettyfyJSON() : null,
       success: function(response, textStatus, jqXHR) {
         var guid = guId(),//generate unique id for each accordion item

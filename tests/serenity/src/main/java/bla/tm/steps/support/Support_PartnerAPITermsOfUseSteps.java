@@ -15,11 +15,6 @@ public class Support_PartnerAPITermsOfUseSteps {
     }
 
     @Step
-    public void maximiseBrowserWindow() {
-        partnerAPITermsOfUsePage.maximisePageWindow();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect(){
         assertEquals (partnerAPITermsOfUsePage.getTitleText(), partnerAPITermsOfUsePage.pageHeader);
     }

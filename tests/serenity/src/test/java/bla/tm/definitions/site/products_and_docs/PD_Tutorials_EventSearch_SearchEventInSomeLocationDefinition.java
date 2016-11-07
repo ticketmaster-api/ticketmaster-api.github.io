@@ -12,7 +12,6 @@ public class PD_Tutorials_EventSearch_SearchEventInSomeLocationDefinition {
 
     @Given("open Tutorials EventSearch SearchEventInSomeLocation page")
     public void openTutorialsEventSearchSearchEventInSomeLocationPage() {
-        tutorialsEventSearchSearchEventInSomeLocationPage.maximiseBrowserWindow();
         tutorialsEventSearchSearchEventInSomeLocationPage.openPage();
     }
 

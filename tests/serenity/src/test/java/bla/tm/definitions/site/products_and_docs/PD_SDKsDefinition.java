@@ -19,7 +19,6 @@ public class PD_SDKsDefinition {
 
     @Given("open SDKs page")
     public void openSDKsPage() {
-        sDKsPage.maximiseBrowserWindow();
         sDKsPage.openPage();
     }
 

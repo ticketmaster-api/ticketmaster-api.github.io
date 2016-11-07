@@ -7,7 +7,6 @@ import net.thucydides.core.annotations.Step;
 import java.util.Map;
 
 import static bla.tm.staticmethods.StaticMethods.checkIfWebElementExist;
-import static bla.tm.staticmethods.StaticMethods.scrollToElement;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,16 +18,6 @@ public class PD_DiscoveryAPIv1Steps {
     @Step
     public void openPage() {
         discoveryAPIv1Page.open();
-    }
-
-    @Step
-    public void closePage() {
-        discoveryAPIv1Page.closeWindow();
-    }
-
-    @Step
-    public void maximiseBrowserWindow() {
-        discoveryAPIv1Page.maximisePageWindow();
     }
 
     @Step
@@ -62,9 +51,9 @@ public class PD_DiscoveryAPIv1Steps {
         }
 
         //Second check for hidden elements
-        scrollToElement(discoveryAPIv1Page.getCodeSection());
+        discoveryAPIv1Page.scrollToElement(discoveryAPIv1Page.getCodeSection());
         discoveryAPIv1Page.getCodeSection().click();
-        scrollToElement(discoveryAPIv1Page.getSwitchToCUrlCode());
+        discoveryAPIv1Page.scrollToElement(discoveryAPIv1Page.getSwitchToCUrlCode());
         discoveryAPIv1Page.getSwitchToCUrlCode().click();
 
         for (Map.Entry<String, WebElementFacade> entry : discoveryAPIv1Page.getAPIKeyHiddenPlaceHoldersList().entrySet()){

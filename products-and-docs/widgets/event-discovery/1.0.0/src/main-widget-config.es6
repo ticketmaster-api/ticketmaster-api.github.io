@@ -340,6 +340,11 @@
       }
 
       document.getElementById("w-country").disabled = true;
+
+      ["#w-countryCode","#w-source"].map((item)=> {
+        $(item).prop("selectedIndex", -1);
+      });
+      
       widgetNode.setAttribute($self.attr('name'), value);
 
 
@@ -368,6 +373,8 @@
     }
     widgetNode.setAttribute('w-height', height);
     widgetNode.setAttribute('w-border', 0);
+    widgetNode.removeAttribute('w-countryCode');
+    widgetNode.removeAttribute('w-source');
 
     $('.country-select .js_custom_select').removeClass('custom_select-opened');//reset custom select
     widget.onLoadCoordinate();
@@ -425,26 +432,6 @@
     $widgetModalNoCode.modal('hide');
   });
 
-  /*turn off validate cuz it moved to separate component*/
-  /*$('.js_widget__number').on('change', function (e) {
-    let $self = $(this),
-      val = $self.val().trim(),
-      max = parseInt($self.attr('max')),
-      min = parseInt($self.attr('min')),
-      required = !!$self.attr('required'),
-      regNumberOrEmpty = /^(\s*|\d+)$/,
-      errorCssClass = 'error';
-
-    // if(val === '') $self.val('');
-
-    if((max && val > max) || (min && val < min) || (required && val === '') || (!regNumberOrEmpty.test(val))){
-      $self.addClass(errorCssClass);
-      e.preventDefault();
-      e.stopPropagation();
-      }else{
-      $self.removeClass(errorCssClass);
-    }
-  });*/
 
   widget.onLoadCoordinate = function (results, countryShortName = '') {
     widget.config['country'] = countryShortName;
@@ -452,7 +439,7 @@
       isPostalCodeChanged = false;
 
       let $countrySelect = $('#w-country'),
-        $ul = $(".js_widget_custom__list"),
+        $ul = $(".country-select .js_widget_custom__list"),
         options = "<option selected value=''>All</option>";
 
       $countrySelect.html('');
@@ -497,4 +484,16 @@
     });
   }
 
+  // clearDropDownInput(['#w-countryCode','#w-source']);
+  function clearDropDownInput(elemIds) {
+    elemIds.map((item)=> {
+      $(item).val('');
+    } );
+  }
+
+
+  // Set min widget size on mobile devices
+  if(parseInt($(window).width(), 10) < 767){
+    $('#w-fixed-300x250').trigger('click');
+  }
 })();
