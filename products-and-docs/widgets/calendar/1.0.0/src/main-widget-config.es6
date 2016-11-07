@@ -277,6 +277,9 @@
         // widgetNode.setAttribute('w-border', 0);
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened');//reset custom select
+        $('#w-country').children().remove().end().append('<option selected value="US">United States</option>');
+        $('#w-country').attr('disabled', 'disabled');
+        $('.custom_select__list li').removeClass('custom_select__item-active');//reset custom select
         widget.onLoadCoordinate();
         widget.update();
     };
@@ -342,6 +345,7 @@
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
         htmlCode.setAttribute('w-tmapikey', getTmApiKey());
+        htmlCode.setAttribute('w-radius', '25');
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
