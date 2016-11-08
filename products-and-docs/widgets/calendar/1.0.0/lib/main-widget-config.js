@@ -223,6 +223,7 @@
 
     var resetWidget = function resetWidget(configForm) {
         var widgetNode = document.querySelector("div[w-tmapikey]"),
+            radiusParam = document.querySelector("div[w-radius]"),
             height = 600,
             theme = void 0,
             layout = void 0;
@@ -277,6 +278,7 @@
         $('#w-country').children().remove().end().append('<option selected value="US">United States</option>');
         $('#w-country').attr('disabled', 'disabled');
         $('.custom_select__list li').removeClass('custom_select__item-active'); //reset custom select
+        radiusParam.setAttribute('w-radius', '25');
         widget.onLoadCoordinate();
         widget.update();
     };
