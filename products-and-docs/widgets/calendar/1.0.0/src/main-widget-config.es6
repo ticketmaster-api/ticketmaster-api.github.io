@@ -349,7 +349,6 @@
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
         htmlCode.setAttribute('w-tmapikey', getTmApiKey());
-        htmlCode.setAttribute('w-radius', '25');
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
