@@ -286,10 +286,8 @@
 		}
 
     function toggleMsSelectionBox() {
-      // console.log('length' , $('li',$msList).length );
       if($('li',$msList).length<1){
         $msSelection.hide();
-        //setHeightList();
         return;
       }
 
@@ -304,7 +302,7 @@
     }
 
     /**
-     * change <Load_More> button text
+     * change <Load_More> button text on open modal
      * set data-selector gor "GET" button
      */
     function changeModalTextListener() {
@@ -320,7 +318,6 @@
 
 			if(options.hideMultiSelector) {
 				$msSelection.hide();
-				// console.log('hide $msSelection');
 			}else{
 				if($('li',$msList).length>0){
 					$msSelection.show(); // console.log('show $msList',$('li',$msList).length);
@@ -331,31 +328,6 @@
 
       $btnGET.attr('data-selector', selector);
     }
-
-    //redraw modal size
-    /*function setHeightList(addToList) {
-      var newModalHeight ;
-      var listWrapper = $('.wrapper-list-group', modalContent);
-      var $mHeaderHeight = $('.modal-header',$modal).outerHeight() + keyword.parent().outerHeight() + 15/!*top padding of modal-body*!/ + 48/!*list padding*!/;
-      var listWrapperHeihgt = listWrapper.height();
-      // console.log( 'addToList' , addToList ,'$mHeaderHeight',$mHeaderHeight);
-      function getBrowserHeight(){
-        return $( window ).height();
-      }
-
-      if(getBrowserHeight()*0.8 < $modal.height()){
-        newModalHeight = getBrowserHeight()*0.8;
-
-        if(addToList){
-          if(listWrapperHeihgt > $mHeaderHeight ) {
-            listWrapper.height( listWrapperHeihgt - 100/!*tags box*!/ );
-          }
-        }else{
-          modalContent.height(newModalHeight);
-          listWrapper.height( listWrapperHeihgt - $mHeaderHeight + 48/!*list padding*!/ );
-        }
-      }
-    }*/
 
     /**
      * show/hide loader
@@ -394,7 +366,7 @@
      * @param eventUrl - url of request
      * @returns {boolean} - done/fail
      */
-    function submitForm(/*optional*/pageNumero /*,isSetHeightList*/) {
+    function submitForm(/*optional*/pageNumero) {
       pageNumero = parseInt(pageNumero);
 
       var url = ( isNaN(pageNumero) )
@@ -426,7 +398,6 @@
           };
 
           renderResults(result, $ul);
-          // if(isSetHeightList) setHeightList();
           loading('off');
         } else {
           console.log('no result found');
@@ -436,9 +407,6 @@
         loading('off');
         renderResults('FAIL', $ul);
       });
-
-
-
     }
 
     /**
@@ -529,14 +497,7 @@
                   .appendTo(addressline1);
               }
             }
-            /*if ('location' in venue) {
-             //add button <Show on map> if 'location' exist
-             var buttonMap = $("<button style='display: none;' data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
-             .addClass('js_open-map_btn btn btn-submit')
-             .text('Show location')
-             .appendTo(buttonSetId)
-             .wrap('<div class ="wrapper-location_btn"/>');
-             }*/
+
           } else {
             console.log('no _embedded found');
           }
@@ -599,7 +560,6 @@
 
           var time = formatDate(currentEvent.date);
           var eventTime = $('<h4 class="event-time gray"/>')
-          //.addClass('event-time')
             .text(time)
             .appendTo($wrapCol);
           /*add time end*/
@@ -686,8 +646,8 @@
             .appendTo($wrapCol);
         }
 
+        /*add time*/
         if (item.dates) {
-          /*add time*/
           var currentEvent = {};
           currentEvent.date = {
             day: item.dates.start.localDate,
@@ -699,8 +659,7 @@
           var eventTime = $('<h4 class="event-time gray"/>')
             .text(time)
             .appendTo($wrapCol);
-          /*add time end*/
-        }
+        }/*add time end*/
 
         if(item.classifications){
           if(item.classifications.length > 1) console.log(item.classifications.length);
@@ -785,9 +744,7 @@
         $btnGET.attr('disabled', false);
 
         if (clearList) $('li', element).remove();
-        element.css({
-          'overflow': 'auto'
-        });
+        element.css({'overflow': 'auto'});
         $('<li/>')
           .addClass('list-group-item text-center')
           .text(message)
@@ -846,7 +803,6 @@
 
       // hide button <load more> if nothing left to load
       if (stateConf.loadingFlag === 'STOP_LOAD' || (stateConf.pageIncrement + 1) === data.page.totalPages) {
-        //console.log('.modal-footer  ---- hide', stateConf.loadingFlag);
         $hr.hide();
         $liFooter.hide();
       }
@@ -856,9 +812,6 @@
 
       //<show map> button
       $('.js_open-map_btn').on('click', function (e) {
-        // var mapCanvas = $("#map-canvas");
-        var ltd = e.target.getAttribute('data-latitude'),
-          lgt = e.target.getAttribute('data-longitude');
         mapPopUpListener(e);
         modalContent.addClass('narrow');
         btnCloseMap.show();
@@ -908,7 +861,7 @@
       $modal.modal('hide');
     }
 
-    function claerByArrVal(selectedID, indToRemove) {
+    function clearByArrVal(selectedID, indToRemove) {
       function mapAny(array) {
         array.map(function (item) {
           selectedID.splice(selectedID.indexOf(item), 1);
@@ -926,14 +879,12 @@
       event.preventDefault();
       var me = $( this ),
         tagID = me.parents('li').data('selector-'+selector),
-        //isAble = me.parents('li').data('isable'),
         selectedID = tagsIds[selector];
       var indToRemove =[];
 
-      // console.group('___ indToRemove: ', indToRemove );
       me.parents('li').remove();
       indToRemove.push(tagID);
-      claerByArrVal(selectedID, indToRemove);
+      clearByArrVal(selectedID, indToRemove);
 
       //update input values
       $input.val(selectedID)
@@ -968,7 +919,7 @@
           currentList = tagsIds[selector];
 
       currentList.push(me.data('id'));
-      uniqueUpcoming = isUnique(currentList); // Get list of upcoming events
+      uniqueUpcoming = isUnique(currentList); // Get list of upcoming tags
 
       if( uniqueUpcoming ){
         var item = $('<li/>')
@@ -983,11 +934,9 @@
       }else {
         currentList.splice(currentList.length-1 ,1);
       }
-      // console.log('uniqueUpcoming',uniqueUpcoming );
-
+      
       me.addClass('checked');
       toggleMsSelectionBox();
-      // setHeightList(true); //redraw modal size
     }
 
     // EVENTS
@@ -1071,7 +1020,6 @@
         selectorBtn = $btnGET.attr('data-selector'),
         tagsArr = tagsIds[selectorBtn];
 
-
       $( 'li' , $msList ).each( function(i) {
 				if ( $(this).data('isable') === false ){
 					indToRemove.push( $(this).data('selector-' + selectorBtn) );
@@ -1079,7 +1027,7 @@
 				}
       });
 
-      claerByArrVal(tagsArr, indToRemove);
+      clearByArrVal(tagsArr, indToRemove);
 
       if(selector === selectorBtn && !stateConf.setSingleVal) {
         $input.val(tagsArr)
