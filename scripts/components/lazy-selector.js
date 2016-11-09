@@ -175,14 +175,11 @@
         lng = $(e.target).attr('data-longitude') != "undefined" ? parseFloat($(e.target).attr('data-longitude')) : null,
         address = lat && lng ? null : $(e.target).attr('data-address');
 
-      // console.log("lat");
       if (lat && lng ) {
         initMap(lat, lng);
-        google.maps.event.trigger(map, "resize");
-        // console.log('second init');
+        google.maps.event.trigger(map, "resize"); //'second init'
       } else {
-        initMap(0, 0);
-        // console.log("first init");
+        initMap(0, 0); //"first init"
       }
     };
 
@@ -218,13 +215,6 @@
 
       // Adds a marker at the center of the map.
       addMarker(mapCenter);
-
-      /*if (address){ // if there was address provided
-       geocodeAddress(geocoder, map, address, function(result){ // geocode address and center the map
-       latLng = result;
-       });
-       } else { // if not (means lat and long were provided)*/
-      //}
 
       // when map popup is shown
       modal.on("shown.bs.modal", function () {
