@@ -1,0 +1,194 @@
+<script src="{{'/scripts/vendors/jstree.min.js'}}"></script>
+<div class="modal modal-common fade" id="js_ls-modal-classification" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div></div><!--map-->
+
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <div class="row">
+          <h3 class="modal-title col-lg-12">Find <span>event</span> by keyword</h3>
+        </div>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <form id="js_lazy-sel_form" accept-charset="UTF-8"  method="GET">
+          <div class="col-sm-9 clear-padding-right">
+            <!--<input required type="text" placeholder="keyword" id="keyword" autofocus />-->
+            <input id="keyword" class="search-input"/>
+          </div>
+          <div class="col-sm-3 text-right">
+            <button id="js_ls-modal_btn" type="button" class="btn btn-transparent">GET</button>
+          </div>
+        </form>
+      </div>
+
+        <div id="spinner-ls" style="display: none;"></div>
+        <hr id="js_ls-top-hr" style="display: none;">
+
+        <div id="info"></div>
+
+        <div id="classification-jstree">
+        </div>
+
+
+      <!--<div class="modal-footer" >-->
+      <!--</div>-->
+    </div><!-- /.modal-content -->
+
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal alert-->
+<!--<div id="get-eventId-alert-modal" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
+
+    &lt;!&ndash; Modal content&ndash;&gt;
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Thank you for contacting us!</h3>
+        <p class="text-center">We will review and respond promptly.</p>
+        <div class="modal-footer">
+          <button id="js_get-eventId_btn_alert_ok" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>-->
+<!-- Modal alert end-->
+
+<script>
+
+    $(function() {
+      var obj;
+      var to = false;
+      var url = "https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=B0JQHemR4Q569W9GcjHfhygRBRU3RvrL";
+      function  initTree(json) {
+        $("#classification-jstree").jstree({
+          "core" : {'data' : json} ,
+          "plugins" : [ "search" ] ,
+          "search": {
+            "show_only_matches_children" : true,
+            /**
+             * Indicates if all nodes opened to reveal the search result, should be closed when the search is cleared or a new search is performed. Default is `true`.
+             * @name $.jstree.defaults.search.close_opened_onclear
+             * @plugin search
+             */
+            "case_sensitive" : false
+          }
+        }).on('select_node.jstree', function (event, data) {
+          data.instance.toggle_node(data.node); //set open on one click
+        }).on('changed.jstree', function (e, data) {
+          var i, j, r = [];
+          for (i = 0, j = data.selected.length; i < j; i++) {
+            r.push(
+              {
+                text: data.instance.get_node(data.selected[i]).text,
+                id: data.instance.get_node(data.selected[i]).id
+              }
+            );
+          }
+          console.log(this);
+          $('#info').html('Selected: ' + r[0].text + ',' + r[0].id);
+        });
+
+      }
+
+      function setChildren(data) {
+        var newArrObj =[];
+        data = rename(data);
+
+        //rename parent(genres)
+        data.map(function(item){
+          newArrObj.push( {
+            children:item.segment._embedded.genres,
+            text : item.segment.text,
+            icon:"../../assets/img/ic-shevron-down-gray.svg"
+          } );
+        });
+        //rename/copy child(subgenres) field
+        newArrObj.map(function(item){
+          item.children.map(function(item) {
+            if(item._embedded && item._embedded.subgenres){
+              item['children'] = item._embedded.subgenres ;
+              delete item._embedded;
+            }else {
+              console.log('else:' );
+            }
+          });
+        });
+
+//        console.log('newArrObj', newArrObj);
+
+        return newArrObj;
+      }
+
+      function rename(json) {
+        var arr = JSON.stringify(json);//convert array to string
+        arr = JSON.parse(arr);
+        var opt ={
+          root: {fieldName:['segment'], val:'text', to:'name' },
+          parent: {fieldName:['genres'],'_embedded':true ,  val:'text', to:'name' },
+          child: {fieldName:['subgenres'],'_embedded':true,   val:'text', to:'name'}
+        };
+        function replaceAtoB(arr,opt) {
+          for (var i = 0; i<arr.length; i++) {
+            arr[i][opt.root.fieldName][opt.root.val] = arr[i][opt.root.fieldName][opt.root.to];
+            delete arr[i][opt.root.fieldName][opt.root.to];
+
+            var genresArr = arr[i][opt.root.fieldName]['_embedded'][opt.parent.fieldName];
+            if( 0<genresArr.length ) {
+              for (var ii = 0; ii < genresArr.length; ii++) {
+                genresArr[ii][opt.parent.val] = genresArr[ii][opt.parent.to];
+                delete genresArr[ii][opt.parent.to];
+
+                var subgenresArr = genresArr[ii]['_embedded'][opt.child.fieldName];
+                if( 0<subgenresArr.length ) {
+                  for (var j = 0; j < subgenresArr.length; j++) {
+                    subgenresArr[j][opt.child.val] = subgenresArr[j][opt.child.to];
+                    delete subgenresArr[j][opt.child.to];
+                  }
+                }
+
+              }
+            }
+          }
+        }
+        replaceAtoB(arr,opt);
+        return arr;
+      }
+
+      function request() {
+        $.ajax({
+          dataType: 'json',
+          async: true,
+          url: url
+        }).done(function (result) {
+          if (result) {
+            obj = setChildren(result['_embedded']['classifications']);
+            initTree(obj);
+          } else {
+            console.log('no result found');
+          }
+        }).fail(function (e) {
+          console.log('There was an fail status - ' , e.status);
+        });
+      }
+
+      request();
+
+      $(".search-input").keyup(function () {
+        if(to) { clearTimeout(to); }
+        to = setTimeout(function () {
+          var v = $('.search-input').val();
+          $('#classification-jstree').jstree(true).search(v);
+          to = true;
+        }, 250);
+      });
+
+
+    });
+
+</script>

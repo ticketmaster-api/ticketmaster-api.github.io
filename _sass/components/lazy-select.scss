@@ -40,6 +40,7 @@
 
 }
 
+#js_ls-modal-classification,
 #js_ls-modal {
   .close {
     opacity: inherit;
@@ -390,6 +391,57 @@
       background-repeat: no-repeat;
       background-position: center;
       background-image: url("/assets/controls/ic-close-grey-hover.svg");
+    }
+  }
+
+}
+
+/*classification selector*/
+#js_ls-modal-classification {
+  .jstree {
+    .jstree-container-ul {
+      max-height: 500px;
+      overflow-y: auto;
+      li {
+        background-image: none;
+        ul>li>ul>li {
+          background-image: url("../../assets/img/products-and-docs/list-collapse.svg");
+        }
+      }
+      .jstree-anchor {
+        font-family: $font-h3;
+        font-size: $size-h3;
+      }
+      .jstree-children{
+
+        li > ul.jstree-children .jstree-anchor{
+          opacity: 0.7;
+          font-family: $font-body;
+          font-size: $size-body;
+        }
+        .jstree-anchor {
+          font-weight: bold;
+          font-size: $size-body;
+          color:$n2;
+          &.jstree-clicked{
+            color:$p1a;
+          }
+        }
+      }
+
+
+      .jstree-clicked,
+      .jstree-search{
+        color:$p1a;
+      }
+      .jstree-anchor.jstree-clicked{
+        font-weight: normal;
+        color:$p1a;
+      }
+
+      .jstree-default .jstree-node, .jstree-default .jstree-icon {
+        background: none;
+      }
     }
   }
 
