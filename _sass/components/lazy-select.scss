@@ -61,7 +61,8 @@
     &:focus,
     &:active,
     &:hover{
-      color: $n1;
+      color: $p1b;
+      border-color:$p1b;
       background-color: $white;
       outline: none;
     }
@@ -351,7 +352,8 @@
       &:focus,
       &:active,
       &:hover{
-        color: $n1;
+        color: $p1b;
+        border-color: $p1b;
         background-color: $white;
         outline: none;
       }
