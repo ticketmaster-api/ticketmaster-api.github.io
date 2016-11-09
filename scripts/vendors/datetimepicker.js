@@ -47,8 +47,8 @@ var SundayColor = ""; //var SundayColor="#C0F64F";//Background color of Sunday.
 var SaturdayColor = ""; //Background color of Saturday.
 var WeekDayColor = ""; //Background color of weekdays.
 var FontColor = "blue"; //color of font in Calendar day cell.
-var TodayColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;color:#fff;background:#179cdb;'; //var TodayColor="#FFFF33";//Background color of today.
-var SelDateColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;box-shadow:0 0 2px rgba(0,0,0,1);'; //var SelDateColor = "#8DD53C";//Backgrond color of selected date in textbox.
+var SelDateColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;color:#fff;background:#179cdb;'; //var TodayColor="#FFFF33";//Background color of today.
+var TodayColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;box-shadow:0 0 2px rgba(0,0,0,1);'; //var SelDateColor = "#8DD53C";//Backgrond color of selected date in textbox.
 var YrSelColor = "#cc0033"; //color of font of Year selector.
 var MthSelColor = "#cc0033"; //color of font of Month selector if "MonthSelector" is "arrow".
 var HoverColor = "#E0FF38"; //color when mouse move over.
@@ -914,7 +914,7 @@ function RenderCssCal(bNewCal)
 		cssStr += '#calBorder ul.MonthSelector.show {display: block;}\n';
 		cssStr += '#calBorder ul.MonthSelector.Year {left:auto; right:0; padding: 10px 34px;}\n';
 		cssStr += '#calBorder ul.MonthSelector.Year.show {display: block;}\n';
-		cssStr += '#calBorder ul.MonthSelector li { font-family: "TMSans-Bold", Arial, serif; font-size: 14px; margin:0; padding:0; line-height:28px; color: #fff;}\n';
+		cssStr += '#calBorder ul.MonthSelector li { font-family: "TMSans-Bold", Arial, serif; font-size: 14px; margin:0; padding:0; line-height:27px; color: #fff;}\n';
 		cssStr += '#calBorder ul.MonthSelector li:hover {color: #189ddc; cursor: pointer;}\n';
 		cssStr += '#calOverlay {width: 100%; height: 100%; position: fixed; top: 0; left: 0; display: none;}\n';
 		cssStr += '#calOverlay.show {display: block;}\n';
@@ -1229,6 +1229,11 @@ function closewin(id) {
     var CalId = document.getElementById(id);
 	CalId.focus();
 	winCal.style.visibility = 'hidden';
+	var activeIcons = document.querySelectorAll('.dt-ico');
+	var aiCountLenght = activeIcons.length;
+	for (var aiCount = 0; aiCount < aiCountLenght; ++aiCount) {
+      activeIcons[aiCount].classList.remove('active');
+	}
 }
 
 function changeBorder(element, col, oldBgColor)
