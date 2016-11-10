@@ -1,10 +1,41 @@
+
+module.exports = function (arr, requests, onError, global) {
+	var url = prepareUrl(arr);
+	ajaxService(url, arr[0].method, function(res, msg) {
+		var resObj = {
+			category: arr[0].category,
+			method: arr[0].method,
+			methodId: arr[0].id,
+			params: arr[2].map(obj => $.extend(true, {}, {
+				name: obj.name,
+				value: ko.observable(ko.unwrap(obj.value)),
+				options: obj.options
+			})),
+			req: url,
+			index: requests().length
+		};
+
+		if (msg == 'error') {
+			// notifying error modal
+			onError.notifySubscribers(res, 'error');
+			// error popover of request
+			resObj.error = res;
+		} else {
+			global.lastResponse = resObj.response = res.responseJSON;
+		}
+
+		// exporting data using observable
+		requests.unshift(resObj);
+	});
+};
+
 /**
  * Ajax Service
  * @param url
  * @param method
  * @param callback
  */
-var ajaxService = function (url, method, callback) {
+function ajaxService(url, method, callback) {
   $.ajax({
     type: method,
     url: url,
@@ -12,14 +43,14 @@ var ajaxService = function (url, method, callback) {
     dataType: "json",
     complete: callback
   });
-};
+}
 
 /**
  * Filters and prepares params pairs
  * @param arr
  * @returns {boolean}
  */
-var prepareUrl = function (arr) {
+function prepareUrl(arr) {
   var replacement, url, domain, path, method, apiKey, params;
 
   if (!arr && !arr.length) {
@@ -62,34 +93,4 @@ var prepareUrl = function (arr) {
   url = [domain, '/', path, '?', params].join('');
 
   return encodeURI(url);
-};
-
-// sends request to get the second column
-var sendPrimaryRequest = function (arr, requests, onError, global) {
-  var url = prepareUrl(arr);
-
-  ajaxService(url, arr[0].method, function(res, msg) {
-		var resObj = {
-			req: url,
-			index: requests().length
-		};
-
-		if (msg == 'error') {
-			// notifying error modal
-			onError.notifySubscribers(res, 'error');
-			// error popover of request
-			resObj.error = res;
-		} else {
-			global.lastResponse = resObj.res = {
-				id: arr[0].id, // method id was used
-				res: res.responseJSON // response
-			};
-		}
-
-		// exporting data using observable
-		requests.unshift(resObj);
-  });
-};
-
-
-module.exports = sendPrimaryRequest;
+}
