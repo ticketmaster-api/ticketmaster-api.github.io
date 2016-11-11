@@ -313,7 +313,7 @@
       e.preventDefault();
     });
 
-    $modal.on('hidden.bs.modal', function (e) {
+    $modal.on('hidden.bs.modal', function () {
       resetForm();
       keyword.val('');//clear search input
     });

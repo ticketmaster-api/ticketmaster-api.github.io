@@ -399,12 +399,18 @@
 }
 
 .modal-open #js_ls-modal-classification,
-.modal-open #js_ls-modal{
-  @media (min-width: 768px) {
-    overflow: hidden;
-    width: calc(100% + 17px); //for chrome/safari
-    width: -moz-calc(100% + 16px); //for firefox
-    width: -ms-calc(100% + 17px); // where "XX" equals the width of the scrollbar in IE)
+.modal-open #js_ls-modal {
+  //remove black background
+  &.modal-backdrop {
+    background-color: transparent;
+  }
+}
+
+.modal-open[style="padding-right: 17px;"] {
+  @media (max-width: 768px) {
+    .modal#js_ls-modal-classification {
+      padding-right: 0px !important;
+    }
   }
 }
 
