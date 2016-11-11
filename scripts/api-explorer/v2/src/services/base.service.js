@@ -81,18 +81,9 @@ var readFromWADL = function () {
   $.ajax({
     url: CONFIG_URL,
     async : false,
-    dataType: ($.browser.msie) ? "text" : "xml",
+    dataType: "text",
     success : function(response){
-      var xml;
-
-      if (typeof response == "string"){
-        xml = new ActiveXObject("Microsoft.XMLDOM");
-        xml.async = false;
-        xml.loadXML(response);
-      } else {
-        xml = response;
-      }
-
+      var xml = $.parseXML(response);
 			base = parseData(xml);
     },
 

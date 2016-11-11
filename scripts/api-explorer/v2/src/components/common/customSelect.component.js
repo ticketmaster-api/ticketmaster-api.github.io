@@ -1,65 +1,81 @@
-var self;
+/**
+ * Custom select component
+ */
 
-function CustomSelect(params) {
-	var DEFAULT_SELECTED = ko.unwrap(params.options)[0].name;
-  self = this;
+class CustomSelect {
+	constructor({data, selected, options, focus, onselect, animationSpeed = 200}) {
+		const rawOptions = ko.unwrap(options);
+		const DEFAULT_SELECTED = rawOptions[0].name;
+		this.curentSelectData = data;
+		this.onFocus = focus;
+		this.onselectMethod = onselect;
+		this.animationSpeed = animationSpeed;
+		this.options = options;
+		this.value = ko.unwrap(selected) || DEFAULT_SELECTED;
+		this.selectedOption = ko.observable(this.mapForChecked({rawOptions, name: this.value}));
+		this.setSubscribtions({selected, DEFAULT_SELECTED});
+	}
 
-	this.curentSelectData = params.data || null;
-	this.onFocus = params.focus || null;
+	setSubscribtions({selected, DEFAULT_SELECTED}) {
+		// has preselected option
+		if (selected) {
+			selected.subscribe(value => {
+				let selectedOption = this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value || DEFAULT_SELECTED});
 
-	this.onselectMethod = params.onselect;
+				return this.selectedOption(selectedOption);
+			});
+		}
 
-	this.animationSpeed = params.animationSpeed || 200;
-	this.options = params.options;
-	this.value = ko.unwrap(params.selected) || DEFAULT_SELECTED;
-	this.selectedOption = ko.observable(mapForChecked.call(this, ko.unwrap(this.options), this.value));
+		// on select map for checked
+		this.selectedOption.subscribe(value => {
+			this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value.name});
+			this.onselectMethod(value);
+		});
 
-	setSubscribtions.call(this, params);
-}
+		// quantity of options check
+		this.isOneOption = ko.pureComputed(() => ko.unwrap(this.options).length < 2);
+	}
 
-function setSubscribtions(params) {
-	// on select map for checked
-	this.selectedOption.subscribe(function (value) {
-		mapForChecked(ko.unwrap(this.options), value.name);
-		this.onselectMethod(value);
-	},this);
+	/**
+	 * Updates checked option
+	 * @param rawOptions {array} options
+	 * @param name {string} name of selected option
+	 * @returns {object} selected option
+	 */
+	mapForChecked({rawOptions, name}) {
+		let selectedOption;
+		for (const option of rawOptions) {
+			option.checked(option.name === name);
+			if (option.name === name) {
+				selectedOption = option
+			}
+		}
+		return selectedOption;
+	}
 
-	// quantity of options check
-	this.isOneOption = ko.pureComputed(function () {
-		return ko.unwrap(this.options).length < 2; // more than one option
-	}, this);
-}
+	slideToggle(item, event) {
+		this.onFocus && this.onFocus(this.curentSelectData);
+		if (ko.unwrap(this.isOneOption)) {
+			return false
+		}
+		let el = this.constructor.findElement(event);
+		el.wrapper.slideToggle(this.animationSpeed);
+		el.layer.toggleClass('hidden');
+	}
 
-function mapForChecked(options, name) {
-	var selectedOption;
-	options.map(function (option) {
-		option.checked(option.name === name);
-		if (option.name === name) {selectedOption = option}
-	});
-	return selectedOption;
-}
+	onSelect(item, event) {
+		const rawOptions = ko.unwrap(this.options);
+		this.mapForChecked({rawOptions, name: item.name});
+		this.selectedOption(item);
+		this.slideToggle(item, event);
+	}
 
-CustomSelect.prototype.slideToggle = function(item, event) {
-	this.onFocus && this.onFocus(this.curentSelectData);
-	if (ko.unwrap(this.isOneOption)) {return false}
-	var el = findElement(event);
-	el.wrapper.slideToggle(this.animationSpeed);
-	el.layer.toggleClass('hidden');
-};
-
-
-CustomSelect.prototype.onSelect = function (item, event) {
-	mapForChecked(ko.unwrap(this.options), item.name);
-	this.selectedOption(item);
-	this.onselectMethod(item);
-	this.slideToggle(item, event);
-};
-
-function findElement(event) {
-	var parent = $(event.currentTarget).parents('.js-custom-select');
-	return {
-		wrapper: parent.find('.js-custom-select-wrapper'),
-		layer: parent.find('.js-custom-select-layer')
+	static findElement(event) {
+		let parent = $(event.currentTarget).parents('.js-custom-select');
+		return {
+			wrapper: parent.find('.js-custom-select-wrapper'),
+			layer: parent.find('.js-custom-select-layer')
+		}
 	}
 }
 

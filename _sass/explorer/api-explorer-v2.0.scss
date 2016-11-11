@@ -29,6 +29,7 @@ $img-id: '../assets/img/api-explorer/ic-id.svg';
 $img-share: '../assets/img/api-explorer/ic-share.svg';
 $img-raw: '../assets/img/api-explorer/ic-view-in-raw.svg';
 $img-parameters: '../assets/img/ic-parameters.svg';
+$img-parameters-active: '../assets/img/ic-parameters-hover.svg';
 $img-arrows-left: '../assets/img/arrows-left-small.svg';
 $img-arrows-right: '../assets/img/arrows-right-small.svg';
 $img-green-checkmark: '../assets/img/ic-chekmark.svg';
@@ -957,6 +958,10 @@ $img-attention: '../assets/img/ic-attention.svg';
 		}
 	}
 	.btn-preset {
+		&.hover,
+		&.active {
+			background-image: url($img-parameters-active);
+		}
 		background: {
 			image: url($img-parameters);
 			repeat: no-repeat;

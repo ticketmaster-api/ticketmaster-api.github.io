@@ -563,6 +563,7 @@
 
 .documentation,
 #api-explorer {
+  .modal-footer .btn-default,
   .btn-small {
     top: 28px;
     margin-left: 30px;
@@ -572,11 +573,20 @@
     padding: 5px 15px;
     position: relative;
     border-radius: 3px;
+    &:focus,
+    &:active,
+    &:hover{
+      color: $p1b;
+      border-color: $p1b;
+      background-color: $white;
+      outline: none;
+    }
   }
   .api-exp-param-button {
     margin-left: 9px;
     padding: 5px 10px;
   }
+
 }
 
 .vertical-alignment-helper {

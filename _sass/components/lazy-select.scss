@@ -62,7 +62,8 @@
     &:focus,
     &:active,
     &:hover{
-      color: $n1;
+      color: $p1b;
+      border-color:$p1b;
       background-color: $white;
       outline: none;
     }
@@ -118,6 +119,8 @@
     .ms-selection {
       .ms-list{
         margin-top: 0;
+        max-height: 76px;
+        overflow-y: auto;
         .ms-elem-selection{
           display: inline-block;
           background-color: $n3;
@@ -242,13 +245,13 @@
 
       .thumbnail {
         position: relative;
-        width: 120px;
-        height: 120px;
+        width: 122px;
         overflow: hidden;
         float: left;
         display: block;
+        padding: 0;
         margin: 2px 20px 0 0;
-        min-height: 120px;
+        min-height: 102px;
         border-radius: 0px;
 
         img {
@@ -348,7 +351,8 @@
       &:focus,
       &:active,
       &:hover{
-        color: $n1;
+        color: $p1b;
+        border-color: $p1b;
         background-color: $white;
         outline: none;
       }

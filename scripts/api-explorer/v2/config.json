@@ -113,7 +113,6 @@
       }
     },
     "page": {
-
       "_CONFIG": {
         "index": 1,
         "collapsed": true
@@ -143,11 +142,13 @@
         }
       },
       "_CONFIG": {
+        "collapsed": true,
         "index": 0
       }
     },
     "page": {
       "_CONFIG": {
+        "collapsed": false,
         "index": 1
       }
     },

@@ -1,29 +1,33 @@
-var self;
-var getRandomColor = require('../../modules/colorClasses').getRandomColor;
+import {getRandomColor} from '../../modules/colorClasses';
 
-function PanelHeading(params) {
-	self = this;
-	this.config = params.config && params.config._CONFIG;
-	var page = params.page;
-	this.setActive = params.setActive;
-	this.isExpanded = params.isExpanded;
-	this._panelName = params.data.key;
-	this.title = this.config && this.config.title || this._panelName;
-	this.data = params.data.value;
-	if (page) {
-		this.cardSize = page.size;
-		this.pageParam = page.parameter;
+class PanelHeading {
+	constructor({config = {}, data = {}, setActive, isExpanded, page, collapseId, colorClass}) {
+		this.config = config._CONFIG;
+		this.setActive = setActive;
+		this.isExpanded = isExpanded;
+		this._panelName = data.key;
+		this.title = this.config && this.config.title || this._panelName;
+		this.data = data.value;
+		this.collapseId = collapseId;
+		this.page = page;
+		this.init({page, colorClass})
 	}
-	this.collapseId = params.collapseId;
-	if (this.config.request) {
-		this.getRandomColor = getRandomColor(params.colorClass);
+
+	init({page, colorClass}) {
+		if (page) {
+			this.cardSize = page.size;
+		}
+		if (this.config.request) {
+			this.getRandomColor = getRandomColor(colorClass);
+		}
+	}
+
+	followRequest(value) {
+		let url = Object.getProp(value, '.config.request');
+		url && location.assign(url);
 	}
 }
 
-PanelHeading.prototype.followRequest = function (value) {
-	var url = Object.getProp(value, '.config.request');
-	url && location.assign(url);
-};
 
 module.exports = ko.components.register('panel-heading', {
 	viewModel:  PanelHeading,
@@ -41,7 +45,7 @@ module.exports = ko.components.register('panel-heading', {
 				<!-- /ko-->
 				
 				<!-- ko if: _panelName === 'page'-->
-					<pagination params="number: data.number, totalPages: data.totalPages, pageParam: pageParam"></pagination>
+					<pagination params="number: data.number, totalPages: data.totalPages, page: page"></pagination>
 				<!-- /ko-->
 				
 				<!-- ko if: config.request !== undefined -->

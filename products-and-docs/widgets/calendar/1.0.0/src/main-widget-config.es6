@@ -225,6 +225,7 @@
 
     var resetWidget = function(configForm) {
         let widgetNode = document.querySelector("div[w-tmapikey]"),
+            radiusParam = document.querySelector("div[w-radius]"),
             height = 600,
             theme,
             layout;
@@ -269,6 +270,8 @@
             }
         });
 
+
+
         if(layout === 'horizontal'){
             height = getHeightByTheme(theme);
         }
@@ -277,6 +280,10 @@
         // widgetNode.setAttribute('w-border', 0);
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened');//reset custom select
+        $('#w-country').children().remove().end().append('<option selected value="US">United States</option>');
+        $('#w-country').attr('disabled', 'disabled');
+        $('.custom_select__list li').removeClass('custom_select__item-active');//reset custom select
+        radiusParam.setAttribute('w-radius', '25');
         widget.onLoadCoordinate();
         widget.update();
     };
