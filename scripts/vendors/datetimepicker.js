@@ -47,8 +47,8 @@ var SundayColor = ""; //var SundayColor="#C0F64F";//Background color of Sunday.
 var SaturdayColor = ""; //Background color of Saturday.
 var WeekDayColor = ""; //Background color of weekdays.
 var FontColor = "blue"; //color of font in Calendar day cell.
-var SelDateColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;color:#fff;background:#179cdb;'; //var TodayColor="#FFFF33";//Background color of today.
-var TodayColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;box-shadow:0 0 2px rgba(0,0,0,1);'; //var SelDateColor = "#8DD53C";//Backgrond color of selected date in textbox.
+var TodayColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;box-shadow:0 0 2px rgba(0,0,0,1);';
+var SelDateColor = 'font-family:"TMSans-Bold",Helvetica,Arial,sans-serif;color:#fff;background:#179cdb;';
 var YrSelColor = "#cc0033"; //color of font of Year selector.
 var MthSelColor = "#cc0033"; //color of font of Month selector if "MonthSelector" is "arrow".
 var HoverColor = "#E0FF38"; //color when mouse move over.
@@ -134,33 +134,33 @@ Calendar.prototype.GetMonthIndex = function (shortMonthName)
 };
 
 Calendar.prototype.IncYear = function () {
-    if (Cal.Year <= dtToday.getFullYear()+EndYear)
-	    Cal.Year += 1;
+	if (Cal.Year <= dtToday.getFullYear()+EndYear)
+		Cal.Year += 1;
 };
 
 Calendar.prototype.DecYear = function () {
-    if (Cal.Year > StartYear)
-	    Cal.Year -= 1;
+	if (Cal.Year > StartYear)
+		Cal.Year -= 1;
 };
 
 Calendar.prototype.IncMonth = function() {
-    if (Cal.Year <= dtToday.getFullYear() + EndYear) {
-        Cal.Month += 1;
-        if (Cal.Month >= 12) {
-            Cal.Month = 0;
-            Cal.IncYear();
-        }
-    }
+	if (Cal.Year <= dtToday.getFullYear() + EndYear) {
+		Cal.Month += 1;
+		if (Cal.Month >= 12) {
+			Cal.Month = 0;
+			Cal.IncYear();
+		}
+	}
 };
 
 Calendar.prototype.DecMonth = function() {
-    if (Cal.Year >= StartYear) {
-        Cal.Month -= 1;
-        if (Cal.Month < 0) {
-            Cal.Month = 11;
-            Cal.DecYear();
-        }
-    }
+	if (Cal.Year >= StartYear) {
+		Cal.Month -= 1;
+		if (Cal.Month < 0) {
+			Cal.Month = 11;
+			Cal.DecYear();
+		}
+	}
 };
 
 Calendar.prototype.SwitchMth = function (intMth)
@@ -174,71 +174,71 @@ Calendar.prototype.SwitchYear = function (intYear)
 };
 
 Calendar.prototype.SetHour = function(intHour) {
-    var MaxHour,
-	MinHour,
-	HourExp = new RegExp("^\\d\\d"),
-	SingleDigit = new RegExp("^\\d{1}$");
+	var MaxHour,
+		MinHour,
+		HourExp = new RegExp("^\\d\\d"),
+		SingleDigit = new RegExp("^\\d{1}$");
 
-    if (TimeMode === 24) {
-        MaxHour = 23;
-        MinHour = 0;
-    }
-    else if (TimeMode === 12) {
-        MaxHour = 12;
-        MinHour = 1;
-    }
-    else {
-        alert("TimeMode can only be 12 or 24");
-    }
+	if (TimeMode === 24) {
+		MaxHour = 23;
+		MinHour = 0;
+	}
+	else if (TimeMode === 12) {
+		MaxHour = 12;
+		MinHour = 1;
+	}
+	else {
+		alert("TimeMode can only be 12 or 24");
+	}
 
-    if ((HourExp.test(intHour) || SingleDigit.test(intHour)) && (parseInt(intHour, 10) > MaxHour)) {
-        intHour = MinHour;
-    }
+	if ((HourExp.test(intHour) || SingleDigit.test(intHour)) && (parseInt(intHour, 10) > MaxHour)) {
+		intHour = MinHour;
+	}
 
-    else if ((HourExp.test(intHour) || SingleDigit.test(intHour)) && (parseInt(intHour, 10) < MinHour)) {
-        intHour = MaxHour;
-    }
+	else if ((HourExp.test(intHour) || SingleDigit.test(intHour)) && (parseInt(intHour, 10) < MinHour)) {
+		intHour = MaxHour;
+	}
 
-    intHour = parseInt(intHour, 10);
-    if (SingleDigit.test(intHour)) {
-        intHour = "0" + intHour;
-    }
+	intHour = parseInt(intHour, 10);
+	if (SingleDigit.test(intHour)) {
+		intHour = "0" + intHour;
+	}
 
-    if (HourExp.test(intHour) && (parseInt(intHour, 10) <= MaxHour) && (parseInt(intHour, 10) >= MinHour)) {
-        if ((TimeMode === 12) && (Cal.AMorPM === "PM")) {
-            if (parseInt(intHour, 10) === 12) {
-                Cal.Hours = 12;
-            }
-            else {
-                Cal.Hours = parseInt(intHour, 10) + 12;
-            }
-        }
+	if (HourExp.test(intHour) && (parseInt(intHour, 10) <= MaxHour) && (parseInt(intHour, 10) >= MinHour)) {
+		if ((TimeMode === 12) && (Cal.AMorPM === "PM")) {
+			if (parseInt(intHour, 10) === 12) {
+				Cal.Hours = 12;
+			}
+			else {
+				Cal.Hours = parseInt(intHour, 10) + 12;
+			}
+		}
 
-        else if ((TimeMode === 12) && (Cal.AMorPM === "AM")) {
-            if (intHour === 12) {
-                intHour -= 12;
-            }
+		else if ((TimeMode === 12) && (Cal.AMorPM === "AM")) {
+			if (intHour === 12) {
+				intHour -= 12;
+			}
 
-            Cal.Hours = parseInt(intHour, 10);
-        }
+			Cal.Hours = parseInt(intHour, 10);
+		}
 
-        else if (TimeMode === 24) {
-            Cal.Hours = parseInt(intHour, 10);
-        }
-    }
+		else if (TimeMode === 24) {
+			Cal.Hours = parseInt(intHour, 10);
+		}
+	}
 
 };
 
 Calendar.prototype.SetMinute = function (intMin)
 {
 	var MaxMin = 59,
-	MinMin = 0,
+		MinMin = 0,
 
-	SingleDigit = new RegExp("\\d"),
-	SingleDigit2 = new RegExp("^\\d{1}$"),
-	MinExp = new RegExp("^\\d{2}$"),
+		SingleDigit = new RegExp("\\d"),
+		SingleDigit2 = new RegExp("^\\d{1}$"),
+		MinExp = new RegExp("^\\d{2}$"),
 
-	strMin = 0;
+		strMin = 0;
 
 	if ((MinExp.test(intMin) || SingleDigit.test(intMin)) && (parseInt(intMin, 10) > MaxMin))
 	{
@@ -265,13 +265,13 @@ Calendar.prototype.SetMinute = function (intMin)
 Calendar.prototype.SetSecond = function (intSec)
 {
 	var MaxSec = 59,
-	MinSec = 0,
+		MinSec = 0,
 
-	SingleDigit = new RegExp("\\d"),
-	SingleDigit2 = new RegExp("^\\d{1}$"),
-	SecExp = new RegExp("^\\d{2}$"),
+		SingleDigit = new RegExp("\\d"),
+		SingleDigit2 = new RegExp("^\\d{1}$"),
+		SecExp = new RegExp("^\\d{2}$"),
 
-	strSec = 0;
+		strSec = 0;
 
 	if ((SecExp.test(intSec) || SingleDigit.test(intSec)) && (parseInt(intSec, 10) > MaxSec))
 	{
@@ -315,49 +315,49 @@ Calendar.prototype.SetAmPm = function (pvalue)
 };
 
 Calendar.prototype.getShowHour = function() {
-    var finalHour;
+	var finalHour;
 
-    if (TimeMode === 12) {
-        if (parseInt(this.Hours, 10) === 0) {
-            this.AMorPM = "AM";
-            finalHour = parseInt(this.Hours, 10) + 12;
-        }
+	if (TimeMode === 12) {
+		if (parseInt(this.Hours, 10) === 0) {
+			this.AMorPM = "AM";
+			finalHour = parseInt(this.Hours, 10) + 12;
+		}
 
-        else if (parseInt(this.Hours, 10) === 12) {
-            this.AMorPM = "PM";
-            finalHour = 12;
-        }
+		else if (parseInt(this.Hours, 10) === 12) {
+			this.AMorPM = "PM";
+			finalHour = 12;
+		}
 
-        else if (this.Hours > 12) {
-            this.AMorPM = "PM";
-            if ((this.Hours - 12) < 10) {
-                finalHour = "0" + ((parseInt(this.Hours, 10)) - 12);
-            }
-            else {
-                finalHour = parseInt(this.Hours, 10) - 12;
-            }
-        }
-        else {
-            this.AMorPM = "AM";
-            if (this.Hours < 10) {
-                finalHour = "0" + parseInt(this.Hours, 10);
-            }
-            else {
-                finalHour = this.Hours;
-            }
-        }
-    }
+		else if (this.Hours > 12) {
+			this.AMorPM = "PM";
+			if ((this.Hours - 12) < 10) {
+				finalHour = "0" + ((parseInt(this.Hours, 10)) - 12);
+			}
+			else {
+				finalHour = parseInt(this.Hours, 10) - 12;
+			}
+		}
+		else {
+			this.AMorPM = "AM";
+			if (this.Hours < 10) {
+				finalHour = "0" + parseInt(this.Hours, 10);
+			}
+			else {
+				finalHour = this.Hours;
+			}
+		}
+	}
 
-    else if (TimeMode === 24) {
-        if (this.Hours < 10) {
-            finalHour = "0" + parseInt(this.Hours, 10);
-        }
-        else {
-            finalHour = this.Hours;
-        }
-    }
+	else if (TimeMode === 24) {
+		if (this.Hours < 10) {
+			finalHour = "0" + parseInt(this.Hours, 10);
+		}
+		else {
+			finalHour = this.Hours;
+		}
+	}
 
-    return finalHour;
+	return finalHour;
 };
 
 Calendar.prototype.getShowAMorPM = function ()
@@ -380,12 +380,12 @@ Calendar.prototype.GetMonthName = function (IsLong)
 
 Calendar.prototype.GetMonDays = function() { //Get number of days in a month
 
-    var DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if (Cal.IsLeapYear()) {
-        DaysInMonth[1] = 29;
-    }
+	var DaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	if (Cal.IsLeapYear()) {
+		DaysInMonth[1] = 29;
+	}
 
-    return DaysInMonth[this.Month];
+	return DaysInMonth[this.Month];
 };
 
 Calendar.prototype.IsLeapYear = function ()
@@ -413,7 +413,7 @@ Calendar.prototype.FormatDate = function (pDate)
 	if (PrecedeZero === true)
 	{
 		if ((pDate < 10) && String(pDate).length===1) //length checking added in version 2.2
-		{		
+		{
 			pDate = "0" + pDate;
 		}
 		if (MonthDigit < 10)
@@ -425,23 +425,23 @@ Calendar.prototype.FormatDate = function (pDate)
 	switch (this.Format.toUpperCase())
 	{
 		case "DDMMYYYY":
-		return (pDate + DateSeparator + MonthDigit + DateSeparator + this.Year);
+			return (pDate + DateSeparator + MonthDigit + DateSeparator + this.Year);
 		case "DDMMMYYYY":
-		return (pDate + DateSeparator + this.GetMonthName(false) + DateSeparator + this.Year);
+			return (pDate + DateSeparator + this.GetMonthName(false) + DateSeparator + this.Year);
 		case "MMDDYYYY":
-		return (MonthDigit + DateSeparator + pDate + DateSeparator + this.Year);
+			return (MonthDigit + DateSeparator + pDate + DateSeparator + this.Year);
 		case "MMMDDYYYY":
-		return (this.GetMonthName(false) + DateSeparator + pDate + DateSeparator + this.Year);
+			return (this.GetMonthName(false) + DateSeparator + pDate + DateSeparator + this.Year);
 		case "YYYYMMDD":
-		return (this.Year + DateSeparator + MonthDigit + DateSeparator + pDate);
+			return (this.Year + DateSeparator + MonthDigit + DateSeparator + pDate);
 		case "YYMMDD":
-		return (String(this.Year).substring(2, 4) + DateSeparator + MonthDigit + DateSeparator + pDate);
+			return (String(this.Year).substring(2, 4) + DateSeparator + MonthDigit + DateSeparator + pDate);
 		case "YYMMMDD":
-		return (String(this.Year).substring(2, 4) + DateSeparator + this.GetMonthName(false) + DateSeparator + pDate);
+			return (String(this.Year).substring(2, 4) + DateSeparator + this.GetMonthName(false) + DateSeparator + pDate);
 		case "YYYYMMMDD":
-		return (this.Year + DateSeparator + this.GetMonthName(false) + DateSeparator + pDate);
+			return (this.Year + DateSeparator + this.GetMonthName(false) + DateSeparator + pDate);
 		default:
-		return (pDate + DateSeparator + (this.Month + 1) + DateSeparator + this.Year);
+			return (pDate + DateSeparator + (this.Month + 1) + DateSeparator + this.Year);
 	}
 };
 
@@ -450,9 +450,9 @@ Calendar.prototype.FormatDate = function (pDate)
 function GenCell(pValue, pHighLight, pColor, pClickable)
 { //Generate table cell with value
 	var PValue,
-	PCellStr,
-	PClickable,
-	vTimeStr;
+		PCellStr,
+		PClickable,
+		vTimeStr;
 
 	if (!pValue)
 	{
@@ -464,8 +464,8 @@ function GenCell(pValue, pHighLight, pColor, pClickable)
 	}
 
 	if (pColor === undefined)
-	    pColor = CalBgColor;
-	
+		pColor = CalBgColor;
+
 	if (pClickable !== undefined){
 		PClickable = pClickable;
 	}
@@ -494,9 +494,9 @@ function GenCell(pValue, pHighLight, pColor, pClickable)
 	if (PValue !== "")
 	{
 		if (PClickable === true) {
-			  if (Cal.ShowTime === true)
-		    { PCellStr = "<td id='c" + PValue + "' class='calTD' style='text-align:center;cursor:pointer;"+pColor+"' onmousedown='selectDate(this," + PValue + ");'>" + PValue + "</td>"; }
-		    else { PCellStr = "<td class='calTD' style='text-align:center;cursor:pointer;background-color:" + pColor + "' onmouseover='changeBorder(this, 0);' onmouseout=\"changeBorder(this, 1, '" + pColor + "');\" onClick=\"javascript:callback('" + Cal.Ctrl + "','" + Cal.FormatDate(PValue) + "');\">" + PValue + "</td>"; }
+			if (Cal.ShowTime === true)
+			{ PCellStr = "<td id='c" + PValue + "' class='calTD' style='text-align:center;cursor:pointer;"+pColor+"' onmousedown='selectDate(this," + PValue + ");'>" + PValue + "</td>"; }
+			else { PCellStr = "<td class='calTD' style='text-align:center;cursor:pointer;background-color:" + pColor + "' onmouseover='changeBorder(this, 0);' onmouseout=\"changeBorder(this, 1, '" + pColor + "');\" onClick=\"javascript:callback('" + Cal.Ctrl + "','" + Cal.FormatDate(PValue) + "');\">" + PValue + "</td>"; }
 		}
 		else
 		{ PCellStr = "<td style='text-align:center;background-color:"+pColor+"' class='calTD'>"+PValue+"</td>"; }
@@ -514,37 +514,37 @@ function RenderCssCal(bNewCal)
 		bNewCal = false;
 	}
 	var vCalHeader,
-	vCalData,
-	vCalTime = "",
-	vCalClosing = "",
-	winCalData = "",
-	CalDate,
+		vCalData,
+		vCalTime = "",
+		vCalClosing = "",
+		winCalData = "",
+		CalDate,
 
-	i,
-	j,
+		i,
+		j,
 
-	SelectStr,
-	vDayCount = 0,
-	vFirstDay,
+		SelectStr,
+		vDayCount = 0,
+		vFirstDay,
 
-	WeekDayName = [],//Added version 1.7
-	strCell,
+		WeekDayName = [],//Added version 1.7
+		strCell,
 
-	showHour,
-	ShowArrows = false,
-	HourCellWidth = "35px", //cell width with seconds.
+		showHour,
+		ShowArrows = false,
+		HourCellWidth = "35px", //cell width with seconds.
 
-	SelectAm,
-	SelectPm,
+		SelectAm,
+		SelectPm,
 
-	funcCalback,
+		funcCalback,
 
-	headID,
-	e,
-	cssStr,
-	style,
-	cssText,
-	span;
+		headID,
+		e,
+		cssStr,
+		style,
+		cssText,
+		span;
 
 	calHeight = 0; // reset the window height on refresh
 
@@ -560,7 +560,7 @@ function RenderCssCal(bNewCal)
 
 	if (Cal.Scroller === "DROPDOWN")
 	{
-	    vCalHeader += "<td align='left' style='padding:10px 5px 10px 10px;margin:0;background:"+topSelectorBg+"'>\n";
+		vCalHeader += "<td align='left' style='padding:10px 5px 10px 10px;margin:0;background:"+topSelectorBg+"'>\n";
 		vCalHeader += "<select name='MonthSelector' id='MonthSelectorSelect' style='margin-bottom:5px; display: none;' onChange='javascript:Cal.SwitchMth(this.selectedIndex);RenderCssCal();'>";
 		for (i = 0; i < 12; i += 1)
 		{
@@ -664,7 +664,7 @@ function RenderCssCal(bNewCal)
 	//Calendar header shows Month and Year
 	if (ShowMonthYear && Cal.Scroller === "DROPDOWN")
 	{
-	    vCalHeader += "<tr><td colspan='7' class='calR' style='color:" + MonthYearColor + "'>" + Cal.GetMonthName(ShowLongMonth) + " " + Cal.Year + "</td></tr>";
+		vCalHeader += "<tr><td colspan='7' class='calR' style='color:" + MonthYearColor + "'>" + Cal.GetMonthName(ShowLongMonth) + " " + Cal.Year + "</td></tr>";
 		calHeight += 19;
 	}
 
@@ -681,7 +681,7 @@ function RenderCssCal(bNewCal)
 	}
 	for (i = 0; i < 7; i += 1)
 	{
-	    vCalHeader += "<td style='background-color:"+WeekHeadBackground+";width:"+CellWidth+"px;color:"+WeekHeadColor+"' class='calTD'>" + WeekDayName[i].substr(0, WeekChar) + "</td>";
+		vCalHeader += "<td style='background-color:"+WeekHeadBackground+";width:"+CellWidth+"px;color:"+WeekHeadColor+"' class='calTD'>" + WeekDayName[i].substr(0, WeekChar) + "</td>";
 	}
 
 	calHeight += 19;
@@ -724,14 +724,14 @@ function RenderCssCal(bNewCal)
 		if (Cal.EnableDateMode === "future" && ((j < dtToday.getDate()) && (Cal.Month === dtToday.getMonth()) && (Cal.Year === dtToday.getFullYear()) || (Cal.Month < dtToday.getMonth()) && (Cal.Year === dtToday.getFullYear()) || (Cal.Year < dtToday.getFullYear())))
 		{
 			strCell = GenCell(j, false, DisableColor, false); //Before today's date is not clickable
-        }
-        else if (Cal.EnableDateMode === "past" && ((j >= dtToday.getDate()) && (Cal.Month === dtToday.getMonth()) && (Cal.Year === dtToday.getFullYear()) || (Cal.Month > dtToday.getMonth()) && (Cal.Year === dtToday.getFullYear()) || (Cal.Year > dtToday.getFullYear()))) {
-            strCell = GenCell(j, false, DisableColor, false); //After today's date is not clickable
-        }
+		}
+		else if (Cal.EnableDateMode === "past" && ((j >= dtToday.getDate()) && (Cal.Month === dtToday.getMonth()) && (Cal.Year === dtToday.getFullYear()) || (Cal.Month > dtToday.getMonth()) && (Cal.Year === dtToday.getFullYear()) || (Cal.Year > dtToday.getFullYear()))) {
+			strCell = GenCell(j, false, DisableColor, false); //After today's date is not clickable
+		}
 		//if End Year + Current Year = Cal.Year. Disable.
 		else if (Cal.Year > (dtToday.getFullYear()+EndYear))
 		{
-		    strCell = GenCell(j, false, DisableColor, false); 
+			strCell = GenCell(j, false, DisableColor, false);
 		}
 		else if ((j === dtToday.getDate()) && (Cal.Month === dtToday.getMonth()) && (Cal.Year === dtToday.getFullYear()))
 		{
@@ -740,9 +740,9 @@ function RenderCssCal(bNewCal)
 		else
 		{
 			if ((j === selDate.getDate()) && (Cal.Month === selDate.getMonth()) && (Cal.Year === selDate.getFullYear())){
-			     //modified version 1.7
+				//modified version 1.7
 				strCell = GenCell(j, true, SelDateColor);
-            }
+			}
 			else
 			{
 				if (MondayFirstDay === true)
@@ -816,7 +816,7 @@ function RenderCssCal(bNewCal)
 
 		if (ShowArrows && UseImageFiles) //this is where the up and down arrow control the hour.
 		{
-		    vCalTime += "<td style='vertical-align:middle;'><table cellspacing='0' cellpadding='0' style='line-height:0pt;width:100%;'><tr><td style='text-align:center;'><img onclick='nextStep(\"Hour\", \"plus\");' onmousedown='startSpin(\"Hour\", \"plus\");' onmouseup='stopSpin();' src='" + imageFilesPath + "cal_plus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr><tr><td style='text-align:center;'><img onclick='nextStep(\"Hour\", \"minus\");' onmousedown='startSpin(\"Hour\", \"minus\");' onmouseup='stopSpin();' src='" + imageFilesPath + "cal_minus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr></table></td>\n";
+			vCalTime += "<td style='vertical-align:middle;'><table cellspacing='0' cellpadding='0' style='line-height:0pt;width:100%;'><tr><td style='text-align:center;'><img onclick='nextStep(\"Hour\", \"plus\");' onmousedown='startSpin(\"Hour\", \"plus\");' onmouseup='stopSpin();' src='" + imageFilesPath + "cal_plus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr><tr><td style='text-align:center;'><img onclick='nextStep(\"Hour\", \"minus\");' onmousedown='startSpin(\"Hour\", \"minus\");' onmouseup='stopSpin();' src='" + imageFilesPath + "cal_minus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr></table></td>\n";
 		}
 
 		vCalTime += "<td style='border-top:1px solid #b7c9d3;'><input type='text' name='hour' maxlength=2 size=1 style='width:auto;padding:5px 10px;margin:10px auto;float:right;' value=" + showHour + " onkeyup=\"javascript:Cal.SetHour(this.value)\">";
@@ -825,7 +825,7 @@ function RenderCssCal(bNewCal)
 
 		if (Cal.ShowSeconds)
 		{
-		    vCalTime += "</td><td style='font-weight:bold;border-top:1px solid #b7c9d3;'>:</td><td style='border-top:1px solid #b7c9d3;'>";
+			vCalTime += "</td><td style='font-weight:bold;border-top:1px solid #b7c9d3;'>:</td><td style='border-top:1px solid #b7c9d3;'>";
 			vCalTime += "<input type='text' name='second' maxlength=2 size=1 style='width:auto;padding:5px 10px;margin:0 auto;float:left;' value=" + Cal.Seconds + " onkeyup=\"javascript:Cal.SetSecond(parseInt(this.value,10))\">";
 		}
 
@@ -843,7 +843,7 @@ function RenderCssCal(bNewCal)
 
 		if (ShowArrows && UseImageFiles) //this is where the up and down arrow to change the "Minute".
 		{
-		    vCalTime += "</td>\n<td style='vertical-align:middle;'><table cellspacing='0' cellpadding='0' style='line-height:0pt;width:100%'><tr><td style='text-align:center;'><img onclick='nextStep(\"Minute\", \"plus\");' onmousedown='startSpin(\"Minute\", \"plus\");' onmouseup='stopSpin();' src='" + imageFilesPath + "cal_plus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr><tr><td style='text-align:center;'><img onmousedown='startSpin(\"Minute\", \"minus\");' onmouseup='stopSpin();' onclick='nextStep(\"Minute\",\"minus\");' src='" + imageFilesPath + "cal_minus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr></table>";
+			vCalTime += "</td>\n<td style='vertical-align:middle;'><table cellspacing='0' cellpadding='0' style='line-height:0pt;width:100%'><tr><td style='text-align:center;'><img onclick='nextStep(\"Minute\", \"plus\");' onmousedown='startSpin(\"Minute\", \"plus\");' onmouseup='stopSpin();' src='" + imageFilesPath + "cal_plus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr><tr><td style='text-align:center;'><img onmousedown='startSpin(\"Minute\", \"minus\");' onmouseup='stopSpin();' onclick='nextStep(\"Minute\",\"minus\");' src='" + imageFilesPath + "cal_minus.gif' width='13px' height='9px' onmouseover='changeBorder(this, 0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td></tr></table>";
 		}
 
 		vCalTime += "</td>\n<td align='right' valign='bottom' width='" + HourCellWidth + "px'></td></tr>";
@@ -851,15 +851,15 @@ function RenderCssCal(bNewCal)
 	}
 	else //if not to show time.
 	{
-	    vCalTime += "\n<tr>\n<td colspan='7' style=\"text-align:right;\">";
-	    //close button
-	    if (UseImageFiles) {
-	        vCalClosing += "<img onmousedown='javascript:closewin(\"" + Cal.Ctrl + "\"); stopSpin();' src='"+imageFilesPath+"cal_close.gif' width='16px' height='14px' onmouseover='changeBorder(this,0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td>";
-	    }
-	    else {
-	        vCalClosing += "<span id='close_cal' title='close'onmousedown='javascript:closewin(\"" + Cal.Ctrl + "\");stopSpin();' onmouseover='changeBorder(this, 0)'onmouseout='changeBorder(this, 1)' style='border:1px solid white; font-family: Arial;font-size: 10pt;'>x</span></td>";
-	    }
-	    vCalClosing += "</tr>";
+		vCalTime += "\n<tr>\n<td colspan='7' style=\"text-align:right;\">";
+		//close button
+		if (UseImageFiles) {
+			vCalClosing += "<img onmousedown='javascript:closewin(\"" + Cal.Ctrl + "\"); stopSpin();' src='"+imageFilesPath+"cal_close.gif' width='16px' height='14px' onmouseover='changeBorder(this,0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td>";
+		}
+		else {
+			vCalClosing += "<span id='close_cal' title='close'onmousedown='javascript:closewin(\"" + Cal.Ctrl + "\");stopSpin();' onmouseover='changeBorder(this, 0)'onmouseout='changeBorder(this, 1)' style='border:1px solid white; font-family: Arial;font-size: 10pt;'>x</span></td>";
+		}
+		vCalClosing += "</tr>";
 	}
 	vCalClosing += "</tbody></table></td></tr>";
 	calHeight += 31;
@@ -896,12 +896,12 @@ function RenderCssCal(bNewCal)
 		cssStr = ".calTD {text-align: center; border:0; width:36px; height:36px; border-radius:50%}\n";
 		cssStr += "#calBorder {font-size: 14px; border-radius:0px 0px 4px 4px}\n";
 		cssStr += ".calR {text-align: center; font-weight: bold;"+showMonthInHead+"}\n";
-		cssStr += "#calBorder table, #calBorder table th, #calBorder table td {margin:0; padding:0; border-spacing:0; border-collapse:collapse; border:0; box-sizing:border-box;}\n";
+		cssStr += "#calBorder table, #calBorder table th, #calBorder table td {margin:0; padding:0; border-spacing:0; border-collapse:collapse; border:0; box-sizing:border-box; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}\n";
 		cssStr += "#calBorder input, #calBorder select {height:auto;}\n";
 		cssStr += "#calBorder select { -webkit-appearance: menulist; -moz-appearance: menulist;}\n";
 		cssStr += "#calBorder table tr:nth-child(even) {background: none;}\n";
 		cssStr += '#calBorder input[type="button"], #calBorderinput[type="reset"], #calBorder input[type="submit"] {margin-top: 15px; font-family:"TMSans-Bold",Helvetica,Arial,sans-serif; font-size:12px; width:45%; border:2px solid #b7c9d3; border-radius:4px; text-transform:uppercase; color:#b7c9d3; padding:4px; margin-bottom:12px;}\n';
-		cssStr += '#calBorder .MonthSelectorTitle {position: relative; font-family: "TMSans-Bold", Arial, serif; font-size: 14px; color: #b7c9d3; display: block; float: left; margin-left: 5px; padding-right:24px; -webkit-transition: color 0.3s ease-in-out; -o-transition: color 0.3s ease-in-out; transition: color 0.3s ease-in-out;}\n';
+		cssStr += '#calBorder .MonthSelectorTitle {position: relative; font-family: "TMSans-Bold", Arial, serif; font-size: 14px; color: #b7c9d3; display: block; float: left; margin-left: 5px; padding-right:24px; -webkit-transition: color 0.3s ease-in-out; -o-transition: color 0.3s ease-in-out; transition: color 0.3s ease-in-out; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}\n';
 		cssStr += '#calBorder .MonthSelectorTitle:hover {color: #189ddc; cursor: pointer;}\n';
 		cssStr += '#calBorder .MonthSelectorTitle:hover:before {opacity:1;}\n';
 		cssStr += '#calBorder .MonthSelectorTitle:hover:after {opacity:0;}\n';
@@ -914,7 +914,7 @@ function RenderCssCal(bNewCal)
 		cssStr += '#calBorder ul.MonthSelector.show {display: block;}\n';
 		cssStr += '#calBorder ul.MonthSelector.Year {left:auto; right:0; padding: 10px 34px;}\n';
 		cssStr += '#calBorder ul.MonthSelector.Year.show {display: block;}\n';
-		cssStr += '#calBorder ul.MonthSelector li { font-family: "TMSans-Bold", Arial, serif; font-size: 14px; margin:0; padding:0; line-height:27px; color: #fff;}\n';
+		cssStr += '#calBorder ul.MonthSelector li { font-family: "TMSans-Bold", Arial, serif; font-size: 14px; margin:0; padding:0; line-height:27px; color: #fff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}\n';
 		cssStr += '#calBorder ul.MonthSelector li:hover {color: #189ddc; cursor: pointer;}\n';
 		cssStr += '#calOverlay {width: 100%; height: 100%; position: fixed; top: 0; left: 0; display: none;}\n';
 		cssStr += '#calOverlay.show {display: block;}\n';
@@ -981,12 +981,12 @@ function NewCssCal(pCtrl, pFormat, pScroller, pShowTime, pTimeMode, pShowSeconds
 
 	if (pShowTime !== undefined)
 	{
-	    if (pShowTime) {
-	        Cal.ShowTime = true;
-	    }
-	    else {
-	        Cal.ShowTime = false;
-	    }
+		if (pShowTime) {
+			Cal.ShowTime = true;
+		}
+		else {
+			Cal.ShowTime = false;
+		}
 
 		if (pTimeMode)
 		{
@@ -1043,31 +1043,31 @@ function NewCssCal(pCtrl, pFormat, pScroller, pShowTime, pTimeMode, pShowSeconds
 		{
 			Cal.Scroller = "DROPDOWN";
 		}
-    }
+	}
 
-    if (pEnableDateMode !== undefined && (pEnableDateMode === "future" || pEnableDateMode === "past")) {
-        Cal.EnableDateMode= pEnableDateMode;
-    }
+	if (pEnableDateMode !== undefined && (pEnableDateMode === "future" || pEnableDateMode === "past")) {
+		Cal.EnableDateMode= pEnableDateMode;
+	}
 
 	exDateTime = document.getElementById(pCtrl).value; //Existing Date Time value in textbox.
 
 	if (exDateTime)
 	{ //Parse existing Date String
 		var Sp1 = exDateTime.indexOf(DateSeparator, 0),//Index of Date Separator 1
-		Sp2 = exDateTime.indexOf(DateSeparator, parseInt(Sp1, 10) + 1),//Index of Date Separator 2
-		tSp1,//Index of Time Separator 1
-		tSp2,//Index of Time Separator 2
-		strMonth,
-		strDate,
-		strYear,
-		intMonth,
-		YearPattern,
-		strHour,
-		strMinute,
-		strSecond,
-		winHeight,
-		offset = parseInt(Cal.Format.toUpperCase().lastIndexOf("M"), 10) - parseInt(Cal.Format.toUpperCase().indexOf("M"), 10) - 1,
-		strAMPM = "";
+			Sp2 = exDateTime.indexOf(DateSeparator, parseInt(Sp1, 10) + 1),//Index of Date Separator 2
+			tSp1,//Index of Time Separator 1
+			tSp2,//Index of Time Separator 2
+			strMonth,
+			strDate,
+			strYear,
+			intMonth,
+			YearPattern,
+			strHour,
+			strMinute,
+			strSecond,
+			winHeight,
+			offset = parseInt(Cal.Format.toUpperCase().lastIndexOf("M"), 10) - parseInt(Cal.Format.toUpperCase().indexOf("M"), 10) - 1,
+			strAMPM = "";
 		//parse month
 
 		if (Cal.Format.toUpperCase() === "DDMMYYYY" || Cal.Format.toUpperCase() === "DDMMMYYYY")
@@ -1152,11 +1152,11 @@ function NewCssCal(pCtrl, pFormat, pScroller, pShowTime, pTimeMode, pShowSeconds
 		//parse year
 		YearPattern = /^\d{4}$/;
 		if (YearPattern.test(strYear)) {
-		    if ((parseInt(strYear, 10)>=StartYear) && (parseInt(strYear, 10)<= (dtToday.getFullYear()+EndYear)))
-		        Cal.Year = parseInt(strYear, 10);
+			if ((parseInt(strYear, 10)>=StartYear) && (parseInt(strYear, 10)<= (dtToday.getFullYear()+EndYear)))
+				Cal.Year = parseInt(strYear, 10);
 		}
 		//end parse year
-		
+
 		//parse Date
 		if ((parseInt(strDate, 10) <= Cal.GetMonDays()) && (parseInt(strDate, 10) >= 1)) {
 			Cal.Date = strDate;
@@ -1204,35 +1204,36 @@ function NewCssCal(pCtrl, pFormat, pScroller, pShowTime, pTimeMode, pShowSeconds
 }
 
 function closewin(id) {
-    if (Cal.ShowTime === true) {
-        var MaxYear = dtToday.getFullYear() + EndYear;
-        var beforeToday =
-                    (Cal.Date < dtToday.getDate()) &&
-                    (Cal.Month === dtToday.getMonth()) &&
-                    (Cal.Year === dtToday.getFullYear())
-                    ||
-                    (Cal.Month < dtToday.getMonth()) &&
-                    (Cal.Year === dtToday.getFullYear())
-                    ||
-                    (Cal.Year < dtToday.getFullYear());
+	if (Cal.ShowTime === true) {
+		var MaxYear = dtToday.getFullYear() + EndYear;
+		var beforeToday =
+			(Cal.Date < dtToday.getDate()) &&
+			(Cal.Month === dtToday.getMonth()) &&
+			(Cal.Year === dtToday.getFullYear())
+			||
+			(Cal.Month < dtToday.getMonth()) &&
+			(Cal.Year === dtToday.getFullYear())
+			||
+			(Cal.Year < dtToday.getFullYear());
 
-        if ((Cal.Year <= MaxYear) && (Cal.Year >= StartYear) && (Cal.Month === selDate.getMonth()) && (Cal.Year === selDate.getFullYear())) {
-            if (Cal.EnableDateMode === "future") {
-                if (beforeToday === false) {
-                    callback(id, Cal.FormatDate(Cal.Date));
-                }
-            }
-            else
-                callback(id, Cal.FormatDate(Cal.Date));
-        }
-    }
-    var CalId = document.getElementById(id);
+		if ((Cal.Year <= MaxYear) && (Cal.Year >= StartYear) && (Cal.Month === selDate.getMonth()) && (Cal.Year === selDate.getFullYear())) {
+			if (Cal.EnableDateMode === "future") {
+				if (beforeToday === false) {
+					callback(id, Cal.FormatDate(Cal.Date));
+				}
+			}
+			else
+				callback(id, Cal.FormatDate(Cal.Date));
+		}
+	}
+	var CalId = document.getElementById(id);
 	CalId.focus();
 	winCal.style.visibility = 'hidden';
+	document.getElementById('calOverlay').classList.remove('show');
 	var activeIcons = document.querySelectorAll('.dt-ico');
 	var aiCountLenght = activeIcons.length;
 	for (var aiCount = 0; aiCount < aiCountLenght; ++aiCount) {
-      activeIcons[aiCount].classList.remove('active');
+		activeIcons[aiCount].classList.remove('active');
 	}
 }
 
@@ -1261,10 +1262,10 @@ function changeBorder(element, col, oldBgColor)
 }
 
 function selectDate(element, date) {
-    Cal.Date = date;
-    selDate = new Date(Cal.Year, Cal.Month, Cal.Date);
-    element.style.background = SelDateColor;
-    RenderCssCal();
+	Cal.Date = date;
+	selDate = new Date(Cal.Year, Cal.Month, Cal.Date);
+	element.style.background = SelDateColor;
+	RenderCssCal();
 }
 
 function findPos(obj) {
@@ -1282,36 +1283,36 @@ function findPos(obj) {
 function pickIt(evt)
 {
 	var objectID,
-	dom,
-	de,
-	b;
+		dom,
+		de,
+		b;
 	// accesses the element that generates the event and retrieves its ID
 	if (document.addEventListener)
 	{ // w3c
 		objectID = evt.target.id;
 		/*
-		if (objectID.indexOf(calSpanID) !== -1)
-		{
-			dom = document.getElementById(objectID);
-			cnLeft = evt.pageX;
-			cnTop = evt.pageY;
+		 if (objectID.indexOf(calSpanID) !== -1)
+		 {
+		 dom = document.getElementById(objectID);
+		 cnLeft = evt.pageX;
+		 cnTop = evt.pageY;
 
-			if (dom.offsetLeft)
-			{
-				cnLeft = (cnLeft - dom.offsetLeft);
-				cnTop = (cnTop - dom.offsetTop);
-			}
-		}
-		*/
+		 if (dom.offsetLeft)
+		 {
+		 cnLeft = (cnLeft - dom.offsetLeft);
+		 cnTop = (cnTop - dom.offsetTop);
+		 }
+		 }
+		 */
 		// get mouse position on click
 		/*
-		xpos = (evt.pageX);
-		ypos = (evt.pageY);
-		*/
-		 if (objectID == '') {
-			 xpos = findPos(evt.target).x;
-			 ypos = findPos(evt.target).y;
-		 }
+		 xpos = (evt.pageX);
+		 ypos = (evt.pageY);
+		 */
+		if (objectID == '') {
+			xpos = findPos(evt.target).x;
+			ypos = findPos(evt.target).y;
+		}
 
 	}
 
@@ -1428,73 +1429,77 @@ function dropIt()
 
 document.onmousedown = pickIt;
 /*
-document.onmousemove = dragIt;
-document.onmouseup = dropIt;
-*/
+ document.onmousemove = dragIt;
+ document.onmouseup = dropIt;
+ */
 
 document.addEventListener('click', function(e){
 
-    if (e.target.classList[0] == 'dt-ico') {
-		    if (e.target.classList[1] !== undefined) {
-			      e.target.classList.remove('active');
-					  document.getElementById('calBorder').style.visibility = 'hidden';
-					  document.getElementById('calOverlay').classList.remove('show');
-		    }
-		    else {
-			      e.target.classList.add('active');
-					  document.getElementById('calBorder').style.visibility = 'visible';
-					  document.getElementById('calOverlay').classList.add('show');
-		    }
-	  }
+	if (e.target.classList[0] == 'dt-ico') {
+		if (e.target.classList[1] !== undefined) {
+			e.target.classList.remove('active');
+			document.getElementById('calBorder').style.visibility = 'hidden';
+			document.getElementById('calOverlay').classList.remove('show');
+		}
+		else {
+			e.target.classList.add('active');
+			document.getElementById('calBorder').style.visibility = 'visible';
+			document.getElementById('calOverlay').classList.add('show');
+		}
+	}
 
-	  if (e.target.id === 'calOverlay') {
-			  document.getElementById('calBorder').style.visibility = 'hidden';
-			  document.getElementById('calOverlay').classList.remove('show');
-			  document.querySelector('.dt-ico').classList.remove('active');
-	  }
+	if (e.target.id === 'calOverlay') {
+		document.getElementById('calBorder').style.visibility = 'hidden';
+		document.getElementById('calOverlay').classList.remove('show');
+		var activeIcons = document.querySelectorAll('.dt-ico');
+		var aiCountLenght = activeIcons.length;
+		for (var aiCount = 0; aiCount < aiCountLenght; ++aiCount) {
+			activeIcons[aiCount].classList.remove('active');
+		}
+	}
 
-		if (document.querySelector('#calBorder .MonthSelector') !== null) {
+	if (document.querySelector('#calBorder .MonthSelector') !== null) {
 
-				 var targetClass = e.target.classList[0];
-			   if (e.target.classList[1] !== undefined) targetClass = e.target.classList[1];
-			   if (targetClass === undefined) targetClass = e.target.parentNode.classList[0];
+		var targetClass = e.target.classList[0];
+		if (e.target.classList[1] !== undefined) targetClass = e.target.classList[1];
+		if (targetClass === undefined) targetClass = e.target.parentNode.classList[0];
 
-				 if (targetClass == 'MonthSelectorTitle') {
-						 if (document.querySelector('#calBorder .MonthSelector').classList.contains("show")) {
-								 document.querySelector('#calBorder .MonthSelector').classList.remove("show");
-						 }
-						 else {
-								 document.querySelector('#calBorder .MonthSelector').classList.add("show");
-							   document.querySelector('#calBorder .MonthSelector.Year').classList.remove("show");
-						 }
-				 };
+		if (targetClass == 'MonthSelectorTitle') {
+			if (document.querySelector('#calBorder .MonthSelector').classList.contains("show")) {
+				document.querySelector('#calBorder .MonthSelector').classList.remove("show");
+			}
+			else {
+				document.querySelector('#calBorder .MonthSelector').classList.add("show");
+				document.querySelector('#calBorder .MonthSelector.Year').classList.remove("show");
+			}
+		};
 
-				 if (targetClass == 'MonthSelector') {
+		if (targetClass == 'MonthSelector') {
 
-					   var selectClass = e.target.parentNode.classList[1];
+			var selectClass = e.target.parentNode.classList[1];
 
-					   if (e.target.tagName === 'LI' && selectClass === 'show') {
-							   document.querySelector('#calBorder .MonthSelectorTitle').innerHTML = e.target.innerHTML;
-							   Cal.SwitchMth([].indexOf.call(e.target.parentNode.children, (e ? e.target : e.srcElement)));
-							   RenderCssCal();
-						 }
-						 if (e.target.tagName === 'LI' && selectClass === 'Year') {
-							 document.querySelector('#calBorder .MonthSelectorTitle.Year').innerHTML = e.target.innerHTML;
-							 Cal.SwitchYear(e.target.innerHTML);
-							 RenderCssCal();
-						 }
-				 };
+			if (e.target.tagName === 'LI' && selectClass === 'show') {
+				document.querySelector('#calBorder .MonthSelectorTitle').innerHTML = e.target.innerHTML;
+				Cal.SwitchMth([].indexOf.call(e.target.parentNode.children, (e ? e.target : e.srcElement)));
+				RenderCssCal();
+			}
+			if (e.target.tagName === 'LI' && selectClass === 'Year') {
+				document.querySelector('#calBorder .MonthSelectorTitle.Year').innerHTML = e.target.innerHTML;
+				Cal.SwitchYear(e.target.innerHTML);
+				RenderCssCal();
+			}
+		};
 
-				 if (targetClass == 'Year') {
-				     if (document.querySelector('#calBorder .MonthSelector.Year').classList.contains("show")) {
-						     document.querySelector('#calBorder .MonthSelector.Year').classList.remove("show");
-					   }
-					   else {
-						     document.querySelector('#calBorder .MonthSelector.Year').classList.add("show");
-							   document.querySelector('#calBorder .MonthSelector').classList.remove("show");
-					   }
-		     };
+		if (targetClass == 'Year') {
+			if (document.querySelector('#calBorder .MonthSelector.Year').classList.contains("show")) {
+				document.querySelector('#calBorder .MonthSelector.Year').classList.remove("show");
+			}
+			else {
+				document.querySelector('#calBorder .MonthSelector.Year').classList.add("show");
+				document.querySelector('#calBorder .MonthSelector').classList.remove("show");
+			}
+		};
 
-    }
+	}
 
 });
