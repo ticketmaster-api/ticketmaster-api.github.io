@@ -71,7 +71,10 @@
   .modal-dialog{
     @media (min-width: 768px) {
       width: 740px;
+      margin: 30px auto;
     }
+    width: 100%;
+    margin: 0;
   }
   .modal-header {
     padding-bottom: 9px;
@@ -92,6 +95,10 @@
       @media (min-width: 768px) {
         width: 110px;
         margin-right: 16px;
+      }
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-bottom: $base-margin;
       }
     }
 
@@ -156,6 +163,12 @@
 
       }
     }
+    .modal-header .modal-title {
+      font-size: 2.25em;
+      @media (max-width: 768px) {
+        font-size: 1.5em;
+      }
+    }
   }
 
   .modal-body {
@@ -168,12 +181,16 @@
         }
       }
     }
+    .top-hr,
     hr {
       min-width: calc(100% + 30px);
       border-top: 2px solid $n3;
       margin: 0 -15px;
       text-align: center;
       float: left;
+    }
+    .top-hr {
+      float: initial;
     }
     .get_eventId_results {
       margin-top: -24px;
@@ -305,29 +322,10 @@
         .btn-transparent {
           width: 110px;
           height: 24px;
-          //border-radius: 4px;
-          //padding: 2px 6px;
-          //text-transform: uppercase;
-          //font-family: $font-lead-bold ;
-          //font-size: 12px;
         }
         .btn-transparent{
           margin-top: 10px;
-          /*border: solid 2px #b7c9d3;
-          background-color: transparent;
-          color: $n1-grey-color;
-
-          &:focus,
-          &:active,
-          &:hover{
-            color: $n1;
-            background-color: $white;
-            outline: none;
-          }*/
         }
-        //.checked {
-        //  background-color: $n3;
-        //}
       }
 
     }
@@ -396,41 +394,84 @@
 
 }
 
+.modal-open #js_ls-modal-classification,
+.modal-open #js_ls-modal{
+  @media (min-width: 768px) {
+    overflow: hidden;
+    width: calc(100% + 17px); //for chrome/safari
+    width: -moz-calc(100% + 16px); //for firefox
+    width: -ms-calc(100% + 17px); // where "XX" equals the width of the scrollbar in IE)
+  }
+}
+
 /*classification selector*/
 #js_ls-modal-classification {
-  .jstree {
     .jstree-container-ul {
       max-height: 500px;
       overflow-y: auto;
+      margin: 0 15px;
+
       li {
         background-image: none;
-        ul>li>ul>li {
-          background-image: url("../../assets/img/products-and-docs/list-collapse.svg");
+        padding-top: 13px;
+        padding-bottom: 13px;
+        margin-left: 0;
+        border-bottom: 2px solid #dadddf;
+        position: relative;
+      }
+      /*icons*/
+      .jstree-node,
+      .jstree-icon {
+        background-image: url("../../assets/controls/btn-chevron-sprite.svg");
+        background-color: transparent;
+      }
+      .jstree-icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        &:empty {
+          background-position: -120px;
         }
       }
+
       .jstree-anchor {
         font-family: $font-h3;
         font-size: $size-h3;
+        line-height: 32px;
+        margin-left: 20px;
+        &:hover {
+          color: $p1b;
+          opacity: 1;
+        }
       }
       .jstree-children{
-
-        li > ul.jstree-children .jstree-anchor{
-          opacity: 0.7;
-          font-family: $font-body;
-          font-size: $size-body;
+        margin-left: 24px;
+        .jstree-node {
+          padding: 0;
+          border-bottom: 0;
         }
         .jstree-anchor {
-          font-weight: bold;
           font-size: $size-body;
-          color:$n2;
-          &.jstree-clicked{
-            color:$p1a;
+        }
+        .jstree-icon {
+          background: none;
+        }
+
+        li > ul.jstree-children {
+          .jstree-anchor {
+            opacity: 0.7;
+            border-left: 2px solid $n3;
+            padding-left: 10px;
+            margin: 0;
+            &:hover {
+              color: $p1b;
+              opacity: 1;
+            }
           }
         }
       }
 
-
-      .jstree-clicked,
+      .jstree-anchor.jstree-clicked,
       .jstree-search{
         color:$p1a;
       }
@@ -439,10 +480,39 @@
         color:$p1a;
       }
 
-      .jstree-default .jstree-node, .jstree-default .jstree-icon {
-        background: none;
-      }
-    }
-  }
 
+      /*icons position*/
+      .jstree-closed > .jstree-ocl {
+        background-position: 0px 0px;
+        &:hover {
+          background-position: -30px 0px;
+          color: $p1b;
+        }
+      }
+
+      .jstree-open > .jstree-ocl {
+        background-position: -60px 0px;
+      }
+      .jstree-closed > .jstree-ocl.hovered,
+      .jstree-closed > .jstree-ocl:hover {
+        background-position: -30px 0px;
+        color: $p1b;
+      }
+
+      .jstree-open > .jstree-ocl:hover,
+      .jstree-open > .jstree-ocl.hovered {
+        background-position: -90px 0px;
+        color: $p1b;
+      }
+      /*icons position END*/
+
+    }
+  .btn-small {
+    width: 110px;
+    height: 24px;
+    //margin-right: 14px;
+    margin-top: 5px;
+    position: absolute;
+    right: 0px;
+  }
 }
