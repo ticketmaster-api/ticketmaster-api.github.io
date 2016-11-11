@@ -5,36 +5,46 @@
   input {
     padding: 8px 31px 8px 16px;
   }
-  .icon {
-    content: '';
-    position: absolute;
-    top: 15px;
-    right: 8px;
-    width: 30px;
-    height: 30px;
-    margin-top: -5px;
-    cursor: pointer;
+	.icon {
+		content: '';
+		position: absolute;
+		top: 15px;
+		right: 8px;
+		width: 28px;
+		height: 28px;
+		margin-top: -5px;
+		cursor: pointer;
 
-    &:before,
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      @include transition(opacity 0.2s ease-in-out);
-    }
+		&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			background: url("/assets/controls/ic-input-controls.svg") no-repeat;
+			@include transition(opacity 0.2s ease-in-out);
+		}
 
-    &:before {
-      background: url("/assets/controls/ic-id.svg") no-repeat;
-      opacity: 0;
-    }
+		&:before {
+			background-position: -28px 0;
+			opacity: 0;
+		}
 
-    &:after {
-      background: url("/assets/controls/ic-id.svg") no-repeat;
-    }
-  }
+		&:after {
+			background-position: 1px 0;
+		}
+
+		&:hover {
+			&:before {
+				opacity: 1;
+			}
+			&:after {
+				opacity: 0;
+			}
+		}
+	}
 
   @media (min-width: 767px) {  }
 
