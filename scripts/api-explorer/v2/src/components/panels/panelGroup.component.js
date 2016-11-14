@@ -169,7 +169,7 @@ module.exports = ko.components.register('panel-group', {
 	template:`
 		<section data-bind="foreachprop: {data: data, sortFn: sortByConfig.bind($component)}" class="panel-group">
 			<!--panel-->
-			<panel data-bind="css: {'has-events-list': $component.checkIfHasEventsList(key)}"
+			<panel class="panel-item" data-bind="css: {'has-events-list': $component.checkIfHasEventsList(key)}"
 							params="$data: $data,
 											$index: $index,
 											panelGroup: $component,

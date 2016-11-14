@@ -12,7 +12,7 @@ class RequestsListViewModel {
 		this.setParams = params.setParams;
 		self = this;
 		this.colors = colors;
-		this.isActiveTab = ko.observable(false);
+		this.isActiveMoreMenu = ko.observable(true);
 		this.viewModel = ko.observableArray([]);
 		this.clearBtnIsVisible = ko.computed(this._isVisible, this);
 		this.requests.subscribe(this.updateModel, this);
@@ -28,6 +28,7 @@ class RequestsListViewModel {
 				var newObj = {
 					color: this.colors[obj.index % this.colors.length],
 					active: ko.observable(false),
+					isActiveMoreMenu: ko.observable(false),
 					copiedForShare: ko.observable(false),
 					paramsAreSeted: ko.observable(false),
 					copiedUrl: ko.observable(false),
@@ -81,7 +82,6 @@ class RequestsListViewModel {
 
 		// add slide with selected data
 		currentSlider.slick('slickAdd', component);
-
 		// remove outstanding slides
 		for (var i = curslick.slideCount - 2; i > panelGroup.groupIndex; i--) {
 			currentSlider.slick('slickRemove', i, false);
@@ -117,6 +117,12 @@ class RequestsListViewModel {
 		if (!this.resHTML().length) {
 			jsonHighlight(this.resHTML, this.response);
 		}
+		let slider = $(event.currentTarget).parents('.panel').find('.slick-slider');
+		if (!slider.find('.slick-track').width()) {
+			setTimeout(()=> {
+				slider.slick('setPosition');
+			}, 0);
+		}
 		this.active(!this.active());
 	};
 
@@ -144,6 +150,10 @@ class RequestsListViewModel {
 		var content = model.response || ko.unwrap(model.error)[3] || {};
 		var rawWindow = window.open("data:text/json," + encodeURI(JSON.stringify(content, null, 2)), '_blank');
 		rawWindow.focus();
+	}
+
+	getMoreMenu() {
+		this.isActiveMoreMenu(!ko.unwrap(this.isActiveMoreMenu));
 	}
 
 	copyUrl(model, event) {

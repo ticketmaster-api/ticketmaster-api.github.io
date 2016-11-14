@@ -1,0 +1,85 @@
+const config = {
+	dots: false,
+	infinite: false,
+	speed: 300,
+	slidesToShow: 3,
+	slidesToScroll: 1,
+	autoplay: false,
+	focusOnSelect: true,
+	responsive: [
+		{
+			breakpoint: 1200,
+			settings: {
+				dots: true,
+				slidesToShow: 2,
+				slidesToScroll: 1,
+			}
+		},
+		{
+			breakpoint: 800,
+			settings: {
+				dots: true,
+				slidesToShow: 1,
+				slidesToScroll: 1
+			}
+		}
+	]
+};
+
+<<<<<<< 611de0afc8bc467bde511717c15a189eeaac7def
+const config2 = {
+	variableWidth: true,
+	autoplay: false,
+	responsive: [
+		{
+			breakpoint: 1200,
+			settings: {
+				variableWidth: true,
+				slidesToShow: 2,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 800,
+			settings: {
+				variableWidth: true,
+				slidesToShow: 1,
+				slidesToScroll: 1
+			}
+		}
+	]
+};
+
+=======
+>>>>>>> [TKMDPA-1329][JS/SCSS/HTML] API explorer 2.0 - Mobile - Response Layout
+function slick(times) {
+	"use strict";
+	var selector = '#slider-';
+
+<<<<<<< 611de0afc8bc467bde511717c15a189eeaac7def
+	for (var i = 0; i < times; i++) {
+		$(selector + i).length && $(selector + i).slick(config);
+=======
+	for (let i = 0; i < times; i++) {
+		let slider = $(selector + i);
+		if(slider.length) {
+			slider.slick(config);
+		}
+>>>>>>> [TKMDPA-1329][JS/SCSS/HTML] API explorer 2.0 - Mobile - Response Layout
+	}
+}
+
+function unslick(times) {
+	"use strict";
+
+	for (let i = 0; i < times; i++) {
+		let slider = $('#slider-' + i);
+		slider.length && slider.slick('unslick');
+	}
+	console.info('cleared');
+}
+
+module.exports = {
+	set: slick,
+	remove: unslick
+};

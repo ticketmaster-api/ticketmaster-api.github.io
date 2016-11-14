@@ -91,27 +91,32 @@
 					<li data-bind="css: {active: active}" class="panel panel-default api-exp-request-list-item clearfix">
 
 						<section class="row-container request" data-bind="attr: {id: $parent.getStr('heading', $index)}" role="tab">
-							<div class="edit-controls">
-								<button data-bind="click: $parent.setParamsFromHere, css: {'active': paramsAreSeted}, popover: {type: 'tooltip', title: 'Repeat settings of this request'}"
+							<div class="edit-controls" data-bind="css: {'visible white': isActiveMoreMenu}">
+								<button data-bind="click: $parent.setParamsFromHere,
+																	css: {'done': paramsAreSeted},
+																	popover: {type: 'tooltip', title: 'Repeat settings of this request'}"
 								        class="btn btn-icon btn-preset"
 								        type="button"></button>
+								
 								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler},
-																	css: {'copied': copiedForShare}, attr: {'data-clipboard-text': $parent.sharePath},
+																	css: {'done': copiedForShare}, attr: {'data-clipboard-text': $parent.sharePath},
 																	popover: {type: 'tooltip', title: 'Copy request share link'}"
 								        class="btn btn-icon btn-share"
 								        type="button"></button>
+								
 								<button data-bind="event: {mouseover: $parent.copyUrl, mouseout: $parent.removeHandler},
 																	popover: {type: 'tooltip', title: 'Copy request URL'},
-																	css: {'copied': copiedUrl},
+																	css: {'done': copiedUrl},
 																	attr: {'data-clipboard-text': req}"
 								        class="btn btn-icon btn-copy"
 								        type="button"></button>
-								<button data-bind="click: $parent.getRawData,
-																	popover: {type: 'tooltip', title: 'Show raw response data'}"
+								
+								<button data-bind="click: $parent.getRawData, popover: {type: 'tooltip', title: 'Show raw response data'}"
 								        class="btn btn-icon btn-raw"
 								        type="button"
 								        data-toggle="tooltip"></button>
 							</div>
+							<button data-bind="click: $parent.getMoreMenu" class="btn btn-icon btn-more"></button>
 							
 							<div class="panel-title">
 								<!-- ko if: !!$data.response -->
@@ -129,7 +134,7 @@
 								<!-- /ko -->
 							</div>
 							<span data-bind="css: color" class="color-indicator view-control"></span>
-							<p data-bind="text: req" class="item_text"></p>
+							<p data-bind="text: req, blockEllipsis: {clamp: 2}" class="item_text"></p>
 						</section>
 						
 						<!-- ko if: !!$data.response -->
@@ -138,7 +143,7 @@
 								<div class="row-container">
 									
 									<!-- Nav tabs -->
-									<ul class="nav nav-tabs" role="tablist">
+									<ul class="nav nav-tabs tabs-controlls" role="tablist">
 										<li role="presentation" class="tab">
 											<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
 										</li>
