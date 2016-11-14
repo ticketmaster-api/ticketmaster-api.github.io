@@ -1,0 +1,228 @@
+/**
+* Params styles
+**/
+
+.api-exp-params {
+	padding: 1px 0;
+	clear: both;
+	position: relative;
+	border-top: 2px dotted #b7c9d3;
+	&.closed {
+		.api-exp-params-wrapper {
+			display: none;
+			opacity: 0;
+		}
+	}
+	&-headline {
+		position: absolute;
+		top: -20px;
+		left: 0;
+		background: #fff;
+		padding: 5px 5px 0 0;
+		&__title {
+			margin: 0 10px 0 0;
+			font-size: 16px;
+			font-weight: bold;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1.7;
+			text-align: left;
+			color: #b7c9d3;
+			float: left;
+		}
+		&-edit {
+			float: right;
+			display: none;
+			opacity: 0;
+			@include transition(all, 300ms)
+		}
+		&__btn {
+			width: 16px;
+			height: 16px;
+			padding: 0;
+			border: none;
+			display: inline-block;
+			&-copy {
+				background: url($img-copy) no-repeat;
+			}
+			&-clear {
+				width: 28px;
+				height: 28px;
+				background: url($img-clear) no-repeat;
+			}
+		}
+	}
+	&-wrapper {
+		opacity: 1;
+		border-bottom: 2px dotted #b7c9d3;
+		padding: 35px 0;
+		clear: both;
+	}
+	&-filter {
+		margin-right: 264px;
+		&-fields {
+			//overflow: hidden;
+		}
+		&__field {
+			width: 262px;
+			margin-bottom: 25px;
+			float: left;
+			margin-right: 30px;
+			position: relative;
+			&.dirty {
+				input[type="text"] {}
+				span {
+					display: none;
+				}
+			}
+			input[type="text"] {
+				background: transparent;
+			}
+		}
+		&__placeholder {
+			position: absolute;
+			z-index: -1;
+			top: 50%;
+			left: 15px;
+			margin-top: -11px;
+			display: block;
+			font-size: 16px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1.5;
+			text-align: left;
+			color: #b7c9d3;
+		}
+		&__button {
+			display: none;
+			background: none;
+			border: none;
+			outline: none;
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			width: 20px;
+			height: 20px;
+			z-index: 1;
+		}
+		.calendar {
+			.api-exp-params-filter__button {
+				display: block;
+				background: url($img-calendar) 50% 50% no-repeat;
+			}
+		}
+		.popup {
+			.api-exp-params-filter__button {
+				display: block;
+				background: url($img-id) 50% 50% no-repeat;
+			}
+		}
+	}
+	&.dirty {
+		.api-exp-params-headline-edit {
+			display: block;
+			opacity: 1;
+		}
+	}
+
+	//tablet
+	@media #{$max-1200} {
+		&-wrapper {
+			padding-bottom: 20px;
+		}
+		&-headline {
+			&:before {
+			}
+			&__title {
+			}
+			&-edit {
+			}
+			&__btn {
+				&-copy {
+				}
+				&-clear {
+				}
+			}
+		}
+		&-filter {
+			margin: 0;
+			&-fields {}
+			&__field {
+				$margin: 1%;
+				width: 23.5%;
+				margin: 0 $margin 25px;
+				&:nth-child(4n+4) {
+					margin-left: $margin;
+					margin-right: 0;
+				}
+				&:nth-child(4n+1) {
+					margin-left: 0;
+					margin-right: $margin;
+				}
+				input[type="text"] {}
+			}
+		}
+		&.api-exp-params--dirty {
+			.api-exp-params-headline-edit {
+			}
+		}
+	}
+
+	@media (max-width: 983px) {
+		&-filter {
+			&__field {
+				$margin: 1.15%;
+				width: 31.8%;
+				margin: 0 $margin 25px;
+				&:nth-child(4n+4),
+				&:nth-child(4n+1) {
+					margin: 0 $margin 25px;
+				}
+				&:nth-child(3n+3) {
+					margin-left: $margin;
+					margin-right: 0;
+				}
+				&:nth-child(3n+1) {
+					margin-left: 0;
+					margin-right: $margin;
+				}
+			}
+		}
+	}
+
+	//mobile
+	@media #{$max-768} {
+		&-wrapper {
+		}
+		&-headline {
+			&:before {
+			}
+			&__title {
+			}
+			&-edit {
+			}
+			&__btn {
+				&-copy {
+				}
+				&-clear {
+				}
+			}
+		}
+		&-filter {
+			&-fields {
+				margin: 0;
+			}
+			&__field {
+				width: 100%;
+				margin: 0 0 25px !important;
+				input[type="text"] {
+				}
+			}
+		}
+		&.api-exp-params--dirty {
+			.api-exp-params-headline-edit {
+			}
+		}
+	}
+}

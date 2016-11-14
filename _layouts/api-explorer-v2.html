@@ -112,6 +112,7 @@
 								        type="button"
 								        data-toggle="tooltip"></button>
 							</div>
+							
 							<div class="panel-title">
 								<!-- ko if: !!$data.response -->
 								<button class="btn btn-icon shevron shevron-up blue view-control"
@@ -133,25 +134,26 @@
 						
 						<!-- ko if: !!$data.response -->
 						<section class="response collapse" data-bind="attr: {id: $parent.getStr('collapse', $index), 'aria-labelledby': $parent.getStr('heading', $index)}" role="tabpanel">
-							<div class="row">
-								<div class="container">
-									<div class="row">
-										<!-- Nav tabs -->
-										<ul class="nav nav-tabs" role="tablist">
-											<li role="presentation" class="tab">
-												<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
-											</li>
-											<li role="presentation" class="tab active">
-												<a data-bind="attr: {href: '#slider-' + $index(), 'aria-controls': 'blocks-' + $index()}" class="tab-btn" href="#blocks" aria-controls="blocks" role="tab" data-toggle="tab">Blocks</a>
-											</li>
-											<li class="tab">
-												<span class="tab-label">Structure</span>
-											</li>
-											<li class="tab">
-												<span class="breadcrumbs truncate">… Events /er.com/discovery/v1/events/1D004F92642F0C7D.json?{apikey} / https://app.ticketmaster.com/discovery/v1/events/1D004F926</span>
-											</li>
-										</ul>
-									</div>
+							<div class="">
+								<div class="row-container">
+									
+									<!-- Nav tabs -->
+									<ul class="nav nav-tabs" role="tablist">
+										<li role="presentation" class="tab">
+											<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
+										</li>
+										<li role="presentation" class="tab active">
+											<a data-bind="attr: {href: '#slider-' + $index(), 'aria-controls': 'blocks-' + $index()}" class="tab-btn" href="#blocks" aria-controls="blocks" role="tab" data-toggle="tab">Blocks</a>
+										</li>
+									</ul>
+									<ul class="nav nav-tabs info">
+										<li class="tab">
+											<span class="tab-label">Structure:</span>
+										</li>
+										<li class="tab">
+											<span class="tab-label breadcrumbs truncate">… Events /er.com/discovery/v1/events/1D004F92642F0C7D.json?{apikey} / https://app.ticketmaster.com/discovery/v1/events/1D004F926</span>
+										</li>
+									</ul>
 
 									<!-- Tab panes -->
 									<div class="row">

@@ -184,7 +184,7 @@ module.exports = ko.components.register('params-filter', {
 		<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
 		
 			<section class="api-exp-params-headline">
-				<button data-bind="click: slideToggle" class="btn shevron-up toggle-btn btn-icon" type="button">Parameters</button>
+				<button data-bind="click: slideToggle" class="btn shevron-up grey toggle-btn btn-icon" type="button">Parameters</button>
 				<div class="api-exp-params-headline-edit">
 					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
 					<button data-bind="click: onParamsClear" class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>

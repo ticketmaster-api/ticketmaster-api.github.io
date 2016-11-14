@@ -1,0 +1,46 @@
+/**
+* Events tracker
+**/
+
+.horizontal-events-tracker {
+	margin-top: 20px;
+	margin-bottom: 68px;
+	max-width: 1145px;
+	border-radius: 4px;
+	&__title {
+		.title-adds {
+			color: #b7c9d3;
+		}
+	}
+
+	//tablet
+	@media #{$max-1200} {
+		margin: 45px 0;
+		&__section {
+			padding: 20px 0;
+		}
+		&__title {
+			.title-adds {
+			}
+		}
+	}
+	//mobile
+	@media #{$max-768} {
+		margin: 45px -15px;
+		&__section {
+			padding: 20px 15px;
+		}
+		&__title {
+			width: 50%;
+			float: left;
+			text-align: left;
+			font-size: 14px;
+			.title-adds {
+			}
+		}
+		&__counter {
+			margin: 0;
+		}
+	}
+}
+
