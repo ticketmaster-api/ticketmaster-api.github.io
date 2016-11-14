@@ -58,7 +58,7 @@ Object.byString = function(o, s) {
     screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization),
     worker = new Worker('../scripts/components/highlight-worker.js'); // Json-formatter worker
 
-    function checkCookie() {
+		function checkCookie() {
           var userApiKey;
           var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
           if (apiKeys != "") {
@@ -83,6 +83,7 @@ Object.byString = function(o, s) {
           }
           return "";
       }
+			
 
   /* INITIALIZATION PHASE */
 

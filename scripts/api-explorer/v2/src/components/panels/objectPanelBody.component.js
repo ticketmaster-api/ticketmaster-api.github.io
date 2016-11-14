@@ -8,7 +8,7 @@ function ObjectPanelBody(params) {
 	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
 	this.panelGroup = params.panelGroup || {};
 	this.getMore = this.panelGroup.getMore;
-	this.pageParam = params.page && params.page.parameter;
+	this.page = params.page;
 	this.collapseId = params.collapseId;
 	this._allInside = !!Object.getProp(ko.unwrap(this.config), '._CONFIG.allInside');
 	this.sortByConfig = this.panelGroup.sortByConfig;
@@ -16,10 +16,17 @@ function ObjectPanelBody(params) {
 
 ObjectPanelBody.prototype.onEnterKeyDown = function (model, event) {
 	if (event.keyCode === 13) {
+		let page = this.page;
 		var value = +event.currentTarget.value;
 		value = Number.isNaN(value) ? 0 : value;
 		var pageNumber = ~~value < 0 ? 0 : ~~value;
-		this.pageParam(pageNumber < ko.unwrap(this.data).totalPages ? pageNumber : ko.unwrap(this.data).totalPages - 1);
+		page.pageParam(pageNumber < ko.unwrap(this.data).totalPages ? pageNumber : ko.unwrap(this.data).totalPages - 1);
+		page.setParams({
+			category: page.category,
+			method: page.method,
+			methodId:	page.methodId,
+			params: page.params
+		});
 		$('#api-exp-get-btn').trigger('click');
 	} else {
 		return true;
@@ -40,9 +47,6 @@ ObjectPanelBody.prototype.copyValue = function (model, event) {
 	var currentField = this;
 	self.clipboard = new Clipboard(event.currentTarget);
 	self.clipboard.on('success', function onSuccessCopy(e) {
-			console.info('Action:', e.action);
-			console.info('Text:', e.text);
-			console.info('Trigger:', e.trigger);
 			currentField.copied(true);
 			setTimeout(function () {
 				currentField.copied(false);

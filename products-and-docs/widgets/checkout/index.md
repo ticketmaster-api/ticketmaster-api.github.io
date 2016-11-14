@@ -88,6 +88,10 @@ Grab a small code snippet to insert into your website
 </form>
 </div>
 
+## Tutorial
+
+<iframe src="https://player.vimeo.com/video/189647021" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 ## Checkout Flow
 
 <script src="{{"/scripts/vendors/carousel.min.js" | prepend: site.baseurl }}"></script>
@@ -146,5 +150,11 @@ Universal Checkout is secured by bank-grade 256-byte SSL encryption for all comm
 
 As a security best practice, we strongly recommend that all pages which embed Universal Checkout __also__ implement SSL / HTTPS.  As of Fall 2016, browsers are beginning to encourage the use of SSL / HTTPS everywhere, and in 2017 will begin to show HTTP as "Insecure" in the browser's toolbar.  This is important for all websites to prevent "man in the middle" attacks, which are theoretically possible on all insecure webpages when on an untrusted Internet connection (public wifi, Internet cafe, etc).  Fortunately, [Let's Encrypt](https://letsencrypt.org/) is an open project sponsored by Google, Facebook, Mozilla, and others, which offers free SSL/TLS certificates to all.
 
+## Additional Resources
+
+| Document   | Last Modified | Download |
+|:------------------------------------------------------------------------------------|
+| One Sheet  | 2016-10-03    | <a href="https://lne.box.com/s/kh1d9gm3h75eqs2gzpd20v78ljv5njhy" target="_blank">PDF</a> |
+| FAQ        | 2016-10-03    | <a href="https://lne.box.com/s/eg6s3qfmdtsz8t7mvrsjr9zufaqxqd9o" target="_blank">PDF</a> |
 
 {% include disqus.html %}

@@ -18,6 +18,12 @@ keywords: Partner API, host and API, reserve tickets, create a cart, order manag
 The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket and event informaton.
 {: .article .lead}
 
+
+Make live API calls right now in the interactive docs:
+
+[INTERACTIVE DOCS](/products-and-docs/apis/partner/interactive-console/){: .button}
+
+
 ## Overview
 {: #overview }
 
@@ -994,6 +1000,23 @@ For use by Channel Partners only. Discover events available to transact on. For 
 
 *Polling: No*
 
+### Response structure:
+
+{: .nested-list}
+
+- `events` (array)  - Events.
+    - {arrayitemobject} - event
+        * `eventCode` (string) -  Event code  Eg: "EPT0726E"
+        * `eventHost` (string) -  Host system Eg: "LA2"
+        * `eventId` (string) - Event ID Eg. "0B004D43F86C478F"
+        * `eventDate` (date) - Event Date in UTC YYYY-MM-DD format
+        * `eventTime` (time) - Event Time in UTC HH:MM:SS format
+        * `timeZone` (text) - Time zone of the event venue location Eg: "America/Los_Angeles"
+        * `offers` (array) - Offers on the Event
+            - {arrayitemobject} - offer
+                * `repName` (text) - Offer name. Eg: "GPAS4"
+                * `ticketType` (text) - Ticket Type Id Eg: "00004C440003"
+
 >[Request](#req)
 >[Response](#res)
 {: .reqres}
@@ -1040,7 +1063,8 @@ Status 200
 {: #ticket-availability}
 For use by Channel Partners only. Get total allocated and remaining ticket amounts for each ticket type per event. Current un-sold seat inventory is also included along with the current ticket reservation limit.
 
-Channel partners are expected to maintain their own inventory counts and should only periodically check this service to sync inventory with their internal systems.  This service should not be used in real-time in line with an active purchase being made. The data available by this service may be cached for extended periods of time. Usage should be in accordance with agreed-upon rate limits between TM and the Channel Partner.  Contact Ticketmaster for enablement.
+This service should not be used in real-time in line with an active purchase being made. The data available by this service may be cached for extended periods of time. Usage should be in accordance with agreed-upon rate limits between TM and the Channel Partner. Contact Ticketmaster for enablement.
+For inventory that has been exclusively set aside, Channel partners are expected to maintain their own inventory counts and should only periodically check this service to sync inventory with their internal systems. However, for inventory that is “open” (non-exclusive) where anyone can sell from, Channel partners should not maintain their own inventory counts.
 
 /partners/v1/events/{event_id}/availability
 {: .code .red}
@@ -1052,6 +1076,48 @@ Channel partners are expected to maintain their own inventory counts and should 
 | Parameter  | Description          | Type              | Example      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
+
+
+### Response structure:
+
+{: .nested-list}
+
+- `event` (object)  - Event.
+    * `id` (string) - Event ID
+    * `restrictSingle` (boolean) - true/false. Indicates a reserve cannot leave 1 seat remaining among a contiguous set of seats
+    * `eventTicketLimit` (number) - 0 means unlimited, but reserves may still be limited by current seat inventory (currentTicketLimit)
+    * `onsale` (datetime) - Event onsale date and time in UTC format
+    *  `offsale` (datetime) - Event off sale date and time in UTC format
+    * `eventDateTime` (datetime) - Event Date & Time in UTC format
+    - `tickets` (array) - tickets
+        - {arrayitemobject} - ticket
+            * `offers` (array) - Offers
+                - {arrayitemobject} - offer
+                    * `ticketTypeId` (text) - Ticket Type Id
+                    * `priceLevelId` (number) - Price Level Id
+                    * `currency` (text) - currency
+                    * `faceValue` (number) - Face Value of the ticket
+                    * `charges` (array) - Charges
+                        - {arrayitemobject} - charge
+                            * `reason` (text) - Charge reason. Eg. 'facility'
+                            * `type` (text) - type of charge. Eg. 'fee'
+                            * `amount` (number) - charge amount in the currency
+                    * `offerName` (text) - Name of the offer
+                    * `offerDescription` (text) - Description of the offer
+            * `available` (number) - number of seats available
+            * `total` (number) - total number of seats
+            * `seating` (number) - type of seat "reserved" or "general"
+            * `inventory` (array) - Inventory
+                - {arrayitemobject} - Inventory item
+                    * `section` (text) - Section prefix
+                    * `row` (text) -  Row name
+                    - `seats` (array) - seats
+                        - {arrayitemobject} - seat number
+                    - `places` (array) - places
+                        - {arrayitemobject} - place
+                    * `hasEvenOddMix` (boolean) - true/false. 'false' if row has only even or only odd numbered seating.
+            * `eventTicketLimit` (number) - Ticket Limit for this offer.
+            * `currentTicketLimit` (number) - Capped by available inventory and eventTicketLimit.
 
 
 >[Request](#req)
@@ -1254,6 +1320,61 @@ Reserves the specified tickets. For integrations requiring captcha, send the cap
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `event_id` | The 16-digit alphanumeric event ID.     | string            |     "0B004ED9FC825ACB"           | Yes      |
 | `apikey`   | Your API Key         | string            |     "GkB8Z037ZfqbLCNtZViAgrEegbsrZ6Ne"          | Yes      |
+
+### Response structure:
+
+{: .nested-list}
+
+- (object) - response
+    * `cart_id` (object) - Cart ID
+    * `reserve` (object) - Reserve
+    * `cart` (object) - Cart
+        * `hold_time` (number) - Cart expiry time in seconds
+        - `items` (array) - Items
+            - {arrayitemobject} - item
+                * `id` (number) - Item id
+                * `type` (text) - Type of item. Eg 'ticket'
+                * `x_num` (number) - X number
+                * `end_seat_number` (number) - End Seat Number
+                * `event_id` (text) - Event Id Eg. "3F004CBB88958BF9"
+                * `num_seats` (number) - Number of seats
+                * `row` (text) -  Name of Row Eg. "I"
+                * `section` (text) - Section Name Eg. "MEZZ" for Mezzanine
+                * `start_seat_number` (number) - Begin Seat Number
+                * `is_ga` (boolean=true/false) - true if general admission else false.
+                - `tickets` (array) - Tickets
+                    - {arrayitemobject} - Ticket
+                        * `charges` (array) - Charges
+                            - {arrayitemobject} - Charge
+                                * `price` (number) - 
+                                * `quantity` (number) - 
+                                * `tax` (number) - 
+                                * `type` (text) - Type of charge Eg. distance, face_value, facility, service etc.      
+                        * `description` (text) - Offer name
+                        * `id` (text) - Ticket type Id
+                        * `quantity` (number) -  Number of tickets reserved
+                    - `totals` (array) - Totals
+                    - {arrayitemobject} - Total
+                        * `currency_code` (text) - Currency Eg. "USD"
+                        * `fee` (number) - Fees
+                        * `grand` (number) - Grand total
+                        * `merchandise` ( number) - Base item value. Excludes fees, taxes, and delivery
+                        * `delivery` (number) - Delivery charge
+                        * `tax` (number) - Tax
+                        * `unpaid` (number) - Unpaid balance
+                        * `upsell` (number) - Upsell cost
+                - `areas` (array) - Areas
+                    - {arrayitemobject} - area
+                        * `description` (text) - Description of the area or price level Eg. "100 Level" or "Price Level 6"
+                        * `id` (number) - Area ID
+        - `totals` (object) - Totals
+            * `currency_code` (text) - Currency Eg. "USD"
+            * `fee` (number) - Total Fees
+            * `grand` (number) - Grand total
+            * `merchandise` ( number) - Total base value of the items. Excludes fees, taxes, and delivery
+            * `delivery` (number) - Total Delivery charge
+            * `tax` (number) - Total Tax
+            * `unpaid` (number) - Total Unpaid balance
 
 
 >[Request](#req)
@@ -1779,6 +1900,17 @@ For now, the response is the same with or without the Authorization Header.
 
 ### Properties
 
+### Response structure:
+
+{: .nested-list}
+
+- (object) - response
+    * `redemption_url` (url) - link to claim your tickets on ticketmaster
+    * `grand_total` (number) - Total value of the order
+    * `currency_code` (text) - Currency of the total value of the order
+    * `order_token` (text) - Order Token
+    * `order_number` (text) - HOST order ID
+    * `tm_app_url` (url) - Custom scheme URL that Ticketmaster app supports
 
 >[Request](#req)
 >[Response](#res)

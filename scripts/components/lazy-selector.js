@@ -175,14 +175,11 @@
         lng = $(e.target).attr('data-longitude') != "undefined" ? parseFloat($(e.target).attr('data-longitude')) : null,
         address = lat && lng ? null : $(e.target).attr('data-address');
 
-      // console.log("lat");
       if (lat && lng ) {
         initMap(lat, lng);
-        google.maps.event.trigger(map, "resize");
-        // console.log('second init');
+        google.maps.event.trigger(map, "resize"); //'second init'
       } else {
-        initMap(0, 0);
-        // console.log("first init");
+        initMap(0, 0); //"first init"
       }
     };
 
@@ -218,13 +215,6 @@
 
       // Adds a marker at the center of the map.
       addMarker(mapCenter);
-
-      /*if (address){ // if there was address provided
-       geocodeAddress(geocoder, map, address, function(result){ // geocode address and center the map
-       latLng = result;
-       });
-       } else { // if not (means lat and long were provided)*/
-      //}
 
       // when map popup is shown
       modal.on("shown.bs.modal", function () {
@@ -286,7 +276,6 @@
 		}
 
     function toggleMsSelectionBox() {
-      // console.log('length' , $('li',$msList).length );
       if($('li',$msList).length<1){
         $msSelection.hide();
         return;
@@ -303,7 +292,7 @@
     }
 
     /**
-     * change <Load_More> button text
+     * change <Load_More> button text on open modal
      * set data-selector gor "GET" button
      */
     function changeModalTextListener() {
@@ -319,7 +308,6 @@
 
 			if(options.hideMultiSelector) {
 				$msSelection.hide();
-				// console.log('hide $msSelection');
 			}else{
 				if($('li',$msList).length>0){
 					$msSelection.show(); // console.log('show $msList',$('li',$msList).length);
@@ -409,7 +397,6 @@
         loading('off');
         renderResults('FAIL', $ul);
       });
-
     }
 
     /**
@@ -500,14 +487,7 @@
                   .appendTo(addressline1);
               }
             }
-            /*if ('location' in venue) {
-             //add button <Show on map> if 'location' exist
-             var buttonMap = $("<button style='display: none;' data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
-             .addClass('js_open-map_btn btn btn-submit')
-             .text('Show location')
-             .appendTo(buttonSetId)
-             .wrap('<div class ="wrapper-location_btn"/>');
-             }*/
+
           } else {
             console.log('no _embedded found');
           }
@@ -570,7 +550,6 @@
 
           var time = formatDate(currentEvent.date);
           var eventTime = $('<h4 class="event-time gray"/>')
-          //.addClass('event-time')
             .text(time)
             .appendTo($wrapCol);
           /*add time end*/
@@ -657,8 +636,8 @@
             .appendTo($wrapCol);
         }
 
+        /*add time*/
         if (item.dates) {
-          /*add time*/
           var currentEvent = {};
           currentEvent.date = {
             day: item.dates.start.localDate,
@@ -670,8 +649,7 @@
           var eventTime = $('<h4 class="event-time gray"/>')
             .text(time)
             .appendTo($wrapCol);
-          /*add time end*/
-        }
+        }/*add time end*/
 
         if(item.classifications){
           if(item.classifications.length > 1) console.log(item.classifications.length);
@@ -756,9 +734,7 @@
         $btnGET.attr('disabled', false);
 
         if (clearList) $('li', element).remove();
-        element.css({
-          'overflow': 'auto'
-        });
+        element.css({'overflow': 'auto'});
         $('<li/>')
           .addClass('list-group-item text-center')
           .text(message)
@@ -817,7 +793,6 @@
 
       // hide button <load more> if nothing left to load
       if (stateConf.loadingFlag === 'STOP_LOAD' || (stateConf.pageIncrement + 1) === data.page.totalPages) {
-        //console.log('.modal-footer  ---- hide', stateConf.loadingFlag);
         $hr.hide();
         $liFooter.hide();
       }
@@ -827,9 +802,6 @@
 
       //<show map> button
       $('.js_open-map_btn').on('click', function (e) {
-        // var mapCanvas = $("#map-canvas");
-        var ltd = e.target.getAttribute('data-latitude'),
-          lgt = e.target.getAttribute('data-longitude');
         mapPopUpListener(e);
         modalContent.addClass('narrow');
         btnCloseMap.show();
@@ -879,7 +851,7 @@
       $modal.modal('hide');
     }
 
-    function claerByArrVal(selectedID, indToRemove) {
+    function clearByArrVal(selectedID, indToRemove) {
       function mapAny(array) {
         array.map(function (item) {
           selectedID.splice(selectedID.indexOf(item), 1);
@@ -897,14 +869,12 @@
       event.preventDefault();
       var me = $( this ),
         tagID = me.parents('li').data('selector-'+selector),
-        //isAble = me.parents('li').data('isable'),
         selectedID = tagsIds[selector];
       var indToRemove =[];
 
-      // console.group('___ indToRemove: ', indToRemove );
       me.parents('li').remove();
       indToRemove.push(tagID);
-      claerByArrVal(selectedID, indToRemove);
+      clearByArrVal(selectedID, indToRemove);
 
       //update input values
       $input.val(selectedID)
@@ -912,9 +882,6 @@
         .trigger('change');  //update widget:
 
       toggleMsSelectionBox();
-
-      // console.groupEnd('___ indToRemove: ', indToRemove );
-      // console.log('add delIdListener ' );
     }
 
     function addMsButtonListener(event){
@@ -942,7 +909,7 @@
           currentList = tagsIds[selector];
 
       currentList.push(me.data('id'));
-      uniqueUpcoming = isUnique(currentList); // Get list of upcoming events
+      uniqueUpcoming = isUnique(currentList); // Get list of upcoming tags
 
       if( uniqueUpcoming ){
         var item = $('<li/>')
@@ -957,8 +924,7 @@
       }else {
         currentList.splice(currentList.length-1 ,1);
       }
-      // console.log('uniqueUpcoming',uniqueUpcoming );
-
+      
       me.addClass('checked');
       toggleMsSelectionBox();
     }
@@ -980,7 +946,7 @@
           stateConf.loadingFlag = 'KEEP_LOAD';
           loading('on'); //show loading-spinner
           resetForm(); //clear
-          submitForm(stateConf.pageIncrement, eventUrl);
+          submitForm(stateConf.pageIncrement,  true);
         } else {
           // Highlight errors
           if (form.reportValidity) form.reportValidity();
@@ -1001,7 +967,7 @@
       stateConf.pageIncrement++;
       $btnGET.attr('disabled', true);
       loading('on');
-      submitForm(stateConf.pageIncrement, eventUrl);
+      submitForm(stateConf.pageIncrement);
 
       //Clear Listener, prevent memory leak
       $( "#js_ls-modal" ).off( "click", "ul li button.js_ms-add-list_btn", addMsButtonListener );
@@ -1023,7 +989,7 @@
             stateConf.loadingFlag = 'KEEP_LOAD';
             loading('on');
             resetForm();
-            submitForm(stateConf.pageIncrement, eventUrl);
+            submitForm(stateConf.pageIncrement);
           }
         }
       }
@@ -1044,24 +1010,19 @@
         selectorBtn = $btnGET.attr('data-selector'),
         tagsArr = tagsIds[selectorBtn];
 
-
       $( 'li' , $msList ).each( function(i) {
 				if ( $(this).data('isable') === false ){
 					indToRemove.push( $(this).data('selector-' + selectorBtn) );
 					$(this).remove();
-				}//else {}
+				}
       });
 
-      claerByArrVal(tagsArr, indToRemove);
-
-      //console.log( 'stateConf.setSingleVal:' , stateConf.setSingleVal);
-      // console.log( 'selector' , selector , 'selectorBtn' , selectorBtn);
+      clearByArrVal(tagsArr, indToRemove);
 
       if(selector === selectorBtn && !stateConf.setSingleVal) {
         $input.val(tagsArr)
           .attr('value', tagsArr)
           .trigger('change');  //update widget:
-        //console.log(  selectorBtn , 'clear $input' , $input.val());
         stateConf.setSingleVal = false;
       }
 

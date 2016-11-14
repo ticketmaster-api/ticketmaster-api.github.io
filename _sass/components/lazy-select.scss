@@ -5,41 +5,52 @@
   input {
     padding: 8px 31px 8px 16px;
   }
-  .icon {
-    content: '';
-    position: absolute;
-    top: 15px;
-    right: 8px;
-    width: 30px;
-    height: 30px;
-    margin-top: -5px;
-    cursor: pointer;
+	.icon {
+		content: '';
+		position: absolute;
+		top: 15px;
+		right: 8px;
+		width: 28px;
+		height: 28px;
+		margin-top: -5px;
+		cursor: pointer;
 
-    &:before,
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      @include transition(opacity 0.2s ease-in-out);
-    }
+		&:before,
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			background: url("/assets/controls/ic-input-controls.svg") no-repeat;
+			@include transition(opacity 0.2s ease-in-out);
+		}
 
-    &:before {
-      background: url("/assets/controls/ic-id.svg") no-repeat;
-      opacity: 0;
-    }
+		&:before {
+			background-position: -28px 0;
+			opacity: 0;
+		}
 
-    &:after {
-      background: url("/assets/controls/ic-id.svg") no-repeat;
-    }
-  }
+		&:after {
+			background-position: 1px 0;
+		}
+
+		&:hover {
+			&:before {
+				opacity: 1;
+			}
+			&:after {
+				opacity: 0;
+			}
+		}
+	}
 
   @media (min-width: 767px) {  }
 
 }
 
+#js_ls-modal-classification,
 #js_ls-modal {
   .close {
     opacity: inherit;
@@ -61,7 +72,8 @@
     &:focus,
     &:active,
     &:hover{
-      color: $n1;
+      color: $p1b;
+      border-color:$p1b;
       background-color: $white;
       outline: none;
     }
@@ -70,7 +82,10 @@
   .modal-dialog{
     @media (min-width: 768px) {
       width: 740px;
+      margin: 30px auto;
     }
+    width: 100%;
+    margin: 0;
   }
   .modal-header {
     padding-bottom: 9px;
@@ -92,6 +107,10 @@
         width: 110px;
         margin-right: 16px;
       }
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-bottom: $base-margin;
+      }
     }
 
     &.narrow {
@@ -110,6 +129,8 @@
     .ms-selection {
       .ms-list{
         margin-top: 0;
+        max-height: 76px;
+        overflow-y: auto;
         .ms-elem-selection{
           display: inline-block;
           background-color: $n3;
@@ -155,6 +176,12 @@
 
       }
     }
+    .modal-header .modal-title {
+      font-size: 2.25em;
+      @media (max-width: 768px) {
+        font-size: 1.5em;
+      }
+    }
   }
 
   .modal-body {
@@ -167,12 +194,16 @@
         }
       }
     }
+    .top-hr,
     hr {
       min-width: calc(100% + 30px);
       border-top: 2px solid $n3;
       margin: 0 -15px;
       text-align: center;
       float: left;
+    }
+    .top-hr {
+      float: initial;
     }
     .get_eventId_results {
       margin-top: -24px;
@@ -224,13 +255,13 @@
 
       .thumbnail {
         position: relative;
-        width: 120px;
-        height: 120px;
+        width: 122px;
         overflow: hidden;
         float: left;
         display: block;
+        padding: 0;
         margin: 2px 20px 0 0;
-        min-height: 120px;
+        min-height: 102px;
         border-radius: 0px;
 
         img {
@@ -304,29 +335,10 @@
         .btn-transparent {
           width: 110px;
           height: 24px;
-          //border-radius: 4px;
-          //padding: 2px 6px;
-          //text-transform: uppercase;
-          //font-family: $font-lead-bold ;
-          //font-size: 12px;
         }
         .btn-transparent{
           margin-top: 10px;
-          /*border: solid 2px #b7c9d3;
-          background-color: transparent;
-          color: $n1-grey-color;
-
-          &:focus,
-          &:active,
-          &:hover{
-            color: $n1;
-            background-color: $white;
-            outline: none;
-          }*/
         }
-        //.checked {
-        //  background-color: $n3;
-        //}
       }
 
     }
@@ -349,7 +361,8 @@
       &:focus,
       &:active,
       &:hover{
-        color: $n1;
+        color: $p1b;
+        border-color: $p1b;
         background-color: $white;
         outline: none;
       }
@@ -393,4 +406,133 @@
     }
   }
 
+}
+
+.modal-open #js_ls-modal-classification,
+.modal-open #js_ls-modal {
+  //remove black background
+  &.modal-backdrop {
+    background-color: transparent;
+  }
+}
+
+.modal-open[style="padding-right: 17px;"] {
+  @media (max-width: 768px) {
+    .modal#js_ls-modal-classification {
+      padding-right: 0px !important;
+    }
+  }
+}
+
+/*classification selector*/
+#js_ls-modal-classification {
+    .jstree-container-ul {
+      max-height: 500px;
+      overflow-y: auto;
+      margin: 0 15px;
+
+      li {
+        background-image: none;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        margin-left: 0;
+        border-bottom: 2px solid #dadddf;
+        position: relative;
+      }
+      /*icons*/
+      .jstree-node,
+      .jstree-icon {
+        background-image: url("../../assets/controls/btn-chevron-sprite.svg");
+        background-color: transparent;
+      }
+      .jstree-icon {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        &:empty {
+          background-position: -120px;
+        }
+      }
+
+      .jstree-anchor {
+        font-family: $font-h3;
+        font-size: $size-h3;
+        line-height: 32px;
+        margin-left: 20px;
+        &:hover {
+          color: $p1b;
+          opacity: 1;
+        }
+      }
+      .jstree-children{
+        margin-left: 24px;
+        .jstree-node {
+          padding: 0;
+          border-bottom: 0;
+        }
+        .jstree-anchor {
+          font-size: $size-body;
+        }
+        .jstree-icon {
+          background: none;
+        }
+
+        li > ul.jstree-children {
+          .jstree-anchor {
+            opacity: 0.7;
+            border-left: 2px solid $n3;
+            padding-left: 10px;
+            margin: 0;
+            &:hover {
+              color: $p1b;
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      .jstree-anchor.jstree-clicked,
+      .jstree-search{
+        color:$p1a;
+      }
+      .jstree-anchor.jstree-clicked{
+        font-weight: normal;
+        color:$p1a;
+      }
+
+
+      /*icons position*/
+      .jstree-closed > .jstree-ocl {
+        background-position: 0px 0px;
+        &:hover {
+          background-position: -30px 0px;
+          color: $p1b;
+        }
+      }
+
+      .jstree-open > .jstree-ocl {
+        background-position: -60px 0px;
+      }
+      .jstree-closed > .jstree-ocl.hovered,
+      .jstree-closed > .jstree-ocl:hover {
+        background-position: -30px 0px;
+        color: $p1b;
+      }
+
+      .jstree-open > .jstree-ocl:hover,
+      .jstree-open > .jstree-ocl.hovered {
+        background-position: -90px 0px;
+        color: $p1b;
+      }
+      /*icons position END*/
+
+    }
+  .btn-small {
+    width: 110px;
+    height: 24px;
+    //margin-right: 14px;
+    margin-top: 5px;
+    position: absolute;
+    right: 0px;
+  }
 }
