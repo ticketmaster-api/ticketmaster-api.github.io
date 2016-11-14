@@ -65,9 +65,9 @@
     font-size: 12px;
   }
   .btn-transparent{
-    border: solid 2px #b7c9d3;
+    border: solid 2px $n3;
     background-color: transparent;
-    color: $n1-grey-color;
+    color: $n3;
 
     &:focus,
     &:active,
@@ -89,6 +89,12 @@
   }
   .modal-header {
     padding-bottom: 9px;
+    .modal-title {
+      font-size: 2.25em;
+      @media (max-width: 768px) {
+        font-size: 1.5em;
+      }
+    }
   }
 
   .modal-content {
@@ -96,12 +102,13 @@
     margin-left: 0;
     transition-duration: 1s;
     z-index: 1;
-    width:100%;
+    width: 100%;
 
     .ms-selection .btn-submit,
     form .btn-transparent{
       height: 50px;
       transition-duration: 1s;
+      font-size: $size-body;
       //width: 100%;
       @media (min-width: 768px) {
         width: 110px;
@@ -127,6 +134,9 @@
     }
 
     .ms-selection {
+      @media (max-width: 768px) {
+        display: none;
+      }
       .ms-list{
         margin-top: 0;
         max-height: 76px;
@@ -173,13 +183,6 @@
       }
       .btn-submit {
         margin-bottom: 48px;
-
-      }
-    }
-    .modal-header .modal-title {
-      font-size: 2.25em;
-      @media (max-width: 768px) {
-        font-size: 1.5em;
       }
     }
   }
@@ -331,6 +334,7 @@
           top: 0;
           text-align: left;
         }
+
         .btn-submit,
         .btn-transparent {
           width: 110px;
@@ -338,6 +342,34 @@
         }
         .btn-transparent{
           margin-top: 10px;
+          float: right;
+          @media (max-width: 560px) {
+            margin-top: 0;
+            float: none;
+          }
+        }
+        /*mobile button position*/
+
+        @media (max-width: 768px) {
+          display: inline;
+
+          .js_ms-add-list_btn {
+            display: none;
+          }
+          .btn-submit{
+            display: inline;
+            width: 45%;
+            min-width: 110px;
+            margin-right: 20px;
+          }
+          .wrapper-location_btn {
+            display: inline-block;
+            width: 45%;
+            min-width: 110px;
+          }
+          .btn-transparent {
+            width: 100%;
+          }
         }
       }
 
@@ -418,7 +450,8 @@
 
 .modal-open[style="padding-right: 17px;"] {
   @media (max-width: 768px) {
-    .modal#js_ls-modal-classification {
+    .modal#js_ls-modal-classification,
+    .modal#js_ls-modal {
       padding-right: 0px !important;
     }
   }
