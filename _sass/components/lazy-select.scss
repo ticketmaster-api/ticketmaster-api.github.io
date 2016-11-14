@@ -109,7 +109,6 @@
       height: 50px;
       transition-duration: 1s;
       font-size: $size-body;
-      //width: 100%;
       @media (min-width: 768px) {
         width: 110px;
         margin-right: 16px;
@@ -134,9 +133,6 @@
     }
 
     .ms-selection {
-      @media (max-width: 768px) {
-        display: none;
-      }
       .ms-list{
         margin-top: 0;
         max-height: 76px;
@@ -235,6 +231,16 @@
       margin: 0;
       &.low-height {
         max-height: 400px;
+        .event-text-wrapper {
+          min-height: initial;
+        }
+        .wrapper-btns {
+          .js_ms-add-list_btn{
+            @media (max-width: 768px) {
+              display: none;
+            }
+          }
+        }
       }
     }
     .list-group {
@@ -279,16 +285,12 @@
           height: 100%;
           object-fit: cover;
         }
-        @media (max-width: 468px) {
-          display: none;
-        }
       }
       .event-text-wrapper {
         margin-right: 110px;
-        //margin-left: 140px;
-        //left: 140px;
-        //right: 110px;
-        @media (max-width: 560px) {
+        min-height: 105px;
+
+        @media (max-width: 768px) {
           width: 100%;
           margin-left: 0;
           margin-right: 0;
@@ -327,7 +329,7 @@
         right: 0;
         position: absolute;
         top: 24px;
-        @media (max-width: 560px) {
+        @media (max-width: 768px) {
           position: relative;
           bottom: 0;
           left: 0;
@@ -343,24 +345,23 @@
         .btn-transparent{
           margin-top: 10px;
           float: right;
-          @media (max-width: 560px) {
+          @media (max-width: 768px) {
             margin-top: 0;
             float: none;
           }
         }
         /*mobile button position*/
-
         @media (max-width: 768px) {
           display: inline;
 
-          .js_ms-add-list_btn {
-            display: none;
+          .js_ms-add-list_btn.btn-transparent {
+            width: 45%;
+            min-width: 110px;
           }
           .btn-submit{
             display: inline;
             width: 45%;
             min-width: 110px;
-            margin-right: 20px;
           }
           .wrapper-location_btn {
             display: inline-block;

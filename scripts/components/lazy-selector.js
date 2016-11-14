@@ -302,8 +302,10 @@
       }
       if(selector === 'venues'){
 				$('.wrapper-list-group', $modal).addClass('low-height');
+        $msSelection.addClass('hidden-xs');
       }else{
         $('.wrapper-list-group', $modal).removeClass('low-height');
+        $msSelection.removeClass('hidden-xs');
       }
 
 			if(options.hideMultiSelector) {
@@ -841,7 +843,7 @@
 
 			//add button <ADD to list>
 			var buttonAddIdToList = $("<button data-id=" + data + "/>")
-				.addClass('js_ms-add-list_btn btn btn-transparent')
+				.addClass('js_ms-add-list_btn pull-right btn btn btn-transparent')
 				.text('ADD to list')
 				.appendTo(el.li.find(el.buttonSetIdWrapper));
     }
