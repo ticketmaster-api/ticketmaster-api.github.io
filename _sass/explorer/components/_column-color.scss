@@ -1,0 +1,43 @@
+/**
+*  Column-color styles
+*/
+@mixin column-color($color, $opacity: 0.7) {
+	border-color: rgba($color, $opacity);
+	background-color: rgba($color, $opacity);
+	.panel-heading {
+		background-color: rgba($color, $opacity);
+		border-color: rgba($color, $opacity);
+	}
+	.panel-body {
+		border-top-color: rgba($color, $opacity);
+		.panel {
+			border-color: rgba($color, $opacity - 0.3);
+			background-color: rgba($color, $opacity - 0.3);
+			.panel-heading {
+				background-color: rgba($color, $opacity - 0.3);
+				border-color: rgba($color, $opacity - 0.3);
+			}
+			.panel-body {
+				border-top-color: rgba($color, $opacity - 0.3);
+			}
+		}
+	}
+
+	&.active,
+	&:hover {
+		border-color: $color;
+		.panel-heading {
+			background-color: $color;
+			border-color: $color;
+		}
+		.panel-body {
+			border-top-color: $color;
+		}
+	}
+}
+
+@for $i from 1 through length($colors) {
+	.color-#{$i} {
+		@include column-color(nth($colors, $i));
+	}
+}
