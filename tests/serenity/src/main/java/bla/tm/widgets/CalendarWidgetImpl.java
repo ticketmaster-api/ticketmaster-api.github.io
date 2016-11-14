@@ -3,13 +3,8 @@ package bla.tm.widgets;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
-import org.openqa.selenium.support.ui.Select;
-
-import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
-import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 
 public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWidget {
     //Constructors
@@ -21,12 +16,6 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
                               final long timeoutInMilliseconds) {
         super(page, locator, timeoutInMilliseconds);
     }
-
-    //Constants
-    private final String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
-    private final String HTML_CODE_ATTRIBUTE_KEYWORD = "w-keyword";
-    private final String HTML_CODE_ATTRIBUTE_ZIPCODE = "w-postalcode";
-    private final String HTML_CODE_ATTRIBUTE_RADIUS = "w-radius";
 
     //WebElements
     @FindBy(xpath = "//input[@id='w-tm-api-key']")
@@ -89,11 +78,9 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
 
     @Override
     public String getRadiusDropdownValue() {
-        String radius = null;
-        while(radius == null) {
-            radius = (String) getPage().evaluateJavascript("return document.evaluate('//label[@for=\"w-radius\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.innerHTML;");
-        }
-        return radius;
+        String radiusXpath = "//label[@for=\"w-radius\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
+        String exceptionText = "Cannot get radius value in dropdown";
+        return getElementValueByXpathJs(radiusXpath, exceptionText);
     }
 
     @Override
@@ -107,17 +94,6 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
     @Override
     public String getSelectedCountry() {
         return countryDropdown.getSelectedVisibleTextValue();
-    }
-
-    @Override
-    public String getEmbeddedValueOf(String valueName) {
-        switch (valueName){
-            case "apiKey": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_APIKEY);
-            case "keyword": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_KEYWORD);
-            case "zipCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ZIPCODE);
-            case "radius": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_RADIUS);
-            default: throw new IllegalArgumentException(String.format("The argument of embedded attribute name is illegal: %s", valueName));
-        }
     }
 
     @Override

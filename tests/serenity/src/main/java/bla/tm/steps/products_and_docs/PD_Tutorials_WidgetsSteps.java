@@ -117,27 +117,9 @@ public class PD_Tutorials_WidgetsSteps {
     }
 
     @Step
-    public void populateAllFieldsExceptDescription() {
-        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys("test user");
-        tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys("test@test.com");
-    }
-
-    @Step
     public void populateNameFieldWithMoreThanAccepted() {
         String input = new String(new char[256]).replace('\0', 'w');
         tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys(input);
-    }
-
-    @Step
-    public void checkNameTextWasTruncated() {
-        assertEquals("The length of Name does not equals 255 chars.", 255, tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().getTextValue().length());
-    }
-
-    @Step
-    public void populateDescriptionFieldWithMoreThanAccepted() {
-        String input = new String(new char[3001]).replace('\0', 'w');
-        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys(input);
-        waitForSomeActionHappened(1000);
     }
 
     @Step

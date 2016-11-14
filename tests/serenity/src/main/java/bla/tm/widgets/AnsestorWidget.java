@@ -9,4 +9,5 @@ public interface AnsestorWidget extends WidgetObject {
 
     boolean isVisible(boolean expectedResult);
     WebElementFacade getEmbeddedHtmlCode();
+    String getEmbeddedValueOf(String valueName);
 }

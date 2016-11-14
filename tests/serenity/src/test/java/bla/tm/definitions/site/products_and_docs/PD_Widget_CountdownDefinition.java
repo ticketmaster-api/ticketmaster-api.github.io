@@ -8,18 +8,18 @@ import org.jbehave.core.annotations.Then;
 public class PD_Widget_CountdownDefinition {
 
     @Steps
-    PD_Widget_CountdownSteps countdownWidgetPage;
+    PD_Widget_CountdownSteps countdownWidgetSteps;
 
     //Given
     @Given("open Countdown Widget page")
     public void openCountdownWidgetPage() {
-        countdownWidgetPage.openPage();
+        countdownWidgetSteps.openPage();
     }
 
     //Then
     @Then("check general page elements for Countdown Widget Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
-        countdownWidgetPage.checkIfTitleIsCorrect();
-        countdownWidgetPage.checkGeneralPageElements(disqus, leftMenu);
+        countdownWidgetSteps.checkIfTitleIsCorrect();
+        countdownWidgetSteps.checkGeneralPageElements(disqus, leftMenu);
     }
 }

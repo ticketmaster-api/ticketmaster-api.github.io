@@ -24,7 +24,7 @@ public class PD_Tutorials_WidgetsDefinition {
     }
 
     @Given("Feedback widget elements are not shown")
-    public void checkFeedbackElementsAreNtShown() {
+    public void checkFeedbackElementsAreNotShown() {
         tutorialsWidgetsPage.checkFeedbackElementsAreNtShown();
     }
 
@@ -60,21 +60,10 @@ public class PD_Tutorials_WidgetsDefinition {
         tutorialsWidgetsPage.populateAllFieldsExceptEmail();
     }
 
-    //We don't need to use this method because Description is not INPUT but TEXTAREA web element
-    @When("all fields except Description are populated")
-    public void populateAllFieldsExceptDescription() {
-        tutorialsWidgetsPage.populateAllFieldsExceptDescription();
-    }
-
     @When("Name field is populated with bigger than 255 symbols text")
     public void populateNameFieldWithMoreThanAccepted() {
         waitForSomeActionHappened(500);
         tutorialsWidgetsPage.populateNameFieldWithMoreThanAccepted();
-    }
-
-    @When("Description field is populated with bigger than 3000 symbols text")
-    public void populateDescriptionFieldWithMoreThanAccepted() {
-        tutorialsWidgetsPage.populateDescriptionFieldWithMoreThanAccepted();
     }
 
     @When("click OK Feedback Widget button")
@@ -117,11 +106,6 @@ public class PD_Tutorials_WidgetsDefinition {
     @Then("description error notification is shown for Feedback widget")
     public void checkErrorNotificationForTextArea() {
         tutorialsWidgetsPage.checkErrorNotificationForTextArea();
-    }
-
-    @Then("check that text was truncated to 255 symbols for Feedback widget")
-    public void checkNameTextWasTruncated() {
-        tutorialsWidgetsPage.checkNameTextWasTruncated();
     }
 
     @Then("check that error message is shown for Description for Feedback widget")
