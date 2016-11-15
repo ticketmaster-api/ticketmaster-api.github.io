@@ -5,7 +5,7 @@
   input {
     padding: 8px 31px 8px 16px;
   }
-	.icon {
+  .icon {
 		content: '';
 		position: absolute;
 		top: 15px;
@@ -45,15 +45,24 @@
 			}
 		}
 	}
-
-  @media (min-width: 767px) {  }
-
 }
 
 #js_ls-modal-classification,
 #js_ls-modal {
   .close {
     opacity: inherit;
+  }
+  .error-box {
+    border: 0;
+    padding: 24px 0 0;
+    h3 {
+      @media (max-width: 768px){
+        font-size: $size-h3;
+      }
+    }
+    &.error-fail h3{
+      color: $red;
+    }
   }
 
   .btn-submit,
@@ -102,7 +111,6 @@
     form .btn-transparent{
       height: 50px;
       transition-duration: 1s;
-      //width: 100%;
       @media (min-width: 768px) {
         width: 110px;
         margin-right: 16px;
@@ -459,6 +467,7 @@
         font-size: $size-h3;
         line-height: 32px;
         margin-left: 20px;
+        margin-right: 20px;
         &:hover {
           color: $p1b;
           opacity: 1;
@@ -472,6 +481,7 @@
         }
         .jstree-anchor {
           font-size: $size-body;
+          margin-right: 20px;
         }
         .jstree-icon {
           background: none;
@@ -482,7 +492,8 @@
             opacity: 0.7;
             border-left: 2px solid $n3;
             padding-left: 10px;
-            margin: 0;
+            margin-left: 0;
+            margin-right: 20px;
             &:hover {
               color: $p1b;
               opacity: 1;
@@ -530,9 +541,8 @@
   .btn-small {
     width: 110px;
     height: 24px;
-    //margin-right: 14px;
-    margin-top: 5px;
-    position: absolute;
-    right: 0px;
+    @media (max-width: 768px) {
+      width: 40px;
+    }
   }
 }
