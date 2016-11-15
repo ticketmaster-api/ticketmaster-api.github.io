@@ -210,6 +210,7 @@
       var url = ( isInit )
         ? eventUrl + '?apikey=' + apikey
         : eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val();
+      
       $.ajax({
         dataType: 'json',
         async: true,
@@ -217,16 +218,22 @@
         data: $form.serialize()
       }).done(function (result) {
         if (result) {
+          if (result.page.totalElements < 1) {
+            loading('off');
+            renderResults(null, $jstree); //add message at bottom of list
+            return false;
+          };
+
           (isInit) ? initTree(result) : updateTree(result);
           loading('off');
           $btnGET.attr('disabled', false);
         } else {
           console.log('no result found');
         }
-      }).fail(function (e) {
-        console.log('There was an fail status - ' , e.status);
+      }).fail(function (e, textStatus, errorThrown) {
+        console.log('There was an fail status - ' , e.status , errorThrown);
         loading('off');
-        renderResults('FAIL', $jstree);
+        renderResults('FAIL', $jstree , e);
         $btnGET.attr('disabled', false);
       });
 
@@ -236,11 +243,18 @@
       return element.get(0).scrollHeight > element.parent().innerHeight();
     }
 
-    var renderResults = function (data, ulElement) {
+    var renderResults = function (data, ulElement, errorMsg) {
       function showMessage(element, message, /*optional*/clearList) {
-        $('<li/>')
-          .addClass('list-group-item text-center')
-          .text(message)
+        if (clearList) {
+          $('li', element).remove();
+          $('.error-box').remove();
+        }
+
+        $('<div/>')
+          .addClass( 'error-box text-center ')
+          .addClass( (data === 'FAIL')?' error-fail ': '')
+            .append($('<h3/>').text(message.msg))
+            .append($('<p/>').text(message.explanation))
           .appendTo(ulElement);
       }
 
@@ -248,13 +262,20 @@
 
       //show fail msg
       if (data === 'FAIL') {
-        showMessage($jstree, 'Failure, possible key not correct.', true);
+        var msgErr = (errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].status : 'unknown',
+          statusText = (errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].statusText  : errorMsg.statusText  || '',
+          explanation = (errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].detail : 'unknown';
+
+        showMessage($jstree, {
+          msg: 'Error ' + msgErr + ': ' + statusText,
+          explanation: explanation
+        }, true);
         return false;
       }
 
       //show No results found msg
       if (data === null || !data._embedded) {
-        showMessage(ulElement, 'No results found.', true);
+        showMessage(ulElement, {msg: 'No results found.' , explanation: 'Please try to get another keyword.'}, true);
         modalContent.removeClass('narrow');
         return false;
       }
