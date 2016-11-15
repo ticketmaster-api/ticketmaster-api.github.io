@@ -337,7 +337,6 @@
         for (var key in widget.config) {
             if (key !== 'latlong') {
                 htmlCode.setAttribute("w-" + key, widget.config[key]);
-                console.log("w-" + key + " = " + widget.config[key]);
             }
         }
         // Use only Key from config form
