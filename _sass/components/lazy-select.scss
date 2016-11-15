@@ -5,7 +5,7 @@
   input {
     padding: 8px 31px 8px 16px;
   }
-  .icon {
+	.icon {
 		content: '';
 		position: absolute;
 		top: 15px;
@@ -74,9 +74,9 @@
     font-size: 12px;
   }
   .btn-transparent{
-    border: solid 2px #b7c9d3;
+    border: solid 2px $n3;
     background-color: transparent;
-    color: $n1-grey-color;
+    color: $n3;
 
     &:focus,
     &:active,
@@ -98,6 +98,12 @@
   }
   .modal-header {
     padding-bottom: 9px;
+    .modal-title {
+      font-size: 2.25em;
+      @media (max-width: 768px) {
+        font-size: 1.5em;
+      }
+    }
   }
 
   .modal-content {
@@ -105,12 +111,13 @@
     margin-left: 0;
     transition-duration: 1s;
     z-index: 1;
-    width:100%;
+    width: 100%;
 
     .ms-selection .btn-submit,
     form .btn-transparent{
       height: 50px;
       transition-duration: 1s;
+      font-size: $size-body;
       @media (min-width: 768px) {
         width: 110px;
         margin-right: 16px;
@@ -181,13 +188,6 @@
       }
       .btn-submit {
         margin-bottom: 48px;
-
-      }
-    }
-    .modal-header .modal-title {
-      font-size: 2.25em;
-      @media (max-width: 768px) {
-        font-size: 1.5em;
       }
     }
   }
@@ -240,6 +240,16 @@
       margin: 0;
       &.low-height {
         max-height: 400px;
+        .event-text-wrapper {
+          min-height: initial;
+        }
+        .wrapper-btns {
+          .js_ms-add-list_btn{
+            @media (max-width: 768px) {
+              display: none;
+            }
+          }
+        }
       }
     }
     .list-group {
@@ -284,16 +294,12 @@
           height: 100%;
           object-fit: cover;
         }
-        @media (max-width: 468px) {
-          display: none;
-        }
       }
       .event-text-wrapper {
         margin-right: 110px;
-        //margin-left: 140px;
-        //left: 140px;
-        //right: 110px;
-        @media (max-width: 560px) {
+        min-height: 105px;
+
+        @media (max-width: 768px) {
           width: 100%;
           margin-left: 0;
           margin-right: 0;
@@ -332,13 +338,14 @@
         right: 0;
         position: absolute;
         top: 24px;
-        @media (max-width: 560px) {
+        @media (max-width: 768px) {
           position: relative;
           bottom: 0;
           left: 0;
           top: 0;
           text-align: left;
         }
+
         .btn-submit,
         .btn-transparent {
           width: 110px;
@@ -346,6 +353,33 @@
         }
         .btn-transparent{
           margin-top: 10px;
+          float: right;
+          @media (max-width: 768px) {
+            margin-top: 0;
+            float: none;
+          }
+        }
+        /*mobile button position*/
+        @media (max-width: 768px) {
+          display: inline;
+
+          .js_ms-add-list_btn.btn-transparent {
+            width: 45%;
+            min-width: 110px;
+          }
+          .btn-submit{
+            display: inline;
+            width: 45%;
+            min-width: 110px;
+          }
+          .wrapper-location_btn {
+            display: inline-block;
+            width: 45%;
+            min-width: 110px;
+          }
+          .btn-transparent {
+            width: 100%;
+          }
         }
       }
 
@@ -426,7 +460,8 @@
 
 .modal-open[style="padding-right: 17px;"] {
   @media (max-width: 768px) {
-    .modal#js_ls-modal-classification {
+    .modal#js_ls-modal-classification,
+    .modal#js_ls-modal {
       padding-right: 0px !important;
     }
   }

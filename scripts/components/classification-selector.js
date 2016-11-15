@@ -3,12 +3,12 @@
  *
  * availiable option :
  * {
- *    selector: 'attractions' , 'venues', '',
- *    hideMultiSelector: true, false
+ *    selector: 'classifications'
+ *    use: 'name', 'id'
  * }
- * $('.js_lazy-selector').classificationSelector();
- * $('.js_lazy-selector-attractions').classificationSelector('{selector: 'attractions'});
- * $('.js_lazy-selector-venues').classificationSelector({selector:'venues', hideMultiSelector:true});
+ * 
+ * $('.js_lazy-selector-attractions').classificationSelector({selector:'classifications', use:'name'});
+ * $('.js_lazy-selector-venues').classificationSelector({selector:'classifications', use:'id'});
  */
 
 (function ($) {
