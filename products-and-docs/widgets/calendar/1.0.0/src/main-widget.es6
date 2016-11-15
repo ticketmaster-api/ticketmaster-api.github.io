@@ -3435,10 +3435,8 @@ class YearScheduler {
 
     startYear() {
         let MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        let prm_ = [];
         let prm = [];
         let year;
-        let widget = this.widget;
         let schedulerRoot = this.yearSchedulerRoot.parentNode.parentNode.parentNode;
         if (schedulerRoot.getAttribute("w-period").length != 4) {
             year = new Date().getFullYear();
@@ -3450,7 +3448,7 @@ class YearScheduler {
         let month = '01';
 
         var xhr = new XMLHttpRequest();
-        var resp, dateOffset, dstOffset;
+        var resp, dateOffset;
         xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200', false);
         xhr.send();
         if (xhr.status != 200) {
