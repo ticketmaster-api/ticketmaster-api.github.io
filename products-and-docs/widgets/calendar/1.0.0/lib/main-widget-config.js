@@ -287,12 +287,7 @@
         $('#w-country').attr('disabled', 'disabled');
         $('.custom_select__list li').removeClass('custom_select__item-active'); //reset custom select
         radiusParam.setAttribute('w-radius', '25');
-
-        //set apikey
-        $('#w-tm-api-key').val(DEFAULT_API_KEY);
-        //document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
-        //console.log('set DEFAULT_API_KEY',DEFAULT_API_KEY);
-
+        $('#w-tm-api-key').val(DEFAULT_API_KEY); //set apikey
         widget.onLoadCoordinate();
         widget.update();
     };
@@ -331,19 +326,6 @@
             document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
     }
-
-    /**
-     * check if user logged just before enter widget page
-     */
-    /*$(window).on('login', function (e, data) {
-        let widgetNode = document.querySelector("div[w-tmapikey]");
-        replaceApiKey({
-            userKey: data.key,
-            inputApiKey:$('#w-tm-api-key'),
-            widgetNode,
-            widget
-        });
-    });*/
 
     $('.js_get_widget_code').on('click', function () {
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
