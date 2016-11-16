@@ -1,6 +1,6 @@
 (function(){
 
-  const DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+  const DEFAULT_API_KEY = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey();
 
   function getHeightByTheme(theme){
     return (theme === 'simple' ? 286 : 339);
@@ -169,14 +169,14 @@
   containerMove();
 
   var replaceApiKey = function (options) {
-    let userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+    let userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
 
     if(userKey !== null) {
       let {inputApiKey, widgetNode , widget } = options;
       inputApiKey
         .attr('value',userKey)
         .val(userKey);
-      widgetNode.setAttribute("w-tm-api-key", userKey);
+      widgetNode.setAttribute("w-tmapikey", userKey);
       widget.update();
     }
   };
@@ -185,20 +185,6 @@
       widgetNode: document.querySelector("div[w-tmapikey]"),
       widget
     });
-
-  /**
-   * check if user logged just before enter widget page
-   */
-  $window.on('login', function (e, data) {
-    replaceApiKey(
-      {
-        userKey: data.key,
-        inputApiKey:$('#w-tm-api-key'),
-        widgetNode: document.querySelector("div[w-tmapikey]"),
-        widget
-      }
-    );
-  });
 
 
   var changeState = function(event){
@@ -344,9 +330,8 @@
       ["#w-countryCode","#w-source"].map((item)=> {
         $(item).prop("selectedIndex", -1);
       });
-      
       widgetNode.setAttribute($self.attr('name'), value);
-
+      if ( $self.attr('name') === 'w-tm-api-key' ) widgetNode.removeAttribute($self.attr('name'));
 
     });
 
