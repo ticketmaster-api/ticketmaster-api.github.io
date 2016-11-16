@@ -30,9 +30,9 @@
         var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
 
         if (userKey !== null) {
-            var inputApiKey = options.inputApiKey;
-            var widgetNode = options.widgetNode;
-            var _widget = options.widget;
+            var inputApiKey = options.inputApiKey,
+                widgetNode = options.widgetNode,
+                _widget = options.widget;
 
             inputApiKey.attr('value', userKey).data('userAPIkey', userKey).val(userKey);
             widgetNode.setAttribute("w-tm-api-key", userKey);
@@ -381,7 +381,7 @@
     });
 
     widget.onLoadCoordinate = function (results) {
-        var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+        var countryShortName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
         widget.config['country'] = countryShortName;
         if (isPostalCodeChanged) {
