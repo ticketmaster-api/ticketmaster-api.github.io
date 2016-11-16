@@ -653,14 +653,10 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .checked-td:after {
-  /*
-  font-family: "fontawesome";
-  content: "\f00c";
-  */
   content: "";
   display: inline-block;
-  width: 13.2px;
-  height: 9.9px;
+  width: 24px;
+  height: 24px;
   background-image: url('/assets/img/ic-chekmark.svg');
   color: $apple-green;
 }
