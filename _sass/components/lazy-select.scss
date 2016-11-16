@@ -146,6 +146,9 @@
         margin-top: 0;
         max-height: 76px;
         overflow-y: auto;
+        @media (max-width: 768px) {
+          max-height: 90px;;
+        }
         .ms-elem-selection{
           display: inline-block;
           background-color: $n3;
@@ -179,9 +182,6 @@
               cursor: pointer;
               opacity: 0.7;
             }
-          }
-          &[data-isable="false"]{
-            //border: 1px $n1 dashed;
           }
 
         }
