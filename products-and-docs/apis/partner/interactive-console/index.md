@@ -1,7 +1,7 @@
 ---
 layout: interactive-console
 category: documentation
-title: Interactive API Console
+title: Partner API Interactive API Console
 excerpt: Instructions. Get your API Key if you don’t have one. Enter your API Key. Log in with your credentials to authenticate.
 keywords: API, interactive console, get API Key, discovery API
 ---
@@ -11,7 +11,7 @@ page title
 {:/comment}
 {% capture page_title %}
 
-# INTERACTIVE API CONSOLE
+## INTERACTIVE API CONSOLE
 
 {% endcapture %}
 
@@ -28,7 +28,12 @@ Instructions Header
 instructions list
 {:/comment}
 {% capture instructions_list %}
-1. Have your **[API Key](https://developer-acct.ticketmaster.com/user/login)** handy.
+1. Have your **[API Key](https://developer-acct.ticketmaster.com/user/login)** handy. You'll need access to the Ticketmaster **[Partner API](/products-and-docs/apis/partner)** to use this console.
+2. Enter a Ticketmaster event id. Use 000051048D991EE7 for testing.
+3. Load Event Details to discover ticket types
+4. Reserve tickets using the ticket type id and specify quantity
+5. A test credit-card can be used to make payment on this event.  Use 'Populate Test CC' in the payment dialog
+6. Commit the transaction
 {% endcapture %}
 
 {::comment}
@@ -100,7 +105,7 @@ page layout goes here
             apiKey = '';
         }
 
-        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?key=' + apiKey);
+        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?key=' + apiKey + '#eventId=000051048D991EE7');
     });
 
 </script>
