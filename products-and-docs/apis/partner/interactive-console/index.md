@@ -65,4 +65,16 @@ page layout goes here
 </a>
 </div>
 
-<iframe name="foo" id="console-iframe" src="https://partner-onboarding.tmdc.us/eventTestingTool?key=" width="100%" height="1000" scrolling="yes" style="margin-top: 3em;"></iframe>
+<script>
+    $(document).ready(function(){
+        var apiKey = $('#copy-clip','#pantheon-api-key').text()
+        if( apiKey == null ) {
+            apiKey = '';
+        }
+
+        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?key=' + apiKey);
+    });
+
+</script>
+
+<iframe name="foo" id="console-iframe" src="" width="100%" height="1000" scrolling="yes" style="margin-top: 3em;"></iframe>
