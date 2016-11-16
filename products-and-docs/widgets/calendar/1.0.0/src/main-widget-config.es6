@@ -332,20 +332,7 @@
             document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
             document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
-    }
-
-    /**
-     * check if user logged just before enter widget page
-     */
-    /*$(window).on('login', function (e, data) {
-        let widgetNode = document.querySelector("div[w-tmapikey]");
-        replaceApiKey({
-            userKey: data.key,
-            inputApiKey:$('#w-tm-api-key'),
-            widgetNode,
-            widget
-        });
-    });*/
+    }    
 
     $('.js_get_widget_code').on('click', function(){
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
