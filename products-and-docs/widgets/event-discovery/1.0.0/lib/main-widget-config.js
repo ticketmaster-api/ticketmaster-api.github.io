@@ -2,7 +2,7 @@
 
 (function () {
 
-  var DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+  var DEFAULT_API_KEY = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey();
 
   function getHeightByTheme(theme) {
     return theme === 'simple' ? 286 : 339;
@@ -154,12 +154,10 @@
    **/
   function containerMove() {
     var marginTop = 0;
-    var wst = $window.scrollTop();
-
-    var _$containerWidget$dat = $containerWidget.data();
-
-    var min = _$containerWidget$dat.min;
-    var max = _$containerWidget$dat.max;
+    var wst = $window.scrollTop(),
+        _$containerWidget$dat = $containerWidget.data(),
+        min = _$containerWidget$dat.min,
+        max = _$containerWidget$dat.max;
 
     //if the window scroll is within the min and max (the container will be 'sticky';
 
@@ -175,15 +173,15 @@
   containerMove();
 
   var replaceApiKey = function replaceApiKey(options) {
-    var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+    var userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
 
     if (userKey !== null) {
-      var inputApiKey = options.inputApiKey;
-      var widgetNode = options.widgetNode;
-      var _widget = options.widget;
+      var inputApiKey = options.inputApiKey,
+          widgetNode = options.widgetNode,
+          _widget = options.widget;
 
       inputApiKey.attr('value', userKey).val(userKey);
-      widgetNode.setAttribute("w-tm-api-key", userKey);
+      widgetNode.setAttribute("w-tmapikey", userKey);
       _widget.update();
     }
   };
@@ -196,14 +194,18 @@
   /**
    * check if user logged just before enter widget page
    */
-  $window.on('login', function (e, data) {
-    replaceApiKey({
-      userKey: data.key,
-      inputApiKey: $('#w-tm-api-key'),
-      widgetNode: document.querySelector("div[w-tmapikey]"),
-      widget: widget
-    });
+  /*
+    $window.on('login', function (e, data) {
+    replaceApiKey(
+      {
+        userKey: data.key,
+        inputApiKey:$('#w-tm-api-key'),
+        widgetNode: document.querySelector("div[w-tmapikey]"),
+        widget
+      }
+    );
   });
+  */
 
   var changeState = function changeState(event) {
     if (!event.target.name || event.target.name === "w-googleapikey") return;
@@ -344,7 +346,9 @@
         $(item).prop("selectedIndex", -1);
       });
 
+      console.log('value', value, $self.attr('name'));
       widgetNode.setAttribute($self.attr('name'), value);
+      if ($self.attr('name') === 'w-tm-api-key') widgetNode.removeAttribute($self.attr('name'));
     });
 
     configForm.find("input[type='radio']").each(function () {
@@ -372,6 +376,10 @@
     widgetNode.setAttribute('w-border', 0);
     widgetNode.removeAttribute('w-countryCode');
     widgetNode.removeAttribute('w-source');
+
+    // console.log('DEFAULT_API_KEY',DEFAULT_API_KEY);
+    //document.querySelector("div[w-tmapikey]").value = DEFAULT_API_KEY;
+    // document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
 
     $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
     widget.onLoadCoordinate();
@@ -428,7 +436,7 @@
   });
 
   widget.onLoadCoordinate = function (results) {
-    var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+    var countryShortName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
     widget.config['country'] = countryShortName;
     if (isPostalCodeChanged) {
