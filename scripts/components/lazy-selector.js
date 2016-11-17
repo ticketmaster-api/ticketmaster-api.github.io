@@ -1023,7 +1023,6 @@
 
     $modal.on('hidden.bs.modal', function (e) {
       resetForm();
-      keyword.val('');//clear search input
       closeMapListener();
 
 			var indToRemove =[],
@@ -1040,11 +1039,10 @@
       clearByArrVal(tagsArr, indToRemove);
 
       if(selector === selectorBtn && !stateConf.setSingleVal) {
-        $input.val(tagsArr)
-          .attr('value', tagsArr)
-          .trigger('change');  //update widget:
+        // $input.val(tagsArr).attr('value', tagsArr).trigger('change');  //update widget:
         stateConf.setSingleVal = false;
       }
+      keyword.val('');//clear search input
 
     });
 
