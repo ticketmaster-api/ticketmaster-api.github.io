@@ -13,10 +13,11 @@
 
 (function ($) {
   var config = ['events', 'venues', 'attractions'],
-    tagsIds ={};
+    tagsIds ={}, initialVal={};
 
   config.forEach(function (el) {
     tagsIds[el] = [];
+    initialVal[el] = [];
   });
 
   /**
@@ -77,7 +78,6 @@
   var ms_tagsIds =
   {
     tagsBox: new TagsBox(),
-    // mammy: new Mammy(),
     refrigerator: new msStorage(3),
     stash: new msStorage(2),
 
@@ -1021,7 +1021,13 @@
       e.preventDefault();
     });
 
-    $modal.on('hidden.bs.modal', function (e) {
+    $modal
+      .on('shown.bs.modal', function () {
+        //save default value to variable for 'events' selector only
+        if(typeof $input.val() !== 'undefined' && $iconButton.attr('data-selector') === 'events' )
+          initialVal['events'] = $input.val();
+      })
+      .on('hidden.bs.modal', function (e) {
       resetForm();
       closeMapListener();
 
@@ -1038,18 +1044,18 @@
 
       clearByArrVal(tagsArr, indToRemove);
 
-      if(selector === selectorBtn && !stateConf.setSingleVal) {
-        // $input.val(tagsArr).attr('value', tagsArr).trigger('change');  //update widget:
+      if(typeof $input.val() !== 'undefined' && $iconButton.attr('data-selector') === 'events') {
+        $input.val( initialVal['events']); //set default value for 'event-id' input only
+      }
+      else if(selector === selectorBtn && !stateConf.setSingleVal && keyword.val() === '') {
+        $input.val(tagsArr).attr('value', tagsArr).trigger('change');  //update widget:
         stateConf.setSingleVal = false;
       }
       keyword.val('');//clear search input
-
     });
 
-    return this.each(function (i) {
-      var $input = $(this);
-
-      init($input);
+    return this.each(function () {
+      init($(this));
 
       function init(input) {
         input.wrap('<div class="lazy-selector-wrapper"></div>');
