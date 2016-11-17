@@ -114,7 +114,6 @@ class TicketmasterCountdownWidget {
 
   get apiUrl(){ return this.config.id ? `https://app.ticketmaster.com/discovery/v2/events/${this.config.id}.json` : `https://app.ticketmaster.com/discovery/v2/events/${this.eventId}.json`; }
 
-  //get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
   get themeUrl() {
     return (window.location.host === 'developer.ticketmaster.com')
       ? `https://developer.ticketmaster.com/products-and-docs/widgets/countdown/1.0.0/theme/`
