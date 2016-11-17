@@ -324,8 +324,6 @@
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
 
-    //toggleDisabled(widgetNode);//set disabled btn if input is empty
-
     widget.update();
 
     windowScroll(); //recalculate widget container position
