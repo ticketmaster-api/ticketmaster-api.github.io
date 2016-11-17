@@ -117,17 +117,17 @@ class TicketmasterCountdownWidget {
   //get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
   get themeUrl() {
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `http://developer.ticketmaster.com/products-and-docs/widgets/countdown/1.0.0/theme/`
-      : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/`;
+      ? `https://developer.ticketmaster.com/products-and-docs/widgets/countdown/1.0.0/theme/`
+      : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/`;
   }
 
   get portalUrl(){
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `http://developer.ticketmaster.com/`
-      : `http://ticketmaster-api-staging.github.io/`;
+      ? `https://developer.ticketmaster.com/`
+      : `https://ticketmaster-api-staging.github.io/`;
   }
 
-  get logoUrl() { return "http://www.ticketmaster.com/"; }
+  get logoUrl() { return "https://www.ticketmaster.com/"; }
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
