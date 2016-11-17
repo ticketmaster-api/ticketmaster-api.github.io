@@ -3,7 +3,7 @@
  */
 
 class CustomSelect {
-	constructor({data, selected, options, focus, onselect, animationSpeed = 200}) {
+	constructor({data, selected, options, focus, onselect, animationSpeed = 200, isReadOnly = true}) {
 		const rawOptions = ko.unwrap(options);
 		const DEFAULT_SELECTED = rawOptions[0].name;
 		this.curentSelectData = data;
@@ -14,6 +14,7 @@ class CustomSelect {
 		this.value = ko.unwrap(selected) || DEFAULT_SELECTED;
 		this.selectedOption = ko.observable(this.mapForChecked({rawOptions, name: this.value}));
 		this.isExpandeded = ko.observable(false);
+		this.isReadOnly = isReadOnly;
 		this.setSubscribtions({selected, DEFAULT_SELECTED});
 	}
 
@@ -88,7 +89,7 @@ module.exports = ko.components.register('custom-select', {
 		<div class="api-exp-custom-select-wrapper">
 			<select class="api-exp-custom-select__field" name="api-exp-method" data-bind="options: options, optionsText: 'name', value: selectedOption"></select>
 				<span class="api-exp-custom-select__placeholder">
-				<input type="text" readonly="" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption}">
+				<input type="text" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption, readonly: isReadOnly}">
 				<button class="btn btn-icon shevron shevron-up blue api-exp-custom-select__chevron" data-bind="css: {hidden: isOneOption, down: isExpandeded}" type="button"></button>
 			</span>
 			<ul data-bind="foreach: options" class="api-exp-custom-select__list js-custom-select-wrapper">

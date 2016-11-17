@@ -6,6 +6,7 @@ module.exports = (function () {
 	require('./filter/paramsFilter.component');
 
 	require('./common/customSelect.component');
+	require('./common/customInput.component');
 
 	require('./popups/error.component');
 

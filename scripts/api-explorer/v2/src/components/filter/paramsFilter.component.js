@@ -210,25 +210,30 @@ module.exports = ko.components.register('params-filter', {
 					<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
 						<!--select-->
 						
-						<!-- ko if: select -->
-							<div class="api-exp-params-filter__field">
-								<custom-select params="
-									data: $data,
-									options: options,
-									onselect: $component.onSelectParamValue.bind($data, $data),
-									focus: $component.onFocus,
-									selected: value">
-								</custom-select>
-							</div>
-						<!-- /ko -->
 						
-						<!-- ko ifnot: select -->
-							<div data-bind="css: {'dirty': isDirty, calendar: hasCalendar, popup: hasPopUp}" class="api-exp-params-filter__field">
-								<input data-bind="textInput: value, event: {focus: $component.onFocus, keydown: $component.onEnterKeyDown}, attr: {id: 'api-exp-param_' + name}" type="text" class="form-control">
-								<span data-bind="text: name" class="api-exp-params-filter__placeholder"></span>
-								<button class="api-exp-params-filter__button">&nbsp;</button>
+							<div class="api-exp-params-filter__field">
+								<!-- ko if: select -->
+									<custom-select params="
+										data: $data,
+										options: options,
+										onselect: $component.onSelectParamValue.bind($data, $data),
+										focus: $component.onFocus,
+										selected: value">
+									</custom-select>
+								<!-- /ko -->
+								<!-- ko ifnot: select -->
+									<custom-input params="
+										onFocusMethod: $component.onFocus,
+										value: value,
+										isDirty: isDirty
+										id: 'api-exp-param_' + name,
+										css: {dirty: isDirty, calendar: hasCalendar, popup: hasPopUp},
+										placeholder: name">
+									</custom-input>
+								<!-- /ko -->
 							</div>
-						<!-- /ko -->
+						
+						
 						
 					</section>
 				</section><!--params filter-->
