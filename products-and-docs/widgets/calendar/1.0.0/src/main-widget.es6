@@ -30,13 +30,13 @@ class TicketmasterCalendarWidget {
     get themeUrl() {
         return (window.location.host === 'developer.ticketmaster.com')
           ? `http://developer.ticketmaster.com/products-and-docs/widgets/calendar/1.0.0/theme/`
-          : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/calendar/1.0.0/theme/`;
+          : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/calendar/1.0.0/theme/`;
     }
 
     get portalUrl(){
         return (window.location.host === 'developer.ticketmaster.com')
           ? `http://developer.ticketmaster.com/`
-          : `http://ticketmaster-api-staging.github.io/`;
+          : `https://ticketmaster-api-staging.github.io/`;
     }
 
     get logoUrl() { return "http://www.ticketmaster.com/"; }
