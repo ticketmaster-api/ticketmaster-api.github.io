@@ -67,7 +67,7 @@
 				}
 				&__button.devices-button {
 					@include transition(all, 400ms);
-					background: url($img-share) 50% no-repeat;
+					background: url($img-share_grey) 50% no-repeat;
 				}
 				&-layer {
 					display: block;

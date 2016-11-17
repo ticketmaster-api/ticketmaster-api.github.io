@@ -30,13 +30,13 @@ class TicketmasterCalendarWidget {
     get themeUrl() {
         return (window.location.host === 'developer.ticketmaster.com')
           ? `http://developer.ticketmaster.com/products-and-docs/widgets/calendar/1.0.0/theme/`
-          : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/calendar/1.0.0/theme/`;
+          : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/calendar/1.0.0/theme/`;
     }
 
     get portalUrl(){
         return (window.location.host === 'developer.ticketmaster.com')
           ? `http://developer.ticketmaster.com/`
-          : `http://ticketmaster-api-staging.github.io/`;
+          : `https://ticketmaster-api-staging.github.io/`;
     }
 
     get logoUrl() { return "http://www.ticketmaster.com/"; }
@@ -3449,21 +3449,22 @@ class YearScheduler {
 
         var xhr = new XMLHttpRequest();
         var resp, dateOffset;
-        xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200', false);
-        xhr.send();
-        if (xhr.status != 200) {
-            console.log( xhr.status + ': ' + xhr.statusText );
-        } else {
-            resp = JSON.parse(xhr.responseText);
-            dateOffset = parseInt(resp.rawOffset) + parseInt(resp.dstOffset);
-        }
+
+        xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?language=en&location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200');
+        xhr.onload = function (e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                resp = JSON.parse(xhr.responseText);
+                dateOffset = parseInt(resp.rawOffset) + parseInt(resp.dstOffset);
+            }
+        };
+        xhr.send(null);
 
         for(let i = 1; i <= 12; i++){
 
             if (i<=9) month = '0' + i; else month = i;
             let attrs = this.eventReqAttrs;
 
-            if (resp.rawOffset) {
+            if (dateOffset !== undefined) {
                 var startDT = new Date(new Date(year, (i-1), 1, 0, 0, 0, 0).valueOf() - dateOffset*1000);
                 var finishDT = new Date(new Date(year, (i-1), this.getLastDayOfMonth(year, (i-1)), 23, 59, 59, 0).valueOf() - dateOffset*1000);
                 var startY = startDT.getFullYear();

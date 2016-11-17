@@ -202,6 +202,7 @@
           zoom: 10,
           mapTypeControl: false,
           scaleControl: false,
+          fullscreenControl: false,
           streetViewControl: false,
           rotateControl: false
         });

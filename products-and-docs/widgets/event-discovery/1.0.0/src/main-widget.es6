@@ -16,23 +16,23 @@ class TicketmasterEventDiscoveryWidget {
     return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
   }
 
-  get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
+  get eventUrl(){ return "https://www.ticketmaster.com/event/"; }
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
   get themeUrl() {
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
-      : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/`;
+      ? `https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
+      : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/`;
   }
 
   get portalUrl(){
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `http://developer.ticketmaster.com/`
-      : `http://ticketmaster-api-staging.github.io/`;
+      ? `https://developer.ticketmaster.com/`
+      : `https://ticketmaster-api-staging.github.io/`;
   }
 
-  get logoUrl() { return "http://www.ticketmaster.com/"; }
+  get logoUrl() { return "https://www.ticketmaster.com/"; }
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 

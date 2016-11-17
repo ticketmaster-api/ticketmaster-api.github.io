@@ -1,7 +1,6 @@
 @import "components/_variables";
 @import "components/_column-color";
 @import "components/_scroll";
-@import "components/_panels.component";
 @import "components/_common";
 
 #api-explorer-v2.api-explorer-v2 {
@@ -12,6 +11,7 @@
 	@import "components/_side-menu.component";
 	@import "components/_api-key.component";
 	@import "components/_params";
-	@import "components/_get-btn.component";
 	@import "components/_filter";
+	@import "components/_get-btn.component";
+	@import "components/_panels.component";
 }

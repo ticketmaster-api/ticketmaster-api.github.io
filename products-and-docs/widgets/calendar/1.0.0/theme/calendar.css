@@ -1,26 +1,26 @@
 /* FONTS */
 @font-face {
     font-family: "TMSans-Regular";
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.eot?") format("embedded-opentype"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.woff") format("woff"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Regular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 @font-face {
     font-family: "TMSans-Light";
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.eot?") format("embedded-opentype"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.woff") format("woff"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Light.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 @font-face {
     font-family: "TMSans-Italic";
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.eot?") format("embedded-opentype"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.woff") format("woff"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Italic.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 @font-face {
     font-family: "TMSans-Bold";
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
-    src: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("http://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot");
+    src: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.eot?") format("embedded-opentype"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.woff") format("woff"), url("https://developer.ticketmaster.com/assets/widgets/1.0.0/fonts/tmSans/tmSans_Web/TMSans-Bold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal; }
 
@@ -80,7 +80,7 @@ div[w-theme="calendar"] .event-message_ {
     color: #ffffff;
     opacity: 0;
     z-index: 10;
-    background: #7356a5 url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/message_logo.svg") no-repeat 16px 50%;
+    background: #7356a5 url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/message_logo.svg") no-repeat 16px 50%;
     -webkit-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     -moz-transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
     transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -103,7 +103,7 @@ div[w-theme="calendar"] .event-message__btn {
     right: 15px;
     top: 15px;
     cursor: pointer;
-    background: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/ic-close-small-white.svg") no-repeat 50% 50%;
+    background: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/ic-close-small-white.svg") no-repeat 50% 50%;
 }
 
 div[w-theme="calendar"] .events-root-container{
@@ -163,12 +163,12 @@ div[w-theme="calendar"] .event-question:after {
 
 div[w-theme="calendar"] .event-question:before {
     opacity: 0;
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/question-ic-blue.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/question-ic-blue.svg");
 }
 
 div[w-theme="calendar"] .event-question:after {
     opacity: 0.7;
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/question-ic-grey.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/question-ic-grey.svg");
 }
 
 div[w-theme="calendar"] .event-question:hover:before {
@@ -431,7 +431,7 @@ div[w-theme="calendar"] .event-logo:before {
 }
 
 div[w-theme="calendar"] .event-logo:before {
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
     background-size: 98px;
 }
 
@@ -467,7 +467,7 @@ div[w-theme="calendar"] .event-logo-c:after {
 }
 
 div[w-theme="calendar"] .event-logo-c:after {
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
     background-size: 98px;
 }
 
@@ -962,11 +962,11 @@ div[w-theme="calendar"] .selector-title:after {
 
 div[w-theme="calendar"] .selector-title:before {
     opacity: 0;
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron-hover.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron-hover.svg");
 }
 
 div[w-theme="calendar"] .selector-title:after {
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron.svg");
 
 }
 
@@ -1552,7 +1552,7 @@ div[w-theme="calendar"][w-colorscheme="dark"] .event-logo {
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo:before {
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-logo-white.svg");
     background-size: 98px;
 }
 
@@ -1561,7 +1561,7 @@ div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c {
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c:after {
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-logo-white.svg");
     background-size: 98px;
 }
 

@@ -116,7 +116,10 @@
 								        type="button"
 								        data-toggle="tooltip"></button>
 							</div>
+<<<<<<< 611de0afc8bc467bde511717c15a189eeaac7def
+=======
 							<button data-bind="click: $parent.getMoreMenu" class="btn btn-icon btn-more"></button>
+>>>>>>> [TKMDPA-1329][JS/SCSS/HTML] API explorer 2.0 - Mobile - Response Layout
 							
 							<div class="panel-title">
 								<!-- ko if: !!$data.response -->
@@ -143,7 +146,11 @@
 								<div class="row-container">
 									
 									<!-- Nav tabs -->
+<<<<<<< 611de0afc8bc467bde511717c15a189eeaac7def
+									<ul class="nav nav-tabs" role="tablist">
+=======
 									<ul class="nav nav-tabs tabs-controlls" role="tablist">
+>>>>>>> [TKMDPA-1329][JS/SCSS/HTML] API explorer 2.0 - Mobile - Response Layout
 										<li role="presentation" class="tab">
 											<a data-bind="attr: {href: '#json-' + $index(), 'aria-controls': 'json-' + $index()}" class="tab-btn" href="#json" aria-controls="json" role="tab" data-toggle="tab">Json</a>
 										</li>
