@@ -64,7 +64,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'eventUrl',
     get: function get() {
-      return "http://www.ticketmaster.com/event/";
+      return "https://www.ticketmaster.com/event/";
     }
   }, {
     key: 'apiUrl',
@@ -74,17 +74,17 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'themeUrl',
     get: function get() {
-      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/' : 'http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/';
+      return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/';
     }
   }, {
     key: 'portalUrl',
     get: function get() {
-      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/' : 'http://ticketmaster-api-staging.github.io/';
+      return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/' : 'https://ticketmaster-api-staging.github.io/';
     }
   }, {
     key: 'logoUrl',
     get: function get() {
-      return "http://www.ticketmaster.com/";
+      return "https://www.ticketmaster.com/";
     }
   }, {
     key: 'legalNoticeUrl',
@@ -820,9 +820,9 @@ var TicketmasterEventDiscoveryWidget = function () {
           if (xDiff > 0) this.nextSlideX(); // left swipe
           else this.prevSlideX(); // right swipe
         } else {
-            if (yDiff > 0) this.nextSlideY(); // up swipe
-            else this.prevSlideY(); // down swipe
-          }
+          if (yDiff > 0) this.nextSlideY(); // up swipe
+          else this.prevSlideY(); // down swipe
+        }
 
         xDown = null;
         yDown = null;
@@ -989,7 +989,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'needToUpdate',
     value: function needToUpdate(newTheme, oldTheme) {
-      var forCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+      var forCheck = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 
       return Object.keys(newTheme).map(function (key) {
         if (forCheck.indexOf(key) > -1) return true;
@@ -1241,9 +1241,9 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'makeRequest',
     value: function makeRequest(handler) {
-      var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.apiUrl;
-      var attrs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      var method = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "GET";
+      var url = arguments.length <= 1 || arguments[1] === undefined ? this.apiUrl : arguments[1];
+      var attrs = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+      var method = arguments.length <= 3 || arguments[3] === undefined ? "GET" : arguments[3];
 
       attrs = Object.keys(attrs).map(function (key) {
         return key + '=' + attrs[key];
