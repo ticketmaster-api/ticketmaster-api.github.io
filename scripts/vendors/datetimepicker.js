@@ -847,7 +847,7 @@ function RenderCssCal(bNewCal)
 		}
 
 		vCalTime += "</td>\n<td align='right' valign='bottom' width='" + HourCellWidth + "px'></td></tr>";
-		vCalTime += "<tr><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td><td colspan='3' style='text-align:center;border-top:1px solid #b7c9d3;'><input onClick='javascript:closewin(\"" + Cal.Ctrl + "\");'  type=\"button\" value=\"OK\">&nbsp;<input onClick='javascript: winCal.style.visibility = \"hidden\"' type=\"button\" value=\"Cancel\"></td><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td></tr>";
+		vCalTime += "<tr><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td><td colspan='3' style='text-align:center;border-top:1px solid #b7c9d3;'><input onClick='javascript:closewin(\"" + Cal.Ctrl + "\");'  type=\"button\" value=\"OK\">&nbsp;<input onClick='javascript:winclose()' type=\"button\" value=\"Cancel\"></td><td height='5px' width='" + HourCellWidth + "'>&nbsp;</td></tr>";
 	}
 	else //if not to show time.
 	{
@@ -1228,6 +1228,16 @@ function closewin(id) {
 	}
 	var CalId = document.getElementById(id);
 	CalId.focus();
+	winCal.style.visibility = 'hidden';
+	document.getElementById('calOverlay').classList.remove('show');
+	var activeIcons = document.querySelectorAll('.dt-ico');
+	var aiCountLenght = activeIcons.length;
+	for (var aiCount = 0; aiCount < aiCountLenght; ++aiCount) {
+		activeIcons[aiCount].classList.remove('active');
+	}
+}
+
+function winclose() {
 	winCal.style.visibility = 'hidden';
 	document.getElementById('calOverlay').classList.remove('show');
 	var activeIcons = document.querySelectorAll('.dt-ico');
