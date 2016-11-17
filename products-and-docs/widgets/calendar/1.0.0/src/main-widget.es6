@@ -3449,17 +3449,8 @@ class YearScheduler {
 
         var xhr = new XMLHttpRequest();
         var resp, dateOffset;
-        /*
-        xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200', false);
-        xhr.send();
-        if (xhr.status != 200) {
-            console.log( xhr.status + ': ' + xhr.statusText );
-        } else {
-            resp = JSON.parse(xhr.responseText);
-            dateOffset = parseInt(resp.rawOffset) + parseInt(resp.dstOffset);
-        }
-        */
-        xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200', false);
+
+        xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?language=en&location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200');
         xhr.onload = function (e) {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 resp = JSON.parse(xhr.responseText);
@@ -3472,8 +3463,6 @@ class YearScheduler {
 
             if (i<=9) month = '0' + i; else month = i;
             let attrs = this.eventReqAttrs;
-
-            console.log(dateOffset);
 
             if (dateOffset !== undefined) {
                 var startDT = new Date(new Date(year, (i-1), 1, 0, 0, 0, 0).valueOf() - dateOffset*1000);
