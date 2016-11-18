@@ -3450,6 +3450,8 @@ class YearScheduler {
         var xhr = new XMLHttpRequest();
         var resp, dateOffset;
 
+        console.log( document.querySelector('[w-type="calendar"]').getAttribute("w-latlong") );
+
         xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?language=en&location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200');
         xhr.onload = function (e) {
             if (xhr.readyState == 4 && xhr.status == 200) {
