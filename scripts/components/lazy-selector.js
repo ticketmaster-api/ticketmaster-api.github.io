@@ -465,7 +465,6 @@
 
         var time = formatDate(currentEvent.date);
         var eventTime = $('<h4 class="event-time gray"/>')
-        //.addClass('event-time')
           .text(time)
           .appendTo($wrapCol);
         /*add time end*/
