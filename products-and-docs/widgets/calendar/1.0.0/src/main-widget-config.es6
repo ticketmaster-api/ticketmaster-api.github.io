@@ -338,9 +338,9 @@
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
         for(var key in widget.config){
-            if(key !== 'latlong'){
+            // if(key !== 'latlong'){
                 htmlCode.setAttribute("w-"+key,widget.config[key]);
-            }
+            // }
         }
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
