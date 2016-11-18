@@ -431,7 +431,7 @@ div[w-theme="calendar"] .event-logo:before {
 }
 
 div[w-theme="calendar"] .event-logo:before {
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-image: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-gray-logo.svg");
     background-size: 98px;
 }
 
@@ -467,7 +467,7 @@ div[w-theme="calendar"] .event-logo-c:after {
 }
 
 div[w-theme="calendar"] .event-logo-c:after {
-    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-image: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-gray-logo.svg");
     background-size: 98px;
 }
 
@@ -962,11 +962,11 @@ div[w-theme="calendar"] .selector-title:after {
 
 div[w-theme="calendar"] .selector-title:before {
     opacity: 0;
-    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron-hover.svg");
+    background-image: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/small-shevron-hover.svg");
 }
 
 div[w-theme="calendar"] .selector-title:after {
-    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/small-shevron.svg");
+    background-image: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/small-shevron.svg");
 
 }
 
@@ -1552,7 +1552,7 @@ div[w-theme="calendar"][w-colorscheme="dark"] .event-logo {
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo:before {
-    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-image: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-white.svg");
     background-size: 98px;
 }
 
@@ -1561,7 +1561,7 @@ div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c {
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c:after {
-    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-logo-white.svg");
+    background-image: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-white.svg");
     background-size: 98px;
 }
 
