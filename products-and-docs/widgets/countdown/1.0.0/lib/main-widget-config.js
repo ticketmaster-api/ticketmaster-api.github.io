@@ -159,12 +159,10 @@
    **/
   function containerMove() {
     var marginTop = 0;
-    var wst = $window.scrollTop();
-
-    var _$containerWidget$dat = $containerWidget.data();
-
-    var min = _$containerWidget$dat.min;
-    var max = _$containerWidget$dat.max;
+    var wst = $window.scrollTop(),
+        _$containerWidget$dat = $containerWidget.data(),
+        min = _$containerWidget$dat.min,
+        max = _$containerWidget$dat.max;
 
     //if the window scroll is within the min and max (the container will be 'sticky';
 
@@ -181,9 +179,9 @@
     var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
 
     if (userKey !== null) {
-      var inputApiKey = options.inputApiKey;
-      var _widgetNode = options.widgetNode;
-      var _widget = options.widget;
+      var inputApiKey = options.inputApiKey,
+          _widgetNode = options.widgetNode,
+          _widget = options.widget;
 
       inputApiKey.attr('value', userKey).data('userAPIkey', userKey).val(userKey);
       _widgetNode.setAttribute("w-tm-api-key", userKey);

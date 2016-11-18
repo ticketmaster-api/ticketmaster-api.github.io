@@ -851,10 +851,15 @@
 
     function setIdListener(e){
       var selectedID = e.target.getAttribute('data-event');
-      $input.val(selectedID);
-      $input.attr('value', selectedID);
-      $input.trigger('change');  //update widget:
+      $input.val(selectedID)
+        .attr('value', selectedID)
+        .trigger('change');  //update widget:
       stateConf.setSingleVal = true;
+
+      //clear tags box of current selector (that equal 'selectedID' val)
+      config.forEach(function (el) {
+        tagsIds[selectedID] = [];
+      });
       // Close dialog
       $modal.modal('hide');
     }
@@ -1045,11 +1050,9 @@
 
       clearByArrVal(tagsArr, indToRemove);
 
-      if(typeof $input.val() !== 'undefined' && $iconButton.attr('data-selector') === 'events') {
-        $input.val( initialVal['events']); //set default value for 'event-id' input only
-      }
-      else if(selector === selectorBtn && !stateConf.setSingleVal && keyword.val() === '') {
-        $input.val(tagsArr).attr('value', tagsArr).trigger('change');  //update widget:
+      //clear tags if set Single ID
+      if(selector === selectorBtn && !stateConf.setSingleVal) {
+        //$input.val(tagsArr).attr('value', tagsArr).trigger('change');  //update widget:
         stateConf.setSingleVal = false;
       }
       keyword.val('');//clear search input
