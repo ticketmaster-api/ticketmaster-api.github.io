@@ -431,7 +431,7 @@ div[w-theme="calendar"] .event-logo:before {
 }
 
 div[w-theme="calendar"] .event-logo:before {
-    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
     background-size: 98px;
 }
 
@@ -467,7 +467,7 @@ div[w-theme="calendar"] .event-logo-c:after {
 }
 
 div[w-theme="calendar"] .event-logo-c:after {
-    background-image: url("https://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
+    background-image: url("http://developer.ticketmaster.com/assets/widgets/1.0.0/img/tm-gray-logo.svg");
     background-size: 98px;
 }
 
