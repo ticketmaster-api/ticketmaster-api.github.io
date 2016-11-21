@@ -32,6 +32,5 @@ gems:
 sass:
   style: compressed
 
-webrick:
-  headers:
-    X-Frame-Options: Deny
+webserver_headers:
+  X-Frame-Options: Deny
