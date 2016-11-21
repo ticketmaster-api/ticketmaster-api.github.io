@@ -6,7 +6,7 @@
 	padding: 1px 0;
 	clear: both;
 	position: relative;
-	border-top: 2px dotted #b7c9d3;
+	border-top: 2px dotted $heather;
 	&.closed {
 		.api-exp-params-wrapper {
 			display: none;
@@ -17,7 +17,7 @@
 		position: absolute;
 		top: -20px;
 		left: 0;
-		background: #fff;
+		background: $white;
 		padding: 5px 5px 0 0;
 		&__title {
 			margin: 0 10px 0 0;
@@ -27,7 +27,7 @@
 			font-stretch: normal;
 			line-height: 1.7;
 			text-align: left;
-			color: #b7c9d3;
+			color: $heather;
 			float: left;
 		}
 		&-edit {
@@ -54,69 +54,19 @@
 	}
 	&-wrapper {
 		opacity: 1;
-		border-bottom: 2px dotted #b7c9d3;
+		border-bottom: 2px dotted $heather;
 		padding: 35px 0;
 		clear: both;
 	}
 	&-filter {
 		margin-right: 264px;
-		&-fields {
-			//overflow: hidden;
-		}
+		&-fields {}
 		&__field {
 			width: 262px;
 			margin-bottom: 25px;
 			float: left;
 			margin-right: 30px;
 			position: relative;
-			&.dirty {
-				input[type="text"] {}
-				span {
-					display: none;
-				}
-			}
-			input[type="text"] {
-				background: transparent;
-			}
-		}
-		&__placeholder {
-			position: absolute;
-			z-index: -1;
-			top: 50%;
-			left: 15px;
-			margin-top: -11px;
-			display: block;
-			font-size: 16px;
-			font-weight: normal;
-			font-style: normal;
-			font-stretch: normal;
-			line-height: 1.5;
-			text-align: left;
-			color: #b7c9d3;
-		}
-		&__button {
-			display: none;
-			background: none;
-			border: none;
-			outline: none;
-			position: absolute;
-			top: 15px;
-			right: 15px;
-			width: 20px;
-			height: 20px;
-			z-index: 1;
-		}
-		.calendar {
-			.api-exp-params-filter__button {
-				display: block;
-				background: url($img-calendar) 50% 50% no-repeat;
-			}
-		}
-		.popup {
-			.api-exp-params-filter__button {
-				display: block;
-				background: url($img-id) 50% 50% no-repeat;
-			}
 		}
 	}
 	&.dirty {
@@ -132,17 +82,12 @@
 			padding-bottom: 20px;
 		}
 		&-headline {
-			&:before {
-			}
-			&__title {
-			}
-			&-edit {
-			}
+			&:before {}
+			&__title {}
+			&-edit {}
 			&__btn {
-				&-copy {
-				}
-				&-clear {
-				}
+				&-copy {}
+				&-clear {}
 			}
 		}
 		&-filter {
@@ -164,8 +109,7 @@
 			}
 		}
 		&.api-exp-params--dirty {
-			.api-exp-params-headline-edit {
-			}
+			.api-exp-params-headline-edit {}
 		}
 	}
 

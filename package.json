@@ -4,6 +4,7 @@
   "description": "Hello",
   "main": "_site/index.html",
   "scripts": {
+		"build": "webpack --bail --progress --profile",
     "start": "jekyll serve",
     "start-with-limit-3": "jekyll serve --no-watch -I --limit_posts 3",
     "event-discovery-widget-1.0.0-once": "babel products-and-docs/widgets/event-discovery/1.0.0/src -d products-and-docs/widgets/event-discovery/1.0.0/lib --source-maps",
@@ -39,8 +40,9 @@
     "worker-loader": "^0.7.1"
   },
   "dependencies": {
-    "knockout": "^3.4.0",
+    "knockout": "^3.4.1",
     "knockout-scrollbar": "0.0.3",
+    "knockout.validation": "^2.0.3",
     "webpack": "^1.13.2"
   }
 }

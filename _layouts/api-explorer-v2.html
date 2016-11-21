@@ -53,9 +53,7 @@
 				</category-menu>
 				
 				<!--api key-->
-				<section class="api-exp-key">
-					<input data-bind="value: apiKey.value" type="text" id="api-key" class="form-control api-exp-key_input" placeholder="Api key">
-				</section>
+				<custom-input params="cssClass: 'api-exp-key', data: apiKey, validationModel: apiKeyValidationModel"></custom-input>
 
 				<!--filter-->
 				<methods-filter params="data: base, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType, selectedMethod: selectedMethod">
@@ -66,11 +64,12 @@
 		</div>
 		
 		<!--params-->
-		<params-filter params="selectedMethodData: selectedMethodData, selectedMethod: selectedMethod, selectedParams: selectedParams"></params-filter>
+		<params-filter params="selectedMethodData: selectedMethodData, selectedMethod: selectedMethod, selectedParams: selectedParams, validationModel: validationModel"></params-filter>
 		
 		<!--request btn-->
 		<section class="api-exp-get-btn clearfix">
-			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
+			<span class="api-exp-get-btn-validation-message" data-bind="visible: sendBtnValidationText, text: sendBtnValidationText"></span>
+			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn, enable: formIsValid" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
 		</section>
 	</div>
 

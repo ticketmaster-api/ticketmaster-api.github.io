@@ -19,7 +19,6 @@
 		padding: 0 10px;
 	}
 }
-
 .truncate {
 	display: inline-block;
 	white-space: nowrap;
@@ -28,65 +27,10 @@
 }
 .shevron {
 	@include transition(all 0.2s linear);
-
 	&.down,
 	&[aria-expanded="true"],
 	[aria-expanded="true"] > & {
 		@include rotate(180deg);
-	}
-}
-.error-pop-up {
-	width: 420px;
-	min-height: 246px;
-	padding: 30px;
-	.modal-header {
-		padding: 0;
-		overflow: hidden;
-	}
-	.error-title {
-		font: {
-			size: 24px;
-			weight: bold;
-			style: normal;
-			stretch: normal;
-		}
-		line-height: 1.33;
-		text-align: center;
-		color: #d0021b;
-		margin: 14px auto;
-	}
-	.modal-body {
-		padding: 8px;
-		.error-details {
-			font-size: 16px;
-			font-weight: normal;
-			font-style: normal;
-			font-stretch: normal;
-			line-height: 1.5;
-			text-align: center;
-			color: #768692;
-			margin: 0 0 5px;
-		}
-	}
-	.modal-footer {
-		.btn-accept {
-			width: 164px;
-			height: 48px;
-			border-radius: 4px;
-			background-color: #009cde;
-			display: block;
-			margin: auto;
-			font: {
-				size: 16px;
-				weight: bold;
-				style: normal;
-				stretch: normal;
-			}
-			line-height: 1.5;
-			letter-spacing: 0.8px;
-			text-align: center;
-			color: #ffffff;
-		}
 	}
 }
 .popover {
@@ -130,8 +74,6 @@
 		border-bottom-color: #7356a5 !important;
 	}
 }
-
-
 .shevron-up {
 	&.blue {
 		background: {
@@ -176,7 +118,6 @@
 		repeat: no-repeat;
 	}
 }
-
 .btn-preset {
 	background: {
 		image: url($img-parameters_grey);
@@ -243,7 +184,6 @@
 		color: #fff !important;
 	}
 }
-
 .done {
 	background: {
 		image: url($img-checkmark_green) !important;

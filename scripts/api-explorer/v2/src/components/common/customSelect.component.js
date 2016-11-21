@@ -16,6 +16,17 @@ class CustomSelect {
 		this.isExpandeded = ko.observable(false);
 		this.isReadOnly = isReadOnly;
 		this.setSubscribtions({selected, DEFAULT_SELECTED});
+
+		// Dirty watcher
+		this.fieldWatcher(data);
+	}
+
+	fieldWatcher(data) {
+		if (data) {
+			this.isDirty = data.isDirty = ko.pureComputed(() => {
+				return data.value() !== data.default && data.value() !== 'none';
+			});
+		}
 	}
 
 	setSubscribtions({selected, DEFAULT_SELECTED}) {
