@@ -437,3 +437,56 @@
     }
   }
 }
+
+#js_widget_modal {
+  .copy-btn {
+    position: absolute;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    margin-top: -38px;
+    right: 15px;
+    cursor: pointer;
+    @include transition(background-color $btn-transition-speed $btn-transition-timing-function);
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-position: center center;
+      background-repeat: no-repeat;
+      @include transition(opacity $btn-transition-speed $btn-transition-timing-function);
+    }
+
+    &:before {
+      opacity: 0;
+      background-image: url("/assets/img/products-and-docs/ic_copy-active.svg");
+    }
+
+    &:after {
+      opacity: 1;
+      background-image: url("/assets/img/products-and-docs/ic-copy.svg");
+    }
+
+    &:hover{
+      background-color: $p1b;
+
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    @media #{$max-1200} {
+      display: none;
+    }
+  }
+
+}

@@ -24,7 +24,6 @@ ClipboardFallback.prototype.successHandler = function(e) {
   var $elem = $(e.trigger),
     cssClass = this.successCssClass;
   $elem.addClass(cssClass);
-  clearTimeout(this.successTimeout);
   this.successTimeout = setTimeout(function(){
     $elem.removeClass(cssClass);
   }, this.successDelay);
