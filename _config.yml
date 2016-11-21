@@ -33,4 +33,4 @@ sass:
   style: compressed
 
 webserver_headers:
-  X-Frame-Options: Deny
+  "X-Frame-Options": "Deny"
