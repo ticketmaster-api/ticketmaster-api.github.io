@@ -61,7 +61,7 @@ Object.byString = function(o, s) {
 		function checkCookie() {
           var userApiKey;
           var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
-          if (apiKeys != "") {
+          if (apiKeys !== "") {
               userApiKey = apiKeys[apiKeys.length-1];
               userApiKey = userApiKey[userApiKey.length-1];
               $('#api-key').val(userApiKey);
@@ -77,7 +77,7 @@ Object.byString = function(o, s) {
               while (c.charAt(0)==' ') {
                   c = c.substring(1);
               }
-              if (c.indexOf(name) == 0) {
+              if (c.indexOf(name) === 0) {
                   return c.substring(name.length,c.length);
               }
           }
@@ -300,7 +300,7 @@ Object.byString = function(o, s) {
     });
 
     $('#cd-tour-trigger').on('click', function(){
-      if (slider.find('.api-column').length == 0){
+      if (slider.find('.api-column').length === 0){
         sendPrimaryRequest(true);
       }
     });
@@ -410,7 +410,7 @@ Object.byString = function(o, s) {
           element = $('<div class="col-lg-3 col-sm-6 col-xs-12 parameter-item"></div>'),
           input = $(['<input type="text" class="form-control event-param" placeholder="', name,'" id="', name,'" url-style="', par.style,'">'].join(''));
 
-        param === "extensions" && input.val('geolocation');
+        if (param === "extensions") { input.val('geolocation'); }
 
         element.append(input);
         primaryColumn.append(element);
@@ -438,14 +438,14 @@ Object.byString = function(o, s) {
   // adds API dropdpwn to navigation bar
   var addApiDropdown = function(apiName, selected){
     var dropDown = $('<li class="dropdown api-dropdown"></li>'),
-      button = $('<button class="dropdown-toggle' + (selected ? ' selected-group' : '') + '" type="button" id="'
-        + apiName.replace(/\s/g, '') + '" data-toggle="dropdown"><h4>' + apiName + '</h4></button>'),
+      button = $('<button class="dropdown-toggle' + (selected ? ' selected-group' : '') + '" type="button" ' +
+        'id="'+ apiName.replace(/\s/g, '') + '" data-toggle="dropdown"><h4>' + apiName + '</h4></button>'),
       caret = $('<span class="caret"></span>'),
       ul = $('<ul class="dropdown-menu" role="menu" aria-labelledby="' + apiName +  '">');
 
     for (var method in base[apiName]) {
-      var li = $('<li role="presentation"><a class="select-default-method" api-name="'
-        + apiName + '" method-name="' + method + '" role="menuitem" tabindex="-1" href="#"><h3>' + base[apiName][method].name +  '</h3></a></li>');
+      var li = $('<li role="presentation"><a class="select-default-method" api-name="'+ apiName + '" ' +
+        'method-name="' + method + '" role="menuitem" tabindex="-1" href="#"><h3>' + base[apiName][method].name +  '</h3></a></li>');
       li.find('.select-default-method').append('<a href="' + base[apiName][method].documentation + '"' + 'class="api-doc-link"></a>'); // link to documentation
       ul.append(li);
     }
