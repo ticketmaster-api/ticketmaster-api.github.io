@@ -1197,6 +1197,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
       eventsSet = eventsSet._embedded.events;
       var tmpEventSet = [];
+
       for (var key in eventsSet) {
         if (eventsSet.hasOwnProperty(key)) {
           var currentEvent = {};
@@ -1232,7 +1233,6 @@ var TicketmasterEventDiscoveryWidget = function () {
           }*/
 
           currentEvent.img = this.getImageForEvent(eventsSet[key].images);
-
           tmpEventSet.push(currentEvent);
         }
       }
@@ -1475,30 +1475,23 @@ var TicketmasterEventDiscoveryWidget = function () {
     key: 'getDateFromPeriod',
     value: function getDateFromPeriod(period) {
 
-      var date = new Date(),
-          period = period.toLowerCase(),
+      var period = period.toLowerCase(),
           firstDay,
           lastDay;
 
       if (period == "year") {
-        firstDay = new Date(date.getFullYear(), 0, 1);
-        lastDay = new Date(date.getFullYear(), 12, 0);
+        firstDay = new Date(new Date(new Date()).toISOString());
+        lastDay = new Date(new Date(new Date().valueOf() + 24 * 365 * 60 * 60 * 1000).toISOString());
       } else if (period == "month") {
-        firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        firstDay = new Date(new Date(new Date()).toISOString());
+        lastDay = new Date(new Date(new Date().valueOf() + 24 * 31 * 60 * 60 * 1000).toISOString());
       } else if (period == "week") {
-        var first = date.getDate() - date.getDay();
-        var last = first + 6;
-        firstDay = new Date(date.setDate(first));
-        lastDay = new Date(date.setDate(last));
+        firstDay = new Date(new Date(new Date()).toISOString());
+        lastDay = new Date(new Date(new Date().valueOf() + 24 * 7 * 60 * 60 * 1000).toISOString());
       } else {
-        firstDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        lastDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        firstDay = new Date(new Date(new Date()).toISOString());
+        lastDay = new Date(new Date(new Date().valueOf() + 24 * 60 * 60 * 1000).toISOString());
       }
-
-      firstDay.setHours(0);lastDay.setHours(23);
-      firstDay.setMinutes(0);lastDay.setMinutes(59);
-      firstDay.setSeconds(0);lastDay.setSeconds(59);
 
       return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
     }
