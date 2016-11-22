@@ -142,18 +142,4 @@ layout: documentation-single
 <!--add copy button to modal-->
 <script src="{{'/scripts/vendors/clipboard.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/clipboard-fallback.js' | prepend: site.baseurl }}"></script>
-<script>
-    var isToolTipInit = false;
-    var clipboard = new Clipboard('.copy-btn');
-    new ClipboardFallback(clipboard);
-
-    clipboard.on('success', function(e) {
-        e.clearSelection();
-    });
-    $('#js_widget_modal').on('shown.bs.modal', function(){
-        if (!isToolTipInit){
-            $('.copy-btn').tooltip();
-            isToolTipInit = true;
-        }
-    });
-</script>
+<script src="{{'/scripts/components/clipboard-init.js' | prepend: site.baseurl }}"></script>
