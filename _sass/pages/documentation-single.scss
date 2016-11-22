@@ -90,7 +90,6 @@
   }
 }
 
-
 .noupper {
   text-transform: none;
 }
@@ -338,13 +337,12 @@
 
   @media #{$max-768} {
     min-height: 0;
-    width: 111%;
+    width: calc(100% + 30px);
     position: relative;
     left: -15px;
     text-align: center;
     padding: 0 15px 20px 15px;
   }
-
 
   h2{
     padding: $base-margin*3 0 0 $base-margin*2;
