@@ -85,9 +85,11 @@ layout: documentation-single
         <div class="row">
           <div class="col-lg-12">
             <h4>HTML</h4>
-            <code class="language-html widget_dialog__code" data-lang="html"></code>
+            <div class="copy-btn" rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-target="#widget-code-tag"></div>
+            <code class="language-html widget_dialog__code" data-lang="html" id="widget-code-tag"></code>
             <h4>JavaScript</h4>
-            <code class="language-js widget_dialog__code" data-lang="js">
+            <div class="copy-btn" rel="tooltip" data-original-title="Copy to Clipboard" data-placement="top" data-clipboard-target="#widget-code-script"></div>
+            <code class="language-js widget_dialog__code" data-lang="js" id="widget-code-script">
               &lt;script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/lib/main-widget.js"&gt;&lt;/script&gt;
             </code>
           </div>
@@ -122,7 +124,7 @@ layout: documentation-single
 </div>
 <!-- Modal has no code end-->
 
-<script type="text/javascript" src="{{"/scripts/components/api-key-service.js?v=1" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{'/scripts/components/api-key-service.js?v=1' | prepend: site.baseurl }}"></script>
 <script type="text/javascript">
   // Get default widget API_KEY
   var defaultApiKey = apiKeyService.getApiWidgetsKey();
@@ -131,6 +133,11 @@ layout: documentation-single
   $('#w-tm-api-key').val(defaultApiKey);
 </script>
 
-<script src="{{"/products-and-docs/widgets/countdown/1.0.0/lib/main-widget.js?v=1" | prepend: site.baseurl }}"></script>
+<script src="{{'/products-and-docs/widgets/countdown/1.0.0/lib/main-widget.js?v=1' | prepend: site.baseurl }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
-<script src="{{"/products-and-docs/widgets/countdown/1.0.0/lib/main-widget-config.js?v=2" | prepend: site.baseurl }}"></script>
+<script src="{{'/products-and-docs/widgets/countdown/1.0.0/lib/main-widget-config.js?v=2' | prepend: site.baseurl }}"></script>
+
+<!--add copy button to modal-->
+<script src="{{'/scripts/vendors/clipboard.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/clipboard-fallback.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/clipboard-init.js' | prepend: site.baseurl }}"></script>

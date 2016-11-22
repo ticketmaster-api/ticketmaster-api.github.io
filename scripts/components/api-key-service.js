@@ -42,7 +42,7 @@ var apiKeyService = {};
     return tmApiKeys.widgets;
   };
 
-  apiKeyService.checkApiKeyCookie = function (cookieSelector) {
+  apiKeyService.checkApiKeyCookie = function () {
     var key = getCookie("tk-api-key");
     if (!key) {return;}
 
