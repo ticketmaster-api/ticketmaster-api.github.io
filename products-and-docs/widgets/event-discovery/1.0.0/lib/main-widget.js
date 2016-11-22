@@ -1197,9 +1197,6 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
       eventsSet = eventsSet._embedded.events;
       var tmpEventSet = [];
-      var curYear = new Date().getFullYear();
-      var curMonth = new Date().getMonth() + 1;
-      var curDay = new Date().getDate();
 
       for (var key in eventsSet) {
         if (eventsSet.hasOwnProperty(key)) {
@@ -1236,18 +1233,6 @@ var TicketmasterEventDiscoveryWidget = function () {
           }*/
 
           currentEvent.img = this.getImageForEvent(eventsSet[key].images);
-
-          var startDT = eventsSet[key].dates.start.localDate.split('-');
-
-          if (parseInt(startDT[0]) == curYear) {
-            if (parseInt(startDT[1]) == curMonth) {
-              if (parseInt(startDT[2]) >= curDay) {
-                // console.log( eventsSet[key].dates.start.localDate );
-                // tmpEventSet.push(currentEvent);
-              }
-            }
-          }
-
           tmpEventSet.push(currentEvent);
         }
       }
