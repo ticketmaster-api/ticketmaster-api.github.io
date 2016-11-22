@@ -439,6 +439,9 @@
 }
 
 #js_widget_modal {
+  .close {
+    opacity: 1;
+  }
   .copy-btn {
     position: absolute;
     display: block;
