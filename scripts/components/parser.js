@@ -21,7 +21,6 @@
             var $textBtns = $('.toggle-code-btn'),
                 headers = $('.underline'),
                 leftPanels = $('.left-wrapper'),
-                //codePanel = $(targetElement).closest('.article').siblings(".tab-panel-offset"), //clicked 'code panel'
                 codePanels = $(".tab-panel-offset"),
                 expandCssClass = 'expand',
                 collapseCssClass = 'collapse-code-column',
@@ -30,9 +29,6 @@
                 excludeElemList = leftPanels.contents('.lead'); //exclude collapse element if it contain '.lead'
 
             if( codePanels.hasClass('collapse-code-column') ){
-                 /*leftPanels.animate({width: '55%'}, "fast");
-                 headers.animate({width: '55%'}, "fast");
-                 codePanels.animate({width: '45%'}, "fast").removeClass(collapseCssClass);*/
                 codePanels.removeClass(collapseCssClass);
                 leftPanels.removeClass(expandCssClass);
                 headers.removeClass(expandCssClass);
@@ -46,21 +42,6 @@
             excludeElemList.parent('.left-wrapper').removeClass(expandCssClass);
 
             $(window).trigger('resize');// update tables size
-
-            /*
-            function autoScroll(topPadding, delay) {
-                var $htmlBody = $('body, html'),
-                    $window = $(window);
-                //if btn will be near header $(targetElement).offset().top
-                var dif = $window.scrollTop() - $('.toggle-code-btn').offset().top;
-                if (dif != 0) {
-                    $htmlBody.animate({
-                        scrollTop: $window.scrollTop() - dif - topPadding
-                    }, delay);
-                }
-            }*/
-            //autoScroll(50, 330);
-
         }
 
         main.find('.article').each(
@@ -83,7 +64,7 @@
 
             //add link to console button
             if (firstElemGroupLeft.hasClass("console-link")){
-                firstElemGroupLeft.append(consoleBtn);
+                //firstElemGroupLeft.append(consoleBtn);
             }
 
             //add underline
