@@ -23,13 +23,14 @@ redirect_from:
 Search and look up events, attractions, venues and classifications across all supported sources, markets and locales.
 {: .lead .article}
 
+{%comment%}
 #### Developer Console
 {: .aside .gray}
 
 Make live API calls right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
-
+{%endcomment%}
 
 ## Overview
 {: .article #overview }

@@ -13,12 +13,14 @@ keywords: API, publish, events
 Use the Publish API to publish events, venues and attractions. The API provides the opportunity to make your events, venues and attractions available within the Discovery API.
 {: .lead .article}
 
+{%comment%}
 #### Developer Console
 {: .aside .gray}
 
 Make live API calls right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
+{%endcomment%}
 
 ## Overview
 {: .article #overview }
