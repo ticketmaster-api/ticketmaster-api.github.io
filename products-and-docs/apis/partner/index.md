@@ -1674,15 +1674,10 @@ Status 200
 ## Add Billing Information [PUT]
 {: #post-card}
 
-Add customer information and credit card or invoice data to the transaction. For credit cards, set `encryption_key` with the `id` value from the output of /certificate.
+Add customer and payment information to the transaction. Note: required fields are dependent on client configuration.  Contact [developer@ticketmaster.com](mailto:developer@ticketmaster.com) for your particular set up.
 
-There is two ways of adding payment information to the cart:
-<ol>
-    <li>Use a credit card</li>
-    <li>Use a saved member credit card</li>
-</ol>
 
-Encrypt the credit card and cvv number using the following steps:
+Encrypt a credit card and cvv number using the following steps:
 
 <ol>
     <li>Call `GET /certificate` to obtain the certificate value and id. The certificate will be valid for 24 hours.</li>
@@ -1692,7 +1687,7 @@ Encrypt the credit card and cvv number using the following steps:
 </ol>
 
 
-Sample credit-card information for use in the production environment for event id 000051048D991EE7:
+Sample credit-card information for use in the production environment for event id 000051048D991EE7 (see code examples below):
 
 <ul>
     <li>payment.card.issuer=DISCOVER</li>
@@ -1701,14 +1696,6 @@ Sample credit-card information for use in the production environment for event i
 	<li>payment.card.exp.month=12</li>
 	<li>payment.card.exp.year=2020</li>
 </ul>
-
-Sample code for salting 
-
-{% highlight java %}
-          
-    String saltedValue = "1234567890123456" + "4588883206000011";
-          
-{% endhighlight %} 
 
 /partners/v1/events/{event_id}/cart/payment?apikey={apikey}
 {: .code .red}
@@ -1726,6 +1713,34 @@ Sample code for salting
 *Polling: No*  
 *Authorization: No*
 
+{: .nested-list}
+
+- `payment` (object)  - Payment
+    * `first_name` (string) - First name of buyer
+    * `last_name` (string) - Last name of buyer
+    * `home_phone` (string) - Phone number
+    * `type` (string) - Valid values: CC, INVOICE, APPLE_PAY, GOOGLE_WALLET
+    * `email_address` (string) - Email address of user
+    * `amount` (number) - Amount to be charged
+    * `reference` (string) - Required for type=INVOICE only. Your numeric string-quoted reference number for this invoice transaction.
+    * `address` (object) - Address
+        * `line1` (string) - Address line 1
+        * `line2` (string) - Address line 2
+        * `unit` (string) - Unit number
+        * `city` (string) - City
+        * `country` (object) - Country
+            * `id` (number) - Required, use 840 for United States. See Appendix for other supported country codes
+        * `region` (object) - Region
+            * `abbreb` (string) Region abbreviation
+        * `postal_code` (string) - Postal/Zip code
+    * `card` (object) - Card information
+        * `number` (string) - Encrypted credit card number (CC type only)
+        * `cin` (string) - Encrypted cvv number (CC type only)
+        * `encryption_key` (string) - Encryption certificate id (see certificate docs earlier, CC type only) 
+        * `expire_month` (number) - Expiration month (two digit, CC type only)
+        * `expire_year` (number) - Expiration year (four digits, CC type only)
+        * `bundle` (string) - Encrypted Apple Pay or Google Wallet information
+
 
 >[Request](#req)
 >[Response](#res)
@@ -1740,35 +1755,34 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart/payment?ap
 
     "payment": {
 
-        "first_name": "John",           // Required
-        "last_name": "Doe",             // Required
-        "home_phone": "212-867-5309",   // Optional
-        "type": "CC",                   // Required, CC or INVOICE
-        "email_address" : "john.doe@ticketmaster.com", // Required
+        "first_name": "John",           
+        "last_name": "Doe",             
+        "home_phone": "212-867-5309",   
+        "type": "CC",                   
+        "email_address" : "john.doe@ticketmaster.com",
 
-        "address": {                    // Optional. (parameters below may be required if address block is supplied)
-            "line1": "123 Main Street", // Optional
-            "line2": "",                // Field required, but empty allowed
-            "unit": "1h"                // Optional
-            "city": "Los Angeles",      // Optional 
-            "country": {                // Required, use 840 for United States. See Appendix for other supported country codes
+        "address": {                    
+            "line1": "123 Main Street", 
+            "line2": "",                
+            "unit": "1h"                
+            "city": "Los Angeles",      
+            "country": {                
                 "id": 840
             },
-            "region": {                 // Optional
+            "region": {                 
                 "abbrev": "CA"
             },
-            "postal_code": "90210",     // Optional
+            "postal_code": "90210"
         },
-        "amount": "69.00",              // Required for type=CC
-        "card": {                       // All fields Required for type=CC
-            "number": "qvaEc5EX2bt5pt5DiTQR4J6iYZKxsujQPdw7LXCAnbeb8cD/CiXoB1V/pG2GAHBcHS/IdIMskFg=", // encrypted, json-encoded credit-card number
-            "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=", // encrypted, json-encoded cvv number
+        "amount": "69.00",              
+        "card": {                       
+            "number": "qvaEc5EX2bt5pt5DiTQR4J6iYZKxsujQPdw7LXCAnbeb8cD/CiXoB1V/pG2GAHBcHS/IdIMskFg=",
+            "cin": "BYdEgXIxwz6bXG6OVQRKwj0wc9KE510eXRpwoEoTrd9t9i7=",
             "encryption_key": "paysys-dev.0.us.999",
             "expire_month": 12,
             "expire_year": 2020,
             "postal_code": "90210"
-        },
-        "reference" : "15278303",       // Required for type=INVOICE only. Your numeric string-quoted reference number for this invoice transaction.
+        }
     }
 }
 {% endhighlight %}
@@ -1843,7 +1857,10 @@ public class RSAEncrypt {
     public static void main(String argv[]) {
         try {
             String certB64 = argv[0];
-            String inputData = argv[1];
+            String cardNumber = argv[1];
+          
+            String saltedCardNumber = "1894167390133120" + cardNumber; 
+                                    // ^ 16 random numbers 
 
             /* Load cert
                Cert should include begin and end cert, and be Base64 encoded, with line breaks.  For example:
@@ -1861,7 +1878,7 @@ CDEFGHIJK=
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, cert);
 
-            byte[] outputBytes = cipher.doFinal(inputData.getBytes());
+            byte[] outputBytes = cipher.doFinal(saltedCardNumber.getBytes());
             String outputB64 = DatatypeConverter.printBase64Binary(outputBytes);
             System.out.println(outputB64);
         } catch(Exception e) {
