@@ -44,10 +44,10 @@ module.exports = function makeWebpackConfig () {
 	 */
 	if (isTest) {
 		config.devtool = 'inline-source-map';
-	} else if (isProd) {
-		config.devtool = 'source-map';
-	} else {
+	} else if (!isProd) {
 		config.devtool = 'inline-source-map';
+	} else {
+		config.devtool = 'none';
 	}
 
 	/**
@@ -62,7 +62,7 @@ module.exports = function makeWebpackConfig () {
 			{
 				test: /\.js$/,
 				loader: 'babel',
-				exclude: /node_modules/,
+				include: /scripts/,
 				query: {
 					presets: ['es2015'],
 					cacheDirectory: true
@@ -100,8 +100,7 @@ module.exports = function makeWebpackConfig () {
 			path.join(__dirname, 'scripts/components/')
 		],
 		alias: {
-			jquery: 'jquery-1.11.3.min',
-			ko: 'knockout-3.4.0.debug'
+			jquery: 'jquery-1.11.3.min'
 		}
 	};
 

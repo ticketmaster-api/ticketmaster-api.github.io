@@ -2,7 +2,7 @@ var gulp  = require('gulp');
 var shell = require('gulp-shell');
 
 gulp.task('server', shell.task([
-	'jekyll serve --no-watch'
+	'jekyll serve --no-watch -I --limit_posts 1'
 ]));
 
 gulp.task('js', shell.task([
@@ -27,5 +27,9 @@ gulp.task('watch', function () {
 	], ['serve']);
 });
 
+gulp.task('prod', shell.task([
+	'npm run build'
+]));
+
 gulp.task('revers', ['js', 'serve']);
-gulp.task('default', ['server', 'js', 'serve', 'watch']);
+gulp.task('default', ['server', 'js', 'watch']);

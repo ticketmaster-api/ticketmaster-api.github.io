@@ -58,14 +58,6 @@ class ParamsFilter {
 				);
 			}
 
-			// 'dirty' flag watcher for current field
-			vmParam.isDirty = ko.pureComputed(function () {
-				if (this.select) {
-					return this.value() !== this.default && this.value() !== 'none';
-				}
-				return !!(this.value().toString()).trim().length;
-			}, vmParam);
-
 			// add calendar btn for current field
 			vmParam.hasCalendar = i.search(/(date|time)/gmi) != -1;
 
@@ -77,6 +69,8 @@ class ParamsFilter {
 
 		// prepare output for request
 		this.paramsModel(arr);
+
+		//set focus for first elem
 		this.paramInFocus(this.paramsModel()[0]);
 		this.prepareUrlPairs(arr, this.selectedParams);
 		return arr;
@@ -92,19 +86,6 @@ class ParamsFilter {
 			return ko.unwrap(item.isDirty) === true;
 		});
 		return dirty.length > 0;
-	}
-
-	/**
-	 * Enter key handler
-	 * @param model
-	 * @param event
-	 */
-	onEnterKeyDown(model, event) {
-		if (event.keyCode === 13) {
-			$('#api-exp-get-btn').trigger('click');
-		} else {
-			return true;
-		}
 	}
 
 	/**
@@ -184,6 +165,7 @@ module.exports = ko.components.register('params-filter', {
 		<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
 		
 			<section class="api-exp-params-headline">
+				<span class=""></span>
 				<button data-bind="click: slideToggle" class="btn shevron-up grey toggle-btn btn-icon" type="button">Parameters</button>
 				<div class="api-exp-params-headline-edit">
 					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
@@ -224,11 +206,9 @@ module.exports = ko.components.register('params-filter', {
 								<!-- ko ifnot: select -->
 									<custom-input params="
 										onFocusMethod: $component.onFocus,
-										value: value,
-										isDirty: isDirty
-										id: 'api-exp-param_' + name,
-										css: {dirty: isDirty, calendar: hasCalendar, popup: hasPopUp},
-										placeholder: name">
+										data: $data,
+										cssClass: hasCalendar ? 'calendar': hasPopUp ? 'popup': '',
+										validationModel: $root.validationModel">
 									</custom-input>
 								<!-- /ko -->
 							</div>

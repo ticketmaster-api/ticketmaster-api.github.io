@@ -1,0 +1,131 @@
+/**
+* Custom select component
+*/
+.api-exp-custom-input {
+	position: relative;
+	// clean
+	.custom-input {
+		&__field {
+			padding: 0 15px;
+			margin: 0;
+			height: 48px;
+			color: $slate-gray;
+			opacity: 0.7;
+			line-height: 1.5;
+			text-align: left;
+			background-color: transparent;
+			box-shadow: 0 0 0 0;
+			border: {
+				radius: 4px;
+				style: solid;
+				width: 1px;
+				color: $slate-gray-07;
+			}
+			font: {
+				size: 16px;
+				weight: normal;
+				style: normal;
+				stretch: normal;
+				family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+			}
+			&:focus,
+			&:active {
+				border-color: $cerulean !important;
+			}
+			&:hover {
+				border-color: $mariner;
+			}
+		}
+		&__validation-message {
+			display: block;
+			max-width: 100%;
+			position: absolute;
+			left: 0;
+			top: 53px;
+			margin: 0;
+			padding: 0;
+			font: {
+				size: 11px;
+				weight: normal;
+				style: normal;
+				stretch: normal;
+			}
+			line-height: 1.45;
+			color: $monza;
+		}
+		&__placeholder {
+			position: absolute;
+			z-index: -1;
+			top: 50%;
+			left: 15px;
+			margin-top: -11px;
+			display: block;
+			font: {
+				size: 16px;
+				weight: normal;
+				style: normal;
+				stretch: normal;
+			}
+			line-height: 1.5;
+			text-align: left;
+			color: #b7c9d3;
+		}
+		&__button {
+			display: none;
+			background: none;
+			border: none;
+			outline: none;
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			width: 20px;
+			height: 20px;
+			z-index: 1;
+		}
+	}
+
+	// not valid
+	.not-valid {
+		.custom-input {
+			&__field {
+				border-color: $monza  !important;
+			}
+			&__placeholder {}
+			&__button {}
+		}
+	}
+
+	// dirty
+	&.dirty {
+		.custom-input__placeholder {
+			display: none;
+		}
+	}
+	// has calendar
+	&.calendar {
+		.custom-input__button {
+			display: block;
+			background: url($img-calendar) 50% 50% no-repeat;
+		}
+	}
+	// has popup
+	&.popup {
+		.custom-input__button {
+			display: block;
+			background: url($img-id) 50% 50% no-repeat;
+		}
+	}
+	// padding for inputs with btns
+	&.calendar,
+	&.popup {
+		.custom-input__field {
+			padding: 0 40px 0 15px;
+		}
+	}
+
+	//tablet
+	@media #{$max-1200} {}
+
+	//mobile
+	@media #{$max-768} {}
+}
