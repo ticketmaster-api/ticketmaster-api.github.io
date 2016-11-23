@@ -62,9 +62,18 @@ module.exports = function makeWebpackConfig () {
 			{
 				test: /\.js$/,
 				loader: 'babel',
-				include: /scripts/,
+				include: [
+					path.resolve(__dirname, "scripts"),
+				],
 				query: {
-					presets: ['es2015'],
+					presets: [
+						"es2015",
+						"stage-0"
+					],
+					plugins: [
+						'transform-runtime',
+						"transform-decorators-legacy"
+					],
 					cacheDirectory: true
 				}
 			},
@@ -84,7 +93,8 @@ module.exports = function makeWebpackConfig () {
 				test: /\.html$/,
 				loader: 'raw'
 			}
-		]
+		],
+		noPares: /jquery[\-.0-9a-z]*/
 	};
 
 	/**

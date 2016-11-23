@@ -25,14 +25,6 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.shevron {
-	@include transition(all 0.2s linear);
-	&.down,
-	&[aria-expanded="true"],
-	[aria-expanded="true"] > & {
-		@include rotate(180deg);
-	}
-}
 .popover {
 	opacity: 0.9;
 	border-radius: 4px;
@@ -74,20 +66,49 @@
 		border-bottom-color: #7356a5 !important;
 	}
 }
-.shevron-up {
-	&.blue {
-		background: {
-			image: url($img-shevron-down-blue);
-			repeat: no-repeat;
+.shevron {
+	@include transition(all 0.2s linear);
+	background: {
+		repeat: no-repeat;
+	}
+	&.up {
+		&.blue {
+			background: {
+				image: url($img-shevron-down-blue);
+			}
+		}
+		&.grey {
+			background: {
+				image: url($img-shevron-up-gray);
+			}
+		}
+		&.white {
+			background: {
+				image: url($img-shevron-down-white);
+			}
 		}
 	}
-	&.grey {
-		background: {
-			image: url($img-shevron-up-gray);
-			repeat: no-repeat;
+
+	&.down,
+	&[aria-expanded="true"],
+	[aria-expanded="true"] > & {
+		@include rotate(180);
+	}
+
+	&.right {
+		&.white {
+			background: {
+				image: url($img-shevron-down-white);
+			}
+		}
+		&.blue {
+			background: {
+				image: url($img-shevron-right-blue);
+			}
 		}
 	}
 }
+
 .white-shevron-up {
 	background: {
 		image: url($img-shevron-down-white);
@@ -261,7 +282,6 @@
 		}
 	}
 	.toggle-btn {
-		margin: 0 10px 0 0;
 		font: {
 			size: 16px;
 			weight: bold;
@@ -269,13 +289,16 @@
 			stretch: normal;
 			family: "TMSans-Bold", Helvetica, Arial, sans-serif;
 		}
-		line-height: 1.7;
+		line-height: 1.5;
 		text-align: left;
 		color: #b7c9d3;
-		padding: 0 10px 0 15px;
 		background: {
 			position: 0 50%;
 		};
+		position: relative;
+  		z-index: 1;
+  		padding: 0 30px 0 0;
+  		margin: 0 -30px 0 0;
 	}
 }
 

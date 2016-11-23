@@ -10,8 +10,6 @@ import * as customBindings from './customBindings';
 import * as components from './components';
 import * as services from './services';
 
-var RequestsListViewModel = require('./ViewModels/requestsListViewModel');
-
 /**
  * Gets deep prop
  * @returns {*[]}
@@ -32,62 +30,34 @@ Object.getProp = function(o, s) {
 	return o;
 };
 
-function Component(params) {
-	return function(viewModel) {
-		ko.components.register(params.name, {
-			viewModel: viewModel,
-			template: params.template
-		})
-	}
-}
-
-
 class AppViewModel {
 	constructor({base = {}, apiKey, config, rest}) {
 		this.base = base;
 		this.apiKey = apiKey;
 		this.config = config;
-		this.rest = rest;
+		this.restService = rest;
 
 		let parsedUrl = this.parseUrl();
 
 		// observables
-		this.selectedCategory = ko.observable(parsedUrl.apiCategory || '');
-		this.selectedMethodType = ko.observable('ALL');
-		this.selectedMethod = ko.observable(parsedUrl.methodId || '');
-		this.selectedParams = ko.observableArray([]);
-		this.requests = ko.observableArray([]);
-		this.onError = ko.observable({});
+		this.selectedCategory = ko.observable(parsedUrl.apiCategory || '').syncWith('SELECTED_CATEGORY');
+		this.selectedMethodType = ko.observable('ALL').syncWith('SELECTED_METHOD_TYPE');
+		this.selectedMethod = ko.observable(parsedUrl.methodId || '').syncWith('SELECTED_METHOD');
+		this.selectedParams = ko.observableArray([]).syncWith('SELECTED_PARAMS');
 		this.selectedMethodData = ko.observable(this.getMethodData({}));
 
 		this.initValidation();
 
 		// computed
-		this.URL = ko.computed(() => [
-			ko.unwrap(this.selectedMethodData),
-			this.apiKey,
-			ko.unwrap(this.selectedParams)
-		]);
 
 		this.sendButtonText = ko.pureComputed(() => ko.unwrap(this.selectedMethodData).method);
 
 		this.sharePath = ko.pureComputed(() => this.formDeepLinkingUrl());
 
-		this.requestsList = new RequestsListViewModel({
-			requests: this.requests,
-			selectedParams: this.selectedParams,
-			sharePath: this.sharePath,
-			setParams: this.setParams.bind(this)
-		});
-
 		this.selectedMethod.subscribe(val => {
 			this.validationModel($.extend({}, ko.unwrap(this.apiKeyValidationModel)));
 			this.selectedMethodData(this.getMethodData({methodId: val}));
 		});
-	}
-
-	get validationText() {
-		return 'Please solve form validation issues';
 	}
 
 	/**
@@ -114,7 +84,7 @@ class AppViewModel {
 		let model = ko.validatedObservable($.extend({}, ko.unwrap(this.validationModel), ko.unwrap(this.apiKeyValidationModel)));
 
 		if (model.isValid()) {
-			this.rest(this.URL(), this.requests, this.onError, this.base);
+			this.restService.sendRequest();
 		} else {
 			this.formIsValid(false);
 			this.sendBtnValidationText(this.validationText);
@@ -143,6 +113,7 @@ class AppViewModel {
 		return `${location.origin}${location.pathname.replace(/\/$/gmi, '')}?${querys.join('&')}`
 	}
 
+	//rest service
 	getMethodData({apiCategory, type, methodId}) {
 		let category = ko.unwrap(apiCategory || this.selectedCategory);
 		let methodType = ko.unwrap(type || this.selectedMethodType || 'ALL');
@@ -150,8 +121,10 @@ class AppViewModel {
 		return this.base[category] && this.base[category][methodType] && this.base[category][methodType][method] || {};
 	}
 
+	//**********
 	parseUrl() {
 		let location = window.location.search;
+
 		if (location) {
 			var querys = location.replace(/^\?/g, '').split('&');
 			var obj = {
@@ -160,15 +133,26 @@ class AppViewModel {
 				parameters: []
 			};
 
+			let globalQueryObj = window.location.query = {};
 			querys.map(query => {
 				let [key, val] = decodeURI(query).split('=');
 
-				if (key === 'apiCategory' || key === 'methodId') {
-					obj[key] = val;
+				if (Object.keys(obj).indexOf(key) !== -1) {
+					try {
+						obj[key] = globalQueryObj[key] = JSON.parse(val);
+					} catch (exception_var) {
+						obj[key] = globalQueryObj[key] = val;
+					}
 				} else {
+					try {
+						globalQueryObj[key] = JSON.parse(val);
+					} catch (exception_var) {
+						globalQueryObj[key] = val;
+					}
+
 					obj.parameters.push({
 						name: key,
-						value: val
+						value: globalQueryObj[key]
 					})
 				}
 			});
@@ -184,13 +168,17 @@ class AppViewModel {
 			return obj;
 		}
 		return {};
-	}
-
-	setParams({category, method = 'ALL', methodId, params}) {
+	};
+	//**********
+	setParams = ({category, method = 'ALL', methodId, params}) => {
 		this.selectedCategory(category);
 		this.selectedMethodType(method);
 		this.selectedMethod(methodId);
 		this.selectedParams.notifySubscribers(params, 'paramsSet');
+	}
+
+	get validationText() {
+		return 'Please solve form validation issues';
 	}
 }
 

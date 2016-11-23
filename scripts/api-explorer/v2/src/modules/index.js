@@ -6,3 +6,4 @@ require('slick.min');
 require('knockout-scrollbar');
 require('expose?Clipboard!clipboard');
 require('clamp.min');
+require('knockout-postbox');

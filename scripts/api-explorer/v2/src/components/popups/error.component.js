@@ -1,14 +1,15 @@
 class ErrorPopUp {
-	constructor(params) {
+	constructor() {
 		this.status = ko.observable('');
 		this.statusText = ko.observable('');
 		this.details = ko.observable(``);
-		params.onError.subscribe(errorObj => {
-			this.status(Object.getProp(errorObj, '.responseJSON.errors[0].status') || errorObj.status || 'unnown');
+
+		ko.postbox.subscribe('REQUEST_ERROR', errorObj => {
+			this.status(Object.getProp(errorObj, '.responseJSON.errors[0].status') || errorObj.status || 'unknown');
 			this.statusText(Object.getProp(errorObj, '.responseJSON.errors[0].statusText') || errorObj.statusText || '');
-			this.details(Object.getProp(errorObj, '.responseJSON.errors[0].detail') || 'unnown');
+			this.details(Object.getProp(errorObj, '.responseJSON.errors[0].detail') || 'unknown');
 			this.togglePopUp();
-		}, this, 'error');
+		})
 	}
 	togglePopUp() {
 		$('#error-modal').modal('show');

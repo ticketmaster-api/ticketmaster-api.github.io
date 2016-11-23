@@ -1,17 +1,10 @@
-/*
-todo: single - first load;
-todo: paging (params)
-todo: ulr parse
-todo: fields validation
- */
-
 var self;
 
 class CardGroup {
 	constructor(params) {
 		self = this;
 		this.config = this.constructor.getConfig(params);
-		this.data = this.constructor.prepareData({params, config: this.config._CONFIG});
+		this.data = this.prepareData({params, config: this.config._CONFIG});
 		this.groupIndex = params.groupIndex || 0;
 		this.sectionIndex = ko.unwrap(params.sectionIndex);
 		this.colorClass = params.colorClass;
@@ -62,7 +55,7 @@ class CardGroup {
 	/**
 	 * Data manipulations
 	 */
-	static prepareData({params = {}, config}) {
+	prepareData({params = {}, config = this.config._CONFIG}) {
 		let data = $.extend(true, {}, params.data) || {};
 		this.unwrappObjects(data, config);
 		this.removeDeprecated(data, config);
@@ -75,7 +68,7 @@ class CardGroup {
 	 * @param _propTitle {string}
 	 * @returns {object} revised data
 	 */
-	static wrappPrimitives({data, _propTitle = 'object'}) {
+	wrappPrimitives({data, _propTitle = 'object'}) {
 		let newData = {}, val;
 
 		// gathering all primitive props in additional panel
@@ -96,7 +89,7 @@ class CardGroup {
 	/**
 	 * Unwraps objects
 	 */
-	static removeDeprecated(obj, config = {}) {
+	removeDeprecated(obj, config = {}) {
 		var deprecated = config.deprecated || [];
 
 		deprecated.map(item => {
@@ -112,7 +105,7 @@ class CardGroup {
 	/**
 	 * Removes deprecated objects
 	 */
-	static unwrappObjects(obj, config = {}) {
+	unwrappObjects(obj, config = {}) {
 		var unwrapp = config.unwrapp || [];
 
 		unwrapp.map(item => {
@@ -137,7 +130,7 @@ class CardGroup {
 	static getPagingInfo(params, pageObj) {
 		let pageParam, size;
 
-		if (pageObj) {
+		if (pageObj && (params.pageParam || params.params)) { //temporary solution todo: need to be revised and refactored
 			size = params.cardSize || pageObj.size;
 			pageParam = params.pageParam || params.params.find(item => item.name === 'page');
 

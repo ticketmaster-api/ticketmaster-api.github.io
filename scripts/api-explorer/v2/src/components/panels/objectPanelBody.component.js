@@ -1,73 +1,57 @@
 var self;
 
-function ObjectPanelBody(params) {
-	self = this;
-	this.data = this.data || ko.observable(params.data.value);
-	this.config = params.config;
-	this._panelName = params.data.key;
-	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
-	this.panelGroup = params.panelGroup || {};
-	this.getMore = this.panelGroup.getMore;
-	this.page = params.page;
-	this.collapseId = params.collapseId;
-	this._allInside = !!Object.getProp(ko.unwrap(this.config), '._CONFIG.allInside');
-	this.sortByConfig = this.panelGroup.sortByConfig;
+class ObjectPanelBody {
+	constructor({data = {}, config, index = this.cardIndex, panelGroup = {}, page, collapseId}) {
+		self = this;
+		this.data = this.data || ko.observable(data.value);
+		this.config = config;
+		this._panelName = data.key;
+		this.cardIndex = ko.unwrap(index);
+		this.panelGroup = panelGroup;
+		this.getMore = panelGroup.getMore;
+		this.page = page;
+		this.collapseId = collapseId;
+		this._allInside = !!Object.getProp(ko.unwrap(config), '._CONFIG.allInside');
+		this.sortByConfig = panelGroup.sortByConfig;
+	}
+
+	onEnterKeyDown = (model, event) => {
+		if (event.keyCode === 13) {
+			let page = this.page;
+			var value = +event.currentTarget.value;
+			value = Number.isNaN(value) ? 0 : value;
+			var pageNumber = ~~value < 0 ? 0 : ~~value;
+			page.pageParam(pageNumber < ko.unwrap(this.data).totalPages ? pageNumber : ko.unwrap(this.data).totalPages - 1);
+			page.setParams({
+				category: page.category,
+				method: page.method,
+				methodId: page.methodId,
+				params: page.params
+			});
+			$('#api-exp-get-btn').trigger('click');
+		} else {
+			return true;
+		}
+	};
+
+	canBeCopied() {
+		return !!Object.getProp(self.config, '._CONFIG.copyBtn.' + this.key) && typeof this.value !== 'object';
+	}
+
+	setActive(key, value, model, e){
+		$(e.currentTarget)
+			.parents('.slick-slide')
+			.find('.item.object')
+			.removeClass('active');
+		$(e.currentTarget)
+			.parent('.item')
+			.addClass('active');
+
+		this.getMore.call(this, key, value);
+	}
 }
 
-ObjectPanelBody.prototype.onEnterKeyDown = function (model, event) {
-	if (event.keyCode === 13) {
-		let page = this.page;
-		var value = +event.currentTarget.value;
-		value = Number.isNaN(value) ? 0 : value;
-		var pageNumber = ~~value < 0 ? 0 : ~~value;
-		page.pageParam(pageNumber < ko.unwrap(this.data).totalPages ? pageNumber : ko.unwrap(this.data).totalPages - 1);
-		page.setParams({
-			category: page.category,
-			method: page.method,
-			methodId:	page.methodId,
-			params: page.params
-		});
-		$('#api-exp-get-btn').trigger('click');
-	} else {
-		return true;
-	}
-};
 
-ObjectPanelBody.prototype.canBeCopied = function () {
-	if (typeof this.value === 'object') return false;
-	this.copied = ko.observable(false);
-	if (Object.getProp(self.config, '._CONFIG.copyBtn.' + this.key)) {
-		return true;
-	}
-
-	return false;
-};
-
-ObjectPanelBody.prototype.copyValue = function (model, event) {
-	var currentField = this;
-	self.clipboard = new Clipboard(event.currentTarget);
-	self.clipboard.on('success', function onSuccessCopy(e) {
-			currentField.copied(true);
-			setTimeout(function () {
-				currentField.copied(false);
-			}, 500);
-			e.clearSelection();
-		})
-		.on('error', function onErrorCopy(e) {
-			console.error('Action:', e.action);
-			console.error('Trigger:', e.trigger);
-		});
-};
-
-ObjectPanelBody.prototype.removeHandler = function () {
-	self.clipboard && self.clipboard.destroy();
-	delete self.clipboard;
-};
-ObjectPanelBody.prototype.setActive = function (key, value, model, e) {
-	$(e.currentTarget).parents('.slick-slide').find('.item.object').removeClass('active');
-	$(e.currentTarget).parent('.item').addClass('active');
-	this.getMore.call(this, key, value);
-};
 
 module.exports = ko.components.register('object-panel-body', {
 	viewModel:  ObjectPanelBody,
@@ -95,7 +79,8 @@ module.exports = ko.components.register('object-panel-body', {
 					<!-- /ko -->
 					
 					<!-- ko if: $component.canBeCopied.call($data, '#prop-value-' + key + $index()) -->
-						<button data-bind="event: {mouseover: $component.copyValue, mouseout: $component.removeHandler}, css: {'copied': copied}, attr: {'data-clipboard-text': value.toString(), id: 'prop-value-' + key + $index()}, popover: {type: 'tooltip', title: 'Copy value'}" type="button" class="btn btn-icon btn-copy"></button>
+						<!-- copy property btn -->
+						<button data-bind="copyToClipboard: {text: value.toString()}, attr: {id: 'prop-value-' + key + $index()}, popover: {type: 'tooltip', title: 'Copy value'}" type="button" class="btn btn-icon btn-copy"></button>
 					<!-- /ko -->
 					
 						<!-- ko if: typeof value === 'object' && $component._allInside -->
