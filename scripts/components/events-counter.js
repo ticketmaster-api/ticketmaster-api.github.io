@@ -7,7 +7,7 @@
       values[el] = $('#js-'+el+'-counter').text();
     });
     initialValObj = values;
-  };
+  }
 
   $(function() {
     initEventCountersPanel(); // Counter panel init
@@ -117,7 +117,7 @@
     }
     parseInt(str,10);
     return str;
-  };
+  }
 
   function countAnimate(selectorEl,val) {
     $('#js-'+selectorEl+'-counter').prop('Counter',  initialValObj[selectorEl] ).animate({

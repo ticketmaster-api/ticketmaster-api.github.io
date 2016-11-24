@@ -587,7 +587,7 @@ var TicketmasterCountdownWidget = function () {
           a = "AM";
 
       if (H > 11) a = "PM";
-      if (H == 0) {
+      if (H === 0) {
         H = 12;
       } else if (H > 12) {
         H = H - 12;
@@ -705,8 +705,7 @@ var TicketmasterCountdownWidget = function () {
           style.textContent = this.responseText;
           document.getElementsByTagName("head")[0].appendChild(style);
         } else {
-          //alert("theme wasn't loaded");
-          console.log("theme wasn't loaded");
+          console.info("theme wasn't loaded");
         }
       }
     }
@@ -773,9 +772,6 @@ var TicketmasterCountdownWidget = function () {
     key: 'parseEvent',
     value: function parseEvent(eventSet) {
       if (!eventSet.id) {
-        if (typeof $widgetModalNoCode !== "undefined") {
-          $widgetModalNoCode.modal();
-        }
         return false;
       }
 

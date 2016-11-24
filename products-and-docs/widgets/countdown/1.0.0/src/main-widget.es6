@@ -486,7 +486,7 @@ class TicketmasterCountdownWidget {
       a = "AM";
 
     if (H > 11) a = "PM";
-    if (H == 0) {
+    if (H === 0) {
       H = 12;
     } else if (H > 12) {
       H = H - 12;
@@ -597,8 +597,7 @@ class TicketmasterCountdownWidget {
         document.getElementsByTagName("head")[0].appendChild(style);
       }
       else {
-        //alert("theme wasn't loaded");
-        console.log("theme wasn't loaded");
+        console.info("theme wasn't loaded");
       }
     }
   }
@@ -666,9 +665,6 @@ class TicketmasterCountdownWidget {
 
   parseEvent(eventSet){
     if(!eventSet.id){
-      if(typeof($widgetModalNoCode) !== "undefined"){
-        $widgetModalNoCode.modal();
-      }
       return false;
     }
 
