@@ -57,7 +57,14 @@ Object.byString = function(o, s) {
     nextCircleColorIndex = currentColumnColorIndex, // color index used to display in circles
     screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0), // get screen width (used for slider reinitialization),
     worker = new Worker('../scripts/components/highlight-worker.js'); // Json-formatter worker
-		
+
+    function isLogged() {
+      if(apiKey !== defaultApiKey) {
+        $('#api-key').val(apiKey);
+      }
+    }
+    isLogged();
+  
       //get Cookie by name
       function getCookie(cname) {
           var name = cname + "=";
