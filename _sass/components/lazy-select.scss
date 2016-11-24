@@ -144,7 +144,7 @@
         max-height: 76px;
         overflow-y: auto;
         @media (max-width: 1200px) {
-          max-height: 90px;;
+          max-height: initial;
         }
         .ms-elem-selection{
           display: inline-block;
