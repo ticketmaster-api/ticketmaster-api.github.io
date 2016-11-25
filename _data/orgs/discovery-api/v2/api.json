@@ -61,15 +61,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -87,6 +78,15 @@
           "default" : "20",
           "maximum" : 500.0,
           "minimum" : 1.0,
+          "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale the response content will be returned",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
           "x-example" : ""
         } ],
         "responses" : {
@@ -183,15 +183,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -209,6 +200,15 @@
           "default" : "20",
           "maximum" : 500.0,
           "minimum" : 1.0,
+          "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale the response content will be returned",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
           "x-example" : ""
         } ],
         "responses" : {
@@ -571,15 +571,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -597,6 +588,15 @@
           "default" : "20",
           "maximum" : 500.0,
           "minimum" : 1.0,
+          "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale the response content will be returned",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
           "x-example" : ""
         } ],
         "responses" : {
@@ -740,15 +740,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -766,6 +757,15 @@
           "default" : "20",
           "maximum" : 500.0,
           "minimum" : 1.0,
+          "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale the response content will be returned",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
           "x-example" : ""
         } ],
         "responses" : {
@@ -987,6 +987,16 @@
           "position" : 3,
           "description" : "Tertiary Genre for additional detail when describring an entity (Alternative Rock, Ambient Pop, etc)",
           "$ref" : "#/definitions/Level"
+        },
+        "type" : {
+          "position" : 5,
+          "description" : "A Type represents a kind or group of people. (Donation, Group, Individual, Merchandise, Event Style, etc)",
+          "$ref" : "#/definitions/Level"
+        },
+        "subType" : {
+          "position" : 6,
+          "description" : "Secondary Type to further categorize an entity (Band, Choir, Chorus, etc)",
+          "$ref" : "#/definitions/Level"
         }
       },
       "description" : "Classification"
@@ -1013,13 +1023,10 @@
           "type" : "boolean",
           "default" : false
         },
-        "leapDurationField" : {
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "durationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
-        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
@@ -1029,6 +1036,9 @@
         "maximumValue" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "leapDurationField" : {
+          "$ref" : "#/definitions/DurationField"
         },
         "name" : {
           "type" : "string"
@@ -1045,10 +1055,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
@@ -1169,6 +1179,16 @@
           "type" : "string",
           "description" : "Type of the entity",
           "enum" : [ "event", "venue", "attraction" ]
+        },
+        "distance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "units" : {
+          "type" : "string"
+        },
+        "location" : {
+          "$ref" : "#/definitions/Location"
         },
         "id" : {
           "type" : "string",
@@ -1943,6 +1963,13 @@
           "type" : "string",
           "description" : "Type of the entity",
           "enum" : [ "event", "venue", "attraction" ]
+        },
+        "distance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "units" : {
+          "type" : "string"
         },
         "id" : {
           "type" : "string",
