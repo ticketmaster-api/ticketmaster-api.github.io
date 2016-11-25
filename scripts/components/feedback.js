@@ -36,7 +36,7 @@
     function submitForm(){
         var $textAreaDescription = $('#description'),
             charCount = $textAreaDescription.val().length;
-        if(3000 <= charCount) {
+        if(3000 < charCount) {
             showMsgError('#feedback-message-error', 4000 , charCount);
             return false;
         }

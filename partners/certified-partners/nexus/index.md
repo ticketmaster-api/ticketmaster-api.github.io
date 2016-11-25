@@ -92,7 +92,7 @@ var $nexusForm = $('.js_nexus_form'),
 
         e.preventDefault();
         $('button', $nexusForm).prop('disabled',true);
-        if(3000 <= charCount) {
+        if(3000 < charCount) {
           showMsgError('#message-error', 4000 , charCount);
           return false;
         }
