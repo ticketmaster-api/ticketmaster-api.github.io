@@ -31,7 +31,7 @@ class CustomInput {
 
 		// validation by type
 		if (data.type === 'integer') {
-			obj.nullableDecimal = data.value;
+			obj.nullableInt = data.value;
 		}
 
 		this.value = data.value.extend(obj);
