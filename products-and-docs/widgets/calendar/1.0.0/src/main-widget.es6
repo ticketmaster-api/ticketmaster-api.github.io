@@ -1336,11 +1336,13 @@ class TicketmasterCalendarWidget {
             let firstDay = new Date(period);
             let lastDay = new Date(period);
             lastDay.setDate(lastDay.getDate() + 1);
+            firstDay.setHours(0);   lastDay.setHours(23);
+            firstDay.setMinutes(0); lastDay.setMinutes(59);
+            firstDay.setSeconds(0); lastDay.setSeconds(59);
         }
 
-        firstDay.setHours(0);   lastDay.setHours(23);
-        firstDay.setMinutes(0); lastDay.setMinutes(59);
-        firstDay.setSeconds(0); lastDay.setSeconds(59);
+        firstDay = new Date( new Date(new Date()).toISOString() );
+        lastDay = new Date( new Date(new Date().valueOf()+24*60*60*1000).toISOString() );
 
         return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
     }
