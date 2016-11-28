@@ -61,13 +61,13 @@
       <div class="row row-native">
         <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-postalcode">ZIP Code</label>
-          <input type="text" id="w-postalcode" name="w-postalcode" value="90015">
+          <input type="text" id="w-postalcode" name="w-postalcode" value="">
         </div>
         <div class="col-lg-6 col-md-6 col-sm-3">
           <label for="w-radius">
             Radius <span class="config_field__description">(miles)</span>
           </label>
-          <input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25" min="1" max="19999">
+          <input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="" min="1" max="19999" disabled="disabled">
         </div>
       </div>
       <div class="row row-native">
@@ -79,9 +79,9 @@
             <select id="w-country" class="custom_select__field" name="w-country" disabled>
               <option selected value="US">United States</option>
             </select>
-            <input class="custom_select__placeholder" type="text" value="United States" readonly="">
+            <input class="custom_select__placeholder" type="text" value="All" readonly="">
             <ul class="custom_select__list js_widget_custom__list">
-              <li class="custom_select__item" data-value="US">United States</li>
+              <li class="custom_select__item" data-value="">All</li>
             </ul>
           </div>
         </div>

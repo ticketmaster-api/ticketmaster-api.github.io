@@ -14,6 +14,10 @@
   input.js_numeric_input {
     padding: 8px 30px 8px 16px;
     margin: 0;
+		opacity: 1;
+		&:disabled {
+			opacity: 0.5;
+		}
   }
   .arrow {
     content: '';
@@ -40,6 +44,7 @@
     &__inc.disabled,
     &__dec.disabled {
       border-color: transparent transparent $n3 transparent;
+			cursor: default;
     }
   }
 

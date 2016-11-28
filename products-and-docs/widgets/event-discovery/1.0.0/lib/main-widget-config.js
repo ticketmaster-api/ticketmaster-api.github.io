@@ -223,19 +223,20 @@
       widgetNode.setAttribute('w-country', '');
       isPostalCodeChanged = true;
 
-      var numDivClass = event.target.parentNode.nextElementSibling.querySelector('div');
       var numInputClass = document.getElementById('w-radius');
+      var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
+      var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
 
       if (targetValue == '') {
-        numDivClass.classList.remove('js_numeric-input-group');
         numInputClass.setAttribute('disabled', 'disabled');
         numInputClass.value = '';
+        incArrow.classList.add('disabled');
+        decArrow.classList.add('disabled');
       } else {
-        if (numDivClass.classList.contains('js_numeric-input-group')) {} else {
-          numDivClass.classList.add('js_numeric-input-group');
-          numInputClass.removeAttribute('disabled');
-          numInputClass.value = '25';
-        }
+        numInputClass.removeAttribute('disabled');
+        numInputClass.value = '25';
+        incArrow.classList.remove('disabled');
+        decArrow.classList.remove('disabled');
       }
     }
 
