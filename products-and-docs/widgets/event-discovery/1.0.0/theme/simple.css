@@ -265,6 +265,7 @@ div[w-theme="simple"] .event-wrapper {
     font-size: 12px;
     line-height: 1.3;
     color: #fff;
+	  margin: 0 !important;
 }
 
 div[w-theme="simple"] .event-content-wraper,
