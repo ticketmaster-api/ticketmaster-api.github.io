@@ -237,6 +237,7 @@
         numInputClass.value = '25';
         incArrow.classList.remove('disabled');
         decArrow.classList.remove('disabled');
+        widgetNode.setAttribute('w-radius', '25');
       }
     }
 
