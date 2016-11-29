@@ -10,6 +10,7 @@ class Panel {
 		this.isExpanded = this.constructor.isExpanded(this.config);
 		this.collapseId = panelGroup.collapseId + this.$index;
 		this.isActive = ko.observable(this.isExpanded);
+		this.subjectID = ko.observable('');
 	}
 
 	setActive(model, event) {
@@ -44,12 +45,12 @@ module.exports = ko.components.register('panel', {
 	template:`
 		<section data-bind="css: {[colorClass]: true, active: isActive}" class="panel panel-primary">
 			<!--panel-heading-->
-			<panel-heading params="panelGroup: panelGroup, config: config, data: $data, index: $index, page: page, setActive: setActive.bind($component), collapseId: collapseId, colorClass: colorClass, isExpanded: isExpanded"></panel-heading>
+			<panel-heading params="panelGroup: panelGroup, config: config, data: $data, index: $index, page: page, setActive: setActive.bind($component), collapseId: collapseId, colorClass: colorClass, isExpanded: isExpanded, subjectID:subjectID"></panel-heading>
 			
 			<!--panel-body-->
 			<section data-bind="attr: {'id': collapseId}, css: {'in': isExpanded}" class="panel-collapse collapse">				
 				<!-- ko if: (typeof $data.value === 'object' && !$.isArray($data.value)) -->
-					<object-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup, page: page, collapseId: collapseId"></object-panel-body>
+					<object-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup, page: page, collapseId: collapseId, subjectID: subjectID"></object-panel-body>
 				<!-- /ko -->
 				<!-- ko if: (typeof $data.value === 'object' && $.isArray($data.value)) -->
 					<array-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup"></array-panel-body>
