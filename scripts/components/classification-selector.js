@@ -146,7 +146,7 @@
               genresArr[ii][opt.parent.val] = genresArr[ii][opt.parent.to];
               delete genresArr[ii][opt.parent.to];
 
-              if(opt.child.fieldName in genresArr[ii]['_embedded'])
+              if(genresArr[ii]['_embedded'] && genresArr[ii]['_embedded'][opt.child.fieldName])
                 subgenresArr = genresArr[ii]['_embedded'][opt.child.fieldName];
               if( 0<subgenresArr.length ) {
                 for (var j = 0; j < subgenresArr.length; j++) {
