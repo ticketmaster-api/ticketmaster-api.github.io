@@ -8,11 +8,5 @@ ko.bindingHandlers.lazyLoader = {
 		if (selector) {
 			$(element).lazySelector({selector});
 		}
-	},
-	update: function (element, valueAccessor, allBindingsAccessor){
-		var bindings = allBindingsAccessor();
-		if (bindings.value != null) {
-			$(element).change();
-		}
 	}
 };
