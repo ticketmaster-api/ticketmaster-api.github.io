@@ -111,7 +111,7 @@ module.exports = ko.components.register('request-component', {
 				<button data-bind="copyToClipboard: {text: req}, popover: copyUrlPopover" class="btn btn-icon btn-copy" type="button"></button>
 				<button data-bind="click: getRawData, popover: getRawDataPopover" class="btn btn-icon btn-raw" type="button"></button>
 			</div>
-			<button data-bind="click: getMoreMenu" class="btn btn-icon btn-more"></button>
+			<button data-bind="click: getMoreMenu, css: {active: isActiveMoreMenu}" class="btn btn-icon btn-more"></button>
 			<div class="panel-title">
 				<!-- ko if: hasResponse -->
 					<button data-bind="click: getDetails, attr: {id: ids.details.id, 'data-target': ids.details.target, 'aria-controls': ids.details.controls}" type="button" class="btn btn-icon shevron up blue view-control" data-toggle="collapse" data-parent="#response" aria-expanded="false"></button>

@@ -49,7 +49,6 @@ class AppViewModel {
 		this.initValidation();
 
 		// computed
-
 		this.sendButtonText = ko.pureComputed(() => ko.unwrap(this.selectedMethodData).method);
 
 		this.sharePath = ko.pureComputed(() => this.formDeepLinkingUrl());
