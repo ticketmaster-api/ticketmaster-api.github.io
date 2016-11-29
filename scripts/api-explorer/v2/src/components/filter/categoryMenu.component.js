@@ -1,9 +1,9 @@
 var self;
 
 class CategoryMenu {
-	constructor({data}) {
+	constructor({data, selectedCategory}) {
 		self = this;
-		this.selectedCategory = ko.observable().syncWith('SELECTED_CATEGORY');
+		this.selectedCategory = selectedCategory;
 		var initCategory = ko.unwrap(this.selectedCategory);
 		this.categories = ko.observableArray(Object.keys(data).map((item, index) => {
 			var checked = initCategory ? item === initCategory: !index;
