@@ -1,8 +1,5 @@
-var self;
-
 class ParamsFilter {
 	constructor({selectedMethod, selectedParams, selectedMethodData, animationSpeed = 200}) {
-		self = this;
 		this.animationSpeed = animationSpeed;
 		this.selectedMethod = selectedMethod;
 		this.selectedParams = selectedParams;
@@ -24,9 +21,9 @@ class ParamsFilter {
 			this.updateViewModel(val)
 		});
 
-		selectedParams.subscribe(selectedParams => {
+		selectedParams.subscribe(selected => {
 			let paramsModel = ko.unwrap(this.paramsModel);
-			selectedParams.map(param => {
+			selected.map(param => {
 				let matchedParam = paramsModel.find(val => param.name === val.name);
 				matchedParam.value(ko.unwrap(param.value));
 			});
@@ -37,8 +34,8 @@ class ParamsFilter {
 	/**
 	 * Initial build of Select Model
 	 */
-	updateViewModel() {
-		var obj = ko.unwrap(self.selectedMethodData).parameters || {},
+	updateViewModel = () => {
+		var obj = ko.unwrap(this.selectedMethodData).parameters || {},
 			arr = [];
 
 		for (var i in obj) {
@@ -49,7 +46,7 @@ class ParamsFilter {
 			// copies all values from model to view-model
 			let vmParam = $.extend(true, {}, param);
 
-			vmParam.value = ko.observable(vmParam.select && param.options[0].name || vmParam.value || '');
+			vmParam.value = ko.observable(vmParam.value || vmParam.select && param.options[0].name || '');
 
 			//add observable for selected options
 			if (vmParam.select) {
@@ -74,7 +71,7 @@ class ParamsFilter {
 		this.paramInFocus(this.paramsModel()[0]);
 		this.prepareUrlPairs(arr, this.selectedParams);
 		return arr;
-	}
+	};
 
 	/**
 	 * Dirty params form observable method
@@ -106,9 +103,9 @@ class ParamsFilter {
 	 * Maches focused param
 	 * @param item
 	 */
-	onFocus(item) {
-		self.paramInFocus(item);
-	}
+	onFocus = (item) => {
+		this.paramInFocus(item);
+	};
 
 	/**
 	 * Filters params by defined value
@@ -138,10 +135,10 @@ class ParamsFilter {
 	 * @param vm {object} view model
 	 * @param e {object} event
 	 */
-	onParamsClear(vm, e) {
-		var arr = ko.unwrap(self.paramsModel);
+	onParamsClear = (vm, e) => {
+		var arr = ko.unwrap(this.paramsModel);
 
-		self.paramsModel(arr.map(param => {
+		this.paramsModel(arr.map(param => {
 			param.value(param.select && param.default || '');
 
 			if (param.select) {
@@ -156,7 +153,7 @@ class ParamsFilter {
 		// prepare output for request
 		this.paramInFocus(this.paramsModel()[0]);
 		this.prepareUrlPairs(arr, this.selectedParams);
-	}
+	};
 }
 
 module.exports = ko.components.register('params-filter', {
@@ -165,8 +162,8 @@ module.exports = ko.components.register('params-filter', {
 		<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
 		
 			<section class="api-exp-params-headline">
-				<span class=""></span>
-				<button data-bind="click: slideToggle" class="btn shevron-up grey toggle-btn btn-icon" type="button">Parameters</button>
+				<button data-bind="click: slideToggle" class="btn btn-icon toggle-btn" type="button">Parameters</button>
+				<span class="btn btn-icon shevron up grey" data-bind="css: {down: isHidden}"></span>
 				<div class="api-exp-params-headline-edit">
 					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
 					<button data-bind="click: onParamsClear" class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
@@ -191,8 +188,6 @@ module.exports = ko.components.register('params-filter', {
 				<section class="api-exp-params-filter">
 					<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
 						<!--select-->
-						
-						
 							<div class="api-exp-params-filter__field">
 								<!-- ko if: select -->
 									<custom-select params="
@@ -212,9 +207,6 @@ module.exports = ko.components.register('params-filter', {
 									</custom-input>
 								<!-- /ko -->
 							</div>
-						
-						
-						
 					</section>
 				</section><!--params filter-->
 			</div>

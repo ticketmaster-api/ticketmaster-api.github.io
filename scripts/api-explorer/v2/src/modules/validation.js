@@ -4,7 +4,7 @@ ko.validation.rules.pattern.message = 'Invalid.';
 
 ko.validation.init({
 	registerExtenders: true,
-	messagesOnModified: false,
+	messagesOnModified: true,
 	decorateInputElement: true,
 	errorMessageClass: 'custom-input__validation-message',
 	errorElementClass: 'not-valid',

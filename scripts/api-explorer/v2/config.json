@@ -7,7 +7,7 @@
           "copyBtn": {
             "name": true
           },
-          "request": "http://www.google.com",
+          "request": "http://localhost:4000/api-explorer/v2?apiCategory=Discovery%20API%20v2&methodId=discovery.v2.attractions.get&format=json&size=5&page=0",
           "index": 0
         }
       },

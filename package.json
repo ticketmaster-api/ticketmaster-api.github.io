@@ -4,7 +4,7 @@
   "description": "Hello",
   "main": "_site/index.html",
   "scripts": {
-		"build": "webpack --bail --progress --profile",
+    "build": "webpack --bail --progress --profile",
     "start": "jekyll serve",
     "start-with-limit-3": "jekyll serve --no-watch -I --limit_posts 3",
     "event-discovery-widget-1.0.0-once": "babel products-and-docs/widgets/event-discovery/1.0.0/src -d products-and-docs/widgets/event-discovery/1.0.0/lib --source-maps",
@@ -31,7 +31,10 @@
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-preset-stage-3": "^6.17.0",
     "exports-loader": "^0.6.3",
     "expose-loader": "^0.7.1",
     "imports-loader": "^0.6.5",
@@ -40,7 +43,9 @@
     "worker-loader": "^0.7.1"
   },
   "dependencies": {
+    "babel-runtime": "^6.18.0",
     "knockout": "^3.4.1",
+    "knockout-postbox": "^0.5.2",
     "knockout-scrollbar": "0.0.3",
     "knockout.validation": "^2.0.3",
     "webpack": "^1.13.2"

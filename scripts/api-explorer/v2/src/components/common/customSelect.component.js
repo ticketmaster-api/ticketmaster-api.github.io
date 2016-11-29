@@ -24,7 +24,7 @@ class CustomSelect {
 	fieldWatcher(data) {
 		if (data) {
 			this.isDirty = data.isDirty = ko.pureComputed(() => {
-				return data.value() !== data.default && data.value() !== 'none';
+				return data.value() !== data.default && data.value() !== '';
 			});
 		}
 	}
@@ -101,7 +101,7 @@ module.exports = ko.components.register('custom-select', {
 			<select class="api-exp-custom-select__field" name="api-exp-method" data-bind="options: options, optionsText: 'name', value: selectedOption"></select>
 				<span class="api-exp-custom-select__placeholder">
 				<input type="text" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption, readonly: isReadOnly}">
-				<button class="btn btn-icon shevron shevron-up blue api-exp-custom-select__chevron" data-bind="css: {hidden: isOneOption, down: isExpandeded}" type="button"></button>
+				<button class="btn btn-icon shevron up blue api-exp-custom-select__chevron" data-bind="css: {hidden: isOneOption, down: isExpandeded}" type="button"></button>
 			</span>
 			<ul data-bind="foreach: options" class="api-exp-custom-select__list js-custom-select-wrapper">
 				<li data-bind="css: {'active': checked}" class="api-exp-custom-select__item">

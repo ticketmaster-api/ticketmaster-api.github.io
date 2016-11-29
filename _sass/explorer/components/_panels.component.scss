@@ -638,24 +638,12 @@ $border-radius: 7px;
 								&:hover,
 								&.active{
 									.key {}
-									.btn {
-										background-image: none;
-									}
+									.btn {}
 								}
 							}
 						}
 					}
-					.btn.blue-shevron-right {
-						background-image: none;
-						position: absolute;
-						top: 0;
-						left: 0;
-						height: 100%;
-						display: block;
-						width: 100%;
-						padding: 0;
-						margin: 0;
-					}
+					.btn.blue-shevron-right {}
 					.padding {}
 
 					.list-group {
@@ -676,11 +664,7 @@ $border-radius: 7px;
 									color: #fff;
 								}
 							}
-							.btn {
-								top: 0;
-								left: 0;
-								margin: 0;
-							}
+							.btn {}
 							.name {
 								font: {
 									size: 12px;

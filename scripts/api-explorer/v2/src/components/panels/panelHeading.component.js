@@ -1,7 +1,7 @@
-import {getRandomColor} from '../../modules/colorClasses';
+import {colorsService} from '../../services';
 
 class PanelHeading {
-	constructor({config = {}, data = {}, setActive, isExpanded, page, collapseId, colorClass}) {
+	constructor({config = {}, data = {}, setActive, isExpanded, page, collapseId, colorClass, panelGroup}) {
 		this.config = config._CONFIG;
 		this.setActive = setActive;
 		this.isExpanded = isExpanded;
@@ -10,7 +10,8 @@ class PanelHeading {
 		this.data = data.value;
 		this.collapseId = collapseId;
 		this.page = page;
-		this.init({page, colorClass})
+		this.panelGroup = panelGroup;
+		this.init({page, colorClass});
 	}
 
 	init({page, colorClass}) {
@@ -18,13 +19,22 @@ class PanelHeading {
 			this.cardSize = page.size;
 		}
 		if (this.config.request) {
-			this.getRandomColor = getRandomColor(colorClass);
+			this.anotherRequestColor = colorsService.getRandomColor(colorClass);
 		}
 	}
 
 	followRequest(value) {
 		let url = Object.getProp(value, '.config.request');
-		url && location.assign(url);
+		let regularExp = window.location.origin + window.location.pathname.slice(0, -1);
+
+		if (url && url.match(new RegExp(regularExp))) {
+			this.anotherRequest = ko.observable({url, panelGroup: this.panelGroup, color: this.anotherRequestColor}).publishOn('ANOTHER_REQUEST');
+		} else {
+			location.assign(url);
+		}
+	}
+	get hasAnotherRequest() {
+		return !!this.config.request;
 	}
 }
 
@@ -48,9 +58,9 @@ module.exports = ko.components.register('panel-heading', {
 					<pagination params="number: data.number, totalPages: data.totalPages, page: page"></pagination>
 				<!-- /ko-->
 				
-				<!-- ko if: config.request !== undefined -->
+				<!-- ko if: hasAnotherRequest -->
 				<section class="follow-request">
-					<span data-bind="css: getRandomColor" class="color-indicator"></span>
+					<span data-bind="css: anotherRequestColor" class="color-indicator"></span>
 					<button data-bind="click: followRequest" class="btn btn-request" type="button">another request</button>
 				</section>
 				<!-- /ko-->

@@ -30,8 +30,10 @@ class CustomInput {
 		let obj = {required: data.required};
 
 		// validation by type
-		if (data.type === 'integer') {
-			obj.nullableInt = data.value;
+		switch (data.type) {
+			case 'integer':
+				obj.nullableInt = data.value;
+				break;
 		}
 
 		this.value = data.value.extend(obj);
@@ -69,7 +71,7 @@ module.exports = ko.components.register('custom-input', {
 				<input data-bind="textInput: value, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
 								type="text"
 								class="custom-input__field form-control">
-				<span data-bind="text: placeholder" class="custom-input__placeholder"></span>
+				<span data-bind="text: placeholder, css: {required: data.required}" class="custom-input__placeholder"></span>
 				<button class="custom-input__button">&nbsp;</button>
 			</div>
 			<p data-bind="validationMessage: value" class="custom-input__validation-message"></p>

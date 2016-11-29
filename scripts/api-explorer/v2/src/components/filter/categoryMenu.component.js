@@ -1,15 +1,14 @@
 var self;
 
 class CategoryMenu {
-	constructor(params) {
+	constructor({data}) {
 		self = this;
-
-		this.selectedCategory = params.selectedCategory;
-		var initCategory = ko.unwrap(params.selectedCategory);
-		this.categories = ko.observableArray(Object.keys(params.data).map(function (item, index) {
+		this.selectedCategory = ko.observable().syncWith('SELECTED_CATEGORY');
+		var initCategory = ko.unwrap(this.selectedCategory);
+		this.categories = ko.observableArray(Object.keys(data).map((item, index) => {
 			var checked = initCategory ? item === initCategory: !index;
 			// initial load
-			checked && self.selectedCategory(item);
+			checked && this.selectedCategory(item);
 			return {
 				checked: ko.observable(checked),
 				name: item,
@@ -17,15 +16,15 @@ class CategoryMenu {
 			}
 		}));
 
-		params.selectedCategory.subscribe(categoryName => {
-			checkActive(self.categories, categoryName);
+		this.selectedCategory.subscribe(categoryName => {
+			checkActive(this.categories, categoryName);
 		})
 	}
 
-	selectCategory(category) {
+	selectCategory = (category) => {
 		var categoryName = category.name;
-		self.selectedCategory(categoryName);
-		checkActive(self.categories, categoryName);
+		this.selectedCategory(categoryName);
+		checkActive(this.categories, categoryName);
 	}
 }
 

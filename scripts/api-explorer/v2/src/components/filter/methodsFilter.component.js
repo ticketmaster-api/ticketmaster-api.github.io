@@ -15,13 +15,13 @@ class MethodsFilter {
 	/**
 	 * Initialization phase
 	 */
-	init() {
+	init = () => {
 		this.updateMethodsModel(ko.unwrap(this.selectedMethodType));
 
 		//on change
 		this.selectedMethodType.subscribe(val => this.updateMethodsModel(val));
 		this.selectedMethod.subscribe(val => {
-			this.selectedMethodName(this.data[ko.unwrap(self.selectedCategory)]['ALL'][val].name)
+			this.selectedMethodName(this.data[ko.unwrap(this.selectedCategory)]['ALL'][val].name)
 		})
 	}
 
@@ -45,10 +45,10 @@ class MethodsFilter {
 	 * Updates VM for methods select
 	 * @param methodType
 	 */
-	updateMethodsModel(methodType) {
-		var obj = this.data[ko.unwrap(self.selectedCategory)][methodType]|| {},
+	updateMethodsModel = (methodType) => {
+		var obj = this.data[ko.unwrap(this.selectedCategory)][methodType]|| {},
 			arr = [],
-			selectedMethod = ko.unwrap(self.selectedMethod),
+			selectedMethod = ko.unwrap(this.selectedMethod),
 			count = 0;
 
 		for (var i in obj) {
@@ -63,7 +63,7 @@ class MethodsFilter {
 			});
 
 			if (selectedMethod === property.id) {
-				self.selectedMethodName(property.name);
+				this.selectedMethodName(property.name);
 			}
 
 			arr.push(vmMethod);
