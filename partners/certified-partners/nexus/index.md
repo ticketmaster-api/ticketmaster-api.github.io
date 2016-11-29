@@ -83,47 +83,4 @@ We offer the support, knowledge and validation to make sure your solution is ful
 </form>
 </div>
 
-<script>
-var $nexusForm = $('.js_nexus_form'),
-    $textAreaDescription = $('#company-detail-text');
-
-    $nexusForm.submit(function(e){
-        var charCount = $textAreaDescription.val().length;
-
-        e.preventDefault();
-        $('button', $nexusForm).prop('disabled',true);
-        if(3000 < charCount) {
-          showMsgError('#message-error', 4000 , charCount);
-          return false;
-        }
-        $.ajax({
-          dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
-          data: $nexusForm.serialize() 
-        }).done(function() {
-          //callback which can be used to show a thank you message
-          //and reset the form
-          showMsgSuccess('#message-success', 4000);
-        });
-        return false; //to stop the form from submitting
-    }); 
-    function showMsgSuccess(id, delay){
-        $(id).slideDown(400).delay( delay ).slideUp(200);
-        $nexusForm.trigger("reset");
-        //$('.js_custom_select',$nexusForm).trigger("custom-reset");
-        //$textAreaDescription.css('height',''); //reset height of textarea
-        $('button', $nexusForm).prop('disabled',false);
-    };
-    function showMsgError(id, delay, charCount){
-      var slideUpSpeed = 200;
-      $(id).append('<span id="contact-char-count"> Current count is '+charCount+'</span>')
-      $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
-      setTimeout(
-        function(){
-          $('#contact-char-count').remove();
-          $('button', $nexusForm).prop('disabled',false);
-        },
-        delay + slideUpSpeed*3);
-    };
-</script>
-
+<script src="/scripts/components/nexus-form-validate.js"></script>

@@ -2,10 +2,12 @@
 
     var $modal = $('#feedback-modal'),
         $modalAlert = $('#feedback-alert-modal'),
+        $modalAlertError = $('#feedback-alert-modal-error'),
         $form = $modal.find('#js_feedback_form'),
         $email = $form.find('#email'),
         $btn = $modal.find('#js_feedback_btn'),
         $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
+        $btnAlertError = $modalAlertError.find('#js_feedback_btn_alert_ok-error'),
         cssValidationClass = 'feedback_form-validation';
 
     function resetForm(){
@@ -22,22 +24,26 @@
         $form.removeClass(cssValidationClass);
     }
     function showMsgError(id, delay, charCount){
-        var slideUpSpeed = 200;
-        $(id).append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>')
-        $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
-        setTimeout(
+        // var slideUpSpeed = 200;
+        // Close dialog
+        $modal.modal('hide');
+        
+        $(id).modal();
+        $('#text-overflow-message').append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>')
+        //$(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
+        /*setTimeout(
           function(){
               $('#feedback-contact-char-count').remove();
               $('#js_feedback_btn').prop('disabled',false);
           },
-          delay + slideUpSpeed*3);
+          delay + slideUpSpeed*3);*/
     }
 
     function submitForm(){
         var $textAreaDescription = $('#description'),
             charCount = $textAreaDescription.val().length;
         if(3000 < charCount) {
-            showMsgError('#feedback-message-error', 4000 , charCount);
+            showMsgError('#feedback-alert-modal-error', 4000 , charCount);
             return false;
         }
 
@@ -75,6 +81,10 @@
 
     $btnAlertOk.on('click', function(){
         $modalAlert.modal('hide');
+    });
+
+    $btnAlertError.on('click', function(){
+        $modalAlertError.modal('hide');
     });
 
     $modal.on('hidden.bs.modal', resetForm);
