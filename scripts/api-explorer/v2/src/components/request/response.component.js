@@ -71,7 +71,9 @@ class ResponseComponent{
 			currentSlider.slick('slickRemove', i, false);
 		}
 		// move to next slide
-		currentSlider.slick('slickNext');
+		setTimeout(() => {
+			currentSlider.slick('slickNext');
+		}, 310);
 	}
 }
 
