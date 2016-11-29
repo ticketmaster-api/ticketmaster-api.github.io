@@ -64,15 +64,14 @@ class CustomInput {
 }
 
 module.exports = ko.components.register('custom-input', {
-  viewModel: CustomInput,
-  template: `
+	viewModel: CustomInput,
+	template: `
 		<div data-bind="css: {[cssClass]: true, dirty: isDirty, virgin: isVirgin}" class="api-exp-custom-input">
 			<div data-bind="validationElement: value">
-				<input data-bind="textInput: value, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
+				<input data-bind="lazyLoader: {name: placeholder}, textInput: value, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
 								type="text"
 								class="custom-input__field form-control">
 				<span data-bind="text: placeholder, css: {required: data.required}" class="custom-input__placeholder"></span>
-				<button class="custom-input__button">&nbsp;</button>
 			</div>
 			<p data-bind="validationMessage: value" class="custom-input__validation-message"></p>
 		</div>
