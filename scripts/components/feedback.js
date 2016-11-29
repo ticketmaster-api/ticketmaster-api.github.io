@@ -29,7 +29,7 @@
         $modal.modal('hide');
         
         $(id).modal();
-        $('#text-overflow-message').append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>')
+        $('#text-overflow-message').append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>');
         //$(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
         /*setTimeout(
           function(){
