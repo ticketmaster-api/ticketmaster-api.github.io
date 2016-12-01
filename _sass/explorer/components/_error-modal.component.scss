@@ -67,9 +67,7 @@
 	@media #{$max-768} {
 		width: 100%;
 		.error-pop-up {
-			max-width: 420px;
 			width: 100%;
-			min-width: 320px;
 			padding: 15px;
 			.modal-header {}
 			.error-title {

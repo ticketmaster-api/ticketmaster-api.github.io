@@ -1,6 +1,7 @@
 require('jquery-migrate-1.3.0.min');
-require('bootstrap.min');
 require('expose?ko!knockout');
+require('lazy-selector');
+require('bootstrap.min');
 require('./validation');
 require('slick.min');
 require('knockout-scrollbar');

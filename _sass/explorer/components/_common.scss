@@ -192,6 +192,12 @@
 		image: url($img-more_grey) !important;
 		repeat: no-repeat;
 	}
+	&.active {
+		background: {
+			image: url($img-more_grey_active) !important;
+			repeat: no-repeat;
+		}
+	}
 }
 .color-indicator {
 	$size: 16px;
@@ -276,6 +282,7 @@
 		border: none;
 		border-radius: 0;
 		@include transition(all, 300ms);
+		@include box-shadow(none);
 		&:hover,
 		&:active{
 			box-shadow: none;

@@ -48,7 +48,7 @@ Open APIs, search and look up events, attractions, venues and classifications ac
 {% endcapture %}
 
 {% capture partner-api-descr %}
-{: .label}
+{: .label.text-left}
 ### PARTNER APIs  
 
 

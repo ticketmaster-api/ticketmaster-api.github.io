@@ -71,7 +71,9 @@ class ResponseComponent{
 			currentSlider.slick('slickRemove', i, false);
 		}
 		// move to next slide
-		currentSlider.slick('slickNext');
+		setTimeout(() => {
+			currentSlider.slick('slickNext');
+		}, 310);
 	}
 }
 
@@ -97,7 +99,7 @@ module.exports = ko.components.register('response-component', {
 							<span class="tab-label">Structure:</span>
 						</li>
 						<li class="tab">
-							<span class="tab-label breadcrumbs truncate">… Events /er.com/discovery/v1/events/1D004F92642F0C7D.json?{apikey} / https://app.ticketmaster.com/discovery/v1/events/1D004F926</span>
+							<span class="tab-label breadcrumbs truncate"></span>
 						</li>
 					</ul>
 

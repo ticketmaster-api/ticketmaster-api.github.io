@@ -1,7 +1,7 @@
 import {colorsService} from '../../services';
 
 class PanelHeading {
-	constructor({config = {}, data = {}, setActive, isExpanded, page, collapseId, colorClass, panelGroup}) {
+	constructor({config = {}, data = {}, setActive, isExpanded, page, collapseId, colorClass, panelGroup, subjectID}) {
 		this.config = config._CONFIG;
 		this.setActive = setActive;
 		this.isExpanded = isExpanded;
@@ -11,6 +11,7 @@ class PanelHeading {
 		this.collapseId = collapseId;
 		this.page = page;
 		this.panelGroup = panelGroup;
+		this.subjectId = subjectID;
 		this.init({page, colorClass});
 	}
 
@@ -25,16 +26,44 @@ class PanelHeading {
 
 	followRequest(value) {
 		let url = Object.getProp(value, '.config.request');
-		let regularExp = window.location.origin + window.location.pathname.slice(0, -1);
+		if (url) {
+			let method = {};
+			url = url.split(new RegExp('https://app.ticketmaster.com/'))[1];
+			PanelHeading.getDeepProp(url, base, method);
+			method = method.object;
 
-		if (url && url.match(new RegExp(regularExp))) {
-			this.anotherRequest = ko.observable({url, panelGroup: this.panelGroup, color: this.anotherRequestColor}).publishOn('ANOTHER_REQUEST');
-		} else {
-			location.assign(url);
+			method.parameters = Object.keys(method.parameters).map(key => {
+				let param = method.parameters[key];
+				if (param.name === 'id') {
+					param.value = ko.unwrap(this.subjectId);
+				} else if (param.name === 'format') {
+					param.value = 'json'
+				}
+				return param;
+			});
+
+
+			this.anotherRequest = ko.observable({url, method, panelGroup: this.panelGroup, color: this.anotherRequestColor}).publishOn('ANOTHER_REQUEST');
 		}
 	}
+
 	get hasAnotherRequest() {
 		return !!this.config.request;
+	}
+
+	static getDeepProp(val, obj, result) {
+		if (typeof obj !== 'object') return;
+
+		for (let prop in obj) {
+			if (obj.hasOwnProperty(prop) && typeof obj[prop] === 'object' && !result.length) {
+				if (obj[prop].path === val) {
+					result.object = obj[prop];
+					break;
+				} else {
+					PanelHeading.getDeepProp(val, obj[prop], result);
+				}
+			}
+		}
 	}
 }
 

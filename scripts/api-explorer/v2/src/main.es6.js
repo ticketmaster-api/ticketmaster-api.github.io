@@ -38,7 +38,6 @@ class AppViewModel {
 		this.restService = rest;
 
 		let parsedUrl = this.parseUrl();
-
 		// observables
 		this.selectedCategory = ko.observable(parsedUrl.apiCategory || '').syncWith('SELECTED_CATEGORY');
 		this.selectedMethodType = ko.observable('ALL').syncWith('SELECTED_METHOD_TYPE');
@@ -49,7 +48,6 @@ class AppViewModel {
 		this.initValidation();
 
 		// computed
-
 		this.sendButtonText = ko.pureComputed(() => ko.unwrap(this.selectedMethodData).method);
 
 		this.sharePath = ko.pureComputed(() => this.formDeepLinkingUrl());

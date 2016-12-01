@@ -1,7 +1,7 @@
 var self;
 
 class ObjectPanelBody {
-	constructor({data = {}, config, index = this.cardIndex, panelGroup = {}, page, collapseId}) {
+	constructor({data = {}, config, index = this.cardIndex, panelGroup = {}, page, collapseId, subjectID}) {
 		self = this;
 		this.data = this.data || ko.observable(data.value);
 		this.config = config;
@@ -13,8 +13,15 @@ class ObjectPanelBody {
 		this.collapseId = collapseId;
 		this._allInside = !!Object.getProp(ko.unwrap(config), '._CONFIG.allInside');
 		this.sortByConfig = panelGroup.sortByConfig;
+		this.subjectID = subjectID
+		this.sendId(this.data);
 	}
-
+	sendId(data) {
+		let id = ko.unwrap(data).id;
+		if(id) {
+			this.subjectID(id)
+		}
+	}
 	onEnterKeyDown = (model, event) => {
 		if (event.keyCode === 13) {
 			let page = this.page;

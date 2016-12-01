@@ -29,20 +29,15 @@ class RestService {
 			this.selectedMethodData = this.getMethodData()
 		});
 
-		ko.postbox.subscribe('ANOTHER_REQUEST', ({url, panelGroup, color}) => {
+		ko.postbox.subscribe('ANOTHER_REQUEST', ({method, panelGroup, color}) => {
 			this.anotherRequest = true;
-			let obj = this.parseUrl(url);
-			this.selectedCategory(obj.apiCategory);
-			this.selectedMethod(obj.methodId);
-			this.selectedParams(obj.parameters);
-			this.selectedMethodData = this.getMethodData();
-			this.req = this.prepareUrl();
+			let url = this.prepareUrl(method.base, method.path, method.parameters);
 
-			this.ajaxService({url: this.req, type: 'GET', callback: (res, msg) => {
-				let category = obj.apiCategory;
-				let type = 'GET';
-				let methodId = obj.methodId;
-				let params = obj.parameters;
+			this.ajaxService({url, type: method.method, callback: (res, msg) => {
+				let category = method.category;
+				let type = method.method;
+				let methodId = method.id;
+				let params = method.parameters;
 
 				let resObj = {
 					category,
@@ -60,8 +55,6 @@ class RestService {
 				if (msg == 'error') {
 					// notifying error modal
 					this.error = ko.observable(res).publishOn('REQUEST_ERROR');
-					// error popover of request
-					// resObj.error = res;
 				} else {
 					this.error && delete this.error;
 					resObj.response = res.responseJSON;
@@ -83,14 +76,14 @@ class RestService {
 	 * Filters and prepares params pairs
 	 * @returns {boolean}
 	 */
-	prepareUrl() {
+	prepareUrl(_domain, _path, _selectedParams) {
 		let replacement,
 			url,
 			params,
-			selectedParams = ko.unwrap(this.selectedParams);
+			selectedParams = ko.unwrap(_selectedParams || this.selectedParams);
 
-		let domain = this.selectedMethodData.base;
-		let path = this.selectedMethodData.path;
+		let domain = _domain || this.selectedMethodData.base;
+		let path = _path || this.selectedMethodData.path;
 
 		params = selectedParams.filter(item => item.style === 'query');
 
