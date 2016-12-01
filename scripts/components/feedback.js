@@ -80,14 +80,16 @@
     $btnAlertOk.on('click', function(){
         $modalAlert.modal('hide');
         clearBody(310); //310 - time of fading bootstrap modal
-        resetForm(); //clear on success
+        // resetForm(); //clear on success
     });
 
     $btnAlertError.on('click', function(){
         $modalAlertError.modal('hide');
         clearBody(310);
-        $modal.modal('show');
-        $btn.attr('disabled', false);
+        // $modal.modal('show');
+        // $btn.attr('disabled', false);
     });
+
+    $modal.on('hidden.bs.modal', resetForm);
 
 })(jQuery);
