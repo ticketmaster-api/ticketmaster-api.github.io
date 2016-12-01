@@ -1,6 +1,8 @@
 var $nexusForm = $('.js_nexus_form'),
-  $modalAlert = $('#feedback-alert-modal'),
-  $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
+  $modalAlert = $('#nexus-alert-modal'),
+  $modalAlertError = $('#nexus-alert-modal-error'),
+  $btnAlertOk = $modalAlert.find('#js_nexus_btn_alert_ok'),
+  $btnAlertError = $modalAlertError.find('#js_nexus_btn_alert_ok-error'),
   $textAreaDescription = $('#company-detail-text'),
   formKey = '41f4cf3970c05bb985abec394b1e3c0b';
 
@@ -20,7 +22,7 @@ $nexusForm.submit(function(e){
   e.preventDefault();
   $('button', $nexusForm).prop('disabled',true);
   if(3000 < charCount) {
-    showMsgError('#feedback-alert-modal-error',  charCount);
+    showMsgError('#nexus-alert-modal-error',  charCount);
     return false;
   }
   console.log('formKey',formKey);
@@ -30,7 +32,7 @@ $nexusForm.submit(function(e){
     data: $nexusForm.serialize()
   }).done(function() {
     //callback which used to show a thank you message
-    showMsgSuccess('#feedback-alert-modal');
+    showMsgSuccess('#nexus-alert-modal');
   });
   return false; //to stop the form from submitting
 });
@@ -44,12 +46,20 @@ function showMsgSuccess($modalAlert){
 }
 
 function showMsgError(id, charCount){
-  $('#text-overflow-message').append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>');
+  $('#nexus-text-overflow-message').append('<span id="nexus-contact-char-count"> Current count is '+charCount+'</span>');
   $(id).modal();
 }
 
 $btnAlertOk.on('click', function(){
   $modalAlert.modal('hide');
+  resetForm(); //clear on success
+});
+
+$btnAlertError.on('click', function(){
+  $modalAlertError.modal('hide');
+  
+  // $modal.modal('show');
+  // $btn.attr('disabled', false);
 });
 
 checkKey(formKey);
