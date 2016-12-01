@@ -23,32 +23,23 @@
         // Clear highlight
         $form.removeClass(cssValidationClass);
     }
-    function showMsgError(id, delay, charCount){
-        // var slideUpSpeed = 200;
+    function showMsgError(id, charCount){
         // Close dialog
         $modal.modal('hide');
         
+        $('#text-overflow-message').append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>');
         $(id).modal();
-        $('#text-overflow-message').append('<span id="feedback-contact-char-count"> Current count is '+charCount+'</span>')
-        //$(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
-        /*setTimeout(
-          function(){
-              $('#feedback-contact-char-count').remove();
-              $('#js_feedback_btn').prop('disabled',false);
-          },
-          delay + slideUpSpeed*3);*/
     }
 
     function submitForm(){
         var $textAreaDescription = $('#description'),
             charCount = $textAreaDescription.val().length;
         if(3000 < charCount) {
-            showMsgError('#feedback-alert-modal-error', 4000 , charCount);
+            showMsgError('#feedback-alert-modal-error',  charCount);
             return false;
         }
 
         $email.val($email.val().toLocaleLowerCase());
-
 
         $.ajax({
             dataType: 'jsonp',
@@ -60,7 +51,8 @@
             $modal.modal('hide');
 
             // Show message
-            $modalAlert.modal();
+            $modalAlert.modal('show');
+
         });
     }
 
@@ -79,14 +71,23 @@
         }
     });
 
+    function clearBody(delay) {
+        setTimeout(function(){
+            $('body').removeAttr('style');
+        },delay);
+    }
+
     $btnAlertOk.on('click', function(){
         $modalAlert.modal('hide');
+        clearBody(310); //310 - time of fading bootstrap modal
+        resetForm(); //clear on success
     });
 
     $btnAlertError.on('click', function(){
         $modalAlertError.modal('hide');
+        clearBody(310);
+        $modal.modal('show');
+        $btn.attr('disabled', false);
     });
-
-    $modal.on('hidden.bs.modal', resetForm);
 
 })(jQuery);
