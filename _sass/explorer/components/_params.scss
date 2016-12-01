@@ -44,6 +44,7 @@
 			display: inline-block;
 			&-copy {
 				background: url($img-copy_grey) no-repeat;
+				display: none;
 			}
 			&-clear {
 				width: 28px;
@@ -73,7 +74,7 @@
 		.api-exp-params-headline-edit {
 			display: block;
 			opacity: 1;
-			margin: 0 0 0 15px;
+			margin: 0 0 0 0;
 		}
 	}
 
