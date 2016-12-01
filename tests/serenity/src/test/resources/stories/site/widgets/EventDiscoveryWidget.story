@@ -20,8 +20,8 @@ And embedded html code contains stored values on the Event Discovery Widget page
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that Country field is changed accordingly Zip Code
 Given open Event Discovery Widget page
-When change value of Zip Code <zipCode>
-Then the Country field contains appropriate value <countryName>
+When change value of ZipCode <zipCode> on Event Discovery Widget Page
+Then the Country Field contains appropriate value <countryName> on Event Discovery Widget Page
 Examples:
 |zipCode|countryName  |
 |5555   |Australia    |
@@ -58,6 +58,7 @@ Examples:
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check boundary values of RADIUS
 Given open Event Discovery Widget page
+And change value of ZipCode 90015 on Event Discovery Widget Page
 When set Radius <setValue> on Event Discovery Widget page
 Then Radius value is <actualValue> on Event Discovery Widget page
 Examples:

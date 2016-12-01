@@ -8,6 +8,7 @@ import java.util.Map;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PD_Widget_EventDiscoverySteps {
     //Private Fields
@@ -105,6 +106,11 @@ public class PD_Widget_EventDiscoverySteps {
     }
 
     @Step
+    public void setZipCodeValue(String zipCode) {
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setZipCodeValue(zipCode);
+    }
+
+    @Step
     public void checkThatRequiredFieldsAreNotEmpty() {
         Assert.assertFalse("The API Key is empty", eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue().isEmpty());
     }
@@ -160,6 +166,12 @@ public class PD_Widget_EventDiscoverySteps {
         Assert.assertEquals("The Source actual result does not equals expected result", getCurrentSession().get("source"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getSourceValue());
         Assert.assertEquals("The Classification Name actual result does not equals expected result", getCurrentSession().get("classificationName"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getClassificationNameValue());
         Assert.assertEquals("The Event Count actual result does not equals expected result", getCurrentSession().get("eventCount"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getEventCountValue());
+    }
+
+    @Step
+    public void fieldCountryContains(String countryName) {
+        String countryValue = eventDiscoveryWidgetPage.getEventDiscoveryWidget().getSelectedCountry();
+        assertTrue(String.format("Country field contains %s but expected result is: %s", countryValue, countryName), countryValue.equalsIgnoreCase(countryName));
     }
 
     public String getCountryNameByCode(String countryCode) {

@@ -1,6 +1,7 @@
 package bla.tm.widgets;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
+import net.serenitybdd.core.exceptions.SerenityManagedException;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
@@ -55,6 +56,8 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     @FindBy(xpath = "//div[@class='events-counter']")
     private WebElementFacade posterEventsCounter;
 
+    private String countryDropdownXPath = "//select[@id='w-country']";
+
     //Constructors
     public EventDiscoveryWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
                                     final long timeoutInMilliseconds) {
@@ -88,6 +91,7 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     public void setZipCodeValue(String zipCode) {
         zipCodeField.clear();
         zipCodeField.sendKeys(zipCode, Keys.ENTER);
+        waitForSomeActionHappened(500);
     }
 
     @Override
@@ -257,5 +261,15 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
             countNumber = matcher.group(1);
         }
         return countNumber;
+    }
+
+    @Override
+    public String getSelectedCountry() {
+        return getCountryWebElementFacade().getSelectedVisibleTextValue();
+    }
+
+    //Private Methods
+    private WebElementFacade getCountryWebElementFacade(){
+        return getPage().element(By.xpath(countryDropdownXPath));
     }
  }

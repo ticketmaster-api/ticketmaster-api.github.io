@@ -35,6 +35,11 @@ public class EventDiscoveryWidgetDefinition {
         eventDiscoveryWidgetSteps.setRadius(setValue);
     }
 
+    @Given("change value of ZipCode $zipCode on Event Discovery Widget Page")
+    @When("change value of ZipCode $zipCode on Event Discovery Widget Page")
+    public void changeZipCode(String zipCode){
+        eventDiscoveryWidgetSteps.setZipCodeValue(zipCode);
+    }
     //Then
     @Then("the required fields are not empty and have default values on the Event Discovery Widget page")
     public void checkThatRequiredFieldsAreNotEmpty() {
@@ -69,5 +74,10 @@ public class EventDiscoveryWidgetDefinition {
     @Then("all fields have been reseted to defaults on the Event Discovery Widget page")
     public void checkThatAllFieldsHaveBeenResetedToDefaults() {
         eventDiscoveryWidgetSteps.checkThatAllFieldsHaveBeenResetedToDefaults();
+    }
+
+    @Then("the Country Field contains appropriate value $countryName on Event Discovery Widget Page")
+    public void checkThatCountryFieldContainsValue(String countryName){
+        eventDiscoveryWidgetSteps.fieldCountryContains(countryName);
     }
 }

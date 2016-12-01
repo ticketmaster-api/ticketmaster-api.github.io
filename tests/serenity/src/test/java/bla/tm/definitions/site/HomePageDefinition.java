@@ -32,6 +32,7 @@ public class HomePageDefinition {
         homePage.validateAndClickElement(key);
     }
 
+    @Given("navigate to Pantheon LogIn page from Home page")
     @When("navigate to Pantheon LogIn page from Home page")
     public void openLogInPageAndCheckUserIsNotLoggedIn() {
         homePage.clickLogIn();

@@ -3,7 +3,7 @@ package bla.tm.steps.pantheon;
 import bla.tm.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
 
-public class AddNewAppSteps {
+public class UserAppsSteps {
 
     AddNewAppPage addNewAppPage;
 
