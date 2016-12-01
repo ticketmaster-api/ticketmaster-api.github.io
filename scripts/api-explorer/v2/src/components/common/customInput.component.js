@@ -24,9 +24,6 @@ class CustomInput {
 		this.isDirty = data.isDirty = ko.pureComputed(() => {
 			return !!(data.value().toString()).trim().length;
 		});
-		data.value.subscribe(val => {
-			console.log(val)
-		})
 	}
 
 	initValidation(data, validationModel) {
@@ -40,9 +37,6 @@ class CustomInput {
 		}
 
 		this.value = data.value.extend(obj);
-		this.value.subscribe(val => {
-			console.log(val);
-		})
 		let model = ko.unwrap(validationModel);
 		model[data.name] = this.value;
 		validationModel(model);
@@ -73,7 +67,7 @@ module.exports = ko.components.register('custom-input', {
 	template: `
 		<div data-bind="css: {[cssClass]: true, dirty: isDirty, virgin: isVirgin}" class="api-exp-custom-input">
 			<div data-bind="validationElement: value">
-				<input data-bind="lazyLoader: {name: placeholder}, value: value, valueUpdate: 'input', event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
+				<input data-bind="textInput: value, lazyLoader: {name: placeholder, val: value}, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
 								type="text"
 								class="custom-input__field form-control">
 				<span data-bind="text: placeholder, css: {required: data.required}" class="custom-input__placeholder"></span>
