@@ -6,8 +6,8 @@ var $nexusForm = $('.js_nexus_form'),
 
 /*set new key for localhost*/
 function checkKey() {
-  var localhost = /(localhost:4000)+/ig;
-  var host = window.location.host;
+  var localhost = /(localhost:4000)+/ig,
+      host = window.location.host;
 
   if(localhost.test(host)){
     formKey = '892e0c5e4c169c6128c7342614608330';
