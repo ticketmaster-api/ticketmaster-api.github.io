@@ -10,7 +10,9 @@ copyTestContentOld() {
  \cp -avrf ./tests/content/* ./ #copy test content
 }
 
-copyTestContent(){}
+copyTestContent() {
+ echo 'skip copyTestContent'
+}
 
 if [ "${TEST_SEVERITY}" = "OFF" ]; then
   exit 0
