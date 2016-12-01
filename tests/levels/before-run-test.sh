@@ -4,10 +4,10 @@ set -e #exit on error
 sleep 10 # give xvfb some time to start
 
 copyTestContent() {
-  rm ./_site/* -rf #remove directory _site
-  rm ./events/* -rf #remove directory events
-  rm ./partners/* -rf #remove directory partners
-  \cp -avrf ./tests/content/* ./ #copy test content
+#  rm ./_site/* -rf #remove directory _site
+#  rm ./events/* -rf #remove directory events
+#  rm ./partners/* -rf #remove directory partners
+#  \cp -avrf ./tests/content/* ./ #copy test content
 }
 
 if [ "${TEST_SEVERITY}" = "OFF" ]; then
