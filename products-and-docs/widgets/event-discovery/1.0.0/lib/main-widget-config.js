@@ -345,6 +345,12 @@
 
       document.getElementById("w-country").disabled = true;
 
+      var activeItems = document.querySelectorAll('.custom_select__item.custom_select__item-active');
+      var activeItemsLenght = activeItems.length;
+      for (var i = 0; i < activeItemsLenght; ++i) {
+        activeItems[i].classList.remove('custom_select__item-active');
+      }
+
       ["#w-countryCode", "#w-source"].map(function (item) {
         $(item).prop("selectedIndex", -1);
       });
