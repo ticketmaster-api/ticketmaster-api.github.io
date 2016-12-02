@@ -24,13 +24,6 @@
 	max-width: 100%; // Part 1: Set a maximum relative to the parent
 	height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
 }
-@mixin rotate($rotate: 0) {
-	-webkit-transform: rotate($rotate + deg);
-	-moz-transform: rotate($rotate + deg);
-	-o-transform: rotate($rotate + deg);
-	-ms-transform: rotate($rotate + deg);
-	transform: rotate($rotate + deg);
-}
 @mixin placeholder($color, $opacity: 1 ){
 	&::-webkit-input-placeholder {
 		color: $color;
