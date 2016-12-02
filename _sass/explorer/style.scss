@@ -29,6 +29,7 @@
             text-align: left;
             text-transform: capitalize;
             margin: 0 40px 0 0;
+            text-shadow: none;
           }
           .api-doc-link{
             padding: 0;
@@ -53,6 +54,7 @@
     }
     &.open{
       .dropdown-toggle {
+        h4 { font-size: 16px; }
         .caret {
           margin-top: 15px;
           @include rotate-180();
@@ -457,6 +459,27 @@
   }
   .lazy-selector-wrapper input {
     padding-right: 35px;
+  }
+  #js_custom_select_key {
+    .custom_select {
+      &__placeholder {
+        padding-right: 32px;
+        &[readonly] {
+          background-color: $white;
+        }
+      }
+      &__arrow {
+        right: 32px;
+      }
+      &__list {
+        width: calc(100% - 30px);
+        margin-left: 15px;
+      }
+      &__item-data {
+        float: right;
+      }
+
+    }
   }
 
   .group-start{

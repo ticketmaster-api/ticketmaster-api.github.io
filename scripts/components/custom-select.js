@@ -10,12 +10,14 @@ jQuery.fn.customSelect = function(options ) {
 
     function isEditableInput ( $node ) {
         var isNodeEditable = false;
-        $.each( $node[0].attributes, function ( index, attribute ) {
-            if ( attribute.name === "contenteditable" ) {
-                isNodeEditable = true ;
-                return false; //to break this loop
-            }
-        });
+        if($node[0]) {
+            $.each($node[0].attributes, function (index, attribute) {
+                if (attribute.name === "contenteditable") {
+                    isNodeEditable = true;
+                    return false; //to break this loop
+                }
+            });
+        }
         return isNodeEditable;
     }
 
@@ -59,8 +61,21 @@ jQuery.fn.customSelect = function(options ) {
 
         function set(self, isInit) {
             var $self = $(self);
-            $placeholder.val($self.text());
+            // $placeholder.val($self.text());
             $select.val($self.data('value'));
+
+            if(options && options.useTopElValue){
+                $placeholder.val(
+                  $self.clone()	//clone the element
+                    .children()	//select all the children
+                    .remove()	//remove all the children
+                    .end()	//again go back to selected element
+                    .attr('data-value')	//get the data-value of element
+                );
+                $select.val($placeholder.val());
+            }else {
+                $placeholder.val($self.text());
+            }
             $list.find('li').removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
 
@@ -87,11 +102,12 @@ jQuery.fn.customSelect = function(options ) {
             set($list.find('li').filter(':first'), true);
         }
 
-        function setValueByKeyboard() {
+        function setValueByKeyboard(e) {
+            e.preventDefault();
             var newValue = $placeholder.val();
             if (newValue === ''){ $list.find('li:first').trigger('click'); return false; }
             $placeholder.attr( "value", newValue );
-            $list.append( $('<li style="display:none" data-value="'+ newValue+'">'+newValue+'</li>') );
+            $list.append( $('<li class="custom_select__item" style="display:none" data-value="'+ newValue+'">'+newValue+'</li>') );
             $select.append($('<option>', {value: newValue, text: newValue }));
             $list.find('li:last').trigger('click');
         }
@@ -112,7 +128,7 @@ jQuery.fn.customSelect = function(options ) {
               return selected;
             }
 
-            if ( e.which == 13 ) {
+            if (e.which == 13) {
                 e.preventDefault();
                 if ($(".custom_select__list ").is(":visible")) {
                     var selected = $(".custom_select__item-active", $(this , 'ul') );
@@ -159,7 +175,9 @@ jQuery.fn.customSelect = function(options ) {
         });
         $placeholder.on('blur', blur);
 
-        if ( isEditableInput($placeholder) ) $custom_select.on('change', 'input', setValueByKeyboard);
+        if ( isEditableInput($placeholder) ) {
+            $custom_select.on('change', 'input', setValueByKeyboard);
+        }
        
         $custom_select.on({
             'click': toggle,

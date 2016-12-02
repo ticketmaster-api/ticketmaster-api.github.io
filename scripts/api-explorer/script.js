@@ -60,6 +60,9 @@ Object.byString = function(o, s) {
 
     function isLogged() {
       if(apiKey !== defaultApiKey) {
+        if( $('#api-key').val().length > 32){
+          console.log('apiKey length', $('#api-key').val().length);
+        }
         $('#api-key').val(apiKey);
       }
     }
@@ -243,8 +246,12 @@ Object.byString = function(o, s) {
     });
 
     $('#api-key')
-      .change(function(){
+      .blur(function(){
         apiKey = $(this).val();
+        if( $(this).val().length > 32){
+          apiKey = $(this).val().substring(0, 32);
+          console.log('new apiKey set', apiKey.length);
+        }
         apiKey = apiKey ? apiKey : apiKeyDefault;
       })
       .on('keyup', function(e){
