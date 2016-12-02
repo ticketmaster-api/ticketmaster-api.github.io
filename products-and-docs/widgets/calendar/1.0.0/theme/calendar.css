@@ -939,6 +939,7 @@ div[w-theme="calendar"] .selector-title {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+	  text-shadow: none;
 }
 
 div[w-theme="calendar"] .sliderRightSelector .selector-title {
