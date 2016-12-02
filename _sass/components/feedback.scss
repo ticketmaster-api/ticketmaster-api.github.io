@@ -6,7 +6,7 @@
   right: -54px;
   margin-top: -55px;
   border-radius: 4px 4px 0 0;
-  @include rotate(270);
+  @include rotate(270deg);
   text-transform: uppercase;
   color: $white;
   font-family: $font-lead-bold;

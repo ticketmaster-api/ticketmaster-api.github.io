@@ -92,7 +92,7 @@
 	&.down,
 	&[aria-expanded="true"],
 	[aria-expanded="true"] > & {
-		@include rotate(180);
+		@include rotate(180deg);
 	}
 
 	&.right {

@@ -111,7 +111,7 @@
         &+.custom_select__list{
           display: none!important;
           &+.custom_select__arrow{
-            @include rotate(0);
+            @include rotate(0deg);
             &:before{
               opacity: 0.5;
             }
