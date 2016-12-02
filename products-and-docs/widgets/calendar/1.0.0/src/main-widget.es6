@@ -2094,6 +2094,12 @@ class WeekScheduler {
                             weekstart = new Date(current.setDate(weekstart));
                         }
 
+                        if (weekstart.getFullYear() == '1969') {
+                            current = new Date();
+                            weekstart = current.getDate() - current.getDay();
+                            weekstart = new Date(current.setDate(weekstart));
+                        }
+
                         let currentSunday = weekstart;
                         let daysDiv = '';
                         let currentDayClass = '';
