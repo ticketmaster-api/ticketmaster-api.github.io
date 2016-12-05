@@ -8,7 +8,7 @@ class CustomInput {
 		this.data = data;
 		this.focusMethod = onFocusMethod;
 		this.placeholder = data.placeholder || data.name;
-		this.id = 'api-exp-param_' + data.name;
+		this.id = data.name;
 		this.isVirgin = ko.observable(true);
 		// css classes
 		this.cssClass = cssClass;
@@ -67,7 +67,7 @@ module.exports = ko.components.register('custom-input', {
 	template: `
 		<div data-bind="css: {[cssClass]: true, dirty: isDirty, virgin: isVirgin}" class="api-exp-custom-input">
 			<div data-bind="validationElement: value">
-				<input data-bind="textInput: value, lazyLoader: {name: placeholder, val: value}, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
+				<input data-bind="textInput: value, lazyLoader: {name: placeholder, val: value}, dateTimePicker, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
 								type="text"
 								class="custom-input__field form-control">
 				<span data-bind="text: placeholder, css: {required: data.required}" class="custom-input__placeholder"></span>
