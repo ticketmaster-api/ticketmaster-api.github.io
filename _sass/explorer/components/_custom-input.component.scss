@@ -80,8 +80,8 @@
 			border: none;
 			outline: none;
 			position: absolute;
-			top: 15px;
-			right: 15px;
+			top: 10px;
+  			right: 7px;
 			width: 20px;
 			height: 20px;
 			z-index: 1;
@@ -110,6 +110,11 @@
 		.custom-input__button {
 			display: block;
 			background: url($img-calendar) 50% 50% no-repeat;
+			padding: 14px;
+			&:hover, &:active {
+			  background-color: #2a7cc7;
+			  text-decoration: none;
+			}
 		}
 	}
 	// has popup
