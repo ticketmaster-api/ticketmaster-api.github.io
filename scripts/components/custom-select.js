@@ -92,13 +92,6 @@ jQuery.fn.customSelect = function(options ) {
 
             //set value on real select
             $('option',$select).filter(function(i) {
-
-                liDataVal = $self.clone()	//clone the element
-                  .children()	//select all the children
-                  .remove()	//remove all the children
-                  .end()	//again go back to selected element
-                  .text()	//get the data-value of element
-                ;
                 return $(this).text() == $self.text() ;//To select $self.text()
             }).prop('selected', true);
 
