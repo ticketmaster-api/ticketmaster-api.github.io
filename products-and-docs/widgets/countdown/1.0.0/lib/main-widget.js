@@ -32,7 +32,7 @@ var CountdownClock = function () {
   }]);
 
   function CountdownClock() {
-    var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _classCallCheck(this, CountdownClock);
 
@@ -187,23 +187,20 @@ var TicketmasterCountdownWidget = function () {
     get: function get() {
       return this.config.id ? 'https://app.ticketmaster.com/discovery/v2/events/' + this.config.id + '.json' : 'https://app.ticketmaster.com/discovery/v2/events/' + this.eventId + '.json';
     }
-
-    //get themeUrl() { return "http://localhost:4000/products-and-docs/widgets/countdown/1.0.0/theme/"; }
-
   }, {
     key: 'themeUrl',
     get: function get() {
-      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/products-and-docs/widgets/countdown/1.0.0/theme/' : 'http://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/';
+      return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/products-and-docs/widgets/countdown/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/';
     }
   }, {
     key: 'portalUrl',
     get: function get() {
-      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/' : 'http://ticketmaster-api-staging.github.io/';
+      return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/' : 'https://ticketmaster-api-staging.github.io/';
     }
   }, {
     key: 'logoUrl',
     get: function get() {
-      return "http://www.ticketmaster.com/";
+      return "https://www.ticketmaster.com/";
     }
   }, {
     key: 'legalNoticeUrl',
@@ -590,7 +587,7 @@ var TicketmasterCountdownWidget = function () {
           a = "AM";
 
       if (H > 11) a = "PM";
-      if (H == 0) {
+      if (H === 0) {
         H = 12;
       } else if (H > 12) {
         H = H - 12;
@@ -678,7 +675,7 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'needToUpdate',
     value: function needToUpdate(newTheme, oldTheme) {
-      var forCheck = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+      var forCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
       return Object.keys(newTheme).map(function (key) {
         if (forCheck.indexOf(key) > -1) return true;
@@ -708,8 +705,7 @@ var TicketmasterCountdownWidget = function () {
           style.textContent = this.responseText;
           document.getElementsByTagName("head")[0].appendChild(style);
         } else {
-          //alert("theme wasn't loaded");
-          console.log("theme wasn't loaded");
+          console.info("theme wasn't loaded");
         }
       }
     }
@@ -738,8 +734,8 @@ var TicketmasterCountdownWidget = function () {
           widget.onEventLoadError.call(widget, this.status);
         }
         // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
-        var _ref = undefined,
-            _ref2 = undefined;
+        var _ref = void 0,
+            _ref2 = void 0;
         widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime || _ref2.day : void 0 : void 0);
       }
       widget.setBuyBtnUrl();
@@ -776,9 +772,6 @@ var TicketmasterCountdownWidget = function () {
     key: 'parseEvent',
     value: function parseEvent(eventSet) {
       if (!eventSet.id) {
-        if (typeof $widgetModalNoCode !== "undefined") {
-          $widgetModalNoCode.modal();
-        }
         return false;
       }
 
@@ -812,9 +805,9 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'makeRequest',
     value: function makeRequest(handler) {
-      var url = arguments.length <= 1 || arguments[1] === undefined ? this.apiUrl : arguments[1];
-      var attrs = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-      var method = arguments.length <= 3 || arguments[3] === undefined ? "GET" : arguments[3];
+      var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.apiUrl;
+      var attrs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      var method = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "GET";
 
       attrs = Object.keys(attrs).map(function (key) {
         return key + '=' + attrs[key];

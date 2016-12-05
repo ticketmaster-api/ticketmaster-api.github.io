@@ -30,14 +30,14 @@
 			<param name="unit" required="false" style="query" type="xsd:string" default="">
 				<doc>The radius distance unit. Possible values: miles, km.</doc>
 			</param>
-			<param name="source" required="false" style="query" type="xsd:string"  default="none">
+			<param name="source" required="false" style="query" type="xsd:string"  default="">
 				<doc>Source of the event.</doc>
 				<option value="none"/>
 				<option value="ticketmaster"/>
 				<option value="ticketweb"/>
 				<option value="universe"/>
 			</param>
-			<param name="locale" required="false" type="xsd:string" style="query"  default="none">
+			<param name="locale" required="false" type="xsd:string" style="query"  default="">
 				<doc>The event locale, including country and localization.</doc>
 				<option value="none"/>
 				<option value="en-us"/>
@@ -60,31 +60,34 @@
 			<param name="endDateTime" required="false" style="query" type="xsd:string">
 				<doc>Include events happening before this date.</doc>
 			</param>
-			<param name="includeTBA" required="false" style="query" type="xsd:string"  default="no">
+			<param name="includeTBA" required="false" style="query" type="xsd:string"  default="">
 				<doc>Whether or not to return events with dates to be announced (TBA). TBA events are not returned.</doc>
-				<option value="no"/>
+				<option value="none"/>
+                <option value="no"/>
 				<option value="only"/>
 				<option value="yes"/>
 			</param>
-			<param name="includeTBD" required="false" style="query" type="xsd:string"  default="no">
+			<param name="includeTBD" required="false" style="query" type="xsd:string"  default="">
 				<doc>Whether or not to return events with dates to be announced (TBD). TBD events are not returned.</doc>
-				<option value="no"/>
+				<option value="none"/>
+                <option value="no"/>
 				<option value="yes"/>
 				<option value="only"/>
 			</param>
-			<param name="includeTest" required="false" style="query" type="xsd:string"  default="no">
+			<param name="includeTest" required="false" style="query" type="xsd:string"  default="">
 				<doc>Whether or not to return test events. Test events are not returned.</doc>
-				<option value="no"/>
+				<option value="none"/>
+                <option value="no"/>
 				<option value="yes"/>
 				<option value="only"/>
 			</param>
-			<param name="size" required="false" style="query" type="xsd:integer" default="20">
+			<param name="size" required="false" style="query" type="xsd:integer" default="">
 				<doc>The number of events returned in the API response.</doc>
 			</param>
 			<param name="page" required="false" style="query" type="xsd:integer" default="0">
 				<doc>The page for paginating through the results.</doc>
 			</param>
-			<param name="sort" required="false" style="query" type="xsd:string"  default="none">
+			<param name="sort" required="false" style="query" type="xsd:string"  default="">
 				<doc>The search sort criteria.</doc>
 				<option value="none"/>
 				<option value="name,desc"/>
@@ -139,7 +142,7 @@
 				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery/v2/#event-details-v2">Returns the event detail by event ID.
 				</doc>
 			</method>
-			<param name="id" required="true" type="xsd:string" style="template" default="G5diZfkn0B-bh">
+			<param name="id" required="true" type="xsd:string" style="template" default="">
 				<doc>Event ID</doc>
 			</param>
 			<param name="format" required="true" type="xsd:string" style="template" default="json">
@@ -164,7 +167,7 @@
 
 		<!-- Event Images -->
 		<resource path="discovery/v2/events/{id}/images.{format}">
-			<param name="id" required="true" type="xsd:string" style="template" default="G5diZfkn0B-bh">
+			<param name="id" required="true" type="xsd:string" style="template" default="">
 				<doc>Event ID</doc>
 			</param>
 			<param name="format" required="true" type="xsd:string" style="template" default="json" >
@@ -220,7 +223,7 @@
 				<option value="fr-fr"/>
 				<option value="fr-ca"/>
 			</param>
-			<param name="size" required="false" style="query" type="xsd:integer" default="20">
+			<param name="size" required="false" style="query" type="xsd:integer" default="">
 				<doc>The number of attractions returned in the API response.</doc>
 			</param>
 			<param name="page" required="false" style="query" type="xsd:integer" default="0">
@@ -246,7 +249,7 @@
 
 		<!-- Attraction Details -->
 		<resource path="discovery/v2/attractions/{id}.{format}">
-			<param name="id" required="true" type="xsd:string" style="template" default="K8vZ917G7x0">
+			<param name="id" required="true" type="xsd:string" style="template" default="">
 				<doc>Attraction ID</doc>
 			</param>
 			<param name="format" required="true" type="xsd:string" style="template" default="json" >
@@ -267,8 +270,12 @@
 				<option value="fr-fr"/>
 				<option value="fr-ca"/>
 			</param>
-			<param name="source" required="true" type="xsd:string" style="query" default="json">
-				<doc>source</doc>
+			<param name="source" required="false" style="query" type="xsd:string"  default="">
+				<doc>Source of the event.</doc>
+				<option value="none"/>
+				<option value="ticketmaster"/>
+				<option value="ticketweb"/>
+				<option value="universe"/>
 			</param>
 			<method id="discovery.v2.attractions.id.get" name="GET" apigee:displayName="Get Attraction Details">
 				<apigee:tags>
@@ -294,7 +301,7 @@
 			<param name="classificationID" required="false" style="query" type="xsd:string">
 				<doc>A string to search by classification ID</doc>
 			</param>
-			<param name="size" required="false" style="query" type="xsd:integer" default="20">
+			<param name="size" required="false" style="query" type="xsd:integer" default="">
 				<doc>The number of categories returned in the API response.</doc>
 			</param>
 			<param name="page" required="false" style="query" type="xsd:integer" default="0">
@@ -319,7 +326,7 @@
 
 		<!-- Classifications Details -->
 		<resource path="discovery/v2/classifications/{id}.{format}">
-			<param name="id" required="true" type="xsd:string" style="template" default="203">
+			<param name="id" required="true" type="xsd:string" style="template" default="">
 				<doc>Classification ID</doc>
 			</param>
 			<param name="format" required="true" type="xsd:string" style="template" default="json" >
@@ -374,7 +381,7 @@
 				<option value="fr-fr"/>
 				<option value="fr-ca"/>
 			</param>
-			<param name="size" required="false" style="query" type="xsd:integer" default="20">
+			<param name="size" required="false" style="query" type="xsd:integer" default="">
 				<doc>The number of venues returned in the API response.</doc>
 			</param>
 			<param name="page" required="false" style="query" type="xsd:integer" default="0">
@@ -392,14 +399,19 @@
 			<param name="countryCode" required="false" style="query" type="xsd:string">
 				<doc>The country code.</doc>
 			</param>
-			<param name="includeTest" required="false" style="query" type="xsd:string"  default="no">
+			<param name="includeTest" required="false" style="query" type="xsd:string"  default="">
 				<doc>Include test.</doc>
+                <option value="none"/>
 				<option value="yes"/>
 				<option value="no"/>
 				<option value="only"/>
 			</param>
-			<param name="source" required="false" style="query" type="xsd:string">
-				<doc>Source.</doc>
+			<param name="source" required="false" style="query" type="xsd:string"  default="">
+				<doc>Source of the event.</doc>
+				<option value="none"/>
+				<option value="ticketmaster"/>
+				<option value="ticketweb"/>
+				<option value="universe"/>
 			</param>
 			<method id="discovery.v2.venues.get" name="GET" apigee:displayName="Search Venues">
 				<apigee:tags>
@@ -415,7 +427,7 @@
 
 		<!-- Venue Details -->
 		<resource path="discovery/v2/venues/{id}.{format}">
-			<param name="id" required="true" type="xsd:string" style="template" default="KovZpZAFnIEA">
+			<param name="id" required="true" type="xsd:string" style="template" default="">
 				<doc>Venue ID</doc>
 			</param>
 			<param name="format" required="true" type="xsd:string" style="template" default="json" >

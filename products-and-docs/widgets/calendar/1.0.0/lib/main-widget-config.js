@@ -2,7 +2,7 @@
 
 (function () {
 
-    var DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+    var DEFAULT_API_KEY = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey();
 
     function getHeightByTheme(theme) {
         return theme === 'simple' ? 286 : 339;
@@ -27,7 +27,7 @@
     }
 
     var replaceApiKey = function replaceApiKey(options) {
-        var userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+        var userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
 
         if (userKey !== null) {
             var inputApiKey = options.inputApiKey;
@@ -35,7 +35,7 @@
             var _widget = options.widget;
 
             inputApiKey.attr('value', userKey).data('userAPIkey', userKey).val(userKey);
-            widgetNode.setAttribute("w-tm-api-key", userKey);
+            widgetNode.setAttribute("w-tmapikey", userKey);
             _widget.update();
         }
     };
@@ -75,6 +75,13 @@
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
         // $widthController.slider('relayout');
         $borderRadiusController.slider('relayout');
+    });
+
+    //replace Api Key on init
+    replaceApiKey({
+        inputApiKey: $('#w-tm-api-key'),
+        widgetNode: document.querySelector("div[w-tmapikey]"),
+        widget: widget
     });
 
     var changeState = function changeState(event) {
@@ -223,6 +230,7 @@
 
     var resetWidget = function resetWidget(configForm) {
         var widgetNode = document.querySelector("div[w-tmapikey]"),
+            radiusParam = document.querySelector("div[w-radius]"),
             height = 600,
             theme = void 0,
             layout = void 0;
@@ -246,6 +254,7 @@
             }
 
             widgetNode.setAttribute($self.attr('name'), value);
+            if ($self.attr('name') === 'w-tm-api-key') widgetNode.removeAttribute($self.attr('name'));
         });
 
         configForm.find("input[type='radio']").each(function () {
@@ -274,6 +283,11 @@
         // widgetNode.setAttribute('w-border', 0);
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
+        $('#w-country').children().remove().end().append('<option selected value="US">United States</option>');
+        $('#w-country').attr('disabled', 'disabled');
+        $('.custom_select__list li').removeClass('custom_select__item-active'); //reset custom select
+        radiusParam.setAttribute('w-radius', '25');
+        $('#w-tm-api-key').val(DEFAULT_API_KEY); //set apikey
         widget.onLoadCoordinate();
         widget.update();
     };
@@ -313,26 +327,13 @@
         }
     }
 
-    /**
-     * check if user logged just before enter widget page
-     */
-    $(window).on('login', function (e, data) {
-        var widgetNode = document.querySelector("div[w-tmapikey]");
-        replaceApiKey({
-            userKey: data.key,
-            inputApiKey: $('#w-tm-api-key'),
-            widgetNode: widgetNode,
-            widget: widget
-        });
-    });
-
     $('.js_get_widget_code').on('click', function () {
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
         for (var key in widget.config) {
-            if (key !== 'latlong') {
-                htmlCode.setAttribute("w-" + key, widget.config[key]);
-            }
+            // if(key !== 'latlong'){
+            htmlCode.setAttribute("w-" + key, widget.config[key]);
+            // }
         }
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());

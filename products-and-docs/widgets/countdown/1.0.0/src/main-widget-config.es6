@@ -202,7 +202,7 @@
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
         document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
       }
-      if (document.getElementById('w-tm-api-key').value == '') {
+      if (document.getElementById('w-tm-api-key').value === '') {
         if (sessionStorage.getItem('tk-api-key')) {
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
@@ -326,7 +326,6 @@
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
 
-    //toggleDisabled(widgetNode);//set disabled btn if input is empty
 
     widget.update();
 
@@ -387,7 +386,7 @@
     });
 
     if(typeof excludeOption !== 'undefined' && typeof excludeOption.id !== 'undefined'){
-        widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
+      widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
         $('#w-id').val(excludeOption.id);//set val in cofigurator
     }    
     $layoutBox.slideDown("fast");

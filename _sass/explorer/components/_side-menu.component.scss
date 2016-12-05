@@ -1,0 +1,77 @@
+/**
+*	Side menu styles
+**/
+
+.api-exp-side-menu {
+	width: 263px;
+	float: left;
+	min-height: 236px;
+	background: $side-menu-bg;
+	margin-right: 30px;
+	border-radius: 4px;
+	&__container {
+		padding: 10px 0;
+		margin: 0;
+	}
+	&__item {
+		font-size: 16px;
+		font-weight: bold;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1.5;
+		color: #768692;
+		&.active {
+			color: #009cde;
+			background: none;
+		}
+	}
+	&__link {
+		color: inherit;
+		background: none;
+		padding: 7px 21px;
+		&:hover {
+			color: #009cde;
+		}
+	}
+	.api-exp-side-menu__select {}
+
+	//tablet
+	@media #{$max-1200} {
+		min-height: 0;
+		background: none;
+		max-width: 220px;
+		&-container {
+			width: auto;
+		}
+		&__container {
+		}
+		&__item {
+			&.active {
+			}
+		}
+		&__link {
+			&:hover {
+			}
+		}
+	}
+
+	//mobile
+	@media #{$max-768} {
+		max-width: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0 0 23px 0;
+		&-container {
+		}
+		&__container {
+		}
+		&__item {
+			&.active {
+			}
+		}
+		&__link {
+			&:hover {
+			}
+		}
+	}
+}

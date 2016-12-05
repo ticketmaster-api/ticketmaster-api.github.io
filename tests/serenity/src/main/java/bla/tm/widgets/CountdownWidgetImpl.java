@@ -1,6 +1,5 @@
 package bla.tm.widgets;
 
-
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -8,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
+import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 
 public class CountdownWidgetImpl extends AnsestorWidgetImpl implements CountdownWidget{
     //Constants
@@ -120,6 +120,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     public void clickResetButton() {
         scrollToElement(resetButton);
         resetButton.click();
+        waitForSomeActionHappened(500);
     }
 
     @Override
@@ -227,7 +228,8 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
 
     @Override
     public boolean isEventMessageContains(String text) {
-        return eventMessage.getText().contains(text);
+        String eventTExt = eventMessage.getText();
+        return eventTExt.contains(text);
     }
 
     @Override

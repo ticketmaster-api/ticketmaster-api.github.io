@@ -30,13 +30,13 @@ class TicketmasterCalendarWidget {
     get themeUrl() {
         return (window.location.host === 'developer.ticketmaster.com')
           ? `http://developer.ticketmaster.com/products-and-docs/widgets/calendar/1.0.0/theme/`
-          : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/calendar/1.0.0/theme/`;
+          : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/calendar/1.0.0/theme/`;
     }
 
     get portalUrl(){
         return (window.location.host === 'developer.ticketmaster.com')
           ? `http://developer.ticketmaster.com/`
-          : `http://ticketmaster-api-staging.github.io/`;
+          : `https://ticketmaster-api-staging.github.io/`;
     }
 
     get logoUrl() { return "http://www.ticketmaster.com/"; }
@@ -1336,11 +1336,13 @@ class TicketmasterCalendarWidget {
             let firstDay = new Date(period);
             let lastDay = new Date(period);
             lastDay.setDate(lastDay.getDate() + 1);
+            firstDay.setHours(0);   lastDay.setHours(23);
+            firstDay.setMinutes(0); lastDay.setMinutes(59);
+            firstDay.setSeconds(0); lastDay.setSeconds(59);
         }
 
-        firstDay.setHours(0);   lastDay.setHours(23);
-        firstDay.setMinutes(0); lastDay.setMinutes(59);
-        firstDay.setSeconds(0); lastDay.setSeconds(59);
+        firstDay = new Date( new Date(new Date()).toISOString() );
+        lastDay = new Date( new Date(new Date().valueOf()+24*60*60*1000).toISOString() );
 
         return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
     }
@@ -2089,6 +2091,12 @@ class WeekScheduler {
                         }
                         else {
                             var weekstart = current.getDate() - current.getDay();
+                            weekstart = new Date(current.setDate(weekstart));
+                        }
+
+                        if (weekstart.getFullYear() == '1969') {
+                            current = new Date();
+                            weekstart = current.getDate() - current.getDay();
                             weekstart = new Date(current.setDate(weekstart));
                         }
 
@@ -3437,7 +3445,6 @@ class YearScheduler {
         let MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         let prm = [];
         let year;
-        let widget = this.widget;
         let schedulerRoot = this.yearSchedulerRoot.parentNode.parentNode.parentNode;
         if (schedulerRoot.getAttribute("w-period").length != 4) {
             year = new Date().getFullYear();
@@ -3447,16 +3454,61 @@ class YearScheduler {
         }
 
         let month = '01';
+
+        var xhr = new XMLHttpRequest();
+        var resp, dateOffset;
+
+        xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?language=en&location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200');
+        xhr.onload = function (e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                resp = JSON.parse(xhr.responseText);
+                dateOffset = parseInt(resp.rawOffset) + parseInt(resp.dstOffset);
+            }
+        };
+        xhr.send(null);
+
         for(let i = 1; i <= 12; i++){
-                if (i<=9) month = '0' + i; else month = i;
-                let attrs = this.eventReqAttrs;
+
+            if (i<=9) month = '0' + i; else month = i;
+            let attrs = this.eventReqAttrs;
+
+            if (dateOffset !== undefined) {
+                var startDT = new Date(new Date(year, (i-1), 1, 0, 0, 0, 0).valueOf() - dateOffset*1000);
+                var finishDT = new Date(new Date(year, (i-1), this.getLastDayOfMonth(year, (i-1)), 23, 59, 59, 0).valueOf() - dateOffset*1000);
+                var startY = startDT.getFullYear();
+                var startM = startDT.getMonth() + 1;
+                if (startM <= 9) startM = '0' + startM;
+                var startD = startDT.getDate();
+                if (startD <= 9) startD = '0' + startD;
+                var startH = startDT.getHours();
+                if (startDT.getHours() <= 9) startH = '0' + startDT.getHours();
+                var startMn = startDT.getMinutes();
+                if (startDT.getMinutes() <= 9) startMn = '0' + startDT.getMinutes();
+                var startS = startDT.getSeconds();
+                if (startDT.getSeconds() <= 9) startS = '0' + startDT.getSeconds();
+                var finishY = finishDT.getFullYear();
+                var finishM = finishDT.getMonth() + 1;
+                if (finishM <= 9) finishM = '0' + finishM;
+                var finishD = finishDT.getDate();
+                if (finishD <= 9) finishD = '0' + finishD;
+                var finishH = finishDT.getHours();
+                if (finishDT.getHours() <= 9) finishH = '0' + finishDT.getHours();
+                var finishMn = finishDT.getMinutes();
+                if (finishDT.getMinutes() <= 9) finishMn = '0' + finishDT.getMinutes();
+                var finishS = finishDT.getSeconds();
+                if (finishDT.getSeconds() <= 9) finishS = '0' + finishDT.getSeconds();
+                attrs.startDateTime = startY + '-' + startM + '-' + startD + 'T' + startH + ':' + startMn + ':' + startS + 'Z';
+                attrs.endDateTime = finishY + '-' + finishM + '-' + finishD + 'T' + finishH + ':' + finishMn + ':' + finishS + 'Z';
+            }
+            else {
                 attrs.startDateTime = year + '-' + month + '-01T00:00:00Z';
-                attrs.endDateTime = year + '-' + month + '-' + this.getLastDayOfMonth(year, (i-1)) + 'T23:59:59Z';
-                attrs = Object.keys(attrs).map(function(key){
-                    return `${key}=${attrs[key]}`;
-                }).join("&");
-                let url = this.apiUrl + [url,attrs].join("?");
-                prm.push(this.getJsonAsync(url));
+                attrs.endDateTime = year + '-' + month + '-' + this.getLastDayOfMonth(year, (i - 1)) + 'T23:59:59Z';
+            }
+            attrs = Object.keys(attrs).map(function(key){
+                return `${key}=${attrs[key]}`;
+            }).join("&");
+            let url = this.apiUrl + [url,attrs].join("?");
+            prm.push(this.getJsonAsync(url));
         }
 
 

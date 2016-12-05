@@ -97,6 +97,7 @@ jQuery.fn.customSelect = function(options ) {
         }
 
         function keyboardListener(e) {
+            var selected = {};
             function setSelector(list ,me){
                 $.each(list, function(i, el) {
                     if ($.inArray(el) == -1){
@@ -126,12 +127,12 @@ jQuery.fn.customSelect = function(options ) {
             }
             if (e.which == 38) { // up
                 e.preventDefault();
-                var selected = $(".custom_select__item-active", $(this , 'ul') );
+                selected = $(".custom_select__item-active", $(this , 'ul') );
                 if(selected.length < 1){
                     selected = setSelector($(".custom_select__item",this) ,this);
                 }
                 $(".custom_select__list li").removeClass("custom_select__item-active");
-                if (selected.prev().length == 0) {
+                if (selected.prev().length === 0) {
                     selected.siblings().last().addClass("custom_select__item-active");
                 } else {
                     selected.prev().addClass("custom_select__item-active");
@@ -139,12 +140,12 @@ jQuery.fn.customSelect = function(options ) {
             }
             if (e.which == 40) { // down
                 e.preventDefault();
-                var selected = $(".custom_select__item-active",  $(this , 'ul'));
+                selected = $(".custom_select__item-active",  $(this , 'ul'));
                 if(selected.length < 1){
                     selected = setSelector($(".custom_select__item",this),this);
                 }
                 $(".custom_select__list li").removeClass("custom_select__item-active");
-                if (selected.next().length == 0) {
+                if (selected.next().length === 0) {
                     selected.siblings().first().addClass("custom_select__item-active");
                 } else {
                     selected.next().addClass("custom_select__item-active");

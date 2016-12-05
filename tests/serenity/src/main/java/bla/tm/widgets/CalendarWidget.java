@@ -17,7 +17,7 @@ public interface CalendarWidget extends AnsestorWidget {
     void setRadiusDropdownValueTo15();
 
     String getSelectedCountry();
-    String getEmbeddedValueOf(String valueName);
+
     void clickResetButton();
 
 }

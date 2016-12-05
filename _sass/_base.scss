@@ -505,19 +505,6 @@ input[type=range]:focus::-ms-fill-upper {
 }
 /*Rage END*/
 
-// Fixed Feedback button
-//@media (min-width: 1199px){
-//  body,
-//  body.modal-open{
-//    padding-right: 0!important;
-//    //overflow-y: scroll;
-//  }
-//
-//  .modal-open .modal {
-//    //overflow-y: hidden;
-//  }
-//}
-
 /**
  * Wrapper
  */
@@ -666,10 +653,6 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .checked-td:after {
-  /*
-  font-family: "fontawesome";
-  content: "\f00c";
-  */
   content: "";
   display: inline-block;
   width: 24px;
@@ -786,7 +769,8 @@ input[type=range]:focus::-ms-fill-upper {
     }
   }
 }
-
+#js_widget_modal .copy-btn.copied,
+#js_widget_modal .copy-btn.copied:hover,
 .documentation .copy-btn.copied,
 .documentation .copy-btn.copied:hover,
 .modal-body .copy-btn-fs.copied,
@@ -939,7 +923,6 @@ input[type=range]:focus::-ms-fill-upper {
   }
   &__red {
     color: $red;
-    font-family: $font-body;
   }
 }
 

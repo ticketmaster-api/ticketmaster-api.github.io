@@ -92,7 +92,7 @@ layout: default
         });
     }
 
-    var userKey = apiKeyService.checkApiKeyCookie('tk-api-key');
+    var userKey = apiKeyService.checkApiKeyCookie();
     if(userKey) {
         replaceText('*', '\{apikey\}', "apikey=" + userKey, 'g');
     }

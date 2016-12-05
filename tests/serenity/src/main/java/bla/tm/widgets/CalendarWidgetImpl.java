@@ -5,11 +5,8 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
-import org.openqa.selenium.support.ui.Select;
-
-import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
-import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 
 public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWidget {
     //Constructors
@@ -22,12 +19,6 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
         super(page, locator, timeoutInMilliseconds);
     }
 
-    //Constants
-    private final String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
-    private final String HTML_CODE_ATTRIBUTE_KEYWORD = "w-keyword";
-    private final String HTML_CODE_ATTRIBUTE_ZIPCODE = "w-postalcode";
-    private final String HTML_CODE_ATTRIBUTE_RADIUS = "w-radius";
-
     //WebElements
     @FindBy(xpath = "//input[@id='w-tm-api-key']")
     private WebElementFacade apiKeyTextField;
@@ -38,14 +29,16 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
     @FindBy(xpath = "//input[@id='w-keyword']")
     private WebElementFacade keywordTextField;
 
-    @FindBy(xpath = "//select[@id='w-country']")
-    private WebElementFacade countryDropdown;
+    private String countryDropdownXPath = "//select[@id='w-country']";
 
     @FindBy(xpath = "//select[@id='w-radius']")
     private WebElementFacade radiusDropdown;
 
     @FindBy(xpath = "//label[@for='w-radius']/following-sibling::div/ul/li[contains(@class,'item-active')]")
     private WebElementFacade activeRadius;
+
+    @FindBy(xpath = "//select[@id='w-radius']/following-sibling::input")
+    private WebElementFacade defaultRadius;
 
     @FindBy(xpath = "//label[@for='w-radius']/following-sibling::div/ul/li[2]")
     private WebElementFacade secondRadiusValue;
@@ -74,6 +67,7 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
     public void setZipCodeTextFieldValue(String zipCode) {
         zipCodeTextField.clear();
         zipCodeTextField.sendKeys(zipCode, Keys.ENTER);
+        waitForSomeActionHappened(500);
     }
 
     @Override
@@ -89,11 +83,16 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
 
     @Override
     public String getRadiusDropdownValue() {
-        String radius = null;
-        while(radius == null) {
-            radius = (String) getPage().evaluateJavascript("return document.evaluate('//label[@for=\"w-radius\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.innerHTML;");
+        String radiusXpath = "//label[@for=\"w-radius\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
+        String exceptionText = "Cannot get radius value in dropdown";
+        try {
+            return getElementValueByXpathJs(radiusXpath, exceptionText);
         }
-        return radius;
+        catch (WebDriverException e){
+            if(e.toString().contains("document.evaluate")){
+                return defaultRadius.getValue();
+            } else throw e;
+        }
     }
 
     @Override
@@ -106,22 +105,16 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
 
     @Override
     public String getSelectedCountry() {
-        return countryDropdown.getSelectedVisibleTextValue();
-    }
-
-    @Override
-    public String getEmbeddedValueOf(String valueName) {
-        switch (valueName){
-            case "apiKey": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_APIKEY);
-            case "keyword": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_KEYWORD);
-            case "zipCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ZIPCODE);
-            case "radius": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_RADIUS);
-            default: throw new IllegalArgumentException(String.format("The argument of embedded attribute name is illegal: %s", valueName));
-        }
+        return getCountryWebElementFacade().getSelectedVisibleTextValue();
     }
 
     @Override
     public void clickResetButton(){
         getPage().evaluateJavascript("arguments[0].click();", resetButton);
+    }
+
+    //Private Methods
+    private WebElementFacade getCountryWebElementFacade(){
+        return getPage().element(By.xpath(countryDropdownXPath));
     }
 }

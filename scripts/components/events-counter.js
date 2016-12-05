@@ -7,7 +7,7 @@
       values[el] = $('#js-'+el+'-counter').text();
     });
     initialValObj = values;
-  };
+  }
 
   $(function() {
     initEventCountersPanel(); // Counter panel init
@@ -32,7 +32,7 @@
     });
     
     //clear requests when user leave current page
-    $(window).unload(function(){
+    $(window).on('unload', function(){
       for(var i = 1; i < intervals.length; i++) {
         clearTimeout(i);
       }
@@ -117,7 +117,7 @@
     }
     parseInt(str,10);
     return str;
-  };
+  }
 
   function countAnimate(selectorEl,val) {
     $('#js-'+selectorEl+'-counter').prop('Counter',  initialValObj[selectorEl] ).animate({

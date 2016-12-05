@@ -75,6 +75,7 @@
   &__placeholder {
     margin-bottom: 0;
     cursor: pointer;
+    padding-right: 32px;
     @include transition(opacity 0.2s ease-in-out);
     @media (max-width: 767px){
       display: none;
@@ -110,7 +111,7 @@
         &+.custom_select__list{
           display: none!important;
           &+.custom_select__arrow{
-            @include rotate(0);
+            @include rotate(0deg);
             &:before{
               opacity: 0.5;
             }

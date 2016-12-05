@@ -1,6 +1,6 @@
 (function(){
 
-    const DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+    const DEFAULT_API_KEY = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey();
 
     function getHeightByTheme(theme){
         return (theme === 'simple' ? 286 : 339);
@@ -23,7 +23,7 @@
     }
 
     var replaceApiKey = function (options) {
-        let userKey = options.userKey || sessionStorage.getItem('tk-api-key');
+        let userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
 
         if(userKey !== null) {
             let {inputApiKey, widgetNode , widget } = options;
@@ -31,7 +31,7 @@
               .attr('value', userKey)
               .data('userAPIkey', userKey)
               .val(userKey);
-            widgetNode.setAttribute("w-tm-api-key", userKey);
+            widgetNode.setAttribute("w-tmapikey", userKey);
             widget.update();
         }
     };
@@ -71,6 +71,13 @@
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
         // $widthController.slider('relayout');
         $borderRadiusController.slider('relayout');
+    });
+
+    //replace Api Key on init
+    replaceApiKey({
+        inputApiKey:$('#w-tm-api-key'),
+        widgetNode: document.querySelector("div[w-tmapikey]"),
+        widget
     });
 
     var changeState = function(event){
@@ -225,6 +232,7 @@
 
     var resetWidget = function(configForm) {
         let widgetNode = document.querySelector("div[w-tmapikey]"),
+            radiusParam = document.querySelector("div[w-radius]"),
             height = 600,
             theme,
             layout;
@@ -249,6 +257,7 @@
             }
 
             widgetNode.setAttribute($self.attr('name'), value);
+            if ( $self.attr('name') === 'w-tm-api-key' ) widgetNode.removeAttribute($self.attr('name'));
         });
 
         configForm.find("input[type='radio']").each(function(){
@@ -269,6 +278,8 @@
             }
         });
 
+
+
         if(layout === 'horizontal'){
             height = getHeightByTheme(theme);
         }
@@ -277,6 +288,11 @@
         // widgetNode.setAttribute('w-border', 0);
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened');//reset custom select
+        $('#w-country').children().remove().end().append('<option selected value="US">United States</option>');
+        $('#w-country').attr('disabled', 'disabled');
+        $('.custom_select__list li').removeClass('custom_select__item-active');//reset custom select
+        radiusParam.setAttribute('w-radius', '25');
+        $('#w-tm-api-key').val( DEFAULT_API_KEY) ;//set apikey
         widget.onLoadCoordinate();
         widget.update();
     };
@@ -316,28 +332,15 @@
             document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
             document.querySelector('[w-type="calendar"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
-    }
-
-    /**
-     * check if user logged just before enter widget page
-     */
-    $(window).on('login', function (e, data) {
-        let widgetNode = document.querySelector("div[w-tmapikey]");
-        replaceApiKey({
-            userKey: data.key,
-            inputApiKey:$('#w-tm-api-key'),
-            widgetNode,
-            widget
-        });
-    });
+    }    
 
     $('.js_get_widget_code').on('click', function(){
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
         for(var key in widget.config){
-            if(key !== 'latlong'){
+            // if(key !== 'latlong'){
                 htmlCode.setAttribute("w-"+key,widget.config[key]);
-            }
+            // }
         }
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());

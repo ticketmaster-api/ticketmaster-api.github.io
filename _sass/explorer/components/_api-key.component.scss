@@ -1,0 +1,23 @@
+/**
+* Api-key component
+**/
+
+.api-exp-key {
+	margin: 0 0 0 $menu-width;
+	&_input {}
+
+	//tablet
+	@media #{$max-1200} {
+		margin: 0 0 0 250px;
+		&_input {}
+	}
+
+	//mobile
+	@media #{$max-768} {
+		clear: both;
+		padding: 0;
+		margin: 0 30px 0 0;
+		position: relative;
+		&_input {}
+	}
+}

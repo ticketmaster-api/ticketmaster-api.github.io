@@ -152,10 +152,10 @@
         $(document).on("touchend click", function (e) {
             if (dragging)
                 return;
-            if (!asideBlock.is(e.target)
-                && asideBlock.has(e.target).length === 0
-                && screenWidth < 1200) {
-                hideMenu();
+            if (!asideBlock.is(e.target) &&
+                asideBlock.has(e.target).length === 0 &&
+                screenWidth < 1200) {
+                    hideMenu();
             }
         });
 

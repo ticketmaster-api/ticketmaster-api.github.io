@@ -14,12 +14,14 @@ keywords: API, commerce API, reserve tickets, retrieve barcode
 Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster's and TicketWeb's. Once offers and products are selected, you can use the API to cart and transact on those items.
 {: .article .lead}
 
+{%comment%}
 #### Developer Console
 {: .aside .gray}
 
 Test this endpoint right now in the interactive docs:
 
 [INTERACTIVE DOCS](/products-and-docs/apis/interactive-console/){: .button}
+{%endcomment%}
 
 ## Event Offers
 {: .article .console-link #event-offers}

@@ -16,23 +16,23 @@ class TicketmasterEventDiscoveryWidget {
     return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
   }
 
-  get eventUrl(){ return "http://www.ticketmaster.com/event/"; }
+  get eventUrl(){ return "https://www.ticketmaster.com/event/"; }
 
   get apiUrl(){ return "https://app.ticketmaster.com/discovery/v2/events.json"; }
 
   get themeUrl() {
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
-      : `http://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/`;
+      ? `https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
+      : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/`;
   }
 
   get portalUrl(){
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `http://developer.ticketmaster.com/`
-      : `http://ticketmaster-api-staging.github.io/`;
+      ? `https://developer.ticketmaster.com/`
+      : `https://ticketmaster-api-staging.github.io/`;
   }
 
-  get logoUrl() { return "http://www.ticketmaster.com/"; }
+  get logoUrl() { return "https://www.ticketmaster.com/"; }
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
@@ -160,71 +160,72 @@ class TicketmasterEventDiscoveryWidget {
   constructor(root) {
     if(!root) return;
     this.widgetRoot = root;
+    if (this.widgetRoot.querySelector('.events-root-container') === null) {
+        this.eventsRootContainer = document.createElement("div");
+        this.eventsRootContainer.classList.add("events-root-container");
+        this.widgetRoot.appendChild(this.eventsRootContainer);
 
-    this.eventsRootContainer = document.createElement("div");
-    this.eventsRootContainer.classList.add("events-root-container");
-    this.widgetRoot.appendChild(this.eventsRootContainer);
+        this.eventsRootDiv = document.createElement("div");
+        this.eventsRootDiv.setAttribute("class", "ss");
+        this.eventsRootDiv.setAttribute("ss-container", "");
+        this.eventsRootContainer.appendChild(this.eventsRootDiv);
 
-    this.eventsRootDiv = document.createElement("div");
-    this.eventsRootDiv.setAttribute("class", "ss");
-    this.eventsRootDiv.setAttribute("ss-container", "");
-    this.eventsRootContainer.appendChild(this.eventsRootDiv);
+        this.eventsRoot = document.createElement("ul");
+        this.eventsRoot.classList.add("events-root");
+        this.eventsRootDiv.appendChild(this.eventsRoot);
 
-    this.eventsRoot = document.createElement("ul");
-    this.eventsRoot.classList.add("events-root");
-    this.eventsRootDiv.appendChild(this.eventsRoot);
+        // Set theme modificators
+        this.themeModificators = {
+            "oldschool": this.oldSchoolModificator.bind(this),
+            "newschool": this.newSchoolModificator.bind(this),
+            "listview": this.listViewModificator.bind(this)
+        };
 
-    // Set theme modificators
-    this.themeModificators = {
-      "oldschool" : this.oldSchoolModificator.bind(this),
-      "newschool" : this.newSchoolModificator.bind(this),
-      "listview" : this.listViewModificator.bind(this)
-    };
+        this.config = this.widgetRoot.attributes;
 
-    this.config = this.widgetRoot.attributes;
+        if (this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)) {
+            this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
+        }
 
-    if(this.config.theme !== null && !document.getElementById(`widget-theme-${this.config.theme}`)){
-      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
+        this.eventsRootContainer.classList.remove("border");
+        if (this.config.border) {
+            this.eventsRootContainer.classList.add("border");
+        }
+
+        this.widgetRoot.style.height = `${this.widgetHeight}px`;
+        this.widgetRoot.style.width = `${this.config.width}px`;
+
+        this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
+        this.eventsRootContainer.style.width = `${this.config.width}px`;
+        this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
+        this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
+
+        //this.clear();
+
+        this.AdditionalElements();
+
+        this.getCoordinates(() => {
+            this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
+        });
+
+        if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
+            this.themeModificators[this.widgetConfig.theme]();
+        }
+
+      /*plugins for 'buy button'*/
+        this.embedUniversePlugin();
+        this.embedTMPlugin();
+
+        this.initBuyBtn();
+
+        this.initMessage();
+
+        if (!this.isListView) this.initSliderControls();
+
+        if (!this.isListView) this.initEventCounter();
+
+        if (this.isListView) this.addScroll();
     }
-
-    this.eventsRootContainer.classList.remove("border");
-    if(this.config.border){
-      this.eventsRootContainer.classList.add("border");
-    }
-
-    this.widgetRoot.style.height = `${this.widgetHeight}px`;
-    this.widgetRoot.style.width  = `${this.config.width}px`;
-
-    this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
-    this.eventsRootContainer.style.width  = `${this.config.width}px`;
-    this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
-    this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
-
-    //this.clear();
-
-    this.AdditionalElements();
-
-    this.getCoordinates(() => {
-      this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
-    });
-
-    if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-      this.themeModificators[ this.widgetConfig.theme ]();
-    }
-
-    /*plugins for 'buy button'*/
-    this.embedUniversePlugin();
-    this.embedTMPlugin();
-
-    this.initBuyBtn();
-
-    this.initMessage();
-
-    if (!this.isListView) this.initSliderControls();
-
-    if (!this.isListView) this.initEventCounter();
-
-    if (this.isListView) this.addScroll();
   }
   
   getCoordinates(cb){
@@ -978,7 +979,6 @@ class TicketmasterEventDiscoveryWidget {
         ['city'],
         ['countryCode'],
         ['source'],
-
         ['startDateTime', 'endDateTime', 'country'],
         ['radius'],
         ['postalCode', 'latlong'],
@@ -1121,6 +1121,7 @@ class TicketmasterEventDiscoveryWidget {
     }
     eventsSet = eventsSet._embedded.events;
     var tmpEventSet = [];
+
     for(var key in eventsSet){
       if(eventsSet.hasOwnProperty(key)){
         let currentEvent = {};
@@ -1157,7 +1158,6 @@ class TicketmasterEventDiscoveryWidget {
         }*/
 
         currentEvent.img = this.getImageForEvent(eventsSet[key].images);
-
         tmpEventSet.push(currentEvent);
 
       }
@@ -1364,33 +1364,35 @@ class TicketmasterEventDiscoveryWidget {
 
   getDateFromPeriod(period){
 
-    var date = new Date(),
-      period = period.toLowerCase(),
+    var period = period.toLowerCase(),
       firstDay, lastDay;
 
-    if(period == "year" ){
-      firstDay = new Date(date.getFullYear(),0,1);
-      lastDay = new Date(date.getFullYear(),12,0);
+    if(period == "year" ) {
+      // firstDay = new Date( new Date(new Date()).toISOString() );
+      // lastDay = new Date( new Date(new Date().valueOf()+24*365*60*60*1000).toISOString() );
+      firstDay = new Date().toISOString().slice(0,19) + 'Z';
+      lastDay = new Date(new Date().valueOf()+24*365*60*60*1000).toISOString().slice(0,19) + 'Z';
     }
-    else if(period == "month"){
-      firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-      lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    else if(period == "month") {
+      // firstDay = new Date( new Date(new Date()).toISOString() );
+      // lastDay = new Date( new Date(new Date().valueOf()+24*31*60*60*1000).toISOString() );
+      firstDay = new Date().toISOString().slice(0,19) + 'Z';
+      lastDay = new Date(new Date().valueOf()+24*31*60*60*1000).toISOString().slice(0,19) + 'Z';
     }
-    else if(period == "week"){
-      var first = date.getDate() - date.getDay();
-      var last = first + 6;
-      firstDay = new Date(date.setDate(first));
-      lastDay = new Date(date.setDate(last));
+    else if(period == "week") {
+      // firstDay = new Date( new Date(new Date()).toISOString() );
+      // lastDay = new Date( new Date(new Date().valueOf()+24*7*60*60*1000).toISOString() );
+      firstDay = new Date().toISOString().slice(0,19) + 'Z';
+      lastDay = new Date(new Date().valueOf()+24*7*60*60*1000).toISOString().slice(0,19) + 'Z';
     } else {
-      firstDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-      lastDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      // firstDay = new Date( new Date(new Date()).toISOString() );
+      // lastDay = new Date( new Date(new Date().valueOf()+24*60*60*1000).toISOString() );
+      firstDay = new Date().toISOString().slice(0,19) + 'Z';
+      lastDay = new Date(new Date().valueOf()+24*60*60*1000).toISOString().slice(0,19) + 'Z';
     }
 
-    firstDay.setHours(0);   lastDay.setHours(23);
-    firstDay.setMinutes(0); lastDay.setMinutes(59);
-    firstDay.setSeconds(0); lastDay.setSeconds(59);
-
-    return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
+    // return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
+    return [firstDay, lastDay];
   }
 
 }

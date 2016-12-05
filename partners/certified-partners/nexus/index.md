@@ -60,7 +60,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
 
     <div class="col-sm-6">
         <label >Number of Ticketmaster clients</label>
-        <input class="js_numeric_input" type="number-nexus" min="0" name="ticketsNumber" pattern="[0-9]*" inputmode="numeric" title="This field may only contain alpha-numeric characters" tabindex="6">
+        <input class="js_numeric_input" type="number-nexus" value="0" min="0" name="ticketsNumber" pattern="[0-9]*" inputmode="numeric" title="This field may only contain alpha-numeric characters" tabindex="6">
     </div>
     <label class="label-radio-group">Is product offering free or paid? <span class="label-required">(required)</span></label>
     <div class="label-radio">
@@ -83,47 +83,43 @@ We offer the support, knowledge and validation to make sure your solution is ful
 </form>
 </div>
 
-<script>
-var $nexusForm = $('.js_nexus_form'),
-    $textAreaDescription = $('#company-detail-text');
+<!-- Modal alert-->
+<div id="nexus-alert-modal" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
 
-    $nexusForm.submit(function(e){
-        var charCount = $textAreaDescription.val().length;
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Thank you for contacting us!</h3>
+        <p class="text-center">We will review and respond promptly.</p>
+        <div class="modal-footer">
+          <button id="js_nexus_btn_alert_ok" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
 
-        e.preventDefault();
-        $('button', $nexusForm).prop('disabled',true);
-        if(3000 <= charCount) {
-          showMsgError('#message-error', 4000 , charCount);
-          return false;
-        }
-        $.ajax({
-          dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
-          data: $nexusForm.serialize() 
-        }).done(function() {
-          //callback which can be used to show a thank you message
-          //and reset the form
-          showMsgSuccess('#message-success', 4000);
-        });
-        return false; //to stop the form from submitting
-    }); 
-    function showMsgSuccess(id, delay){
-        $(id).slideDown(400).delay( delay ).slideUp(200);
-        $nexusForm.trigger("reset");
-        //$('.js_custom_select',$nexusForm).trigger("custom-reset");
-        //$textAreaDescription.css('height',''); //reset height of textarea
-        $('button', $nexusForm).prop('disabled',false);
-    };
-    function showMsgError(id, delay, charCount){
-      var slideUpSpeed = 200;
-      $(id).append('<span id="contact-char-count"> Current count is '+charCount+'</span>')
-      $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
-      setTimeout(
-        function(){
-          $('#contact-char-count').remove();
-          $('button', $nexusForm).prop('disabled',false);
-        },
-        delay + slideUpSpeed*3);
-    };
-</script>
+  </div>
+</div>
+<!-- Modal alert end-->
+
+<!-- Modal alert Error-->
+<div id="nexus-alert-modal-error" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center text-overflow-message__red">Error</h3>
+        <p id="nexus-text-overflow-message" class="text-center">The maximum length of description can be 3000 characters.</p>
+        <div class="modal-footer">
+          <button id="js_nexus_btn_alert_ok-error" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal alert end-->
+
+<script src="/scripts/components/nexus-form-validate.js"></script>
 

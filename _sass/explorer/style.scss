@@ -89,17 +89,19 @@
   }
 
 	.dt-ico {
-	    position: absolute;
-		  top: 9px;
-		  right: 21px;
-		  display: block;
-		  width: 30px;
-		  height: 30px;
-		  background: url('../..//assets/img/api-explorer/ic-calendar.svg') center center no-repeat;
-		  z-index: 1;
-		  &:hover {
-				cursor: pointer;
-			}
+		content: '';
+		position: absolute;
+		right: 21px;
+		top: 9px;
+		width: 28px;
+		height: 28px;
+		background: url("/assets/controls/ic-input-controls.svg") 1px -28px no-repeat;
+		@include transition(opacity 0.2s ease-in-out);
+
+		&:hover {
+			cursor: pointer;
+			background-position: -28px -28px;
+		}
 	}
 
   #title {
@@ -563,6 +565,7 @@
 
 .documentation,
 #api-explorer {
+  .modal-footer .btn-default,
   .btn-small {
     top: 28px;
     margin-left: 30px;
@@ -572,11 +575,20 @@
     padding: 5px 15px;
     position: relative;
     border-radius: 3px;
+    &:focus,
+    &:active,
+    &:hover{
+      color: $p1b;
+      border-color: $p1b;
+      background-color: $white;
+      outline: none;
+    }
   }
   .api-exp-param-button {
     margin-left: 9px;
     padding: 5px 10px;
   }
+
 }
 
 .vertical-alignment-helper {

@@ -1,65 +1,95 @@
-var self;
+/**
+ * Custom select component
+ */
 
-function CustomSelect(params) {
-	var DEFAULT_SELECTED = ko.unwrap(params.options)[0].name;
-  self = this;
+class CustomSelect {
+	constructor({data, selected, options, focus, onselect, animationSpeed = 200, isReadOnly = true}) {
+		const rawOptions = ko.unwrap(options);
+		const DEFAULT_SELECTED = rawOptions[0].name;
+		this.curentSelectData = data;
+		this.onFocus = focus;
+		this.onselectMethod = onselect;
+		this.animationSpeed = animationSpeed;
+		this.options = options;
+		this.value = ko.unwrap(selected) || DEFAULT_SELECTED;
+		this.selectedOption = ko.observable(this.mapForChecked({rawOptions, name: this.value}));
+		this.isExpandeded = ko.observable(false);
+		this.isReadOnly = isReadOnly;
+		this.setSubscribtions({selected, DEFAULT_SELECTED});
 
-	this.curentSelectData = params.data || null;
-	this.onFocus = params.focus || null;
+		// Dirty watcher
+		this.fieldWatcher(data);
+	}
 
-	this.onselectMethod = params.onselect;
+	fieldWatcher(data) {
+		if (data) {
+			this.isDirty = data.isDirty = ko.pureComputed(() => {
+				return data.value() !== data.default && data.value() !== 'none';
+			});
+		}
+	}
 
-	this.animationSpeed = params.animationSpeed || 200;
-	this.options = params.options;
-	this.value = ko.unwrap(params.selected) || DEFAULT_SELECTED;
-	this.selectedOption = ko.observable(mapForChecked.call(this, ko.unwrap(this.options), this.value));
+	setSubscribtions({selected, DEFAULT_SELECTED}) {
+		// has preselected option
+		if (selected) {
+			selected.subscribe(value => {
+				let selectedOption = this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value || DEFAULT_SELECTED});
 
-	setSubscribtions.call(this, params);
-}
+				return this.selectedOption(selectedOption);
+			});
+		}
 
-function setSubscribtions(params) {
-	// on select map for checked
-	this.selectedOption.subscribe(function (value) {
-		mapForChecked(ko.unwrap(this.options), value.name);
-		this.onselectMethod(value);
-	},this);
+		// on select map for checked
+		this.selectedOption.subscribe(value => {
+			this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value.name});
+			this.onselectMethod(value);
+		});
 
-	// quantity of options check
-	this.isOneOption = ko.pureComputed(function () {
-		return ko.unwrap(this.options).length < 2; // more than one option
-	}, this);
-}
+		// quantity of options check
+		this.isOneOption = ko.pureComputed(() => ko.unwrap(this.options).length < 2);
+	}
 
-function mapForChecked(options, name) {
-	var selectedOption;
-	options.map(function (option) {
-		option.checked(option.name === name);
-		if (option.name === name) {selectedOption = option}
-	});
-	return selectedOption;
-}
+	/**
+	 * Updates checked option
+	 * @param rawOptions {array} options
+	 * @param name {string} name of selected option
+	 * @returns {object} selected option
+	 */
+	mapForChecked({rawOptions, name}) {
+		let selectedOption;
+		for (const option of rawOptions) {
+			option.checked(option.name === name);
+			if (option.name === name) {
+				selectedOption = option
+			}
+		}
+		return selectedOption;
+	}
 
-CustomSelect.prototype.slideToggle = function(item, event) {
-	this.onFocus && this.onFocus(this.curentSelectData);
-	if (ko.unwrap(this.isOneOption)) {return false}
-	var el = findElement(event);
-	el.wrapper.slideToggle(this.animationSpeed);
-	el.layer.toggleClass('hidden');
-};
+	slideToggle(item, event) {
+		this.onFocus && this.onFocus(this.curentSelectData);
+		this.isExpandeded(!ko.unwrap(this.isExpandeded));
+		if (ko.unwrap(this.isOneOption)) {
+			return false
+		}
+		let el = this.constructor.findElement(event);
+		el.wrapper.slideToggle(this.animationSpeed);
+		el.layer.toggleClass('hidden');
+	}
 
+	onSelect(item, event) {
+		const rawOptions = ko.unwrap(this.options);
+		this.mapForChecked({rawOptions, name: item.name});
+		this.selectedOption(item);
+		this.slideToggle(item, event);
+	}
 
-CustomSelect.prototype.onSelect = function (item, event) {
-	mapForChecked(ko.unwrap(this.options), item.name);
-	this.selectedOption(item);
-	this.onselectMethod(item);
-	this.slideToggle(item, event);
-};
-
-function findElement(event) {
-	var parent = $(event.currentTarget).parents('.js-custom-select');
-	return {
-		wrapper: parent.find('.js-custom-select-wrapper'),
-		layer: parent.find('.js-custom-select-layer')
+	static findElement(event) {
+		let parent = $(event.currentTarget).parents('.js-custom-select');
+		return {
+			wrapper: parent.find('.js-custom-select-wrapper'),
+			layer: parent.find('.js-custom-select-layer')
+		}
 	}
 }
 
@@ -70,8 +100,8 @@ module.exports = ko.components.register('custom-select', {
 		<div class="api-exp-custom-select-wrapper">
 			<select class="api-exp-custom-select__field" name="api-exp-method" data-bind="options: options, optionsText: 'name', value: selectedOption"></select>
 				<span class="api-exp-custom-select__placeholder">
-				<input type="text" readonly="" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption}">
-				<b class="api-exp-custom-select__chevron" data-bind="css: {hidden: isOneOption}">&nbsp;</b>
+				<input type="text" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption, readonly: isReadOnly}">
+				<button class="btn btn-icon shevron up blue api-exp-custom-select__chevron" data-bind="css: {hidden: isOneOption, down: isExpandeded}" type="button"></button>
 			</span>
 			<ul data-bind="foreach: options" class="api-exp-custom-select__list js-custom-select-wrapper">
 				<li data-bind="css: {'active': checked}" class="api-exp-custom-select__item">

@@ -1,21 +1,20 @@
-var self;
+class ErrorPopUp {
+	constructor() {
+		this.status = ko.observable('');
+		this.statusText = ko.observable('');
+		this.details = ko.observable(``);
 
-function ErrorPopUp(params) {
-	self = this;
-	this.status = ko.observable('');
-	this.statusText = ko.observable('');
-	this.details = ko.observable(``);
-	params.onError.subscribe(function(errorObj) {
-		this.status(Object.getProp(errorObj, '.responseJSON.errors[0].status') || errorObj.status || 'unnown');
-		this.statusText(Object.getProp(errorObj, '.responseJSON.errors[0].statusText') || errorObj.statusText || '');
-		this.details(Object.getProp(errorObj, '.responseJSON.errors[0].detail') || 'unnown');
-		this.togglePopUp();
-	}, this, 'error');
+		ko.postbox.subscribe('REQUEST_ERROR', errorObj => {
+			this.status(Object.getProp(errorObj, '.responseJSON.errors[0].status') || errorObj.status || 'unknown');
+			this.statusText(Object.getProp(errorObj, '.responseJSON.errors[0].statusText') || errorObj.statusText || '');
+			this.details(Object.getProp(errorObj, '.responseJSON.errors[0].detail') || 'unknown');
+			this.togglePopUp();
+		})
+	}
+	togglePopUp() {
+		$('#error-modal').modal('show');
+	}
 }
-
-ErrorPopUp.prototype.togglePopUp = function () {
-	$('#error-modal').modal('show');
-};
 
 module.exports = ko.components.register('error-pop-up', {
 	viewModel: ErrorPopUp,

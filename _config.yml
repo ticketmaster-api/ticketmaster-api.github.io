@@ -29,3 +29,8 @@ production_url : http://developers.ticketmaster.com/
 gems:
   - jekyll-redirect-from
 
+sass:
+  style: compressed
+
+webserver_headers:
+  "X-Frame-Options": "Deny"

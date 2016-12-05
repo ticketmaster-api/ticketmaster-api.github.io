@@ -1,0 +1,161 @@
+/**
+* Custom select component
+*/
+.api-exp-custom-select {
+		&-wrapper {
+			position: relative;
+		}
+		&-layer {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 500;
+		}
+		&__field {
+			@include transition(opacity 0.2s ease-in-out);
+			margin-bottom: 0;
+			border: 0;
+			clip: rect(0 0 0 0);
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+		}
+		&__placeholder {
+			position: relative;
+			input {
+				margin-bottom: 0;
+				cursor: pointer;
+				@include transition(opacity 0.2s ease-in-out);
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				padding: 0 35px 0 15px;
+				background: transparent;
+				&[disabled] {
+					cursor: default;
+					color: $heather;
+				}
+			}
+		}
+		&__chevron {
+			position: absolute;
+			width: 15px;
+			height: 10px;
+			margin-top: -9px;
+			top: 50%;
+			right: 16px;
+			z-index: -1;
+		}
+		&__list {
+			display: none;
+			position: absolute;
+			top: 48px;
+			left: 0;
+			width: 100%;
+			line-height: 24px;
+			color: $white;
+			z-index: 1051;
+			background: $heather;
+			padding: 12px 16px;
+			margin: 0;
+			font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+			border-radius: 4px;
+		}
+		&__item {
+			cursor: pointer;
+			list-style: none;
+			-webkit-transition: color 0.1s ease;
+			-o-transition: color 0.1s ease;
+			transition: color 0.1s ease;
+			font-size: 16px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1.5;
+			position: relative;
+			margin: 0 20px 0 0;
+			&-label {
+				color: $white;
+				display: block;
+				margin: 0 21px 0 0;
+				padding: 12px 0;
+				background: none;
+				border: none;
+				outline: none;
+				width: 100%;
+				text-align: left;
+
+				&:hover,
+				&.active {
+					color: $cerulean;
+				}
+			}
+			&-link {
+				position: absolute;
+				right: -20px;
+				top: 50%;
+				margin-top: -8px;
+				display: block;
+				width: 16px;
+				height: 16px;
+				object-fit: contain;
+				opacity: 0.5;
+				background: url($img-info) no-repeat;
+			}
+		}
+	}
+
+//tablet
+@media #{$max-1200} {
+	.api-exp-custom-select {
+		&__field {
+		}
+		&__placeholder {
+			input {
+			}
+			&::after {
+			}
+		}
+		&__list {
+		}
+		&__item {
+			&-label {
+				&:hover,
+				&.active {
+				}
+			}
+			&-link {
+			}
+		}
+	}
+}
+
+//mobile
+@media #{$max-768} {
+	.api-exp-custom-select {
+		&__field {
+		}
+		&__placeholder {
+			input {
+			}
+			&::after {
+			}
+		}
+		&__list {
+		}
+		&__item {
+			&-label {
+				&:hover,
+				&.active {
+				}
+			}
+			&-link {
+			}
+		}
+	}
+}

@@ -24,10 +24,8 @@ var apiKeyService = {};
 
   if(livePattern.test(host)){
     tmApiKeys = LIVE_KEYS;
-  }else if(stagingPattern.test(host)){
-    // FIXME: Temporary solution for unlock testing on staging instance. Revert before release !!!
-    // tmApiKeys = STAGING_KEYS;
-    tmApiKeys = LIVE_KEYS;
+  }else if(stagingPattern.test(host)){    
+    tmApiKeys = STAGING_KEYS;    
   }
 
   apiKeyService.getApiKeys = function () {
@@ -42,7 +40,7 @@ var apiKeyService = {};
     return tmApiKeys.widgets;
   };
 
-  apiKeyService.checkApiKeyCookie = function (cookieSelector) {
+  apiKeyService.checkApiKeyCookie = function () {
     var key = getCookie("tk-api-key");
     if (!key) {return;}
 
@@ -63,7 +61,7 @@ var apiKeyService = {};
       while (c.charAt(0)==' ') {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
+      if (c.indexOf(name) === 0) {
         return c.substring(name.length,c.length);
       }
     }

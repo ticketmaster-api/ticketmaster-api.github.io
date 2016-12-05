@@ -42,11 +42,22 @@
 <script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/datetimepicker.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/api-explorer-datetimepicker.js' | prepend: site.baseurl }}"></script>
-{% if page.category == "api-explorer"%}
   {% include lazy-selector-modal.html %}
   <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
+  {% include classification-selector-modal.html %}
+	<script src="{{'/scripts/vendors/jstree.min.js' | prepend: site.baseurl }}"></script>
+  <script src="{{'/scripts/components/classification-selector.js' | prepend: site.baseurl }}"></script>
+  <script>
+    /**
+     * add classification selector to api-explorer v1 (made by V.Menshutin)
+     */
+    $(document).on( "finishInit", function( event, flag ) {
+      $('#classificationName').classificationSelector({selector:'classifications', use:'name'});
+      $('#classificationId').classificationSelector({selector:'classifications', use:'id'});
+      $('#classificationID').classificationSelector({selector:'classifications', use:'id'});
+    });
+  </script>
   <!--<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA'></script>-->
-{%endif%}
 <script src="{{'/scripts/api-explorer/script.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
 {% include feedback.html %}
@@ -81,6 +92,6 @@ function replaceApiKey(options) {
 checkUserKey();
 
 </script>
-<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+<!--<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>-->
 </body>
 </html>

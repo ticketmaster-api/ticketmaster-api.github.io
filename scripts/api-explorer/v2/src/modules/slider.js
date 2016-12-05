@@ -1,46 +1,49 @@
+const config = {
+	dots: false,
+	infinite: false,
+	speed: 300,
+	slidesToShow: 3,
+	slidesToScroll: 1,
+	autoplay: false,
+	focusOnSelect: true,
+	responsive: [
+		{
+			breakpoint: 1200,
+			settings: {
+				dots: true,
+				slidesToShow: 2,
+				slidesToScroll: 1,
+			}
+		},
+		{
+			breakpoint: 800,
+			settings: {
+				dots: true,
+				slidesToShow: 1,
+				slidesToScroll: 1
+			}
+		}
+	]
+};
+
 function slick(times) {
 	"use strict";
 	var selector = '#slider-';
-	
-	for (var i = 0; i < times; i++) {
-		$(selector + i).length && $(selector + i).slick({
-			dots: false,
-			infinite: false,
-			speed: 300,
-			slidesToShow: 3,
-			slidesToScroll: 1,
-			variableWidth: true,
-			autoplay: false,
-			responsive: [
-				{
-					breakpoint: 1200,
-					settings: {
-						variableWidth: true,
-						slidesToShow: 2,
-						slidesToScroll: 1,
-						infinite: false,
-						dots: false
-					}
-				},
-				{
-					breakpoint: 800,
-					settings: {
-						variableWidth: true,
-						slidesToShow: 1,
-						slidesToScroll: 1
-					}
-				}
-			]
-		});
+
+	for (let i = 0; i < times; i++) {
+		let slider = $(selector + i);
+		if(slider.length) {
+			slider.slick(config);
+		}
 	}
 }
 
 function unslick(times) {
 	"use strict";
 
-	for (var i = 0; i < times; i++) {
-		var selector = '#slider-' + i;
-		$(selector) && $(selector).length && $(selector).slick('unslick');
+	for (let i = 0; i < times; i++) {
+		let slider = $('#slider-' + i);
+		slider.length && slider.slick('unslick');
 	}
 	console.info('cleared');
 }
