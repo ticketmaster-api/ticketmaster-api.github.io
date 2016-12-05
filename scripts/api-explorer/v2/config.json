@@ -13,8 +13,7 @@
       },
       "sales": {
         "_CONFIG": {
-          "index": 1,
-          "allInside": true
+          "index": 1
         }
       },
       "venues": {
@@ -153,8 +152,7 @@
       },
       "sales": {
         "_CONFIG": {
-          "index": 1,
-          "allInside": true
+          "index": 1
         }
       },
       "venues": {
