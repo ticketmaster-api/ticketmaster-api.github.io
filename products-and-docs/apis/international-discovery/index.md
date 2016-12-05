@@ -22,6 +22,7 @@ The Ticketmaster International Discovery API allows you to search for events, at
 + See Attraction Service
 + See Venue Service 
 + See Information Service 
++ See Search Suggest Service 
 
 #### Endpoint
 
@@ -6885,6 +6886,545 @@ Via: 1.1 vegur
           "id": 10103
         }
       ]
+    }
+  ]
+}
+{% endhighlight %}
+
+{: .article }
+## Search Suggest
+Get suggested matching event names, venue names, attraction names or city names for a partial string (of a minimum of TWO characters). Results should be ordered or grouped by the type of e.g even, venue, attraction, city.
+ 
+{: .code.red}
+https://app.ticketmaster.eu/mfxapi/v1/search/suggestions
+
+| Parameters | Optional values | Type | Required |
+| ---------- | --------------- | ---- | -------- |
+|`query` | The inputted query whether partial or keyword, with a minimum of two characters is supported. Example: Montrael. | string | Yes |
+|`sort_by` | The sorting method for search results for each type like popularity, name, etc. Example: popularity. | string | No |
+|`lang` | The language code, as the search language is dependent. Example: en-us. | string | No |
+|`order` | The order of the results whether descending or ascending. Example: desc. | string | No |
+|`domain_id` | A unique identifer for the domain or market. Example: canada. | string | No |
+|`exclude_types` | Types to be excluded from the search like cities, events or venues etc. Example: cities. | String | No |
+|`include_external_events` | If true return results for external events (i.e Partner sites). Example: true. | boolean | No |
+|`include_packages` | If false, returns events of event type only. If true, returns events of type event OR package. By default, both events and packages are returned e.g. if this parameter is not sent. (default value for param = "true"). Example: true. | boolean | No |
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+>[Java](#java)
+>[Node.js](#node)
+>[Perl](#perl)
+>[Python](#python)
+>[PHP](#php)
+>[Ruby](#ruby)
+>[Go](#go)
+>[C#](#c-sharp)
+>[Visual Basic](#visual-basic)
+>[Groovy](#groovy)
+>[Objective-C](#objective-c)
+>[Swift](#swift)
+{: .lang-selector}
+
+{% highlight js %}
+var request = new XMLHttpRequest();
+
+request.open('GET', '/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages');
+
+request.setRequestHeader('Accept', 'application/json');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    console.log('Body:', this.responseText);
+  }
+};
+
+request.send();
+{% endhighlight %}
+
+{% highlight bash %}
+curl --include \
+     --header "Accept: application/json" \
+  '/search/suggestions?domain_ids=canada&query=montreal&sort_by=popularity&lang=en-us&include_external_events=true&include_packages=false'
+{% endhighlight %}
+
+
+{% highlight java %}
+// Maven : Add these dependecies to your pom.xml (java6+)
+// <dependency>
+//     <groupId>org.glassfish.jersey.core</groupId>
+//     <artifactId>jersey-client</artifactId>
+//     <version>2.8</version>
+// </dependency>
+// <dependency>
+//     <groupId>org.glassfish.jersey.media</groupId>
+//     <artifactId>jersey-media-json-jackson</artifactId>
+//     <version>2.8</version>
+// </dependency>
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
+
+Client client = ClientBuilder.newClient();
+Response response = client.target("https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&#38;query&#38;sort_by&#38;lang&#38;include_external_events&#38;include_packages")
+  .request(MediaType.TEXT_PLAIN_TYPE)
+  .header("Accept", "application/json")
+  .get();
+
+System.out.println("status: " + response.getStatus());
+System.out.println("headers: " + response.getHeaders());
+System.out.println("body:" + response.readEntity(String.class));
+{% endhighlight %}
+
+
+{% highlight js %}
+var request = require('request');
+
+request({
+  method: 'GET',
+  url: 'https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages',
+  headers: {
+    'Accept': 'application/json'
+  }}, function (error, response, body) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers:', JSON.stringify(response.headers));
+  console.log('Response:', body);
+});
+{% endhighlight %}
+
+
+{% highlight perl %}
+require LWP::UserAgent;
+
+my $ua   = LWP::UserAgent->new;
+
+$ua->default_header("Accept" => "application/json");
+
+my $response = $ua->get("https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages");
+
+print $response->as_string;
+{% endhighlight %}
+
+{% highlight python %}
+from urllib2 import Request, urlopen
+
+headers = {
+  'Accept': 'application/json'
+}
+request = Request('https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages', headers=headers)
+
+response_body = urlopen(request).read()
+print response_body
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+{% endhighlight %}
+
+
+{% highlight ruby %}
+require 'rubygems' if RUBY_VERSION < '1.9'
+require 'rest_client'
+
+headers = {
+  :accept => 'application/json'
+}
+
+response = RestClient.get 'https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages', headers
+puts response
+{% endhighlight %}
+
+
+{% highlight go %}
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+func main() {
+	client := &http.Client{}
+
+	req, _ := http.NewRequest("GET", "https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages", nil)
+
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Errored when sending request to the server")
+		return
+	}
+
+	defer resp.Body.Close()
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+
+	fmt.Println(resp.Status)
+	fmt.Println(string(resp_body))
+}
+{% endhighlight %}
+
+
+{% highlight csharp %}
+//Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
+//System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+//Be sure to run "Install-Package Microsoft.Net.Http" from your nuget command line.
+using System;
+using System.Net.Http;
+
+var baseAddress = new Uri("https://app.ticketmaster.eu/mfxapi/v1/");
+
+using (var httpClient = new HttpClient{ BaseAddress = baseAddress })
+{
+
+  httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+  
+  using(var response = await httpClient.GetAsync("search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages"))
+  {
+ 
+        string responseData = await response.Content.ReadAsStringAsync();
+  }
+}
+{% endhighlight %}
+
+
+{% highlight vb %}
+Dim request = TryCast(System.Net.WebRequest.Create("https://app.ticketmaster.eu/mfxapi/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages"), System.Net.HttpWebRequest)
+
+request.Method = "GET"
+
+request.Accept = "application/json"
+
+request.ContentLength = 0
+Dim responseContent As String
+Using response = TryCast(request.GetResponse(), System.Net.HttpWebResponse)
+  Using reader = New System.IO.StreamReader(response.GetResponseStream())
+    responseContent = reader.ReadToEnd()
+  End Using
+End Using
+{% endhighlight %}
+
+
+{% highlight groovy %}
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+@Grab (group = 'org.codehaus.groovy.modules.http-builder', module = 'http-builder', version = '0.5.0')
+def client = new RESTClient("https://app.ticketmaster.eu/mfxapi/v1")
+
+def emptyHeaders = [:]
+emptyHeaders."Accept" = "application/json"
+
+response = client.get( path : "/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages", headers: emptyHeaders )
+
+println("Status:" + response.status)
+
+if (response.data) {
+  println("Content Type: " + response.contentType)
+  println("Body:\n" + JsonOutput.prettyPrint(JsonOutput.toJson(response.data)))
+}
+{% endhighlight %}
+
+
+{% highlight objc %}
+NSURL *URL = [NSURL URLWithString:@"https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages"];
+
+NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+[request setHTTPMethod:@"GET"];
+
+[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+NSURLSession *session = [NSURLSession sharedSession];
+NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                        completionHandler:
+                              ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if (error) {
+                                      // Handle error...
+                                      return;
+                                  }
+
+                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                      NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                      NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                  }
+
+                                  NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                  NSLog(@"Response Body:\n%@\n", body);
+                              }];
+[task resume];
+{% endhighlight %}
+
+
+{% highlight swift %}
+// NOTE: Uncommment following two lines for use in a Playground
+// import XCPlayground
+// XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+
+let url = NSURL(string: "https://app.ticketmaster.eu/mfxapi/v1/search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages")!
+let request = NSMutableURLRequest(URL: url)
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+let session = NSURLSession.sharedSession()
+let task = session.dataTaskWithRequest(request) { data, response, error in
+    if let response = response, data = data {
+        print(response)
+        print(String(data: data, encoding: NSUTF8StringEncoding))
+    } else {
+        print(error)
+    }
+}
+
+task.resume()
+{% endhighlight %}
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /search/suggestions?domain_ids&query&sort_by&lang&include_external_events&include_packages HTTP/1.1
+Host: https://app.ticketmaster.eu/mfxapi/v1
+Accept: application/json
+Content-Length: 0
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Server: Cowboy
+Connection: keep-alive
+X-Newrelic-App-Data: PxQDVFVRCQITVlZRDgcFV0YdFHYaFhEHQxFSERd/cWYcShNDHVEdUlYHG1FIUgsDAlxRVg8AG1dWAwIfQFJTUARRCFQNDg1TVV1aQx0HUg4XU2o=
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+Access-Control-Max-Age: 10
+X-Apiary-Transaction-Id: 569cb826f446de0b00e07619
+Content-Length: 1224
+Date: Mon, 18 Jan 2016 10:00:28 GMT
+Via: 1.1 vegur
+
+{
+  "events": [
+    {
+      "name": "Groovy Aardvark - Francofolies de Montreal",
+      "id": "10005039CD7042A6",
+      "localeventdate": "2017-02-18T20:00:00Z",
+            "eventdate": {
+                "format": "datetime",
+                "value": "2017-02-19T01:00:00Z"
+            }
+      "url": "http://www.ticketweb.co.uk/checkout/event.php?eventId=235463&amp;language=en-us&amp;track=DiscoveryAPI&amp;camefrom=TMINTL-GBL-PREODAY-3T6&amp;subchannel_id=1",
+      "venue_id": "131839",
+      "venue_name": "Métropolis",
+      "attraction_name": [
+        "Groovy Aardvark - Francofolies de Montreal"
+      ],
+      "is_external": true
+    },
+    {
+      "name": "Jacques Kuba Séguin - Festival international de Jazz de Montreal",
+      "id": "10005056DD1C51E4",
+      "localeventdate": "2017-02-18T20:00:00Z",
+            "eventdate": {
+                "format": "datetime",
+                "value": "2017-02-19T01:00:00Z"
+            }
+      "url": "http://www.ticketweb.co.uk/checkout/event.php?eventId=235463&amp;language=en-us&amp;track=DiscoveryAPI&amp;camefrom=TMINTL-GBL-PREODAY-3T6&amp;subchannel_id=1",
+      "venue_id": "131954",
+      "venue_name": "L'Astral",
+      "attraction_name": [
+        "Jacques Kuba Séguin - Festival international de Jazz de Montreal"
+      ],
+      "is_external": true
+    },
+    {
+      "name": "Jean Paray - De Las Vegas à Montreal avec Maurice Paquin",
+      "id": "10004F8893B923B8",
+       "localeventdate": "2017-02-18T20:00:00Z",
+            "eventdate": {
+                "format": "datetime",
+                "value": "2017-02-19T01:00:00Z"
+            }
+      "venue_id": "131954",
+      "venue_name": "L'Astral",
+      "attraction_name": [
+        "Jean Paray - De Las Vegas à Montreal avec Maurice Paquin"
+      ],
+      "is_external": false
+    },
+    {
+      "name": "Nir Felder - Festival de jazz de Montréal",
+      "id": "10004F7E94BE2285",
+       "localeventdate": "2017-02-18T20:00:00Z",
+            "eventdate": {
+                "format": "datetime",
+                "value": "2017-02-19T01:00:00Z"
+            }
+      "venue_id": "131954",
+      "venue_name": "L'Astral",
+      "attraction_name": [
+        "Nir Felder - Festival de jazz de Montréal"
+      ],
+      "is_external": false
+    },
+    {
+      "name": "Oxmo Puccino - Francofolies de Montréal",
+      "id": "10004F78A130401F",
+       "localeventdate": "2017-02-18T20:00:00Z",
+            "eventdate": {
+                "format": "datetime",
+                "value": "2017-02-19T01:00:00Z"
+            }
+      "venue_id": "131839",
+      "venue_name": "Métropolis",
+      "attraction_name": [
+        "Oxmo Puccino - Francofolies de Montréal"
+      ],
+      "is_external": false
+    }
+  ],
+  "attractions": [
+    {
+      "name": "Ballet Jazz De Montreal",
+      "id": 2747,
+      "event_count": 0
+    },
+    {
+      "name": "Montreal Alouettes",
+      "id": 7756,
+      "event_count": 4
+    },
+    {
+      "name": "Montreal Canadiens",
+      "id": 2557,
+      "event_count": 0
+    },
+    {
+      "name": "Montreal Expos",
+      "id": 2462,
+      "event_count": 0
+    },
+    {
+      "name": "Montreal Impact",
+      "id": 6174,
+      "event_count": 0
+    },
+    {
+      "name": "Montreal Symphony Orchestra",
+      "id": 5667,
+      "event_count": 0
+    },
+    {
+      "name": "Of Montreal",
+      "id": 11531,
+      "event_count": 0
+    }
+  ],
+  "venues": [
+    {
+      "name": "Marche Bonsecours ",
+      "id": "132033",
+      "city_name": "Montreal",
+      "venue_code": "MOVEN1",
+      "event_count": 0,
+      "is_external": true
+    },
+    {
+      "name": "Métropolis",
+      "id": "131839",
+      "city_name": "Montreal",
+      "venue_code": "MOVEN2",
+      "event_count": 50,
+      "is_external": true
+    },
+    {
+      "name": "Musée Grevin",
+      "id": "132125",
+      "city_name": "Montreal",
+      "venue_code": "MOVEN3",
+      "event_count": 0,
+      "is_external": true
+    },
+    {
+      "name": "Vieux Port de Montréal - Quai Jacques-Cartier",
+      "id": "132228",
+      "city_name": "Montreal",
+      "venue_code": "MOVEN4",
+      "event_count": 1,
+      "is_external": true
+    },
+    {
+      "name": "Vieux-Port de Montréal",
+      "id": "132118",
+      "city_name": "Montreal",
+      "venue_code": "MOVEN5",
+      "event_count": 0,
+      "is_external": true
+    },
+    {
+      "name": "Wilfrid-Pelletier",
+      "id": "131912",
+      "city_name": "Montreal",
+      "venue_code": "MOVEN6",
+      "event_count": 0,
+      "is_external": true
+    }
+  ],
+  "cities": [
+    {
+      "name": "Montréal",
+      "id": "2",
+      "event_count": 0
+    },
+    {
+      "name": "Montreal Lake",
+      "id": "157080",
+      "event_count": 0
+    },
+    {
+      "name": "Montreal River Harbour",
+      "id": "154601",
+      "event_count": 0
+    },
+    {
+      "name": "Montréal-Est",
+      "id": "150929",
+      "event_count": 0
+    },
+    {
+      "name": "Montréal-Nord",
+      "id": "150930",
+      "event_count": 0
+    },
+    {
+      "name": "Montréal-Ouest",
+      "id": "150931",
+      "event_count": 0
     }
   ]
 }
