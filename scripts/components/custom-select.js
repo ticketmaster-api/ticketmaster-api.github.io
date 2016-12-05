@@ -33,6 +33,12 @@ jQuery.fn.customSelect = function(options ) {
             $node.attr( 'inputmode', 'numeric' );
         }
     }
+    function addNumberPattern($node) {
+        if ($node.attr('type') === 'number'){
+            $node.attr('pattern','[0-9]*');
+            $node.attr( 'inputmode', 'numeric' );
+        }
+    }
 
 
     return this.each(function () {
@@ -61,30 +67,42 @@ jQuery.fn.customSelect = function(options ) {
 
         function set(self, isInit) {
             var $self = $(self);
-            // $placeholder.val($self.text());
+            var liDataVal;
+            $placeholder.val($self.text());
             $select.val($self.data('value'));
 
             if(options && options.useTopElValue){
-                $placeholder.val(
-                  $self.clone()	//clone the element
-                    .children()	//select all the children
-                    .remove()	//remove all the children
-                    .end()	//again go back to selected element
-                    .attr('data-value')	//get the data-value of element
-                );
-                $select.val($placeholder.val());
-            }else {
-                $placeholder.val($self.text());
+                liDataVal = $self.clone()	//clone the element
+                  .children()	//select all the children
+                  .remove()	//remove all the children
+                  .end()	//again go back to selected element
+                  .attr('data-value')	//get the data-value of element
+                ;
+                $placeholder
+                    .val( liDataVal )
+                    .data('value', liDataVal );
+                if(options.outerElement) {
+                    $(options.outerElement).trigger('blur');
+                }
+
             }
+
             $list.find('li').removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
 
             //set value on real select
             $('option',$select).filter(function(i) {
-                return ($(this).text() == $self.text()); //To select $self.text()
+
+                liDataVal = $self.clone()	//clone the element
+                  .children()	//select all the children
+                  .remove()	//remove all the children
+                  .end()	//again go back to selected element
+                  .text()	//get the data-value of element
+                ;
+                return $(this).text() == $self.text() ;//To select $self.text()
             }).prop('selected', true);
 
-            if(!isInit) $select.trigger('change');
+            $select.trigger('change');
         }
 
         function toggle() {
@@ -168,12 +186,35 @@ jQuery.fn.customSelect = function(options ) {
                 }
             }
         }
+        function setKeyinUL() {
+            var selectedKey = $(this).val();
+
+            if(options && options.useTopElValue){
+                $placeholder
+                  .attr('data-value', selectedKey )
+                  .val( selectedKey );
+                if(options.outerElement) {
+                    var list = $(this).siblings('ul').find('li');
+
+                    list.each(function(i,liEl) {
+                        if ( selectedKey === $(liEl).attr('data-value') ){
+                            $(liEl).addClass(activeItemCssClass);
+                            $(options.outerElement).trigger('blur');
+                        }else {
+                            $(liEl).removeClass(activeItemCssClass);
+                        }
+                    });
+                }
+            }
+        }
 
         // Events
         $list.on('click', 'li', function(){            
             set(this, false);
         });
         $placeholder.on('blur', blur);
+
+        $select.on('change',setKeyinUL );
 
         if ( isEditableInput($placeholder) ) {
             $custom_select.on('change', 'input', setValueByKeyboard);

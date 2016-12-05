@@ -246,12 +246,8 @@ Object.byString = function(o, s) {
     });
 
     $('#api-key')
-      .blur(function(){
+      .blur(function(e){
         apiKey = $(this).val();
-        if( $(this).val().length > 32){
-          apiKey = $(this).val().substring(0, 32);
-          console.log('new apiKey set', apiKey.length);
-        }
         apiKey = apiKey ? apiKey : apiKeyDefault;
       })
       .on('keyup', function(e){

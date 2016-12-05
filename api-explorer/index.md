@@ -160,7 +160,7 @@ category: api-explorer
             </div>
             <div class="col-sm-9 col-xs-12">
                 <div id="js_custom_select_key">
-                    <input type="text" id="api-key" class="form-control" placeholder="Api key" style="width: 100%;">
+                    <input type="text" id="api-key" class="form-control" placeholder="Api key" style="width: 100%;" contenteditable="true">
                 </div>
             </div>
         </div>
