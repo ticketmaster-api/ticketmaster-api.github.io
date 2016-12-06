@@ -60,6 +60,9 @@ Object.byString = function(o, s) {
 
     function isLogged() {
       if(apiKey !== defaultApiKey) {
+        if( $('#api-key').val().length > 32){
+          console.log('apiKey length', $('#api-key').val().length);
+        }
         $('#api-key').val(apiKey);
       }
     }
@@ -243,7 +246,7 @@ Object.byString = function(o, s) {
     });
 
     $('#api-key')
-      .change(function(){
+      .blur(function(e){
         apiKey = $(this).val();
         apiKey = apiKey ? apiKey : apiKeyDefault;
       })

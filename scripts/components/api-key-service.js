@@ -51,6 +51,18 @@ var apiKeyService = {};
     }
     return userApiKey;
   };
+  
+  apiKeyService.getApiKeysCookie = function () {
+    var key = getCookie("tk-api-apps");
+    if (!key) {return;}
+
+    var userApiKey;
+    var apiKeys = JSON.parse("[" + window.atob(key) + "]"); //decode and convert string to array
+    if (apiKeys && apiKeys.length && apiKeys[0].length) {
+      userApiKey = apiKeys[0];
+    }
+    return userApiKey;
+  };
 
   //get Cookie by name
   function getCookie(cname) {
