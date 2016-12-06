@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
@@ -284,6 +286,7 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
 
     @Override
     public String getSelectedCountry() {
+        getPage().waitFor(ExpectedConditions.elementToBeSelected(getCountryWebElementFacade()));
         return getCountryWebElementFacade().getSelectedVisibleTextValue();
     }
 
