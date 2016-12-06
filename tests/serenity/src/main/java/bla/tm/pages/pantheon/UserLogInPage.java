@@ -25,7 +25,7 @@ public class UserLogInPage extends AncestorPage {
     @FindBy(xpath = "//button[@id='edit-submit']")
     private WebElementFacade logInButton;
 
-    @FindBy(xpath = "//form[@id='user-login']/div/a[@href='/user/password']")
+    @FindBy(xpath = "//div[@class='user-login-reset-pass']/a")
     private WebElementFacade forgotYourPasswordLink;
 
     public WebElementFacade getCreateNewAccountButton() {

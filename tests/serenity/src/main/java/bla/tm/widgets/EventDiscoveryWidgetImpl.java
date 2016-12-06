@@ -6,6 +6,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -206,15 +207,33 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     @Override
     public String getCountryCodeValue() {
         String countryCodeXpath = "//label[@for=\"w-countryCode\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
+        String firstCountryCodeItemXpath = "//*[@id=\"w-countryCode\"]/following-sibling::ul/li[1]";
         String exceptionText = "Cannot get countryCode value in dropdown";
-        return getElementValueByXpathJs(countryCodeXpath, exceptionText);
+        String countryCodeValue = null;
+        try {
+            countryCodeValue = getElementValueByXpathJs(countryCodeXpath, exceptionText);
+        } catch (WebDriverException e) {
+            if (e.toString().contains("document.evaluate")) {
+                countryCodeValue = getElementValueByXpathJs(firstCountryCodeItemXpath, exceptionText);
+            }
+        }
+        return countryCodeValue;
     }
 
     @Override
     public String getSourceValue() {
         String sourceXpath = "//label[@for=\"w-source\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
+        String firstSourceItemXpath = "//*[@id=\"w-source\"]/following-sibling::ul/li[1]";
         String exceptionText = "Cannot get Source value in dropdown";
-        return getElementValueByXpathJs(sourceXpath, exceptionText);
+        String sourceValue = null;
+        try {
+            sourceValue = getElementValueByXpathJs(sourceXpath, exceptionText);
+        } catch (WebDriverException e) {
+            if (e.toString().contains("document.evaluate")) {
+                sourceValue = getElementValueByXpathJs(firstSourceItemXpath, exceptionText);
+            }
+        }
+        return sourceValue;
     }
 
     @Override
