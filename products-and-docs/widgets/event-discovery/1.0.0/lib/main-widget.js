@@ -990,7 +990,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'needToUpdate',
     value: function needToUpdate(newTheme, oldTheme) {
-      var forCheck = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+      var forCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
       return Object.keys(newTheme).map(function (key) {
         if (forCheck.indexOf(key) > -1) return true;
@@ -1207,6 +1207,17 @@ var TicketmasterEventDiscoveryWidget = function () {
           currentEvent.url = eventsSet[key].url;
           currentEvent.name = eventsSet[key].name;
 
+          /* Change URL [START] */
+          var parser = document.createElement("a");
+          parser.href = currentEvent.url;
+          var expr = "/ticketmaster.evyy.net/";
+          if (parser.href.match(expr) !== null) {
+            var changeURL = parser.pathname.split('/');
+            changeURL[3] = '330564';
+            currentEvent.url = parser.origin + changeURL.join('/') + parser.search + parser.hash;
+          }
+          /* Change URL [END] */
+
           currentEvent.date = {
             day: eventsSet[key].dates.start.localDate,
             time: eventsSet[key].dates.start.localTime
@@ -1242,9 +1253,9 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'makeRequest',
     value: function makeRequest(handler) {
-      var url = arguments.length <= 1 || arguments[1] === undefined ? this.apiUrl : arguments[1];
-      var attrs = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-      var method = arguments.length <= 3 || arguments[3] === undefined ? "GET" : arguments[3];
+      var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.apiUrl;
+      var attrs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      var method = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "GET";
 
       attrs = Object.keys(attrs).map(function (key) {
         return key + '=' + attrs[key];
