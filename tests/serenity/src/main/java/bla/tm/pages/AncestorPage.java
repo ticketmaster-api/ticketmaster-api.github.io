@@ -43,7 +43,7 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[@id='footer-blogs']")
     private WebElementFacade footerMenu2;
 
-    @FindBy(xpath = "//div[@id='footer-white']")
+    @FindBy(xpath = "//*[@id='footer-white']")
     private WebElementFacade footerMenu3;
 
     @FindBy(xpath = "//button[@id='js_feedback_open']")

@@ -120,7 +120,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     public void clickResetButton() {
         scrollToElement(resetButton);
         resetButton.click();
-        waitForSomeActionHappened(500);
+        waitForSomeActionHappened(1000);
     }
 
     @Override

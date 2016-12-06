@@ -23,7 +23,7 @@ namespace 'travis' do
       resultG = system("sh ./tests/run-test-dispatch.sh")
       puts resultG
       puts 'test result'
-      if (resultS and resultG) == false
+      if (resultS) == false
         puts 'test failed'
         exit 1
       end
