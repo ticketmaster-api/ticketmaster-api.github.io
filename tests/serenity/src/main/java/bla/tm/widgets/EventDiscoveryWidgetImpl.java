@@ -1,18 +1,15 @@
 package bla.tm.widgets;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
-import net.serenitybdd.core.exceptions.SerenityManagedException;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
+
 
 public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements EventDiscoveryWidget{
 
@@ -286,7 +283,7 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
 
     @Override
     public String getSelectedCountry() {
-        getPage().waitFor(ExpectedConditions.elementToBeSelected(getCountryWebElementFacade()));
+        waitForSomeActionHappened(1500);
         return getCountryWebElementFacade().getSelectedVisibleTextValue();
     }
 
