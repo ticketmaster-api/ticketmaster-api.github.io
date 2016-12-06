@@ -16,8 +16,8 @@ jQuery.fn.applicationSelect = function(options ) {
             var data = useData;
             var $placeholder = $custom_select.find('input');
             var auxArr = [] , liArr = [];
-            var $selectTag = $('<select required class="custom_select__field" name="subject" id="subject-keys" tabindex="-1">').insertBefore($placeholder);
-            var $ul = $('<ul class="custom_select__list">').insertAfter($placeholder);
+            var $selectTag = $('<select required class="custom_select__field" name="w-tm-api-key" id="subject-keys" tabindex="-1">');
+            var $ul = $('<ul class="custom_select__list">');
 
             //put option inside select & li
             $.each(data, function(i, option){
@@ -32,6 +32,9 @@ jQuery.fn.applicationSelect = function(options ) {
                 liArr[i] = "<li class='custom_select__item' data-value='" + option.key +"' >" + option.name +
                   "<span class='custom_select__item-data'>"+ time + "</span></li>"; //put li inside ul
             });
+
+            $selectTag.insertBefore($placeholder);
+            $ul.insertAfter($placeholder);
             $selectTag.append(auxArr.join(''));
             $ul.append(liArr.join(''));
 
@@ -59,6 +62,14 @@ jQuery.fn.applicationSelect = function(options ) {
               .on('blur', addValueListener )
               .on('click', addValueListener )
             ;
+
+            $('#w-tm-api-key')
+              .attr("contenteditable","true")
+              .data('value', $(this).siblings('ul').find('li.custom_select__item-active').attr('data-value'))
+              .on({
+                  'blur' : addValueListener,
+                  'click': addValueListener
+                });
         }
 
         });

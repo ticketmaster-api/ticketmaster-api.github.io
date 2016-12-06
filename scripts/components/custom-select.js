@@ -33,13 +33,6 @@ jQuery.fn.customSelect = function(options ) {
             $node.attr( 'inputmode', 'numeric' );
         }
     }
-    function addNumberPattern($node) {
-        if ($node.attr('type') === 'number'){
-            $node.attr('pattern','[0-9]*');
-            $node.attr( 'inputmode', 'numeric' );
-        }
-    }
-
 
     return this.each(function () {
 
@@ -143,10 +136,11 @@ jQuery.fn.customSelect = function(options ) {
                 e.preventDefault();
                 if ($(".custom_select__list ").is(":visible")) {
                     var selected = $(".custom_select__item-active", $(this , 'ul') );
-                    if(selected.length < 1)
+                    if(selected.length < 1){
                         set( $(".custom_select__item", $(this , 'ul')).first(), false);
-                    else
+                    } else{
                         set( $(".custom_select__item-active", $(this , 'ul')), false);
+                    }
                     toggle();
                 } else {
                     toggle();

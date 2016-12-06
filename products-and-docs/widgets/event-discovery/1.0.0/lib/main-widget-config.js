@@ -154,15 +154,12 @@
    **/
   function containerMove() {
     var marginTop = 0;
-    var wst = $window.scrollTop();
-
-    var _$containerWidget$dat = $containerWidget.data();
-
-    var min = _$containerWidget$dat.min;
-    var max = _$containerWidget$dat.max;
+    var wst = $window.scrollTop(),
+        _$containerWidget$dat = $containerWidget.data(),
+        min = _$containerWidget$dat.min,
+        max = _$containerWidget$dat.max;
 
     //if the window scroll is within the min and max (the container will be 'sticky';
-
     if (wst >= min && wst <= max) {
       //if the window scroll is below the minimum move it down!
       marginTop = wst - min;
@@ -178,9 +175,9 @@
     var userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
 
     if (userKey !== null) {
-      var inputApiKey = options.inputApiKey;
-      var widgetNode = options.widgetNode;
-      var _widget = options.widget;
+      var inputApiKey = options.inputApiKey,
+          widgetNode = options.widgetNode,
+          _widget = options.widget;
 
       inputApiKey.attr('value', userKey).val(userKey);
       widgetNode.setAttribute("w-tmapikey", userKey);
@@ -201,7 +198,10 @@
         targetName = event.target.name,
         $tabButtons = $('.js-tab-buttons');
 
+    console.log('trigger event.target.name', targetName, targetValue);
+
     if (targetName === "w-tm-api-key") {
+
       document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
 
       if (sessionStorage.getItem('tk-api-key')) {
@@ -433,7 +433,7 @@
   });
 
   widget.onLoadCoordinate = function (results) {
-    var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+    var countryShortName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
     widget.config['country'] = countryShortName;
     if (isPostalCodeChanged) {
