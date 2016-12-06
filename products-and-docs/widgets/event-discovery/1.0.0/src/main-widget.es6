@@ -1130,6 +1130,17 @@ class TicketmasterEventDiscoveryWidget {
         currentEvent.url = eventsSet[key].url;
         currentEvent.name = eventsSet[key].name;
 
+        /* Change URL [START] */
+        var parser = document.createElement("a");
+        parser.href = currentEvent.url;
+        var expr= "/ticketmaster.evyy.net/";
+        if (parser.href.match(expr) !== null) {
+            var changeURL = parser.pathname.split('/');
+            changeURL[3] = '330564';
+            currentEvent.url = parser.origin + changeURL.join('/') + parser.search + parser.hash;
+        }
+        /* Change URL [END] */
+
         currentEvent.date = {
           day: eventsSet[key].dates.start.localDate,
           time: eventsSet[key].dates.start.localTime
