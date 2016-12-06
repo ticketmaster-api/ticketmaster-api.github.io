@@ -125,9 +125,7 @@ jQuery.fn.customSelect = function(options ) {
                             selected = $(".custom_select__item",me).eq(i);
                         }
                     }
-                    else {
-                        console.info('error' , i, el );
-                    }
+                    else { console.info('error' , i, el );}
                 });
               return selected;
             }
