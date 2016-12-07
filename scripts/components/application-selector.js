@@ -13,30 +13,30 @@ jQuery.fn.applicationSelect = function(options ) {
         var useData = apiKeyService.getApiKeysCookie();
 
         function addCustomList() {
-            var data = useData;
-            var $placeholder = $custom_select.find('input');
-            var auxArr = [] , liArr = [];
-            var $selectTag = $('<select required class="custom_select__field" name="w-tm-api-key" id="subject-keys" tabindex="-1">');
-            var $ul = $('<ul class="custom_select__list">');
+            var data = useData,
+             optionArr = [] , liArr = [],
+             $placeholder = $custom_select.find('input'),
+             $select = $('<select required class="custom_select__field" name="w-tm-api-key" id="subject-keys" tabindex="-1">'),
+             $ul = $('<ul class="custom_select__list">');
 
             //put option inside select & li
-            $.each(data, function(i, option){
-                var time = option.created
+            $.each(data, function(i, cookieItem){
+                var time = cookieItem.created
                   .substring(0, 10)
                   .replace(/-/g, ".")
                   .split(".")
                   .reverse()
                   .join(".");
 
-                auxArr[i] = "<option value='" + option.key + "'>" + option.name + "</option>";
-                liArr[i] = "<li class='custom_select__item' data-value='" + option.key +"' >" + option.name +
-                  "<span class='custom_select__item-data'>"+ time + "</span></li>"; //put li inside ul
+                optionArr[i] = "<option value='" + cookieItem.key + "'>" + cookieItem.name + "</option>";
+                liArr[i] = "<li class='custom_select__item' data-value='" + cookieItem.key +"' ><p class='custom_select__item-ellipses'>" + cookieItem.name +
+                  "</p><span class='custom_select__item-data'>"+ time + "</span></li>"; //put li inside ul
             });
 
-            $selectTag.insertBefore($placeholder);
-            $ul.insertAfter($placeholder);
-            $selectTag.append(auxArr.join(''));
-            $ul.append(liArr.join(''));
+            $select.append(optionArr.join(''))
+              .insertBefore($placeholder);
+            $ul.append(liArr.join(''))
+              .insertBefore($placeholder);
 
             //set readonly for list
             $('input',$custom_select)
@@ -44,8 +44,7 @@ jQuery.fn.applicationSelect = function(options ) {
               .addClass('custom_select__placeholder');
         }
 
-        function addValueListener(){
-            var selectedKey = $(this).siblings('ul').find('li.custom_select__item-active').attr('data-value');
+        function addValueListener(selectedKey){
             $(this).attr('data-value',selectedKey);
             setTimeout(function(){
                 $(this)
@@ -53,23 +52,24 @@ jQuery.fn.applicationSelect = function(options ) {
             },0);
         }
 
+        function updateInputsHandler(selectedKey) {
+            if(options && options.updateInputs){
+                options.updateInputs.forEach(function (elementId) {
+                    $(elementId).attr("contenteditable","true")
+                        .data('value', selectedKey)
+                        .on({
+                            'blur' : addValueListener,
+                            'click': addValueListener
+                        });
+                });
+            }
+        }
+
         //initialization only once
         if( $custom_select.find('select').length < 1 && useData && useData.length > 0) {
-            addCustomList();
-
-            $('#api-key')
-              .data('value', $(this).siblings('ul').find('li.custom_select__item-active').attr('data-value'))
-              .on('blur', addValueListener )
-              .on('click', addValueListener )
-            ;
-
-            $('#w-tm-api-key')
-              .attr("contenteditable","true")
-              .data('value', $(this).siblings('ul').find('li.custom_select__item-active').attr('data-value'))
-              .on({
-                  'blur' : addValueListener,
-                  'click': addValueListener
-                });
+          var selectedKey = $(this).siblings('ul').find('li.custom_select__item-active').attr('data-value');
+            addCustomList(selectedKey);
+            updateInputsHandler(selectedKey);
         }
 
         });
@@ -79,6 +79,8 @@ jQuery.fn.applicationSelect = function(options ) {
 $(document).on('ready', function () {
     var listApiKeys = apiKeyService.getApiKeysCookie();
     if( listApiKeys && listApiKeys.length > 0) {
-        $('#js_custom_select_key').applicationSelect().customSelect({useTopElValue: true, outerElement: '#api-key'});
+        $('#js_custom_select_key')
+          .applicationSelect({updateInputs:['#w-tm-api-key','#api-key']})
+          .customSelect({useTopElValue: true, outerElement: '#api-key'});
     }
 });
