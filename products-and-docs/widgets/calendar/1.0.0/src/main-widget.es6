@@ -1816,6 +1816,16 @@ class WeekScheduler {
                         widget.hideMessageWithDelay(widget.hideMessageDelay);
                     }
 
+                    if (weekEvents[0] === undefined) {
+                        weekEvents[0] = ({
+                            date: '',
+                            time: '',
+                        });
+                        messageContainer.classList.remove('hide');
+                        widget.showMessage("No results were found.<br/>Here other options for you.");
+                        widget.hideMessageWithDelay(widget.hideMessageDelay);
+                    }
+
                     let tDate = weekEvents[0].date;
                     let tTime = weekEvents[0].time.substr(0,2);
                     let count = 0;
@@ -2568,7 +2578,6 @@ class MonthScheduler {
                     spinner.classList.add('hide');
 
                     if (events.page.totalElements != 0) {
-
                         let currentMonth = calendarWidgetRoot.getAttribute('w-period').substr(5, 2);
                         let currentMonthDef = new Date(calendarWidgetRoot.getAttribute('w-period')).getMonth() + 1;
                         if (currentMonthDef <= 9) currentMonthDef = '0' + currentMonthDef;
@@ -2604,9 +2613,8 @@ class MonthScheduler {
                                     index = i;
                                 }
                             });
-
                             if (currentMonth == item.dates.start.localDate.substr(5, 2) || currentMonthDef == item.dates.start.localDate.substr(5, 2)) {
-                                if (+new Date( +new Date().getFullYear(), +new Date().getMonth(), +new Date().getDate()) <= +new Date(+item.dates.start.localDate.split('-')[0],(+item.dates.start.localDate.split('-')[1])-1,+item.dates.start.localDate.split('-')[2])) {
+                                if (+new Date( +new Date().getFullYear(), +new Date().getMonth(), + new Date().getDate()) <= +new Date(+item.dates.start.localDate.split('-')[0],(+item.dates.start.localDate.split('-')[1])-1,+item.dates.start.localDate.split('-')[2])) {
                                     monthEvents.push({
                                         'name': item.name,
                                         'date': item.dates.start.localDate,
@@ -2636,6 +2644,7 @@ class MonthScheduler {
                     let monthEventsSort = {};
                     let eventsArr = [];
                     let tDate = '';
+
                     if (monthEvents[0]) {
                         tDate = monthEvents[0].date;
                     }
@@ -3467,7 +3476,9 @@ class YearScheduler {
         };
         xhr.send(null);
 
-        for(let i = 1; i <= 12; i++){
+        var currentMonth = parseInt(new Date().getMonth()) + 1;
+
+        for(let i = 1; i <= 12; i++) {
 
             if (i<=9) month = '0' + i; else month = i;
             let attrs = this.eventReqAttrs;
@@ -3501,7 +3512,12 @@ class YearScheduler {
                 attrs.endDateTime = finishY + '-' + finishM + '-' + finishD + 'T' + finishH + ':' + finishMn + ':' + finishS + 'Z';
             }
             else {
-                attrs.startDateTime = year + '-' + month + '-01T00:00:00Z';
+                var currentMonth = parseInt(new Date().getMonth()) + 1;
+                if (currentMonth <=9) currentMonth = '0' + currentMonth;
+                var currentDay = new Date().getDate();
+                if (currentDay <=9) currentDay = '0' + currentDay;
+                if (!(year == new Date().getFullYear() && month == currentMonth)) currentDay = '01';
+                attrs.startDateTime = year + '-' + month + '-' + currentDay + 'T00:00:00Z';
                 attrs.endDateTime = year + '-' + month + '-' + this.getLastDayOfMonth(year, (i - 1)) + 'T23:59:59Z';
             }
             attrs = Object.keys(attrs).map(function(key){
