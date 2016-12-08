@@ -144,6 +144,12 @@ Ticketmaster _DID Codes_ are also supported.  Any link which includes a `?did=YO
 
 Universal Checkout supports passing in a specific _Ticket Type ID_, ensuring it is the default Ticket Type when the widget opens.  This is specifically useful in combination with a _DID Code_, if you want to pre-select the newly-unlocked _Ticket Type ID_ on Step 1 of the checkout process.  To enable this behaviour, append the`?ticket=TICKET_TYPE_ID` URL parameter on the Ticketmaster event link.
 
+## Analytics Reports
+
+Analytics for Universal Checkout are available through TM One.  The "Sales by Platform" report will show sales over time which originated through the "Universal Checkout" platform, along with a summary of "Total Sold" and "Total Face Value".
+
+[![Sales by Platform](/assets/img/products-and-docs/checkout-widget-analytics.png)](/assets/img/products-and-docs/checkout-widget-analytics.png)
+
 ## Security Recommendations
 
 Universal Checkout is secured by bank-grade 256-byte SSL encryption for all communications.  The architecture of Universal Checkout ensures the entire checkout flow happens securely via HTTPS, even when the 3rd party site (which is embedding the widget) only uses HTTP.
