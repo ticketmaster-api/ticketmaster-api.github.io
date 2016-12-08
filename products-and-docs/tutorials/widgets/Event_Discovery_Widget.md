@@ -33,7 +33,7 @@ Event Discovery widget is based on [Discovery API](/products-and-docs/apis/disco
 To run a successful API call, you will need to pass your API Key as the query parameter `apikey`.
 Example: https://app.ticketmaster.com/discovery/v2/events.json?{apikey}
 
-## Get an API key
+## [Get an API key](#get-an-api-key)
 
 [Register](https://developer-acct.ticketmaster.com/user/login) on the developers portal. After the registration, the default application will be created. The application contains a Consumer Key that is used for authentication.
 
