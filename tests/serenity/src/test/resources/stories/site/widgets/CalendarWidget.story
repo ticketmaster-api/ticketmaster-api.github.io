@@ -25,7 +25,7 @@ Then the Country field contains appropriate value <countryName>
 Examples:
  |zipCode|countryName  |
  |01000  |France       |
- |2127   |Australia    |
+ |K1P 1J1|Canada       |
 
 Scenario: (/products-and-docs/widgets/calendar/) TECHNICAL TAB - Check RESET button functionality
 Given open Calendar Widget page

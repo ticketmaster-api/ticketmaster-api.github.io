@@ -154,7 +154,7 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     public void setEventCountValue(String eventCount) {
         eventCountField.clear();
         eventCountField.sendKeys(eventCount, Keys.ENTER);
-        waitForSomeActionHappened(1000);
+        waitForSomeActionHappened(2000);
     }
 
     //Getters
