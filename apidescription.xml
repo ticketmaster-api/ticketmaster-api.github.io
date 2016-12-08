@@ -36,6 +36,8 @@
 				<option value="ticketmaster"/>
 				<option value="ticketweb"/>
 				<option value="universe"/>
+				<option value="tmr"/>
+				<option value="frontgate"/>
 			</param>
 			<param name="locale" required="false" type="xsd:string" style="query"  default="">
 				<doc>The event locale, including country and localization.</doc>
@@ -276,6 +278,8 @@
 				<option value="ticketmaster"/>
 				<option value="ticketweb"/>
 				<option value="universe"/>
+				<option value="tmr"/>
+				<option value="frontgate"/>
 			</param>
 			<method id="discovery.v2.attractions.id.get" name="GET" apigee:displayName="Get Attraction Details">
 				<apigee:tags>
@@ -412,6 +416,8 @@
 				<option value="ticketmaster"/>
 				<option value="ticketweb"/>
 				<option value="universe"/>
+				<option value="tmr"/>
+				<option value="frontgate"/>
 			</param>
 			<method id="discovery.v2.venues.get" name="GET" apigee:displayName="Search Venues">
 				<apigee:tags>
