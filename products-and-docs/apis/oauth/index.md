@@ -156,7 +156,7 @@ Status 200
 {
     "access_token": "2bn123okn123on12c9d620232f8259205ed70",
     "expires_in": 3600,
-    "refresh_token": "bqwe123123538b9afa895a313ed5e0bc5fec43",
-    "token_type": "bearer"
+    "token_type": "bearer",
+    "scope":"all"
 }
 {% endhighlight %}
