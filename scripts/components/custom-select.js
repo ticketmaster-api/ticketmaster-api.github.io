@@ -30,7 +30,7 @@ jQuery.fn.customSelect = function(options ) {
     function addNumberPattern($node) {
         if ($node.attr('type') === 'number'){
             $node.attr('pattern','[0-9]*');
-            $node.attr( 'inputmode', 'numeric' );
+            $node.attr('inputmode', 'numeric');
         }
     }
 
@@ -197,7 +197,10 @@ jQuery.fn.customSelect = function(options ) {
         $list.on('click', 'li', function(){            
             set(this, false);
         });
-        $placeholder.on('blur', blur);
+        $placeholder.on({
+            'blur': blur,
+            'input': hide
+        });
 
         $select.on('change',setKeyinUL );
 
