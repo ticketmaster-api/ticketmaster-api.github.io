@@ -9,6 +9,10 @@ class ResponseComponent{
 		this.setParams = setParams;
 		this.response = data.response;
 		this.req = data.req;
+
+		this.breadcrubsArr = [];
+		this.breadcrumbs = ko.observable('');
+
 		this.attrs = {
 			wrapper: {
 				id: `collapse-${this.index}`,
@@ -36,16 +40,20 @@ class ResponseComponent{
 
 		ko.postbox.subscribe('ANOTHER_RESPONSE', ({data, panelGroup, color}) => {
 			let response = panelGroup.prepareData({params: {data: data.response}});
-			this.getMore(panelGroup.groupIndex, response, panelGroup, color);
+			this.getMore({
+				id: panelGroup.groupIndex,
+				data: response,
+				pGroup: panelGroup,
+				color
+			});
 		});
 	}
 
 	/**
 	 * get details
 	 */
-	getMore(id, data, pGroup, color) {
-		let panelGroup = pGroup || this.panelGroup;
-		let panel = this;
+	getMore = ({panel = {}, id, data, pGroup, color}) => {
+		let panelGroup = pGroup || panel.panelGroup;
 		let currentSlider = $('#slider-' + panelGroup.sectionIndex);
 		let component = $('<section data-bind="component: {name: \'panel-group\', params: params}"></section>');
 		let curslick = currentSlider.slick('getSlick');
@@ -64,6 +72,9 @@ class ResponseComponent{
 			params: params
 		}, component[0]);
 
+		// build breadcrubs
+		this.buildBreadcrumbs({index: panelGroup.groupIndex, parent: panel._panelName, current: id});
+
 		// add slide with selected data
 		currentSlider.slick('slickAdd', component);
 		// remove outstanding slides
@@ -74,6 +85,20 @@ class ResponseComponent{
 		setTimeout(() => {
 			currentSlider.slick('slickNext');
 		}, 310);
+	};
+
+	buildBreadcrumbs({index, parent, current}) {
+		let str = index ? '/' : '';
+
+		if (typeof current === 'number') {
+			str += `${parent}[${current}]`
+		} else {
+			str += `${parent}/${current}`
+		}
+		this.breadcrubsArr[index] = str;
+		this.breadcrubsArr.length = index + 1;
+
+		this.breadcrumbs(this.breadcrubsArr.join(''));
 	}
 }
 
@@ -96,10 +121,12 @@ module.exports = ko.components.register('response-component', {
 					
 					<ul class="nav nav-tabs info">
 						<li class="tab">
-							<span class="tab-label">Structure:</span>
+							<div class="tab-label">
+								<span data-bind="visible: breadcrumbs">Structure:</span>
+							</div>
 						</li>
 						<li class="tab">
-							<span class="tab-label breadcrumbs truncate"></span>
+							<span data-bind="text: breadcrumbs" class="tab-label breadcrumbs truncate"></span>
 						</li>
 					</ul>
 

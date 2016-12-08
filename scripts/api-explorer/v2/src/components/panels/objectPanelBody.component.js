@@ -13,7 +13,7 @@ class ObjectPanelBody {
 		this.collapseId = collapseId;
 		this._allInside = !!Object.getProp(ko.unwrap(config), '._CONFIG.allInside');
 		this.sortByConfig = panelGroup.sortByConfig;
-		this.subjectID = subjectID
+		this.subjectID = subjectID;
 		this.sendId(this.data);
 	}
 	sendId(data) {
@@ -53,8 +53,7 @@ class ObjectPanelBody {
 		$(e.currentTarget)
 			.parent('.item')
 			.addClass('active');
-
-		this.getMore.call(this, key, value);
+		this.getMore.call(null, {panel: this, id: key, data: value});
 	}
 }
 
