@@ -27,7 +27,7 @@ Apps which implement Ticketmaster OAuth are able to have Ticketmaster users auth
 | __Client&nbsp;ID__ | A public key which identifies your Ticketmaster API client / app.  Used when initiating the OAuth handshake.
 | __Client&nbsp;Secret__ | A private token which is used to authenticate your Ticketmaster API client / app for certain operations.  Not meant to be shared in untrusted environments, i.e. served up in your app.
 | __Access&nbsp;Token__ | Access tokens are credentials used to access protected resources. An access token is a random string representing an authorization issued to the client. Access tokens represent specific scopes and durations of access, granted by the resource owner, and enforced by the resource server and authorization server.
-| __Refresh&nbsp;Token__ | Refresh tokens are credentials used to obtain access tokens. Refresh tokens are issued to the client by the authorization server and are used to obtain a new access token when the current access token becomes invalid or expires.
+| __Refresh&nbsp;Token__ | Refresh tokens are credentials used to obtain access tokens. Refresh tokens are issued to the client by the authorization server and are used to obtain a new access token when the current access token becomes invalid or expires.  Refresh tokens are only issued upon the initial authorization.  Should a Refresh token ever expire or be revoked, you would need to prompt the user to re-authorize.
 | __Auth&nbsp;Code__ | An intermediate token used in the Authorization Code Grant Flow, generated after the user has successfully provided valid login credentials, and can be exchanged for the actual OAuth tokens (access token & refresh token).
 
 ## Authorization Code Flow ("three-legged")
