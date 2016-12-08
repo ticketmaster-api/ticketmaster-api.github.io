@@ -1,29 +1,33 @@
 var self;
 
-function ArrayPanelBody(params) {
-	self = this;
-	this.data = params.data.value;
-	this.config = params.config;
-	this._panelName = params.data.key;
-	this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
-	this.panelGroup = params.panelGroup;
-	this.getMore = this.panelGroup.getMore;
+class ArrayPanelBody {
+	constructor(params) {
+		self = this;
+		this.data = params.data.value;
+		this.config = params.config;
+		this._panelName = params.data.key;
+		this.cardIndex = this.cardIndex || ko.utils.unwrapObservable(params.index);
+		this.panelGroup = params.panelGroup;
+		this.getMore = this.panelGroup.getMore;
+	}
 
+	getStartData($data) {
+		return Object.getProp($data, 'dates.start.localDate') || ''
+	}
+	getVenueName($data) {
+		return Object.getProp($data, '_embedded.venues[0].name') || ''
+	}
+	setActive($index, model, e) {
+		$(e.currentTarget)
+			.parents('.slick-slide')
+			.find('.item.object')
+			.removeClass('active');
+		$(e.currentTarget)
+			.parent('.item')
+			.addClass('active');
+		this.getMore.call(null, {panel: this, id: $index, data: model});
+	}
 }
-
-ArrayPanelBody.prototype.getStartData = function ($data) {
-	return Object.getProp($data, 'dates.start.localDate') || ''
-};
-
-ArrayPanelBody.prototype.getVenueName = function ($data) {
-	return Object.getProp($data, '_embedded.venues[0].name') || ''
-};
-
-ArrayPanelBody.prototype.setActive = function ($index, model, e) {
-	$(e.currentTarget).parents('.slick-slide').find('.item.object').removeClass('active');
-	$(e.currentTarget).parent('.item').addClass('active');
-	this.getMore.call(this, $index, model);
-};
 
 module.exports = ko.components.register('array-panel-body', {
 	viewModel: ArrayPanelBody,
@@ -37,9 +41,11 @@ module.exports = ko.components.register('array-panel-body', {
 					<!-- /ko -->
 					
 					<!-- ko ifnot: $component._panelName === 'images' -->
-						<div class="name-wrapper">
-							<span data-bind="text: name || '#' + $index(), blockEllipsis: {clamp: 2}" class="name">label</span>
-						</div>			
+						<div class="vertical-align-center">
+							<div class="name-wrapper">
+								<span data-bind="text: name || '#' + $index(), blockEllipsis: {clamp: 2}" class="name">label</span>
+							</div>
+						</div>
 						
 						<!-- ko if: $component._panelName === 'events' -->
 							<div class="additional-info">
