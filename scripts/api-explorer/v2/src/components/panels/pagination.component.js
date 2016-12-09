@@ -50,6 +50,6 @@ module.exports = ko.components.register('pagination', {
 	template:
 	`<span class="navigation-wrapper">
 		<button data-bind="click: getPrevPage, enable: first" type="button" class="navigation prev"></button>
-		<button  data-bind="click: getNextPage, enable: last" type="button" class="navigation next"></button>
+		<button data-bind="click: getNextPage, enable: last" type="button" class="navigation next"></button>
 	</span>`
 });

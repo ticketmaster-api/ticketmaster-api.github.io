@@ -32,18 +32,22 @@ class ArrayPanelBody {
 module.exports = ko.components.register('array-panel-body', {
 	viewModel: ArrayPanelBody,
 	template:`
-		<section class="panel-body no-padding array-panel-body">
+		<section class="panel-body array-panel-body">
 			<ul data-bind="foreach: data, css: {'events': $component._panelName === 'events'}" class="list list-group">
 				<li data-bind="css: {'object': typeof $data === 'object'}" class="list-group-item item">
 				
 					<!-- ko if: $component._panelName === 'images' -->
 						<img data-bind="attr: {src: url, alt: 'image-' + ratio}" alt="img" class="img">
+						<div class="img-info">
+							<span class="img-ratio">Ratio: <i data-bind="text: ratio"></i></span>
+							<span class="img-size">(<i data-bind="text: height"></i> x <i data-bind="text: width"></i>)</span>
+						</div>
 					<!-- /ko -->
 					
 					<!-- ko ifnot: $component._panelName === 'images' -->
 						<div class="vertical-align-center">
 							<div class="name-wrapper">
-								<span data-bind="text: name || '#' + $index(), blockEllipsis: {clamp: 2}" class="name">label</span>
+								<span data-bind="text: name || '#' + $index(), blockEllipsis: {clamp: 2}" class="name"></span>
 							</div>
 						</div>
 						

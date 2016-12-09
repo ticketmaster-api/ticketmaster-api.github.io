@@ -1,0 +1,259 @@
+// Object panel-body styles
+section.panel-body.object-panel-body {
+	&.all-inside {
+		padding: 0 15px;
+
+		li.item.object + li.item.primitive,
+		li.item.primitive + li.item.object {
+			padding-top: 8px;
+		}
+
+		.panel {
+			margin-right: -15px;
+			margin-left: -15px;
+			border-right: none;
+			border-radius: 0;
+			.panel-heading {
+				border-right: none;
+				.btn-title {
+					margin: 0 0 0 35px;
+				}
+			}
+			.panel-body {
+				.key {
+					display: block !important;
+				}
+			}
+		}
+
+		img.img {}
+		ul.object-list.list {
+			li.item {
+				&.object {
+					span.key {}
+					span.value {}
+					.form-inline {
+						input[type="text"] {}
+					}
+					button.btn-copy {}
+					button.blue-shevron-right {}
+				}
+				&.primitive {
+					padding: 7px 0;
+					&:first-child{
+						padding-top: 15px;
+					}
+					&:last-child {
+						padding-bottom: 15px;
+					}
+					span.key {}
+					span.value {}
+					.form-inline {
+						input[type="text"] {}
+					}
+					button.btn-copy {}
+					button.blue-shevron-right {}
+				}
+				span.key {}
+				span.value {}
+				.form-inline {
+					input[type="text"] {}
+				}
+				button.btn-copy {}
+				button.blue-shevron-right {}
+			}
+		}
+	}
+	&:not(.all-inside) {
+		ul.object-list.list {
+			li.item.object {
+				padding: 15px;
+				margin: 0 -15px;
+				&:hover,
+				&.active {
+					color: $white;
+					background: #009cde;
+					.key {
+						color: #fff;
+					}
+					.btn {
+						background: {
+							image: url($img);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	img.img {
+		margin: auto;
+	}
+	ul.object-list.list {
+		li.item {
+			&.object {
+				span.key {}
+				span.value {}
+				.form-inline {
+					input[type="text"] {}
+				}
+				button.btn-copy {}
+				button.blue-shevron-right {}
+			}
+
+			&.primitive {
+				&:first-child {
+					padding-top: 15px;
+				}
+				&:last-child {
+					padding-bottom: 15px;
+				}
+				span.key {}
+				span.value {}
+				.form-inline {
+					input[type="text"] {}
+				}
+				button.btn-copy {}
+				button.blue-shevron-right {}
+			}
+
+			span.key {
+				font: {
+					size: 14px;;
+					style: normal;
+					stretch: normal;
+					weight: bold;
+				}
+				margin: 1px 10px 0 0;
+				color: #768692;
+				float: left;
+			}
+			span.value {
+				font: {
+					size: 14px;
+					weight: normal;
+					style: normal;
+					stretch: normal;
+				}
+				line-height: 1.57;
+				color: #768692;
+				overflow-wrap: break-word;
+				max-width: 310px;
+				word-break: break-all;
+			}
+			.form-inline {
+				input[type="text"] {}
+			}
+			button.btn-copy {}
+			button.blue-shevron-right {}
+		}
+	}
+
+	// tablet
+	@media #{$max-1200} {
+		&.all-inside {
+			img.img {}
+			ul.object-list.list {
+				li.item {
+					span.key {}
+					span.value {}
+					.form-inline {
+						input[type="text"] {}
+					}
+					button.btn-copy {}
+					button.blue-shevron-right {}
+				}
+			}
+		}
+
+		img.img {}
+		ul.object-list.list {
+			li.item {
+				span.key {}
+				span.value {}
+				.form-inline {
+					input[type="text"] {}
+				}
+				button.btn-copy {}
+				button.blue-shevron-right {}
+			}
+		}
+	}
+
+	// mobile
+	@media #{$max-768} {
+		&.all-inside {
+			img.img {}
+			ul.object-list.list {
+				li.item {
+					&.object {
+						span.key {}
+						span.value {}
+						.form-inline {
+							input[type="text"] {}
+						}
+						button.btn-copy {}
+						button.blue-shevron-right {}
+					}
+
+					&.primitive {
+						padding: 5px 0;
+						.panel {
+							margin-top: -5px;
+						}
+						span.key {}
+						span.value {}
+						.form-inline {
+							input[type="text"] {}
+						}
+						button.btn-copy {}
+						button.blue-shevron-right {}
+					}
+
+					span.key {}
+					span.value {}
+					.form-inline {
+						input[type="text"] {}
+					}
+					button.btn-copy {}
+					button.blue-shevron-right {}
+				}
+			}
+		}
+
+		&:not(.all-inside) {
+			ul.object-list.list {
+				li.item.object {
+					padding: 10px 15px;
+				}
+			}
+		}
+
+		img.img {}
+		ul.object-list.list {
+			li.item {
+				position: relative;
+				font-size: 12px;
+				padding-top: 5px;
+
+				&:first-child,
+				.primitive:first-child {
+					padding-top: 10px;
+				}
+				.primitive:last-child {
+					padding-bottom: 10px;
+				}
+
+				span.key,
+				span.value {
+					font-size: inherit;
+				}
+				.form-inline {
+					input[type="text"] {}
+				}
+				button.btn-copy {}
+				button.blue-shevron-right {}
+			}
+		}
+	}
+}

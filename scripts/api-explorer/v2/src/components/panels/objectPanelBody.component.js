@@ -89,12 +89,12 @@ module.exports = ko.components.register('object-panel-body', {
 						<button data-bind="copyToClipboard: {text: value.toString()}, attr: {id: 'prop-value-' + key + $index()}, popover: {type: 'tooltip', title: 'Copy value'}" type="button" class="btn btn-icon btn-copy"></button>
 					<!-- /ko -->
 					
-						<!-- ko if: typeof value === 'object' && $component._allInside -->
-							<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
-						<!-- /ko -->
-						<!-- ko if: typeof value === 'object' && !$component._allInside -->
-							<button data-bind="click: $component.setActive.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
-						<!-- /ko -->
+					<!-- ko if: typeof value === 'object' && $component._allInside -->
+						<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
+					<!-- /ko -->
+					<!-- ko if: typeof value === 'object' && !$component._allInside -->
+						<button data-bind="click: $component.setActive.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+					<!-- /ko -->
 				</li>
 			</ul>
 		</section>

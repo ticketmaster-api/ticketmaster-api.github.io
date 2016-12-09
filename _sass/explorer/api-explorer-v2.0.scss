@@ -15,4 +15,9 @@
 	@import "components/_filter";
 	@import "components/_get-btn.component";
 	@import "components/_panels.component";
+	.tab-content .panel-group .panel {
+		@import "components/_panelHeading.component";
+		@import "components/_objectPanelBody.component";
+		@import "components/_arrayPanelBody.component";
+	}
 }
