@@ -304,7 +304,7 @@ function showPosition(position) {
 
 ## Process the API response
 
-In a case of a succesful request to Discovery API, we call function `showEvents` that processes the response and displays the event list.
+In a case of a successful request to Discovery API, we call function `showEvents` that processes the response and displays the event list.
 Other function `initMap` initializes Google map and shows markers for events.
 
 {: .window-title}

@@ -69,7 +69,7 @@ Let's go step by step through this site creation.
 
 ## Step 1. A place for widget on your site
 
-Select good place for widget on your site. In our example the site is empty. So widget will be the first elemnt of the site.
+Select good place for widget on your site. In our example the site is empty. So widget will be the first element of the site.
 
 {: .window-title}
 Step 1. A place for widget on your site

@@ -62,7 +62,7 @@ The API provides access to content sourced from various platform, including **Ti
 
 ### Event Coverage
 
-With over 113K+ events available in the API, coverage spans all of the following countries: **United States**, **United Kingdom**, **Ireland**, **Australia**, **New Zealand**, **Mexico** and **Canada**. More events and more countries are added on continious basis.
+With over 113K+ events available in the API, coverage spans all of the following countries: **United States**, **United Kingdom**, **Ireland**, **Australia**, **New Zealand**, **Mexico** and **Canada**. More events and more countries are added on continuous basis.
 
 ![event map](/assets/img/products-and-docs/map.png)
 
@@ -3700,7 +3700,7 @@ discovery/{version}/venues.{format}
             * `address` (object) - address of venue.
                 - `line1` (string) - address line 1.
                 - `line2` (string) - address line 2.
-            * `city` (object) - citiy of venue.
+            * `city` (object) - city of venue.
                 - `name` (string) - name of city.
             * `country` (object) - country.
                 - `name` (string) - name of country.
@@ -3935,7 +3935,7 @@ discovery/{version}/venues/{id}.{format}
 * `address` (object) - address of venue.
     - `line1` (string) - address line 1.
     - `line2` (string) - address line 2.
-* `city` (object) - citiy of venue.
+* `city` (object) - city of venue.
     - `name` (string) - name of city.
 * `country` (object) - country.
     - `name` (string) - name of country.
