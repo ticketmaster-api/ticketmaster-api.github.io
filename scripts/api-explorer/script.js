@@ -906,8 +906,7 @@ Object.byString = function(o, s) {
       geocodeAddress(geocoder, map, address, function(result){ // geocode address and center the map
         latLng = result;
       });
-    }
-    else { // if not (means lat and long were provided)
+    } else { // if not (means lat and long were provided)
       marker = new google.maps.Marker({ //Create a marker and set its position.
         map: map,
         position: latLng

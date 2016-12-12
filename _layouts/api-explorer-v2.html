@@ -5,6 +5,24 @@
 <div id="spinner hide"></div>
 {% include home-header.html %}
 
+<section class="modal fade map-popup" id="map-popup" role="dialog">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-lg vertical-align-center">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Location</h4>
+				</div>
+				<div class="modal-body">
+					<div id="map" class="modal-body-wrapper"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <error-pop-up></error-pop-up>
 
 <div id="api-explorer-v2" class="api-explorer-v2">

@@ -1,0 +1,26 @@
+/**
+* Map modal pop-up styles
+**/
+
+section.map-popup {
+	.modal-dialog {
+		.modal-content {
+			.modal-header {
+				.modal-title {}
+			}
+			.modal-body {
+				height: 500px;
+				padding: 15px;
+				&-wrapper {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.modal-footer {
+				.btn {
+					top: 0;
+				}
+			}
+		}
+	}
+}
