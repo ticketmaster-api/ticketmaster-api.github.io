@@ -18,7 +18,7 @@ We'd love to hear from you. Please let us know how we can help!
 {: .gray .base-margin-top .text-center}
 ### We are social!
 
-* [![Twitter](../../../assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
+* [![Twitter](../../../assets/img/ic-twitter.svg)](https://twitter.com/tmTech)
 * [![Facebook](../../../assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
 * [![Medium](../../../assets/img/ic-medium.svg)](https://medium.com/ticketmaster-tech)
 {% endcapture %}
