@@ -1961,7 +1961,7 @@ discovery/{version}/venues.{format}
             * `country` (string) - country code.
             * `state` (object) - state of venue.
                 - `stateCode` (string) - code of state.
-            * `city` (object) - citiy of venue.
+            * `city` (object) - city of venue.
                 - `name` (string) - name of city.
             * `postalCode` (string) - postal code of venue.
             * `address` (object) - address of venue.
@@ -2150,7 +2150,7 @@ discovery/{version}/venues/{id}.{format}
 * `country` (string) - country code.
 * `state` (object) - state of venue.
     - `stateCode` (string) - code of state.
-* `city` (object) - citiy of venue.
+* `city` (object) - city of venue.
     - `name` (string) - name of city.
 * `postalCode` (string) - postal code of venue.
 * `address` (object) - address of venue.
