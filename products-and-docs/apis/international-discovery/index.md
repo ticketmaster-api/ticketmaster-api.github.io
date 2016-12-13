@@ -38,7 +38,7 @@ For example:
 
 + `apikey` = `gwyfRRwYcA0gmbUDDAtADEeaHT` (required, string)
 
-To request an API Key send an email to the [Ticketmaster Product Manager](mailto:carie.hughes@ticketmaster.co.uk).
+To request an API Key send an email to the [International Disccovery API team](mailto:InternationalAPI@ticketmaster.co.uk).
 
 #### Format
 You can set the output format from all API Services with an Accept header. The API supports:
@@ -47,7 +47,7 @@ You can set the output format from all API Services with an Accept header. The A
 + `application/xml`
 
 #### Markets
-The Ticketmaster International Discovery API covers the following markets: Germany, Austria, Netherlands, Denmark, Belgium, Norway, Spain, Sweden, Finland, Poland, UK (Ticketweb.co.uk) and Canada (Admission.com). Please note that the UK and Ireland (Ticketmaster.co.uk, Ticketmaster.ie) and the USA and rest of Canada (Ticketmaster.com) are not available through the International Discovery API. Details will be available soon on how to request access to the Ticketmaster API for these markets.
+The Ticketmaster International Discovery API covers the following markets: Germany, Austria, Netherlands, Denmark, Belgium, Norway, Spain, Sweden, Finland, Poland, UAE, UK (Ticketweb.co.uk) and Canada (Admission.com). Please note that the UK and Ireland (Ticketmaster.co.uk, Ticketmaster.ie) and the USA and rest of Canada (Ticketmaster.com) are not available through the International Discovery API. Details will be available soon on how to request access to the Ticketmaster API for these markets.
 
 
 {: .article }
@@ -88,6 +88,7 @@ to search multiple domains. (A logical OR search is performed).
     - unitedarabemirates
     - canada
     - poland
+    - spain
 {% endcomment %}
 
 | Parameters | Optional values | Type |
@@ -98,7 +99,7 @@ to search multiple domains. (A logical OR search is performed).
 You can paginate the results by specifying the number of rows to return, and the start row. The default 
 start is 0 and the default rows is 10. There is a maximum of 500 
 
-+ `rows.start` = `10` (optional, integer)
++ `rows` = `10` (optional, integer)
 + `rows` = `20` (optional, integer)
 
 ##### Sorting
