@@ -156,6 +156,24 @@ Universal Checkout is secured by bank-grade 256-byte SSL encryption for all comm
 
 As a security best practice, we strongly recommend that all pages which embed Universal Checkout __also__ implement SSL / HTTPS.  As of Fall 2016, browsers are beginning to encourage the use of SSL / HTTPS everywhere, and in 2017 will begin to show HTTP as "Insecure" in the browser's toolbar.  This is important for all websites to prevent "man in the middle" attacks, which are theoretically possible on all insecure webpages when on an untrusted Internet connection (public wifi, Internet cafe, etc).  Fortunately, [Let's Encrypt](https://letsencrypt.org/) is an open project sponsored by Google, Facebook, Mozilla, and others, which offers free SSL/TLS certificates to all.
 
+## Troubleshooting
+
+To check whether an Universal Checkout will attempt to transact on a specific event, enter the event ID in the tool below:
+
+<iframe src="https://s3-us-west-2.amazonaws.com/tm-kepler/gatekeeper-check.html" frameborder="0" width="50%" style="border: solid #b7c9d3 1px;">
+</iframe>
+
+If the debug tool may indicates the event cannot be transacted using Universal Checkout, please double-check whether any of the following requirements are not met:
+
+<ul>
+  <li>• The event was just created (it takes 24 hours to appear)</li>
+  <li>• The event has already started</li>
+  <li>• The event has ended</li>
+  <li>• The event has sold out or has very low ticket availability</li>
+  <li>• The event is in presale mode and there is no DID on the link</li>
+  <li>• e-Tickets / print-at-home delivery is not available</li>
+</ul>
+
 ## Additional Resources
 
 | Document   | Last Modified | Download |
