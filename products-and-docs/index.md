@@ -124,7 +124,7 @@ Easy integration? No sweat.
 {% endcapture %}
 
 {% capture sdk_left %}
-[![Account Manager](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmastertech)
+[![Account Manager](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmTech)
 
 ### Account Manager
 
