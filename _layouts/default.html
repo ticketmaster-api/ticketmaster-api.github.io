@@ -72,7 +72,7 @@
                 <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
                 <script src="{{'/scripts/components/application-selector.js' | prepend: site.baseurl }}"></script>
-                {% if page.categories[3] != true %}
+                {% if page.categories[2] == "widget-event-discovery" %}
                     {% include classification-selector-modal.html %}
                     <script src="{{"/scripts/vendors/jstree.min.js" | prepend: site.baseurl }}"></script>
                     <script src="{{'/scripts/components/classification-selector.js' | prepend: site.baseurl }}"></script>
