@@ -46,7 +46,7 @@ Social promo, rendered left to the twitter card
 –Pramod Setlur, API developer
 
 ### "The Ticketmaster API is really easy to use!"
-–[ArJun Madan](http://blog.arjunmadan.xyz/2016/03/17/the-ticketmaster-dev-jam/), API developer
+–ArJun Madan, API developer
 
 ### "The API Explorer is great. It helps me identify if the error is in the API or in my code. Very helpful."
 –Ryan Zhou, API developer
