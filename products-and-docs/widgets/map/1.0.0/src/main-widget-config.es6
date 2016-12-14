@@ -47,16 +47,16 @@
                     layout: 'vertical'
                 },
                 custom: {
-                    width: 350,
-                    height: 600,
+                    width: 300,
+                    height: 560,
                     layout: 'vertical'
                 }
             },
             initSliderSize: {
-                width: 350,
-                height: 600,
-                maxWidth: 500,
-                minWidth: 350
+                width: 300,
+                height: 560,
+                maxWidth: 300,
+                minWidth: 560
             }
         },
         isPostalCodeChanged = false;

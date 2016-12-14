@@ -3,7 +3,7 @@ layout: documentation-single
 ---
 
 <link id="widget-theme-listview" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/listview.css" | prepend: site.baseurl }}">
-<link id="widget-theme-simple" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/simple.css" | prepend: site.baseurl }}">
+<link id="widget-theme-simple" rel="stylesheet" href="{{ "/products-and-docs/widgets/map/1.0.0/theme/simple.css" | prepend: site.baseurl }}">
 <link id="widget-theme-oldschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/oldschool.css" | prepend: site.baseurl }}">
 <link id="widget-theme-newschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/newschool.css" | prepend: site.baseurl }}">
 
@@ -34,8 +34,8 @@ layout: documentation-single
 						w-keyword=""
 						w-theme="simple"
 						w-colorscheme="light"
-						w-width="350"
-						w-height="600"
+						w-width="300"
+						w-height="560"
 						w-size="25"
 						w-border="0"
 						w-borderradius="4"
@@ -148,6 +148,7 @@ var defaultApiKey = apiKeyService.getApiWidgetsKey();
 $('[w-type=event-discovery]').attr('w-tmapikey', defaultApiKey);
 $('#w-tm-api-key').val(defaultApiKey);
 </script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA&libraries=places&callback=initMap" async defer></script> -->
 <script src="{{"/products-and-docs/widgets/map/1.0.0/lib/main-widget.js?v=1" | prepend: site.baseurl }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
 <script src="{{"/products-and-docs/widgets/map/1.0.0/lib/main-widget-config.js?v=2" | prepend: site.baseurl }}"></script>
