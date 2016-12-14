@@ -99,7 +99,7 @@ to search multiple domains. (A logical OR search is performed).
 You can paginate the results by specifying the number of rows to return, and the start row. The default 
 start is 0 and the default rows is 10. There is a maximum of 500 
 
-+ `rows` = `10` (optional, integer)
++ `start` = `10` (optional, integer)
 + `rows` = `20` (optional, integer)
 
 ##### Sorting
@@ -2724,7 +2724,7 @@ to search multile domains. (A logical OR search is performed).
 ##### Pagination 
 You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 500 
 
-+ `rows.start` = `0` (optional, integer)
++ `start` = `0` (optional, integer)
 
 ##### Sorting 
 You can specify a sorting method and order. Options include event name, event date, popularity, and proximity (based on 
@@ -2750,7 +2750,10 @@ There are additional parameters which allow you to filter the search by attracti
 |`sort_by` | The method for sorting the results. Proximity can only be used where a lat and long is used as a query parameter. Default: attraction_name.| string | No |
 |`order` | The order in which results are sorted, whether ascending or descending. Default: asc. | string | No |
 |`rows` | The number of rows to return, up to a maximum of 500. Default: 10. | Integer | No |
-|`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
+|`query` | This parameter searches the attraction name with a certain amount of fuzzy matching. | String | No |
+|`attraction_category_ids` | Attraction category id | String | No |
+|`attraction_subcategory_ids` | Attraction subcategory id | String | No |
+
 
 {: .aside}
 >[JS](#js)
