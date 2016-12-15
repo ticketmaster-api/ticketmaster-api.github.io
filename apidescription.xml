@@ -631,7 +631,7 @@
 				</apigee:tags>
 				<apigee:authentication required="true"/>
 				<apigee:example url="commerce/v2/shopping/carts/4d1315c9-9220-48b3-9882-a295db25bfe3.jphx1/products.json"/>
-				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#create-cart">Create Cart!
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#update-cart-products">Create Cart!
 				</doc>
 				<request>
 					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
