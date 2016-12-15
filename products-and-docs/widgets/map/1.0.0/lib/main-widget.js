@@ -4,10 +4,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TicketmasterEventDiscoveryWidget = function () {
-    _createClass(TicketmasterEventDiscoveryWidget, [{
+var TicketmasterMapWidget = function () {
+    _createClass(TicketmasterMapWidget, [{
         key: 'isConfigAttrExistAndNotEmpty',
         value: function isConfigAttrExistAndNotEmpty(attr) {
+
             if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
                 return false;
             } else if (this.config[attr] === "") {
@@ -59,7 +60,8 @@ var TicketmasterEventDiscoveryWidget = function () {
     }, {
         key: 'widgetContentHeight',
         get: function get() {
-            return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
+            // return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
+            return this.widgetHeight;
         }
     }, {
         key: 'eventUrl',
@@ -74,7 +76,7 @@ var TicketmasterEventDiscoveryWidget = function () {
     }, {
         key: 'themeUrl',
         get: function get() {
-            return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/';
+            return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/products-and-docs/widgets/map/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/theme/';
         }
     }, {
         key: 'portalUrl',
@@ -165,6 +167,8 @@ var TicketmasterEventDiscoveryWidget = function () {
                 verboseName: 'source'
             }];
 
+            console.log(this.config);
+
             for (var i in params) {
                 var item = params[i];
                 if (this.isConfigAttrExistAndNotEmpty(item.attr)) attrs[item.verboseName] = this.config[item.attr];
@@ -187,10 +191,10 @@ var TicketmasterEventDiscoveryWidget = function () {
         }
     }]);
 
-    function TicketmasterEventDiscoveryWidget(root) {
+    function TicketmasterMapWidget(root) {
         var _this = this;
 
-        _classCallCheck(this, TicketmasterEventDiscoveryWidget);
+        _classCallCheck(this, TicketmasterMapWidget);
 
         if (!root) return;
         this.widgetRoot = root;
@@ -199,16 +203,12 @@ var TicketmasterEventDiscoveryWidget = function () {
             this.eventsRootContainer.classList.add("events-root-container");
             this.widgetRoot.appendChild(this.eventsRootContainer);
 
-            /*
-            this.eventsRoot = document.createElement("ul");
-            this.eventsRoot.classList.add("events-root");
-            this.eventsRootDiv.appendChild(this.eventsRoot);
-            */
+            this.config = this.widgetRoot.attributes;
 
             this.eventsRoot = document.createElement("div");
-            // this.eventsRoot.classList.add("map");
             this.eventsRoot.id = "map";
-            this.eventsRoot.setAttribute("style", "width:300px;height:560px;");
+            this.eventsRoot.style.height = parseInt(parseInt(this.widgetHeight) + 25) + "px";
+            this.eventsRoot.style.width = this.config.width + "px";
             this.eventsRootContainer.appendChild(this.eventsRoot);
 
             // Set theme modificators
@@ -216,8 +216,6 @@ var TicketmasterEventDiscoveryWidget = function () {
                 "oldschool": this.oldSchoolModificator.bind(this),
                 "newschool": this.newSchoolModificator.bind(this)
             };
-
-            this.config = this.widgetRoot.attributes;
 
             if (this.config.theme !== null && !document.getElementById('widget-theme-' + this.config.theme)) {
                 this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
@@ -230,8 +228,7 @@ var TicketmasterEventDiscoveryWidget = function () {
 
             this.widgetRoot.style.height = this.widgetHeight + 'px';
             this.widgetRoot.style.width = this.config.width + 'px';
-
-            this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
+            this.eventsRootContainer.style.height = this.widgetHeight + 'px';
             this.eventsRootContainer.style.width = this.config.width + 'px';
             this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
             this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
@@ -256,7 +253,7 @@ var TicketmasterEventDiscoveryWidget = function () {
         }
     }
 
-    _createClass(TicketmasterEventDiscoveryWidget, [{
+    _createClass(TicketmasterMapWidget, [{
         key: 'getCoordinates',
         value: function getCoordinates(cb) {
             var widget = this;
@@ -617,29 +614,6 @@ var TicketmasterEventDiscoveryWidget = function () {
                     parent = el.parentNode;
                 parent.removeChild(el);
             }
-
-            if (!this.isListView) {
-                var eventsRootContainer = document.getElementsByClassName("events-root-container")[0];
-                var eventsRoot = document.getElementsByClassName("events-root")[0];
-                /*
-                var ss = document.getElementsByClassName("ss")[0];
-                ss.parentNode.removeChild(ss);
-                 var ssDiv = document.createElement("div");
-                ssDiv.setAttribute("class", "ss");
-                eventsRootContainer.appendChild(ssDiv);
-                 var ssDiv = document.getElementsByClassName("ss")[0];
-                ssDiv.appendChild(eventsRoot);
-                */
-
-                var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
-                eventsRootContainer.classList.remove("listview-after");
-            }
-
-            if (this.isListView) {
-                var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
-                eventsRootContainer.classList.add("listview-after");
-            }
-
             this.clearEvents();
         }
     }, {
@@ -653,10 +627,6 @@ var TicketmasterEventDiscoveryWidget = function () {
             }
 
             this.config = this.widgetRoot.attributes;
-
-            /*if(this.config.theme !== null){
-             this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-             }*/
 
             this.widgetRoot.style.height = this.widgetHeight + 'px';
             this.widgetRoot.style.width = this.config.width + 'px';
@@ -680,8 +650,6 @@ var TicketmasterEventDiscoveryWidget = function () {
                 this.getCoordinates(function () {
                     _this4.makeRequest(_this4.eventsLoadingHandler, _this4.apiUrl, _this4.eventReqAttrs);
                 });
-
-                if (this.isListView) this.addScroll();
             } else {
                 var events = this.eventsRoot.getElementsByClassName("event-wrapper");
                 for (var i in events) {
@@ -789,6 +757,13 @@ var TicketmasterEventDiscoveryWidget = function () {
                 content: " "
             });
 
+            var image = {
+                url: '/assets/widgets/1.0.0/img/marker.svg',
+                size: new google.maps.Size(22, 32),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(22, 32)
+            };
+
             for (var i = 0; i < markers.length; i++) {
                 var sites = markers[i];
                 if (sites !== undefined) {
@@ -796,6 +771,7 @@ var TicketmasterEventDiscoveryWidget = function () {
                     var marker = new google.maps.Marker({
                         position: siteLatLng,
                         map: map,
+                        icon: image,
                         title: sites[0],
                         zIndex: sites[3],
                         html: sites[4]
@@ -819,21 +795,46 @@ var TicketmasterEventDiscoveryWidget = function () {
                     if (widget.events.length) {
 
                         var myLatLng = { lat: 43.646632, lng: -79.390205 };
+                        var latlngbounds = new google.maps.LatLngBounds();
 
                         var map = new google.maps.Map(document.getElementById('map'), {
                             zoom: 4,
                             center: myLatLng,
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                            mapTypeControl: false,
+                            panControl: false,
+                            streetViewControl: false,
+                            zoomControlOptions: {
+                                position: google.maps.ControlPosition.RIGHT_CENTER
+                            }
                         });
 
                         widget.groupEventsByName.call(widget);
 
-                        widget.eventsGroups.map(function (group, i) {
-                            if (group.length === 1) {
-                                // widget.publishEvent(group[0]);
-                                markers[i] = [group[0].name, group[0].location.lat, group[0].location.lng, i, 'This is ' + group[0].name];
-                            } else widget.publishEventsGroup.call(widget, group, i);
-                        });
+                        for (var e = 0; e < widget.events.length; e++) {
+                            if (widget.events[e].location !== undefined) {
+                                markers[e] = [widget.events[e].name, widget.events[e].location.lat, widget.events[e].location.lng, e, 'This is ' + widget.events[e].name];
+                                latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat, widget.events[e].location.lng));
+                            }
+                        }
+                        map.fitBounds(latlngbounds);
+
+                        /*
+                          widget.eventsGroups.map(function(group, i){
+                         if(group.length === 1) {
+                         // widget.publishEvent(group[0]);
+                         markers[i] = [
+                         group[0].name,
+                         group[0].location.lat,
+                         group[0].location.lng,
+                         i,
+                         'This is ' + group[0].name
+                         ];
+                         }
+                         else
+                         widget.publishEventsGroup.call(widget, group, i);
+                         });
+                          */
 
                         widget.setMarkers(map, markers);
 
@@ -854,31 +855,31 @@ var TicketmasterEventDiscoveryWidget = function () {
     }, {
         key: 'publishEventsGroup',
         value: function publishEventsGroup(group, index) {
-            /*
-            let groupNodeWrapper = document.createElement("li");
+            var _this5 = this;
+
+            var groupNodeWrapper = document.createElement("li");
             groupNodeWrapper.classList.add("event-wrapper");
             groupNodeWrapper.classList.add("event-group-wrapper");
-            groupNodeWrapper.style.width  = `${this.config.width - this.borderSize * 2}px`;
-            groupNodeWrapper.style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
-             let groupNode = document.createElement("ul");
+            groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + 'px';
+            groupNodeWrapper.style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
+
+            var groupNode = document.createElement("ul");
             groupNode.classList.add("event-group");
             groupNode.classList.add("event-group-" + index);
-             group.map((event)=> {
-                this.publishEvent(event, groupNode)
+
+            group.map(function (event) {
+                _this5.publishEvent(event, groupNode);
             });
-             groupNodeWrapper.appendChild(groupNode);
+
+            groupNodeWrapper.appendChild(groupNode);
             this.eventsRoot.appendChild(groupNodeWrapper);
-            */
         }
     }, {
         key: 'publishEvent',
         value: function publishEvent(event, parentNode) {
-            /*
             parentNode = parentNode || this.eventsRoot;
-            let DOMElement = this.createDOMItem(event);
+            var DOMElement = this.createDOMItem(event);
             parentNode.appendChild(DOMElement);
-            */
-            console.log(event);
         }
     }, {
         key: 'getEventByID',
@@ -1063,44 +1064,6 @@ var TicketmasterEventDiscoveryWidget = function () {
             }
         }
     }, {
-        key: 'addScroll',
-        value: function addScroll() {
-            (function (n, t) {
-                function u(n) {
-                    n.hasOwnProperty("data-simple-scrollbar") || Object.defineProperty(n, "data-simple-scrollbar", new SimpleScrollbar(n));
-                }function e(n, i) {
-                    function f(n) {
-                        var t = n.pageY - u;u = n.pageY;r(function () {
-                            i.el.scrollTop += t / i.scrollRatio;
-                        });
-                    }function e() {
-                        n.classList.remove("ss-grabbed");t.body.classList.remove("ss-grabbed");t.removeEventListener("mousemove", f);t.removeEventListener("mouseup", e);
-                    }var u;n.addEventListener("mousedown", function (i) {
-                        return u = i.pageY, n.classList.add("ss-grabbed"), t.body.classList.add("ss-grabbed"), t.addEventListener("mousemove", f), t.addEventListener("mouseup", e), !1;
-                    });
-                }function i(n) {
-                    for (this.target = n, this.bar = '<div class="ss-scroll">', this.wrapper = t.createElement("div"), this.wrapper.setAttribute("class", "ss-wrapper"), this.el = t.createElement("div"), this.el.setAttribute("class", "ss-content"), this.wrapper.appendChild(this.el); this.target.firstChild;) {
-                        this.el.appendChild(this.target.firstChild);
-                    }this.target.appendChild(this.wrapper);this.target.insertAdjacentHTML("beforeend", this.bar);this.bar = this.target.lastChild;e(this.bar, this);this.moveBar();this.el.addEventListener("scroll", this.moveBar.bind(this));this.el.addEventListener("mouseenter", this.moveBar.bind(this));this.target.classList.add("ss-container");
-                }function f() {
-                    for (var i = t.querySelectorAll("*[ss-container]"), n = 0; n < i.length; n++) {
-                        u(i[n]);
-                    }
-                }var r = n.requestAnimationFrame || n.setImmediate || function (n) {
-                    return setTimeout(n, 0);
-                };i.prototype = { moveBar: function moveBar() {
-                        var t = this.el.scrollHeight,
-                            i = this.el.clientHeight,
-                            n = this;this.scrollRatio = i / t;r(function () {
-                            n.bar.style.cssText = "height:" + i / t * 100 + "%; top:" + n.el.scrollTop / t * 100 + "%;right:-" + (n.target.clientWidth - n.bar.clientWidth) + "px;";
-                        });
-                    } };t.addEventListener("DOMContentLoaded", f);i.initEl = u;i.initAll = f;n.SimpleScrollbar = i;
-            })(window, document);
-            // var scrollRoot = document.getElementsByClassName("ss")[0];
-            var scrollRoot = document.querySelector('.ss');
-            SimpleScrollbar.initEl(scrollRoot);
-        }
-    }, {
         key: 'createDOMItem',
         value: function createDOMItem(itemConfig) {
             var medWrapper = document.createElement("div");
@@ -1245,14 +1208,14 @@ var TicketmasterEventDiscoveryWidget = function () {
         }
     }]);
 
-    return TicketmasterEventDiscoveryWidget;
+    return TicketmasterMapWidget;
 }();
 
-var widgetsEventDiscovery = [];
+var widgetsMap = [];
 (function () {
-    var widgetContainers = document.querySelectorAll("div[w-type='event-discovery']");
+    var widgetContainers = document.querySelectorAll("div[w-type='map']");
     for (var i = 0; i < widgetContainers.length; ++i) {
-        widgetsEventDiscovery.push(new TicketmasterEventDiscoveryWidget(widgetContainers[i]));
+        widgetsMap.push(new TicketmasterMapWidget(widgetContainers[i]));
     }
 })();
 

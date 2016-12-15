@@ -26,15 +26,13 @@
 	font-weight: normal; }
 
 
-.gm-style-iw {
-	width: 350px !important;
-	top: 0 !important;
-	left: 0 !important;
-	border-radius: 15px !important;
+/* Common styles for all themes  */
+.widget-container--map.listview-after,
+.widget-container--map.listview-after:before,
+.widget-container--map.listview-after:after {
+	border: none;
 }
 
-
-/* Common styles for all themes  */
 div[w-theme="simple"]{
 	position: relative;
 	height: 200px;

@@ -22,7 +22,7 @@
         return code || "AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA";
     }
 
-    var widget = widgetsEventDiscovery[0],
+    var widget = widgetsMap[0],
         themeConfig = {
         sizes: {
             s: {
@@ -199,19 +199,19 @@
             $tabButtons = $('.js-tab-buttons');
 
         if (targetName === "w-tm-api-key") {
-            document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
+            document.querySelector('[w-type="map"]').setAttribute('w-tmapikey', targetValue);
 
             if (sessionStorage.getItem('tk-api-key')) {
                 document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
-                document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+                document.querySelector('[w-type="map"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
             }
             if (document.getElementById('w-tm-api-key').value == '') {
                 if (sessionStorage.getItem('tk-api-key')) {
                     document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
-                    document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
+                    document.querySelector('[w-type="map"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
                 } else {
                     document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
-                    document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
+                    document.querySelector('[w-type="map"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
                 }
             }
         }
