@@ -1270,8 +1270,11 @@ function pickIt(evt) {
 		 ypos = (evt.pageY);
 		 */
 		if (objectID == '') {
-			xpos = findPos(evt.target).x;
-			ypos = findPos(evt.target).y;
+			var posEvTarget = findPos(evt.target);
+			if (posEvTarget) {
+				xpos = posEvTarget.x;
+				ypos = posEvTarget.y;
+			}
 		}
 
 	}

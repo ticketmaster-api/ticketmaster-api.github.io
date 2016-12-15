@@ -16,7 +16,6 @@ class ParamsFilter {
 	 */
 	init({selectedMethod, selectedParams}) {
 		this.updateViewModel();
-
 		selectedMethod.subscribe(val => {
 			this.updateViewModel(val)
 		});
@@ -42,6 +41,7 @@ class ParamsFilter {
 			if (!obj.hasOwnProperty(i)) {continue;}
 			let param = obj[i];
 			var selectedParam;
+
 
 			// copies all values from model to view-model
 			let vmParam = $.extend(true, {}, param);
@@ -116,7 +116,7 @@ class ParamsFilter {
 	prepareUrlPairs(arr, koObs) {
 		if (!arr || !koObs) {return false;}
 
-		return koObs(arr.filter(function (item) {
+		return koObs(arr.filter(item => {
 			return (item.value() && item.value() !== 'none' || item.default);
 		}));
 	}
