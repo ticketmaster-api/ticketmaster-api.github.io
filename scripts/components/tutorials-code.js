@@ -177,6 +177,8 @@
         new ClipboardFallback(clipboard);
         new ClipboardFallback(clipboardFs);
 
+        $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+
         // Modal Raw button click
         $(".fs-modal .modal-body").on("click", ".raw-btn", function() {
             var rawBtn = this;
