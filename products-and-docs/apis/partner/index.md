@@ -20,7 +20,7 @@ The Ticketmaster Partner API lets clients reserve, purchase, and retreive ticket
 
 Make live API calls right now in the interactive docs:
 
-[INTERACTIVE DOCS](/products-and-docs/apis/partner/interactive-console/){: .button}
+[INTERACTIVE DOCS](/products-and-docs/apis/partner/interactive-console/?app=partners){: .button}
 
 ## Overview
 {: #overview }
