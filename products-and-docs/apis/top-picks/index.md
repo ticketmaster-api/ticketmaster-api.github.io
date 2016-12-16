@@ -16,7 +16,7 @@ The Top Picks API provides seat recommendations based on current availability, s
 
 Make live API calls right now in the interactive docs:
 
-[INTERACTIVE DOCS](/products-and-docs/apis/partner/interactive-console/){: .button}
+[INTERACTIVE DOCS](/products-and-docs/apis/partner/interactive-console/?app=topPicks){: .button}
 
 ## Overview
 {: #overview }

@@ -99,13 +99,28 @@ page layout goes here
         return "";
     }
 
+    function getQueryParams(key) {
+        var query_string = {};
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0; i< vars.length; i++) {
+          var pair = vars[i].split("=");
+          if (pair[0] == key){
+          return pair[1];
+          }
+        }
+        return "";
+    }
+
+
     $(document).ready(function(){
         var apiKey = checkApiCookie();
         if( apiKey == null ) {
             apiKey = '';
         }
+        var app = getQueryParams("app");
 
-        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?key=' + apiKey + '#eventId=000051048D991EE7');
+        $('#console-iframe').attr('src', 'https://partner-onboarding-qa.tmdc.us/eventTestingTool?doc=' +app + '&amp;key=' + apiKey + '#eventId=000051048D991EE7');
     });
 
 </script>
