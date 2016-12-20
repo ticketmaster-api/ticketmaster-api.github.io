@@ -207,7 +207,8 @@ var TicketmasterMapWidget = function () {
 
             this.eventsRoot = document.createElement("div");
             this.eventsRoot.id = "map";
-            this.eventsRoot.style.height = parseInt(parseInt(this.widgetHeight) + 25) + "px";
+            // this.eventsRoot.style.height = parseInt(parseInt(this.widgetHeight) + 25) + "px";
+            this.eventsRoot.style.height = this.widgetHeight + "px";
             this.eventsRoot.style.width = this.config.width + "px";
             this.eventsRootContainer.appendChild(this.eventsRoot);
 
