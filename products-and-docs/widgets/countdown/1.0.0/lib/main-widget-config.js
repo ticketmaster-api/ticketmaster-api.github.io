@@ -165,7 +165,6 @@
         max = _$containerWidget$dat.max;
 
     //if the window scroll is within the min and max (the container will be 'sticky';
-
     if (wst >= min && wst <= max) {
       //if the window scroll is below the minimum move it down!
       marginTop = wst - min;
@@ -321,6 +320,7 @@
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
+
 
     widget.update();
 
