@@ -167,8 +167,6 @@ var TicketmasterMapWidget = function () {
                 verboseName: 'source'
             }];
 
-            console.log(this.config);
-
             for (var i in params) {
                 var item = params[i];
                 if (this.isConfigAttrExistAndNotEmpty(item.attr)) attrs[item.verboseName] = this.config[item.attr];
@@ -813,29 +811,32 @@ var TicketmasterMapWidget = function () {
                         widget.groupEventsByName.call(widget);
 
                         for (var e = 0; e < widget.events.length; e++) {
+
+                            console.log(widget.events[e]);
+
                             if (widget.events[e].location !== undefined) {
-                                markers[e] = [widget.events[e].name, widget.events[e].location.lat, widget.events[e].location.lng, e, 'This is ' + widget.events[e].name];
+                                var place = '';
+                                var address = '';
+                                var date = widget.formatDate({
+                                    day: widget.events[e].date.day,
+                                    time: widget.events[e].date.time
+                                });
+                                if (widget.events[e].address.hasOwnProperty('name')) {
+                                    place = widget.events[e].address.name + ', ';
+                                } else {
+                                    place = '';
+                                }
+                                if (widget.events[e].address.hasOwnProperty('line1')) {
+                                    address = widget.events[e].address.line1;
+                                } else {
+                                    address = '';
+                                }
+
+                                markers[e] = [widget.events[e].name, widget.events[e].location.lat, widget.events[e].location.lng, e, '<a href="' + widget.events[e].url + '"><span class="img" style="background:url(' + widget.events[e].img + ') center center no-repeat"></span><span class="name">' + widget.events[e].name + '</span></a><span class="date">' + date + '</span><span class="place">' + place + address + '</span>'];
                                 latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat, widget.events[e].location.lng));
                             }
                         }
                         map.fitBounds(latlngbounds);
-
-                        /*
-                          widget.eventsGroups.map(function(group, i){
-                         if(group.length === 1) {
-                         // widget.publishEvent(group[0]);
-                         markers[i] = [
-                         group[0].name,
-                         group[0].location.lat,
-                         group[0].location.lng,
-                         i,
-                         'This is ' + group[0].name
-                         ];
-                         }
-                         else
-                         widget.publishEventsGroup.call(widget, group, i);
-                         });
-                          */
 
                         widget.setMarkers(map, markers);
 
@@ -894,20 +895,16 @@ var TicketmasterMapWidget = function () {
     }, {
         key: 'getImageForEvent',
         value: function getImageForEvent(images) {
-            var width = this.config.width,
-                height = this.widgetContentHeight;
-
-            images.sort(function (a, b) {
-                if (a.width < b.width) return -1;else if (a.width > b.width) return 1;else return 0;
-            });
-
-            var myImg = "";
-            images.forEach(function (element) {
-                if (element.width >= width && element.height >= height && !myImg) {
-                    myImg = element.url;
+            var imgWidth = void 0;
+            var idx = void 0;
+            images.forEach(function (img, i) {
+                if (i == 0) imgWidth = img.width;
+                if (imgWidth > img.width) {
+                    imgWidth = img.width;
+                    idx = i;
                 }
             });
-            return myImg;
+            return idx === undefined ? '' : images[idx].url;
         }
     }, {
         key: 'parseEvents',
@@ -1035,21 +1032,6 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'addBarcode',
-        value: function addBarcode(domNode, url) {
-            if (this.isBarcodeWidget) {
-                var barcodeBtn = document.createElement("a");
-                barcodeBtn.classList.add("barcode");
-                barcodeBtn.target = '_blank';
-                barcodeBtn.href = url;
-                barcodeBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickEventName', 'click');");
-                domNode.appendChild(barcodeBtn);
-                var bottomBg = document.createElement("span");
-                bottomBg.classList.add("barcode-bottom");
-                domNode.appendChild(bottomBg);
-            }
-        }
-    }, {
         key: 'addBuyButton',
         value: function addBuyButton(domNode, url) {
             if (this.isListView) {
@@ -1086,7 +1068,6 @@ var TicketmasterMapWidget = function () {
             /* name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');"); */
             medWrapper.appendChild(name);
 
-            this.addBarcode(event, itemConfig.url);
             this.addBuyButton(medWrapper, itemConfig.url);
 
             var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),

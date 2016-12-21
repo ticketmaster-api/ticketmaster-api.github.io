@@ -321,14 +321,14 @@ var TicketmasterCountdownWidget = function () {
         this.countDownWrapper.classList.remove("hide-days");
         this.countDownWrapper.classList.remove("hide-month"); //Removing a class that does not exist, does NOT throw an error
       } else if (this.countDownDays.innerHTML <= 0) {
-          this.countDownWrapper.classList.add("hide-month");
-          this.countDownWrapper.classList.add("hide-days");
-          this.countDownWrapper.classList.remove("hide-seconds");
-        } else {
-          this.countDownWrapper.classList.add("hide-month");
-          this.countDownWrapper.classList.remove("hide-days");
-          this.countDownWrapper.classList.remove("hide-seconds");
-        }
+        this.countDownWrapper.classList.add("hide-month");
+        this.countDownWrapper.classList.add("hide-days");
+        this.countDownWrapper.classList.remove("hide-seconds");
+      } else {
+        this.countDownWrapper.classList.add("hide-month");
+        this.countDownWrapper.classList.remove("hide-days");
+        this.countDownWrapper.classList.remove("hide-seconds");
+      }
     }
   }, {
     key: 'onCountdownChange',
