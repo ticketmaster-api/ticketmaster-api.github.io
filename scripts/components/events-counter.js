@@ -1,5 +1,5 @@
 (function ($) {
-  var apiKey = apiKeyService.getApiExploreKey(); //API Key apiKeyService.checkApiKeyCookie("tk-api-key") ||
+  var apiKey = apiKeyService.getApiExploreKey();
   var initialValObj;
   function initialVal(config) {    
     var values = {};
@@ -56,11 +56,25 @@
         renderValue(url, quantity);
         countAnimate(url, quantity);
       }).fail(function (err) {
+        onFailHandler(url);
         console.error('Error: ', err);
       })
     }
   }
 
+  function onFailHandler(selector) {
+    function reSent(){
+      //apiKey = apiKeyService.getApiExploreKey();
+      initEventCountersPanel()
+    }
+    console.log('getSessionStorage(selector)', getSessionStorage(selector));
+    if(getSessionStorage(selector)){
+     renderValue(selector, getSessionStorage(selector));
+     countAnimate(selector, getSessionStorage(selector));
+    }
+
+    setTimeout(initEventCountersPanel,60000*15);
+  }
   function setSessionStorage(key, val) {
     if (Storage) {
       localStorage.setItem(key, val);
