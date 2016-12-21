@@ -1,5 +1,5 @@
 (function ($) {
-  var apiKey = apiKeyService.checkApiKeyCookie("tk-api-key") || apiKeyService.getApiExploreKey(); //API Key
+  var apiKey = apiKeyService.getApiExploreKey(); //API Key apiKeyService.checkApiKeyCookie("tk-api-key") ||
   var initialValObj;
   function initialVal(config) {    
     var values = {};
@@ -63,13 +63,13 @@
 
   function setSessionStorage(key, val) {
     if (Storage) {
-      sessionStorage.setItem(key, val);
+      localStorage.setItem(key, val);
     }
   }
 
   function getSessionStorage(key) {
-    if (sessionStorage[key]) {
-      return sessionStorage.getItem(key);
+    if (localStorage[key]) {
+      return localStorage.getItem(key);
     }
     return null;
   }
