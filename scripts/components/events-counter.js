@@ -56,24 +56,27 @@
         renderValue(url, quantity);
         countAnimate(url, quantity);
       }).fail(function (err) {
-        onFailHandler(url);
+        onFailHandler(url, 15);
         console.error('Error: ', err);
       })
     }
   }
 
-  function onFailHandler(selector) {
-    function reSent(){
-      //apiKey = apiKeyService.getApiExploreKey();
-      initEventCountersPanel()
-    }
-    console.log('getSessionStorage(selector)', getSessionStorage(selector));
-    if(getSessionStorage(selector)){
+  /**
+   * Handler for invalid apiKey 
+   * @param selector {string} - 'events', 'venues', 'attractions'
+   * @param minutes {number} -  time to resend request if storage empty
+   */
+  function onFailHandler(selector, minutes) {
+    var delay = minutes * 60000;
+    if(getSessionStorage(selector)) {
      renderValue(selector, getSessionStorage(selector));
      countAnimate(selector, getSessionStorage(selector));
+    }else{
+      setTimeout(function() {
+        updateEventpanelCounters(selector);
+      },delay);
     }
-
-    setTimeout(initEventCountersPanel,60000*15);
   }
   function setSessionStorage(key, val) {
     if (Storage) {
