@@ -24,6 +24,7 @@ body {
     font-feature-settings: "kern" 1;
     font-kerning: normal;
     overflow-x: hidden;
+    -ms-overflow-style: scrollbar;//IE-11 scroll
 }
 
 iframe{
@@ -789,6 +790,10 @@ input[type=range]:focus::-ms-fill-upper {
 
 .clear-margins{
   margin: 0;
+}
+
+.clear-paddings{
+  padding: 0;
 }
 
 

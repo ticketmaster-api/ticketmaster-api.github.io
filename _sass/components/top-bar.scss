@@ -398,7 +398,7 @@ nav{
   max-height: 0;
   &.expanded {
     max-height: 100% !important;
-    padding: 24px 0;
+    padding: $base-margin 0;
   }
   &>.row-container {
     &>div {
@@ -411,6 +411,7 @@ nav{
         a {
           color: $n3;
           margin-top: 0;
+          line-height: $base-margin/3;
         }
 
         a:hover {
@@ -426,6 +427,7 @@ nav{
         li {
           text-align: left;
           font-size: 14px;
+          margin-bottom: 6px;
         }
         ul {
           margin-bottom: 0;

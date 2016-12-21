@@ -14,7 +14,7 @@ public class PD_Widget_EventDiscoverySteps {
     //Private Fields
     private final String randomApiKey = "apiKey";
     private final String randomKeyword = "adele";
-    private final String randomZipCode = "5555";
+    private final String randomZipCode = "90015";
     private final String randomRadius = "15";
     private final String randomAttractionId = "333444";
     private final String randomVenueId = "222111";

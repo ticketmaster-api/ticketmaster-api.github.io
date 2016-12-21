@@ -67,7 +67,7 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
     public void setZipCodeTextFieldValue(String zipCode) {
         zipCodeTextField.clear();
         zipCodeTextField.sendKeys(zipCode, Keys.ENTER);
-        waitForSomeActionHappened(500);
+        waitForSomeActionHappened(1500);
     }
 
     @Override

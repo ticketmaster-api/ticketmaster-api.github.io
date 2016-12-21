@@ -10,12 +10,14 @@ jQuery.fn.customSelect = function(options ) {
 
     function isEditableInput ( $node ) {
         var isNodeEditable = false;
-        $.each( $node[0].attributes, function ( index, attribute ) {
-            if ( attribute.name === "contenteditable" ) {
-                isNodeEditable = true ;
-                return false; //to break this loop
-            }
-        });
+        if($node[0]) {
+            $.each($node[0].attributes, function (index, attribute) {
+                if (attribute.name === "contenteditable") {
+                    isNodeEditable = true;
+                    return false; //to break this loop
+                }
+            });
+        }
         return isNodeEditable;
     }
 
@@ -28,10 +30,9 @@ jQuery.fn.customSelect = function(options ) {
     function addNumberPattern($node) {
         if ($node.attr('type') === 'number'){
             $node.attr('pattern','[0-9]*');
-            $node.attr( 'inputmode', 'numeric' );
+            $node.attr('inputmode', 'numeric');
         }
     }
-
 
     return this.each(function () {
 
@@ -59,17 +60,35 @@ jQuery.fn.customSelect = function(options ) {
 
         function set(self, isInit) {
             var $self = $(self);
+            var liDataVal;
             $placeholder.val($self.text());
             $select.val($self.data('value'));
+
+            if(options && options.useTopElValue){
+                liDataVal = $self.clone()	//clone the element
+                  .children()	//select all the children
+                  .remove()	//remove all the children
+                  .end()	//again go back to selected element
+                  .attr('data-value')	//get the data-value of element
+                ;
+                $placeholder
+                    .val( liDataVal )
+                    .data('value', liDataVal );
+                if(options.outerElement) {
+                    $(options.outerElement).trigger('blur');
+                }
+
+            }
+
             $list.find('li').removeClass(activeItemCssClass);
             $self.addClass(activeItemCssClass);
 
             //set value on real select
             $('option',$select).filter(function(i) {
-                return ($(this).text() == $self.text()); //To select $self.text()
+                return $(this).text() == $self.text() ;//To select $self.text()
             }).prop('selected', true);
 
-            if(!isInit) $select.trigger('change');
+            $select.trigger('change');
         }
 
         function toggle() {
@@ -87,11 +106,12 @@ jQuery.fn.customSelect = function(options ) {
             set($list.find('li').filter(':first'), true);
         }
 
-        function setValueByKeyboard() {
+        function setValueByKeyboard(e) {
+            e.preventDefault();
             var newValue = $placeholder.val();
             if (newValue === ''){ $list.find('li:first').trigger('click'); return false; }
             $placeholder.attr( "value", newValue );
-            $list.append( $('<li style="display:none" data-value="'+ newValue+'">'+newValue+'</li>') );
+            $list.append( $('<li class="custom_select__item" style="display:none" data-value="'+ newValue+'">'+newValue+'</li>') );
             $select.append($('<option>', {value: newValue, text: newValue }));
             $list.find('li:last').trigger('click');
         }
@@ -105,21 +125,20 @@ jQuery.fn.customSelect = function(options ) {
                             selected = $(".custom_select__item",me).eq(i);
                         }
                     }
-                    else {
-                        console.info('error' , i, el );
-                    }
+                    else { console.info('error' , i, el );}
                 });
               return selected;
             }
 
-            if ( e.which == 13 ) {
+            if (e.which == 13) {
                 e.preventDefault();
                 if ($(".custom_select__list ").is(":visible")) {
                     var selected = $(".custom_select__item-active", $(this , 'ul') );
-                    if(selected.length < 1)
+                    if(selected.length < 1){
                         set( $(".custom_select__item", $(this , 'ul')).first(), false);
-                    else
+                    } else{
                         set( $(".custom_select__item-active", $(this , 'ul')), false);
+                    }
                     toggle();
                 } else {
                     toggle();
@@ -152,14 +171,42 @@ jQuery.fn.customSelect = function(options ) {
                 }
             }
         }
+        function setKeyinUL() {
+            var selectedKey = $(this).val();
+
+            if(options && options.useTopElValue){
+                $placeholder
+                  .attr('data-value', selectedKey )
+                  .val( selectedKey );
+                if(options.outerElement) {
+                    var list = $(this).siblings('ul').find('li');
+
+                    list.each(function(i,liEl) {
+                        if ( selectedKey === $(liEl).attr('data-value') ){
+                            $(liEl).addClass(activeItemCssClass);
+                            $(options.outerElement).trigger('blur');
+                        }else {
+                            $(liEl).removeClass(activeItemCssClass);
+                        }
+                    });
+                }
+            }
+        }
 
         // Events
         $list.on('click', 'li', function(){            
             set(this, false);
         });
-        $placeholder.on('blur', blur);
+        $placeholder.on({
+            'blur': blur,
+            'input': hide
+        });
 
-        if ( isEditableInput($placeholder) ) $custom_select.on('change', 'input', setValueByKeyboard);
+        $select.on('change',setKeyinUL );
+
+        if ( isEditableInput($placeholder) ) {
+            $custom_select.on('change', 'input', setValueByKeyboard);
+        }
        
         $custom_select.on({
             'click': toggle,

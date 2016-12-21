@@ -152,7 +152,7 @@
               if( 0<subgenresArr.length ) {
                 for (var j = 0; j < subgenresArr.length; j++) {
                   subgenresArr[j][opt.child.val] = subgenresArr[j][opt.child.to];
-                  delete subgenresArr[j][opt.child.to];
+                  if(j>0) delete subgenresArr[j][opt.child.to];//skip zero item
                 }
               }
 

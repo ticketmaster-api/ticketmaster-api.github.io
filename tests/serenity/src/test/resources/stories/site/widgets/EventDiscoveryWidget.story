@@ -23,9 +23,9 @@ Given open Event Discovery Widget page
 When change value of ZipCode <zipCode> on Event Discovery Widget Page
 Then the Country Field contains appropriate value <countryName> on Event Discovery Widget Page
 Examples:
-|zipCode|countryName  |
-|5555   |Australia    |
-|90012  |United States|
+|zipCode|countryName   |
+|NW1    |United Kingdom|
+|40104  |United States |
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that KEYWORD field functionality works properly
 Given open Event Discovery Widget page

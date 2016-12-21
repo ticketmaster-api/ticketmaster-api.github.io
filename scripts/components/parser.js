@@ -14,8 +14,16 @@
         }
         /*Normalize END*/
 
-        var tabsCount = 0;
-        var drawHideCodeBtn = false;
+        var tabsCount = 0,
+            drawHideCodeBtn = false,
+            clipboard = new Clipboard('.copy-btn'),
+            clipboardFs = new Clipboard('.copy-btn-fs'),
+            $modal = $(".fs-modal"),
+            $modalBody = $(".modal-body",$modal);
+
+        if(clipboardFs) {
+            $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+        }
 
         function toggleCodePanel(targetElement){
             var $textBtns = $('.toggle-code-btn'),
@@ -74,7 +82,6 @@
 
                 if( !drawHideCodeBtn ){
                     toggleCodeBtn.html('HIDE CODE' + '<span></span>');
-                    //$('<span></span>').appendTo(toggleCodeBtn);
                     $('.content').append(toggleCodeBtn);
                     drawHideCodeBtn = true;
                 }
@@ -133,10 +140,10 @@
                             .end()
                             .html();
 
-                        $(".fs-modal #modal-title").html(title);
-                        $(".fs-modal .modal-body").html(content);
+                        $("#modal-title", $modal).html(title);
+                        $modalBody.html(content);
 
-                        $(".fs-modal .modal-body").delegate(".lang-selector a", "click", function() {
+                        $modalBody.delegate(".lang-selector a", "click", function() {
                             $(".aside.lang-selector a").eq($(this).index()).click();
                             $(this).parent().children().removeClass("active");
                             $(this).addClass("active");
@@ -156,8 +163,7 @@
 
                     if(rawBtn.dataset !== undefined){
                         rawBtn.dataset.contentText = proxyItem_.textContent;
-                    }
-                    else{
+                    } else{
                         rawBtn.setAttribute("data-content-text", proxyItem_.textContent);
                     }
 
@@ -213,6 +219,9 @@
             }
         });
 
+        new ClipboardFallback(clipboard);
+        new ClipboardFallback(clipboardFs);
+
         $(".lang-selector a").click(function(event) {
             var currentButton =$(this);
             var allBtn = $(".lang-selector a[href*=" + currentButton.attr('href') + "]");
@@ -251,10 +260,9 @@
         $(".active-lang").on("click", function(e){
             $(this).next().addClass('show');
             if ( $(this).hasClass('open') ) {
-                $(this).removeClass('open');
-                $(this).next().removeClass('show');
-            }
-            else {
+                $(this).removeClass('open')
+                  .next().removeClass('show');
+            }else {
                 $(this).addClass('open');
             }
             $(this).next().focus();
@@ -269,14 +277,8 @@
             }, 127);
         });
 
-        var clipboard = new Clipboard('.copy-btn'),
-          clipboardFs = new Clipboard('.copy-btn-fs');
-
-        new ClipboardFallback(clipboard);
-        new ClipboardFallback(clipboardFs);
-
         // Modal Raw button click
-        $(".fs-modal .modal-body").on("click", ".raw-btn", function() {
+        $modalBody.on("click", ".raw-btn", function() {
             var rawBtn = this;
             var content = rawBtn.dataset !== undefined ? this.dataset.contentText : rawBtn.getAttribute("data-content-text");
             window.sessionStorage.setItem("content", content);

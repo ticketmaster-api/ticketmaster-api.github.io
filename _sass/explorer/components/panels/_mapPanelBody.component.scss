@@ -1,0 +1,19 @@
+// Object panel-body styles
+section.map-panel-body {
+	.location-map-link {
+		img {
+			max-width: 100%;
+		}
+	}
+	// tablet
+	@media #{$max-1200} {
+		.location-map-link {
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+	// mobile
+	@media #{$max-768} {}
+}
