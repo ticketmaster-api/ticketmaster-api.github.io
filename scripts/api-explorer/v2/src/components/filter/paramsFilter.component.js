@@ -34,14 +34,14 @@ class ParamsFilter {
 	 * Initial build of Select Model
 	 */
 	updateViewModel = () => {
-		var obj = ko.unwrap(this.selectedMethodData).parameters || {},
+		let obj = ko.unwrap(this.selectedMethodData);
+		let parameters = ko.unwrap(this.selectedMethodData).parameters || {},
 			arr = [];
 
-		for (var i in obj) {
-			if (!obj.hasOwnProperty(i)) {continue;}
-			let param = obj[i];
+		for (var i in parameters) {
+			if (!parameters.hasOwnProperty(i)) {continue;}
+			let param = parameters[i];
 			var selectedParam;
-
 
 			// copies all values from model to view-model
 			let vmParam = $.extend(true, {}, param);
@@ -188,6 +188,7 @@ module.exports = ko.components.register('params-filter', {
 				<section class="api-exp-params-filter">
 					<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
 						<!--select-->
+						<!-- ko ifnot: style === 'requestBody' -->
 							<div class="api-exp-params-filter__field">
 								<!-- ko if: select -->
 									<custom-select params="
@@ -207,6 +208,17 @@ module.exports = ko.components.register('params-filter', {
 									</custom-input>
 								<!-- /ko -->
 							</div>
+						<!-- /ko -->
+						<!-- ko if: style === 'requestBody'-->
+							<section class="cusotm-textarea-wrapper">
+								<custom-input params="
+									onFocusMethod: $component.onFocus,
+									data: $data,
+									cssClass: hasCalendar ? 'calendar': hasPopUp ? 'popup': '',
+									validationModel: $root.validationModel">
+								</custom-input>
+							</section>
+						<!-- /ko -->
 					</section>
 				</section><!--params filter-->
 			</div>
