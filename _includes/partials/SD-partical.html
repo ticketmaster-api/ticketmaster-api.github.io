@@ -2,9 +2,10 @@
 {% assign carousel_array = "" | split:"|"  %}
 {% assign tab_array = "" | split:"|"  %}
 {% assign topApp_array = "" | split:"|"  %}
+{% assign topApp_showItems = 1 %}
 
 {% for article in sorted_article %}
-    {% if article.category == "sd-article-v2" %}
+    {% if article.category == "sd-article" %}
         {% if article.places contains "header" %}
             {% assign carousel_array = carousel_array | push: {{article.img}} %}
         {% endif %}
@@ -18,7 +19,7 @@
 {% endfor %}
 
 {% for article in sorted_article %}
-{% if article.category == "sd-article-v2" %}
+{% if article.category == "sd-article" %}
 <h4>article.title : {{article.title}} , order: {{article.order}}</h4>
 <h5>article.img : {{article.img}}</h5>
 <h5>article.places : {{article.places | split: " ,"}}</h5>
@@ -46,6 +47,14 @@
                         <img src="{{slide}}">
                     </div>
                 {% endfor %}
+
+                <!--show static img if carousel_array.size < 1 -->
+                {% if carousel_array.size < 1 %}
+                    <img src="http://www.w3schools.com/bootstrap/img_flower.jpg">
+                    <div class="item active">
+                        <img src="http://www.w3schools.com/bootstrap/img_flower.jpg">
+                    </div>
+                {% endif %}
             </div>
 
             <!-- Left and right controls -->
@@ -71,11 +80,15 @@
     {% if topApp_array.size > 0 %}
     <h3>our top application</h3>
     {%for topApp in topApp_array %}
-    <div class="item">
+    <div class="item" {% if forloop.index0 >= topApp_showItems %}style="display:none" {% endif %}>
         <p>topApp title: {{ topApp.title }}</p>
         <p>topApp full info: {{topApp  | markdownify }}</p>
     </div>
     {% endfor %}
+    {% if topApp_array.size >= topApp_showItems %}
+    <button>show more</button>
+    {% endif %}
+
     {% endif %}
 
 </div>

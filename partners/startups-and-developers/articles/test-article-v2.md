@@ -1,6 +1,6 @@
 ---
 order: 3
-category: sd-article-v2
+category: sd-article
 tags:
   - web  
 img: http://www.w3schools.com/bootstrap/img_flower.jpg
