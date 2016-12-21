@@ -23,10 +23,15 @@
 
     initialVal(config);
     config.forEach(function (el) {
-      var val = el === 'countries' && 7;
+      var val = el === 'countries' && 7,
+        quantityStorage = getSessionStorage(el);
       renderValue(el, val);
       if(val !== null || val !== false) {
-        updateEventpanelCounters(el,intervals);
+        if(!quantityStorage) {
+          updateEventpanelCounters(el,intervals);
+        }else{
+          countAnimate(el, quantityStorage);
+        }
         //intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
       }
     });
@@ -56,7 +61,7 @@
         renderValue(url, quantity);
         countAnimate(url, quantity);
       }).fail(function (err) {
-        onFailHandler(url, 15);
+        onFailHandler(url, 0.15);
         console.error('Error: ', err);
       })
     }
