@@ -1,10 +1,18 @@
 /**
 * Custom select component
 */
+.cusotm-textarea-wrapper {
+	clear: left;
+	
+}
 .api-exp-custom-input {
 	position: relative;
+	padding-bottom: 23px;
 	// clean
 	.custom-input {
+		&__inner-wrapper {
+			position: relative;
+		}
 		&__field {
 			padding: 0 15px;
 			margin: 0;
@@ -35,13 +43,18 @@
 			&:hover {
 				border-color: $mariner;
 			}
+			&.custom-textarea {
+				height: 200px;
+				padding: 15px;
+				line-height: 2.3rem;
+			}
 		}
 		&__validation-message {
 			display: block;
 			max-width: 100%;
 			position: absolute;
 			left: 0;
-			top: 53px;
+			bottom: 4px;
 			margin: 0;
 			padding: 0;
 			font: {

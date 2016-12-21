@@ -59,6 +59,18 @@ var parseData = function (xml) {
 					method.parameters[parameter.name] = parameter;
 				});
 
+			if (method.method === 'POST') {
+				method.parameters.requestBody = {
+					name: 'Post JSON',
+					doc: 'Request JSON body',
+					style: 'requestBody',
+					required: false,
+					default: '',
+					select: false,
+					type: 'string'
+				}
+			}
+
 			/**
 			 * Global obj composition
        */
@@ -70,8 +82,8 @@ var parseData = function (xml) {
 			global[method.category][method.method] = global[method.category][method.method] || {};
 
 			// set method obj
-			global[method.category].ALL[method.id] = method;
-			global[method.category][method.method][method.id] = method;
+			global[method.category].ALL[method.id] = global[method.category][method.method][method.id] = method;
+
 		});
 
 	return global;
