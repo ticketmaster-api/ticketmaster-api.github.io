@@ -198,10 +198,7 @@
         targetName = event.target.name,
         $tabButtons = $('.js-tab-buttons');
 
-    console.log('trigger event.target.name', targetName, targetValue);
-
     if (targetName === "w-tm-api-key") {
-
       document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
 
       if (sessionStorage.getItem('tk-api-key')) {

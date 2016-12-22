@@ -49,12 +49,15 @@ module.exports = ko.components.register('panel', {
 			
 			<!--panel-body-->
 			<section data-bind="attr: {'id': collapseId}, css: {'in': isExpanded}" class="panel-collapse collapse">				
-				<!-- ko if: (typeof $data.value === 'object' && !$.isArray($data.value)) -->
-					<object-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup, page: page, collapseId: collapseId, subjectID: subjectID"></object-panel-body>
-				<!-- /ko -->
-				<!-- ko if: (typeof $data.value === 'object' && $.isArray($data.value)) -->
-					<array-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup"></array-panel-body>
-				<!-- /ko -->
+					<!--ko if: key === 'location' -->
+						<map-panel-body params="lat: $data.value.latitude, long: $data.value.longitude, address: $data.value.address"></map-panel-body>
+					<!-- /ko -->
+					<!-- ko if: (typeof $data.value === 'object' && !$.isArray($data.value)) -->
+						<object-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup, page: page, collapseId: collapseId, subjectID: subjectID"></object-panel-body>
+					<!-- /ko -->
+					<!-- ko if: (typeof $data.value === 'object' && $.isArray($data.value)) -->
+						<array-panel-body params="config: config, data: $data, index: $index, panelGroup: panelGroup"></array-panel-body>
+					<!-- /ko -->
 			</section>
 		</section>
 `});

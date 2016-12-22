@@ -24,6 +24,7 @@ body {
     font-feature-settings: "kern" 1;
     font-kerning: normal;
     overflow-x: hidden;
+    -ms-overflow-style: scrollbar;//IE-11 scroll
 }
 
 iframe{

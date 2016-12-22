@@ -2401,8 +2401,6 @@ Example:
 | Connection error to upstream service | 502 | 502| |
 | Upstream service timeout | 504 | 504 | | 
 
----
-{: .aside}
 
 {: .article}
 Clients can reference the *code* field when communicating and debugging errors with Ticketmaster. We will automatically be notified of any internal, unrecoverable errors.

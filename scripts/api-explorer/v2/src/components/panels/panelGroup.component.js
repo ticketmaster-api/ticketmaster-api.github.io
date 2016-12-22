@@ -83,6 +83,7 @@ class CardGroup {
 				newData[key] = val;
 			}
 		}
+
 		return newData
 	}
 

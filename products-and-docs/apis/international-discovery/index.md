@@ -109,7 +109,7 @@ or descending. The default sort method is eventdate and order is ascending.
 {: .nested-list}
 + `sort_by` = `eventdate` (optional, string)
     - eventname
-    - populatity
+    - popularity
     - eventdate
     - proximity
 + `order` = `asc` (optional, string)
@@ -119,7 +119,7 @@ or descending. The default sort method is eventdate and order is ascending.
     
 | Parameters | Optional values | Type |
 | -------- | | ------------------ |
-|`sort_by` | eventname, populatity, eventdate, proximity | string |
+|`sort_by` | eventname, popularity, eventdate, proximity | string |
 |`order` | asc, desc | string |
     
 ##### Other Parameters
@@ -201,7 +201,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -688,7 +688,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -1060,7 +1060,7 @@ https://app.ticketmaster.eu/mfxapi/v1/event/updated
 
 | Parameters | Optional values | Type | Required |
 | ---------- | --------------- | ---- | -------- |
-|`updated_since` | The timestamp for the date and time from which updated events are returned. Time is always UTC and should be specified to hour, minutes, seconds and miliseconds. Example: 2008-01-18T18:51:43.01Z. | string | Yes|
+|`updated_since` | The timestamp for the date and time from which updated events are returned. Time is always UTC and should be specified to hour, minutes, seconds and milliseconds. Example: 2008-01-18T18:51:43.01Z. | string | Yes|
 |`lang` | The language in ISO code format. Example: no-no. | string | No |
 |`domain_ids` | The unique identifier for the domain or market. Although optional, this is recommended. Example: norway. | string | No |
 |`rows` | The number of rows to return in the response. Example: 100. | Integer | No |
@@ -1107,7 +1107,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -1641,7 +1641,7 @@ curl --include \
   'https://app.ticketmaster.eu/mfxapi/v1/event/449621/prices?domain_ids&lang&price_level_ids'
 {% endhighlight %}
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -2040,7 +2040,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -2390,7 +2390,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -2728,11 +2728,11 @@ You can paginate the results by specifying the number of rows to return, and the
 You can specify a sorting method and order. Options include event name, event date, popularity, and proximity (based on 
 the lat and long) with ascending or descending order. The default is eventdate and ascending.
 
-sort_by = attraction_name (optional, string)attraction_namepopulatityorder = asc (optional, string)asc desc
+sort_by = attraction_name (optional, string)attraction_namepopularityorder = asc (optional, string)asc desc
 
 | Parameters | Optional values | Type |
 | -------- | | ------------------ |
-|`sort_by` | attraction_name, populatity | string |
+|`sort_by` | attraction_name, popularity | string |
 |`order` | asc, desc | string |
 
 ##### *Other Parameters*
@@ -2790,7 +2790,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -3153,7 +3153,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -3506,7 +3506,7 @@ curl --include \
 {% endhighlight %}
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -3877,7 +3877,7 @@ curl --include \
 
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -4311,7 +4311,7 @@ curl --include \
 
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -4668,7 +4668,7 @@ curl --include \
 
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -5024,7 +5024,7 @@ curl --include \
 
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -5479,7 +5479,7 @@ curl --include \
 
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -6047,7 +6047,7 @@ curl --include \
 
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>
@@ -6530,7 +6530,7 @@ curl --include \
 
 
 {% highlight java %}
-// Maven : Add these dependecies to your pom.xml (java6+)
+// Maven : Add these dependencies to your pom.xml (java6+)
 // <dependency>
 //     <groupId>org.glassfish.jersey.core</groupId>
 //     <artifactId>jersey-client</artifactId>

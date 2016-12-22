@@ -357,8 +357,6 @@ var TicketmasterCountdownWidget = function () {
       this.countDownSecond.innerHTML = this.getNormalizedDateValue(data.seconds);
 
       this.toggleSecondsVisibility();
-
-      //console.log('event is null?', this.apiUrl , '\n this.eventId', this.eventId);
     }
   }, {
     key: 'buildCountdown',
@@ -711,10 +709,13 @@ var TicketmasterCountdownWidget = function () {
     }
   }, {
     key: 'onEventLoadError',
-    value: function onEventLoadError(status) {
+    value: function onEventLoadError(status, loadOnce) {
       this.event = false;
       this.showMessage("No results were found.", true, null);
-      console.log('There was an error status - ' + status);
+      console.log('There was an error status - ' + status + ' ' + loadOnce);
+      if (!loadOnce) {
+        this.changeDefaultId();
+      }
     }
   }, {
     key: 'eventsLoadingHandler',
@@ -801,6 +802,78 @@ var TicketmasterCountdownWidget = function () {
 
       currentEvent.img = this.getImageForEvent(eventSet.images);
       return currentEvent;
+    }
+  }, {
+    key: 'changeDefaultId',
+    value: function changeDefaultId() {
+      Date.prototype.addDays = function (days) {
+        this.setDate(this.getDate() + parseInt(days));
+        return this;
+      };
+      var zipVegas = '89109',
+          url = 'https://app.ticketmaster.com/discovery/v2/events.json',
+          newAttr = Object.assign({}, this.eventReqAttrs),
+          d = new Date(0),
+          convertedNewStartDate = void 0;
+
+      d.setUTCSeconds(Math.round(new Date().addDays(30).getTime()) / 1000);
+      convertedNewStartDate = d.toJSON().slice(0, 17) + '00Z';
+      if (d.toJSON().length <= 20) convertedNewStartDate = d.toJSON();
+      newAttr.startDateTime = convertedNewStartDate;
+      newAttr.zipcode = zipVegas;
+
+      this.makeRequest(this.changeDefaultIdHandler, url, newAttr);
+    }
+  }, {
+    key: 'changeDefaultIdHandler',
+    value: function changeDefaultIdHandler() {
+      function getValidId(events) {
+        var id = '',
+            newStartDate = new Date().addDays(30);
+
+        for (var ii = 0; ii < events.length; ii++) {
+          if (Math.round(new Date(events[ii].dates.start.dateTime).getTime() / 1000) >= Math.round(new Date(newStartDate).getTime() / 1000)) {
+            id = events[ii].id;
+            break;
+          }
+        }
+        return id;
+      }
+      function setEventId() {
+        var _this2 = this;
+
+        return function () {
+          return _this2.makeRequest(_this2.eventsLoadingHandler, _this2.apiUrl, _this2.eventReqAttrs);
+        };
+      }
+      var widget = this.widget;
+      var loadOnce = false;
+      widget.clearEvents(); // Additional clearing after each loading
+
+      if (this && this.readyState == XMLHttpRequest.DONE) {
+        if (this.status == 200) {
+          var eventsWrap = JSON.parse(this.responseText);
+          if (eventsWrap) {
+            var events = eventsWrap['_embedded']['events'],
+                newId = getValidId(events);
+            widget.eventId = newId;
+            document.getElementById('w-id').value = widget.eventId;
+            setEventId.call(widget, newId)();
+          }
+        } else if (this.status == 400) {
+          loadOnce = true;
+          widget.onEventLoadError.call(widget, this.status, loadOnce);
+        } else {
+          console.log('this error', this);
+          loadOnce = true;
+          widget.onEventLoadError.call(widget, this.status, loadOnce);
+        }
+        // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
+        var _ref = void 0,
+            _ref2 = void 0;
+        widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime || _ref2.day : void 0 : void 0);
+      }
+      widget.setBuyBtnUrl();
     }
   }, {
     key: 'makeRequest',

@@ -13,7 +13,7 @@ class ObjectPanelBody {
 		this.collapseId = collapseId;
 		this._allInside = !!Object.getProp(ko.unwrap(config), '._CONFIG.allInside');
 		this.sortByConfig = panelGroup.sortByConfig;
-		this.subjectID = subjectID
+		this.subjectID = subjectID;
 		this.sendId(this.data);
 	}
 	sendId(data) {
@@ -53,8 +53,7 @@ class ObjectPanelBody {
 		$(e.currentTarget)
 			.parent('.item')
 			.addClass('active');
-
-		this.getMore.call(this, key, value);
+		this.getMore.call(null, {panel: this, id: key, data: value});
 	}
 }
 
@@ -90,12 +89,12 @@ module.exports = ko.components.register('object-panel-body', {
 						<button data-bind="copyToClipboard: {text: value.toString()}, attr: {id: 'prop-value-' + key + $index()}, popover: {type: 'tooltip', title: 'Copy value'}" type="button" class="btn btn-icon btn-copy"></button>
 					<!-- /ko -->
 					
-						<!-- ko if: typeof value === 'object' && $component._allInside -->
-							<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
-						<!-- /ko -->
-						<!-- ko if: typeof value === 'object' && !$component._allInside -->
-							<button data-bind="click: $component.setActive.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
-						<!-- /ko -->
+					<!-- ko if: typeof value === 'object' && $component._allInside -->
+						<panel params="$data: $data, $index: $index, panelGroup: $component"></panel>
+					<!-- /ko -->
+					<!-- ko if: typeof value === 'object' && !$component._allInside -->
+						<button data-bind="click: $component.setActive.bind($component, key, value)" type="button" class="btn btn-icon blue-shevron-right pull-right"></button>
+					<!-- /ko -->
 				</li>
 			</ul>
 		</section>

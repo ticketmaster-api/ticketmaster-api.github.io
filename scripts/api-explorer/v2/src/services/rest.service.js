@@ -116,13 +116,35 @@ class RestService {
 	 * Ajax Service
 	 */
 	ajaxService({url, type = 'GET', async = true, dataType = 'json', callback}) {
-		$.ajax({
-			type: type === 'ALL' ? 'GET' : type,
+		let method = this.base[ko.unwrap(this.selectedCategory)][ko.unwrap(this.selectedMethodType)][ko.unwrap(this.selectedMethod)].method;
+		let obj = {
+			type: method,
 			url,
 			async,
 			dataType,
 			complete: callback
+		};
+		if (method === 'POST') {
+			obj.headers = $.extend(true, {}, this.getHeaders());
+			let body = ko.unwrap(ko.unwrap(this.selectedParams).find(param => param.style === 'requestBody').value);
+			try {
+				obj.data = JSON.parse(body);
+			} catch (err) {
+				obj.data = {"body": body};
+			}
+
+		}
+		$.ajax(obj);
+	}
+
+	getHeaders() {
+		let headersObj = {};
+		ko.unwrap(this.selectedParams).map(param => {
+			if (param.style === 'header') {
+				headersObj[param.name] = ko.unwrap(param.value);
+			}
 		});
+		return headersObj;
 	}
 
 	getMethodData(params = {}) {

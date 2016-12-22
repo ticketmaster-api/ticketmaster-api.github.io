@@ -1,0 +1,112 @@
+section.panel-heading {
+	padding: 0;
+	height: 40px;
+	border-radius: 0;
+	.panel:hover &,
+	.panel.active & {
+		opacity: 1;
+	}
+	.panel-title {
+		position: relative;
+		a.btn.btn-icon.btn-title {
+			margin: 0;
+			font: {
+				weight: bold;
+				size: 20px;
+				style: normal;
+				stretch: normal;
+			}
+			line-height: 1;
+			&:hover,
+			&:active,
+			&:focus {
+				color: #fff;
+			}
+			span.btn.btn-icon.shevron.white-shevron-up {
+				float: left;
+				margin: 0 10px 0 0;
+				&:active {
+					background-image: url($img-shevron-down-white);
+				}
+			}
+			p.title {
+				margin: 0;
+				color: #fff;
+				&:first-letter {
+					text-transform: uppercase;
+				}
+			}
+		}
+		span.counter {
+			position: absolute;
+			right: 16px;
+			top: 50%;
+			margin-top: -10px;
+			opacity: 0.7;
+			font: {
+				size: 20px;
+				weight: bold;
+				style: normal;
+				stretch: normal;
+			}
+			line-height: 16px;
+			display: block;
+			color: #fff;
+		}
+
+		//pagination
+		span.navigation-wrapper {
+			float: right;
+			margin: 3px 3px 0;
+			button.navigation {
+				width: 0;
+				height: 0;
+				border-style: solid;
+				background: none;
+				outline: none;
+				&[disabled] {
+					opacity: 0.3;
+				}
+				&.prev {
+					border: {
+						width: 7.5px 8px 7.5px 0;
+						color: transparent #fff transparent transparent
+					}
+					margin-right: 15px;
+				}
+				&.next {
+					border: {
+						width: 7.5px 0 7.5px 8px;
+						color: transparent transparent transparent #fff;
+					}
+				}
+			}
+		}
+		section.follow-request {
+			float: right;
+			margin: 7px 5px 0;
+			span.color-indicator {
+				margin: 6px 11px 0;
+			}
+			button.btn.btn-request {
+				float: right;
+				width: 150px;
+				height: 26px;
+				border-radius: 2px;
+				background-color: #ffffff;
+				line-height: 13px;
+				clear: both;
+				font: {
+					size: 11px;
+					weight: bold;
+					style: normal;
+					stretch: normal;
+				}
+				text-align: center;
+				color: #b7c9d3;
+			}
+		}
+	}
+	//mobile
+	@media #{$max-768} {}
+}
