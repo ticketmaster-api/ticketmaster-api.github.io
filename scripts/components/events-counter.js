@@ -1,5 +1,5 @@
 (function ($) {
-  var apiKey = apiKeyService.checkApiKeyCookie("tk-api-key") || apiKeyService.getApiExploreKey(); //API Key
+  var apiKey = apiKeyService.getApiExploreKey();
   var initialValObj;
   function initialVal(config) {    
     var values = {};
@@ -23,10 +23,15 @@
 
     initialVal(config);
     config.forEach(function (el) {
-      var val = el === 'countries' && 7;
+      var val = el === 'countries' && 7,
+        quantityStorage = getSessionStorage(el);
       renderValue(el, val);
       if(val !== null || val !== false) {
-        updateEventpanelCounters(el,intervals);
+        if(!quantityStorage) {
+          updateEventpanelCounters(el,intervals);
+        }else{
+          countAnimate(el, quantityStorage);
+        }
         //intervals.push(setInterval(updateEventpanelCounters.bind(null, el), timeLeap));
       }
     });
@@ -56,20 +61,37 @@
         renderValue(url, quantity);
         countAnimate(url, quantity);
       }).fail(function (err) {
+        onFailHandler(url, 0.15);
         console.error('Error: ', err);
       })
     }
   }
 
+  /**
+   * Handler for invalid apiKey 
+   * @param selector {string} - 'events', 'venues', 'attractions'
+   * @param minutes {number} -  time to resend request if storage empty
+   */
+  function onFailHandler(selector, minutes) {
+    var delay = minutes * 60000;
+    if(getSessionStorage(selector)) {
+     renderValue(selector, getSessionStorage(selector));
+     countAnimate(selector, getSessionStorage(selector));
+    }else{
+      setTimeout(function() {
+        updateEventpanelCounters(selector);
+      },delay);
+    }
+  }
   function setSessionStorage(key, val) {
     if (Storage) {
-      sessionStorage.setItem(key, val);
+      localStorage.setItem(key, val);
     }
   }
 
   function getSessionStorage(key) {
-    if (sessionStorage[key]) {
-      return sessionStorage.getItem(key);
+    if (localStorage[key]) {
+      return localStorage.getItem(key);
     }
     return null;
   }
