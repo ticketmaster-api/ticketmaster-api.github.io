@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -6,7 +6,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var TicketmasterMapWidget = function () {
     _createClass(TicketmasterMapWidget, [{
-        key: 'isConfigAttrExistAndNotEmpty',
+        key: "isConfigAttrExistAndNotEmpty",
         value: function isConfigAttrExistAndNotEmpty(attr) {
 
             if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
@@ -17,7 +17,7 @@ var TicketmasterMapWidget = function () {
             return true;
         }
     }, {
-        key: 'config',
+        key: "config",
         set: function set(attrs) {
             this.widgetConfig = this.loadConfig(attrs);
         },
@@ -25,7 +25,7 @@ var TicketmasterMapWidget = function () {
             return this.widgetConfig;
         }
     }, {
-        key: 'events',
+        key: "events",
         set: function set(responce) {
             this.eventsList = this.parseEvents(responce);
         },
@@ -33,103 +33,93 @@ var TicketmasterMapWidget = function () {
             return this.eventsList;
         }
     }, {
-        key: 'isListView',
-        get: function get() {
-            return this.config.theme === 'listview';
-        }
-    }, {
-        key: 'isBarcodeWidget',
-        get: function get() {
-            return this.config.theme === 'oldschool' || this.config.theme === 'newschool';
-        }
-    }, {
-        key: 'isSimpleProportionM',
+        key: "isSimpleProportionM",
         get: function get() {
             return this.config.proportion === 'm';
         }
     }, {
-        key: 'borderSize',
+        key: "borderSize",
         get: function get() {
             return this.config.border || 0;
         }
     }, {
-        key: 'widgetHeight',
+        key: "widgetHeight",
         get: function get() {
             return this.config.height || 600;
         }
     }, {
-        key: 'widgetContentHeight',
+        key: "widgetContentHeight",
         get: function get() {
             // return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
             return this.widgetHeight;
         }
     }, {
-        key: 'eventUrl',
+        key: "eventUrl",
         get: function get() {
             return "https://www.ticketmaster.com/event/";
         }
     }, {
-        key: 'apiUrl',
+        key: "apiUrl",
         get: function get() {
             return "https://app.ticketmaster.com/discovery/v2/events.json";
         }
     }, {
-        key: 'themeUrl',
+        key: "themeUrl",
         get: function get() {
-            return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/products-and-docs/widgets/map/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/theme/';
+            return window.location.host === 'developer.ticketmaster.com' ? "https://developer.ticketmaster.com/products-and-docs/widgets/map/1.0.0/theme/" : "https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/theme/";
         }
     }, {
-        key: 'portalUrl',
+        key: "portalUrl",
         get: function get() {
-            return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/' : 'https://ticketmaster-api-staging.github.io/';
+            return window.location.host === 'developer.ticketmaster.com' ? "https://developer.ticketmaster.com/" : "https://ticketmaster-api-staging.github.io/";
         }
     }, {
-        key: 'logoUrl',
+        key: "logoUrl",
         get: function get() {
             return "https://www.ticketmaster.com/";
         }
     }, {
-        key: 'legalNoticeUrl',
+        key: "legalNoticeUrl",
         get: function get() {
             return "http://developer.ticketmaster.com/support/terms-of-use/";
         }
     }, {
-        key: 'questionUrl',
+        key: "questionUrl",
         get: function get() {
             return "http://developer.ticketmaster.com/support/faq/";
         }
     }, {
-        key: 'geocodeUrl',
+        key: "geocodeUrl",
         get: function get() {
             return "https://maps.googleapis.com/maps/api/geocode/json";
         }
     }, {
-        key: 'updateExceptions',
+        key: "updateExceptions",
         get: function get() {
             return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"];
         }
     }, {
-        key: 'hideMessageDelay',
+        key: "hideMessageDelay",
         get: function get() {
             return 5000;
         }
     }, {
-        key: 'controlHiddenClass',
+        key: "controlHiddenClass",
         get: function get() {
             return "events_control-hidden";
         }
     }, {
-        key: 'tmWidgetWhiteList',
+        key: "tmWidgetWhiteList",
         get: function get() {
             return ["2200504BAD4C848F", "00005044BDC83AE6", "1B005068DB60687F", "1B004F4DBEE45E47", "3A004F4ED7829D5E", "3A004F4ED1FC9B63", "1B004F4FF83289C5", "1B004F4FC0276888", "0E004F4F3B7DC543", "1D004F4F09C61861", "1600505AC9A972A1", "22004F4FD82795C6", "01005057AFF54574", "01005056FAD8793A", "3A004F4FB2453240", "22004F50D2149AC6", "01005059AD49507A", "01005062B4236D5D"];
         }
     }, {
-        key: 'countriesWhiteList',
+        key: "countriesWhiteList",
         get: function get() {
             return ['Australia', 'Austria', 'Belgium', 'Canada', 'Denmark', 'Finland', 'France', 'Germany', 'Ireland', 'Mexico', 'Netherlands', 'New Zealand', 'Norway', 'Spain', 'Sweden', 'Turkey', 'UAE', 'United Kingdom', 'United States'];
         }
     }, {
-        key: 'eventReqAttrs',
+        key: "eventReqAttrs",
         get: function get() {
             var attrs = {},
                 params = [{
@@ -210,13 +200,7 @@ var TicketmasterMapWidget = function () {
             this.eventsRoot.style.width = this.config.width + "px";
             this.eventsRootContainer.appendChild(this.eventsRoot);
 
-            // Set theme modificators
-            this.themeModificators = {
-                "oldschool": this.oldSchoolModificator.bind(this),
-                "newschool": this.newSchoolModificator.bind(this)
-            };
-
-            if (this.config.theme !== null && !document.getElementById('widget-theme-' + this.config.theme)) {
+            if (this.config.theme !== null && !document.getElementById("widget-theme-" + this.config.theme)) {
                 this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
             }
 
@@ -225,12 +209,12 @@ var TicketmasterMapWidget = function () {
                 this.eventsRootContainer.classList.add("border");
             }
 
-            this.widgetRoot.style.height = this.widgetHeight + 'px';
-            this.widgetRoot.style.width = this.config.width + 'px';
-            this.eventsRootContainer.style.height = this.widgetHeight + 'px';
-            this.eventsRootContainer.style.width = this.config.width + 'px';
-            this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
-            this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
+            this.widgetRoot.style.height = this.widgetHeight + "px";
+            this.widgetRoot.style.width = this.config.width + "px";
+            this.eventsRootContainer.style.height = this.widgetHeight + "px";
+            this.eventsRootContainer.style.width = this.config.width + "px";
+            this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
+            this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
             //this.clear();
 
@@ -239,11 +223,6 @@ var TicketmasterMapWidget = function () {
             this.getCoordinates(function () {
                 _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
             });
-
-            if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
-                this.themeModificators[this.widgetConfig.theme]();
-            }
-
             /*plugins for 'buy button'*/
             this.embedUniversePlugin();
             this.embedTMPlugin();
@@ -253,7 +232,7 @@ var TicketmasterMapWidget = function () {
     }
 
     _createClass(TicketmasterMapWidget, [{
-        key: 'getCoordinates',
+        key: "getCoordinates",
         value: function getCoordinates(cb) {
             var widget = this;
 
@@ -308,7 +287,7 @@ var TicketmasterMapWidget = function () {
 
                                 if (geometry) {
                                     if (geometry.location) {
-                                        latlong = geometry.location.lat + ',' + geometry.location.lng;
+                                        latlong = geometry.location.lat + "," + geometry.location.lng;
                                     }
                                 }
                             } else {
@@ -324,9 +303,9 @@ var TicketmasterMapWidget = function () {
             }
 
             if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
-                var args = { language: 'en', components: 'postal_code:' + widget.config.postalcode };
+                var args = { language: 'en', components: "postal_code:" + widget.config.postalcode };
                 if (widget.config.googleapikey) args.key = widget.config.googleapikey;
-                if (this.config.country) args.components += '|country:' + this.config.country;
+                if (this.config.country) args.components += "|country:" + this.config.country;
                 this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
             } else {
                 // Used in builder
@@ -337,7 +316,7 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'initBuyBtn',
+        key: "initBuyBtn",
         value: function initBuyBtn() {
             this.buyBtn = document.createElement("a");
             this.buyBtn.appendChild(document.createTextNode('BUY NOW'));
@@ -347,49 +326,12 @@ var TicketmasterMapWidget = function () {
             this.buyBtn.href = '';
             this.buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
             this.buyBtn.addEventListener('click', function (e) {
-                e.preventDefault(); /*used in plugins for 'buy button'*/
-                //console.log(this.config.affiliateid)
+                e.preventDefault();
             });
             this.eventsRootContainer.appendChild(this.buyBtn);
         }
-
-        /**
-         * Set position center/right
-         *
-         * @param url
-         * @param isAddressCenter - if true : Set address position center/right for oldschool theme 300x250 (proportion :'m')
-         */
-
     }, {
-        key: 'updateTransition',
-        value: function updateTransition(url, isAddressCenter) {
-            var el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
-            isAddressCenter ? el = this.eventsRootContainer.querySelectorAll(".event-date.centered-logo") : el = this.eventsRootContainer.querySelector(".event-logo.centered-logo");
-            if (url !== '') {
-                if (el && !isAddressCenter) {
-                    el.classList.add("right-logo");
-                    el.classList.remove("centered-logo");
-                } else if (el) {
-                    var i = void 0;
-                    for (i = 0; i < el.length - 1; i++) {
-                        el[i].classList.remove("centered-logo");
-                    }
-                }
-            } else {
-                isAddressCenter ? el = this.eventsRootContainer.querySelectorAll(".event-date") : el = this.eventsRootContainer.querySelector(".event-logo.right-logo");
-                if (el && !isAddressCenter) {
-                    el.classList.remove("right-logo");
-                    el.classList.add("centered-logo");
-                } else if (el) {
-                    var _i = void 0;
-                    for (_i = 0; _i < el.length - 1; _i++) {
-                        el[_i].classList.add("centered-logo");
-                    }
-                }
-            }
-        }
-    }, {
-        key: 'setBuyBtnUrl',
+        key: "setBuyBtnUrl",
         value: function setBuyBtnUrl() {
             if (this.buyBtn) {
                 var event = '',
@@ -400,31 +342,25 @@ var TicketmasterMapWidget = function () {
                         if (this.isUniversePluginInitialized && this.isUniverseUrl(event.url) || this.isTMPluginInitialized && this.isAllowedTMEvent(event.url)) {
                             url = event.url;
                         }
-
-                        if (this.config.theme === 'oldschool' && this.config.proportion === 'm') {
-                            this.updateTransition(url, true);
-                        } else {
-                            this.updateTransition(url);
-                        }
                     }
                 }
                 this.buyBtn.href = url;
             }
         }
     }, {
-        key: 'isUniverseUrl',
+        key: "isUniverseUrl",
         value: function isUniverseUrl(url) {
             return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
         }
     }, {
-        key: 'isAllowedTMEvent',
+        key: "isAllowedTMEvent",
         value: function isAllowedTMEvent(url) {
             for (var t = [/(?:ticketmaster\.com)\/(.*\/)?event\/([^\/?#]+)/, /(?:concerts\.livenation\.com)\/(.*\/)?event\/([^\/?#]+)/], n = null, r = 0; r < t.length && (n = url.match(t[r]), null === n); r++) {}
             var id = null !== n ? n[2] : void 0;
             return this.tmWidgetWhiteList.indexOf(id) > -1;
         }
     }, {
-        key: 'embedTMPlugin',
+        key: "embedTMPlugin",
         value: function embedTMPlugin() {
             var id = 'id_tm_widget';
             if (!document.getElementById(id)) {
@@ -438,7 +374,7 @@ var TicketmasterMapWidget = function () {
             this.isTMPluginInitialized = true;
         }
     }, {
-        key: 'embedUniversePlugin',
+        key: "embedUniversePlugin",
         value: function embedUniversePlugin() {
             var id = 'id_universe_widget';
             if (!document.getElementById(id)) {
@@ -455,7 +391,7 @@ var TicketmasterMapWidget = function () {
         // Message
 
     }, {
-        key: 'initMessage',
+        key: "initMessage",
         value: function initMessage() {
             var _this2 = this;
 
@@ -475,7 +411,7 @@ var TicketmasterMapWidget = function () {
             this.eventsRootContainer.appendChild(this.messageDialog);
         }
     }, {
-        key: 'showMessage',
+        key: "showMessage",
         value: function showMessage(message, hideMessageWithoutDelay) {
             if (message.length) {
                 this.hideMessageWithoutDelay = hideMessageWithoutDelay;
@@ -487,7 +423,7 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'hideMessageWithDelay',
+        key: "hideMessageWithDelay",
         value: function hideMessageWithDelay(delay) {
             var _this3 = this;
 
@@ -497,7 +433,7 @@ var TicketmasterMapWidget = function () {
             }, delay);
         }
     }, {
-        key: 'hideMessage',
+        key: "hideMessage",
         value: function hideMessage() {
             if (this.messageTimeout) clearTimeout(this.messageTimeout); // Clear timeout and hide message immediately.
             this.messageDialog.classList.remove("event-message-visible");
@@ -505,7 +441,7 @@ var TicketmasterMapWidget = function () {
         // End message
 
     }, {
-        key: 'AdditionalElements',
+        key: "AdditionalElements",
         value: function AdditionalElements() {
             var legalNoticeContent = document.createTextNode('Legal Notice'),
                 legalNotice = document.createElement("a");
@@ -532,40 +468,8 @@ var TicketmasterMapWidget = function () {
             question.href = this.questionUrl;
             this.eventsRootContainer.appendChild(question);
         }
-
-        //adds general admission element for OLDSCHOOL theme
-
     }, {
-        key: 'oldSchoolModificator',
-        value: function oldSchoolModificator() {
-
-            var generalAdmissionWrapper = document.createElement("div");
-            generalAdmissionWrapper.classList.add("general-admission", "modificator");
-
-            var generalAdmission = document.createElement("div"),
-                generalAdmissionText = document.createTextNode('GENERAL ADMISSION');
-            generalAdmission.appendChild(generalAdmissionText);
-            generalAdmissionWrapper.appendChild(generalAdmission);
-
-            this.eventsRootContainer.appendChild(generalAdmissionWrapper);
-        }
-    }, {
-        key: 'newSchoolModificator',
-        value: function newSchoolModificator() {
-            var ticketLogo = document.createElement("div");
-            ticketLogo.classList.add("ticket-logo", "modificator");
-
-            for (var i = 0; i < 4; i++) {
-                var headLogo = document.createElement("img");
-                headLogo.setAttribute("src", this.portalUrl + "assets/widgets/1.0.0/img/ticketmaster-logo-white.svg");
-                headLogo.setAttribute("height", "11");
-                ticketLogo.appendChild(headLogo);
-            }
-
-            this.eventsRootContainer.appendChild(ticketLogo);
-        }
-    }, {
-        key: 'formatDate',
+        key: "formatDate",
         value: function formatDate(date) {
             var result = '';
             if (!date.day) return result; // Day is required
@@ -600,12 +504,12 @@ var TicketmasterMapWidget = function () {
             return result + ' ' + LZ(H) + ':' + m + ' ' + a;
         }
     }, {
-        key: 'clearEvents',
+        key: "clearEvents",
         value: function clearEvents() {
             this.eventsRoot.innerHTML = "";
         }
     }, {
-        key: 'clear',
+        key: "clear",
         value: function clear() {
             var modificatorList = this.widgetRoot.getElementsByClassName('modificator');
             while (modificatorList.length) {
@@ -616,9 +520,8 @@ var TicketmasterMapWidget = function () {
             this.clearEvents();
         }
     }, {
-        key: 'update',
+        key: "update",
         value: function update() {
-            var _this4 = this;
 
             var oldTheme = this.config.constructor();
             for (var attr in this.config) {
@@ -627,51 +530,28 @@ var TicketmasterMapWidget = function () {
 
             this.config = this.widgetRoot.attributes;
 
-            this.widgetRoot.style.height = this.widgetHeight + 'px';
-            this.widgetRoot.style.width = this.config.width + 'px';
-            this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
-            this.eventsRootContainer.style.width = this.config.width + 'px';
-            this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
-            this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
+            this.widgetRoot.style.height = this.widgetHeight + "px";
+            this.widgetRoot.style.width = this.config.width + "px";
+            this.eventsRootContainer.style.height = this.widgetContentHeight + "px";
+            this.eventsRootContainer.style.width = this.config.width + "px";
+            this.eventsRootContainer.style.borderRadius = this.config.borderradius + "px";
+            this.eventsRootContainer.style.borderWidth = this.borderSize + "px";
 
             this.eventsRootContainer.classList.remove("border");
             if (this.config.hasOwnProperty("border")) {
                 this.eventsRootContainer.classList.add("border");
             }
 
-            if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
-                this.clear();
-
-                if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
-                    this.themeModificators[this.widgetConfig.theme]();
-                }
-
-                this.getCoordinates(function () {
-                    _this4.makeRequest(_this4.eventsLoadingHandler, _this4.apiUrl, _this4.eventReqAttrs);
-                });
-            } else {
-                var events = this.eventsRoot.getElementsByClassName("event-wrapper");
-                for (var i in events) {
-                    if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-                        events[i].style.width = this.config.width - this.borderSize * 2 + 'px';
-                        events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
-                    }
+            var events = this.eventsRoot.getElementsByClassName("event-wrapper");
+            for (var i in events) {
+                if (events.hasOwnProperty(i) && events[i].style !== undefined) {
+                    events[i].style.width = this.config.width - this.borderSize * 2 + "px";
+                    events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
                 }
             }
         }
     }, {
-        key: 'needToUpdate',
-        value: function needToUpdate(newTheme, oldTheme) {
-            var forCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-
-            return Object.keys(newTheme).map(function (key) {
-                if (forCheck.indexOf(key) > -1) return true;
-                //console.warn([key, newTheme[key], oldTheme[key], newTheme[key] === oldTheme[key]])
-                return newTheme[key] === oldTheme[key];
-            }).indexOf(false) > -1;
-        }
-    }, {
-        key: 'loadConfig',
+        key: "loadConfig",
         value: function loadConfig(NamedNodeMap) {
             var config = {};
             Object.keys(NamedNodeMap).map(function (value) {
@@ -682,13 +562,13 @@ var TicketmasterMapWidget = function () {
             return config;
         }
     }, {
-        key: 'styleLoadingHandler',
+        key: "styleLoadingHandler",
         value: function styleLoadingHandler() {
             if (this && this.readyState == XMLHttpRequest.DONE) {
                 if (this.status == 200) {
                     var style = document.createElement("style");
                     style.setAttribute("type", "text/css");
-                    style.setAttribute("id", 'widget-theme-' + this.widget.config.theme);
+                    style.setAttribute("id", "widget-theme-" + this.widget.config.theme);
                     style.textContent = this.responseText;
                     document.getElementsByTagName("head")[0].appendChild(style);
                 } else {
@@ -698,7 +578,7 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'groupEventsByName',
+        key: "groupEventsByName",
         value: function groupEventsByName() {
             var groups = {};
             this.events.map(function (event) {
@@ -712,12 +592,12 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'resetReduceParamsOrder',
+        key: "resetReduceParamsOrder",
         value: function resetReduceParamsOrder() {
             this.reduceParamsOrder = 0;
         }
     }, {
-        key: 'reduceParamsAndReloadEvents',
+        key: "reduceParamsAndReloadEvents",
         value: function reduceParamsAndReloadEvents() {
             var eventReqAttrs = {},
                 reduceParamsList = [['classificationName'], ['city'], ['countryCode'], ['source'], ['startDateTime', 'endDateTime', 'country'], ['radius'], ['postalCode', 'latlong'], ['attractionId'], ['promoterId'],
@@ -749,7 +629,7 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'setMarkers',
+        key: "setMarkers",
         value: function setMarkers(map, markers) {
 
             var infowindow = new google.maps.InfoWindow({
@@ -758,6 +638,13 @@ var TicketmasterMapWidget = function () {
 
             var image = {
                 url: '/assets/widgets/1.0.0/img/marker.svg',
+                size: new google.maps.Size(22, 32),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(22, 32)
+            };
+
+            var imageActive = {
+                url: '/assets/widgets/1.0.0/img/marker-active.svg',
                 size: new google.maps.Size(22, 32),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(22, 32)
@@ -780,10 +667,16 @@ var TicketmasterMapWidget = function () {
                     infowindow.setContent(this.html);
                     infowindow.open(map, this);
                 });
+                google.maps.event.addListener(marker, 'mouseover', function () {
+                    this.setIcon(imageActive);
+                });
+                google.maps.event.addListener(marker, 'mouseout', function () {
+                    this.setIcon(image);
+                });
             }
         }
     }, {
-        key: 'eventsLoadingHandler',
+        key: "eventsLoadingHandler",
         value: function eventsLoadingHandler() {
             var widget = this.widget;
             var markers = [];
@@ -812,8 +705,6 @@ var TicketmasterMapWidget = function () {
 
                         for (var e = 0; e < widget.events.length; e++) {
 
-                            console.log(widget.events[e]);
-
                             if (widget.events[e].location !== undefined) {
                                 var place = '';
                                 var address = '';
@@ -832,7 +723,7 @@ var TicketmasterMapWidget = function () {
                                     address = '';
                                 }
 
-                                markers[e] = [widget.events[e].name, widget.events[e].location.lat, widget.events[e].location.lng, e, '<a href="' + widget.events[e].url + '"><span class="img" style="background:url(' + widget.events[e].img + ') center center no-repeat"></span><span class="name">' + widget.events[e].name + '</span></a><span class="date">' + date + '</span><span class="place">' + place + address + '</span>'];
+                                markers[e] = [widget.events[e].name, widget.events[e].location.lat, widget.events[e].location.lng, e, '<div class="infowindow" style="width:220px!important;padding-right:5px!important;line-height:normal;overflow:auto;"><a href="' + widget.events[e].url + '"><span class="img" style="background:url(' + widget.events[e].img + ') center center no-repeat"></span><span class="name">' + widget.events[e].name + '</span></a><span class="date">' + date + '</span><span class="place">' + place + address + '</span></div>'];
                                 latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat, widget.events[e].location.lng));
                             }
                         }
@@ -855,36 +746,36 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'publishEventsGroup',
+        key: "publishEventsGroup",
         value: function publishEventsGroup(group, index) {
-            var _this5 = this;
+            var _this4 = this;
 
             var groupNodeWrapper = document.createElement("li");
             groupNodeWrapper.classList.add("event-wrapper");
             groupNodeWrapper.classList.add("event-group-wrapper");
-            groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + 'px';
-            groupNodeWrapper.style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
+            groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + "px";
+            groupNodeWrapper.style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
 
             var groupNode = document.createElement("ul");
             groupNode.classList.add("event-group");
             groupNode.classList.add("event-group-" + index);
 
             group.map(function (event) {
-                _this5.publishEvent(event, groupNode);
+                _this4.publishEvent(event, groupNode);
             });
 
             groupNodeWrapper.appendChild(groupNode);
             this.eventsRoot.appendChild(groupNodeWrapper);
         }
     }, {
-        key: 'publishEvent',
+        key: "publishEvent",
         value: function publishEvent(event, parentNode) {
             parentNode = parentNode || this.eventsRoot;
             var DOMElement = this.createDOMItem(event);
             parentNode.appendChild(DOMElement);
         }
     }, {
-        key: 'getEventByID',
+        key: "getEventByID",
         value: function getEventByID(id) {
             for (var index in this.events) {
                 if (this.events.hasOwnProperty(index) && this.events[index].id === id) {
@@ -893,7 +784,7 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'getImageForEvent',
+        key: "getImageForEvent",
         value: function getImageForEvent(images) {
             var imgWidth = void 0;
             var idx = void 0;
@@ -907,7 +798,7 @@ var TicketmasterMapWidget = function () {
             return idx === undefined ? '' : images[idx].url;
         }
     }, {
-        key: 'parseEvents',
+        key: "parseEvents",
         value: function parseEvents(eventsSet) {
             if (!eventsSet._embedded) {
                 if (typeof $widgetModalNoCode !== "undefined") {
@@ -977,14 +868,14 @@ var TicketmasterMapWidget = function () {
             return tmpEventSet;
         }
     }, {
-        key: 'makeRequest',
+        key: "makeRequest",
         value: function makeRequest(handler) {
             var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.apiUrl;
             var attrs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
             var method = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "GET";
 
             attrs = Object.keys(attrs).map(function (key) {
-                return key + '=' + attrs[key];
+                return key + "=" + attrs[key];
             }).join("&");
 
             url = [url, attrs].join("?");
@@ -999,7 +890,7 @@ var TicketmasterMapWidget = function () {
             this.xmlHTTP.send();
         }
     }, {
-        key: 'initPretendedLink',
+        key: "initPretendedLink",
         value: function initPretendedLink(el, url, isBlank) {
             if (el && url) {
                 el.setAttribute('data-url', url);
@@ -1022,17 +913,17 @@ var TicketmasterMapWidget = function () {
             return el;
         }
     }, {
-        key: 'createBackgroundImage',
+        key: "createBackgroundImage",
         value: function createBackgroundImage(event, img) {
             if (!this.isListView) {
                 var image = document.createElement("span");
                 image.classList.add("bg-cover");
-                image.style.backgroundImage = 'url(\'' + img + '\')';
+                image.style.backgroundImage = "url('" + img + "')";
                 event.appendChild(image);
             }
         }
     }, {
-        key: 'addBuyButton',
+        key: "addBuyButton",
         value: function addBuyButton(domNode, url) {
             if (this.isListView) {
                 var _urlValid = this.isUniversePluginInitialized && this.isUniverseUrl(url) || this.isTMPluginInitialized && this.isAllowedTMEvent(url);
@@ -1047,15 +938,15 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: 'createDOMItem',
+        key: "createDOMItem",
         value: function createDOMItem(itemConfig) {
             var medWrapper = document.createElement("div");
             medWrapper.classList.add("event-content-wraper");
 
             var event = document.createElement("li");
             event.classList.add("event-wrapper");
-            event.style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
-            event.style.width = this.config.width - this.borderSize * 2 + 'px';
+            event.style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
+            event.style.width = this.config.width - this.borderSize * 2 + "px";
 
             this.createBackgroundImage(event, itemConfig.img);
 
@@ -1064,7 +955,7 @@ var TicketmasterMapWidget = function () {
             name.classList.add("event-name");
             name.appendChild(nameContent);
             this.initPretendedLink(name, itemConfig.url, true);
-            name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
+            name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName_theme=" + this.config.theme + "_width=" + this.config.width + "_height=" + this.config.height + "_color_scheme=" + this.config.colorscheme + "', 'click', '" + itemConfig.url + "');");
             /* name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');"); */
             medWrapper.appendChild(name);
 
@@ -1131,9 +1022,9 @@ var TicketmasterMapWidget = function () {
             return event;
         }
     }, {
-        key: 'makeImageUrl',
+        key: "makeImageUrl",
         value: function makeImageUrl(id) {
-            return 'https://app.ticketmaster.com/discovery/v2/events/' + id + '/images.json';
+            return "https://app.ticketmaster.com/discovery/v2/events/" + id + "/images.json";
         }
 
         /*
@@ -1141,22 +1032,22 @@ var TicketmasterMapWidget = function () {
          */
 
     }, {
-        key: 'decConfig',
+        key: "decConfig",
         value: function decConfig(config) {
             return JSON.parse(window.atob(config));
         }
     }, {
-        key: 'encConfig',
+        key: "encConfig",
         value: function encConfig(config) {
             return window.btoa(config);
         }
     }, {
-        key: 'toShortISOString',
+        key: "toShortISOString",
         value: function toShortISOString(dateObj) {
             return dateObj.getFullYear() + "-" + (dateObj.getMonth() + 1 < 10 ? "0" + (dateObj.getMonth() + 1) : dateObj.getMonth() + 1) + "-" + (dateObj.getDate() < 10 ? "0" + dateObj.getDate() : dateObj.getDate()) + "T" + (dateObj.getHours() < 10 ? "0" + dateObj.getHours() : dateObj.getHours()) + ":" + (dateObj.getMinutes() < 10 ? "0" + dateObj.getMinutes() : dateObj.getMinutes()) + ":" + (dateObj.getSeconds() < 10 ? "0" + dateObj.getSeconds() : dateObj.getSeconds()) + "Z";
         }
     }, {
-        key: 'getDateFromPeriod',
+        key: "getDateFromPeriod",
         value: function getDateFromPeriod(period) {
 
             var period = period.toLowerCase(),

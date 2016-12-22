@@ -33,6 +33,12 @@
 	border: none;
 }
 
+.gm-style-iw, .gm-style-iw div {
+	overflow: visible !important;
+	height: auto !important;
+	width: auto !important;
+}
+
 .gm-style-iw .img {
 	width: 30px;
 	height: 30px;
@@ -40,6 +46,7 @@
 	margin-right: 10px;
 	display: block;
 	margin-top: 2px;
+	border: 1px solid #ccc;
 }
 
 .gm-style-iw .name {
@@ -62,8 +69,6 @@
 	opacity: 0.7;
 	display: block;
 	margin-bottom: 4px;
-	display: block;
-	width: 220px;
 }
 
 .gm-style-iw .place {
