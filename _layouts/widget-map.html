@@ -67,16 +67,19 @@ layout: documentation-single
 
 <div id="disqus_thread"></div>
 <script>
-	var disqus_config = function () {
-		this.page.url = document.URL || "http://developer.ticketmaster.com/";
+	// Global discus config func.
+	window.disqus_config = function () {
+		if (window.location.hostname != 'developer.ticketmaster.com') {
+			var pageURL = window.location.href.replace(window.location.host, 'developer.ticketmaster.com');
+			this.page.url = pageURL || "http://developer.ticketmaster.com/";
+		}
+		else this.page.url = document.URL || "http://developer.ticketmaster.com/";
 		this.page.identifier = "{{page.title}}";
 	};
 	(function() { // DON'T EDIT BELOW THIS LINE
 		var d = document, s = d.createElement('script');
-
 		s.src = '//ticketmasterapi.disqus.com/embed.js';
-
-		s.setAttribute('data-timestamp', +new Date());
+		s.setAttribute('data-timestamp', + new Date());
 		(d.head || d.body).appendChild(s);
 	})();
 </script>
@@ -102,6 +105,7 @@ layout: documentation-single
 						<h4>JavaScript</h4>
 						<div class="copy-btn" rel="tooltip" data-original-title="Copy to Clipboard" data-placement="top" data-clipboard-target="#widget-code-script"></div>
 						<code class="language-js widget_dialog__code" data-lang="js" id="widget-code-script">
+							&lt;script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places&callback=initMap" async defer&gt;&lt;/script&gt;
 							&lt;script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/lib/main-widget.js"&gt;&lt;/script&gt;
 						</code>
 					</div>
@@ -145,7 +149,6 @@ var defaultApiKey = apiKeyService.getApiWidgetsKey();
 $('[w-type=event-discovery]').attr('w-tmapikey', defaultApiKey);
 $('#w-tm-api-key').val(defaultApiKey);
 </script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA&libraries=places&callback=initMap" async defer></script> -->
 <script src="{{"/products-and-docs/widgets/map/1.0.0/lib/main-widget.js?v=1" | prepend: site.baseurl }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
 <script src="{{"/products-and-docs/widgets/map/1.0.0/lib/main-widget-config.js?v=2" | prepend: site.baseurl }}"></script>
