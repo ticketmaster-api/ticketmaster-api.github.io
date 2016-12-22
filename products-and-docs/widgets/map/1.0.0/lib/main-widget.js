@@ -522,6 +522,7 @@ var TicketmasterMapWidget = function () {
     }, {
         key: "update",
         value: function update() {
+            var _this4 = this;
 
             var oldTheme = this.config.constructor();
             for (var attr in this.config) {
@@ -542,13 +543,33 @@ var TicketmasterMapWidget = function () {
                 this.eventsRootContainer.classList.add("border");
             }
 
-            var events = this.eventsRoot.getElementsByClassName("event-wrapper");
-            for (var i in events) {
-                if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-                    events[i].style.width = this.config.width - this.borderSize * 2 + "px";
-                    events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
+            if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
+                this.clear();
+                this.getCoordinates(function () {
+                    _this4.makeRequest(_this4.eventsLoadingHandler, _this4.apiUrl, _this4.eventReqAttrs);
+                });
+
+                if (this.isListView) this.addScroll();
+            } else {
+                var events = this.eventsRoot.getElementsByClassName("event-wrapper");
+                for (var i in events) {
+                    if (events.hasOwnProperty(i) && events[i].style !== undefined) {
+                        events[i].style.width = this.config.width - this.borderSize * 2 + "px";
+                        events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
+                    }
                 }
             }
+        }
+    }, {
+        key: "needToUpdate",
+        value: function needToUpdate(newTheme, oldTheme) {
+            var forCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+            return Object.keys(newTheme).map(function (key) {
+                if (forCheck.indexOf(key) > -1) return true;
+                //console.warn([key, newTheme[key], oldTheme[key], newTheme[key] === oldTheme[key]])
+                return newTheme[key] === oldTheme[key];
+            }).indexOf(false) > -1;
         }
     }, {
         key: "loadConfig",
@@ -748,7 +769,7 @@ var TicketmasterMapWidget = function () {
     }, {
         key: "publishEventsGroup",
         value: function publishEventsGroup(group, index) {
-            var _this4 = this;
+            var _this5 = this;
 
             var groupNodeWrapper = document.createElement("li");
             groupNodeWrapper.classList.add("event-wrapper");
@@ -761,7 +782,7 @@ var TicketmasterMapWidget = function () {
             groupNode.classList.add("event-group-" + index);
 
             group.map(function (event) {
-                _this4.publishEvent(event, groupNode);
+                _this5.publishEvent(event, groupNode);
             });
 
             groupNodeWrapper.appendChild(groupNode);
