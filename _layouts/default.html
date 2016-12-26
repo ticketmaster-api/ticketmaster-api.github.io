@@ -13,8 +13,13 @@
             }, 1);
           })();
         </script>
-
-        <!--include partials/no-js-alert.html-->
+        {%if page.category != "home"
+            and page.category != "products-and-docs"
+            and page.categories[0] != "support"
+            and page.categories[0] != "documentation"
+            and page.category != "search"%}
+                {%include partials/no-js-alert.html%}
+        {%endif%}
 
         {{ content }}
         <div id="back-top">

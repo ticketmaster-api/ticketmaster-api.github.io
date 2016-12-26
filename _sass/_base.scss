@@ -953,7 +953,11 @@ input[type=range]:focus::-ms-fill-upper {
     width: 100%;
     z-index: 99;
   }
-  .icon-right {right: 0; z-index: 100;}
+  .icon-right {
+    right: 0;
+    z-index: 100;
+    position: fixed !important;
+  }
   .modal-info {
     background-color: $s1c;
     color : $white;
@@ -994,9 +998,9 @@ input[type=range]:focus::-ms-fill-upper {
       height: 12px;
       margin-top: 12px;
     }
-    &.fixed {
-      right: 10px; z-index: 100;
-    }
   }
 }
-.js .modal-info { display:none; }
+.js .modal-info,
+.js .modal-info-label {
+  display:none;
+}
