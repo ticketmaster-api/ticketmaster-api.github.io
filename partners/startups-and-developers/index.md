@@ -57,6 +57,4 @@ Bushwick meh Blue Bottle pork belly mustache skateboard 3 wolf moon. Actually be
     
     $(".article-tags").on("click", ".tag-btn", PartnerTagClickHandler);
     $(".categories").on("click", ".tag-menu-btn", PartnerTagClickHandler);
-    
-
 </script>

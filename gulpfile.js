@@ -13,7 +13,7 @@ gulp.task('js', shell.task([
 	'webpack'
 ]));
 
-gulp.task('sass', ['serve'], shell.task([
+gulp.task('sass', shell.task([
 	'sass _sass/style.scss:_site/css/main.css --sourcemap=inline --scss --style=nested'
 ]));
 
@@ -24,11 +24,14 @@ gulp.task('watch', function () {
 	], ['js']);
 
 	gulp.watch([
-		'_layouts/*.html',
-		'scripts/api-explorer/v2/highlightJson.worker.js',
-		'scripts/api-explorer/v2/script.js',
 		'_sass/**/*.scss'
-	], ['serve', 'sass']);
+	], ['sass']);
+
+	gulp.watch([
+		'_includes/**/*.html',
+		'_layouts/**/*.html',
+		'*/**/*.md'
+	], ['serve']);
 });
 
 gulp.task('prod', shell.task([
@@ -38,4 +41,4 @@ gulp.task('prod', shell.task([
 ]));
 
 gulp.task('revers', ['js', 'serve']);
-gulp.task('default', ['server', 'js', 'watch']);
+gulp.task('default', ['server', 'watch']);

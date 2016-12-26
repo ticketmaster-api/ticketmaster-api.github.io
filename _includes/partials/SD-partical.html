@@ -5,98 +5,141 @@
 {% assign topApp_showItems = 1 %}
 
 {% for article in sorted_article %}
-    {% if article.category == "sd-article" %}
-        {% if article.places contains "header" %}
-            {% assign carousel_array = carousel_array | push: {{article.img}} %}
-        {% endif %}
-        {% if article.tab %}
-            {% assign tab_array = tab_array | push: {{article}} %}
-        {% endif %}
-        {% if article.places contains "top" %}
-            {% assign topApp_array = topApp_array | push: {{article}} %}
-        {% endif %}
-    {% endif %}
+	{% if article.category == "sd-article" %}
+		{% if article.places contains "header" %}
+			{% assign carousel_array = carousel_array | push: {{article}} %}
+		{% endif %}
+		{% if article.tab %}
+			{% assign tab_array = tab_array | push: {{article.tab}} %}
+		{% endif %}
+		{% if article.places contains "top" %}
+			{% assign topApp_array = topApp_array | push: {{article}} %}
+		{% endif %}
+	{% endif %}
 {% endfor %}
 
-{% for article in sorted_article %}
-{% if article.category == "sd-article" %}
-<h4>article.title : {{article.title}} , order: {{article.order}}</h4>
-<h5>article.img : {{article.img}}</h5>
-<h5>article.places : {{article.places | split: " ,"}}</h5>
-<h5>article.summary : {{article.summary}}</h5>
-<h5>article.tab : {{article.tab}}</h5>
-<h5>carousel_array.length : {{carousel_array.size}}</h5>
-{% endif %}
-{% endfor %}
+<article class="products-and-application">
+	<header>
+		<h3 class="header-title products-and-application-header">Products and Applications made with Ticketmaster’s API</h3>
+	</header>
+	<section class="products-and-application-wrapper">
+		{% assign tab_array = tab_array | uniq %}
+		
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a class="tab" href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+			{% for tab in tab_array %}
+			<li role="presentation"><a class="tab" href="#{{tab}}" aria-controls="{{tab}}" role="tab" data-toggle="tab">{{tab}}</a></li>
+			{% endfor %}
+		</ul>
+		
+		<!-- Tab panes -->
+		<section class="tab-content clearfix">
+			
+			<div role="tabpanel" class="tab-pane active" id="all">
+				<section class="grid" id="grid-all">
+					{% for item in carousel_array %}
+						<section class="grid-item {% if item.size == 1.2%} grid-item--height2 {% elsif item.size == 2.1 %} grid-item--width2 {% elsif item.size == 2.2%} grid-item--width2 grid-item--height2 {% endif %} flipper">
+							<div class="card">
+								<div class="content">
+									<section class="front cardFront" style="background-image: url('{{item.img}}');">
+										<h3 class="front-title">{{item.title}}</h3>
+									</section>
+									<section class="back cardBack">
+										<a href="{{item.url}}">
+											<h3 class="card-title">{{item.title}}</h3>
+											<p class="card-summary">{{item.summary}}</p>
+										</a>
+									</section>
+								</div>
+							</div>
+						</section>
+					{% endfor %}
+				</section>
+				{% if carousel_array.size > 12 %}
+					<div class="show-more clearfix"><button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-all">Show more</button></div>
+				{% endif %}
+			</div>
+			
+			{% for tab in tab_array %}
+			<div role="tabpanel" class="tab-pane" id="{{tab}}">
+				<section class="grid" id="grid-{{tab}}">
+					{% assign array = "" | split:"|"  %}
+					
+					{% for item in carousel_array %}
+						{% if item.tab == tab %}
+							{% assign category_items = array | push: {{item}} %}
+							<section class="grid-item {% if item.size == 1.2%} grid-item--height2 {% elsif item.size == 2.1 %} grid-item--width2 {% elsif item.size == 2.2%} grid-item--width2 grid-item--height2 {% endif %} flipper">
+								<div class="card">
+									<div class="content">
+										<section class="front cardFront" style="background-image: url('{{item.img}}');">
+											<h3 class="front-title">{{item.title}}</h3>
+										</section>
+										<section class="back cardBack">
+											<a href="{{item.url}}">
+												<h3 class="card-title">{{item.title}}</h3>
+												<p class="card-summary">{{item.summary}}</p>
+											</a>
+										</section>
+									</div>
+								</div>
+							</section>
+						{% endif %}
+					{% endfor %}
+				</section>
+				
+				{% if category_items.size > 12 %}
+					<div class="show-more clearfix">
+						<button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-{{tab}}">Show more</button>
+					</div>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</section>
+	</section>
+</article>
 
+<article class="base-content-wrapper top-section">
+	<header>
+		<h3 class="top-section-title">Our Last Top Applications</h3>
+		<p class="top-section-description">Selvage jean shorts 90's, Vice American Apparel try-hard food å Shoreditch fap lomo Wes Anderson.</p>
+	</header>
+	<section class="top-section-main" id="top-section-main">
+		{% for item in topApp_array %}
+			<section class="top-section-item">
+				<section class="cover" style="background-image: url('{{item.img}}');"></section>
+				<section class="controll-fold">
+					<h3 class="top-item-title">{{item.title}}</h3>
+					<p class="top-item-descr">{{item.summary}}</p>
+					<a href="{{item.url}}" class="btn tm-btn-transparent btn-see-more">See more</a>
+					<section class="tags-section">
+						{% for tag in item.tags %}
+							<span class="btn tm-btn-transparent btn-tag">{{tag}}</span>
+						{% endfor %}
+					</section>
+					<hr class="top-section-hr">
+					<section class="like-and-share">
+						<button class="btn btn-share" type="button"></button>
+						<div class="like">
+							<span class="count">524</span>
+							<button class="btn btn-like" type="button"></button>
+						</div>
+					</section>
+				</section>
+			</section>
+		{% endfor %}
+	</section>
+	<div class="show-more clearfix">
+		<button class="btn btn-link" id="top-show-more" aria-controls="#top-section-main">Show more applications</button>
+	</div>
+</article>
 
-<div class="sd-article">
-    <div class="article-header">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                {%for slide in carousel_array %}
-                    <li data-target="#myCarousel" data-slide-to="{{forloop.index0}}" {% if forloop.first == true %}class="active" {% endif %}></li>
-                {% endfor %}
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                {%for slide in carousel_array %}
-                    <div class="item{% if forloop.first == true %} active{% endif %}">
-                        <img src="{{slide}}">
-                    </div>
-                {% endfor %}
-
-                <!--show static img if carousel_array.size < 1 -->
-                {% if carousel_array.size < 1 %}
-                    <img src="http://www.w3schools.com/bootstrap/img_flower.jpg">
-                    <div class="item active">
-                        <img src="http://www.w3schools.com/bootstrap/img_flower.jpg">
-                    </div>
-                {% endif %}
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-
-    <h3>Procucts and application</h3>
-    {%for tab in tab_array %}
-        <div class="item">
-            <p>tab name: {{ tab.tab }}</p>
-            <p>tab full info: {{tab }}</p>
-        </div>
-    {% endfor %}
-
-    {% if topApp_array.size > 0 %}
-    <h3>our top application</h3>
-    {%for topApp in topApp_array %}
-    <div class="item" {% if forloop.index0 >= topApp_showItems %}style="display:none" {% endif %}>
-        <p>topApp title: {{ topApp.title }}</p>
-        <p>topApp full info: {{topApp  | markdownify }}</p>
-    </div>
-    {% endfor %}
-    {% if topApp_array.size >= topApp_showItems %}
-    <button>show more</button>
-    {% endif %}
-
-    {% endif %}
-
-</div>
-<script>
-var tabExample = [
-    {% for item in tab_array %}
-    {tab:'{{ item.tab | escape }}', img: '{{ item.img | escape}}', summary: '{{ item.summary | escape }}'}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-];
-console.log(tabExample);
-</script>
+<article class="tm-api-docs">
+	<header>
+		<h3 class="header-title tm-api-docs-title">Got awesome ideas? Try to bring it to life with our APIs!</h3>
+	</header>
+	<section class="tm-api-docs-main">
+		<p class="content">Selvage jean shorts 90's, Vice American Apparel try-hard food å Shoreditch fap lomo Wes Anderson.</p>
+		<a href="#" role="button" class="btn btn-primary get-tm-api-docs" id="get-tm-api-docs">TICKETMASTER API DOCS</a>
+	</section>
+</article>
