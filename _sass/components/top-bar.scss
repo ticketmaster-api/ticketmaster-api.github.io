@@ -229,7 +229,7 @@ nav{
     padding-top: $borderHeight;
     background-repeat: no-repeat;
     &>.body-wrapper{
-      margin-bottom: 58px;
+      //margin-bottom: 58px;
     }
     .expandable {
       &:hover{
@@ -268,7 +268,7 @@ nav{
       position: fixed;
       top: 0;
       width: 100%;
-      height: $fixed-header-height;
+      //height: $fixed-header-height;
       z-index: 2;
     }
     @media (min-width: 1201px){
