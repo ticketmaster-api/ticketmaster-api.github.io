@@ -121,7 +121,7 @@ body{
       @include aside-menu-bg(25%);
     }
     @media #{$max-1200} {
-      @include aside-menu-bg(50%);
+      @include aside-menu-bg(13%);
     }
     @media #{$max-768} {
       background: $aside-menu-background;
@@ -148,6 +148,9 @@ body{
     z-index: 1;
     height: 100%;
     padding-left: 15px;
+  }
+  @media (min-width: 767px) and (max-width: 1199px){
+    width: 260px;
   }
   .wrapper-aside-menu {
     @media (min-width: 1200px){

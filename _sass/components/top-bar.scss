@@ -223,14 +223,14 @@ nav{
     margin-top: -$borderHeight;
     max-width: 1400px;
   }
+  &.slice-bottom-left .body-wrapper{
+    margin-bottom: 58px;
+  }
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     border-top: none;
     padding-top: $borderHeight;
     background-repeat: no-repeat;
-    &>.body-wrapper{
-      margin-bottom: 58px;
-    }
     .expandable {
       &:hover{
         .header-chevron {
@@ -268,7 +268,7 @@ nav{
       position: fixed;
       top: 0;
       width: 100%;
-      height: $fixed-header-height;
+      //height: $fixed-header-height;
       z-index: 2;
     }
     @media (min-width: 1201px){
@@ -398,7 +398,7 @@ nav{
   max-height: 0;
   &.expanded {
     max-height: 100% !important;
-    padding: 24px 0;
+    padding: $base-margin 0;
   }
   &>.row-container {
     &>div {
@@ -411,6 +411,7 @@ nav{
         a {
           color: $n3;
           margin-top: 0;
+          line-height: $base-margin/3;
         }
 
         a:hover {
@@ -426,6 +427,7 @@ nav{
         li {
           text-align: left;
           font-size: 14px;
+          margin-bottom: 6px;
         }
         ul {
           margin-bottom: 0;

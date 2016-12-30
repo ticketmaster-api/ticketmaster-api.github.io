@@ -16,7 +16,6 @@ class CustomSelect {
 		this.isExpandeded = ko.observable(false);
 		this.isReadOnly = isReadOnly;
 		this.setSubscribtions({selected, DEFAULT_SELECTED});
-
 		// Dirty watcher
 		this.fieldWatcher(data);
 	}

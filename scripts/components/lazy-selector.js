@@ -91,6 +91,10 @@
       return (val < 0 || val > 9 ? "" : "0") + val
     }
 
+
+    var map = null,
+      defaultMapZoom = 10,
+      markers = [];
     /**
      * Show or init map listener
      * @param e
@@ -103,6 +107,7 @@
 
       if (lat && lng ) {
         initMap(lat, lng);
+        map.setZoom(defaultMapZoom);
         google.maps.event.trigger(map, "resize"); //'second init'
       } else {
         initMap(0, 0); //"first init"
@@ -115,8 +120,6 @@
      * @param lng - float
      * @param address - not used @deprecated
      */
-    var map = null, markers = [];
-
     var initMap = function (lat, lng) {
     	var modal = $modal,
         mapCenter = new google.maps.LatLng(lat || 55, lng || 43);
@@ -125,7 +128,7 @@
         // initialize map object
         map = new google.maps.Map(document.getElementById('map-canvas'), {
           center: mapCenter,
-          zoom: 10,
+          zoom: defaultMapZoom,
           mapTypeControl: false,
           scaleControl: false,
           fullscreenControl: false,
@@ -958,28 +961,26 @@
           initialVal['events'] = $input.val();
       })
       .on('hidden.bs.modal', function (e) {
-      resetForm();
-      closeMapListener();
+        var indToRemove =[],
+          selectorBtn = $btnGET.attr('data-selector'),
+          tagsArr = tagsIds[selectorBtn];
+        resetForm();
+        closeMapListener();		
 
-			var indToRemove =[],
-        selectorBtn = $btnGET.attr('data-selector'),
-        tagsArr = tagsIds[selectorBtn];
+        $( 'li' , $msList ).each( function(i) {
+          if ( $(this).data('isable') === false ){
+            indToRemove.push( $(this).data('selector-' + selectorBtn) );
+            $(this).remove();
+          }
+        });
 
-      $( 'li' , $msList ).each( function(i) {
-				if ( $(this).data('isable') === false ){
-					indToRemove.push( $(this).data('selector-' + selectorBtn) );
-					$(this).remove();
-				}
-      });
+        clearByArrVal(tagsArr, indToRemove);
 
-      clearByArrVal(tagsArr, indToRemove);
-
-      //clear tags if set Single ID
-      if(selector === selectorBtn && !stateConf.setSingleVal) {
-        //$input.val(tagsArr).attr('value', tagsArr).trigger('change');  //update widget:
-        stateConf.setSingleVal = false;
-      }
-      keyword.val('');//clear search input
+        //clear tags if set Single ID
+        if(selector === selectorBtn && !stateConf.setSingleVal) {
+          stateConf.setSingleVal = false;
+        }
+        keyword.val('');//clear search input
     });
 
     return this.each(function () {

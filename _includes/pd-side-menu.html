@@ -291,11 +291,11 @@
         <h4><a href="/products-and-docs/widgets/" {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %} class="active" {% endif %} >Widgets</a></h4>
         {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" %}
             <ul class="categories menu-highlight">
-                <li><a href="/products-and-docs/widgets/checkout/">Ticketmaster Universal Checkout</a></li>
-                <li><a href="/products-and-docs/widgets/event-discovery/">Event Discovery Widget</a></li>
-                <li><a href="/products-and-docs/widgets/countdown/">Countdown Widget</a></li>
-                <li><a href="/products-and-docs/widgets/calendar/">Calendar Widget</a></li>
-                <li><a href="/products-and-docs/widgets/wordpress/">WordPress Widget</a></li>
+                <li><a href="/products-and-docs/widgets/checkout/"{% if page.categories[2] == "widget-checkout"%} class="active" {% endif %}>Ticketmaster Universal Checkout</a></li>
+                <li><a href="/products-and-docs/widgets/event-discovery/"{% if page.categories[2] == "widget-event-discovery"%} class="active" {% endif %}>Event Discovery Widget</a></li>
+                <li><a href="/products-and-docs/widgets/countdown/"{% if page.categories[2] == "widget-countdown"%} class="active" {% endif %}>Countdown Widget</a></li>
+                <li><a href="/products-and-docs/widgets/calendar/"{% if  page.categories[2] == "widget-calendar"%} class="active" {% endif %}>Calendar Widget</a></li>
+                <li><a href="/products-and-docs/widgets/wordpress/"{% if  page.categories[2] == "widget-wordpress"%} class="active" {% endif %}>WordPress Widget</a></li>
                 <li><a href="https://www.universe.com/directpayments">Direct Payments</a></li>
             </ul>
         {% endif %}

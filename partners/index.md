@@ -9,7 +9,7 @@ keywords: partners, certified partners, become an affilate
 {% capture distribution_partners_block %}
 [![Distribution Partners](/assets/img/partners/distribution-ic.svg)](/partners/distribution-partners/)
 
-### Distribution Partners
+### [Distribution Partners](/partners/distribution-partners/)
 
 {: .descr}
 Distribution partners deliver incremental audiences to help our clients sell more tickets
@@ -20,7 +20,7 @@ Distribution partners deliver incremental audiences to help our clients sell mor
 {% capture certified_partners_block %}
 [![Certified Partners](/assets/img/partners/certified-ic.svg)](/partners/certified-partners/)
 
-### Certified Partners
+### [Certified Partners](/partners/certified-partners/)
 
 {: .descr}
 Nexus Certified Partners are distinguished best-in-class solutions providers to the live events industry
@@ -31,7 +31,7 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 {% capture startups_block %}
 [![Startups &amp; Developers](/assets/img/partners/startups-ic.svg)](/partners/startups-and-developers/)
 
-### Startups &amp; Developers
+### [Startups &amp; Developers](/partners/startups-and-developers/)
 
 {: .descr}
 Examples of apps and demos leveraging the Ticketmaster API, like Global Heatmap, API Explorer, etc.

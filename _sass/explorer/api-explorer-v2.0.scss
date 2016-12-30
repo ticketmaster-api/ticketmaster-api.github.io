@@ -2,7 +2,8 @@
 @import "components/_column-color";
 @import "components/_scroll";
 @import "components/_common";
-@import "components/_error-modal.component";
+@import "components/popups/_error-modal.component";
+@import "components/popups/_map-modal.component";
 #api-explorer-v2.api-explorer-v2 {
 	@import "components/_events-tracker";
 	@import "components/_custom-select.component";
@@ -14,10 +15,11 @@
 	@import "components/_params";
 	@import "components/_filter";
 	@import "components/_get-btn.component";
-	@import "components/_panels.component";
+	@import "components/panels/_panels.component";
 	.tab-content .panel-group .panel {
-		@import "components/_panelHeading.component";
-		@import "components/_objectPanelBody.component";
-		@import "components/_arrayPanelBody.component";
+		@import "components/panels/_panelHeading.component";
+		@import "components/panels/_objectPanelBody.component";
+		@import "components/panels/_mapPanelBody.component";
+		@import "components/panels/_arrayPanelBody.component";
 	}
 }

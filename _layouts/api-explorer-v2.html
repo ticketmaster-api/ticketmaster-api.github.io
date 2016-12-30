@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html>
 {% include head.html %}
-<body>
+<body class="no-js">
 <div id="spinner hide"></div>
 {% include home-header.html %}
+
+<section class="modal fade map-popup" id="map-popup" role="dialog">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-lg vertical-align-center">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Location</h4>
+				</div>
+				<div class="modal-body">
+					<div id="map" class="modal-body-wrapper"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <error-pop-up></error-pop-up>
 
@@ -48,8 +66,8 @@
 			<!--content-wrapper-->
 			<section class="api-exp-main">
 				<!--menu-->
-				<category-menu params="data: base, selectedCategory:selectedCategory">
-					<custom-select params="options: categories, onselect: selectCategory"></custom-select>
+				<category-menu params="data: base, selectedCategory: selectedCategory">
+					<custom-select params="options: categories, selected: selectedCategory, onselect: selectCategory"></custom-select>
 				</category-menu>
 				
 				<!--api key-->

@@ -101,10 +101,13 @@ body .top-bar.bg-header {
   padding-bottom: 20px;
   h3 {
     margin-bottom: 14px;
-    @media (max-width: 767px) {
-
+    a {
+      @extend h3;
+      font-size: 24px;
+      &:hover {
+        color: $p1b;
+      }
     }
-
   }
   h4 {
     text-transform: uppercase;
