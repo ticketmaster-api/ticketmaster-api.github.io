@@ -39,7 +39,7 @@ class TicketmasterMapWidget {
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
-    get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"]}
+    get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey", "latlong"]}
 
     get hideMessageDelay(){ return 5000; }
 
@@ -82,11 +82,17 @@ class TicketmasterMapWidget {
     }
 
     get eventReqAttrs(){
+        let mapWidgetRoot = this.eventsRootContainer.parentNode;
+        console.log(mapWidgetRoot);
         let attrs = {},
             params = [
                 {
                     attr: 'tmapikey',
                     verboseName: 'apikey'
+                },
+                {
+                    attr: 'latlong',
+                    verboseName: 'latlong'
                 },
                 {
                     attr: 'keyword',
@@ -150,6 +156,16 @@ class TicketmasterMapWidget {
             attrs.endDateTime = period[1];
         }
 
+        if (this.config.tmapikey == '') {
+            attrs.apikey = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey();
+        }
+
+        if (mapWidgetRoot.getAttribute("w-latlong") != '') {
+            attrs.latlong = mapWidgetRoot.getAttribute("w-latlong");
+        }
+
+        if (attrs.latlong === null) attrs.latlong = '34.0390107,-118.2672801';
+
         return attrs;
     }
 
@@ -204,6 +220,7 @@ class TicketmasterMapWidget {
     getCoordinates(cb){
         let widget = this;
 
+        /*
         function parseGoogleGeocodeResponse(){
             if (this && this.readyState === XMLHttpRequest.DONE ) {
                 let latlong = '',
@@ -266,15 +283,28 @@ class TicketmasterMapWidget {
                 // Used in builder
                 if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
                 widget.config.latlong = latlong;
+                if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
                 cb(widget.config.latlong);
+                document.querySelector('[w-type="map"]').setAttribute("w-latlong", latlong);
             }
+
+            if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
+            cb(widget.config.latlong);
+            document.querySelector('[w-type="map"]').setAttribute("w-latlong", latlong);
         }
+        */
+
+        if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
+        cb(widget.config.latlong);
+        document.querySelector('[w-type="map"]').setAttribute("w-latlong", widget.config.latlong);
 
         if(this.isConfigAttrExistAndNotEmpty('postalcode')){
+            /*
             let args = {language: 'en', components: `postal_code:${widget.config.postalcode}`};
             if(widget.config.googleapikey) args.key = widget.config.googleapikey;
             if(this.config.country) args.components += `|country:${this.config.country}`;
             this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
+            */
         }else{
             // Used in builder
             if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
@@ -494,8 +524,6 @@ class TicketmasterMapWidget {
             this.getCoordinates(() => {
                 this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
             });
-
-            if(this.isListView) this.addScroll();
         } else {
             let events = this.eventsRoot.getElementsByClassName("event-wrapper");
             for (let i in events) {
@@ -656,7 +684,7 @@ class TicketmasterMapWidget {
                 widget.events = JSON.parse(this.responseText);
                 if(widget.events.length){
 
-                    var myLatLng = {lat: 43.646632, lng: -79.390205};
+                    var myLatLng = {lat: 34.0390107, lng: -118.2672801};
                     var latlngbounds = new google.maps.LatLngBounds();
 
                     var map = new google.maps.Map(document.getElementById('map'), {

@@ -219,92 +219,6 @@ div[w-theme="simple"] .event-question:hover:after {
 }
 
 
-/* slider controls */
-div[w-theme="simple"] .events_control {
-	position: absolute;
-	cursor: pointer;
-	width: 0;
-	height: 0;
-	border-style: solid;
-	-webkit-transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
-	-webkit-transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
-	transition: opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
-	z-index: 10;
-}
-
-
-div[w-theme="simple"] .events_control-horizontal {
-	top: 50%;
-	margin-top: -13px;
-}
-
-div[w-theme="simple"] .events_control-vertical {
-	left: 50%;
-	margin-left: -13px;
-}
-
-div[w-theme="simple"] .events_control-left {
-	left: 0;
-	border-width: 13px 8px 13px 5px;
-	border-color: transparent rgba(255, 255, 255, 0.5) transparent transparent;
-}
-
-div[w-theme="simple"] .events_control-left:hover {
-	border-color: transparent #009cde transparent transparent;
-}
-
-div[w-theme="simple"] .events_control-right {
-	right: 0;
-	border-width: 13px 5px 13px 8px;
-	border-color: transparent transparent transparent rgba(255, 255, 255, 0.5);
-}
-
-div[w-theme="simple"] .events_control-right:hover {
-	border-color: transparent transparent transparent #009cde;
-}
-
-div[w-theme="simple"] .events_control-top {
-	top: 0;
-	border-width: 5px 13px 8px 13px;
-	border-color: transparent transparent rgba(255, 255, 255, 0.5) transparent;
-}
-
-div[w-theme="simple"] .events_control-top:hover {
-	border-color: transparent transparent #009cde transparent;
-}
-
-div[w-theme="simple"] .events_control-bottom {
-	bottom: 0;
-	border-width: 8px 13px 5px 13px;
-	border-color: rgba(255, 255, 255, 0.5) transparent transparent transparent;
-}
-
-div[w-theme="simple"] .events_control-bottom:hover {
-	border-color: #009cde transparent transparent transparent;
-}
-
-div[w-theme="simple"] .events_control-hidden {
-	display: none;
-}
-
-div[w-theme="simple"] .events_control-hidden:hover {
-	border-color: transparent;
-	cursor: default;
-	display: block;
-}
-
-
-div[w-theme="simple"] .bg-cover {
-	width: 100%;
-	height: 100%;
-	display: block;
-	overflow: hidden;
-	background-size: cover;
-	background-position: center top;
-	background-repeat: no-repeat;
-}
-
-
 /* Theme special styles */
 div[w-theme="simple"] .event-wrapper {
 	display: block;
@@ -497,21 +411,6 @@ div[w-theme="simple"] .event-logo:before {
 	background-size: 98px;
 }
 
-/*
-div[w-theme="simple"] .event-logo:hover:before {
-    opacity: 1;
-}
-
-div[w-theme="simple"] .event-logo:hover:after {
-    opacity: 0;
-}
-*/
-
-/*group*/
-div[w-theme="simple"] .event-group {
-	width: 100%;
-}
-
 /* BUY NOW */
 div[w-theme="simple"] .event-buy-btn {
 	z-index: 15;
@@ -594,16 +493,6 @@ div[w-theme="simple"][w-layout="horizontal"] .event-logo.centered-logo {
 	right: 0;
 	left: 0;
 	margin: auto;
-}
-
-/**/
-/*div[w-theme="simple"][w-proportion="3x6"]  {
-    width: 300px;
-}*/
-
-/* !!! HotFix !!! */
-div[w-theme="simple"] .general-admission {
-	display: none;
 }
 
 div[w-theme="simple"] .ticket-logo {

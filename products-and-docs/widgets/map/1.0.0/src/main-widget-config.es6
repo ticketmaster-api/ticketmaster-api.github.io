@@ -214,10 +214,18 @@
             }
         }
 
+        if(targetName === "w-latitude"){
+            document.querySelector('[w-type="map"]').setAttribute('w-latlong', targetValue + ',' + document.getElementById('w-longitude').value);
+        }
+
+        if(targetName === "w-longitude"){
+            document.querySelector('[w-type="map"]').setAttribute('w-latlong', document.getElementById('w-latitude').value + "," + targetValue);
+        }
+
         if(targetName === "w-postalcode"){
             widgetNode.setAttribute('w-country', '');
             isPostalCodeChanged = true;
-
+            /*
             var numInputClass = document.getElementById('w-radius');
             var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
             var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
@@ -235,6 +243,7 @@
                 decArrow.classList.remove('disabled');
                 widgetNode.setAttribute('w-radius', '25');
             }
+            */
         }
 
         if(targetName === "w-theme"){
@@ -428,7 +437,6 @@
         $widgetModal.modal();
     });
 
-
     $('.js_reset_widget').on('click', function(){
         resetWidget($configForm);
     });
@@ -441,6 +449,15 @@
         $widgetModalNoCode.modal('hide');
     });
 
+    $('.widget__location span').on('click', function(){
+        $('.widget__location').addClass('hidn');
+        $('.widget__latlong').removeClass('hidn');
+    });
+
+    $('.widget__latlong span').on('click', function(){
+        $('.widget__latlong').addClass('hidn');
+        $('.widget__location').removeClass('hidn');
+    });
 
     widget.onLoadCoordinate = function (results, countryShortName = '') {
         widget.config['country'] = countryShortName;

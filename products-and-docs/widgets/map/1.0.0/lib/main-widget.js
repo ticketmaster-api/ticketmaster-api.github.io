@@ -96,7 +96,7 @@ var TicketmasterMapWidget = function () {
     }, {
         key: "updateExceptions",
         get: function get() {
-            return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"];
+            return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey", "latlong"];
         }
     }, {
         key: "hideMessageDelay",
@@ -121,10 +121,15 @@ var TicketmasterMapWidget = function () {
     }, {
         key: "eventReqAttrs",
         get: function get() {
+            var mapWidgetRoot = this.eventsRootContainer.parentNode;
+            console.log(mapWidgetRoot);
             var attrs = {},
                 params = [{
                 attr: 'tmapikey',
                 verboseName: 'apikey'
+            }, {
+                attr: 'latlong',
+                verboseName: 'latlong'
             }, {
                 attr: 'keyword',
                 verboseName: 'keyword'
@@ -174,6 +179,16 @@ var TicketmasterMapWidget = function () {
                 attrs.startDateTime = period[0];
                 attrs.endDateTime = period[1];
             }
+
+            if (this.config.tmapikey == '') {
+                attrs.apikey = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey();
+            }
+
+            if (mapWidgetRoot.getAttribute("w-latlong") != '') {
+                attrs.latlong = mapWidgetRoot.getAttribute("w-latlong");
+            }
+
+            if (attrs.latlong === null) attrs.latlong = '34.0390107,-118.2672801';
 
             return attrs;
         }
@@ -236,26 +251,26 @@ var TicketmasterMapWidget = function () {
         value: function getCoordinates(cb) {
             var widget = this;
 
-            function parseGoogleGeocodeResponse() {
-                if (this && this.readyState === XMLHttpRequest.DONE) {
-                    var latlong = '',
+            /*
+            function parseGoogleGeocodeResponse(){
+                if (this && this.readyState === XMLHttpRequest.DONE ) {
+                    let latlong = '',
                         results = null,
                         countryShortName = '';
-                    if (this.status === 200) {
-                        var response = JSON.parse(this.responseText);
+                    if(this.status === 200) {
+                        let response = JSON.parse(this.responseText);
                         if (response.status === 'OK' && response.results.length) {
                             // Filtering only white list countries
-                            results = response.results.filter(function (item) {
-                                return widget.countriesWhiteList.filter(function (elem) {
-                                    return elem === item.address_components[item.address_components.length - 1].long_name;
-                                }).length > 0;
+                            results = response.results.filter((item) => {
+                                return widget.countriesWhiteList.filter((elem) => {
+                                        return elem === item.address_components[item.address_components.length - 1].long_name;
+                                    }).length > 0;
                             });
-
-                            if (results.length) {
+                             if (results.length) {
                                 // sorting results by country name
-                                results.sort(function (f, g) {
-                                    var a = f.address_components[f.address_components.length - 1].long_name;
-                                    var b = g.address_components[g.address_components.length - 1].long_name;
+                                results.sort((f, g) => {
+                                    let a = f.address_components[f.address_components.length - 1].long_name;
+                                    let b = g.address_components[g.address_components.length - 1].long_name;
                                     if (a > b) {
                                         return 1;
                                     }
@@ -264,17 +279,15 @@ var TicketmasterMapWidget = function () {
                                     }
                                     return 0;
                                 });
-
-                                // Use first item if multiple results was found in one country or in different
-                                var geometry = results[0].geometry;
+                                 // Use first item if multiple results was found in one country or in different
+                                let geometry = results[0].geometry;
                                 countryShortName = results[0].address_components[results[0].address_components.length - 1].short_name;
-
-                                // If multiple results without country try to find USA as prefer value
+                                 // If multiple results without country try to find USA as prefer value
                                 if (!widget.config.country) {
-                                    for (var i in results) {
-                                        var result = results[i];
+                                    for (let i in results) {
+                                        let result = results[i];
                                         if (result.address_components) {
-                                            var country = result.address_components[result.address_components.length - 1];
+                                            let country = result.address_components[result.address_components.length - 1];
                                             if (country) {
                                                 if (country.short_name === 'US') {
                                                     countryShortName = 'US';
@@ -284,10 +297,9 @@ var TicketmasterMapWidget = function () {
                                         }
                                     }
                                 }
-
-                                if (geometry) {
+                                 if (geometry) {
                                     if (geometry.location) {
-                                        latlong = geometry.location.lat + "," + geometry.location.lng;
+                                        latlong = `${geometry.location.lat},${geometry.location.lng}`;
                                     }
                                 }
                             } else {
@@ -296,17 +308,29 @@ var TicketmasterMapWidget = function () {
                         }
                     }
                     // Used in builder
-                    if (widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
+                    if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
                     widget.config.latlong = latlong;
+                    if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
                     cb(widget.config.latlong);
+                    document.querySelector('[w-type="map"]').setAttribute("w-latlong", latlong);
                 }
+                 if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
+                cb(widget.config.latlong);
+                document.querySelector('[w-type="map"]').setAttribute("w-latlong", latlong);
             }
+            */
+
+            if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
+            cb(widget.config.latlong);
+            document.querySelector('[w-type="map"]').setAttribute("w-latlong", widget.config.latlong);
 
             if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
-                var args = { language: 'en', components: "postal_code:" + widget.config.postalcode };
-                if (widget.config.googleapikey) args.key = widget.config.googleapikey;
-                if (this.config.country) args.components += "|country:" + this.config.country;
-                this.makeRequest(parseGoogleGeocodeResponse, this.geocodeUrl, args);
+                /*
+                let args = {language: 'en', components: `postal_code:${widget.config.postalcode}`};
+                if(widget.config.googleapikey) args.key = widget.config.googleapikey;
+                if(this.config.country) args.components += `|country:${this.config.country}`;
+                this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
+                */
             } else {
                 // Used in builder
                 if (widget.onLoadCoordinate) widget.onLoadCoordinate(null);
@@ -548,8 +572,6 @@ var TicketmasterMapWidget = function () {
                 this.getCoordinates(function () {
                     _this4.makeRequest(_this4.eventsLoadingHandler, _this4.apiUrl, _this4.eventReqAttrs);
                 });
-
-                if (this.isListView) this.addScroll();
             } else {
                 var events = this.eventsRoot.getElementsByClassName("event-wrapper");
                 for (var i in events) {
@@ -707,7 +729,7 @@ var TicketmasterMapWidget = function () {
                     widget.events = JSON.parse(this.responseText);
                     if (widget.events.length) {
 
-                        var myLatLng = { lat: 43.646632, lng: -79.390205 };
+                        var myLatLng = { lat: 34.0390107, lng: -118.2672801 };
                         var latlngbounds = new google.maps.LatLngBounds();
 
                         var map = new google.maps.Map(document.getElementById('map'), {
