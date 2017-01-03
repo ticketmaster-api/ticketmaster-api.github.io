@@ -122,7 +122,6 @@ var TicketmasterMapWidget = function () {
         key: "eventReqAttrs",
         get: function get() {
             var mapWidgetRoot = this.eventsRootContainer.parentNode;
-            console.log(mapWidgetRoot);
             var attrs = {},
                 params = [{
                 attr: 'tmapikey',
@@ -188,7 +187,13 @@ var TicketmasterMapWidget = function () {
                 attrs.latlong = mapWidgetRoot.getAttribute("w-latlong");
             }
 
-            if (attrs.latlong === null) attrs.latlong = '34.0390107,-118.2672801';
+            if (attrs.latlong == ',') {
+                delete attrs.latlong;
+            }
+
+            if (attrs.latlong == null) {
+                delete attrs.latlong;
+            }
 
             return attrs;
         }
@@ -320,9 +325,11 @@ var TicketmasterMapWidget = function () {
             }
             */
 
+            /*
             if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
             cb(widget.config.latlong);
             document.querySelector('[w-type="map"]').setAttribute("w-latlong", widget.config.latlong);
+            */
 
             if (this.isConfigAttrExistAndNotEmpty('postalcode')) {
                 /*

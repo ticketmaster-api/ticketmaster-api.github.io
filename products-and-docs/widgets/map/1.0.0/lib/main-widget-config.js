@@ -231,7 +231,7 @@
             var numInputClass = document.getElementById('w-radius');
             var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
             var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-             if (targetValue == '') {
+              if (targetValue == '') {
                 numInputClass.setAttribute('disabled', 'disabled');
                 numInputClass.value = '';
                 incArrow.classList.add('disabled');

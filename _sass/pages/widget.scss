@@ -424,7 +424,6 @@
 
 .widget__location, .widget__latlong {
 	  height: auto;
-	  overflow: hidden;
 	  -webkit-transition: opacity 0.7s linear;
 	  -moz-transition: opacity 0.7s linear;
 	  -ms-transition: opacity 0.7s linear;
@@ -446,6 +445,7 @@
 
 .widget__location.hidn,
 .widget__latlong.hidn {
+	overflow: hidden;
 	opacity: 0;
 	height: 0;
 	margin: 0;

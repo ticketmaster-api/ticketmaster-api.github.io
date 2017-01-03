@@ -62,34 +62,43 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row row-native">
 			  <div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="loclatlong">
 						<div class="widget__location">
 							<p>You can input locaton data or <span>use Geoposition</span></p>
 							<div class="row row-native">
-								<div class="col-lg-12 col-md-12 col-sm-6">
-									<label for="w-country">Country</label>
-								</div>
-								<div class="col-xs-12 country-select">
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<label for="w-countryCode">Country Code</label>
 									<div class="js_custom_select custom_select">
-										<select id="w-country" class="custom_select__field" name="w-country" disabled>
+										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="-1">
+											<option value="" ></option>
+											<option value="AU">Australia</option>
+											<option value="CA">Canada</option>
+											<option value="GB ">Great Britain</option>
+											<option value="IE">Ireland</option>
+											<option value="NZ">New Zealand</option>
 											<option selected value="US">United States</option>
 										</select>
-										<input class="custom_select__placeholder" type="text" value="All" readonly="">
+										<input class="custom_select__placeholder" type="text" value="" readonly="">
 										<ul class="custom_select__list js_widget_custom__list">
-											<li class="custom_select__item" data-value="">All</li>
+											<li class="custom_select__item" data-value="" ></li>
+											<li class="custom_select__item" data-value="AU">Australia</li>
+											<li class="custom_select__item" data-value="CA">Canada</li>
+											<li class="custom_select__item" data-value="GB">Great Britain</li>
+											<li class="custom_select__item" data-value="IE">Ireland</li>
+											<li class="custom_select__item" data-value="NZ">New Zealand</li>
+											<li class="custom_select__item" data-value="US">United States</li>
 										</ul>
 									</div>
 								</div>
 							</div>
 							<div class="row row-native">
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label for="w-postalcode">ZIP Code</label>
-										<input type="text" id="w-postalcode" name="w-postalcode" value="90015">
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="w-postalcode">Postal Code</label>
+										<input type="text" id="w-postalcode" name="w-postalcode" value="">
 								</div>
-								<div class="col-lg-9 col-md-9 col-sm-9">
+								<div class="col-lg-8 col-md-8 col-sm-8">
 									<label for="w-city">City</label>
 									<input type="text" id="w-city" name="w-city" value="">
 								</div>
@@ -100,11 +109,11 @@
 							<div class="row row-native">
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									<label for="w-latitude">Latitude</label>
-									<input type="text" id="w-latitude" name="w-latitude" value="34.0390107">
+									<input type="text" id="w-latitude" name="w-latitude" value="">
 								</div>
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									<label for="w-longitude">Longitude</label>
-									<input type="text" id="w-longitude" name="w-longitude" value="-118.2672801">
+									<input type="text" id="w-longitude" name="w-longitude" value="">
 								</div>
 							</div>
 							<div class="row row-native">
@@ -163,37 +172,9 @@
 					<label for="w-venueid">Venue ID</label>
 					<input type="text" id="w-venueid" name="w-venueid" value="" class="js_lazy-selector-venues">
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-3">
-					<label for="w-countryCode">Country Code</label>
-					<div class="js_custom_select custom_select">
-						<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="-1">
-							<option value="" ></option>
-							<option value="AU">Australia</option>
-							<option value="CA">Canada</option>
-							<option value="GB ">Great Britain</option>
-							<option value="IE">Ireland</option>
-							<option value="NZ">New Zealand</option>
-							<option value="US ">United States</option>
-						</select>
-						<input class="custom_select__placeholder" type="text" value="" readonly="">
-						<ul class="custom_select__list js_widget_custom__list">
-							<li class="custom_select__item" data-value="" ></li>
-							<li class="custom_select__item" data-value="AU">Australia</li>
-							<li class="custom_select__item" data-value="CA">Canada</li>
-							<li class="custom_select__item" data-value="GB">Great Britain</li>
-							<li class="custom_select__item" data-value="IE">Ireland</li>
-							<li class="custom_select__item" data-value="NZ">New Zealand</li>
-							<li class="custom_select__item" data-value="US">United States</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 
 			<div class="row row-native">
-				<div class="col-lg-12 col-md-6 col-sm-6">
-					<label for="w-affiliateid">Affiliate ID</label>
-					<input type="text" id="w-affiliateid" name="w-affiliateid" value="">
-				</div>
 				<div class="col-lg-12 col-md-6 col-sm-6">
 					<label for="w-size">
 						Event Count <span class="config_field__description">(1-100)</span>
