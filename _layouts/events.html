@@ -5,6 +5,14 @@ layout: default
 <div class="top-bar bg-header bg-header-events slice-bottom-left">
 {% include partials/common-header.html %}
 
+{% assign tab_array = "" | split:"|"  %}
+{% assign sorted_event = (site.pages | sort: 'date_start', 'last') %}
+{% for event in sorted_event %}
+    {% if event.category == "event" %}
+        {% assign tab_array = tab_array | push: {{event}} %}
+    {% endif %}
+{% endfor %}
+
 {% for event in site.pages %}
     {% if event.prime %}
     <div class="events-wrapper top-event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}" >
@@ -46,6 +54,7 @@ layout: default
         </ul>
     </div>
     <div class="col-lg-9 col-md-12 col-sm-12 content min-height-250">
+        <div class="no-events"><h1>Sorry,<br> no events were found</h1></div>
         {{ content }}
     </div>
 </div>
@@ -98,6 +107,36 @@ layout: default
       $(".categories").append('<li class="tag-group past" data-type="past" ><a href="#/past" class="group-title">Past</a><ul class="sections menu-highlight">'+uniquePast+'</ul></li>');
     }
 
+    console.log('visible' , $(".event").is(":visible") );
+
+    if(!$(".event").is(":visible")){
+        setTimeout(checkNoEvents,0);
+    }
+    var eventsCompactAll = [
+        {% for item in tab_array %}
+            {link:'{{ item.link | escape }}', img: '{{ item.img | escape}}', title: '{{ item.title | escape }}'}{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    ];
+    console.log('eventsCompactAll' , eventsCompactAll);
+    function checkNoEvents(){
+        var $wrapper,
+            pastEventList,
+            title = '<h3></h3>';
+        $wrapper = $('div.base-content-wrapper');
+        $('div.base-content-wrapper .no-events').show();
+        $('h3#event-header',$wrapper).text('Past Events');
+        pastEventList = $(".event.past");
+        console.log('pastEventList' , pastEventList );
+        pastEventList.map(function(idx,item){
+//            console.log('idx' , idx ,item.textContent);
+            if(idx<=6){
+                $(item).addClass('compact').show();
+                console.log(eventsCompactAll[idx].title);
+                $(item).append("<h3 class='title-compact'>"+eventsCompactAll[idx].title+"</h3>");
+            }
+        })
+    }
+
     function hashParser() {
         var hash = window.location.hash;
         if(!hash) {
@@ -148,6 +187,8 @@ layout: default
         toShow.hide().filter(function() {
             return $(this).find("[tag="+tag+"]").size() !== 0;
         }).show();
+
+        past.removeClass('compact');
     }
 
     $(window).on('hashchange', hashChangeHandler);
