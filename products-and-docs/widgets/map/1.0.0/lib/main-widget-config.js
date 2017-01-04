@@ -226,12 +226,13 @@
 
         if (targetName === "w-postalcode") {
             widgetNode.setAttribute('w-country', '');
+            widgetNode.setAttribute('w-postalcode', document.getElementById('w-postalcode').value);
             isPostalCodeChanged = true;
             /*
             var numInputClass = document.getElementById('w-radius');
             var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
             var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-              if (targetValue == '') {
+             if (targetValue == '') {
                 numInputClass.setAttribute('disabled', 'disabled');
                 numInputClass.value = '';
                 incArrow.classList.add('disabled');
@@ -452,43 +453,51 @@
     $('.widget__latlong span').on('click', function () {
         $('.widget__latlong').addClass('hidn');
         $('.widget__location').removeClass('hidn');
+        document.getElementById('w-latitude').value = '';
+        document.getElementById('w-longitude').value = '';
+        document.querySelector('[w-type="map"]').removeAttribute('w-latitude');
+        document.querySelector('[w-type="map"]').removeAttribute('w-longitude');
+        document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
+        widget.config.latlong = '';
+        widget.config.city = '';
+        widget.update();
     });
 
     widget.onLoadCoordinate = function (results) {
-        var countryShortName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
+        /*
         widget.config['country'] = countryShortName;
-        if (isPostalCodeChanged) {
+        if(isPostalCodeChanged){
             isPostalCodeChanged = false;
-
-            var $countrySelect = $('#w-country'),
+             let $countrySelect = $('#w-country'),
                 $ul = $(".country-select .js_widget_custom__list"),
                 options = "<option selected value=''>All</option>";
-
-            $countrySelect.html('');
+             $countrySelect.html('');
             $ul.html(''); //clear custom select list
             $countrySelect.prop('disabled', !results);
-            if (results) {
-                var status = void 0;
-                if (results.length <= 1) status = true;else status = false;
+            if(results){
+                let status;
+                if (results.length <=1) status = true;
+                else status = false;
                 $countrySelect.prop('disabled', status);
                 // $countrySelect.prop('disabled', !results.length);
                 options = '';
-                for (var i in results) {
-                    var result = results[i];
-                    if (result.address_components) {
-                        var country = result.address_components[result.address_components.length - 1];
-                        if (country) {
-                            var isSelected = country.short_name === countryShortName ? 'selected' : '';
-                            options += '<option ' + isSelected + ' value="' + country.short_name + '">' + country.long_name + '</option>';
+                for(let i in results){
+                    let result = results[i];
+                    if(result.address_components){
+                        let country = result.address_components[result.address_components.length - 1];
+                        if(country){
+                            let isSelected = country.short_name === countryShortName ? 'selected' : '';
+                            options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
                         }
                     }
                 }
             }
-
-            $countrySelect.append(options);
+             $countrySelect.append(options);
             addCustomList($ul, '#w-country', countryShortName);
         }
+        */
+
+        var countryShortName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
     };
 
     function addCustomList(listWrapperElement, listWrapperId, activeVal) {

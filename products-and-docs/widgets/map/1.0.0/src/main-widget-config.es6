@@ -224,6 +224,7 @@
 
         if(targetName === "w-postalcode"){
             widgetNode.setAttribute('w-country', '');
+            widgetNode.setAttribute('w-postalcode', document.getElementById('w-postalcode').value);
             isPostalCodeChanged = true;
             /*
             var numInputClass = document.getElementById('w-radius');
@@ -457,9 +458,18 @@
     $('.widget__latlong span').on('click', function(){
         $('.widget__latlong').addClass('hidn');
         $('.widget__location').removeClass('hidn');
+        document.getElementById('w-latitude').value = '';
+        document.getElementById('w-longitude').value = '';
+        document.querySelector('[w-type="map"]').removeAttribute('w-latitude');
+        document.querySelector('[w-type="map"]').removeAttribute('w-longitude');
+        document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
+        widget.config.latlong = '';
+        widget.config.city = '';
+        widget.update();
     });
 
     widget.onLoadCoordinate = function (results, countryShortName = '') {
+        /*
         widget.config['country'] = countryShortName;
         if(isPostalCodeChanged){
             isPostalCodeChanged = false;
@@ -493,6 +503,7 @@
             $countrySelect.append(options);
             addCustomList($ul, '#w-country', countryShortName);
         }
+        */
     };
 
     function addCustomList(listWrapperElement, listWrapperId, activeVal) {
