@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     {% include head.html %}
-    <body>
+    <body class="no-js">
         <!-- Qualaroo for ticketmaster.com -->
         <!-- Paste this code right after the <body> tag on every page of your site. -->
         <script type="text/javascript">
@@ -13,6 +13,14 @@
             }, 1);
           })();
         </script>
+        {%if page.category != "home"
+            and page.category != "products-and-docs"
+            and page.categories[0] != "support"
+            and page.categories[0] != "documentation"
+            and page.category != "search"%}
+                {%include partials/no-js-alert.html%}
+        {%endif%}
+
         {{ content }}
         <div id="back-top">
             <a href="javascript:void(0)"><span></span></a>

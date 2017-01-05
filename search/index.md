@@ -1,5 +1,6 @@
 ---
 layout: search
+category: search
 title: Search
 excerpt: Search Results Ticketmaster Developer Portal
 keywords: search
