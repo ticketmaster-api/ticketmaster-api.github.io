@@ -39,7 +39,7 @@ class TicketmasterMapWidget {
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
-    get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"]}
+    get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey", "latlong"]}
 
     get hideMessageDelay(){ return 5000; }
 
@@ -82,11 +82,20 @@ class TicketmasterMapWidget {
     }
 
     get eventReqAttrs(){
+        let mapWidgetRoot = this.eventsRootContainer.parentNode;
         let attrs = {},
             params = [
                 {
                     attr: 'tmapikey',
                     verboseName: 'apikey'
+                },
+                {
+                    attr: 'latlong',
+                    verboseName: 'latlong'
+                },
+                {
+                    attr: 'postalcode',
+                    verboseName: 'postalCode'
                 },
                 {
                     attr: 'keyword',
@@ -136,18 +145,34 @@ class TicketmasterMapWidget {
                 attrs[item.verboseName] = this.config[item.attr];
         }
 
-        // Only one allowed at the same time
         if(this.config.latlong){
             attrs.latlong = this.config.latlong;
-        }else{
-            if(this.isConfigAttrExistAndNotEmpty("postalcode"))
-                attrs.postalCode = this.config.postalcode;
+        }
+
+        if(this.config.postalcode) {
+            attrs.postalcode = this.config.postalcode;
         }
 
         if(this.isConfigAttrExistAndNotEmpty("period")){
             let period = this.getDateFromPeriod(this.config.period);
             attrs.startDateTime = period[0];
             attrs.endDateTime = period[1];
+        }
+
+        if (this.config.tmapikey == '') {
+            attrs.apikey = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey();
+        }
+
+        if (mapWidgetRoot.getAttribute("w-latlong") != '') {
+            attrs.latlong = mapWidgetRoot.getAttribute("w-latlong");
+        }
+
+        if (attrs.latlong == ',') {
+            delete attrs.latlong;
+        }
+
+        if (attrs.latlong == null) {
+            delete attrs.latlong;
         }
 
         return attrs;
@@ -203,83 +228,13 @@ class TicketmasterMapWidget {
 
     getCoordinates(cb){
         let widget = this;
-
-        function parseGoogleGeocodeResponse(){
-            if (this && this.readyState === XMLHttpRequest.DONE ) {
-                let latlong = '',
-                    results = null,
-                    countryShortName = '';
-                if(this.status === 200) {
-                    let response = JSON.parse(this.responseText);
-                    if (response.status === 'OK' && response.results.length) {
-                        // Filtering only white list countries
-                        results = response.results.filter((item) => {
-                            return widget.countriesWhiteList.filter((elem) => {
-                                    return elem === item.address_components[item.address_components.length - 1].long_name;
-                                }).length > 0;
-                        });
-
-                        if (results.length) {
-                            // sorting results by country name
-                            results.sort((f, g) => {
-                                let a = f.address_components[f.address_components.length - 1].long_name;
-                                let b = g.address_components[g.address_components.length - 1].long_name;
-                                if (a > b) {
-                                    return 1;
-                                }
-                                if (a < b) {
-                                    return -1;
-                                }
-                                return 0;
-                            });
-
-                            // Use first item if multiple results was found in one country or in different
-                            let geometry = results[0].geometry;
-                            countryShortName = results[0].address_components[results[0].address_components.length - 1].short_name;
-
-                            // If multiple results without country try to find USA as prefer value
-                            if (!widget.config.country) {
-                                for (let i in results) {
-                                    let result = results[i];
-                                    if (result.address_components) {
-                                        let country = result.address_components[result.address_components.length - 1];
-                                        if (country) {
-                                            if (country.short_name === 'US') {
-                                                countryShortName = 'US';
-                                                geometry = result.geometry;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (geometry) {
-                                if (geometry.location) {
-                                    latlong = `${geometry.location.lat},${geometry.location.lng}`;
-                                }
-                            }
-                        } else {
-                            results = null;
-                        }
-                    }
-                }
-                // Used in builder
-                if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
-                widget.config.latlong = latlong;
-                cb(widget.config.latlong);
-            }
-        }
-
-        if(this.isConfigAttrExistAndNotEmpty('postalcode')){
-            let args = {language: 'en', components: `postal_code:${widget.config.postalcode}`};
-            if(widget.config.googleapikey) args.key = widget.config.googleapikey;
-            if(this.config.country) args.components += `|country:${this.config.country}`;
-            this.makeRequest( parseGoogleGeocodeResponse, this.geocodeUrl, args);
+        if(this.config.postalcode) {
+            attrs.postalcode = this.config.postalcode;
         }else{
             // Used in builder
             if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
             widget.config.latlong = '';
-            widget.config.country = '';
+            // widget.config.countrycode = '';
             cb(widget.config.latlong);
         }
     }
@@ -489,22 +444,19 @@ class TicketmasterMapWidget {
             this.eventsRootContainer.classList.add("border");
         }
 
-        if(this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
-            this.clear();
-            this.getCoordinates(() => {
-                this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
-            });
+        this.clear();
+        this.getCoordinates(() => {
+            this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
+        });
 
-            if(this.isListView) this.addScroll();
-        } else {
-            let events = this.eventsRoot.getElementsByClassName("event-wrapper");
-            for (let i in events) {
-                if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-                    events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
-                    events[i].style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
-                }
+        let events = this.eventsRoot.getElementsByClassName("event-wrapper");
+        for (let i in events) {
+            if (events.hasOwnProperty(i) && events[i].style !== undefined) {
+                events[i].style.width = `${this.config.width - this.borderSize * 2}px`;
+                events[i].style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
             }
         }
+
     }
 
     needToUpdate(newTheme, oldTheme, forCheck = []){
@@ -656,7 +608,7 @@ class TicketmasterMapWidget {
                 widget.events = JSON.parse(this.responseText);
                 if(widget.events.length){
 
-                    var myLatLng = {lat: 43.646632, lng: -79.390205};
+                    var myLatLng = {lat: 34.0390107, lng: -118.2672801};
                     var latlngbounds = new google.maps.LatLngBounds();
 
                     var map = new google.maps.Map(document.getElementById('map'), {
