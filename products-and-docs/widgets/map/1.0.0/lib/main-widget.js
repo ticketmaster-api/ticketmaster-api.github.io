@@ -265,7 +265,7 @@ var TicketmasterMapWidget = function () {
                 // Used in builder
                 if (widget.onLoadCoordinate) widget.onLoadCoordinate(null);
                 widget.config.latlong = '';
-                widget.config.country = 'US';
+                // widget.config.countrycode = '';
                 cb(widget.config.latlong);
             }
         }
@@ -497,18 +497,16 @@ var TicketmasterMapWidget = function () {
                 this.eventsRootContainer.classList.add("border");
             }
 
-            if (this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
-                this.clear();
-                this.getCoordinates(function () {
-                    _this4.makeRequest(_this4.eventsLoadingHandler, _this4.apiUrl, _this4.eventReqAttrs);
-                });
-            } else {
-                var events = this.eventsRoot.getElementsByClassName("event-wrapper");
-                for (var i in events) {
-                    if (events.hasOwnProperty(i) && events[i].style !== undefined) {
-                        events[i].style.width = this.config.width - this.borderSize * 2 + "px";
-                        events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
-                    }
+            this.clear();
+            this.getCoordinates(function () {
+                _this4.makeRequest(_this4.eventsLoadingHandler, _this4.apiUrl, _this4.eventReqAttrs);
+            });
+
+            var events = this.eventsRoot.getElementsByClassName("event-wrapper");
+            for (var i in events) {
+                if (events.hasOwnProperty(i) && events[i].style !== undefined) {
+                    events[i].style.width = this.config.width - this.borderSize * 2 + "px";
+                    events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
                 }
             }
         }

@@ -226,25 +226,6 @@
             widgetNode.setAttribute('w-country', '');
             widgetNode.setAttribute('w-postalcode', document.getElementById('w-postalcode').value);
             isPostalCodeChanged = true;
-            /*
-            var numInputClass = document.getElementById('w-radius');
-            var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
-            var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-
-            if (targetValue == '') {
-                numInputClass.setAttribute('disabled', 'disabled');
-                numInputClass.value = '';
-                incArrow.classList.add('disabled');
-                decArrow.classList.add('disabled');
-            }
-            else {
-                numInputClass.removeAttribute('disabled');
-                numInputClass.value = '25';
-                incArrow.classList.remove('disabled');
-                decArrow.classList.remove('disabled');
-                widgetNode.setAttribute('w-radius', '25');
-            }
-            */
         }
 
         if(targetName === "w-theme"){
@@ -353,8 +334,6 @@
                 $self.val(value);
             }
 
-            document.getElementById("w-country").disabled = true;
-
             var activeItems = document.querySelectorAll('.custom_select__item.custom_select__item-active');
             var activeItemsLenght = activeItems.length;
             for (let i = 0; i < activeItemsLenght; ++i) {
@@ -453,57 +432,46 @@
     $('.widget__location span').on('click', function(){
         $('.widget__location').addClass('hidn');
         $('.widget__latlong').removeClass('hidn');
+        document.getElementById('h-countryCode').value = document.getElementById('w-countryCode').value;
+        document.getElementById('h-postalcode').value = document.getElementById('w-postalcode').value;
+        document.getElementById('h-city').value = document.getElementById('w-city').value;
+        document.getElementById('w-latitude').value = document.getElementById('h-latitude').value;
+        document.getElementById('w-longitude').value = document.getElementById('h-longitude').value;
+        widget.config.latlong = document.getElementById('w-latitude').value + ',' + document.getElementById('w-longitude').value;
+        document.querySelector('[w-type="map"]').setAttribute('w-latlong', widget.config.latlong);
+        document.querySelector('[w-type="map"]').removeAttribute('w-countrycode');
+        document.querySelector('[w-type="map"]').removeAttribute('w-postalcode');
+        document.querySelector('[w-type="map"]').removeAttribute('w-city');
+        widget.config.countrycode = '';
+        widget.config.postalcode = '';
+        widget.config.city = '';
+        widget.update();
     });
 
     $('.widget__latlong span').on('click', function(){
         $('.widget__latlong').addClass('hidn');
         $('.widget__location').removeClass('hidn');
+        document.getElementById('h-latitude').value = document.getElementById('w-latitude').value;
+        document.getElementById('h-longitude').value = document.getElementById('w-longitude').value;
         document.getElementById('w-latitude').value = '';
         document.getElementById('w-longitude').value = '';
         document.querySelector('[w-type="map"]').removeAttribute('w-latitude');
         document.querySelector('[w-type="map"]').removeAttribute('w-longitude');
         document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
+        document.getElementById('w-countryCode').value = document.getElementById('h-countryCode').value;
+        document.getElementById('w-postalcode').value = document.getElementById('h-postalcode').value;
+        document.getElementById('w-city').value = document.getElementById('h-city').value;
+        widget.config.countrycode = document.getElementById('w-countryCode').value;
+        widget.config.postalcode = document.getElementById('w-postalcode').value;
+        widget.config.city = document.getElementById('w-city').value;
+        document.querySelector('[w-type="map"]').setAttribute('w-countrycode', widget.config.countrycode);
+        document.querySelector('[w-type="map"]').setAttribute('w-postalcode', widget.config.postalcode);
+        document.querySelector('[w-type="map"]').setAttribute('w-city', widget.config.city);
         widget.config.latlong = '';
-        widget.config.city = '';
         widget.update();
     });
 
     widget.onLoadCoordinate = function (results, countryShortName = '') {
-        /*
-        widget.config['country'] = countryShortName;
-        if(isPostalCodeChanged){
-            isPostalCodeChanged = false;
-
-            let $countrySelect = $('#w-country'),
-                $ul = $(".country-select .js_widget_custom__list"),
-                options = "<option selected value=''>All</option>";
-
-            $countrySelect.html('');
-            $ul.html(''); //clear custom select list
-            $countrySelect.prop('disabled', !results);
-            if(results){
-                let status;
-                if (results.length <=1) status = true;
-                else status = false;
-                $countrySelect.prop('disabled', status);
-                // $countrySelect.prop('disabled', !results.length);
-                options = '';
-                for(let i in results){
-                    let result = results[i];
-                    if(result.address_components){
-                        let country = result.address_components[result.address_components.length - 1];
-                        if(country){
-                            let isSelected = country.short_name === countryShortName ? 'selected' : '';
-                            options += `<option ${isSelected} value="${country.short_name}">${country.long_name}</option>`;
-                        }
-                    }
-                }
-            }
-
-            $countrySelect.append(options);
-            addCustomList($ul, '#w-country', countryShortName);
-        }
-        */
     };
 
     function addCustomList(listWrapperElement, listWrapperId, activeVal) {
@@ -521,7 +489,6 @@
         });
     }
 
-    // clearDropDownInput(['#w-countryCode','#w-source']);
     function clearDropDownInput(elemIds) {
         elemIds.map((item)=> {
             $(item).val('');

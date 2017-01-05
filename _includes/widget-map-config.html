@@ -72,23 +72,22 @@
 									<label for="w-countryCode">Country Code</label>
 									<div class="js_custom_select custom_select">
 										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="-1">
-											<option value="" ></option>
+											<option value="US">United States</option>
 											<option value="AU">Australia</option>
 											<option value="CA">Canada</option>
 											<option value="GB ">Great Britain</option>
 											<option value="IE">Ireland</option>
 											<option value="NZ">New Zealand</option>
-											<option selected value="US">United States</option>
 										</select>
+										<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
 										<input class="custom_select__placeholder" type="text" value="United States" readonly="">
 										<ul class="custom_select__list js_widget_custom__list">
-											<li class="custom_select__item" data-value="" ></li>
+											<li class="custom_select__item" data-value="US">United States</li>
 											<li class="custom_select__item" data-value="AU">Australia</li>
 											<li class="custom_select__item" data-value="CA">Canada</li>
 											<li class="custom_select__item" data-value="GB">Great Britain</li>
 											<li class="custom_select__item" data-value="IE">Ireland</li>
 											<li class="custom_select__item" data-value="NZ">New Zealand</li>
-											<li class="custom_select__item custom_select__item-active" data-value="US">United States</li>
 										</ul>
 									</div>
 								</div>
@@ -97,10 +96,12 @@
 								<div class="col-lg-4 col-md-4 col-sm-4">
 									<label for="w-postalcode">Postal Code</label>
 										<input type="text" id="w-postalcode" name="w-postalcode" value="">
+									  <input type="hidden" id="h-postalcode" name="h-postalcode" value="">
 								</div>
 								<div class="col-lg-8 col-md-8 col-sm-8">
 									<label for="w-city">City</label>
-									<input type="text" id="w-city" name="w-city" value="">
+									<input type="text" id="w-city" name="w-city" value="Los Angeles">
+									<input type="hidden" id="h-city" name="h-city" value="">
 								</div>
 							</div>
 						</div>
@@ -110,10 +111,12 @@
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									<label for="w-latitude">Latitude</label>
 									<input type="text" id="w-latitude" name="w-latitude" value="">
+									<input type="hidden" id="h-latitude" name="h-latitude" value="">
 								</div>
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									<label for="w-longitude">Longitude</label>
 									<input type="text" id="w-longitude" name="w-longitude" value="">
+									<input type="hidden" id="h-longitude" name="h-longitude" value="">
 								</div>
 							</div>
 							<div class="row row-native">
@@ -121,7 +124,7 @@
 									<label for="w-radius">
 										Radius <span class="config_field__description">(miles)</span>
 									</label>
-									<input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="" min="1" max="19999" disabled="disabled">
+									<input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25" min="1" max="19999">
 								</div>
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									Show on Map
