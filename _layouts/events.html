@@ -274,6 +274,9 @@ layout: default
 			$(window).on('popstate', popstateHandler);
     }
 
+		/*for IE11 support*/
+		window.onhashchange = popstateHandler;
+
     $(window).on('hashchange', hashChangeHandler);
     hashChangeHandler();
 
