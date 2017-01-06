@@ -93,12 +93,12 @@
 								</div>
 							</div>
 							<div class="row row-native">
-								<div class="col-lg-4 col-md-4 col-sm-4">
+								<div class="col-lg-5 col-md-5 col-sm-5">
 									<label for="w-postalcode">Postal Code</label>
 										<input type="text" id="w-postalcode" name="w-postalcode" value="">
 									  <input type="hidden" id="h-postalcode" name="h-postalcode" value="">
 								</div>
-								<div class="col-lg-8 col-md-8 col-sm-8">
+								<div class="col-lg-7 col-md-7 col-sm-7">
 									<label for="w-city">City</label>
 									<input type="text" id="w-city" name="w-city" value="Los Angeles">
 									<input type="hidden" id="h-city" name="h-city" value="">
@@ -108,6 +108,18 @@
 						<div class="widget__latlong hidn">
 							<p>You can use Geoposition or <span>input Location data</span></p>
 							<div class="row row-native">
+								<div class="col-lg-8 col-md-8 col-sm-8">
+								  <label for="w-latlong">Geoposition <span class="config_field__description">(Latitude, Longitude)</span></label>
+								  <input type="text" id="w-latlong" name="w-latlong" value="">
+								  <input type="hidden" id="h-latlong" name="h-latlong" value="34.0390107, -118.2672801">
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-4">
+									<label for="w-radius">
+										Radius <span class="config_field__description">(miles)</span>
+									</label>
+									<input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25" min="1" max="19999">
+							</div>
+								<!--
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									<label for="w-latitude">Latitude</label>
 									<input type="text" id="w-latitude" name="w-latitude" value="">
@@ -118,7 +130,9 @@
 									<input type="text" id="w-longitude" name="w-longitude" value="">
 									<input type="hidden" id="h-longitude" name="h-longitude" value="-118.2672801">
 								</div>
+								-->
 							</div>
+							<!--
 							<div class="row row-native">
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									<label for="w-radius">
@@ -130,6 +144,7 @@
 									Show on Map
 								</div>
 							</div>
+							-->
 						</div>
 					</div>
 				</div>
