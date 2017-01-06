@@ -18,7 +18,7 @@ layout: default
     <div class="events-wrapper top-event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}" >
         <h1>{{ event.title }}</h1>
         <div class="description col-xs-12 col-sm-8 col-md-8 col-lg-8">
-            <p>{{ event.content | markdownify }}</p>
+            <p>{{ event.content }}</p>
             <div class="tags">
                 {% for tag in event.tags %}
                 <a href="/events/#/upcoming/{{tag}}" class="trans-btn">{{tag}}</a>
@@ -54,7 +54,10 @@ layout: default
         </ul>
     </div>
     <div class="col-lg-9 col-md-12 col-sm-12 content min-height-250">
-        <div class="no-events"><h1>Sorry,<br> no events were found</h1></div>
+			<div class="wrapper-no-events">
+				<h3 >Upcoming</h3>
+        <div class="no-events"><h1>Sorry, no<br> upcoming events were found</h1></div>
+			</div>
         {{ content }}
     </div>
 </div>
@@ -66,6 +69,24 @@ layout: default
 <script src="{{"/scripts/components/support-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
 <script>
+    var onceFlag = true, //is 'past-grid' create once
+			$wrapperNoEvents = $('div.base-content-wrapper .wrapper-no-events');
+
+		//polyfill 'includes'
+		if (!String.prototype.includes) {
+			String.prototype.includes = function(search, start) {
+				'use strict';
+				if (typeof start !== 'number') {
+					start = 0;
+				}
+
+				if (start + search.length > this.length) {
+					return false;
+				} else {
+					return this.indexOf(search, start) !== -1;
+				}
+			};
+		}
 
     // Hide Past events and Remove of RSVP
     $(".event").add(".top-event").each(function(){
@@ -107,34 +128,40 @@ layout: default
       $(".categories").append('<li class="tag-group past" data-type="past" ><a href="#/past" class="group-title">Past</a><ul class="sections menu-highlight">'+uniquePast+'</ul></li>');
     }
 
-    console.log('visible' , $(".event").is(":visible") );
 
-    if(!$(".event").is(":visible")){
-        setTimeout(checkNoEvents,0);
-    }
+		if(!$(".event").is(":visible") ){
+        setTimeout(checkNoEvents, 0);//show cactus and past as grid
+    }else {
+			//hide cactus, show upcoming on top
+			var element = $(".event:visible").detach();
+			$('.no-events',$wrapperNoEvents).after(element);
+			$wrapperNoEvents.show();
+			$('.no-events',$wrapperNoEvents).hide();
+		}
+
     var eventsCompactAll = [
         {% for item in tab_array %}
             {link:'{{ item.link | escape }}', img: '{{ item.img | escape}}', title: '{{ item.title | escape }}'}{% unless forloop.last %},{% endunless %}
         {% endfor %}
     ];
-    console.log('eventsCompactAll' , eventsCompactAll);
+
+		//check to show 'cactus image' and past as grid
     function checkNoEvents(){
-        var $wrapper,
-            pastEventList,
+        var $wrapper = $('div.base-content-wrapper'),
+            pastEventList = $(".event.past"),
+            currentImg,
             title = '<h3></h3>';
-        $wrapper = $('div.base-content-wrapper');
-        $('div.base-content-wrapper .no-events').show();
         $('h3#event-header',$wrapper).text('Past Events');
-        pastEventList = $(".event.past");
-        console.log('pastEventList' , pastEventList );
-        pastEventList.map(function(idx,item){
-//            console.log('idx' , idx ,item.textContent);
-            if(idx<=6){
-                $(item).addClass('compact').show();
-                console.log(eventsCompactAll[idx].title);
-                $(item).append("<h3 class='title-compact'>"+eventsCompactAll[idx].title+"</h3>");
+				if($(".event").length > 0) $wrapperNoEvents.show(); //show upcoming event
+        pastEventList.map(function (idx, item) {
+            currentImg = eventsCompactAll[idx].img || '../assets/img/events/banner.jpeg';
+            $(item).addClass('compact').show();
+            if(onceFlag) {
+                $(item).append("<div class='wrapper-thumbnail-compact' style='background-image: url(" + currentImg + ")'></div>");
+                $(item).append("<h4 class='title-compact scroll-to-item'>" + eventsCompactAll[idx].title + "</h4>");
             }
-        })
+        });
+        onceFlag = false;
     }
 
     function hashParser() {
@@ -146,6 +173,25 @@ layout: default
         hashProps.shift();
         return hashProps;
     }
+
+		function scrollToItemHandler(e) {
+			var title = $(this).text(),
+					currentSelected,
+					pastEventList = $(".event.past");
+
+			window.location += '#/past';
+			pastEventList.map(function (idx, item) {
+				if(title === $('.comntent h2',item).text()) {
+					currentSelected = $('.comntent h2', item);
+					setTimeout(function () {
+						$('body').animate({
+							scrollTop: currentSelected.offset().top
+						}, 10);
+					}, 200);
+				}
+			});
+
+		}
 
     function hashChangeHandler() {
         var hashProps = hashParser(),
@@ -189,9 +235,53 @@ layout: default
         }).show();
 
         past.removeClass('compact');
+
+				var str = location.hash;
+				var pastEvent = str.includes("#/past/");
+				// hide 'cactus image' (no events found) in 'past' pages
+        if($(".event").is(":visible") && pastEvent || !location.hash){
+					$wrapperNoEvents.hide();
+        }
+    }
+
+		function popstateHandler() {
+			var newHash = location.hash;
+			if(!newHash ){
+				$wrapperNoEvents.hide(); // hide 'cactus-img' if upcoming exist
+				setTimeout(checkNoEvents,5); // show 'cactus-img' if upcoming exist
+			}else {
+				$('.event.past').removeClass('compact');
+			}
+
+			if (newHash ==='#/past' || newHash.includes('#/past')) {
+				setTimeout(function () {
+					$('.event.past').removeClass('compact');
+					$("#event-header").show();
+					$wrapperNoEvents.hide();
+				},20);
+			}
+			if (newHash.includes('#/upcoming')) {
+				setTimeout(function () {
+					$('.event.past').removeClass('compact').hide();
+					$("#event-header").hide();
+					$wrapperNoEvents.show();
+				},20);
+			}
+		}
+
+		//Back button (HTML5 history) listener, IE11 unsupported
+    if (window.history && window.history.pushState) {
+			$(window).on('popstate', popstateHandler);
     }
 
     $(window).on('hashchange', hashChangeHandler);
     hashChangeHandler();
+
+		popstateHandler();
+
+		$(function() {
+			$('.scroll-to-item').on('click', scrollToItemHandler);
+		});
+
 
 </script>
