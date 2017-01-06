@@ -214,12 +214,18 @@
             }
         }
 
+        /*
         if(targetName === "w-latitude"){
             document.querySelector('[w-type="map"]').setAttribute('w-latlong', targetValue + ',' + document.getElementById('w-longitude').value);
         }
 
         if(targetName === "w-longitude"){
             document.querySelector('[w-type="map"]').setAttribute('w-latlong', document.getElementById('w-latitude').value + "," + targetValue);
+        }
+        */
+
+        if(targetName === "w-latlong"){
+            document.querySelector('[w-type="map"]').setAttribute('w-latlong', targetValue.replace(/\s+/g, ''));
         }
 
         if(targetName === "w-postalcode"){
@@ -269,8 +275,8 @@
             let sizeConfig = {
                 width: themeConfig.sizes[targetValue].width,
                 height: themeConfig.sizes[targetValue].height,
-                maxWidth: 600,
-                minWidth: 350
+                maxWidth: 560,
+                minWidth: 300
             };
 
             //set layout
@@ -303,7 +309,7 @@
             widgetNode.setAttribute('w-height', sizeConfig.height);
         }
 
-        widgetNode.setAttribute(event.target.name, event.target.value);
+        if (event.target.name != 'w-latlong') widgetNode.setAttribute(event.target.name, event.target.value);
         widget.update();
 
         windowScroll(); //recalculate widget container position
@@ -311,7 +317,8 @@
 
     var resetWidget = function(configForm) {
         let widgetNode = document.querySelector("div[w-tmapikey]"),
-            height = 600,
+            width = 300,
+            height = 560,
             theme,
             layout;
         const widthSlider = $('.js_widget_width_slider'),
@@ -369,6 +376,7 @@
         if(layout === 'horizontal'){
             height = getHeightByTheme(theme);
         }
+        widgetNode.setAttribute('w-width', width);
         widgetNode.setAttribute('w-height', height);
         widgetNode.setAttribute('w-border', 0);
         widgetNode.removeAttribute('w-countryCode');
@@ -435,9 +443,13 @@
         document.getElementById('h-countryCode').value = document.getElementById('w-countryCode').value;
         document.getElementById('h-postalcode').value = document.getElementById('w-postalcode').value;
         document.getElementById('h-city').value = document.getElementById('w-city').value;
+        /*
         document.getElementById('w-latitude').value = document.getElementById('h-latitude').value;
         document.getElementById('w-longitude').value = document.getElementById('h-longitude').value;
         widget.config.latlong = document.getElementById('w-latitude').value + ',' + document.getElementById('w-longitude').value;
+        */
+        document.getElementById('w-latlong').value = document.getElementById('h-latlong').value;
+        widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         document.querySelector('[w-type="map"]').setAttribute('w-latlong', widget.config.latlong);
         document.querySelector('[w-type="map"]').removeAttribute('w-countrycode');
         document.querySelector('[w-type="map"]').removeAttribute('w-postalcode');
@@ -451,6 +463,7 @@
     $('.widget__latlong span').on('click', function(){
         $('.widget__latlong').addClass('hidn');
         $('.widget__location').removeClass('hidn');
+        /*
         document.getElementById('h-latitude').value = document.getElementById('w-latitude').value;
         document.getElementById('h-longitude').value = document.getElementById('w-longitude').value;
         document.getElementById('w-latitude').value = '';
@@ -458,6 +471,11 @@
         document.querySelector('[w-type="map"]').removeAttribute('w-latitude');
         document.querySelector('[w-type="map"]').removeAttribute('w-longitude');
         document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
+        */
+        document.getElementById('h-latlong').value = document.getElementById('w-latlong').value.replace(/\s+/g, '');
+        document.getElementById('w-latlong').value = '';
+        document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
+
         document.getElementById('w-countryCode').value = document.getElementById('h-countryCode').value;
         document.getElementById('w-postalcode').value = document.getElementById('h-postalcode').value;
         document.getElementById('w-city').value = document.getElementById('h-city').value;
