@@ -1,0 +1,415 @@
+{
+  "discovery.v2.events.get": {
+    "events": {
+      "object": {
+        "_CONFIG": {
+          "title": "Event",
+          "copyBtn": {
+            "name": true
+          },
+          "request": "https://app.ticketmaster.com/discovery/v2/events/{id}.{format}",
+          "index": 0
+        }
+      },
+      "sales": {
+        "_CONFIG": {
+          "index": 1
+        }
+      },
+      "venues": {
+        "object": {
+          "_CONFIG": {
+            "title": "venue",
+            "request": "https://app.ticketmaster.com/discovery/v2/venues/{id}.{format}",
+            "index": 0
+          }
+        },
+        "city": {
+          "_CONFIG": {
+            "index": 2
+          }
+        },
+        "state": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "country": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "address": {
+          "_CONFIG": {
+            "index": 3
+          }
+        },
+        "location": {
+          "_CONFIG": {
+            "index": 4
+          }
+        },
+        "_CONFIG": {
+          "index": 2
+        }
+      },
+      "attractions": {
+        "object": {
+          "_CONFIG": {
+            "title": "attraction",
+            "request": "https://app.ticketmaster.com/discovery/v2/attractions/{id}.{format}",
+            "index": 0
+          }
+        },
+        "_CONFIG": {
+          "index": 3
+        }
+      },
+      "dates": {
+        "access": {
+          "_CONFIG": {
+            "index": 3,
+            "copyBtn": {},
+            "collapsed": false
+          }
+        },
+        "timezone": {
+          "_CONFIG": {
+            "index": 0
+          }
+        },
+        "start": {
+          "_CONFIG": {
+            "index": 1,
+            "copyBtn": {
+              "dateTime": true
+            },
+            "collapsed": false
+          }
+        },
+        "status": {
+          "_CONFIG": {
+            "index": 3,
+            "collapsed": false
+          }
+        },
+        "end": {
+          "_CONFIG": {
+            "index": 2,
+            "copyBtn": {
+              "dateTime": true
+            },
+            "collapsed": false
+          }
+        },
+
+        "_CONFIG": {
+          "index": 4,
+          "allInside": true
+        }
+      },
+      "images": {
+        "object": {
+          "_CONFIG": {
+            "title": "image"
+          }
+        },
+        "_CONFIG": {
+          "index": 5,
+          "collapsed": false
+        }
+      },
+      "_CONFIG": {
+        "collapsed": false,
+        "index": 0,
+        "copyBtn": {
+            "name": true
+          }
+      }
+    },
+    "page": {
+      "_CONFIG": {
+        "index": 1,
+        "collapsed": false
+      }
+    },
+
+    "_CONFIG": {
+      "method": "discovery.v2.events.get"
+    }
+  },
+
+  "discovery.v2.events.id.get": {
+      "object": {
+        "_CONFIG": {
+          "title": "Event",
+          "copyBtn": {
+            "name": true
+          },
+          "index": 0
+        }
+      },
+      "sales": {
+        "_CONFIG": {
+          "index": 1
+        }
+      },
+      "venues": {
+        "object": {
+          "_CONFIG": {
+            "title": "venue",
+            "request": "https://app.ticketmaster.com/discovery/v2/venues/{id}.{format}",
+            "index": 0
+          }
+        },
+        "city": {
+          "_CONFIG": {
+            "index": 2
+          }
+        },
+        "state": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "country": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "address": {
+          "_CONFIG": {
+            "index": 3
+          }
+        },
+        "location": {
+          "_CONFIG": {
+            "index": 4
+          }
+        },
+        "_CONFIG": {
+          "index": 2
+        }
+      },
+      "attractions": {
+        "object": {
+          "_CONFIG": {
+            "title": "attraction",
+            "request": "https://app.ticketmaster.com/discovery/v2/attractions/{id}.{format}",
+            "index": 0
+          }
+        },
+        "_CONFIG": {
+          "index": 3
+        }
+      },
+      "dates": {
+        "access": {
+          "_CONFIG": {
+            "index": 3,
+            "copyBtn": {},
+            "collapsed": false
+          }
+        },
+        "timezone": {
+          "_CONFIG": {
+            "index": 0
+          }
+        },
+        "start": {
+          "_CONFIG": {
+            "index": 1,
+            "copyBtn": {
+              "dateTime": true
+            },
+            "collapsed": false
+          }
+        },
+        "status": {
+          "_CONFIG": {
+            "index": 3,
+            "collapsed": false
+          }
+        },
+        "end": {
+          "_CONFIG": {
+            "index": 2,
+            "copyBtn": {
+              "dateTime": true
+            },
+            "collapsed": false
+          }
+        },
+
+        "_CONFIG": {
+          "index": 4,
+          "allInside": true
+        }
+      },
+      "images": {
+        "object": {
+          "_CONFIG": {
+            "title": "image"
+          }
+        },
+        "_CONFIG": {
+          "index": 5,
+          "collapsed": false
+        }
+      },
+
+    
+    "_CONFIG": {
+      "methodConfig": true
+    }
+  },
+    
+  "discovery.v2.events.id.images.get": {
+    "object": {
+      "_CONFIG": {
+        "title": "image"
+      }
+    },
+    "_CONFIG": {
+      "methodConfig": true
+    }
+  },
+    
+  "discovery.v2.attractions.get": {
+    "attractions": {
+      "object": {
+        "_CONFIG": {
+            "title": "attraction",
+            "index": 0
+          }
+      },
+      "_CONFIG": {
+        "collapsed": false,
+        "index": 0
+      }
+    },
+    "page": {
+      "_CONFIG": {
+        "collapsed": false,
+        "index": 1
+      }
+    },
+    "_CONFIG": {
+      "methodConfig": true
+    }
+  },
+    
+  "discovery.v2.attractions.id.get": {
+      "object": {
+        "_CONFIG": {
+            "title": "attraction",
+            "index": 0
+          }
+      },
+    "_CONFIG": {
+      "methodConfig": true
+    }
+  },
+    
+  "discovery.v2.venues.get": {
+    "venues": {
+        "object": {
+          "_CONFIG": {
+            "title": "venue",
+            "request": "https://app.ticketmaster.com/discovery/v2/venues/{id}.{format}",
+            "index": 0
+          }
+        },
+        "city": {
+          "_CONFIG": {
+            "index": 2
+          }
+        },
+        "state": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "country": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "address": {
+          "_CONFIG": {
+            "index": 3
+          }
+        },
+        "location": {
+          "_CONFIG": {
+            "index": 4
+          }
+        },
+
+      "_CONFIG": {
+        "collapsed": false,
+        "index": 0
+      }
+    },
+    "page": {
+      "_CONFIG": {
+        "collapsed": false,
+        "index": 1
+      }
+    },
+    "_CONFIG": {
+      "methodConfig": true
+    }
+  },
+
+  "discovery.v2.venues.id.get": {
+        "object": {
+          "_CONFIG": {
+            "title": "venue",
+            "index": 0
+          }
+        },
+        "city": {
+          "_CONFIG": {
+            "index": 2
+          }
+        },
+        "state": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "country": {
+          "_CONFIG": {
+            "index": 1
+          }
+        },
+        "address": {
+          "_CONFIG": {
+            "index": 3
+          }
+        },
+        "location": {
+          "_CONFIG": {
+            "index": 4
+          }
+        },
+
+    "_CONFIG": {
+      "methodConfig": true
+    }
+  },
+    
+  "_GLOBAL_CONFIG": {
+    "copyBtn": {
+      "id": true,
+      "url": true
+    },
+    "deprecated": [
+      "_links"
+    ],
+    "unwrapp": [
+      "_embedded"
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+// Json highlight styles
+$prefix: 'tm-code';
+
+// color-theme
+$key: #204a87;
+$null: #999;
+$string: #4e9a06;
+$number: #a40000;
+$boolean: #c4a000;
+
+$expanded: #933;
+$collapsed: #000;
+$error: #ef3e3e;
+
+.#{$prefix}-container {
+  font-size: 12px;
+  line-height: 1.2;
+  font-family: monospace;
+	padding: 0 0 0 15px;
+  margin: 0;
+  list-style: none;
+
+  * {
+    font-size: 12px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0 0 0 20px;
+    margin: 0;
+  }
+
+  li {
+    position: relative;
+    &:after {
+      content: ",";
+    }
+    &:last-child:after {
+      content: "";
+    }
+    .collapsed ~ .close:before {
+      content: "... ";
+      color: #999;
+    }
+  }
+
+  & > li  > .key {
+    display: none;
+  }
+
+  .array {
+    .key {
+      display: none;
+    }
+    .object{
+      .key {
+        display: inline;
+      }
+    }
+  }
+
+  .expanded {
+    cursor: pointer;
+    &:before {
+      content: "-";
+      font: bold 1.2em/13px sans-serif;
+      width: 13px;
+      text-align: center;
+      color: $expanded;
+      position: absolute;
+      left: -15px;
+      top: 3px;
+    }
+  }
+
+  .collapsed:before {
+    content: "+";
+    font-size: 1.1em;
+    color: $collapsed;
+    top: 1px;
+  }
+
+  .hidden ~ ul {
+    display: none;
+  }
+
+  span {
+    position: static !important;
+  }
+
+  .key {
+    color: $key;
+  }
+  .null {
+    color: $null;
+  }
+  .string {
+    color: $string;
+  }
+  .number {
+    color: $number;
+  }
+  .boolean {
+    color: $boolean;
+  }
+}
+
+.#{$prefix}-error {
+  margin: 10px;
+  color: $error;
+}

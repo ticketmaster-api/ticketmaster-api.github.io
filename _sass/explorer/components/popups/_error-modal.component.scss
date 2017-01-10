@@ -1,0 +1,86 @@
+/**
+* Error modal pop-up styles
+**/
+
+.modal-dialog {
+	.error-pop-up {
+		width: 420px;
+		min-height: 246px;
+		padding: 30px;
+		.modal-header {
+			padding: 0;
+			overflow: hidden;
+		}
+		.error-title {
+			font: {
+				size: 24px;
+				weight: bold;
+				style: normal;
+				stretch: normal;
+			}
+			line-height: 1.33;
+			text-align: center;
+			color: #d0021b;
+			margin: 14px auto;
+		}
+		.modal-body {
+			padding: 8px;
+			.error-details {
+				font: {
+					size: 16px;
+					weight: normal;
+					style: normal;
+					stretch: normal;
+				}
+				line-height: 1.5;
+				text-align: center;
+				color: #768692;
+				margin: 0 0 5px;
+			}
+		}
+		.modal-footer {
+			.btn-accept {
+				width: 164px;
+				height: 48px;
+				border-radius: 4px;
+				background-color: #009cde;
+				display: block;
+				margin: auto;
+				font: {
+					size: 16px;
+					weight: bold;
+					style: normal;
+					stretch: normal;
+				}
+				line-height: 1.5;
+				letter-spacing: 0.8px;
+				text-align: center;
+				color: #ffffff;
+			}
+		}
+	}
+
+	//tablet
+	@media #{$max-1200} {}
+
+	//mobile
+	@media #{$max-768} {
+		.error-pop-up {
+			width: 100%;
+			padding: 15px;
+			.modal-header {}
+			.error-title {
+				font-size: 20px;
+			}
+			.modal-body {
+				.error-details {
+					font-size: 14px;
+				}
+			}
+			.modal-footer {
+				.btn-accept {
+				}
+			}
+		}
+	}
+}

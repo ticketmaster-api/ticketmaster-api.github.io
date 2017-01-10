@@ -12,6 +12,7 @@
   overflow: hidden;
   margin: auto;
   position: relative;
+  margin-bottom: $base-margin*4;
 
   &>.col-lg-9 {
     float: right;
@@ -56,6 +57,7 @@
         width: 100%;
         height: 100%;
         overflow-y: scroll;
+        padding-right: 0;
       }
     }
 
@@ -105,6 +107,21 @@
         margin-right: -15px;
       }
     }
+  }
+
+  /*copy from documentation.scss*/
+  .faq-api{
+    h4 {
+      margin: $base-margin 0;
+    }
+    p {
+      margin-top: $base-margin/4;
+      margin-bottom: 0;
+    }
+  }/*end*/
+
+  ol>li {
+    list-style: decimal;
   }
 
 }

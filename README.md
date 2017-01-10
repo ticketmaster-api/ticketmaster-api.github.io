@@ -2,14 +2,14 @@
 
 Home to the [Ticketmaster Developer Portal](http://developer.ticketmaster.com/).
 
-## Build Status
+##  Build Status
 ![Build Status Images](https://travis-ci.org/ticketmaster-api-staging/ticketmaster-api-staging.github.io.svg)
 
 ## Installation
 
 1. [Install Jekyll](http://jekyllrb.com)
-2. Clone portal: `git clone git@github.com:ticketmaster-api/ticketmaster-api.github.io.git`
-3. Get in the directory: `cd ticketmaster-api.github.io`
+2. Clone portal:  `git clone git@github.com:ticketmaster-api/ticketmaster-api.github.io.git`
+3. Get in the directory:  `cd ticketmaster-api.github.io`
 4. Run Jekyll: `jekyll serve`
 
 ## Contributions

@@ -1,0 +1,51 @@
+
+.js_numeric-input-group {
+  position: relative;
+  margin-bottom: $base-margin;
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+  input.js_numeric_input {
+    padding: 8px 30px 8px 16px;
+    margin: 0;
+		opacity: 1;
+		&:disabled {
+			opacity: 0.5;
+		}
+  }
+  .arrow {
+    content: '';
+    position: absolute;
+    right: 16px;
+    border-style: solid;
+    border-color: transparent transparent $n2 transparent;
+    border-width: 0 7px 8px 7px;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+
+    &__inc {
+      top: 11px;
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    &__dec {
+      bottom: 11px;
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+
+    &__inc.disabled,
+    &__dec.disabled {
+      border-color: transparent transparent $n3 transparent;
+			cursor: default;
+    }
+  }
+
+}

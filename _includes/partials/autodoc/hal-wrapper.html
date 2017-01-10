@@ -1,0 +1,106 @@
+{%if _HAL-part1 %}
+<li><code class="highlighter-rouge">_links</code>(object) - links to data sets
+    <ul>
+        <li><code class="highlighter-rouge">self</code>(object) - link to this data set
+            <ul>
+                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
+            </ul>
+        </li>
+        <li><code class="highlighter-rouge">next</code>(object) - link to the next data set
+            <ul>
+                <li><code class="highlighter-rouge">href</code>(string) - reference.</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
+            </ul>
+        </li>
+        <li><code class="highlighter-rouge">prev</code>(object) - link to the previous data set
+            <ul>
+                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li><code class="highlighter-rouge">_embedded</code>(object) - container
+    <ul>
+        <li><code class="highlighter-rouge">{{ _HAL.wrappin }}</code><!--{% for schemaSplitType in schemaSplit[1] %}({{ swagger.definitions[schemaSplitType].type | strip }}){% endfor %}-->{% if response[1].schema['type'] == 'array' %}({{response[1].schema['type']}})
+            <ul>
+                <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
+                    <ul>{% endif %}
+                        {%if _HAL.links.size > 0%}
+                            {%assign isMultiLink = false %}
+                            {%assign isSingleLink = true %}
+
+                                {%assign isLinkExist = false%}
+                                {% for embed in _HAL.embed %}
+                                    <!--<li>embed.link - {{embed.link}}</li>-->
+                                    {%if embed.link == true %}
+                                        {%assign isLinkExist = true%}
+                                    {% endif %}
+                                {% endfor %}
+                                {%if isLinkExist == true %}
+                                    {%assign isMultiLink = true %}
+                                    {%assign isSingleLink = false %}
+                                    <!--<li><code class="blue">_HAL.embed.link</code> 0 - {{_HAL.embed[0].link}} ; 1 - {{_HAL.embed[1].link}} </li>-->
+                                {% else %}
+                                    {%assign isMultiLink = false %}
+                                    {%assign isSingleLink = true %}
+                                {% endif %}
+                                {%assign isLinkExist = false%}
+                                {% include partials/autodoc/hal-wrapper-links.html %}
+
+                            {%assign isMultiLink = false%}
+                            {%assign isSingleLink = false %}
+                        {% endif %}
+
+
+                        {% assign propToEmbed = [] %}
+                        {% for add_property_HAL in _HAL.embed %}
+                            {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+                        {%endfor%}
+                        {%if propToEmbed.size > 0%}
+                            {% assign removeEmbeddedFields = [""] %}
+                            <!--<li><h3 class="blue">inside hal-wrapper.html </h3> propToEmbed is - {{add_property_HAL.in}} , pathScdLvl - {{pathScdLvl}}</li>-->
+                            {%include partials/autodoc/wrap-embed-in.html%}
+                        {% endif %}
+
+                        {%if _HAL.embed.size > 0 and propToEmbed.size == 0%}
+                            <li><code class="highlighter-rouge">_embedded</code>(object) - container <!-- start loop here {{ _HAL.embed.size }} -->
+                                <ul>
+                                    {% for add_property_HAL in _HAL.embed %}
+                                    <li><code class="highlighter-rouge">{{ add_property_HAL.as }}</code>(array) - related <!--{{add_property_HAL}}-->
+                                        <ul>
+                                            <li><code class="highlighter-rouge" style="color: #768692">{array item object} </code>
+                                                {%assign outer = add_property_HAL.embed %}
+                                                {%include partials/autodoc/inner-item.html%}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+
+                        {% assign propToEmbed = [] %}
+
+{% endif %}
+
+{% comment %} `_embedded` will be rendered here {% endcomment %}
+
+{%if _HAL-part2 %}
+    {% if response[1].schema['type'] == 'array' %}
+                    </ul>
+                </li>
+            </ul>{% endif %}
+        </li>
+    </ul>
+</li>
+<li><code class="highlighter-rouge">page</code>(object) - information about current page in data source
+    <ul>
+        <li><code class="highlighter-rouge">size</code>(number) - size of page.</li>
+        <li><code class="highlighter-rouge">totalElements</code>(number) - total number of available elements in server</li>
+        <li><code class="highlighter-rouge">totalPages</code>(number) - total number of available pages in server</li>
+        <li><code class="highlighter-rouge">number</code>(number) - current page number counted from 0</li>
+    </ul>
+</li>
+{% endif %}

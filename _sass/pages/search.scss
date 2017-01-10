@@ -1,3 +1,12 @@
+.row.search {
+  min-height: 500px;
+  @media #{$max-1200} {
+    min-height: auto;
+  }
+  @media #{$max-768} {
+    min-height: auto;
+  }
+}
 #search {
   @media #{$max-1200} {
       right: 60px;
@@ -72,6 +81,9 @@
       position: absolute;
       right: 0;
       top: 0;
+      @media (min-width: 1200px) {
+        z-index: 2;
+      }
       &.sopen {
         width: 320px;
         @media #{$max-768} {

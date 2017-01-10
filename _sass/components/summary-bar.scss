@@ -1,0 +1,107 @@
+.events-tracker {
+  background: #f1f4f6;
+  &.events-tracker_col-view {
+    margin: 0 15% 0 10%;
+    padding: 23px 30px;
+    overflow: hidden;
+    float: right;
+    width: 264px;
+    height: 190px;
+    border-radius: 4px;
+  }
+  &.events-tracker_col-blue {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 255px 0 0 90px;
+    .events-tracker__title {
+      color: #fff;
+      opacity: 0.6;
+    }
+    .events-tracker__counter {
+      color: #fff;
+    }
+  }
+  .events-tracker__item {
+    text-align: right;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.89;
+  }
+  .events-tracker__title {
+    color: #b7c9d3;
+    float: left;
+    width: 54%;
+  }
+  .events-tracker__counter {
+    color: #768692;
+  }
+  @media #{$max-1200} {
+    display: none !important;
+
+    &.events-tracker_col-blue {
+      margin: 10px 14px;
+      width: auto;
+      padding: 5px 30px 0;
+      height: auto;
+      display: block;
+      float: none;
+      .events-tracker__title {
+        margin-right: 10px;
+      }
+      .events-tracker__counter {
+        width: auto;
+        float: left;
+      }
+      .events-tracker__item {
+        margin: 0;
+        display: inline-block;
+        width: 24%;
+      }
+    }
+  }
+  @media #{$max-768} {
+    &.events-tracker_col-view {
+      margin: auto;
+      float: none;
+      width: auto;
+      height: auto;
+    }
+    .events-tracker__title,
+    .events-tracker__counter  {
+      width: auto;
+      float: left;
+      margin: 0 5px;
+    }
+  }
+}
+
+/*horizontal bar*/
+.horizontal-events-tracker {
+  background: $code-background-color;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: $font-lead-bold;
+  overflow: hidden;
+  border-radius: 4px;
+  .horizontal-events-tracker__section {
+    padding: 20px;
+    font-weight: bold;
+    overflow: hidden;
+  }
+  .horizontal-events-tracker__title {
+    color: $n3;
+    width: 24%;
+    display: inline-block;
+    text-align: center;
+    //@media (min-width: 1440px) {
+    //  text-align: center;
+    //}
+  }
+  .horizontal-events-tracker__counter {
+    color: $n2;
+    margin-left: 6px;
+  }
+}
+
+/*horizontal styles*/

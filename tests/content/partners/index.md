@@ -17,9 +17,6 @@ keywords: partners, certified partners, become an affilate
 {: .col-xs-4 .logo .logo-small}
 [![Facebook](/assets/img/partners/logos/new-facebook-logo-2015-400-x-400.png)](#)
 
-{: .col-xs-4 .logo .logo-small}
-[![Scorebig](/assets/img/partners/logos/score-big-logo.png)](#)
-
 {: .col-xs-6 .logo .text-right .logo-small}
 [![Goldstar](/assets/img/partners/logos/goldstar-logo-blue-on-white-small.png)](#)
 
@@ -85,9 +82,9 @@ Nexus Certified Partners are distinguished best-in-class solutions providers to 
 ## Already affiliated?
 
 {: .body .p}
-If you are a current member of the Ticketmaster affiliate program, manage your account at Affiliate Window.
+If you are a current member of the Ticketmaster affiliate program, manage your account at Impact Radius.
 
-[GO TO LOGIN](https://darwin.affiliatewindow.com/login){: .button.button-blue .base-margin-bottom}
+[GO TO LOGIN](https://member.impactradius.com/bla/Ticketmasterdirect/login.user){: .button.button-blue .base-margin-bottom}
 
 {: .gray}
 #### Have questions about our affiliate program?

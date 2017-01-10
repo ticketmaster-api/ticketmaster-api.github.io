@@ -8,9 +8,37 @@ namespace 'travis' do
   DEPLOY_BRANCH = 'master'
   REPORT_BRANCH = 'report'
 
+
   VERSION_URL = 'https://pages.github.com/versions.json'
 
   
+  desc 'Test the site'
+  task :test do
+    result = 0
+    if ENV['TRAVIS_BRANCH'] == 'master'
+      puts "Test serenity"
+      resultS = system("mvn verify -f ./tests/serenity/pom.xml -Dmetafilter=\"-prod -NotImplemented\"")
+      puts resultS
+      puts "Test galen"
+      resultG = system("sh ./tests/run-test-dispatch.sh")
+      puts resultG
+      puts 'test result'
+      if (resultS) == false
+        puts 'test failed'
+        exit 1
+      end
+      next
+    else
+      puts "Test low"
+      next
+    end
+    puts 'test final result'
+    puts result
+    exit result
+    
+
+  end
+    
 
   desc 'Publish site to GitHub Pages from Travis'
   task :deploy do
@@ -58,16 +86,22 @@ namespace 'travis' do
       f.write("https://#{ENV['GH_TOKEN']}:x-oauth-basic@github.com")
     end
 
+    if ENV['TRAVIS_BRANCH'] == 'master'
+      REPORT_BRANCH = 'report_master'
+    end
+
     puts "Report from #{SOURCE_BRANCH} to #{REPORT_BRANCH} add files to 'tests/galen/reports/all'"
         system "git config --global user.email 'de.gratnik@gmail.com'"
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
         system "git add tests/galen"
-        system "git commit -a -m 'Auto-Report from Travis'"
+        system "git add tests/serenity"
+        system "git commit --allow-empty  --amend -m 'Auto-Report from Travis #{Time.now.utc.to_s}'"
         system "git checkout -b #{REPORT_BRANCH}"
     reported = system "git push -u -f origin #{REPORT_BRANCH}"
 
     puts "Reported: #{reported}"
+    puts "Reported-time(at UTC=+0000): #{Time.now.utc.to_s}"
 
     File.delete '.git/credentials'
 

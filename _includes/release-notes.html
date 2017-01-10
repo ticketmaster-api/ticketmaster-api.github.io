@@ -1,0 +1,54 @@
+<!--release-notes(or changelog)-->
+{% assign files = site.pages %}
+
+<div class="article">
+{% for file in files reversed %}
+    {% if file.categories[2] == 'releaseNotes' %}
+    {%comment%}<!--if page static md-->{%endcomment%}
+        {% if page.categories[1] == file.categories[3] %}
+        {%comment%}<!--apiname check-->{%endcomment%}
+            {% if page.categories[2] == file.categories[4] or file.categories[4] == 'v1' %}
+                {% include partials/changelog-concrete-apis-render.html %}
+            {% endif %}
+        {% endif %}
+
+
+        {%if page.categories[1] == 'generated'%}<!--{%comment%}if page generated{%endcomment%}-->
+            {%if page.categories[2] == file.categories[3] or file.categories[3] == 'v1' %}
+            {%comment%}<!--apiname check-->{%endcomment%}
+
+                {%if page.categories[3] == file.categories[4]%}
+                {%comment%}<!--version check-->{%endcomment%}
+                    {% include partials/changelog-concrete-apis-render.html %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+    {% endif %}
+{% endfor %}
+</div>
+
+<!--faq-->
+<div class="article faq-api">
+{% for file in files %}
+
+    {% if 'faq-api' == file.categories[0] and file.content.size > 1 and file.questions and file.title %}
+        {% if page.categories[1] == file.categories[1]%}<!--{%comment%}if page static md{%endcomment%}-->
+        {%comment%}<!--to check version: {% if page.categories[2] == file.categories[2] %}version correct: {{file.categories[2]}}{% endif %}-->{%endcomment%}
+            {% if file.questions and file.title and file.titleId and file.content%}
+                {% include partials/faq-concrete-apis-render.html %}
+            {% endif %}
+        {% endif %}
+
+        {% if 'generated' == page.categories[1] %}<!--{%comment%}if page generated from JSON{%endcomment%}-->
+            {% if page.categories[2] == file.categories[1]%}
+        {%comment%}<!--to check version: {% if page.categories[3] == file.categories[2] %}version correct: {{file.categories[2]}}{% endif %}-->{%endcomment%}
+                {% if file.questions and file.title and file.titleId and file.content%}
+                    {% include partials/faq-concrete-apis-render.html %}
+                {% endif %}
+            {%endif%}
+        {%endif%}
+    {% endif %}
+
+{% endfor %}
+</div>

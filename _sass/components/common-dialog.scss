@@ -21,6 +21,7 @@
         height: 24px;
         width: 24px;
         z-index: 9999;
+        opacity: 1;
         &:before,
         &:after {
           position: absolute;
@@ -58,6 +59,7 @@
 
     .modal-body {
       @include clearfix;
+      text-align: left;
       textarea {
         resize: none;
       }
@@ -67,23 +69,29 @@
       border: none;
       margin-bottom: 38px;
       padding: 10px 29px;
-      .btn-submit {
-        width: 165px;
-        height: 50px;
+    }
+
+    .btn-submit {
+      width: 165px;
+      height: 50px;
+      color: $white;
+      font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+      text-transform: uppercase;
+      background-color: $p1;
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
+        text-decoration: none;
+        background-color: $p1b;
         color: $white;
-        font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
-        text-transform: uppercase;
-        background-color: $p1;
-        &:hover,
-        &:focus,
-        &:active {
-          outline: none;
-          text-decoration: none;
-          background-color: $p1b;
-          color: $white;
-        }
+      }
+      &[disabled]{
+        background-color: $n3;
       }
     }
+
+
   }
 
   &-sm {

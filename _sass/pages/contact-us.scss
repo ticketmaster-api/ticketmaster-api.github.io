@@ -23,6 +23,7 @@
       }
     }
     textarea {
+      @include transition(0.35);
       height: 96px;
       resize: vertical;
     }
@@ -32,11 +33,13 @@
       font-family: $font-h2;
       text-transform: uppercase;
       &:hover,
-      &:focus,
       &:active {
         outline: none;
         text-decoration: none;
         background-color: $p1b;
+      }
+      &[disabled]{
+      background-color: $n3;
       }
     }
   }
@@ -69,14 +72,4 @@
       width: 70%;
     }
   }
-  .message-green {
-    margin: 0;
-    padding: 0;
-    color: $apple-green;
-    display: none;
-    font-weight: normal;
-    font-family: $font-bold-p;
-  }
-
-
 }

@@ -3,20 +3,40 @@
   position: relative;
   margin-bottom: 24px;
 
-  &:after {
+  &__arrow{
     content: '';
     position: absolute;
     top: 50%;
-    right: 30px;
+    right: 16px;
     width: 15px;
     height: 10px;
     margin-top: -5px;
-    background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+    cursor: pointer;
+
+    &:before,
+    &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      @include transition(opacity 0.2s ease-in-out);
+    }
+
+    &:before{
+      background: url("/assets/controls/ic-shevron-down-grey.svg") no-repeat;
+      opacity: 0;
+    }
+
+    &:after{
+      background: url("/assets/controls/ic-shevron-down.svg") no-repeat;
+    }
   }
 
   @media (min-width: 767px){
     &-opened {
-      &:after {
+      .custom_select__arrow {
         @include rotate(180deg)
       }
     }
@@ -45,16 +65,35 @@
     padding: 12px 0;
     cursor: pointer;
     list-style: none;
+    position: relative;
     @include transition(color 0.1s ease);
     &:hover,
     &-active{
       color: $blue;
+    }
+    p {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 80px;
+      margin: 0;
+    }
+    span {
+      position: absolute;
+      right: 0;
+      height: $base-margin*2;
+      display: block;
+      padding: 12px 0;
+      top: 0;
     }
   }
 
   &__placeholder {
     margin-bottom: 0;
     cursor: pointer;
+    padding-right: 32px;
+    @include transition(opacity 0.2s ease-in-out);
     @media (max-width: 767px){
       display: none;
     }
@@ -63,6 +102,8 @@
   &__field {
     margin-bottom: 0;
     padding-right: 50px;
+    @include transition(opacity 0.2s ease-in-out);
+
     @media (min-width: 767px){
       // make select invisible
       border: 0 !important;
@@ -73,6 +114,30 @@
       padding: 0 !important;
       position: absolute !important;
       width: 1px !important;
+    }
+
+    &[disabled]{
+      opacity: 0.5;
+      cursor: default;
+      &+.custom_select__placeholder{
+        opacity: 0.5;
+        cursor: default;
+        &:focus{
+          border-color: #ccc;
+        }
+        &+.custom_select__list{
+          display: none!important;
+          &+.custom_select__arrow{
+            @include rotate(0deg);
+            &:before{
+              opacity: 0.5;
+            }
+            &:after{
+              opacity: 0;
+            }
+          }
+        }
+      }
     }
   }
 

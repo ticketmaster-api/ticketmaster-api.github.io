@@ -6,6 +6,7 @@
             test: true,
             menuDropdown: $('#menu-dropdown'),
             menuBtn: $('#menu-btn'),
+            menuBtnFixed: $('#menu-btn-fixed'),
             searchBtn: $('#search'),
             searchAlert: $('#search-alert'),
             searchBox: $("#cse-search-box"),
@@ -31,7 +32,7 @@
             hide: function(){
                 var self = this;
                 setTimeout(function(){
-                    self.menuBtn.removeClass('tm-close')
+                    self.menuBtn.removeClass('tm-close');
                     if (self.hasBackground){
                         self.menuBtn.addClass('white');
                         self.searchBtn.addClass('white');
@@ -44,6 +45,12 @@
                 var self = this;
                 self.menuBtn.on("click", function(){
                     if (!self.menuBtn.hasClass("tm-close"))
+                        self.show();
+                    else
+                        self.hide();
+                });
+                self.menuBtnFixed.on("click", function(){
+                    if (!self.menuBtnFixed.hasClass("tm-close"))
                         self.show();
                     else
                         self.hide();
@@ -77,11 +84,11 @@
                 //using document click listener since mobile iOS touch devices do not understand blur event
                 $(document).on("click touchend", function (e) {
                     var menuCloseBtn = $(".tm-close");
-                    if (!self.menuDropdown.is(e.target)
-                        && self.menuDropdown.has(e.target).length === 0
-                        && !menuCloseBtn.is(e.target)
-                        && menuCloseBtn.has(e.target).length === 0
-                        && menuCloseBtn.length) {
+                    if (!self.menuDropdown.is(e.target) &&
+                      self.menuDropdown.has(e.target).length === 0 &&
+                      !menuCloseBtn.is(e.target) &&
+                      menuCloseBtn.has(e.target).length === 0 &&
+                      menuCloseBtn.length) {
                         self.hide();
                     }
                 });
@@ -90,7 +97,7 @@
 
                 var smopen  = false;
                 $(".top-bar").on("click", "#search .search-button", function (e) {
-                  if (self.searchBtn.hasClass("smopen") && smopen == true) {
+                  if (self.searchBtn.hasClass("smopen") && smopen === true) {
                       self.searchBtn.removeClass("smopen");
                       self.searchBox.removeClass("sopen");
                       smopen  = false;
@@ -104,7 +111,7 @@
                 });
 
                 $("input.q").blur(function(e) {
-                    if (smopen == true) {
+                    if (smopen === true) {
                         setTimeout(function () {
                             self.searchBox.removeClass("sopen");
                             self.searchBtn.removeClass("smopen");

@@ -1,0 +1,16 @@
+<li><a href="{% if _id %}{{ _id | prepend: '#'}}{% else %}{{ method[1].summary
+                        | lstrip
+                        | downcase
+                        | replace: ' ' , '-'
+                        | replace: '[' , '-'
+                        | replace: ']' , '-'
+                        | replace: '/' , '-'
+                        | replace: '\' , '-'
+                        | replace: '(' , '-'
+                        | replace: ')' , '-'
+                        | prepend: '#'
+                        | append: '-'
+                        | append: indexLoop
+                        | append: '-'
+                        | append: page.categories[3] }}{% endif %}"
+       style = "text-transform: capitalize;" >{% if _title %}{{ _title }}{% else %}{{ method[1].summary | lstrip }}{% endif %}</a></li>

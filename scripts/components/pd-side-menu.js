@@ -56,14 +56,23 @@
                 windowScrollTop = $(window).scrollTop();
 
             //fix side menu position on scroll
-            if (windowScrollTop > offset) {
+            asideBlock.addClass("is-fixed");
+            if(windowScrollTop < 1){
+                scrollMenu("top");
+            }
+
+            /*conditions sb-menu is not fixed*/
+            /*
+            if (windowScrollTop > offset ) {
                 if (!asideBlock.hasClass("is-fixed")){
                     asideBlock.addClass("is-fixed");
                     scrollMenu("top");
                 }
             } else {
-                asideBlock.removeClass("is-fixed");
-            }
+                //asideBlock.removeClass("is-fixed");
+            }*/
+
+
 
             //set menu position to absolute when footer is reached
             if (screenWidth >= 1200 || force){
@@ -72,15 +81,15 @@
                         belowFooter = true;
                         menuWraper.addClass("below-footer").css({
                             'position': 'absolute',
-                            'top': $('.maincontent').parent().height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44,
-                            'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44,
+                            'top': $('.maincontent').parent().height() - $(menu).height() - $('#aside-heading').height() - /*margins*/44 - /*top margin*/72,
+                            'height': $(menu).height() + $('#aside-heading').height() + /*margins*/44 + /*top margin + top menu*/145,
                             'width': 100 + '%'
                         });
                         scrollMenu("bottom");
                     }
                 }
 
-                if (windowScrollTop <= menuWraper.offset().top){
+                if (windowScrollTop <= (menuWraper.offset().top - /*top margin + top menu*/145) ){
                     belowFooter = false;
                     menuWraper.removeClass("below-footer").css({
                         'position': '',
@@ -143,10 +152,10 @@
         $(document).on("touchend click", function (e) {
             if (dragging)
                 return;
-            if (!asideBlock.is(e.target)
-                && asideBlock.has(e.target).length === 0
-                && screenWidth < 1200) {
-                hideMenu();
+            if (!asideBlock.is(e.target) &&
+                asideBlock.has(e.target).length === 0 &&
+                screenWidth < 1200) {
+                    hideMenu();
             }
         });
 
@@ -176,10 +185,10 @@
             if (screenWidth >= 768 && asideBlock.hasClass('is-fixed')){
                 var e = event || window.event;  // Standard or IE event object
 
-                var deltaX = e.deltaX * -30 ||  // wheel event
+                var deltaX = e.deltaX * -0.9 ||  // wheel event
                     e.wheelDeltaX / 4 ||  // mousewheel
                     0;    // property not defined
-                var deltaY = e.deltaY * -30 ||  // wheel event
+                var deltaY = e.deltaY * -0.9 ||  // wheel event
                     e.wheelDeltaY / 4 ||  // mousewheel event in Webkit
                     (e.wheelDeltaY === undefined &&      // if there is no 2D property then
                     e.wheelDelta / 4) ||  // use the 1D wheel property
@@ -190,9 +199,14 @@
                     deltaX /= 30;
                     deltaY /= 30;
                 }
-                e.currentTarget.scrollTop -= deltaY;
-                if (isFirefox && e.type !== "DOMMouseScroll")
+
+                if (navigator.userAgent.indexOf("Firefox") != -1 && e.type !== "DOMMouseScroll") {
                     menu.removeEventListener("DOMMouseScroll", wheelHandler, false);
+                    deltaY = e.deltaY * -30;
+                    e.currentTarget.scrollTop -= deltaY;
+                }else {
+                    e.currentTarget.scrollTop -= deltaY;
+                }
 
                 if (e.preventDefault) e.preventDefault();
                 if (e.stopPropagation) e.stopPropagation();

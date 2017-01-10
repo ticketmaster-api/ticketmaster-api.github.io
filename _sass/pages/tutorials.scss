@@ -1,0 +1,157 @@
+.single-column.tutorials p.lead {
+  max-width: 800px;
+}
+
+.single-column.tutorials #main-block {
+  @media #{$min-1200} {
+    padding-right: 40px;
+  }
+}
+
+.tutorials-article {
+  max-width: 720px;
+  overflow: hidden;
+  margin: 0 auto 47px -15px;
+  clear: both;
+  @media #{$max-768} {
+    margin: 0 -15px 47px -15px;
+  }
+  .image {
+    width: 264px;
+    height: 216px;
+    float: left;
+    margin-top: 5px;
+    @media #{$max-768} {
+      display: none;
+    }
+  }
+  .announcement {
+    width: 60%;
+    //height: 158px;
+    float: left;
+    padding: 0 0 0 28px;
+    overflow: hidden;
+    @media #{$max-1200} {
+      width: 56%;
+    }
+    @media #{$max-768} {
+      width: 100%;
+      height: auto;
+      margin-left: 0;
+      margin-bottom: 24px;
+      padding-left: 0;
+    }
+    a {
+      font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+      font-size: 1em;
+      color: #414141;
+      line-height: 32px;
+      display: block;
+      clear: both;
+      &.button-blue {
+        color: $white;
+        margin-top: $base-margin + $base-margin/2;
+        margin-bottom: $base-margin - 10;
+        width: 165px;
+        text-transform: uppercase;
+        padding: 8px 26px;
+        border: none;
+				text-align: center;
+        &:visited {
+          color: $white;
+        }
+      }
+    }
+    h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+    p {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .tags {
+    //float: left;
+    margin-bottom: 24px;
+    //margin-left: 27px;
+    @media #{$max-768} {
+      margin-left: 0;
+    }
+    button.tag-btn {
+      color: $p1;
+      padding: 1px 8px;
+      border: 1px solid rgba(0, 155, 222, .2);
+      border-radius: 2px;
+      background-color: $white;
+      float: left;
+      margin-right: 20px;
+      margin-top: $base-margin/2;
+      outline: none;
+      font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+      cursor: default;
+      &:hover,
+      &.active,
+      &.active:hover,
+      &:focus {
+        background: $p1;
+        color: $white;
+        cursor: inherit;
+      }
+    }
+  }
+}
+
+.single-column.article {
+  p {
+    width: 100%;
+    @media #{$max-1200} {
+      width: 100%;
+    }
+  }
+}
+
+.documentation .content .article-wrapper .code-article-wrapper {
+  margin-top: 20px;
+}
+
+.documentation .content .article-wrapper .code-article-wrapper .tab-content {
+  position: relative;
+}
+
+.documentation .content .article-wrapper .code-article-wrapper .tab-content pre {
+  overflow-x: auto;
+  padding: 15px 20px;
+  margin-bottom: 0;
+  max-height: 320px;
+}
+
+.documentation .content .article-wrapper .code-article-wrapper .tab-content pre code {
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+
+.tutorials {
+  .tag-menu-btn.active{
+    text-decoration: none;
+    color: $p1a;
+  }
+  .window-title {
+    display: none;
+  }
+  .copy-btn {
+    right:70px;
+  }
+  .raw-btn, .raw-btn-w {
+    right: 35px;
+  }
+  .screen-btn {
+    right: 0;
+  }
+}
+
+.modal-content .modal-header .modal-title {
+  font-size: 36px;
+  text-align: left;
+}

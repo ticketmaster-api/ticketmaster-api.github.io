@@ -3,6 +3,7 @@ _site
 .idea
 .sass-cache
 .jekyll-metadata
+.vscode/
 
 tests/galen/reports-local
 
@@ -15,3 +16,6 @@ npm-debug.log
 .DS_Store
 Gemfile.lock
 
+# Ignore Local automation files
+/tests/serenity/.idea
+/tests/serenity/*.iml

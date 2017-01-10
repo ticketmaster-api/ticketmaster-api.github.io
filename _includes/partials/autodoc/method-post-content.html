@@ -1,0 +1,19 @@
+{% if _reqres %}
+<div class="article">
+    {% assign resreq = _reqres | prepend: 'apis-code-examples/' %}
+    <blockquote class="reqres" style="margin-right: 0px;">
+        <p><a href="#req">Request</a>
+            <a href="#res">Response</a></p>
+    </blockquote>
+    {% include {{resreq}} %}
+</div>
+{% endif %}
+
+<!--{% comment %} Add post content if it defined in metadata.json {% endcomment %}-->
+{% if _postContent %}
+{% assign postContent = _postContent | prepend: 'apis-code-examples/' %}
+<div class="article">
+    {% include {{ postContent}} %}
+</div>
+{% endif %}
+

@@ -1,0 +1,42 @@
+{
+    "before":
+    {
+        "include": "discovery-api/before-api.md"
+    },
+    "after":
+    {
+        "include": "discovery-api/after-api.md"
+    },
+    "method": [
+        {
+            "pathsParent":"/discovery/v2/venues",
+            "id":"assets",
+            "title":"venues(test json)"
+        },
+        {
+            "pathsParent":"/discovery/v2/attractions",
+            "id":"search-attractions",
+            "title":"Search Attractions(test json)",
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md",
+            "preContent":"swagger/pre-content-example.md",
+            "postContent":"swagger/post-content-example.md",
+            "HAL": true
+        },
+        {
+            "pathsParent":"/discovery/v2/events",
+            "id":"bulk-search",
+            "title":"Search(events)",
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md",
+            "HAL": true
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications",
+            "id":"attraction-details",
+            "title":"search(classifications)",
+            "reqres": "swagger/reqres-search-events.md",
+            "codePath":"swagger/search-events.md"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{% assign files = site.pages | sort: 'title' , 'last'%}
+
+{%comment%}<!--if generated pages from JSON-->{%endcomment%}
+{% if page.categories[1] == 'generated'%}
+    {% assign apiName = page.categories[2]%}
+    {% assign apiVersion = page.categories[3]%}
+{%else%}
+    {% assign apiName = page.categories[1]%}
+    {% assign apiVersion = page.categories[2]%}
+{% endif %}
+
+{% for file in files %}
+    {% if file.categories[2] == 'releaseNotes' and file.categories[3] == apiName %}
+        {% if file.categories[4] == apiVersion or file.categories[4] == 'v1'%}
+            {% if thisCategory == file.categories[3]%}{%else%}
+                <li><a href="{{ file.title | lstrip | downcase | prepend: '#changelog-' | replace: ' ' , '-' | replace: '(' , '-' | replace: ')' , '-' }}">Changelog</a></li>
+                {% assign apiName = false %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {%assign thisCategory = file.categories[3]%}
+{% endfor %}

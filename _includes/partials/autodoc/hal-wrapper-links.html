@@ -1,0 +1,49 @@
+<!--recieve params from method.html-->
+{% if isMultiLink == true%}
+<li><code class="highlighter-rouge">_links</code>(object) - links to data sets
+    <ul>
+        <li><code class="highlighter-rouge">self</code>(object) - link to this data set
+            <ul>
+                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
+            </ul>
+        </li>
+
+
+        {% for _link_HAL in _HAL.links %}
+        {% for _embed_HAL in _HAL.embed %}
+            {% assign methodNameLink = _link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
+            {% assign methodNameEmbed = _embed_HAL.embed | replace : "#/","" | replace : "/"," " | split: " " %}
+            {% assign isAddLink = _embed_HAL.link %}
+            {% if methodNameLink == methodNameEmbed and isAddLink%}
+
+            <li><code class="highlighter-rouge">{% if methodNameLink[1] != schemaSplit[1] %}{{_embed_HAL.as}}{%else%}self{%endif%}</code>{% if methodNameLink[1] != schemaSplit[1] %}(array){%else%}(object){%endif%} - link to this data set.
+                <ul>
+                    <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code>
+                        <ul>
+                            <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                            <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            {%endif%}
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</li>
+{% endif %}
+
+{% if isSingleLink == true%}
+<li><code class="highlighter-rouge">_links</code>(object) - links to data sets
+    <ul>
+        <li><code class="highlighter-rouge">self</code>(object) - link to this data set
+            <ul>
+                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
+                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
+            </ul>
+        </li>
+    </ul>
+</li>
+{% endif %}

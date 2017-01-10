@@ -11,18 +11,28 @@ layout: default
             <div class="col-xs-12 col-sm-6 col-lg-3 has-bg" id="aside-block">
                 <div class="wrapper-aside-menu">
                     <h3 class="menu-header" id="aside-heading">
-                        <a href="/products-and-docs/"></a>Products &amp; Docs</a>
+                        Products &amp; Docs
                         <span class="expanded" id="side-menu-btn"></span>
                     </h3>
                     {% include pd-side-menu.html %}
                 </div>
             </div>
 
+
             <div class="col-xs-12 col-lg-9" id="main-block">
                 <div class="content" style="display: block;">
-                    {{ content }}
+
+                    {% if page.categories[1] == "generated" %}
+                        {% include swagger.html %}
+                    {% else %}
+                        {{ content }}
+                    {% endif %}
+
+                    {%include release-notes.html%}
                 </div>
+				<div id="disqus_thread"></div>
             </div>
+
         </div>
     </div>
 
@@ -34,8 +44,8 @@ layout: default
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
-                <h4 id="modal-title" class="modal-title"></h4>
+                <button aria-label="Close" data-dismiss="modal" class="close" type="button"></button>
+                <h2 id="modal-title" class="modal-title"></h2>
             </div>
             <div class="modal-body">
                 <div class="highlight"></div>
@@ -45,20 +55,46 @@ layout: default
     <textarea name="copy-clip" id="copy-clip" class="copy-clip"></textarea>
 </div>
 
-<script src="{{site.baseurl }}/scripts/components/parser.js"></script>
 <script src="{{"/scripts/vendors/clipboard.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/clipboard-fallback.js" | prepend: site.baseurl }}"></script>
+<script src="{{site.baseurl }}/scripts/components/parser.js"></script>
 <script src="{{"/scripts/vendors/user-scroll-disabler.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/request-response.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/components/table-collapse.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/vendors/jstree.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{"/scripts/components/list-collapse.js" | prepend: site.baseurl }}"></script>
 
-
 <script>
-    new Clipboard('.copy-btn');
-    if(sessionStorage.getItem('tk-api-key') !== null){
-        document.body.innerHTML = document.body.innerHTML.replace(/\{apikey\}/g, "apikey="+sessionStorage.getItem('tk-api-key'));
+	var disqus_config = function () {
+	this.page.url = document.URL || "http://developer.ticketmaster.com/";
+	this.page.identifier = "{{page.title}}";
+	};
+	(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+
+	s.src = '//ticketmasterapi.disqus.com/embed.js';
+
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+})();
+</script>
+
+{% if page.categories contains "replace_apikey" %}
+<script src="{{site.baseurl }}/scripts/components/api-key-service.js"></script>
+<script>
+    function replaceText(selector, text, newText, flags) {
+        var matcher = new RegExp(text, flags);
+        $(selector).each(function () {
+            var $this = $(this);
+            if (!$this.children().length)
+                $this.text($this.text().replace(matcher, newText));
+        });
+    }
+
+    var userKey = apiKeyService.checkApiKeyCookie();
+    if(userKey) {
+        replaceText('*', '\{apikey\}', userKey, 'g');
     }
 </script>
+{% endif %}

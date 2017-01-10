@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="10px" height="15px" viewBox="0 0 10 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: sketchtool 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_shevron_right</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="-Stylesheet-+-Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-162.000000, -605.000000)" fill="#009CDE">
+            <g id="ic_shevron_right" sketch:type="MSLayerGroup" transform="translate(162.000000, 605.000000)">
+                <path d="M11.6473214,5.03125 L5.02232143,11.6473214 C4.90922563,11.7604172 4.77529839,11.8169643 4.62053571,11.8169643 C4.46577304,11.8169643 4.3318458,11.7604172 4.21875,11.6473214 L-2.40625,5.03125 C-2.5193458,4.9181542 -2.57589286,4.78273888 -2.57589286,4.625 C-2.57589286,4.46726112 -2.5193458,4.3318458 -2.40625,4.21875 L-0.924107143,2.74553571 C-0.811011339,2.63243991 -0.677084107,2.57589286 -0.522321429,2.57589286 C-0.36755875,2.57589286 -0.233631518,2.63243991 -0.120535714,2.74553571 L4.62053571,7.48660714 L9.36160714,2.74553571 C9.47470295,2.63243991 9.60863018,2.57589286 9.76339286,2.57589286 C9.91815554,2.57589286 10.0520828,2.63243991 10.1651786,2.74553571 L11.6473214,4.21875 C11.7604172,4.3318458 11.8169643,4.46726112 11.8169643,4.625 C11.8169643,4.78273888 11.7604172,4.9181542 11.6473214,5.03125 L11.6473214,5.03125 Z" sketch:type="MSShapeGroup" transform="translate(4.620536, 7.196429) rotate(-90.000000) translate(-4.620536, -7.196429) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

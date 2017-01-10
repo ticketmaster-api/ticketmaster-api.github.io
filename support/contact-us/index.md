@@ -12,13 +12,13 @@ keywords: Contact us
 # Contact us
 
 {: .lead .col-xs-12 .col-sm-8}
-Contact us, fixie tote bag ethnic keytar. Neutra vinyl American Apparel kale chips tofu art party, cardigan raw denim quinoa.
+We'd love to hear from you. Please let us know how we can help!
 
 {% capture social %}
 {: .gray .base-margin-top .text-center}
 ### We are social!
 
-* [![Twitter](../../../assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
+* [![Twitter](../../../assets/img/ic-twitter.svg)](https://twitter.com/tmTech)
 * [![Facebook](../../../assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
 * [![Medium](../../../assets/img/ic-medium.svg)](https://medium.com/ticketmaster-tech)
 {% endcapture %}
@@ -62,7 +62,7 @@ Attn: Trademark Department, Legal 
         <option value="losAngeles" data-ltd="34.052235" data-lng="-118.243683" data-tooltip="7060 Hollywood Blvd, Los Angeles, California, 90028, US" selected>Los Angeles</option>
         <option value="phoenix" data-ltd="33.533482" data-lng="-112.107254" data-tooltip="1375 N Scottsdale Rd, Scottsdale, AZ 85257, US">Phoenix</option>        
       </select>
-      <input class="custom_select__placeholder" type="text" value="Los Angeles" readonly="">      
+      <input class="custom_select__placeholder" type="text" value="Los Angeles" readonly="" tabindex="6">      
     </div>
 </div>
 
@@ -80,7 +80,7 @@ Attn: Trademark Department, Legal 
 <div markdown="1">
 {{formheader}}
 <div class="col-xs-12 col-sm-8 contact-form-wrapper">
-<form accept-charset="UTF-8" action="#" method="POST" class="js_contact_form">    
+<form accept-charset="UTF-8" action="#" method='POST' class="js_contact_form">
     <div class="col-sm-6">
         <label for="first-name">Your name</label>
         <input type="text" id="first-name" name="yourName" maxlength="255" placeholder="" tabindex="1" required>
@@ -92,13 +92,13 @@ Attn: Trademark Department, Legal 
     <div class="col-sm-12">
         <label for="subject">Subject</label>
         <div class="js_custom_select custom_select">
-          <select required="" class="custom_select__field" name="subject" id="subject">
+          <select required="" class="custom_select__field" name="subject" id="subject" tabindex="-1">
             <option value="Developer Relations">Developer Relations</option>
             <option value="Business Opportunities and Partnerships">Business Opportunities and Partnerships</option>
             <option value="API Bugs and Questions">API Bugs and Questions</option>
             <option value="Join Ticketmaster!">Join Ticketmaster!</option>
           </select>
-          <input class="custom_select__placeholder" type="text" value="Developer Relations" readonly="">
+          <input class="custom_select__placeholder" type="text" value="Developer Relations" readonly="" tabindex="3">
           <ul class="custom_select__list">
             <li class="custom_select__item custom_select__item-active" data-value="Developer Relations">Developer Relations</li>
             <li class="custom_select__item" data-value="Business Opportunities and Partnerships">Business Opportunities and Partnerships</li>
@@ -107,13 +107,13 @@ Attn: Trademark Department, Legal 
           </ul>
         </div>
     </div>
-       
     <div class="col-sm-12">
         <label for="descriptions">Descriptions</label>
-        <textarea name="descriptions" id="message-detail-text" tabindex="3" required></textarea>
+        <textarea name="descriptions" id="message-detail-text" tabindex="4" required></textarea>
     </div>
     <div class="col-sm-12">
-        <p id="message-success" class="message-green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-success" class="text-overflow-message text-overflow-message__green" style="display:none">Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-error" class="text-overflow-message text-overflow-message__red" style="display:none">The maximum length of description can be 3000 characters.</p>
     </div>
     <div class="col-sm-4">
         <button type="submit" class="button-blue">SEND</button>
@@ -140,12 +140,23 @@ Attn: Trademark Department, Legal 
 
 <!--contact us form -->
 <script>
-var $contactForm = $('.js_contact_form');
+var $contactForm = $('.js_contact_form'),
+    $textAreaDescription = $('#message-detail-text');
+
     $contactForm.submit(function(e){
+        var charCount = $textAreaDescription.val().length;
+
         e.preventDefault();
+        $('button', $contactForm).prop('disabled',true);
+
+        if(3000 <= charCount) {
+          showMsgError('#message-error', 4000 , charCount);
+          return false;
+        }
+
         $.ajax({
           dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
+          url: "https://getsimpleform.com/messages/ajax?form_api_token=d9878ccc8e22c7253d057015617f82cd",
           data: $contactForm.serialize() 
         }).done(function() {
           //callback which can be used to show a thank you message
@@ -156,6 +167,21 @@ var $contactForm = $('.js_contact_form');
     }); 
     function showMsgSuccess(id, delay){
         $(id).slideDown(400).delay( delay ).slideUp(200);
+        $contactForm.trigger("reset");
+        $('.js_custom_select',$contactForm).trigger("custom-reset");
+        //$textAreaDescription.css('height',''); //reset height of textarea
+        $('button', $contactForm).prop('disabled',false);
+    }
+    function showMsgError(id, delay, charCount){
+        var slideUpSpeed = 200;
+        $(id).append('<span id="contact-char-count"> Current count is '+charCount+'</span>')
+        $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
+        setTimeout(
+          function(){
+              $('#contact-char-count').remove();
+              $('button', $contactForm).prop('disabled',false);
+          },
+          delay + slideUpSpeed*3);
     }
 </script>
 

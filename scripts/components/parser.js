@@ -14,7 +14,43 @@
         }
         /*Normalize END*/
 
-        var tabsCount = 0;
+        var tabsCount = 0,
+            drawHideCodeBtn = false,
+            clipboard = new Clipboard('.copy-btn'),
+            clipboardFs = new Clipboard('.copy-btn-fs'),
+            $modal = $(".fs-modal"),
+            $modalBody = $(".modal-body",$modal);
+
+        if(clipboardFs) {
+            $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+        }
+
+        function toggleCodePanel(targetElement){
+            var $textBtns = $('.toggle-code-btn'),
+                headers = $('.underline'),
+                leftPanels = $('.left-wrapper'),
+                codePanels = $(".tab-panel-offset"),
+                expandCssClass = 'expand',
+                collapseCssClass = 'collapse-code-column',
+                textHide = 'HIDE CODE',
+                textShow = 'SHOW CODE',
+                excludeElemList = leftPanels.contents('.lead'); //exclude collapse element if it contain '.lead'
+
+            if( codePanels.hasClass('collapse-code-column') ){
+                codePanels.removeClass(collapseCssClass);
+                leftPanels.removeClass(expandCssClass);
+                headers.removeClass(expandCssClass);
+                $textBtns.html(textHide + '<span></span>');
+            }else {
+                codePanels.addClass(collapseCssClass);
+                leftPanels.addClass(expandCssClass);
+                headers.addClass(expandCssClass);
+                $textBtns.html(textShow + '<span class="icon-arrow-down"></span>');
+            }
+            excludeElemList.parent('.left-wrapper').removeClass(expandCssClass);
+
+            $(window).trigger('resize');// update tables size
+        }
 
         main.find('.article').each(
             function () {
@@ -23,30 +59,38 @@
             });
 
         main.find('.aside').each(function () {
-            var me = $(this);
-            var group = me.nextUntil('.article').addBack();
-            var groupLeft = me.parent().children().first().nextUntil('.aside').addBack();
-            var firstElemGroupLeft = groupLeft.parent().children().first();
-            var consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#");
+            var me = $(this),
+                group = me.nextUntil('.article').addBack(),
+                groupLeft = me.parent().children().first().nextUntil('.aside').addBack(),
+                firstElemGroupLeft = groupLeft.parent().children().first(),
+                consoleBtn = $(document.createElement("a")).addClass("console-btn").attr("href", "#"),
+                toggleCodeBtn = $(document.createElement("button")).addClass("toggle-code-btn scale-on-hover");
 
             group.wrapAll('<div class="aside-wrapper"></div>');
 
             groupLeft.wrapAll('<div class="left-wrapper"></div>');
 
             //add link to console button
-            if (firstElemGroupLeft.hasClass("console-link"))
-                firstElemGroupLeft.append(consoleBtn);
+            if (firstElemGroupLeft.hasClass("console-link")){
+                //firstElemGroupLeft.append(consoleBtn);
+            }
 
             //add underline
             if (me.hasClass('lang-selector')) {
 
                 firstElemGroupLeft.addClass('underline');
 
+                if( !drawHideCodeBtn ){
+                    toggleCodeBtn.html('HIDE CODE' + '<span></span>');
+                    $('.content').append(toggleCodeBtn);
+                    drawHideCodeBtn = true;
+                }
+
                 //move first element to class="aside-wrapper"
                 firstElemGroupLeft.prependTo( firstElemGroupLeft.parent().parent() );
 
                 /*parse tabs*/
-                me.children().children().first().addClass('active')//set first button active
+                me.children().children().first().addClass('active');//set first button active
 
                 tabsCount = $('.aside-wrapper blockquote a').first().nextUntil('p').length+1;
 
@@ -54,7 +98,7 @@
                   .addClass('tab-content')
                   .addClass(function (index) {
                     if (index > tabsCount) {
-                        index = [index % (tabsCount + 1)]
+                        index = [index % (tabsCount + 1)];
                     }
                     return "tab-" + index;
                   }).each(function(){
@@ -96,10 +140,10 @@
                             .end()
                             .html();
 
-                        $(".fs-modal #modal-title").html(title);
-                        $(".fs-modal .modal-body").html(content);
+                        $("#modal-title", $modal).html(title);
+                        $modalBody.html(content);
 
-                        $(".fs-modal .modal-body").delegate(".lang-selector a", "click", function() {
+                        $modalBody.delegate(".lang-selector a", "click", function() {
                             $(".aside.lang-selector a").eq($(this).index()).click();
                             $(this).parent().children().removeClass("active");
                             $(this).addClass("active");
@@ -119,8 +163,7 @@
 
                     if(rawBtn.dataset !== undefined){
                         rawBtn.dataset.contentText = proxyItem_.textContent;
-                    }
-                    else{
+                    } else{
                         rawBtn.setAttribute("data-content-text", proxyItem_.textContent);
                     }
 
@@ -137,12 +180,6 @@
                         copyBtn.setAttribute("rel", "tooltip");
                         copyBtn.setAttribute("data-placement", "top");
                         copyBtn.setAttribute("data-original-title", "Copy to Clipboard");
-                        copyBtn.addEventListener("click", function () {
-                            this.classList.add("copied")
-                            window.setTimeout(function(){
-                                document.getElementsByClassName("copied")[0].classList.remove("copied");
-                            }, 2000);
-                        });
 
                     var html = this.outerHTML;
                     var proxyItem = document.createElement("div");
@@ -182,6 +219,9 @@
             }
         });
 
+        new ClipboardFallback(clipboard);
+        new ClipboardFallback(clipboardFs);
+
         $(".lang-selector a").click(function(event) {
             var currentButton =$(this);
             var allBtn = $(".lang-selector a[href*=" + currentButton.attr('href') + "]");
@@ -202,8 +242,6 @@
             $(this).parents().find('.active-lang').removeClass('open');
             $(this).parents().find('.lang-selector').removeClass('show');
             $(this).focus();
-
-
         });
 
         $(".console-btn").on("click", function(e){
@@ -213,14 +251,18 @@
             window.location.href = '/products-and-docs/apis/interactive-console' + urlParam;
         });
 
+        $(".toggle-code-btn").on("click", function(e){
+            e.preventDefault();
+            toggleCodePanel(this);
+        });
+
         // Lang selector submenu show
         $(".active-lang").on("click", function(e){
             $(this).next().addClass('show');
             if ( $(this).hasClass('open') ) {
-                $(this).removeClass('open');
-                $(this).next().removeClass('show');
-            }
-            else {
+                $(this).removeClass('open')
+                  .next().removeClass('show');
+            }else {
                 $(this).addClass('open');
             }
             $(this).next().focus();
@@ -235,40 +277,8 @@
             }, 127);
         });
 
-        // Modal Copy button click
-        $(".fs-modal .modal-body").on("click", ".copy-btn-fs", function() {
-            var copyBtn = this;
-            var content = copyBtn.dataset !== undefined ? this.dataset.clipboardText : copyBtn.getAttribute("data-clipboard-text");
-
-            if (window.clipboardData) {
-                window.clipboardData.setData("Text", content);
-            } else {
-
-                $('#copy-clip').html(content);
-
-                var copyTextarea = document.querySelector('.copy-clip');
-                copyTextarea.select();
-
-                try {
-                    var successful = document.execCommand('copy');
-                    var msg = successful ? 'successful' : 'unsuccessful';
-                    console.log('Copying text command was ' + msg);
-                } catch (err) {
-                    console.log('Oops, unable to copy');
-                }
-            }
-
-
-            $(this).addClass('copied').delay(2000).queue(function(){
-                $(this).removeClass('copied');
-            });
-
-            // $('#copy-clip').html('');
-
-        });
-
         // Modal Raw button click
-        $(".fs-modal .modal-body").on("click", ".raw-btn", function() {
+        $modalBody.on("click", ".raw-btn", function() {
             var rawBtn = this;
             var content = rawBtn.dataset !== undefined ? this.dataset.contentText : rawBtn.getAttribute("data-content-text");
             window.sessionStorage.setItem("content", content);
@@ -276,5 +286,5 @@
             win.focus();
         });
 
-    })
+    });
 })();

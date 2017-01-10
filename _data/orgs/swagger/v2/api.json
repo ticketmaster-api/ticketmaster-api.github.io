@@ -1,0 +1,1984 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Discovery API",
+    "version" : "v2",
+    "title" : "ticketmaster discovery api",
+    "contact" : {
+      "url" : "http://developer.ticketmaster.com/support/contact-us/"
+    }
+  },
+  "host" : "www.ticketmaster.com",
+  "basePath" : "/discovery/v2",
+  "paths" : {
+    "/discovery/v2/attractions" : {
+      "get" : {
+        "summary" : "Find attractions",
+        "description" : "Since 1.0.0",
+        "operationId" : "find",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryAttractionForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Attraction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/attractions/{id}" : {
+      "get" : {
+        "summary" : "Get attraction by id",
+        "description" : "Since 1.0.0",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the attraction",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Attraction"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications" : {
+      "get" : {
+        "summary" : "Find classifications",
+        "description" : "Since 2.0.0",
+        "operationId" : "find",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryClassificationForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Classification"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/genres/{id}" : {
+      "get" : {
+        "summary" : "Get Genres by id",
+        "description" : "Since 2.0.0",
+        "operationId" : "getGenre",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the genre",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Genre"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/segments/{id}" : {
+      "get" : {
+        "summary" : "Get Segments by id",
+        "description" : "Since 2.0.0",
+        "operationId" : "getSegment",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the segment",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Segment"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/subgenres/{id}" : {
+      "get" : {
+        "summary" : "Get Subgenres by id",
+        "description" : "Since 2.0.0",
+        "operationId" : "getSubgenre",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the subgenre",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Level"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/{id}" : {
+      "get" : {
+        "summary" : "Get classification by id",
+        "description" : "Since 2.0.0",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the classification",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Classification"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events" : {
+      "get" : {
+        "summary" : "Find events",
+        "description" : "Since 1.0.0",
+        "operationId" : "find",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryEventForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Event"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/{id}" : {
+      "get" : {
+        "summary" : "Get event by id",
+        "description" : "Since 1.0.0",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the event",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdEventForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Event"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/{id}/images" : {
+      "get" : {
+        "summary" : "Get event images only",
+        "description" : "Since 1.0.0",
+        "operationId" : "getImages",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the event",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Event"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues" : {
+      "get" : {
+        "summary" : "Find venues",
+        "description" : "Since 1.0.0",
+        "operationId" : "find",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryVenueForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Venue"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues/{id}" : {
+      "get" : {
+        "summary" : "Get venue by id",
+        "description" : "Since 1.0.0",
+        "operationId" : "get",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the venue",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DiscoveryIdForm"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Venue"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AccessDates" : {
+      "type" : "object",
+      "properties" : {
+        "startDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "since[1.0.0]||Event's start access time"
+        },
+        "startApproximate" : {
+          "type" : "boolean",
+          "description" : "since[1.0.0]||Boolean flag to indicate whether or not the access start date is approximated",
+          "default" : false
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "since[1.0.0]||Event's end access time"
+        },
+        "endApproximate" : {
+          "type" : "boolean",
+          "description" : "since[1.0.0]||Boolean flag to indicate whether or not the access end date is approximated",
+          "default" : false
+        }
+      },
+      "description" : "This class defines Event's Access Date on the Discovery API"
+    },
+    "Address" : {
+      "type" : "object",
+      "properties" : {
+        "line1" : {
+          "type" : "string",
+          "description" : "Address first line"
+        },
+        "line2" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Address second line"
+        }
+      },
+      "description" : "This class defines an Address on the Discovery/Publish API"
+    },
+    "Area" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        }
+      },
+      "description" : "This class defines an Area on the Discovery/Publish API"
+    },
+    "Attraction" : {
+      "type" : "object",
+      "required" : [ "id", "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "Type of the entity",
+          "enum" : [ "event venue attraction" ]
+        },
+        "extensions" : {
+          "position" : 101,
+          "description" : "Attraction's extensions",
+          "$ref" : "#/definitions/AttractionExtensions"
+        },
+        "id" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Unique id of the entity in the discovery API"
+        },
+        "locale" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Locale in which the content is returned"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        },
+        "description" : {
+          "type" : "string",
+          "position" : 20,
+          "description" : "Description's of the entity"
+        },
+        "additionalInfo" : {
+          "type" : "string",
+          "position" : 22,
+          "description" : "Additional information of the entity"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "URL of a web site detail page of the entity"
+        },
+        "images" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "Images of the entity",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Image"
+          }
+        },
+        "classifications" : {
+          "type" : "array",
+          "position" : 30,
+          "description" : "Attraction's classifications",
+          "items" : {
+            "$ref" : "#/definitions/Classification"
+          }
+        },
+        "relationships" : {
+          "type" : "array",
+          "position" : 70,
+          "description" : "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items" : {
+            "$ref" : "#/definitions/Relationship"
+          }
+        },
+        "test" : {
+          "type" : "boolean",
+          "position" : 96,
+          "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default" : false
+        }
+      },
+      "description" : "This class defines an Attraction on the Discovery/Publish API"
+    },
+    "AttractionExtensions" : {
+      "type" : "object",
+      "description" : "This class defines all possible extension on an attraction in the Discovery API"
+    },
+    "Chronology" : {
+      "type" : "object",
+      "properties" : {
+        "zone" : {
+          "$ref" : "#/definitions/DateTimeZone"
+        }
+      }
+    },
+    "City" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        }
+      },
+      "description" : "This class defines a City on the Discovery/Publish API"
+    },
+    "Classification" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "$ref" : "#/definitions/Level"
+        },
+        "primary" : {
+          "type" : "boolean",
+          "description" : "True if this is the entity's primary classification",
+          "default" : false
+        },
+        "segment" : {
+          "position" : 1,
+          "description" : "A Segment is a primary genre for an entity (Music, Sports, Arts, etc)",
+          "$ref" : "#/definitions/Segment"
+        },
+        "genre" : {
+          "position" : 2,
+          "description" : "Secondary Genre to further describe an entity (Rock, Classical, Animation, etc)",
+          "$ref" : "#/definitions/Level"
+        },
+        "subGenre" : {
+          "position" : 3,
+          "description" : "Tertiary Genre for additional detail when describring an entity (Alternative Rock, Ambient Pop, etc)",
+          "$ref" : "#/definitions/Level"
+        },
+        "subType" : {
+          "position" : 6,
+          "description" : "Secondary Type to further categorize an entity (Band, Choir, Chorus, etc)",
+          "$ref" : "#/definitions/Level"
+        }
+      },
+      "description" : "This class defines a Classification on the Discovery/Publish API"
+    },
+    "Country" : {
+      "type" : "object",
+      "properties" : {
+        "countryCode" : {
+          "type" : "string",
+          "description" : "Country code (ISO 3166)"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        }
+      },
+      "description" : "This class defines a country on the Discovery/Publish API"
+    },
+    "DateTimeField" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/DateTimeFieldType"
+        },
+        "supported" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "lenient" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "durationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
+        "minimumValue" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maximumValue" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "leapDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
+        "rangeDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        }
+      }
+    },
+    "DateTimeFieldType" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "rangeDurationType" : {
+          "$ref" : "#/definitions/DurationFieldType"
+        },
+        "durationType" : {
+          "$ref" : "#/definitions/DurationFieldType"
+        }
+      }
+    },
+    "DateTimeZone" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "fixed" : {
+          "type" : "boolean",
+          "default" : false
+        }
+      }
+    },
+    "DiscoveryAttractionForm" : {
+      "type" : "object",
+      "properties" : {
+        "locale" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^[a-zA-Z]{2}-[a-zA-Z]{2}$"
+        },
+        "page" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "string"
+        },
+        "affiliateId" : {
+          "type" : "string"
+        },
+        "includeTest" : {
+          "type" : "string",
+          "pattern" : "^\\s*|yes|no|only$"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "keyword" : {
+          "type" : "string"
+        },
+        "view" : {
+          "type" : "string"
+        },
+        "extensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "sort" : {
+          "type" : "string",
+          "pattern" : "^name,asc|name,desc$"
+        },
+        "criteriaInformation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DiscoveryClassificationForm" : {
+      "type" : "object",
+      "properties" : {
+        "locale" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^[a-zA-Z]{2}-[a-zA-Z]{2}$"
+        },
+        "page" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "string"
+        },
+        "affiliateId" : {
+          "type" : "string"
+        },
+        "includeTest" : {
+          "type" : "string",
+          "pattern" : "^\\s*|yes|no|only$"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "keyword" : {
+          "type" : "string"
+        },
+        "view" : {
+          "type" : "string"
+        },
+        "extensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "sort" : {
+          "type" : "string",
+          "pattern" : "^name,asc|name,desc$"
+        },
+        "criteriaInformation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DiscoveryEventForm" : {
+      "type" : "object",
+      "properties" : {
+        "locale" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^[a-zA-Z]{2}-[a-zA-Z]{2}$"
+        },
+        "page" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "string"
+        },
+        "affiliateId" : {
+          "type" : "string"
+        },
+        "includeTest" : {
+          "type" : "string",
+          "pattern" : "^\\s*|yes|no|only$"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "keyword" : {
+          "type" : "string"
+        },
+        "view" : {
+          "type" : "string"
+        },
+        "extensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "latlong" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^-?(90(\\.0+)?|[0-8]?[0-9](\\.\\d+)?),-?(180(\\.0+)?|(1[0-7][0-9]|\\d{1,2})(\\.\\d+)?)$"
+        },
+        "marketId" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^(\\d+(,\\d+)*)?$"
+        },
+        "promoterId" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^(\\d+(,\\d+)*)?$"
+        },
+        "radius" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^1?\\d{1,4}$"
+        },
+        "unit" : {
+          "type" : "string",
+          "pattern" : "^\\s*|miles|km$"
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "startDateTime" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "countryCode" : {
+          "type" : "string"
+        },
+        "stateCode" : {
+          "type" : "string"
+        },
+        "venueId" : {
+          "type" : "string"
+        },
+        "attractionId" : {
+          "type" : "string"
+        },
+        "segmentId" : {
+          "type" : "string"
+        },
+        "segmentName" : {
+          "type" : "string"
+        },
+        "classificationName" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "classificationId" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "dmaId" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^(\\d+(,\\d+)*)?$"
+        },
+        "postalCode" : {
+          "type" : "string"
+        },
+        "includeTBA" : {
+          "type" : "string",
+          "pattern" : "^\\s*|yes|no|only$"
+        },
+        "includeTBD" : {
+          "type" : "string",
+          "pattern" : "^\\s*|yes|no|only$"
+        },
+        "sort" : {
+          "type" : "string",
+          "pattern" : "^(name|date|name,date|date,name),(asc|desc)$"
+        },
+        "onsaleEndDateTime" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "onsaleStartDateTime" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "entitlementPromoterId" : {
+          "type" : "string"
+        },
+        "criteriaInformation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DiscoveryIdEventForm" : {
+      "type" : "object",
+      "properties" : {
+        "locale" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^[a-zA-Z]{2}-[a-zA-Z]{2}$"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "internalId" : {
+          "type" : "string"
+        },
+        "legacyId" : {
+          "type" : "string"
+        },
+        "view" : {
+          "type" : "string"
+        },
+        "extensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "affiliateId" : {
+          "type" : "string"
+        },
+        "entitlementPromoterId" : {
+          "type" : "string"
+        },
+        "criteriaInformation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DiscoveryIdForm" : {
+      "type" : "object",
+      "properties" : {
+        "locale" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^[a-zA-Z]{2}-[a-zA-Z]{2}$"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "internalId" : {
+          "type" : "string"
+        },
+        "legacyId" : {
+          "type" : "string"
+        },
+        "view" : {
+          "type" : "string"
+        },
+        "extensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "affiliateId" : {
+          "type" : "string"
+        },
+        "criteriaInformation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DiscoveryVenueForm" : {
+      "type" : "object",
+      "properties" : {
+        "locale" : {
+          "type" : "string",
+          "pattern" : "^\\s*$|^[a-zA-Z]{2}-[a-zA-Z]{2}$"
+        },
+        "page" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "string"
+        },
+        "affiliateId" : {
+          "type" : "string"
+        },
+        "includeTest" : {
+          "type" : "string",
+          "pattern" : "^\\s*|yes|no|only$"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "keyword" : {
+          "type" : "string"
+        },
+        "view" : {
+          "type" : "string"
+        },
+        "extensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "sort" : {
+          "type" : "string",
+          "pattern" : "^name,asc|name,desc$"
+        },
+        "stateCode" : {
+          "type" : "string"
+        },
+        "countryCode" : {
+          "type" : "string"
+        },
+        "criteriaInformation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DisplaySettingExtension" : {
+      "type" : "object",
+      "properties" : {
+        "softLanding" : {
+          "type" : "boolean",
+          "description" : "True the landing is Soft otherwise it's Comingled",
+          "default" : false
+        }
+      },
+      "description" : "This class defines event's display settings extension in the Discovery API"
+    },
+    "Dma" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "DMS's id"
+        }
+      },
+      "description" : "This class defines a DMA on the Discovery/Publish API"
+    },
+    "DurationField" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/DurationFieldType"
+        },
+        "supported" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "precise" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "unitMillis" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "DurationFieldType" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EndDates" : {
+      "type" : "object",
+      "properties" : {
+        "localTime" : {
+          "description" : "since[1.0.0]||The event end time in local time hh:mm:ss",
+          "$ref" : "#/definitions/LocalTime"
+        },
+        "dateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "since[1.0.0]||The event end date time"
+        },
+        "approximate" : {
+          "type" : "boolean",
+          "description" : "since[1.0.0]||Boolean flag to indicate whether or not the end date is approximated",
+          "default" : false
+        }
+      },
+      "description" : "This class defines Event's End Dates on the Discovery API"
+    },
+    "EntityChanges" : {
+      "type" : "object",
+      "properties" : {
+        "newlyCreated" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "changes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "Event" : {
+      "type" : "object",
+      "required" : [ "id", "type" ],
+      "properties" : {
+        "parking" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Parking"
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Type of the entity",
+          "enum" : [ "event venue attraction" ]
+        },
+        "extensions" : {
+          "position" : 101,
+          "description" : "Event's extension",
+          "$ref" : "#/definitions/EventExtensions"
+        },
+        "id" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Unique id of the entity in the discovery API"
+        },
+        "locale" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Locale in which the content is returned"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        },
+        "description" : {
+          "type" : "string",
+          "position" : 20,
+          "description" : "Description's of the entity"
+        },
+        "additionalInfo" : {
+          "type" : "string",
+          "position" : 22,
+          "description" : "Additional information of the entity"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "URL of a web site detail page of the entity"
+        },
+        "images" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "Images of the entity",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Image"
+          }
+        },
+        "dates" : {
+          "position" : 31,
+          "description" : "Event's dates information",
+          "$ref" : "#/definitions/EventDates"
+        },
+        "sales" : {
+          "position" : 32,
+          "description" : "Event's sales dates information",
+          "$ref" : "#/definitions/EventSalesDates"
+        },
+        "info" : {
+          "type" : "string",
+          "position" : 32,
+          "description" : "Any information related to the event"
+        },
+        "pleaseNote" : {
+          "type" : "string",
+          "position" : 34,
+          "description" : "Any notes related to the event"
+        },
+        "priceRanges" : {
+          "type" : "array",
+          "position" : 36,
+          "description" : "Price ranges of this event",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/PriceRange"
+          }
+        },
+        "promoter" : {
+          "position" : 37,
+          "description" : "Event's promoter",
+          "$ref" : "#/definitions/Promoter"
+        },
+        "classifications" : {
+          "type" : "array",
+          "position" : 50,
+          "description" : "Event's classifications",
+          "items" : {
+            "$ref" : "#/definitions/Classification"
+          }
+        },
+        "place" : {
+          "position" : 51,
+          "description" : "Place has the information on where the event happens. It can be set if there is no venue",
+          "$ref" : "#/definitions/Place"
+        },
+        "venue" : {
+          "position" : 52,
+          "description" : "Venue information",
+          "$ref" : "#/definitions/Venue"
+        },
+        "attractions" : {
+          "type" : "array",
+          "position" : 53,
+          "description" : "Ordered Attraction related to the event",
+          "items" : {
+            "$ref" : "#/definitions/Attraction"
+          }
+        },
+        "relationships" : {
+          "type" : "array",
+          "position" : 70,
+          "description" : "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items" : {
+            "$ref" : "#/definitions/Relationship"
+          }
+        },
+        "test" : {
+          "type" : "boolean",
+          "position" : 96,
+          "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default" : false
+        }
+      },
+      "description" : "This class defines an Event on the Discovery/Publish API"
+    },
+    "EventDates" : {
+      "type" : "object",
+      "properties" : {
+        "start" : {
+          "description" : "Event's start dates. The date and time when the event will start",
+          "$ref" : "#/definitions/StartDates"
+        },
+        "end" : {
+          "position" : 1,
+          "description" : "Event's end dates. The date and time when the event will end",
+          "$ref" : "#/definitions/EndDates"
+        },
+        "access" : {
+          "position" : 2,
+          "description" : "Event's access dates. The date and time the fan can access the event",
+          "$ref" : "#/definitions/AccessDates"
+        },
+        "timezone" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Event's timezone"
+        },
+        "status" : {
+          "position" : 4,
+          "description" : "Status of the event",
+          "$ref" : "#/definitions/EventStatus"
+        }
+      },
+      "description" : "This class defines Event's Dates on the Discovery/Publish API"
+    },
+    "EventExtensions" : {
+      "type" : "object",
+      "description" : "This class defines all possible extension on an event in the Discovery API"
+    },
+    "EventSalesDates" : {
+      "type" : "object",
+      "properties" : {
+        "public" : {
+          "description" : "Public onsale information on this event",
+          "$ref" : "#/definitions/PublicSaleDates"
+        },
+        "presales" : {
+          "type" : "array",
+          "position" : 1,
+          "description" : "Presale information on this event",
+          "items" : {
+            "$ref" : "#/definitions/Presale"
+          }
+        }
+      },
+      "description" : "This class defines Event's Sales Dates on the Discovery/Publish API"
+    },
+    "EventStatus" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "since[1.0.0]||The event's status code"
+        }
+      },
+      "description" : "This class defines Event's Status on the Discovery API"
+    },
+    "Extension" : {
+      "type" : "object"
+    },
+    "Genre" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The ID of the classification's level"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "The Name of the classification's level"
+        }
+      },
+      "description" : "This class defines Secondary Genre on the Discovery/Publish API"
+    },
+    "GeocodeExtension" : {
+      "type" : "object",
+      "properties" : {
+        "county" : {
+          "type" : "string"
+        },
+        "geometry" : {
+          "$ref" : "#/definitions/Geometry"
+        },
+        "streetNumber" : {
+          "type" : "string"
+        },
+        "route" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "postalCode" : {
+          "type" : "string"
+        },
+        "formattedAddress" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GeolocationVenueExtensions" : {
+      "type" : "object",
+      "properties" : {
+        "geocode" : {
+          "description" : "Geocoding information about the venue",
+          "$ref" : "#/definitions/GeocodeExtension"
+        }
+      },
+      "description" : "This class defines extension on a venue for a gelocation source in the Discovery API"
+    },
+    "Geometry" : {
+      "type" : "object",
+      "properties" : {
+        "location" : {
+          "$ref" : "#/definitions/Location"
+        }
+      }
+    },
+    "HostExtension" : {
+      "type" : "object",
+      "description" : "This class defines event's Host extension in the Discovery API"
+    },
+    "Image" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Id of the image"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "Public URL of the image"
+        },
+        "ratio" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Aspect ratio of the image",
+          "enum" : [ "16_9", "3_3", "4_3" ]
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "position" : 4,
+          "description" : "Width of the image"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "position" : 5,
+          "description" : "Height of the image"
+        },
+        "fallback" : {
+          "type" : "boolean",
+          "position" : 6,
+          "description" : "true if the image is not the event's image but a fallbak image",
+          "default" : false
+        },
+        "domains" : {
+          "type" : "array",
+          "position" : 7,
+          "description" : "Domains on which this image should be displayed",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "attribution" : {
+          "type" : "string",
+          "position" : 8,
+          "description" : "Attribution of the image"
+        }
+      },
+      "description" : "This class defines an Image on the Discovery/Publish API"
+    },
+    "Level" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The ID of the classification's level"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "The Name of the classification's level"
+        }
+      }
+    },
+    "LocalTime" : {
+      "type" : "object",
+      "properties" : {
+        "millisOfDay" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minuteOfHour" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "hourOfDay" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "chronology" : {
+          "$ref" : "#/definitions/Chronology"
+        },
+        "millisOfSecond" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "secondOfMinute" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DateTimeField"
+          }
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "fieldTypes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DateTimeFieldType"
+          }
+        }
+      }
+    },
+    "Locale" : {
+      "type" : "object",
+      "properties" : {
+        "language" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "displayCountry" : {
+          "type" : "string"
+        },
+        "displayLanguage" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "displayScript" : {
+          "type" : "string"
+        },
+        "displayVariant" : {
+          "type" : "string"
+        },
+        "extensionKeys" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "iso3Country" : {
+          "type" : "string"
+        },
+        "iso3Language" : {
+          "type" : "string"
+        },
+        "script" : {
+          "type" : "string"
+        },
+        "unicodeLocaleAttributes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "unicodeLocaleKeys" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "variant" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Location" : {
+      "type" : "object",
+      "properties" : {
+        "longitude" : {
+          "type" : "number",
+          "description" : "Longitude"
+        },
+        "latitude" : {
+          "type" : "number",
+          "description" : "Latitude"
+        }
+      },
+      "description" : "This class defines a Location on the Discovery/Publish API"
+    },
+    "Market" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Market's id"
+        }
+      },
+      "description" : "This class defines a Market on the Discovery/Publish API"
+    },
+    "Parking" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 20,
+          "description" : "Url to the web page of the parking"
+        }
+      },
+      "description" : "This class defines a parking on the Discovery/Publish API"
+    },
+    "Place" : {
+      "type" : "object",
+      "properties" : {
+        "area" : {
+          "description" : "Area of the place",
+          "$ref" : "#/definitions/Area"
+        },
+        "address" : {
+          "position" : 1,
+          "description" : "Address of the place",
+          "$ref" : "#/definitions/Address"
+        },
+        "city" : {
+          "position" : 2,
+          "description" : "City of the Place",
+          "$ref" : "#/definitions/City"
+        },
+        "state" : {
+          "position" : 3,
+          "description" : "State / Province of the place",
+          "$ref" : "#/definitions/State"
+        },
+        "country" : {
+          "position" : 4,
+          "description" : "Country of the place",
+          "$ref" : "#/definitions/Country"
+        },
+        "postalCode" : {
+          "type" : "string",
+          "position" : 5,
+          "description" : "Postal code / zipcode of the place"
+        },
+        "location" : {
+          "position" : 6,
+          "description" : "Location of the place",
+          "$ref" : "#/definitions/Location"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        }
+      },
+      "description" : "This class defines a Place on the Discovery/Publish API"
+    },
+    "Presale" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the presale"
+        },
+        "description" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Description of the presame"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Presale link URL"
+        },
+        "start" : {
+          "type" : "string",
+          "format" : "date-time",
+          "position" : 4,
+          "description" : "Presale's start dates. The date and time when the presale will start"
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "position" : 5,
+          "description" : "Presale's end dates. The date and time when the presale will end"
+        }
+      },
+      "description" : "This class defines Event's Presale Info on the Discovery API"
+    },
+    "PriceRange" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "Type of price",
+          "enum" : [ "standard" ]
+        },
+        "currency" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Currency"
+        },
+        "min" : {
+          "type" : "number",
+          "format" : "double",
+          "position" : 2,
+          "description" : "Minimum price"
+        },
+        "max" : {
+          "type" : "number",
+          "format" : "double",
+          "position" : 3,
+          "description" : "Maximum price"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        }
+      },
+      "description" : "This class defines an PriceRange on the Discovery/Publish API"
+    },
+    "Promoter" : {
+      "type" : "object",
+      "properties" : {
+        "internalProperties" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "Id of the promoter"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Name of the promoter"
+        },
+        "description" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Description of the promoter"
+        }
+      },
+      "description" : "This class defines a Promoter on the Discovery/Publish API"
+    },
+    "PublicSaleDates" : {
+      "type" : "object",
+      "properties" : {
+        "startDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Public sale's start dates. The date and time when the public sale will start"
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "position" : 1,
+          "description" : "Public sale's end dates. The date and time when the public sale will end"
+        },
+        "startTBD" : {
+          "type" : "boolean",
+          "position" : 2,
+          "description" : "True if the public sale's date is to be determined",
+          "default" : false
+        }
+      },
+      "description" : "This class defines Event's Public Onsales Dates on the Discovery API"
+    },
+    "PublicVisibility" : {
+      "type" : "object",
+      "description" : "The class defines the public visibility period on the Discovery/Publish API."
+    },
+    "Relationship" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "The type of the relationship",
+          "enum" : [ "duplicate" ]
+        },
+        "source" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "The source name of the related entity"
+        },
+        "id" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "The ID of the related entity"
+        }
+      },
+      "description" : "This class defines a Relationship on the Discovery/Publish API"
+    },
+    "Segment" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The ID of the classification's level"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "The Name of the classification's level"
+        }
+      },
+      "description" : "This class defines Genre on the Discovery/Publish API"
+    },
+    "Social" : {
+      "type" : "object",
+      "properties" : {
+        "twitter" : {
+          "description" : "Twitter data",
+          "$ref" : "#/definitions/Twitter"
+        }
+      },
+      "description" : "Social networks data"
+    },
+    "Source" : {
+      "type" : "object",
+      "description" : "This class defines a source on the Discovery/Publish API"
+    },
+    "StartDates" : {
+      "type" : "object",
+      "properties" : {
+        "localDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "since[1.0.0]||The event start date in local date yyyy-MM-dd"
+        },
+        "localTime" : {
+          "description" : "since[1.0.0]||The event end time in local time hh:mm:ss",
+          "$ref" : "#/definitions/LocalTime"
+        },
+        "dateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "since[1.0.0]||The event start datetime"
+        },
+        "dateTBD" : {
+          "type" : "boolean",
+          "description" : "since[1.0.0]||Boolean flag to indicate whether or not the start date is TBD",
+          "default" : false
+        },
+        "dateTBA" : {
+          "type" : "boolean",
+          "description" : "since[1.0.0]||Boolean flag to indicate whether or not the start date is TBA",
+          "default" : false
+        },
+        "timeTBA" : {
+          "type" : "boolean",
+          "description" : "since[1.0.0]||Boolean flag to indicate whether or not the start time is TBA",
+          "default" : false
+        },
+        "noSpecificTime" : {
+          "type" : "boolean",
+          "description" : "since[1.0.0]||Boolean flag to indicate whether or not the event has no specific time",
+          "default" : false
+        }
+      },
+      "description" : "This class defines Event's Starts Dates on the Discovery API"
+    },
+    "State" : {
+      "type" : "object",
+      "properties" : {
+        "stateCode" : {
+          "type" : "string",
+          "description" : "State code"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        }
+      },
+      "description" : "This class defines a State on the Discovery/Publish API"
+    },
+    "TatExtension" : {
+      "type" : "object",
+      "description" : "This class defines The Attraction Tool (TAT) extension in the Discovery API"
+    },
+    "TicketmasterAttractionExtensions" : {
+      "type" : "object",
+      "description" : "This class defines extension on an attraction for a ticketmaster source in the Discovery API"
+    },
+    "TicketmasterEventExtensions" : {
+      "type" : "object",
+      "properties" : {
+        "displaySettings" : {
+          "description" : "Event's display setting informations",
+          "$ref" : "#/definitions/DisplaySettingExtension"
+        }
+      },
+      "description" : "This class defines extension on an event for a ticketmaster source in the Discovery API"
+    },
+    "TicketmasterVenueExtensions" : {
+      "type" : "object",
+      "description" : "This class defines extension on a venue for a ticketmaster source in the Discovery API"
+    },
+    "Twitter" : {
+      "type" : "object",
+      "properties" : {
+        "handle" : {
+          "type" : "string",
+          "example" : "@a Twitter handle exampe",
+          "description" : "Twitter handle",
+          "enum" : [ "@a Twitter handle" ]
+        },
+        "hashtags" : {
+          "type" : "array",
+          "example" : "#hashtag example #hashtag another example",
+          "position" : 1,
+          "description" : "Twitter hashtags",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Twitter data"
+    },
+    "Venue" : {
+      "type" : "object",
+      "required" : [ "id", "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "Type of the entity",
+          "enum" : [ "event venue attraction" ]
+        },
+        "extensions" : {
+          "position" : 101,
+          "description" : "Venue's extensions",
+          "$ref" : "#/definitions/VenueExtensions"
+        },
+        "id" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Unique id of the entity in the discovery API"
+        },
+        "locale" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Locale in which the content is returned"
+        },
+        "name" : {
+          "type" : "string",
+          "position" : 10,
+          "description" : "Name of the entity"
+        },
+        "description" : {
+          "type" : "string",
+          "position" : 20,
+          "description" : "Description's of the entity"
+        },
+        "address" : {
+          "position" : 20,
+          "description" : "Address of the venue",
+          "$ref" : "#/definitions/Address"
+        },
+        "city" : {
+          "position" : 21,
+          "description" : "City of the venue",
+          "$ref" : "#/definitions/City"
+        },
+        "additionalInfo" : {
+          "type" : "string",
+          "position" : 22,
+          "description" : "Additional information of the entity"
+        },
+        "state" : {
+          "position" : 22,
+          "description" : "State / Province of the venue",
+          "$ref" : "#/definitions/State"
+        },
+        "country" : {
+          "position" : 23,
+          "description" : "Country of the venue",
+          "$ref" : "#/definitions/Country"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "URL of a web site detail page of the entity"
+        },
+        "postalCode" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "Postal code / zipcode of the venue"
+        },
+        "location" : {
+          "position" : 25,
+          "description" : "Location of the venue",
+          "$ref" : "#/definitions/Location"
+        },
+        "timezone" : {
+          "type" : "string",
+          "position" : 26,
+          "description" : "Timezone of the venue"
+        },
+        "currency" : {
+          "type" : "string",
+          "position" : 27,
+          "description" : "Default currency of ticket prices for events in this venue"
+        },
+        "markets" : {
+          "type" : "array",
+          "position" : 28,
+          "description" : "Markets of he venue",
+          "items" : {
+            "$ref" : "#/definitions/Market"
+          }
+        },
+        "images" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "Images of the entity",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Image"
+          }
+        },
+        "dma" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "The list of associated DMAs (Designated Market Areas) of the venue",
+          "items" : {
+            "$ref" : "#/definitions/Dma"
+          }
+        },
+        "social" : {
+          "position" : 30,
+          "description" : "Social networks data",
+          "$ref" : "#/definitions/Social"
+        },
+        "relationships" : {
+          "type" : "array",
+          "position" : 70,
+          "description" : "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items" : {
+            "$ref" : "#/definitions/Relationship"
+          }
+        },
+        "test" : {
+          "type" : "boolean",
+          "position" : 96,
+          "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default" : false
+        }
+      },
+      "description" : "This class defines a Venue on the Discovery/Publish API"
+    },
+    "VenueExtensions" : {
+      "type" : "object",
+      "properties" : {
+        "geolocation" : {
+          "position" : 1,
+          "description" : "Gelocolation extension on a venue | add filter 'extensions=geolocation' on your venues request",
+          "$ref" : "#/definitions/GeolocationVenueExtensions"
+        }
+      },
+      "description" : "This class defines all possible extension on a venue in the Discovery API"
+    }
+  }
+}

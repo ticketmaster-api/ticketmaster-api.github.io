@@ -36,7 +36,7 @@ At Ticketmaster, we are always looking for innovative products and services that
 We offer the support, knowledge and validation to make sure your solution is fully-compatible with Ticketmaster systems.  For vendors to access the Ticketmaster Ticketing System services, they must become a member of Ticketmaster’s Partner program, the costs of which help Ticketmaster offset its costs for vendor integration support.  If you are interested in finding out ways to integrate your product or service with Ticketmaster’s systems, please complete the form below: 
 
 <div class="col-sm-12 col-lg-8 nexus-form-wrapper">
-<form accept-charset="UTF-8" action="#" method="POST" class="js_nexus_form">    
+<form accept-charset="UTF-8" action="#" method="POST" class="js_nexus_form">
     <div class="col-sm-6">
         <label for="name-nexus">First name</label>
         <input type="text" id="first-name" name="firstName" maxlength="255" placeholder="" tabindex="1">
@@ -57,11 +57,11 @@ We offer the support, knowledge and validation to make sure your solution is ful
         <label for="organization">Organization name</label>
         <input type="text" id="organization-nexus" name="organization" placeholder="" tabindex="5">
     </div>
+
     <div class="col-sm-6">
-    <label >Number of Ticketmaster clients</label>
-    <input type="number-nexus" min="0" name="ticketsNumber" pattern="[0-9]*" title="This field may only contain alpha-numeric characters" tabindex="6">
-    </div>    
-    
+        <label >Number of Ticketmaster clients</label>
+        <input class="js_numeric_input" type="number-nexus" value="0" min="0" name="ticketsNumber" pattern="[0-9]*" inputmode="numeric" title="This field may only contain alpha-numeric characters" tabindex="6">
+    </div>
     <label class="label-radio-group">Is product offering free or paid? <span class="label-required">(required)</span></label>
     <div class="label-radio">
         <input type="radio" id="radio-yes" name="productOffering"  value="paid" required tabindex="8"/><label class="js-label-radio"><span><span></span></span>Paid</label>
@@ -75,29 +75,51 @@ We offer the support, knowledge and validation to make sure your solution is ful
     </div>
     <div class="col-sm-12">
         <p id="message-success" class="message-green" >Thank you for contacting us. We will review and respond promptly.</p>
+        <p id="message-error" class="text-overflow-message text-overflow-message__red" style="display:none">The maximum length of description can be 3000 characters.</p>
     </div>
     <div class="col-sm-6">
         <button type="submit" class="button-blue">SEND</button>
     </div>
 </form>
 </div>
-<script type="text/javascript">   
-    var $nexusForm = $('.js_nexus_form');
-    $nexusForm.submit(function(e){
-        e.preventDefault();
-        $.ajax({
-          dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=41f4cf3970c05bb985abec394b1e3c0b",
-          data: $nexusForm.serialize() 
-        }).done(function() {
-          //callback which can be used to show a thank you message
-          //and reset the form
-          showMsgSuccess('#message-success', 4000);
-        });
-        return false; //to stop the form from submitting
-    }); 
-    function showMsgSuccess(id, delay){
-        $(id).slideDown(400).delay( delay ).slideUp(200);
-    }
-</script>
+
+<!-- Modal alert-->
+<div id="nexus-alert-modal" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Thank you for contacting us!</h3>
+        <p class="text-center">We will review and respond promptly.</p>
+        <div class="modal-footer">
+          <button id="js_nexus_btn_alert_ok" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal alert end-->
+
+<!-- Modal alert Error-->
+<div id="nexus-alert-modal-error" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center text-overflow-message__red">Error</h3>
+        <p id="nexus-text-overflow-message" class="text-center">The maximum length of description can be 3000 characters.</p>
+        <div class="modal-footer">
+          <button id="js_nexus_btn_alert_ok-error" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal alert end-->
+
+<script src="/scripts/components/nexus-form-validate.js"></script>
 

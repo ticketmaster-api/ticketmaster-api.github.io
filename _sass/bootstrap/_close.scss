@@ -2,15 +2,21 @@
 // Close icons
 // --------------------------------------------------
 
-
-.close {
-  float: right;
+.open {
   font-size: ($font-size-base * 1.5);
   font-weight: $close-font-weight;
   line-height: 1;
   color: $close-color;
   text-shadow: $close-text-shadow;
-  @include opacity(.2);
+}
+
+.close {
+  float: left;
+  font-size: ($font-size-base * 1.5);
+  font-weight: $close-font-weight;
+  line-height: 1;
+  color: $close-color;
+  text-shadow: $close-text-shadow;
 
   &:hover,
   &:focus {

@@ -1,0 +1,238 @@
+<!--api-name:{{page.categories[2]}}  api-version: {{page.categories[3]}} -->
+<!--last api.json update : 02 september 2016 -->
+<!--last site.time build: {{ site.time | date: '%B %d, %Y' }}-->
+
+{% assign pageMetaFolder        = page.categories[2] %}
+{% assign pageMetaVersionFolder = page.categories[3] %}
+
+{% assign swagger               = site.data.orgs[pageMetaFolder][pageMetaVersionFolder]['api'] %}
+{% assign methodsDescription    = site.data.orgs[pageMetaFolder][pageMetaVersionFolder].methods-metadata %}
+
+{%if methodsDescription or swagger%}
+{%else%}
+    {% assign swagger = site.data.orgs[pageMetaFolder]['api'] %}
+    {% assign methodsDescription = site.data.orgs[pageMetaFolder].methods-metadata %}
+{%endif%}
+
+{% if !swagger %}{%else%}
+    <p>No file found: <b>api.json</b> in _data/orgs/{{page.categories[2]}}/{{page.categories[3]}}</p>
+{% endif %}
+
+{% if methodsDescription %}{%else%}
+    <p>These 'pageMetaVersionFolder':<b>{{pageMetaVersionFolder}}</b> or 'pageMetaFolder':<b>{{pageMetaFolder}}</b> are not correct. Please fix it.</p>
+{% endif %}
+
+<h1>{{ swagger.info.title | upcase}}</h1>
+
+{{content}}
+
+<p class="lead article">{{ swagger.info.description }}</p>
+
+<h4 class="aside gray" id="developer-console">Developer Console</h4><p>Make live API calls right now in the interactive docs:</p><p><a href="/products-and-docs/apis/interactive-console/" class="button">INTERACTIVE DOCS</a></p>
+
+{% if methodsDescription.before %}
+    {% if methodsDescription.before.include %}
+        {% assign beforeInclude = methodsDescription.before.include | prepend: 'apis-code-examples/' %}
+                <div class="article" >
+                    {% include {{ beforeInclude }}  %}
+                </div>
+    {% endif %}
+{% endif %}
+
+{% comment %}
+<!--
+    {% if swagger.tags %}
+    <strong>tags: </strong>
+        {% for tagItem in swagger.tags %}
+            <p><code>{{ tagItem.name }}</code> - {{ tagItem.description }}</p>
+        {% endfor %}
+    {% endif %}
+-->
+{% endcomment %}
+
+{% for route in swagger.paths %}
+
+    {% comment %}<!--get index to create uniq Id ,that will be used for side menu-->{% endcomment %}
+    {% assign indexLoop = forloop.index0 %}
+
+    {% comment %}<!--sort by order_list -->{% endcomment %}
+    {% assign inList = false %}
+    {% assign contEmpty = 0 %}
+    {% assign order_list_length =  methodsDescription.method | size  %}
+
+    {% comment %}<!--show item in list first-->{% endcomment %}
+    {% if inList == false and order_list_length > 0 %}
+        {% for listTag in methodsDescription.method %}
+
+            {% for routeInner in swagger.paths %}
+                {% for tag in methodsDescription.method %}
+                {% comment %}<!--<p class="article">tag {{tag.pathsParent}} : listTag : {{listTag.pathsParent}}, routeInner[0] : {{routeInner[0]}}</p> -->{% endcomment %}
+                    {% if tag.pathsParent == routeInner[0] %}
+                        {% assign _id = tag.id %} {% comment %}<!--{% assign _id = tag.id | append: '-' | append: page.categories[3] %}-->{% endcomment %}
+                        {% assign _interactiveConsole = tag.interactiveConsole %}
+                        {% assign _title = tag.title %}
+                        {% assign _reqres = tag.reqres %}
+                        {% assign _codePath = tag.codePath %}
+                        {% assign _preContent = tag.preContent %}
+                        {% assign _postContent = tag.postContent %}
+                        {% assign _HAL = tag.HAL %}
+                    {% endif %}
+                {% endfor %}
+                {% comment %}<!--<p>routeInner : {{listTag.pathsParent}} == <span {% if listTag.pathsParent == routeInner[0] %}class="red" {%endif%}>{{ routeInner[0] }}</span> , {{indexLoop}}, </p>-->{% endcomment %}
+                {% if listTag.pathsParent == routeInner[0] and indexLoop == 0 %}
+                    {% comment %}<!--<p class="red code">=== : <b>{{indexLoop}}</b> : {{listTag.pathsParent}}, {{ currrentMethodPath }}</p>-->{% endcomment %}
+                    {% for method in routeInner[1] %}
+                        {% include partials/autodoc/method.html%}
+                        {% comment %}<!--<p>indexLoop : {{indexLoop}} , forloop.index : {{ forloop.index }}</p>-->{% endcomment %}
+                    {% endfor %}
+
+                    {% include partials/autodoc/method-post-content.html%}
+
+                {%endif%}
+            {% endfor %}
+
+        {% comment %}<!--<p class="code">out loop indexLoop : {{indexLoop}} , forloop.index : {{ forloop.index }}</p>-->{% endcomment %}
+        {% if forloop.index == forloop.length %}
+            {% assign inList = true %}
+            {% comment %}<!--<p>{{forloop.index}} of {{forloop.length}}</p>-->{% endcomment %}
+            {% break %}
+        {% endif %}
+
+        {% endfor %}
+
+        {% comment %}<!-- Clear meta data -->{% endcomment %}
+        {% assign _id = false %}
+        {% assign _title = false %}
+        {% assign _reqres = false %}
+        {% assign _codePath = false %}
+        {% assign _preContent = false %}
+        {% assign _postContent = false %}
+        {% assign _HAL = false %}
+    {% endif %}
+    {% comment %}<!--show item in list first END-->{% endcomment %}
+
+
+    {% for tag in methodsDescription.method.pathsParent %}
+        {% if tag.pathsParent == routeInner[0] %}
+            {% assign _id = tag.id %}
+            {% assign _interactiveConsole = tag.interactiveConsole %}
+            {% assign _title = tag.title %}
+            {% assign _reqres = tag.reqres %}
+            {% assign _codePath = tag.codePath %}
+            {% assign _preContent = tag.preContent %}
+            {% assign _postContent = tag.postContent %}
+            {% assign _HAL = tag.HAL %}
+        {% endif %}
+    {% endfor %}
+
+    {% comment %}<!--show item that not in list-->{% endcomment %}
+    {% for tag in methodsDescription.method %}
+        {% if tag.pathsParent != route[0] %}
+        {% assign contEmpty  = contEmpty | plus: 1 %}
+            {% if contEmpty == order_list_length  %}
+                {% for method in route[1] %}
+                    {% comment %}<!--<p>** no in : <span class="red">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->{% endcomment %}
+                    {% include partials/autodoc/method.html %}
+                {% endfor %}
+
+                {% include partials/autodoc/method-post-content.html%}
+
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% assign contEmpty = 0 %}
+
+    {%if order_list_length == 0%}
+        {% for method in route[1] %}
+            {% comment %}<!--<p class="red">** no in list: <span class="blue">{{ route[0] }}</span>, contEmpty: {{ contEmpty }} </p>-->{% endcomment %}
+            {% include partials/autodoc/method.html%}
+        {% endfor %}
+
+        {% include partials/autodoc/method-post-content.html%}
+    {% endif %}
+
+
+{% comment %}<!-- Clear meta data -->{% endcomment %}
+    {% assign _id = tag.id %}
+    {% assign _interactiveConsole = tag.interactiveConsole %}
+    {% assign _title = tag.title %}
+    {% assign _reqres = tag.resreq %}
+    {% assign _codePath = tag.codePath %}
+    {% assign _preContent = tag.preContent %}
+    {% assign _postContent = tag.postContent %}
+    {% assign _HAL = tag.HAL %}
+
+{% endfor %}
+
+
+{% if methodsDescription.after %}
+    {% if methodsDescription.after.include %}
+        {% assign afterInclude = methodsDescription.after.include | prepend: 'apis-code-examples/' %}
+                <div class="article">
+                    {% include {{ afterInclude }} %}
+                </div>
+    {% endif %}
+{% endif %}
+
+<script src="{{ "/scripts/components/autodoc-show-all.js" | prepend: site.baseurl }}"></script>
+
+{% comment %}<!--<script type="text/javascript">
+// Helpers
+
+var slice = Array.prototype.slice;
+
+function s(expr, parent) {
+    return typeof expr === "string" ? (parent || document).querySelector(expr) : expr || null;
+}
+
+function ss(expr, parent) {
+    return slice.call((parent || document).querySelectorAll(expr));
+}
+
+s.bind = function(element, o) {
+    if (element) {
+        for (var event in o) {
+            var callback = o[event];
+
+            event.split(/\s+/).forEach(function (event) {
+                element.addEventListener(event, callback);
+            });
+        }
+    }
+};
+
+s.toggleDetails = function (element) {
+    if (element.classList.contains('open')) {
+        element.classList.remove('open');
+    }
+    else {
+        element.classList.add('open');
+    }
+}
+
+// Initialization
+
+function init() {
+    ss('.swagger-method-title').forEach(function (title) {
+        s.bind(title, {
+            'click': function (e) {
+                var details = s('.swagger-method-details', title.parentNode)
+                s.toggleDetails(details);
+                e.preventDefault();
+            }
+        });
+    });
+}
+
+
+// DOM already loaded?
+if (document.readyState !== "loading") {
+    init();
+}
+else {
+    // Wait for it
+    document.addEventListener("DOMContentLoaded", init);
+}
+</script>
+-->
+{% endcomment %}

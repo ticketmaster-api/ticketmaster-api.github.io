@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+<div id="spinner hide"></div>
+{% include home-header.html %}
+
+<section class="modal fade map-popup" id="map-popup" role="dialog">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-lg vertical-align-center">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Location</h4>
+				</div>
+				<div class="modal-body">
+					<div id="map" class="modal-body-wrapper"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<error-pop-up></error-pop-up>
+
+<div id="api-explorer-v2" class="api-explorer-v2">
+	<div class="row-container api-exp-content">
+		<!--page header-->
+		<section class="api-exp-header">
+			<h1 class="api-exp-header__title">TICKETMASTER API EXPLORER V2.0</h1>
+			<p class="api-exp-header__sub-title">Make live API calls without writing a single line of code! The API Explorer currently works with the
+				<a class="api-exp-header__link" href="/products-and-docs/apis/discovery/v2">Discovery API</a>,
+				<a class="api-exp-header__link" href="/products-and-docs/apis/commerce/">Commerce API</a> and
+				<a class="api-exp-header__link" href="/products-and-docs/apis/publish/">Publish API</a>.
+			</p>
+		</section>
+		<!--event counter bar-->
+		{% assign initialValue = site.data.variables.summaryWidget %}
+		<section class="horizontal-events-tracker">
+			<div class="col-xs-12 horizontal-events-tracker__section">
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Events:
+					<b id="js-events-counter" class="horizontal-events-tracker__counter">{{initialValue.events}}</b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Attractions:
+					<b id="js-attractions-counter" class="horizontal-events-tracker__counter">{{initialValue.attractions}}</b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Venues:
+					<b id="js-venues-counter" class="horizontal-events-tracker__counter">{{initialValue.venues}}</b>
+				</span>
+				<span class="horizontal-events-tracker__title">
+					<b class="visible-lg-inline-block title-adds">Number of </b>&nbsp;Countries:
+					<b id="js-countries-counter" class="horizontal-events-tracker__counter">{{initialValue.countries}}</b>
+				</span>
+			</div>
+		</section>
+		
+		<!--main filter-->
+		<div class="api-exp-container clearfix">
+			<about-method params="selectedMethodData: selectedMethodData"></about-method>
+
+			<!--content-wrapper-->
+			<section class="api-exp-main">
+				<!--menu-->
+				<category-menu params="data: base, selectedCategory: selectedCategory">
+					<custom-select params="options: categories, selected: selectedCategory, onselect: selectCategory"></custom-select>
+				</category-menu>
+				
+				<!--api key-->
+				<custom-input params="cssClass: 'api-exp-key', data: apiKey, validationModel: apiKeyValidationModel"></custom-input>
+
+				<!--filter-->
+				<methods-filter params="data: base, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType, selectedMethod: selectedMethod">
+					<radio-filter params="data: data, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType"></radio-filter>
+					<custom-select params="options: methodsViewModel, onselect: onSelectMethod, selected: selectedMethodName"></custom-select>
+				</methods-filter>
+			</section><!--content-wrapper-->
+		</div>
+		
+		<!--params-->
+		<params-filter params="selectedMethodData: selectedMethodData, selectedMethod: selectedMethod, selectedParams: selectedParams, validationModel: validationModel"></params-filter>
+		
+		<!--request btn-->
+		<section class="api-exp-get-btn clearfix">
+			<span class="api-exp-get-btn-validation-message" data-bind="visible: sendBtnValidationText, text: sendBtnValidationText"></span>
+			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn, enable: formIsValid" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
+		</section>
+	</div>
+
+	<!--request list-->
+	<request-list params="selectedParams: selectedParams, sharePath: sharePath, setParams: setParams"></request-list>
+</div>
+
+<div id="footer" class="xs-center slice-top-left">
+	{% include partials/footer.html %}
+</div>
+
+<div id="back-top">
+	<a href="#"><span></span></a>
+</div>
+
+<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+<script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
+{% include lazy-selector-modal.html %}
+{% include classification-selector-modal.html %}
+{% include feedback.html %}
+<script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
+</body>
+</html>

@@ -1,4 +1,0 @@
----
-layout: widget
-title: Widget
----

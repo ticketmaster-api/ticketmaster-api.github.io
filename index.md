@@ -1,8 +1,9 @@
 ---
 layout: home
 category: home
-excerpt: Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
+excerpt: Join the Ticketmaster developer network, build innovative applications, and help us deliver those unforgettable moments of joy to fans everywhere.
 keywords: fan-centric, developer network, build innovative applications
+title: WELCOME TO THE FAN-CENTRIC PLATFORM.
 ---
 
 {::comment}
@@ -17,11 +18,14 @@ Top promo large heading
 {::comment}
 Top promo description
 {:/comment}
+
+
 {% capture top_promo_desc %}
 
-Join the Ticketmaster developer network, build innovative applications,and help us deliver those unforgettable moments of joy to fans everywhere.
+Join the Ticketmaster developer network, build innovative applications, and help us deliver those unforgettable moments of joy to fans everywhere.
 
 {% endcapture %}
+
 
 {::comment}
 Partners block heading
@@ -43,7 +47,7 @@ Social promo, rendered left to the twitter card
 –Pramod Setlur, API developer
 
 ### "The Ticketmaster API is really easy to use!"
-–[ArJun Madan](http://blog.arjunmadan.xyz/2016/03/17/the-ticketmaster-dev-jam/), API developer
+–ArJun Madan, API developer
 
 ### "The API Explorer is great. It helps me identify if the error is in the API or in my code. Very helpful."
 –Ryan Zhou, API developer
@@ -108,7 +112,7 @@ Are you an existing partner looking for current developer resources? Look no fur
 
 Follow us on our exciting journey as we open up the Ticketmaster ticketing platform.
 
-* [![Twitter](/assets/img/ic-twitter.svg)](https://twitter.com/tmastertech)
+* [![Twitter](/assets/img/ic-twitter.svg)](https://twitter.com/tmTech)
 * [![Facebook](/assets/img/ic-facebook.svg)](https://www.facebook.com/TicketmasterTech)
 * [![Medium](/assets/img/ic-medium.svg)](https://medium.com/ticketmaster-tech)
 {% endcapture %}
@@ -116,19 +120,38 @@ Follow us on our exciting journey as we open up the Ticketmaster ticketing platf
 {::comment}
 Raw html goes here (uses liquid variabled defined above)
 {:/comment}
+{% assign initialValue = site.data.variables.summaryWidget %}
 <div id="top-promo" class="slice-top-right slice-bottom-right promo xs-center">
     <div class="row">
-        <div class="row-container">
-<div class="col-xs-12 white" markdown="1">
+        <div class="row-container wrap-overflow">
+        <ul class="events-tracker events-tracker_col-view events-tracker_col-blue">
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Events: </div>
+                <div id="js-events-counter" class="events-tracker__counter">{{initialValue.events}}</div>
+            </li>
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Attractions: </div>
+                <div id="js-attractions-counter" class="events-tracker__counter">{{initialValue.attractions}}</div>
+            </li>
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Venues: </div>
+                <div id="js-venues-counter" class="events-tracker__counter">{{initialValue.venues}}</div>
+            </li>
+            <li class="events-tracker__item">
+                <div class="events-tracker__title">Countries: </div>
+                <div id="js-countries-counter" class="events-tracker__counter">{{initialValue.countries}}</div>
+            </li>
+        </ul>
+<div class="col-xs-12 white normal-float" markdown="1">
 {{top_promo_heading}}
 </div>
-<div class="col-xs-12 col-sm-11 col-md-10 description" markdown="1">
+<div class="col-xs-12 col-sm-11 col-md-10 description normal-float" markdown="1">
 {{top_promo_desc}}
 </div>
-<div class="col-xs-12 button-block">
-    <a href="https://live-livenation.devportal.apigee.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
+<div class="col-xs-12 button-block normal-float">
+    <a href="https://developer-acct.ticketmaster.com/user/login" class="tm-btn tm-btn-white rightarrow">GET YOUR API KEY</a>
     <a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent rightarrow">REVIEW DOCUMENTATION</a>
-    <a href="{{"http://vmenshutin.github.io/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE APIs</a>
+    <a href="{{"/api-explorer/" | prepend: site.baseurl}}" class="tm-btn tm-btn-transparent">EXPLORE THE APIs</a>
 </div>
         </div>
         <div class="clearfix"></div>

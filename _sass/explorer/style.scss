@@ -1,0 +1,816 @@
+#spinner {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  background: url('../../assets/img/loader.gif');
+  background-size: 100px 100px;
+  z-index: 1000;
+}
+
+#api-explorer{
+
+  .api-dropdown{
+    margin-top: 5px;
+    margin-right: 48px;
+    .dropdown-menu{
+      background-color: $n3;
+      li{
+        margin: 10px 0;
+        &>a{
+          position: relative;
+          outline: none;
+          h3{
+            font-family: $font-body;
+            color: $white;
+            text-align: left;
+            text-transform: capitalize;
+            margin: 0 40px 0 0;
+            text-shadow: none;
+          }
+          .api-doc-link{
+            padding: 0;
+            width: 28px;
+            height: 28px;
+            background: url('../../assets/img/ic-doc.svg') no-repeat;
+            position: absolute;
+            right: 12px;
+            top: 7px;
+            &:hover {
+              background: url('../../assets/img/ic_doc_blue.svg') no-repeat;
+            }
+          }
+          &:hover{
+            background: $n3;
+            h3{
+              color: $p1;
+            }
+          }
+        }
+      }
+    }
+    &.open{
+      .dropdown-toggle {
+        h4 { font-size: 16px; }
+        .caret {
+          margin-top: 15px;
+          @include rotate-180();
+        }
+      }
+    }
+    .dropdown-toggle{
+      background: none;
+      border: none;
+      text-transform: uppercase;
+      padding-left: 0;
+      .caret{
+        background: url("../../assets/img/ic-shevron-down-gray.svg") no-repeat;
+        @include tm-transition();
+        border: none;
+        width: 16px;
+        height: 16px;
+        margin-top: 22px;
+        margin-left: 24px;
+      }
+      &.selected-group{
+        h4 {
+          color: $p1;
+        }
+      }
+      h4{
+        float: left;
+        color: $n3;
+        &:hover{
+          color: $p1;
+        }
+      }
+    }
+  }
+
+	.dt-ico {
+		content: '';
+		position: absolute;
+		right: 21px;
+		top: 9px;
+		width: 28px;
+		height: 28px;
+		background: url("/assets/controls/ic-input-controls.svg") 1px -28px no-repeat;
+		@include transition(opacity 0.2s ease-in-out);
+
+		&:hover {
+			cursor: pointer;
+			background-position: -28px -28px;
+		}
+	}
+
+  #title {
+    #selected-method-name{
+      min-height: $line-height-h2;
+      float: left;
+      display: inline-block;
+      width: auto;
+    }
+    #doc-link{
+      padding: 0;
+      float: left;
+      width: 28px;
+      height: 28px;
+      background: url('../../assets/img/ic_doc_blue.svg') no-repeat;
+      position: relative;
+      margin-top: 39px;
+      outline: none !important;
+      @media #{$max-768} {
+        margin-top: 28px;
+      }
+    }
+  }
+
+  .api-column {
+    outline: none;
+    margin-top: 50px;
+    .api-column-map-image{
+      cursor: pointer;
+      width: 100%;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    .subcolumn-count {
+      margin: 0;
+      float: left;
+      margin-right: 16px;
+      font-family: $font-h4;
+      color: $white-70;
+    }
+    .color-circle{
+      margin: 11px 5px 0 10px;
+    }
+    &.column-color-1 {
+      @include colored-column($n2-grey-color);
+    }
+    &.column-color-2 {
+      @include colored-column(#7d3e9b);
+    }
+    &.column-color-3 {
+      @include colored-column(#c05785);
+    }
+    &.column-color-4 {
+      @include colored-column(#a3a64f);
+    }
+    &.column-color-5 {
+      @include colored-column(#d0236f);
+    }
+    &.column-color-6 {
+      @include colored-column($s1b);
+    }
+    &.column-color-7 {
+      @include colored-column(#4fb9b5);
+    }
+    &.column-color-8 {
+      @include colored-column(#b94f5e);
+    }
+    &.column-color-9 {
+      @include colored-column(#545db1);
+    }
+    &.column-color-10 {
+      @include colored-column($green);
+    }
+    &.column-color-11 {
+      @include colored-column(#dba555);
+    }
+    &.column-color-12 {
+      @include colored-column(#db6b55);
+    }
+    &.transparent {
+      opacity: 0.7;
+      &:hover{
+        opacity: 1;
+      }
+    }
+    .list-group-item {
+      word-break: break-all;
+      &.active{
+        .btn-success {
+          color: $white;
+          line-height: 10px;
+        }
+        &:not(:first-child) {
+          margin-top: 20px;
+        }
+      }
+    }
+    .additional-info {
+      color: #B7C9D3;
+      font-size: 12px;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .log-btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    background: url('../../assets/img/ic_console-active.svg') no-repeat;
+    margin-top: 6px;
+    outline: none !important;
+  }
+
+  .color-circle{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid $white;
+    margin: 4px 20px 0 0;
+    &.column-color-1 {
+      background-color: $n2-grey-color;
+    }
+    &.column-color-2 {
+      background-color: #7d3e9b;
+    }
+    &.column-color-3 {
+      background-color: #c05785;
+    }
+    &.column-color-4 {
+      background-color: #a3a64f;
+    }
+    &.column-color-5 {
+      background-color: #d0236f;
+    }
+    &.column-color-6 {
+      background-color: $s1b;
+    }
+    &.column-color-7 {
+      background-color: #4fb9b5;
+    }
+    &.column-color-8 {
+      background-color: #b94f5e;
+    }
+    &.column-color-9 {
+      background-color: #545db1;
+    }
+    &.column-color-10 {
+      background-color: $green;
+    }
+    &.column-color-11 {
+      background-color: #dba555;
+    }
+    &.column-color-12 {
+      background-color: #db6b55;
+    }
+  }
+
+  h3 {
+    color: $n2-grey-color;
+  }
+
+  textarea {
+    outline-color: $green;
+    font-family: $font-body;
+  }
+
+  #primary-column{
+    .parameter-item{
+      margin-bottom: 10px;
+      &:hover{
+        .param-tooltip{
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+      }
+      .param-tooltip{
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        background: $n1-grey-color;
+        color: $white;
+        padding: 5px 10px;
+        border-radius: 3px;
+        top: -40px;
+        right: 15px;
+        @include tm-transition();
+        &:after{
+          content: '';
+          width: 0px;
+          height: 0px;
+          border-right: 10px solid transparent;
+          border-top: 15px solid $n1-grey-color;
+          position: absolute;
+          bottom: -15px;
+          right: 5px;
+        }
+      }
+    }
+  }
+
+  .row-container:after{
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+  .expand-new-method {
+    width: 24px;
+    height: 24px;
+    background: url('../../assets/img/ic-more.svg') no-repeat;
+    cursor: pointer;
+    margin-top: 5px;
+    outline: none;
+  }
+
+  .api-map-btn{
+    width: 28px;
+    height: 28px;
+    background: url('../../assets/img/ic-map.svg') no-repeat;
+    margin-top: 5px;
+    outline: none;
+  }
+
+  #parameters-btn,
+  #json-btn {
+    display: inline-block !important;
+    float: right;
+    width: 26px;
+    height: 26px;
+    background: url("../../assets/img/header/ic-menu-p-1.svg") no-repeat;
+    margin-top: 30px;
+    margin-right: -4px;
+    &.expanded {
+      background: url("/assets/img/header/ic-close-grey.svg") no-repeat;
+      background-position: 3px 2px;
+    }
+    @media #{$max-768}{
+      margin-top: 27px;
+    }
+  }
+
+  @media #{$max-768} {
+    .nav {
+      margin: 0;
+      text-align: left;
+      .dropdown-menu {
+        position: absolute;
+        .api-doc-link {
+          top: 3px !important;
+        }
+      }
+    }
+    .btn-small {
+      top: 23px !important;
+    }
+    .button-blue {
+      margin-bottom: 10px;
+    }
+  }
+
+  .list-group{
+    border-radius: 5px;
+    .list-group-item {
+      border: none;
+      outline: none;
+      .subcolumn-thumbnail{
+        max-height: 36px;
+        max-width: 50px;
+        float: left;
+        margin-right: 12px;
+        cursor: pointer;
+        &:hover{
+          opacity: 0.7;
+        }
+      }
+      &.active{
+        font-size: $font-size-h3;
+        font-weight: bold;
+        padding-bottom: 13px;
+      }
+      &.expandable{
+        cursor: pointer;
+        padding-right: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        &:not(:last-child){
+          &:after{
+            content: '';
+            display: block;
+            position: absolute;
+            width: 88%;
+            height: 2px;
+            left: 50%;
+            margin-left: -44%;
+            bottom: 1px;
+            background-color: $border-color;
+          }
+        }
+        &.selected{
+          background-color: $p1;
+          margin: -3px -1px 0;
+          color: $white;
+          &:before{
+            background: url('../../assets/img/ic-shevron-right-white.svg') no-repeat;
+          }
+          &:after{
+            display: none;
+          }
+        }
+        &:before{
+          content: '';
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          margin-top: -8px;
+          display: block;
+          width: 16px;
+          height: 16px;
+          background: url('../../assets/img/ic-shevron-right.svg') no-repeat;
+        }
+      }
+    }
+    .active + .expandable{
+      border-top: 1px solid $white;
+      margin-top: 1px !important;
+      &:before{
+        margin-top: -7px;
+      }
+    }
+  }
+
+  input[type="text"] {
+    padding: 0 12px;
+    font-family: $font-body;
+    color: $n2-grey-color;
+    font-size: $size-h4;
+    height: 48px;
+    box-shadow: 0 0 0 0 !important;
+    &.error{
+      background-color: pink;
+      border-color: $s1a;
+    }
+    &[url-style='template'] {
+      border-color: $n2-grey-color;
+      &:focus {
+        border-color: $p1a;
+      }
+    }
+  }
+  .lazy-selector-wrapper input {
+    padding-right: 35px;
+  }
+  #js_custom_select_key {
+    .custom_select {
+      &__placeholder {
+        padding-right: 32px;
+        &[readonly] {
+          background-color: $white;
+        }
+      }
+      &__arrow {
+        right: 32px;
+      }
+      &__list {
+        width: calc(100% - 30px);
+        margin-left: 15px;
+      }
+
+    }
+  }
+
+  .group-start{
+    margin-top: 20px;
+  }
+
+  .separator{
+    height: 1px;
+    width: 100%;
+    border-bottom: 3px dotted $n3;
+    margin-top: 38px;
+  }
+
+  .button {
+    border-radius: 5px;
+    display: inline-block;
+    padding: 14px 30px;
+    font-family: $font-h4;
+  }
+
+  .button-blue {
+    color: $white;
+    background: $p1;
+    text-decoration: none;
+    padding: 12px 26px;
+    &.post {
+      background: $green !important;
+    }
+  }
+
+  #req-res-container{
+    height: auto;
+    padding-right: 10px;
+    .req-resp-temp{
+      border: none;
+      border-bottom: 1px solid $silver;
+      box-shadow: none;
+      position: relative;
+      float: left;
+      width: 100%;
+      .panel-heading,
+      .panel-body {
+        background: none;
+        border: none;
+        padding-left: 0;
+        max-height: 400px;
+        overflow: auto;
+      }
+      .panel-heading{
+        padding-left: 40px;
+      }
+      .panel-title{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding-right: 5px;
+      }
+      pre {
+        margin: 0;
+      }
+      .collapsing{
+        overflow-x: inherit;
+      }
+      a[data-parent='#req-res-container']{
+        color: $n2-grey-color;
+        font-family: $font-h4;
+        font-size: $size-h4;
+        .caret{
+          background: url("../../assets/img/ic-shevron-down.svg") no-repeat;
+          @include tm-transition();
+          border: none;
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          left: 16px;
+          top: 16px;
+        }
+        &[aria-expanded='true']{
+          .caret{
+            top: 11px;
+            @include rotate-180();
+          }
+        }
+      }
+    }
+  }
+
+  .horizontal-events-tracker {
+    @media (min-width: 561px) and (max-width: 1070px) {
+      span {
+        width: 49%;
+        margin-right: 0;
+        text-align: left;
+      }
+    }
+    @media (max-width: 560px) {
+      span {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  }
+
+}
+
+
+.documentation,
+#api-explorer {
+  .modal-footer .btn-default,
+  .btn-small {
+    top: 28px;
+    margin-left: 30px;
+    text-transform: uppercase;
+    font-family: $font-h4;
+    font-size: $size-h6;
+    padding: 5px 15px;
+    position: relative;
+    border-radius: 3px;
+    &:focus,
+    &:active,
+    &:hover{
+      color: $p1b;
+      border-color: $p1b;
+      background-color: $white;
+      outline: none;
+    }
+  }
+  .api-exp-param-button {
+    margin-left: 9px;
+    padding: 5px 10px;
+  }
+
+}
+
+.vertical-alignment-helper {
+  display:table;
+  height: 100%;
+  width: 100%;
+  pointer-events:none;
+}
+.vertical-align-center {
+  /* To center vertically */
+  display: table-cell;
+  vertical-align: middle;
+  pointer-events:none;
+}
+.modal-content {
+  &.success {
+    h4 {
+      color: $green;
+    }
+  }
+  /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+  width:inherit;
+  height:inherit;
+  /* To center horizontally */
+  margin: 0 auto;
+  pointer-events:all;
+  background-color: $white;
+  .modal-footer,
+  .modal-header,
+  .modal-body{
+    border: none;
+    text-align: center;
+  }
+  .modal-title{
+    font-size: $font-size-h3;
+  }
+}
+
+//slider customization
+.slick-slider{
+  -webkit-user-select: inherit !important;
+  -moz-user-select: inherit !important;
+  -ms-user-select: inherit !important;
+  user-select: inherit !important;
+  .slick-slide {
+    padding: 0 15px;
+  }
+  .slick-prev{
+    left: -45px;
+    &:before{
+      left: 10px;
+    }
+    &:hover{
+      left: -80px;
+    }
+  }
+  .slick-next{
+    right: -45px;
+    &:before{
+      right: 10px;
+      @include rotate-180();
+    }
+    &:hover{
+      right: -80px;
+    }
+  }
+  .slick-prev,
+  .slick-next{
+    border-radius: 5px;
+    color: $p1;
+    top: 72px;
+    z-index: 1;
+    background: $n3;
+    height: 60px;
+    width: 45px;
+    @include tm-transition();
+    transform: inherit;
+    &:before{
+      content: '';
+      background: url('../../assets/img/arrows-left.svg');
+      position: absolute;
+      width: 23px;
+      height: 25px;
+      top: 20px;
+    }
+    &:focus{
+      background: $n3;
+    }
+    &:hover{
+      background: $p1;
+      width: 80px;
+    }
+    @media #{$max-1200}{
+      display: none !important;
+    }
+  }
+
+  .slick-disabled {
+    cursor: pointer;
+    opacity: 0.3;
+    width: 45px;
+    background: $n3;
+    pointer-events: none;
+    &:hover{
+      width: 45px;
+      background: $n3;
+    }
+  }
+
+  .slick-dots {
+    bottom: inherit;
+    top: 0;
+    li {
+      button {
+        &:hover:before,
+        &:focus:before{
+          opacity: 0.25;
+        }
+      }
+      &.slick-active{
+        button:before{
+          opacity: 0.75 !important;
+        }
+      }
+    }
+  }
+}
+
+#back-top {
+  bottom: 2em;
+  display: none;
+  margin-right: 2em;
+  position: fixed;
+  right: 0;
+  z-index: 10;
+  @media (max-width: 767px) {
+    margin-right: 4em;
+  }
+  @media (max-width: 768px) {
+    margin-right: 4em;
+  }
+  a {
+    background: none;
+    border-radius: 50%;
+    color: #000;
+    display: block;
+    font: 18px/100% Arial,Helvetica,sans-serif;
+    height: 46px;
+    margin-bottom: 7px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s ease 0s;
+    width: 46px;
+    &:hover{
+      outline: none;
+      border: none;
+      span {
+        background-position: 0 -46px;
+      }
+    }
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+  span {
+    background: url('/assets/img/footer/to-top.png') 0px 0px no-repeat;
+    display: block;
+    height: 46px;
+    width: 46px;
+  }
+}
+
+.api-explorer-pagination {
+  padding-right: 10px;
+
+  .pagination-btn {
+    float: right;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      margin-top: -6px;
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .prev-page {
+    &::before {
+      background: url(../../assets/img/ic-shevron-left-white.svg) no-repeat;
+      left: 6px;
+    }
+  }
+  .next-page {
+    &::before {
+      background: url(../../assets/img/ic-shevron-right-white.svg) no-repeat;
+      right: 0;
+    }
+  }
+}
+

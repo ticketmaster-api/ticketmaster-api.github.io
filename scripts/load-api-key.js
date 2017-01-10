@@ -1,40 +1,35 @@
 (function(){
-  var apiKey = sessionStorage.getItem('tk-api-key');
-  if(apiKey === null){
-    var onLoadHandler = function() {
-      var win = window.frames.target;
-      win.postMessage("", "https://live-livenation.devportal.apigee.com");
-    };
-
-    var iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.setAttribute("src","https://live-livenation.devportal.apigee.com/user/");
-    iframe.setAttribute("name","target");
-    iframe.addEventListener("load",onLoadHandler);
-
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(iframe);
+  //get Cookie by name
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length,c.length);
+      }
+    }
+    return "";
   }
 
+  var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
+  var email = window.atob(getCookie("tk-api-email")); //decode string
 
-  // Wait for response
-  // TODO: update links to live
-  checkResponse = function(event){
-    if( event.origin = "https://live-livenation.devportal.apigee.com") {
-      sessionStorage.setItem('tk-api-key', event.data.key);
-      sessionStorage.setItem('tk-api-email', event.data.email);
-      //document.getElementsByClassName("apigee-login")[0].textContent = event.data.email;
-    }
-    else{
-      console.error(event.origin + " is not allowed");
-    }
-  };
-
-  if (window.addEventListener) {
-    window.addEventListener("message", checkResponse);
-  } else {
-    // IE8
-    window.attachEvent("onmessage", checkResponse);
+  if(email){
+    $(".apigee-login").text(email);
   }
 
+  if(apiKeys && apiKeys[0] && apiKeys[0].length){
+    var key = apiKeys[0][apiKeys[0].length-1];
+    /*add custom login event for widget*/
+    if(key){
+      $(window).trigger('login', [{
+        key: key,
+        email: email
+      }]);
+    }
+  }
 })();

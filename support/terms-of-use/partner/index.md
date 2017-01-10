@@ -3,7 +3,7 @@ layout: base-content
 categories:
 - support
 - terms-of-use-partner
-title: Partner API terms of use
+title: Partner API Terms of Use
 excerpt: The following terms and conditions govern the use of the Ticketmaster application programming interfaces.
 keywords: Partner, terms, conditions, licensed uses, restrictions, warranty disclaimer, ownership, relationship of parties
 ---
@@ -20,12 +20,14 @@ The Ticketmaster API is owned by Ticketmaster and is licensed to you on a worldw
 
 **You shall:**
 
+{: .left-margin}
 1.     Comply with the Ticketmaster Terms of Use at [www.ticketmaster.com](http://www.ticketmaster.com).
 2.     Remove from your application within 24 hours any Event Content or other information or tickets that the owner asks you to remove.
 3.     Disclose in your application through a privacy policy or otherwise displayed in the footer of each page, how you collect, use, store, and disclose data collected from visitors, including, where applicable, that third parties (including advertisers) may serve content and/or advertisements and collect information directly from visitors and may place or recognize cookies on visitors' browsers.
 
 **You shall not:**
 
+{: .left-margin}
 4.     Use the Ticketmaster API for any application that replicates or attempts to replace the unique essential user experience of Ticketmaster.com or the Ticketmaster apps.
 5.     Use the Ticketmaster API to spam, incentivize, or harass users.
 6.     Participate in any "like", "share", "comment", or "follower" exchange programs.

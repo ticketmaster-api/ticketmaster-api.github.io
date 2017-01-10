@@ -20,23 +20,25 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
 
 <div class="tiles-wrapper ">
 {% for partner in site.pages %}
-    {% if partner.categories[0] == "partner" && partner.categories[1] == "certified" %}
+    {% if partner.categories[0] == "partner" and partner.categories[1] == "certified" %}
 
 
 {% if partner.type == blank or partner.type == nil or partner.type == "small" or partner.type == "wide" %}
-<div class="flip-container col-xs-12 {% if partner.type == "wide" %} col-sm-12 col-md-12 {% else %} col-sm-6 col-md-6 {% endif %}  col-lg-4" >
-    <div class="flipper">
-        <div class="front">
-            {% capture fullpath %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
-            <div class="img-wrapper">
-                <img src="{{fullpath}}" alt="{{partner.pname | capitalize }}">
+<div class="flipper col-xs-12 {% if partner.type == "wide" %} col-sm-12 col-md-12 {% else %} col-sm-6 col-md-6 {% endif %}  col-lg-4" >
+    <div class="card">
+        <div class="content">
+            <div class="front cardFront">
+                {% capture fullpath %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
+                <div class="img-wrapper">
+                    <img src="{{fullpath}}" alt="{{partner.pname | capitalize }}">
+                </div>
             </div>
-        </div>
-        <div class="back">
-            {% if partner.tile_header %}
-            <h3>{{ partner.tile_header }}</h3>
-            {% endif %}
-            {{ partner.tile_description | markdownify }}
+            <div class="back cardBack">
+                {% if partner.tile_header %}
+                <h3>{{ partner.tile_header }}</h3>
+                {% endif %}
+                {{ partner.tile_description | markdownify }}
+            </div>
         </div>
     </div>
 </div>
@@ -67,7 +69,3 @@ aesthetic food truck sriracha cornhole single-origin coffee chu.
     {% endif %}
 {% endfor %}
 </div>
-
-<script>
-$(".flip-container").on('tap', 'this.classList.toggle("hover")');
-</script>

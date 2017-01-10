@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+{% include home-header.html %}
+
+<div class="single-column tutorials documentation">
+
+    <div class="maincontent">
+        <div class="row" style="position: relative;">
+            <div class="col-xs-12 col-sm-6 col-lg-3 has-bg" id="aside-block">
+                <div class="wrapper-aside-menu">
+                    <h3 class="menu-header" id="aside-heading">
+                        Products &amp; Docs
+                        <span class="expanded" id="side-menu-btn"></span>
+                    </h3>
+                    {% include pd-side-menu.html %}
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-lg-9 page-column " id="main-block">
+                <div class="content" style="display: block;">
+                    {{ content }}
+                    <div class="side-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% include home-footer.html %}
+
+<script src="{{"/scripts/vendors/user-scroll-disabler.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
+
+{% if page.categories[0] == "documentation" and page.categories[1] == "changelog" %}
+<script src="{{"/scripts/vendors/jstree.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{"/scripts/components/list-collapse.js" | prepend: site.baseurl }}"></script>
+
+{% endif %}

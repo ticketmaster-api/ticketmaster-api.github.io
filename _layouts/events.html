@@ -13,7 +13,7 @@ layout: default
             <p>{{ event.content | markdownify }}</p>
             <div class="tags">
                 {% for tag in event.tags %}
-                <button class="trans-btn" tag="{{tag}}">{{tag}}</button>
+                <a href="/events/#/upcoming/{{tag}}" class="trans-btn">{{tag}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -62,89 +62,95 @@ layout: default
     $(".event").add(".top-event").each(function(){
         var date = new Date();
         var eventDate = new Date($(this).data("eventEnd").replace(" ", "T"));
+        var category = 'upcoming';
         if( eventDate.getTime() < date.getTime() ){
             if($(this).hasClass("event")){
-              $(this).addClass("past").hide();
+                $(this).addClass("past").hide();
+                category = 'past';
             }
             $(this).find(".rsvp").remove();
         }
+        $(this).find('.tag-btn').each(function () {
+            var $this = $(this);
+            $this.attr('href', '#/' + category + '/' + $this.attr('href'));
+        });
     });
 
     // Get list of upcoming events
     var uniqueUpcoming = [].map.call($(".event").not(".past").find(".tag-btn"),function(item){
-        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
+        return '<li><a href="#/upcoming/' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';
     }).filter( function(value, index, self) {
         return self.indexOf(value) === index;
     }).join("");
 
     if(uniqueUpcoming !== ""){
-      $(".categories").append('<li class="tag-group upcoming" data-type="upcoming" ><a href="#upcoming" class="group-title">Upcoming</a><ul class="sections menu-highlight">'+uniqueUpcoming+'</ul></li>');
+      $(".categories").append('<li class="tag-group upcoming" data-type="upcoming" ><a href="#/upcoming" class="group-title">Upcoming</a><ul class="sections menu-highlight">'+uniqueUpcoming+'</ul></li>');
     }
 
     // Get list of past events
     var uniquePast =[].map.call($(".event.past").find(".tag-btn"),function(item){
-        return '<li><a href="#' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';;
+        return '<li><a href="#/past/' + item.textContent + '" class="tag-menu-btn">' + item.textContent + '</a></li>';
     }).filter( function(value, index, self) {
         return self.indexOf(value) === index;
     }).join("");
 
     if(uniquePast !== ""){
-      $(".categories").append('<li class="tag-group past" data-type="past" ><a href="#past" class="group-title">Past</a><ul class="sections menu-highlight">'+uniquePast+'</ul></li>');
+      $(".categories").append('<li class="tag-group past" data-type="past" ><a href="#/past" class="group-title">Past</a><ul class="sections menu-highlight">'+uniquePast+'</ul></li>');
     }
 
+    function hashParser() {
+        var hash = window.location.hash;
+        if(!hash) {
+            return ['upcoming'];
+        }
+        var hashProps = hash.split('/');
+        hashProps.shift();
+        return hashProps;
+    }
 
-    var getActiveEvents = function(element) {
-      if( $(element).hasClass("tag-menu-btn") ){
-        return $(element).parents(".tag-group").data("type")
-      }
-      else if($(element).hasClass("tag-btn")){
-        return $(element).parents(".event").hasClass("past") ? "past" : "upcoming";
-      }else if($(element).hasClass("group-title")){
-        return $(element).parent().data("type");
-      }
-    };
-
-    var tagClickHandler = function(){
-
-      var past = $(".event.past"),
+    function hashChangeHandler() {
+        var hashProps = hashParser(),
+          $eventsWrapper = $(".events-wrapper"),
+          $bgHeaderEvents = $(".bg-header-events"),
+          activeCssClass = "active",
+          headerCssClass = "small-h",
+          defaultType = 'upcoming',
+          validEventTypeList = ['past', 'upcoming'],
+          past = $(".event.past"),
           present = $(".event").not(".past"),
-          currentEventType = getActiveEvents(this),
-          isUP = currentEventType === "upcoming",
+          currentEventType = hashProps[0],
+          isUP = currentEventType === defaultType,
           toShow = isUP ? present : past,
           toHide = isUP ? past : present;
 
-      $(".bg-header-events").addClass("small-h");
-      $(".events-wrapper").hide();
-      window.scrollTo(0,0);
+        currentEventType = validEventTypeList.indexOf(currentEventType) >=0 ? currentEventType : defaultType;
 
-      var tag = this.textContent;
-
-      $(".tag-btn").add(".categories a").removeClass("active");
-      $(".tag-btn[tag="+tag+"]").add(".categories ." + currentEventType + " a[href=#"+tag+"]").addClass("active");
-
-      $("#event-header").html(currentEventType);
-
-      if($(this).hasClass("group-title")) {
-        toShow.show();
+        window.scrollTo(0,0);
         toHide.hide();
+        $("#event-header").html(currentEventType);
+        $(".tag-btn").add(".categories a").removeClass(activeCssClass);
 
-        $(".events-wrapper").show();
-        $(".bg-header-events").removeClass("small-h");
-        $(this).addClass("active");
-        return;
-      }
+        var tag = hashProps[1];
+        if(tag){
+            $eventsWrapper.hide();
+            $bgHeaderEvents.addClass(headerCssClass);
+            $(".tag-btn[tag="+tag+"]")
+              .add(".categories a[href='#/"+currentEventType + '/' + tag+"']")
+              .addClass("active");
+        }else{
+            $eventsWrapper.show();
+            $bgHeaderEvents.removeClass(headerCssClass);
+            toShow.show();
+            $(".group-title[href='#/"+ currentEventType +"']").addClass(activeCssClass);
+            return;
+        }
 
+        toShow.hide().filter(function() {
+            return $(this).find("[tag="+tag+"]").size() !== 0;
+        }).show();
+    }
 
-      toHide.hide();
-      toShow.hide().filter(function() {
-          return $(this).find("[tag="+tag+"]").size() !== 0;
-      }).show();
-    };
-
-
-
-    $(".categories").on("click", "a", tagClickHandler);
-    $(".tags").on("click", ".tag-btn", tagClickHandler);
-    $(".tags").on("click", ".trans-btn", tagClickHandler);
+    $(window).on('hashchange', hashChangeHandler);
+    hashChangeHandler();
 
 </script>

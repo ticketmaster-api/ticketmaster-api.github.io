@@ -1,0 +1,5 @@
+<div class="changelog-section">
+    {% if thisCategory == file.categories[3]%}{%else%}
+    <h2 id="{{ file.title | prepend: 'changelog-' | lstrip | downcase | replace: ' ' , '-' | replace: '(' , '-' | replace: ')' , '-' }}">Changelog for {{ file.title }}:</h2>{%endif%}
+    <h4>{{ file.release_date  | date_to_long_string  }}</h4>{{ file.content | markdownify }}</div>
+{%assign thisCategory = file.categories[3]%}

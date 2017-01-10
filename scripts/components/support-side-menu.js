@@ -1,15 +1,15 @@
 (function(){
 
     var calculate_offset = function(){
-        if (window.innerWidth < 1200) {
+        if (window.innerWidth < desktopSize) {
             return -10;
         }
         return 0;
     };
 
     var showMenu = function(){
-        if ( window.innerWidth < 1200 ) {
-            $(".bg-header").add("body").addClass("menu-bg");
+        if ( window.innerWidth < desktopSize ) {
+            bgHeader.add("body").addClass("menu-bg");
         }
 
         menu.addClass("expanded").find("ul").show();
@@ -18,16 +18,19 @@
     };
 
     var hideMenu = function(){
-        $(".bg-header").add("body").removeClass("menu-bg");
+        bgHeader.add("body").removeClass("menu-bg");
         menu.removeClass("expanded").find("ul").hide();
         sideBtn.addClass("closed").removeClass("expanded");
     };
     var menu = $('.menu'),
         sideBtn = $("#side-menu-btn"),
         stickyHeaderTop = $('.menu').offset().top + calculate_offset(),
-        belowFooter = false;
+        belowFooter = false,
+        bgHeader = $(".bg-header"),
+        footer = $('#footer'),
+        desktopSize = 1200;
 
-    if ( window.innerWidth < 1200 ) {
+    if ( window.innerWidth < desktopSize ) {
         hideMenu();
     }
 
@@ -35,11 +38,11 @@
 
         var menuTop = menu.offset().top,
             menuHeight = menu.height(),
-            bottomBarOffset = $('#footer').offset().top,
+            bottomBarOffset = footer.offset().top,
             windowScrollTop = $(window).scrollTop();
 
         //set menu position to absolute when footer is reached
-        if (window.innerWidth >= 1200){
+        if (window.innerWidth >= desktopSize){
             if (!belowFooter){
                 if ((menuTop + menuHeight >= bottomBarOffset)){
                     belowFooter = true;
@@ -64,18 +67,27 @@
     };
 
     // Check the initial Poistion of the Sticky Header
+    window.onload = function() {
+        if( $(window).scrollTop() >= menu.offset().top + calculate_offset() ) {
+            menu.addClass("fixed");
+        } else {
+            menu.removeClass("fixed");
+        }
+    };
+
+    // Check the initial Poistion of the Sticky Header
     $(window).scroll(function(){
         if( $(window).scrollTop() >= stickyHeaderTop ) {
             menu.addClass("fixed");
         } else {
-            menu.removeClass("fixed")
+            menu.removeClass("fixed");
         }
         adjustMenuPosition();
     });
 
     window.onresize = function(event) {
         //stickyHeaderTop = menu.offset().top + calculate_offset();
-        if ( window.innerWidth < 1200 ) {
+        if ( window.innerWidth < desktopSize ) {
             hideMenu();
         }else{
             showMenu();
@@ -89,20 +101,16 @@
             showMenu();
         }
         else{
-            if ( window.innerWidth < 1200 ) {
+            if ( window.innerWidth < desktopSize ) {
                 hideMenu();
             }
         }
     });
 
-    $(".sections").on("click", "a", function(){
-        if ( window.innerWidth < 1200 ) {
+    $(".sections, .categories").on("click", "a", function(){
+        if ( window.innerWidth < desktopSize ) {
             hideMenu();
         }
-    });
-
-    $(".base-content-wrapper").on("blur", ".menu.expanded", function(){
-        setTimeout(hideMenu, 200)
     });
 
     adjustMenuPosition();

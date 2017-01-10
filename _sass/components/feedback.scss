@@ -1,27 +1,30 @@
 .feedback-btn{
   width: 110px;
-  height: 45px;
+  height: 44px;
   position: fixed;
   top: 50%;
-  right: -33px;
+  right: -54px;
   margin-top: -55px;
   border-radius: 4px 4px 0 0;
   @include rotate(270deg);
-  font-size: $small-font-size;
   text-transform: uppercase;
   color: $white;
   font-family: $font-lead-bold;
+  line-height: 16px;
   background-color: $s1c;
-  transition: background-color 0.2s ease;
   z-index: 11;
+  padding-bottom: 22px;
 
   @media (max-width: 767px) {
     top: auto;
-    bottom: 3em;
+    bottom: $base-margin*2;
   }
 
   &:hover{
     background-color: $s1b;
+    right: -33px;
+    width: 110px;
+    padding-bottom: 5px;
   }
 
   &:hover,
