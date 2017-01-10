@@ -612,15 +612,5 @@ Content-Length: 43
 ## Supported Locales
 {: .article #supported-locales}
 
-| Locale	|
-|:----------|
-| en-us		|
-| en-au		|
-| en-gb		|
-| en-nz		|
-| en-mx		|
-| en-ca		|
-| es-us		|
-| es-mx		|
-| fr-fr		|
-| fr-ca		|
+We support all languages, without any fallback.
+
