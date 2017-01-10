@@ -88,12 +88,24 @@ publish/{version}/events
 ### Request structure:
 
 {: .nested-list}
+- `active` (boolean) - true if the entity is active; inactive entity won't appear in Discovery API.
 - `additionalInfos` (object) - map of locale to value for any additional informations on the event.
 - `attractions` (array) - list of attractions in the event.
     * `id` (string) - the id of the attraction as returned by the Discovery API.  If specified, then the `source` element should not be set. Either `id` or `source` must be specified.
     * `source` (object) - the id and source name of the attraction. Must be specified if `id` is not. Either `id` or `source` must be specified.
         - `id` (string) - the publisher's id of the attraction.
         - `name` (string) - the publisher's name.
+- `classifications` (array) - list of classifications for the event.
+    * `primary` (boolean) - true if this is the event's primary classification
+    * `segment` (object) - segment.
+        - `id` (string) - the ID of the segment. (not required if `names` is provided)
+        - `names` (object) - map of locale to value for the names of the segment. (not required if `id` is provided)
+    * `genre` (object) - genre
+        - `id` (string) - the ID of the genre. (not required if `names` is provided)
+        - `names` (object) - map of locale to value for the names of the genre. (not required if `id` is provided)
+    * `subGenre` (object) - subGenre
+        - `id` (string) - the ID of the subGenre. (not required if `names` is provided)
+        - `names` (object) - map of locale to value for the names of the subGenre. (not required if `id` is provided)	
 - `dates` (object) - all the dates related to the event.
     * `start` (object) - the start date of the event.
         - `localDate` (string) - the start date in the event timezone.
@@ -114,6 +126,7 @@ publish/{version}/events
         - `approximate` (boolean) - true if the end date and time are approximate, false otherwise.
     * `timezone` (string) - the timezone of the event.
 - `descriptions` (object) - map of locale to value for the description of the event.
+- `infos` (object) - map of locale to value for any informations on the event.
 - `images` (array) - list of images of the event.
     * `height` (number) - the height of the image.
     * `ratio` (string) - the ratio of the image ex.: 3x2, 16x9, ...
@@ -121,7 +134,7 @@ publish/{version}/events
     * `width` (number) - the width of the image.
 - `names` (object) - map of locale to value for the names of the event.
 - `place` (object) - the place where the event occurs.
-    * `names` (object) - map of locale to value for the names of the event.
+    * `names` (object) - map of locale to value for the names of the place.
     * `address` (object) - the address of the place of the event.
        - `line1s` (object) - map of locale to value for the first line of the address.
        - `line2s` (object) - map of locale to value for the second line of the address.
@@ -138,7 +151,17 @@ publish/{version}/events
     * `postalCode` (string) - the postal code of the place of the event.
     * `state` (object) - the state (or region) where the event takes place.
        - `names` (object) - map of locale to value for the names of the state.
-       - `stateCode` (string) - the code of the state of the event.         
+       - `stateCode` (string) - the code of the state of the event.        
+- `pleaseNotes` (object) map of locale to value for any notes related to the event.
+- `priceRanges` (object) - price ranges of this event
+    * `type` (string) - type of price (allowedValues:["standard"])
+    * `currency` (string) - currency code (as defined by ISO-4217)
+    * `min` (number) - minimum price
+    * `max` (number) - maximum price
+- `promoter` (object) - event's promoter
+    * `id` (string) - id of the promoter
+    * `names` (object) map of locale to value for the names of the promoter
+    * `descriptions` (object) map of locale to value for the descriptions of the promoter
 - `publicVisibility` (object) - determine if the event is visible on the Discovery API.
     * `startDateTime` (string) - the start date and time of visibility for this event on the Discovery API in UTC. 
     * `endDateTime` (string) - the end date and time of visibility for this event on the Discovery API in UTC.
@@ -152,12 +175,12 @@ publish/{version}/events
     * `id` (string) - the publisher's id of the event.
     * `name` (string) - the publisher's name.
 - `test` (boolean) - true if this is a test event data, false otherwise (real event).
+- `url` (string) - the URL of the event on the publisher's site.
 - `venue` (object) - the venue of the event.
     * `id` (string) - the id of the venue as returned by the Discovery API. If specified, then the `source` element should not be set. Either `id` or `source` must be specified.
     * `source` (object) - the id and source name of the venue. Must be specified only if `id` is not. Either `id` or `source` must be specified.
         - `id` (string) - the publisher's id of the venue.
         - `name` (string) - the publisher's name.
-- `url` (string) - the URL of the event on the publisher's site.        
 - `version` (number) - the publisher's version for this event.
 
 
@@ -168,8 +191,8 @@ publish/{version}/events
 - `status` (string) - status of the publication. Either `Success` or `SuccessWarning`(if there are any missing or unknown properties).
 - `message` (string) - warning message, if any
 - `id` (string) - the generated public id
-- `missingProperties` (map) - list of missing `Preferred` properties, if any.
-- `unknownProperties` (map) - list of unknown properties and their data, if any. Those properties won't be visible in Discovery API.
+- `missingProperties` (object) - list of missing `Preferred` properties, if any.
+- `unknownProperties` (object) - list of unknown properties and their data, if any. Those properties won't be visible in Discovery API.
 
 #### Error:
 
@@ -177,8 +200,8 @@ publish/{version}/events
     * `status` (string) - nature of the error. Either `Error` or `Rejected`(if there are any missing or unknown properties).
     * `code` (string) - the error code
     * `detail` (string) - the error message
-    * `invalidProperties` (map) - list of invalid properties and their validation messages, if any
-    * `missingProperties` (map) - list of missing `Mandatory` properties, if any
+    * `invalidProperties` (object) - list of invalid properties and their validation messages, if any
+    * `missingProperties` (object) - list of missing `Mandatory` properties, if any
 
 {: .aside}
 >[JavaScript](#js)
@@ -589,15 +612,5 @@ Content-Length: 43
 ## Supported Locales
 {: .article #supported-locales}
 
-| Locale	|
-|:----------|
-| en-us		|
-| en-au		|
-| en-gb		|
-| en-nz		|
-| en-mx		|
-| en-ca		|
-| es-us		|
-| es-mx		|
-| fr-fr		|
-| fr-ca		|
+We support all languages, without any fallback.
+
