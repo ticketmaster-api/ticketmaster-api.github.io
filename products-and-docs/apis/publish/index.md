@@ -97,15 +97,15 @@ publish/{version}/events
         - `name` (string) - the publisher's name.
 - `classifications` (array) - list of classifications for the event.
     * `primary` (boolean) - true if this is the event's primary classification
-    * `segment` (object) - segment
-        - `id` (string) - the ID of the segment
-        - `names` (object) - map of locale to value for the names of the segment	
+    * `segment` (object) - segment.
+        - `id` (string) - the ID of the segment. (not required if `names` is provided)
+        - `names` (object) - map of locale to value for the names of the segment. (not required if `id` is provided)
     * `genre` (object) - genre
-        - `id` (string) - the ID of the genre
-        - `names` (object) - map of locale to value for the names of the genre	
+        - `id` (string) - the ID of the genre. (not required if `names` is provided)
+        - `names` (object) - map of locale to value for the names of the genre. (not required if `id` is provided)
     * `subGenre` (object) - subGenre
-        - `id` (string) - the ID of the subGenre
-        - `names` (object) - map of locale to value for the names of the subGenre	
+        - `id` (string) - the ID of the subGenre. (not required if `names` is provided)
+        - `names` (object) - map of locale to value for the names of the subGenre. (not required if `id` is provided)	
 - `dates` (object) - all the dates related to the event.
     * `start` (object) - the start date of the event.
         - `localDate` (string) - the start date in the event timezone.
@@ -155,7 +155,7 @@ publish/{version}/events
 - `pleaseNotes` (object) map of locale to value for any notes related to the event.
 - `priceRanges` (object) - price ranges of this event
     * `type` (string) - type of price (allowedValues:"standard")
-    * `currency` (string) - currency code (ISO-4217)
+    * `currency` (string) - currency code (as deinfed by ISO-4217)
     * `min` (number) - minimum price
     * `max` (number) - maximum price
 - `promoter` (object) - event's promoter
