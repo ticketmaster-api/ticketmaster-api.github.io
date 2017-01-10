@@ -154,8 +154,8 @@ publish/{version}/events
        - `stateCode` (string) - the code of the state of the event.        
 - `pleaseNotes` (object) map of locale to value for any notes related to the event.
 - `priceRanges` (object) - price ranges of this event
-    * `type` (string) - type of price (allowedValues:"standard")
-    * `currency` (string) - currency code (as deinfed by ISO-4217)
+    * `type` (string) - type of price (allowedValues:["standard"])
+    * `currency` (string) - currency code (as defined by ISO-4217)
     * `min` (number) - minimum price
     * `max` (number) - maximum price
 - `promoter` (object) - event's promoter
