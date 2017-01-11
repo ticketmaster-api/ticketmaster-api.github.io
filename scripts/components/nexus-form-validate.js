@@ -4,7 +4,8 @@ var $nexusForm = $('.js_nexus_form'),
   $btnAlertOk = $modalAlert.find('#js_nexus_btn_alert_ok'),
   $btnAlertError = $modalAlertError.find('#js_nexus_btn_alert_ok-error'),
   $textAreaDescription = $('#company-detail-text'),
-  formKey = '41f4cf3970c05bb985abec394b1e3c0b';
+  formKey = '41f4cf3970c05bb985abec394b1e3c0b',
+	errorDescriptionID = 'nexus-contact-char-count';
 
 /*set new key for localhost*/
 function checkKey() {
@@ -36,6 +37,7 @@ $nexusForm.submit(function(e){
   });
   return false; //to stop the form from submitting
 });
+
 function showMsgSuccess($modalAlert){
   // Show message
   $($modalAlert).modal();
@@ -46,7 +48,7 @@ function showMsgSuccess($modalAlert){
 }
 
 function showMsgError(id, charCount){
-  $('#nexus-text-overflow-message').append('<span id="nexus-contact-char-count"> Current count is '+charCount+'</span>');
+  $('#nexus-text-overflow-message').append('<span id="'+errorDescriptionID+'"> Current count is '+charCount+'</span>');
   $(id).modal();
 }
 
@@ -58,8 +60,8 @@ $btnAlertOk.on('click', function(){
 $btnAlertError.on('click', function(){
   $modalAlertError.modal('hide');
   
-  // $modal.modal('show');
-  // $btn.attr('disabled', false);
+	$('#'+errorDescriptionID).remove();
+	$('button', $nexusForm).attr('disabled', false);
 });
 
 checkKey(formKey);
