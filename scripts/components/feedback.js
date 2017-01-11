@@ -8,6 +8,7 @@
         $btn = $modal.find('#js_feedback_btn'),
         $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
         $btnAlertError = $modalAlertError.find('#js_feedback_btn_alert_ok-error'),
+				errorDescriptionID = 'feedback-contact-char-count',
         cssValidationClass = 'feedback_form-validation';
 
     function resetForm(){
@@ -74,6 +75,7 @@
     function clearBody(delay) {
         setTimeout(function(){
             $('body').removeAttr('style');
+						$("#"+errorDescriptionID).remove();
         },delay);
     }
 
