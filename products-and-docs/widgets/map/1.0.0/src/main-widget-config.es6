@@ -42,8 +42,8 @@
                     layout: 'horizontal'
                 },
                 xxl: {
-                    width: 300,
-                    height: 600,
+                    width: 180,
+                    height: 150,
                     layout: 'vertical'
                 },
                 custom: {
@@ -55,8 +55,8 @@
             initSliderSize: {
                 width: 300,
                 height: 560,
-                maxWidth: 300,
-                minWidth: 560
+                maxWidth: 500,
+                minWidth: 300
             }
         },
         isPostalCodeChanged = false;
@@ -253,7 +253,7 @@
                 sizeConfig = {
                     width: 620,
                     height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
-                    maxWidth: 900,
+                    maxWidth: 620,
                     minWidth: 620
                 };
             }
@@ -265,8 +265,15 @@
             })
                 .slider('refresh');
 
+            document.getElementById('map').style.width = sizeConfig.width + 'px';
+            document.getElementById('map').style.height = sizeConfig.height + 'px';
             widgetNode.setAttribute('w-width', sizeConfig.width);
             widgetNode.setAttribute('w-height', sizeConfig.height);
+        }
+
+        if(targetName === "w-width") {
+            document.getElementById('map').style.width = widgetNode.getAttribute('w-width') + 'px';
+            document.getElementById('map').style.height = widgetNode.getAttribute('w-height') + 'px';
         }
 
         //Check fixed sizes for 'simple' theme
@@ -275,9 +282,12 @@
             let sizeConfig = {
                 width: themeConfig.sizes[targetValue].width,
                 height: themeConfig.sizes[targetValue].height,
-                maxWidth: 560,
+                maxWidth: 1200,
                 minWidth: 300
             };
+
+            document.getElementById('map').style.width = themeConfig.sizes[targetValue].width + 'px';
+            document.getElementById('map').style.height = themeConfig.sizes[targetValue].height + 'px';
 
             //set layout
             widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
@@ -311,6 +321,8 @@
 
         if (event.target.name != 'w-latlong') widgetNode.setAttribute(event.target.name, event.target.value);
         widget.update();
+
+
 
         windowScroll(); //recalculate widget container position
     };
