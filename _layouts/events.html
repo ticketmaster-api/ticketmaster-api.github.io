@@ -162,6 +162,7 @@ layout: default
             }
         });
         onceFlag = false;
+			console.log('set checkNoEvents');
     }
 
     function hashParser() {
@@ -283,7 +284,9 @@ layout: default
 		popstateHandler();
 
 		$(function() {
-			$('.scroll-to-item').on('click', scrollToItemHandler);
+			if($(".scroll-to-item").is(":visible") ){
+				$('.scroll-to-item').on('click', scrollToItemHandler);
+			}
 		});
 
 
