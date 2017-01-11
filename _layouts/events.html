@@ -284,10 +284,8 @@ layout: default
 		popstateHandler();
 
 		$(function() {
-			if($(".scroll-to-item").is(":visible") ){
+			setTimeout(function () {
 				$('.scroll-to-item').on('click', scrollToItemHandler);
-			}
+			},1);
 		});
-
-
 </script>
