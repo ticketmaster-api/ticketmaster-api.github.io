@@ -71,6 +71,23 @@
         margin-bottom: 30px;
       }
     }
+
+		&.top-event-default {
+
+			@media #{$min-1200}{
+				h1 {
+					max-width: $base-margin*20;
+				}
+			}
+			@media #{$min-768}{
+				h3 {
+					max-width: $base-margin*20;
+				}
+			}
+			h3 {
+				color: $white;
+			}
+		}
   }
 }
 .event {
@@ -193,9 +210,7 @@
 .min-height-250 {
   min-height: 250px;
 }
-.base-content-wrapper .wrapper-no-events {
-	//display: none;
-}
+
 .base-content-wrapper .no-events {
   margin: 0 auto;
   background-image: url("../../assets/img/events/img-not-found-event.svg");
@@ -214,6 +229,7 @@
     text-align: right;
     color: $n3;
     text-transform: none;
+		padding-top: 26px;
   }
 	@media #{$max-1200}{
 		margin-bottom: 126px;
