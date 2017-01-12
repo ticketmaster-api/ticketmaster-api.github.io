@@ -1,6 +1,6 @@
 ---
 order: 10
-category: sd-article
+category: sd-article-v2
 layout: partners-doc
 categories: 
   - startup_and_development
@@ -10,8 +10,7 @@ img: /assets/img/S&D/people-3.png
 title: Title for the Selected Hero Image 10
 summary: Lorem ipsum
 tab: Events
-places: 
-  - header
+places:
   - gallery  
 ---
 

@@ -2,14 +2,16 @@
 	<!-- common header -->
 	{% include partials/common-header.html %}
 	<!-- slider -->
-	<section id="myCarousel">
+	<section id="myCarousel" class="slice-bottom-left">
 		{%for slide in carousel_array %}
-		<div class="item{% if forloop.first == true %} active{% endif %}" style="background: url({{slide.img}}) 0 50% no-repeat scroll;">
-			<section class="slide-content-wrapper">
-				<h1 class="slide-title">STARTUPS & DEVELOPERS</h1>
-				<h3 class="slide-descr">{{slide.title}}</h3>
-				<a class="btn btn-default btn-transparent" href="{{slide.url}}">See more</a>
-			</section>
+		<div class="item{% if forloop.first == true %} active{% endif %}" style="background: url('{{slide.img}}') 0 50% no-repeat scroll;">
+			<div class="slider-gradient">
+				<section class="slide-content-wrapper">
+					<h1 class="slide-title">STARTUPS & DEVELOPERS</h1>
+					<h3 class="slide-descr">{{slide.title}}</h3>
+					<a class="btn btn-default btn-transparent" href="{{slide.url}}">See more</a>
+				</section>
+			</div>
 		</div>
 		{% endfor %}
 		<!--show static img if carousel_array.size < 1 -->
@@ -17,7 +19,7 @@
 			<div class="item active">
 				<img src="http://www.w3schools.com/bootstrap/img_flower.jpg">
 			</div>
-			{% endif %}
+		{% endif %}
 	</section>
 	{% include partials/expanded-menu-header.html %}
 	{% include partials/common-header-small.html %}

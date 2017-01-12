@@ -1,6 +1,6 @@
 ---
 order: 6
-category: sd-article
+category: sd-article-v2
 layout: partners-doc
 categories: 
   - startup_and_development
@@ -10,8 +10,7 @@ img: /assets/img/S&D/1.jpg
 title: Title for the Selected Hero Image 6
 summary: Lorem ipsum
 tab: Hackathon
-places: 
-  - header 
+places:
   - gallery  
 ---
 

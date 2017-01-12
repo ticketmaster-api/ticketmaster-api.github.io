@@ -1,6 +1,6 @@
 ---
 order: 8
-category: sd-article
+category: sd-article-v2
 layout: partners-doc
 categories: 
   - startup_and_development
@@ -10,8 +10,7 @@ img: /assets/img/S&D/people-1.png
 title: Title for the Selected Hero Image 8
 summary: Lorem ipsum
 tab: DevJam
-places: 
-  - header
+places:
   - gallery
   - top
 ---
