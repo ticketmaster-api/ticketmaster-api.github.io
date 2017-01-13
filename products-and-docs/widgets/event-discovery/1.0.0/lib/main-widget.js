@@ -154,13 +154,13 @@ var TicketmasterEventDiscoveryWidget = function () {
         verboseName: 'radius'
       }, {
         attr: 'attractionid',
-        verboseName: 'attractionId'
+        verboseName: 'attraction'
       }, {
         attr: 'promoterid',
-        verboseName: 'promoterId'
+        verboseName: 'promoter'
       }, {
         attr: 'venueid',
-        verboseName: 'venueId'
+        verboseName: 'venue'
       }, {
         attr: 'classificationname',
         verboseName: 'classificationName'
