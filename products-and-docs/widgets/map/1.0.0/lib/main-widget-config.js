@@ -26,40 +26,25 @@
         themeConfig = {
         sizes: {
             s: {
-                width: 160,
-                height: 300,
-                layout: 'horizontal'
-            },
-            m: {
                 width: 300,
                 height: 250,
                 layout: 'vertical'
             },
-            l: {
-                width: 160,
-                height: 300,
+            m: {
+                width: 300,
+                height: 600,
                 layout: 'horizontal'
-            },
-            xl: {
-                width: 160,
-                height: 300,
-                layout: 'horizontal'
-            },
-            xxl: {
-                width: 180,
-                height: 150,
-                layout: 'vertical'
             },
             custom: {
                 width: 300,
-                height: 560,
+                height: 600,
                 layout: 'vertical'
             }
         },
         initSliderSize: {
             width: 300,
-            height: 560,
-            maxWidth: 500,
+            height: 600,
+            maxWidth: 600,
             minWidth: 300
         }
     },
@@ -216,15 +201,6 @@
             }
         }
 
-        /*
-        if(targetName === "w-latitude"){
-            document.querySelector('[w-type="map"]').setAttribute('w-latlong', targetValue + ',' + document.getElementById('w-longitude').value);
-        }
-         if(targetName === "w-longitude"){
-            document.querySelector('[w-type="map"]').setAttribute('w-latlong', document.getElementById('w-latitude').value + "," + targetValue);
-        }
-        */
-
         if (targetName === "w-latlong") {
             document.querySelector('[w-type="map"]').setAttribute('w-latlong', targetValue.replace(/\s+/g, ''));
         }
@@ -326,7 +302,7 @@
     var resetWidget = function resetWidget(configForm) {
         var widgetNode = document.querySelector("div[w-tmapikey]"),
             width = 300,
-            height = 560,
+            height = 600,
             theme = void 0,
             layout = void 0;
         var widthSlider = $('.js_widget_width_slider'),

@@ -39,6 +39,11 @@
 	width: auto !important;
 }
 
+.gm-style-iw .an {
+	display: block;
+	overflow: hidden;
+	margin-bottom: 7px;
+}
 .gm-style-iw .img {
 	width: 30px;
 	height: 30px;
@@ -47,6 +52,24 @@
 	display: block;
 	margin-top: 2px;
 	border: 1px solid #ccc;
+}
+
+.gm-style-iw .buybtn {
+	display: block;
+	float: left;
+	padding:3px 7px;
+	color:#ffffff;
+	border-radius:4px;
+	background-color:#009cde;
+	font-family: "TMSans-Bold";
+	font-size: 10px;
+}
+
+.gm-style-iw .dateplace {
+	display: block;
+	float: left;
+	width: 140px!important;
+	margin-left: 10px;
 }
 
 .gm-style-iw .name {
