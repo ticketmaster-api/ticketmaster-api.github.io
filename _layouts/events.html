@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="top-bar bg-header bg-header-events slice-bottom-left">
+<div class="top-bar bg-header bg-header-events slice-bottom-left" id="prime-bar-header">
 {% include partials/common-header.html %}
 
 {% assign tab_array = "" | split:"|"  %}
@@ -12,30 +12,59 @@ layout: default
         {% assign tab_array = tab_array | push: {{event}} %}
     {% endif %}
 {% endfor %}
+	{% assign  primeEvents_array = "" | split:"|"  %}
+	{% for event in site.pages %}
+		{% if event.prime %}
+			{% assign primeEvents_array = primeEvents_array | push: {{event}} %}
+		{% endif %}
+	{% endfor %}
 
-{% for event in site.pages %}
-    {% if event.prime %}
-    <div class="events-wrapper top-event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}" >
-        <h1>{{ event.title }}</h1>
-        <div class="description col-xs-12 col-sm-8 col-md-8 col-lg-8">
-            <p>{{ event.content }}</p>
-            <div class="tags">
-                {% for tag in event.tags %}
-                <a href="/events/#/upcoming/{{tag}}" class="trans-btn">{{tag}}</a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="des-address col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            <h4>{{ event.date }}</h4>
-            <a href="{{ event.place[1] }}"><h5>{{ event.place[0] }}</h5></a>
-            <p>{{ event.city }}</p>
-            {% if event.rsvp %}
-                <a href="{{ event.rsvp }}" class="blue-btn rsvp">RSVP</a>
-            {% endif %}
-        </div>
-    </div>
-    {% endif %}
-{% endfor %}
+{% assign event_prime = "false" %}
+{% assign event = primeEvents_array | last} %} {% comment %}event - is last md with 'prime:true' field {% endcomment %}
+{% assign date_end = event.date_end | date: '%s' | plus: 0 %}
+{% assign today = site.time | date: '%s' | plus: 0 %}
+
+	{%comment%}
+	{% if date_end > today %}
+	  <p>Show event</p>
+	{%endif%}
+	{% if date_end < today %}
+	  <p>Show default</p>
+	{%endif%}
+	{%endcomment%}
+
+	{% if date_end > today %}
+		{% if primeEvents_array.size > 0 %}
+				<div class="events-wrapper top-event" data-event-start="{{ event.date_start }}" data-event-end="{{ event.date_end }}" >
+						<h1>{{ event.title }}</h1>
+						<div class="description col-xs-12 col-sm-8 col-md-8 col-lg-8">
+								<p>{{ event.content }}</p>
+								<div class="tags">
+										{% for tag in event.tags %}
+										<a href="/events/#/upcoming/{{tag}}" class="trans-btn">{{tag}}</a>
+										{% endfor %}
+								</div>
+						</div>
+						<div class="des-address col-xs-12 col-sm-4 col-md-4 col-lg-4">
+								<h4>{{ event.date }}</h4>
+								<a href="{{ event.place[1] }}"><h5>{{ event.place[0] }}</h5></a>
+								<p>{{ event.city }}</p>
+								{% if event.rsvp %}
+										<a href="{{ event.rsvp }}" class="blue-btn rsvp">RSVP</a>
+								{% endif %}
+						</div>
+				</div>
+				{% assign event_prime = "true" %}{%comment%} to hide default description {%endcomment%}
+		{% endif %}
+	{% endif %}
+
+	{% if date_end < today %}
+			<div class="events-wrapper top-event-default" data-event-start1="{{ event.date_start }}" data-event-end1="{{ event.date_end }}">
+				<h1>Ticketmaster’s Event</h1>
+				<h3>Several words about events provided by Ticketmaster. Its purposes, results and main aims.</h3>
+			</div>
+	{% endif %}
+
 </div>
 
 {% include partials/expanded-menu-header.html %}
@@ -56,7 +85,7 @@ layout: default
     <div class="col-lg-9 col-md-12 col-sm-12 content min-height-250">
 			<div class="wrapper-no-events">
 				<h3 >Upcoming</h3>
-        <div class="no-events"><h1>Sorry, no<br> upcoming events were found</h1></div>
+        <div class="no-events"><h1>No upcoming events yet</h1></div>
 			</div>
         {{ content }}
     </div>
@@ -144,6 +173,18 @@ layout: default
             {link:'{{ item.link | escape }}', img: '{{ item.img | escape}}', title: '{{ item.title | escape }}'}{% unless forloop.last %},{% endunless %}
         {% endfor %}
     ];
+		function chenHeaderEvent(){
+			var endData = new Date('2016-10-29 23:59:00');
+			var today = new Date();
+			function replacePrimeHeader() {
+				var $eventsWrapper = $(".events-wrapper");
+				$eventsWrapper.hide();
+				console.log('replacePrimeHeader');
+			}
+			if(endData < today){
+				replacePrimeHeader();
+			}
+		}
 
 		//check to show 'cactus image' and past as grid
     function checkNoEvents(){
@@ -282,6 +323,8 @@ layout: default
     hashChangeHandler();
 
 		popstateHandler();
+
+		//chenHeaderEvent();
 
 		$(function() {
 			setTimeout(function () {
