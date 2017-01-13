@@ -271,7 +271,7 @@ class TicketmasterMapWidget {
     }
 
     isUniverseUrl(url){
-        return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
+        return (url.match(/universe.com/g) || url.match(/uniiverse.com/g) || url.match(/ticketmaster.com/g));
     }
 
     isAllowedTMEvent(url){
@@ -646,12 +646,15 @@ class TicketmasterMapWidget {
                                 address = '';
                             }
 
+                            let buyBtn = '';
+                            if (widget.isUniverseUrl(widget.events[e].url) != false) buyBtn = '<a class="buybtn" href="' + widget.events[e].url + '">BUY NOW</a>';
+
                             markers[e] = [
                                 widget.events[e].name,
                                 widget.events[e].location.lat,
                                 widget.events[e].location.lng,
                                 e,
-                                '<div class="infowindow" style="width:220px!important;padding-right:5px!important;line-height:normal;overflow:auto;"><a href="' + widget.events[e].url + '"><span class="img" style="background:url(' + widget.events[e].img + ') center center no-repeat"></span><span class="name">' + widget.events[e].name + '</span></a><span class="date">' + date + '</span><span class="place">' + place + address + '</span></div>'
+                                '<div class="infowindow" style="width:220px!important;padding-right:5px!important;line-height:normal;overflow:auto;"><a class="an" href="' + widget.events[e].url + '"><span class="img" style="background:url(' + widget.events[e].img + ') center center no-repeat"></span><span class="name">' + widget.events[e].name + '</span></a>' + buyBtn + '<div class="dateplace"><span class="date">' + date + '</span><span class="place">' + place + address + '</span></div></div>'
                             ];
                             latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat,widget.events[e].location.lng));
                         }
