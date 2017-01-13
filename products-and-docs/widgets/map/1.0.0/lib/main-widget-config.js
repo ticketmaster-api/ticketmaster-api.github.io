@@ -394,12 +394,12 @@
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
         for (var key in widget.config) {
-            if (key !== 'latlong') {
-                htmlCode.setAttribute("w-" + key, widget.config[key]);
-            }
+            htmlCode.setAttribute("w-" + key, widget.config[key]);
         }
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
+        htmlCode.setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
+        if (document.getElementById('w-googleapikey').value != '') htmlCode.setAttribute('w-googleapikey', document.getElementById('w-googleapikey').value);
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
@@ -456,7 +456,6 @@
         document.getElementById('h-latlong').value = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         document.getElementById('w-latlong').value = '';
         document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
-
         document.getElementById('w-countryCode').value = document.getElementById('h-countryCode').value;
         document.getElementById('w-postalcode').value = document.getElementById('h-postalcode').value;
         document.getElementById('w-city').value = document.getElementById('h-city').value;
