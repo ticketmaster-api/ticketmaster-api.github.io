@@ -227,13 +227,13 @@ $steel-20: rgba(118, 134, 146, 0.2);
 					}
 				}
 			}
-
 			.grid {
 				margin: -15px;
-				max-height: 690px;
 				overflow: hidden;
+				max-height: 690px;
+				@include transition(all 3s);
 				&.more {
-					max-height: none;
+					max-height: 10000px;
 				}
 				/* clearfix */
 				&::after {
@@ -333,8 +333,9 @@ $steel-20: rgba(118, 134, 146, 0.2);
 			max-height: 1830px;
 			overflow: hidden;
 			margin-bottom: 60px;
+			@include transition(all 3s);
 			&.more {
-				max-height: none;
+				max-height: 10000px;
 			}
 			.top-section-item {
 				clear: both;
