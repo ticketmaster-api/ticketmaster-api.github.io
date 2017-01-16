@@ -38,7 +38,7 @@ For example:
 
 + `apikey` = `gwyfRRwYcA0gmbUDDAtADEeaHT` (required, string)
 
-To request an API Key send an email to the [International Disccovery API team](mailto:InternationalAPI@ticketmaster.co.uk).
+To request an API Key send an email to the [International Discovery API team](mailto:InternationalAPI@ticketmaster.co.uk).
 
 #### Format
 You can set the output format from all API Services with an Accept header. The API supports:
