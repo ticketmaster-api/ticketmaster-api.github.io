@@ -77,7 +77,6 @@
 											<option value="CA">Canada</option>
 											<option value="GB ">Great Britain</option>
 											<option value="IE">Ireland</option>
-											<option value="MX">Mexico</option>
 											<option value="NZ">New Zealand</option>
 										</select>
 										<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
@@ -88,7 +87,6 @@
 											<li class="custom_select__item" data-value="CA">Canada</li>
 											<li class="custom_select__item" data-value="GB">Great Britain</li>
 											<li class="custom_select__item" data-value="IE">Ireland</li>
-											<li class="custom_select__item" data-value="MX">Mexico</li>
 											<li class="custom_select__item" data-value="NZ">New Zealand</li>
 										</ul>
 									</div>
@@ -110,9 +108,10 @@
 						<div class="widget__latlong hidn">
 							<p>You can use Geoposition or <span>input Location data</span></p>
 							<div class="row row-native">
-								<div class="col-lg-8 col-md-8 col-sm-8">
+								<div class="col-lg-8 col-md-8 col-sm-8 latlong-holder">
 								  <label for="w-latlong">Geoposition <span class="config_field__description">(Latitude, Longitude)</span></label>
 								  <input type="text" id="w-latlong" name="w-latlong" value="">
+									<span class="latlong-picker"></span>
 								  <input type="hidden" id="h-latlong" name="h-latlong" value="34.0390107, -118.2672801">
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4">
@@ -120,7 +119,7 @@
 										Radius <span class="config_field__description">(miles)</span>
 									</label>
 									<input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25" min="1" max="19999">
-							</div>
+							  </div>
 								<!--
 								<div class="col-lg-6 col-md-6 col-sm-3">
 									<label for="w-latitude">Latitude</label>

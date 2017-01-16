@@ -200,6 +200,10 @@
         }
 
         if(targetName === "w-latlong"){
+            if (targetValue == '') {
+                document.getElementById('w-latlong').value = document.getElementById('h-latlong').value;
+                targetValue = document.getElementById('w-latlong').value;
+            }
             document.querySelector('[w-type="map"]').setAttribute('w-latlong', targetValue.replace(/\s+/g, ''));
         }
 
@@ -296,9 +300,6 @@
 
         if (event.target.name != 'w-latlong') widgetNode.setAttribute(event.target.name, event.target.value);
         widget.update();
-
-
-
         windowScroll(); //recalculate widget container position
     };
 

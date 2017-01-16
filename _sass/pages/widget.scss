@@ -453,6 +453,22 @@
 	border: none;
 }
 
+.widget__latlong {
+	.latlong-holder {
+		position: relative;
+	}
+	.latlong-picker {
+		position: absolute;
+		width: 32px;
+		height: 32px;
+		display: block;
+		background: url('/assets/widgets/1.0.0/img/marker.svg') center center no-repeat;
+		top: 38px;
+		left: 256px;
+		cursor: pointer;
+	}
+}
+
 
 .widget-wordpress-page {
   h2 {
