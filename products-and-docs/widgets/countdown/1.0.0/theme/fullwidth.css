@@ -109,8 +109,6 @@ div[w-theme="fullwidth"] .event-message-visible.event-message-started {
     top: 48px;
     margin: 0 14px;
     padding: 20px 46px;
-/ / max-height: 96 px;
-    /*font-family: "TMSans-Bold", Arial, serif;*/
     font-size: 24px;
     line-height: 28px;
     text-align: center;
@@ -122,6 +120,17 @@ div[w-theme="fullwidth"][w-proportion="m"] .event-message-visible.event-message-
     top: 14px;
     font-size: 16px;
     padding: 10px;
+}
+
+div[w-theme="fullwidth"] .event-message-visible.cactus {
+	top: 30%;
+	margin: 0 14px;
+	padding: 20px 46px;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+	background: none;
+	border-radius: 0;
 }
 
 /* event-message END*/
@@ -157,7 +166,7 @@ div[w-theme="fullwidth"] .events-root-container {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    background-color: #e5e5e5;
+    background-color: #b7c9d3;
     border-style: solid;
     border-color: #ccc;
 

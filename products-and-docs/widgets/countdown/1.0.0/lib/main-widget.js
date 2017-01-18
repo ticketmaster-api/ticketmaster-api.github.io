@@ -331,15 +331,57 @@ var TicketmasterCountdownWidget = function () {
       }
     }
   }, {
+    key: 'showStatusMessage',
+    value: function showStatusMessage(data) {
+      function chenHeaderEvent(eventT) {
+        var endData = new Date('2016-10-29 23:59:00');
+        var today = new Date();
+        function replacePrimeHeader() {
+          var $eventsWrapper = $(".events-wrapper");
+          $eventsWrapper.hide();
+          console.log('replacePrimeHeader');
+        }
+        if (endData < today) {
+          console.log('endData < today');
+        } else {
+          console.log('endData > today');
+        }
+      }
+
+      var timeLeft = this.getNormalizedDateValue(data.total);
+
+      console.group('**showStausMessage');
+      console.log('timeLeft', timeLeft);
+      console.log('data', data);
+      console.log('this.eventId', this.eventId);
+      console.log('this.event', this.event);
+      console.groupEnd();
+
+      if (this.event) {
+        if (this.event.date && this.event.date.dateTime) {
+          chenHeaderEvent(this.event.date.dateTime);
+          console.log('2 -- this.event.data', this.event.date);
+        }
+      }
+    }
+  }, {
     key: 'onCountdownChange',
     value: function onCountdownChange(data) {
       var timeLeft = this.getNormalizedDateValue(data.total);
 
       /*toggle CountDown-Box Visibility*/
       if (timeLeft <= 0) {
+        /*test id - vv1AFZAA7GkdJmp6E */
+        /*console.group('**onCountdownChange');
+          console.log('timeLeft',timeLeft);
+          console.log('data',data);
+          console.log('this.eventId',this.eventId);
+          console.log('this.event',this.event);
+        console.groupEnd();*/
         this.countDownWrapper.classList.add("hide-countDownBox");
         if (this.eventId && this.event) {
           this.showMessage('This event has taken place', false, "event-message-started");
+          this.showStatusMessage(data);
           return false; //exit if event has taken place
         }
       } else this.countDownWrapper.classList.remove("hide-countDownBox");
@@ -483,21 +525,19 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'initMessage',
     value: function initMessage() {
-      var _this = this;
-
       this.messageDialog = document.createElement('div');
       this.messageDialog.classList.add("event-message");
       this.messageContent = document.createElement('div');
       this.messageContent.classList.add("event-message__content");
 
-      var messageClose = document.createElement('div');
+      /*let messageClose = document.createElement('div');
       messageClose.classList.add("event-message__btn");
-      messageClose.addEventListener("click", function () {
-        _this.hideMessage();
-      });
+      messageClose.addEventListener("click", ()=> {
+        this.hideMessage();
+      });*/
 
       this.messageDialog.appendChild(this.messageContent);
-      this.messageDialog.appendChild(messageClose);
+      /*this.messageDialog.appendChild(messageClose);*/
       this.eventsRootContainer.appendChild(this.messageDialog);
     }
   }, {
@@ -506,8 +546,11 @@ var TicketmasterCountdownWidget = function () {
       if (message.length) {
         this.hideMessageWithoutDelay = hideMessageWithoutDelay;
         this.messageContent.innerHTML = message;
+        this.messageDialog.className = "";
+        this.messageDialog.classList.add("event-message");
         this.messageDialog.classList.add("event-message-visible");
-        this.messageDialog.classList.remove("event-message-started");
+        console.log('this.messageDialog.className', this.messageDialog);
+        // this.messageDialog.classList.remove("event-message-started");
       }
 
       if (className) {
@@ -656,7 +699,8 @@ var TicketmasterCountdownWidget = function () {
         if (this.apiUrl && this.eventId) {
           this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);
         } else {
-          this.showMessage("No results were found.", true);
+          // this.showMessage("No results were found.", true);
+          this.showMessage("Sorry, no events were found.", true, 'cactus');
           this.countdownClock.update(null);
         }
       } else {
@@ -712,7 +756,7 @@ var TicketmasterCountdownWidget = function () {
     value: function onEventLoadError(status, loadOnce) {
       this.event = false;
       this.showMessage("No results were found.", true, null);
-      console.log('There was an error status - ' + status + ' ' + loadOnce);
+      console.log('There was an error status - ' + status);
       if (!loadOnce) {
         this.changeDefaultId();
       }
@@ -788,6 +832,12 @@ var TicketmasterCountdownWidget = function () {
         dateTime: eventSet.dates.start.dateTime
       };
 
+      if (eventSet.dates.end) {
+        eventSet.dates.end.localDate ? currentEvent.date.dayEnd = eventSet.dates.end.localDate : '';
+        eventSet.dates.end.localTime ? currentEvent.date.timeEnd = eventSet.dates.end.localTime : '';
+        eventSet.dates.end.dateTime ? currentEvent.date.dateTimeEnd = eventSet.dates.end.dateTime : '';
+      }
+
       if (eventSet.hasOwnProperty('_embedded') && eventSet._embedded.hasOwnProperty('venues')) {
         var venue = eventSet._embedded.venues[0];
         if (venue) {
@@ -840,10 +890,10 @@ var TicketmasterCountdownWidget = function () {
         return id;
       }
       function setEventId() {
-        var _this2 = this;
+        var _this = this;
 
         return function () {
-          return _this2.makeRequest(_this2.eventsLoadingHandler, _this2.apiUrl, _this2.eventReqAttrs);
+          return _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
         };
       }
       var widget = this.widget;
