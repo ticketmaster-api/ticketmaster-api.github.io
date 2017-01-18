@@ -320,7 +320,7 @@ class TicketmasterEventDiscoveryWidget {
     this.buyBtn.href = '';
     this.buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
     this.buyBtn.addEventListener('click', (e)=> {
-      e.preventDefault(); /*used in plugins for 'buy button'*/
+      // e.preventDefault(); /*used in plugins for 'buy button'*/
       this.stopAutoSlideX();
       //console.log(this.config.affiliateid)
     });
@@ -385,7 +385,7 @@ class TicketmasterEventDiscoveryWidget {
   }
 
   isUniverseUrl(url){
-    return (url.match(/universe.com/g) || url.match(/uniiverse.com/g));
+      return (url.match(/universe.com/g) || url.match(/uniiverse.com/g) || url.match(/ticketmaster.com/g));
   }
 
   isAllowedTMEvent(url){
