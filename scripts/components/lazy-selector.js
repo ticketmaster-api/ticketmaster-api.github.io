@@ -1014,6 +1014,6 @@ $(document).on('ready', function () {
  * add lazy selector to api-explorer v1 (made by V.Menshutin)
  */
 $(document).on( "finishInit", function( event, flag ) {
-  $('#venueId').lazySelector({selector:'venues'});
-  $('#attractionId').lazySelector({selector:'attractions'});
+  $('#venue').lazySelector({selector:'venues'});
+  $('#attraction').lazySelector({selector:'attractions'});
 });

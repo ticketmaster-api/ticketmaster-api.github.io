@@ -12,10 +12,10 @@
 			<param name="keyword" required="false" style="query" type="xsd:string">
 				<doc>A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.</doc>
 			</param>
-			<param name="attractionId" required="false" style="query" type="xsd:string" default="">
+			<param name="attraction" required="false" style="query" type="xsd:string" default="">
 				<doc>Attraction ID(s) separated by comma.</doc>
 			</param>
-			<param name="venueId" required="false" style="query" type="xsd:string" default="">
+			<param name="venue" required="false" style="query" type="xsd:string" default="">
 				<doc>Venue ID(s) separated by comma.</doc>
 			</param>
 			<param name="postalCode" required="false" style="query" type="xsd:string" default="">
@@ -115,7 +115,7 @@
 			<param name="classificationName" required="false" style="query" type="xsd:string">
 				<doc>The classification name.</doc>
 			</param>
-			<param name="classificationId" required="false" style="query" type="xsd:string">
+			<param name="classification" required="false" style="query" type="xsd:string">
 				<doc>The classification ID.</doc>
 			</param>
 			<param name="dmaId" required="false" style="query" type="xsd:string">
