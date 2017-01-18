@@ -97,8 +97,8 @@ div[w-theme="simple_countdown"] .event-message-visible.event-message-started {
     font-size: 24px;
     line-height: 28px;
     text-align: center;
-    background: rgba(208, 0, 110, 0.7) none;
-    border-radius: 0;
+    background: rgba(115, 86, 165, 0.9) none;
+    border-radius: 4px;
 }
 
 div[w-theme="simple_countdown"][w-proportion="m"] .event-message-visible.event-message-started {

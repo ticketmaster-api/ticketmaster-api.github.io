@@ -333,33 +333,32 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'showStatusMessage',
     value: function showStatusMessage(data) {
+      var me = this;
       function chenHeaderEvent(eventT) {
-        var endData = new Date('2016-10-29 23:59:00');
-        var today = new Date();
-        function replacePrimeHeader() {
-          var $eventsWrapper = $(".events-wrapper");
-          $eventsWrapper.hide();
-          console.log('replacePrimeHeader');
-        }
-        if (endData < today) {
-          console.log('endData < today');
-        } else {
-          console.log('endData > today');
+        var now = new Date(),
+            msecsNow = Date.parse(now),
+            eventDateStart = new Date(eventT.dateTime),
+            msecsStart = Date.parse(eventDateStart),
+            eventDateEnd = new Date(eventT.dateTimeEnd),
+            msecsEnd = Date.parse(eventDateEnd);
+
+        console.group('__check time');
+        console.log('msecsNow', msecsNow);
+        console.log('msecsEnd', msecsEnd);
+        console.groupEnd();
+
+        if (msecsNow > msecsEnd || isNaN(msecsEnd)) {
+          console.log('event over (taken place)');
+          me.showMessage('This event has taken place', false, "event-message-started");
+        } else if (msecsStart < msecsNow < msecsEnd) {
+          console.log('event in progress');
+          me.showMessage('Event is in progress', false, "event-message-started");
         }
       }
 
-      var timeLeft = this.getNormalizedDateValue(data.total);
-
-      console.group('**showStausMessage');
-      console.log('timeLeft', timeLeft);
-      console.log('data', data);
-      console.log('this.eventId', this.eventId);
-      console.log('this.event', this.event);
-      console.groupEnd();
-
       if (this.event) {
         if (this.event.date && this.event.date.dateTime) {
-          chenHeaderEvent(this.event.date.dateTime);
+          chenHeaderEvent(this.event.date);
           console.log('2 -- this.event.data', this.event.date);
         }
       }
@@ -367,9 +366,12 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'onCountdownChange',
     value: function onCountdownChange(data) {
+      this.onCountdownChange.bind(this);
+
       var timeLeft = this.getNormalizedDateValue(data.total);
 
       /*toggle CountDown-Box Visibility*/
+
       if (timeLeft <= 0) {
         /*test id - vv1AFZAA7GkdJmp6E */
         /*console.group('**onCountdownChange');
@@ -380,7 +382,6 @@ var TicketmasterCountdownWidget = function () {
         console.groupEnd();*/
         this.countDownWrapper.classList.add("hide-countDownBox");
         if (this.eventId && this.event) {
-          this.showMessage('This event has taken place', false, "event-message-started");
           this.showStatusMessage(data);
           return false; //exit if event has taken place
         }

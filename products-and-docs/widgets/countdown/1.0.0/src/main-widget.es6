@@ -249,53 +249,39 @@ class TicketmasterCountdownWidget {
   }
   
   showStatusMessage(data){
+    let me = this;
     function chenHeaderEvent(eventT){
-      var endData = new Date('2016-10-29 23:59:00');
-      var today = new Date();
-      function replacePrimeHeader() {
-        var $eventsWrapper = $(".events-wrapper");
-        $eventsWrapper.hide();
-        console.log('replacePrimeHeader');
-      }
-      if(endData < today){
-        console.log('endData < today');
-      }else {
-        console.log('endData > today');
+      let now = new Date(),
+          msecsNow = Date.parse(now),
+          eventDateStart = new Date(eventT.dateTime),
+          msecsStart = Date.parse(eventDateStart),
+          eventDateEnd = new Date(eventT.dateTimeEnd),
+          msecsEnd = Date.parse(eventDateEnd);
+
+      if (msecsNow > msecsEnd || isNaN(msecsEnd)) {
+        me.showMessage(`This event has taken place`, false , "event-message-started");
+      } else if (msecsStart < msecsNow < msecsEnd) {
+        me.showMessage(`Event is in progress`, false , "event-message-started");
       }
     }
 
-    let timeLeft = this.getNormalizedDateValue(data.total);
-
-    console.group('**showStausMessage');
-      console.log('timeLeft',timeLeft);
-      console.log('data',data);
-      console.log('this.eventId',this.eventId);
-      console.log('this.event',this.event);
-    console.groupEnd();
-
     if(this.event){
       if(this.event.date && this.event.date.dateTime){
-        chenHeaderEvent(this.event.date.dateTime);
-        console.log('2 -- this.event.data',this.event.date);
+        chenHeaderEvent(this.event.date);
       }
     }
   }
 
   onCountdownChange(data){
-    let timeLeft = this.getNormalizedDateValue(data.total);
+    this.onCountdownChange.bind(this);
+    
+    let timeLeft = this.getNormalizedDateValue(data.total),
+        now = Date.parse( new Date() );
 
     /*toggle CountDown-Box Visibility*/
-    if(timeLeft <= 0){
-      /*test id - vv1AFZAA7GkdJmp6E */
-      /*console.group('**onCountdownChange');
-        console.log('timeLeft',timeLeft);
-        console.log('data',data);
-        console.log('this.eventId',this.eventId);
-        console.log('this.event',this.event);
-      console.groupEnd();*/
+    if(timeLeft <= 0 || now < timeLeft){
       this.countDownWrapper.classList.add("hide-countDownBox");
       if(this.eventId && this.event){
-        this.showMessage(`This event has taken place`, false , "event-message-started");
         this.showStatusMessage(data);
         return false; //exit if event has taken place
       }
