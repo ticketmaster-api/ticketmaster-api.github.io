@@ -469,6 +469,25 @@
 	}
 }
 
+#js_widget_modal_map {
+  .modal-body {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+  .col-lg-12 {
+		margin: 0;
+		padding: 0;
+	}
+	.map-holder {
+		overflow: hidden;
+		margin-bottom:30px;
+	}
+	#map_latlong {
+		width: 100%;
+		height: 450px;
+	}
+}
 
 .widget-wordpress-page {
   h2 {

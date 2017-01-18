@@ -368,13 +368,16 @@
         widgetNode.removeAttribute('w-source');
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
+        document.getElementById('map').style.width = '300px';
+        document.getElementById('map').style.height = '600px';
         widget.onLoadCoordinate();
         widget.update();
     };
 
     var $configForm = $(".main-widget-config-form"),
         $widgetModal = $('#js_widget_modal'),
-        $widgetModalNoCode = $('#js_widget_modal_no_code');
+        $widgetModalNoCode = $('#js_widget_modal_no_code'),
+        $widgetModalMap = $('#js_widget_modal_map');
 
     $configForm.on("change", changeState);
     // Mobile devices. Force 'change' by 'Go' press
@@ -421,17 +424,57 @@
         $widgetModalNoCode.modal('hide');
     });
 
+    $('#js_widget_modal_map__open').on('click', function (e) {
+        e.preventDefault();
+        function r(f) {
+            /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f();
+        }
+        r(function () {
+            var map_latlong = new google.maps.Map(document.getElementById('map_latlong'), {
+                zoom: 4,
+                center: { lat: 34.0390107, lng: -118.2672801 },
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                panControl: false,
+                streetViewControl: false,
+                draggableCursor: 'pointer'
+            });
+            var imageMarker = {
+                url: '/assets/widgets/1.0.0/img/marker-active.svg',
+                size: new google.maps.Size(22, 32)
+            };
+            var marker_latlong = new google.maps.Marker({
+                icon: imageMarker
+            });
+            google.maps.event.addListener(map_latlong, 'click', function (event) {
+                console.log(event.latLng.lat() + "," + event.latLng.lng());
+                marker_latlong.setPosition(event.latLng);
+                marker_latlong.setMap(map_latlong);
+                marker_latlong.setAnimation(google.maps.Animation.DROP);
+                document.getElementById('w-latlong').value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
+            });
+        });
+        $widgetModalMap.modal();
+        function mapRefresh() {
+            var center = map_latlong.getCenter();
+            google.maps.event.trigger(map_latlong, 'resize');
+            map_latlong.setCenter(center);
+        }
+        setTimeout(mapRefresh, 1000);
+    });
+
+    $('#js_widget_modal_map__close').on('click', function () {
+        $widgetModalMap.modal('hide');
+        document.querySelector('[w-type="map"]').setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
+        widget.update();
+    });
+
     $('.widget__location span').on('click', function () {
         $('.widget__location').addClass('hidn');
         $('.widget__latlong').removeClass('hidn');
         document.getElementById('h-countryCode').value = document.getElementById('w-countryCode').value;
         document.getElementById('h-postalcode').value = document.getElementById('w-postalcode').value;
         document.getElementById('h-city').value = document.getElementById('w-city').value;
-        /*
-        document.getElementById('w-latitude').value = document.getElementById('h-latitude').value;
-        document.getElementById('w-longitude').value = document.getElementById('h-longitude').value;
-        widget.config.latlong = document.getElementById('w-latitude').value + ',' + document.getElementById('w-longitude').value;
-        */
         document.getElementById('w-latlong').value = document.getElementById('h-latlong').value;
         widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         document.querySelector('[w-type="map"]').setAttribute('w-latlong', widget.config.latlong);
@@ -447,15 +490,6 @@
     $('.widget__latlong span').on('click', function () {
         $('.widget__latlong').addClass('hidn');
         $('.widget__location').removeClass('hidn');
-        /*
-        document.getElementById('h-latitude').value = document.getElementById('w-latitude').value;
-        document.getElementById('h-longitude').value = document.getElementById('w-longitude').value;
-        document.getElementById('w-latitude').value = '';
-        document.getElementById('w-longitude').value = '';
-        document.querySelector('[w-type="map"]').removeAttribute('w-latitude');
-        document.querySelector('[w-type="map"]').removeAttribute('w-longitude');
-        document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
-        */
         document.getElementById('h-latlong').value = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         document.getElementById('w-latlong').value = '';
         document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
