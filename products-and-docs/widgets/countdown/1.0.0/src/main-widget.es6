@@ -250,6 +250,10 @@ class TicketmasterCountdownWidget {
   
   showStatusMessage(data){
     let me = this;
+    if(this.event.date && this.event.date.dateTime){
+      chenHeaderEvent(this.event.date);
+    }
+
     function chenHeaderEvent(eventT){
       let now = new Date(),
           msecsNow = Date.parse(now),
@@ -264,17 +268,9 @@ class TicketmasterCountdownWidget {
         me.showMessage(`Event is in progress`, false , "event-message-started");
       }
     }
-
-    if(this.event){
-      if(this.event.date && this.event.date.dateTime){
-        chenHeaderEvent(this.event.date);
-      }
-    }
   }
 
   onCountdownChange(data){
-    this.onCountdownChange.bind(this);
-    
     let timeLeft = this.getNormalizedDateValue(data.total),
         now = Date.parse( new Date() );
 
@@ -440,7 +436,6 @@ class TicketmasterCountdownWidget {
       this.messageDialog.className = "";
       this.messageDialog.classList.add("event-message");
       this.messageDialog.classList.add("event-message-visible");
-      console.log('this.messageDialog.className',this.messageDialog);
       // this.messageDialog.classList.remove("event-message-started");
     }
 
@@ -783,7 +778,9 @@ class TicketmasterCountdownWidget {
           let events = eventsWrap['_embedded']['events'],
               newId = getValidId(events);
           widget.eventId = newId;
-          document.getElementById('w-id').value = widget.eventId;
+          if(document.getElementById('w-id')){
+            document.getElementById('w-id').value = widget.eventId;
+          }
           setEventId.call(widget,newId)();
         }
       }

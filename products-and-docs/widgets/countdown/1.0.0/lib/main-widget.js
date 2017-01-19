@@ -334,6 +334,10 @@ var TicketmasterCountdownWidget = function () {
     key: 'showStatusMessage',
     value: function showStatusMessage(data) {
       var me = this;
+      if (this.event.date && this.event.date.dateTime) {
+        chenHeaderEvent(this.event.date);
+      }
+
       function chenHeaderEvent(eventT) {
         var now = new Date(),
             msecsNow = Date.parse(now),
@@ -342,44 +346,21 @@ var TicketmasterCountdownWidget = function () {
             eventDateEnd = new Date(eventT.dateTimeEnd),
             msecsEnd = Date.parse(eventDateEnd);
 
-        console.group('__check time');
-        console.log('msecsNow', msecsNow);
-        console.log('msecsEnd', msecsEnd);
-        console.groupEnd();
-
         if (msecsNow > msecsEnd || isNaN(msecsEnd)) {
-          console.log('event over (taken place)');
           me.showMessage('This event has taken place', false, "event-message-started");
         } else if (msecsStart < msecsNow < msecsEnd) {
-          console.log('event in progress');
           me.showMessage('Event is in progress', false, "event-message-started");
-        }
-      }
-
-      if (this.event) {
-        if (this.event.date && this.event.date.dateTime) {
-          chenHeaderEvent(this.event.date);
-          console.log('2 -- this.event.data', this.event.date);
         }
       }
     }
   }, {
     key: 'onCountdownChange',
     value: function onCountdownChange(data) {
-      this.onCountdownChange.bind(this);
-
-      var timeLeft = this.getNormalizedDateValue(data.total);
+      var timeLeft = this.getNormalizedDateValue(data.total),
+          now = Date.parse(new Date());
 
       /*toggle CountDown-Box Visibility*/
-
-      if (timeLeft <= 0) {
-        /*test id - vv1AFZAA7GkdJmp6E */
-        /*console.group('**onCountdownChange');
-          console.log('timeLeft',timeLeft);
-          console.log('data',data);
-          console.log('this.eventId',this.eventId);
-          console.log('this.event',this.event);
-        console.groupEnd();*/
+      if (timeLeft <= 0 || now < timeLeft) {
         this.countDownWrapper.classList.add("hide-countDownBox");
         if (this.eventId && this.event) {
           this.showStatusMessage(data);
@@ -550,7 +531,6 @@ var TicketmasterCountdownWidget = function () {
         this.messageDialog.className = "";
         this.messageDialog.classList.add("event-message");
         this.messageDialog.classList.add("event-message-visible");
-        console.log('this.messageDialog.className', this.messageDialog);
         // this.messageDialog.classList.remove("event-message-started");
       }
 
@@ -908,7 +888,9 @@ var TicketmasterCountdownWidget = function () {
             var events = eventsWrap['_embedded']['events'],
                 newId = getValidId(events);
             widget.eventId = newId;
-            document.getElementById('w-id').value = widget.eventId;
+            if (document.getElementById('w-id')) {
+              document.getElementById('w-id').value = widget.eventId;
+            }
             setEventId.call(widget, newId)();
           }
         } else if (this.status == 400) {
