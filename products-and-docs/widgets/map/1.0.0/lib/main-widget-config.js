@@ -425,42 +425,7 @@
     });
 
     $('#js_widget_modal_map__open').on('click', function (e) {
-        e.preventDefault();
-        function r(f) {
-            /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f();
-        }
-        r(function () {
-            var map_latlong = new google.maps.Map(document.getElementById('map_latlong'), {
-                zoom: 4,
-                center: { lat: 34.0390107, lng: -118.2672801 },
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                mapTypeControl: false,
-                panControl: false,
-                streetViewControl: false,
-                draggableCursor: 'pointer'
-            });
-            var imageMarker = {
-                url: '/assets/widgets/1.0.0/img/marker-active.svg',
-                size: new google.maps.Size(22, 32)
-            };
-            var marker_latlong = new google.maps.Marker({
-                icon: imageMarker
-            });
-            google.maps.event.addListener(map_latlong, 'click', function (event) {
-                console.log(event.latLng.lat() + "," + event.latLng.lng());
-                marker_latlong.setPosition(event.latLng);
-                marker_latlong.setMap(map_latlong);
-                marker_latlong.setAnimation(google.maps.Animation.DROP);
-                document.getElementById('w-latlong').value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
-            });
-        });
         $widgetModalMap.modal();
-        function mapRefresh() {
-            var center = map_latlong.getCenter();
-            google.maps.event.trigger(map_latlong, 'resize');
-            map_latlong.setCenter(center);
-        }
-        setTimeout(mapRefresh, 1000);
     });
 
     $('#js_widget_modal_map__close').on('click', function () {
