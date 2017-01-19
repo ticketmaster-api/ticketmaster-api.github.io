@@ -144,11 +144,35 @@ Ticketmaster _DID Codes_ are also supported.  Any link which includes a `?did=YO
 
 Universal Checkout supports passing in a specific _Ticket Type ID_, ensuring it is the default Ticket Type when the widget opens.  This is specifically useful in combination with a _DID Code_, if you want to pre-select the newly-unlocked _Ticket Type ID_ on Step 1 of the checkout process.  To enable this behaviour, append the`?ticket=TICKET_TYPE_ID` URL parameter on the Ticketmaster event link.
 
+## Analytics Reports
+
+Analytics for Universal Checkout are available through TM One.  The "Sales by Platform" report will show sales over time which originated through the "Universal Checkout" platform, along with a summary of "Total Sold" and "Total Face Value".
+
+[![Sales by Platform](/assets/img/products-and-docs/checkout-widget-analytics.png)](/assets/img/products-and-docs/checkout-widget-analytics.png)
+
 ## Security Recommendations
 
 Universal Checkout is secured by bank-grade 256-byte SSL encryption for all communications.  The architecture of Universal Checkout ensures the entire checkout flow happens securely via HTTPS, even when the 3rd party site (which is embedding the widget) only uses HTTP.
 
 As a security best practice, we strongly recommend that all pages which embed Universal Checkout __also__ implement SSL / HTTPS.  As of Fall 2016, browsers are beginning to encourage the use of SSL / HTTPS everywhere, and in 2017 will begin to show HTTP as "Insecure" in the browser's toolbar.  This is important for all websites to prevent "man in the middle" attacks, which are theoretically possible on all insecure webpages when on an untrusted Internet connection (public wifi, Internet cafe, etc).  Fortunately, [Let's Encrypt](https://letsencrypt.org/) is an open project sponsored by Google, Facebook, Mozilla, and others, which offers free SSL/TLS certificates to all.
+
+## Troubleshooting
+
+To check whether an Universal Checkout will attempt to transact on a specific event, enter the event ID in the tool below:
+
+<iframe src="https://s3-us-west-2.amazonaws.com/tm-kepler/gatekeeper-check.html" frameborder="0" width="50%" style="border: solid #b7c9d3 1px;">
+</iframe>
+
+If the debug tool may indicates the event cannot be transacted using Universal Checkout, please double-check whether any of the following requirements are not met:
+
+<ul>
+  <li>• The event was just created (it takes 24 hours to appear)</li>
+  <li>• The event has already started</li>
+  <li>• The event has ended</li>
+  <li>• The event has sold out or has very low ticket availability</li>
+  <li>• The event is in presale mode and there is no DID on the link</li>
+  <li>• e-Tickets / print-at-home delivery is not available</li>
+</ul>
 
 ## Additional Resources
 
