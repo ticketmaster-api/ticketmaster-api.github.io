@@ -112,7 +112,7 @@ season tickets all in one trusted place.
 <div class="row tiles-wrapper desktop">
 {% for i in (1..3) %}   
   <div class="col-md-4 col-lg-4 flipper" >      
-    <div class="card" >    
+    <div class="card">    
         <div class="content">
             <div class="front cardFront">            
               <div class="img-wrapper">
@@ -125,7 +125,7 @@ season tickets all in one trusted place.
                    <h3>{% cycle {{1-SDK_Java_title}},     {{2-SDK_JS_title}},     {{3-SDK_scala_title}} %}</h3>           
                     <p>{% cycle {{SDK_Java_description}}, {{SDK_JS_description}}, {{SDK_scala_description}} %}</p>
               </a>
-            </div>      
+            </div>
         </div>
     </div> 
   </div>  

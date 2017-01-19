@@ -34,14 +34,14 @@ Examples:
 |App Name     |
 |Redirect URI |
 
-Scenario: (Pantheon|Add new App) Add new App positive
+Scenario: (Pantheon|Add new App) Add new App positive [Add New App - App Name field with value]
 Given navigate to Pantheon Add New App page from User Account page
 When complete form with valid values on Add New App Page
 And submit form on Add New App Page
 Then the "App Created!" message is displayed
 And the New App is appear in the list of apps
 
-Scenario: (Pantheon|Add new App) Add new App negative
+Scenario: (Pantheon|Add new App) Add new App negative [Add New App - The required field is empty]
 Given navigate to Pantheon Add New App page from User Account page
 And make <requiredField> field empty
 When submit form on Add New App Page

@@ -369,7 +369,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.buyBtn.href = '';
       this.buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
       this.buyBtn.addEventListener('click', function (e) {
-        e.preventDefault(); /*used in plugins for 'buy button'*/
+        // e.preventDefault(); /*used in plugins for 'buy button'*/
         _this2.stopAutoSlideX();
         //console.log(this.config.affiliateid)
       });
@@ -437,7 +437,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'isUniverseUrl',
     value: function isUniverseUrl(url) {
-      return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
+      return url.match(/universe.com/g) || url.match(/uniiverse.com/g) || url.match(/ticketmaster.com/g);
     }
   }, {
     key: 'isAllowedTMEvent',

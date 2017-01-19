@@ -223,14 +223,14 @@ nav{
     margin-top: -$borderHeight;
     max-width: 1400px;
   }
+  &.slice-bottom-left .body-wrapper{
+    margin-bottom: 58px;
+  }
   &.bg-header{
     background-image: url('/assets/img/home/bg-football-p-1.png');
     border-top: none;
     padding-top: $borderHeight;
     background-repeat: no-repeat;
-    &>.body-wrapper{
-      margin-bottom: 58px;
-    }
     .expandable {
       &:hover{
         .header-chevron {
@@ -268,7 +268,7 @@ nav{
       position: fixed;
       top: 0;
       width: 100%;
-      height: $fixed-header-height;
+      //height: $fixed-header-height;
       z-index: 2;
     }
     @media (min-width: 1201px){
@@ -303,7 +303,7 @@ nav{
   }
   #header-logo{
     position: relative;
-    top: 15px;
+    top: 23px;
     left: -5px;
     z-index: 3;
     img{

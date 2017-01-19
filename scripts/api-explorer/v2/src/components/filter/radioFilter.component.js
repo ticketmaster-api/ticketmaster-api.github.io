@@ -44,7 +44,6 @@ RadioFilter.prototype.onchangeRadios = function (item) {
 		if (obj.name === item.name) {
 			obj.checked(true);
 			self.selectedMethodType(obj.name);
-			console.log(ko.unwrap(self.selectedMethodType));
 		} else {
 			obj.checked(false);
 		}

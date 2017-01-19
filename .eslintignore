@@ -1,0 +1,6 @@
+# /node_modules/* and /bower_components/* ignored by default
+
+# Ignore built files except build/index.js
+_site/scripts/vendors/*.js
+_site/scripts/components/*.js
+_site/scripts/api-explorer/*.js

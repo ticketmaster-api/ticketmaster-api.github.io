@@ -9,6 +9,7 @@ class CustomInput {
 		this.focusMethod = onFocusMethod;
 		this.placeholder = data.placeholder || data.name;
 		this.id = data.name;
+		this.textarea = data.style === 'requestBody';
 		this.isVirgin = ko.observable(true);
 		// css classes
 		this.cssClass = cssClass;
@@ -66,12 +67,19 @@ module.exports = ko.components.register('custom-input', {
 	viewModel: CustomInput,
 	template: `
 		<div data-bind="css: {[cssClass]: true, dirty: isDirty, virgin: isVirgin}" class="api-exp-custom-input">
-			<div data-bind="validationElement: value">
+			<div data-bind="validationElement: value" class="custom-input__inner-wrapper">
+				<!-- ko ifnot: textarea -->
 				<input data-bind="textInput: value, lazyLoader: {name: placeholder, val: value}, dateTimePicker, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
 								type="text"
 								class="custom-input__field form-control">
+				<!-- /ko -->
+				<!-- ko if: textarea -->
+				<textarea data-bind="textInput: value, lazyLoader: {name: placeholder, val: value}, dateTimePicker, event: {focus: onFocusMethod(data)}, attr: {id: id}" 
+									cols="30" rows="10"
+									class="custom-textarea custom-input__field form-control"></textarea>
+				<!-- /ko -->
 				<span data-bind="text: placeholder, css: {required: data.required}" class="custom-input__placeholder"></span>
 			</div>
-			<p data-bind="validationMessage: value" class="custom-input__validation-message"></p>
+			<p data-bind="validationMessage: value, css: {textarea: textarea}" class="custom-input__validation-message"></p>
 		</div>
 `});

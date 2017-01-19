@@ -274,7 +274,6 @@ class TicketmasterCountdownWidget {
 
     this.toggleSecondsVisibility();
 
-    //console.log('event is null?', this.apiUrl , '\n this.eventId', this.eventId);
   }
 
   buildCountdown(){
@@ -602,10 +601,13 @@ class TicketmasterCountdownWidget {
     }
   }
 
-  onEventLoadError(status){
+  onEventLoadError(status,loadOnce){
     this.event = false;
     this.showMessage("No results were found.", true, null);
     console.log(`There was an error status - ${status}`);
+    if(!loadOnce) {
+      this.changeDefaultId();
+    }
   }
 
   eventsLoadingHandler(){
@@ -697,6 +699,73 @@ class TicketmasterCountdownWidget {
     return currentEvent;
   }
 
+  changeDefaultId(){
+    Date.prototype.addDays = function(days) {
+      this.setDate(this.getDate() + parseInt(days));
+      return this;
+    };
+    let zipVegas='89109',
+      url=`https://app.ticketmaster.com/discovery/v2/events.json`,
+      newAttr = Object.assign({},this.eventReqAttrs),
+      d = new Date(0),
+      convertedNewStartDate;
+
+    d.setUTCSeconds(Math.round(new Date().addDays(30).getTime())/1000);
+    convertedNewStartDate = d.toJSON().slice(0,17)+'00Z';
+    if(d.toJSON().length <= 20) convertedNewStartDate = d.toJSON();
+    newAttr.startDateTime = convertedNewStartDate;
+    newAttr.zipcode = zipVegas;
+
+    this.makeRequest(this.changeDefaultIdHandler, url, newAttr );
+  }
+  
+  changeDefaultIdHandler(){
+    function getValidId(events){
+      let id = '',
+          newStartDate = new Date().addDays(30);
+      
+      for(let ii=0;ii<events.length;ii++){
+        if ( Math.round(new Date(events[ii].dates.start.dateTime).getTime()/1000) >= Math.round(new Date(newStartDate).getTime()/1000) ){
+          id = events[ii].id;
+          break;
+        }        
+      }
+      return id;
+    }
+    function setEventId(){
+       return ()=> this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
+    }
+    let widget = this.widget;
+    let loadOnce = false;
+    widget.clearEvents(); // Additional clearing after each loading
+
+    if (this && this.readyState == XMLHttpRequest.DONE ) {
+      if(this.status == 200){
+        let eventsWrap = JSON.parse(this.responseText);
+        if(eventsWrap){
+          let events = eventsWrap['_embedded']['events'],
+              newId = getValidId(events);
+          widget.eventId = newId;
+          document.getElementById('w-id').value = widget.eventId;
+          setEventId.call(widget,newId)();
+        }
+      }
+      else if(this.status == 400) {
+        loadOnce = true;
+        widget.onEventLoadError.call(widget, this.status,loadOnce);
+      }
+      else {
+        console.log('this error',this);
+        loadOnce = true;
+        widget.onEventLoadError.call(widget, this.status,loadOnce);
+      }
+      // http://js2coffee.thomaskalka.de/ - widget.event?.date?.dateTime
+      let _ref, _ref2;
+      widget.countdownClock.update((_ref = widget.event) != null ? (_ref2 = _ref.date) != null ? _ref2.dateTime || _ref2.day : void 0 : void 0);
+    }
+    widget.setBuyBtnUrl();
+
+  }
 
   makeRequest(handler, url=this.apiUrl, attrs={}, method="GET"){
     attrs = Object.keys(attrs).map(function(key){
