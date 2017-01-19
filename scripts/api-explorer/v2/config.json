@@ -146,7 +146,6 @@
           "copyBtn": {
             "name": true
           },
-          "request": "https://app.ticketmaster.com/discovery/v2/events/{id}.{format}",
           "index": 0
         }
       },

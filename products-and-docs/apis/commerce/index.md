@@ -4023,6 +4023,848 @@ Rate-Limit:
 }
 {% endhighlight %}
 
+## Get Deliveries
+{: .article .console-link #get-deliveries}
+
+**Method:** GET.
+Authentication required.
+
+Returns the deliveries.
+
+commerce/{version}/checkout/carts/{cartId}/deliveries.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `cartId`   | Cart ID. Required.   | string            | "c5d3fb70-f7cb-489d-823d-8103222f0c17.jash1" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Response structure: {# delivery-response}
+
+{: .nested-list }
++ `deliveries` (array) - the deliveries
+	 - `{array item object}` - the delivery reference.
+	     * `id` (string) - the delivery id.
+	     * `type` (string) - '_delivery_'.
+	     * `attributes` (object) - the attributes of the delivery.
+	         * `deliveryType` (string) - the delivery type.
+	         * `displayRank` (string) - the display rank.
+	         - `totals` (object) - the total amounts for the delivery.
+	             * `currency` (string) - the code of the currency for the totals.
+	             * `fee` (string) - the total fees for the delivery.
+	             * `tax` (string) - the total taxes for the delivery.
+	             * `grand` (string) - the grand total of the delivery.
+	         - `description` (object) - the descriptions for the delivery.
+	             * `long` (string) - the long description.
+	             * `short` (string) - the short description.
+	         - `restrictions` (array) - the delivery restrictions.
+	             + `{array item object}` - the restrictions reference.
+	                 * `id` (string) - the product id.
+	                 * `type` (string) - '_*-restriction_'.
+	     * `relationships` (object) - the relationships of the delivery. 
+	         + `deliveryOptions` (object) - container for deliveryOption relationships.
+	             + `data` (array) - container for deliveryOption relationships.
+	                 - `{array item object}` - deliveryOption reference.
+	                      * `id` (string) - the deliveryOption id.
+	                      * `type` (string) - 'deliveryOptions'.
+- `_embedded` (object) - container for included (embedded) data.
+    * `deliveryOptions` (object) - container for included deliveryOptions data.
+        + `data` (array)
+            - `{array item object}` - a deliveryOption.
+                * `id` (string) - the deliveryOption id.
+                * `type` (string) - '_deliveryOption_'.
+                * `attributes` (object) - deliveryOption attributes.
+                    * `requiresAddress` (boolean) - true/false.
+                    * `requiresIdentification` (boolean) - true/false.
+                    - `description` (object) - the descriptions for the deliveryOption.
+						            * `long` (string) - the long description.
+						            * `short` (string) - the short description.
+				   		      - `excludedCountries` (array)
+						            + `{array item object}` - an excludedCountry.
+				                    * `id` (string) - the excludedCountry id.
+				                    * `type` (string) - '_accepted-delivery-country_'.
+				                    * `attributes` (object) - excludedCountry attributes.
+				             	          * `country` (string) - the country abbreviation.  		
+
+{: .aside}
+>[JS](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/commerce/v2/checkout/carts/{cartId}/deliveries.json?{apikey}",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/commerce/v2/checkout/carts/{cartId}/deliveries.json?{apikey}
+{% endhighlight %}
+
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /commerce/v2/checkout/carts/{cartId}/deliveries.json?{apikey} HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Rate-Limit-Over:
+0
+Content-Length:
+21532
+Rate-Limit-Available:
+498399
+Set-Cookie:
+CMPS=EB55hDR95pURN1HyCaJoxuyEQcA8Sv2aKm4J/YaMBOYTHywQO/XHcWL6t8TWHLkL; path=/
+Access-Control-Allow-Methods:
+POST, PATCH, DELETE, GET, HEAD, OPTIONS
+X-TM-SESSION-BID:
+commerce-checkout
+Connection:
+keep-alive
+Access-Control-Allow-Credentials:
+true
+Server:
+Apache-Coyote/1.1
+Rate-Limit-Reset:
+1468530242515
+Access-Control-Allow-Headers:
+Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers
+Date:
+Thu, 14 Jul 2016 18:15:12 GMT
+Access-Control-Allow-Origin:
+*
+X-TM-SESSION-SID:
+49D8E7AAEF70BE318E4CEB599C499675
+X-Application-Context:
+commerce-api-commerce-checkout-v1:default,jash1:8080
+Content-Type:
+application/json;charset=UTF-8
+Rate-Limit:
+500000
+
+{
+  "deliveries": [
+    {
+      "id": "b6377b0a1be9aa19eaf69184ad7a1260",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "DIGITAL",
+        "displayRank": "1",
+        "totals": {
+          "fee": "0.00",
+          "tax": "0.00",
+          "grand": "0.00",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Get in with:",
+          "short": "eTickets"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-1",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ad20f8bc3e69a6c7a340c711731f2342",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "DIGITAL",
+        "displayRank": "1",
+        "totals": {
+          "fee": "0.00",
+          "tax": "0.00",
+          "grand": "0.00",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Get in with:",
+          "short": "eTickets"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-2",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "4acc72a7d8774bbdd92a99c68be70e21",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "DIGITAL",
+        "displayRank": "1",
+        "totals": {
+          "fee": "0.00",
+          "tax": "0.00",
+          "grand": "0.00",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Get in with:",
+          "short": "eTickets"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-3",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "5f4867621279e6246b2b254cb9bd6676",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "2DAYPM",
+        "displayRank": "3",
+        "totals": {
+          "fee": "18.50",
+          "tax": "0.00",
+          "grand": "18.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "By 7:30 PM in 2 business days via UPS (no delivery to PO Box or APO/FPO addresses).",
+          "short": "2 Business Day (Evening)"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-4",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "3543cfe2e5c81b672c33ae0ae7edeabf",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "3DAY",
+        "displayRank": "4",
+        "totals": {
+          "fee": "14.50",
+          "tax": "0.00",
+          "grand": "14.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "By 7:30 PM in 3 business days via UPS (no delivery to PO Box or APO/FPO addresses).",
+          "short": "3 Business Day (Evening)"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-5",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "c4ca4238a0b923820dcc509a6f75849b",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "MAIL",
+        "displayRank": "6",
+        "totals": {
+          "fee": "0.50",
+          "tax": "0.00",
+          "grand": "0.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Your tickets will be mailed to your billing address within 10 to 14 days of your purchase.",
+          "short": "Standard Mail: Allow 10 to 14 days for delivery"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-6",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "45c48cce2e2d7fbdea1afc51c7c6ad26",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "AIRMAIL",
+        "displayRank": "8",
+        "totals": {
+          "fee": "0.50",
+          "tax": "0.00",
+          "grand": "0.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Your tickets will be mailed to your billing address and delivered no later than 48 hours before the event in a plain unmarked white envelope.",
+          "short": "Canadian Airmail Mail"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-7",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "d1867af206b6d8259afb3f8b4f5d1250",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "INSTORE",
+        "displayRank": "9",
+        "totals": {
+          "fee": "3.00",
+          "tax": "0.00",
+          "grand": "3.00",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Avoid long lines and pick up your tickets at a participating Ticketmaster Retail Outlet. The cardholder must be present with a picture ID, the physical credit card or gift card used to place the order (excluding single use temporary cards), and the order number. Certain geographic restrictions may apply.",
+          "short": "Retail Outlet Pickup"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-8",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "e7ef6789bda02c52bf2812cd17c47eb9",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "WILLCALL",
+        "displayRank": "10",
+        "totals": {
+          "fee": "2.50",
+          "tax": "0.00",
+          "grand": "2.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "For International Orders Only - Tickets held at Will Call can only be retrieved by the cardholder with original credit card of purchase and a valid photo ID with signature such as a government issued ID, driver's license or passport.",
+          "short": "International Will Call"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "26005143EC8A4DDF"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "26005143EC8A4DDF",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-9",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "_embedded": {
+    "deliveryOptions": [
+      {
+        "id": "delivery-option-1",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "description": {
+            "long": "Go mobile, the easiest way in! Just show your ticket on your phone.",
+            "short": "Mobile"
+          },
+          "excludedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "AX"
+              }
+            },
+            {
+              "id": "2",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "RS"
+              }
+            },
+            {
+              "id": "3",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "BL"
+              }
+            },
+            {
+              "id": "4",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "BQ"
+              }
+            },
+            {
+              "id": "5",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CG"
+              }
+            },
+            {
+              "id": "6",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CW"
+              }
+            },
+            {
+              "id": "7",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "MF"
+              }
+            },
+            {
+              "id": "8",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "SS"
+              }
+            },
+            {
+              "id": "9",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "SX"
+              }
+            },
+            {
+              "id": "10",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            },
+            {
+              "id": "11",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            },
+            {
+              "id": "12",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "ND"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-2",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "description": {
+            "long": "Go mobile, the easiest way in! Just show your ticket on your phone.",
+            "short": "Mobile"
+          },
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-3",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "description": {
+            "long": "Go mobile, the easiest way in! Just show your ticket on your phone.",
+            "short": "Mobile"
+          },
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-4",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-5",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-6",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-7",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": false,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-8",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": false,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-9",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": false,
+          "requiresIdentification": false,
+          "excludedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "AX"
+              }
+            },
+            {
+              "id": "2",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "RS"
+              }
+            },
+            {
+              "id": "3",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "BL"
+              }
+            },
+            {
+              "id": "4",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "BQ"
+              }
+            },
+            {
+              "id": "5",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CG"
+              }
+            },
+            {
+              "id": "6",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CW"
+              }
+            },
+            {
+              "id": "7",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "MF"
+              }
+            },
+            {
+              "id": "8",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "SS"
+              }
+            },
+            {
+              "id": "9",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "SX"
+              }
+            },
+            {
+              "id": "10",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            },
+            {
+              "id": "11",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            },
+            {
+              "id": "12",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "ND"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+{% endhighlight %}
+
 ## Select Deliveries
 {: .article .console-link #select-deliveries}
 
@@ -5020,4 +5862,167 @@ Rate-Limit:
   "status": "200"
 }
 
+{% endhighlight %}
+
+## Purchase
+{: .article .console-link #purchase}
+
+**Method:** POST.
+Authentication required.
+
+This operation allows users to complete cart purchase.
+
+This operation returns an order confirmation response.
+
+commerce/{version}/shopping/carts/{cartId}/purchase.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+### Request body structure:
+
+{: .nested-list }
+* `pollingCallbackUrl` (string) - **Required** - client webhook URI where response will be posted if the operation polls.
+
+### Response structure:
+
+{: .nested-list }
+- `confirmation` (object) - the order confirmation response
+    * `id` (string) - the order confirmation id.
+    * `type` (string) - '_order-confirmations_'.
+    * `relationships` (object) - the relationships of the order confirmation.
+        + `orders` (object) - container for orders relationships.
+            + `data` (array) - container for orders relationships.
+                + `{array item object}` - order reference.
+                    + `id` (string) - the order id.
+                    + `type` (string) - '_orders_'.
+- `_embedded` (object) - container for included (embedded) data.
+    * `orders` (object) - container for included orders data.
+        + `data` (array)
+            - `{array item object}` - an order.
+                * `id` (string) - the order id.
+                * `type` (string) - '_orders_'.
+                * `metadata` (object) - order metadata.
+                    - `type` (string) - '_order-meta_'.
+                    - `providerId` (string) - the provider id. (e.q. "host")
+ 
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"POST",
+  url:"https://app.ticketmaster.com/commerce/v2/shopping/carts/{cartId}/purchase.json?{apikey}",
+  async:true,
+  data: {
+          "pollingCallbackUrl" : "http://requestb.in/14hknvt1"
+        },
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/commerce/v2/shopping/carts/{cartId}/purchase.json?{apikey} -X POST -d '{"pollingCallbackUrl" : "http://requestb.in/14hknvt1"}'
+{% endhighlight %}
+
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+POST /commerce/v2/shopping/carts/{cartId}/purchase.json?{apikey} HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+
+{
+          "pollingCallbackUrl" : "http://requestb.in/14hknvt1"
+}
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+Rate-Limit-Over:
+0
+Content-Length:
+21532
+Rate-Limit-Available:
+498399
+Set-Cookie:
+CMPS=EB55hDR95pURN1HyCaJoxuyEQcA8Sv2aKm4J/YaMBOYTHywQO/XHcWL6t8TWHLkL; path=/
+Access-Control-Allow-Methods:
+POST, PATCH, DELETE, GET, HEAD, OPTIONS
+X-TM-SESSION-BID:
+commerce-shopping
+Connection:
+keep-alive
+Access-Control-Allow-Credentials:
+true
+Server:
+Apache-Coyote/1.1
+Rate-Limit-Reset:
+1468530242515
+Access-Control-Allow-Headers:
+Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers
+Date:
+Thu, 14 Jul 2016 18:15:12 GMT
+Access-Control-Allow-Origin:
+*
+X-TM-SESSION-SID:
+49D8E7AAEF70BE318E4CEB599C499675
+X-Application-Context:
+commerce-api-commerce-shopping-v1:default,jash1:8080
+Content-Type:
+application/json;charset=UTF-8
+Rate-Limit:
+500000
+{
+  "confirmation": {
+    "id": "7526469c-a70f-4be0-88c9-5b3c06bcc199",
+    "type": "order-confirmations",
+    "relationships": {
+      "orders": {
+        "data": [
+          {
+            "id": "5-56255/PHX",
+            "type": "orders"
+          }
+        ]
+      }
+    }
+  },
+  "_embedded": {
+    "orders": {
+      "data": [
+        {
+          "id": "5-56255/PHX",
+          "type": "orders",
+          "metadata": {
+            "type": "order-meta",
+            "providerId": "host"
+          }
+        }
+      ]
+    }
+  },
+  "status": "200"
+}
 {% endhighlight %}
