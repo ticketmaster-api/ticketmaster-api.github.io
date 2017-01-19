@@ -2,7 +2,6 @@
 <application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
 	<resources base="https://app.ticketmaster.com">
 		<!-- Discovery REST API Version 2 -->
-
 		<!-- Search Events -->
 		<resource path="discovery/v2/events.{format}">
 			<param name="format" required="true" type="xsd:string" style="template" default="json" >
