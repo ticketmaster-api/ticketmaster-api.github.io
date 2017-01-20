@@ -631,9 +631,9 @@ class TicketmasterMapWidget {
                             let place = '';
                             let address = '';
                             let date = widget.formatDate({
-                                    day: widget.events[e].date.day,
-                                    time: widget.events[e].date.time
-                                });
+                                day: widget.events[e].date.day,
+                                time: widget.events[e].date.time
+                            });
                             if (widget.events[e].address.hasOwnProperty('name')) {
                                 place = widget.events[e].address.name + ', ';
                             }
@@ -656,7 +656,7 @@ class TicketmasterMapWidget {
                                 e,
                                 '<div class="infowindow" style="width:220px!important;padding-right:5px!important;line-height:normal;overflow:auto;"><a class="an" href="' + widget.events[e].url + '"><span class="img" style="background:url(' + widget.events[e].img + ') center center no-repeat"></span><span class="name">' + widget.events[e].name + '</span></a>' + buyBtn + '<div class="dateplace"><span class="date">' + date + '</span><span class="place">' + place + address + '</span></div></div>'
                             ];
-                            latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat,widget.events[e].location.lng));
+                            latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat, widget.events[e].location.lng));
                         }
                     }
                     map.fitBounds( latlngbounds );

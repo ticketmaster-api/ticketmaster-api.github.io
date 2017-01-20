@@ -368,13 +368,16 @@
         widgetNode.removeAttribute('w-source');
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
+        document.getElementById('map').style.width = '300px';
+        document.getElementById('map').style.height = '600px';
         widget.onLoadCoordinate();
         widget.update();
     };
 
     var $configForm = $(".main-widget-config-form"),
         $widgetModal = $('#js_widget_modal'),
-        $widgetModalNoCode = $('#js_widget_modal_no_code');
+        $widgetModalNoCode = $('#js_widget_modal_no_code'),
+        $widgetModalMap = $('#js_widget_modal_map');
 
     $configForm.on("change", changeState);
     // Mobile devices. Force 'change' by 'Go' press
@@ -421,17 +424,22 @@
         $widgetModalNoCode.modal('hide');
     });
 
+    $('#js_widget_modal_map__open').on('click', function (e) {
+        $widgetModalMap.modal();
+    });
+
+    $('#js_widget_modal_map__close').on('click', function () {
+        $widgetModalMap.modal('hide');
+        document.querySelector('[w-type="map"]').setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
+        widget.update();
+    });
+
     $('.widget__location span').on('click', function () {
         $('.widget__location').addClass('hidn');
         $('.widget__latlong').removeClass('hidn');
         document.getElementById('h-countryCode').value = document.getElementById('w-countryCode').value;
         document.getElementById('h-postalcode').value = document.getElementById('w-postalcode').value;
         document.getElementById('h-city').value = document.getElementById('w-city').value;
-        /*
-        document.getElementById('w-latitude').value = document.getElementById('h-latitude').value;
-        document.getElementById('w-longitude').value = document.getElementById('h-longitude').value;
-        widget.config.latlong = document.getElementById('w-latitude').value + ',' + document.getElementById('w-longitude').value;
-        */
         document.getElementById('w-latlong').value = document.getElementById('h-latlong').value;
         widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         document.querySelector('[w-type="map"]').setAttribute('w-latlong', widget.config.latlong);
@@ -447,15 +455,6 @@
     $('.widget__latlong span').on('click', function () {
         $('.widget__latlong').addClass('hidn');
         $('.widget__location').removeClass('hidn');
-        /*
-        document.getElementById('h-latitude').value = document.getElementById('w-latitude').value;
-        document.getElementById('h-longitude').value = document.getElementById('w-longitude').value;
-        document.getElementById('w-latitude').value = '';
-        document.getElementById('w-longitude').value = '';
-        document.querySelector('[w-type="map"]').removeAttribute('w-latitude');
-        document.querySelector('[w-type="map"]').removeAttribute('w-longitude');
-        document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
-        */
         document.getElementById('h-latlong').value = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         document.getElementById('w-latlong').value = '';
         document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
