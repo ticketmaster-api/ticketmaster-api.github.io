@@ -1,21 +1,11 @@
 package bla.tm.postconditions;
 
-import bla.tm.steps.AnyPageSteps;
-import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.AfterScenario;
-import org.jbehave.core.annotations.BeforeScenario;
 
 public class After_User_Scenario{
-    @Steps
-    AnyPageSteps anyPageSteps;
 
     //TODO add ability to clear results for all outcomes (auto tests) if somethings goes wrong
     //TODO overview all test cases. Identify which of them are automated. Mark appropriate scenario by adding test-case name into scenario title [testcase:...]
-
-    @AfterScenario()
-    public void clearCookiesAndLocalStorage (){
-        anyPageSteps.clearCookiesAndLocalStorage();
-    }
 
     @AfterScenario(uponOutcome = AfterScenario.Outcome.SUCCESS)
     public void afterScenarioSuccess() throws Exception {
