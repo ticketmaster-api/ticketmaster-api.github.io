@@ -83,6 +83,11 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-webkit-line-clamp: 2;
+	color: #009cde;
+}
+
+.gm-style-iw .name:hover {
+	color: #2a7cc7;
 }
 
 .gm-style-iw .date {
