@@ -608,14 +608,14 @@ var TicketmasterMapWidget = function () {
             });
 
             var image = {
-                url: '/assets/widgets/1.0.0/img/marker.svg',
+                url: 'https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/marker.svg',
                 size: new google.maps.Size(22, 32),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(22, 32)
             };
 
             var imageActive = {
-                url: '/assets/widgets/1.0.0/img/marker-active.svg',
+                url: 'https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/marker-active.svg',
                 size: new google.maps.Size(22, 32),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(22, 32)
