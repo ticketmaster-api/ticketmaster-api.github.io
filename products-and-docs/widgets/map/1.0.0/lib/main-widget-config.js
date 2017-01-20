@@ -397,6 +397,7 @@
     });
 
     $('.js_get_widget_code').on('click', function () {
+        var googleKey = 'YOUR_GOOGLE_API_KEY';
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
         for (var key in widget.config) {
@@ -405,10 +406,17 @@
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
         htmlCode.setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
-        if (document.getElementById('w-googleapikey').value != '') htmlCode.setAttribute('w-googleapikey', document.getElementById('w-googleapikey').value);
+        if (document.getElementById('w-googleapikey').value != '') {
+            googleKey = document.getElementById('w-googleapikey').value;
+            htmlCode.setAttribute('w-googleapikey', googleKey);
+        } else {
+            htmlCode.setAttribute('w-googleapikey', googleKey);
+        }
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
+        document.getElementById('widget-code-script').innerHTML = '&lt;script src="https://maps.googleapis.com/maps/api/js?key=' + googleKey + '&libraries=visualization,places" async defer&gt;&lt;/script&gt;<br />&lt;script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/lib/main-widget.js"&gt;&lt;/script&gt;';
+
         $widgetModal.modal();
     });
 
