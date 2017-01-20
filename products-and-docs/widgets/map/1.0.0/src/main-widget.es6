@@ -560,14 +560,14 @@ class TicketmasterMapWidget {
         });
 
         var image = {
-            url: '/assets/widgets/1.0.0/img/marker.svg',
+            url: 'https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/marker.svg',
             size: new google.maps.Size(22, 32),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(22, 32)
         };
 
         var imageActive = {
-            url: '/assets/widgets/1.0.0/img/marker-active.svg',
+            url: 'https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/marker-active.svg',
             size: new google.maps.Size(22, 32),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(22, 32)
@@ -631,9 +631,9 @@ class TicketmasterMapWidget {
                             let place = '';
                             let address = '';
                             let date = widget.formatDate({
-                                    day: widget.events[e].date.day,
-                                    time: widget.events[e].date.time
-                                });
+                                day: widget.events[e].date.day,
+                                time: widget.events[e].date.time
+                            });
                             if (widget.events[e].address.hasOwnProperty('name')) {
                                 place = widget.events[e].address.name + ', ';
                             }
@@ -656,7 +656,7 @@ class TicketmasterMapWidget {
                                 e,
                                 '<div class="infowindow" style="width:220px!important;padding-right:5px!important;line-height:normal;overflow:auto;"><a class="an" href="' + widget.events[e].url + '"><span class="img" style="background:url(' + widget.events[e].img + ') center center no-repeat"></span><span class="name">' + widget.events[e].name + '</span></a>' + buyBtn + '<div class="dateplace"><span class="date">' + date + '</span><span class="place">' + place + address + '</span></div></div>'
                             ];
-                            latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat,widget.events[e].location.lng));
+                            latlngbounds.extend(new google.maps.LatLng(widget.events[e].location.lat, widget.events[e].location.lng));
                         }
                     }
                     map.fitBounds( latlngbounds );
