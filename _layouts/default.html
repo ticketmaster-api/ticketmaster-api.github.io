@@ -119,6 +119,7 @@
 														if(status == google.maps.GeocoderStatus.OK) {
 															if(results[0]) {
 																document.getElementById("map_address").innerHTML = results[0].formatted_address;
+																$('#pac_input').val(results[0].formatted_address);
 															}
 															else {
 																document.getElementById("map_address").innerHTML = "No results";

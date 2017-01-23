@@ -433,6 +433,7 @@
     });
 
     $('#js_widget_modal_map__open').on('click', function (e) {
+        e.preventDefault();
         $widgetModalMap.modal();
     });
 
