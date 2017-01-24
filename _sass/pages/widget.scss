@@ -459,13 +459,15 @@
 	}
 	.latlong-picker {
 		position: absolute;
-		width: 32px;
-		height: 32px;
+		width: 28px;
+		height: 28px;
 		display: block;
-		background: url('/assets/widgets/1.0.0/img/marker.svg') center center no-repeat;
-		top: 38px;
+		background: url('/assets/widgets/1.0.0/img/ic-show-map.svg') 0 0 no-repeat;
+		top: 39px;
 		left: 256px;
-		cursor: pointer;
+		&:hover {
+			background: url('/assets/widgets/1.0.0/img/ic-show-map.svg') 0 -28px no-repeat;
+		}
 	}
 }
 
