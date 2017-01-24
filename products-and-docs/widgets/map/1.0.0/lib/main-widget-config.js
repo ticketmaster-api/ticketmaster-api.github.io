@@ -36,16 +36,16 @@
                 layout: 'horizontal'
             },
             custom: {
-                width: 300,
+                width: 350,
                 height: 600,
                 layout: 'vertical'
             }
         },
         initSliderSize: {
-            width: 300,
+            width: 350,
             height: 600,
-            maxWidth: 600,
-            minWidth: 300
+            maxWidth: 500,
+            minWidth: 350
         }
     },
         isPostalCodeChanged = false;
@@ -234,7 +234,7 @@
                 sizeConfig = {
                     width: 620,
                     height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
-                    maxWidth: 620,
+                    maxWidth: 900,
                     minWidth: 620
                 };
             }
@@ -263,7 +263,7 @@
                 width: themeConfig.sizes[targetValue].width,
                 height: themeConfig.sizes[targetValue].height,
                 maxWidth: 1200,
-                minWidth: 300
+                minWidth: 350
             };
 
             document.getElementById('map').style.width = themeConfig.sizes[targetValue].width + 'px';
@@ -304,7 +304,7 @@
 
     var resetWidget = function resetWidget(configForm) {
         var widgetNode = document.querySelector("div[w-tmapikey]"),
-            width = 300,
+            width = 350,
             height = 600,
             theme = void 0,
             layout = void 0;
@@ -368,10 +368,12 @@
         widgetNode.removeAttribute('w-source');
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
-        document.getElementById('map').style.width = '300px';
+        document.getElementById('map').style.width = '350px';
         document.getElementById('map').style.height = '600px';
         widget.onLoadCoordinate();
         widget.update();
+        // document.querySelector('.widget-container-wrapper').removeAttribute('style');
+        containerMove();
     };
 
     var $configForm = $(".main-widget-config-form"),

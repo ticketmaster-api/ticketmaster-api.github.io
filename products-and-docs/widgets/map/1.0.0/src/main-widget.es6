@@ -609,7 +609,6 @@ class TicketmasterMapWidget {
                 if(widget.events.length){
 
                     var myLatLng = {lat: 34.0390107, lng: -118.2672801};
-                    var latlngbounds = new google.maps.LatLngBounds();
 
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 4,
@@ -622,6 +621,8 @@ class TicketmasterMapWidget {
                             position: google.maps.ControlPosition.RIGHT_CENTER
                         },
                     });
+
+                    var latlngbounds = new google.maps.LatLngBounds();
 
                     widget.groupEventsByName.call(widget);
 
