@@ -11,7 +11,7 @@
     function getBorderByTheme(theme) {
         switch (theme) {
             case 'simple':
-                return 1;
+                return 0;
                 break;
             default:
                 return 2;
@@ -485,41 +485,6 @@
     widget.onLoadCoordinate = function (results) {
         var countryShortName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
     };
-
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-    function showPosition(position) {
-        var latlon = position.coords.latitude + ", " + position.coords.longitude;
-        document.getElementById("w-latlong").value = latlon;
-        document.querySelector('[w-type="map"]').setAttribute('w-latlong', latlon.replace(/\s+/g, ''));
-        widget.update();
-    }
-
-    function showError(error) {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                x.innerHTML = "User denied the request for Geolocation.";
-                break;
-            case error.POSITION_UNAVAILABLE:
-                x.innerHTML = "Location information is unavailable.";
-                break;
-            case error.TIMEOUT:
-                x.innerHTML = "The request to get user location timed out.";
-                break;
-            case error.UNKNOWN_ERROR:
-                x.innerHTML = "An unknown error occurred.";
-                break;
-        }
-    }
-
-    $('#get-location').on('click', function () {
-        getLocation();
-    });
 
     function addCustomList(listWrapperElement, listWrapperId, activeVal) {
         var $listOption = $(listWrapperId).find('option'),
