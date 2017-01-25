@@ -1,6 +1,6 @@
 ---
 order: 1
-category: sd-article
+category: sd-article-v2
 layout: partners-doc
 categories: 
   - startup_and_development
@@ -11,8 +11,7 @@ title: Title for the Selected Hero Image 1
 summary: Lorem ipsum
 tab: Hackathon
 size: 1.2
-places: 
-  - header 
+places:
   - gallery
 ---
 

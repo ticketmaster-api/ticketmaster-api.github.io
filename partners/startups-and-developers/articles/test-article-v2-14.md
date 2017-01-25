@@ -1,6 +1,6 @@
 ---
 order: 14
-category: sd-article
+category: sd-article-v2
 layout: partners-doc
 categories: 
   - startup_and_development
