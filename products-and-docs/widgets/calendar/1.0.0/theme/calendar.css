@@ -627,12 +627,12 @@ div[w-theme="calendar"] .weekSсheduler .days .popup {
 div[w-theme="calendar"] .weekSсheduler .days .popup.single,
 div[w-theme="calendar"] .weekSсheduler .days .popup-up.single {
     height: auto;
-    max-height: 185px;
+    max-height: 187px;
 }
 
 div[w-theme="calendar"] .weekSсheduler .days .popup-up {
     width: 265px;
-    height: 185px;
+    height: 190px;
     overflow: hidden;
     padding: 13px 10px;
     position: absolute;
@@ -1021,7 +1021,7 @@ div[w-theme="calendar"] .selector-content span {
     box-sizing: content-box;
     margin: 0 1%;
     text-align: left;
-    line-height: 2em;
+    line-height: 1.92em;
     white-space: nowrap;
     min-width: 86px;
     -moz-user-select: none;
