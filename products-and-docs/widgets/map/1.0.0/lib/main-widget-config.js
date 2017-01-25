@@ -11,7 +11,7 @@
     function getBorderByTheme(theme) {
         switch (theme) {
             case 'simple':
-                return 0;
+                return 1;
                 break;
             default:
                 return 2;
