@@ -1672,6 +1672,7 @@ class WeekScheduler {
         }).join("&");
 
         url = [url,attrs].join("?");
+        url += '&sort=date,asc';
 
         this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
         if(method == "POST") {
@@ -1990,7 +1991,7 @@ class WeekScheduler {
                             return `${key}=${attrs[key]}`;
                         }).join("&");
                         let url = widget.apiUrl + [url, attrs].join("?");
-
+                        url += '&sort=date,asc';
                         prm.push(widget.getJsonAsync(url));
                     }
                     Promise.all(prm).then(value => {
@@ -2431,6 +2432,7 @@ class MonthScheduler {
         }).join("&");
 
         url = [url,attrs].join("?");
+        url += '&sort=date,asc';
 
         this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
         if(method == "POST") {
@@ -2566,7 +2568,7 @@ class MonthScheduler {
         let calendarWidgetRoot = schedulerRoot.parentNode.parentNode.parentNode;
         let spinner = schedulerRoot.querySelector('.spinner-container');
         let prm = [];
-        let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=aJVApdB1RoA41ejGebe0o4Ai9gufoCbd&latlong=36.1697096,-115.1236952&keyword=&startDateTime=2016-08-01T00:00:00Z&endDateTime=2016-09-02T23:59:59Z&classificationId=&radius=5&size=500&page=0';
+        let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=aJVApdB1RoA41ejGebe0o4Ai9gufoCbd&latlong=36.1697096,-115.1236952&keyword=&startDateTime=2016-08-01T00:00:00Z&endDateTime=2016-09-02T23:59:59Z&classificationId=&radius=5&size=500&page=0&sort=date,asc';
 
         if (this && this.readyState == XMLHttpRequest.DONE) {
 
@@ -2793,7 +2795,7 @@ class MonthScheduler {
                             return `${key}=${attrs[key]}`;
                         }).join("&");
                         let url = widget.apiUrl + [url, attrs].join("?");
-
+                        url += '&sort=date,asc';
                         prm.push(widget.getJsonAsync(url));
                     }
 
@@ -3524,6 +3526,7 @@ class YearScheduler {
                 return `${key}=${attrs[key]}`;
             }).join("&");
             let url = this.apiUrl + [url,attrs].join("?");
+            url += '&sort=date,asc';
             prm.push(this.getJsonAsync(url));
         }
 
