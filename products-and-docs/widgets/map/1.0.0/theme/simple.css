@@ -183,6 +183,7 @@ div[w-theme="simple"] .events-root-container{
 	background-color: #e5e5e5;
 	border-style: solid;
 	border-color: #ccc;
+	border: solid 1px #b7c9d3;
 }
 
 div[w-theme="simple"] ul{
