@@ -1187,6 +1187,7 @@ class TicketmasterEventDiscoveryWidget {
     }).join("&");
 
     url = [url,attrs].join("?");
+    url += '&sort=date,asc';
 
     this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
     if(method == "POST") {
