@@ -127,7 +127,7 @@
 				</apigee:tags>
 				<apigee:authentication required="true"/>
 				<apigee:example url="discovery/v2/events.json"/>
-				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2">Returns the 20 most recent events for the authenticating user.</doc>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2">Returns the 20 most recent events for the authenticated user.</doc>
 			</method>
 		</resource>
 
@@ -140,7 +140,7 @@
 				</apigee:tags>
 				<apigee:authentication required="true"/>
 				<apigee:example url="discovery/v2/events/G5diZfkn0B-bh.json"/>
-				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-details-v2">Returns the event detail by event ID.
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-details-v2">Returns the event details by event ID.
 				</doc>
 			</method>
 			<param name="id" required="true" type="xsd:string" style="template" default="">
@@ -196,7 +196,7 @@
 				</apigee:tags>
 				<apigee:authentication required="true"/>
 				<apigee:example url="discovery/v2/events/G5diZfkn0B-bh/images.json"/>
-				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-images-v2">Returns all the images for an event by ID. If an event does not have an image for a supported resolution, the event's classification image will be returned instead.
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-images-v2">Returns all the images for an event by ID. If the event does not have an image for a supported resolution, the event's classification image will be returned instead.
 				</doc>
 			</method>
 		</resource>
@@ -287,7 +287,7 @@
 				</apigee:tags>
 				<apigee:authentication required="true"/>
 				<apigee:example url="discovery/v2/attractions/K8vZ917G7x0.json"/>
-				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#attraction-details-v2">Returns the attraction detail by ID.
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#attraction-details-v2">Returns the attraction details by ID.
 				</doc>
 			</method>
 		</resource>
@@ -357,7 +357,7 @@
 				</apigee:tags>
 				<apigee:authentication required="true"/>
 				<apigee:example url="discovery/v2/classifications/KZFzniwnSyZfZ7v7na.json"/>
-				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2">Returns the classification detail by ID.</doc>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2">Returns the classification details by ID.</doc>
 			</method>
 		</resource>
 
@@ -460,7 +460,7 @@
 				</apigee:tags>
 				<apigee:authentication required="true"/>
 				<apigee:example url="discovery/v2/venues/90150.json"/>
-				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#venue-details-v2">Returns the venue detail by ID.
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#venue-details-v2">Returns the venue details by ID.
 				</doc>
 			</method>
 		</resource>
