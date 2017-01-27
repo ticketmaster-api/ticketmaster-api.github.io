@@ -44,7 +44,7 @@ after_script:
 notifications:
   email:
     recipients: #will receive notification, if admin turn it on, in https://github.com/settings/
-        - ievgen_tsekhmeistruk@epam.com
+        - maksym_mazurkevych@epam.com
         - de.gratnik@gmail.com
     on_success: never
     on_failure: always
