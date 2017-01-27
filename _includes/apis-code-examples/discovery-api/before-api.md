@@ -32,7 +32,7 @@ The API provides access to content sourced from various platform, including **Ti
 
 With over 113K+ events available in the API, coverage spans all of the following countries: **United States**, **United Kingdom**, **Ireland**, **Australia**, **New Zealand**, **Mexico** and **Canada**. More events and more countries are added on continious basis.
 
-![event map](/assets/img/products-and-docs/map.png)
+<iframe style="width:100%;height:500px;" src="http://heatmap-1220776398.us-west-2.elb.amazonaws.com/"></iframe>
 
 ### Examples
 
