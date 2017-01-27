@@ -8,6 +8,9 @@ $steel-20: rgba(118, 134, 146, 0.2);
 }
 
 .startups-and-developers {
+	* {
+		fontfamily: TMSansLEADINGFIXED-regular;
+	}
 	.header-title {
 		font: {
 			size: 36px;
@@ -231,6 +234,7 @@ $steel-20: rgba(118, 134, 146, 0.2);
 								line-height: 0.94;
 								color: #ffffff;
 								margin: 0;
+								padding: 0 0 5px;
 								@include strech(auto, 30px, 30px, 30px);
 							}
 							a {
@@ -471,7 +475,12 @@ $steel-20: rgba(118, 134, 146, 0.2);
 				border-radius: 4px;
 				background-color: $cerulean;
 				margin: auto;
+				font-family: TMSansLEADINGFIXED-regular;
+				font-size: 16px;
 				font-weight: bold;
+				font-style: normal;
+				font-stretch: normal;
+				line-height: 1.5;
 				letter-spacing: 0.2px;
 				&:hover {
 					background-color: #2a7cc7;
@@ -490,6 +499,7 @@ $steel-20: rgba(118, 134, 146, 0.2);
 		.btn {
 			color: $cerulean;
 			font: {
+				family: 'TMSansLEADINGFIXED-Regular';
 				size: 16px;
 				weight: normal;
 				style: normal;
@@ -508,11 +518,13 @@ $steel-20: rgba(118, 134, 146, 0.2);
 	&__article {
 		width: 556px;
 		p:not(.lead) {
+			font-family: TMSansLEADINGFIXED-regular;
 			font-size: 16px;
 			font-weight: normal;
 			font-style: normal;
 			font-stretch: normal;
 			line-height: 1.5;
+			letter-spacing: normal;
 			color: #768692;
 			&:first-child {
 				margin-top: 0;
