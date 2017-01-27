@@ -22,7 +22,7 @@
     </div>
     {% endif %}
         <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
-        <p><strong>Summary: </strong>{{ method[1].summary }}</p>
+        <!--{% comment %}<p><strong>Summary: </strong>{{ method[1].summary }}</p>{% endcomment %}-->
     {%if method[1].description %}<p><strong>Description: </strong>{{ method[1].description }}</p>{% endif %}
 
     {%if method[1].tags and swagger.tags %}

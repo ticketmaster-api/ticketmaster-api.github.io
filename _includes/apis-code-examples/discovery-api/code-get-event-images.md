@@ -1,7 +1,7 @@
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?{apikey}",
+  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -17,5 +17,5 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?{apikey}'
+--include 'https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?apikey={apikey}'
 {% endhighlight %}

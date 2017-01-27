@@ -36,7 +36,7 @@
             {% for routeInner in swagger.paths %}
                 {% for tag in methodsDescription.method %}
                     {% if tag.pathsParent == routeInner[0] %}
-                        {% assign _id = tag.id | append: '-' | append: page.categories[3] %}
+                        {% assign _id = tag.id %}
                         {% assign _title = tag.title %}
                         {% assign _reqres = tag.reqres %}
                     {% endif %}

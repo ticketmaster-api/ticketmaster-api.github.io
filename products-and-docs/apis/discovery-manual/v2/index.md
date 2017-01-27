@@ -8,17 +8,15 @@ categories:
 title: Discovery API 2.0
 excerpt: Use the Discovery API to search, look up and find events, attractions and venues.
 keywords: API, search events, attraction details, event images, category details, venue details, support
-redirect_from: 
-- "/products-and-docs/apis/discovery/"
 ---
 
 # Discovery API
 
 {: .version-button .active}
-[V 2.0]({{"/products-and-docs/apis/discovery/v2/" | prepend: site.baseurl}})
+[V 2.0]({{"/products-and-docs/apis/discovery-manual/v2/" | prepend: site.baseurl}})
 
 {: .version-button }
-[V 1.0]({{"/products-and-docs/apis/discovery/v1/" | prepend: site.baseurl}})
+[V 1.0]({{"/products-and-docs/apis/discovery-manual/v1/" | prepend: site.baseurl}})
 
 Search and look up events, attractions, venues and classifications across all supported sources, markets and locales.
 {: .lead .article}

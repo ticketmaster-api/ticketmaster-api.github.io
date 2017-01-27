@@ -1,7 +1,7 @@
 {% highlight js %}
 $.ajax({
   type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&{apikey}",
+  url:"https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&apikey={apikey}",
   async:true,
   dataType: "json",
   success: function(json) {
@@ -17,5 +17,5 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&{apikey}'
+--include 'https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&apikey={apikey}'
 {% endhighlight %}

@@ -16,9 +16,9 @@
                 </ul>
                 {% endif %}
             </li>
-           {% comment %}
+           
             <!--automenu for Swagger api-->
-            <li><a href="/products-and-docs/apis/discovery-api/v2/">Discovery API(autodoc)</a>
+            <li><a href="/products-and-docs/apis/discovery-api/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "discovery-api" %}
                     {% include partials/autodoc/side-menu-generate.html%}
 
@@ -27,8 +27,8 @@
                 {% endcomment %}-->
                 {% endif %}
             </li><!--END automenu-->
-						{% endcomment %}
-
+						
+<!--{% comment %}
             <li><a href="/products-and-docs/apis/discovery/v2/">Discovery API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "discovery" and page.categories[2] == "v2" %}
                 <ul class="sections menu-highlight">
@@ -74,7 +74,7 @@
 
                 {% endif %}
             </li>
-
+{% endcomment %}-->
             <li><a href="/products-and-docs/apis/commerce/">Commerce API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "commerce" %}
                 <ul class="sections menu-highlight">
