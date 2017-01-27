@@ -67,6 +67,33 @@ By using the Ticketmaster Developer Portal, you understand and agree to our [Ter
 
 The Ticketmaster back-end reservation systems are distributed globally and events are processed on their local systems.  These systems go into a nightly maintenance mode between 12AM and 2AM local time. This means a show playing at Madison Square Garden will not be transactable between 12AM-2AM Eastern Time.  Use the timezone value from the event details response to note when these events may be unavailable for transactions.
 
+### Quota Policy
+
+The Partner API has a quota policy.This policy is applied for all the request following the pattern
+
+JavaRegex  :
+"/events/*$" or
+"/events/[a-zA-Z0-9]{16}/*$"
+
+The restrictions are as follows :
+
+		For Production   : 200 requests / minute for a client IP
+
+The following headers are returned in the response add more information about the quota
+
+	Ratelimit-Quota-Allowed :  Returns the allowed quota count
+	Ratelimit-Quota-Used    :  Returns the current quota used within a quota interval
+	Ratelimit-Expiry        :  Returns the UTC time in milliseconds which determines when the quota expires and new quota interval starts.
+
+In addition to that the just <b>Availability End Point </b>(/event/{eventId}/availability)  has an updated quota policy.The restriction is <b>3600 requests/hour </b> for an apikey.If you get a 429 error code, it means that your request was aborted because of violation of quota policy.
+
+The following headers to the availability response add more information about the rate limit
+
+     Ratelimit-Expiry          :  The expiry time for the rate limit
+     Ratelimit-Quota-Allowed   :  The total no of requests allowed
+     Ratelimit-Quota-Available :  The no of requests (remaining) that can be made within the time limit
+
+
 ### Channel Partners
 See ["Channel Partners"](#channel-partner-overview)
 
