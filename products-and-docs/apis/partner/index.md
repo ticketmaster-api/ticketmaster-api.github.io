@@ -71,9 +71,8 @@ The Ticketmaster back-end reservation systems are distributed globally and event
 
 The Partner API has a quota policy.This policy is applied for all the request following the pattern
 
-JavaRegex  :
-"/events/*$" or
-"/events/[a-zA-Z0-9]{16}/*$"
+/events/ or
+/events/{eventId}
 
 The restrictions are as follows :
 
