@@ -4144,7 +4144,6 @@ This the [ISO Alpha-2 Code](https://en.wikipedia.org/wiki/ISO_3166-1) country va
 | TR (Turkey)                   |
 | UA (Ukraine)                  |
 | AE (United Arab Emirates)     |
-| UK (United Kingdom)           |
 | US (United States Of America) |
 | UY (Uruguay)                  |
 | VE (Venezuela)                |
