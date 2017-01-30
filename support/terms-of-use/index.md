@@ -99,16 +99,16 @@ No Waiver of Rights by Ticketmaster. Ticketmaster's failure to exercise or enfor
 Miscellaneous. The section headings and subheadings contained in this agreement are included for convenience only, and shall not limit or otherwise affect the terms of the API Terms of Use. Any construction or interpretation to be made of the API Terms of Use shall not be construed against the drafter. The API Terms of Use constitute the entire agreement between Ticketmaster and you with respect to the subject matter hereof.
 
 {: .body .left-margin .clear-margin .left-border}
-Live Nation Entertainment, Inc. 
+Live Nation Entertainment, Inc.
 
 {: .body .left-margin .clear-margin .left-border}
-9348 Civic Center Drive 
+9348 Civic Center Drive
 
 {: .body .left-margin .clear-margin .left-border}
-Beverly Hills, CA 90210 
+Beverly Hills, CA 90210
 
 {: .body .left-margin .clear-margin .left-border}
-Attn: Trademark Department, Legal 
+Attn: Trademark Department, Legal
 
 {: .body .left-margin .clear-margin .left-border}
 [copyrightofficer@livenation.com](mailto:copyrightofficer@livenation.com)
