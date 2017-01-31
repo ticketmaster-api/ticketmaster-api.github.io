@@ -37,16 +37,16 @@ Email us and we'll do our best to respond within 12 hours!
 Whether it's pen to paper or straight from your printer, address all mail to:
 
 {: .left-margin .clear-margin .left-border}
-Live Nation Entertainment, Inc. 
+Live Nation Entertainment, Inc.
 
 {: .left-margin .clear-margin .left-border}
-9348 Civic Center Drive 
+9348 Civic Center Drive
 
 {: .left-margin .clear-margin .left-border}
-Beverly Hills, CA 90210 
+Beverly Hills, CA 90210
 
 {: .left-margin .clear-margin .left-border}
-Attn: Trademark Department, Legal 
+Attn: Trademark Department, Legal
 
 {: .left-margin .clear-margin .left-border}
 [copyrightofficer@livenation.com](mailto:copyrightofficer@livenation.com)
