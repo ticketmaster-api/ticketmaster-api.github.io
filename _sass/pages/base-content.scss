@@ -124,6 +124,20 @@
     list-style: decimal;
   }
 
+	.page-not-found {
+		min-height: 500px;
+		img {
+			margin: 0 auto;
+		}
+		h1 {
+			color: $n3;
+		}
+		p {
+			max-width: 555px;
+			margin: 0 auto;
+		}
+	}
+
 }
 
 .link-inline > a {

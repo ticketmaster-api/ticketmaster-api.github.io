@@ -62,7 +62,7 @@
         renderValue(url, quantity);
         countAnimate(url, quantity);
       }).fail(function (err) {
-        onFailHandler(url, 0.15);
+        onFailHandler(url, 15);
         console.error('Error: ', err);
       })
     }

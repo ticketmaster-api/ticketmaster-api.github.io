@@ -1,0 +1,53 @@
+---
+layout: default
+category: partners
+---
+{% assign sorted_article = (site.pages | sort: 'order') %}
+{% assign carousel_array = "" | split:"|"  %}
+{% assign gallery_array = "" | split:"|"  %}
+{% assign tab_array = "" | split:"|"  %}
+{% assign topApp_array = "" | split:"|"  %}
+{% assign topApp_showItems = 1 %}
+
+{% for article in sorted_article %}
+	{% if article.category == "sd-article-v2" %}
+
+		{% if article.places contains "header" %}
+			{% assign carousel_array = carousel_array | push: {{article}} %}
+		{% endif %}
+
+		{% if article.tab %}
+			{% assign tab_array = tab_array | push: {{article.tab}} %}
+		{% endif %}
+
+		{% if article.places contains "gallery" %}
+			{% assign gallery_array = gallery_array | push: {{article}} %}
+		{% endif %}
+		
+		{% if article.places contains "top" %}
+			{% assign topApp_array = topApp_array | push: {{article}} %}
+		{% endif %}
+	
+	{% endif %}
+{% endfor %}
+
+<section class="startups-and-developers">
+	{% include partials/slider-header.html %}
+	<main>
+		<section class="content{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %} distribution{% endif %}">
+			{%include partials/SD-partical.html%}
+		</section>
+	</main>
+	
+	<footer id="footer" class="xs-center slice-top-left grey">
+		{% include partials/footer.html %}
+	</footer>
+</section>
+
+
+<script src="{{'/scripts/components/menu-highlight.js' | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{'/scripts/vendors/jquery-1.11.3.min.js' | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{'/scripts/vendors/jquery-migrate-1.3.0.min.js' | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="{{'/scripts/pages/startup-and-devs-v2.js' | prepend: site.baseurl }}"></script>

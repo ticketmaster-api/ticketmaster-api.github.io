@@ -32,7 +32,7 @@ $nexusForm.submit(function(e){
     url: "https://getsimpleform.com/messages/ajax?form_api_token="+formKey,
     data: $nexusForm.serialize()
   }).done(function() {
-    //callback which used to show a thank you message
+		//callback shows the 'thank you message'
     showMsgSuccess('#nexus-alert-modal');
   });
   return false; //to stop the form from submitting
@@ -41,9 +41,7 @@ $nexusForm.submit(function(e){
 function showMsgSuccess($modalAlert){
   // Show message
   $($modalAlert).modal();
-  $nexusForm.trigger("reset");
-  //$('.js_custom_select',$nexusForm).trigger("custom-reset");
-  //$textAreaDescription.css('height',''); //reset height of textarea
+  $nexusForm.trigger("reset");//clear on success
   $('button', $nexusForm).prop('disabled',false);
 }
 
@@ -52,16 +50,20 @@ function showMsgError(id, charCount){
   $(id).modal();
 }
 
-$btnAlertOk.on('click', function(){
-  $modalAlert.modal('hide');
-  resetForm(); //clear on success
-});
+function initListeners() {
+	$btnAlertOk.on('click', function () {
+		$modalAlert.modal('hide');
+	});
 
-$btnAlertError.on('click', function(){
-  $modalAlertError.modal('hide');
-  
-	$('#'+errorDescriptionID).remove();
-	$('button', $nexusForm).attr('disabled', false);
-});
+	$btnAlertError.on('click', function () {
+		$modalAlertError.modal('hide');
+
+		$('#' + errorDescriptionID).remove();
+		$('button', $nexusForm).attr('disabled', false);
+	});
+}
 
 checkKey(formKey);
+
+initListeners();
+
