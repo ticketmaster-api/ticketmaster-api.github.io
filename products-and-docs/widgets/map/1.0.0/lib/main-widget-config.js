@@ -482,9 +482,9 @@
         widget.update();
     });
 
-    $('w-geoposition').on('click', function () {
-        if ($(this).is(':checked')) {} else {
-            document.querySelector('[w-type="map"]').prop("w-geoposition", null);
+    $('#w-geoposition').on('click', function () {
+        if (!$(this).is(':checked')) {
+            document.querySelector('[w-type="map"]').removeAttribute("w-geoposition");
         }
     });
 

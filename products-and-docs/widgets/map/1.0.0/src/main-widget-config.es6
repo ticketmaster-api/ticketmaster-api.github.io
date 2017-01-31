@@ -488,12 +488,13 @@
         widget.update();
     });
 
-    $('w-geoposition').on('click', function(){
-        if ($(this).is(':checked')) {
-
+    $('#w-geoposition').on('click', function(){
+        if (!$(this).is(':checked')) {
+          alert('Checked');
+            document.querySelector('[w-type="map"]').removeAttribute("w-geoposition");
         }
         else {
-            document.querySelector('[w-type="map"]').prop("w-geoposition", null);
+            alert('Unchecked');
         }
     });
 
