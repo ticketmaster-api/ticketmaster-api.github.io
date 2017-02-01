@@ -515,7 +515,7 @@ Object.byString = function(o, s) {
   var readFromWADL = function(){
     var xml;
     $.ajax({
-      url: '../apidescription.xml',
+      url: '../scripts/api-explorer/apidescription.xml',
       async : false,
       dataType: ($.browser.msie) ? "text" : "xml",
       success : function(response){
