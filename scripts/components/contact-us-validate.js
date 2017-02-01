@@ -27,7 +27,7 @@ $contactForm.submit(function(e){
 	e.preventDefault();
 	$('button', $contactForm).prop('disabled',true);
 
-	if(3000 <= charCount) {
+	if(3000 < charCount) {
 		showMsgError('#contact-alert-modal-error',  charCount);
 		return false;
 	}
