@@ -28,8 +28,6 @@
 
 <p class="lead article">{{ swagger.info.description }}</p>
 
-<h4 class="aside gray" id="developer-console">Developer Console</h4><p>Make live API calls right now in the interactive docs:</p><p><a href="/products-and-docs/apis/interactive-console/" class="button">INTERACTIVE DOCS</a></p>
-
 {% if methodsDescription.before %}
     {% if methodsDescription.before.include %}
         {% assign beforeInclude = methodsDescription.before.include | prepend: 'apis-code-examples/' %}

@@ -1,5 +1,5 @@
 {% highlight http %}
-GET /discovery/v2/events/G5diZfkn0B-bh.json?{apikey} HTTP/1.1
+GET /discovery/v2/events/G5diZfkn0B-bh.json?apikey={apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive

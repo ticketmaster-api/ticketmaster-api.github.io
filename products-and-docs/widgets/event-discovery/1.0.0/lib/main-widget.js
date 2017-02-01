@@ -1406,15 +1406,27 @@ var TicketmasterEventDiscoveryWidget = function () {
       event.style.width = this.config.width - this.borderSize * 2 + 'px';
 
       var wrapperImg = this.createBackgroundImage(event, itemConfig.img);
+      var titleLink = document.querySelector('[w-type="event-discovery"]').getAttribute('w-titlelink');
+      var nameContent = document.createTextNode(itemConfig.name);
 
-      var nameContent = document.createTextNode(itemConfig.name),
-          name = document.createElement("span");
-      name.classList.add("event-name");
-      name.appendChild(nameContent);
-      this.initPretendedLink(name, itemConfig.url, true);
-      name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
-      /* name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');"); */
-      medWrapper.appendChild(name);
+      if (titleLink && titleLink == 'off') {
+        var name = document.createElement("span");
+        name.classList.add("event-name");
+        name.appendChild(nameContent);
+        this.initPretendedLink(name, itemConfig.url, true);
+        name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
+        name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
+        medWrapper.appendChild(name);
+      } else {
+        var _name = document.createElement("a");
+        _name.classList.add("event-name");
+        _name.classList.add("event-pretended-link");
+        _name.href = itemConfig.url;
+        _name.appendChild(nameContent);
+        _name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
+        _name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
+        medWrapper.appendChild(_name);
+      }
 
       this.addBarcode(event, itemConfig.url);
       this.addBuyButton(!this.isListViewThumbnails ? medWrapper : wrapperImg, itemConfig.url); //add 'BuyButton' to '.wrapper-thumbnails' if choose ListViewThumbnails
