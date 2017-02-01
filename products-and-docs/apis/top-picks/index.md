@@ -71,11 +71,16 @@ Retrieve reservable seat information based on specific criteria.
 | `areas` | Comma-separated area IDs to search | numbers | 10,11 | No |
 | `sections` | Comma-separated section names | string | GA,103,201 | No |
 | `prices` | Price range | numbers | 50,150 | No |
+| `page` | Page number   | numbers | 1 | No |
 
 ### Response structure:
 
 {: .nested-list}
-
+- `page` (object) - Page information.
+    * `number` (number) - current page number counted from 1.
+    * `size` (number) - size of current page (max=30 per page).
+    * `totalElements` (number) - total number of elements available.
+    * `totalPages` (number) - total number of pages available.
 - `picks` (array) - Picks.
     - `{array item object}` - pick.
         * `type` (string) - "general-seating", or "seats"
@@ -91,6 +96,9 @@ Retrieve reservable seat information based on specific criteria.
         * `offers` (array) - Offers.    
             - `{array item object}` - offer.
                 - `offer id` (string) - The offer id corresponding to one in _embedded.offer[].
+        * `seats` (array) - Seats.    
+            - `{array item object}` - seat.
+                - `seat id` (string) - seat names.
 - `_embedded` (object) - container for events.
     * `offer` (array) - Offers matching those found in picks[] items.
         - `{array item object}` - offer.
@@ -121,10 +129,18 @@ https://app.ticketmaster.com/top-picks/v1/events/1C00506FB56F338A?apikey=GkB8Z03
 {% highlight json %}
 Status 200
 {
+  "page" : {
+        "number" : 2,
+        "size" : 15,
+        "totalElements" : 35,
+        "totalPages" : 2
+    },
   "picks": [
     {
+      "type": "seats",
       "quality": 0.626072,
       "section": "103",
+        "selection": "standard",
       "row": "18",
       "descriptions": [
           "Full View"
@@ -137,6 +153,10 @@ Status 200
       "snapshotImageUrl": "https://app.ticketmaster.com/maps/geometry/3/event/1C00506FB56F338A/image?systemId=HOST&segmentIds=s_10,s_11,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_12,s_120,s_13,s_14,s_16,s_17,s_18,s_2,s_22,s_5,s_6,s_8,s_9&placeId=GEYDGORRHA5DS",
       "offers": [
         "GJ6DC7BQ"
+      ],
+      "seats": [
+          "1",
+          "2"
       ]
     }
   ],
