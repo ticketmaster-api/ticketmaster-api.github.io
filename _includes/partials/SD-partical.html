@@ -1,28 +1,4 @@
-{% assign sorted_article = (site.pages | sort: 'order') %}
-{% assign carousel_array = "" | split:"|"  %}
-{% assign gallery_array = "" | split:"|"  %}
-{% assign tab_array = "" | split:"|"  %}
-{% assign topApp_array = "" | split:"|"  %}
-{% assign topApp_showItems = 1 %}
-
-{% for article in sorted_article %}
-	{% if article.category == "sd-article-v2" %}
-	
-	{% if article.tab %}
-		{% assign tab_array = tab_array | push: {{article.tab}} %}
-	{% endif %}
-	
-	{% if article.places contains "gallery" %}
-		{% assign gallery_array = gallery_array | push: {{article}} %}
-	{% endif %}
-	
-	{% if article.places contains "top" %}
-		{% assign topApp_array = topApp_array | push: {{article}} %}
-	{% endif %}
-	
-	{% endif %}
-{% endfor %}
-
+{% if gallery_array.size != 0 %}
 <article class="products-and-application">
 	<header>
 		<h3 class="header-title products-and-application-header">Products and Applications made with Ticketmaster’s API</h3>
@@ -47,6 +23,7 @@
 				{% endfor %}
 			</ul>
 		</div>
+		
 		
 		<!-- Tab panes -->
 		<section class="tab-content clearfix">
@@ -75,7 +52,9 @@
 					{% endfor %}
 				</section>
 				{% if gallery_array.size > 12 %}
-					<div class="show-more clearfix"><button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-all">Show more</button></div>
+					<div class="show-more clearfix">
+						<button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-all">Show more</button>
+					</div>
 				{% endif %}
 			</div>
 			
@@ -119,7 +98,9 @@
 		</section>
 	</section>
 </article>
+{% endif %}
 
+{% if topApp_array.size != 0 %}
 <article class="base-content-wrapper top-section">
 	<header>
 		<h3 class="top-section-title">Our Last Top Applications</h3>
@@ -159,6 +140,7 @@
 		<button class="btn btn-link" id="top-show-more" aria-controls="#top-section-main">Show more</button>
 	</div>
 </article>
+{% endif %}
 
 <article class="tm-api-docs slice-top-right">
 	<header>

@@ -23,13 +23,20 @@ $steel-20: rgba(118, 134, 146, 0.2);
 		background: none;
 		padding: 0;
 		min-height: 703px;
+		&.no-content-header {
+			min-height: 572px;
+			margin: 0 0 -120px;
+			& + main .products-and-application header{
+				padding: 140px 0 0;
+			}
+		}
 		&::before {
 			display: none;
 		}
 		.body-wrapper {
 			position: relative;
 			top: 0;
-			z-index: 1;
+			z-index: 2;
 			margin-top: 0;
 			.search-container {
 				margin: 11px 0 0;
@@ -39,12 +46,34 @@ $steel-20: rgba(118, 134, 146, 0.2);
 		.gray {
 			border-top: none;
 		}
-
 	}
-	.slick-slider {
+	.slick-slider,
+	.sd-carousel {
 		@include strech(0);
 		margin: 0;
 		z-index: 0;
+		.no-content {
+			background: {
+				image: url('/assets/img/S&D/people-1.png');
+				position:  0 50%;
+				repeat: no-repeat;
+				size: cover;
+			}
+			.slide-content-wrapper {
+				max-width: 1400px;
+				margin: 0 auto 0;
+				padding: 109px 139px 289px;
+				.slide-title {
+					max-width: 580px;
+					font-size: 81px;
+					line-height: 1.1;
+					margin: 23px 0 40px;
+				}
+				.slide-descr {
+					max-width: 757px;
+				}
+			}
+		}
 		.slide-content-wrapper {
 			max-width: 924px;
 			margin: 0 15% 0;
@@ -231,6 +260,7 @@ $steel-20: rgba(118, 134, 146, 0.2);
 								line-height: 0.94;
 								color: #ffffff;
 								margin: 0;
+								padding: 0 0 5px;
 								@include strech(auto, 30px, 30px, 30px);
 							}
 							a {
@@ -471,7 +501,12 @@ $steel-20: rgba(118, 134, 146, 0.2);
 				border-radius: 4px;
 				background-color: $cerulean;
 				margin: auto;
+				font-family: TMSansLEADINGFIXED-regular;
+				font-size: 16px;
 				font-weight: bold;
+				font-style: normal;
+				font-stretch: normal;
+				line-height: 1.5;
 				letter-spacing: 0.2px;
 				&:hover {
 					background-color: #2a7cc7;
@@ -484,12 +519,20 @@ $steel-20: rgba(118, 134, 146, 0.2);
 	.slice-top-left.grey::before {
 		background-image: url('../assets/img/slice-top-left-grey.svg');
 	}
+	.slice-bottom-left.grey {
+		z-index: 1;
+		&::after {
+			background-image: url('../assets/img/slice-top-left-grey.svg');
+			@include transform(rotateX(180deg));
+		}
+	}
 	.show-more {
 		text-align: center;
 		margin: 15px 0 7px;
 		.btn {
 			color: $cerulean;
 			font: {
+				family: 'TMSansLEADINGFIXED-Regular';
 				size: 16px;
 				weight: normal;
 				style: normal;
@@ -508,11 +551,13 @@ $steel-20: rgba(118, 134, 146, 0.2);
 	&__article {
 		width: 556px;
 		p:not(.lead) {
+			font-family: TMSansLEADINGFIXED-regular;
 			font-size: 16px;
 			font-weight: normal;
 			font-style: normal;
 			font-stretch: normal;
 			line-height: 1.5;
+			letter-spacing: normal;
 			color: #768692;
 			&:first-child {
 				margin-top: 0;
@@ -595,7 +640,19 @@ $steel-20: rgba(118, 134, 146, 0.2);
 				left: 25px !important;
 			}
 		}
-		.slick-slider {
+		.slick-slider,
+		.sd-carousel {
+			.no-content {
+				.slide-content-wrapper {
+					max-width: none;
+					.slide-title {
+						max-width: none;
+					}
+					.slide-descr {
+						max-width: none;
+					}
+				}
+			}
 			.slide-content-wrapper {
 				margin: 0 1%;
 				padding: 105px 9.2% 170px;
@@ -826,8 +883,6 @@ $steel-20: rgba(118, 134, 146, 0.2);
 				}
 			}
 		}
-
-
 		.tm-api-docs {
 			header {
 				margin: 0 40px;
@@ -848,6 +903,7 @@ $steel-20: rgba(118, 134, 146, 0.2);
 
 @media #{$max-768} {
 	.startups-and-developers {
+		min-width: 300px;
 		.header-title {
 			font-size: 24px;
 			margin: 18px auto;
@@ -857,33 +913,64 @@ $steel-20: rgba(118, 134, 146, 0.2);
 			&::before {
 				display: none;
 			}
-			.body-wrapper {
-				position: relative;
-				top: 0;
-				z-index: 1;
-				margin-top: 0;
-				.search-container {
-					margin: 11px 0 0;
-					right: -92px;
-				}
-			}
 			.gray {
 				border-top: none;
 			}
 			#header-logo {
 				left: 6px !important;
 			}
+			&.no-content-header {
+				min-height: 444px;
+				margin: 0 0 -40px;
+				& + main .products-and-application header {
+					padding: 20px 0 0;
+				}
+			}
 		}
-		.slick-slider {
+		.slick-slider,
+		.sd-carousel {
+			.no-content {
+				.slide-content-wrapper {
+					padding: 105px 14.2% 170px;
+					max-width: none;
+					.slide-title {
+						max-width: 268px;
+						font: {
+							size: 24px;
+							weight: 900;
+							style: normal;
+							stretch: normal;
+						}
+						line-height: 1.33;
+						text-align: center;
+						color: #ffffff;
+						margin: 23px auto 47px;
+					}
+					.slide-descr {
+						min-height: 48px;
+						font: {
+							size: 16px;
+							weight: bold;
+							style: normal;
+							stretch: normal;
+						}
+						line-height: 1.5;
+						text-align: center;
+						margin: 28px auto;
+					}
+				}
+			}
 			.slide-content-wrapper {
 				text-align: center;
 				padding: 105px 14.2% 170px;
 				.slide-title {
 					max-width: 268px;
-					font-size: 24px;
-					font-weight: 900;
-					font-style: normal;
-					font-stretch: normal;
+					font: {
+						size: 24px;
+						weight: 900;
+						style: normal;
+						stretch: normal;
+					}
 					line-height: 1.33;
 					text-align: center;
 					color: #ffffff;
@@ -891,10 +978,12 @@ $steel-20: rgba(118, 134, 146, 0.2);
 				}
 				.slide-descr {
 					min-height: 48px;
-					font-size: 16px;
-					font-weight: bold;
-					font-style: normal;
-					font-stretch: normal;
+					font: {
+						size: 16px;
+						weight: bold;
+						style: normal;
+						stretch: normal;
+					}
 					line-height: 1.5;
 					text-align: center;
 					margin: 28px auto;

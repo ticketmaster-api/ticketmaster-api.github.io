@@ -213,7 +213,7 @@
 
 .base-content-wrapper .no-events {
   margin: 0 auto;
-  background-image: url("../../assets/img/events/img-not-found-event.svg");
+	background: url(../../assets/img/ticket-box-img.svg) 270px no-repeat;
   width: 436px;
   height: 220px;
   margin-bottom: $base-margin * 8;
@@ -239,6 +239,7 @@
 		width: 270px;
 		height: auto;
 		background-size: 100% 100%;
+		background-position-x: 75px;
 		h1 {
 			font-size: $base-margin;
 			line-height: $base-margin;

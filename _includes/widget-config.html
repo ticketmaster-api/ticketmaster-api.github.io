@@ -264,7 +264,7 @@
             <input id="w-width" name="w-width" type="text" data-slider-min="350" data-slider-max="500" data-slider-step="1" data-slider-value="350">
           </div>
         </div>
-        <div class="col-lg-12 double-margin-bottom">
+        <div class="col-lg-12">
           <label for="w-borderradius">
             Corner Radius <span class="config_field__description">(px)</span>
           </label>
@@ -272,6 +272,22 @@
             <input id="w-borderradius" name="w-borderradius" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="4">
           </div>
         </div>
+
+
+					<div class="col-lg-12 double-margin-bottom">
+						<label for="w-titlelink">Title link behaviour</label>
+						<div class="js_custom_select custom_select">
+							<select id="w-titlelink" class="custom_select__field" name="w-titlelink" tabindex="-1">
+								<option value="off">Open title link in new tab</option>
+								<option value="on">Open title link in current tab</option>
+							</select>
+							<input class="custom_select__placeholder" type="text" value="" contenteditable="true">
+							<ul class="custom_select__list js_widget_custom__list">
+								<li class="custom_select__item" data-value="on">Open title link in new tab</li>
+								<li class="custom_select__item" data-value="off">Open title link in current tab</li>
+							</ul>
+						</div>
+					</div>
 
         <!--<div class="col-lg-12 base-margin">
           <input type="checkbox" id="w-border">

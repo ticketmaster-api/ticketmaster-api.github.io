@@ -4,17 +4,38 @@ category: partners
 ---
 {% assign sorted_article = (site.pages | sort: 'order') %}
 {% assign carousel_array = "" | split:"|"  %}
+{% assign gallery_array = "" | split:"|"  %}
+{% assign tab_array = "" | split:"|"  %}
+{% assign topApp_array = "" | split:"|"  %}
+{% assign topApp_showItems = 1 %}
 
 {% for article in sorted_article %}
-{% if article.category == "sd-article-v2" and article.places contains "header" %}
-		{% assign carousel_array = carousel_array | push: {{article}} %}
+	{% if article.category == "sd-article-v2" %}
+
+		{% if article.places contains "header" %}
+			{% assign carousel_array = carousel_array | push: {{article}} %}
+		{% endif %}
+
+		{% if article.tab %}
+			{% assign tab_array = tab_array | push: {{article.tab}} %}
+		{% endif %}
+
+		{% if article.places contains "gallery" %}
+			{% assign gallery_array = gallery_array | push: {{article}} %}
+		{% endif %}
+		
+		{% if article.places contains "top" %}
+			{% assign topApp_array = topApp_array | push: {{article}} %}
+		{% endif %}
+	
 	{% endif %}
 {% endfor %}
+
 <section class="startups-and-developers">
 	{% include partials/slider-header.html %}
 	<main>
 		<section class="content{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %} distribution{% endif %}">
-			{{ content }}
+			{%include partials/SD-partical.html%}
 		</section>
 	</main>
 	

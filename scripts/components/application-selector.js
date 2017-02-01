@@ -1,7 +1,7 @@
 /**
  */
 (function($){
-jQuery.fn.applicationSelect = function(options ) {
+jQuery.fn.applicationSelect = function(options) {
 
     var defaults = {},
         settings = $.extend({}, defaults, options);

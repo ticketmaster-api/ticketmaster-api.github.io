@@ -9,6 +9,8 @@ categories:
 title: Discovery API 2.0
 redirect_from:
 - "/products-and-docs/apis/discovery-api/"
+- "/products-and-docs/apis/discovery/"
+- "/products-and-docs/apis/discovery/v2/"
 ---
 
 {% comment %}

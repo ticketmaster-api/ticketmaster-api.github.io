@@ -122,6 +122,34 @@ Status 200
 
 Once you have obtained an Access Token, you can use it to identify the User until the time specified by the `expires_in` key in the response. At the time of writing, this is 3600 seconds (1 hour). After that time, you need to reissue a new Access Token using the Refresh Token (explained below), or will need the User to reauthenticate (via Step 1 above).
 
+## Getting User Info
+{: #getting-user-info}
+
+An Access Token can be exchanged for User information, including the Ticketmaster fan's email address, and a helpful ID representing this fan's app authorization.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+GET https://oauth.ticketmaster.com/oauth/info/<access_token>
+{% endhighlight %}
+
+{% highlight json %}
+Status 200
+{
+    "user_id": "f01ee39dc410061306223cbc5d540f75b90d3bb2f2993c9d6eba25932f76b333",
+    "email": "someone@example.com",
+    "email_verified": false
+}
+{% endhighlight %}
+
+Fields
+
++ **user_id** is a hash of the application's Client ID and Ticketmaster fan's internal User ID, and is intended to act as a client-friendly unique key representing this application's user authorization.
++ **email** is the Ticketmaster fan's email address.
++ **email_verified** [DEPRECATED] Please disregard the `email_verified` field.  This field is deprecated, always returns `false`, and will be removed shortly.  It presently exists for backwards compatibility.
+
 ## Getting Refresh Tokens
 {: getting-refresh-tokens}
 

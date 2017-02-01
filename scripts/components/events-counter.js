@@ -23,9 +23,10 @@
 
     initialVal(config);
     config.forEach(function (el) {
-      var val = el === 'countries' && 7,
+      var val = el === 'countries' && 83,
         quantityStorage = getSessionStorage(el);
       renderValue(el, val);
+			
       if(val !== null || val !== false) {
         if(!quantityStorage) {
           updateEventpanelCounters(el,intervals);
@@ -56,12 +57,12 @@
         async: true,
         dataType: "json"
       }).then(function (data) {
-        var quantity = data.page && data.page.totalElements || 'none';
-        setSessionStorage(url, quantity);
+        var quantity = data.page && data.page.totalElements || 'none', quantityObj = {value: quantity, timestamp: new Date().getTime()};
+        setSessionStorage(url, JSON.stringify(quantityObj));
         renderValue(url, quantity);
         countAnimate(url, quantity);
       }).fail(function (err) {
-        onFailHandler(url, 0.15);
+        onFailHandler(url, 15);
         console.error('Error: ', err);
       })
     }
@@ -91,11 +92,23 @@
 
   function getSessionStorage(key) {
     if (localStorage[key]) {
-      return localStorage.getItem(key);
+      var object = JSON.parse(localStorage.getItem(key)),
+  		 dateString = object.timestamp,
+       now = new Date().getTime().toString(),
+ 			 shiftMinutes = 1,
+ 			 value;
+ 
+ 			 value=(compareTime(dateString, now , shiftMinutes)) ? JSON.parse(localStorage.getItem(key)).value : null;
+ 
+       return value;
     }
     return null;
   }
 
+	function compareTime(dateString, now , shiftMinutes) {
+ 	  return dateString+(shiftMinutes*60000) > now;
+  }
+	
   function addCommas(str) {
     var parts = (str + "").split("."),
       main = parts[0],

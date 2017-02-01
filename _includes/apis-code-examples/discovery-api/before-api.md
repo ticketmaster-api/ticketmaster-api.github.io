@@ -7,7 +7,7 @@
 
 To run a successful API call, you will need to pass your API Key in the `apikey` query parameter. **Your API Key should automatically appear in all URLs throughout this portal**.
 
-Example: `https://app.ticketmaster.com/discovery/v2/events.json?{apikey}`
+Example: `https://app.ticketmaster.com/discovery/v2/events.json?apikey={apikey}`
 
 Without a valid API Key, you will receive a `401` Status Code with the following response:
 
@@ -37,16 +37,16 @@ With over 113K+ events available in the API, coverage spans all of the following
 ### Examples
 
 **Get a list of all events in the United States**
-`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&{apikey}`
+`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey={apikey}`
 
 **Search for events sourced by Universe in the United States with keyword "devjam"**
-`https://app.ticketmaster.com/discovery/v2/events.json?keyword=devjam&source=universe&countryCode=US&{apikey}`
+`https://app.ticketmaster.com/discovery/v2/events.json?keyword=devjam&source=universe&countryCode=US&apikey={apikey}`
 
 **Search for music events in the Los Angeles area**
-`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&{apikey}`
+`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey={apikey}`
 
 **Get a list of all events for Adele in Canada**
-`https://app.ticketmaster.com/discovery/v2/events.json?attractionId=K8vZ917Gku7&countryCode=CA&{apikey}`
+`https://app.ticketmaster.com/discovery/v2/events.json?attractionId=K8vZ917Gku7&countryCode=CA&apikey={apikey}`
 
 {% endcapture %}
 
