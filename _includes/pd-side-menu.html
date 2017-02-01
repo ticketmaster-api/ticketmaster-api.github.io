@@ -260,6 +260,18 @@
                 </ul>
                 {% endif %}
             </li>
+            <li><a href="/products-and-docs/apis/presence/">Presence API</a>
+                {% if page.categories[0] == "documentation" and page.categories[1] == "presence" %}
+                <ul class="sections menu-highlight">
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#authentication">Authentication</a></li>
+                    <li><a href="#ticket-service">Ticket Service</a></li>
+                    <li><a href="#device-service">Device Service</a></li>
+                    {% include partials/changelog-apis.html%}
+                    <li><a href="#disqus_thread">Disqus</a></li>
+                </ul>
+                {% endif %}
+            </li>
             <!--<li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>-->
             <li><a href="/api-explorer/">API Explorer</a></li>
 					  <li><a href="/api-explorer/v2/">API Explorer v2</a></li>
