@@ -242,6 +242,8 @@ var TicketmasterMapWidget = function () {
 
             //this.clear();
 
+            this.useGeolocation();
+
             this.AdditionalElements();
 
             this.getCoordinates(function () {
@@ -395,6 +397,21 @@ var TicketmasterMapWidget = function () {
         // End message
 
     }, {
+        key: "useGeolocation",
+        value: function useGeolocation() {
+            if (document.querySelector('[w-type="map"]').getAttribute("w-geoposition") != undefined && document.querySelector('[w-type="map"]').getAttribute("w-geoposition") == "on") {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        alert(latitude + ' ' + longitude);
+                    });
+                } else {
+                    alert("Geolocation API не поддерживается в вашем браузере");
+                }
+            }
+        }
+    }, {
         key: "AdditionalElements",
         value: function AdditionalElements() {
             var legalNoticeContent = document.createTextNode('Legal Notice'),
@@ -509,6 +526,7 @@ var TicketmasterMapWidget = function () {
                     events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
                 }
             }
+            this.useGeolocation();
         }
     }, {
         key: "needToUpdate",

@@ -489,12 +489,13 @@
     });
 
     $('#w-geoposition').on('click', function(){
-        if (!$(this).is(':checked')) {
-          alert('Checked');
-            document.querySelector('[w-type="map"]').removeAttribute("w-geoposition");
+        if ($(this).val() == undefined || $(this).val() == 'off') {
+            document.querySelector('[w-type="map"]').setAttribute("w-geoposition", "on");
+            $(this).val('on');
         }
         else {
-            alert('Unchecked');
+            document.querySelector('[w-type="map"]').setAttribute("w-geoposition", "off");
+            $(this).val('off');
         }
     });
 

@@ -596,3 +596,38 @@
   }
 
 }
+
+input[type=checkbox]:not(:checked)+label,
+input[type=checkbox]:checked+label {
+	padding-left: 30px;
+	padding-right: 0px;
+}
+
+input[type="checkbox"]:not(:checked)+label:before,
+input[type="checkbox"]:checked+label:before {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 24px;
+	height: 24px;
+	background: #fff;
+	right: auto;
+	top: auto;
+	left: 0px;
+}
+
+input[type="checkbox"]:not(:checked)+label:hover:before,
+input[type="checkbox"]:not(:checked)+label:focus:before,
+input[type="checkbox"]:checked+label:hover:before,
+input[type="checkbox"]:checked+label:focus:before {
+	outline: none;
+	border: 1px solid #ccc;
+}
+
+input[type="checkbox"]:not(:checked)+label:after,
+input[type="checkbox"]:checked+label:after {
+	width: 13px;
+	height: 10px;
+	background: url("/assets/controls/ic-chekmark-blue.svg") center center no-repeat;
+	left: 6px;
+	top: 7px;
+}
