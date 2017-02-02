@@ -1,5 +1,5 @@
 var base = {};
-var CONFIG_URL = '../../apidescription.xml';
+var CONFIG_URL = '../../scripts/api-explorer/apidescription.xml';
 
 var parseData = function (xml) {
 	var global = {};
