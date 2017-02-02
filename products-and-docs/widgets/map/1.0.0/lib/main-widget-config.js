@@ -388,7 +388,7 @@
         e.preventDefault();
     });
 
-    $configForm.find("input[type='text'], input[type='number']").each(function () {
+    $configForm.find("input[type='text'], input[type='number'], input[type='checkbox']").each(function () {
         var $self = $(this);
         $self.data('default-value', $self.val());
     });
@@ -480,6 +480,18 @@
         document.querySelector('[w-type="map"]').setAttribute('w-city', widget.config.city);
         widget.config.latlong = '';
         widget.update();
+    });
+
+    $('#w-geoposition').on('click', function () {
+        if ($(this).val() == undefined || $(this).val() == 'off') {
+            document.querySelector('[w-type="map"]').setAttribute("w-geoposition", "on");
+            $(this).val('on');
+            document.querySelector('.near-me-btn').classList.remove('dn');
+        } else {
+            document.querySelector('[w-type="map"]').setAttribute("w-geoposition", "off");
+            $(this).val('off');
+            document.querySelector('.near-me-btn').classList.add('dn');
+        }
     });
 
     widget.onLoadCoordinate = function (results) {
