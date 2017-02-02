@@ -20,80 +20,6 @@
     initialVal[el] = [];
   });
 
-  /**
-   * mediator pattern
-   * currently not used
-   * */
-  /*Storage*/
-  function TagsBox() { }
-  TagsBox.prototype =
-  {
-    constructor: TagsBox,
-
-    getTag: function ()
-    {
-      if (!ms_tagsIds.takeOneTag())
-      {
-        console.log("TagsBox: Who the hell drank all my beer?");
-        return false;
-      }
-
-      console.log("TagsBox: Yeeah! My beer!");
-      ms_tagsIds.oneBeerHasGone();
-      return true;
-    },
-    addTag: function ()
-    {
-      if (!ms_tagsIds.takeOneTag())
-      {
-        console.log("TagsBox: Who take all my tags?");
-        return false;
-      }
-
-      console.log("TagsBox: Yeeah! My tag!");
-      ms_tagsIds.addOneTag();
-      return true;
-    },
-    argue_back: function () { console.log("TagsBox: it's my last tag, for shure!"); }
-  }
-
-  /*refrigerator , stash*/
-  function msStorage(tags_count)
-  {
-    this._tags_count = tags_count;
-  }
-  msStorage.prototype =
-  {
-    constructor: msStorage,
-
-    takeOneTag: function ()
-    {
-      if (this._tags_count == 0) return false;
-      this._tags_count--;
-      return true;
-    },
-    addOneTag: function (){ this.refrigerator.addOneTag(); }
-  };
-
-  var ms_tagsIds =
-  {
-    tagsBox: new TagsBox(),
-    refrigerator: new msStorage(3),
-    stash: new msStorage(2),
-
-    takeOneTag: function ()
-    {
-      if (this.refrigerator.takeOneTag()) return true;
-      if (this.stash.takeOneTag()) return true;
-
-      return false
-    },
-    oneBeerHasGone: function (){ /*this.mammy.argue();*/ },
-    addOneTag: function (){ this.refrigerator.addOneTag(); },
-    disputeStarted: function (){ this.tagsBox.argue_back(); }
-  };
-  /*mediator pattern END*/
-
   $.fn.lazySelector = function (options) {
     var defaults = {},
         settings = $.extend({}, $.fn.lazySelector.defaults, options),
@@ -152,7 +78,7 @@
         a = "AM";
 
       if (H > 11) a = "PM";
-      if (H == 0) {
+      if (H === 0) {
         H = 12;
       } else if (H > 12) {
         H = H - 12;
@@ -165,6 +91,10 @@
       return (val < 0 || val > 9 ? "" : "0") + val
     }
 
+
+    var map = null,
+      defaultMapZoom = 10,
+      markers = [];
     /**
      * Show or init map listener
      * @param e
@@ -177,6 +107,7 @@
 
       if (lat && lng ) {
         initMap(lat, lng);
+        map.setZoom(defaultMapZoom);
         google.maps.event.trigger(map, "resize"); //'second init'
       } else {
         initMap(0, 0); //"first init"
@@ -189,8 +120,6 @@
      * @param lng - float
      * @param address - not used @deprecated
      */
-    var map = null, markers = [];
-
     var initMap = function (lat, lng) {
     	var modal = $modal,
         mapCenter = new google.maps.LatLng(lat || 55, lng || 43);
@@ -199,7 +128,7 @@
         // initialize map object
         map = new google.maps.Map(document.getElementById('map-canvas'), {
           center: mapCenter,
-          zoom: 10,
+          zoom: defaultMapZoom,
           mapTypeControl: false,
           scaleControl: false,
           fullscreenControl: false,
@@ -363,15 +292,14 @@
     function submitForm(/*optional*/pageNumero) {
       pageNumero = parseInt(pageNumero);
 
-      var url = ( isNaN(pageNumero) )
-        ? eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val()
-        : eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() + '&page=' + pageNumero;
+      var url = ( isNaN(pageNumero) ) ? eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() :
+        eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() + '&page=' + pageNumero;
 
       //stop load
       if (isNaN(pageNumero) && pageNumero !== 0 && stateConf.loadingFlag === 'STOP_LOAD') {
         renderResults(null, $ul);
         return false
-      };
+      }
 
 			//stop load
       if (stateConf.loadingFlag === 'FINAL_PAGE') return false;
@@ -389,7 +317,7 @@
             loading('off');
             renderResults(result, $ul); //add message at bottom of list
             return false;
-          };
+          }
 
           renderResults(result, $ul);
           loading('off');
@@ -484,7 +412,7 @@
                 .text(venue.address.line1)
                 .appendTo($wrapCol);
               if ('line2' in venue.address) {
-                var addressline1 = $('<span/>')
+                var addressline2 = $('<span/>')
                   .addClass('address-line2')
                   .text(venue.address.line2)
                   .appendTo(addressline1);
@@ -576,7 +504,7 @@
               .text(venue.address.line1 + '.')
               .appendTo($wrapCol);
             if ('line2' in venue.address) {
-              var addressline1 = $('<span/>')
+              var addressline2 = $('<span/>')
                 .addClass('address-line2')
                 .text(venue.address.line2)
                 .appendTo(addressline1);
@@ -593,7 +521,7 @@
             .text('Use this ID')
             .appendTo(li)
             .wrap('<div class ="wrapper-btns text-right"/>');
-          if ('location' in venue && venue.location.latitude && venue.location.longitude) {
+          if (venue.location && venue.location.latitude && venue.location.longitude) {
             //console.log('venue.location - ' , venue.location);
             var buttonMap = $("<button data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
               .addClass('js_open-map_btn btn btn-transparent')
@@ -693,7 +621,7 @@
               .text(venue.address.line1 + '.')
               .appendTo($wrapCol);
             if ('line2' in venue.address) {
-              var addressline1 = $('<span/>')
+              var addressline2 = $('<span/>')
                 .addClass('address-line2')
                 .text(venue.address.line2)
                 .appendTo(addressline1);
@@ -710,7 +638,7 @@
             .text('Use this ID')
             .appendTo(li)
             .wrap('<div class ="wrapper-btns text-right"/>');
-          if ('location' in venue && venue.location.latitude && venue.location.longitude) {
+          if (venue.location && venue.location.latitude && venue.location.longitude) {
             //console.log('venue.location - ' , venue.location);
             var buttonMap = $("<button style='float: right;' data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
               .addClass('js_open-map_btn btn btn-transparent')
@@ -1033,28 +961,26 @@
           initialVal['events'] = $input.val();
       })
       .on('hidden.bs.modal', function (e) {
-      resetForm();
-      closeMapListener();
+        var indToRemove =[],
+          selectorBtn = $btnGET.attr('data-selector'),
+          tagsArr = tagsIds[selectorBtn];
+        resetForm();
+        closeMapListener();		
 
-			var indToRemove =[],
-        selectorBtn = $btnGET.attr('data-selector'),
-        tagsArr = tagsIds[selectorBtn];
+        $( 'li' , $msList ).each( function(i) {
+          if ( $(this).data('isable') === false ){
+            indToRemove.push( $(this).data('selector-' + selectorBtn) );
+            $(this).remove();
+          }
+        });
 
-      $( 'li' , $msList ).each( function(i) {
-				if ( $(this).data('isable') === false ){
-					indToRemove.push( $(this).data('selector-' + selectorBtn) );
-					$(this).remove();
-				}
-      });
+        clearByArrVal(tagsArr, indToRemove);
 
-      clearByArrVal(tagsArr, indToRemove);
-
-      //clear tags if set Single ID
-      if(selector === selectorBtn && !stateConf.setSingleVal) {
-        //$input.val(tagsArr).attr('value', tagsArr).trigger('change');  //update widget:
-        stateConf.setSingleVal = false;
-      }
-      keyword.val('');//clear search input
+        //clear tags if set Single ID
+        if(selector === selectorBtn && !stateConf.setSingleVal) {
+          stateConf.setSingleVal = false;
+        }
+        keyword.val('');//clear search input
     });
 
     return this.each(function () {

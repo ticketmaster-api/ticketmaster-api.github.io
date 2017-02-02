@@ -27,7 +27,7 @@ Apps which implement Ticketmaster OAuth are able to have Ticketmaster users auth
 | __Client&nbsp;ID__ | A public key which identifies your Ticketmaster API client / app.  Used when initiating the OAuth handshake.
 | __Client&nbsp;Secret__ | A private token which is used to authenticate your Ticketmaster API client / app for certain operations.  Not meant to be shared in untrusted environments, i.e. served up in your app.
 | __Access&nbsp;Token__ | Access tokens are credentials used to access protected resources. An access token is a random string representing an authorization issued to the client. Access tokens represent specific scopes and durations of access, granted by the resource owner, and enforced by the resource server and authorization server.
-| __Refresh&nbsp;Token__ | Refresh tokens are credentials used to obtain access tokens. Refresh tokens are issued to the client by the authorization server and are used to obtain a new access token when the current access token becomes invalid or expires.
+| __Refresh&nbsp;Token__ | Refresh tokens are credentials used to obtain access tokens. Refresh tokens are issued to the client by the authorization server and are used to obtain a new access token when the current access token becomes invalid or expires.  Refresh tokens are only issued upon the initial authorization.  Should a Refresh token ever expire or be revoked, you would need to prompt the user to re-authorize.
 | __Auth&nbsp;Code__ | An intermediate token used in the Authorization Code Grant Flow, generated after the user has successfully provided valid login credentials, and can be exchanged for the actual OAuth tokens (access token & refresh token).
 
 ## Authorization Code Flow ("three-legged")
@@ -122,6 +122,34 @@ Status 200
 
 Once you have obtained an Access Token, you can use it to identify the User until the time specified by the `expires_in` key in the response. At the time of writing, this is 3600 seconds (1 hour). After that time, you need to reissue a new Access Token using the Refresh Token (explained below), or will need the User to reauthenticate (via Step 1 above).
 
+## Getting User Info
+{: #getting-user-info}
+
+An Access Token can be exchanged for User information, including the Ticketmaster fan's email address, and a helpful ID representing this fan's app authorization.
+
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight bash %}
+GET https://oauth.ticketmaster.com/oauth/info/<access_token>
+{% endhighlight %}
+
+{% highlight json %}
+Status 200
+{
+    "user_id": "f01ee39dc410061306223cbc5d540f75b90d3bb2f2993c9d6eba25932f76b333",
+    "email": "someone@example.com",
+    "email_verified": false
+}
+{% endhighlight %}
+
+Fields
+
++ **user_id** is a hash of the application's Client ID and Ticketmaster fan's internal User ID, and is intended to act as a client-friendly unique key representing this application's user authorization.
++ **email** is the Ticketmaster fan's email address.
++ **email_verified** [DEPRECATED] Please disregard the `email_verified` field.  This field is deprecated, always returns `false`, and will be removed shortly.  It presently exists for backwards compatibility.
+
 ## Getting Refresh Tokens
 {: getting-refresh-tokens}
 
@@ -156,7 +184,7 @@ Status 200
 {
     "access_token": "2bn123okn123on12c9d620232f8259205ed70",
     "expires_in": 3600,
-    "refresh_token": "bqwe123123538b9afa895a313ed5e0bc5fec43",
-    "token_type": "bearer"
+    "token_type": "bearer",
+    "scope":"all"
 }
 {% endhighlight %}

@@ -1,5 +1,5 @@
 {% highlight HTTP %}
-GET /discovery/v2/venues.json?{apikey}&keyword=UCV HTTP/1.1
+GET /discovery/v2/venues.json?apikey={apikey}&keyword=UCV HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: http://app.ticketmaster.com
 Connection: Keep-Alive

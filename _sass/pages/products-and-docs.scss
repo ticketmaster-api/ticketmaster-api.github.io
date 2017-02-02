@@ -123,6 +123,12 @@
     margin-right: -15px;
     margin-left: -15px;
   }
+  h3.label.text-left {
+    text-align: left;
+    @media #{$max-1200} {
+      text-align: center;
+    }
+  }
 }
 $line-width: 356px;
 .apis-title {

@@ -110,6 +110,14 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
         throw new WebDriverException(exceptionText);
     }
 
+    public static void waitForSomeActionHappened(int milliSec) {
+        try {
+            Thread.sleep(milliSec);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
     private int getWebDriverExplicitTimeout(){
         String defaultTimeoutInMilliseconds = "15000";
         EnvironmentVariables variables = SystemEnvironmentVariables.createEnvironmentVariables();

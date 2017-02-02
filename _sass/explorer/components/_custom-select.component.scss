@@ -38,7 +38,7 @@
 				background: transparent;
 				&[disabled] {
 					cursor: default;
-					color: #b7c9d3;
+					color: $heather;
 				}
 			}
 		}
@@ -58,9 +58,9 @@
 			left: 0;
 			width: 100%;
 			line-height: 24px;
-			color: #ffffff;
+			color: $white;
 			z-index: 1051;
-			background: #b7c9d3;
+			background: $heather;
 			padding: 12px 16px;
 			margin: 0;
 			font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
@@ -92,7 +92,7 @@
 
 				&:hover,
 				&.active {
-					color: #009cde;
+					color: $cerulean;
 				}
 			}
 			&-link {

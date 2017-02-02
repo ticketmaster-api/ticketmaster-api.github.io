@@ -1,0 +1,24 @@
+---
+layout: default
+category: partners
+---
+
+<div class="top-bar bg-header bg-header-events slice-bottom-left">
+    {% include partials/common-header.html %}
+</div>
+
+{% include partials/expanded-menu-header.html %}
+{% include partials/common-header-small.html %}
+
+<div class="base-content-wrapper">
+    <div class="col-xs-12 content{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %} distribution{% endif %}">
+        {{ content }}
+    </div>
+</div>
+
+<div id="footer" class="xs-center slice-top-left">
+    {% include partials/footer.html %}
+</div>
+
+<script src="{{'/scripts/components/support-side-menu.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/menu-highlight.js' | prepend: site.baseurl }}"></script>

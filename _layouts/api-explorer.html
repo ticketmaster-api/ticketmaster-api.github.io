@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% include head.html %}
-<body>
+<body class="no-js">
 <div id="spinner" style="display: none;"></div>
 {% include home-header.html %}
 {{content}}
@@ -45,7 +45,9 @@
   {% include lazy-selector-modal.html %}
   <script src="{{'/scripts/components/lazy-selector.js' | prepend: site.baseurl }}"></script>
   {% include classification-selector-modal.html %}
+	<script src="{{'/scripts/vendors/jstree.min.js' | prepend: site.baseurl }}"></script>
   <script src="{{'/scripts/components/classification-selector.js' | prepend: site.baseurl }}"></script>
+  <script src="{{'/scripts/components/application-selector.js' | prepend: site.baseurl }}"></script>
   <script>
     /**
      * add classification selector to api-explorer v1 (made by V.Menshutin)
@@ -89,6 +91,7 @@ function replaceApiKey(options) {
 }
 
 checkUserKey();
+
 
 </script>
 <!--<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>-->

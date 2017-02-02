@@ -17,13 +17,13 @@ namespace 'travis' do
     result = 0
     if ENV['TRAVIS_BRANCH'] == 'master'
       puts "Test serenity"
-      resultS = system("mvn verify -f ./tests/serenity/pom.xml")
+      resultS = system("mvn verify -f ./tests/serenity/pom.xml -Dmetafilter=\"-prod -NotImplemented\"")
       puts resultS
       puts "Test galen"
       resultG = system("sh ./tests/run-test-dispatch.sh")
       puts resultG
       puts 'test result'
-      if (resultS and resultG) == false
+      if (resultS) == false
         puts 'test failed'
         exit 1
       end

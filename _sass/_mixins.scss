@@ -1,0 +1,154 @@
+@mixin media-query($device) {
+	@media screen and (max-width: $device) {
+		@content;
+	}
+}
+//@mixin transition ($time: 0.35s){
+//	-webkit-transition: all $time ease;
+//	-moz-transition: all $time ease;
+//	-o-transition: all $time ease;
+//	transition: all $time ease;
+//}
+@mixin border-radius ($r){
+	-webkit-border-radius: $r;
+	-moz-border-radius: $r;
+	border-radius: $r;
+}
+@mixin font-size-lh($size:1.6, $line: $size * 1.5){
+	font-size:   $size + px;
+	line-height: $line + px;
+}
+@mixin img-responsive($display: block) {
+	display: $display;
+	width: 100% \9; // Force IE10 and below to size SVG images correctly
+	max-width: 100%; // Part 1: Set a maximum relative to the parent
+	height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+@mixin placeholder($color, $opacity: 1 ){
+	&::-webkit-input-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+	&:-moz-placeholder { /* Firefox 18- */
+		color: $color;
+		opacity: $opacity;
+	}
+	&::-moz-placeholder {  /* Firefox 19+ */
+		color: $color;
+		opacity: $opacity;
+	}
+	&:-ms-input-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+}
+@mixin width($width,$padding){
+	width: $width - $padding*2 + px;
+}
+@mixin sliced-image($position, $orientation) {
+	display: block;
+	clear: both;
+	content: "";
+	width: 100%;
+	height: 160px;
+	position: absolute;
+	@if $orientation == 'right'{
+		@if $position == 'top'{
+			top: 0;
+			background-image: url('../assets/img/slice-top-right.svg');
+		}
+		@else{
+			bottom: 0;
+			background-image: url('../assets/img/slice-bottom-right.svg');
+		}
+	}
+	@else{
+		@if $position == 'top'{
+			top: 0;
+			background-image: url('../assets/img/slice-top-left.svg');
+		}
+		@else{
+			bottom: 0;
+			background-image: url('../assets/img/slice-bottom-left.svg');
+		}
+	}
+}
+
+@mixin size($w: 100px, $h: auto, $d: block) {
+	width: $w;
+	height: $h;
+	display: $d;
+}
+
+@mixin colset($margin, $bottom, $cols-quantity: 4) {
+	margin: 0 $margin $bottom;
+	&:nth-child(#{$cols-quantity}n + 1) {
+		margin-left: 0;
+		margin-right: $margin;
+	}
+	&:nth-child(#{$cols-quantity}n + #{$cols-quantity}) {
+		margin-left: $margin;
+		margin-right: 0;
+	}
+}
+
+@mixin strech($t: 0, $l: false, $b: false, $r: false) {
+	@if ($l == false and $b == false and $r == false) {
+		@include _position($t, $t, $t, $t);
+	} @else if ($b == false and $r == false) {
+		@include _position($t, $l, $t, $l);
+	} @else {
+		@include _position($t, $r, $b, $l);
+	}
+}
+
+@mixin _position($t, $r, $b, $l) {
+	position: absolute;
+	overflow: hidden;
+	height: auto;
+	top: $t;
+	right: $r;
+	bottom: $b;
+	left: $l;
+}
+
+@mixin transform($param...) {
+	transform: $param;
+	-webkit-transform: $param;
+	-moz-transform: $param;
+	-o-transform: $param;
+	-ms-transform: $param;
+}
+@mixin transform-style($param...) {
+	transform-style: $param;
+	-webkit-transform-style: $param;
+	-moz-transform-style: $param;
+	-o-transform-style: $param;
+	-ms-transform-style: $param;
+}
+@mixin flip-animation($param...) {
+	animation: $param;
+	-webkit-animation: $param;
+	-moz-animation: $param;
+	-o-animation: $param;
+}
+
+@mixin backface-visibility($param...) {
+	backface-visibility: $param;
+	-webkit-backface-visibility: $param;
+	-moz-backface-visibility: $param;
+	-o-backface-visibility: $param;
+	-ms-backface-visibility: $param;
+}
+/*Ticket Master Style*/
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+
+
+/*Ticket Master Style END*/

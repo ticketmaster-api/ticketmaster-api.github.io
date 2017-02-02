@@ -1,0 +1,43 @@
+{% if carousel_array.size > 0 %}
+<header id="header" class="top-bar bg-header slider-header {% if gallery_array.size == 0 and topApp_array.size == 0 %} no-content-header{% endif %}">
+	<!-- common header -->
+	{% include partials/common-header.html %}
+	<section id="myCarousel" class="slice-bottom-left {% if gallery_array.size == 0 and topApp_array.size == 0 %} grey{% endif %} sd-carousel">
+	{%for slide in carousel_array %}
+		<div class="item{% if forloop.first == true %} active{% endif %}" style="background: url('{{slide.img}}') 0 50% no-repeat scroll;">
+			<div class="slider-gradient">
+				<section class="slide-content-wrapper">
+					<h1 class="slide-title">STARTUPS & DEVELOPERS</h1>
+					<h3 class="slide-descr">{{slide.title}}</h3>
+					<a class="btn btn-default btn-transparent" href="{{slide.url}}">See more</a>
+				</section>
+			</div>
+		</div>
+	{% endfor %}
+	</section>
+	{% include partials/expanded-menu-header.html %}
+	{% include partials/common-header-small.html %}
+</header>
+
+{% else %}
+
+<header id="header" class="top-bar bg-header slider-header no-content-header">
+	<!-- common header -->
+	{% include partials/common-header.html %}
+	<section class="slice-bottom-left{% if gallery_array.size == 0 and topApp_array.size == 0 %} grey{% endif %} sd-carousel">
+		<div class="no-content">
+			<div class="slider-gradient">
+				<section class="slide-content-wrapper">
+					<h1 class="slide-title">STARTUPS & DEVELOPERS</h1>
+					<p class="slide-descr">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Alias aut consectetur cum doloremque dolorum esse eum facilis ipsum laboriosam
+						mollitia nisi omnis quam quas quisquam, repellat sequi tenetur voluptatem
+						voluptatibus.</p>
+				</section>
+			</div>
+		</div>
+	</section>
+	{% include partials/expanded-menu-header.html %}
+	{% include partials/common-header-small.html %}
+</header>
+{% endif %}

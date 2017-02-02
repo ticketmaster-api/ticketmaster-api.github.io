@@ -1,8 +1,5 @@
-var self;
-
 class ParamsFilter {
 	constructor({selectedMethod, selectedParams, selectedMethodData, animationSpeed = 200}) {
-		self = this;
 		this.animationSpeed = animationSpeed;
 		this.selectedMethod = selectedMethod;
 		this.selectedParams = selectedParams;
@@ -19,14 +16,13 @@ class ParamsFilter {
 	 */
 	init({selectedMethod, selectedParams}) {
 		this.updateViewModel();
-
 		selectedMethod.subscribe(val => {
 			this.updateViewModel(val)
 		});
 
-		selectedParams.subscribe(selectedParams => {
+		selectedParams.subscribe(selected => {
 			let paramsModel = ko.unwrap(this.paramsModel);
-			selectedParams.map(param => {
+			selected.map(param => {
 				let matchedParam = paramsModel.find(val => param.name === val.name);
 				matchedParam.value(ko.unwrap(param.value));
 			});
@@ -37,19 +33,20 @@ class ParamsFilter {
 	/**
 	 * Initial build of Select Model
 	 */
-	updateViewModel() {
-		var obj = ko.unwrap(self.selectedMethodData).parameters || {},
+	updateViewModel = () => {
+		let obj = ko.unwrap(this.selectedMethodData);
+		let parameters = ko.unwrap(this.selectedMethodData).parameters || {},
 			arr = [];
 
-		for (var i in obj) {
-			if (!obj.hasOwnProperty(i)) {continue;}
-			let param = obj[i];
+		for (var i in parameters) {
+			if (!parameters.hasOwnProperty(i)) {continue;}
+			let param = parameters[i];
 			var selectedParam;
 
 			// copies all values from model to view-model
 			let vmParam = $.extend(true, {}, param);
 
-			vmParam.value = ko.observable(vmParam.select && param.options[0].name || vmParam.value || '');
+			vmParam.value = ko.observable(vmParam.value || vmParam.select && param.options[0].name || '');
 
 			//add observable for selected options
 			if (vmParam.select) {
@@ -57,14 +54,6 @@ class ParamsFilter {
 					param.options.map(item => $.extend(true, {}, item, {checked: ko.observable(item.checked)}))
 				);
 			}
-
-			// 'dirty' flag watcher for current field
-			vmParam.isDirty = ko.pureComputed(function () {
-				if (this.select) {
-					return this.value() !== this.default && this.value() !== 'none';
-				}
-				return !!(this.value().toString()).trim().length;
-			}, vmParam);
 
 			// add calendar btn for current field
 			vmParam.hasCalendar = i.search(/(date|time)/gmi) != -1;
@@ -77,10 +66,12 @@ class ParamsFilter {
 
 		// prepare output for request
 		this.paramsModel(arr);
+
+		//set focus for first elem
 		this.paramInFocus(this.paramsModel()[0]);
 		this.prepareUrlPairs(arr, this.selectedParams);
 		return arr;
-	}
+	};
 
 	/**
 	 * Dirty params form observable method
@@ -92,19 +83,6 @@ class ParamsFilter {
 			return ko.unwrap(item.isDirty) === true;
 		});
 		return dirty.length > 0;
-	}
-
-	/**
-	 * Enter key handler
-	 * @param model
-	 * @param event
-	 */
-	onEnterKeyDown(model, event) {
-		if (event.keyCode === 13) {
-			$('#api-exp-get-btn').trigger('click');
-		} else {
-			return true;
-		}
 	}
 
 	/**
@@ -125,9 +103,9 @@ class ParamsFilter {
 	 * Maches focused param
 	 * @param item
 	 */
-	onFocus(item) {
-		self.paramInFocus(item);
-	}
+	onFocus = (item) => {
+		this.paramInFocus(item);
+	};
 
 	/**
 	 * Filters params by defined value
@@ -138,7 +116,7 @@ class ParamsFilter {
 	prepareUrlPairs(arr, koObs) {
 		if (!arr || !koObs) {return false;}
 
-		return koObs(arr.filter(function (item) {
+		return koObs(arr.filter(item => {
 			return (item.value() && item.value() !== 'none' || item.default);
 		}));
 	}
@@ -157,10 +135,10 @@ class ParamsFilter {
 	 * @param vm {object} view model
 	 * @param e {object} event
 	 */
-	onParamsClear(vm, e) {
-		var arr = ko.unwrap(self.paramsModel);
+	onParamsClear = (vm, e) => {
+		var arr = ko.unwrap(this.paramsModel);
 
-		self.paramsModel(arr.map(param => {
+		this.paramsModel(arr.map(param => {
 			param.value(param.select && param.default || '');
 
 			if (param.select) {
@@ -175,7 +153,7 @@ class ParamsFilter {
 		// prepare output for request
 		this.paramInFocus(this.paramsModel()[0]);
 		this.prepareUrlPairs(arr, this.selectedParams);
-	}
+	};
 }
 
 module.exports = ko.components.register('params-filter', {
@@ -184,7 +162,8 @@ module.exports = ko.components.register('params-filter', {
 		<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
 		
 			<section class="api-exp-params-headline">
-				<button data-bind="click: slideToggle" class="btn shevron-up grey toggle-btn btn-icon" type="button">Parameters</button>
+				<button data-bind="click: slideToggle" class="btn btn-icon toggle-btn" type="button">Parameters</button>
+				<span class="btn btn-icon shevron up grey" data-bind="css: {down: isHidden}"></span>
 				<div class="api-exp-params-headline-edit">
 					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
 					<button data-bind="click: onParamsClear" class="btn api-exp-params-headline__btn api-exp-params-headline__btn-clear">&nbsp;</button>
@@ -209,8 +188,7 @@ module.exports = ko.components.register('params-filter', {
 				<section class="api-exp-params-filter">
 					<section data-bind="foreach: paramsModel" class="api-exp-params-filter-fields">
 						<!--select-->
-						
-						
+						<!-- ko ifnot: style === 'requestBody' -->
 							<div class="api-exp-params-filter__field">
 								<!-- ko if: select -->
 									<custom-select params="
@@ -224,17 +202,23 @@ module.exports = ko.components.register('params-filter', {
 								<!-- ko ifnot: select -->
 									<custom-input params="
 										onFocusMethod: $component.onFocus,
-										value: value,
-										isDirty: isDirty
-										id: 'api-exp-param_' + name,
-										css: {dirty: isDirty, calendar: hasCalendar, popup: hasPopUp},
-										placeholder: name">
+										data: $data,
+										cssClass: hasCalendar ? 'calendar': hasPopUp ? 'popup': '',
+										validationModel: $root.validationModel">
 									</custom-input>
 								<!-- /ko -->
 							</div>
-						
-						
-						
+						<!-- /ko -->
+						<!-- ko if: style === 'requestBody'-->
+							<section class="cusotm-textarea-wrapper">
+								<custom-input params="
+									onFocusMethod: $component.onFocus,
+									data: $data,
+									cssClass: hasCalendar ? 'calendar': hasPopUp ? 'popup': '',
+									validationModel: $root.validationModel">
+								</custom-input>
+							</section>
+						<!-- /ko -->
 					</section>
 				</section><!--params filter-->
 			</div>

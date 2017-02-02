@@ -1,9 +1,9 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Discovery API",
+    "description" : "The Ticketmaster Discovery API allows you to search for events, attractions, or venues.",
     "version" : "v2",
-    "title" : "ticketmaster discovery api",
+    "title" : "Discovery API",
     "contact" : {
       "url" : "http://developer.ticketmaster.com/support/contact-us/"
     }
@@ -13,8 +13,8 @@
   "paths" : {
     "/discovery/v2/attractions" : {
       "get" : {
-        "summary" : "Search Attractions",
-        "description" : "Since 1.0.0",
+        "summary" : "Attraction Search",
+        "description" : "Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.",
         "operationId" : "find",
         "parameters" : [ {
           "name" : "sort",
@@ -61,15 +61,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -88,6 +79,15 @@
           "maximum" : 500.0,
           "minimum" : 1.0,
           "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -105,7 +105,7 @@
     "/discovery/v2/attractions/{id}" : {
       "get" : {
         "summary" : "Get Attraction Details",
-        "description" : "Since 1.0.0",
+        "description" : "Get details for a specific attraction using the unique identifier for the attraction.",
         "operationId" : "get",
         "parameters" : [ {
           "name" : "id",
@@ -116,12 +116,12 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -135,8 +135,8 @@
     },
     "/discovery/v2/classifications" : {
       "get" : {
-        "summary" : "Search Classifications",
-        "description" : "Since 2.0.0",
+        "summary" : "Classification Search",
+        "description" : "Find classifications and filter your search by name, and much more. Classifications help define the nature of attractions and events.",
         "operationId" : "find",
         "parameters" : [ {
           "name" : "sort",
@@ -183,15 +183,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -210,6 +201,15 @@
           "maximum" : 500.0,
           "minimum" : 1.0,
           "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -227,7 +227,7 @@
     "/discovery/v2/classifications/genres/{id}" : {
       "get" : {
         "summary" : "Get Genre Details",
-        "description" : "Since 2.0.0",
+        "description" : "Get details for a specific genre using its unique identifier.",
         "operationId" : "getGenre",
         "parameters" : [ {
           "name" : "id",
@@ -238,12 +238,12 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -258,7 +258,7 @@
     "/discovery/v2/classifications/segments/{id}" : {
       "get" : {
         "summary" : "Get Segment Details",
-        "description" : "Since 2.0.0",
+        "description" : "Get details for a specific segment using its unique identifier.",
         "operationId" : "getSegment",
         "parameters" : [ {
           "name" : "id",
@@ -269,12 +269,12 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -288,8 +288,8 @@
     },
     "/discovery/v2/classifications/subgenres/{id}" : {
       "get" : {
-        "summary" : "Get Subgenre Details",
-        "description" : "Since 2.0.0",
+        "summary" : "Get Sub-Genre Details",
+        "description" : "Get details for a specific sub-genre using its unique identifier.",
         "operationId" : "getSubgenre",
         "parameters" : [ {
           "name" : "id",
@@ -300,12 +300,12 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -320,23 +320,23 @@
     "/discovery/v2/classifications/{id}" : {
       "get" : {
         "summary" : "Get Classification Details",
-        "description" : "Since 2.0.0",
+        "description" : "Get details for a specific segment, genre, or sub-genre using its unique identifier.",
         "operationId" : "get",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
-          "description" : "ID of the classification",
+          "description" : "ID of the segment, genre, or sub-genre",
           "required" : true,
           "type" : "string"
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -350,8 +350,8 @@
     },
     "/discovery/v2/events" : {
       "get" : {
-        "summary" : "Search Events",
-        "description" : "Since 1.0.0",
+        "summary" : "Event Search",
+        "description" : "Find events and filter your search by location, date, availability, and much more.",
         "operationId" : "find",
         "parameters" : [ {
           "name" : "sort",
@@ -359,8 +359,8 @@
           "description" : "Sorting order of the search result",
           "required" : false,
           "type" : "string",
-          "default" : "name,asc",
-          "pattern" : "^(name|date|name,date|date,name),(asc|desc)$",
+          "default" : "relevance,desc",
+          "pattern" : "^(name|date|relevance|name,date|date,name),(asc|desc)$",
           "x-example" : ""
         }, {
           "name" : "latlong",
@@ -473,7 +473,7 @@
         }, {
           "name" : "classificationName",
           "in" : "query",
-          "description" : "Filter events by classification name: name of any segment, genre, sub-genre",
+          "description" : "Filter events by classification name: name of any segment, genre, sub-genre, type, sub-type",
           "required" : false,
           "type" : "array",
           "collectionFormat" : "multi",
@@ -482,7 +482,7 @@
         }, {
           "name" : "classificationId",
           "in" : "query",
-          "description" : "Filter events by classification id: id of any segment, genre, sub-genre",
+          "description" : "Filter events by classification id: id of any segment, genre, sub-genre, type, sub-type",
           "required" : false,
           "type" : "array",
           "collectionFormat" : "multi",
@@ -536,6 +536,14 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
+          "name" : "clientVisibility",
+          "in" : "query",
+          "description" : "Filter events by clientName",
+          "required" : false,
+          "type" : "string",
+          "default" : "",
+          "x-example" : ""
+        }, {
           "name" : "keyword",
           "in" : "query",
           "description" : "Keyword to search on",
@@ -571,15 +579,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -598,6 +597,15 @@
           "maximum" : 500.0,
           "minimum" : 1.0,
           "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -615,7 +623,7 @@
     "/discovery/v2/events/{id}" : {
       "get" : {
         "summary" : "Get Event Details",
-        "description" : "Since 1.0.0",
+        "description" : "Get details for a specific event using the unique identifier for the event. This includes the venue and location, the attraction(s), and the Ticketmaster Website URL for purchasing tickets for the event.",
         "operationId" : "get",
         "parameters" : [ {
           "name" : "id",
@@ -626,12 +634,12 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -646,7 +654,7 @@
     "/discovery/v2/events/{id}/images" : {
       "get" : {
         "summary" : "Get Event Images",
-        "description" : "Since 1.0.0",
+        "description" : "Get images for a specific event using the unique identifier for the event.",
         "operationId" : "getImages",
         "parameters" : [ {
           "name" : "id",
@@ -657,12 +665,12 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -676,8 +684,8 @@
     },
     "/discovery/v2/venues" : {
       "get" : {
-        "summary" : "Search Venues",
-        "description" : "Since 1.0.0",
+        "summary" : "Venue Search",
+        "description" : "Find venues and filter your search by name, and much more.",
         "operationId" : "find",
         "parameters" : [ {
           "name" : "sort",
@@ -740,15 +748,6 @@
           "enum" : [ "yes", " no", " only" ],
           "x-example" : ""
         }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale the response content will be returned",
-          "required" : false,
-          "type" : "string",
-          "default" : "en",
-          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
-        }, {
           "name" : "page",
           "in" : "query",
           "description" : "Page number",
@@ -767,6 +766,15 @@
           "maximum" : 500.0,
           "minimum" : 1.0,
           "x-example" : ""
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+          "required" : false,
+          "type" : "string",
+          "default" : "en",
+          "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -784,7 +792,7 @@
     "/discovery/v2/venues/{id}" : {
       "get" : {
         "summary" : "Get Venue Details",
-        "description" : "Since 1.0.0",
+        "description" : "Get details for a specific venue using the unique identifier for the venue.",
         "operationId" : "get",
         "parameters" : [ {
           "name" : "id",
@@ -795,12 +803,12 @@
         }, {
           "name" : "locale",
           "in" : "query",
-          "description" : "Locale the response content will be returned",
+          "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
           "required" : false,
           "type" : "string",
           "default" : "en",
           "pattern" : "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
-          "x-example" : ""
+          "x-example" : "en-us,en,fr"
         } ],
         "responses" : {
           "200" : {
@@ -987,6 +995,16 @@
           "position" : 3,
           "description" : "Tertiary Genre for additional detail when describring an entity (Alternative Rock, Ambient Pop, etc)",
           "$ref" : "#/definitions/Level"
+        },
+        "type" : {
+          "position" : 5,
+          "description" : "A Type represents a kind or group of people. (Donation, Group, Individual, Merchandise, Event Style, etc)",
+          "$ref" : "#/definitions/Level"
+        },
+        "subType" : {
+          "position" : 6,
+          "description" : "Secondary Type to further categorize an entity (Band, Choir, Chorus, etc)",
+          "$ref" : "#/definitions/Level"
         }
       },
       "description" : "Classification"
@@ -1013,13 +1031,10 @@
           "type" : "boolean",
           "default" : false
         },
-        "leapDurationField" : {
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "durationField" : {
-          "$ref" : "#/definitions/DurationField"
-        },
-        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
@@ -1029,6 +1044,9 @@
         "maximumValue" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "leapDurationField" : {
+          "$ref" : "#/definitions/DurationField"
         },
         "name" : {
           "type" : "string"
@@ -1045,10 +1063,10 @@
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "durationType" : {
+        "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
-        "rangeDurationType" : {
+        "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "name" : {
@@ -1169,6 +1187,16 @@
           "type" : "string",
           "description" : "Type of the entity",
           "enum" : [ "event", "venue", "attraction" ]
+        },
+        "distance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "units" : {
+          "type" : "string"
+        },
+        "location" : {
+          "$ref" : "#/definitions/Location"
         },
         "id" : {
           "type" : "string",
@@ -1943,6 +1971,13 @@
           "type" : "string",
           "description" : "Type of the entity",
           "enum" : [ "event", "venue", "attraction" ]
+        },
+        "distance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "units" : {
+          "type" : "string"
         },
         "id" : {
           "type" : "string",

@@ -3,6 +3,7 @@ layout: documentation-single
 ---
 
 <link id="widget-theme-listview" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/listview.css" | prepend: site.baseurl }}">
+<link id="widget-theme-listview" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/listviewthumbnails.css" | prepend: site.baseurl }}">
 <link id="widget-theme-simple" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/simple.css" | prepend: site.baseurl }}">
 <link id="widget-theme-oldschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/oldschool.css" | prepend: site.baseurl }}">
 <link id="widget-theme-newschool" rel="stylesheet" href="{{ "/products-and-docs/widgets/event-discovery/1.0.0/theme/newschool.css" | prepend: site.baseurl }}">
@@ -39,9 +40,9 @@ layout: documentation-single
             w-size="25"
             w-border="0"
             w-borderradius="4"
-            w-postalcode="90015"
-            w-radius="25"
-            w-country="US"
+            w-postalcode=""
+            w-radius=""
+            w-country=""
             w-period="week"
             w-layout="vertical"
             w-attractionid=""
@@ -50,6 +51,7 @@ layout: documentation-single
             w-affiliateid=""
             w-segmentid=""
             w-proportion="custom"
+						w-titlelink="off"
           ></div>
         </div>
       </div>
@@ -156,3 +158,4 @@ layout: documentation-single
 <script src="{{'/scripts/vendors/clipboard.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/clipboard-fallback.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/clipboard-init.js' | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="https://embed.ticketmaster.com/tm.js"></script>

@@ -5,10 +5,11 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
+
 
 public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements EventDiscoveryWidget{
 
@@ -55,6 +56,8 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     @FindBy(xpath = "//div[@class='events-counter']")
     private WebElementFacade posterEventsCounter;
 
+    private String countryDropdownXPath = "//select[@id='w-country']";
+
     //Constructors
     public EventDiscoveryWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
                                     final long timeoutInMilliseconds) {
@@ -88,6 +91,7 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     public void setZipCodeValue(String zipCode) {
         zipCodeField.clear();
         zipCodeField.sendKeys(zipCode, Keys.ENTER);
+        waitForSomeActionHappened(500);
     }
 
     @Override
@@ -150,7 +154,7 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     public void setEventCountValue(String eventCount) {
         eventCountField.clear();
         eventCountField.sendKeys(eventCount, Keys.ENTER);
-        waitForSomeActionHappened(1000);
+        waitForSomeActionHappened(2000);
     }
 
     //Getters
@@ -202,15 +206,33 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     @Override
     public String getCountryCodeValue() {
         String countryCodeXpath = "//label[@for=\"w-countryCode\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
+        String firstCountryCodeItemXpath = "//*[@id=\"w-countryCode\"]/following-sibling::ul/li[1]";
         String exceptionText = "Cannot get countryCode value in dropdown";
-        return getElementValueByXpathJs(countryCodeXpath, exceptionText);
+        String countryCodeValue = null;
+        try {
+            countryCodeValue = getElementValueByXpathJs(countryCodeXpath, exceptionText);
+        } catch (WebDriverException e) {
+            if (e.toString().contains("document.evaluate")) {
+                countryCodeValue = getElementValueByXpathJs(firstCountryCodeItemXpath, exceptionText);
+            }
+        }
+        return countryCodeValue;
     }
 
     @Override
     public String getSourceValue() {
         String sourceXpath = "//label[@for=\"w-source\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
+        String firstSourceItemXpath = "//*[@id=\"w-source\"]/following-sibling::ul/li[1]";
         String exceptionText = "Cannot get Source value in dropdown";
-        return getElementValueByXpathJs(sourceXpath, exceptionText);
+        String sourceValue = null;
+        try {
+            sourceValue = getElementValueByXpathJs(sourceXpath, exceptionText);
+        } catch (WebDriverException e) {
+            if (e.toString().contains("document.evaluate")) {
+                sourceValue = getElementValueByXpathJs(firstSourceItemXpath, exceptionText);
+            }
+        }
+        return sourceValue;
     }
 
     @Override
@@ -257,5 +279,16 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
             countNumber = matcher.group(1);
         }
         return countNumber;
+    }
+
+    @Override
+    public String getSelectedCountry() {
+        waitForSomeActionHappened(1500);
+        return getCountryWebElementFacade().getSelectedVisibleTextValue();
+    }
+
+    //Private Methods
+    private WebElementFacade getCountryWebElementFacade(){
+        return getPage().element(By.xpath(countryDropdownXPath));
     }
  }

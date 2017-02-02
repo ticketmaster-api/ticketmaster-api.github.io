@@ -37,6 +37,11 @@ var TicketmasterEventDiscoveryWidget = function () {
       return this.config.theme === 'listview';
     }
   }, {
+    key: 'isListViewThumbnails',
+    get: function get() {
+      return this.config.theme === 'listviewthumbnails';
+    }
+  }, {
     key: 'isBarcodeWidget',
     get: function get() {
       return this.config.theme === 'oldschool' || this.config.theme === 'newschool';
@@ -59,7 +64,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'widgetContentHeight',
     get: function get() {
-      return this.widgetHeight - (this.isListView || this.isSimpleProportionM ? 0 : 39) || 600;
+      return this.widgetHeight - (this.isListView || this.isListViewThumbnails || this.isSimpleProportionM ? 0 : 39) || 600;
     }
   }, {
     key: 'eventUrl',
@@ -204,71 +209,73 @@ var TicketmasterEventDiscoveryWidget = function () {
 
     if (!root) return;
     this.widgetRoot = root;
+    if (this.widgetRoot.querySelector('.events-root-container') === null) {
+      this.eventsRootContainer = document.createElement("div");
+      this.eventsRootContainer.classList.add("events-root-container");
+      this.widgetRoot.appendChild(this.eventsRootContainer);
 
-    this.eventsRootContainer = document.createElement("div");
-    this.eventsRootContainer.classList.add("events-root-container");
-    this.widgetRoot.appendChild(this.eventsRootContainer);
+      this.eventsRootDiv = document.createElement("div");
+      this.eventsRootDiv.setAttribute("class", "ss");
+      this.eventsRootDiv.setAttribute("ss-container", "");
+      this.eventsRootContainer.appendChild(this.eventsRootDiv);
 
-    this.eventsRootDiv = document.createElement("div");
-    this.eventsRootDiv.setAttribute("class", "ss");
-    this.eventsRootDiv.setAttribute("ss-container", "");
-    this.eventsRootContainer.appendChild(this.eventsRootDiv);
+      this.eventsRoot = document.createElement("ul");
+      this.eventsRoot.classList.add("events-root");
+      this.eventsRootDiv.appendChild(this.eventsRoot);
 
-    this.eventsRoot = document.createElement("ul");
-    this.eventsRoot.classList.add("events-root");
-    this.eventsRootDiv.appendChild(this.eventsRoot);
+      // Set theme modificators
+      this.themeModificators = {
+        "oldschool": this.oldSchoolModificator.bind(this),
+        "newschool": this.newSchoolModificator.bind(this),
+        "listview": this.listViewModificator.bind(this),
+        "listviewthumbnails": this.listViewModificator.bind(this)
+      };
 
-    // Set theme modificators
-    this.themeModificators = {
-      "oldschool": this.oldSchoolModificator.bind(this),
-      "newschool": this.newSchoolModificator.bind(this),
-      "listview": this.listViewModificator.bind(this)
-    };
+      this.config = this.widgetRoot.attributes;
 
-    this.config = this.widgetRoot.attributes;
+      if (this.config.theme !== null && !document.getElementById('widget-theme-' + this.config.theme)) {
+        this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
+      }
 
-    if (this.config.theme !== null && !document.getElementById('widget-theme-' + this.config.theme)) {
-      this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
+      this.eventsRootContainer.classList.remove("border");
+      if (this.config.border) {
+        this.eventsRootContainer.classList.add("border");
+      }
+
+      this.widgetRoot.style.height = this.widgetHeight + 'px';
+      this.widgetRoot.style.width = this.config.width + 'px';
+
+      this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
+      this.eventsRootContainer.style.width = this.config.width + 'px';
+      this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
+      this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
+
+      //this.clear();
+
+      this.AdditionalElements();
+
+      this.getCoordinates(function () {
+        _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
+      });
+
+      if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
+        this.themeModificators[this.widgetConfig.theme]();
+      }
+
+      /*plugins for 'buy button'*/
+      this.embedUniversePlugin();
+      this.embedTMPlugin();
+
+      this.initBuyBtn();
+
+      this.initMessage();
+
+      if (!this.isListView || !this.isListViewThumbnails) this.initSliderControls();
+
+      if (!this.isListView || !this.isListViewThumbnails) this.initEventCounter();
+
+      if (this.isListView || this.isListViewThumbnails) this.addScroll();
     }
-
-    this.eventsRootContainer.classList.remove("border");
-    if (this.config.border) {
-      this.eventsRootContainer.classList.add("border");
-    }
-
-    this.widgetRoot.style.height = this.widgetHeight + 'px';
-    this.widgetRoot.style.width = this.config.width + 'px';
-
-    this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
-    this.eventsRootContainer.style.width = this.config.width + 'px';
-    this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
-    this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
-
-    //this.clear();
-
-    this.AdditionalElements();
-
-    this.getCoordinates(function () {
-      _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
-    });
-
-    if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
-      this.themeModificators[this.widgetConfig.theme]();
-    }
-
-    /*plugins for 'buy button'*/
-    this.embedUniversePlugin();
-    this.embedTMPlugin();
-
-    this.initBuyBtn();
-
-    this.initMessage();
-
-    if (!this.isListView) this.initSliderControls();
-
-    if (!this.isListView) this.initEventCounter();
-
-    if (this.isListView) this.addScroll();
   }
 
   _createClass(TicketmasterEventDiscoveryWidget, [{
@@ -368,7 +375,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.buyBtn.href = '';
       this.buyBtn.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickBuyButton', 'click');");
       this.buyBtn.addEventListener('click', function (e) {
-        e.preventDefault(); /*used in plugins for 'buy button'*/
+        // e.preventDefault(); /*used in plugins for 'buy button'*/
         _this2.stopAutoSlideX();
         //console.log(this.config.affiliateid)
       });
@@ -436,7 +443,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'isUniverseUrl',
     value: function isUniverseUrl(url) {
-      return url.match(/universe.com/g) || url.match(/uniiverse.com/g);
+      return url.match(/universe.com/g) || url.match(/uniiverse.com/g) || url.match(/ticketmaster.com/g);
     }
   }, {
     key: 'isAllowedTMEvent',
@@ -905,7 +912,7 @@ var TicketmasterEventDiscoveryWidget = function () {
         parent.removeChild(el);
       }
 
-      if (!this.isListView) {
+      if (!this.isListView && !this.isListViewThumbnails) {
         var eventsRootContainer = document.getElementsByClassName("events-root-container")[0];
         var eventsRoot = document.getElementsByClassName("events-root")[0];
         var ss = document.getElementsByClassName("ss")[0];
@@ -922,7 +929,7 @@ var TicketmasterEventDiscoveryWidget = function () {
         eventsRootContainer.classList.remove("listview-after");
       }
 
-      if (this.isListView) {
+      if (this.isListView || this.isListViewThumbnails) {
         var eventsRootContainer = document.getElementsByClassName("widget-container--discovery")[0];
         eventsRootContainer.classList.add("listview-after");
       }
@@ -941,7 +948,7 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       this.config = this.widgetRoot.attributes;
 
-      if (this.isListView) {
+      if (this.isListView || this.isListViewThumbnails) {
         this.stopAutoSlideX();
       }
 
@@ -972,7 +979,7 @@ var TicketmasterEventDiscoveryWidget = function () {
           _this8.makeRequest(_this8.eventsLoadingHandler, _this8.apiUrl, _this8.eventReqAttrs);
         });
 
-        if (this.isListView) this.addScroll();
+        if (this.isListView || this.isListViewThumbnails) this.addScroll();
       } else {
         var events = this.eventsRoot.getElementsByClassName("event-wrapper");
         for (var i in events) {
@@ -981,7 +988,7 @@ var TicketmasterEventDiscoveryWidget = function () {
             events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
           }
         }
-        if (!this.isListView) {
+        if (!this.isListView && !this.isListViewThumbnails) {
           this.goToSlideY(0);
         }
       }
@@ -989,7 +996,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'needToUpdate',
     value: function needToUpdate(newTheme, oldTheme) {
-      var forCheck = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+      var forCheck = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
       return Object.keys(newTheme).map(function (key) {
         if (forCheck.indexOf(key) > -1) return true;
@@ -1170,7 +1177,7 @@ var TicketmasterEventDiscoveryWidget = function () {
     }
   }, {
     key: 'getImageForEvent',
-    value: function getImageForEvent(images) {
+    value: function getImageForEvent(images, isGetSmallest) {
       var width = this.config.width,
           height = this.widgetContentHeight;
 
@@ -1179,11 +1186,14 @@ var TicketmasterEventDiscoveryWidget = function () {
       });
 
       var myImg = "";
-      images.forEach(function (element) {
-        if (element.width >= width && element.height >= height && !myImg) {
-          myImg = element.url;
-        }
-      });
+      if (!isGetSmallest) {
+        images.forEach(function (element) {
+          if (element.width >= width && element.height >= height && !myImg) {
+            myImg = element.url;
+          }
+        });
+      } else myImg = images[0].url; //set the smallest
+
       return myImg;
     }
   }, {
@@ -1197,6 +1207,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       }
       eventsSet = eventsSet._embedded.events;
       var tmpEventSet = [];
+
       for (var key in eventsSet) {
         if (eventsSet.hasOwnProperty(key)) {
           var currentEvent = {};
@@ -1204,6 +1215,17 @@ var TicketmasterEventDiscoveryWidget = function () {
           currentEvent.id = eventsSet[key].id;
           currentEvent.url = eventsSet[key].url;
           currentEvent.name = eventsSet[key].name;
+
+          /* Change URL [START] */
+          var parser = document.createElement("a");
+          parser.href = currentEvent.url;
+          var expr = "/ticketmaster.evyy.net/";
+          if (parser.href.match(expr) !== null) {
+            var changeURL = parser.pathname.split('/');
+            changeURL[3] = '330564';
+            currentEvent.url = parser.origin + changeURL.join('/') + parser.search + parser.hash;
+          }
+          /* Change URL [END] */
 
           currentEvent.date = {
             day: eventsSet[key].dates.start.localDate,
@@ -1230,9 +1252,7 @@ var TicketmasterEventDiscoveryWidget = function () {
               return eventCategories[category].name
             });
           }*/
-
-          currentEvent.img = this.getImageForEvent(eventsSet[key].images);
-
+          currentEvent.img = this.getImageForEvent(eventsSet[key].images, this.isListViewThumbnails); //*this.listViewModificator() - is boolean*/
           tmpEventSet.push(currentEvent);
         }
       }
@@ -1241,15 +1261,16 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'makeRequest',
     value: function makeRequest(handler) {
-      var url = arguments.length <= 1 || arguments[1] === undefined ? this.apiUrl : arguments[1];
-      var attrs = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-      var method = arguments.length <= 3 || arguments[3] === undefined ? "GET" : arguments[3];
+      var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.apiUrl;
+      var attrs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      var method = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "GET";
 
       attrs = Object.keys(attrs).map(function (key) {
         return key + '=' + attrs[key];
       }).join("&");
 
       url = [url, attrs].join("?");
+      url += '&sort=date,asc';
 
       this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
       if (method == "POST") {
@@ -1286,11 +1307,23 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'createBackgroundImage',
     value: function createBackgroundImage(event, img) {
-      if (!this.isListView) {
+      if (!this.isListView && !this.isListViewThumbnails) {
         var image = document.createElement("span");
         image.classList.add("bg-cover");
         image.style.backgroundImage = 'url(\'' + img + '\')';
         event.appendChild(image);
+      }
+      if (this.isListViewThumbnails) {
+        var wrapperImg = document.createElement("div"),
+            image = document.createElement("span");
+
+        wrapperImg.classList.add("wrapper-thumbnails");
+        image.classList.add("bg-cover-thumbnails");
+        image.style.backgroundImage = 'url(\'' + img + '\')';
+        wrapperImg.appendChild(image);
+        event.appendChild(wrapperImg);
+
+        return wrapperImg;
       }
     }
   }, {
@@ -1311,7 +1344,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'addBuyButton',
     value: function addBuyButton(domNode, url) {
-      if (this.isListView) {
+      if (this.isListView || this.isListViewThumbnails) {
         var _urlValid = this.isUniversePluginInitialized && this.isUniverseUrl(url) || this.isTMPluginInitialized && this.isAllowedTMEvent(url);
         if (!_urlValid) url = '';
         var buyBtn = document.createElement("a");
@@ -1372,19 +1405,31 @@ var TicketmasterEventDiscoveryWidget = function () {
       event.style.height = this.widgetContentHeight - this.borderSize * 2 + 'px';
       event.style.width = this.config.width - this.borderSize * 2 + 'px';
 
-      this.createBackgroundImage(event, itemConfig.img);
+      var wrapperImg = this.createBackgroundImage(event, itemConfig.img);
+      var titleLink = document.querySelector('[w-type="event-discovery"]').getAttribute('w-titlelink');
+      var nameContent = document.createTextNode(itemConfig.name);
 
-      var nameContent = document.createTextNode(itemConfig.name),
-          name = document.createElement("span");
-      name.classList.add("event-name");
-      name.appendChild(nameContent);
-      this.initPretendedLink(name, itemConfig.url, true);
-      name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
-      /* name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');"); */
-      medWrapper.appendChild(name);
+      if (titleLink && titleLink == 'off') {
+        var name = document.createElement("span");
+        name.classList.add("event-name");
+        name.appendChild(nameContent);
+        this.initPretendedLink(name, itemConfig.url, true);
+        name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
+        name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
+        medWrapper.appendChild(name);
+      } else {
+        var _name = document.createElement("a");
+        _name.classList.add("event-name");
+        _name.classList.add("event-pretended-link");
+        _name.href = itemConfig.url;
+        _name.appendChild(nameContent);
+        _name.setAttribute('onclick', 'ga(\'send\', \'event\', \'DiscoveryClickeventName_theme=' + this.config.theme + '_width=' + this.config.width + '_height=' + this.config.height + '_color_scheme=' + this.config.colorscheme + '\', \'click\', \'' + itemConfig.url + '\');');
+        _name.setAttribute('onclick', "ga('send', 'event', 'DiscoveryClickeventName', 'click', '" + itemConfig.url + "');");
+        medWrapper.appendChild(_name);
+      }
 
       this.addBarcode(event, itemConfig.url);
-      this.addBuyButton(medWrapper, itemConfig.url);
+      this.addBuyButton(!this.isListViewThumbnails ? medWrapper : wrapperImg, itemConfig.url); //add 'BuyButton' to '.wrapper-thumbnails' if choose ListViewThumbnails
 
       var dateTimeContent = document.createTextNode(this.formatDate(itemConfig.date)),
           dateTime = document.createElement("span");
@@ -1475,32 +1520,34 @@ var TicketmasterEventDiscoveryWidget = function () {
     key: 'getDateFromPeriod',
     value: function getDateFromPeriod(period) {
 
-      var date = new Date(),
-          period = period.toLowerCase(),
+      var period = period.toLowerCase(),
           firstDay,
           lastDay;
 
       if (period == "year") {
-        firstDay = new Date(date.getFullYear(), 0, 1);
-        lastDay = new Date(date.getFullYear(), 12, 0);
+        // firstDay = new Date( new Date(new Date()).toISOString() );
+        // lastDay = new Date( new Date(new Date().valueOf()+24*365*60*60*1000).toISOString() );
+        firstDay = new Date().toISOString().slice(0, 19) + 'Z';
+        lastDay = new Date(new Date().valueOf() + 24 * 365 * 60 * 60 * 1000).toISOString().slice(0, 19) + 'Z';
       } else if (period == "month") {
-        firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        // firstDay = new Date( new Date(new Date()).toISOString() );
+        // lastDay = new Date( new Date(new Date().valueOf()+24*31*60*60*1000).toISOString() );
+        firstDay = new Date().toISOString().slice(0, 19) + 'Z';
+        lastDay = new Date(new Date().valueOf() + 24 * 31 * 60 * 60 * 1000).toISOString().slice(0, 19) + 'Z';
       } else if (period == "week") {
-        var first = date.getDate() - date.getDay();
-        var last = first + 6;
-        firstDay = new Date(date.setDate(first));
-        lastDay = new Date(date.setDate(last));
+        // firstDay = new Date( new Date(new Date()).toISOString() );
+        // lastDay = new Date( new Date(new Date().valueOf()+24*7*60*60*1000).toISOString() );
+        firstDay = new Date().toISOString().slice(0, 19) + 'Z';
+        lastDay = new Date(new Date().valueOf() + 24 * 7 * 60 * 60 * 1000).toISOString().slice(0, 19) + 'Z';
       } else {
-        firstDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        lastDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        // firstDay = new Date( new Date(new Date()).toISOString() );
+        // lastDay = new Date( new Date(new Date().valueOf()+24*60*60*1000).toISOString() );
+        firstDay = new Date().toISOString().slice(0, 19) + 'Z';
+        lastDay = new Date(new Date().valueOf() + 24 * 60 * 60 * 1000).toISOString().slice(0, 19) + 'Z';
       }
 
-      firstDay.setHours(0);lastDay.setHours(23);
-      firstDay.setMinutes(0);lastDay.setMinutes(59);
-      firstDay.setSeconds(0);lastDay.setSeconds(59);
-
-      return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
+      // return [this.toShortISOString(firstDay), this.toShortISOString(lastDay)];
+      return [firstDay, lastDay];
     }
   }]);
 

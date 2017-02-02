@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="22px" height="33px" viewBox="0 0 22 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 3.8.2 (29753) - http://www.bohemiancoding.com/sketch -->
+    <title>4C4C593F-661C-4B39-91EA-6F8AB8FD8CF9</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M194,306 C194,306 204,291.185394 204,285.782609 C204,280.379823 199.522847,276 194,276 C188.477153,276 184,280.379823 184,285.782609 C184,291.185394 194,306 194,306 Z M194,289.695652 C196.209139,289.695652 198,287.943723 198,285.782609 C198,283.621494 196.209139,281.869565 194,281.869565 C191.790861,281.869565 190,283.621494 190,285.782609 C190,287.943723 191.790861,289.695652 194,289.695652 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-1" y="-1" width="22" height="32">
+            <rect x="183" y="275" width="22" height="32" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Map-Widget-300x560" transform="translate(-183.000000, -275.000000)">
+            <g id="pin_active_ic">
+                <g>
+                    <use fill="#D0006F" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <use stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

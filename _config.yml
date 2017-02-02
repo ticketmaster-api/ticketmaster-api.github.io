@@ -31,3 +31,6 @@ gems:
 
 sass:
   style: compressed
+
+webserver_headers:
+  "X-Frame-Options": "Deny"

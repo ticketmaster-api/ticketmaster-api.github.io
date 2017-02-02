@@ -1,7 +1,7 @@
 Meta:
 
 Narrative:
-As a test enfineer
+As a test engineer
 I want to test Ticket Master Developer's site
 So that I test Deals API Page of Ticket Master Developer's site
 

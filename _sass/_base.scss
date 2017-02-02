@@ -24,6 +24,7 @@ body {
     font-feature-settings: "kern" 1;
     font-kerning: normal;
     overflow-x: hidden;
+    -ms-overflow-style: scrollbar;//IE-11 scroll
 }
 
 iframe{
@@ -791,6 +792,10 @@ input[type=range]:focus::-ms-fill-upper {
   margin: 0;
 }
 
+.clear-paddings{
+  padding: 0;
+}
+
 
 /*Buttons*/
 .button-white-gray-border {
@@ -923,7 +928,6 @@ input[type=range]:focus::-ms-fill-upper {
   }
   &__red {
     color: $red;
-    font-family: $font-body;
   }
 }
 
@@ -941,4 +945,62 @@ input[type=range]:focus::-ms-fill-upper {
 
 .clear-pull {
   float: none !important;
+}
+
+.no-js {
+  .fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+  }
+  .icon-right {
+    right: 0;
+    z-index: 100;
+    position: fixed !important;
+  }
+  .modal-info {
+    background-color: $s1c;
+    color : $white;
+    font-family: $font-bold-p;
+    font-size: $size-body;
+    font-weight: normal;
+    line-height: $base-margin+12;
+    padding-left: 44px;
+    span:first-child {
+      background-image: url('/assets/controls/ic-info-2.svg');
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      background-size: contain;
+      position: absolute;
+      left: 12px;
+      top: 9px;
+    }
+  }
+  #cb:checked + .modal-info-label + .modal-info { display: none; }
+  #cb:not(:checked) + .modal-info-label + .modal-info + .header-curtain { margin-top:$base-margin+12 }
+  #cb:checked + .modal-info-label>img {display: none; }
+
+  //input[type=checkbox]:not(:checked)+label.modal-info-label,
+  input[type=checkbox]:checked+label.modal-info-label {
+    padding-right: initial;
+    display: none;
+  }
+
+  .modal-info-label {
+    font-size: 14px;
+    display: inline-block;
+    cursor: pointer;
+    float: right;
+
+    img {
+      width: 12px;
+      height: 12px;
+      margin-top: 12px;
+    }
+  }
+}
+.js .modal-info,
+.js .modal-info-label {
+  display:none;
 }

@@ -34,11 +34,11 @@ Already doing business with Ticketmaster? <br>
 ## APIs
 
 {: .lead.lead-main-descr}
-Everything you need to handle event discovery,  commerce, accounts, orders, and fans.
+Everything you need to handle event discovery, commerce, accounts, orders, and fans.
 {% endcapture %}
 
 {% capture open-api-descr %}
-{: .label.star}
+{: .label.star.text-left}
 ### OPEN APIs  
 
 
@@ -48,7 +48,7 @@ Open APIs, search and look up events, attractions, venues and classifications ac
 {% endcapture %}
 
 {% capture partner-api-descr %}
-{: .label}
+{: .label.text-left}
 ### PARTNER APIs  
 
 
@@ -124,7 +124,7 @@ Easy integration? No sweat.
 {% endcapture %}
 
 {% capture sdk_left %}
-[![Account Manager](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmastertech)
+[![Account Manager](/assets/img/products-and-docs/sdk-left.png)](https://twitter.com/tmTech)
 
 ### Account Manager
 

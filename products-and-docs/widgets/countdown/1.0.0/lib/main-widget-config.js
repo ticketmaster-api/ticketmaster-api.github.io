@@ -165,7 +165,6 @@
         max = _$containerWidget$dat.max;
 
     //if the window scroll is within the min and max (the container will be 'sticky';
-
     if (wst >= min && wst <= max) {
       //if the window scroll is below the minimum move it down!
       marginTop = wst - min;
@@ -203,7 +202,7 @@
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
         document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
       }
-      if (document.getElementById('w-tm-api-key').value == '') {
+      if (document.getElementById('w-tm-api-key').value === '') {
         if (sessionStorage.getItem('tk-api-key')) {
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
@@ -321,6 +320,7 @@
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
+
 
     widget.update();
 

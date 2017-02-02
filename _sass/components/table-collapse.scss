@@ -82,7 +82,7 @@
     .table_collapse__btn {
       &:before,
       &:after{
-        @include rotate(0);
+        @include rotate(0deg);
       }
     }
     .table_collapse__inner {

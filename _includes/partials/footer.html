@@ -1,7 +1,8 @@
+{%if include.isWhite %}<div id="footer-white" class="xs-center{% if page.category == "under_development" or page.category == "documentation" or page.categories[0] == "documentation" %} slice-top-left{% else %} slice-top-right{% endif %}">{%endif%}
 <div class="row footer-nav">
     <div class="row-container">
         <div class="col-xs-12 col-sm-2">
-            <a href="{{"/products-and-docs/" | prepend: site.baseurl}}"><h4 class="white">Products & Docs</h4></a>
+            <a href="{{"/products-and-docs/" | prepend: site.baseurl}}"><h4 class="{%if include.isWhite %}blue{%else%}white{%endif%}">Products & Docs</h4></a>
             <ul>
                 <li><a href="{{"/products-and-docs/apis/getting-started/" | prepend: site.baseurl}}">APIs</a></li>
                 <li><a href="{{"/products-and-docs/sdks/" | prepend: site.baseurl}}">SDKs</a></li>
@@ -10,7 +11,7 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-2">
-            <a href="{{"/partners/" | prepend: site.baseurl}}"><h4 class="white">Partners</h4></a>
+            <a href="{{"/partners/" | prepend: site.baseurl}}"><h4 class="{%if include.isWhite %}blue{%else%}white{%endif%}">Partners</h4></a>
             <ul>
                 <li><a href="{{"/partners/distribution-partners/" | prepend: site.baseurl}}">Distribution Partners</a></li>
                 <li><a href="{{"/partners/certified-partners/" | prepend: site.baseurl}}">Certified Partners</a></li>
@@ -19,7 +20,7 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-2">
-            <a href="{{"/support/" | prepend: site.baseurl}}"><h4 class="white">Support</h4></a>
+            <a href="{{"/support/" | prepend: site.baseurl}}"><h4 class="{%if include.isWhite %}blue{%else%}white{%endif%}">Support</h4></a>
             <ul>
                 <li><a href="{{"/support/faq/" | prepend: site.baseurl}}">FAQ</a></li>
                 {% comment %}<li><a href="#">Forums</a></li>{% endcomment %}
@@ -30,21 +31,21 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-2">
-            <a href="{{"/blogs/" | prepend: site.baseurl}}"><h4 class="white">Blogs</h4></a>
+            <a href="{{"/blogs/" | prepend: site.baseurl}}"><h4 class="{%if include.isWhite %}blue{%else%}white{%endif%}">Blogs</h4></a>
             <ul>
                 <li><a href="http://tech.ticketmaster.com/">Tech Blog</a></li>
                 <li><a href="https://medium.com/ticketmaster-tech/">Medium Publication</a></li>
             </ul>
         </div>
         <div class="col-xs-12 col-sm-2">
-            <a href="{{"/events/" | prepend: site.baseurl}}"><h4 class="white">Events</h4></a>
+            <a href="{{"/events/" | prepend: site.baseurl}}"><h4 class="{%if include.isWhite %}blue{%else%}white{%endif%}">Events</h4></a>
             <ul>
                 <li><a href="{{"/events/#/upcoming/hackathon" | prepend: site.baseurl}}">hackathons</a></li>
                 <li><a href="{{"/events/#/upcoming/devjam" | prepend: site.baseurl}}">devjam</a></li>
             </ul>
         </div>
         <div class="col-xs-12 col-sm-2">
-            <a href="http://code.ticketmaster.com/"><h4 class="white">Open Source</h4></a>
+            <a href="http://code.ticketmaster.com/"><h4 class="{%if include.isWhite == 'true' %}blue{%else%}white{%endif%}">Open Source</h4></a>
             <ul>
                 <li><a href="http://code.ticketmaster.com/#android-projects">Android</a></li>
                 <li><a href="http://code.ticketmaster.com/#backend-projects">Backend</a></li>
@@ -58,9 +59,11 @@
     <div class="row-container">
         <div class="col-xs-12">
             <a href="http://www.ticketmaster.com">
-            <img alt="Ticketmaster logo" src="/assets/img/footer/ticketmaster-logo-white.svg">
+            <img alt="Ticketmaster logo" src="{%if include.isWhite %}/assets/img/footer/ticketmaster-logo-grey.svg{%else%}/assets/img/footer/ticketmaster-logo-white.svg{%endif%}">
             </a>
-            <span>© 1976–2016 Ticketmaster. All rights reserved.</span>
+            <span>© 1976–{{ site.time | date: '%Y' }} Ticketmaster. All rights reserved.</span>
         </div>
     </div>
 </div>
+{%if include.isWhite %}</div>{%endif%}
+

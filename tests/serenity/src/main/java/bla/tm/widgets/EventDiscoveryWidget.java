@@ -65,4 +65,6 @@ public interface EventDiscoveryWidget extends AnsestorWidget{
     String getPosterText();
 
     String getPosterEventsCount();
+
+    String getSelectedCountry();
 }

@@ -2,6 +2,7 @@ package bla.tm.definitions.site.pantheon;
 
 import bla.tm.steps.pantheon.UserLogInSteps;
 import net.thucydides.core.annotations.Steps;
+import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -20,6 +21,7 @@ public class UserLogInDefinition {
         userLogInPage.clickCreateNewAccountButton();
     }
 
+    @Given("navigate to Pantheon User Account page from LogIn page")
     @When("navigate to Pantheon User Account page from LogIn page")
     public void openUserAccountPage(){
         userLogInPage.logInToAccount();

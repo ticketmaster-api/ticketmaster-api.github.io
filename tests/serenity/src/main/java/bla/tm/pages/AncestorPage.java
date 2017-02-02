@@ -5,6 +5,7 @@ import bla.tm.widgets.FeedbackWidget;
 import bla.tm.widgets.LeftMenuWidget;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -42,7 +43,7 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[@id='footer-blogs']")
     private WebElementFacade footerMenu2;
 
-    @FindBy(xpath = "//div[@id='footer-white']")
+    @FindBy(xpath = "//*[@id='footer-white']")
     private WebElementFacade footerMenu3;
 
     @FindBy(xpath = "//button[@id='js_feedback_open']")

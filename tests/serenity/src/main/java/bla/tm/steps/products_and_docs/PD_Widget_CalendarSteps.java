@@ -117,7 +117,7 @@ public class PD_Widget_CalendarSteps {
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", fieldName));
         }
-        assertTrue(String.format("The field (%s) does not equal stored value (%s).", fieldName, storedValue), storedValue.equalsIgnoreCase(fieldValue));
+        assertTrue(String.format("The field (%s) equal %s but it does not equal stored value (%s).", fieldName, fieldValue, storedValue), storedValue.equalsIgnoreCase(fieldValue));
     }
 
     @Step

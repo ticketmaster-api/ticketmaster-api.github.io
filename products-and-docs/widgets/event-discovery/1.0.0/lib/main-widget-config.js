@@ -154,15 +154,12 @@
    **/
   function containerMove() {
     var marginTop = 0;
-    var wst = $window.scrollTop();
-
-    var _$containerWidget$dat = $containerWidget.data();
-
-    var min = _$containerWidget$dat.min;
-    var max = _$containerWidget$dat.max;
+    var wst = $window.scrollTop(),
+        _$containerWidget$dat = $containerWidget.data(),
+        min = _$containerWidget$dat.min,
+        max = _$containerWidget$dat.max;
 
     //if the window scroll is within the min and max (the container will be 'sticky';
-
     if (wst >= min && wst <= max) {
       //if the window scroll is below the minimum move it down!
       marginTop = wst - min;
@@ -178,9 +175,9 @@
     var userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
 
     if (userKey !== null) {
-      var inputApiKey = options.inputApiKey;
-      var widgetNode = options.widgetNode;
-      var _widget = options.widget;
+      var inputApiKey = options.inputApiKey,
+          widgetNode = options.widgetNode,
+          _widget = options.widget;
 
       inputApiKey.attr('value', userKey).val(userKey);
       widgetNode.setAttribute("w-tmapikey", userKey);
@@ -222,6 +219,23 @@
     if (targetName === "w-postalcode") {
       widgetNode.setAttribute('w-country', '');
       isPostalCodeChanged = true;
+
+      var numInputClass = document.getElementById('w-radius');
+      var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
+      var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
+
+      if (targetValue == '') {
+        numInputClass.setAttribute('disabled', 'disabled');
+        numInputClass.value = '';
+        incArrow.classList.add('disabled');
+        decArrow.classList.add('disabled');
+      } else {
+        numInputClass.removeAttribute('disabled');
+        numInputClass.value = '25';
+        incArrow.classList.remove('disabled');
+        decArrow.classList.remove('disabled');
+        widgetNode.setAttribute('w-radius', '25');
+      }
     }
 
     if (targetName === "w-theme") {
@@ -328,6 +342,12 @@
 
       document.getElementById("w-country").disabled = true;
 
+      var activeItems = document.querySelectorAll('.custom_select__item.custom_select__item-active');
+      var activeItemsLenght = activeItems.length;
+      for (var i = 0; i < activeItemsLenght; ++i) {
+        activeItems[i].classList.remove('custom_select__item-active');
+      }
+
       ["#w-countryCode", "#w-source"].map(function (item) {
         $(item).prop("selectedIndex", -1);
       });
@@ -416,7 +436,7 @@
   });
 
   widget.onLoadCoordinate = function (results) {
-    var countryShortName = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+    var countryShortName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
     widget.config['country'] = countryShortName;
     if (isPostalCodeChanged) {

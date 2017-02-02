@@ -3,14 +3,16 @@
 **/
 
 .api-exp-get-btn {
+	padding: 48px 0 42px;
 	&__button {
+		clear: both;
 		float: right;
 		width: 264px;
 		height: 48px;
 		border-radius: 4px;
-		background-color: #009cde;
+		background-color: $cerulean;
 		text-align: center;
-		margin: 48px 0 42px;
+		margin: 0;
 		text-transform: uppercase;
 		font-size: 16px;
 		font-weight: bold;
@@ -18,19 +20,38 @@
 		font-stretch: normal;
 		line-height: 1.5;
 		letter-spacing: 0.8px;
+		&[disabled] {
+			background-color: rgba($cerulean, 0.5);
+		}
 	}
+	&-validation-message {
+		float: right;
+		font: {
+			size: 11px;
+			weight: normal;
+			style: italic;
+			stretch: normal;
+		}
+		line-height: 1.45;
+		color: #414141;
+		width: 264px;
+		padding-bottom: 16px;
+	}
+
 	//tablet
 	@media #{$max-1200} {
-		&__button {
-			margin: 48px 0 40px;
+		padding: 48px 0 40px;
+		&__button,
+		&-validation-message {
 			width: 220px;
 		}
 	}
 
 	//mobile
 	@media #{$max-768} {
-		&__button {
-			margin: 60px 0 50px;
+		padding: 60px 0 50px;
+		&__button,
+		&-validation-message {
 			width: 100%;
 		}
 	}

@@ -217,6 +217,24 @@
     if(targetName === "w-postalcode"){
       widgetNode.setAttribute('w-country', '');
       isPostalCodeChanged = true;
+
+      var numInputClass = document.getElementById('w-radius');
+      var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
+      var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
+
+      if (targetValue == '') {
+          numInputClass.setAttribute('disabled', 'disabled');
+          numInputClass.value = '';
+          incArrow.classList.add('disabled');
+          decArrow.classList.add('disabled');
+      }
+      else {
+          numInputClass.removeAttribute('disabled');
+          numInputClass.value = '25';
+          incArrow.classList.remove('disabled');
+          decArrow.classList.remove('disabled');
+          widgetNode.setAttribute('w-radius', '25');
+      }
     }
 
     if(targetName === "w-theme"){
@@ -326,6 +344,12 @@
       }
 
       document.getElementById("w-country").disabled = true;
+
+      var activeItems = document.querySelectorAll('.custom_select__item.custom_select__item-active');
+      var activeItemsLenght = activeItems.length;
+      for (let i = 0; i < activeItemsLenght; ++i) {
+        activeItems[i].classList.remove('custom_select__item-active');
+      }
 
       ["#w-countryCode","#w-source"].map((item)=> {
         $(item).prop("selectedIndex", -1);

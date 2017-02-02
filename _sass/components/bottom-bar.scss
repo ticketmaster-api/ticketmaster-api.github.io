@@ -118,7 +118,10 @@
   .footer-nav{
     margin: -33px 0 70px;
     @media #{$max-1200} {
-      margin-top: 48px;
+      margin-top: $base-margin*2;
+    }
+		@media #{$max-768} {
+      margin-bottom: $base-margin*2;
     }
     a > h4{
       &:hover,

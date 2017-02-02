@@ -84,11 +84,11 @@
                 //using document click listener since mobile iOS touch devices do not understand blur event
                 $(document).on("click touchend", function (e) {
                     var menuCloseBtn = $(".tm-close");
-                    if (!self.menuDropdown.is(e.target)
-                        && self.menuDropdown.has(e.target).length === 0
-                        && !menuCloseBtn.is(e.target)
-                        && menuCloseBtn.has(e.target).length === 0
-                        && menuCloseBtn.length) {
+                    if (!self.menuDropdown.is(e.target) &&
+                      self.menuDropdown.has(e.target).length === 0 &&
+                      !menuCloseBtn.is(e.target) &&
+                      menuCloseBtn.has(e.target).length === 0 &&
+                      menuCloseBtn.length) {
                         self.hide();
                     }
                 });
@@ -97,7 +97,7 @@
 
                 var smopen  = false;
                 $(".top-bar").on("click", "#search .search-button", function (e) {
-                  if (self.searchBtn.hasClass("smopen") && smopen == true) {
+                  if (self.searchBtn.hasClass("smopen") && smopen === true) {
                       self.searchBtn.removeClass("smopen");
                       self.searchBox.removeClass("sopen");
                       smopen  = false;
@@ -111,7 +111,7 @@
                 });
 
                 $("input.q").blur(function(e) {
-                    if (smopen == true) {
+                    if (smopen === true) {
                         setTimeout(function () {
                             self.searchBox.removeClass("sopen");
                             self.searchBtn.removeClass("smopen");

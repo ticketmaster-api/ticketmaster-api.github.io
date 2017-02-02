@@ -52,37 +52,10 @@
             sessionStorage.setItem('console_visited', 'true');
         }
         function showUserApiKeySessionStorage(isResized) {
-            //userApiKeySessionStorage = sessionStorage.getItem('tk-api-key');
-            function checkCookie() {
-                var userApiKey;
-                var apiKeys = JSON.parse("[" + window.atob(getCookie("tk-api-key")) + "]"); //decode and convert string to array
-                if (getCookie("tk-api-key") === "") {return null}
-                if (apiKeys != "") {
-                    userApiKey = apiKeys[apiKeys.length-1];
-                    userApiKey = userApiKey[userApiKey.length-1];
-                }
-                return userApiKey;
-            }
 
-            //get Cookie by name
-            function getCookie(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for(var i = 0; i <ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0)==' ') {
-                        c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length,c.length);
-                    }
-                }
-                return "";
-            }
+            userApiKeySessionStorage = apiKeyService.checkApiKeyCookie() || apiKeyService.getApiWidgetsKey() ;
 
-            userApiKeySessionStorage = checkCookie();
-            
-            if(userApiKeySessionStorage !== null) {
+            if(userApiKeySessionStorage === apiKeyService.checkApiKeyCookie()) {
                 if(isResized) {
                     getKeyButton.hide();
                 }
@@ -150,16 +123,10 @@
             } else {
                 // create a temporary element for the execCommand method
                 var forExecElement = CreateElementForExecCommand (content);
-                // var forExecElement = $('#copy-clip').html(content);
 
                 /* Select the contents of the element
                  (the execCommand for 'copy' method works on the selection) */
                 SelectContent(forExecElement);
-
-                // console.log('$(#copy-clip).text() : ', $('#copy-clip').text() ) ;
-                //
-                // var copyTextarea = document.querySelector('#copy-clip');
-                // copyTextarea.select();
 
                 try {
                     var successful = document.execCommand('copy', false, null);
@@ -175,7 +142,6 @@
                 $(this).removeClass('copied');
             });
 
-            // $('#copy-clip').html('');
 
         });
     });

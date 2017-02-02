@@ -1,0 +1,24 @@
+{
+  "options": {
+    "formatter": "html",
+    "output-file": ".linters/es-lint-report.html"
+  },
+  "files": {
+    "ignore": [
+      "scripts/vendors/**/*.js",
+      "scripts/api-explorer/v2/highlightJson.worker.js",
+      "scripts/api-explorer/v2/script.js",
+      "_site/**/*.*",
+      "node_modules/**/*.*"
+    ]
+  },
+  "extends": "google",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false
+  },
+  "rules": {
+    "linebreak-style": ["warn", "windows"]
+  }
+}
