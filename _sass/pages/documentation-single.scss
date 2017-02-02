@@ -242,6 +242,17 @@
   }
 }
 
+.content.widget_box__wrapper {
+	@media #{$max-768} {
+		margin-left: -15px;
+		margin-right: -15px;
+		h1 {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+}
+
 .widget_box {
   width: 850px;
   min-height: 438px;
@@ -337,9 +348,8 @@
 
   @media #{$max-768} {
     min-height: 0;
-    width: calc(100% + 30px);
+    width: 100%;
     position: relative;
-    left: -15px;
     text-align: center;
     padding: 0 15px 20px 15px;
   }
