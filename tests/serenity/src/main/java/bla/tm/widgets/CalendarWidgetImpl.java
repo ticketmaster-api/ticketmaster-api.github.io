@@ -20,14 +20,6 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
     }
 
     //WebElements
-    @FindBy(xpath = "//input[@id='w-tm-api-key']")
-    private WebElementFacade apiKeyTextField;
-
-    @FindBy(xpath = "//input[@id='w-postalcode']")
-    private WebElementFacade zipCodeTextField;
-
-    @FindBy(xpath = "//input[@id='w-keyword']")
-    private WebElementFacade keywordTextField;
 
     private String countryDropdownXPath = "//select[@id='w-country']";
 
@@ -59,20 +51,10 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
     }
 
     @Override
-    public String getZipCodeTextFieldValue() {
-        return zipCodeTextField.getValue();
-    }
-
-    @Override
     public void setZipCodeTextFieldValue(String zipCode) {
-        zipCodeTextField.clear();
-        zipCodeTextField.sendKeys(zipCode, Keys.ENTER);
+        zipCodeField.clear();
+        zipCodeField.sendKeys(zipCode, Keys.ENTER);
         waitForSomeActionHappened(1500);
-    }
-
-    @Override
-    public String getKeywordTextFieldValue() {
-        return keywordTextField.getValue();
     }
 
     @Override

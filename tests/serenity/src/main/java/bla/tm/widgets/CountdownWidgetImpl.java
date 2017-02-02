@@ -7,7 +7,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
-import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 
 public class CountdownWidgetImpl extends AnsestorWidgetImpl implements CountdownWidget{
     //Constants
@@ -18,10 +17,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     private final String HTML_CODE_ATTRIBUTE_ORIENTATION = "w-layout";
     private final String HTML_CODE_ATTRIBUTE_THEME = "theme";
     private final String HTML_CODE_ATTRIBUTE_PROPORTION = "w-proportion";
-
-    //WebElements
-    @FindBy(xpath = ".//input[@id='w-tm-api-key']")
-    private WebElementFacade apiKeyTextField;
 
     @FindBy(xpath = ".//input[@id='w-id']")
     private WebElementFacade eventIDTextField;
@@ -38,7 +33,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = ".//div[@class='tab-buttons']/label[@for='w-theme-fullwidth']")
     private WebElementFacade fullWidthTab;
 
-        @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x600']")
+    @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x600']")
     private WebElementFacade layout300x600Tab;
 
     @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x250']")
@@ -56,8 +51,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='GET CODE']")
     private WebElementFacade getCodeButton;
 
-    @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='RESET']")
-    private WebElementFacade resetButton;
 
     @FindBy(xpath = "//span[contains(@class,'event-name')]")
     private WebElementFacade posterWindow;
@@ -114,18 +107,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     public void setEventId(String eventId) {
         eventIDTextField.clear();
         eventIDTextField.sendKeys(eventId,Keys.ENTER);
-    }
-
-    @Override
-    public void clickResetButton() {
-        scrollToElement(resetButton);
-        resetButton.click();
-        waitForSomeActionHappened(1000);
-    }
-
-    @Override
-    public String getAPIKeyTextFieldValue() {
-        return apiKeyTextField.getValue();
     }
 
     @Override

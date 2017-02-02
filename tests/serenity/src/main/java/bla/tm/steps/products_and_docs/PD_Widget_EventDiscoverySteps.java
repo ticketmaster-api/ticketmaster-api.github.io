@@ -3,33 +3,13 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.site.products_and_docs.PD_Widget_EventDiscoveryPage;
 import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
-import java.util.HashMap;
-import java.util.Map;
+
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class PD_Widget_EventDiscoverySteps {
-    //Private Fields
-    private final String randomApiKey = "apiKey";
-    private final String randomKeyword = "adele";
-    private final String randomZipCode = "90015";
-    private final String randomRadius = "15";
-    private final String randomAttractionId = "333444";
-    private final String randomVenueId = "222111";
-    private final String randomAffiliateId = "7777";
-    private final String randomPromoterId = "9999";
-    private final String randomCity = "york";
-    private final String randomCountryCode = "Canada";
-    private final String randomSource = "ticketmaster";
-    private final String randomClassificationName = "movies";
-    private final String randomEventCount = "50";
-
-    private final String[] listOfEditableParameters = { "apiKey", "keyword", "zipCode", "radius",
-                                                        "attractionId", "venueId", "affiliateId",
-                                                        "promoterId", "city", "countryCode",
-                                                        "source", "classificationName", "eventCount" };
+public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
 
     //Pages
     PD_Widget_EventDiscoveryPage eventDiscoveryWidgetPage;
@@ -84,13 +64,6 @@ public class PD_Widget_EventDiscoverySteps {
     }
 
     @Step
-    public void storeValuesForAllFields() {
-        for(String parameterName : listOfEditableParameters){
-            getCurrentSession().put(parameterName, eventDiscoveryWidgetPage.getEventDiscoveryWidget().getValueOf(parameterName));
-        }
-    }
-
-    @Step
     public void setEventCountValue(String value) {
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setEventCountValue(value);
     }
@@ -115,17 +88,6 @@ public class PD_Widget_EventDiscoverySteps {
         Assert.assertFalse("The API Key is empty", eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue().isEmpty());
     }
 
-    @Step
-    public void checkThatEmbeddedHtmlCodeContainsStoredValues() {
-        for(String parameter : listOfEditableParameters) {
-            String embeddedValueOfParameter = eventDiscoveryWidgetPage.getEventDiscoveryWidget().getEmbeddedValueOf(parameter);
-            String storedValueOfParameter = (String) getCurrentSession().get(parameter);
-            if(parameter == "countryCode"){
-                embeddedValueOfParameter = getCountryNameByCode(embeddedValueOfParameter);
-            }
-            Assert.assertEquals(String.format("Stored value is %s, but embedded code is %s", storedValueOfParameter, embeddedValueOfParameter), storedValueOfParameter, embeddedValueOfParameter);
-        }
-    }
 
     @Step
     public void checkThatFoundEventsContainsText(String keyword) {
@@ -156,7 +118,6 @@ public class PD_Widget_EventDiscoverySteps {
         Assert.assertEquals("The Api Key actual result does not equals expected result", getCurrentSession().get("apiKey"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue());
         Assert.assertEquals("The Keyword actual result does not equals expected result", getCurrentSession().get("keyword"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getKeywordValue());
         Assert.assertEquals("The Zip Code actual result does not equals expected result", getCurrentSession().get("zipCode"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getZipCodeValue());
-        Assert.assertEquals("The Radius actual result does not equals expected result", getCurrentSession().get("radius"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getRadiusValue());
         Assert.assertEquals("The Attraction Id actual result does not equals expected result", getCurrentSession().get("attractionId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAttractionIdValue());
         Assert.assertEquals("The Venue Id actual result does not equals expected result", getCurrentSession().get("venueId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getVenueIdValue());
         Assert.assertEquals("The Affiliate Id actual result does not equals expected result", getCurrentSession().get("affiliateId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAffiliateIdValue());
@@ -174,14 +135,11 @@ public class PD_Widget_EventDiscoverySteps {
         assertTrue(String.format("Country field contains %s but expected result is: %s", countryValue, countryName), countryValue.equalsIgnoreCase(countryName));
     }
 
-    public String getCountryNameByCode(String countryCode) {
-        Map<String, String> countryCodes = new HashMap<>();
-        countryCodes.put("CA", "Canada");
-        countryCodes.put("AU", "Australia");
-        countryCodes.put("GB", "Great Britain");
-        countryCodes.put("IE", "Ireland");
-        countryCodes.put("NZ", "New Zealand");
-        countryCodes.put("US", "United States");
-        return countryCodes.get(countryCode);
+    @Step
+    public void storeValuesForAllFields() {
+        for(String parameterName : listOfEditableParameters){
+            getCurrentSession().put(parameterName, eventDiscoveryWidgetPage.getEventDiscoveryWidget().getValueOf(parameterName));
+        }
     }
+
 }

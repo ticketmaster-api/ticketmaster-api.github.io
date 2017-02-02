@@ -10,8 +10,4 @@ public class PD_Widget_CalendarPage extends AncestorPage {
 
     public final String pageHeader = "CALENDAR WIDGET";
 
-    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
-    private CalendarWidget calendarWidget;
-
-    public CalendarWidget getCalendarWidget() {return calendarWidget;}
 }

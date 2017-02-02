@@ -1,8 +1,7 @@
 package bla.tm.pages;
 
 import bla.tm.staticmethods.MenuElements;
-import bla.tm.widgets.FeedbackWidget;
-import bla.tm.widgets.LeftMenuWidget;
+import bla.tm.widgets.*;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 
@@ -19,6 +18,30 @@ public class AncestorPage extends PageObject {
     public List<MenuElements> leftMenuElements;
 
 //    WIDGETS
+
+    @FindBy(xpath = "//form[@class='main-widget-config-form common_tabs']")
+    private EventDiscoveryWidget eventDiscoveryWidget;
+
+    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
+    private CountdownWidget countdownWidget;
+
+    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
+    private CalendarWidget calendarWidget;
+
+    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
+    protected MapWidget widget;
+
+    public CountdownWidget getCountDownWidget() {
+        return countdownWidget;
+    }
+
+    public EventDiscoveryWidget getEventDiscoveryWidget() {return eventDiscoveryWidget;}
+
+    public CalendarWidget getCalendarWidget() {return calendarWidget;}
+
+    public MapWidget getMapWidget() {
+        return widget;
+    }
 
     @FindBy(xpath = "//div[./ul[@id='scrollable-element']]")
     private LeftMenuWidget leftSideMenuWidget;
