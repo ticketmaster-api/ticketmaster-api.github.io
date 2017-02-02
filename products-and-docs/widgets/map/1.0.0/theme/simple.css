@@ -366,6 +366,31 @@ div[w-theme="simple"] .legal-notice:active{
 	color: #019cde;
 }
 
+div[w-theme="simple"] .near-me-btn {
+	display: block;
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	background: #fff url("/assets/widgets/1.0.0/img/ic-near-me.svg") 0 0 no-repeat;
+	/* background: #fff url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ic-near-me.svg") 0 0 no-repeat; */
+	border-radius: 2px;
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+	z-index: 10;
+	right: 9px;
+	bottom: 50%;
+	margin-bottom: -65px;
+}
+
+div[w-theme="simple"] .near-me-btn:hover {
+	background: #fff url("/assets/widgets/1.0.0/img/ic-near-me.svg") 0 -28px no-repeat;
+	/* background: #fff url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ic-near-me.svg") 0 -28 no-repeat; */
+	cursor: pointer;
+}
+
+div[w-theme="simple"] .near-me-btn.dn {
+	display: none;
+}
+
 div[w-theme="simple"] .events-counter {
 	display: block;
 	float: right;

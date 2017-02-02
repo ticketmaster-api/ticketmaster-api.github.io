@@ -620,7 +620,7 @@ input[type="checkbox"]:not(:checked)+label:focus:before,
 input[type="checkbox"]:checked+label:hover:before,
 input[type="checkbox"]:checked+label:focus:before {
 	outline: none;
-	border: 1px solid #ccc;
+	border: 1px solid #ccc !important;
 }
 
 input[type="checkbox"]:not(:checked)+label:after,
