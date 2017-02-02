@@ -111,6 +111,10 @@ $steel-20: rgba(118, 134, 146, 0.2);
 			&.slick-next {
 				right: $distance;
 			}
+			&.slick-prev,
+			&.slick-next {
+				width: 40px;
+			}
 		}
 		.slider-gradient {
 			margin: 0 -15px;
@@ -297,6 +301,34 @@ $steel-20: rgba(118, 134, 146, 0.2);
 							line-height: 1.5;
 							color: #768692;
 						}
+					}
+				}
+				.static-card {
+					.front.cardFront {
+						@include strech(0);
+						background-size: cover;
+						position: absolute;
+						.front-title {
+							display: none;
+						}
+						a {
+							@include strech(0);
+							padding: 10px;
+							.front-title {
+								text-align: left;
+								display: block;
+								font-size: 16px;
+								font-weight: bold;
+								font-style: normal;
+								font-stretch: normal;
+								line-height: 1.5;
+								color: #ffffff;
+								margin: 10px 0 0;
+							}
+						}
+					}
+					.back.cardBack{
+						display: none;
 					}
 				}
 			}
@@ -847,34 +879,6 @@ $steel-20: rgba(118, 134, 146, 0.2);
 						}
 						&--height2 {
 							height: $height;
-						}
-						.static-card {
-							.front.cardFront {
-								@include strech(0);
-								background-size: cover;
-								position: absolute;
-								.front-title {
-									display: none;
-								}
-								a {
-									@include strech(0);
-									padding: $padding;
-									.front-title {
-										text-align: left;
-										display: block;
-										font-size: 16px;
-										font-weight: bold;
-										font-style: normal;
-										font-stretch: normal;
-										line-height: 1.5;
-										color: #ffffff;
-										margin: 10px 0 0;
-									}
-								}
-							}
-							.back.cardBack{
-								display: none;
-							}
 						}
 					}
 				}
