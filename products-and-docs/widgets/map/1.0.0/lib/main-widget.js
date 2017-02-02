@@ -400,24 +400,21 @@ var TicketmasterMapWidget = function () {
         key: "useGeolocation",
         value: function useGeolocation() {
             var widget = this;
-            if (document.querySelector('[w-type="map"]').getAttribute("w-geoposition") != undefined && document.querySelector('[w-type="map"]').getAttribute("w-geoposition") == "on") {
-                var clickNearMe = function clickNearMe(e) {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            var latitude = position.coords.latitude;
-                            var longitude = position.coords.longitude;
-                            e.target.parentNode.setAttribute('w-latlong', latitude + ',' + longitude);
-                            console.log('w-latlong', latitude + ',' + longitude);
-                            widget.update();
-                        });
-                    }
-                };
-
-                var buttons = document.getElementsByClassName("near-me-btn");
-                for (var i = 0; i < buttons.length; i++) {
-                    var current = buttons[i];
-                    current.addEventListener('click', clickNearMe, false);
+            var clickNearMe = function clickNearMe(e) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        e.target.parentNode.setAttribute('w-latlong', latitude + ',' + longitude);
+                        widget.update();
+                    });
                 }
+            };
+
+            var buttons = document.getElementsByClassName("near-me-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                var current = buttons[i];
+                current.addEventListener('click', clickNearMe, false);
             }
         }
     }, {
