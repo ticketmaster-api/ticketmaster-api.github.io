@@ -91,6 +91,7 @@ Retrieve reservable seat information based on specific criteria.
             - `description` (string) - Area description
         * `descriptions` (array) - A list of descriptions for this pick
         * `section` (string) - The section name in the venue
+        * `selection` (string) - "standard", or "resale".
         * `row` (string) - The row in the section, if applicable.
         * `snapshotImageUrl` - An image url of this pick in the venue. If the venue or event doesn't support detailed images, this field will be null.
         * `offers` (array) - Offers.    
