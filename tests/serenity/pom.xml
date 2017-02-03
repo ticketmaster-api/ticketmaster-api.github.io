@@ -6,7 +6,6 @@
     <groupId>TicketMasterAutomation</groupId>
     <artifactId>TicketMasterAutomationTests</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <name>Automation testing framework created for Ticket Master</name>
 

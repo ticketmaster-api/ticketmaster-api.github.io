@@ -9,7 +9,6 @@ Scenario: (/products-and-docs/sdks/) Verification for general page's elements
 Given open SDKs page
 Then check general page elements for SDKs Page, where DISQUS = true and LeftMenu = true
 
-
 Scenario: (products-and-docs/sdks/) Verification for all the page's links
 Given open SDKs page
 When check visibility and click <elementKey> element of SDKs page
