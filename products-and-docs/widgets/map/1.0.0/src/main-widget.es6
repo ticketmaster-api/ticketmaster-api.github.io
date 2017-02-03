@@ -353,6 +353,7 @@ class TicketmasterMapWidget {
     useGeolocation() {
         var widget = this;
         var clickNearMe = function(e) {
+            console.log('Clicked!');
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var latitude = position.coords.latitude;
