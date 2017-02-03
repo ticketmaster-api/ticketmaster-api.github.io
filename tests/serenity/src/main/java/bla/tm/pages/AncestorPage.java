@@ -61,7 +61,7 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[@id='search']/form[@id='cse-search-box']/div/input[@class='q']")
     private WebElementFacade searchTextInput;
 
-    @FindBy(xpath = "//div[./ul[@id='scrollable-element']]")
+    @FindBy(xpath = "//div[ul[@id='scrollable-element']]")
     private WebElementFacade leftSideMenu;
 
     @FindBy(xpath = "//div[@class='search-container']//a[text()='Login']")
