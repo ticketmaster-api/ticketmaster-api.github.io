@@ -369,6 +369,7 @@ class TicketmasterMapWidget {
         for (var i = 0; i < buttons.length; i++) {
             var current = buttons[i];
             current.addEventListener('click', clickNearMe, false);
+            current.addEventListener('touchstart', clickNearMe, false);
         }
     }
 
