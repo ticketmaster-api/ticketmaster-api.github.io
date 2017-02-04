@@ -27,18 +27,18 @@ public class PD_Widget_MapSteps extends PD_CommonSteps{
         assertFalse(apiKey == null || apiKey.length() == 0);
     }
 
-    public void changeValuesForAllFields() {
-        mapWidgetPage.getMapWidget().setApiKeyValue(randomApiKey);
-        mapWidgetPage.getMapWidget().setKeywordValue(randomKeyword);
-        mapWidgetPage.getMapWidget().setZipCodeValue(randomZipCode);
-        mapWidgetPage.getMapWidget().setCityValue(randomCity);
-        mapWidgetPage.getMapWidget().setAttractionIdValue(randomAttractionId);
-        mapWidgetPage.getMapWidget().setVenueIdValue(randomVenueId);
-        mapWidgetPage.getMapWidget().setPromoterIdValue(randomVenueId);
-        mapWidgetPage.getMapWidget().setSourceValue(randomSource);
-        mapWidgetPage.getMapWidget().setCountryCodeValue(randomCountryCode);
-        mapWidgetPage.getMapWidget().setClassificationNameValue(randomClassificationName);
-        mapWidgetPage.getMapWidget().setEventCountValue(randomEventCount);
+    public void changeValuesForAllFields(String apiKey, String keyword, String zipCode, String city, String attractionId, String venueId, String promoterId, String source, String countryCode, String classificationName, String eventCount) {
+        mapWidgetPage.getMapWidget().setApiKeyValue(apiKey);
+        mapWidgetPage.getMapWidget().setKeywordValue(keyword);
+        mapWidgetPage.getMapWidget().setZipCodeValue(zipCode);
+        mapWidgetPage.getMapWidget().setCityValue(city);
+        mapWidgetPage.getMapWidget().setAttractionIdValue(attractionId);
+        mapWidgetPage.getMapWidget().setVenueIdValue(venueId);
+        mapWidgetPage.getMapWidget().setPromoterIdValue(promoterId);
+        mapWidgetPage.getMapWidget().setSourceValue(source);
+        mapWidgetPage.getMapWidget().setCountryCodeValue(countryCode);
+        mapWidgetPage.getMapWidget().setClassificationNameValue(classificationName);
+        mapWidgetPage.getMapWidget().setEventCountValue(eventCount);
     }
 
     @Step

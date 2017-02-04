@@ -21,9 +21,9 @@ public class PD_Widget_MapDefinition {
         mapWidgetSteps.openPage();
     }
 
-    @Given("change values for all possible fields on the Map Widget page")
-    public void changeValuesOnMapPageWidget(){
-        mapWidgetSteps.changeValuesForAllFields();
+    @Given("change $apiKey,$keyWord,$zipCode,$city,$attractionId,$venueId,$promoterId,$source,$countryCode,$classificationName,$eventCount values on the Map Widget page")
+    public void changeValuesOnMapPageWidget(String apiKey, String keyWord, String zipCode, String city, String attractionId, String venueId, String promoterId, String source, String countryCode, String classificationName, String eventCount){
+        mapWidgetSteps.changeValuesForAllFields(apiKey, keyWord, zipCode, city, attractionId, venueId, promoterId, source, countryCode, classificationName, eventCount);
     }
 
     @Given("store all fields values on the Map Widget page")
