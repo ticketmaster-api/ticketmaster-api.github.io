@@ -15,23 +15,6 @@ public class PD_CommonSteps {
 
     AncestorPage ancestorPage;
 
-    /**
-     *     Private Fields
-     */
-    protected final String randomApiKey = "apiKey";
-    protected final String randomKeyword = "adele";
-    protected final String randomZipCode = "90015";
-    protected final String randomRadius = "15";
-    protected final String randomAttractionId = "333444";
-    protected final String randomVenueId = "222111";
-    protected final String randomAffiliateId = "7777";
-    protected final String randomPromoterId = "9999";
-    protected final String randomCity = "york";
-    protected final String randomCountryCode = "Canada";
-    protected final String randomSource = "ticketmaster";
-    protected final String randomClassificationName = "movies";
-    protected final String randomEventCount = "50";
-
     protected final String[] listOfEditableParameters = { "apiKey", "keyword", "zipCode",
             "attractionId", "venueId",
             "promoterId", "city", "countryCode", "source",
@@ -40,13 +23,27 @@ public class PD_CommonSteps {
     @Step
     public void checkThatEmbeddedHtmlCodeContainsStoredValues() {
         for(String parameter : listOfEditableParameters) {
-            String embeddedValueOfParameter = ancestorPage.getEventDiscoveryWidget().getEmbeddedValueOf(parameter);
+            String embeddedValueOfParameter = ancestorPage.getWidget().getEmbeddedValueOf(parameter);
             String storedValueOfParameter = (String) getCurrentSession().get(parameter);
             if(parameter == "countryCode"){
                 embeddedValueOfParameter = getCountryNameByCode(embeddedValueOfParameter);
             }
             Assert.assertEquals(String.format("Stored value is %s, but embedded code is %s", storedValueOfParameter, embeddedValueOfParameter), storedValueOfParameter, embeddedValueOfParameter);
         }
+    }
+
+    public void changeValuesForAllFields(String apiKey, String keyword, String zipCode, String city, String attractionId, String venueId, String promoterId, String source, String countryCode, String classificationName, String eventCount) {
+        ancestorPage.getWidget().setApiKeyValue(apiKey);
+        ancestorPage.getWidget().setKeywordValue(keyword);
+        ancestorPage.getWidget().setZipCodeValue(zipCode);
+        ancestorPage.getWidget().setCityValue(city);
+        ancestorPage.getWidget().setAttractionIdValue(attractionId);
+        ancestorPage.getWidget().setVenueIdValue(venueId);
+        ancestorPage.getWidget().setPromoterIdValue(promoterId);
+        ancestorPage.getWidget().setSourceValue(source);
+        ancestorPage.getWidget().setCountryCodeValue(countryCode);
+        ancestorPage.getWidget().setClassificationNameValue(classificationName);
+        ancestorPage.getWidget().setEventCountValue(eventCount);
     }
 
     public String getCountryNameByCode(String countryCode) {

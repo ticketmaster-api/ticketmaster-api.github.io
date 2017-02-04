@@ -39,7 +39,7 @@ public class AncestorPage extends PageObject {
 
     public CalendarWidget getCalendarWidget() {return calendarWidget;}
 
-    public MapWidget getMapWidget() {
+    public MapWidget getWidget() {
         return widget;
     }
 

@@ -17,34 +17,20 @@ public class PD_Widget_MapSteps extends PD_CommonSteps{
 
     @Step
     public void cityIsNotEmpty() {
-        String city = mapWidgetPage.getMapWidget().getCityFieldValue();
+        String city = mapWidgetPage.getWidget().getCityFieldValue();
         assertFalse(city == null || city.length() == 0);
     }
 
     @Step
     public void apiKeyFieldIsNotEmpty() {
-        String apiKey = mapWidgetPage.getMapWidget().getAPIKeyTextFieldValue();
+        String apiKey = mapWidgetPage.getWidget().getAPIKeyTextFieldValue();
         assertFalse(apiKey == null || apiKey.length() == 0);
-    }
-
-    public void changeValuesForAllFields(String apiKey, String keyword, String zipCode, String city, String attractionId, String venueId, String promoterId, String source, String countryCode, String classificationName, String eventCount) {
-        mapWidgetPage.getMapWidget().setApiKeyValue(apiKey);
-        mapWidgetPage.getMapWidget().setKeywordValue(keyword);
-        mapWidgetPage.getMapWidget().setZipCodeValue(zipCode);
-        mapWidgetPage.getMapWidget().setCityValue(city);
-        mapWidgetPage.getMapWidget().setAttractionIdValue(attractionId);
-        mapWidgetPage.getMapWidget().setVenueIdValue(venueId);
-        mapWidgetPage.getMapWidget().setPromoterIdValue(promoterId);
-        mapWidgetPage.getMapWidget().setSourceValue(source);
-        mapWidgetPage.getMapWidget().setCountryCodeValue(countryCode);
-        mapWidgetPage.getMapWidget().setClassificationNameValue(classificationName);
-        mapWidgetPage.getMapWidget().setEventCountValue(eventCount);
     }
 
     @Step
     public void storeValuesForAllFields() {
         for(String parameterName : listOfEditableParameters){
-            getCurrentSession().put(parameterName, mapWidgetPage.getMapWidget().getValueOf(parameterName));
+            getCurrentSession().put(parameterName, mapWidgetPage.getWidget().getValueOf(parameterName));
         }
     }
 

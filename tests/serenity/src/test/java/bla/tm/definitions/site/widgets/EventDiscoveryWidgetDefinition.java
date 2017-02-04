@@ -1,17 +1,21 @@
 package bla.tm.definitions.site.widgets;
 
+import bla.tm.definitions.site.WidgetValue;
 import bla.tm.steps.products_and_docs.PD_Widget_EventDiscoverySteps;
 import net.thucydides.core.annotations.Steps;
-import org.jbehave.core.annotations.*;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import org.jbehave.core.model.ExamplesTable;
 
-public class EventDiscoveryWidgetDefinition {
+public class EventDiscoveryWidgetDefinition extends WidgetValue{
     @Steps
     PD_Widget_EventDiscoverySteps eventDiscoveryWidgetSteps;
 
-    //Given
-    @Given("change values for all possible fields on the Event Discovery Widget page")
-    public void changeValuesForAllPossibleFields() {
-        eventDiscoveryWidgetSteps.changeValuesForAllFields();
+    @Given("change all possible fields on the Event Discovery Widget page: $table")
+    public void changeValuesOnMapPageWidget(ExamplesTable valuesTable) {
+        getWidgetValues(valuesTable);
+        eventDiscoveryWidgetSteps.changeValuesForAllFields(apiKey, keyWord, zipCode, city, attractionId, venueId, promoterId, source, countryCode, classificationName, eventCount);
     }
 
     @Given("store all fields values on the Event Discovery Widget page")
@@ -73,7 +77,7 @@ public class EventDiscoveryWidgetDefinition {
 
     @Then("all fields have been reseted to defaults on the Event Discovery Widget page")
     public void checkThatAllFieldsHaveBeenResetedToDefaults() {
-        eventDiscoveryWidgetSteps.checkThatAllFieldsHaveBeenResetedToDefaults();
+        eventDiscoveryWidgetSteps.checkThatAllFieldsHaveBeenResetToDefaults();
     }
 
     @Then("the Country Field contains appropriate value $countryName on Event Discovery Widget Page")
