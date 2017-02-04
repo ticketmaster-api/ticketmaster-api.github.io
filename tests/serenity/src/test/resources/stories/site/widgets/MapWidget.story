@@ -1,4 +1,4 @@
-Meta:@debug
+Meta:
 
 Narrative:
 In order to setup Map Widget
@@ -46,4 +46,3 @@ Scenario: (/products-and-docs/widgets/map/) Event message - Check event message 
 Given open Map Widget page
 And enter custom ApiKey invalidApiKey123
 Then the event message is shown "No results were found"
-

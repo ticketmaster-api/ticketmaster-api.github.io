@@ -8,10 +8,9 @@ public class EventDiscoveryWidgetDefinition {
     @Steps
     PD_Widget_EventDiscoverySteps eventDiscoveryWidgetSteps;
 
-    //Given
-    @Given("change values for all possible fields on the Event Discovery Widget page")
-    public void changeValuesForAllPossibleFields() {
-        eventDiscoveryWidgetSteps.changeValuesForAllFields();
+    @Given("change $apiKey,$keyWord,$zipCode,$city,$attractionId,$venueId,$promoterId,$source,$countryCode,$classificationName,$eventCount values on the Event Discovery Widget page")
+    public void changeValuesOnMapPageWidget(String apiKey, String keyWord, String zipCode, String city, String attractionId, String venueId, String promoterId, String source, String countryCode, String classificationName, String eventCount){
+        eventDiscoveryWidgetSteps.changeValuesForAllFields(apiKey, keyWord, zipCode, city, attractionId, venueId, promoterId, source, countryCode, classificationName, eventCount);
     }
 
     @Given("store all fields values on the Event Discovery Widget page")
@@ -73,7 +72,7 @@ public class EventDiscoveryWidgetDefinition {
 
     @Then("all fields have been reseted to defaults on the Event Discovery Widget page")
     public void checkThatAllFieldsHaveBeenResetedToDefaults() {
-        eventDiscoveryWidgetSteps.checkThatAllFieldsHaveBeenResetedToDefaults();
+        eventDiscoveryWidgetSteps.checkThatAllFieldsHaveBeenResetToDefaults();
     }
 
     @Then("the Country Field contains appropriate value $countryName on Event Discovery Widget Page")
