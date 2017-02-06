@@ -4,7 +4,6 @@ import bla.tm.pages.AnyPage;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.assertEquals;
 
 public class AnyPageSteps {

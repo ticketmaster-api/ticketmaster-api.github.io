@@ -10,9 +10,5 @@ public class PD_Widget_EventDiscoveryPage extends AncestorPage {
 
     public final String pageHeader = "EVENT DISCOVERY WIDGET";
 
-    @FindBy(xpath = "//form[@class='main-widget-config-form common_tabs']")
-    private EventDiscoveryWidget eventDiscoveryWidget;
-
-    public EventDiscoveryWidget getEventDiscoveryWidget() {return eventDiscoveryWidget;}
 
 }
