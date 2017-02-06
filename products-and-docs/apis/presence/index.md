@@ -38,7 +38,7 @@ For example:
 
 + `apikey` = `gwyfRRwYcA0gmbUDDAtADEeaHT` (required, string)
 
-To request an API Key send an email to the [Presence API team](mailto:PresenceAPI@ticketmaster.com).
+To request an API Key send an email to the [Presence API team](mailto:Presenceapisupport@livenation.com).
 
 #### Format
 All responses are returned in JSON format
