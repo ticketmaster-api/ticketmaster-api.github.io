@@ -3,7 +3,9 @@ package bla.tm.pages.pantheon;
 import bla.tm.pages.AncestorPage;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.DefaultUrl;
 
+@DefaultUrl("/products-and-docs/widgets/map/")
 public class UserAccountPage extends AncestorPage {
 
     public final String pageHeader = "THESE ARE YOUR APPS!\n" +
