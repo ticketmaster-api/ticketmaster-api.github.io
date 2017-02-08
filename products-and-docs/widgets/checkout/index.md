@@ -126,6 +126,30 @@ Buyers see their order details
 
 <div class="clearfix"></div>
 
+## Configuration Flags
+
+Additional configuration flags are available which can modify Universal Checkout's behavior on a per-event basis.  These flags are passed in either of 2 ways: using query parameters on the Event URL, or HTML data attributes on the link itself.
+
+For example, query parameters can be supplied as follows:
+
+```
+<a href="http://www.ticketmaster.com/event/<id>?disable-widget=true">My Event</a>
+```
+
+Similarly, data attributes can be supplied as follows:
+
+```
+<a href="http://www.ticketmaster.com/event/<id>" disable-widget="true">My Event</a>
+```
+
+The following configuration flags are currently supported:
+
+| Query Parameter      | Data Attribute | Description |
+|:----------------------------------------------------|
+| `?enable-widget=true`  | `data-enable-widget="true"`  | Forces a link to open in Universal Checkout every time |
+| `?disable-widget=true` | `data-disable-widget="true"` | Prevents a link from opening in Universal Checkout every time |
+
+
 ## Affiliate Tracking
 
 Any Impact Radius links on your site in the `ticketmaster.evyy.net` format will be treated just like any other Ticketmaster link. When buyers click the link, Universal Checkout will attribute any sales to your existing partner account with no redirect.
