@@ -1,6 +1,8 @@
 // Modules
 var webpack = require('webpack');
 var path = require('path');
+var WebpackJasmineHtmlRunnerPlugin = require('webpack-jasmine-html-runner-plugin');
+
 /**
  * Env
  * Get npm lifecycle event to identify the environment
@@ -8,142 +10,152 @@ var path = require('path');
 var ENV = process.env.npm_lifecycle_event;
 var isTest = ENV === 'test' || ENV === 'test-watch';
 var isProd = ENV === 'build';
+var config;
 
-module.exports = function makeWebpackConfig () {
-	"use strict";
-	var config = {};
-
-	/**
-	 * Entry
-	 * Reference: http://webpack.github.io/docs/configuration.html#entry
-	 * Should be an empty object if it's generating a test build
-	 * Karma will set this when it's a test build
-	 */
-	config.entry = isTest ? {} : {
-		script: [
-			'./scripts/api-explorer/v2/src/main.es6.js'
-		]
-	};
-
-	/**
-	 * Output
-	 * Reference: http://webpack.github.io/docs/configuration.html#output
-	 * Should be an empty object if it's generating a test build
-	 * Karma will handle setting it up for you when it's a test build
-	 */
-	config.output = isTest ? {} : {
-		path: './scripts/api-explorer/v2/',
-		filename: '[name].js',
-		library: "base" // global variable
-	};
-
-	/**
-	 * Devtool
-	 * Reference: http://webpack.github.io/docs/configuration.html#devtool
-	 * Type of sourcemap to use per build type
-	 */
-	if (isTest) {
-		config.devtool = 'inline-source-map';
-	} else if (!isProd) {
-		config.devtool = 'inline-source-map';
-	} else {
-		config.devtool = 'none';
-	}
-
-	/**
-	 * Loaders
-	 * Reference: http://webpack.github.io/docs/configuration.html#module-loaders
-	 * List: http://webpack.github.io/docs/list-of-loaders.html
-	 * This handles most of the magic responsible for converting modules
-	 */
-	config.module = {
-		preLoaders: [],
-		loaders: [
-			{
-				test: /\.js$/,
-				loader: 'babel',
-				include: [
-					path.resolve(__dirname, "scripts"),
-				],
-				query: {
-					presets: [
-						"es2015",
-						"stage-0"
+if (isTest) {
+	config = {
+		entry: path.resolve(__dirname, './spec/tests.js'),
+		output: {
+			path: path.resolve(__dirname, "spec"),
+			filename: "bundle.spec.js"
+		},
+		externals: {
+			"jquery": "jQuery",
+			'knockout': "ko",
+			'clipboard': 'Clipboard'
+		},
+		module: {
+			rules: [
+				{
+					test: /\.js$/,
+					loader: 'babel-loader',
+					exclude: [
+						path.resolve(__dirname, "node_modules"),
 					],
-					plugins: [
-						'transform-runtime',
-						"transform-decorators-legacy"
-					],
-					cacheDirectory: true
+					options: {
+						presets: [
+							"es2015",
+							"stage-0"
+						],
+						plugins: [
+							'transform-runtime'
+						],
+						cacheDirectory: true
+					}
 				}
-			},
-			{
-				test: /\.worker\.js$/,
-				loader: "worker-loader",
-				query: {
-					inline: true,
-					name: "[name].js"
-				}
-			},
-			{
-				test: /\.json/,
-				loader: "json-loader"
-			},
-			{
-				test: /\.html$/,
-				loader: 'raw'
-			}
+			],
+			noParse: /jquery[\-.0-9a-z]*/
+		},
+		plugins: [
+			new webpack.SourceMapDevToolPlugin({
+				filename: 'bundle.spec.js.map'
+			}),
+			new WebpackJasmineHtmlRunnerPlugin({
+				fixupScripts: []
+			})
 		],
-		noPares: /jquery[\-.0-9a-z]*/
-	};
-
-	/**
-	 * Plugins
-	 * Reference: http://webpack.github.io/docs/configuration.html#plugins
-	 * List: http://webpack.github.io/docs/list-of-plugins.html
-	 */
-	config.plugins = [];
-
-	config.resolve = {
-		root: [
-			path.join(__dirname, 'scripts/vendors/'),
-			path.join(__dirname, 'scripts/components/')
-		],
-		alias: {
-			jquery: 'jquery-1.11.3.min'
+		cache: false,
+		watch: (ENV === 'test-watch'),
+		watchOptions: {
+			hotOnly: true,
+			compress: true,
+			aggregateTimeout: 200,
+			poll: 100
+		},
+		devServer: {
+			contentBase: path.resolve(__dirname, 'spec'),
+			host: 'localhost',
+			port: 8080
 		}
 	};
-
-	// Skip rendering index.html in test mode
-	if (!isTest) {
-		var js = 'jquery-1.11.3.min';
-		config.plugins.push(
-			new webpack.ProvidePlugin({
-				$: js,
-				jQuery: js,
-				"window.jQuery": js
-			})
-		);
-	}
-
-	// Add build specific plugins
-	if (isProd) {
-		config.plugins.push(
-			new webpack.NoErrorsPlugin(),
-			new webpack.optimize.DedupePlugin(),
-			new webpack.optimize.UglifyJsPlugin({
-				minimize: true,
-				sourceMap: true,
-				compress: {
-					drop_console: true
+} else {
+	config = {
+		entry: {
+			script: [
+				'./scripts/api-explorer/v2/src/main.es6.js'
+			]
+		},
+		output: {
+			path: './scripts/api-explorer/v2/',
+			filename: '[name].js',
+			library: "base" // global variable
+		},
+		devtool: isProd ? 'none' : 'inline-source-map',
+		module: {
+			loaders: [
+				{
+					test: /\.js$/,
+					loader: 'babel-loader',
+					include: [
+						path.resolve(__dirname, "scripts"),
+					],
+					query: {
+						presets: [
+							"es2015",
+							"stage-0"
+						],
+						plugins: [],
+						cacheDirectory: true
+					}
 				},
-				mangle: {
-					except: ['$', 'exports', 'require']
+				{
+					test: /\.worker\.js$/,
+					loader: "worker-loader",
+					query: {
+						inline: true,
+						name: "[name].js"
+					}
+				},
+				{
+					test: /\.json/,
+					loader: "json-loader"
+				},
+				{
+					test: /\.html$/,
+					loader: 'raw'
 				}
+			],
+			noParse: /jquery[\-.0-9a-z]*/
+		},
+		plugins: [
+			new webpack.ProvidePlugin({
+				$: 'jquery',
+				jQuery: 'jquery',
+				"window.jQuery": 'jquery',
+				'window.ko': 'knockout',
+				ko: 'knockout',
 			})
-		);
+		],
+		resolve: {
+			modules: [
+				path.join(__dirname, 'scripts/vendors/'),
+				path.join(__dirname, 'node_modules/'),
+				path.join(__dirname, 'scripts/components/')
+			],
+			alias: {
+				jquery: 'jquery-1.11.3.min',
+				ko: 'knockout'
+			}
+		}
 	}
+}
 
-	return config;
-}();
+if (isProd) {
+	config.plugins.push(
+		new webpack.NoErrorsPlugin(),
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			minimize: true,
+			sourceMap: true,
+			compress: {
+				drop_console: true
+			},
+			mangle: {
+				except: ['$', 'exports', 'require']
+			}
+		})
+	);
+}
+
+module.exports = config;
 
