@@ -433,8 +433,9 @@
   $('.js_get_widget_code').on('click', function(){
     var codeCont = document.querySelector(".language-html.widget_dialog__code");
     var htmlCode = document.createElement("div");
+    widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
     for(var key in widget.config){
-      if(key !== 'latlong'){
+      if(key !== 'latlongggg'){
         htmlCode.setAttribute("w-"+key,widget.config[key]);
       }
     }
