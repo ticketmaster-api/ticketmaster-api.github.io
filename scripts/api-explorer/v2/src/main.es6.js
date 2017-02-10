@@ -180,12 +180,13 @@ class AppViewModel {
 	}
 }
 
+let app = new AppViewModel(services);
 /**
  * Activates knockout.js
  */
-ko.applyBindings(new AppViewModel(services));
+ko.applyBindings(app);
 
 /**
  * exports global variable
  */
-module.exports = services.base;
+module.exports = app;
