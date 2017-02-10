@@ -1,6 +1,6 @@
 package bla.tm.definitions.site.products_and_docs;
 
-import bla.tm.definitions.site.WidgetValue;
+import bla.tm.steps.products_and_docs.WidgetFields;
 import bla.tm.steps.products_and_docs.PD_Widget_CountdownSteps;
 import bla.tm.steps.products_and_docs.PD_Widget_MapSteps;
 import net.thucydides.core.annotations.Steps;
@@ -10,7 +10,7 @@ import org.jbehave.core.model.ExamplesTable;
 
 import java.util.List;
 
-public class PD_Widget_MapDefinition extends WidgetValue {
+public class PD_Widget_MapDefinition extends WidgetFields {
 
     @Steps
     PD_Widget_MapSteps mapWidgetSteps;
@@ -25,7 +25,7 @@ public class PD_Widget_MapDefinition extends WidgetValue {
 
     @Given("change all possible fields on the Map Widget page: $table")
     public void changeValuesOnMapPageWidget(ExamplesTable valuesTable) {
-        getWidgetValues(valuesTable);
+        getMapWidgetValues(valuesTable);
         mapWidgetSteps.changeValuesForAllFields(apiKey, keyWord, zipCode, city, attractionId, venueId, promoterId, source, countryCode, classificationName, eventCount);
     }
 

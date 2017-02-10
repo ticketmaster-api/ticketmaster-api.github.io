@@ -13,15 +13,12 @@ Then the required fields are not empty and have default values on the Event Disc
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that embed code functionality works properly
 Given open Event Discovery Widget page
 And change all possible fields on the Event Discovery Widget page:
-|apiKey |keyWord|zipCode|city|attractionId|venueId|promoterId|source      |countryCode|classificationName|eventCount|
-|apikeys|adele  |90015  |York|333444      |222111 |9999      |ticketmaster|Canada     |movies            |50        |
+|apiKey |keyWord|postalCodeApi|city|attractionId|venueId|promoterId|source      |countryCode|classificationName|eventCount|
+|apikeys|adele  |90015        |York|333444      |222111 |9999      |ticketmaster|Canada     |movies            |50        |
 And store all fields values on the Event Discovery Widget page
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored values on the Event Discovery Widget page
-Examples:
-|apiKey |keyWord|zipCode|city |attractionId|venueId|promoterId|source      |countryCode|classificationName|eventCount|
-|apikeys|adele  |90015  |York |333444      |222111 |9999      |ticketmaster|Canada     |movies            |50        |
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that Country field is changed accordingly Zip Code
 Given open Event Discovery Widget page
@@ -77,8 +74,8 @@ Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check th
 Given open Event Discovery Widget page
 And store all fields values on the Event Discovery Widget page
 And change all possible fields on the Event Discovery Widget page:
-|apiKey |keyWord|zipCode|city|attractionId|venueId|promoterId|source      |countryCode|classificationName|eventCount|
-|apikeys|adele  |90015  |York|333444      |222111 |9999      |ticketmaster|Canada     |movies            |50        |
+|apiKey |keyWord|postalCodeApi|city|attractionId|venueId|promoterId|source      |countryCode|classificationName|eventCount|
+|apikeys|adele  |90015        |York|333444      |222111 |9999      |ticketmaster|Canada     |movies            |50        |
 When click reset button
 Then all fields have been reseted to defaults on the Event Discovery Widget page
 
