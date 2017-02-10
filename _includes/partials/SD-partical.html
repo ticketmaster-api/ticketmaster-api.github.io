@@ -31,7 +31,7 @@
 			<div role="tabpanel" class="tab-pane active" id="all">
 				<section class="grid" id="grid-all">
 					{% for item in gallery_array %}
-						<section class="grid-item {% if item.size == 1.2%} grid-item--height2 {% elsif item.size == 2.1 %} grid-item--width2 {% elsif item.size == 2.2%} grid-item--width2 grid-item--height2 {% endif %} flipper">
+						<section class="grid-item flipper" data-size="{% if item.cardsize == nil %}1.1{% else %}{{item.cardsize}}{% endif %}">
 							<div class="card">
 								<div class="content">
 									<section class="front cardFront" style="background-image: url('{{item.img}}');">
@@ -66,7 +66,7 @@
 					{% for item in gallery_array %}
 						{% if item.tab == tab %}
 							{% assign category_items = array | push: {{item}} %}
-							<section class="grid-item {% if item.size == 1.2%} grid-item--height2 {% elsif item.size == 2.1 %} grid-item--width2 {% elsif item.size == 2.2%} grid-item--width2 grid-item--height2 {% endif %} flipper">
+							<section class="grid-item flipper" data-size="{% if item.cardsize == nil %}1.1{% else %}{{item.cardsize}}{% endif %}">
 								<div class="card">
 									<div class="content">
 										<section class="front cardFront" style="background-image: url('{{item.img}}');">
