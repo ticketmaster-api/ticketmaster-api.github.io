@@ -337,7 +337,6 @@
                 $(item).prop("selectedIndex", -1);
             });
             widgetNode.setAttribute($self.attr('name'), value);
-            if ($self.attr('name') === 'w-tm-api-key') widgetNode.removeAttribute($self.attr('name'));
         });
 
         configForm.find("input[type='radio']").each(function () {

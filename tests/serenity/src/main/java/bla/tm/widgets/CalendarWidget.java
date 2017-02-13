@@ -7,7 +7,6 @@ public interface CalendarWidget extends AnsestorWidget {
     String getAPIKeyTextFieldValue();
     void setAPIKeyTextFieldValue(String apiKey);
 
-    String getZipCodeTextFieldValue();
     void setZipCodeTextFieldValue(String zipCode);
 
     String getKeywordTextFieldValue();

@@ -245,10 +245,10 @@ $steel-20: rgba(118, 134, 146, 0.2);
 					float: left;
 					margin: 0;
 					border: 15px solid #fff;
-					&--width2 {
+					&[data-size^="2"] {
 						width: 586px;
 					}
-					&--height2 {
+					&[data-size$="2"] {
 						height: 460px;
 					}
 					.card {
@@ -730,10 +730,10 @@ $steel-20: rgba(118, 134, 146, 0.2);
 					&-item {
 						@include size(250px, 195px);
 						border: 15px solid #fff;
-						&--width2 {
+						&[data-size^="2"] {
 							width: 500px;
 						}
-						&--height2 {
+						&[data-size$="2"] {
 							height: 390px;
 						}
 						.card {
@@ -874,10 +874,10 @@ $steel-20: rgba(118, 134, 146, 0.2);
 						@include size($width, $height);
 						border: $padding solid #fff;
 						position: relative;
-						&--width2 {
+						&[data-size^="2"] {
 							width: $width;
 						}
-						&--height2 {
+						&[data-size$="2"] {
 							height: $height;
 						}
 					}

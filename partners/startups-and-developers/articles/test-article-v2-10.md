@@ -6,7 +6,7 @@ categories:
   - startup_and_development
 tags:
   - web  
-img: /assets/img/S&D/people-3.png
+img: /assets/img/S&D/1.jpg
 title: Title for the Selected Hero Image 10
 summary: Lorem ipsum
 tab: Events
