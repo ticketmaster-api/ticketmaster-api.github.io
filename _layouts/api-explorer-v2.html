@@ -69,9 +69,11 @@
 				<category-menu params="data: base, selectedCategory: selectedCategory">
 					<custom-select params="options: categories, selected: selectedCategory, onselect: selectCategory"></custom-select>
 				</category-menu>
-				
+
 				<!--api key-->
-				<custom-input params="cssClass: 'api-exp-key', data: apiKey, validationModel: apiKeyValidationModel"></custom-input>
+				<div id="js_custom_select_key" class="js_custom_select_key">
+					<input type="text" id="api-key" class="form-control api-exp-key" placeholder="Api key" contenteditable="true" style="display: none">
+				</div>
 
 				<!--filter-->
 				<methods-filter params="data: base, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType, selectedMethod: selectedMethod">
@@ -130,8 +132,9 @@
 {% include classification-selector-modal.html %}
 {% include latlong-selector-modal.html %}
 {% include feedback.html %}
+<script src="{{'/scripts/components/application-selector.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization,places&callback=initMapLatLong"></script>
-<script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
 </body>
 </html>

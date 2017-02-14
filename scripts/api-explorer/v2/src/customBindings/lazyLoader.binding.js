@@ -56,9 +56,12 @@ ko.bindingHandlers.lazyLoader = {
 
 			$('#js_widget_modal_map').on('shown.bs.modal', function() {
 				google.maps.event.trigger(map_latlong, 'resize');
-				//var tmp_currentLatLng = $input.val().split(','); //document.getElementById('latlong').value.split(',');
-				//var currentLatLng = new google.maps.LatLng(parseInt(tmp_currentLatLng[0].replace(/\s+/g, ''))||49.2336287, parseInt(tmp_currentLatLng[1].replace(/\s+/g, ''))||28.4669495);
-				//map_latlong.setCenter(currentLatLng);
+				/*set senter on map_open*/
+				/*
+				var tmp_currentLatLng = $input.val().split(','); //document.getElementById('latlong').value.split(',');
+				var currentLatLng = new google.maps.LatLng(parseInt(tmp_currentLatLng[0].replace(/\s+/g, ''))||49.2336287, parseInt(tmp_currentLatLng[1].replace(/\s+/g, ''))||28.4669495);
+				map_latlong.setCenter(currentLatLng);
+				*/
 			});
 
 			$('#js_widget_modal_map__close').on('click', function(){
@@ -69,5 +72,4 @@ ko.bindingHandlers.lazyLoader = {
 
 		}
 	}
-
 };
