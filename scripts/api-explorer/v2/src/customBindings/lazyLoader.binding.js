@@ -33,6 +33,6 @@ ko.bindingHandlers.lazyLoader = {
 			$(element).on('change', function() {
 				params.val($(this).val())
 			})
-		}
+		}		
 	}
 };
