@@ -39,6 +39,11 @@ public class EventDiscoveryWidgetDefinition extends WidgetFields {
         eventDiscoveryWidgetSteps.setRadius(setValue);
     }
 
+    @When("use GeoPosition on Event Discovery Widget page")
+    public void useGeoPosition() {
+        eventDiscoveryWidgetSteps.useGeoPosition();
+    }
+
     @Given("change value of ZipCode $zipCode on Event Discovery Widget Page")
     @When("change value of ZipCode $zipCode on Event Discovery Widget Page")
     public void changeZipCode(String zipCode){

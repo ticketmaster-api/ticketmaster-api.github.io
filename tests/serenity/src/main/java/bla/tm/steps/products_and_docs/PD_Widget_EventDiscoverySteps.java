@@ -161,4 +161,8 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setPostalCodeApiValue(postalCodeApi);
     }
 
+    @Step
+    public void useGeoPosition() {
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().clickOnGeoPosition();
+    }
 }
