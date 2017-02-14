@@ -20,6 +20,9 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     @FindBy(xpath = "//div[@class='events-counter']")
     private WebElementFacade posterEventsCounter;
 
+    @FindBy(id = "w-postalcodeapi")
+    private WebElementFacade postalCodeApiField;
+
     private String countryDropdownXPath = "//select[@id='w-country']";
 
     /**
@@ -42,6 +45,13 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     @Override
     public void setPeriodValue(String period) {
 
+    }
+
+    @Override
+    public void setPostalCodeApiValue(String zipCode) {
+        postalCodeApiField.clear();
+        postalCodeApiField.sendKeys(zipCode, Keys.ENTER);
+        waitForSomeActionHappened(500);
     }
 
     @Override
@@ -95,4 +105,27 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     private WebElementFacade getCountryWebElementFacade(){
         return getPage().element(By.xpath(countryDropdownXPath));
     }
- }
+
+    public String getValueOf(String parameterName){
+        switch (parameterName){
+            case "apiKey": return getApiKeyValue();
+            case "keyword": return getKeywordValue();
+            case "postalCodeApi": return getPostalCodeApiValue();
+            case "attractionId": return getAttractionIdValue();
+            case "venueId": return getVenueIdValue();
+            case "promoterId": return getPromoterIdValue();
+            case "city": return getCityValue();
+            case "countryCode": return getCountryCodeValue();
+            case "source": return getSourceValue();
+            case "classificationName": return getClassificationNameValue();
+            case "eventCount": return getEventCountValue();
+            default: throw new IllegalArgumentException(String.format("illegal argument %s", parameterName));
+        }
+    }
+
+    @Override
+    public String getPostalCodeApiValue() {
+        return postalCodeApiField.getValue();
+    }
+
+}
