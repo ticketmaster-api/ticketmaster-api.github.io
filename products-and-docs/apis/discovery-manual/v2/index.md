@@ -56,11 +56,11 @@ Without a valid API Key, you will receive a `401` Status Code with the following
 
 ### Event Sources
 
-The API provides access to content sourced from various platform, including **Ticketmaster**, **Universe**, **FrontGate Tickets** and **Ticketmaster Resale** (TMR). By default, the API returns events from all sources. To specify a specifc source(s), use the `&source=` parameter. Multiple, comma separated values are OK. 
+The API provides access to content sourced from various platform, including **Ticketmaster**, **Universe**, **FrontGate Tickets** and **Ticketmaster Resale** (TMR). By default, the API returns events from all sources. To specify a specifc source(s), use the `&source=` parameter. Multiple, comma separated values are OK.
 
 ### Event Coverage
 
-With over 113K+ events available in the API, coverage spans all of the following countries: **United States**, **United Kingdom**, **Ireland**, **Australia**, **New Zealand**, **Mexico** and **Canada**. More events and more countries are added on continuous basis.
+With over 230K+ events available in the API, coverage spans different countries, including **United States**, **Canada**, **Mexico**, **Australia**, **New Zealand**, **United Kingdom**, **Ireland**, other European countries, and more. More events and more countries are added on continuous basis.
 
 ![event map](/assets/img/products-and-docs/map.png)
 
@@ -166,8 +166,8 @@ discovery/{version}/events.{format}
             * `dates` (object) - dates of event.
                 - `access` (object) - access
                     - `startDateTime` (string) - start date time
-                    - `startApproximate` (boolean) - start approximate 
-                    - `endDateTime` (string) - end date time 
+                    - `startApproximate` (boolean) - start approximate
+                    - `endDateTime` (string) - end date time
                     - `endApproximate` (boolean) - end approximate
                 - `end` (object) - start of event.
                     * `approximate` (boolean) - is approximate.
@@ -233,7 +233,7 @@ discovery/{version}/events.{format}
                             - `line2` (string) - city and state code where event happen.
                         * `_links` (object) - links.
                             - `self` (object) - link to this venue.
-                                * `href` (string) - reference. 
+                                * `href` (string) - reference.
                 - `attractions` (array) - related attractions.
                     + `{array item object}` - event attractions.
                         * `url` (string) - url to event attraction.
@@ -306,7 +306,7 @@ curl \
 --include 'https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey={apikey}'
 {% endhighlight %}
 
-    
+
 {: .article}
 >[Request](#req)
 >[Response](#res)
@@ -704,7 +704,7 @@ discovery/{version}/events/{id}.{format}
         * `{array item object}` - venue.
             * `_links` (object) - links.
                 - `self` (object) - link to this venue.
-                    * `href` (string) - reference. 
+                    * `href` (string) - reference.
             * `address` (object) - address of venue.
                 - `line1` (string) - street name.
                 - `line2` (string) - city and state code where event happen.
@@ -752,8 +752,8 @@ discovery/{version}/events/{id}.{format}
 * `dates` (object) - dates of event.
     - `access` (object) - access
         - `startDateTime` (string) - start date time
-        - `startApproximate` (boolean) - start approximate 
-        - `endDateTime` (string) - end date time 
+        - `startApproximate` (boolean) - start approximate
+        - `endDateTime` (string) - end date time
         - `endApproximate` (boolean) - end approximate
     - `end` (object) - start of event.
         * `approximate` (boolean) - is approximate.
@@ -3732,7 +3732,7 @@ discovery/{version}/venues.{format}
     * `size` (number) - page size.
     * `totalElements` (number) - total number of available elements in server.
     * `totalPages` (number) - total number of available pages in server.
-    
+
 
 {: .aside}
 >[JavaScript](#js)
