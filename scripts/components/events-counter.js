@@ -53,7 +53,7 @@
     if (url !== 'countries') {
       $.ajax({
         method: 'GET',
-        url: ['https://degratnik-prod.apigee.net/discovery-api-proxy/v2/', url, '.json?apikey=', apiKey].join(''),
+        url: ['https://degratnik-prod.apigee.net/discovery-api-proxy/v2/', url, '.json'].join(''),
         async: true,
         dataType: "json"
       }).then(function (data) {
