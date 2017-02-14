@@ -453,6 +453,10 @@
 	border: none;
 }
 
+#w-latlong {
+	padding-right: 40px;
+}
+
 .widget__latlong {
 	.latlong-holder {
 		position: relative;
@@ -463,8 +467,8 @@
 		height: 28px;
 		display: block;
 		background: url('/assets/widgets/1.0.0/img/ic-show-map.svg') 0 0 no-repeat;
-		top: 39px;
-		left: 256px;
+		bottom: 34px;
+		right: 23px;
 		&:hover {
 			background: url('/assets/widgets/1.0.0/img/ic-show-map.svg') 0 -28px no-repeat;
 		}

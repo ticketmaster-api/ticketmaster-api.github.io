@@ -15,6 +15,7 @@
 				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		  	<serenity.version>1.2.2</serenity.version>
 			  <serenity.jbehave.version>1.21.0</serenity.jbehave.version>
+				<jbehave.version>4.1</jbehave.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <webdriver.driver>firefox</webdriver.driver>
@@ -57,13 +58,19 @@
             <version>2.53.0</version>
         </dependency>
 
-			<dependency>
-				<groupId>org.json</groupId>
-				<artifactId>json</artifactId>
-				<version>20160810</version>
-			</dependency>
+				<dependency>
+					<groupId>org.json</groupId>
+					<artifactId>json</artifactId>
+					<version>20160810</version>
+				</dependency>
 
-    </dependencies>
+				<dependency>
+					<groupId>org.jbehave</groupId>
+					<artifactId>jbehave-core</artifactId>
+					<version>${jbehave.version}</version>
+				</dependency>
+
+		</dependencies>
 
     <build>
         <plugins><!-- Plugin for defining of selected java class as Integration tests and creation Serenity report -->
