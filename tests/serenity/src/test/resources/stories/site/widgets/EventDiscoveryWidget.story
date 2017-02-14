@@ -20,16 +20,6 @@ When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored values on the Event Discovery Widget page
 
-Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that Country field is changed accordingly Zip Code
-Meta:@NotImplemented
-Given open Event Discovery Widget page
-When change value of ZipCode <zipCode> on Event Discovery Widget Page
-Then the Country Field contains appropriate value <countryName> on Event Discovery Widget Page
-Examples:
-|zipCode|countryName   |
-|NW1    |United Kingdom|
-|40104  |United States |
-
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that KEYWORD field functionality works properly
 Given open Event Discovery Widget page
 When search events by keyword <keyword> on Event Discovery Widget page
