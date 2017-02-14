@@ -21,6 +21,7 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
     protected final String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
     protected final String HTML_CODE_ATTRIBUTE_KEYWORD = "w-keyword";
     protected final String HTML_CODE_ATTRIBUTE_ZIPCODE = "w-postalcode";
+    protected final String HTML_CODE_ATTRIBUTE_POSTALCODEAPI = "w-postalcodeapi";
     protected final String HTML_CODE_ATTRIBUTE_PERIOD = "w-period";
     protected final String HTML_CODE_ATTRIBUTE_ATTRACTIONID = "w-attractionid";
     protected final String HTML_CODE_ATTRIBUTE_VENUEID = "w-venueid";
@@ -298,6 +299,7 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
             case "apiKey": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_APIKEY);
             case "keyword": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_KEYWORD);
             case "zipCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ZIPCODE);
+            case "postalCodeApi": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_POSTALCODEAPI);
             case "period": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PERIOD);
             case "attractionId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ATTRACTIONID);
             case "venueId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_VENUEID);
