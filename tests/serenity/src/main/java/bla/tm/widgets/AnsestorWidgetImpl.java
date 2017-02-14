@@ -74,6 +74,9 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
     @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='RESET']")
     private WebElementFacade resetButton;
 
+    @FindBy(xpath = "//span[text()='use Geoposition']")
+    private WebElementFacade geoPosition;
+
     @Override
     public void clickResetButton() {
         scrollToElement(resetButton);
@@ -195,6 +198,10 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
     public void setCityValue(String city) {
         cityField.clear();
         cityField.sendKeys(city, Keys.ENTER);
+    }
+
+    public void clickOnGeoPosition(){
+        geoPosition.click();
     }
 
     public String getCountryCodeValue() {

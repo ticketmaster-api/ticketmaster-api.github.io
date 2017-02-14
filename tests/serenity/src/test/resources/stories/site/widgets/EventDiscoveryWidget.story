@@ -20,15 +20,6 @@ When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored values on the Event Discovery Widget page
 
-Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that Country field is changed accordingly Zip Code
-Given open Event Discovery Widget page
-When change value of ZipCode <zipCode> on Event Discovery Widget Page
-Then the Country Field contains appropriate value <countryName> on Event Discovery Widget Page
-Examples:
-|zipCode|countryName   |
-|NW1    |United Kingdom|
-|40104  |United States |
-
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that KEYWORD field functionality works properly
 Given open Event Discovery Widget page
 When search events by keyword <keyword> on Event Discovery Widget page
@@ -60,8 +51,9 @@ Examples:
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check boundary values of RADIUS
 Given open Event Discovery Widget page
-And change value of ZipCode 90015 on Event Discovery Widget Page
-When set Radius <setValue> on Event Discovery Widget page
+When change value of ZipCode 90015 on Event Discovery Widget Page
+And use GeoPosition on Event Discovery Widget page
+And set Radius <setValue> on Event Discovery Widget page
 Then Radius value is <actualValue> on Event Discovery Widget page
 Examples:
 |setValue|actualValue|
@@ -71,6 +63,7 @@ Examples:
 | 20000  |   19999   |
 
 Scenario: (/products-and-docs/widgets/event-discovery/) TECHNICAL TAB - Check that RESET button works properly
+Meta:@NotImplemented
 Given open Event Discovery Widget page
 And store all fields values on the Event Discovery Widget page
 And change all possible fields on the Event Discovery Widget page:
