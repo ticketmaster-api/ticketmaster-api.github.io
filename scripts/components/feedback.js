@@ -5,7 +5,7 @@
         $modalAlertError = $('#feedback-alert-modal-error'),
         $form = $modal.find('#js_feedback_form'),
 				formKey = 'd9878ccc8e22c7253d057015617f82cd', //production key
-				formKeyCC = '4dc5e322e62ad60d2b4ba5840a9c4e14', //should be production key
+				formKeyCC = '0d9da5473940d4380dc3a16fb47a2c55', //CC key
         $email = $form.find('#email'),
         $btn = $modal.find('#js_feedback_btn'),
         $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
@@ -59,7 +59,7 @@
         $email.val($email.val().toLocaleLowerCase());
 
 				sendRequest(formData, formKey);
-				// sendRequest(formData, formKeyCC);
+				sendRequest(formData, formKeyCC);
     }
 
     // EVENTS
@@ -90,8 +90,8 @@
 				host = window.location.host;
 
 			if(localhost.test(host)){
-				formKey = '892e0c5e4c169c6128c7342614608330';
-				formKeyCC = '4dc5e322e62ad60d2b4ba5840a9c4e14';
+				formKey = 'delMeToDebugLocal' ;// '892e0c5e4c169c6128c7342614608330';
+				formKeyCC = 'delMeToDebugLocal' ;//|| '4dc5e322e62ad60d2b4ba5840a9c4e14';
 			}
 		}
 
