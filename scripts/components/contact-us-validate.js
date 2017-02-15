@@ -3,6 +3,7 @@
  */
 var $contactForm = $('.js_contact_form'),
 	formKey = 'd9878ccc8e22c7253d057015617f82cd',
+	formKeyCC = '4dc5e322e62ad60d2b4ba5840a9c4e14',
 	$textAreaDescription = $('#message-detail-text');
 
 var $modalAlert = $('#contact-alert-modal'),
@@ -18,11 +19,22 @@ function checkKey() {
 
 	if(localhost.test(host)){
 		formKey = '892e0c5e4c169c6128c7342614608330';
+		formKeyCC = '4dc5e322e62ad60d2b4ba5840a9c4e14';
 	}
 }
 
 $contactForm.submit(function(e){
 	var charCount = $textAreaDescription.val().length;
+	function sendRequest(formData,formKey) {
+		$.ajax({
+			dataType: 'jsonp',
+			url: "https://getsimpleform.com/messages/ajax?form_api_token="+formKey,
+			data: formData
+		}).done(function() {
+			//callback shows the 'thank you message'
+			showMsgSuccess('#contact-alert-modal');
+		});
+	}
 
 	e.preventDefault();
 	$('button', $contactForm).prop('disabled',true);
@@ -31,17 +43,14 @@ $contactForm.submit(function(e){
 		showMsgError('#contact-alert-modal-error',  charCount);
 		return false;
 	}
+	var formData = $contactForm.serialize();
 
-	$.ajax({
-		dataType: 'jsonp',
-		url: "https://getsimpleform.com/messages/ajax?form_api_token="+formKey,
-		data: $contactForm.serialize()
-	}).done(function() {
-		//callback shows the 'thank you message'
-		showMsgSuccess('#contact-alert-modal');
-	});
+	sendRequest(formData, formKey);
+	// sendRequest(formData, formKeyCC);
+	
 	return false; //to stop the form from submitting
 });
+
 function showMsgSuccess($modalAlert){
 	// Show message
 	$($modalAlert).modal();
