@@ -31,7 +31,7 @@
 			<div role="tabpanel" class="tab-pane active" id="all">
 				<section class="grid" id="grid-all">
 					{% for item in gallery_array %}
-						<section class="grid-item flipper" data-size="{% if item.cardsize == nil %}1.1{% else %}{{item.cardsize}}{% endif %}">
+						<section class="grid-item flipper">
 							<div class="card">
 								<div class="content">
 									<section class="front cardFront" style="background-image: url('{{item.img}}');">
@@ -51,11 +51,9 @@
 						</section>
 					{% endfor %}
 				</section>
-				{% if gallery_array.size > 12 %}
-					<div class="show-more clearfix">
-						<button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-all">Show more</button>
-					</div>
-				{% endif %}
+				<div class="show-more clearfix hide">
+					<button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-all">Show more</button>
+				</div>
 			</div>
 			
 			{% for tab in tab_array %}
@@ -66,7 +64,7 @@
 					{% for item in gallery_array %}
 						{% if item.tab == tab %}
 							{% assign category_items = array | push: {{item}} %}
-							<section class="grid-item flipper" data-size="{% if item.cardsize == nil %}1.1{% else %}{{item.cardsize}}{% endif %}">
+							<section class="grid-item flipper">
 								<div class="card">
 									<div class="content">
 										<section class="front cardFront" style="background-image: url('{{item.img}}');">
@@ -88,11 +86,9 @@
 					{% endfor %}
 				</section>
 				
-				{% if category_items.size > 12 %}
-					<div class="show-more clearfix">
-						<button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-{{tab}}">Show more</button>
-					</div>
-				{% endif %}
+				<div class="show-more clearfix hide">
+					<button class="btn btn-link" id="gallery-show-more" aria-controls="#grid-{{tab}}">Show more</button>
+				</div>
 			</div>
 			{% endfor %}
 		</section>

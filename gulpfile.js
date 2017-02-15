@@ -30,7 +30,8 @@ gulp.task('watch', function () {
 	gulp.watch([
 		'_includes/**/*.html',
 		'_layouts/**/*.html',
-		'*/**/*.md'
+		'*/**/*.md',
+		'scripts/pages/**/*.js'
 	], ['serve']);
 });
 
