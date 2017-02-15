@@ -15,13 +15,42 @@ Scenario: (developer-acct.ticketmaster.com/user/1554/apps/add) Verification for 
 When navigate to Pantheon Add New App page from User Account page
 Then check general page elements for Pantheon Add New App page
 
-Scenario: (Pantheon|Edit App) Edit app positive
-Given open my App
+Scenario: (Pantheon|Add new App) Add new App negative [2.1.15 Add New App - The required field is empty]
+Given navigate to Pantheon Add New App page from User Account page
+When enter to the field <appFormField> value <appName>
+When save changes on Edit App Page
+Then the <message> message is displayed
+Examples:
+|appFormField     |appName                  |message                                    |
+|Application name |mamax-Appd2              |Callback URL is required for Oauth Product |
+|Redirect URI     |https://ticketmaster.com |Application name field is required.        |
+
+Scenario: (Pantheon|Add new App) [2.1.5 Add new App with values positive]
+Given navigate to Pantheon Add New App page from User Account page
+When enter to the field Application name value uniqueApp
+When enter to the field Redirect URI value https://oauth.ticketmaster.com
+And save changes on Edit App Page
+Then the App Created! message is displayed
+And the uniqueApp is appeared in the list of apps
+
+Scenario: (Pantheon|Edit App) Edit app with empty required fields negative
+Given open my Apps page
+And open Edit App Page for the first application
+When clear field <appFormField> on Edit App Page
+And save changes on Edit App Page
+Then the <formError> message is displayed
+Examples:
+|appFormField     |formError                                  |
+|Application name |Application name field is required.        |
+|Redirect URI     |Callback URL is required for Oauth Product |
+
+Scenario: (Pantheon|Edit App) Edit app positive [2.1.8 Edit application]
+Given open my Apps page
 And open Edit App Page for the first application
 When clear field <appFormField> on Edit App Page
 And enter to the field <appFormField> value <appValue>
 And save changes on Edit App Page
-And open my App
+And open my Apps page
 And open Details tab on the application
 Then <detailName> have been applied on Edit App Page with value <appValue>
 Examples:
@@ -29,40 +58,9 @@ Examples:
 |Application name |mamax-Appdf                    |Application Name |
 |Redirect URI     |https://oauth.ticketmaster.com |Callback URL     |
 
-Scenario: (Pantheon|Edit App) Edit app with empty required fields negative
-Given open my App
-And open Edit App Page for the first application
-When clear field <appFormField> on Edit App Page
-And save changes on Edit App Page
-Then the form-error appeared on field <appFormField>
-Examples:
-|appFormField     |
-|Application name |
-|Redirect URI     |
-
-Scenario: (Pantheon|Add new App) Add new App positive [Add New App - App Name field with value]
-Given navigate to Pantheon Add New App page from User Account page
-When enter to the field <appFormField> value <appName>
-And save changes on Edit App Page
-Then the <message> is displayed
-And the <appName> is appeared in the list of apps
-Examples:
-|appFormField     |appName                       |message       |
-|Application name |mamax-Appd2                    |App Created!  |
-|Redirect URI     |https://oauth.ticketmaster.com |Callback URL     |
-
-Scenario: (Pantheon|Add new App) Add new App negative [Add New App - The required field is empty]
-Given navigate to Pantheon Add New App page from User Account page
-And make <requiredField> field empty
-When submit form on Add New App Page
-Then the form-error is appear on field <requiredField>
-Examples:
-|requiredField|
-|App Name     |
-|Redirect URI |
-
-Scenario: (Pantheon|Delete App) Delete App positive
-When delete predefined app
-Then the "App Deleted!" message is displayed
-And the predefined app is removed from the list of app
+Scenario: (Pantheon|Delete App) Delete App positive [2.1.9 Delete application]
+Given open my Apps page
+When delete first App
+Then the App Deleted! message is displayed
+And the predefined app is removed from the list of apps
 

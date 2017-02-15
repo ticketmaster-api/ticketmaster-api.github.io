@@ -4,6 +4,7 @@ import bla.tm.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class UserAppsSteps {
 
@@ -54,11 +55,25 @@ public class UserAppsSteps {
         addNewAppPage.getDetailsTab().click();
     }
 
-    public void checkIfMessageIsShown(String message) {
-        assertEquals(addNewAppPage.getPopUpMessage().getText(), message);
-    }
-
+    @Step
     public void checkIfTheAppIsPresent(String appName) {
         assertEquals(addNewAppPage.getAppName().getText(), appName);
     }
+
+    @Step
+    public void checkIfMessageIsDisplayed(String errorMessage) {
+        assertEquals(addNewAppPage.getPopUpMessage().getText(), errorMessage);
+    }
+
+    @Step
+    public void removeApp() {
+        addNewAppPage.clickDelete();
+    }
+
+    @Step
+    public void checkIsAppNotExists() {
+        assertFalse(addNewAppPage.checkIsPresent());
+        addNewAppPage.getNoApplicationText().shouldBeVisible();
+    }
+
 }

@@ -17,8 +17,8 @@ public class UserAppsDefinition {
         addNewAppPage.checkGeneralPageElements();
     }
 
-    @Given("open my App")
-    @When("open my App")
+    @Given("open my Apps page")
+    @When("open my Apps page")
     public void navigateToMyAppsPage(){
         addNewAppPage.navigateToMyAppsPage();
     }
@@ -44,6 +44,11 @@ public class UserAppsDefinition {
         addNewAppPage.applyChanges();
     }
 
+    @When("delete first App")
+    public void deleteApp(){
+        addNewAppPage.removeApp();
+    }
+
     @Then("$detailName have been applied on Edit App Page with value $appValue")
     public void changesHaveApplied(String detailName, String appValue){
         addNewAppPage.checkIfChangesAreApplied(detailName, appValue);
@@ -54,19 +59,19 @@ public class UserAppsDefinition {
         addNewAppPage.openDetailsTab();
     }
 
-    @Then("the $message is displayed")
-    public void messageIsShown(String message){
-        addNewAppPage.checkIfMessageIsShown(message);
-    }
-
     @Then("the $appName is appeared in the list of apps")
     public void appIsAppeared(String appName){
         addNewAppPage.checkIfTheAppIsPresent(appName);
     }
 
-    @Then("the form-error appeared on field $appFormField")
-    public void errorAppeared(){
+    @Then("the $message message is displayed")
+    public void errorAppeared(String errorMessage){
+        addNewAppPage.checkIfMessageIsDisplayed(errorMessage);
+    }
 
+    @Then("the predefined app is removed from the list of apps")
+    public void appIsRemovedFromTheListOfApps(){
+        addNewAppPage.checkIsAppNotExists();
     }
 
 }

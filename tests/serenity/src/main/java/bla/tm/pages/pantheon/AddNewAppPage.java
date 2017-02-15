@@ -4,6 +4,7 @@ import bla.tm.pages.AncestorPage;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,8 +26,17 @@ public class AddNewAppPage extends AncestorPage {
     @FindBy(xpath = "//a[text()='Details']")
     private WebElementFacade detailsTab;
 
-    @FindBy(xpath = "//div[@class='error-summary']")
+    @FindBy(xpath = "//div[@class='jGrowl-message']")
     private WebElementFacade errorMessage;
+
+    @FindBy(xpath = "//a[text()='Delete']")
+    private WebElementFacade deleteButton;
+
+    @FindBy(id = "edit-submit")
+    private WebElementFacade deleteApp;
+
+    @FindBy(xpath = "//h1")
+    private WebElementFacade noAppsMessage;
 
     public WebElementFacade getNameTextInput() {
         return nameTextInput;
@@ -66,5 +76,21 @@ public class AddNewAppPage extends AncestorPage {
 
     public WebElementFacade getAppName() {
         return appLink;
+    }
+
+    public void clickDelete() {
+        deleteButton.click();
+        deleteApp.click();
+    }
+
+    public boolean checkIsPresent() {
+        try { return appLink.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public WebElementFacade getNoApplicationText() {
+        return noAppsMessage;
     }
 }
