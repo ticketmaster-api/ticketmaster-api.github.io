@@ -64,4 +64,9 @@ public class UserAppsDefinition {
         addNewAppPage.checkIfTheAppIsPresent(appName);
     }
 
+    @Then("the form-error appeared on field $appFormField")
+    public void errorAppeared(){
+
+    }
+
 }
