@@ -120,20 +120,22 @@ div[w-theme="simple_countdown"][w-proportion="m"] .event-message-visible.cactus 
 	top: 0;
 }
 
-div[w-theme="simple_countdown"] .event-message-visible.cactus:after {
+div[w-theme="simple_countdown"] .event-message-visible.cactus:before {
 	content:"";
 	height: 165px;
 	display: block;
 	margin-top: -100px;
-	background: url("img-not-found-event.svg") no-repeat center;
+	/* TODO: update after release to  https://developer.ticketmaster.com/*/
+	/*background: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticket-box-img-small-white.svg") no-repeat center;*/
+	background: url("http://localhost:4000/assets/widgets/1.0.0/img/ticket-box-img-small-white.svg") no-repeat center;
 }
 
 div[w-theme="simple_countdown"] .event-message-visible.cactus .event-message__content {
-	width: 150px;
+	width: 160px;
 	text-transform: uppercase;
-	text-align: right;
-	opacity: .5;
-	margin: 0 46% 0 auto;
+	opacity: .7;
+	margin: 0 auto;
+	text-align: center;
 }
 
 /* event-message END*/

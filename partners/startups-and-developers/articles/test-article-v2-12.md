@@ -9,7 +9,7 @@ tags:
 img: /assets/img/S&D/2.jpg
 title: Title for the Selected Hero Image 12
 summary: Lorem ipsum
-tab: Hackathon
+tab: DevJam
 places: 
   - header 
   - gallery

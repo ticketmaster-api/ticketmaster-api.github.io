@@ -36,7 +36,6 @@ class CustomInput {
 				obj.nullableInt = data.value;
 				break;
 		}
-
 		this.value = data.value.extend(obj);
 		let model = ko.unwrap(validationModel);
 		model[data.name] = this.value;
@@ -63,7 +62,7 @@ class CustomInput {
 	}
 }
 
-module.exports = ko.components.register('custom-input', {
+ko.components.register('custom-input', {
 	viewModel: CustomInput,
 	template: `
 		<div data-bind="css: {[cssClass]: true, dirty: isDirty, virgin: isVirgin}" class="api-exp-custom-input">
@@ -83,3 +82,5 @@ module.exports = ko.components.register('custom-input', {
 			<p data-bind="validationMessage: value, css: {textarea: textarea}" class="custom-input__validation-message"></p>
 		</div>
 `});
+
+module.exports = CustomInput;

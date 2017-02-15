@@ -365,6 +365,14 @@ div[w-theme="listview"] .event-logo {
     color: #fff;
 }
 
+div[w-theme="listview"][w-colorscheme="dark"] .event-name {
+	color: #fff;
+}
+
+div[w-theme="listview"][w-colorscheme="dark"] .event-name:hover {
+	color: #009cde;
+}
+
 div[w-theme="listview"][w-colorscheme="dark"] .event-logo {
     color: #768692;
 }

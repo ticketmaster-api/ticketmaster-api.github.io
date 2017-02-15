@@ -1,0 +1,64 @@
+/**
+* Custom select component
+*/
+
+.js_custom_select_key {
+	width: 550px;
+	float: left;
+	position: relative;
+	.custom_select{
+		&__arrow {
+			z-index: 1;
+		}
+	}
+}
+
+//tablet
+@media #{$max-1200} {
+	.api-exp-custom-select {
+		&__field {
+		}
+		&__placeholder {
+			input {
+			}
+			&::after {
+			}
+		}
+		&__list {
+		}
+		&__item {
+			&-label {
+				&:hover,
+				&.active {
+				}
+			}
+			&-link {
+			}
+		}
+	}
+}
+
+//mobile
+@media #{$max-768} {
+	.api-exp-custom-select {
+		&__field {
+		}
+		&__placeholder {
+			input {
+			}
+			&::after {
+			}
+		}
+		&__list {
+		}
+		&__item {
+			&-label {
+				&:hover,
+				&.active {
+				}
+			}
+			&-link {
+			}
+		}
+	}
+}

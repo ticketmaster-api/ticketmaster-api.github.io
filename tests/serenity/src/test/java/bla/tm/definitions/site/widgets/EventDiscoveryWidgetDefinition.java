@@ -1,6 +1,6 @@
 package bla.tm.definitions.site.widgets;
 
-import bla.tm.definitions.site.WidgetValue;
+import bla.tm.steps.products_and_docs.WidgetFields;
 import bla.tm.steps.products_and_docs.PD_Widget_EventDiscoverySteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
@@ -8,14 +8,14 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
 
-public class EventDiscoveryWidgetDefinition extends WidgetValue{
+public class EventDiscoveryWidgetDefinition extends WidgetFields {
     @Steps
     PD_Widget_EventDiscoverySteps eventDiscoveryWidgetSteps;
 
     @Given("change all possible fields on the Event Discovery Widget page: $table")
     public void changeValuesOnMapPageWidget(ExamplesTable valuesTable) {
-        getWidgetValues(valuesTable);
-        eventDiscoveryWidgetSteps.changeValuesForAllFields(apiKey, keyWord, zipCode, city, attractionId, venueId, promoterId, source, countryCode, classificationName, eventCount);
+        getEventDiscoveryWidgetValues(valuesTable);
+        eventDiscoveryWidgetSteps.changeValuesForAllFields(apiKey, keyWord, postalCodeApi, city, attractionId, venueId, promoterId, source, countryCode, classificationName, eventCount);
     }
 
     @Given("store all fields values on the Event Discovery Widget page")
@@ -39,11 +39,17 @@ public class EventDiscoveryWidgetDefinition extends WidgetValue{
         eventDiscoveryWidgetSteps.setRadius(setValue);
     }
 
+    @When("use GeoPosition on Event Discovery Widget page")
+    public void useGeoPosition() {
+        eventDiscoveryWidgetSteps.useGeoPosition();
+    }
+
     @Given("change value of ZipCode $zipCode on Event Discovery Widget Page")
     @When("change value of ZipCode $zipCode on Event Discovery Widget Page")
     public void changeZipCode(String zipCode){
-        eventDiscoveryWidgetSteps.setZipCodeValue(zipCode);
+        eventDiscoveryWidgetSteps.setPostalCodeApiValue(zipCode);
     }
+
     //Then
     @Then("the required fields are not empty and have default values on the Event Discovery Widget page")
     public void checkThatRequiredFieldsAreNotEmpty() {

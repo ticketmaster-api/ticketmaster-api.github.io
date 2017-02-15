@@ -9,6 +9,7 @@ import * as modules from './modules';
 import * as customBindings from './customBindings';
 import * as components from './components';
 import * as services from './services';
+import * as restSrv from './services/rest.service';
 
 /**
  * Gets deep prop
@@ -34,6 +35,7 @@ class AppViewModel {
 	constructor({base = {}, apiKey, config, rest}) {
 		this.base = base;
 		this.apiKey = apiKey;
+		this.apiKeyInputId = '#api-key';
 		this.config = config;
 		this.restService = rest;
 
@@ -56,6 +58,7 @@ class AppViewModel {
 			this.validationModel($.extend({}, ko.unwrap(this.apiKeyValidationModel)));
 			this.selectedMethodData(this.getMethodData({methodId: val}));
 		});
+		$(this.apiKeyInputId).val( ko.unwrap(this.apiKey.value)).show();
 	}
 
 	/**
@@ -82,7 +85,8 @@ class AppViewModel {
 		let model = ko.validatedObservable($.extend({}, ko.unwrap(this.validationModel), ko.unwrap(this.apiKeyValidationModel)));
 
 		if (model.isValid()) {
-			this.restService.sendRequest();
+			let activeKey =  $(this.apiKeyInputId).val();
+			this.restService.sendRequest( activeKey );
 		} else {
 			this.formIsValid(false);
 			this.sendBtnValidationText(this.validationText);
@@ -180,12 +184,13 @@ class AppViewModel {
 	}
 }
 
+let app = new AppViewModel(services);
 /**
  * Activates knockout.js
  */
-ko.applyBindings(new AppViewModel(services));
+ko.applyBindings(app);
 
 /**
  * exports global variable
  */
-module.exports = services.base;
+module.exports = app;

@@ -44,10 +44,12 @@ function initMapLatLong() {
 	}
 
 	google.maps.event.addListener(map_latlong, 'click', function (event) {
+		var rootInput = 'w-latlong';
 		marker_latlong.setPosition(event.latLng);
 		marker_latlong.setMap(map_latlong);
 		marker_latlong.setAnimation(google.maps.Animation.DROP);
-		document.getElementById('w-latlong').value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
+		if( document.getElementById(rootInput) === null) rootInput = 'latlong';
+		document.getElementById(rootInput).value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
 		getAddress(event.latLng);
 	});
 
@@ -73,33 +75,18 @@ function initMapLatLong() {
 		marker_latlong.setPosition(place.geometry.location);
 		marker_latlong.setMap(map_latlong);
 		marker_latlong.setAnimation(google.maps.Animation.DROP);
-		document.getElementById('w-latlong').value = place.geometry.location.lat().toFixed(7) + ", " + place.geometry.location.lng().toFixed(7);
+		var rootInput = 'w-latlong';
+		if( document.getElementById(rootInput) === null) rootInput = 'latlong';
 		getAddress(place.geometry.location);
 		map_latlong.setZoom(7);
 	});
 
 	$('#js_widget_modal_map').on('shown.bs.modal', function() {
 		google.maps.event.trigger(map_latlong, 'resize');
+		// debugger;
 		var tmp_currentLatLng = document.getElementById('w-latlong').value.split(',');
 		var currentLatLng = new google.maps.LatLng(parseInt(tmp_currentLatLng[0].replace(/\s+/g, '')), parseInt(tmp_currentLatLng[1].replace(/\s+/g, '')));
 		map_latlong.setCenter(currentLatLng);
 	});
 }
 
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-72344127-1', 'auto');
-ga('send', 'pageview');
-(function () {
-	// var item = sessionStorage.getItem('tk-api-email');
-	function getCookie(name) {
-		var matches = document.cookie.match(new RegExp(
-			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-		));
-		return matches ? decodeURIComponent(matches[1]) : undefined;
-	}
-	var item = getCookie('tmemail');
-	$(".apigee-login").text(item && (item !== 'undefined') ?  item : "Login");
-})();

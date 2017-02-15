@@ -9,7 +9,7 @@ tags:
 img: /assets/img/S&D/people-3.png
 title: Title for the Selected Hero Image 5
 summary: Lorem ipsum
-tab: Events
+tab: DevJam
 places:
   - gallery  
 ---

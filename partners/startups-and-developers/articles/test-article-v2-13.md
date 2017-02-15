@@ -6,7 +6,7 @@ categories:
   - startup_and_development
 tags:
   - Meho  
-img: /assets/img/S&D/people-1.png
+img: /assets/img/S&D/1.jpg
 title: Title for the Selected Hero Image 13
 summary: Lorem ipsum
 tab: DevJam
