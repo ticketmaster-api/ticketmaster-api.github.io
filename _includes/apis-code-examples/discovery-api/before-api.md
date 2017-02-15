@@ -30,7 +30,7 @@ The API provides access to content sourced from various platform, including **Ti
 
 ### Event Coverage
 
-With over 230K+ events available in the API, coverage spans different countries, including **United States**, **Canada**, **Mexico**, **Australia**, **New Zealand**, **United Kingdom**, **Ireland**, other European countries, and more. More events and more countries are added on continuous basis.
+With <span class="js_available-events">over 230K+</span> events available in the API, coverage spans different countries, including **United States**, **Canada**, **Mexico**, **Australia**, **New Zealand**, **United Kingdom**, **Ireland**, other European countries, and more. More events and more countries are added on continuous basis.
 
 ![event map](/assets/img/products-and-docs/map.png)
 
