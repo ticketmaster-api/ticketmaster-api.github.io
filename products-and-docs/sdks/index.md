@@ -139,6 +139,10 @@ season tickets all in one trusted place.
 <div id="disqus_thread" style="margin-top: 50px;"></div>
 <script>
     var disqus_config = function () {
+        if (window.location.hostname != 'developer.ticketmaster.com') {
+            var pageURL = window.location.href.replace(window.location.host, 'developer.ticketmaster.com');
+            this.page.url = pageURL || "http://developer.ticketmaster.com/";
+        }
         this.page.url = document.URL || "http://developer.ticketmaster.com/";
         // this.page.identifier = "{{page.title}}";
         this.page.identifier = "http://developer.ticketmaster.com/products-and-docs/sdks/";
