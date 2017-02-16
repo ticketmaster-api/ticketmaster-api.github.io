@@ -213,9 +213,9 @@ class TicketmasterMapWidget {
 
             //this.clear();
 
-            this.useGeolocation();
-
             this.AdditionalElements();
+
+            this.useGeolocation();
 
             this.getCoordinates(() => {
                 this.makeRequest(this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs);

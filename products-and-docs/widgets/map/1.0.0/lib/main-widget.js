@@ -242,9 +242,9 @@ var TicketmasterMapWidget = function () {
 
             //this.clear();
 
-            this.useGeolocation();
-
             this.AdditionalElements();
+
+            this.useGeolocation();
 
             this.getCoordinates(function () {
                 _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
