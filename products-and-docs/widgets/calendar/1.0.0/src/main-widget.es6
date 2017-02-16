@@ -142,6 +142,18 @@ class TicketmasterCalendarWidget {
         // Only one allowed at the same time
         if(this.config.latlong){
             attrs.latlong = this.config.latlong;
+            if (this.widgetRoot.getAttribute('w-postalcodeapi') != null) {
+                /*
+                attrs.postalCode = this.widgetRoot.getAttribute('w-postalcodeapi');
+                attrs.latlong = '';
+                */
+                this.config.latlong = '';
+            }
+            if (this.widgetRoot.getAttribute('w-latlong') != null && this.widgetRoot.getAttribute('w-latlong') != '34.0390107,-118.2672801') {
+                attrs.latlong = this.widgetRoot.getAttribute('w-latlong');
+                attrs.postalCode = '';
+                this.config.postalcode = '';
+            }
         }else{
             if(this.isConfigAttrExistAndNotEmpty("postalcode"))
                 attrs.postalCode = this.config.postalcode;
@@ -839,34 +851,19 @@ class TicketmasterCalendarWidget {
         this.widgetRoot.style.width  = `${this.config.width}px`;
         this.widgetRoot.style.borderRadius = `${this.config.borderradius}px`;
         this.widgetRoot.style.borderWidth = `${this.borderSize}px`;
-        /*
-        this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
-        this.eventsRootContainer.style.width  = `${this.config.width}px`;
-        this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
-        this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
-        */
 
         this.getCurrentWeek();
 
         this.eventsRootContainer.classList.remove("border");
-        /*
-        let firstTab = document.querySelector('.tab');
-        firstTab.querySelector('.events-root-container .spinner-container').classList.add('hide');
-        */
+
         widget.querySelector('.events-root-container .spinner-container').classList.add('hide');
 
         if( this.config.hasOwnProperty("border") ){
             this.eventsRootContainer.classList.add("border");
         }
 
-        if(this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
+        if(!this.needToUpdate(this.config, oldTheme, this.updateExceptions) || this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
             this.clear();
-
-            /*
-            if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-                this.themeModificators[ this.widgetConfig.theme ]();
-            }
-            */
 
             this.getCoordinates(() => {
                 this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
@@ -1159,6 +1156,7 @@ class TicketmasterCalendarWidget {
             return `${key}=${attrs[key]}`;
         }).join("&");
         url = [url,attrs].join("?");
+        if (this.widgetRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + this.widgetRoot.getAttribute('w-postalcodeapi');
         url += '&sort=date,asc';
         this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
         if(method == "POST") {
@@ -1673,6 +1671,8 @@ class WeekScheduler {
         }).join("&");
 
         url = [url,attrs].join("?");
+        let thisSchedulerRoot = this.weekSchedulerRoot.parentNode.parentNode.parentNode;
+        if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
         url += '&sort=date,asc';
 
         this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
@@ -1992,6 +1992,9 @@ class WeekScheduler {
                             return `${key}=${attrs[key]}`;
                         }).join("&");
                         let url = widget.apiUrl + [url, attrs].join("?");
+                        this
+                        let thisSchedulerRoot = widget.weekSchedulerRoot.parentNode.parentNode.parentNode;
+                        if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
                         url += '&sort=date,asc';
                         prm.push(widget.getJsonAsync(url));
                     }
@@ -2433,6 +2436,8 @@ class MonthScheduler {
         }).join("&");
 
         url = [url,attrs].join("?");
+        let thisSchedulerRoot = this.monthSchedulerRoot.parentNode.parentNode.parentNode;
+        if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
         url += '&sort=date,asc';
 
         this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
@@ -2796,6 +2801,8 @@ class MonthScheduler {
                             return `${key}=${attrs[key]}`;
                         }).join("&");
                         let url = widget.apiUrl + [url, attrs].join("?");
+                        let thisSchedulerRoot = widget.monthSchedulerRoot.parentNode.parentNode.parentNode;
+                        if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
                         url += '&sort=date,asc';
                         prm.push(widget.getJsonAsync(url));
                     }
@@ -3527,6 +3534,8 @@ class YearScheduler {
                 return `${key}=${attrs[key]}`;
             }).join("&");
             let url = this.apiUrl + [url,attrs].join("?");
+            let thisSchedulerRoot = this.yearSchedulerRoot.parentNode.parentNode.parentNode;
+            if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
             url += '&sort=date,asc';
             prm.push(this.getJsonAsync(url));
         }

@@ -299,7 +299,8 @@
 
     var $configForm = $(".main-widget-config-form"),
         $widgetModal = $('#js_widget_modal'),
-        $widgetModalNoCode = $('#js_widget_modal_no_code');
+        $widgetModalNoCode = $('#js_widget_modal_no_code'),
+        $widgetModalMap = $('#js_widget_modal_map');
 
     $configForm.on("change", changeState);
     // Mobile devices. Force 'change' by 'Go' press
@@ -382,6 +383,54 @@
         }else{
             $self.removeClass(errorCssClass);
         }
+    });
+
+    $('#js_widget_modal_map__open').on('click', function(e){
+        e.preventDefault();
+        $widgetModalMap.modal();
+    });
+
+    $('#js_widget_modal_map__close').on('click', function(){
+        $widgetModalMap.modal('hide');
+        document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
+        widget.update();
+    });
+
+    $('.widget__location span').on('click', function(){
+        $('.widget__location').addClass('hidn');
+        $('.widget__latlong').removeClass('hidn');
+        document.getElementById('h-countryCode').value = document.getElementById('w-countryCode').value;
+        document.getElementById('h-postalcodeapi').value = document.getElementById('w-postalcodeapi').value;
+        document.getElementById('h-city').value = document.getElementById('w-city').value;
+        document.getElementById('w-latlong').value = document.getElementById('h-latlong').value;
+        widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
+        document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', widget.config.latlong);
+        document.querySelector('[w-type="calendar"]').removeAttribute('w-countrycode');
+        document.querySelector('[w-type="calendar"]').removeAttribute('w-postalcodeapi');
+        document.querySelector('[w-type="calendar"]').removeAttribute('w-city');
+        widget.config.countrycode = '';
+        widget.config.postalcode = '';
+        widget.config.city = '';
+        widget.update();
+    });
+
+    $('.widget__latlong span').on('click', function(){
+        $('.widget__latlong').addClass('hidn');
+        $('.widget__location').removeClass('hidn');
+        document.getElementById('h-latlong').value = document.getElementById('w-latlong').value.replace(/\s+/g, '');
+        document.getElementById('w-latlong').value = '';
+        document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
+        document.getElementById('w-countryCode').value = document.getElementById('h-countryCode').value;
+        document.getElementById('w-postalcodeapi').value = document.getElementById('h-postalcodeapi').value;
+        document.getElementById('w-city').value = document.getElementById('h-city').value;
+        widget.config.countrycode = document.getElementById('w-countryCode').value;
+        widget.config.postalcode = document.getElementById('w-postalcodeapi').value;
+        widget.config.city = document.getElementById('w-city').value;
+        document.querySelector('[w-type="calendar"]').setAttribute('w-countrycode', widget.config.countrycode);
+        document.querySelector('[w-type="calendar"]').setAttribute('w-postalcodeapi', widget.config.postalcode);
+        document.querySelector('[w-type="calendar"]').setAttribute('w-city', widget.config.city);
+        widget.config.latlong = '';
+        widget.update();
     });
 
     widget.onLoadCoordinate = function (results, countryShortName = '') {
