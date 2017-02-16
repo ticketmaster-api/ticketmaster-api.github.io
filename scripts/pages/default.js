@@ -44,12 +44,10 @@ function initMapLatLong() {
 	}
 
 	google.maps.event.addListener(map_latlong, 'click', function (event) {
-		var rootInput = 'w-latlong';
 		marker_latlong.setPosition(event.latLng);
 		marker_latlong.setMap(map_latlong);
 		marker_latlong.setAnimation(google.maps.Animation.DROP);
-		if( document.getElementById(rootInput) === null) rootInput = 'latlong';
-		document.getElementById(rootInput).value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
+		document.getElementById('w-latlong').value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
 		getAddress(event.latLng);
 	});
 
@@ -75,18 +73,15 @@ function initMapLatLong() {
 		marker_latlong.setPosition(place.geometry.location);
 		marker_latlong.setMap(map_latlong);
 		marker_latlong.setAnimation(google.maps.Animation.DROP);
-		var rootInput = 'w-latlong';
-		if( document.getElementById(rootInput) === null) rootInput = 'latlong';
+		document.getElementById('w-latlong').value = place.geometry.location.lat().toFixed(7) + ", " + place.geometry.location.lng().toFixed(7);
 		getAddress(place.geometry.location);
 		map_latlong.setZoom(7);
 	});
 
 	$('#js_widget_modal_map').on('shown.bs.modal', function() {
 		google.maps.event.trigger(map_latlong, 'resize');
-		// debugger;
 		var tmp_currentLatLng = document.getElementById('w-latlong').value.split(',');
 		var currentLatLng = new google.maps.LatLng(parseInt(tmp_currentLatLng[0].replace(/\s+/g, '')), parseInt(tmp_currentLatLng[1].replace(/\s+/g, '')));
 		map_latlong.setCenter(currentLatLng);
 	});
 }
-

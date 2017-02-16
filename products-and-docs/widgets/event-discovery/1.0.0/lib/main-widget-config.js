@@ -224,7 +224,7 @@
       var numInputClass = document.getElementById('w-radius');
       var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
       var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-        if (targetValue == '') {
+       if (targetValue == '') {
           numInputClass.setAttribute('disabled', 'disabled');
           numInputClass.value = '';
           incArrow.classList.add('disabled');
@@ -461,7 +461,7 @@
   $('#js_widget_modal_map__close').on('click', function () {
     $widgetModalMap.modal('hide');
     document.querySelector('[w-type="event-discovery"]').setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
-    // widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
+    widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
     widget.update();
   });
 
