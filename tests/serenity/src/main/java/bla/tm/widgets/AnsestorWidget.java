@@ -26,4 +26,5 @@ public interface AnsestorWidget extends WidgetObject {
     String getValueOf(String parameterName);
     String getKeywordTextFieldValue();
     String getZipCodeTextFieldValue();
+    void clickOnGeoPosition();
 }

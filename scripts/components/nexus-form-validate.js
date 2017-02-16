@@ -26,7 +26,6 @@ $nexusForm.submit(function(e){
     showMsgError('#nexus-alert-modal-error',  charCount);
     return false;
   }
-  console.log('formKey',formKey);
   $.ajax({
     dataType: 'jsonp',
     url: "https://getsimpleform.com/messages/ajax?form_api_token="+formKey,

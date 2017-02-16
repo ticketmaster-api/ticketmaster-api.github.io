@@ -68,9 +68,12 @@
                             $('.js_lazy-selector-classification').classificationSelector({selector:'classifications', use:'name'});
                         });
                     </script>
-				            <script src="{{'/scripts/pages/default.js' | prepend: site.baseurl }}"></script>
-				            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization,places&callback=initMapLatLong"></script>
                 {%endif%}
+				        {% if page.categories[2] == "widget-map" %}
+				          <script src="{{'/scripts/pages/default.js' | prepend: site.baseurl }}"></script>
+				          <script src="{{'/scripts/pages/default.analytics.js' | prepend: site.baseurl }}"></script>
+				          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization,places&callback=initMapLatLong"></script>
+				        {%endif%}
             {%endif%}
         {%endif%}
 

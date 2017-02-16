@@ -25,6 +25,26 @@
             $.fn.modal.Constructor.prototype.enforceFocus = function () {};
         }
 
+				updateEventpanelCounters('events');
+				/**
+				 * Get data for Counter
+				 * @param url {string}
+				 */
+				function updateEventpanelCounters(url) {
+					if (url !== 'countries') {
+						$.ajax({
+							method: 'GET',
+							url: ['https://degratnik-prod.apigee.net/discovery-api-proxy/v2/', url, '.json','?size=1','&locale=fr,de,fi,no,sv,nl,pl,es,da,en'].join(''),
+							async: true,
+							dataType: "json"
+						}).then(function (data) {
+							$('.js_available-events').text(data.page.totalPages.toLocaleString());
+						}).fail(function (err) {
+							console.error('Error: ', err);
+						})
+					}
+				}
+
         function toggleCodePanel(targetElement){
             var $textBtns = $('.toggle-code-btn'),
                 headers = $('.underline'),

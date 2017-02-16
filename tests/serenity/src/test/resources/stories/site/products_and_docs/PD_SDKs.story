@@ -13,7 +13,6 @@ Scenario: (products-and-docs/sdks/) Verification for all the page's links
 Given open SDKs page
 When check visibility and click <elementKey> element of SDKs page
 Then check that new page opened from SDKs page has <pageURL> and <pageTitle>
-
 Examples:
 elementKey           |pageURL                                            |pageTitle                       |
 SDK-Java Image       |https://github.com/ticketmaster-api/sdk-java       |//h1[@class='public ']/strong/a |
