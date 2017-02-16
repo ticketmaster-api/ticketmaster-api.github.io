@@ -98,6 +98,8 @@ div[w-theme="fullwidth"] .event-message {
 }
 
 div[w-theme="fullwidth"] .event-message__content {
+	text-transform: uppercase;
+	opacity: .7;
 }
 
 div[w-theme="fullwidth"] .event-message-visible {
@@ -131,6 +133,14 @@ div[w-theme="fullwidth"] .event-message-visible.cactus {
 	text-align: center;
 	background: none;
 	border-radius: 0;
+}
+div[w-theme="fullwidth"] .event-message-visible.cactus:before {
+	content:"";
+	height: 165px;
+	display: block;
+	margin-top: -100px;
+	/* TODO: update after release to  https://developer.ticketmaster.com/*/
+	background: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticket-box-img-small-white.svg") no-repeat center;
 }
 
 /* event-message END*/

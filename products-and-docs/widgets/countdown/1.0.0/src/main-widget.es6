@@ -579,7 +579,7 @@ class TicketmasterCountdownWidget {
         this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
       }else{
         // this.showMessage("No results were found.", true);
-        this.showMessage("No events were found.", true, 'cactus');
+        this.showMessage("No events were found", true, 'cactus');
         this.countdownClock.update(null);
       }
     }else{

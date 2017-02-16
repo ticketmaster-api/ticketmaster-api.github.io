@@ -126,8 +126,7 @@ div[w-theme="simple_countdown"] .event-message-visible.cactus:before {
 	display: block;
 	margin-top: -100px;
 	/* TODO: update after release to  https://developer.ticketmaster.com/*/
-	/*background: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticket-box-img-small-white.svg") no-repeat center;*/
-	background: url("http://localhost:4000/assets/widgets/1.0.0/img/ticket-box-img-small-white.svg") no-repeat center;
+	background: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticket-box-img-small-white.svg") no-repeat center;
 }
 
 div[w-theme="simple_countdown"] .event-message-visible.cactus .event-message__content {
