@@ -376,7 +376,7 @@ class TicketmasterMapWidget {
     AdditionalElements(){
         var nearMeBtn = document.createElement("span");
         nearMeBtn.classList.add('near-me-btn');
-        nearMeBtn.classList.add('dn');
+        if (this.widgetRoot.getAttribute("w-geoposition") !== 'on') nearMeBtn.classList.add('dn');
         nearMeBtn.setAttribute('title', 'Show events near me');
         this.widgetRoot.appendChild(nearMeBtn);
 
