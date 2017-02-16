@@ -44,10 +44,12 @@ function initMapLatLong() {
 	}
 
 	google.maps.event.addListener(map_latlong, 'click', function (event) {
+		var rootInput = 'w-latlong';
 		marker_latlong.setPosition(event.latLng);
 		marker_latlong.setMap(map_latlong);
 		marker_latlong.setAnimation(google.maps.Animation.DROP);
-		document.getElementById('w-latlong').value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
+		if( document.getElementById(rootInput) === null) rootInput = 'latlong';
+		document.getElementById(rootInput).value = event.latLng.lat().toFixed(7) + ", " + event.latLng.lng().toFixed(7);
 		getAddress(event.latLng);
 	});
 
@@ -73,7 +75,9 @@ function initMapLatLong() {
 		marker_latlong.setPosition(place.geometry.location);
 		marker_latlong.setMap(map_latlong);
 		marker_latlong.setAnimation(google.maps.Animation.DROP);
-		document.getElementById('w-latlong').value = place.geometry.location.lat().toFixed(7) + ", " + place.geometry.location.lng().toFixed(7);
+		var rootInput = 'w-latlong';
+		if( document.getElementById(rootInput) === null) rootInput = 'latlong';
+		document.getElementById(rootInput).value = place.geometry.location.lat().toFixed(7) + ", " + place.geometry.location.lng().toFixed(7);
 		getAddress(place.geometry.location);
 		map_latlong.setZoom(7);
 	});
@@ -85,3 +89,4 @@ function initMapLatLong() {
 		map_latlong.setCenter(currentLatLng);
 	});
 }
+
