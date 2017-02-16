@@ -4900,9 +4900,9 @@ commerce/{version}/shopping/carts/{cartId}/deliveries.{format}
 * `deliveries` (array) - **Required (at least one)** - container of add delivery requests.
     + `{array item object}` - an add delivery request.
         - `deliveryId` (string) - **Required** - the deliveryId.
-         - `selectedItems` (array) - **Required** - list of selected delivery items to be added to the cart.
-            * `{array reservation object}` - array of String.
-                + `reservation` (array) - **Required** - the reservation id.
+        - `op` (string) - **Required** - operation to be performed (add, remove).
+        - `selectedItems` (object) - _Optional_ - object representing selected delivery items to be added to the cart.
+          + `reservations` (array) - array of reservation ids.
 
 ### Response structure:
 
@@ -5038,7 +5038,8 @@ $.ajax({
   data: {
           "pollingCallbackUrl" : "http://requestb.in/14hknvt1",
           "deliveries":[{
-          		"deliveryId" : "ad20f8bc3e69a6c7a340c711731f2342"
+              "deliveryId" : "ad20f8bc3e69a6c7a340c711731f2342",
+              "op":"add"
           	}
           ]
         },
@@ -5056,7 +5057,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/commerce/v2/shopping/carts/{cartid}/deliveries.json?{apikey} -X PATCH -d '{"pollingCallbackUrl" : "http://requestb.in/14hknvt1","deliveries":[{"deliveryId" : "ad20f8bc3e69a6c7a340c711731f2342"}]}'
+--include 'https://app.ticketmaster.com/commerce/v2/shopping/carts/{cartid}/deliveries.json?{apikey} -X PATCH -d '{"pollingCallbackUrl" : "http://requestb.in/14hknvt1","deliveries":[{"deliveryId" : "ad20f8bc3e69a6c7a340c711731f2342","op":"add"}]}'
 {% endhighlight %}
 
 
@@ -5074,7 +5075,8 @@ Connection: Keep-Alive
 {
   "pollingCallbackUrl" : "http://requestb.in/14hknvt1",
   "deliveries":[{
-        "deliveryId" : "ad20f8bc3e69a6c7a340c711731f2342"
+      "deliveryId" : "ad20f8bc3e69a6c7a340c711731f2342",
+      "op":"add"
     }
   ]
 }
@@ -5421,9 +5423,10 @@ commerce/{version}/shopping/carts/{cartId}/payments.{format}
         - `amount` (object) - **Required** - the payment amount object.
             * `amount` (string) - **Required** - the payment amount.
             * `currency` (string) - **Required** - the payment currency.
+        - `op` (string) - **Required** - operation to be performed (add, remove).
         - `token` (string) - _**Required when wallet payment**_ - the wallet token.
         - `cvv` (string) - _**Required when wallet payment**_ - the cvv associated with wallet.
-        - `selectedItems` (array) - _Optional_ - list of the selected items to which this payment applies.
+        - `selectedItems` (object) - _Optional_ - object representing selected items to which this payment applies.
             * `{array item object}` - a selected payment item.
                 + `reservations` (array) - **Required** - list of the reservation ids.
 
@@ -5446,6 +5449,7 @@ $.ajax({
          "payments":[
            {
              "type":"wallet",
+             "op":"add",
              "token":"encryptedWalletToken1",
              "cvv":"123",
              "amount":{
@@ -5476,7 +5480,7 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/commerce/v2/shopping/carts/{cartid}/payments.json?{apikey} -X PATCH -d '{"pollingCallbackUrl" : "http://requestb.in/14hknvt1","payments":[{"type":"wallet","token":"encryptedWalletToken1","cvv":"123","amount":{"amount":"19.00","currency":"USD"}},{"type":"cash","amount":{"amount":"19.00","currency":"USD"}}]}'
+--include 'https://app.ticketmaster.com/commerce/v2/shopping/carts/{cartid}/payments.json?{apikey} -X PATCH -d '{"pollingCallbackUrl" : "http://requestb.in/14hknvt1","payments":[{"type":"wallet","op":"add","token":"encryptedWalletToken1","cvv":"123","amount":{"amount":"19.00","currency":"USD"}},{"type":"cash","amount":{"amount":"19.00","currency":"USD"}}]}'
 {% endhighlight %}
 
 
@@ -5496,6 +5500,7 @@ Connection: Keep-Alive
  "payments":[
    {
      "type":"wallet",
+     "op":"add",
      "token":"encryptedWalletToken1",
      "cvv":"123",
      "amount":{
@@ -5860,6 +5865,773 @@ Rate-Limit:
      }
   },
   "status": "200"
+}
+
+{% endhighlight %}
+
+## Get Payments 
+{: .article .console-link #get-payments}
+
+**Method:** GET
+Authentication required.
+
+This operation returns available payment options
+
+commerce/{version}/checkout/carts/{cartId}/payments.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `cartId`   | Cart ID. Required.   | string            | "c5d3fb70-f7cb-489d-823d-8103222f0c17.jash1" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+
+### Response structure:
+
+{: .nested-list }
++ `paymentOptions` (array) - payment options
+    - `{array item object}` - payment.
+        * `id` (string) - payment option id.
+        * `type` (string) - payment type.
+        * `attributes` (object) - the attributes of the payment options.
+            + `paymentType` (string) - payment type.
+            + `iconUrl` (string) - icon url for payment option.
+            + `securityCodeLength` (string) - length of security code (e.g. CVV for credit cards).
+            + `instrumentLength` (string) - length of instrument number (e.g. credit card number).
+            + `securityCodeRequired` (boolean) - is security code required.
+            + `displayName` (string) - human readable name of the of the payment option.
+            + `displayRank` (string) - display rank.
+            + `restrictions` (array)
+                - `{array item object}` - restriction
+                    * `type` (string) - type of restriction
+                    * `id` (string) - id
+                    * `offers` (array) - _Optional_ list of offer ids to be restricted
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/commerce/v2/checkout/carts/{cartid}/payments.json?{apikey}",
+  async:true,
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/commerce/v2/checkout/carts/{cartid}/payments.json?{apikey}
+{% endhighlight %}
+
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /commerce/v2/checkout/carts/{cartid}/payments.json?{apikey} HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+
+{
+  "paymentOptions": [
+    {
+      "id": "9",
+      "type": "paymentOption",
+      "attributes": {
+        "paymentType": "CREDITCARD",
+        "iconUrl": "https://s1.ticketm.net/tm/en-us/img/sys/common_new/payment_light/visa_medium_icon.png",
+        "securityCodeLength": "3",
+        "instrumentLength": "16",
+        "securityCodeRequired": true,
+        "displayName": "VISA",
+        "displayRank": "2",
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F003F003F003F001"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F003F003F003F001",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+
+{% endhighlight %}
+
+## Get Options
+{: .article .console-link #get-options}
+
+**Method:** GET
+Authentication required.
+
+This operation returns available payment options plus information about deliveries
+
+commerce/{version}/checkout/carts/{cartId}/options.{format}
+{: .code .red}
+
+### URL parameters:
+
+| Parameter  | Description          | Type              | Default Value      | Required |
+|:-----------|:---------------------|:----------------- |:------------------ |:-------- |
+| `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `cartId`   | Cart ID. Required.   | string            | "c5d3fb70-f7cb-489d-823d-8103222f0c17.jash1" | Yes      |
+| `format`   | API Response Format. | string            |       "json"       | Yes      |
+
+
+### Response structure:
+
+{: .nested-list }
++ `paymentOptions` (array) - payment options
+    - `{array item object}` - payment.
+        * `id` (string) - payment option id.
+        * `type` (string) - payment type.
+        * `attributes` (object) - the attributes of the payment options.
+            + `paymentType` (string) - payment type.
+            + `iconUrl` (string) - icon url for payment option.
+            + `securityCodeLength` (string) - length of security code (e.g. CVV for credit cards).
+            + `instrumentLength` (string) - length of instrument number (e.g. credit card number).
+            + `securityCodeRequired` (boolean) - is security code required.
+            + `displayName` (string) - human readable name of the of the payment option.
+            + `displayRank` (string) - display rank.
+            + `restrictions` (array)
+                - `{array item object}` - restriction
+                    * `type` (string) - type of restriction
+                    * `id` (string) - id
+                    * `offers` (array) - _Optional_ list of offer ids to be restricted
++ `deliveries` (array) - the deliveries
+	 - `{array item object}` - the delivery reference.
+	     * `id` (string) - the delivery id.
+	     * `type` (string) - '_delivery_'.
+	     * `attributes` (object) - the attributes of the delivery.
+	         * `deliveryType` (string) - the delivery type.
+	         * `displayRank` (string) - the display rank.
+	         - `totals` (object) - the total amounts for the delivery.
+	             * `currency` (string) - the code of the currency for the totals.
+	             * `fee` (string) - the total fees for the delivery.
+	             * `tax` (string) - the total taxes for the delivery.
+	             * `grand` (string) - the grand total of the delivery.
+	         - `description` (object) - the descriptions for the delivery.
+	             * `long` (string) - the long description.
+	             * `short` (string) - the short description.
+	         - `restrictions` (array) - the delivery restrictions.
+	             + `{array item object}` - the restrictions reference.
+	                 * `id` (string) - the product id.
+	                 * `type` (string) - '_*-restriction_'.
+	     * `relationships` (object) - the relationships of the delivery. 
+	         + `deliveryOptions` (object) - container for deliveryOption relationships.
+	             + `data` (array) - container for deliveryOption relationships.
+	                 - `{array item object}` - deliveryOption reference.
+	                      * `id` (string) - the deliveryOption id.
+	                      * `type` (string) - 'deliveryOptions'.
+- `_embedded` (object) - container for included (embedded) data.
+    * `deliveryOptions` (object) - container for included deliveryOptions data.
+        + `data` (array)
+            - `{array item object}` - a deliveryOption.
+                * `id` (string) - the deliveryOption id.
+                * `type` (string) - '_deliveryOption_'.
+                * `attributes` (object) - deliveryOption attributes.
+                    * `requiresAddress` (boolean) - true/false.
+                    * `requiresIdentification` (boolean) - true/false.
+                    - `description` (object) - the descriptions for the deliveryOption.
+						            * `long` (string) - the long description.
+						            * `short` (string) - the short description.
+				   		      - `excludedCountries` (array)
+						            + `{array item object}` - an excludedCountry.
+				                    * `id` (string) - the excludedCountry id.
+				                    * `type` (string) - '_accepted-delivery-country_'.
+				                    * `attributes` (object) - excludedCountry attributes.
+				             	          * `country` (string) - the country abbreviation. 
+
+{: .aside}
+>[JavaScript](#js)
+>[cURL](#curl)
+{: .lang-selector}
+
+{% highlight js %}
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/commerce/v2/checkout/carts/{cartid}/options.json?{apikey}",
+  async:true,
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+{% endhighlight %}
+
+{% highlight bash %}
+curl \
+--include 'https://app.ticketmaster.com/commerce/v2/checkout/carts/{cartid}/options.json?{apikey}
+{% endhighlight %}
+
+
+{: .article}
+>[Request](#req)
+>[Response](#res)
+{: .reqres}
+
+{% highlight HTTP %}
+GET /commerce/v2/checkout/carts/{cartid}/options.json?{apikey} HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+
+{% endhighlight %}
+
+{% highlight HTTP %}
+HTTP/1.1 200 OK
+
+{
+  "paymentOptions": [
+    {
+      "id": "9",
+      "type": "paymentOption",
+      "attributes": {
+        "paymentType": "CREDITCARD",
+        "iconUrl": "https://s1.ticketm.net/tm/en-us/img/sys/common_new/payment_light/visa_medium_icon.png",
+        "securityCodeLength": "3",
+        "instrumentLength": "16",
+        "displayName": "VISA",
+        "displayRank": "2",
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F003F003F003F001"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F003F003F003F001",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "7af0e652cdb7cbbaad93fe9087d25c65",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "DIGITAL",
+        "displayRank": "1",
+        "totals": {
+          "fee": "0.00",
+          "tax": "0.00",
+          "grand": "0.00",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Get in with:",
+          "short": "eTickets"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F005254B0F83534"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F005254B0F83534",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-1",
+              "type": "deliveryOptions"
+            },
+            {
+              "id": "delivery-option-2",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ace88ee53515edbc95cf6f98cdeb7123",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "DIGITAL",
+        "displayRank": "1",
+        "totals": {
+          "fee": "0.00",
+          "tax": "0.00",
+          "grand": "0.00",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Get in with:",
+          "short": "eTickets"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F005254B0F83534"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F005254B0F83534",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-3",
+              "type": "deliveryOptions"
+            },
+            {
+              "id": "delivery-option-4",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "5f4867621279e6246b2b254cb9bd6676",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "2DAYPM",
+        "displayRank": "3",
+        "totals": {
+          "fee": "18.50",
+          "tax": "0.00",
+          "grand": "18.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "By 7:30 PM in 2 business days via UPS (no delivery to PO Box or APO/FPO addresses).",
+          "short": "2 Business Day (Evening)"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F005254B0F83534"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F005254B0F83534",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-5",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "c4ca4238a0b923820dcc509a6f75849b",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "MAIL",
+        "displayRank": "6",
+        "totals": {
+          "fee": "0.50",
+          "tax": "0.00",
+          "grand": "0.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Your tickets will be mailed to your billing address within 10 to 14 days of your purchase.",
+          "short": "Standard Mail: Allow 10 to 14 days for delivery"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F005254B0F83534"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F005254B0F83534",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-6",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "45c48cce2e2d7fbdea1afc51c7c6ad26",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "AIRMAIL",
+        "displayRank": "8",
+        "totals": {
+          "fee": "0.50",
+          "tax": "0.00",
+          "grand": "0.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "Your tickets will be mailed to your billing address and delivered no later than 48 hours before the event in a plain unmarked white envelope.",
+          "short": "Canadian Airmail Mail"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F005254B0F83534"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F005254B0F83534",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-7",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "e7ef6789bda02c52bf2812cd17c47eb9",
+      "type": "delivery",
+      "attributes": {
+        "deliveryType": "WILLCALL",
+        "displayRank": "10",
+        "totals": {
+          "fee": "2.50",
+          "tax": "0.00",
+          "grand": "2.50",
+          "currency": "USD"
+        },
+        "description": {
+          "long": "For International Orders Only - Tickets held at Will Call can only be retrieved by the cardholder with original credit card of purchase and a valid photo ID with signature such as a government issued ID, driver's license or passport.",
+          "short": "International Will Call"
+        },
+        "restrictions": [
+          {
+            "type": "product-restriction",
+            "id": "3F005254B0F83534"
+          },
+          {
+            "type": "product-offer-restriction",
+            "id": "3F005254B0F83534",
+            "offers": [
+              "000000000001"
+            ]
+          }
+        ]
+      },
+      "relationships": {
+        "deliveryOptions": {
+          "data": [
+            {
+              "id": "delivery-option-8",
+              "type": "deliveryOptions"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "_embedded": {
+    "deliveryOptions": [
+      {
+        "id": "delivery-option-1",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": false,
+          "requiresIdentification": false,
+          "description": {
+            "availableDate": "2017-02-20T18:47:23.081Z",
+            "long": "Print your tickets and bring them to the event. Print anytime after <time> on <date> (we'll email you a reminder).",
+            "short": "Print-at-Home"
+          },
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-2",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "description": {
+            "long": "Go mobile, the easiest way in! Just show your ticket on your phone.",
+            "short": "Mobile"
+          },
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-3",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "description": {
+            "long": "Go mobile, the easiest way in! Just show your ticket on your phone.",
+            "short": "Mobile"
+          },
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-4",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": false,
+          "requiresIdentification": false,
+          "description": {
+            "availableDate": "2017-02-20T18:47:23.100Z",
+            "long": "Print your tickets and bring them to the event. Print anytime after <time> on <date> (we'll email you a reminder).",
+            "short": "Print-at-Home"
+          },
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-5",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-6",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": true,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-7",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": false,
+          "requiresIdentification": false,
+          "acceptedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "delivery-option-8",
+        "type": "deliveryOption",
+        "attributes": {
+          "requiresAddress": false,
+          "requiresIdentification": false,
+          "excludedCountries": [
+            {
+              "id": "1",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "AX"
+              }
+            },
+            {
+              "id": "2",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "RS"
+              }
+            },
+            {
+              "id": "3",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "BL"
+              }
+            },
+            {
+              "id": "4",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "BQ"
+              }
+            },
+            {
+              "id": "5",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CG"
+              }
+            },
+            {
+              "id": "6",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CW"
+              }
+            },
+            {
+              "id": "7",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "MF"
+              }
+            },
+            {
+              "id": "8",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "SS"
+              }
+            },
+            {
+              "id": "9",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "SX"
+              }
+            },
+            {
+              "id": "10",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "US"
+              }
+            },
+            {
+              "id": "11",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "CA"
+              }
+            },
+            {
+              "id": "12",
+              "type": "accepted-delivery-country",
+              "attributes": {
+                "country": "ND"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
 }
 
 {% endhighlight %}
