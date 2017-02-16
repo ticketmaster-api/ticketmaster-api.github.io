@@ -468,7 +468,7 @@
   $('#js_widget_modal_map__close').on('click', function(){
       $widgetModalMap.modal('hide');
       document.querySelector('[w-type="event-discovery"]').setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
-      // widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
+      widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
       widget.update();
   });
 
