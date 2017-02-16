@@ -3,34 +3,15 @@ package bla.tm.steps.products_and_docs;
 import bla.tm.pages.AncestorPage;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
-import org.junit.Assert;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static org.junit.Assert.assertTrue;
 
-public class PD_CommonSteps {
+public class PD_CommonSteps extends WidgetFields {
 
     AncestorPage ancestorPage;
-
-    protected final String[] listOfEditableParameters = { "apiKey", "keyword", "zipCode",
-            "attractionId", "venueId",
-            "promoterId", "city", "countryCode", "source",
-            "classificationName", "eventCount" };
-
-    @Step
-    public void checkThatEmbeddedHtmlCodeContainsStoredValues() {
-        for(String parameter : listOfEditableParameters) {
-            String embeddedValueOfParameter = ancestorPage.getWidget().getEmbeddedValueOf(parameter);
-            String storedValueOfParameter = (String) getCurrentSession().get(parameter);
-            if(parameter == "countryCode"){
-                embeddedValueOfParameter = getCountryNameByCode(embeddedValueOfParameter);
-            }
-            Assert.assertEquals(String.format("Stored value is %s, but embedded code is %s", storedValueOfParameter, embeddedValueOfParameter), storedValueOfParameter, embeddedValueOfParameter);
-        }
-    }
 
     public void changeValuesForAllFields(String apiKey, String keyword, String zipCode, String city, String attractionId, String venueId, String promoterId, String source, String countryCode, String classificationName, String eventCount) {
         ancestorPage.getWidget().setApiKeyValue(apiKey);

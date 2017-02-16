@@ -44,4 +44,10 @@ public interface EventDiscoveryWidget extends AnsestorWidget{
     String getPosterEventsCount();
 
     String getSelectedCountry();
+
+    void setPostalCodeApiValue(String zipCode);
+
+    String getValueOf(String parameterName);
+
+    String getPostalCodeApiValue();
 }

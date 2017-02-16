@@ -71,7 +71,6 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
         Assert.assertFalse("The API Key is empty", eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue().isEmpty());
     }
 
-
     @Step
     public void checkThatFoundEventsContainsText(String keyword) {
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setEventCountValue("1");
@@ -100,7 +99,7 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
     public void checkThatAllFieldsHaveBeenResetToDefaults() {
         Assert.assertEquals("The Api Key actual result does not equals expected result", getCurrentSession().get("apiKey"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue());
         Assert.assertEquals("The Keyword actual result does not equals expected result", getCurrentSession().get("keyword"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getKeywordValue());
-        Assert.assertEquals("The Zip Code actual result does not equals expected result", getCurrentSession().get("zipCode"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getZipCodeValue());
+        Assert.assertEquals("The Postal Code actual result does not equals expected result", getCurrentSession().get("postalCodeApi"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getPostalCodeApiValue());
         Assert.assertEquals("The Attraction Id actual result does not equals expected result", getCurrentSession().get("attractionId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAttractionIdValue());
         Assert.assertEquals("The Venue Id actual result does not equals expected result", getCurrentSession().get("venueId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getVenueIdValue());
 //        Assert.assertEquals("The Affiliate Id actual result does not equals expected result", getCurrentSession().get("affiliateId"), eventDiscoveryWidgetPage.getEventDiscoveryWidget().getAffiliateIdValue());
@@ -125,4 +124,45 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
         }
     }
 
+    @Step
+    public void changeValuesForAllFields(String apiKey, String keyword, String postalCodeApi, String city, String attractionId, String venueId, String promoterId, String source, String countryCode, String classificationName, String eventCount) {
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setApiKeyValue(apiKey);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setKeywordValue(keyword);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setPostalCodeApiValue(postalCodeApi);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setCityValue(city);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setAttractionIdValue(attractionId);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setVenueIdValue(venueId);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setPromoterIdValue(promoterId);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setSourceValue(source);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setCountryCodeValue(countryCode);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setClassificationNameValue(classificationName);
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setEventCountValue(eventCount);
+    }
+
+    private final String[] listOfEditableParameters = { "apiKey", "keyword", "postalCodeApi",
+            "attractionId", "venueId",
+            "promoterId", "city", "countryCode", "source",
+            "classificationName", "eventCount" };
+
+    @Step
+    public void checkThatEmbeddedHtmlCodeContainsStoredValues() {
+        for(String parameter : listOfEditableParameters) {
+            String embeddedValueOfParameter = ancestorPage.getEventDiscoveryWidget().getEmbeddedValueOf(parameter);
+            String storedValueOfParameter = (String) getCurrentSession().get(parameter);
+            if(parameter == "countryCode"){
+                embeddedValueOfParameter = getCountryNameByCode(embeddedValueOfParameter);
+            }
+            Assert.assertEquals(String.format("Stored value is %s, but embedded code is %s", storedValueOfParameter, embeddedValueOfParameter), storedValueOfParameter, embeddedValueOfParameter);
+        }
+    }
+
+    @Step
+    public void setPostalCodeApiValue(String postalCodeApi) {
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().setPostalCodeApiValue(postalCodeApi);
+    }
+
+    @Step
+    public void useGeoPosition() {
+        eventDiscoveryWidgetPage.getEventDiscoveryWidget().clickOnGeoPosition();
+    }
 }

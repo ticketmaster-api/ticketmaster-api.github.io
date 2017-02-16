@@ -10,7 +10,7 @@ img: /assets/img/S&D/1.jpg
 title: Title for the Selected Hero Image 1
 summary: Lorem ipsum
 tab: Hackathon
-size: 1.2
+cardsize: 1.2
 places:
   - gallery
 ---

@@ -262,7 +262,8 @@ var TicketmasterMapWidget = function () {
         value: function getCoordinates(cb) {
             var widget = this;
             if (this.config.postalcode) {
-                attrs.postalcode = this.config.postalcode;
+                widget.config.postalcode = this.config.postalcode;
+                cb(widget.config.postalcode);
             } else {
                 // Used in builder
                 if (widget.onLoadCoordinate) widget.onLoadCoordinate(null);
@@ -401,7 +402,6 @@ var TicketmasterMapWidget = function () {
         value: function useGeolocation() {
             var widget = this;
             var clickNearMe = function clickNearMe(e) {
-                console.log('Clicked!');
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var latitude = position.coords.latitude;

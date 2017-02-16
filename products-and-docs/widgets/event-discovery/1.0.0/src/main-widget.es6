@@ -87,11 +87,16 @@ class TicketmasterEventDiscoveryWidget {
   }
   
   get eventReqAttrs(){
+    let WidgetRoot = this.eventsRootContainer.parentNode;
     let attrs = {},
     params = [
       {
         attr: 'tmapikey',
         verboseName: 'apikey'
+      },
+      {
+          attr: 'latlong',
+          verboseName: 'latlong'
       },
       {
         attr: 'keyword',
@@ -141,12 +146,8 @@ class TicketmasterEventDiscoveryWidget {
         attrs[item.verboseName] = this.config[item.attr];
     }
 
-    // Only one allowed at the same time
     if(this.config.latlong){
-      attrs.latlong = this.config.latlong;
-    }else{
-      if(this.isConfigAttrExistAndNotEmpty("postalcode"))
-        attrs.postalCode = this.config.postalcode;
+        attrs.latlong = this.config.latlong.replace(/\s+/g, '');
     }
 
     if(this.isConfigAttrExistAndNotEmpty("period")){
@@ -155,7 +156,19 @@ class TicketmasterEventDiscoveryWidget {
       attrs.endDateTime = period[1];
     }
 
-    return attrs;
+    if (WidgetRoot.getAttribute("w-latlong") != null) {
+        attrs.latlong = WidgetRoot.getAttribute("w-latlong").replace(/\s+/g, '');
+    }
+
+    if (attrs.latlong == ',') {
+        delete attrs.latlong;
+    }
+
+    if (attrs.latlong == null) {
+        delete attrs.latlong;
+    }
+
+  return attrs;
   }
 
   constructor(root) {
@@ -229,7 +242,23 @@ class TicketmasterEventDiscoveryWidget {
         if (this.isListView || this.isListViewThumbnails) this.addScroll();
     }
   }
-  
+
+  /*
+  getCoordinates(cb){
+      let widget = this;
+      if(this.config.postalcode) {
+          widget.config.postalcode = this.config.postalcode;
+          cb(widget.config.postalcode);
+      }else{
+          // Used in builder
+          if(widget.onLoadCoordinate) widget.onLoadCoordinate(null);
+          widget.config.latlong = '';
+          // widget.config.countrycode = '';
+          cb(widget.config.latlong);
+      }
+  }
+  */
+
   getCoordinates(cb){
     let widget = this;
 
@@ -859,10 +888,6 @@ class TicketmasterEventDiscoveryWidget {
       this.stopAutoSlideX();
     }
 
-    /*if(this.config.theme !== null){
-      this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-    }*/
-
     this.widgetRoot.style.height = `${this.widgetHeight}px`;
     this.widgetRoot.style.width  = `${this.config.width}px`;
     this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
@@ -875,7 +900,7 @@ class TicketmasterEventDiscoveryWidget {
       this.eventsRootContainer.classList.add("border");
     }
 
-    if(this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
+    if(!this.needToUpdate(this.config, oldTheme, this.updateExceptions) || this.needToUpdate(this.config, oldTheme, this.updateExceptions)){
       this.clear();
 
       if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
@@ -906,7 +931,6 @@ class TicketmasterEventDiscoveryWidget {
   needToUpdate(newTheme, oldTheme, forCheck = []){
     return Object.keys(newTheme).map(function(key){
       if(forCheck.indexOf(key) > -1) return true;
-      //console.warn([key, newTheme[key], oldTheme[key], newTheme[key] === oldTheme[key]])
       return newTheme[key] === oldTheme[key] ;
     }).indexOf(false) > -1
   }
@@ -931,7 +955,6 @@ class TicketmasterEventDiscoveryWidget {
         document.getElementsByTagName("head")[0].appendChild(style);
       }
       else {
-        //alert("theme wasn't loaded");
         console.log("theme wasn't loaded");
       }
     }
@@ -1187,6 +1210,7 @@ class TicketmasterEventDiscoveryWidget {
     }).join("&");
 
     url = [url,attrs].join("?");
+    if (this.widgetRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + this.widgetRoot.getAttribute('w-postalcodeapi');
     url += '&sort=date,asc';
 
     this.xmlHTTP = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
