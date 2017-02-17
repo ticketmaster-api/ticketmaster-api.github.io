@@ -83,6 +83,11 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-webkit-line-clamp: 2;
+	color: #009cde;
+}
+
+.gm-style-iw .name:hover {
+	color: #2a7cc7;
 }
 
 .gm-style-iw .date {
@@ -178,6 +183,7 @@ div[w-theme="simple"] .events-root-container{
 	background-color: #e5e5e5;
 	border-style: solid;
 	border-color: #ccc;
+	border: solid 1px #b7c9d3;
 }
 
 div[w-theme="simple"] ul{
@@ -358,6 +364,31 @@ div[w-theme="simple"] .legal-notice:hover,
 div[w-theme="simple"] .legal-notice:focus,
 div[w-theme="simple"] .legal-notice:active{
 	color: #019cde;
+}
+
+div[w-theme="simple"] .near-me-btn {
+	display: block;
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	/* background: #fff url("/assets/widgets/1.0.0/img/ic-near-me.svg") 0 0 no-repeat; */
+	background: #fff url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ic-near-me.svg") 0 0 no-repeat;
+	border-radius: 2px;
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+	z-index: 10;
+	right: 9px;
+	bottom: 50%;
+	margin-bottom: -65px;
+}
+
+div[w-theme="simple"] .near-me-btn:hover {
+	/* background: #fff url("/assets/widgets/1.0.0/img/ic-near-me.svg") 0 -28px no-repeat; */
+	background: #fff url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ic-near-me.svg") 0 -28px no-repeat;
+	cursor: pointer;
+}
+
+div[w-theme="simple"] .near-me-btn.dn {
+	display: none;
 }
 
 div[w-theme="simple"] .events-counter {

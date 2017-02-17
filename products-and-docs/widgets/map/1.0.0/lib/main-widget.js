@@ -244,6 +244,8 @@ var TicketmasterMapWidget = function () {
 
             this.AdditionalElements();
 
+            this.useGeolocation();
+
             this.getCoordinates(function () {
                 _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
             });
@@ -260,7 +262,8 @@ var TicketmasterMapWidget = function () {
         value: function getCoordinates(cb) {
             var widget = this;
             if (this.config.postalcode) {
-                attrs.postalcode = this.config.postalcode;
+                widget.config.postalcode = this.config.postalcode;
+                cb(widget.config.postalcode);
             } else {
                 // Used in builder
                 if (widget.onLoadCoordinate) widget.onLoadCoordinate(null);
@@ -395,8 +398,36 @@ var TicketmasterMapWidget = function () {
         // End message
 
     }, {
+        key: "useGeolocation",
+        value: function useGeolocation() {
+            var widget = this;
+            var clickNearMe = function clickNearMe(e) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        e.target.parentNode.setAttribute('w-latlong', latitude + ',' + longitude);
+                        widget.update();
+                    });
+                }
+            };
+
+            var buttons = document.getElementsByClassName("near-me-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                var current = buttons[i];
+                current.addEventListener('click', clickNearMe, false);
+                current.addEventListener('touchstart', clickNearMe, false);
+            }
+        }
+    }, {
         key: "AdditionalElements",
         value: function AdditionalElements() {
+            var nearMeBtn = document.createElement("span");
+            nearMeBtn.classList.add('near-me-btn');
+            if (this.widgetRoot.getAttribute("w-geoposition") !== 'on') nearMeBtn.classList.add('dn');
+            nearMeBtn.setAttribute('title', 'Show events near me');
+            this.widgetRoot.appendChild(nearMeBtn);
+
             var legalNoticeContent = document.createTextNode('Legal Notice'),
                 legalNotice = document.createElement("a");
             legalNotice.appendChild(legalNoticeContent);
@@ -509,6 +540,7 @@ var TicketmasterMapWidget = function () {
                     events[i].style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
                 }
             }
+            this.useGeolocation();
         }
     }, {
         key: "needToUpdate",
@@ -658,7 +690,6 @@ var TicketmasterMapWidget = function () {
                     if (widget.events.length) {
 
                         var myLatLng = { lat: 34.0390107, lng: -118.2672801 };
-                        var latlngbounds = new google.maps.LatLngBounds();
 
                         var map = new google.maps.Map(document.getElementById('map'), {
                             zoom: 4,
@@ -671,6 +702,8 @@ var TicketmasterMapWidget = function () {
                                 position: google.maps.ControlPosition.RIGHT_CENTER
                             }
                         });
+
+                        var latlngbounds = new google.maps.LatLngBounds();
 
                         widget.groupEventsByName.call(widget);
 

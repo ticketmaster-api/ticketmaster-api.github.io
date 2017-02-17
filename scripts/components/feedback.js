@@ -4,6 +4,8 @@
         $modalAlert = $('#feedback-alert-modal'),
         $modalAlertError = $('#feedback-alert-modal-error'),
         $form = $modal.find('#js_feedback_form'),
+				formKey = 'd9878ccc8e22c7253d057015617f82cd', //production key
+				formKeyCC = '0d9da5473940d4380dc3a16fb47a2c55', //CC key
         $email = $form.find('#email'),
         $btn = $modal.find('#js_feedback_btn'),
         $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
@@ -34,7 +36,21 @@
 
     function submitForm(){
         var $textAreaDescription = $('#description'),
-            charCount = $textAreaDescription.val().length;
+					charCount = $textAreaDescription.val().length,
+					formData = $form.serialize();
+					sendRequest = function (formData,formKey) {
+						$.ajax({
+							dataType: 'jsonp',
+							url: "https://getsimpleform.com/messages/ajax?form_api_token="+formKey,
+							data: formData
+						}).done(function() {
+							// Close dialog
+							$modal.modal('hide');
+
+							// Show message
+							$modalAlert.modal('show');
+						});
+					};
         if(3000 < charCount) {
             showMsgError('#feedback-alert-modal-error',  charCount);
             return false;
@@ -42,19 +58,8 @@
 
         $email.val($email.val().toLocaleLowerCase());
 
-        $.ajax({
-            dataType: 'jsonp',
-            url: $form.attr('action'),
-            data: $form.serialize()
-        }).done(function() {
-
-            // Close dialog
-            $modal.modal('hide');
-
-            // Show message
-            $modalAlert.modal('show');
-
-        });
+				sendRequest(formData, formKey);
+				sendRequest(formData, formKeyCC);
     }
 
     // EVENTS
@@ -79,6 +84,17 @@
         },delay);
     }
 
+		/*set new key for localhost*/
+		function checkKey() {
+			var localhost = /(localhost:4000)+/ig,
+				host = window.location.host;
+
+			if(localhost.test(host)){
+				formKey = 'delMeToDebugLocal' ;// '892e0c5e4c169c6128c7342614608330';
+				formKeyCC = 'delMeToDebugLocal' ;//|| '4dc5e322e62ad60d2b4ba5840a9c4e14';
+			}
+		}
+
     $btnAlertOk.on('click', function(){
         $modalAlert.modal('hide');
         clearBody(310); //310 - time of fading bootstrap modal
@@ -91,6 +107,8 @@
         $modal.modal('show');
         $btn.attr('disabled', false);
     });
+
+		checkKey(formKey);
 
     //$modal.on('hidden.bs.modal', resetForm);
 

@@ -453,22 +453,77 @@
 	border: none;
 }
 
+#w-latlong {
+	padding-right: 40px;
+}
+
 .widget__latlong {
 	.latlong-holder {
 		position: relative;
 	}
 	.latlong-picker {
 		position: absolute;
-		width: 32px;
-		height: 32px;
+		width: 28px;
+		height: 28px;
 		display: block;
-		background: url('/assets/widgets/1.0.0/img/marker.svg') center center no-repeat;
-		top: 38px;
-		left: 256px;
-		cursor: pointer;
+		background: url('/assets/widgets/1.0.0/img/ic-show-map.svg') 0 0 no-repeat;
+		bottom: 34px;
+		right: 23px;
+		&:hover {
+			background: url('/assets/widgets/1.0.0/img/ic-show-map.svg') 0 -28px no-repeat;
+		}
 	}
 }
 
+#js_widget_modal_map {
+  .modal-body {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+  .col-lg-12 {
+		margin: 0;
+		padding: 0;
+	}
+	.map-holder {
+		overflow: hidden;
+		margin-bottom:30px;
+	}
+	#map_latlong {
+		width: 100%;
+		height: 450px;
+	}
+	#map_address {
+		float: left;
+		float: left;
+		max-width: 300px;
+		text-align: left;
+		#map_address_country {
+			display: block;
+			font-family: 'TMSans-Bold',Helvetica,Arial,sans-serif;
+		}
+	}
+	#js_widget_modal_map__close {
+		float: right;
+	}
+}
+
+#pac_input {
+	width: 96%;
+	margin: 0 auto;
+	font-family: 'TMSans-Regular', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	left: 0;
+	right: 0;
+	top: 15px !important;
+	padding: 5px 10px;
+}
+
+.pac-container {
+	font-family: 'TMSans-Regular', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	z-index: 1051 !important;
+}
 
 .widget-wordpress-page {
   h2 {
@@ -544,4 +599,94 @@
     }
   }
 
+}
+
+input[type=checkbox]:not(:checked)+label,
+input[type=checkbox]:checked+label {
+	padding-left: 30px;
+	padding-right: 0px;
+}
+
+input[type="checkbox"]:not(:checked)+label:before,
+input[type="checkbox"]:checked+label:before {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 24px;
+	height: 24px;
+	background: #fff;
+	right: auto;
+	top: auto;
+	left: 0px;
+}
+
+input[type="checkbox"]:not(:checked)+label:hover:before,
+input[type="checkbox"]:not(:checked)+label:focus:before,
+input[type="checkbox"]:checked+label:hover:before,
+input[type="checkbox"]:checked+label:focus:before {
+	outline: none;
+	border: 1px solid #ccc !important;
+}
+
+input[type="checkbox"]:not(:checked)+label:after,
+input[type="checkbox"]:checked+label:after {
+	width: 13px;
+	height: 10px;
+	background: url("/assets/controls/ic-chekmark-blue.svg") center center no-repeat;
+	left: 6px;
+	top: 7px;
+}
+
+.tooltip {
+	position: absolute;
+	z-index: 1070;
+	display: block;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	letter-spacing: normal;
+	line-break: auto;
+	line-height: 1.42857;
+	text-align: left;
+	text-align: start;
+	text-decoration: none;
+	text-shadow: none;
+	text-transform: none;
+	white-space: normal;
+	word-break: normal;
+	word-spacing: normal;
+	word-wrap: normal;
+	font-size: 12px;
+	opacity: 1;
+	filter: alpha(opacity=0);
+}
+
+.tooltip-inner {
+	max-width: 200px;
+	padding: 3px 8px;
+	color: #fff;
+	text-align: center;
+	background-color: #b7c9d3;
+	border-radius: 4px;
+}
+
+.tooltip.left {
+	margin-left: -3px;
+	padding: 0 5px;
+}
+
+.tooltip-inner::before {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+}
+
+.tooltip.left .tooltip-inner::before {
+	top: 50%;
+	right: 0;
+	margin-top: -5px;
+	content: "";
+	border-width: 5px 0 5px 5px;
+	border-left-color: #b7c9d3;
 }

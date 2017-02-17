@@ -1,5 +1,5 @@
 require('jquery-migrate-1.3.0.min');
-require('expose?ko!knockout');
+require('expose-loader?ko!knockout');
 require('jstree');
 require('lazy-selector');
 require('classification-selector');
@@ -7,7 +7,7 @@ require('bootstrap.min');
 require('./validation');
 require('slick.min');
 require('knockout-scrollbar');
-require('expose?Clipboard!clipboard');
+require('expose-loader?Clipboard!clipboard');
 require('clamp.min');
 require('knockout-postbox');
 require('datetimepicker');

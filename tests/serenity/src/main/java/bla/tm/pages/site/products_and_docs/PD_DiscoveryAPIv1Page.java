@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 import java.util.HashMap;
 import java.util.Map;
 
-@DefaultUrl("/products-and-docs/apis/discovery/v1/")
+@DefaultUrl("/products-and-docs/apis/discovery-api/v1/")
 public class PD_DiscoveryAPIv1Page extends AncestorPage {
 
     public final String pageHeader = "DISCOVERY API";

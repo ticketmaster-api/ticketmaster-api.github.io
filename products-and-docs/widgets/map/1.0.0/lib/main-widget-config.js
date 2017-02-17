@@ -11,7 +11,7 @@
     function getBorderByTheme(theme) {
         switch (theme) {
             case 'simple':
-                return 0;
+                return 1;
                 break;
             default:
                 return 2;
@@ -36,16 +36,16 @@
                 layout: 'horizontal'
             },
             custom: {
-                width: 300,
+                width: 350,
                 height: 600,
                 layout: 'vertical'
             }
         },
         initSliderSize: {
-            width: 300,
+            width: 350,
             height: 600,
-            maxWidth: 600,
-            minWidth: 300
+            maxWidth: 500,
+            minWidth: 350
         }
     },
         isPostalCodeChanged = false;
@@ -234,7 +234,7 @@
                 sizeConfig = {
                     width: 620,
                     height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
-                    maxWidth: 620,
+                    maxWidth: 900,
                     minWidth: 620
                 };
             }
@@ -263,7 +263,7 @@
                 width: themeConfig.sizes[targetValue].width,
                 height: themeConfig.sizes[targetValue].height,
                 maxWidth: 1200,
-                minWidth: 300
+                minWidth: 350
             };
 
             document.getElementById('map').style.width = themeConfig.sizes[targetValue].width + 'px';
@@ -304,7 +304,7 @@
 
     var resetWidget = function resetWidget(configForm) {
         var widgetNode = document.querySelector("div[w-tmapikey]"),
-            width = 300,
+            width = 350,
             height = 600,
             theme = void 0,
             layout = void 0;
@@ -337,7 +337,6 @@
                 $(item).prop("selectedIndex", -1);
             });
             widgetNode.setAttribute($self.attr('name'), value);
-            if ($self.attr('name') === 'w-tm-api-key') widgetNode.removeAttribute($self.attr('name'));
         });
 
         configForm.find("input[type='radio']").each(function () {
@@ -368,10 +367,12 @@
         widgetNode.removeAttribute('w-source');
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
-        document.getElementById('map').style.width = '300px';
+        document.getElementById('map').style.width = '350px';
         document.getElementById('map').style.height = '600px';
         widget.onLoadCoordinate();
         widget.update();
+        // document.querySelector('.widget-container-wrapper').removeAttribute('style');
+        containerMove();
     };
 
     var $configForm = $(".main-widget-config-form"),
@@ -386,7 +387,7 @@
         e.preventDefault();
     });
 
-    $configForm.find("input[type='text'], input[type='number']").each(function () {
+    $configForm.find("input[type='text'], input[type='number'], input[type='checkbox']").each(function () {
         var $self = $(this);
         $self.data('default-value', $self.val());
     });
@@ -433,6 +434,7 @@
     });
 
     $('#js_widget_modal_map__open').on('click', function (e) {
+        e.preventDefault();
         $widgetModalMap.modal();
     });
 
@@ -477,6 +479,18 @@
         document.querySelector('[w-type="map"]').setAttribute('w-city', widget.config.city);
         widget.config.latlong = '';
         widget.update();
+    });
+
+    $('#w-geoposition').on('click', function () {
+        if ($(this).val() == undefined || $(this).val() == 'off') {
+            document.querySelector('[w-type="map"]').setAttribute("w-geoposition", "on");
+            $(this).val('on');
+            document.querySelector('.near-me-btn').classList.remove('dn');
+        } else {
+            document.querySelector('[w-type="map"]').setAttribute("w-geoposition", "off");
+            $(this).val('off');
+            document.querySelector('.near-me-btn').classList.add('dn');
+        }
     });
 
     widget.onLoadCoordinate = function (results) {
