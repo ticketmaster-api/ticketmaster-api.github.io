@@ -10,6 +10,7 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "
   "products-and-docs/widgets/event-discovery/1.0.0/src",
   "products-and-docs/widgets/map/1.0.0/src"
   ]
+# products-and-docs","support", "events" , "partners"
 highlighter: rouge
 markdown: kramdown
 # Themes are encouraged to use these universal variables
