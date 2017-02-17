@@ -97,7 +97,7 @@ to search multiple domains. (A logical OR search is performed).
 
 ##### Pagination
 You can paginate the results by specifying the number of rows to return, and the start row. The default 
-start is 0 and the default rows is 10. There is a maximum of 500 
+start is 0 and the default rows is 10. There is a maximum of 250 
 
 + `start` = `10` (optional, integer)
 + `rows` = `20` (optional, integer)
@@ -157,7 +157,7 @@ location, venue, date, availability, attraction (artist, sport, package, play an
 |`include_external_events` | A flag which when set to 'true' returns external events, which were events from other Ticketmaster platforms or partners with a more limited set of data fields in the response. | Boolean | No |
 |`sort_by` | The method for sorting the results. Proximity can only be used where a lat and long is used as a query parameter. Default: eventdate. Possible values:  eventdate , eventname , popularity , proximity . | string | No |
 |`order` | The order in which results are sorted, whether ascending or descending. Default: asc. Possible values:  asc , desc . | string | No |
-|`rows` | The number of rows to return, up to a maximum of 500. Default: 10. | Integer | No |
+|`rows` | The number of rows to return, up to a maximum of 250. Default: 10. | Integer | No |
 |`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
 
 
@@ -2722,7 +2722,7 @@ to search multile domains. (A logical OR search is performed).
 |`domain_ids` | norway , sweden , finland , belgium, netherlands, denmark, germany, austria, unitedarabemirates, canada, poland | string |
 
 ##### Pagination 
-You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 500 
+You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 250 
 
 + `start` = `0` (optional, integer)
 
@@ -2749,7 +2749,7 @@ There are additional parameters which allow you to filter the search by attracti
 |`has_events` | A flag which when set to 'true' gives only attractions with events on sale.| boolean | No |
 |`sort_by` | The method for sorting the results. Proximity can only be used where a lat and long is used as a query parameter. Default: attraction_name.| string | No |
 |`order` | The order in which results are sorted, whether ascending or descending. Default: asc. | string | No |
-|`rows` | The number of rows to return, up to a maximum of 500. Default: 10. | Integer | No |
+|`rows` | The number of rows to return, up to a maximum of 250. Default: 10. | Integer | No |
 |`query` | This parameter searches the attraction name with a certain amount of fuzzy matching. | String | No |
 |`attraction_category_ids` | Attraction category id | String | No |
 |`attraction_subcategory_ids` | Attraction subcategory id | String | No |
@@ -4242,21 +4242,21 @@ https://app.ticketmaster.eu/mfxapi/v1/venues
 |`lang` | The language in ISO code format. The default language is specified in the Domains List service. Usually two or three languages are supported. Example: no-no. | string | No |
 |`venuename` | The venue name. Use a comma separated list of values to search multiple venues. (A logical OR search is performed). Example: Rockefeller. | string | No |
 |`venue_ids` | The unique identifier for the venue which is linked to the domain. Use a comma separated list of values to search multiple venues. Example: no-no. | string | No |
-|`city_ids` | The unique identifier for the City. Use a comma separated list of values to search multiple Cities. (A logical OR search is performed). Supported City names and IDs are available in the Cities List service. Example: 40500. | string | No |
+|`city_ids` | The unique identifier for the City. Use a comma separated list of values to search multiple Cities. (A logical OR search is performed). Supported City names and IDs are available in the Cities List service. Example: 40. | string | No |
 |`postal_code` | The postal code or zip code of the venue. Example: 0151. | string | No |
 |`lat` | The latitude of the required search location. Example: 59.9047. | string | No |
 |`lat` | The longitude of the required search location. Example: 10.7497. | string | No |
 |`radius` | The radius to be applied to results where a location (lat, long) is used as a query parameter. The radius is given in km. Example: 50. | Integer | No |
 |`sort_by` | The method for sorting the results. Default: venuename. Possible values:  venuename , cityname . | string | No |
 |`order` | The order in which results are sorted, whether ascending or descending. Default: asc. Possible values:  asc , desc . | string | No |
-|`rows` | The number of rows to return, up to a maximum of 500. Default: 10. | Integer | No |
+|`rows` | The number of rows to return, up to a maximum of 250. Default: 10. | Integer | No |
 |`start` | The offset for pagination which specifies the start row to return. Default: 0. | Integer | No |
 
 
 #### Query Parameters
 
 ##### Pagination 
-You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 500 rows. 
+You can paginate the results by specifying the number of rows to return, and the start row. There is a maximum of 250 rows. 
 
 + `rows` = `10` (optional, integer) 
 + `start` = `0` (optional, integer)
