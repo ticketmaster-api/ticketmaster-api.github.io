@@ -159,12 +159,17 @@
   }
   h3 {
     margin-top: 0;
+		max-width: 480px;
     &:target:before {
       content: "";
       display: block;
       height: 138px;
       margin: -138px 0 0;
     }
+		@media #{$max-1200} {
+			font-size: 36px;
+			line-height: 46px;
+		}
   }
   &.android {
     background-color: #f1f4f6;
@@ -231,15 +236,6 @@
     @media #{$max-768} {
       margin: 27px auto;
     }
-  }
-}
-
-//widgets box
-//.discovery_widget_box {
-#direct-payments {
-  @media #{$max-1200} {
-    font-size: 36px;
-    line-height: 46px;
   }
 }
 

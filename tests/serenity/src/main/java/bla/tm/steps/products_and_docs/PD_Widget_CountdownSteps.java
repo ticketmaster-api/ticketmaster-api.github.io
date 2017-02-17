@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class PD_Widget_CountdownSteps {
+public class PD_Widget_CountdownSteps extends PD_CommonSteps {
 
     PD_Widget_CountdownPage countdownWidgetPage;
 
@@ -78,7 +78,7 @@ public class PD_Widget_CountdownSteps {
     @Step
     public void checkThatPopupEmbeddedCodeIsOpened() {
         assertTrue(countdownWidgetPage.getCountdownWidget().getEmbeddedHtmlCode().isDisplayed());
-        waitForSomeActionHappened(2000);
+        waitForSomeActionHappened(1000);
     }
 
     @Step

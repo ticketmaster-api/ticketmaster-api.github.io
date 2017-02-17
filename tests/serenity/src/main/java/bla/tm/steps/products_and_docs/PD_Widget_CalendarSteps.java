@@ -6,7 +6,7 @@ import net.thucydides.core.annotations.Step;
 import static bla.tm.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.*;
 
-public class PD_Widget_CalendarSteps {
+public class PD_Widget_CalendarSteps extends PD_CommonSteps {
 
     PD_Widget_CalendarPage calendarWidgetPage;
 
@@ -63,8 +63,6 @@ public class PD_Widget_CalendarSteps {
                 break;
             case "zipCode": value = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
                 break;
-            case "radius": value = calendarWidgetPage.getCalendarWidget().getRadiusDropdownValue();
-                break;
             default: throw new IllegalArgumentException(String.format("Invalid field name %s", valueName));
         }
         Serenity.getCurrentSession().put(valueName, value);
@@ -90,8 +88,6 @@ public class PD_Widget_CalendarSteps {
                 break;
             case "zipCode": calendarWidgetPage.getCalendarWidget().setZipCodeTextFieldValue(randomZipCode);
                 break;
-            case "radius": calendarWidgetPage.getCalendarWidget().setRadiusDropdownValueTo15();
-                break;
             default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", randomValueFor));
         }
     }
@@ -102,23 +98,6 @@ public class PD_Widget_CalendarSteps {
         assertTrue(String.format("Country field contains %s but expected result is: %s", countryValue, countryName), countryValue.equalsIgnoreCase(countryName));
     }
 
-    @Step
-    public void fieldEqualsStoredValue(String fieldName) {
-        String storedValue = (String) Serenity.getCurrentSession().get(fieldName);
-        String fieldValue;
-        switch (fieldName){
-            case "apiKey": fieldValue = calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue();
-                break;
-            case "keyword": fieldValue = calendarWidgetPage.getCalendarWidget().getKeywordTextFieldValue();
-                break;
-            case "zipCode": fieldValue = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
-                break;
-            case "radius": fieldValue = calendarWidgetPage.getCalendarWidget().getRadiusDropdownValue();
-                break;
-            default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", fieldName));
-        }
-        assertTrue(String.format("The field (%s) equal %s but it does not equal stored value (%s).", fieldName, fieldValue, storedValue), storedValue.equalsIgnoreCase(fieldValue));
-    }
 
     @Step
     public void setZipCodeValue(String zipCodeValue) {

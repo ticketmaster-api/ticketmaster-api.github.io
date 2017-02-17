@@ -37,16 +37,16 @@ Email us and we'll do our best to respond within 12 hours!
 Whether it's pen to paper or straight from your printer, address all mail to:
 
 {: .left-margin .clear-margin .left-border}
-Live Nation Entertainment, Inc. 
+Live Nation Entertainment, Inc.
 
 {: .left-margin .clear-margin .left-border}
-9348 Civic Center Drive 
+9348 Civic Center Drive
 
 {: .left-margin .clear-margin .left-border}
-Beverly Hills, CA 90210 
+Beverly Hills, CA 90210
 
 {: .left-margin .clear-margin .left-border}
-Attn: Trademark Department, Legal 
+Attn: Trademark Department, Legal
 
 {: .left-margin .clear-margin .left-border}
 [copyrightofficer@livenation.com](mailto:copyrightofficer@livenation.com)
@@ -139,51 +139,46 @@ Attn: Trademark Department, Legal 
 </div>
 
 <!--contact us form -->
-<script>
-var $contactForm = $('.js_contact_form'),
-    $textAreaDescription = $('#message-detail-text');
 
-    $contactForm.submit(function(e){
-        var charCount = $textAreaDescription.val().length;
+<!-- Modal alert-->
+<div id="contact-alert-modal" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
 
-        e.preventDefault();
-        $('button', $contactForm).prop('disabled',true);
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center">Thank you for contacting us!</h3>
+        <p class="text-center">We will review and respond promptly.</p>
+        <div class="modal-footer">
+          <button id="js_contact_btn_alert_ok" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
 
-        if(3000 <= charCount) {
-          showMsgError('#message-error', 4000 , charCount);
-          return false;
-        }
+  </div>
+</div>
+<!-- Modal alert end-->
 
-        $.ajax({
-          dataType: 'jsonp',
-          url: "https://getsimpleform.com/messages/ajax?form_api_token=d9878ccc8e22c7253d057015617f82cd",
-          data: $contactForm.serialize() 
-        }).done(function() {
-          //callback which can be used to show a thank you message
-          //and reset the form
-          showMsgSuccess('#message-success', 4000);
-        });
-        return false; //to stop the form from submitting
-    }); 
-    function showMsgSuccess(id, delay){
-        $(id).slideDown(400).delay( delay ).slideUp(200);
-        $contactForm.trigger("reset");
-        $('.js_custom_select',$contactForm).trigger("custom-reset");
-        //$textAreaDescription.css('height',''); //reset height of textarea
-        $('button', $contactForm).prop('disabled',false);
-    }
-    function showMsgError(id, delay, charCount){
-        var slideUpSpeed = 200;
-        $(id).append('<span id="contact-char-count"> Current count is '+charCount+'</span>')
-        $(id).slideDown(400).delay( delay ).slideUp(slideUpSpeed);
-        setTimeout(
-          function(){
-              $('#contact-char-count').remove();
-              $('button', $contactForm).prop('disabled',false);
-          },
-          delay + slideUpSpeed*3);
-    }
-</script>
+<!-- Modal alert Error-->
+<div id="contact-alert-modal-error" class="modal modal-common modal-common-sm fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title col-lg-12 text-center text-overflow-message__red">Error</h3>
+        <p id="nexus-text-overflow-message" class="text-center">The maximum length of description can be 3000 characters.</p>
+        <div class="modal-footer">
+          <button id="js_contact_btn_alert_ok-error" type="button" class="btn btn-submit text-center">Ok</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal alert end-->
+<script src="/scripts/components/contact-us-validate.js"></script>
+<!--contact us form END -->
 
 <script>
 (function ($) {

@@ -31,10 +31,10 @@ layout: documentation-single
 						w-keyword=""
 						w-theme="simple"
 						w-colorscheme="light"
-						w-width="300"
+						w-width="350"
 						w-height="600"
 						w-size="25"
-						w-border="0"
+						w-border="1"
 						w-borderradius="4"
 						w-postalcode=""
 						w-radius=""
@@ -48,6 +48,7 @@ layout: documentation-single
 						w-affiliateid=""
 						w-segmentid=""
 						w-proportion="custom"
+						w-geoposition="off"
 					></div>
 				</div>
 			</div>
@@ -88,7 +89,6 @@ layout: documentation-single
 <!-- Modal widget-->
 <div id="js_widget_modal" class="modal modal-common fade" role="dialog">
 	<div class="modal-dialog">
-
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
@@ -113,7 +113,6 @@ layout: documentation-single
 				<button id="js_widget_modal__close" type="button" class="btn btn-submit text-center">Ok</button>
 			</div>
 		</div>
-
 	</div>
 </div>
 <!-- Modal widget end-->
@@ -122,7 +121,6 @@ layout: documentation-single
 <!-- Modal has no code-->
 <div id="js_widget_modal_no_code" class="modal modal-common modal-common-sm fade" role="dialog">
 	<div class="modal-dialog">
-
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-body">
@@ -133,11 +131,11 @@ layout: documentation-single
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 <!-- Modal has no code end-->
 
+{% include latlong-selector-modal.html %}
 
 <script type="text/javascript" src="{{"/scripts/components/api-key-service.js?v=1" | prepend: site.baseurl }}"></script>
 <script type="text/javascript">

@@ -1,7 +1,6 @@
 package bla.tm.widgets;
 
 import net.serenitybdd.core.annotations.ImplementedBy;
-import net.serenitybdd.core.pages.WebElementFacade;
 
 @ImplementedBy(CountdownWidgetImpl.class)
 public interface CountdownWidget extends AnsestorWidget{
@@ -10,8 +9,6 @@ public interface CountdownWidget extends AnsestorWidget{
     void submitForm();
     void setApiKey(String apiKey);
     void setEventId(String eventId);
-    void clickResetButton();
-    String getAPIKeyTextFieldValue();
     String getEventIDTextFieldValue();
     void clickOnGetEventId();
     void enterKeyword(String keyword);

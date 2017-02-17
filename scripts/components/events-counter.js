@@ -53,7 +53,7 @@
     if (url !== 'countries') {
       $.ajax({
         method: 'GET',
-        url: ['https://app.ticketmaster.com/discovery/v2/', url, '.json?apikey=', apiKey].join(''),
+        url: ['https://degratnik-prod.apigee.net/discovery-api-proxy/v2/', url, '.json','?size=1','&locale=fr,de,fi,no,sv,nl,pl,es,da,en'].join(''),
         async: true,
         dataType: "json"
       }).then(function (data) {
@@ -62,7 +62,7 @@
         renderValue(url, quantity);
         countAnimate(url, quantity);
       }).fail(function (err) {
-        onFailHandler(url, 0.15);
+        onFailHandler(url, 15);
         console.error('Error: ', err);
       })
     }
