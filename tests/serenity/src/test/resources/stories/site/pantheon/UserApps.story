@@ -50,6 +50,7 @@ And open Edit App Page for the first application
 When clear field <appFormField> on Edit App Page
 And enter to the field <appFormField> value <appValue>
 And save changes on Edit App Page
+And the App Updated! message is displayed
 And open my Apps page
 And open Details tab on the application
 Then <detailName> have been applied on Edit App Page with value <appValue>

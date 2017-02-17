@@ -13,7 +13,6 @@ Scenario: (/products-and-docs/tutorials/) Verification for all the page's links
 Given open Tutorials page
 When check visibility and click <elementKey> element of Tutorials page
 Then check that new page opened from Tutorials page has <pageURL> and <pageTitle>
-
 Examples:
 |                 elementKey              |                            pageURL                                   |   pageTitle  |
 |   Adding Event Discovery Widget Button  |{url}/products-and-docs/tutorials/widgets/Event_Discovery_Widget.html |     //h1     |
