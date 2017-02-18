@@ -72,6 +72,8 @@ Retrieve reservable seat information based on specific criteria.
 | `sections` | Comma-separated section names | string | GA,103,201 | No |
 | `prices` | Price range | numbers | 50,150 | No |
 | `page` | Page number   | numbers | 1 | No |
+| `limit` | Elements per page   | numbers | 10 | No (default=30) |
+
 
 ### Response structure:
 
