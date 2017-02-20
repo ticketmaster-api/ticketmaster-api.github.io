@@ -38,6 +38,7 @@ class AppViewModel {
 		this.apiKeyInputId = '#api-key';
 		this.config = config;
 		this.restService = rest;
+		this.paramsIsHiden = ko.observable(true);
 
 		let parsedUrl = this.parseUrl();
 		// observables
@@ -55,6 +56,7 @@ class AppViewModel {
 		this.sharePath = ko.pureComputed(() => this.formDeepLinkingUrl());
 
 		this.selectedMethod.subscribe(val => {
+			this.paramsIsHiden(true);
 			this.validationModel($.extend({}, ko.unwrap(this.apiKeyValidationModel)));
 			this.selectedMethodData(this.getMethodData({methodId: val}));
 		});
@@ -83,17 +85,17 @@ class AppViewModel {
 	 */
 	onClickSendBtn() {
 		let model = ko.validatedObservable($.extend({}, ko.unwrap(this.validationModel), ko.unwrap(this.apiKeyValidationModel)));
-
 		if (model.isValid()) {
 			let activeKey =  $(this.apiKeyInputId).val();
-			this.restService.sendRequest( activeKey );
+			this.restService.sendRequest(activeKey);
 		} else {
+			this.paramsIsHiden(false); // slide toggle when params are not valid
 			this.formIsValid(false);
 			this.sendBtnValidationText(this.validationText);
 			model.errors.showAllMessages();
 		}
 	}
-
+	
 	formDeepLinkingUrl() {
 		let location = window.location;
 		let category = ko.unwrap(this.selectedCategory);
