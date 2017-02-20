@@ -45,8 +45,8 @@ $contactForm.submit(function(e){
 	}
 	var formData = $contactForm.serialize();
 
-	sendRequest(formData, formKey);
-	// sendRequest(formData, formKeyCC);
+	//sendRequest(formData, formKey);
+	sendRequest(formData, formKeyCC);
 	
 	return false; //to stop the form from submitting
 });
