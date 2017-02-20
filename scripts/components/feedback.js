@@ -58,7 +58,7 @@
 
         $email.val($email.val().toLocaleLowerCase());
 
-				sendRequest(formData, formKey);
+				//sendRequest(formData, formKey);
 				sendRequest(formData, formKeyCC);
     }
 
