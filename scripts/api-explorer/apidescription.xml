@@ -826,7 +826,69 @@
 				</request>
 			</method>
 		</resource>
-		
+
+		<!-- Get Payments -->
+		<resource path="commerce/{version}/checkout/carts/{cartId}/payments.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="cartId" required="true" type="xsd:string" style="template" default="">
+				<doc>The cart id</doc>
+			</param>
+			<param name="format" required="false" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="commerce.checkout.payment.get" name="GET" apigee:displayName="Get Payments">
+				<apigee:tags>
+					<apigee:tag primary="true">Commerce API</apigee:tag>
+					<apigee:tag>Commerce</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="commerce/v2/checkout/carts/c906b302-8248-4454-bca1-2dd938d8afa1.intqa/payments.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-payments">Get Payments!
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+
+		<!-- Get Options -->
+		<resource path="commerce/{version}/checkout/carts/{cartId}/options.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="cartId" required="true" type="xsd:string" style="template" default="">
+				<doc>The cart id</doc>
+			</param>
+			<param name="format" required="false" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="commerce.checkout.options.get" name="GET" apigee:displayName="Get Options">
+				<apigee:tags>
+					<apigee:tag primary="true">Commerce API</apigee:tag>
+					<apigee:tag>Commerce</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="commerce/v2/checkout/carts/c906b302-8248-4454-bca1-2dd938d8afa1.intqa/options.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-options">Get Options!
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+
 		<!-- Purchase -->
 		<resource path="commerce/{version}/shopping/carts/{cartId}/purchase.{format}">
 			<param name="version" required="true" type="xsd:string" style="template" default="v2">
