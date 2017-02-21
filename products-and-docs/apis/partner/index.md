@@ -1525,7 +1525,7 @@ Get shipping options available for this event.  Note: some API users will be pre
 /partners/v1/events/{event_id}/cart/shipping?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
-*Polling: Yes*
+*Polling: No*
 
 ### Parameters
 
@@ -1616,7 +1616,7 @@ Add a shipping option to the event.  Note: some API users will be pre-configured
 /partners/v1/events/{event_id}/cart/shipping?apikey={apikey}&cart_id={cart_id}
 {: .code .red}
 
-*Polling: No*
+*Polling: Yes*
 
 ### Parameters
 
