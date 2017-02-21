@@ -37,6 +37,8 @@ class TicketmasterMapWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
+    get widgetVersion() { return "1.0.0"; }
+
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
     get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey", "latlong"]}
@@ -399,11 +401,28 @@ class TicketmasterMapWidget {
         logoBox.appendChild(logo);
         this.eventsRootContainer.appendChild(logoBox);
 
-        let question = document.createElement('a');
+        let question = document.createElement('span');
         question.classList.add("event-question");
         question.target = '_blank';
         question.href = this.questionUrl;
+        question.addEventListener('click', toolTipHandler);
         this.eventsRootContainer.appendChild(question);
+
+        let toolTip = document.createElement('div'),
+            tooltipHtml = `
+              <div class="tooltip-inner"> 
+                <a href="${this.questionUrl}" target = "_blank" >About widget</a>
+                <div class="place">version: <b>${this.widgetVersion}</b></div>
+              </div>`;
+        toolTip.classList.add("tooltip-version");
+        toolTip.classList.add("left");
+        toolTip.innerHTML = tooltipHtml;
+        this.eventsRootContainer.appendChild(toolTip);
+
+        function toolTipHandler(e) {
+            e.preventDefault();
+            e.target.nextSibling.classList.toggle('show-tip');
+        }
     }
 
     formatDate(date) {
