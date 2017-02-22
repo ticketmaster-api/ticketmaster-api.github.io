@@ -52,7 +52,7 @@ class AppViewModel {
 
 		// computed
 		this.sendButtonText = ko.pureComputed(() => ko.unwrap(this.selectedMethodData).method);
-
+		this.requestInProgress = this.restService.requestInProgress;
 		this.sharePath = ko.pureComputed(() => this.formDeepLinkingUrl());
 
 		this.selectedMethod.subscribe(val => {

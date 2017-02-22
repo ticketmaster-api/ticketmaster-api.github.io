@@ -76,7 +76,10 @@
 				</div>
 
 				<!--filter-->
-				<methods-filter params="data: base, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType, selectedMethod: selectedMethod">
+				<methods-filter params="data: base,
+						selectedCategory: selectedCategory,
+						selectedMethodType: selectedMethodType,
+						selectedMethod: selectedMethod">
 					<radio-filter params="data: data, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType"></radio-filter>
 					<custom-select params="options: methodsViewModel, onselect: onSelectMethod, selected: selectedMethodName"></custom-select>
 				</methods-filter>
@@ -89,7 +92,17 @@
 		<!--request btn-->
 		<section class="api-exp-get-btn clearfix">
 			<span class="api-exp-get-btn-validation-message" data-bind="visible: sendBtnValidationText, text: sendBtnValidationText"></span>
-			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn, enable: formIsValid" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
+			<button data-bind="css: sendButtonText, click: onClickSendBtn, enable: formIsValid"
+			        class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">
+				<span data-bind="text: sendButtonText, css: { 'hide': requestInProgress}">Get</span>
+				<span data-bind="css: {'hide': !requestInProgress()}" class="spinner hide">
+					<span class="rect rect-1"></span>
+					<span class="rect rect-2"></span>
+					<span class="rect rect-3"></span>
+					<span class="rect rect-4"></span>
+					<span class="rect rect-5"></span>
+				</span>
+			</button>
 		</section>
 	</div>
 
