@@ -18,8 +18,7 @@ class MapPanelBody {
 	}
 }
 
-
-module.exports = ko.components.register('map-panel-body', {
+ko.components.register('map-panel-body', {
 	viewModel: MapPanelBody,
 	template:`
 		<section class="map-panel-body">
@@ -28,3 +27,5 @@ module.exports = ko.components.register('map-panel-body', {
 			</a>
 		</section>
 `});
+
+module.exports = MapPanelBody;

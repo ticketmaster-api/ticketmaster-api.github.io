@@ -5,6 +5,10 @@ gulp.task('server', shell.task([
 	'jekyll serve --no-watch'
 ]));
 
+gulp.task('serve', shell.task([
+	'jekyll build -I --limit_posts 1'
+]));
+
 gulp.task('serve-watch', ['js'], shell.task([
 	'jekyll build -I --limit_posts 1'
 ]));
@@ -32,7 +36,7 @@ gulp.task('watch', function () {
 		'_layouts/**/*.html',
 		'*/**/*.md',
 		'scripts/pages/**/*.js'
-	], ['serve']);
+	], ['serve-watch']);
 });
 
 gulp.task('prod', shell.task([
