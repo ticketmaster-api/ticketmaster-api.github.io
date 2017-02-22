@@ -20,6 +20,7 @@ class RestService {
 		this.selectedParams = ko.observableArray([]).subscribeTo('SELECTED_PARAMS');
 		this.requests = ko.observableArray([]).syncWith('REQUESTS_ARR');
 		this.anotherResponse = ko.observable().publishOn('ANOTHER_RESPONSE');
+		this.requestInProgress = ko.observable(false);
 		this.init();
 		return instance;
 	}
@@ -71,6 +72,7 @@ class RestService {
 		let type = ko.unwrap(this.selectedMethodType);
 		this.req = this.prepareUrl();
 		this.ajaxService({url: this.req, type, callback: this.callback});
+		this.requestInProgress(true);
 	}
 
 	/**
@@ -181,6 +183,7 @@ class RestService {
 
 		// exporting data using observable
 		this.requests.unshift(resObj);
+		this.requestInProgress(false);
 	};
 
 	parseUrl = (url) => {
