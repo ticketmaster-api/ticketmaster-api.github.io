@@ -727,6 +727,7 @@ describe("CustomInput component spec", function () {
 			expect(customInput.onKeyDown).toBeDefined();
 		});
 	});
+	console.log('say my name');
 });
 
 /***/ }),
