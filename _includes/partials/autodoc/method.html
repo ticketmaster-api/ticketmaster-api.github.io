@@ -241,12 +241,11 @@
                                                 {% assign schemaSplitInner = schemaResInner | split: ' ' %}
                                                 {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
                                                 {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-                                                <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1]['$ref'] %} - <span class="">{{ innerRef[1]['$ref'] }}</span>{% endif %}
-                                                    {% if innerRef[1].type == 'array' or innerRef[1]['$ref'] %}
-                                                    <!--<code>{{ innerRef[1].items['$ref'] }}</code>-->
-                                                    {%assign outer = innerRef[1].items['$ref']%}
+                                                <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1]['$ref'] %}{% endif %}
+																									{% if innerRef[1]['$ref'] %}
+                                                    {%assign outer = innerRef[1]['$ref'] %}
                                                     {%include partials/autodoc/inner-item.html%}
-                                                    {%endif%}
+                                                  {%endif%}
                                                 </li>
                                                 {% endfor %}
                                                 {% endfor %}
@@ -263,6 +262,10 @@
                                                 {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
                                                 <!--<span>innerRefPage[1]: {{innerRefPage[1]}}</span>-->
                                                 <li><code>{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
+																									{% if innerRef[1].type == 'array' or innerRef[1]['$ref'] %}
+																										{%assign outer = innerRef[1].items['$ref']%}
+																										{%include partials/autodoc/inner-item.html %}
+																									{%endif%}
                                                 {% endfor %}
                                                 {% endfor %}
                                             </ul>
@@ -550,6 +553,13 @@
                 {% endif %}
                 {% if addThisFieldToEmbedded == false %}
                 <li>
+									 <!--
+									 <p class="blue-btn">property[1]['$ref'] : {{property}}</p>
+									 <p class="blue-btn">property[0] : {{property[0]}}</p>
+									 <p class="blue-btn">property[1] : {{property[1]}}</p>
+									 <p class="blue-btn">property[1].items or ['$ref']: {{property[1].items or property[1]['$ref'] }}</p>
+									 -->
+
                     <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
                     <ul>
                         {% if property[1].type == 'array' %}
@@ -558,7 +568,14 @@
                                 {%include partials/autodoc/inner-item.html%}
                             </li>
                         {% endif %}
-                                </ul>
+												<li>{{property[1].type}} , <span class="red">swagger : </span>{{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }} </li>
+												{% if property[1].type == 'object' %}
+													<li><code class="highlighter-rouge" style="color: #768692">{ object } </code>
+														{%assign outer = property[1].['$ref'] %}
+														{%include partials/autodoc/inner-item.html%}
+													</li>
+												{% endif %}
+                    </ul>
                     {% endif %}<!-- END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}-->
 
                     {% if property[1]['$ref'] %}

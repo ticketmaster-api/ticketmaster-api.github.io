@@ -3,7 +3,7 @@ layout: documentation
 categories:
 - documentation
 - generated
-- publish
+- publish-api
 - v1
 ---
 
