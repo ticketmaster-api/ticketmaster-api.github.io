@@ -45,7 +45,6 @@ function unslick(times) {
 		let slider = $('#slider-' + i);
 		slider.length && slider.slick('unslick');
 	}
-	console.info('cleared');
 }
 
 module.exports = {
