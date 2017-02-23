@@ -74,7 +74,7 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
 
     @Override
     public void setCountryCodeValue(String countryCode) {
-        String arrowXpath = "//label[@for='w-countryCode']/following-sibling::div//div[@class='custom_select__arrow']";
+        String arrowXpath = "//select[@id='w-countryCode']/../input[@class='custom_select__placeholder']";
         String itemXpath = String.format("//label[@for='w-countryCode']/following-sibling::div/ul/li[text()='%s']", countryCode);
         setValueToCustomDropDown(By.xpath(arrowXpath), By.xpath(itemXpath));
     }
