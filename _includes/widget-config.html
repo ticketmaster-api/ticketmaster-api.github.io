@@ -70,14 +70,14 @@
 										{% assign countryCodesData = site.data.orgs['discovery-api']['v2'].countryCode %}
 										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="-1">
 											{% for country in countryCodesData.CountryCode %}
-											<option value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: '(','' | replace: ')','' }}</option>
+											<option value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: '(','' | replace: ')','' | strip }}</option>
 											{% endfor %}
 										</select>
 										<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
 										<input class="custom_select__placeholder" type="text" value="United States" readonly="">
 										<ul class="custom_select__list js_widget_custom__list">
 											{% for country in countryCodesData.CountryCode %}
-											<li class="custom_select__item" data-value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: "(","" | replace: ")","" }}</li>
+											<li class="custom_select__item" data-value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: "(","" | replace: ")","" | strip }}</li>
 											{% endfor %}
 										</ul>
 									</div>
