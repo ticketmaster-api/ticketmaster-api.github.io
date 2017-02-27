@@ -120,7 +120,7 @@ page layout goes here
         }
         var app = getQueryParams("app");
 
-        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?doc=' +app + '&amp;key=' + apiKey + '#eventId=000051048D991EE7');
+        $('#console-iframe').attr('src', 'https://partner-onboarding.tmdc.us/eventTestingTool?doc=' + app + '&key=' + apiKey + '#eventId=000051048D991EE7');
     });
 
 </script>
