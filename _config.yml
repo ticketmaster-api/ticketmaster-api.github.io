@@ -36,6 +36,7 @@ author :
 production_url : http://developer.ticketmaster.com/
 gems:
   - jekyll-redirect-from
+  - jekyll-seo-tag
 
 sass:
   style: compressed
