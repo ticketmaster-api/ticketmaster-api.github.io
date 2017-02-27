@@ -1215,7 +1215,20 @@ Status 200
                 "currentTicketLimit" : 6,
                 "eventTicketLimit" : 10,
                 "inventory" : [
-                    { "section" : "209", "row" : "B", "seats" : [ 2, 4, 6, 8, 10, 12, 16], "hasEvenOddMix" : false}
+                    { "section" : "209", "row" : "B", "seats" : [ 2, 4, 6, 8, 10, 12, 16],
+                      "areas": [
+		              {
+		                "description": "Right Side of Theatre",
+		                "name": "RIGHT",
+		                "areaId": "10"
+		              },
+		              {
+		                "description": "Main Floor-Orchestra Level",
+		                "name": "ORCH",
+		                "areaId": "5"
+		              }
+			         ],
+                    "hasEvenOddMix" : false}
                 ],
                 "offers" : [
                     {
@@ -1969,6 +1982,13 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
         "sub_id2" : "4",
         "sub_id3" : "5"
     }
+    "attribute_overrides": { //Optional , to override the images for redemption and email 
+   "images": {
+     "email_1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg (606KB) ",
+     "1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg (606KB) ",
+     "web_1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg (606KB) "
+   }
+ }
 }
 {% endhighlight %}
 
