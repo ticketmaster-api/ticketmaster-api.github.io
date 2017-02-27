@@ -27,7 +27,6 @@
 		
 		<!-- Tab panes -->
 		<section class="tab-content clearfix">
-			
 			<div role="tabpanel" class="tab-pane active" id="all">
 				<section class="grid" id="grid-all">
 					{% for item in gallery_array %}
@@ -59,7 +58,7 @@
 			{% for tab in tab_array %}
 			<div role="tabpanel" class="tab-pane" id="{{tab}}">
 				<section class="grid" id="grid-{{tab}}">
-					{% assign array = "" | split:"|"  %}
+					{% assign array = "" | split: "|"  %}
 					
 					{% for item in gallery_array %}
 						{% if item.tab == tab %}

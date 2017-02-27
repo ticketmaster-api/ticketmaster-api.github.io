@@ -17,7 +17,11 @@ gulp.task('js', shell.task([
 	'webpack'
 ]));
 
-gulp.task('sass-watch', ['serve-watch'], shell.task([
+gulp.task('sass-watch', shell.task([
+	'sass _sass/style.scss:_site/css/main.css --sourcemap=inline --scss --style=nested'
+]));
+
+gulp.task('sass', ['serve-watch'], shell.task([
 	'sass _sass/style.scss:_site/css/main.css --sourcemap=inline --scss --style=nested'
 ]));
 

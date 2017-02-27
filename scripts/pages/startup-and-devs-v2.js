@@ -27,17 +27,31 @@
 		cssEase: 'linear',
 	};
 	const GALLERY_LAYOUT_CONFIG = {
-		stagger: 30,
+		layoutMode: 'packery',
 		itemSelector: '.grid-item',
-		transitionDuration: '0.2s'
+		animationEngine : 'jquery',
+		transitionDuration: 200,
+		hiddenStyle: {
+			opacity: 0
+		},
+		visibleStyle: {
+			opacity: 1
+		},
+		stagger: 20
 	};
-	let rows;
-	let cols;
+	const gridDimensions = {
+		rows: 3,
+		cols: 4,
+		getGridSize: function () {
+			return this.rows * this.cols;
+		}
+	};
 	let initialWindowWidth;
 	
 	function initSlider($sliderRootElement, config) {
 		$sliderRootElement.length && $sliderRootElement.slick(config);
 	}
+	
 	function initCardFlipper($cards) {
 		$cards.each(function() {
 			var me = $(this);
@@ -46,9 +60,16 @@
 			});
 		});
 	}
-	function initGalleryGrid($grid) {
-		$grid.masonry(GALLERY_LAYOUT_CONFIG);
+	
+	/**
+	 * Initialization of Isotope grid for gallery
+	 * @param $root {object} root element for grid
+	 * @param config {object} config for isotope grid
+	 */
+	function initGalleryGrid($root, config) {
+		$root.isotope(config);
 	}
+	
 	function setEventListeners($rootTarget) {
 		$rootTarget
 			.on('click touch', '#tab-dropdown li, #tab-controlls li', function(e) {
@@ -94,9 +115,11 @@
 				$(this).attr('disabled', true);
 			})
 			.on('click touch', '.tab', function(e) {
+					$('.grid.more').removeClass('more');
 					$('.grid.slick-initialized').slick('unslick');
+					
 					$('.gallery-slide')
-						.masonry('layout')
+						.isotope('layout')
 						.on( 'layoutComplete', function() {
 							initSlider($('.active .grid:not(.slick-initialized)'), GALLERY_SLIDER_CONFIG);
 						});
@@ -107,129 +130,169 @@
 				$('#tab-dropdown-label').text(text);
 			});
 	}
-	function windowResizeAction($window, size, $cards) {
+	
+	/**
+	 * Screen resize handler
+	 * @param $window {object}
+	 * @param $cards {object}
+	 * @param size {number}
+	 */
+	function windowResizeAction($window, $cards, size) {
 		$window.on('resize', function() {
-			if (($window.width() <= size && $cards.hasClass('card')) ||
-				($window.width() > size && !$cards.hasClass('card'))) {
+			
+			let windowWidth = $window.width();
+			
+			setColsRowsSize(windowWidth, gridDimensions);
+			
+			if ((windowWidth <= size && $cards.hasClass('card')) ||
+				(windowWidth > size && !$cards.hasClass('card'))) {
+				
 				$cards.toggleClass('card static-card');
 			}
 		});
 	}
-	function setAutocompletion($grid) {
-		var grid = cols * rows;
-
+	
+	function bildTheGrid($grid) {
+		const grid = gridDimensions.getGridSize() - 2;
+		
 		$grid.each(function () {
-			var $itemsArr = $(this).find('.grid-item'),
-				$currentGrid = $(this),
-				size = 0,
-				height = 0,
-				width = 0,
-				count = 1,
-				slide = $('<section class="gallery-slide"/>'),
-				curSlide;
+			const $tabGrid = $(this),
+				$gridItemsArr = $tabGrid.find('.grid-item'),
+				$slideTemplate = $('<section class="gallery-slide"/>');
+			let $slide,
+				count = 0;
 			
-			$itemsArr.each(function (index) {
-				var $card = $(this),
-					width,
-					height;
+			$gridItemsArr.each(function (index) {
+				const $card = $(this);
 				
-				// first slide container
-				if (!index) {
-					curSlide = slide.clone(); //new slide
-					$currentGrid.append(curSlide); //slide appending to slider container
-				}
-				
-				// if mobile (1x1) size
-				if (initialWindowWidth <= 797) {
-					if (!(index % grid) && index !== 0) {
-						curSlide = slide.clone(); //new slide
-						$currentGrid.append(curSlide); //slide appending to slider container
-					}
-					curSlide.append($card);
-					return;
-				}
-				
-				switch(index) {
-					case 0:
-					case 15:
-					case 20:
-						width = 1;
-						height = 2;
-						break;
-					case 1:
-					case 8:
-					case 16:
-						width = 2;
-						height = 1;
-						break;
-					default:
-						width = 1;
-						height = 1;
-				}
-				
-				$card.size = width * height;
-				size += $card.size;
-				
-				$card.attr('data-size', `${width}.${height}`);
-				
-				if (size <= grid) { // slide/frame free space check
-					curSlide.append($card); //add item to slide
-					count = true;
-				} else {
-					if (count) {
-						curSlide = slide.clone(); // new slide
-						$currentGrid.append(curSlide); //slide appending to slider container
-						count = false;
-					}
-					size = size - grid; // empty slots of prev slide
-					curSlide.append($card);
-				}
-			});
-
-			if (grid - size > 0) {
-				for (var i = 0; i < grid - size; i++) {
-					var elem = $itemsArr
-						.eq(i % grid)
+				// break items by slides
+				if (index % grid === 0) {
+					// create new slide
+					$slide = $slideTemplate
 						.clone()
-						.attr('data-size', '1.1');
-					curSlide.append(elem);
+						.addClass(`slide-${count++}`);
+					
+					// appending slide to tabGrid
+					$tabGrid.append($slide);
 				}
-			}
+				
+				// appending card to slide
+				$slide.append($card);
+			});
+			
+			// autocomplits slides by card copies
+			setAutocomplit($slide, grid);
 			
 			// show show-more btn
-			if ($currentGrid.find('.gallery-slide').length > 1) {
-				$currentGrid.next('.show-more').removeClass('hide');
+			if (count > 0) {
+				$tabGrid.next('.show-more').removeClass('hide');
 			}
-			
 		});
 	}
 	
+	function setAutocomplit($slide, size) {
+		let $arr = $slide.find('.grid-item'),
+			arrLength = $arr.length;
+		
+		for (let i = 0, length = size - arrLength; i < length; i++) {
+			if (arrLength < size) {
+				$slide.append($arr.eq(i % arrLength).clone().attr('data-size', '1.1'));
+			}
+		}
+	}
+	
+	function setRandomCardSize($grid) {
+		$grid.each(function () {
+			const $tabGrid = $(this);
+			
+			$tabGrid
+				.find('.gallery-slide')
+				.each(function () {
+					const $slide = $(this);
+					let index = randomNum(1, 8);
+					let index2;
+					let arr;
+					
+					do {
+						index2 = randomNum(1, 6)
+					} while (index === index2);
+					
+					arr = $slide.find('.grid-item');
+					arr.eq(index).attr('data-size', '2.1');
+					arr.eq(index2).attr('data-size', '1.2');
+				});
+		});
+		return true;
+	}
+	
+	function randomNum(start, end) {
+		if (typeof start === 'undefined' && typeof end === 'undefined') {
+			start = 1;
+			end = 8;
+		}
+		
+		return Math.floor(Math.random() * 10) % end + start;
+	}
+	
+	/**
+	 * Changes grid dimensions depending on screen size
+	 * @param num {number} current window size
+	 * @param obj {object} grid dimensions
+	 */
+	function setColsRowsSize(num, obj) {
+		if (num > 1044 && obj.rows !== 3 && obj.cols !== 4) {
+			obj.rows = 3;
+			obj.cols = 4;
+		} else if (797 < num && num <= 1044 && obj.rows !== 3 && obj.cols !== 3) {
+			obj.rows = 3;
+			obj.cols = 3;
+		} else if (510 < num && num <= 797 && obj.rows !== 4 && obj.cols !== 3) {
+			obj.rows = 4;
+			obj.cols = 3;
+		} else if (num <= 510 && obj.rows !== 4 && obj.cols !== 2)  {
+			obj.rows = 4;
+			obj.cols = 2;
+		}
+	}
+	
+	/**
+	 * Shuffles array in random way
+	 * @param array {array}
+	 * @returns {array}
+	 */
+	function shuffle(array) {
+		let currentIndex = array.length,
+			temporaryValue,
+			randomIndex;
+		
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
+			
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+			
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+		
+		return array;
+	}
+
 	$(function () {
-		var text = $('#tab-controlls > li.active').text(),
+		let text = $('#tab-controlls > li.active').text(),
 			$window = $(window),
 			size = 1200,
 			$grid = $('.grid'),
 			$cards = $('.card'),
-			$tab;
-			initialWindowWidth = $window.width(),
+			$tab,
+			initialWindowWidth = $window.width();
 
 		$('#tab-dropdown-label').text(text);
 		
-		if (initialWindowWidth <= 1044) {
-			rows = 3;
-			cols = 3;
-		}
-		if (initialWindowWidth <= 797) {
-			rows = 4;
-			cols = 3;
-		}
-		if (initialWindowWidth <= 510) {
-			rows = 4;
-			cols = 2;
-		} else {
-			rows = 3;
-			cols = 4;
-		}
+		setColsRowsSize(initialWindowWidth, gridDimensions);
 		
 		if ($window.width() <= size) {
 			$cards.toggleClass('card static-card');
@@ -242,10 +305,19 @@
 		}
 
 		initSlider($('#myCarousel'), HEADER_SLIDER_CONFIG);
-		setAutocompletion($grid);
+		
+		bildTheGrid($grid);
+		
+		setRandomCardSize($grid);
+		
+		initGalleryGrid($('.gallery-slide'), GALLERY_LAYOUT_CONFIG);
+		
+		// shuffleSlide($('.gallery-slide'), containerHeight);
+		
 		initCardFlipper($('.card'));
-		initGalleryGrid($('.gallery-slide'));
+		
 		initSlider($('.active .grid'), GALLERY_SLIDER_CONFIG);
+		
 		setEventListeners($(document));
 		windowResizeAction($window, size, $('.card'));
 	});
