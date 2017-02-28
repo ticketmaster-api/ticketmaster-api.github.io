@@ -29,7 +29,7 @@ gulp.task('watch', function () {
 	gulp.watch([
 		'scripts/api-explorer/v2/src/**/*.js',
 		'scripts/api-explorer/v2/**/*.json'
-	], ['js', 'serve-watch']);
+	], ['serve-watch']);
 
 	gulp.watch([
 		'_sass/**/*.scss'

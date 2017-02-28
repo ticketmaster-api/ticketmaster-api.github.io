@@ -2,7 +2,12 @@ $cerulean: #009cde;
 $steel-20: rgba(118, 134, 146, 0.2);
 
 
-
+.grid-item {
+	opacity: 0;
+	.slick-cloned & {
+		opacity: 1;
+	}
+}
 
 .startups-and-developers {
 	.header-title {
