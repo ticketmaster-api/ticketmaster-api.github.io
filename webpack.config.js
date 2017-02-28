@@ -47,6 +47,10 @@ if (isTest) {
 			noParse: /jquery[\-.0-9a-z]*/
 		},
 		plugins: [
+			new webpack.ProvidePlugin({
+				jQuery: 'expose-loader?$!jquery',
+				ko: 'expose-loader?ko!knockout'
+			}),
 			new webpack.SourceMapDevToolPlugin({
 				filename: 'bundle.spec.js.map'
 			}),
@@ -121,21 +125,16 @@ if (isTest) {
 			new webpack.ProvidePlugin({
 				$: 'jquery',
 				jQuery: 'jquery',
-				"window.jQuery": 'jquery',
-				'window.ko': 'knockout',
-				ko: 'knockout',
-			})
+				ko: 'expose-loader?ko!knockout',
+				Clipboard: 'expose-loader?Clipboard!clipboard'
+			}),
 		],
 		resolve: {
 			modules: [
 				path.join(__dirname, 'scripts/vendors/'),
 				path.join(__dirname, 'node_modules/'),
 				path.join(__dirname, 'scripts/components/')
-			],
-			alias: {
-				jquery: 'jquery-1.11.3.min',
-				ko: 'knockout'
-			}
+			]
 		}
 	}
 }

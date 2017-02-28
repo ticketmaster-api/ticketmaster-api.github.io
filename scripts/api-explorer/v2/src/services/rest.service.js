@@ -20,6 +20,7 @@ class RestService {
 		this.selectedParams = ko.observableArray([]).subscribeTo('SELECTED_PARAMS');
 		this.requests = ko.observableArray([]).syncWith('REQUESTS_ARR');
 		this.anotherResponse = ko.observable().publishOn('ANOTHER_RESPONSE');
+		this.requestInProgress = ko.observable(false);
 		this.init();
 		return instance;
 	}
@@ -66,10 +67,12 @@ class RestService {
 		});
 	}
 
-	sendRequest() {
+	sendRequest(apikeyActive) {
+		this.apikeyActive = apikeyActive || ko.unwrap(this.apiKey.value);
 		let type = ko.unwrap(this.selectedMethodType);
 		this.req = this.prepareUrl();
 		this.ajaxService({url: this.req, type, callback: this.callback});
+		this.requestInProgress(true);
 	}
 
 	/**
@@ -99,15 +102,10 @@ class RestService {
 			path = path.replace('{'+ param.name + '}', ko.unwrap(param.value) || param.default);
 		});
 
-		// adds apiKey param
-		if (!params[0] || params[0].name !== 'apikey') {
-			params.unshift(this.apiKey);
-		}
-
 		// prepares params part of url
 		params = params.map(item => [item.name, ko.unwrap(item.value) || item.default].join('=')).join('&');
 
-		url = [domain, '/', path, '?', params].join('');
+		url = [domain, '/', path,  `?apikey=${this.apikeyActive}&`, params].join('');
 
 		return encodeURI(url);
 	}
@@ -185,6 +183,7 @@ class RestService {
 
 		// exporting data using observable
 		this.requests.unshift(resObj);
+		this.requestInProgress(false);
 	};
 
 	parseUrl = (url) => {

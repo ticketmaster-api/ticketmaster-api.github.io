@@ -89,6 +89,11 @@ var TicketmasterMapWidget = function () {
             return "http://developer.ticketmaster.com/support/faq/";
         }
     }, {
+        key: "widgetVersion",
+        get: function get() {
+            return "1.0.0";
+        }
+    }, {
         key: "geocodeUrl",
         get: function get() {
             return "https://maps.googleapis.com/maps/api/geocode/json";
@@ -242,9 +247,9 @@ var TicketmasterMapWidget = function () {
 
             //this.clear();
 
-            this.useGeolocation();
-
             this.AdditionalElements();
+
+            this.useGeolocation();
 
             this.getCoordinates(function () {
                 _this.makeRequest(_this.eventsLoadingHandler, _this.apiUrl, _this.eventReqAttrs);
@@ -424,7 +429,7 @@ var TicketmasterMapWidget = function () {
         value: function AdditionalElements() {
             var nearMeBtn = document.createElement("span");
             nearMeBtn.classList.add('near-me-btn');
-            nearMeBtn.classList.add('dn');
+            if (this.widgetRoot.getAttribute("w-geoposition") !== 'on') nearMeBtn.classList.add('dn');
             nearMeBtn.setAttribute('title', 'Show events near me');
             this.widgetRoot.appendChild(nearMeBtn);
 
@@ -447,11 +452,24 @@ var TicketmasterMapWidget = function () {
             logoBox.appendChild(logo);
             this.eventsRootContainer.appendChild(logoBox);
 
-            var question = document.createElement('a');
+            var question = document.createElement('span');
             question.classList.add("event-question");
             question.target = '_blank';
             question.href = this.questionUrl;
+            question.addEventListener('click', toolTipHandler);
             this.eventsRootContainer.appendChild(question);
+
+            var toolTip = document.createElement('div'),
+                tooltipHtml = "\n              <div class=\"tooltip-inner\"> \n                <a href=\"" + this.questionUrl + "\" target = \"_blank\" >About widget</a>\n                <div class=\"place\">version: <b>" + this.widgetVersion + "</b></div>\n              </div>";
+            toolTip.classList.add("tooltip-version");
+            toolTip.classList.add("left");
+            toolTip.innerHTML = tooltipHtml;
+            this.eventsRootContainer.appendChild(toolTip);
+
+            function toolTipHandler(e) {
+                e.preventDefault();
+                e.target.nextSibling.classList.toggle('show-tip');
+            }
         }
     }, {
         key: "formatDate",

@@ -62,7 +62,7 @@ Partner APIs, search and look up events, attractions, venues and classifications
 {% capture Discovery_API %}/assets/img/products-and-docs/ic-search-big.svg{% endcapture %}
 {% capture Discovery_API_title %}Discovery API{% endcapture %}
 {% capture Discovery_API_description %}Discovery API{% endcapture %}
-{% capture Discovery_API_link %}/products-and-docs/apis/discovery/v2/{% endcapture %}
+{% capture Discovery_API_link %}/products-and-docs/apis/discovery-api/v2/{% endcapture %}
 
 {% capture Commerce_API %}/assets/img/products-and-docs/ic-commerce-api.svg{% endcapture %}
 {% capture Commerce_API_title %}Commerce API{% endcapture %}

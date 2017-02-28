@@ -1,0 +1,16 @@
+{% assign countryCodesData = site.data.orgs['discovery-api']['v2'].countryCode %}
+
+<table markdown="1">
+	<thead>
+	<tr>
+		<th style="text-align: left">CountryCode</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for country in countryCodesData.CountryCode %}
+	<tr>
+		<td>{{country}}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>

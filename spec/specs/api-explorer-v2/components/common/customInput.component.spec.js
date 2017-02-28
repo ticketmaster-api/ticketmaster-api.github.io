@@ -102,7 +102,4 @@ describe("CustomInput component spec", () => {
 			expect(customInput.onKeyDown).toBeDefined();
 		});
 	});
-	console.log('say my name');
-
-
 });
