@@ -386,6 +386,14 @@
         $widgetModalMap.modal('hide');
         document.querySelector('[w-type="calendar"]').setAttribute('w-latlong', document.getElementById('w-latlong').value.replace(/\s+/g, ''));
         widget.update();
+        var spinner = document.querySelector('.events-root-container .spinner-container');
+        spinner.classList.add('hide');
+        setTimeout(function () {
+            weekScheduler.update();
+            monthScheduler.update();
+            yearScheduler.update();
+            alert('update Latlong!');
+        }, 500);
     });
 
     $('.widget__location span').on('click', function () {
@@ -404,6 +412,14 @@
         widget.config.postalcode = '';
         widget.config.city = '';
         widget.update();
+        var spinner = document.querySelector('.events-root-container .spinner-container');
+        spinner.classList.add('hide');
+        setTimeout(function () {
+            weekScheduler.update();
+            monthScheduler.update();
+            yearScheduler.update();
+            alert('update Location!');
+        }, 500);
     });
 
     $('.widget__latlong span').on('click', function () {
@@ -411,7 +427,7 @@
         $('.widget__location').removeClass('hidn');
         document.getElementById('h-latlong').value = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         document.getElementById('w-latlong').value = '';
-        document.querySelector('[w-type="map"]').removeAttribute('w-latlong');
+        document.querySelector('[w-type="calendar"]').removeAttribute('w-latlong');
         document.getElementById('w-countryCode').value = document.getElementById('h-countryCode').value;
         document.getElementById('w-postalcodeapi').value = document.getElementById('h-postalcodeapi').value;
         document.getElementById('w-city').value = document.getElementById('h-city').value;
@@ -423,6 +439,14 @@
         document.querySelector('[w-type="calendar"]').setAttribute('w-city', widget.config.city);
         widget.config.latlong = '';
         widget.update();
+        var spinner = document.querySelector('.events-root-container .spinner-container');
+        spinner.classList.add('hide');
+        setTimeout(function () {
+            weekScheduler.update();
+            monthScheduler.update();
+            yearScheduler.update();
+            alert('update Latlong!');
+        }, 500);
     });
 
     widget.onLoadCoordinate = function (results) {
