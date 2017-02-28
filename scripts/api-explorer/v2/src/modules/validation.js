@@ -20,7 +20,7 @@ ko.validation.init({
 
 ko.validation.rules['nullableInt'] = {
 	validator: function (val, validate) {
-		return val === null || val === "" || (validate && /^-?\d*$/.test(val.toString()));
+		return val === null || val === "" || val === 0 || (validate && /^-?\d*$/.test(val.toString()));
 	},
 	message: 'Must be empty or an integer value'
 };

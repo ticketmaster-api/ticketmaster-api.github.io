@@ -1,7 +1,7 @@
 import {colorsService} from '../../services';
 
 class PanelHeading {
-	constructor({config = {}, data = {}, setActive, isExpanded, page, collapseId, colorClass, panelGroup, subjectID}) {
+	constructor({config = {}, data = {}, showMapPopup = null, setActive, isExpanded, page, collapseId, colorClass, panelGroup, subjectID}) {
 		this.config = config._CONFIG;
 		this.setActive = setActive;
 		this.isExpanded = isExpanded;
@@ -12,6 +12,7 @@ class PanelHeading {
 		this.page = page;
 		this.panelGroup = panelGroup;
 		this.subjectId = subjectID;
+		this.showMapPopup = showMapPopup;
 		this.init({page, colorClass});
 	}
 
@@ -91,6 +92,12 @@ module.exports = ko.components.register('panel-heading', {
 				<section class="follow-request">
 					<span data-bind="css: anotherRequestColor" class="color-indicator"></span>
 					<button data-bind="click: followRequest" class="btn btn-request" type="button">another request</button>
+				</section>
+				<!-- /ko-->
+				
+				<!-- ko if: _panelName === 'location' -->
+				<section class="follow-request">
+					<button class="api-map-btn" data-bind="click: showMapPopup"></button>
 				</section>
 				<!-- /ko-->
 			</div>

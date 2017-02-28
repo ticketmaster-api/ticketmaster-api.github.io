@@ -31,7 +31,7 @@ class RequestComponent{
 		this.paramsAreSeted(true);
 		setTimeout(() => {
 			this.paramsAreSeted(false);
-		}, 200);
+		}, 500);
 		this.rootsetParams(this.data);
 	}
 
