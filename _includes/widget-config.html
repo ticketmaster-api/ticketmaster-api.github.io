@@ -75,7 +75,7 @@
 										</select>
 										<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
 										<input class="custom_select__placeholder" type="text" value="United States" readonly="">
-										<ul class="custom_select__list js_widget_custom__list">
+										<ul class="custom_select__list js_widget_custom__list mh-300">
 											{% for country in countryCodesData.CountryCode %}
 											<li class="custom_select__item" data-value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: "(","" | replace: ")","" | strip }}</li>
 											{% endfor %}
