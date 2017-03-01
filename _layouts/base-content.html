@@ -16,7 +16,8 @@ layout: default
         {% endif %}
 
         {% if page.categories[0] == "support" and page.categories[1] != "contact-us" %}
-					{% include disqus.html add_disqusDIV='true'%}
+					<div id="disqus_thread" style="margin-top:50px;"></div>
+					{% include disqus.html %}
         {% endif %}
 
     </div>
