@@ -967,10 +967,6 @@ ga('create', 'UA-78317809-1', 'auto');
 ga('send', 'pageview');
 
 
-if(module) {
-  if(module.exports) {
+if(typeof module !== "undefined") {
     module.exports = { CountdownClock , TicketmasterCountdownWidget };
-  }
 }
-// export { TicketmasterCountdownWidget as CDWidget }
-// export { CountdownClock as CDClock }

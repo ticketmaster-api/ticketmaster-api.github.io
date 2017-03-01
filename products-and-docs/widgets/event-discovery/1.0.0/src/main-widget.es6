@@ -897,7 +897,7 @@ class TicketmasterEventDiscoveryWidget {
     this.clearEvents();
   }
 
-  update() {
+  update(isFullWidthTheme) {
 
     let oldTheme = this.config.constructor();
     for (let attr in this.config) {
@@ -934,6 +934,8 @@ class TicketmasterEventDiscoveryWidget {
       });
 
       if(this.isListView || this.isListViewThumbnails ) this.addScroll();
+
+      this.initFullWidthTheme(isFullWidthTheme);
     }
     else{
       let events = this.eventsRoot.getElementsByClassName("event-wrapper");
@@ -1225,7 +1227,6 @@ class TicketmasterEventDiscoveryWidget {
     return tmpEventSet;
   }
 
-
   makeRequest(handler, url=this.apiUrl, attrs={}, method="GET"){
     attrs = Object.keys(attrs).map(function(key){
       return `${key}=${attrs[key]}`;
@@ -1244,7 +1245,6 @@ class TicketmasterEventDiscoveryWidget {
     this.xmlHTTP.open(method, url, true);
     this.xmlHTTP.send();
   }
-
 
   initPretendedLink(el, url, isBlank){
     if(el && url){
@@ -1421,7 +1421,6 @@ class TicketmasterEventDiscoveryWidget {
     return event;
   }
 
-
   makeImageUrl(id){
     return `https://app.ticketmaster.com/discovery/v2/events/${id}/images.json`;
   }
@@ -1482,6 +1481,24 @@ class TicketmasterEventDiscoveryWidget {
     return [firstDay, lastDay];
   }
 
+  initFullWidthTheme(isFullWidthTheme) {
+    if (isFullWidthTheme && this.widgetConfig.theme === 'fullwidth') {
+      let heightStatic = '700px';
+      //draw inline style
+      //border
+      this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
+      this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
+
+      //set width
+      this.widgetRoot.style.width = `100%`;
+      this.widgetRoot.style.height = heightStatic;
+      this.widgetRoot.style.display = `block`;
+      this.eventsRootContainer.style.width = `100%`;
+      this.eventsRootContainer.style.height = heightStatic;
+      this.widgetConfig.width = `100%`;
+    }
+  }
+
 }
 let widgetsEventDiscovery = [];
 (function () {
@@ -1501,4 +1518,7 @@ ga('create', 'UA-78315612-1', 'auto');
 ga('send', 'pageview');
 
 
+if(typeof module !== "undefined") {
+  module.exports = { TicketmasterEventDiscoveryWidget };
+}
 

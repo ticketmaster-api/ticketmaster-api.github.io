@@ -1082,10 +1082,8 @@ var widgetsCountdown = [];
 ga('create', 'UA-78317809-1', 'auto');
 ga('send', 'pageview');
 
-if (window.module) {
-  if (module.exports) {
-    module.exports = { CountdownClock: CountdownClock, TicketmasterCountdownWidget: TicketmasterCountdownWidget };
-  }
+if (typeof module !== "undefined") {
+  module.exports = { CountdownClock: CountdownClock, TicketmasterCountdownWidget: TicketmasterCountdownWidget };
 }
 // export { TicketmasterCountdownWidget as CDWidget }
 // export { CountdownClock as CDClock }
