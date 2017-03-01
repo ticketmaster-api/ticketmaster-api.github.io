@@ -392,7 +392,6 @@
             weekScheduler.update();
             monthScheduler.update();
             yearScheduler.update();
-            alert('update Latlong!');
         }, 500);
     });
 
@@ -418,7 +417,6 @@
             weekScheduler.update();
             monthScheduler.update();
             yearScheduler.update();
-            alert('update Location!');
         }, 500);
     });
 
@@ -445,7 +443,6 @@
             weekScheduler.update();
             monthScheduler.update();
             yearScheduler.update();
-            alert('update Latlong!');
         }, 500);
     });
 

@@ -145,10 +145,6 @@ class TicketmasterCalendarWidget {
         if(this.config.latlong){
             attrs.latlong = this.config.latlong;
             if (this.widgetRoot.getAttribute('w-postalcodeapi') != null) {
-                /*
-                attrs.postalCode = this.widgetRoot.getAttribute('w-postalcodeapi');
-                attrs.latlong = '';
-                */
                 this.config.latlong = '';
             }
             if (this.widgetRoot.getAttribute('w-latlong') != null && this.widgetRoot.getAttribute('w-latlong') != '34.0390107,-118.2672801') {
@@ -156,7 +152,7 @@ class TicketmasterCalendarWidget {
                 attrs.postalCode = '';
                 this.config.postalcode = '';
             }
-        }else{
+        }else {
             if(this.isConfigAttrExistAndNotEmpty("postalcode"))
                 attrs.postalCode = this.config.postalcode;
         }
@@ -166,13 +162,6 @@ class TicketmasterCalendarWidget {
             attrs.startDateTime = period[0];
             attrs.endDateTime = period[1];
         }
-
-        /*
-        if (sessionStorage.getItem('tk-api-key')) {
-            attrs.apikey = sessionStorage.getItem('tk-api-key');
-            document.querySelector('[w-type="calendar"]').setAttribute("w-tmapikey", attrs.apikey);
-        }
-        */
 
         if (this.config.period != 'week') {
             let period_ = new Date(this.config.period);
