@@ -4,6 +4,7 @@ import bla.tm.pages.site.products_and_docs.PD_APIExplorerV2Page;
 import net.thucydides.core.annotations.Step;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PD_APIExplorerV2Steps {
 
@@ -24,4 +25,8 @@ public class PD_APIExplorerV2Steps {
         apiExplorerV2Page.checkGeneralPageElements(disqus, leftMenu);
     }
 
+    @Step
+    public void checkIfSourceCodeContainsTag(String text) {
+        assertTrue (apiExplorerV2Page.getPageSource().contains(text));
+    }
 }

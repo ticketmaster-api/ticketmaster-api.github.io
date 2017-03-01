@@ -4,7 +4,6 @@ import bla.tm.staticmethods.MenuElements;
 import bla.tm.widgets.*;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
-
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -178,5 +177,9 @@ public class AncestorPage extends PageObject {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getPageSource() {
+        return getDriver().getPageSource();
     }
 }
