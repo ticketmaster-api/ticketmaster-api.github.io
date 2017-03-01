@@ -2,7 +2,12 @@ $cerulean: #009cde;
 $steel-20: rgba(118, 134, 146, 0.2);
 
 
-
+.grid-item {
+	opacity: 0;
+	.slick-cloned & {
+		opacity: 1;
+	}
+}
 
 .startups-and-developers {
 	.header-title {
@@ -240,12 +245,15 @@ $steel-20: rgba(118, 134, 146, 0.2);
 					display: block;
 					clear: both;
 				}
+				.gallery-slide {
+					position: relative;
+				}
 				/* ---- grid-item ---- */
 				&-item {
 					@include size(293px, 230px);
 					float: left;
 					margin: 0;
-					border: 15px solid #fff;
+					border: 15px solid transparent;
 					&[data-size^="2"] {
 						width: 586px;
 					}
@@ -733,7 +741,6 @@ $steel-20: rgba(118, 134, 146, 0.2);
 					margin: auto;
 					&-item {
 						@include size(250px, 195px);
-						border: 15px solid #fff;
 						&[data-size^="2"] {
 							width: 500px;
 						}
@@ -876,7 +883,7 @@ $steel-20: rgba(118, 134, 146, 0.2);
 						$width: 135px + $padding * 2;
 						$height: 100px + $padding * 2;
 						@include size($width, $height);
-						border: $padding solid #fff;
+						border: $padding solid transparent;
 						position: relative;
 						&[data-size^="2"] {
 							width: $width;
