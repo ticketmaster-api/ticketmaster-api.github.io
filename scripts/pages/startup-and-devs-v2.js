@@ -144,26 +144,20 @@
 			}
 			
 			$rootTarget
-				.on('click touch', '#tab-dropdown li, #tab-controlls li', function(e) {
-					var text = $(this)
-							.find('.tab')
-							.text(),
-						$tab = $('.tab:contains("' + text + '")');
+				.on('click', '#tab-dropdown .tab', function(e) {
+						// e.stopPropagation();
+						
+					var text = $(this).text();
+					$('.products-and-application li[role="presentation"]')
+						.removeAttr('aria-expanded')
+						.removeClass('active');
 					
-					$('#tab-dropdown li, #tab-controlls li')
-						.removeClass('active')
-						.find('.tab')
-						.removeAttr('aria-expanded');
+					var $tab = $('.tab:contains("' + text + '")').tab('show');
 					
-					$tab
-						.attr('aria-expanded', true)
-						.parent()
-						.addClass('active');
-					
+					$tab.parent('li[role="presentation"]').addClass('active');
 					$('#tab-dropdown-label').text(text);
-					
-					$('#tab-dropdown').removeClass('open');
-					// init show-more on active tab-pane
+					// $('#tab-dropdown').dropdown('toggle');
+					// // init show-more on active tab-pane
 					showMoreToggle($('.active .grid'));
 				})
 				.on('click touch', '#gallery-show-more', function(e) {

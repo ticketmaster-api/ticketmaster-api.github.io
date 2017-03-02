@@ -1053,11 +1053,10 @@ $steel-20: rgba(118, 134, 146, 0.2);
 				}
 				.mobile-dropdown {
 					display: block;
-				}
-				.dropdown {
 					$padding: 15px;
 					margin: 51px auto 20px;
 					width: 196px;
+					position: relative;
 					.dropdown-toggle {
 						font-size: 24px;
 						font-weight: normal;
@@ -1069,6 +1068,8 @@ $steel-20: rgba(118, 134, 146, 0.2);
 						border-bottom: solid 2px #f1f5f7;
 						padding: 0 16px $padding;
 						position: relative;
+						background: none;
+						outline: none;
 						&:after {
 							content: '';
 							margin: 0 0 3px 32px;
@@ -1093,8 +1094,6 @@ $steel-20: rgba(118, 134, 146, 0.2);
 						font-style: normal;
 						width: 100%;
 						background: #b7c9d2;
-						position: absolute;
-						z-index: 10;
 						border-radius: 0 0 4px 4px;
 						top: $padding + 32px;
 						li[role="presentation"] {

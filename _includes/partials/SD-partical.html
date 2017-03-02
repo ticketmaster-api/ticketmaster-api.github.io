@@ -17,9 +17,13 @@
 		<div id="tab-dropdown" class="dropdown mobile-dropdown">
 			<a id="tab-dropdown-label" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
 			<ul class="dropdown-menu">
-				<li role="presentation"><a class="tab" href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+				<li role="presentation">
+					<a class="tab" href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a>
+				</li>
 				{% for tab in tab_array %}
-				<li role="presentation"><a class="tab" href="#{{tab}}" aria-controls="{{tab}}" role="tab" data-toggle="tab">{{tab}}</a></li>
+				<li role="presentation">
+					<a class="tab" href="#{{tab}}" aria-controls="{{tab}}" role="tab" data-toggle="tab">{{tab}}</a>
+				</li>
 				{% endfor %}
 			</ul>
 		</div>
