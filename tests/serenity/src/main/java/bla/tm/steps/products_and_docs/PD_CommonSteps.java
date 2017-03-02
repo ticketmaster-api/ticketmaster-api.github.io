@@ -47,7 +47,7 @@ public class PD_CommonSteps extends WidgetFields {
                 break;
             case "keyword": fieldValue = ancestorPage.getCountDownWidget().getKeywordTextFieldValue();
                 break;
-            case "zipCode": fieldValue = ancestorPage.getCountDownWidget().getZipCodeTextFieldValue();
+            case "postalCodeApi": fieldValue = ancestorPage.getCountDownWidget().getZipCodeTextFieldValue();
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", fieldName));
         }

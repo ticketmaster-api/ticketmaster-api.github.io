@@ -50,7 +50,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
     @Step
     public void zipCodeIsNotEmpty() {
         String zipCode = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
-        assertFalse("ZipCode field is null or empty.", zipCode == null || zipCode.length() == 0);
+        assertTrue("ZipCode field is null or empty.", zipCode == null || zipCode.length() == 0);
     }
 
     @Step
@@ -61,7 +61,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
                 break;
             case "keyword": value = calendarWidgetPage.getCalendarWidget().getKeywordTextFieldValue();
                 break;
-            case "zipCode": value = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
+            case "postalCodeApi": value = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name %s", valueName));
         }
@@ -86,7 +86,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
                 break;
             case "keyword": calendarWidgetPage.getCalendarWidget().setKeywordTextFieldValue(randomKeyword);
                 break;
-            case "zipCode": calendarWidgetPage.getCalendarWidget().setZipCodeTextFieldValue(randomZipCode);
+            case "postalCodeApi": calendarWidgetPage.getCalendarWidget().setZipCodeTextFieldValue(randomZipCode);
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", randomValueFor));
         }

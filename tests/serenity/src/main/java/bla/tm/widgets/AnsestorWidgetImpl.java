@@ -44,8 +44,8 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
     @FindBy(id = "w-radius")
     protected WebElementFacade radiusField;
 
-    @FindBy(id = "w-postalcode")
-    protected WebElementFacade zipCodeField;
+    @FindBy(id = "w-postalcodeapi")
+    protected WebElementFacade postalCodeApiField;
 
     @FindBy(id = "w-attractionid")
     protected WebElementFacade attractionIdField;
@@ -86,7 +86,7 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
 
     @Override
     public String getZipCodeTextFieldValue() {
-        return zipCodeField.getValue();
+        return postalCodeApiField.getValue();
     }
 
     public String getAPIKeyTextFieldValue() {
@@ -108,8 +108,8 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
 
     @Override
     public void setZipCodeValue(String zipCode) {
-        zipCodeField.clear();
-        zipCodeField.sendKeys(zipCode, Keys.ENTER);
+        postalCodeApiField.clear();
+        postalCodeApiField.sendKeys(zipCode, Keys.ENTER);
         waitForSomeActionHappened(500);
     }
 
@@ -148,7 +148,7 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
     }
 
     public String getZipCodeValue() {
-        return zipCodeField.getValue();
+        return postalCodeApiField.getValue();
     }
 
     public String getAttractionIdValue() {
@@ -305,7 +305,6 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
         switch (valueName){
             case "apiKey": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_APIKEY);
             case "keyword": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_KEYWORD);
-            case "zipCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ZIPCODE);
             case "postalCodeApi": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_POSTALCODEAPI);
             case "period": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PERIOD);
             case "attractionId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ATTRACTIONID);
