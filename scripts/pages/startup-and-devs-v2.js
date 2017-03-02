@@ -69,7 +69,13 @@
 						return  result - (this.tall + this.wide);
 					},
 					getAnimProps: function () {
-						return Object.values(Object.keys(this.animation.properties)).join(' ');
+						var keysObj = Object.keys(this.animation.properties), str ='';
+						for (var prop in keysObj) {
+							if (!keysObj.hasOwnProperty(prop)) {continue;}
+							str += keysObj[prop];
+						}
+						console.log(str, typeof str);
+						return str;
 					}
 				}
 			}
