@@ -85,15 +85,15 @@
 		 * @returns {boolean}
 		 */
 		function depsCheck() {
-			var str =  'is required, please ensure it is loaded before loading this script!',
+			var str =  ' is required, please ensure it is loaded before loading this script!',
 				error;
 			
 			if (typeof $ === 'undefined') {
-				error = `jQuery.js ${str}`;
+				error = 'jQuery.js' + str;
 			} else if (typeof ($.fn.slick) === 'undefined') {
-				error = `Slick.js (http://kenwheeler.github.io/slick) ${str}`;
+				error = 'Slick.js (http://kenwheeler.github.io/slick)'+ str;
 			} else if (typeof ($.fn.isotope) === 'undefined') {
-				error = `Isotope.js (http://isotope.metafizzy.co) ${str}`;
+				error = 'Isotope.js (http://isotope.metafizzy.co)' + str;
 			} else {
 				return true;
 			}
