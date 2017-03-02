@@ -1,4 +1,4 @@
-/*globals require: false, exports: false, define: false, ko: false */
+/*globals require: false, exports: false*/
 
 ;(function (factory) {
 	'use strict';
@@ -13,7 +13,7 @@
 }(function factory($) {
 		'use strict';
 		
-		const PAGE_CONFIG = {
+		var PAGE_CONFIG = {
 			HEADER: {
 				SLIDER_CONFIG: {
 					dots: true,
@@ -60,7 +60,7 @@
 					wide: 1, // 2.1
 					shuffleOrder: true, // if document ORDER is metter
 					getSize: function () {
-						let result = this.rows * this.cols;
+						var result = this.rows * this.cols;
 						
 						// mobile view all cards should be 1.1
 						if (window.innerWidth <= 797) {
@@ -73,9 +73,9 @@
 					}
 				}
 			}
-		};
-		const size = 1200;
-		let initialWindowWidth;
+		},
+			size = 1200,
+			initialWindowWidth;
 		
 		depsCheck();
 	
@@ -85,7 +85,7 @@
 		 * @returns {boolean}
 		 */
 		function depsCheck() {
-			let str =  'is required, please ensure it is loaded before loading this script!',
+			var str =  'is required, please ensure it is loaded before loading this script!',
 				error;
 			
 			if (typeof $ === 'undefined') {
@@ -167,24 +167,25 @@
 					showMoreToggle($('.active .grid'));
 				})
 				.on('click touch', '#gallery-show-more', function(e) {
-					e.stopPropagation();
-					
-					$('.grid.slick-initialized').slick('unslick');
-					
 					var selector = $(this).attr('aria-controls');
+					
+					e.stopPropagation();
+					$('.grid.slick-initialized').slick('unslick');
 					$(selector).addClass('more');
 					$(this).addClass('hide');
 				})
 				.on('click touch', '#top-show-more', function(e) {
-					e.stopPropagation();
 					var selector = $(this).attr('aria-controls');
+					
+					e.stopPropagation();
 					$(selector).addClass('more');
 					$(this).addClass('hide');
 				})
 				.on('click touch', '.btn-like:enabled', function(e) {
+					var count = $(this).parent('.like').find('.count');
+					
 					e.stopPropagation();
 					e.preventDefault();
-					var count = $(this).parent('.like').find('.count');
 					count.text(+count.text() + 1);
 					$(this).attr('disabled', true);
 				})
@@ -199,9 +200,8 @@
 					reInitTabPane();
 				})
 				.on('resize', 'window', function() {
-					const $cards = $('.card');
-					
-					let windowWidth = window.innerWidth;
+					var $cards = $('.card'),
+						windowWidth = window.innerWidth;
 					
 					setColsRowsSize(windowWidth, PAGE_CONFIG.GALLERY.GRID);
 					
@@ -217,7 +217,7 @@
 	
 		function reInitTabPane() {
 			
-			const CONFIG = PAGE_CONFIG.GALLERY;
+			var CONFIG = PAGE_CONFIG.GALLERY;
 			
 			// resets all animation props
 			$(CONFIG.LAYOUT_CONFIG.itemSelector || '.grid-item').css(CONFIG.GRID.getAnimProps(), '');
@@ -246,12 +246,12 @@
 		 * @param $target {object} $ collection
 		 */
 		function cardsAnimation($target) {
-			const stepTime = 100,
+			var stepTime = 100,
 				$collection = $('.active .gallery-slide:not(.slick-cloned)')
 					.find($target || PAGE_CONFIG.GALLERY.LAYOUT_CONFIG.itemSelector || '.grid-item');
 			
 			$collection.each(function (i) {
-				let $this = $(this);
+				var $this = $(this);
 				setTimeout((function(x) {
 					return function() {
 						$this.animate(PAGE_CONFIG.GALLERY.GRID.animation.properties, PAGE_CONFIG.GALLERY.GRID.animation.duration || 400);
@@ -265,13 +265,13 @@
 		 * @param $grid
 		 */
 		function bildTheGrid($grid) {
-			const GRID_CONFIG = PAGE_CONFIG.GALLERY.GRID;
+			var GRID_CONFIG = PAGE_CONFIG.GALLERY.GRID;
 			
 			$grid.each(function () {
-				const $tabGrid = $(this),
+				var $tabGrid = $(this),
 					$gridItemsArr = $tabGrid.find('.grid-item'),
-					$slideTemplate = $('<section class="gallery-slide"/>');
-				let $slide,
+					$slideTemplate = $('<section class="gallery-slide"/>'),
+					$slide,
 					count = 0;
 				
 				if (GRID_CONFIG.shuffleOrder) {
@@ -279,7 +279,7 @@
 				}
 				
 				$gridItemsArr.each(function (index) {
-					const $card = $(this);
+					var $card = $(this);
 					
 					// break items by slides
 					if (index % GRID_CONFIG.getSize() === 0) {
@@ -309,7 +309,7 @@
 		 * @param count
 		 */
 		function showMoreToggle($tabGrid, count) {
-			let slidesCount = count || $tabGrid.find('.gallery-slide').length;
+			var slidesCount = count || $tabGrid.find('.gallery-slide').length;
 			
 			if (slidesCount > 1) {
 				$tabGrid.next('.show-more').removeClass('hide');
@@ -322,10 +322,10 @@
 		 * @param size
 		 */
 		function setAutocomplit($slide, size) {
-			let $arr = $slide.find('.grid-item'),
+			var $arr = $slide.find('.grid-item'),
 				arrLength = $arr.length;
 			
-			for (let i = 0, length = size - arrLength; i < length; i++) {
+			for (var i = 0, length = size - arrLength; i < length; i++) {
 				if (arrLength < size) {
 					$slide.append($arr.eq(i % arrLength).clone().attr('data-size', '1.1'));
 				}
@@ -339,16 +339,16 @@
 		 */
 		function setRandomCardSize($grid) {
 			$grid.each(function () {
-				const $tabGrid = $(this);
-				const GRID_SIZE = PAGE_CONFIG.GALLERY.GRID.getSize(); // 9
+				var $tabGrid = $(this),
+					GRID_SIZE = PAGE_CONFIG.GALLERY.GRID.getSize(); // 9
 				
 				$tabGrid
 					.find('.gallery-slide')
 					.each(function () {
-						const $slide = $(this);
-						let index = randomNum(1, GRID_SIZE - 1);
-						let index2;
-						let arr;
+						var $slide = $(this),
+							index = randomNum(1, GRID_SIZE - 1),
+							index2,
+							arr;
 						
 						do {
 							index2 = randomNum(1, GRID_SIZE < 9 ? 3: 6)
@@ -365,15 +365,12 @@
 		/**
 		 * Returns random number from setted range
 		 * Helper func
-		 * @param start
-		 * @param end
+		 * @param s
+		 * @param e
 		 * @returns {*}
 		 */
-		function randomNum(start, end) {
-			if (typeof start === 'undefined' && typeof end === 'undefined') {
-				start = 1;
-				end = 8;
-			}
+		function randomNum(s, e) {
+			var start = s || 1, end = e || 8;
 			
 			return Math.floor(Math.random() * 10) % end + start;
 		}
@@ -405,7 +402,7 @@
 		 * @returns {array}
 		 */
 		function shuffle(array) {
-			let currentIndex = array.length,
+			var currentIndex = array.length,
 				temporaryValue,
 				randomIndex;
 			
@@ -429,7 +426,7 @@
 		 * function that executes when Dom is ready
 		 */
 		$(function () {
-			let text = $('#tab-controlls > li.active').text(),
+			var text = $('#tab-controlls > li.active').text(),
 				$grid = $('.grid'),
 				$cards = $('.card'),
 				$tab,
