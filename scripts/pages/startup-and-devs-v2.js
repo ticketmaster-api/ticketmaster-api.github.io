@@ -286,7 +286,7 @@
 						// create new slide
 						$slide = $slideTemplate
 							.clone()
-							.addClass(`slide-${count++}`);
+							.addClass('slide-' + count++);
 						
 						// appending slide to tabGrid
 						$tabGrid.append($slide);
