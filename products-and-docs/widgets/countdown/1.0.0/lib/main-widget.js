@@ -1085,6 +1085,4 @@ ga('send', 'pageview');
 if (typeof module !== "undefined") {
   module.exports = { CountdownClock: CountdownClock, TicketmasterCountdownWidget: TicketmasterCountdownWidget };
 }
-// export { TicketmasterCountdownWidget as CDWidget }
-// export { CountdownClock as CDClock }
 //# sourceMappingURL=main-widget.js.map

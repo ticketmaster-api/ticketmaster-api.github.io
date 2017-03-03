@@ -69,7 +69,8 @@
       tooltip: 'always',
       handle: 'square'
     }),
-    $colorSchemeSelector = $('.widget__color_scheme_control');
+    $colorSchemeSelector = $('.widget__color_scheme_control'),
+    widgetNode = document.querySelector("div[w-tmapikey]");
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
@@ -180,28 +181,26 @@
       widget.update();
     }
   };
-  replaceApiKey({
+  /*replaceApiKey({
       inputApiKey:$('#w-tm-api-key'),
       widgetNode: document.querySelector("div[w-tmapikey]"),
       widget
-    });
+    });*/
 
-  var fullWidth = function(){
+  var fullWidth = function(targetValue){
     let widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $containerWidget,
         widgetContainer = $(".widget-container", widgetContainerWrapper),
         $border_slider = $('.js_widget_border_slider');
 
-
+    console.log('targetValue' , targetValue);
     if(targetValue === "fullwidth"){
-      $layoutBox.slideUp();
+      // $layoutBox.slideUp();
       widthSlider.slideUp("fast");
       $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
       $border_slider.slideUp("fast");
-      widgetContainerWrapper.css({
-        width: "100%"
-      });
+      widgetContainerWrapper.css({width: "100%"});
       widgetContainer.css({
         width: "100%"
       });
@@ -212,7 +211,7 @@
       };
       resetWidget($configForm , excludeOption );
 
-      $layoutBox.slideDown("fast");
+      // $layoutBox.slideDown("fast");
       widthSlider.slideDown("fast");
       $border_slider.slideDown("fast");
       $borderRadiusController.slider('setValue', 4);
@@ -302,9 +301,7 @@
         widgetNode.setAttribute('w-height', getHeightByTheme(targetValue));
       }
       widgetNode.setAttribute('w-border', getBorderByTheme(targetValue));
-
-      /**/
-      fullWidth()
+      
     }
 
     if(targetName === "w-layout"){
@@ -325,6 +322,9 @@
         })
         .slider('refresh');
 
+      /**/
+      fullWidth(targetValue);
+            
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
@@ -375,7 +375,7 @@
     windowScroll(); //recalculate widget container position
   };
 
-  var resetWidget = function(configForm) {
+  var resetWidget = function(configForm, excludeOption) {
     let widgetNode = document.querySelector("div[w-tmapikey]"),
       height = 600,
       theme,

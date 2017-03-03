@@ -73,7 +73,8 @@
     tooltip: 'always',
     handle: 'square'
   }),
-      $colorSchemeSelector = $('.widget__color_scheme_control');
+      $colorSchemeSelector = $('.widget__color_scheme_control'),
+      widgetNode = document.querySelector("div[w-tmapikey]");
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
@@ -176,19 +177,54 @@
 
     if (userKey !== null) {
       var inputApiKey = options.inputApiKey,
-          widgetNode = options.widgetNode,
+          _widgetNode = options.widgetNode,
           _widget = options.widget;
 
       inputApiKey.attr('value', userKey).val(userKey);
-      widgetNode.setAttribute("w-tmapikey", userKey);
+      _widgetNode.setAttribute("w-tmapikey", userKey);
       _widget.update();
     }
   };
-  replaceApiKey({
-    inputApiKey: $('#w-tm-api-key'),
-    widgetNode: document.querySelector("div[w-tmapikey]"),
-    widget: widget
-  });
+  /*replaceApiKey({
+      inputApiKey:$('#w-tm-api-key'),
+      widgetNode: document.querySelector("div[w-tmapikey]"),
+      widget
+    });*/
+
+  var fullWidth = function fullWidth(targetValue) {
+    var widthSlider = $('.js_widget_width_slider'),
+        widgetContainerWrapper = $containerWidget,
+        widgetContainer = $(".widget-container", widgetContainerWrapper),
+        $border_slider = $('.js_widget_border_slider');
+
+    console.log('targetValue', targetValue);
+    if (targetValue === "fullwidth") {
+      // $layoutBox.slideUp();
+      widthSlider.slideUp("fast");
+      $borderRadiusController.slider('setValue', 0);
+      widgetNode.setAttribute('w-borderradius', 0);
+      $border_slider.slideUp("fast");
+      widgetContainerWrapper.css({ width: "100%" });
+      widgetContainer.css({
+        width: "100%"
+      });
+      widgetNode.setAttribute('w-height', 700);
+    } else {
+      var excludeOption = {
+        id: widgetNode.getAttribute('w-id')
+      };
+      resetWidget($configForm, excludeOption);
+
+      // $layoutBox.slideDown("fast");
+      widthSlider.slideDown("fast");
+      $border_slider.slideDown("fast");
+      $borderRadiusController.slider('setValue', 4);
+      widgetNode.setAttribute('w-borderradius', 4);
+      widgetContainerWrapper.css({
+        width: 'auto'
+      });
+    }
+  };
 
   var changeState = function changeState(event) {
     if (!event.target.name || event.target.name === "w-googleapikey") return;
@@ -224,7 +260,7 @@
       var numInputClass = document.getElementById('w-radius');
       var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
       var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-        if (targetValue == '') {
+       if (targetValue == '') {
           numInputClass.setAttribute('disabled', 'disabled');
           numInputClass.value = '';
           incArrow.classList.add('disabled');
@@ -284,6 +320,9 @@
         min: sizeConfig.minWidth
       }).slider('refresh');
 
+      /**/
+      fullWidth(targetValue);
+
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
@@ -332,7 +371,7 @@
     windowScroll(); //recalculate widget container position
   };
 
-  var resetWidget = function resetWidget(configForm) {
+  var resetWidget = function resetWidget(configForm, excludeOption) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 600,
         theme = void 0,
