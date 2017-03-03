@@ -29,4 +29,24 @@ public class PD_APIExplorerV2Steps {
     public void checkIfSourceCodeContainsTag(String text) {
         assertTrue (apiExplorerV2Page.getPageSource().contains(text));
     }
+
+    @Step
+    public void checkTheErrorMessageIsShown() {
+        assertTrue(apiExplorerV2Page.checkIfErrorMessageIsPresent());
+    }
+
+    @Step
+    public void chooseApiGetMethod(String methodName) {
+        apiExplorerV2Page.selectFromDropdown( apiExplorerV2Page.getApiMethodSelector().getWrappedElement(), methodName);
+    }
+
+    @Step
+    public void clickGetButton() {
+        apiExplorerV2Page.getGetButton().click();
+    }
+
+    @Step
+    public void checkTheParameterSectionIsOpened() {
+        assertTrue(apiExplorerV2Page.getParameterSection().getWrappedElement().isDisplayed());
+    }
 }

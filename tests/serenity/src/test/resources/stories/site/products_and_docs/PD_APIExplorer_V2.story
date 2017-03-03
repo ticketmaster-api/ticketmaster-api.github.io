@@ -22,3 +22,20 @@ Examples:
 |og:image:width |
 |og:image:height|
 
+Scenario: (/api-explorer/v2) [5.2.2 API Explorer V2 : The parameters section is opened]
+Given open API Explorer V2 page
+When I choose <apiGetMethod> to send request
+And click GET button
+Then the parameters section is opened
+And error notification is shown on required fields
+Examples:
+|apiGetMethod              |
+|Get Event Details         |
+|Get Event Images          |
+|Get Attraction Details    |
+|Get Classification Details|
+|Get Venue Details         |
+
+
+
+
