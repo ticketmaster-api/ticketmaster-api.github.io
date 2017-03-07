@@ -57,8 +57,9 @@ class CustomSelect {
 	mapForChecked({rawOptions, name}) {
 		let selectedOption;
 		for (const option of rawOptions) {
-			option.checked(option.name === name);
-			if (option.name === name) {
+			let optionValue = option.value || option.name;
+			option.checked(optionValue === name);
+			if (optionValue === name) {
 				selectedOption = option
 			}
 		}
@@ -102,7 +103,7 @@ module.exports = ko.components.register('custom-select', {
 				<input type="text" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption, readonly: isReadOnly}">
 				<button class="btn btn-icon shevron up blue api-exp-custom-select__chevron" data-bind="css: {hidden: isOneOption, down: isExpandeded}" type="button"></button>
 			</span>
-			<ul data-bind="foreach: options" class="api-exp-custom-select__list js-custom-select-wrapper">
+			<ul data-bind="foreach: options, scroll: {x: false, y: true}" class="api-exp-custom-select__list js-custom-select-wrapper">
 				<li data-bind="css: {'active': checked}" class="api-exp-custom-select__item">
 					<button class="api-exp-custom-select__item-label"
 									data-bind="click: $component.onSelect.bind($component),
