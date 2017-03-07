@@ -52,4 +52,14 @@ public class PD_APIExplorerV2Definition {
         apiExplorerV2Page.checkIfSourceCodeContainsTag(text);
     }
 
+    @Then("the request list contains url")
+    public void requestListContainsUrl(){
+        apiExplorerV2Page.checkTheRequestListContainsUrl();
+    }
+
+    @Then("the request list contains response block")
+    public void requestListContainsBlock(){
+        apiExplorerV2Page.checkTheRequestListContainsBlock();
+    }
+
 }
