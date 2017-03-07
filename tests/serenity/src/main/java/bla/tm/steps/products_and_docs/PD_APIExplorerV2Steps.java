@@ -4,6 +4,7 @@ import bla.tm.pages.site.products_and_docs.PD_APIExplorerV2Page;
 import net.thucydides.core.annotations.Step;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PD_APIExplorerV2Steps {
 
@@ -24,4 +25,28 @@ public class PD_APIExplorerV2Steps {
         apiExplorerV2Page.checkGeneralPageElements(disqus, leftMenu);
     }
 
+    @Step
+    public void checkIfSourceCodeContainsTag(String text) {
+        assertTrue (apiExplorerV2Page.getPageSource().contains(text));
+    }
+
+    @Step
+    public void checkTheErrorMessageIsShown() {
+        assertTrue(apiExplorerV2Page.checkIfErrorMessageIsPresent());
+    }
+
+    @Step
+    public void chooseApiGetMethod(String methodName) {
+        apiExplorerV2Page.selectFromDropdown( apiExplorerV2Page.getApiMethodSelector().getWrappedElement(), methodName);
+    }
+
+    @Step
+    public void clickGetButton() {
+        apiExplorerV2Page.getGetButton().click();
+    }
+
+    @Step
+    public void checkTheParameterSectionIsOpened() {
+        assertTrue(apiExplorerV2Page.getParameterSection().getWrappedElement().isDisplayed());
+    }
 }
