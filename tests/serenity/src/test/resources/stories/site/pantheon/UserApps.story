@@ -30,7 +30,7 @@ Given navigate to Pantheon Add New App page from User Account page
 When enter to the field Application name value uniqueApp
 When enter to the field Redirect URI value https://oauth.ticketmaster.com
 And save changes on Edit App Page
-Then the App Created! message is displayed
+Then the The App Name “uniqueapp” is already being used. message is displayed
 And the uniqueApp is appeared in the list of apps
 
 Scenario: (Pantheon|Edit App) Edit app with empty required fields negative
