@@ -321,7 +321,6 @@ class TicketmasterCalendarWidget {
         let widget = this;
 
         function parseGoogleGeocodeResponse(){
-            console.log('qwergqergqer');
             if (this && this.readyState === XMLHttpRequest.DONE ) {
                 let latlong = '',
                     results = null,
