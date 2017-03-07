@@ -18,7 +18,7 @@ public class AnyPageSteps {
         else {
             anyPage.waitFor(ExpectedConditions.urlContains(url));
             assertEquals(url, anyPage.returnCurrentUrl());
-        };
+        }
 
         anyPage.keyPageElementIsVisible(xpath);
     }
