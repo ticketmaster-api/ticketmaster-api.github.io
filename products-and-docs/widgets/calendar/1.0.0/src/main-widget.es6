@@ -130,6 +130,14 @@ class TicketmasterCalendarWidget {
                     verboseName: 'venueId'
                 },
                 {
+                    attr: 'city',
+                    verboseName: 'city'
+                },
+                {
+                    attr: 'countrycode',
+                    verboseName: 'countryCode'
+                },
+                {
                     attr: 'segmentid',
                     verboseName: 'segmentId'
                 }
@@ -152,9 +160,15 @@ class TicketmasterCalendarWidget {
                 attrs.postalCode = '';
                 this.config.postalcode = '';
             }
-        }else {
+        } else {
             if(this.isConfigAttrExistAndNotEmpty("postalcode"))
                 attrs.postalCode = this.config.postalcode;
+        }
+
+        if (this.config.countrycode != null) {
+            attrs.latlong = '';
+            this.config.latlong = '';
+            this.widgetRoot.setAttribute('w-latlong', '');
         }
 
         if(this.isConfigAttrExistAndNotEmpty("period")){
@@ -368,6 +382,10 @@ class TicketmasterCalendarWidget {
                 if(widget.onLoadCoordinate) widget.onLoadCoordinate(results, countryShortName);
                 widget.config.latlong = latlong;
                 if (widget.config.latlong == null) widget.config.latlong = "34.0390107,-118.2672801";
+                if (document.querySelector('[w-type="calendar"]').getAttribute("w-country") != null) {
+                    widget.config.latlong = '';
+                    latlong = '';
+                };
                 cb(widget.config.latlong);
                 document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", latlong);
             }
@@ -961,6 +979,8 @@ class TicketmasterCalendarWidget {
         let eventReqAttrs = {},
             reduceParamsList = [
                 ['startDateTime', 'endDateTime', 'country'],
+                ['city'],
+                ['countryCode'],
                 ['radius'],
                 ['postalCode', 'latlong'],
                 ['classificationId'],
@@ -1520,6 +1540,14 @@ class WeekScheduler {
                     verboseName: 'venueId'
                 },
                 {
+                    attr: 'city',
+                    verboseName: 'city'
+                },
+                {
+                    attr: 'countrycode',
+                    verboseName: 'countryCode'
+                },
+                {
                     attr: 'segmentid',
                     verboseName: 'segmentId'
                 }
@@ -1527,9 +1555,11 @@ class WeekScheduler {
 
         let startmonth, startdate, endmonth, enddate;
         let classificationid = '';
+        let countrycode = '';
+        let city = '';
         let startDateTime = '2016-06-27T00:00:00Z';
         let endDateTime = '2016-07-02T23:59:59Z';
-        let latlong = '34.0390107,-118.2672801';
+        let latlong = '';
 
         let current = new Date();
         let start = new Date();
@@ -1570,7 +1600,7 @@ class WeekScheduler {
             latlong = calendarWidgetRoot.getAttribute("w-latlong");
         }
 
-        if (latlong === null) latlong = '34.0390107,-118.2672801';
+        // if (latlong === null) latlong = '34.0390107,-118.2672801';
 
         if (calendarWidgetRoot.getAttribute("w-keyword") != '') {
             keyword = calendarWidgetRoot.getAttribute("w-keyword");
@@ -1582,6 +1612,16 @@ class WeekScheduler {
 
         if (calendarWidgetRoot.getAttribute("w-classificationId") != '') {
             classificationid = calendarWidgetRoot.getAttribute("w-classificationId");
+        }
+
+        if (calendarWidgetRoot.getAttribute("w-countrycode") != null) {
+            countrycode = calendarWidgetRoot.getAttribute("w-countrycode");
+            latlong = '';
+        }
+
+        if (calendarWidgetRoot.getAttribute("w-city") != null) {
+            city = calendarWidgetRoot.getAttribute("w-city");
+            latlong = '';
         }
 
         if (new Date(startDateTime).getFullYear() == '1969' || new Date(startDateTime).getFullYear() == '1970') {
@@ -1604,6 +1644,8 @@ class WeekScheduler {
             "apikey": tmapikey,
             "latlong": latlong,
             "keyword": keyword,
+            "countryCode": countrycode,
+            "city": city,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
             "classificationId": classificationid,
@@ -2329,6 +2371,14 @@ class MonthScheduler {
                     verboseName: 'size'
                 },
                 {
+                    attr: 'city',
+                    verboseName: 'city'
+                },
+                {
+                    attr: 'countrycode',
+                    verboseName: 'countryCode'
+                },
+                {
                     attr: 'radius',
                     verboseName: 'radius'
                 },
@@ -2361,6 +2411,8 @@ class MonthScheduler {
         let date = new Date();
         let startmonth, startdate, endmonth, enddate, startDateTime, endDateTime;
         let classificationid = '';
+        let countrycode = '';
+        let city = '';
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         let lastDay = new Date(date.getFullYear(), date.getMonth() + 2, 0);
 
@@ -2405,7 +2457,7 @@ class MonthScheduler {
             latlong = calendarWidgetRoot.getAttribute("w-latlong");
         }
 
-        if (latlong === null) latlong = '34.0390107,-118.2672801';
+        // if (latlong === null) latlong = '34.0390107,-118.2672801';
 
         if (calendarWidgetRoot.getAttribute("w-keyword") != '') {
             keyword = calendarWidgetRoot.getAttribute("w-keyword");
@@ -2419,9 +2471,21 @@ class MonthScheduler {
             classificationid = calendarWidgetRoot.getAttribute("w-classificationId");
         }
 
+        if (calendarWidgetRoot.getAttribute("w-countrycode") != null) {
+            countrycode = calendarWidgetRoot.getAttribute("w-countrycode");
+            latlong = '';
+        }
+
+        if (calendarWidgetRoot.getAttribute("w-city") != null) {
+            city = calendarWidgetRoot.getAttribute("w-city");
+            latlong = '';
+        }
+
         return {
             "apikey": tmapikey,
             "latlong": latlong,
+            "countrycode": countrycode,
+            "city": city,
             "keyword": keyword,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
@@ -3238,6 +3302,14 @@ class YearScheduler {
                     verboseName: 'keyword'
                 },
                 {
+                    attr: 'city',
+                    verboseName: 'city'
+                },
+                {
+                    attr: 'countrycode',
+                    verboseName: 'countryCode'
+                },
+                {
                     attr: 'size',
                     verboseName: 'size'
                 },
@@ -3270,6 +3342,8 @@ class YearScheduler {
         let date = new Date();
         let startmonth, startdate, endmonth, enddate, startDateTime, endDateTime;
         let classificationid = '';
+        let countrycode = '';
+        let city = '';
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
         let latlong = '34.0390107,-118.2672801';
@@ -3309,7 +3383,7 @@ class YearScheduler {
             latlong = document.querySelector('[w-type="calendar"]').getAttribute("w-latlong");
         }
 
-        if (latlong === null) latlong = '34.0390107,-118.2672801';
+        // if (latlong === null) latlong = '34.0390107,-118.2672801';
 
         if (calendarWidgetRoot.getAttribute("w-keyword") != '') {
             keyword = calendarWidgetRoot.getAttribute("w-keyword");
@@ -3323,9 +3397,21 @@ class YearScheduler {
             classificationid = calendarWidgetRoot.getAttribute("w-classificationId");
         }
 
+        if (calendarWidgetRoot.getAttribute("w-countrycode") != null) {
+            countrycode = calendarWidgetRoot.getAttribute("w-countrycode");
+            latlong = '';
+        }
+
+        if (calendarWidgetRoot.getAttribute("w-city") != null) {
+            city = calendarWidgetRoot.getAttribute("w-city");
+            latlong = '';
+        }
+
         return {
             "apikey": tmapikey,
             "latlong": latlong,
+            "countryCode": countrycode,
+            "city": city,
             "keyword": keyword,
             "startDateTime": startDateTime,
             "endDateTime": endDateTime,
@@ -3483,14 +3569,21 @@ class YearScheduler {
         var xhr = new XMLHttpRequest();
         var resp, dateOffset;
 
-        xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?language=en&location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200');
-        xhr.onload = function (e) {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                resp = JSON.parse(xhr.responseText);
-                dateOffset = parseInt(resp.rawOffset) + parseInt(resp.dstOffset);
-            }
-        };
-        xhr.send(null);
+
+        let latlongOffset = schedulerRoot.getAttribute("w-latlong");
+        if (latlongOffset != null) {
+            xhr.open('GET', 'https://maps.googleapis.com/maps/api/timezone/json?language=en&location=' + schedulerRoot.getAttribute("w-latlong") + '&timestamp=1331161200');
+            xhr.onload = function (e) {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resp = JSON.parse(xhr.responseText);
+                    dateOffset = parseInt(resp.rawOffset) + parseInt(resp.dstOffset);
+                }
+            };
+            xhr.send(null);
+        }
+        else {
+            dateOffset = undefined;
+        }
 
         var currentMonth = parseInt(new Date().getMonth()) + 1;
 

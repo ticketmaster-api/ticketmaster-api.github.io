@@ -132,6 +132,22 @@
 
         }
 
+        if(targetName === "w-countryCode"){
+            document.querySelector('[w-type="calendar"]').removeAttribute('w-latlong');
+        }
+
+        if(targetName === "w-city"){
+            if (targetValue == '') {
+                event.target.parentNode.classList.add("required");
+                document.querySelector('.js_get_widget_code').classList.add('disabled');
+                return;
+            }
+            else {
+                event.target.parentNode.classList.remove("required");
+                document.querySelector('.js_get_widget_code').classList.remove('disabled');
+            }
+        }
+
         if(targetName === "w-theme"){
             if(targetValue === 'simple'){
                 $colorSchemeSelector.hide();
@@ -336,6 +352,7 @@
     }    
 
     $('.js_get_widget_code').on('click', function(){
+        if ($(this).hasClass('disabled')) return;
         var codeCont = document.querySelector(".language-html.widget_dialog__code");
         var htmlCode = document.createElement("div");
         widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
