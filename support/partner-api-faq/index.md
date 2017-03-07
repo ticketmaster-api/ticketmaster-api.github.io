@@ -72,7 +72,7 @@ keywords: FAQ, Partner  API cover
 [What are the possible options for ticket delivery ?](#s-1)
 
 
-#### Commit
+#### Commit Cart
 [Why am I getting a `21001`  "Invalid reserve request data structure " error when attempting to commit a cart?](#cc-1)
 
 #### Fulfillment
