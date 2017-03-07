@@ -51,9 +51,9 @@ Everything you need to get up and running with the Ticketmaster API. Basic conce
 {: .body}
 To get the most out of your experience, [register for an API](https://developer-acct.ticketmaster.com/user/register) or [log in to your account](https://developer-acct.ticketmaster.com/user/login) now. We'll render links in examples and code samples into active link using your own API Key. If you prefer to jump right into the APIs and make live calls, check out the [API Explorer](/api-explorer/).
 
-We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery/v2) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event discovery experience for your fans.
+We currently offer event discovery and commerce APIs with various [access tiers](/products-and-docs/apis/getting-started/#available-resources). Upon registration and obtaining your API key, you will be able to access our [Discovery](/products-and-docs/apis/discovery-api/v2/) and [Commerce](/products-and-docs/apis/commerce/) APIs instantly. Using both APIs allows you to create a meaningful event discovery experience for your fans.
 
-*Note: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery/v2), therefore we recommend that developers plan to use this single service for access to global events.*
+*Note: The [International Discovery API](/products-and-docs/apis/international-discovery/) is currently being consolidated with the [Discovery API](/products-and-docs/apis/discovery-api/v2/), therefore we recommend that developers plan to use this single service for access to global events.*
 
 Our APIs work against many platforms including Ticketmaster, TicketWeb, Universe, FrontGate, Ticketmaster Resale (TMR) and many more. 
 
@@ -65,10 +65,10 @@ Here's a few examples of common use cases that most developers build apps agains
 
 | API	           	 	| Use Case                                                                                              	|
 |:----------------------|:----------------------------------------------------------------------------------------------------------|
-| [Discovery API](/products-and-docs/apis/discovery/v2/)      	| Searching events by keyword in a certain location (lat/long).											   	|
-| [Discovery API](/products-and-docs/apis/discovery/v2/)        	| Getting events for a particular artist OR venue in a specific country/city/zip code/DMA/etc.				|
-| [Discovery API](/products-and-docs/apis/discovery/v2/)        	| Getting hi-res images for a particular event or artist.													|
-| [Discovery API](/products-and-docs/apis/discovery/v2/)       	| Search events of a certain genre in a particular location for a certain promoter.							|
+| [Discovery API](/products-and-docs/apis/discovery-api/v2/)      	| Searching events by keyword in a certain location (lat/long).											   	|
+| [Discovery API](/products-and-docs/apis/discovery-api/v2/)        	| Getting events for a particular artist OR venue in a specific country/city/zip code/DMA/etc.				|
+| [Discovery API](/products-and-docs/apis/discovery-api/v2/)        	| Getting hi-res images for a particular event or artist.													|
+| [Discovery API](/products-and-docs/apis/discovery-api/v2/)       	| Search events of a certain genre in a particular location for a certain promoter.							|
 | [Commerce API ](/products-and-docs/apis/commerce/)        	| Get available offers for a particular event.																|
 | [Partner API ](/products-and-docs/apis/partner/)         	| Transact against offers for a particular event (partners-only).											|
 | [Inventory Status API ](/products-and-docs/apis/inventory-status/)         	| 	Provides event status for primary Ticketmaster inventory with inventory.										|
@@ -225,7 +225,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
   <tbody>
     <tr>
       <td style="text-align: center" rowspan="9">
-        <a href="/products-and-docs/apis/discovery/v2/">
+        <a href="/products-and-docs/apis/discovery-api/v2/">
           <img src="/assets/img/getting-started/ic-search-big.svg" alt="Discovery API">
         </a>
         <h4 class="star" style="margin-top:11px;">Discovery API</h4>
@@ -462,7 +462,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#polling">Poll</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/partner/#poll">Poll</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
@@ -553,7 +553,7 @@ The API also supports [Cross-Origin Resource Sharing (CORS)](http://en.wikipedia
       <td style="text-align: center;border-left: 0px;" class="checked-td"></td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#attraction-areas">Attraction Search</a></td>
+      <td style="text-align: left"><a href="/products-and-docs/apis/international-discovery/#attraction-search">Attraction Search</a></td>
       <td style="text-align: center;border-right: 0px;"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>
       <td style="text-align: center;border-right: 0px; border-left: 0px;" class="checked-td"></td>

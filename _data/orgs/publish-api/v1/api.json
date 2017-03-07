@@ -1,0 +1,2157 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Publish API",
+    "version" : "v2",
+    "title" : "ticketmaster publish api",
+    "contact" : {
+      "url" : "http://developer.ticketmaster.com/support/contact-us/"
+    }
+  },
+  "host" : "www.ticketmaster.com",
+  "basePath" : "/publish/v2",
+  "paths" : {
+    "/publish/v2/attractions" : {
+      "post" : {
+        "summary" : "Publish an attractions",
+        "description" : "Since 1.0.0",
+        "operationId" : "publishAttraction",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Attraction",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Attraction"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/attractions/{id}" : {
+      "patch" : {
+        "summary" : "Publish a patch on an attraction",
+        "description" : "Since 1.0.0",
+        "operationId" : "patchAttraction",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the attraction the patch will be applied",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Patch to apply",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AugmentationData"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/attractions/{id}/videos" : {
+      "post" : {
+        "summary" : "Publish a video on an attraction",
+        "description" : "Since 1.0.0",
+        "operationId" : "publishAttractionVideos",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the attraction the video is linked to",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Video data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Video"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/entitlements" : {
+      "post" : {
+        "summary" : "Publish entitlements on an entity",
+        "description" : "Since 2.0.0",
+        "operationId" : "publishEntitlements",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Entitlements information to add to the entity",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Entitlement"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/events" : {
+      "post" : {
+        "summary" : "Publish an event",
+        "description" : "Since 1.0.0",
+        "operationId" : "publishEvent",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Event",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Event"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/events/{id}" : {
+      "patch" : {
+        "summary" : "Publish a patch on an event",
+        "description" : "Since 1.0.0",
+        "operationId" : "patchEvent",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the event the patch will be applied",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Patch to apply",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AugmentationData"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/events/{id}/videos" : {
+      "post" : {
+        "summary" : "Publish a video on an event",
+        "description" : "Since 1.0.0",
+        "operationId" : "publishEventVideos",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the event the video is linked to",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Video data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Video"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/extensions" : {
+      "post" : {
+        "summary" : "Publish extension on an entity",
+        "description" : "Since 1.0.0",
+        "operationId" : "publishExtension",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Extension information to add to the entity",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ExtensionData"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/venues" : {
+      "post" : {
+        "summary" : "Publish a venue",
+        "description" : "Since 1.0.0",
+        "operationId" : "publishVenue",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Venue",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Venue"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    },
+    "/publish/v2/venues/{id}" : {
+      "patch" : {
+        "summary" : "Publish a patch on a venue",
+        "description" : "Since 1.0.0",
+        "operationId" : "patchVenue",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of the venue the patch will be applied",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "data",
+          "description" : "Patch to apply",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AugmentationData"
+          }
+        }, {
+          "name" : "TMPS-Correlation-Id",
+          "in" : "header",
+          "description" : "Unique correlation id to be able to trace the request in our system",
+          "required" : true,
+          "type" : "string",
+          "default" : ""
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IngestionResult"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AccessDates" : {
+      "type" : "object",
+      "properties" : {
+        "startDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "yyyy-MM-ddThh-mm-ssZ",
+          "description" : "Event's start access time"
+        },
+        "startApproximate" : {
+          "type" : "boolean",
+          "position" : 1,
+          "description" : "Boolean flag to indicate whether or not the access start date is approximated",
+          "default" : false
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "yyyy-MM-ddThh-mm-ssZ",
+          "position" : 2,
+          "description" : "Event's end access time"
+        },
+        "endApproximate" : {
+          "type" : "boolean",
+          "example" : "yyyy-MM-ddThh-mm-ssZ",
+          "position" : 3,
+          "description" : "Boolean flag to indicate whether or not the access end date is approximated",
+          "default" : false
+        }
+      },
+      "description" : "Event's Access Date"
+    },
+    "Address" : {
+      "type" : "object",
+      "properties" : {
+        "line1s" : {
+          "type" : "object",
+          "example" : "en-us: line1",
+          "position" : 1,
+          "description" : "Aaddress first line - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "line2s" : {
+          "type" : "object",
+          "example" : "en-us:line2",
+          "position" : 4,
+          "description" : "Address second line - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "line3s" : {
+          "type" : "object",
+          "example" : "en-us:line3",
+          "position" : 4,
+          "description" : "Address third line - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Address"
+    },
+    "Area" : {
+      "type" : "object",
+      "properties" : {
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Area"
+    },
+    "Attraction" : {
+      "type" : "object",
+      "required" : [ "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "Type of the entity",
+          "enum" : [ "event", "venue", "attraction" ]
+        },
+        "source" : {
+          "position" : 2,
+          "description" : "Source of the entity, where the entity comes from",
+          "$ref" : "#/definitions/Source"
+        },
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "descriptions" : {
+          "type" : "object",
+          "example" : "en-us: description",
+          "position" : 21,
+          "description" : "Descriptions of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "additionalInfos" : {
+          "type" : "object",
+          "example" : "en-us: additionalInfo",
+          "position" : 23,
+          "description" : "Additional informations of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "URL of a web site detail page of the entity"
+        },
+        "images" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "Images of the entity",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Image"
+          }
+        },
+        "classifications" : {
+          "type" : "array",
+          "position" : 30,
+          "description" : "Attraction's classifications",
+          "items" : {
+            "$ref" : "#/definitions/Classification"
+          }
+        },
+        "relationships" : {
+          "type" : "array",
+          "position" : 70,
+          "description" : "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items" : {
+            "$ref" : "#/definitions/Relationship"
+          }
+        },
+        "references" : {
+          "type" : "object",
+          "example" : "sourceName: id",
+          "position" : 71,
+          "description" : "References of this entity in an other system. Reference is the exact same entity",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "version" : {
+          "type" : "integer",
+          "format" : "int64",
+          "position" : 80,
+          "description" : "Version of the entity. Version is to avoid updated an entity with an older version"
+        },
+        "active" : {
+          "type" : "boolean",
+          "position" : 95,
+          "description" : "Indicate if the entity is active, inactive entity won't appear in Discovery API",
+          "default" : false
+        },
+        "test" : {
+          "type" : "boolean",
+          "position" : 96,
+          "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default" : false
+        },
+        "discoverable" : {
+          "type" : "boolean",
+          "position" : 97,
+          "description" : "True if the entity is dicoverable in discovery API",
+          "default" : false
+        }
+      },
+      "description" : "Attraction"
+    },
+    "AttractionExtensions" : {
+      "type" : "object",
+      "description" : "All Attraction's extensions"
+    },
+    "AugmentationData" : {
+      "type" : "object",
+      "required" : [ "changes", "relatedEntityId", "relatedEntityType", "source", "versionNumber" ],
+      "properties" : {
+        "relatedEntityType" : {
+          "type" : "string",
+          "description" : "The type of the entity to apply the augmentation data.",
+          "enum" : [ "event", "attraction", "venue" ]
+        },
+        "relatedEntityId" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Id of the entity to apply the augmentation data."
+        },
+        "source" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "The source where the augementation data came from"
+        },
+        "versionNumber" : {
+          "type" : "integer",
+          "format" : "int64",
+          "position" : 3,
+          "description" : "Vesion of this augmentation data. This field is to avoid updating entity with old data. "
+        },
+        "score" : {
+          "type" : "number",
+          "format" : "float",
+          "position" : 4,
+          "description" : "The confidence (%) level of the accuracy of this augmention data. 100 is the better"
+        },
+        "changes" : {
+          "type" : "array",
+          "position" : 5,
+          "description" : "List of changes to apply to the related entity",
+          "items" : {
+            "$ref" : "#/definitions/Change"
+          }
+        }
+      },
+      "description" : "This class defines the Augmentation Data on the Publish API"
+    },
+    "Change" : {
+      "type" : "object",
+      "required" : [ "op", "path" ],
+      "properties" : {
+        "op" : {
+          "type" : "string",
+          "description" : "Operation to apply on the entity.",
+          "enum" : [ "add", "remove", "replace", "move", "copy", "test" ]
+        },
+        "from" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Json path of the source entity when using the move operation."
+        },
+        "path" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "Json path from the root of the document to the place where the change should be applied."
+        },
+        "value" : {
+          "type" : "object",
+          "position" : 3,
+          "description" : "Data to change. MUST be a valid json object."
+        }
+      },
+      "description" : "This class defines the Changes on the Publish API"
+    },
+    "Chronology" : {
+      "type" : "object",
+      "properties" : {
+        "zone" : {
+          "$ref" : "#/definitions/DateTimeZone"
+        }
+      }
+    },
+    "City" : {
+      "type" : "object",
+      "properties" : {
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "City"
+    },
+    "Classification" : {
+      "type" : "object",
+      "properties" : {
+        "primary" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "segment" : {
+          "position" : 1,
+          "description" : "A Segment is a primary genre for an entity (Music, Sports, Arts, etc)",
+          "$ref" : "#/definitions/Segment"
+        },
+        "genre" : {
+          "position" : 2,
+          "description" : "Secondary Genre to further describe an entity (Rock, Classical, Animation, etc)",
+          "$ref" : "#/definitions/Level"
+        },
+        "subGenre" : {
+          "position" : 3,
+          "description" : "Tertiary Genre for additional detail when describring an entity (Alternative Rock, Ambient Pop, etc)",
+          "$ref" : "#/definitions/Level"
+        },
+        "type" : {
+          "position" : 5,
+          "description" : "A Type represents a kind or group of people. (Donation, Group, Individual, Merchandise, Event Style, etc)",
+          "$ref" : "#/definitions/Level"
+        },
+        "subType" : {
+          "position" : 6,
+          "description" : "Secondary Type to further categorize an entity (Band, Choir, Chorus, etc)",
+          "$ref" : "#/definitions/Level"
+        }
+      },
+      "description" : "Classification"
+    },
+    "Country" : {
+      "type" : "object",
+      "properties" : {
+        "countryCode" : {
+          "type" : "string",
+          "description" : "Country code (ISO 3166)"
+        },
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Country"
+    },
+    "DateTimeField" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/DateTimeFieldType"
+        },
+        "supported" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "lenient" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "durationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
+        "minimumValue" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maximumValue" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "rangeDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
+        "leapDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        }
+      }
+    },
+    "DateTimeFieldType" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "durationType" : {
+          "$ref" : "#/definitions/DurationFieldType"
+        },
+        "rangeDurationType" : {
+          "$ref" : "#/definitions/DurationFieldType"
+        }
+      }
+    },
+    "DateTimeZone" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "fixed" : {
+          "type" : "boolean",
+          "default" : false
+        }
+      }
+    },
+    "DisplaySettingExtension" : {
+      "type" : "object",
+      "description" : "Event's display settings extension"
+    },
+    "Dma" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "DMS's id"
+        }
+      },
+      "description" : "DMA (Designated Market Area)"
+    },
+    "DurationField" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/DurationFieldType"
+        },
+        "supported" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "precise" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "unitMillis" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "DurationFieldType" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EndDates" : {
+      "type" : "object",
+      "properties" : {
+        "localTime" : {
+          "example" : "yyyy-MM-dd",
+          "description" : "The event end time in local time",
+          "$ref" : "#/definitions/LocalTime"
+        },
+        "dateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "yyyy-MM-ddThh-mm-ssZ",
+          "position" : 1,
+          "description" : "The event end date time"
+        },
+        "approximate" : {
+          "type" : "boolean",
+          "position" : 2,
+          "description" : "Boolean flag to indicate whether or not the end date is approximated",
+          "default" : false
+        }
+      },
+      "description" : "Event's End Dates"
+    },
+    "Entitlement" : {
+      "type" : "object",
+      "required" : [ "data", "relatedEntityType", "source" ],
+      "properties" : {
+        "source" : {
+          "type" : "string",
+          "description" : "Source of the extension, where it came from",
+          "enum" : [ "ticketmaster" ]
+        },
+        "relatedEntityId" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Id of the entity to add this extionsion to. If the relatedEntityId is Null, a relatedEntitySource MUST be provided"
+        },
+        "relatedEntitySource" : {
+          "position" : 2,
+          "description" : "Source of the related entity.",
+          "$ref" : "#/definitions/Source"
+        },
+        "relatedEntityType" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "The type of the entity to add this entitlement to",
+          "pattern" : "^event|venue|attraction$",
+          "enum" : [ "event", "venue", "attraction" ]
+        },
+        "versionNumber" : {
+          "type" : "integer",
+          "format" : "int64",
+          "position" : 5,
+          "description" : "Version of the entitlements. Version is to prevent to override an entitlements with an older one"
+        },
+        "data" : {
+          "type" : "object",
+          "position" : 6,
+          "description" : "The actual entitlements information to add to the entity"
+        }
+      },
+      "description" : "This class defines an entitlement data on the Publish API"
+    },
+    "EntityChanges" : {
+      "type" : "object",
+      "properties" : {
+        "newlyCreated" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "changes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "Event" : {
+      "type" : "object",
+      "required" : [ "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "Type of the entity",
+          "enum" : [ "event", "venue", "attraction" ]
+        },
+        "distance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "units" : {
+          "type" : "string"
+        },
+        "location" : {
+          "$ref" : "#/definitions/Location"
+        },
+        "source" : {
+          "position" : 2,
+          "description" : "Source of the entity, where the entity comes from",
+          "$ref" : "#/definitions/Source"
+        },
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "descriptions" : {
+          "type" : "object",
+          "example" : "en-us: description",
+          "position" : 21,
+          "description" : "Descriptions of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "additionalInfos" : {
+          "type" : "object",
+          "example" : "en-us: additionalInfo",
+          "position" : 23,
+          "description" : "Additional informations of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "URL of a web site detail page of the entity"
+        },
+        "images" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "Images of the entity",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Image"
+          }
+        },
+        "publicVisibility" : {
+          "position" : 30,
+          "description" : "Event's public visibility dates",
+          "$ref" : "#/definitions/PublicVisibility"
+        },
+        "dates" : {
+          "position" : 31,
+          "description" : "Event's dates information",
+          "$ref" : "#/definitions/EventDates"
+        },
+        "sales" : {
+          "position" : 32,
+          "description" : "Event's sales dates information",
+          "$ref" : "#/definitions/EventSalesDates"
+        },
+        "infos" : {
+          "type" : "object",
+          "example" : "en-us: info",
+          "position" : 33,
+          "description" : "Any information related to the event - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "pleaseNotes" : {
+          "type" : "object",
+          "example" : "en-us: note",
+          "position" : 35,
+          "description" : "Any notes related to the event - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "priceRanges" : {
+          "type" : "array",
+          "position" : 36,
+          "description" : "Price ranges of this event",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/PriceRange"
+          }
+        },
+        "promoter" : {
+          "position" : 37,
+          "description" : "Event's promoter",
+          "$ref" : "#/definitions/Promoter"
+        },
+        "classifications" : {
+          "type" : "array",
+          "position" : 50,
+          "description" : "Event's classifications",
+          "items" : {
+            "$ref" : "#/definitions/Classification"
+          }
+        },
+        "place" : {
+          "position" : 51,
+          "description" : "Place has the information on where the event happens. It can be set if there is no venue",
+          "$ref" : "#/definitions/Place"
+        },
+        "venue" : {
+          "position" : 52,
+          "description" : "Venue information",
+          "$ref" : "#/definitions/Venue"
+        },
+        "attractions" : {
+          "type" : "array",
+          "position" : 53,
+          "description" : "Ordered Attraction related to the event",
+          "items" : {
+            "$ref" : "#/definitions/Attraction"
+          }
+        },
+        "relationships" : {
+          "type" : "array",
+          "position" : 70,
+          "description" : "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items" : {
+            "$ref" : "#/definitions/Relationship"
+          }
+        },
+        "references" : {
+          "type" : "object",
+          "example" : "sourceName: id",
+          "position" : 71,
+          "description" : "References of this entity in an other system. Reference is the exact same entity",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "version" : {
+          "type" : "integer",
+          "format" : "int64",
+          "position" : 80,
+          "description" : "Version of the entity. Version is to avoid updated an entity with an older version"
+        },
+        "active" : {
+          "type" : "boolean",
+          "position" : 95,
+          "description" : "Indicate if the entity is active, inactive entity won't appear in Discovery API",
+          "default" : false
+        },
+        "test" : {
+          "type" : "boolean",
+          "position" : 96,
+          "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default" : false
+        },
+        "discoverable" : {
+          "type" : "boolean",
+          "position" : 97,
+          "description" : "True if the entity is dicoverable in discovery API",
+          "default" : false
+        }
+      },
+      "description" : "Event"
+    },
+    "EventDates" : {
+      "type" : "object",
+      "properties" : {
+        "start" : {
+          "description" : "Event's start dates. The date and time when the event will start",
+          "$ref" : "#/definitions/StartDates"
+        },
+        "end" : {
+          "position" : 1,
+          "description" : "Event's end dates. The date and time when the event will end",
+          "$ref" : "#/definitions/EndDates"
+        },
+        "access" : {
+          "position" : 2,
+          "description" : "Event's access dates. The date and time the fan can access the event",
+          "$ref" : "#/definitions/AccessDates"
+        },
+        "timezone" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Event's timezone"
+        },
+        "status" : {
+          "position" : 4,
+          "description" : "Status of the event",
+          "$ref" : "#/definitions/EventStatus"
+        }
+      },
+      "description" : "Event's Dates"
+    },
+    "EventExtensions" : {
+      "type" : "object",
+      "description" : "All Event's extensions"
+    },
+    "EventSalesDates" : {
+      "type" : "object",
+      "properties" : {
+        "public" : {
+          "description" : "Public onsale information on this event",
+          "$ref" : "#/definitions/PublicSaleDates"
+        },
+        "presales" : {
+          "type" : "array",
+          "position" : 1,
+          "description" : "Presale information on this event",
+          "items" : {
+            "$ref" : "#/definitions/Presale"
+          }
+        }
+      },
+      "description" : "Event's Sales Dates"
+    },
+    "EventStatus" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The event's status code",
+          "enum" : [ "onsale", "offsale", "canceled", "postponed", "rescheduled" ]
+        }
+      },
+      "description" : "Event's Status"
+    },
+    "Extension" : {
+      "type" : "object"
+    },
+    "ExtensionData" : {
+      "type" : "object",
+      "required" : [ "data", "relatedEntityType", "source", "type" ],
+      "properties" : {
+        "source" : {
+          "type" : "string",
+          "description" : "Source of the extension, where it came from"
+        },
+        "type" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "The type of the extension. This represent the data sent"
+        },
+        "relatedEntityType" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "The type of the entity to add this extensions to",
+          "pattern" : "^event|venue|attraction$",
+          "enum" : [ "event", "venue", "attraction" ]
+        },
+        "relatedEntityId" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Id of the entity to add this extionsion to. If the relatedEntityId is Null, a relatedEntitySource MUST be provided"
+        },
+        "relatedEntitySource" : {
+          "position" : 4,
+          "description" : "Source of the related entity.",
+          "$ref" : "#/definitions/Source"
+        },
+        "versionNumber" : {
+          "type" : "integer",
+          "format" : "int64",
+          "position" : 5,
+          "description" : "Version of the extensions. Version is to prevent to override an extension with an older one"
+        },
+        "data" : {
+          "type" : "object",
+          "position" : 6,
+          "description" : "The actual information to add to the entity"
+        }
+      },
+      "description" : "This class defines an extenstion data on the Publish API"
+    },
+    "GeocodeExtension" : {
+      "type" : "object",
+      "properties" : {
+        "county" : {
+          "type" : "string"
+        },
+        "geometry" : {
+          "$ref" : "#/definitions/Geometry"
+        },
+        "streetNumber" : {
+          "type" : "string"
+        },
+        "route" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "postalCode" : {
+          "type" : "string"
+        },
+        "formattedAddress" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GeolocationVenueExtensions" : {
+      "type" : "object",
+      "description" : "Venue's geocode extension"
+    },
+    "Geometry" : {
+      "type" : "object",
+      "properties" : {
+        "location" : {
+          "$ref" : "#/definitions/Location"
+        }
+      }
+    },
+    "HostExtension" : {
+      "type" : "object",
+      "description" : "Venue's Host extension"
+    },
+    "Image" : {
+      "type" : "object",
+      "properties" : {
+        "url" : {
+          "type" : "string",
+          "position" : 2,
+          "description" : "Public URL of the image"
+        },
+        "ratio" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Aspect ratio of the image",
+          "enum" : [ "16_9", "3_2", "4_3" ]
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32",
+          "position" : 4,
+          "description" : "Width of the image"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32",
+          "position" : 5,
+          "description" : "Height of the image"
+        },
+        "fallback" : {
+          "type" : "boolean",
+          "position" : 6,
+          "description" : "true if the image is not the event's image but a fallbak image",
+          "default" : false
+        },
+        "domains" : {
+          "type" : "array",
+          "position" : 7,
+          "description" : "Domains on which this image should be displayed",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "attribution" : {
+          "type" : "string",
+          "position" : 8,
+          "description" : "Attribution of the image"
+        }
+      },
+      "description" : "Image"
+    },
+    "IngestionResult" : {
+      "type" : "object",
+      "required" : [ "status" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Id of the entity ingested in the discovery api"
+        },
+        "status" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Status of the result",
+          "enum" : [ "Error", "SuccessWarning", "Success" ]
+        },
+        "missingProperties" : {
+          "type" : "object",
+          "position" : 4,
+          "description" : "List of properties that should be present in your entity to ease its dicovery",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        },
+        "unknownProperties" : {
+          "type" : "object",
+          "position" : 5,
+          "description" : "List of unknown properties that will be dropped",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        },
+        "invalidValues" : {
+          "type" : "object",
+          "position" : 5,
+          "description" : "List of invalid values",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        },
+        "invalidProperties" : {
+          "type" : "object",
+          "position" : 5,
+          "description" : "List of invalid properties",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        },
+        "ignoredProperties" : {
+          "type" : "object",
+          "position" : 5,
+          "description" : "List properties that are ignored in the validation",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        }
+      },
+      "description" : "This class defines the IngestionResult on the Publish API"
+    },
+    "Level" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The ID of the classification's level"
+        },
+        "names" : {
+          "type" : "object",
+          "position" : 2,
+          "description" : "The Name of the classification's level - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "LicensingInformation" : {
+      "type" : "object",
+      "required" : [ "license" ],
+      "properties" : {
+        "license" : {
+          "type" : "string",
+          "description" : "License name"
+        },
+        "regionRestriction" : {
+          "description" : "Restrictions based on regions",
+          "$ref" : "#/definitions/RegionRestrictions"
+        }
+      },
+      "description" : "This class defines an entitlement data on the Publish API"
+    },
+    "LocalTime" : {
+      "type" : "object",
+      "properties" : {
+        "chronology" : {
+          "$ref" : "#/definitions/Chronology"
+        },
+        "millisOfDay" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minuteOfHour" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "hourOfDay" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "millisOfSecond" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "secondOfMinute" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DateTimeField"
+          }
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "fieldTypes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DateTimeFieldType"
+          }
+        }
+      }
+    },
+    "Locale" : {
+      "type" : "object",
+      "properties" : {
+        "language" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "displayCountry" : {
+          "type" : "string"
+        },
+        "displayLanguage" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "displayScript" : {
+          "type" : "string"
+        },
+        "displayVariant" : {
+          "type" : "string"
+        },
+        "extensionKeys" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "iso3Country" : {
+          "type" : "string"
+        },
+        "iso3Language" : {
+          "type" : "string"
+        },
+        "script" : {
+          "type" : "string"
+        },
+        "unicodeLocaleAttributes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "unicodeLocaleKeys" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "variant" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Location" : {
+      "type" : "object",
+      "properties" : {
+        "longitude" : {
+          "type" : "number",
+          "description" : "Longitude"
+        },
+        "latitude" : {
+          "type" : "number",
+          "description" : "Latitude"
+        }
+      },
+      "description" : "Location"
+    },
+    "Market" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Market's id"
+        }
+      },
+      "description" : "Market"
+    },
+    "Parking" : {
+      "type" : "object",
+      "properties" : {
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 20,
+          "description" : "Url to the web page of the parking"
+        }
+      },
+      "description" : "Parking"
+    },
+    "Place" : {
+      "type" : "object",
+      "properties" : {
+        "area" : {
+          "description" : "Area of the place",
+          "$ref" : "#/definitions/Area"
+        },
+        "address" : {
+          "position" : 1,
+          "description" : "Address of the place",
+          "$ref" : "#/definitions/Address"
+        },
+        "city" : {
+          "position" : 2,
+          "description" : "City of the Place",
+          "$ref" : "#/definitions/City"
+        },
+        "state" : {
+          "position" : 3,
+          "description" : "State / Province of the place",
+          "$ref" : "#/definitions/State"
+        },
+        "country" : {
+          "position" : 4,
+          "description" : "Country of the place",
+          "$ref" : "#/definitions/Country"
+        },
+        "postalCode" : {
+          "type" : "string",
+          "position" : 5,
+          "description" : "Postal code / zipcode of the place"
+        },
+        "location" : {
+          "position" : 6,
+          "description" : "Location of the place",
+          "$ref" : "#/definitions/Location"
+        },
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Place"
+    },
+    "Presale" : {
+      "type" : "object",
+      "properties" : {
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "description" : "Name of the presale - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "descriptions" : {
+          "type" : "object",
+          "example" : "en-us: description",
+          "position" : 2,
+          "description" : "Description of the presale - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 3,
+          "description" : "Presale link URL"
+        },
+        "startDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "position" : 4,
+          "description" : "Presale's start dates. The date and time when the presale will start"
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "position" : 5,
+          "description" : "Presale's end dates. The date and time when the presale will end"
+        }
+      },
+      "description" : "Event's Presale Info"
+    },
+    "PriceRange" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "Type of price",
+          "enum" : [ "standard" ]
+        },
+        "currency" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "Currency"
+        },
+        "min" : {
+          "type" : "number",
+          "format" : "double",
+          "position" : 2,
+          "description" : "Minimum price"
+        },
+        "max" : {
+          "type" : "number",
+          "format" : "double",
+          "position" : 3,
+          "description" : "Maximum price"
+        }
+      },
+      "description" : "PriceRange"
+    },
+    "Promoter" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Id of the promoter"
+        },
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 2,
+          "description" : "Name of the promoter - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "descriptions" : {
+          "type" : "object",
+          "example" : "en-us: description",
+          "position" : 4,
+          "description" : "Description of the promoter - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Promoter"
+    },
+    "PublicSaleDates" : {
+      "type" : "object",
+      "properties" : {
+        "startDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Public sale's start dates. The date and time when the public sale will start"
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "position" : 1,
+          "description" : "Public sale's end dates. The date and time when the public sale will end"
+        },
+        "startTBD" : {
+          "type" : "boolean",
+          "position" : 2,
+          "description" : "True if the public sale's date is to be determined",
+          "default" : false
+        }
+      },
+      "description" : "Event's Public Onsales Dates"
+    },
+    "PublicVisibility" : {
+      "type" : "object",
+      "properties" : {
+        "startDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "The start of the public visibility. The date and time when the event will be public visible"
+        },
+        "endDateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "position" : 1,
+          "description" : "The end of the public visibility. The date and time when the event will be public visible"
+        },
+        "visible" : {
+          "type" : "boolean",
+          "position" : 2,
+          "description" : "True if you want to have the event visible in the discovery API",
+          "default" : false
+        }
+      },
+      "description" : "The class defines the public visibility period on the Discovery/Publish API."
+    },
+    "RegionRestrictions" : {
+      "type" : "object",
+      "properties" : {
+        "allowed" : {
+          "type" : "array",
+          "description" : "Restrictions based on regions",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "This class defines an entitlement data on the Publish API"
+    },
+    "Relationship" : {
+      "type" : "object",
+      "description" : "Relationship"
+    },
+    "Segment" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The ID of the classification's level"
+        },
+        "names" : {
+          "type" : "object",
+          "position" : 2,
+          "description" : "The Name of the classification's level - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Segment"
+    },
+    "Social" : {
+      "type" : "object",
+      "properties" : {
+        "twitter" : {
+          "description" : "Twitter data",
+          "$ref" : "#/definitions/Twitter"
+        }
+      },
+      "description" : "Social networks data"
+    },
+    "Source" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "Source's name",
+          "pattern" : "^[a-zA-Z0-9_-]*$"
+        },
+        "id" : {
+          "type" : "string",
+          "position" : 1,
+          "description" : "ID of the entity in the source's system",
+          "pattern" : "^[a-zA-Z0-9_-]*$"
+        }
+      },
+      "description" : "Source"
+    },
+    "StartDates" : {
+      "type" : "object",
+      "properties" : {
+        "localDate" : {
+          "type" : "string",
+          "format" : "date",
+          "example" : "yyyy-MM-dd",
+          "description" : "The event start date in local date"
+        },
+        "localTime" : {
+          "example" : "yyyy-MM-dd",
+          "position" : 1,
+          "description" : "The event end time in local time",
+          "$ref" : "#/definitions/LocalTime"
+        },
+        "dateTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "yyyy-MM-ddThh:mm:ssZ",
+          "position" : 2,
+          "description" : "The event start datetime"
+        },
+        "dateTBD" : {
+          "type" : "boolean",
+          "position" : 3,
+          "description" : "Boolean flag to indicate whether or not the start date is TBD",
+          "default" : false
+        },
+        "dateTBA" : {
+          "type" : "boolean",
+          "position" : 4,
+          "description" : "Boolean flag to indicate whether or not the start date is TBA",
+          "default" : false
+        },
+        "timeTBA" : {
+          "type" : "boolean",
+          "position" : 5,
+          "description" : "Boolean flag to indicate whether or not the start time is TBA",
+          "default" : false
+        },
+        "noSpecificTime" : {
+          "type" : "boolean",
+          "position" : 6,
+          "description" : "Boolean flag to indicate whether or not the event has no specific time",
+          "default" : false
+        }
+      },
+      "description" : "Event's Start Dates"
+    },
+    "State" : {
+      "type" : "object",
+      "properties" : {
+        "stateCode" : {
+          "type" : "string",
+          "description" : "State code"
+        },
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "State"
+    },
+    "TatExtension" : {
+      "type" : "object",
+      "description" : "The Attraction Tool (TAT) extension"
+    },
+    "TicketmasterAttractionExtensions" : {
+      "type" : "object",
+      "description" : "Attraction's extension (ticketmaster source)"
+    },
+    "TicketmasterEventExtensions" : {
+      "type" : "object",
+      "description" : "Event's extension (ticketmaster source)"
+    },
+    "TicketmasterVenueExtensions" : {
+      "type" : "object",
+      "description" : "Venue's extension (ticketmaster source)"
+    },
+    "Twitter" : {
+      "type" : "object",
+      "properties" : {
+        "handle" : {
+          "type" : "string",
+          "example" : "@a Twitter handle exampe",
+          "description" : "Twitter handle",
+          "enum" : [ "@a Twitter handle" ]
+        },
+        "hashtags" : {
+          "type" : "array",
+          "example" : "#hashtag example #hashtag another example",
+          "position" : 1,
+          "description" : "Twitter hashtags",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Twitter data"
+    },
+    "Venue" : {
+      "type" : "object",
+      "required" : [ "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "description" : "Type of the entity",
+          "enum" : [ "event", "venue", "attraction" ]
+        },
+        "distance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "units" : {
+          "type" : "string"
+        },
+        "source" : {
+          "position" : 2,
+          "description" : "Source of the entity, where the entity comes from",
+          "$ref" : "#/definitions/Source"
+        },
+        "names" : {
+          "type" : "object",
+          "example" : "en-us: name",
+          "position" : 11,
+          "description" : "Names of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "address" : {
+          "position" : 20,
+          "description" : "Address of the venue",
+          "$ref" : "#/definitions/Address"
+        },
+        "descriptions" : {
+          "type" : "object",
+          "example" : "en-us: description",
+          "position" : 21,
+          "description" : "Descriptions of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "city" : {
+          "position" : 21,
+          "description" : "City of the venue",
+          "$ref" : "#/definitions/City"
+        },
+        "state" : {
+          "position" : 22,
+          "description" : "State / Province of the venue",
+          "$ref" : "#/definitions/State"
+        },
+        "additionalInfos" : {
+          "type" : "object",
+          "example" : "en-us: additionalInfo",
+          "position" : 23,
+          "description" : "Additional informations of the entity - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "country" : {
+          "position" : 23,
+          "description" : "Country of the venue",
+          "$ref" : "#/definitions/Country"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "URL of a web site detail page of the entity"
+        },
+        "postalCode" : {
+          "type" : "string",
+          "position" : 24,
+          "description" : "Postal code / zipcode of the venue"
+        },
+        "location" : {
+          "position" : 25,
+          "description" : "Location of the venue",
+          "$ref" : "#/definitions/Location"
+        },
+        "timezone" : {
+          "type" : "string",
+          "position" : 26,
+          "description" : "Timezone of the venue"
+        },
+        "currency" : {
+          "type" : "string",
+          "position" : 27,
+          "description" : "Default currency of ticket prices for events in this venue"
+        },
+        "markets" : {
+          "type" : "array",
+          "position" : 28,
+          "description" : "Markets of the venue",
+          "items" : {
+            "$ref" : "#/definitions/Market"
+          }
+        },
+        "images" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "Images of the entity",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Image"
+          }
+        },
+        "dma" : {
+          "type" : "array",
+          "position" : 29,
+          "description" : "The list of associated DMAs (Designated Market Areas) of the venue",
+          "items" : {
+            "$ref" : "#/definitions/Dma"
+          }
+        },
+        "social" : {
+          "position" : 30,
+          "description" : "Social networks data",
+          "$ref" : "#/definitions/Social"
+        },
+        "boxOfficeInfo" : {
+          "position" : 31,
+          "description" : "Box office informations for the venue",
+          "$ref" : "#/definitions/VenueBoxOfficeInfo"
+        },
+        "parkingDetails" : {
+          "type" : "object",
+          "example" : "en-us:parkingDetails",
+          "position" : 32,
+          "description" : "Venue parking info - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "accessibleSeatingDetails" : {
+          "type" : "object",
+          "example" : "en-us:seatingDetails",
+          "position" : 34,
+          "description" : "Venue accessible seating details - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "generalInfo" : {
+          "position" : 36,
+          "description" : "General informations on the venue",
+          "$ref" : "#/definitions/VenueGeneralInfo"
+        },
+        "relationships" : {
+          "type" : "array",
+          "position" : 70,
+          "description" : "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items" : {
+            "$ref" : "#/definitions/Relationship"
+          }
+        },
+        "references" : {
+          "type" : "object",
+          "example" : "sourceName: id",
+          "position" : 71,
+          "description" : "References of this entity in an other system. Reference is the exact same entity",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "version" : {
+          "type" : "integer",
+          "format" : "int64",
+          "position" : 80,
+          "description" : "Version of the entity. Version is to avoid updated an entity with an older version"
+        },
+        "active" : {
+          "type" : "boolean",
+          "position" : 95,
+          "description" : "Indicate if the entity is active, inactive entity won't appear in Discovery API",
+          "default" : false
+        },
+        "test" : {
+          "type" : "boolean",
+          "position" : 96,
+          "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default" : false
+        },
+        "discoverable" : {
+          "type" : "boolean",
+          "position" : 97,
+          "description" : "True if the entity is dicoverable in discovery API",
+          "default" : false
+        }
+      },
+      "description" : "Venue"
+    },
+    "VenueBoxOfficeInfo" : {
+      "type" : "object",
+      "properties" : {
+        "phoneNumberDetails" : {
+          "type" : "object",
+          "example" : "en-us:phoneNumbers",
+          "description" : "Venue box office phone number - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "openHoursDetails" : {
+          "type" : "object",
+          "example" : "en-us:openHours",
+          "position" : 2,
+          "description" : "Venue box office opening hours - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "acceptedPaymentDetails" : {
+          "type" : "object",
+          "example" : "en-us:paymentDetails",
+          "position" : 4,
+          "description" : "Venue box office accepted payment details - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "willCallDetails" : {
+          "type" : "object",
+          "example" : "en-us:willCall",
+          "position" : 6,
+          "description" : "Venue box office will call details - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Venue box office information"
+    },
+    "VenueExtensions" : {
+      "type" : "object",
+      "description" : "All Venue's extensions"
+    },
+    "VenueGeneralInfo" : {
+      "type" : "object",
+      "properties" : {
+        "generalRules" : {
+          "type" : "object",
+          "example" : "en-us: rule",
+          "description" : "Venue general rules - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "childRules" : {
+          "type" : "object",
+          "example" : "en-us: rule",
+          "position" : 2,
+          "description" : "Venue children rules - multi-lingual fields",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      },
+      "description" : "Venue general information"
+    },
+    "Video" : {
+      "type" : "object",
+      "required" : [ "licensingInformation", "source", "url" ],
+      "properties" : {
+        "source" : {
+          "description" : "Source of the extension, where it came from",
+          "$ref" : "#/definitions/Source"
+        },
+        "url" : {
+          "type" : "string",
+          "position" : 6,
+          "description" : "The url of the video"
+        },
+        "embedUrl" : {
+          "type" : "string",
+          "position" : 6,
+          "description" : "The url of the embeded video"
+        },
+        "licensingInformation" : {
+          "position" : 6,
+          "description" : "License information for the video",
+          "$ref" : "#/definitions/LicensingInformation"
+        }
+      },
+      "description" : "This class defines an entitlement data on the Publish API"
+    }
+  }
+}

@@ -140,13 +140,9 @@
 	}
 }
 .btn-preset {
-	background: {
-		image: url($img-parameters_grey);
-		repeat: no-repeat;
-	}
-	&:active {
+	&, &:active {
 		background: {
-			image: url($img-checkmark_green) !important;
+			image: url($img-parameters_grey);
 			repeat: no-repeat;
 		}
 	}

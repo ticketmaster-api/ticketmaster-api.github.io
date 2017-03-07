@@ -69,12 +69,17 @@
 				<category-menu params="data: base, selectedCategory: selectedCategory">
 					<custom-select params="options: categories, selected: selectedCategory, onselect: selectCategory"></custom-select>
 				</category-menu>
-				
+
 				<!--api key-->
-				<custom-input params="cssClass: 'api-exp-key', data: apiKey, validationModel: apiKeyValidationModel"></custom-input>
+				<div id="js_custom_select_key" class="js_custom_select_key">
+					<input type="text" id="api-key" class="form-control api-exp-key" placeholder="Api key" contenteditable="true">
+				</div>
 
 				<!--filter-->
-				<methods-filter params="data: base, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType, selectedMethod: selectedMethod">
+				<methods-filter params="data: base,
+						selectedCategory: selectedCategory,
+						selectedMethodType: selectedMethodType,
+						selectedMethod: selectedMethod">
 					<radio-filter params="data: data, selectedCategory: selectedCategory, selectedMethodType: selectedMethodType"></radio-filter>
 					<custom-select params="options: methodsViewModel, onselect: onSelectMethod, selected: selectedMethodName"></custom-select>
 				</methods-filter>
@@ -82,12 +87,22 @@
 		</div>
 		
 		<!--params-->
-		<params-filter params="selectedMethodData: selectedMethodData, selectedMethod: selectedMethod, selectedParams: selectedParams, validationModel: validationModel"></params-filter>
+		<params-filter params="selectedMethodData: selectedMethodData, selectedMethod: selectedMethod, selectedParams: selectedParams, validationModel: validationModel, paramsIsHiden: paramsIsHiden"></params-filter>
 		
 		<!--request btn-->
 		<section class="api-exp-get-btn clearfix">
 			<span class="api-exp-get-btn-validation-message" data-bind="visible: sendBtnValidationText, text: sendBtnValidationText"></span>
-			<button data-bind="text: sendButtonText, css: sendButtonText, click: onClickSendBtn, enable: formIsValid" class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">Get</button>
+			<button data-bind="css: sendButtonText, click: onClickSendBtn, enable: formIsValid"
+			        class="api-exp-get-btn__button button button-blue" id="api-exp-get-btn">
+				<span data-bind="text: sendButtonText, css: { 'hide': requestInProgress}">Get</span>
+				<span data-bind="css: {'hide': !requestInProgress()}" class="spinner hide">
+					<span class="rect rect-1"></span>
+					<span class="rect rect-2"></span>
+					<span class="rect rect-3"></span>
+					<span class="rect rect-4"></span>
+					<span class="rect rect-5"></span>
+				</span>
+			</button>
 		</section>
 	</div>
 
@@ -101,18 +116,7 @@
   </div>
 </div>
 
-<script>
-  var disqus_config = function () {
-    this.page.url = document.URL || "http://developer.ticketmaster.com/";
-    this.page.identifier = "{{page.title}}";
-  };
-  (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = '//ticketmasterapi.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
+{% include disqus.html %}
 	
 <div id="footer" class="xs-center slice-top-left">
 	{% include partials/footer.html %}
@@ -124,12 +128,15 @@
 
 <script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization"></script>
+<script src="{{'/scripts/pages/default.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
 {% include lazy-selector-modal.html %}
 {% include classification-selector-modal.html %}
+{% include latlong-selector-modal.html %}
 {% include feedback.html %}
-<script src="{{'/scripts/load-api-key.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/application-selector.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3-oFbQWw_jEcG7r7WGdi99jNT3DqvRas&libraries=visualization,places&callback=initMapLatLong"></script>
 <script src="{{'/scripts/api-explorer/v2/script.js' | prepend: site.baseurl }}"></script>
 </body>
 </html>

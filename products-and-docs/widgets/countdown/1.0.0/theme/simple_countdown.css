@@ -120,20 +120,21 @@ div[w-theme="simple_countdown"][w-proportion="m"] .event-message-visible.cactus 
 	top: 0;
 }
 
-div[w-theme="simple_countdown"] .event-message-visible.cactus:after {
+div[w-theme="simple_countdown"] .event-message-visible.cactus:before {
 	content:"";
 	height: 165px;
 	display: block;
 	margin-top: -100px;
-	background: url("img-not-found-event.svg") no-repeat center;
+	/* TODO: update after release to  https://developer.ticketmaster.com/*/
+	background: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/ticket-box-img-small-white.svg") no-repeat center;
 }
 
 div[w-theme="simple_countdown"] .event-message-visible.cactus .event-message__content {
-	width: 150px;
+	width: 160px;
 	text-transform: uppercase;
-	text-align: right;
-	opacity: .5;
-	margin: 0 46% 0 auto;
+	opacity: .7;
+	margin: 0 auto;
+	text-align: center;
 }
 
 /* event-message END*/
@@ -193,6 +194,7 @@ div[w-theme="simple_countdown"] .event-question {
     -webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
+		cursor: pointer;
 }
 
 div[w-theme="simple_countdown"] .event-question:before,
@@ -578,8 +580,102 @@ div[w-theme="simple_countdown"] .events-count-down.hide-month > .events-count-do
 div[w-theme="simple_countdown"] .events-count-down.hide-seconds > .events-count-down__minute {
     margin-right: 0;
 }
-
 /*time counter END*/
+
+
+/*tooltip-version*/
+div[w-theme="simple_countdown"] .tooltip-version {
+	position: absolute;
+	z-index: 1070;
+	display: block;
+	font-family: "TMSans-Light", Arial, serif;
+	font-style: normal;
+	font-weight: normal;
+	letter-spacing: normal;
+	line-break: auto;
+	line-height: 1.42857;
+	text-align: left;
+	text-align: start;
+	text-decoration: none;
+	text-shadow: none;
+	text-transform: none;
+	white-space: normal;
+	word-break: normal;
+	word-spacing: normal;
+	word-wrap: normal;
+	font-size: 12px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+div[w-theme="simple_countdown"] .tooltip-inner {
+	max-width: 100%;
+	padding: 3px 8px;
+	color: #fff;
+	text-align: center;
+	background-color: #768692;
+	border-radius: 4px;
+}
+
+div[w-theme="simple_countdown"] .tooltip-inner a {
+	color: #fff;
+	font-size: 11px;
+	font-family: "TMSans-Light", Arial, serif;
+}
+
+div[w-theme="simple_countdown"] .tooltip-inner a:hover {
+	text-decoration: underline;
+}
+
+div[w-theme="simple_countdown"] .tooltip-inner .place{
+	font-family: "TMSans-Light", Arial, serif;
+	font-size: 11px;
+	line-height: 14px;
+	color: #fff;
+	opacity: 0.7;
+	display: block;
+}
+
+div[w-theme="simple_countdown"] .tooltip-inner .place b {
+	font-weight: 700;
+	color: #fff;
+}
+
+div[w-theme="simple_countdown"] .tooltip-version.left {
+	margin-left: -3px;
+	padding: 0 5px;
+	right: 28px;
+	top: 6px;
+	display: none;
+}
+
+div[w-theme="simple_countdown"][w-proportion="m"] .tooltip-version.left.show-tip {
+	display: none;
+}
+
+div[w-theme="simple_countdown"] .tooltip-inner::before {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+}
+
+div[w-theme="simple_countdown"] .tooltip-version.left .tooltip-inner::before {
+	top: 30%;
+	right: 0;
+	margin-top: -5px;
+	content: "";
+	border-width: 5px 0 5px 5px;
+	border-left-color: #768692;
+}
+
+div[w-theme="simple_countdown"] .tooltip-version.left.show-tip {
+    opacity: 1;
+		filter: alpha(opacity=1);
+		display: block;
+}
+/*tooltip-version END*/
 
 
 /*  LAYOUT  */

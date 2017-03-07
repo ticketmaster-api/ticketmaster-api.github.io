@@ -1,3 +1,5 @@
+import countryOptions from './options/country.options'
+
 var base = {};
 var CONFIG_URL = '../../scripts/api-explorer/apidescription.xml';
 
@@ -38,7 +40,7 @@ var parseData = function (xml) {
 
 					var parameter = {
 						name: param.attr('name'),
-						doc: param.first('doc').text().trim(),
+						doc: param.find('doc').first().text().trim(),
 						style: param.attr('style'),
 						required: param.attr('required') === 'true',
 						default: param.attr('default') === 'none' && isSelect ? '' : param.attr('default'),
@@ -54,6 +56,11 @@ var parseData = function (xml) {
 								link: false
 							};
 						});
+					}
+
+					if(parameter.name === 'countryCode'){
+						parameter.select = true;
+						parameter.options = countryOptions;
 					}
 
 					method.parameters[parameter.name] = parameter;

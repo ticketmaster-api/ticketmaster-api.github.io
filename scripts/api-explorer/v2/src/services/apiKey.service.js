@@ -1,4 +1,4 @@
-var apiKey = apiKeyService.checkApiKeyCookie('tk-api-key') || apiKeyService.getApiExploreKey(); //API Key
+var apiKey = apiKeyService.getApiKeysCookie() || apiKeyService.getApiExploreKey(); //API Key
 
 module.exports = {
 	placeholder: 'Api key',

@@ -86,7 +86,7 @@ public class EventDiscoveryWidgetDefinition extends WidgetFields {
         eventDiscoveryWidgetSteps.checkThatAllFieldsHaveBeenResetToDefaults();
     }
 
-    @Then("the Country Field contains appropriate value $countryName on Event Discovery Widget Page")
+    @Then("the Country Field contains appropriate value $companyName on Event Discovery Widget Page")
     public void checkThatCountryFieldContainsValue(String countryName){
         eventDiscoveryWidgetSteps.fieldCountryContains(countryName);
     }

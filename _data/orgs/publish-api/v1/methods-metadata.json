@@ -1,0 +1,21 @@
+{
+    "before":
+    {
+        "include": "publish-api/before-api.md",
+        "menuItem":["Overview"]
+    },
+    "after":
+    {
+        "include": "publish-api/after-api.md",
+        "menuItem":["Supported Markets","Supported Sources","Supported Locales"]
+    },
+    "method": [
+        {
+            "pathsParent":"/publish/v2/attractions",
+            "id":"publish-attractions",
+            "title":"Publish An Attractions",
+            "reqres": "publish-api/reqres-attractions.md",
+            "codePath":"publish-api/code-get-attractions.md"
+        }
+    ]
+}

@@ -65,6 +65,8 @@
 			margin: 0;
 			font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
 			border-radius: 4px;
+			max-height: 560px;
+			overflow-y: auto;
 		}
 		&__item {
 			cursor: pointer;
