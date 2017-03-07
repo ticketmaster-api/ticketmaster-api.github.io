@@ -49,4 +49,12 @@ public class PD_APIExplorerV2Steps {
     public void checkTheParameterSectionIsOpened() {
         assertTrue(apiExplorerV2Page.getParameterSection().getWrappedElement().isDisplayed());
     }
+
+    public void checkTheRequestListContainsUrl() {
+        assertTrue(apiExplorerV2Page.getUrlSection().getWrappedElement().isDisplayed());
+    }
+
+    public void checkTheRequestListContainsBlock() {
+        assertTrue(apiExplorerV2Page.getBlockSection().getWrappedElement().isDisplayed());
+    }
 }

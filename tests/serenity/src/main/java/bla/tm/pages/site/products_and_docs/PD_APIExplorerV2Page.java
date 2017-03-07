@@ -23,6 +23,12 @@ public class PD_APIExplorerV2Page extends AncestorPage {
     @FindBy(id = "api-exp-get-btn")
     private WebElementFacade buttonGet;
 
+    @FindBy(xpath = "//section[@class='panel-group']")
+    private WebElementFacade blockSection;
+
+    @FindBy(xpath = "//section[@class='row-container request']")
+    private WebElementFacade urlSection;
+
     public WebElementFacade getParameterSection() {
         return parameterSection;
     }
@@ -41,5 +47,13 @@ public class PD_APIExplorerV2Page extends AncestorPage {
 
     public WebElementFacade getApiMethodSelector() {
         return apiMethodSelector;
+    }
+
+    public WebElementFacade getBlockSection() {
+        return blockSection;
+    }
+
+    public WebElementFacade getUrlSection() {
+        return urlSection;
     }
 }
