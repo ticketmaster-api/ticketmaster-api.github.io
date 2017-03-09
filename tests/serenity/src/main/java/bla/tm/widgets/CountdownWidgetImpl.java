@@ -8,7 +8,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
 
-public class CountdownWidgetImpl extends AnsestorWidgetImpl implements CountdownWidget{
+public class CountdownWidgetImpl extends AncestorWidgetImpl implements CountdownWidget{
     //Constants
     private final String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
     private final String HTML_CODE_ATTRIBUTE_EVENTID = "id";
@@ -251,4 +251,5 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     public String getEmbeddedOrientation() {
         return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ORIENTATION);
     }
+
 }

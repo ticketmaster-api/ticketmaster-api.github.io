@@ -15,10 +15,10 @@ public class PD_TutorialsPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='announcement']/a[@href='/products-and-docs/tutorials/widgets/Event_Discovery_Widget.html' and text()='Learn more']")
     private WebElementFacade addingEventDiscoveryWidgetButton;
 
-    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Adding Event Discovery widget to a website']")
+    @FindBy(xpath = "//div[@class='announcement']/h3/a[text()='Adding Event Discovery mapWidget to a website']")
     private WebElementFacade addingEventDiscoveryWidgetHeaderLink;
 
-    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Adding Event Discovery widget to a website']")
+    @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Adding Event Discovery mapWidget to a website']")
     private WebElementFacade addingEventDiscoveryWidgetImageLink;
 
     @FindBy(xpath = "//div[@class='announcement']/a[@href='/products-and-docs/tutorials/events-search/search_events_in_location.html' and text()='Learn more']")

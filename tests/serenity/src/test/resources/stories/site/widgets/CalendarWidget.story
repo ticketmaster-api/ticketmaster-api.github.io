@@ -26,7 +26,6 @@ When click reset button
 Then values of fields: apiKey,keyword,postalCodeApi equals stored values
 
 Scenario: (/products-and-docs/widgets/calendar/) Check RESET button functionality on Embedded Code Pop-up window
-
 Given open Calendar Widget page
 And store values of: apiKey,keyword,postalCodeApi
 And change values for: apiKey,keyword,postalCodeApi

@@ -22,7 +22,7 @@ public class HomePage extends AncestorPage {
     @FindBy(xpath = "//a[@class='tm-btn tm-btn-transparent' and text()='EXPLORE THE APIs']")
     private WebElementFacade exploreTheAPIButton;
 
-    @FindBy(xpath = "//div[@id='timeline']/iframe[@id='twitter-widget-0']")
+    @FindBy(xpath = "//div[@id='timeline']/iframe[@id='twitter-mapWidget-0']")
     private WebElementFacade twittersList;
 
     @FindBy(xpath = "//div[@class='col-xs-12 col-sm-8 col-lg-12']/ul/li/a[text()='Android']")

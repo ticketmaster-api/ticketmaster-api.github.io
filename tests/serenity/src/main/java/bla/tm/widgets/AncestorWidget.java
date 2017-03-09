@@ -4,13 +4,12 @@ import net.serenitybdd.core.annotations.ImplementedBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.core.pages.WidgetObject;
 
-@ImplementedBy(AnsestorWidgetImpl.class)
-public interface AnsestorWidget extends WidgetObject {
+@ImplementedBy(AncestorWidgetImpl.class)
+public interface AncestorWidget extends WidgetObject {
 
     boolean isVisible(boolean expectedResult);
     void clickResetButton();
     WebElementFacade getEmbeddedHtmlCode();
-    String getEmbeddedValueOf(String valueName);
     String getAPIKeyTextFieldValue();
     void setApiKeyValue(String apiKey);
     void setKeywordValue(String keyword);
@@ -25,6 +24,7 @@ public interface AnsestorWidget extends WidgetObject {
     void setCountryCodeValue(String countryCode);
     String getValueOf(String parameterName);
     String getKeywordTextFieldValue();
-    String getZipCodeTextFieldValue();
+    String getPostalCodeApiFieldValue();
+    String getZipCodeFieldValue();
     void clickOnGeoPosition();
 }
