@@ -91,10 +91,10 @@ class RestService {
 		params = selectedParams.filter(item => item.style === 'query');
 
 		// arr of template marks
-		replacement = path.match(/([^{]*?)\w(?=\})/gmi);
+		replacement = path.match(/([^{]*?)\w(?=\})/gmi) || [];
 
 		// arr of template params
-		var templatesArr = selectedParams.filter(item => item.style === 'template');
+		var templatesArr = selectedParams.filter(item => item.style === 'template' || item.style === 'path');
 
 		// replacement
 		replacement.forEach(val => {
@@ -105,7 +105,7 @@ class RestService {
 		// prepares params part of url
 		params = params.map(item => [item.name, ko.unwrap(item.value) || item.default].join('=')).join('&');
 
-		url = [domain, '/', path,  `?apikey=${this.apikeyActive}&`, params].join('');
+		url = [domain, '/', path.replace(/^\//,''),  `?apikey=${this.apikeyActive}&`, params].join('');
 
 		return encodeURI(url);
 	}

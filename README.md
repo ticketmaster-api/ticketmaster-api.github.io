@@ -16,12 +16,14 @@ Home to the [Ticketmaster Developer Portal](http://developer.ticketmaster.com/).
 ## Alternative running method
 
 After you done steps 1-4 from **Installation**, to run project you can use next method:
+
 1. Install Gulp globally `npm install --global gulp`
 2. [Install Sass globally](http://sass-lang.com/install)
 3. Run the project `gulp`
 This method will rebuild you sass files with source-maps.
 
 ## Contributions
+
 To contribute to the dev portal, please make sure you fork your changes and submit a pull request and we'll be happy to consider it for merge. Here are the areas in which we welcome contributions:
 
 
@@ -32,5 +34,6 @@ To contribute to the dev portal, please make sure you fork your changes and subm
 
 
 ## Support
+
 For support, please find us on [Twitter](http://www.twitter.com/tmastertech) and/or file a bug in Github's issues.
 

@@ -131,6 +131,7 @@ if (isTest) {
 		],
 		resolve: {
 			modules: [
+				path.resolve(__dirname),
 				path.join(__dirname, 'scripts/vendors/'),
 				path.join(__dirname, 'node_modules/'),
 				path.join(__dirname, 'scripts/components/')
