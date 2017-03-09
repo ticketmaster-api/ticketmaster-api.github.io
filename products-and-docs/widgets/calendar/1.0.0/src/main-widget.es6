@@ -2484,7 +2484,7 @@ class MonthScheduler {
         return {
             "apikey": tmapikey,
             "latlong": latlong,
-            "countrycode": countrycode,
+            "countryCode": countrycode,
             "city": city,
             "keyword": keyword,
             "startDateTime": startDateTime,
