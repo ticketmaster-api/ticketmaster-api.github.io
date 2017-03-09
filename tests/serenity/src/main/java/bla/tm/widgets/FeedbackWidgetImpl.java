@@ -6,7 +6,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
-public class FeedbackWidgetImpl extends AnsestorWidgetImpl implements FeedbackWidget{
+public class FeedbackWidgetImpl extends AncestorWidgetImpl implements FeedbackWidget{
 
     @FindBy(xpath = ".//div[@class='modal-header']/div[@class='row']/h3[@class='modal-title col-lg-12']")
     private WebElementFacade feedbackTitleText;

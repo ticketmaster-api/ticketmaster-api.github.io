@@ -3,7 +3,7 @@ package bla.tm.widgets;
 import net.serenitybdd.core.annotations.ImplementedBy;
 
 @ImplementedBy(CountdownWidgetImpl.class)
-public interface CountdownWidget extends AnsestorWidget{
+public interface CountdownWidget extends AncestorWidget {
 
     void clickOnGetButton();
     void submitForm();
@@ -27,4 +27,5 @@ public interface CountdownWidget extends AnsestorWidget{
     String getEmbeddedTheme();
     String getEmbeddedResolution();
     String getEmbeddedOrientation();
+
 }

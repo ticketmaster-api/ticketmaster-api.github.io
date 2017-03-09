@@ -10,8 +10,10 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
 
-public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements EventDiscoveryWidget{
+
+public class EventDiscoveryWidgetImpl extends AncestorWidgetImpl implements EventDiscoveryWidget{
 
     //WebElements
     @FindBy(xpath = "//span[contains(@class,'event-name')]")
@@ -126,6 +128,25 @@ public class EventDiscoveryWidgetImpl extends AnsestorWidgetImpl implements Even
     @Override
     public String getPostalCodeApiValue() {
         return postalCodeApiField.getValue();
+    }
+
+    @Override
+    public String getEmbeddedValueOf(String valueName) {
+        switch (valueName){
+            case "apiKey": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_APIKEY);
+            case "keyword": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_KEYWORD);
+            case "postalCodeApi": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_POSTALCODEAPI);
+            case "period": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PERIOD);
+            case "attractionId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ATTRACTIONID);
+            case "venueId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_VENUEID);
+            case "promoterId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROMOTERID);
+            case "city": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_CITY);
+            case "countryCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_COUNTRYCODE);
+            case "source": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_SOURCE);
+            case "classificationName": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_CLASSIFICATIONNAME);
+            case "eventCount": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_EVENTCOUNT);
+            default: throw new IllegalArgumentException(String.format("The argument of embedded attribute name is illegal: %s", valueName));
+        }
     }
 
 }

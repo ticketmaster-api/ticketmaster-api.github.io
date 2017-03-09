@@ -48,8 +48,8 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
     }
 
     @Step
-    public void zipCodeIsNotEmpty() {
-        String zipCode = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
+    public void zipCodeIsEmpty() {
+        String zipCode = calendarWidgetPage.getCalendarWidget().getPostalCodeApiFieldValue();
         assertTrue("ZipCode field is null or empty.", zipCode == null || zipCode.length() == 0);
     }
 
@@ -61,7 +61,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
                 break;
             case "keyword": value = calendarWidgetPage.getCalendarWidget().getKeywordTextFieldValue();
                 break;
-            case "postalCodeApi": value = calendarWidgetPage.getCalendarWidget().getZipCodeTextFieldValue();
+            case "postalCodeApi": value = calendarWidgetPage.getCalendarWidget().getPostalCodeApiFieldValue();
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name %s", valueName));
         }
@@ -109,4 +109,21 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
         calendarWidgetPage.getCalendarWidget().clickResetButton();
         waitForSomeActionHappened(500);
     }
+
+    @Step
+    public void fieldEqualsStoredValue(String fieldName) {
+        String storedValue = (String) Serenity.getCurrentSession().get(fieldName);
+        String fieldValue;
+        switch (fieldName){
+            case "apiKey": fieldValue = ancestorPage.getCountDownWidget().getAPIKeyTextFieldValue();
+                break;
+            case "keyword": fieldValue = ancestorPage.getCountDownWidget().getKeywordTextFieldValue();
+                break;
+            case "postalCodeApi": fieldValue = ancestorPage.getCountDownWidget().getPostalCodeApiFieldValue();
+                break;
+            default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", fieldName));
+        }
+        assertTrue(String.format("The field (%s) equal %s but it does not equal stored value (%s).", fieldName, fieldValue, storedValue), storedValue.equalsIgnoreCase(fieldValue));
+    }
+
 }

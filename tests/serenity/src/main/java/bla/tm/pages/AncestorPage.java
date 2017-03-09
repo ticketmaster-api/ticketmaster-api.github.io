@@ -27,8 +27,8 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
     private CalendarWidget calendarWidget;
 
-    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
-    protected MapWidget widget;
+    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]/div[1]")
+    protected MapWidget mapWidget;
 
     public CountdownWidget getCountDownWidget() {
         return countdownWidget;
@@ -38,8 +38,8 @@ public class AncestorPage extends PageObject {
 
     public CalendarWidget getCalendarWidget() {return calendarWidget;}
 
-    public MapWidget getWidget() {
-        return widget;
+    public MapWidget getMapWidget() {
+        return mapWidget;
     }
 
     @FindBy(xpath = "//div[./ul[@id='scrollable-element']]")

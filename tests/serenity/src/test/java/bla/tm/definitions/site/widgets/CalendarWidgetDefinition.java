@@ -86,7 +86,7 @@ public class CalendarWidgetDefinition {
     @Then("the required fields are not empty on the Calendar Widget page")
     public void checkThatRequiredFieldsAreNotEmptyOnTheCalendarWidgetPage() {
         calendarWidgetSteps.apiKeyFieldIsNotEmpty();
-        calendarWidgetSteps.zipCodeIsNotEmpty();
+        calendarWidgetSteps.zipCodeIsEmpty();
     }
 
     @Then("check that API key is provided for all placeholders on Calendar Widget page")
