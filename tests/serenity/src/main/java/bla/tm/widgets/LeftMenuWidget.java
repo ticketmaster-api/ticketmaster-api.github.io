@@ -7,7 +7,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import java.util.List;
 
 @ImplementedBy(LeftMenuWidgetImpl.class)
-public interface LeftMenuWidget extends AnsestorWidget{
+public interface LeftMenuWidget extends AncestorWidget {
 
     WebElementFacade getLeftMenu();
 

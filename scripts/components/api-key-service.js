@@ -14,7 +14,8 @@ var apiKeyService = {};
 
   var LOCAL_KEYS = {
     apiExplore: 'B0JQHemR4Q569W9GcjHfhygRBRU3RvrL',
-    widgets: 'OmayHcE8b9GK5nHijxVG3gC5mrv5NLZV'
+    // widgets: 'OmayHcE8b9GK5nHijxVG3gC5mrv5NLZV'
+		widgets: 'TQMbqzKDBbcCjAxC9SaKS1lg9D5Eousb'
   };
 
   var stagingPattern = /(ticketmaster-api-staging.github.io)+/ig;

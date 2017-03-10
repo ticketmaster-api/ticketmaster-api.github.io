@@ -132,7 +132,7 @@ class ParamsFilter {
 	 * @param option {object} option view-model
 	 */
 	onSelectParamValue(param, option) {
-		param.value(option.name);
+		param.value(option.value || option.name);
 	}
 
 	/**

@@ -12,37 +12,27 @@ Then the required fields are not empty on the Calendar Widget page
 
 Scenario: (/products-and-docs/widgets/calendar/) TECHNICAL TAB - Check that embed code functionality works properly
 Given open Calendar Widget page
-And change values for: apiKey,keyword,zipCode
-And store values of: apiKey,keyword,zipCode
+And change values for: apiKey,keyword,postalCodeApi
+And store values of: apiKey,keyword,postalCodeApi
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
-And embedded html code contains stored values of: apiKey,keyword,zipCode
-
-Scenario: (/products-and-docs/widgets/calendar/) TECHNICAL TAB - Check that Country field is changed accordingly Zip Code
-Given open Calendar Widget page
-When change value of Zip Code <zipCode>
-Then the Country field contains appropriate value <countryName>
-Examples:
- |zipCode|countryName  |
- |01000  |France       |
- |K1P 1J1|Canada       |
+And embedded html code contains stored values of: apiKey,keyword,postalCodeApi
 
 Scenario: (/products-and-docs/widgets/calendar/) TECHNICAL TAB - Check RESET button functionality
 Given open Calendar Widget page
-And store values of: apiKey,keyword,zipCode
-And change values for: apiKey,keyword,zipCode
+And store values of: apiKey,keyword,postalCodeApi
+And change values for: apiKey,keyword,postalCodeApi
 When click reset button
-Then values of fields: apiKey,keyword,zipCode equals stored values
+Then values of fields: apiKey,keyword,postalCodeApi equals stored values
 
 Scenario: (/products-and-docs/widgets/calendar/) Check RESET button functionality on Embedded Code Pop-up window
-
 Given open Calendar Widget page
-And store values of: apiKey,keyword,zipCode
-And change values for: apiKey,keyword,zipCode
+And store values of: apiKey,keyword,postalCodeApi
+And change values for: apiKey,keyword,postalCodeApi
 When click reset button on Calendar Widget Page
 And click on "Get code" button
 Then the pop-up Embedded Code is opened
-And embedded html code contains stored values of: apiKey,keyword,zipCode
+And embedded html code contains stored values of: apiKey,keyword,postalCodeApi
 
 Scenario: (/products-and-docs/widgets/calendar/) TECHNICAL TAB - Check links
 Given open Calendar Widget page

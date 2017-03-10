@@ -4,7 +4,6 @@ import bla.tm.staticmethods.MenuElements;
 import bla.tm.widgets.*;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
-
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -28,8 +27,8 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
     private CalendarWidget calendarWidget;
 
-    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
-    protected MapWidget widget;
+    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]/div[1]")
+    protected MapWidget mapWidget;
 
     public CountdownWidget getCountDownWidget() {
         return countdownWidget;
@@ -39,8 +38,8 @@ public class AncestorPage extends PageObject {
 
     public CalendarWidget getCalendarWidget() {return calendarWidget;}
 
-    public MapWidget getWidget() {
-        return widget;
+    public MapWidget getMapWidget() {
+        return mapWidget;
     }
 
     @FindBy(xpath = "//div[./ul[@id='scrollable-element']]")
@@ -179,4 +178,9 @@ public class AncestorPage extends PageObject {
             e.printStackTrace();
         }
     }
+
+    public String getPageSource() {
+        return getDriver().getPageSource();
+    }
+
 }

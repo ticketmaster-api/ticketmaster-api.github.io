@@ -59,6 +59,6 @@ Add widget on a page.
 ![wordpress6](/assets/img/products-and-docs/wp-t-6.jpg)
 
 
-{% include disqus.html %}
+{% include disqus.html add_disqusDIV='true' %}
 
 

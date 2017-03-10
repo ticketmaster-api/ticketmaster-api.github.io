@@ -3,7 +3,7 @@
  */
 var $contactForm = $('.js_contact_form'),
 	formKey = 'd9878ccc8e22c7253d057015617f82cd',
-	formKeyCC = '4dc5e322e62ad60d2b4ba5840a9c4e14',
+	formKeyCC = '0d9da5473940d4380dc3a16fb47a2c55',
 	$textAreaDescription = $('#message-detail-text');
 
 var $modalAlert = $('#contact-alert-modal'),

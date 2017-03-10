@@ -11,9 +11,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
-import static bla.tm.staticmethods.StaticMethods.*;
 
-public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements AnsestorWidget {
+public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements AncestorWidget {
 
     /**
      * Private fields
@@ -46,6 +45,9 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
 
     @FindBy(id = "w-postalcode")
     protected WebElementFacade zipCodeField;
+
+    @FindBy(id = "w-postalcodeapi")
+    protected WebElementFacade postalCodeApiField;
 
     @FindBy(id = "w-attractionid")
     protected WebElementFacade attractionIdField;
@@ -85,8 +87,8 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
     }
 
     @Override
-    public String getZipCodeTextFieldValue() {
-        return zipCodeField.getValue();
+    public String getPostalCodeApiFieldValue() {
+        return postalCodeApiField.getValue();
     }
 
     public String getAPIKeyTextFieldValue() {
@@ -267,13 +269,13 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
      * @param webElement
      * @param timeoutInMilliseconds
      */
-    public AnsestorWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
-                                 final long timeoutInMilliseconds) {
+    public AncestorWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
+                              final long timeoutInMilliseconds) {
         super(page, locator, webElement, timeoutInMilliseconds);
     }
 
-    public AnsestorWidgetImpl(final PageObject page, final ElementLocator locator,
-                                 final long timeoutInMilliseconds) {
+    public AncestorWidgetImpl(final PageObject page, final ElementLocator locator,
+                              final long timeoutInMilliseconds) {
         super(page, locator, timeoutInMilliseconds);
     }
 
@@ -300,25 +302,7 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
         }
     }
 
-    @Override
-    public String getEmbeddedValueOf(String valueName) {
-        switch (valueName){
-            case "apiKey": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_APIKEY);
-            case "keyword": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_KEYWORD);
-            case "zipCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ZIPCODE);
-            case "postalCodeApi": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_POSTALCODEAPI);
-            case "period": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PERIOD);
-            case "attractionId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ATTRACTIONID);
-            case "venueId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_VENUEID);
-            case "promoterId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROMOTERID);
-            case "city": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_CITY);
-            case "countryCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_COUNTRYCODE);
-            case "source": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_SOURCE);
-            case "classificationName": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_CLASSIFICATIONNAME);
-            case "eventCount": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_EVENTCOUNT);
-            default: throw new IllegalArgumentException(String.format("The argument of embedded attribute name is illegal: %s", valueName));
-        }
-    }
+
 
     public void setValueToCustomDropDown(By dropdownArrow, By dropdownItem){
         WebElementFacade arrow = getPage().find(dropdownArrow);
@@ -363,5 +347,10 @@ public abstract class AnsestorWidgetImpl extends WidgetObjectImpl implements Ans
         }
         int explicitTimeout = Integer.parseInt(timeout);
         return explicitTimeout;
+    }
+
+    @Override
+    public String getZipCodeFieldValue() {
+        return zipCodeField.getText();
     }
 }

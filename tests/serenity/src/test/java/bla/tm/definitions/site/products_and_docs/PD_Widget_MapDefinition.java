@@ -34,6 +34,21 @@ public class PD_Widget_MapDefinition extends WidgetFields {
         mapWidgetSteps.storeValuesForAllFields();
     }
 
+    //Given
+    @Given("store values on Map Widget page: $valueNames")
+    public void storeValuesOf(List<String> valueNames) {
+        for (String valueName : valueNames){
+            mapWidgetSteps.storeValue(valueName);
+        }
+    }
+
+    @Given("change values for on Map Widget page: $valueNames")
+    public void changeValuesFor(List<String> valueNames) {
+        for (String valueName : valueNames){
+            mapWidgetSteps.setRandomValueFor(valueName);
+        }
+    }
+
     @Then("the required fields are not empty on the Map Widget page")
     public void checkThatRequiredFieldsAreNotEmptyOnTheMapWidgetPage() {
         mapWidgetSteps.cityIsNotEmpty();
@@ -45,10 +60,18 @@ public class PD_Widget_MapDefinition extends WidgetFields {
         mapWidgetSteps.checkThatEmbeddedHtmlCodeContainsStoredValues();
     }
 
-    @Then("values equals to stored values of fields: $fieldNames")
+    @Then("values equals to stored values of fields on Map Widget page: $fieldNames")
     public void checkThatFieldsEqualStoredValues(List<String> fieldNames) {
         for (String fieldName : fieldNames){
-            countDownWidgetSteps.fieldEqualsStoredValue(fieldName);
+            mapWidgetSteps.fieldEqualsStoredValue(fieldName);
+        }
+    }
+
+    //Then
+    @Then("embedded html code on Map Widget contains stored values of: $valueNames")
+    public void checkThatEmbeddedHtmlCodeContainsStoredValuesOf(List<String> valueNames) {
+        for (String valueName : valueNames){
+            mapWidgetSteps.embeddedCodeContainsStoredValueFor(valueName);
         }
     }
 }

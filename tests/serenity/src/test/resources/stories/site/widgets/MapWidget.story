@@ -22,19 +22,19 @@ And embedded html code contains stored values on the Map Widget page
 
 Scenario: (/products-and-docs/widgets/map/) [3.7.3 Map widget : Check RESET button functionality]
 Given open Map Widget page
-And store values of: apiKey,keyword,zipCode
-And change values for: apiKey,keyword,zipCode
+And store values on Map Widget page: apiKey,keyword,zipCode
+And change values for on Map Widget page: apiKey,keyword,zipCode
 When click reset button
-Then values equals to stored values of fields: apiKey,keyword,zipCode
+Then values equals to stored values of fields on Map Widget page: apiKey,keyword,zipCode
 
 Scenario: (/products-and-docs/widgets/map/) [3.7.4 Map widget : Check RESET button functionality on embedded pop-up window]
 Given open Map Widget page
-And store values of: apiKey,keyword,zipCode
-And change values for: apiKey,keyword,zipCode
+And store values on Map Widget page: apiKey,keyword,zipCode
+And change values for on Map Widget page: apiKey,keyword,zipCode
 When click reset button
 And click on "Get code" button
 Then the pop-up Embedded Code is opened
-And embedded html code contains stored values of: apiKey,keyword,zipCode
+And embedded html code on Map Widget contains stored values of: apiKey,keyword,zipCode
 
 Scenario: (/products-and-docs/widgets/map/) [3.7.7 Map widget : Check links]
 Given open Map Widget page

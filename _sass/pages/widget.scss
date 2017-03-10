@@ -475,6 +475,17 @@
 	}
 }
 
+.tab-content {
+	.required {
+		label {
+			color: #d0021b;
+		}
+		input {
+			border: 1px solid #d0021b;
+		}
+	}
+}
+
 #js_widget_modal_map {
   .modal-body {
 		margin: 0;

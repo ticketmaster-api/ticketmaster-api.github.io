@@ -45,10 +45,9 @@ And embedded html code contains stored ApiKey and EventId
 
 Scenario: (/products-and-docs/widgets/countdown/) TECHNICAL TAB - Get new EventId
 Given open Countdown Widget page
-When User is logged to site (Countdown Widget)
-And get eventId by keyword ADELE
+When get eventId by keyword ZZ TOP
 And set first eventId from list
-Then the event poster contains ADELE
+Then the event poster contains ZZ TOP
 
 Scenario: (/products-and-docs/widgets/countdown/) TECHNICAL TAB - Check links
 Given open Countdown Widget page

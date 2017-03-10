@@ -27,6 +27,14 @@ author :
   twitter : username
   feedburner : feedname
 
+# These are for automatically generating sharing metadata for FB and Twitter
+# OS Protocol is for sharing the source of your site, if you're interested. For more, see osprotocol.com
+protocols:
+    fb_image: "/assets/img/branding-guide/blue-logo@3x.png"
+    fb_image_width: 792
+    fb_image_height: 792
+    fb_image_type: "image/png"
+
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt
 # Most places will/should use BASE_PATH to make the urls
@@ -38,6 +46,7 @@ author :
 production_url : http://developer.ticketmaster.com/
 gems:
   - jekyll-redirect-from
+  - jekyll-seo-tag
 
 sass:
   style: compressed

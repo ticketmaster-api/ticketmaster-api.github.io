@@ -23,13 +23,13 @@ public class PD_Tutorials_WidgetsDefinition {
         tutorialsWidgetsPage.openPage();
     }
 
-    @Given("Feedback widget elements are not shown")
+    @Given("Feedback mapWidget elements are not shown")
     public void checkFeedbackElementsAreNotShown() {
         tutorialsWidgetsPage.checkFeedbackElementsAreNtShown();
     }
 
-    @Given("Feedback widget is not shown")
-    @Then("Feedback widget is not shown")
+    @Given("Feedback mapWidget is not shown")
+    @Then("Feedback mapWidget is not shown")
     public void checkIfWidgetIsNotShown() {
         tutorialsWidgetsPage.checkIfWidgetIsNotShown();
     }
@@ -45,7 +45,7 @@ public class PD_Tutorials_WidgetsDefinition {
         tutorialsWidgetsPage.clickFeedbackButton();
     }
 
-    @When("click send button of Feedback widget")
+    @When("click send button of Feedback mapWidget")
     public void clickSendButton() {
         tutorialsWidgetsPage.clickSendFeedbackWidgetButton();
     }
@@ -83,32 +83,32 @@ public class PD_Tutorials_WidgetsDefinition {
         anyPage.checkIfPageIsOpened(url,title,baseTestedUrl);
     }
 
-    @Then("Feedback widget is shown")
+    @Then("Feedback mapWidget is shown")
     public void checkIfWidgetIsShown() {
         tutorialsWidgetsPage.checkIfWidgetIsShown();
     }
 
-    @Then("Feedback widget elements are shown")
+    @Then("Feedback mapWidget elements are shown")
     public void checkFeedbackElementsAreShown() {
         tutorialsWidgetsPage.checkFeedbackElementsAreShown();
     }
 
-    @Then("click close button of Feedback widget")
+    @Then("click close button of Feedback mapWidget")
     public void clickCloseFeedbackWidgetButton() {
         tutorialsWidgetsPage.clickCloseFeedbackWidgetButton();
     }
 
-    @Then("error notification is shown for Feedback widget")
+    @Then("error notification is shown for Feedback mapWidget")
     public void checkErrorNotificationForTextField() {
         tutorialsWidgetsPage.checkErrorNotificationForTextField();
     }
 
-    @Then("description error notification is shown for Feedback widget")
+    @Then("description error notification is shown for Feedback mapWidget")
     public void checkErrorNotificationForTextArea() {
         tutorialsWidgetsPage.checkErrorNotificationForTextArea();
     }
 
-    @Then("check that error message is shown for Description for Feedback widget")
+    @Then("check that error message is shown for Description for Feedback mapWidget")
     public void checkDescriptionErrorMessageIsShown() {
         tutorialsWidgetsPage.checkDescriptionErrorMessageIsShown();
     }
