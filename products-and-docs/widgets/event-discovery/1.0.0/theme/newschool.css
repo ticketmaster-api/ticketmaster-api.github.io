@@ -1036,6 +1036,39 @@ div[w-theme="newschool"][w-proportion="m"] .barcode-bottom {
 }
 /* 300x250 [Finish] */
 
+
+/*layout="fullwidth"*/
+div[w-theme="newschool"][w-layout="fullwidth"] .event-content-wraper {
+	padding-top: 145px;
+}
+div[w-theme="newschool"][w-layout="fullwidth"] .event-date-wraper,
+div[w-theme="newschool"][w-layout="fullwidth"] .address-wrapper {
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	letter-spacing: normal;
+	opacity: 0.7;
+}
+div[w-theme="newschool"][w-layout="fullwidth"] .event-date-wraper {
+	top: 90px;
+}
+div[w-theme="newschool"][w-layout="fullwidth"] .event-name {
+	font-size: 36px;
+	line-height: 48px;
+	max-height: 96px;
+}
+div[w-theme="newschool"][w-layout="fullwidth"] .legal-notice,
+div[w-theme="newschool"][w-layout="fullwidth"] .events-counter {
+	position: absolute;
+	bottom: 1px;
+	font-size: 11px;
+}
+div[w-theme="newschool"][w-layout="fullwidth"] .events-counter { right: 11px; }
+/*w-layout fullwidth END*/
+
+
 /* !!! HotFix !!! */
 div[w-theme="newschool"] .general-admission {
     display: none;

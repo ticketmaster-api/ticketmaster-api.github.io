@@ -420,83 +420,85 @@
       widgetNode,
       widget
     });
+
+    // Set min widget size on mobile devices
+    if(parseInt($(window).width(), 10) < 767){
+      $('#w-fixed-300x250').trigger('click');
+    }
   };
-
-
-
 
   /**
    * Events
    */
-  $configForm.on("change", changeState);
-  // Mobile devices. Force 'change' by 'Go' press
+  function addEvents() {
 
-  $configForm.on("submit", function (e) {
-    //console.log('pressed on.submit');
-    $configForm.find('input:focus').trigger('blur');
-    e.preventDefault();
-  });
+    $configForm.on("change", changeState);
+    // Mobile devices. Force 'change' by 'Go' press
 
-  /*set tooltip value above slider*/
-  $configForm.find("input[type='text']").each(function(){
-    var $self = $(this);
-    $self.data('default-value', $self.val());
-  });
+    $configForm.on("submit", function (e) {
+      //console.log('pressed on.submit');
+      $configForm.find('input:focus').trigger('blur');
+      e.preventDefault();
+    });
 
-  $configForm.find("input[type='radio']").each(function(){
-    var $self = $(this);
-    if($self.is(':checked'))
-      $self.data('is-checked', 'checked');
-  });
+    /*set tooltip value above slider*/
+    $configForm.find("input[type='text']").each(function () {
+      var $self = $(this);
+      $self.data('default-value', $self.val());
+    });
 
-  $getCodeButton.on('click', function(){
-    var codeCont = document.querySelector(".language-html.widget_dialog__code");
+    $configForm.find("input[type='radio']").each(function () {
+      var $self = $(this);
+      if ($self.is(':checked'))
+        $self.data('is-checked', 'checked');
+    });
 
-    var htmlCode = document.createElement("div");
-    for(var key in widget.config){
-      htmlCode.setAttribute("w-"+key,widget.config[key]);
-    }
-    var tmp = document.createElement("div");
-    tmp.appendChild(htmlCode);
-    codeCont.textContent = tmp.innerHTML;
-    $widgetModal.modal();
-  });
+    $getCodeButton.on('click', function () {
+      var codeCont = document.querySelector(".language-html.widget_dialog__code");
 
-  /**
-   * check if user logged just before enter widget page
-   */
-  $window.on('login', function (e, data) {
-    replaceApiKey({
+      var htmlCode = document.createElement("div");
+      for (var key in widget.config) {
+        htmlCode.setAttribute("w-" + key, widget.config[key]);
+      }
+      var tmp = document.createElement("div");
+      tmp.appendChild(htmlCode);
+      codeCont.textContent = tmp.innerHTML;
+      $widgetModal.modal();
+    });
+
+    /**
+     * check if user logged just before enter widget page
+     */
+    $window.on('login', function (e, data) {
+      replaceApiKey({
         userKey: data.key,
-        inputApiKey:$('#w-tm-api-key'),
+        inputApiKey: $('#w-tm-api-key'),
         widgetNode,
         widget
       });
-  });
+    });
 
-  $('.js_reset_widget').on('click', function(){
-    resetWidget($configForm);
-  });
+    $('.js_reset_widget').on('click', function () {
+      resetWidget($configForm);
+    });
 
-  $('#js_widget_modal__close').on('click', function(){
-    $widgetModal.modal('hide');
-  });
+    $('#js_widget_modal__close').on('click', function () {
+      $widgetModal.modal('hide');
+    });
 
-  $('#js_widget_modal_no_code__close').on('click', function(){
-    $widgetModalNoCode.modal('hide');
-  });
+    $('#js_widget_modal_no_code__close').on('click', function () {
+      $widgetModalNoCode.modal('hide');
+    });
 
-  $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-    $widthController.slider('relayout');
-    $borderRadiusController.slider('relayout');
-    windowScroll();//recalculate widget container position
-  });
+    $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
+      $widthController.slider('relayout');
+      $borderRadiusController.slider('relayout');
+      windowScroll();//recalculate widget container position
+    });
+  }
+
+  addEvents();
 
   init();
-
-  // Set min widget size on mobile devices
-  if(parseInt($(window).width(), 10) < 767){
-    $('#w-fixed-300x250').trigger('click');
-  }
 
 })(jQuery);

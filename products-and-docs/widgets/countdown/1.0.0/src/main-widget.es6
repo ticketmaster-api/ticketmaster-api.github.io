@@ -564,12 +564,15 @@ class TicketmasterCountdownWidget {
     this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
     this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
 
-    if(this.config.theme !== null){
-     this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
-    }
+
 
     if(this.needToUpdate(this.config, oldTheme, this.updateExceptions) || isFullWidthTheme){
       this.clear();
+
+      if(this.config.theme !== null){
+        //set new styles
+        this.makeRequest( this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css" );
+      }
 
       if(this.widgetConfig.theme !== 'simple_countdown') {
         let heightStatic = '700px';
@@ -967,10 +970,6 @@ ga('create', 'UA-78317809-1', 'auto');
 ga('send', 'pageview');
 
 
-if(module) {
-  if(module.exports) {
+if(typeof module !== "undefined") {
     module.exports = { CountdownClock , TicketmasterCountdownWidget };
-  }
 }
-// export { TicketmasterCountdownWidget as CDWidget }
-// export { CountdownClock as CDClock }

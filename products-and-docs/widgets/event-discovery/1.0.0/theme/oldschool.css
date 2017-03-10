@@ -807,6 +807,25 @@ div[w-theme="oldschool"][w-layout="horizontal"] .events-root-container:before {
     width: 36px;
     right: auto;
 }
+/*layout="fullwidth"*/
+div[w-theme="oldschool"][w-layout="fullwidth"] .event-name {
+		font-size: 48px;
+		line-height: 48px;
+		max-height: 96px;
+}
+div[w-theme="oldschool"][w-layout="fullwidth"] .event-address {
+	display: inline-block;
+	margin-right: 10px;
+}
+div[w-theme="oldschool"][w-layout="fullwidth"] .address-wrapper{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+div[w-theme="oldschool"][w-layout="fullwidth"] .widget-container--discovery {
+	border-bottom: 0;
+}
+/*w-layout END*/
 
 /* 300x600 [Start] */
 div[w-theme="oldschool"][w-proportion="xxl"] .events-root {
@@ -940,7 +959,8 @@ div[w-theme="oldschool"][w-proportion="m"] .legal-notice {
     font-size: 11px;
 }
 
-div[w-theme="oldschool"][w-proportion="m"] .events-counter {
+div[w-theme="oldschool"][w-proportion="m"] .events-counter,
+div[w-theme="oldschool"][w-layout="fullwidth"] .events-counter {
     position: absolute;
     bottom: 1px;
     right: 11px;
