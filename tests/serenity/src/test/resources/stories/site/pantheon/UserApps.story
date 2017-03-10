@@ -22,16 +22,18 @@ When save changes on Edit App Page
 Then the <message> message is displayed
 Examples:
 |appFormField     |appName                  |message                                    |
-|Application name |mamax-Appd2              |Callback URL is required for Oauth Product |
+|Application name |mamaxF-Appd2              |Callback URL is required for Oauth Product |
 |Redirect URI     |https://ticketmaster.com |Application name field is required.        |
 
 Scenario: (Pantheon|Add new App) [2.1.5 Add new App with values positive]
+Meta:@debug
 Given navigate to Pantheon Add New App page from User Account page
 When enter to the field Application name value uniqueApp
 When enter to the field Redirect URI value https://oauth.ticketmaster.com
 And save changes on Edit App Page
-Then the The App Name “uniqueapp” is already being used. message is displayed
-And the uniqueApp is appeared in the list of apps
+Then the App Created! message is displayed
+Then open my Apps page
+And the App is appeared in the list of apps
 
 Scenario: (Pantheon|Edit App) Edit app with empty required fields negative
 Given open my Apps page

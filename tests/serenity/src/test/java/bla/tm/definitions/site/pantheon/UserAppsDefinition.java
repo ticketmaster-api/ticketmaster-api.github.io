@@ -6,6 +6,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import java.util.Random;
+
 public class UserAppsDefinition {
 
     @Steps
@@ -19,8 +21,9 @@ public class UserAppsDefinition {
 
     @Given("open my Apps page")
     @When("open my Apps page")
+    @Then("open my Apps page")
     public void navigateToMyAppsPage(){
-        addNewAppPage.navigateToMyAppsPage();
+        addNewAppPage.openMyAppsPage();
     }
 
     @Given("open Edit App Page for the first application")
@@ -36,7 +39,13 @@ public class UserAppsDefinition {
 
     @When("enter to the field $field value $value")
     public void enterValueToTheFiield(String field, String value){
-        addNewAppPage.enterValue(field, value);
+        if (value.equals("uniqueApp")){
+            value = generateRandomValue();
+            addNewAppPage.enterValue(field, value);
+        }
+        else {
+            addNewAppPage.enterValue(field, value);
+        }
     }
 
     @When("save changes on Edit App Page")
@@ -59,9 +68,9 @@ public class UserAppsDefinition {
         addNewAppPage.openDetailsTab();
     }
 
-    @Then("the $appName is appeared in the list of apps")
-    public void appIsAppeared(String appName){
-        addNewAppPage.checkIfTheAppIsPresent(appName);
+    @Then("the App is appeared in the list of apps")
+    public void appIsAppeared(){
+        addNewAppPage.checkIfTheAppIsPresent();
     }
 
     @Then("the $message message is displayed")
@@ -73,6 +82,18 @@ public class UserAppsDefinition {
     @Then("the predefined app is removed from the list of apps")
     public void appIsRemovedFromTheListOfApps(){
         addNewAppPage.checkIsAppNotExists();
+    }
+
+    private String generateRandomValue() {
+        char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 8; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+        String output = sb.toString();
+        return output;
     }
 
 }
