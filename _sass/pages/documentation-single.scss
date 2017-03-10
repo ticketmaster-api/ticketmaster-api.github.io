@@ -328,6 +328,20 @@
     }
   }
 
+	&__map{
+		background: url("/assets/img/products-and-docs/map-widget-image.png");
+		background-size: contain;
+
+		@media #{$max-1200} {
+			min-height: auto;
+			background-size: cover;
+		}
+		@media #{$max-768} {
+			background: url("/assets/img/products-and-docs/map-widget-image-m.png") top right;
+			background-size: cover;
+		}
+	}
+
   @media #{$max-1200} {
     width: auto;
   }
