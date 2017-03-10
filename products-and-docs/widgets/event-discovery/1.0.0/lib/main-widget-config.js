@@ -73,8 +73,7 @@
     tooltip: 'always',
     handle: 'square'
   }),
-      $colorSchemeSelector = $('.widget__color_scheme_control'),
-      widgetNode = document.querySelector("div[w-tmapikey]");
+      $colorSchemeSelector = $('.widget__color_scheme_control');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
     $widthController.slider('relayout');
@@ -177,11 +176,11 @@
 
     if (userKey !== null) {
       var inputApiKey = options.inputApiKey,
-          _widgetNode = options.widgetNode,
+          widgetNode = options.widgetNode,
           _widget = options.widget;
 
       inputApiKey.attr('value', userKey).val(userKey);
-      _widgetNode.setAttribute("w-tmapikey", userKey);
+      widgetNode.setAttribute("w-tmapikey", userKey);
       _widget.update();
     }
   };
@@ -191,38 +190,30 @@
       widget
     });*/
 
-  var fullWidth = function fullWidth(targetValue) {
+  var fullWidth = function fullWidth(targetValue, widgetNode) {
     var widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $containerWidget,
         widgetContainer = $(".widget-container", widgetContainerWrapper),
         $border_slider = $('.js_widget_border_slider');
 
-    console.log('targetValue', targetValue);
-    if (targetValue === "fullwidth") {
+    if (targetValue === 'fullwidth') {
       // $layoutBox.slideUp();
       widthSlider.slideUp("fast");
       $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
       $border_slider.slideUp("fast");
       widgetContainerWrapper.css({ width: "100%" });
-      widgetContainer.css({
-        width: "100%"
-      });
-      widgetNode.setAttribute('w-height', 700);
+      widgetContainer.css({ width: '100%' });
+      // widgetNode.setAttribute('w-height', 700);
     } else {
-      var excludeOption = {
-        id: widgetNode.getAttribute('w-id')
-      };
-      resetWidget($configForm, excludeOption);
-
       // $layoutBox.slideDown("fast");
-      widthSlider.slideDown("fast");
-      $border_slider.slideDown("fast");
+      widthSlider.hide();
+      $border_slider.hide();
       $borderRadiusController.slider('setValue', 4);
       widgetNode.setAttribute('w-borderradius', 4);
-      widgetContainerWrapper.css({
-        width: 'auto'
-      });
+      widgetContainerWrapper.css({ width: 'auto' });
+      widgetContainer.css({ width: 'auto' });
+      //resetWidget($configForm );
     }
   };
 
@@ -235,9 +226,9 @@
         $tabButtons = $('.js-tab-buttons');
 
     if (targetName === "w-tm-api-key") {
-      document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
-
-      if (sessionStorage.getItem('tk-api-key')) {
+      console.log("target -   w-tm-api-key");
+      /*document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
+       if (sessionStorage.getItem('tk-api-key')) {
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
         document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
       }
@@ -245,11 +236,12 @@
         if (sessionStorage.getItem('tk-api-key')) {
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
-        } else {
+        }
+        else {
           document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
           document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
-      }
+      }*/
     }
 
     if (targetName === "w-postalcodeapi") {
@@ -257,23 +249,23 @@
       isPostalCodeChanged = true;
 
       /*
-      var numInputClass = document.getElementById('w-radius');
-      var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
-      var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-       if (targetValue == '') {
-          numInputClass.setAttribute('disabled', 'disabled');
-          numInputClass.value = '';
-          incArrow.classList.add('disabled');
-          decArrow.classList.add('disabled');
-      }
-      else {
-          numInputClass.removeAttribute('disabled');
-          numInputClass.value = '25';
-          incArrow.classList.remove('disabled');
-          decArrow.classList.remove('disabled');
-          widgetNode.setAttribute('w-radius', '25');
-      }
-      */
+       var numInputClass = document.getElementById('w-radius');
+       var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
+       var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
+        if (targetValue == '') {
+       numInputClass.setAttribute('disabled', 'disabled');
+       numInputClass.value = '';
+       incArrow.classList.add('disabled');
+       decArrow.classList.add('disabled');
+       }
+       else {
+       numInputClass.removeAttribute('disabled');
+       numInputClass.value = '25';
+       incArrow.classList.remove('disabled');
+       decArrow.classList.remove('disabled');
+       widgetNode.setAttribute('w-radius', '25');
+       }
+       */
     }
 
     if (targetName === "w-latlong") {
@@ -313,15 +305,28 @@
           minWidth: 620
         };
       }
+      fullWidth(targetValue, widgetNode);
 
-      $widthController.slider({
-        setValue: sizeConfig.width,
-        max: sizeConfig.maxWidth,
-        min: sizeConfig.minWidth
-      }).slider('refresh');
+      console.log('targetValue', targetValue);
+      console.log('targetName', targetName);
 
-      /**/
-      fullWidth(targetValue);
+      if (targetValue !== 'fullwidth') {
+
+        $('.js_widget_width_slider').slideDown("fast");
+        $('.js_widget_border_slider').slideDown("fast");
+        $borderRadiusController.slider('setValue', 4);
+        widgetNode.setAttribute('w-borderradius', 4);
+        $containerWidget.css({ width: 'auto' });
+        $(".widget-container", $containerWidget).css({ width: 'auto' });
+
+        console.log('else end widgetContainer', targetValue);
+
+        $widthController.slider({
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        }).slider('refresh');
+      }
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
@@ -336,6 +341,9 @@
         maxWidth: 600,
         minWidth: 350
       };
+
+      //set width:'auto'
+      fullWidth(targetValue, widgetNode);
 
       //set layout
       widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
@@ -360,7 +368,6 @@
           min: _sizeConfig.minWidth
         }).slider('refresh');
       }
-
       widgetNode.setAttribute('w-width', _sizeConfig.width);
       widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
@@ -371,7 +378,7 @@
     windowScroll(); //recalculate widget container position
   };
 
-  var resetWidget = function resetWidget(configForm, excludeOption) {
+  var resetWidget = function resetWidget(configForm) {
     var widgetNode = document.querySelector("div[w-tmapikey]"),
         height = 600,
         theme = void 0,
@@ -395,7 +402,9 @@
         $self.val(value);
       }
 
-      document.getElementById("w-country").disabled = true;
+      try {
+        document.getElementById("w-country").disabled = true;
+      } catch (e) {}
 
       var activeItems = document.querySelectorAll('.custom_select__item.custom_select__item-active');
       var activeItemsLenght = activeItems.length;

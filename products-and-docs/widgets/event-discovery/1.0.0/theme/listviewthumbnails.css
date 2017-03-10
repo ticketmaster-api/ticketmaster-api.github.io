@@ -67,7 +67,6 @@ div[w-theme="listviewthumbnails"] a:active{
 div[w-theme="listviewthumbnails"] .event-pretended-link {
     cursor: pointer;
     -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-    -webkit-transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: background 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
@@ -170,9 +169,8 @@ div[w-theme="listviewthumbnails"] .event-question:after {
     right: 0;
     top: 0;
     bottom: 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    -webkit-transition: opacity 0.2s ease-in-out;
+		background: no-repeat center;
+		-webkit-transition: opacity 0.2s ease-in-out;
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
 }
@@ -204,18 +202,18 @@ div[w-theme="listviewthumbnails"] .events_control {
 }
 
 div[w-theme="listviewthumbnails"] .wrapper-thumbnails {
-	float: left;
-	width: 74px;
-	min-height: 60px;/*if no img*/
-	margin-right: 14px;
+		float: left;
+		width: 74px;
+		min-height: 60px;/*if no img*/
+		margin-right: 14px;
 }
 div[w-theme="listviewthumbnails"] .bg-cover-thumbnails {
-	height: 60px;
-	width: 74px;
-	display: block;
-	margin-bottom: 6px;
-	background-position: center;
-	background-size: cover;
+		height: 60px;
+		width: 74px;
+		display: block;
+		margin-bottom: 6px;
+		background-position: center;
+		background-size: cover;
 }
 div[w-theme="listviewthumbnails"] .bg-cover {
     width: 100%;
@@ -294,11 +292,9 @@ div[w-theme="listviewthumbnails"] .address-wrapper{
     display: -webkit-box;
     max-height: 13px;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
     font-family: "TMSans-Light";
     line-height: 1.3;
     overflow: hidden;
-    text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     font-size: 10px;
@@ -667,3 +663,38 @@ div[w-theme="listviewthumbnails"] .general-admission {
 div[w-theme="listviewthumbnails"] .ticket-logo {
     display: none;
 }
+
+/*layout="fullwidth"*/
+div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .event-name {
+	font-size: 30px;
+	line-height: 34px;
+	max-height: 34px;
+	-webkit-line-clamp: 1;
+}
+div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .event-date-wraper{
+	font-size: 24px;
+	line-height: 32px;
+	color: #414141;
+	margin-bottom: 12px;
+}
+div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .address-wrapper {
+	font-size: 16px;
+	line-height: 24px;
+	max-height: 24px;
+	-webkit-line-clamp: 1;
+}
+div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .wrapper-thumbnails {
+	width: 352px;
+	min-height: 158px;
+	margin-right: 20px;
+}
+div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .bg-cover-thumbnails {
+	height: 158px;
+	width: 100%;
+}
+div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .event-buy-btn {
+	margin-left: 370px;
+	top: -30px;
+	position: relative;
+}
+/*w-layout fullwidth END*/

@@ -747,3 +747,40 @@ div[w-theme="simple"][w-proportion="xxl"] .event-logo.right-logo {
     left: 38%;
 }
 
+/*layout="fullwidth"*/
+div[w-theme="simple"][w-layout="fullwidth"] .event-content-wraper {
+	padding-top: 176px;
+}
+div[w-theme="simple"][w-layout="fullwidth"] .event-date-wraper,
+div[w-theme="simple"][w-layout="fullwidth"] .address-wrapper {
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	letter-spacing: normal;
+	opacity: 0.7;
+}
+div[w-theme="simple"][w-layout="fullwidth"] .event-name {
+	font-size: 48px;
+	line-height: 48px;
+	max-height: 96px;
+}
+div[w-theme="simple"][w-layout="fullwidth"] .event-address {
+	display: inline-block;
+	margin-right: 10px;
+}
+div[w-theme="simple"][w-layout="fullwidth"] .address-wrapper{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+div[w-theme="simple"][w-layout="fullwidth"] .legal-notice,
+div[w-theme="simple"][w-layout="fullwidth"] .events-counter {
+	position: absolute;
+	bottom: 1px;
+	font-size: 11px;
+}
+div[w-theme="simple"][w-layout="fullwidth"] .events-counter { right: 11px; }
+/*w-layout END*/
+
