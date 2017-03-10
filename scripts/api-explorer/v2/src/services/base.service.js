@@ -1,7 +1,12 @@
-import countryOptions from './options/country.options'
+import countryOptions from './options/country.options';
 
-var base = {};
+import readSwaggerJSON from './swagger.api.reader';
+
+import apiSourcesConfig from '../../api.sources';
+
 var CONFIG_URL = '../../scripts/api-explorer/apidescription.xml';
+
+var base = readApiDataFromAPISources(apiSourcesConfig);
 
 var parseData = function (xml) {
 	var global = {};
@@ -104,7 +109,8 @@ var readFromWADL = function () {
     dataType: "text",
     success : function(response){
       var xml = $.parseXML(response);
-			base = parseData(xml);
+			var wadlData = parseData(xml);
+			base = $.extend(wadlData, base);
     },
 
     error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -112,5 +118,15 @@ var readFromWADL = function () {
     }
   });
 };
+
+function readApiDataFromAPISources (sources) {
+	var result = {};
+  for (var cat in sources) {
+		let {api, meta} = sources[cat];
+		result[cat] = readSwaggerJSON(api, meta.extraMethodsInfo && meta.extraMethodsInfo || {});
+	}
+	return result;
+}
+
 readFromWADL();
 module.exports = base;
