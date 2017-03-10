@@ -908,9 +908,6 @@ var TicketmasterEventDiscoveryWidget = function () {
     value: function initSlider() {
       var _this8 = this;
 
-      function getEventsRootWidth(theme) {
-        return theme ? this.slideCountX * this.widgetRoot.offsetWidth + 'px' : this.slideCountX * 100 + '%';
-      }
       if (this.sliderInterval) clearInterval(this.sliderInterval);
       if (this.sliderTimeout) clearTimeout(this.sliderTimeout);
       this.slideCountX = this.eventsGroups.length;
@@ -918,7 +915,7 @@ var TicketmasterEventDiscoveryWidget = function () {
       this.eventsRoot.style.width = this.isFullWidth ? this.slideCountX * this.widgetRoot.offsetWidth + 'px' : this.slideCountX * 100 + '%';
       this.currentSlideX = 0;
       this.currentSlideY = 0;
-      // this.runAutoSlideX();
+      this.runAutoSlideX();
 
       if (this.isFullWidth) {
         (function () {
@@ -936,8 +933,6 @@ var TicketmasterEventDiscoveryWidget = function () {
 
           var actualResizeHandler = function actualResizeHandler() {
             // handle the resize event
-            console.log('resize');
-
             list.forEach(function (item) {
               item.style.width = me.widgetRoot.offsetWidth + 'px';
               item.style.height = me.widgetRoot.widgetContentHeight + 'px';
@@ -946,7 +941,6 @@ var TicketmasterEventDiscoveryWidget = function () {
             me.eventsRoot.style.width = me.isFullWidth ? me.slideCountX * me.widgetRoot.offsetWidth + 'px' : me.slideCountX * 100 + '%';
           };
 
-          console.log(_this8.eventsRoot.style.width);
           var list = _this8.widgetRoot.querySelectorAll('li'),
               me = _this8,
               resizeTimeout = void 0;
@@ -1076,7 +1070,7 @@ var TicketmasterEventDiscoveryWidget = function () {
         this.eventsRootContainer.classList.add("border");
       }
 
-      if ( /*(!this.needToUpdate(this.config, oldTheme, this.updateExceptions) ||*/this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
+      if (!this.needToUpdate(this.config, oldTheme, this.updateExceptions) || this.needToUpdate(this.config, oldTheme, this.updateExceptions)) {
         this.clear();
 
         if (this.themeModificators.hasOwnProperty(this.widgetConfig.theme)) {
@@ -1521,13 +1515,8 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
-
       event.style.height = !this.isFullWidth ? this.widgetContentHeight - this.borderSize * 2 + 'px' : this.widgetContentHeight - this.borderSize * 2 + 'px';
       event.style.width = !this.isFullWidth ? this.config.width - this.borderSize * 2 + 'px' : this.widgetRoot.offsetWidth - this.borderSize * 2 + 'px';
-
-      if (this.isFullWidth) {
-        console.log(this.widgetRoot.offsetWidth);
-      }
 
       var wrapperImg = this.createBackgroundImage(event, itemConfig.img);
       var titleLink = document.querySelector('[w-type="event-discovery"]').getAttribute('w-titlelink');

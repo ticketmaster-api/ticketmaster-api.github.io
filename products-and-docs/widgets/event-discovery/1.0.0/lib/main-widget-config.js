@@ -305,10 +305,8 @@
           minWidth: 620
         };
       }
-      fullWidth(targetValue, widgetNode);
 
-      console.log('targetValue', targetValue);
-      console.log('targetName', targetName);
+      fullWidth(targetValue, widgetNode);
 
       if (targetValue !== 'fullwidth') {
 
@@ -318,8 +316,6 @@
         widgetNode.setAttribute('w-borderradius', 4);
         $containerWidget.css({ width: 'auto' });
         $(".widget-container", $containerWidget).css({ width: 'auto' });
-
-        console.log('else end widgetContainer', targetValue);
 
         $widthController.slider({
           setValue: sizeConfig.width,

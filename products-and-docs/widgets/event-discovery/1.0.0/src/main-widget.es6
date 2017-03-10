@@ -577,7 +577,6 @@ class TicketmasterEventDiscoveryWidget {
     this.nextEventY.classList.add(this.controlHiddenClass);
   }
 
-
   toggleControlsVisibility(){
     // Horizontal
     if(this.slideCountX > 1){
@@ -809,9 +808,6 @@ class TicketmasterEventDiscoveryWidget {
   }
 
   initSlider(){
-    function getEventsRootWidth(theme) {
-      return (theme) ? `${this.slideCountX * this.widgetRoot.offsetWidth }px` :  `${this.slideCountX * 100}%` ;
-    }
     if(this.sliderInterval) clearInterval(this.sliderInterval);
     if(this.sliderTimeout) clearTimeout(this.sliderTimeout);
     this.slideCountX = this.eventsGroups.length;
@@ -819,13 +815,12 @@ class TicketmasterEventDiscoveryWidget {
     this.eventsRoot.style.width = (this.isFullWidth) ? `${this.slideCountX * this.widgetRoot.offsetWidth }px` :  `${this.slideCountX * 100}%` ;
     this.currentSlideX = 0;
     this.currentSlideY = 0;
-    // this.runAutoSlideX();
+    this.runAutoSlideX();
 
     if (this.isFullWidth) {
-      console.log(this.eventsRoot.style.width);
       let list = this.widgetRoot.querySelectorAll('li'),
-          me = this,
-          resizeTimeout;
+        me = this,
+        resizeTimeout;
 
       window.addEventListener('resize', resizeThrottler, false);
       this.listenerResize.push(resizeThrottler);
@@ -844,14 +839,12 @@ class TicketmasterEventDiscoveryWidget {
 
       function actualResizeHandler() {
         // handle the resize event
-        console.log('resize');
-
         list.forEach((item)=> {
           item.style.width = `${me.widgetRoot.offsetWidth}px`;
           item.style.height = `${me.widgetRoot.widgetContentHeight}px`;
-        })
+        });
 
-        me.eventsRoot.style.width = (me.isFullWidth) ? `${me.slideCountX * me.widgetRoot.offsetWidth }px` :  `${me.slideCountX * 100}%` ;
+        me.eventsRoot.style.width = (me.isFullWidth) ? `${me.slideCountX * me.widgetRoot.offsetWidth }px` :  `${me.slideCountX * 100}%`;
       }
       
     }else if(this.listenerResize && this.listenerResize.length !== 0){
@@ -1388,13 +1381,8 @@ class TicketmasterEventDiscoveryWidget {
 
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
-
     event.style.height = (!this.isFullWidth) ? `${this.widgetContentHeight - this.borderSize * 2}px` : `${this.widgetContentHeight - this.borderSize * 2}px`;
     event.style.width = (!this.isFullWidth) ? `${this.config.width - this.borderSize * 2}px` : `${this.widgetRoot.offsetWidth - this.borderSize * 2 }px`;
-
-    if(this.isFullWidth) {
-      console.log(this.widgetRoot.offsetWidth);
-    }
 
     let wrapperImg = this.createBackgroundImage(event, itemConfig.img);
     var titleLink = document.querySelector('[w-type="event-discovery"]').getAttribute('w-titlelink');

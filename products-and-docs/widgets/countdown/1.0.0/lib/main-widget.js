@@ -669,6 +669,7 @@ var TicketmasterCountdownWidget = function () {
         this.clear();
 
         if (this.config.theme !== null) {
+          //set new styles
           this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
         }
 
