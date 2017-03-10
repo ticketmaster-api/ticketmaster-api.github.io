@@ -38,6 +38,12 @@ public class AddNewAppPage extends AncestorPage {
     @FindBy(xpath = "//h1")
     private WebElementFacade noAppsMessage;
 
+    @FindBy(xpath = "//a[@class='dropdown-toggle']")
+    private WebElementFacade dropdownBtn;
+
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li/a[text()='My Apps']")
+    private WebElementFacade myAppsItem;
+
     public WebElementFacade getNameTextInput() {
         return nameTextInput;
     }
@@ -48,6 +54,7 @@ public class AddNewAppPage extends AncestorPage {
 
     public void clickOnApp() {
         appLink.click();
+        getDriver().navigate().refresh();
     }
 
     public WebElementFacade getAppNameWebElement(String name) {
@@ -92,5 +99,13 @@ public class AddNewAppPage extends AncestorPage {
 
     public WebElementFacade getNoApplicationText() {
         return noAppsMessage;
+    }
+
+    public void clickOnDropDown() {
+        dropdownBtn.click();
+    }
+
+    public void clickOnMyApps() {
+        myAppsItem.click();
     }
 }
