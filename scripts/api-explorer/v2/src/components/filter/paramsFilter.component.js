@@ -1,5 +1,5 @@
 class ParamsFilter {
-	constructor({selectedMethod, selectedParams, selectedMethodData, animationSpeed = 200}) {
+	constructor({selectedMethod, selectedParams, selectedMethodData, animationSpeed = 200, paramsIsHiden}) {
 		this.animationSpeed = animationSpeed;
 		this.selectedMethod = selectedMethod;
 		this.selectedParams = selectedParams;
@@ -9,6 +9,11 @@ class ParamsFilter {
 		this.paramsModel = ko.observableArray([]);
 		this.isDirty = ko.computed(this.checkDirty, this);
 		this.init({selectedMethod, selectedParams});
+		
+		// slide toggle when params are not valid
+		paramsIsHiden.subscribe( newVal => {
+			this.slideToggle.call(null, this)
+		})
 	}
 
 	/**
@@ -91,7 +96,7 @@ class ParamsFilter {
 	 * @param event
 	 */
 	slideToggle(viewModel, event) {
-		$(event.currentTarget)
+		$('#api-exp2-params-toggle')
 			.parents('.js-slide-control')
 			.find('.js-slide-wrapper')
 			.slideToggle(viewModel.animationSpeed, function () {
@@ -127,7 +132,7 @@ class ParamsFilter {
 	 * @param option {object} option view-model
 	 */
 	onSelectParamValue(param, option) {
-		param.value(option.name);
+		param.value(option.value || option.name);
 	}
 
 	/**
@@ -156,13 +161,13 @@ class ParamsFilter {
 	};
 }
 
-module.exports = ko.components.register('params-filter', {
+ko.components.register('params-filter', {
 	viewModel: ParamsFilter,
 	template:`
 		<section data-bind="css: {closed: isHidden, dirty: isDirty}" class="api-exp-params js-slide-control">
 		
 			<section class="api-exp-params-headline">
-				<button data-bind="click: slideToggle" class="btn btn-icon toggle-btn" type="button">Parameters</button>
+				<button id="api-exp2-params-toggle" data-bind="click: slideToggle" class="btn btn-icon toggle-btn" type="button">Parameters</button>
 				<span class="btn btn-icon shevron up grey" data-bind="css: {down: isHidden}"></span>
 				<div class="api-exp-params-headline-edit">
 					<button class="btn api-exp-params-headline__btn api-exp-params-headline__btn-copy">&nbsp;</button>
@@ -224,3 +229,5 @@ module.exports = ko.components.register('params-filter', {
 			</div>
 		</section><!--parameters-->
 `});
+
+module.exports = ParamsFilter;

@@ -39,6 +39,8 @@ class TicketmasterEventDiscoveryWidget {
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
+  get widgetVersion() { return "1.0.0"; }
+
   get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
   get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey"]}
@@ -513,11 +515,31 @@ class TicketmasterEventDiscoveryWidget {
     logoBox.appendChild(logo);
     this.eventsRootContainer.appendChild(logoBox);
 
+    let question = document.createElement('span'),
+        toolTip = document.createElement('div'),
+        tooltipHtml = `
+      <div class="tooltip-inner"> 
+        <a href="${this.questionUrl}" target = "_blank" >About widget</a>
+        <div class="place">version: <b>${this.widgetVersion}</b></div>
+      </div>`;
+    question.classList.add("event-question");
+    question.addEventListener('click', toolTipHandler);
+    toolTip.classList.add("tooltip-version");
+    toolTip.classList.add("left");
+    toolTip.innerHTML = tooltipHtml;
+    this.eventsRootContainer.appendChild(question);
+    this.eventsRootContainer.appendChild(toolTip);
+
+    function toolTipHandler(e) {
+      e.preventDefault();
+      e.target.nextSibling.classList.toggle('show-tip');
+    }
+    /*
     let question = document.createElement('a');
     question.classList.add("event-question");
     question.target = '_blank';
     question.href = this.questionUrl;
-    this.eventsRootContainer.appendChild(question);
+    this.eventsRootContainer.appendChild(question);*/
   }
 
   //adds general admission element for OLDSCHOOL theme

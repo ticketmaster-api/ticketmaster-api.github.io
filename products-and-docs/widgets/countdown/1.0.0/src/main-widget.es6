@@ -130,6 +130,8 @@ class TicketmasterCountdownWidget {
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
+  get widgetVersion() { return "1.0.0"; }
+
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
   get updateExceptions() { return ["width", "height", "border", "borderradius", "layout", "propotion", "seconds"]}
@@ -476,11 +478,25 @@ class TicketmasterCountdownWidget {
     logoBox.appendChild(logo);
     this.eventsRootContainer.appendChild(logoBox);
 
-    let question = document.createElement('a');
+    let question = document.createElement('span'),
+      toolTip = document.createElement('div'),
+      tooltipHtml = `
+				<div class="tooltip-inner"> 
+					<a href="${this.questionUrl}" target = "_blank" >About widget</a>
+					<div class="place">version: <b>${this.widgetVersion}</b></div>
+				</div>`;
     question.classList.add("event-question");
-    question.target = '_blank';
-    question.href = this.questionUrl;
+    question.addEventListener('click', toolTipHandler);
+    toolTip.classList.add("tooltip-version");
+    toolTip.classList.add("left");
+    toolTip.innerHTML = tooltipHtml;
     this.eventsRootContainer.appendChild(question);
+    this.eventsRootContainer.appendChild(toolTip);
+
+    function toolTipHandler(e) {
+      e.preventDefault();
+      e.target.nextSibling.classList.toggle('show-tip');
+    }
   }
 
   //adds general admission element for OLDSCHOOL theme
@@ -579,7 +595,7 @@ class TicketmasterCountdownWidget {
         this.makeRequest( this.eventsLoadingHandler, this.apiUrl, this.eventReqAttrs );
       }else{
         // this.showMessage("No results were found.", true);
-        this.showMessage("Sorry, no events were found.", true, 'cactus');
+        this.showMessage("No events were found", true, 'cactus');
         this.countdownClock.update(null);
       }
     }else{
@@ -949,3 +965,12 @@ let widgetsCountdown = [];
 
 ga('create', 'UA-78317809-1', 'auto');
 ga('send', 'pageview');
+
+
+if(module) {
+  if(module.exports) {
+    module.exports = { CountdownClock , TicketmasterCountdownWidget };
+  }
+}
+// export { TicketmasterCountdownWidget as CDWidget }
+// export { CountdownClock as CDClock }

@@ -345,7 +345,8 @@
         else
           return 0;
       });
-      return images[1].url;
+			var src = (images[0].url ) ? (images[1] && images[1].url )? images[1].url : images[0].url : '';
+      return src;
     }
 
     /**

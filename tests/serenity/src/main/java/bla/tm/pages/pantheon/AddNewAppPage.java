@@ -62,8 +62,9 @@ public class AddNewAppPage extends AncestorPage {
         return appNameWebElement;
     }
 
-    public WebElement getSaveButton() {
-        return saveButton.getWrappedElement();
+    public WebElementFacade getSaveButton() {
+        return saveButton;
+  
     }
 
     public WebElementFacade getAppNameInDetailsTab(String val) {

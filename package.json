@@ -20,7 +20,7 @@
     "map-widget-1.0.0": "npm run map-widget-1.0.0-once -- -w",
     "start-watch": "jekyll serve --watch --incremental --force_polling --limit_posts 1",
     "webpack": "webpack -w",
-    "test": "webpack",
+    "test": "webpack && jasmine",
     "test-watch": "webpack-dev-server"
   },
   "repository": {
@@ -46,7 +46,7 @@
     "eslint": "^3.13.1",
     "eslint-config-google": "^0.7.1",
     "exports-loader": "^0.6.3",
-    "expose-loader": "^0.7.1",
+    "expose-loader": "^0.7.3",
     "gulp": "^3.9.1",
     "gulp-shell": "^0.5.2",
     "imports-loader": "^0.6.5",
@@ -63,10 +63,12 @@
     "babel-runtime": "^6.18.0",
     "clipboard": "^1.6.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
+    "jquery": "^2.2.4",
     "jstree": "^3.3.3",
     "knockout": "^3.4.1",
     "knockout-postbox": "^0.5.2",
     "knockout-scrollbar": "0.0.3",
-    "knockout.validation": "^2.0.3"
+    "knockout.validation": "^2.0.3",
+    "slick-carousel": "^1.6.0"
   }
 }

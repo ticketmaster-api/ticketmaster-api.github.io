@@ -2,7 +2,7 @@
     "before": 
         {
             "include": "discovery-api/before-api.md",
-            "menuItem":["Overwiew"]
+            "menuItem":["Overview"]
         }
     ,
     "after": 

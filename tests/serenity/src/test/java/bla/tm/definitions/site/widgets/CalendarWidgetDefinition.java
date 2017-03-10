@@ -71,7 +71,7 @@ public class CalendarWidgetDefinition {
         }
     }
 
-    @Then("the Country field contains appropriate value $countryName")
+    @Then("the Country field contains appropriate value $companyName")
     public void checkThatCountryFieldContainsAppropriateValue(String countryName) {
         calendarWidgetSteps.fieldCountryContains(countryName);
     }

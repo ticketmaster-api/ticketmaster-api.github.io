@@ -9,11 +9,19 @@ gulp.task('serve', shell.task([
 	'jekyll build -I --limit_posts 1'
 ]));
 
+gulp.task('serve-watch', ['js'], shell.task([
+	'jekyll build -I --limit_posts 1'
+]));
+
 gulp.task('js', shell.task([
 	'webpack'
 ]));
 
-gulp.task('sass', shell.task([
+gulp.task('sass-watch', shell.task([
+	'sass _sass/style.scss:_site/css/main.css --sourcemap=inline --scss --style=nested'
+]));
+
+gulp.task('sass', ['serve-watch'], shell.task([
 	'sass _sass/style.scss:_site/css/main.css --sourcemap=inline --scss --style=nested'
 ]));
 
@@ -21,17 +29,18 @@ gulp.task('watch', function () {
 	gulp.watch([
 		'scripts/api-explorer/v2/src/**/*.js',
 		'scripts/api-explorer/v2/**/*.json'
-	], ['js']);
+	], ['serve-watch']);
 
 	gulp.watch([
 		'_sass/**/*.scss'
-	], ['sass']);
+	], ['sass-watch']);
 
 	gulp.watch([
 		'_includes/**/*.html',
 		'_layouts/**/*.html',
-		'*/**/*.md'
-	], ['serve']);
+		'*/**/*.md',
+		'scripts/pages/**/*.js'
+	], ['serve-watch']);
 });
 
 gulp.task('prod', shell.task([
@@ -40,5 +49,5 @@ gulp.task('prod', shell.task([
 	'sass _sass/style.scss:_site/css/main.css --scss --style=compressed'
 ]));
 
-gulp.task('revers', ['js', 'serve']);
+gulp.task('revers', ['js', 'serve-watch', 'sass-watch']);
 gulp.task('default', ['server', 'watch']);

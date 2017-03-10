@@ -14,7 +14,8 @@ var apiKeyService = {};
 
   var LOCAL_KEYS = {
     apiExplore: 'B0JQHemR4Q569W9GcjHfhygRBRU3RvrL',
-    widgets: 'OmayHcE8b9GK5nHijxVG3gC5mrv5NLZV'
+    // widgets: 'OmayHcE8b9GK5nHijxVG3gC5mrv5NLZV'
+		widgets: 'TQMbqzKDBbcCjAxC9SaKS1lg9D5Eousb'
   };
 
   var stagingPattern = /(ticketmaster-api-staging.github.io)+/ig;
@@ -24,7 +25,7 @@ var apiKeyService = {};
 
   if(livePattern.test(host)){
     tmApiKeys = LIVE_KEYS;
-  }else if(stagingPattern.test(host)){    
+  } else if (stagingPattern.test(host)){
     tmApiKeys = STAGING_KEYS;    
   }
 
@@ -74,13 +75,17 @@ var apiKeyService = {};
         c = c.substring(1);
       }
       if (c.indexOf(name) === 0) {
-        return c.substring(name.length,c.length);
+        return c.substring(name.length, c.length);
       }
     }
     return "";
   }
 
-})();
+	// CommonJS exports
+	if (typeof module !== "undefined") {
+		module.exports = apiKeyService;
+	}
+}());
 
 
 
