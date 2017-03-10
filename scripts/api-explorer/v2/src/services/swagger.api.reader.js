@@ -10,7 +10,7 @@ function readParam (data) {
 		doc: data.description,
 		style: data.in,
 		required: data.required,
-		default: data.default || '',
+		default: data.required && data.default || '',
 		select: false,
 		type: data.type
 	};
@@ -65,7 +65,7 @@ export default function (apiJSONObject, meta) {
 				}), {})
 			};
 
-			method = $.extend({}, baseMethodData, method);
+			method = { ...baseMethodData, ...method };
 			result.ALL[method.id] = method;
 
 			result[method.method] = result[method.method] || {};
