@@ -215,6 +215,13 @@
             isPostalCodeChanged = true;
         }
 
+        if (targetName === "w-countryCode") {
+            if (widgetNode.getAttribute('w-countrycode') != targetValue) {
+                document.getElementById("w-city").value = '';
+                widgetNode.setAttribute('w-city', '');
+            }
+        }
+
         if (targetName === "w-theme") {
             if (targetValue === 'simple') {
                 $colorSchemeSelector.hide();

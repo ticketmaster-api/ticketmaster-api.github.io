@@ -71,23 +71,18 @@
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<label for="w-countryCode">Country Code</label>
 									<div class="js_custom_select custom_select">
+										{% assign countryCodesData = site.data.orgs['discovery-api']['v2'].countryCode %}
 										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="-1">
-											<option value="US">United States</option>
-											<option value="AU">Australia</option>
-											<option value="CA">Canada</option>
-											<option value="GB ">Great Britain</option>
-											<option value="IE">Ireland</option>
-											<option value="NZ">New Zealand</option>
+											{% for country in countryCodesData.CountryCode %}
+											<option value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: '(','' | replace: ')','' | strip }}</option>
+											{% endfor %}
 										</select>
 										<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
 										<input class="custom_select__placeholder" type="text" value="United States" readonly="">
-										<ul class="custom_select__list js_widget_custom__list">
-											<li class="custom_select__item" data-value="US">United States</li>
-											<li class="custom_select__item" data-value="AU">Australia</li>
-											<li class="custom_select__item" data-value="CA">Canada</li>
-											<li class="custom_select__item" data-value="GB">Great Britain</li>
-											<li class="custom_select__item" data-value="IE">Ireland</li>
-											<li class="custom_select__item" data-value="NZ">New Zealand</li>
+										<ul class="custom_select__list js_widget_custom__list mh-300">
+											{% for country in countryCodesData.CountryCode %}
+											<li class="custom_select__item" data-value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: "(","" | replace: ")","" | strip }}</li>
+											{% endfor %}
 										</ul>
 									</div>
 								</div>
