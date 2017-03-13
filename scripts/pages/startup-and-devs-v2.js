@@ -12,7 +12,9 @@
 	
 }(function factory($) {
 		'use strict';
-		
+
+		var SELECTOR_ACTIVE_GRID = '.active .grid';
+
 		var PAGE_CONFIG = {
 			HEADER: {
 				SLIDER_CONFIG: {
@@ -158,7 +160,7 @@
 					$('#tab-dropdown-label').text(text);
 					// $('#tab-dropdown').dropdown('toggle');
 					// // init show-more on active tab-pane
-					showMoreToggle($('.active .grid'));
+					showMoreToggle($(SELECTOR_ACTIVE_GRID));
 				})
 				.on('click touch', '#gallery-show-more', function(e) {
 					var selector = $(this).attr('aria-controls');
@@ -206,7 +208,9 @@
 						
 						$cards.toggleClass('card static-card');
 					}
-				});
+				}).on('init', function(){
+				showMoreToggle($('.tab-pane.active'));
+			});
 		}
 	
 		function reInitTabPane() {
@@ -226,10 +230,10 @@
 			initGalleryGrid($('.active .gallery-slide'));
 			
 			// init slider on active tab-pane
-			initSlider($('.active .grid'), CONFIG.SLIDER_CONFIG);
+			initSlider($(SELECTOR_ACTIVE_GRID), CONFIG.SLIDER_CONFIG);
 			
 			// init show-more on active tab-pane
-			showMoreToggle($('.active .grid'));
+			showMoreToggle($(SELECTOR_ACTIVE_GRID));
 			
 			// runs animation of cards
 			cardsAnimation();
@@ -307,6 +311,7 @@
 			
 			if (slidesCount > 1) {
 				$tabGrid.next('.show-more').removeClass('hide');
+				$tabGrid.find('#gallery-show-more').removeClass('hide');
 			}
 		}
 	
@@ -450,7 +455,7 @@
 			
 			initCardFlipper($('.card'));
 			
-			initSlider($('.active .grid'), PAGE_CONFIG.GALLERY.SLIDER_CONFIG);
+			initSlider($(SELECTOR_ACTIVE_GRID), PAGE_CONFIG.GALLERY.SLIDER_CONFIG);
 			
 			cardsAnimation();
 			
