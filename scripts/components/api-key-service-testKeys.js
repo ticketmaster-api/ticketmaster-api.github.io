@@ -1,3 +1,7 @@
+//
+// This file is used only for automation testing
+//
+
 // Global service object
 var apiKeyService = {};
 
@@ -13,8 +17,8 @@ var apiKeyService = {};
   };
 
   var LOCAL_KEYS = {
-    apiExplore: 'B0JQHemR4Q569W9GcjHfhygRBRU3RvrL',
-		widgets: 'TQMbqzKDBbcCjAxC9SaKS1lg9D5Eousb'
+    apiExplore: 'yBNFVl1RImeazz9ju9G5kfGEF4XzRl1Z',
+		widgets: 'ONKy94r8KThcJ2QwMFaKvCYq5DqNJTfE'
   };
 
   var stagingPattern = /(ticketmaster-api-staging.github.io)+/ig;
