@@ -1057,11 +1057,12 @@ var TicketmasterEventDiscoveryWidget = function () {
       if (this.isListView || this.isListViewThumbnails) {
         this.stopAutoSlideX();
       }
-
-      this.widgetRoot.style.height = this.widgetHeight + 'px';
-      this.widgetRoot.style.width = this.config.width + 'px';
-      this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
-      this.eventsRootContainer.style.width = this.config.width + 'px';
+      if (!this.isFullWidth) {
+        this.widgetRoot.style.height = this.widgetHeight + 'px';
+        this.widgetRoot.style.width = this.config.width + 'px';
+        this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
+        this.eventsRootContainer.style.width = this.config.width + 'px';
+      }
       this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
       this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
 
@@ -1299,11 +1300,10 @@ var TicketmasterEventDiscoveryWidget = function () {
 
       if (isGetSmallest && isSecondSmallest) {
         myImg = images[2].url;
-        console.log('2', images[2].height);
-        console.log('length', images.length);
-        if (myImg === "") {
-          myImg = images[images.length - 1].url;
-        }
+      }
+
+      if (myImg === "") {
+        myImg = images[images.length - 1].url;
       }
 
       return myImg;
@@ -1364,7 +1364,7 @@ var TicketmasterEventDiscoveryWidget = function () {
               return eventCategories[category].name
             });
           }*/
-          currentEvent.img = !this.isFullWidth ? this.getImageForEvent(eventsSet[key].images, this.isListViewThumbnails) : this.getImageForEvent(eventsSet[key].images, this.isListViewThumbnails, true); //*this.listViewModificator() - is boolean*/
+          currentEvent.img = this.getImageForEvent(eventsSet[key].images, this.isListViewThumbnails, this.isFullWidth); //*this.listViewModificator() - is boolean*/
           tmpEventSet.push(currentEvent);
         }
       }
