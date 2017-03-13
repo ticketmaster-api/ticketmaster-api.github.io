@@ -64,7 +64,7 @@ keywords: widget, sell tickets, direct payments
 
 {% capture map-widget %}
 {: #map-widget }
-## Map <br/>Widget
+## Map Widget
 
 {: .button_set}
 [CONFIGURE NOW](/products-and-docs/widgets/map/){: .button.button-blue}
