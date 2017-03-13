@@ -245,6 +245,8 @@ class TicketmasterEventDiscoveryWidget {
         if (!this.isListView || !this.isListViewThumbnails ) this.initEventCounter();
 
         if (this.isListView || this.isListViewThumbnails) this.addScroll();
+
+        if (this.isFullWidth) { this.initFullWidth(); }
     }
   }
 
@@ -358,7 +360,6 @@ class TicketmasterEventDiscoveryWidget {
     this.buyBtn.addEventListener('click', (e)=> {
       // e.preventDefault(); /*used in plugins for 'buy button'*/
       this.stopAutoSlideX();
-      //console.log(this.config.affiliateid)
     });
     this.eventsRootContainer.appendChild(this.buyBtn);
   }
@@ -952,11 +953,12 @@ class TicketmasterEventDiscoveryWidget {
     if(this.isListView || this.isListViewThumbnails ) {
       this.stopAutoSlideX();
     }
-
-    this.widgetRoot.style.height = `${this.widgetHeight}px`;
-    this.widgetRoot.style.width  = `${this.config.width}px`;
-    this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
-    this.eventsRootContainer.style.width  = `${this.config.width}px`;
+    if (!this.isFullWidth) {
+      this.widgetRoot.style.height = `${this.widgetHeight}px`;
+      this.widgetRoot.style.width  = `${this.config.width}px`;
+      this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
+      this.eventsRootContainer.style.width  = `${this.config.width}px`;
+    }
     this.eventsRootContainer.style.borderRadius = `${this.config.borderradius}px`;
     this.eventsRootContainer.style.borderWidth = `${this.borderSize}px`;
 
@@ -977,6 +979,7 @@ class TicketmasterEventDiscoveryWidget {
       });
 
       if(this.isListView || this.isListViewThumbnails ) this.addScroll();
+      if (this.isFullWidth) { this.initFullWidth(); }
 
     }
     else{
@@ -1113,8 +1116,6 @@ class TicketmasterEventDiscoveryWidget {
       if(this.status == 200){
         widget.events = JSON.parse(this.responseText);
 
-        if (widget.isFullWidth) { widget.initFullWidth(); }
-
         if(widget.events.length){
           widget.groupEventsByName.call(widget);
           widget.eventsGroups.map(function(group, i){
@@ -1185,6 +1186,7 @@ class TicketmasterEventDiscoveryWidget {
     var width = this.config.width,
       height = this.widgetContentHeight;
 
+    if(width === '100%') { width = this.widgetRoot.offsetWidth }
     images.sort(function(a,b) {
       if (a.width < b.width)
         return -1;
@@ -1195,23 +1197,18 @@ class TicketmasterEventDiscoveryWidget {
     });
 
     var myImg = "";
-    if(!isGetSmallest) {
-      images.forEach(function (element) {
-        if (element.width >= width && element.height >= height && !myImg) {
-          myImg = element.url;
-        }
-      });
-    }else myImg = images[0].url; //set the smallest
+    images.forEach(function (element) {
+      if (element.width >= width && element.height >= height && !myImg) {
+        myImg = element.url;
+      }
+    });
 
-    if(isGetSmallest && isSecondSmallest) {
-      myImg = images[2].url;
-      console.log('2' , images[2].height);
-      console.log('length' , images.length);
-      if(myImg === "") {
-        myImg = images[images.length-1].url;
+    if(isGetSmallest) {
+      myImg = images[0].url;
+      if(isSecondSmallest) {
+        myImg = images[2].url;
       }
     }
-
     return myImg;
   }
 
@@ -1270,7 +1267,8 @@ class TicketmasterEventDiscoveryWidget {
             return eventCategories[category].name
           });
         }*/
-        currentEvent.img = (!this.isFullWidth) ?  this.getImageForEvent(eventsSet[key].images , this.isListViewThumbnails) : this.getImageForEvent(eventsSet[key].images , this.isListViewThumbnails, true); //*this.listViewModificator() - is boolean*/
+        currentEvent.img = this.getImageForEvent(eventsSet[key].images , this.isListViewThumbnails, this.isFullWidth); //*this.listViewModificator() - is boolean*/
+
         tmpEventSet.push(currentEvent);
 
       }
