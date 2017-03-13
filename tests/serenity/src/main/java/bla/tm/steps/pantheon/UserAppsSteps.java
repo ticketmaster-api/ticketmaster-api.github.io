@@ -28,8 +28,7 @@ public class UserAppsSteps {
 
     @Step
     public void openMyAppsPage() {
-        addNewAppPage.clickOnDropDown();
-        addNewAppPage.clickOnMyApps();
+        addNewAppPage.clickOnApp();
     }
 
     @Step

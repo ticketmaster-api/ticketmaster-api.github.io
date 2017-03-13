@@ -5,7 +5,6 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,12 +37,6 @@ public class AddNewAppPage extends AncestorPage {
     @FindBy(xpath = "//h1")
     private WebElementFacade noAppsMessage;
 
-    @FindBy(xpath = "//a[@class='dropdown-toggle']")
-    private WebElementFacade dropdownBtn;
-
-    @FindBy(xpath = "//ul[@class='dropdown-menu']/li/a[text()='My Apps']")
-    private WebElementFacade myAppsItem;
-
     public WebElementFacade getNameTextInput() {
         return nameTextInput;
     }
@@ -54,7 +47,6 @@ public class AddNewAppPage extends AncestorPage {
 
     public void clickOnApp() {
         appLink.click();
-        getDriver().navigate().refresh();
     }
 
     public WebElementFacade getAppNameWebElement(String name) {
@@ -102,11 +94,4 @@ public class AddNewAppPage extends AncestorPage {
         return noAppsMessage;
     }
 
-    public void clickOnDropDown() {
-        dropdownBtn.click();
-    }
-
-    public void clickOnMyApps() {
-        myAppsItem.click();
-    }
 }
