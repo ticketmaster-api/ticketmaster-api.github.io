@@ -1,0 +1,56 @@
+# This is the default format.
+# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink: /:categories/:year/:month/:day/:title
+
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "test", "pom.xml", "target", "node_modules",
+  "CNAME", "gulpfile.js", "karma.conf.js", "npm-debug.log", "package.json",
+  "webpack.config.js",
+  "products-and-docs/widgets/calendar/1.0.0/src",
+  "products-and-docs/widgets/countdown/1.0.0/src",
+  "products-and-docs/widgets/event-discovery/1.0.0/src",
+  "products-and-docs/widgets/map/1.0.0/src"
+  ]
+# products-and-docs","support", "events" , "partners"
+highlighter: rouge
+markdown: kramdown
+# Themes are encouraged to use these universal variables
+# so be sure to set them if your theme uses them.
+#
+title : The Ticketmaster Developer Portal
+tagline: Site Tagline
+author :
+  name : Name Lastname
+  email : blah@email.test
+  github : username
+  twitter : username
+  feedburner : feedname
+
+# Use separate api keys in autotesting. If field define then load 'api-key-service-testKeys.js'
+local_test_apikeys: 'true'
+
+# These are for automatically generating sharing metadata for FB and Twitter
+# OS Protocol is for sharing the source of your site, if you're interested. For more, see osprotocol.com
+protocols:
+    fb_image: "/assets/img/branding-guide/blue-logo@3x.png"
+    fb_image_width: 792
+    fb_image_height: 792
+    fb_image_type: "image/png"
+
+# The production_url is only used when full-domain names are needed
+# such as sitemap.txt
+# Most places will/should use BASE_PATH to make the urls
+#
+# If you have set a CNAME (pages.github.com) set your custom domain here.
+# Else if you are pushing to username.github.io, replace with your username.
+# Finally if you are pushing to a GitHub project page, include the project name at the end.
+#
+production_url : http://developer.ticketmaster.com/
+gems:
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+
+sass:
+  style: compressed
+
+webserver_headers:
+  "X-Frame-Options": "Deny"
