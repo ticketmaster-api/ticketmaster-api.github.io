@@ -1,12 +1,12 @@
 ---
 layout: partners-doc
 
-pname: "Qcue"
+pname: "Knuckleheads"
 
 categories: 
   - partner
   - certified
 
-tile_logo: "Qcue.png"
-tile_description: "Designed for sports teams, promoters, venues, and other entertainment organizations, Qcue's Primary Seller application provides the intelligence and automation to make thousands of prices changes in just minutes, allowing ticket sellers to better price tickets in a dynamic market."
+tile_logo: "Knuckleheads.png"
+tile_description: "Knuckleheads is a full service, minority owned (ESB & MBE), idea to app store, mobile technology shop."
 ---
