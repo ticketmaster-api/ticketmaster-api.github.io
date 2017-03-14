@@ -134,6 +134,10 @@
 
         if(targetName === "w-countryCode"){
             document.querySelector('[w-type="calendar"]').removeAttribute('w-latlong');
+            if (widgetNode.getAttribute('w-countrycode') != targetValue) {
+                document.getElementById("w-city").value = '';
+                widgetNode.setAttribute('w-city', '');
+            }
         }
 
         if(targetName === "w-city"){
@@ -357,9 +361,9 @@
         var htmlCode = document.createElement("div");
         widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
         for(var key in widget.config){
-            // if(key !== 'latlong'){
+            if(key !== 'country'){
                 htmlCode.setAttribute("w-"+key,widget.config[key]);
-            // }
+            }
         }
         // Use only Key from config form
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
