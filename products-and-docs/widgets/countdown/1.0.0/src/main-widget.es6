@@ -120,6 +120,8 @@ class TicketmasterCountdownWidget {
       : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/`;
   }
 
+  get isFullWidth() { return this.config.proportion === 'fullwidth';}
+
   get portalUrl(){
     return (window.location.host === 'developer.ticketmaster.com')
       ? `https://developer.ticketmaster.com/`

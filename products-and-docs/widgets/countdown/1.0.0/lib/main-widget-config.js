@@ -37,6 +37,11 @@
           width: 350,
           height: 600,
           layout: 'vertical'
+        },
+        fullwidth: {
+          width: '100%',
+          height: 700,
+          layout: ''
         }
       },
       initSliderSize: {
@@ -188,6 +193,33 @@
     }
   };
 
+  var fullWidth = function fullWidth(targetValue, widgetNode) {
+    var widthSlider = $('.js_widget_width_slider'),
+        widgetContainerWrapper = $containerWidget,
+        widgetContainer = $(".widget-container", widgetContainerWrapper),
+        $border_slider = $('.js_widget_border_slider');
+
+    if (targetValue === 'fullwidth') {
+      // $layoutBox.slideUp();
+      widthSlider.slideUp("fast");
+      $borderRadiusController.slider('setValue', 0);
+      widgetNode.setAttribute('w-borderradius', 0);
+      $border_slider.slideUp("fast");
+      widgetContainerWrapper.css({ width: "100%" });
+      widgetContainer.css({ width: '100%' });
+      // widgetNode.setAttribute('w-height', 700);
+    } else {
+      // $layoutBox.slideDown("fast");
+      widthSlider.slideDown("fast");
+      $border_slider.slideDown("fast");
+      $borderRadiusController.slider('setValue', 4);
+      widgetNode.setAttribute('w-borderradius', 4);
+      widgetContainerWrapper.css({ width: 'auto' });
+      widgetContainer.css({ width: 'auto' });
+      //resetWidget($configForm );
+    }
+  };
+
   var changeState = function changeState(event) {
     if (!event.target.name) {
       return;
@@ -196,9 +228,8 @@
         targetName = event.target.name;
 
     if (targetName === "w-tm-api-key") {
-      document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', targetValue);
-
-      if (sessionStorage.getItem('tk-api-key')) {
+      /*document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', targetValue);
+       if (sessionStorage.getItem('tk-api-key')) {
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
         document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
       }
@@ -206,57 +237,15 @@
         if (sessionStorage.getItem('tk-api-key')) {
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
-        } else {
+        }
+        else {
           document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
-      }
+      }*/
     }
 
-    if (targetName === "w-theme") {
-      var widthSlider = $('.js_widget_width_slider'),
-          widgetContainerWrapper = $containerWidget,
-          widgetContainer = $(".widget-container", widgetContainerWrapper),
-          $border_slider = $('.js_widget_border_slider');
-
-      if (targetValue === "fullwidth") {
-        $layoutBox.slideUp();
-        widthSlider.slideUp("fast");
-        $borderRadiusController.slider('setValue', 0);
-        widgetNode.setAttribute('w-borderradius', 0);
-        $border_slider.slideUp("fast");
-        widgetContainerWrapper.css({
-          width: "100%"
-        });
-        widgetContainer.css({
-          width: "100%"
-        });
-        widgetNode.setAttribute('w-height', 700);
-      } else {
-        var excludeOption = {
-          id: widgetNode.getAttribute('w-id')
-        };
-        resetWidget($configForm, excludeOption);
-
-        $layoutBox.slideDown("fast");
-        widthSlider.slideDown("fast");
-        $border_slider.slideDown("fast");
-        $borderRadiusController.slider('setValue', 4);
-        widgetNode.setAttribute('w-borderradius', 4);
-        widgetContainerWrapper.css({
-          width: 'auto'
-        });
-      }
-    }
-
-    /*
-    //set attr for 'seconds' radio-btn
-    if(targetName === "w-seconds"){
-      if (targetValue !== 'showSeconds') {
-        widgetNode.setAttribute('w-seconds', 'hideSeconds');
-      }
-    }
-    */
+    if (targetName === "w-theme") {}
 
     if (targetName === "w-layout") {
       var sizeConfig = themeConfig.simple_countdown.initSliderSize;
@@ -271,6 +260,53 @@
         };
       }
 
+      fullWidth(targetValue, widgetNode);
+
+      /*let widgetContainerWrapper = $containerWidget,
+       widgetContainer = $(".widget-container", widgetContainerWrapper),
+       $border_slider = $('.js_widget_border_slider');
+        if(targetValue === "fullwidth"){
+       // $layoutBox.slideUp();
+       widthSlider.slideUp("fast");
+       $borderRadiusController.slider('setValue', 0);
+       widgetNode.setAttribute('w-borderradius', 0);
+       $border_slider.slideUp("fast");
+       widgetContainerWrapper.css({
+       width: "100%"
+       });
+       widgetContainer.css({
+       width: "100%"
+       });
+       widgetNode.setAttribute('w-height', 700);
+       }else {
+       let excludeOption = {
+       id : widgetNode.getAttribute('w-id')
+       };
+       resetWidget($configForm , excludeOption );
+        // $layoutBox.slideDown("fast");
+       widthSlider.slideDown("fast");
+       $border_slider.slideDown("fast");
+       $borderRadiusController.slider('setValue', 4);
+       widgetNode.setAttribute('w-borderradius', 4);
+       widgetContainerWrapper.css({
+       width: 'auto'
+       });
+       }*/
+
+      /*if(targetValue !== 'fullwidth'){
+         $('.js_widget_width_slider').slideDown("fast");
+        $('.js_widget_border_slider').slideDown("fast");
+        $borderRadiusController.slider('setValue', 4);
+        widgetNode.setAttribute('w-borderradius', 4);
+        $containerWidget.css({ width: 'auto' });
+        $(".widget-container", $containerWidget).css({ width: 'auto' });
+         $widthController.slider({
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        }).slider('refresh');
+      }*/
+
       $widthController.slider({
         setValue: sizeConfig.width,
         max: sizeConfig.maxWidth,
@@ -283,7 +319,7 @@
 
     //Check fixed sizes for 'simple_countdown' theme
     if (targetName === "w-proportion") {
-      var _widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
+      var widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
       var _sizeConfig = {
         width: themeConfig.simple_countdown.sizes[targetValue].width,
         height: themeConfig.simple_countdown.sizes[targetValue].height,
@@ -296,10 +332,10 @@
 
       if (targetValue !== 'custom') {
         $tabButtons.slideUp("fast");
-        _widthSlider.slideUp("fast");
+        widthSlider.slideUp("fast");
       } else {
         $tabButtons.slideDown("fast");
-        _widthSlider.slideDown("fast");
+        widthSlider.slideDown("fast");
         $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
         _sizeConfig = { //default size

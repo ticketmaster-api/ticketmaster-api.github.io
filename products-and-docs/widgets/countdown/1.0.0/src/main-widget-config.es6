@@ -35,6 +35,11 @@
             width: 350,
             height: 600,
             layout: 'vertical'
+          },
+          fullwidth: {
+            width: '100%',
+            height: 700,
+            layout: ''
           }
         },
         initSliderSize: {
@@ -188,15 +193,38 @@
     }
   };
 
-  var changeState = function(event){
-    if(!event.target.name){
-      return;
+  var fullWidth = function(targetValue , widgetNode){
+    let widthSlider = $('.js_widget_width_slider'),
+        widgetContainerWrapper = $containerWidget,
+        widgetContainer = $(".widget-container", widgetContainerWrapper),
+        $border_slider = $('.js_widget_border_slider');
+
+    if(targetValue === 'fullwidth'){
+      widthSlider.slideUp("fast");
+      $borderRadiusController.slider('setValue', 0);
+      widgetNode.setAttribute('w-borderradius', 0);
+      $border_slider.slideUp("fast");
+      widgetContainerWrapper.css({width: "100%"});
+      widgetContainer.css({ width: '100%' });
+      // widgetNode.setAttribute('w-height', 700);
+    }else {
+      widthSlider.slideDown("fast");
+      $border_slider.slideDown("fast");
+      $borderRadiusController.slider('setValue', 4);
+      widgetNode.setAttribute('w-borderradius', 4);
+      widgetContainerWrapper.css({ width: 'auto' });
+      widgetContainer.css({ width: 'auto' });
+      //resetWidget($configForm );
     }
+  };
+
+  var changeState = function(event){
+    if(!event.target.name){return;}
     const targetValue = event.target.value,
           targetName = event.target.name;
 
     if(targetName === "w-tm-api-key") {
-      document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', targetValue);
+      /*document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', targetValue);
 
       if (sessionStorage.getItem('tk-api-key')) {
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
@@ -211,55 +239,10 @@
           document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
           document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
-      }
+      }*/
     }
 
-    if(targetName === "w-theme" ){
-      let widthSlider = $('.js_widget_width_slider'),
-          widgetContainerWrapper = $containerWidget,
-          widgetContainer = $(".widget-container", widgetContainerWrapper),
-          $border_slider = $('.js_widget_border_slider');
-
-
-      if(targetValue === "fullwidth"){
-        $layoutBox.slideUp();
-        widthSlider.slideUp("fast");
-        $borderRadiusController.slider('setValue', 0);
-        widgetNode.setAttribute('w-borderradius', 0);
-        $border_slider.slideUp("fast");
-        widgetContainerWrapper.css({
-          width: "100%"
-        });
-        widgetContainer.css({
-          width: "100%"
-        });
-        widgetNode.setAttribute('w-height', 700);
-      }else {
-        let excludeOption = {
-              id : widgetNode.getAttribute('w-id')
-            };
-        resetWidget($configForm , excludeOption );
-
-        $layoutBox.slideDown("fast");
-        widthSlider.slideDown("fast");
-        $border_slider.slideDown("fast");
-        $borderRadiusController.slider('setValue', 4);
-        widgetNode.setAttribute('w-borderradius', 4);
-        widgetContainerWrapper.css({
-          width: 'auto'
-        });
-      }
-      
-    }
-
-    /*
-    //set attr for 'seconds' radio-btn
-    if(targetName === "w-seconds"){
-      if (targetValue !== 'showSeconds') {
-        widgetNode.setAttribute('w-seconds', 'hideSeconds');
-      }
-    }
-    */
+    if(targetName === "w-theme" ){}
 
     if(targetName === "w-layout"){
       let sizeConfig = themeConfig.simple_countdown.initSliderSize;
@@ -267,12 +250,13 @@
       if(targetValue === 'horizontal'){
         sizeConfig = {
           width: 620,
-          // height: getHeightByTheme(widgetNode.getAttribute('w-theme')),
           height: 252,
           maxWidth: 900,
           minWidth: 620
         };
       }
+
+      fullWidth(targetValue, widgetNode);
 
       $widthController.slider({
           setValue: sizeConfig.width ,
