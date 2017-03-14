@@ -68,7 +68,11 @@ layout: default
 {% include disqus.html %}
 
 {% if page.categories contains "replace_apikey" %}
-<script src="{{site.baseurl }}/scripts/components/api-key-service.js"></script>
+{%if site.local_test_apikeys == 'true' %}
+	<script src="{{'/scripts/components/api-key-service-testKeys.js' | prepend: site.baseurl }}"></script>
+{%else%}
+	<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 <script>
     function replaceText(selector, text, newText, flags) {
         var matcher = new RegExp(text, flags);

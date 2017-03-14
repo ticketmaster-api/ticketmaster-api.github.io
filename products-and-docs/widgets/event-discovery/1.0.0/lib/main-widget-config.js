@@ -228,7 +228,7 @@
     if (targetName === "w-tm-api-key") {
       console.log("target -   w-tm-api-key");
       /*document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
-       if (sessionStorage.getItem('tk-api-key')) {
+        if (sessionStorage.getItem('tk-api-key')) {
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
         document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
       }
@@ -252,7 +252,7 @@
        var numInputClass = document.getElementById('w-radius');
        var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
        var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-        if (targetValue == '') {
+         if (targetValue == '') {
        numInputClass.setAttribute('disabled', 'disabled');
        numInputClass.value = '';
        incArrow.classList.add('disabled');
