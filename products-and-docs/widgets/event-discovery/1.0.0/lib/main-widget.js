@@ -1366,10 +1366,6 @@ var TicketmasterEventDiscoveryWidget = function () {
             });
           }*/
           currentEvent.img = this.getImageForEvent(eventsSet[key].images, this.isListViewThumbnails, this.isFullWidth); //*this.listViewModificator() - is boolean*/
-          /*if(!currentEvent.img || currentEvent.img === '') {
-            currentEvent.img = this.getImageForEvent(eventsSet[key].images);
-            console.log('if_currentEvent.img',currentEvent.img);
-          } /!*extra check*!/*/
 
           tmpEventSet.push(currentEvent);
         }
