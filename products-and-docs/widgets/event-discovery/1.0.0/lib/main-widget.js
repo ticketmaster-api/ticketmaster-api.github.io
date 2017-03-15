@@ -1432,9 +1432,15 @@ var TicketmasterEventDiscoveryWidget = function () {
         var wrapperImg = document.createElement("div"),
             image = document.createElement("span");
 
+        if (img === 'https://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_EVENT_DETAIL_PAGE_16_9.jpg' || img === 'https://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_RECOMENDATION_16_9.jpg') img = '';
+
         wrapperImg.classList.add("wrapper-thumbnails");
-        image.classList.add("bg-cover-thumbnails");
+        image.classList.add('bg-cover-thumbnails');
         image.style.backgroundImage = 'url(\'' + img + '\')';
+        if (!img) {
+          image.classList.add('bg-cover-default');
+          image.removeAttribute('style');
+        }
         wrapperImg.appendChild(image);
         event.appendChild(wrapperImg);
 
