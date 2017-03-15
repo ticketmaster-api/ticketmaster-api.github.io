@@ -51,43 +51,19 @@
       }
   };
 
-  // function getHeightByTheme(theme){
-  //   return (theme === 'simple_countdown' ? 238 : 300);
-  // }
-
-  // function getBorderByTheme(theme) {
-  //   switch (theme) {
-  //     case "oldschool":
-  //       return 2;
-  //       break;
-  //     default:
-  //       return 0;
-  //   }
-  // }
-
   var $widthController = $('#w-width').slider({
-    tooltip: 'always',
-    handle: 'square'
-  }),
-  $borderRadiusController = $('#w-borderradius').slider({
-    tooltip: 'always',
-    handle: 'square'
-  }),
-  $getCodeButton = $('.js_get_widget_code'),
-  widgetNode = document.querySelector("div[w-tmapikey]"),
-  $tabButtons = $('.js-tab-buttons'),
-  $layoutBox = $('#js-layout-box');
-
-
-  // function toggleDisabled(widgetNode){
-  //   if ( widgetNode.getAttribute('w-id') === '') {
-  //     $getCodeButton.prop("disabled",true);
-  //   }else {
-  //     $getCodeButton.prop('disabled',false);
-  //   }
-  // }
-
-  var $configForm = $(".main-widget-config-form"),
+      tooltip: 'always',
+      handle: 'square'
+    }),
+    $borderRadiusController = $('#w-borderradius').slider({
+      tooltip: 'always',
+      handle: 'square'
+    }),
+    $getCodeButton = $('.js_get_widget_code'),
+    widgetNode = document.querySelector("div[w-tmapikey]"),
+    $tabButtons = $('.js-tab-buttons'),
+    $layoutBox = $('#js-layout-box'),
+    $configForm = $(".main-widget-config-form"),
     $widgetModal = $('#js_widget_modal'),
     $widgetModalNoCode = $('#js_widget_modal_no_code');
 
@@ -179,20 +155,11 @@
     $containerWidget.css('marginTop', (marginTop > 0 ? marginTop : 0));
   }
 
-  var replaceApiKey = function (options) {
-    let userKey = options.userKey || sessionStorage.getItem('tk-api-key');
-
-    if(userKey !== null) {
-      let {inputApiKey, widgetNode , widget } = options;
-      inputApiKey
-        .attr('value', userKey)
-        .data('userAPIkey', userKey)
-        .val(userKey);
-      widgetNode.setAttribute("w-tm-api-key", userKey);
-      widget.update();
-    }
-  };
-
+  /**
+   * Toggle 'width slider' and width
+   * @param targetValue(string) -
+   * @param widgetNode(object) - current widget
+   */
   var fullWidth = function(targetValue , widgetNode){
     let widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $containerWidget,
@@ -203,17 +170,16 @@
       widthSlider.slideUp("fast");
       $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
-      $border_slider.slideUp("fast");
       widgetContainerWrapper.css({width: "100%"});
       widgetContainer.css({ width: '100%' });
       // widgetNode.setAttribute('w-height', 700);
     }else {
-      widthSlider.slideDown("fast");
       $border_slider.slideDown("fast");
       $borderRadiusController.slider('setValue', 4);
       widgetNode.setAttribute('w-borderradius', 4);
       widgetContainerWrapper.css({ width: 'auto' });
       widgetContainer.css({ width: 'auto' });
+      if(targetValue === 'custom'){widthSlider.slideDown("fast");}
       //resetWidget($configForm );
     }
   };
@@ -222,27 +188,6 @@
     if(!event.target.name){return;}
     const targetValue = event.target.value,
           targetName = event.target.name;
-
-    if(targetName === "w-tm-api-key") {
-      /*document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', targetValue);
-
-      if (sessionStorage.getItem('tk-api-key')) {
-        document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
-        document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
-      }
-      if (document.getElementById('w-tm-api-key').value === '') {
-        if (sessionStorage.getItem('tk-api-key')) {
-          document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
-          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
-        }
-        else {
-          document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
-          document.querySelector('[w-type="countdown"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
-        }
-      }*/
-    }
-
-    if(targetName === "w-theme" ){}
 
     if(targetName === "w-layout"){
       let sizeConfig = themeConfig.simple_countdown.initSliderSize;
@@ -255,8 +200,6 @@
           minWidth: 620
         };
       }
-
-      fullWidth(targetValue, widgetNode);
 
       $widthController.slider({
           setValue: sizeConfig.width ,
@@ -278,6 +221,8 @@
         maxWidth: 600,
         minWidth: 350
       };
+
+      fullWidth(targetValue, widgetNode);
 
       //set layout
       widgetNode.setAttribute('w-layout', themeConfig.simple_countdown.sizes[targetValue].layout);
@@ -398,13 +343,6 @@
     //do one container move on load
     containerMove();
 
-    // replace Api-Key if user logged
-    replaceApiKey({
-      inputApiKey: $('#w-tm-api-key'),
-      widgetNode,
-      widget
-    });
-
     // Set min widget size on mobile devices
     if(parseInt($(window).width(), 10) < 767){
       $('#w-fixed-300x250').trigger('click');
@@ -420,7 +358,6 @@
     // Mobile devices. Force 'change' by 'Go' press
 
     $configForm.on("submit", function (e) {
-      //console.log('pressed on.submit');
       $configForm.find('input:focus').trigger('blur');
       e.preventDefault();
     });
@@ -448,18 +385,6 @@
       tmp.appendChild(htmlCode);
       codeCont.textContent = tmp.innerHTML;
       $widgetModal.modal();
-    });
-
-    /**
-     * check if user logged just before enter widget page
-     */
-    $window.on('login', function (e, data) {
-      replaceApiKey({
-        userKey: data.key,
-        inputApiKey: $('#w-tm-api-key'),
-        widgetNode,
-        widget
-      });
     });
 
     $('.js_reset_widget').on('click', function () {
