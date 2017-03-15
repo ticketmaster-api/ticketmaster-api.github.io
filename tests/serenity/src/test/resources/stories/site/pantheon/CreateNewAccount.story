@@ -1,4 +1,4 @@
-Meta:
+Meta:@debug
 
 Narrative:
 As a test engineer
