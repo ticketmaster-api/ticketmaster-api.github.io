@@ -1,4 +1,4 @@
-// let ko = require('knockout');
+window.ko = require('knockout');
 let CustomInput = require('../../../../../scripts/api-explorer/v2/src/components/common/customInput.component.js');
 
 
