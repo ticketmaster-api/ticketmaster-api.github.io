@@ -1,4 +1,4 @@
-Meta:@debug
+Meta:
 
 Narrative:
 As a test engineer
@@ -21,3 +21,10 @@ When enter register values on Create New Account Page:
 When click checkbox Terms of Use
 When click Create New Account on Register Page
 Then the The answer you entered for the CAPTCHA was not correct. message is displayed
+
+Scenario: (developer-acct.ticketmaster.com/user/register) [2.2.3.31 Edit Profile - I Agree To The Terms & Conditions checkbox]
+When enter register values on Create New Account Page:
+|firstName |lastName|companyName|companySiteUrl|userName|emailAddress|
+|apikey    |adele   |corpora.com|company.com   |maamxde |bx@gmail.com|
+When click Create New Account on Register Page
+Then the I agree to the Terms of Use field is required. message is displayed
