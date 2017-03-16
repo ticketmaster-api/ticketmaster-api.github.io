@@ -1984,10 +1984,17 @@ class WeekScheduler {
                                         }
                                         dayCount = 1;
                                     }
+                                    if(weekEvents[e].img === 'https://s1.ticketm.net/dam/a/588/7be3c335-ea06-4246-9b92-b72c205d0588_252071_RECOMENDATION_16_9.jpg' ||
+                                       weekEvents[e].img === 'https://s1.ticketm.net/dam/a/588/7be3c335-ea06-4246-9b92-b72c205d0588_252071_RECOMENDATION_16_9.jpg') {
+                                        weekEvents[e].img = '';
+                                    }
+                                    if(!weekEvents[e].img )console.info('weekEvents[e].img set empty', weekEvents[e]);
                                     timeDiv += '<span class="event">';
                                     timeDiv += '<span class="event-holder">';
                                     timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
-                                    timeDiv += '<span class="img" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>';
+                                    if (weekEvents[e].img !=='' && weekEvents[e].img.length !== 0){
+                                        timeDiv += '<span class="img bg-cover-default" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>'
+                                    }else{ timeDiv += '<span class="img bg-cover-default" ></span>';}
                                     timeDiv += '<span class="name">' + weekEvents[e].name + '</span>';
                                     timeDiv += '</a>';
                                     timeDiv += '<span class="date">' + weekEvents[e].datetime + '</span>';
@@ -2226,7 +2233,9 @@ class WeekScheduler {
                                         timeDiv += '<span class="event">';
                                         timeDiv += '<span class="event-holder">';
                                         timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
-                                        timeDiv += '<span class="img" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>';
+                                        if (weekEvents[e].img !=='' && weekEvents[e].img.length !== 0){
+                                            timeDiv += '<span class="img bg-cover-default" style="background: url(' + weekEvents[e].img + ') center center no-repeat"></span>'
+                                        }else{ timeDiv += '<span class="img bg-cover-default" ></span>';}
                                         timeDiv += '<span class="name">' + weekEvents[e].name + '</span>';
                                         timeDiv += '</a>';
                                         timeDiv += '<span class="date">' + weekEvents[e].datetime + '</span>';
@@ -2820,7 +2829,9 @@ class MonthScheduler {
                                 table += '<span class="event">';
                                 table += '<span class="event-holder">';
                                 table += '<a href="' + url + '" target="_blank">';
-                                table += '<span class="img" style="background: url(' + img + ') center center no-repeat"></span>';
+                                if (img !=='' && img.length !== 0){
+                                    table += '<span class="img bg-cover-default" style="background: url(' + img + ') center center no-repeat"></span>'
+                                }else{ table += '<span class="img bg-cover-default" ></span>';}
                                 table += '<span class="name">' + name + '</span>';
                                 table += '</a>';
                                 table += '<span class="date">' + datetime + '</span>';
@@ -3047,7 +3058,9 @@ class MonthScheduler {
                                     table += '<span class="event">';
                                     table += '<span class="event-holder">';
                                     table += '<a href="' + url + '" target="_blank">';
-                                    table += '<span class="img" style="background: url(' + img + ') center center no-repeat"></span>';
+                                    if (img !=='' && img.length !== 0){
+                                        table += '<span class="img bg-cover-default" style="background: url(' + img + ') center center no-repeat"></span>'
+                                    }else{ table += '<span class="img bg-cover-default" ></span>';}
                                     table += '<span class="name">' + name + '</span>';
                                     table += '</a>';
                                     table += '<span class="date">' + datetime + '</span>';
