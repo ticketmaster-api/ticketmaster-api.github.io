@@ -1326,11 +1326,15 @@ class TicketmasterEventDiscoveryWidget {
     }
     if(this.isListViewThumbnails) {
       var wrapperImg = document.createElement("div"),
-          image = document.createElement("span");
+        image = document.createElement("span");
 
       wrapperImg.classList.add("wrapper-thumbnails");
-      image.classList.add("bg-cover-thumbnails");
+      image.classList.add('bg-cover-thumbnails');
       image.style.backgroundImage = `url('${img}')`;
+      if (!img) {
+        image.classList.add('bg-cover-default');
+        image.removeAttribute('style');
+      }
       wrapperImg.appendChild(image);
       event.appendChild(wrapperImg);
 

@@ -641,6 +641,11 @@ div[w-theme="listviewthumbnails"] .ss-grabbed {
     -khtml-user-select: none;
     -webkit-user-select: none;
 }
+div[w-theme="listviewthumbnails"] .bg-cover-default {
+	background: rgba(183, 201, 211, 0.2) url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-short-big.svg") no-repeat center center;
+	border: solid 1px rgba(183, 201, 211, 0.2);
+	background-size: 42px;
+}
 
 div[w-theme="listviewthumbnails"][w-proportion="m"] .ss {
     margin-top: 25px;
@@ -697,4 +702,11 @@ div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .event-buy-btn {
 	top: -30px;
 	position: relative;
 }
+
+div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .bg-cover-default {
+	border: solid 1px rgba(183, 201, 211, 0.2);
+	background: rgba(183, 201, 211, 0.2) url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-short-big.svg") no-repeat center center;
+	background-size: 82px;
+}
+
 /*w-layout fullwidth END*/
