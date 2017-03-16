@@ -1,6 +1,5 @@
 package bla.tm.definitions.site.products_and_docs;
 
-import bla.tm.definitions.site.pantheon.UserData;
 import bla.tm.steps.pantheon.UserAccountSteps;
 import bla.tm.steps.pantheon.UserLogInSteps;
 import bla.tm.steps.products_and_docs.PD_DiscoveryAPIv1Steps;
@@ -9,9 +8,10 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static net.serenitybdd.core.Serenity.getCurrentSession;
+
 public class PD_DiscoveryAPIv1Definition {
 
-    private UserData admin = new UserData("UserData", "1234567");
     private String apiKey = "{apikey}";
 
     @Steps
@@ -38,7 +38,7 @@ public class PD_DiscoveryAPIv1Definition {
     @When("User is logged to site (Discovery API v1)")
     public void openLogInPageAndLogIn() {
         discoveryAPIv1Page.clickLogIn();
-        userLogInPage.logInToApp(admin.username, admin.password);
+        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
         apiKey = userAccountSteps.getAPIKeyOfUser();
         discoveryAPIv1Page.openPage();
     }
