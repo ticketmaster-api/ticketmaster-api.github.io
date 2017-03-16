@@ -1,7 +1,7 @@
 package bla.tm.preconditions;
 
 import bla.tm.definitions.site.pantheon.UserLogInDefinition;
-import org.jbehave.core.annotations.BeforeStory;
+import org.jbehave.core.annotations.BeforeScenario;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -13,7 +13,7 @@ import static net.serenitybdd.core.Serenity.getCurrentSession;
 
 public class Before_User_Story {
 
-    @BeforeStory()
+    @BeforeScenario()
     public void putUserCredsInSession () throws IOException, ParseException {
         System.out.println("Before Story ...");
         UserLogInDefinition definition = new UserLogInDefinition();
