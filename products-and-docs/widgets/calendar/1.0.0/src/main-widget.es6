@@ -1984,11 +1984,6 @@ class WeekScheduler {
                                         }
                                         dayCount = 1;
                                     }
-                                    if(weekEvents[e].img === 'https://s1.ticketm.net/dam/a/588/7be3c335-ea06-4246-9b92-b72c205d0588_252071_RECOMENDATION_16_9.jpg' ||
-                                       weekEvents[e].img === 'https://s1.ticketm.net/dam/a/588/7be3c335-ea06-4246-9b92-b72c205d0588_252071_RECOMENDATION_16_9.jpg') {
-                                        weekEvents[e].img = '';
-                                    }
-                                    if(!weekEvents[e].img )console.info('weekEvents[e].img set empty', weekEvents[e]);
                                     timeDiv += '<span class="event">';
                                     timeDiv += '<span class="event-holder">';
                                     timeDiv += '<a href="' + weekEvents[e].url + '" target="_blank">';
