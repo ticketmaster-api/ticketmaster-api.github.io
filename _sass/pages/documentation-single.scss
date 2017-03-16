@@ -332,6 +332,10 @@
 		background: url("/assets/img/products-and-docs/map-widget-image.png");
 		background-size: contain;
 
+		h2#map-widget {
+			width: 30%;
+		}
+
 		@media #{$max-1200} {
 			min-height: auto;
 			background-size: cover;

@@ -281,6 +281,13 @@
       isPostalCodeChanged = true;
     }
 
+    if (targetName === "w-countryCode" && widgetNode.getAttribute('w-countrycode') !== null) {
+        if (widgetNode.getAttribute('w-countrycode') != targetValue) {
+            document.getElementById("w-city").value = '';
+            widgetNode.setAttribute('w-city', '');
+        }
+    }
+
     if(targetName === "w-theme"){
       if(targetValue === 'simple'){
         $colorSchemeSelector.hide();
@@ -474,7 +481,7 @@
     var htmlCode = document.createElement("div");
     widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
     for(var key in widget.config){
-      if(key !== 'latlongggg'){
+      if(key !== 'country'){
         htmlCode.setAttribute("w-"+key,widget.config[key]);
       }
     }
