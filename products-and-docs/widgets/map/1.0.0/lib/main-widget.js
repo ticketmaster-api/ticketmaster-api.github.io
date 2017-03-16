@@ -223,7 +223,7 @@ var TicketmasterMapWidget = function () {
             this.config = this.widgetRoot.attributes;
 
             this.eventsRoot = document.createElement("div");
-            this.eventsRoot.id = "map";
+            this.eventsRoot.classList.add("map");
             // this.eventsRoot.style.height = parseInt(parseInt(this.widgetHeight) + 25) + "px";
             this.eventsRoot.style.height = this.widgetHeight + "px";
             this.eventsRoot.style.width = this.config.width + "px";
@@ -709,7 +709,7 @@ var TicketmasterMapWidget = function () {
 
                         var myLatLng = { lat: 34.0390107, lng: -118.2672801 };
 
-                        var map = new google.maps.Map(document.getElementById('map'), {
+                        var map = new google.maps.Map(widget.widgetRoot.firstChild.firstChild, {
                             zoom: 4,
                             center: myLatLng,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
