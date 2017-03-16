@@ -816,6 +816,147 @@ div[w-theme="simple_countdown"][w-proportion="m"] .event-logo.right-logo {
 }
 /*  LAYOUT 300x250 END*/
 
+/* LAYOUT fullwidth */
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-wrapper:before {
+	content: '';
+	background: -moz-linear-gradient(right, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), -moz-linear-gradient(top, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 20%);
+	background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), -webkit-linear-gradient(top, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 20%);
+	background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.9) 100%), linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 20%);
+}
+
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-content-wraper {
+	padding: 0 24px 72px;
+	top: 50%;
+	width: 55%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: "TMSans-Bold", Arial, serif;
+}
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .events-count-down {
+	width: 45%;
+	right: 24px;
+	padding: 0;
+}
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-name {
+	margin-bottom: 24px;
+	font-size: 54px;
+	width: 100%;
+	white-space: normal;
+	max-height: 116px;
+	height: 116px;
+	line-height: 64px;
+	display: block;
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-date-wraper{
+	display: block;
+	font-size: 24px;
+	line-height: 32px;
+	margin-bottom: 24px;
+	width: 100%;
+}
+
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .address-wrapper {
+	font-size: 24px;
+	width: 100%;
+	display: block;
+	display: -webkit-box;
+	height: 32px;
+	line-height: 32px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	opacity: 1;
+	/*font-family: "TMSans-Bold", Arial, serif;*/
+}
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-address {
+	color: #fff;
+}
+
+div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-date {
+	color: rgba(255, 255, 255, .7);
+
+}
+
+@media (min-width: 1199px) {
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"]{
+		max-height: 700px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-content-wraper {}
+}
+@media (min-width: 767px )and (max-width: 1199px) {
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] {
+		max-height: 530px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-content-wraper {
+		top: 35%;
+		max-height: 285px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-name {
+		font-size: 34px;
+		max-height: 76px;
+		height: 76px;
+		line-height: 42px;
+		margin-bottom: 14px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-date-wraper {
+		font-size: 16px;
+		max-height: 56px;
+		height: 56px;
+		line-height: 28px;
+		margin-bottom: 14px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .address-wrapper {
+		font-size: 16px;
+		line-height: 22px;
+		max-height: 44px;
+		height: 44px;
+	}
+}
+
+@media (max-width: 767px) {
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] {
+		max-height: 500px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-content-wraper {
+		top: 35%;
+		width: 100%;
+		max-height: 255px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .events-count-down {
+		width: 100%;
+		right: 0;
+		padding: 0 24px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-name {
+		font-size: 24px;
+		line-height: 32px;
+		margin-bottom: 14px;
+		max-height: 56px;
+		height: 56px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .event-date-wraper {
+		font-size: 12px;
+		line-height: 16px;
+		margin-bottom: 14px;
+		max-height: 16px;
+		height: 16px;
+	}
+	div[w-theme="simple_countdown"][w-proportion="fullwidth"] .address-wrapper {
+		font-size: 12px;
+		line-height: 16px;
+		max-height: 32px;
+		height: 32px;
+	}
+}
+/*  LAYOUT fullwidth END*/
+
 div[w-theme="simple_countdown"][w-proportion="xxl"] .event-logo.right-logo {
     left: 38%;
 }

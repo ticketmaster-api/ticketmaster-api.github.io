@@ -120,6 +120,8 @@ class TicketmasterCountdownWidget {
       : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/`;
   }
 
+  get isFullWidth() { return this.config.proportion === 'fullwidth';}
+
   get portalUrl(){
     return (window.location.host === 'developer.ticketmaster.com')
       ? `https://developer.ticketmaster.com/`
@@ -180,11 +182,6 @@ class TicketmasterCountdownWidget {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
-    // Set theme modificators
-    /*this.themeModificators = {
-      "oldschool" : this.oldSchoolModificator.bind(this)
-    };*/
-
     this.config = this.widgetRoot.attributes;
     this.eventId = this.config.id;
 
@@ -214,10 +211,6 @@ class TicketmasterCountdownWidget {
       this.showMessage("Please enter event ID.", true, null );
     }
 
-    /*if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-      this.themeModificators[ this.widgetConfig.theme ]();
-    }*/
-
     this.embedUniversePlugin();
     this.embedTMPlugin();
 
@@ -228,6 +221,8 @@ class TicketmasterCountdownWidget {
     });
 
     this.toggleSecondsVisibility();
+
+    if (this.isFullWidth) { this.initFullWidth(); }
   }
 
   getNormalizedDateValue(val){
@@ -499,11 +494,6 @@ class TicketmasterCountdownWidget {
     }
   }
 
-  //adds general admission element for OLDSCHOOL theme
-  /*oldSchoolModificator(){
-    console.log('inside oldSchoolModificator' );
-  }*/
-
   formatDate(date) {
     var result = '';
     if(!date.day) return result; // Day is required
@@ -610,6 +600,8 @@ class TicketmasterCountdownWidget {
         }
       }
     }
+
+    if (this.isFullWidth) { this.initFullWidth(); }
     //this.toggleSecondsVisibility();
   }
 
@@ -689,6 +681,7 @@ class TicketmasterCountdownWidget {
     var width = this.config.width,
       height = this.config.height;
 
+    if(width === '100%') { width = this.widgetRoot.offsetWidth }
     images.sort(function(a,b) {
       if (a.width < b.width)
         return -1;
@@ -837,7 +830,6 @@ class TicketmasterCountdownWidget {
     this.xmlHTTP.send();
   }
 
-
   initPretendedLink(el, url, isBlank){
     if(el && url){
       el.setAttribute('data-url', url);
@@ -853,6 +845,16 @@ class TicketmasterCountdownWidget {
     return el;
   }
 
+  initFullWidth(){
+    let heightStatic = 700;
+    this.config.width = `100%`;
+    this.config.height = heightStatic;
+    this.widgetRoot.style.width = `100%`;
+    this.widgetRoot.style.height = heightStatic + 'px';
+    this.widgetRoot.style.display = `block`;
+    this.eventsRootContainer.style.width  = `100%`;
+    this.eventsRootContainer.style.height = `${this.widgetContentHeight}px`;
+  }
 
   createDOMItem(itemConfig){
     var medWrapper = document.createElement("div");
@@ -861,7 +863,7 @@ class TicketmasterCountdownWidget {
     var event = document.createElement("li");
     event.classList.add("event-wrapper");
     event.style.height = `${this.config.height - this.borderSize * 2}px`;
-    event.style.width  = `${this.config.width - this.borderSize * 2}px`;
+    event.style.width  = (!this.isFullWidth) ? `${this.config.width - this.borderSize * 2}px` : `100%`;
 
     var image = document.createElement("span");
     image.classList.add("bg-cover");
