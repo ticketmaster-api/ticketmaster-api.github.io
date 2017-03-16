@@ -1,5 +1,6 @@
 package bla.tm.definitions.site.widgets;
 
+import bla.tm.definitions.site.pantheon.UserData;
 import bla.tm.steps.pantheon.UserAccountSteps;
 import bla.tm.steps.pantheon.UserLogInSteps;
 import bla.tm.steps.products_and_docs.PD_Widget_CountdownSteps;
@@ -9,6 +10,8 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 public class CountdownWidgetDefinition {
+
+    private UserData admin = new UserData("UserData", "1234567");
     private String apiKey = "{apikey}";
 
     @Steps
@@ -88,7 +91,7 @@ public class CountdownWidgetDefinition {
     @When("User is logged to site (Countdown Widget)")
     public void openLogInPageAndLogIn() {
         countdownWidgetSteps.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp(admin.username, admin.password);
         apiKey = userAccountSteps.getAPIKeyOfUser();
         countdownWidgetSteps.openPage();
     }

@@ -73,8 +73,8 @@ public class UserAppsDefinition {
         addNewAppPage.checkIfTheAppIsPresent();
     }
 
-    @Then("the $message message is displayed")
-    @When("the $message message is displayed")
+    @Then("the message $message is displayed")
+    @When("the message $message is displayed")
     public void errorAppeared(String errorMessage){
         addNewAppPage.checkIfMessageIsDisplayed(errorMessage);
     }

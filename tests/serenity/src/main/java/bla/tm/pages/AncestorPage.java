@@ -183,4 +183,12 @@ public class AncestorPage extends PageObject {
         return getDriver().getPageSource();
     }
 
+
+    public boolean checkIsPresentAndDisplayed(WebElementFacade webElementFacade) {
+        try { return webElementFacade.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }

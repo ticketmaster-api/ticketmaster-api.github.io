@@ -1,5 +1,6 @@
 package bla.tm.definitions.site.products_and_docs;
 
+import bla.tm.definitions.site.pantheon.UserData;
 import bla.tm.steps.pantheon.UserAccountSteps;
 import bla.tm.steps.pantheon.UserLogInSteps;
 import bla.tm.steps.products_and_docs.PD_TopPicksAPISteps;
@@ -10,6 +11,7 @@ import org.jbehave.core.annotations.When;
 
 public class PD_TopPicksAPIDefinition {
 
+    private UserData admin = new UserData("UserData", "1234567");
     private String apiKey = "{apikey}";
 
     @Steps
@@ -29,7 +31,7 @@ public class PD_TopPicksAPIDefinition {
     @When("User is logged to site (Top Picks API)")
     public void openLogInPageAndLogIn() {
         topPicksAPIPage.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp(admin.username, admin.username);
         apiKey = userAccountSteps.getAPIKeyOfUser();
         topPicksAPIPage.openPage();
     }

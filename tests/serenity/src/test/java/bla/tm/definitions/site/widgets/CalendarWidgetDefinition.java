@@ -1,5 +1,6 @@
 package bla.tm.definitions.site.widgets;
 
+import bla.tm.definitions.site.pantheon.UserData;
 import bla.tm.steps.pantheon.UserAccountSteps;
 import bla.tm.steps.pantheon.UserLogInSteps;
 import bla.tm.steps.products_and_docs.PD_Widget_CalendarSteps;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class CalendarWidgetDefinition {
 
+    private UserData admin = new UserData("UserData", "1234567");
     private String apiKey = "{apikey}";
 
     @Steps
@@ -53,7 +55,7 @@ public class CalendarWidgetDefinition {
     @When("User is logged to site (Calendar Widget)")
     public void openLogInPageAndLogIn() {
         calendarWidgetSteps.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp(admin.username, admin.password);
         apiKey = userAccountSteps.getAPIKeyOfUser();
         calendarWidgetSteps.openPage();
     }

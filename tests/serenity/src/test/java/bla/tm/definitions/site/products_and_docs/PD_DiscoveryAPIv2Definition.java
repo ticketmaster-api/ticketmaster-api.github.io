@@ -1,5 +1,6 @@
 package bla.tm.definitions.site.products_and_docs;
 
+import bla.tm.definitions.site.pantheon.UserData;
 import bla.tm.steps.pantheon.UserAccountSteps;
 import bla.tm.steps.pantheon.UserLogInSteps;
 import bla.tm.steps.products_and_docs.PD_DiscoveryAPIv2Steps;
@@ -10,6 +11,7 @@ import org.jbehave.core.annotations.When;
 
 public class PD_DiscoveryAPIv2Definition {
 
+    private UserData admin = new UserData("UserData", "1234567");
     private String apiKey = "{apikey}";
 
     @Steps
@@ -36,7 +38,7 @@ public class PD_DiscoveryAPIv2Definition {
     @When("User is logged to site (Discovery API v2)")
     public void openLogInPageAndLogIn() {
         discoveryAPIv2Page.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp(admin.username, admin.password);
         apiKey = userAccountSteps.getAPIKeyOfUser();
         discoveryAPIv2Page.openPage();
     }

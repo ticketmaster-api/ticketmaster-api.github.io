@@ -8,6 +8,8 @@ import org.jbehave.core.annotations.When;
 
 public class UserLogInDefinition {
 
+    private UserData admin = new UserData("TestUser", "1234567");
+
     @Steps
     UserLogInSteps userLogInPage;
 
@@ -24,10 +26,20 @@ public class UserLogInDefinition {
     @Given("navigate to Pantheon User Account page from LogIn page")
     @When("navigate to Pantheon User Account page from LogIn page")
     public void openUserAccountPage(){
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp(admin.username, admin.password);
     }
 
-    @Then("check general page elements for Pantheon User LonIn page")
+    @When("login to Pantheon with $username and $password")
+    public void logInToApp(String username, String password){
+        userLogInPage.logInToApp(username, password);
+    }
+
+    @When("login to Pantheon using OpenID $invalidOpenID")
+    public void lodInUsingOpenId(String openID){
+        userLogInPage.logInUsingOpenID(openID);
+    }
+
+    @Then("check general page elements for Pantheon User LogIn page")
     public void checkGeneralPageElements(){
         userLogInPage.checkIfTitleIsCorrect();
         userLogInPage.checkGeneralPageElements();
