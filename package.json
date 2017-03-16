@@ -35,7 +35,8 @@
       "./"
     ],
 		"collectCoverage": true,
-		"coverageReporters": ["json", "lcov", "text", "html"]
+		"coverageReporters": ["json", "lcov", "text", "html"],
+		"roots": ["<rootDir>/spec/"]
   },
   "repository": {
     "type": "git",
