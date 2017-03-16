@@ -10,6 +10,8 @@ import org.jbehave.core.annotations.When;
 
 import java.util.List;
 
+import static net.serenitybdd.core.Serenity.getCurrentSession;
+
 public class CalendarWidgetDefinition {
 
     private String apiKey = "{apikey}";
@@ -53,7 +55,7 @@ public class CalendarWidgetDefinition {
     @When("User is logged to site (Calendar Widget)")
     public void openLogInPageAndLogIn() {
         calendarWidgetSteps.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
         apiKey = userAccountSteps.getAPIKeyOfUser();
         calendarWidgetSteps.openPage();
     }

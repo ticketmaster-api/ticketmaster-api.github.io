@@ -28,6 +28,20 @@ public class UserLogInPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='user-login-reset-pass']/a")
     private WebElementFacade forgotYourPasswordLink;
 
+    @FindBy(xpath = "//a[text()=\"Log in using OpenID\"]")
+    private WebElementFacade openIDButton;
+
+    public WebElementFacade getOpenIDInputField() {
+        return openIDInputField;
+    }
+
+    @FindBy(id = "edit-openid-identifier")
+    private WebElementFacade openIDInputField;
+
+    public WebElementFacade getOpenIDButton() {
+        return openIDButton;
+    }
+
     public WebElementFacade getCreateNewAccountButton() {
         return waitFor(createNewAccountButton);
     }
