@@ -252,15 +252,15 @@
                 min: sizeConfig.minWidth
             }).slider('refresh');
 
-            document.getElementById('map').style.width = sizeConfig.width + 'px';
-            document.getElementById('map').style.height = sizeConfig.height + 'px';
+            document.querySelector('.map').style.width = sizeConfig.width + 'px';
+            document.querySelector('.map').style.height = sizeConfig.height + 'px';
             widgetNode.setAttribute('w-width', sizeConfig.width);
             widgetNode.setAttribute('w-height', sizeConfig.height);
         }
 
         if (targetName === "w-width") {
-            document.getElementById('map').style.width = widgetNode.getAttribute('w-width') + 'px';
-            document.getElementById('map').style.height = widgetNode.getAttribute('w-height') + 'px';
+            document.querySelector('.map').style.width = widgetNode.getAttribute('w-width') + 'px';
+            document.querySelector('.map').style.height = widgetNode.getAttribute('w-height') + 'px';
         }
 
         //Check fixed sizes for 'simple' theme
@@ -273,8 +273,8 @@
                 minWidth: 350
             };
 
-            document.getElementById('map').style.width = themeConfig.sizes[targetValue].width + 'px';
-            document.getElementById('map').style.height = themeConfig.sizes[targetValue].height + 'px';
+            document.querySelector('.map').style.width = themeConfig.sizes[targetValue].width + 'px';
+            document.querySelector('.map').style.height = themeConfig.sizes[targetValue].height + 'px';
 
             //set layout
             widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
@@ -374,8 +374,8 @@
         widgetNode.removeAttribute('w-source');
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
-        document.getElementById('map').style.width = '350px';
-        document.getElementById('map').style.height = '600px';
+        document.querySelector('.map').style.width = '350px';
+        document.querySelector('.map').style.height = '600px';
         widget.onLoadCoordinate();
         widget.update();
         // document.querySelector('.widget-container-wrapper').removeAttribute('style');
