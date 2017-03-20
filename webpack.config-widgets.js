@@ -9,7 +9,12 @@ __versionString__ = ~~__versionString__ - 5540;
  * Get npm lifecycle event to identify the environment
  */
 var ENV = process.env.npm_lifecycle_event;
-
+var versionsMajor = {
+	countdown: '1.0.0',
+	'event-discovery' :'1.0.0',
+	calendar :'1.0.0',
+	map :'1.0.0'
+};
 /**
  *
  * @param folderName - string, folder for input/output file
@@ -28,7 +33,7 @@ var configWidget = (folderName)=> {
 			plugins: [
 				new webpack.DefinePlugin({
 					ENV: JSON.stringify("main-widget"),
-					__VERSION__: JSON.stringify(__versionString__)
+					__VERSION__: JSON.stringify(versionsMajor[folderName] + '.' +__versionString__)
 				})
 			]
 		},

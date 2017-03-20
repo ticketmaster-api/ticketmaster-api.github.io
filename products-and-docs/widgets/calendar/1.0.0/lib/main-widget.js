@@ -583,7 +583,7 @@ class TicketmasterCalendarWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-    get widgetVersion() { return `1.0.0.${4}`; }
+    get widgetVersion() { return `${"1.0.0.5"}`; }
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
