@@ -37,7 +37,7 @@ class TicketmasterMapWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-    get widgetVersion() { return "1.0.0"; }
+    get widgetVersion() { return `1.0.0.${__VERSION__}`; }
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
@@ -1076,3 +1076,7 @@ let widgetsMap = [];
 
 ga('create', 'UA-78315612-1', 'auto');
 ga('send', 'pageview');
+
+if(typeof module !== "undefined") {
+    module.exports = { widgetsMap };
+}

@@ -18,7 +18,7 @@
 
     function getGooleApiKey(code) { return code || "AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA";}
 
-    let widget = widgetsMap[0],
+    let widget = widgetsLib.widgetsMap[0],
         themeConfig = {
             sizes: {
                 s: {
