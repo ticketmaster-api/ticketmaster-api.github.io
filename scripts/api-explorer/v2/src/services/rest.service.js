@@ -80,6 +80,7 @@ class RestService {
 	 * @returns {boolean}
 	 */
 	prepareUrl(_domain, _path, _selectedParams) {
+		this.apikeyActive = this.apikeyActive || ko.unwrap(this.apiKey.value);
 		let replacement,
 			url,
 			params,

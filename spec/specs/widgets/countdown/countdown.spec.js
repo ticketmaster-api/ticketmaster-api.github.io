@@ -1,4 +1,5 @@
-/*import module from '../../../../products-and-docs/widgets/countdown/1.0.0/src/main-widget.es6';
+/*
+import module from 'products-and-docs/widgets/countdown/1.0.0/src/main-widget.es6';
 let  Clock = module.CountdownClock,
 	CDWidget = module.TicketmasterCountdownWidget;
 
