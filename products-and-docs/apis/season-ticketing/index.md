@@ -266,6 +266,7 @@ Ticketmaster systems support multiple clients and our Web Services layer require
   - The complete JSON Command should be included each time the call is re-submitted.
   - Cookie values that were returned by the SERVER with the &quot;Set\_Cookie&quot; responses (above) must be provided in this polling step.
     * `SID` - should not change for the duration of this API polling cycle.
+    *	`BID` - should not change for the duration of this API polling cycle.
     * `CID` - use the value provided by the web service in step 2
     * `QTKN` - use the value provided by the web service in step 2
 + Steps 2 and 3 are repeated until response is complete.

@@ -72,6 +72,8 @@ Retrieve reservable seat information based on specific criteria.
 | `sections` | Comma-separated section names | string | GA,103,201 | No |
 | `prices` | Price range | numbers | 50,150 | No |
 | `page` | Page number   | numbers | 1 | No |
+| `limit` | Elements per page   | numbers | 10 | No (default=30) |
+
 
 ### Response structure:
 
@@ -92,12 +94,12 @@ Retrieve reservable seat information based on specific criteria.
         * `descriptions` (array) - A list of descriptions for this pick
         * `section` (string) - The section name in the venue
         * `selection` (string) - "standard", or "resale".
-        * `row` (string) - The row in the section, if applicable.
+        * `row` (string) - The row in the section, if applicable (not available during onsale).
         * `snapshotImageUrl` - An image url of this pick in the venue. If the venue or event doesn't support detailed images, this field will be null.
         * `offers` (array) - Offers.    
             - `{array item object}` - offer.
                 - `offer id` (string) - The offer id corresponding to one in _embedded.offer[].
-        * `seats` (array) - Seats.    
+        * `seats` (array) - Seats (not available during onsale).   
             - `{array item object}` - seat.
                 - `seat id` (string) - seat names.
 - `_embedded` (object) - container for events.

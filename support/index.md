@@ -22,6 +22,7 @@ No matter what question you have or help you need, we're here for you.
 [Partner API Terms of Use](/support/terms-of-use/partner)
 [Branding Guide](/support/branding-guide/)
 [Contact Us](/support/contact-us/)
+[Partner API Faqs](/support/partner-api-faq/)
 
 {% endcapture %}
 
