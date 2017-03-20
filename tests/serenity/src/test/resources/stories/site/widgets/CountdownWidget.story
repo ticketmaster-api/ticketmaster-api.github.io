@@ -65,7 +65,6 @@ And embedded html code contains stored theme
 Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Layout Resolutions
 Given open Countdown Widget page
 And switch to VISUAL Tab
-And set theme to poster
 And set layout resolution to <layoutResolution>
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
@@ -74,12 +73,12 @@ Examples:
 |layoutResolution|
 |300x600         |
 |300x250         |
+|fullwidth      |
 |custom          |
 
 Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Layout Orientations
 Given open Countdown Widget page
 And switch to VISUAL Tab
-And set theme to poster
 And set layout orientation to <orientation>
 When click on "Get code" button
 Then the pop-up Embedded Code is opened

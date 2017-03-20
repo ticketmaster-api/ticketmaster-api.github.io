@@ -167,13 +167,13 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
     @Step
     public void setFullWidth() {
         countdownWidgetPage.getCountdownWidget().setFullWidthMode();
-        Serenity.getCurrentSession().put("theme", "full-width");
+        Serenity.getCurrentSession().put("w-proportion", "fullwidth");
     }
 
     @Step
     public void checkThatEmbeddedCodeContainsStoredTheme() {
         String embeddedThemeValue = countdownWidgetPage.getCountdownWidget().getEmbeddedTheme();
-        String themeValue = (String) Serenity.getCurrentSession().get("theme");
+        String themeValue = (String) Serenity.getCurrentSession().get("w-proportion");
         assertTrue(String.format("The embedded code theme value is: %s but the theme value which was stored before is: %s ", embeddedThemeValue, themeValue), embeddedThemeValue.equalsIgnoreCase(themeValue));
     }
 
@@ -191,7 +191,7 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
     public void checkThatEmbeddedCodeContainsStoredResolution() {
         String embeddedResolutionValue = countdownWidgetPage.getCountdownWidget().getEmbeddedResolution();
         String resolutionValue = (String) Serenity.getCurrentSession().get("resolution");
-        assertTrue(String.format("The embedded code resolution value is: %s but the resulution value which was stored before is: %s ", embeddedResolutionValue, resolutionValue), embeddedResolutionValue.equalsIgnoreCase(resolutionValue));
+        assertTrue(String.format("The embedded code resolution value is: %s but the resolution value which was stored before is: %s ", embeddedResolutionValue, resolutionValue), embeddedResolutionValue.equalsIgnoreCase(resolutionValue));
     }
 
     @Step

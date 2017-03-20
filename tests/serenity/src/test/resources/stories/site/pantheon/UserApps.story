@@ -22,7 +22,7 @@ When save changes on Edit App Page
 Then the message <message> is displayed
 Examples:
 |appFormField     |appName                  |message                                    |
-|Application name |mamaxF-Appd2              |Callback URL is required for Oauth Product |
+|Application name |mamaxF-Appd2             |Callback URL is required for Oauth Product |
 |Redirect URI     |https://ticketmaster.com |Application name field is required.        |
 
 Scenario: (Pantheon|Add new App) [2.1.5 Add new App with values positive]
