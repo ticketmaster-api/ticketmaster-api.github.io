@@ -8,7 +8,10 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static net.serenitybdd.core.Serenity.getCurrentSession;
+
 public class CountdownWidgetDefinition {
+
     private String apiKey = "{apikey}";
 
     @Steps
@@ -88,7 +91,7 @@ public class CountdownWidgetDefinition {
     @When("User is logged to site (Countdown Widget)")
     public void openLogInPageAndLogIn() {
         countdownWidgetSteps.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
         apiKey = userAccountSteps.getAPIKeyOfUser();
         countdownWidgetSteps.openPage();
     }

@@ -8,6 +8,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static net.serenitybdd.core.Serenity.getCurrentSession;
+
 public class PD_InventoryStatusAPIDefinition {
 
     private String apiKey = "{apikey}";
@@ -29,7 +31,7 @@ public class PD_InventoryStatusAPIDefinition {
     @When("User is logged to site (Inventory Status API)")
     public void openLogInPageAndLogIn() {
         inventoryStatusAPIPage.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
         apiKey = userAccountSteps.getAPIKeyOfUser();
         inventoryStatusAPIPage.openPage();
     }

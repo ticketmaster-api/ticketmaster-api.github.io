@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 import java.util.*;
 
 
-public class LeftMenuWidgetImpl extends AnsestorWidgetImpl implements LeftMenuWidget{
+public class LeftMenuWidgetImpl extends AncestorWidgetImpl implements LeftMenuWidget{
 
     private MenuElements leftMenuElement = null;
 

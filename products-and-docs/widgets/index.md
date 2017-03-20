@@ -62,6 +62,14 @@ keywords: widget, sell tickets, direct payments
 [LEARN MORE](/products-and-docs/widgets/wordpress/){: .button .button-transparent}
 {% endcapture %}
 
+{% capture map-widget %}
+{: #map-widget }
+## Map Widget
+
+{: .button_set}
+[CONFIGURE NOW](/products-and-docs/widgets/map/){: .button.button-blue}
+{% endcapture %}
+
 {% capture payments %}
 ### Direct Payments
 
@@ -92,6 +100,10 @@ directly on your website at no additional cost.
 
 <div class="widget_box widget_box__wordpress" markdown="1">
 {{wordpress-widget}}
+</div>
+
+<div class="widget_box widget_box__map" markdown="1">
+{{map-widget}}
 </div>
 
 <div class="grey-box android mask" markdown="1">

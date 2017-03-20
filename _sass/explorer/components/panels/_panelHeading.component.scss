@@ -2,6 +2,13 @@ section.panel-heading {
 	padding: 0;
 	height: 40px;
 	border-radius: 0;
+	.api-map-btn {
+		width: 28px;
+		height: 28px;
+		background: url('../../assets/img/ic-map.svg') no-repeat;
+		border: none;
+		outline: none;
+	}
 	.panel:hover &,
 	.panel.active & {
 		opacity: 1;

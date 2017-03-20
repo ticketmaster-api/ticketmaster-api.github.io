@@ -184,11 +184,38 @@
       _widget.update();
     }
   };
-  replaceApiKey({
-    inputApiKey: $('#w-tm-api-key'),
-    widgetNode: document.querySelector("div[w-tmapikey]"),
-    widget: widget
-  });
+  /*replaceApiKey({
+      inputApiKey:$('#w-tm-api-key'),
+      widgetNode: document.querySelector("div[w-tmapikey]"),
+      widget
+    });*/
+
+  var fullWidth = function fullWidth(targetValue, widgetNode) {
+    var widthSlider = $('.js_widget_width_slider'),
+        widgetContainerWrapper = $containerWidget,
+        widgetContainer = $(".widget-container", widgetContainerWrapper),
+        $border_slider = $('.js_widget_border_slider');
+
+    if (targetValue === 'fullwidth') {
+      // $layoutBox.slideUp();
+      widthSlider.slideUp("fast");
+      $borderRadiusController.slider('setValue', 0);
+      widgetNode.setAttribute('w-borderradius', 0);
+      $border_slider.slideUp("fast");
+      widgetContainerWrapper.css({ width: "100%" });
+      widgetContainer.css({ width: '100%' });
+      // widgetNode.setAttribute('w-height', 700);
+    } else {
+      // $layoutBox.slideDown("fast");
+      widthSlider.hide();
+      $border_slider.hide();
+      $borderRadiusController.slider('setValue', 4);
+      widgetNode.setAttribute('w-borderradius', 4);
+      widgetContainerWrapper.css({ width: 'auto' });
+      widgetContainer.css({ width: 'auto' });
+      //resetWidget($configForm );
+    }
+  };
 
   var changeState = function changeState(event) {
     if (!event.target.name || event.target.name === "w-googleapikey") return;
@@ -199,9 +226,9 @@
         $tabButtons = $('.js-tab-buttons');
 
     if (targetName === "w-tm-api-key") {
-      document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
-
-      if (sessionStorage.getItem('tk-api-key')) {
+      console.log("target -   w-tm-api-key");
+      /*document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
+        if (sessionStorage.getItem('tk-api-key')) {
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
         document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
       }
@@ -209,11 +236,12 @@
         if (sessionStorage.getItem('tk-api-key')) {
           document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
           document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
-        } else {
+        }
+        else {
           document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
           document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
         }
-      }
+      }*/
     }
 
     if (targetName === "w-postalcodeapi") {
@@ -221,23 +249,23 @@
       isPostalCodeChanged = true;
 
       /*
-      var numInputClass = document.getElementById('w-radius');
-      var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
-      var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-       if (targetValue == '') {
-          numInputClass.setAttribute('disabled', 'disabled');
-          numInputClass.value = '';
-          incArrow.classList.add('disabled');
-          decArrow.classList.add('disabled');
-      }
-      else {
-          numInputClass.removeAttribute('disabled');
-          numInputClass.value = '25';
-          incArrow.classList.remove('disabled');
-          decArrow.classList.remove('disabled');
-          widgetNode.setAttribute('w-radius', '25');
-      }
-      */
+       var numInputClass = document.getElementById('w-radius');
+       var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
+       var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
+         if (targetValue == '') {
+       numInputClass.setAttribute('disabled', 'disabled');
+       numInputClass.value = '';
+       incArrow.classList.add('disabled');
+       decArrow.classList.add('disabled');
+       }
+       else {
+       numInputClass.removeAttribute('disabled');
+       numInputClass.value = '25';
+       incArrow.classList.remove('disabled');
+       decArrow.classList.remove('disabled');
+       widgetNode.setAttribute('w-radius', '25');
+       }
+       */
     }
 
     if (targetName === "w-latlong") {
@@ -252,6 +280,13 @@
       widgetNode.setAttribute('w-country', '');
       widgetNode.setAttribute('w-postalcodeapi', document.getElementById('w-postalcodeapi').value);
       isPostalCodeChanged = true;
+    }
+
+    if (targetName === "w-countryCode" && widgetNode.getAttribute('w-countrycode') !== null) {
+      if (widgetNode.getAttribute('w-countrycode') != targetValue) {
+        document.getElementById("w-city").value = '';
+        widgetNode.setAttribute('w-city', '');
+      }
     }
 
     if (targetName === "w-theme") {
@@ -278,11 +313,23 @@
         };
       }
 
-      $widthController.slider({
-        setValue: sizeConfig.width,
-        max: sizeConfig.maxWidth,
-        min: sizeConfig.minWidth
-      }).slider('refresh');
+      fullWidth(targetValue, widgetNode);
+
+      if (targetValue !== 'fullwidth') {
+
+        $('.js_widget_width_slider').slideDown("fast");
+        $('.js_widget_border_slider').slideDown("fast");
+        $borderRadiusController.slider('setValue', 4);
+        widgetNode.setAttribute('w-borderradius', 4);
+        $containerWidget.css({ width: 'auto' });
+        $(".widget-container", $containerWidget).css({ width: 'auto' });
+
+        $widthController.slider({
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        }).slider('refresh');
+      }
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
@@ -297,6 +344,9 @@
         maxWidth: 600,
         minWidth: 350
       };
+
+      //set width:'auto'
+      fullWidth(targetValue, widgetNode);
 
       //set layout
       widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
@@ -321,7 +371,6 @@
           min: _sizeConfig.minWidth
         }).slider('refresh');
       }
-
       widgetNode.setAttribute('w-width', _sizeConfig.width);
       widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
@@ -356,7 +405,9 @@
         $self.val(value);
       }
 
-      document.getElementById("w-country").disabled = true;
+      try {
+        document.getElementById("w-country").disabled = true;
+      } catch (e) {}
 
       var activeItems = document.querySelectorAll('.custom_select__item.custom_select__item-active');
       var activeItemsLenght = activeItems.length;
@@ -429,7 +480,7 @@
     var htmlCode = document.createElement("div");
     widget.config.latlong = document.getElementById('w-latlong').value.replace(/\s+/g, '');
     for (var key in widget.config) {
-      if (key !== 'latlongggg') {
+      if (key !== 'country') {
         htmlCode.setAttribute("w-" + key, widget.config[key]);
       }
     }

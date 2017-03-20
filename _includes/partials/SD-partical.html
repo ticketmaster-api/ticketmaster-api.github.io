@@ -17,9 +17,13 @@
 		<div id="tab-dropdown" class="dropdown mobile-dropdown">
 			<a id="tab-dropdown-label" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
 			<ul class="dropdown-menu">
-				<li role="presentation"><a class="tab" href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+				<li role="presentation">
+					<a class="tab" href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a>
+				</li>
 				{% for tab in tab_array %}
-				<li role="presentation"><a class="tab" href="#{{tab}}" aria-controls="{{tab}}" role="tab" data-toggle="tab">{{tab}}</a></li>
+				<li role="presentation">
+					<a class="tab" href="#{{tab}}" aria-controls="{{tab}}" role="tab" data-toggle="tab">{{tab}}</a>
+				</li>
 				{% endfor %}
 			</ul>
 		</div>
@@ -27,7 +31,6 @@
 		
 		<!-- Tab panes -->
 		<section class="tab-content clearfix">
-			
 			<div role="tabpanel" class="tab-pane active" id="all">
 				<section class="grid" id="grid-all">
 					{% for item in gallery_array %}
@@ -59,7 +62,7 @@
 			{% for tab in tab_array %}
 			<div role="tabpanel" class="tab-pane" id="{{tab}}">
 				<section class="grid" id="grid-{{tab}}">
-					{% assign array = "" | split:"|"  %}
+					{% assign array = "" | split: "|"  %}
 					
 					{% for item in gallery_array %}
 						{% if item.tab == tab %}

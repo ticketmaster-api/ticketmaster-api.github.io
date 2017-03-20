@@ -19,10 +19,10 @@ Scenario: (Pantheon|Add new App) Add new App negative [2.1.15 Add New App - The 
 Given navigate to Pantheon Add New App page from User Account page
 When enter to the field <appFormField> value <appName>
 When save changes on Edit App Page
-Then the <message> message is displayed
+Then the message <message> is displayed
 Examples:
 |appFormField     |appName                  |message                                    |
-|Application name |mamax-Appd2              |Callback URL is required for Oauth Product |
+|Application name |mamaxF-Appd2              |Callback URL is required for Oauth Product |
 |Redirect URI     |https://ticketmaster.com |Application name field is required.        |
 
 Scenario: (Pantheon|Add new App) [2.1.5 Add new App with values positive]
@@ -30,15 +30,16 @@ Given navigate to Pantheon Add New App page from User Account page
 When enter to the field Application name value uniqueApp
 When enter to the field Redirect URI value https://oauth.ticketmaster.com
 And save changes on Edit App Page
-Then the App Created! message is displayed
-And the uniqueApp is appeared in the list of apps
+Then the message App Created! is displayed
+Then open my Apps page
+And the App is appeared in the list of apps
 
 Scenario: (Pantheon|Edit App) Edit app with empty required fields negative
 Given open my Apps page
 And open Edit App Page for the first application
 When clear field <appFormField> on Edit App Page
 And save changes on Edit App Page
-Then the <formError> message is displayed
+Then the message <formError> is displayed
 Examples:
 |appFormField     |formError                                  |
 |Application name |Application name field is required.        |
@@ -50,7 +51,7 @@ And open Edit App Page for the first application
 When clear field <appFormField> on Edit App Page
 And enter to the field <appFormField> value <appValue>
 And save changes on Edit App Page
-And the App Updated! message is displayed
+And the message App Updated! is displayed
 And open my Apps page
 And open Details tab on the application
 Then <detailName> have been applied on Edit App Page with value <appValue>
@@ -62,6 +63,6 @@ Examples:
 Scenario: (Pantheon|Delete App) Delete App positive [2.1.9 Delete application]
 Given open my Apps page
 When delete first App
-Then the App Deleted! message is displayed
+Then the message App Deleted! is displayed
 And the predefined app is removed from the list of apps
 

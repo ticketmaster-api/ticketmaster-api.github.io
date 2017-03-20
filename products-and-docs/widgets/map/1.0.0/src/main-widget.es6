@@ -37,6 +37,8 @@ class TicketmasterMapWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
+    get widgetVersion() { return "1.0.0"; }
+
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
     get updateExceptions() { return ["width", "height", "border", "borderradius", "colorscheme", "layout", "affiliateid", "propotion", "googleapikey", "latlong"]}
@@ -189,7 +191,7 @@ class TicketmasterMapWidget {
             this.config = this.widgetRoot.attributes;
 
             this.eventsRoot = document.createElement("div");
-            this.eventsRoot.id = "map";
+            this.eventsRoot.classList.add("map");
             // this.eventsRoot.style.height = parseInt(parseInt(this.widgetHeight) + 25) + "px";
             this.eventsRoot.style.height = this.widgetHeight + "px";
             this.eventsRoot.style.width = this.config.width + "px";
@@ -399,11 +401,28 @@ class TicketmasterMapWidget {
         logoBox.appendChild(logo);
         this.eventsRootContainer.appendChild(logoBox);
 
-        let question = document.createElement('a');
+        let question = document.createElement('span');
         question.classList.add("event-question");
         question.target = '_blank';
         question.href = this.questionUrl;
+        question.addEventListener('click', toolTipHandler);
         this.eventsRootContainer.appendChild(question);
+
+        let toolTip = document.createElement('div'),
+            tooltipHtml = `
+              <div class="tooltip-inner"> 
+                <a href="${this.questionUrl}" target = "_blank" >About widget</a>
+                <div class="place">version: <b>${this.widgetVersion}</b></div>
+              </div>`;
+        toolTip.classList.add("tooltip-version");
+        toolTip.classList.add("left");
+        toolTip.innerHTML = tooltipHtml;
+        this.eventsRootContainer.appendChild(toolTip);
+
+        function toolTipHandler(e) {
+            e.preventDefault();
+            e.target.nextSibling.classList.toggle('show-tip');
+        }
     }
 
     formatDate(date) {
@@ -642,7 +661,7 @@ class TicketmasterMapWidget {
 
                     var myLatLng = {lat: 34.0390107, lng: -118.2672801};
 
-                    var map = new google.maps.Map(document.getElementById('map'), {
+                    var map = new google.maps.Map(widget.widgetRoot.firstChild.firstChild, {
                         zoom: 4,
                         center: myLatLng,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,

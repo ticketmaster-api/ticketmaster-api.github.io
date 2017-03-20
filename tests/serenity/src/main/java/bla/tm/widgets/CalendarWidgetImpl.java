@@ -8,7 +8,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
-public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWidget {
+import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
+
+public class CalendarWidgetImpl extends AncestorWidgetImpl implements CalendarWidget {
     //Constructors
     public CalendarWidgetImpl(PageObject page, ElementLocator locator, WebElementFacade webElement, long timeoutInMilliseconds) {
         super(page, locator, webElement, timeoutInMilliseconds);
@@ -52,8 +54,8 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
 
     @Override
     public void setZipCodeTextFieldValue(String zipCode) {
-        zipCodeField.clear();
-        zipCodeField.sendKeys(zipCode, Keys.ENTER);
+        postalCodeApiField.clear();
+        postalCodeApiField.sendKeys(zipCode, Keys.ENTER);
         waitForSomeActionHappened(1500);
     }
 
@@ -98,5 +100,24 @@ public class CalendarWidgetImpl extends AnsestorWidgetImpl implements CalendarWi
     //Private Methods
     private WebElementFacade getCountryWebElementFacade(){
         return getPage().element(By.xpath(countryDropdownXPath));
+    }
+
+    @Override
+    public String getEmbeddedValueOf(String valueName) {
+        switch (valueName){
+            case "apiKey": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_APIKEY);
+            case "keyword": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_KEYWORD);
+            case "postalCodeApi": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_POSTALCODEAPI);
+            case "period": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PERIOD);
+            case "attractionId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ATTRACTIONID);
+            case "venueId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_VENUEID);
+            case "promoterId": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROMOTERID);
+            case "city": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_CITY);
+            case "countryCode": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_COUNTRYCODE);
+            case "source": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_SOURCE);
+            case "classificationName": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_CLASSIFICATIONNAME);
+            case "eventCount": return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_EVENTCOUNT);
+            default: throw new IllegalArgumentException(String.format("The argument of embedded attribute name is illegal: %s", valueName));
+        }
     }
 }

@@ -5,7 +5,6 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -55,8 +54,9 @@ public class AddNewAppPage extends AncestorPage {
         return appNameWebElement;
     }
 
-    public WebElement getSaveButton() {
-        return saveButton.getWrappedElement();
+    public WebElementFacade getSaveButton() {
+        return saveButton;
+  
     }
 
     public WebElementFacade getAppNameInDetailsTab(String val) {
@@ -93,4 +93,5 @@ public class AddNewAppPage extends AncestorPage {
     public WebElementFacade getNoApplicationText() {
         return noAppsMessage;
     }
+
 }

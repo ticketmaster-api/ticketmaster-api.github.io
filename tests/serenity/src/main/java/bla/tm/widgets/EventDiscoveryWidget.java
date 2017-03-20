@@ -3,7 +3,7 @@ package bla.tm.widgets;
 import net.serenitybdd.core.annotations.ImplementedBy;
 
 @ImplementedBy(EventDiscoveryWidgetImpl.class)
-public interface EventDiscoveryWidget extends AnsestorWidget{
+public interface EventDiscoveryWidget extends AncestorWidget {
     //Setters
 
     void setPeriodValue(String period);
@@ -50,4 +50,6 @@ public interface EventDiscoveryWidget extends AnsestorWidget{
     String getValueOf(String parameterName);
 
     String getPostalCodeApiValue();
+
+    String getEmbeddedValueOf(String parameter);
 }
