@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+	<resources base="https://app.ticketmaster.com">
+		<!-- Discovery REST API Version 2 -->
+		<!-- Search Events -->
+		<resource path="discovery/v2/events.{format}">
+			<param name="format" required="true" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<param name="keyword" required="false" style="query" type="xsd:string">
+				<doc>A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.</doc>
+			</param>
+			<param name="attractionId" required="false" style="query" type="xsd:string" default="">
+				<doc>Attraction ID(s) separated by comma.</doc>
+			</param>
+			<param name="venueId" required="false" style="query" type="xsd:string" default="">
+				<doc>Venue ID(s) separated by comma.</doc>
+			</param>
+			<param name="postalCode" required="false" style="query" type="xsd:string" default="">
+				<doc>Zipcode or Postal Code of the venue in which the event is taking place.</doc>
+			</param>
+			<param name="latlong" required="false" style="query" type="xsd:string" default="">
+				<doc>The Latitude,Longitude coordinates for the venue in which this event is taking place.</doc>
+			</param>
+			<param name="radius" required="false" style="query" type="xsd:integer" default="">
+				<doc>The radius of the area in which we want to search for events.</doc>
+			</param>
+			<param name="unit" required="false" style="query" type="xsd:string" default="">
+				<doc>The radius distance unit. Possible values: miles, km.</doc>
+			</param>
+			<param name="source" required="false" style="query" type="xsd:string"  default="">
+				<doc>Source of the event.</doc>
+				<option value="none"/>
+				<option value="ticketmaster"/>
+				<option value="ticketweb"/>
+				<option value="universe"/>
+				<option value="tmr"/>
+				<option value="frontgate"/>
+			</param>
+
+			<param name="marketId" required="false" style="query" type="xsd:integer" default="">
+				<doc>The city/area in which this event takes place.</doc>
+			</param>
+			<param name="startDateTime" required="false" style="query" type="xsd:string">
+				<doc>Include events happening after this date.</doc>
+			</param>
+			<param name="endDateTime" required="false" style="query" type="xsd:string">
+				<doc>Include events happening before this date.</doc>
+			</param>
+			<param name="includeTBA" required="false" style="query" type="xsd:string"  default="">
+				<doc>Whether or not to return events with dates to be announced (TBA). TBA events are not returned.</doc>
+				<option value="none"/>
+                <option value="no"/>
+				<option value="only"/>
+				<option value="yes"/>
+			</param>
+			<param name="includeTBD" required="false" style="query" type="xsd:string"  default="">
+				<doc>Whether or not to return events with dates to be announced (TBD). TBD events are not returned.</doc>
+				<option value="none"/>
+                <option value="no"/>
+				<option value="yes"/>
+				<option value="only"/>
+			</param>
+			<param name="size" required="false" style="query" type="xsd:integer" default="">
+				<doc>The number of events returned in the API response.</doc>
+			</param>
+			<param name="page" required="false" style="query" type="xsd:integer" default="0">
+				<doc>The page for paginating through the results.</doc>
+			</param>
+			<param name="sort" required="false" style="query" type="xsd:string"  default="">
+				<doc>The search sort criteria.</doc>
+				<option value="none"/>
+				<option value="name,desc"/>
+				<option value="name,asc"/>
+				<option value="date,asc"/>
+				<option value="date,desc"/>
+			</param>
+			<param name="onsaleStartDateTime" required="false" style="query" type="xsd:string">
+				<doc>Include events happening before this date.</doc>
+			</param>
+			<param name="onsaleEndDateTime" required="false" style="query" type="xsd:string">
+				<doc>Include events happening before this date.</doc>
+			</param>
+			<param name="city" required="false" style="query" type="xsd:string">
+				<doc>The city.</doc>
+			</param>
+			<param name="countryCode" required="false" style="query" type="xsd:string">
+				<doc>The country code.</doc>
+			</param>
+			<param name="stateCode" required="false" style="query" type="xsd:string">
+				<doc>The state code.</doc>
+			</param>
+			<param name="classificationName" required="false" style="query" type="xsd:string">
+				<doc>The classification name.</doc>
+			</param>
+			<param name="classificationId" required="false" style="query" type="xsd:string">
+				<doc>The classification ID.</doc>
+			</param>
+			<param name="dmaId" required="false" style="query" type="xsd:string">
+				<doc>The dmaId.</doc>
+			</param>
+			<method id="discovery.v2.events.get" name="GET" apigee:displayName="Search Events">
+				<apigee:tags>
+					<apigee:tag primary="true">Discovery API v2</apigee:tag>
+					<apigee:tag>Events</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="discovery/v2/events.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2">Returns the 20 most recent events for the authenticated user.</doc>
+			</method>
+		</resource>
+
+
+
+		<!-- Get Cart -->
+		<resource path="commerce/{version}/shopping/carts/{cartId}.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="cartId" required="true" type="xsd:string" style="template" default="">
+				<doc>The cart id</doc>
+			</param>
+			<param name="format" required="false" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="commerce.shopping.cart.get" name="GET" apigee:displayName="Get Cart">
+				<apigee:tags>
+					<apigee:tag primary="true">Commerce API</apigee:tag>
+					<apigee:tag>Commerce</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="commerce/v2/shopping/carts/c906b302-8248-4454-bca1-2dd938d8afa1.intqa.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-cart">Get Cart!
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+
+		<!-- Empty Cart -->
+		<resource path="commerce/{version}/shopping/carts/{cartId}.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="cartId" required="true" type="xsd:string" style="template" default="">
+				<doc>The cart id</doc>
+			</param>
+			<param name="format" required="false" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="commerce.shopping.cart.empty" name="DELETE" apigee:displayName="Empty Cart">
+				<apigee:tags>
+					<apigee:tag primary="true">Commerce API</apigee:tag>
+					<apigee:tag>Commerce</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="commerce/v2/shopping/carts/c906b302-8248-4454-bca1-2dd938d8afa1.intqa.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#empty-cart">Empty Cart!
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+
+		<!-- Create Cart -->
+		<resource path="commerce/{version}/shopping/carts.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="format" required="false" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="commerce.shopping.cart.create" name="POST" apigee:displayName="Create Cart">
+				<apigee:tags>
+					<apigee:tag primary="true">Commerce API</apigee:tag>
+					<apigee:tag>Commerce</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="commerce/v2/shopping/carts.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#create-cart">Create Cart!
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+					<param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json">
+					</param>
+					<representation>
+						<apigee:payload required="true">
+							<doc apigee:url="https://developer.ticketmaster.com">
+								The payload should contain a valid create cart in json format.
+							</doc>
+							<apigee:content>
+								<![CDATA[
+                       {
+                          "pollingCallbackUrl" : "http://your.server:8080/your-webhook-uri/",
+                          "products" : [ {
+                             "offers" : [
+                             {
+                                "offer" : "000000000001"
+                             } 
+                             ],
+                             "product" : "00004F70F3D1C21D",
+                             "qty" : 1
+                          }  ]
+                       }
+                    ]]>
+							</apigee:content>
+						</apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+
+
+
+		<!-- Select Payments -->
+		<resource path="commerce/{version}/shopping/carts/{cartId}/payments.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="cartId" required="true" type="xsd:string" style="template" default="">
+				<doc>The Cart Id</doc>
+			</param>
+			<param name="format" required="true" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="commerce.shopping.cart.select.payments" name="POST" apigee:displayName="Select Payments">
+				<apigee:tags>
+					<apigee:tag primary="true">Commerce API</apigee:tag>
+					<apigee:tag>Commerce</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="commerce/v2/shopping/carts/4d1315c9-9220-48b3-9882-a295db25bfe3.jphx1/payments.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#select-payments">Select Payments!
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+					<param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json">
+					</param>
+					<representation>
+						<apigee:payload required="true">
+							<doc apigee:url="https://developer.ticketmaster.com">
+								The payload should contain a valid payment in json format.
+							</doc>
+							<apigee:content>
+								<![CDATA[
+                       {
+                          "pollingCallbackUrl" : "http://your.server:8080/your-webhook-uri/",
+                          "payments" : [ {
+                             "type": "wallet",
+                             "amount" : {
+                                "amount" : "100.00",
+                                "currency" : "USD"
+                             },
+                             "token" : "wallet-token-id",
+                             "cvv" : "1234",
+                             "selectedItems" : [ {
+                                "reservations" : [ "reservation-id-1", "reservation-id-2" ]
+                             } ]
+                          } ]
+                       }
+                    ]]>
+							</apigee:content>
+						</apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+
+		<!-- Get Delivery -->
+		<resource path="commerce/{version}/checkout/carts/{cartId}.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="cartId" required="true" type="xsd:string" style="template" default="">
+				<doc>The cart id</doc>
+			</param>
+			<param name="format" required="false" type="xsd:string" style="template" default="json" >
+				<doc>API Response Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="commerce.checkout.delivery.get" name="GET" apigee:displayName="Get Deliveries">
+				<apigee:tags>
+					<apigee:tag primary="true">Commerce API</apigee:tag>
+					<apigee:tag>Commerce</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="commerce/v2/checkout/carts/c906b302-8248-4454-bca1-2dd938d8afa1.intqa/deliveries.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-deliveries">Get Deliveries!
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="false" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+
+
+		
+
+
+		<!-- Publish API -->
+		<resource path="publish/{version}/events.{format}">
+			<param name="version" required="true" type="xsd:string" style="template" default="v2">
+				<doc>The API Version</doc>
+			</param>
+			<param name="format" required="true" type="xsd:string" style="template" default="json" >
+				<doc>API Request Format</doc>
+				<option value="json"/>
+			</param>
+			<method id="publish.event" name="POST" apigee:displayName="Publish events">
+				<apigee:tags>
+					<apigee:tag primary="true">Publish API</apigee:tag>
+					<apigee:tag>Publish</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true"/>
+				<apigee:example url="publish/v2/events.json"/>
+				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/publish/">
+					Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.
+
+					The "common.isTest" should be set to "false" so your event get indexed in the Discovery API.
+				</doc>
+				<request>
+					<param name="TMPS-Correlation-Id" required="true" type="xsd:string" style="header">
+						<doc>
+							The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.
+						</doc>
+					</param>
+					<representation>
+						<apigee:payload required="true">
+							<doc apigee:url="https://developer.ticketmaster.com">
+								The payload should contains a valid Event in json format.
+							</doc>
+							<apigee:content>
+								<![CDATA[
+                    {
+                        "source" : {
+                            "id" : "test_id_0009",
+                            "name" : "Ticketmaster"
+                        },
+                        "test": false,
+                        "names": {
+                            "en-us": "example test event"
+                        },
+                        "publicVisibility": {
+                            "startDateTime": "2015-10-29T15:00:00Z",
+                            "visible": true
+                        },
+                        "dates": {
+                            "start": {
+                                "dateTime": "2016-04-15T01:00:00Z",
+                                "localDate": "2016-04-14",
+                                "localTime": "19:00:00"
+                            },
+                            "timezone": "America/Edmonton"
+                        },
+                        "venue": {
+                            "source" : {
+                                "id" : "test_venue_id_0001",
+                                "name" : "Ticketmaster"
+                            },
+                            "test": false,
+                            "currency": "USD",
+                            "country": {
+                                "countryCode": "US"
+                            }
+                        }
+                    }
+                ]]>
+							</apigee:content>
+						</apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+	</resources>
+</application>

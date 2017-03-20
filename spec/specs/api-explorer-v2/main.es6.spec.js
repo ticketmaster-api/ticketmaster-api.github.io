@@ -1,5 +1,5 @@
 const $ = require('jquery');
-var ko  = require('knockout');
+const ko  = require('knockout');
 
 jest.mock('scripts/api-explorer/v2/src/services/rest.service.js', () => ({}));
 jest.mock('scripts/api-explorer/v2/src/modules/index.js', () => ({}));

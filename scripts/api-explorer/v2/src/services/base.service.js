@@ -6,7 +6,6 @@ import apiSourcesConfig from '../../api.sources';
 
 var CONFIG_URL = '../../scripts/api-explorer/apidescription.xml';
 
-var base = readApiDataFromAPISources(apiSourcesConfig);
 
 var parseData = function (xml) {
 	var global = {};
@@ -102,31 +101,33 @@ var parseData = function (xml) {
 };
 
 //gets document from WADL configuration file
-var readFromWADL = function () {
-  $.ajax({
-    url: CONFIG_URL,
+var readFromWADL = function (url) {
+  return $.ajax({
+    url: url,
     async : false,
-    dataType: "text",
-    success : function(response){
-      var xml = $.parseXML(response);
-			var wadlData = parseData(xml);
-			base = $.extend(wadlData, base);
-    },
-
-    error: function(XMLHttpRequest, textStatus, errorThrown){
-      alert('Data Could Not Be Loaded - '+ textStatus);
-    }
-  });
+    dataType: "text"
+  }).then(resp => parseData($.parseXML(resp)));
 };
 
 function readApiDataFromAPISources (sources) {
-	var result = {};
+  var result = {};
   for (var cat in sources) {
-		let {api, meta} = sources[cat];
-		result[cat] = readSwaggerJSON(api, meta.extraMethodsInfo && meta.extraMethodsInfo || {});
-	}
-	return result;
+    let {api, meta} = sources[cat];
+    result[cat] = readSwaggerJSON(api, meta.extraMethodsInfo && meta.extraMethodsInfo || {});
+  }
+  return result;
 }
 
-readFromWADL();
-module.exports = base;
+function getBaseData(){
+	var base = {};
+	
+	var apiSourcesBase = readApiDataFromAPISources(apiSourcesConfig);
+	Object.assign(base, apiSourcesBase);
+
+	readFromWADL(CONFIG_URL).then(data => Object.assign(base, data, apiSourcesBase))
+	.fail(error => alert('Data Could Not Be Loaded - ' + error));
+
+	return base;
+}
+
+module.exports = getBaseData();
