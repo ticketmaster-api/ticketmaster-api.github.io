@@ -23,7 +23,9 @@ public class CountdownWidgetDefinition {
     @Steps
     UserAccountSteps userAccountSteps;
 
-    //Given
+    /**
+     * Given
+     */
     @Given("store ApiKey and EventId on Countdown Widget page")
     public void storeApiKeyAndEventIdOnCountdownWidgetPage() {
         countdownWidgetSteps.storeCurrentApiKey();
@@ -80,7 +82,9 @@ public class CountdownWidgetDefinition {
         countdownWidgetSteps.setEventId(eventId);
     }
 
-    //When
+    /**
+     * When
+     */
     @When("User is not logged to site (Countdown Widget)")
     public void openLogInPageAndCheckUserIsNotLoggedIn() {
         countdownWidgetSteps.clickLogIn();
@@ -121,7 +125,9 @@ public class CountdownWidgetDefinition {
         countdownWidgetSteps.getYourOwnApiKeyLink();
     }
 
-    //Then
+    /**
+     * Then
+     */
     @Then("check general page elements for Countdown Widget Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         countdownWidgetSteps.checkIfTitleIsCorrect();

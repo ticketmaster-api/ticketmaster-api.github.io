@@ -30,7 +30,7 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     @FindBy(xpath = ".//div[@class='tab-buttons']/label[@for='w-theme-simple']")
     private WebElementFacade posterTab;
 
-    @FindBy(xpath = ".//div[@class='tab-buttons']/label[@for='w-theme-fullwidth']")
+    @FindBy(xpath = "//label[@for='w-layout-fullwidth']")
     private WebElementFacade fullWidthTab;
 
     @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x600']")
@@ -73,6 +73,8 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     @FindBy(xpath = "//div[contains(@class,'event-message-visible')]/div[@class='event-message__content']")
     private WebElementFacade eventMessage;
 
+    @FindBy(xpath = "//label[@for='w-layout-fullwidth']")
+    private WebElementFacade layoutFullwidthTab;
 
     //Constructors
     public CountdownWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
@@ -183,6 +185,10 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
                 resolutionRadioButton = layoutCustomTab;
             }
             break;
+            case "fullwidth": {
+                resolutionRadioButton = layoutFullwidthTab;
+            }
+            break;
             default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", resolution));
         }
         scrollToElement(resolutionRadioButton);
@@ -226,11 +232,11 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
 
     @Override
     public String getEmbeddedTheme() {
-        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_THEME).contains("simple")) {
+        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).contains("custom")) {
             return "poster";
         }
-        else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_THEME).equalsIgnoreCase("fullwidth")) {
-            return "full-width";
+        else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase("fullwidth")) {
+            return "fullwidth";
         } else return null;
     }
 
@@ -244,6 +250,8 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
         } if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase("600") &&
               getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase("300")){
             return "300x600";
+        }   if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase("fullwidth")){
+            return "fullwidth";
         } else return null;
     }
 
