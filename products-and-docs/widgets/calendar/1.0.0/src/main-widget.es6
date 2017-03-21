@@ -1967,7 +1967,10 @@ class WeekScheduler {
                             }
                             timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
-                            for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                            let e = 0;
+                            let l = weekEvents.length;
+                            // for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                            for (e = 0; e < l; ++e) {
                                 if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0,2) == timeTmp.substr(0,2)) {
                                     if (dayCount == 0) {
                                         timeDiv += '<span class="round"></span>';
@@ -2126,7 +2129,10 @@ class WeekScheduler {
                         let startFlag = 0;
                         let endFlag = 0;
 
-                        for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                        let e = 0;
+                        let l = weekEvents.length;
+                        // for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                        for (e = 0; e < l; ++e) {
                             if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0, 2)) {
                                 weekEvents[e].count = count;
                                 endFlag = e;
@@ -2208,7 +2214,10 @@ class WeekScheduler {
                                 }
                                 timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
-                                for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                                let e = 0;
+                                let l = weekEvents.length;
+                                // for (let e = 0, l = weekEvents.length; e < l; ++e) {
+                                for (e = 0; e < l; ++e) {
                                     if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0, 2) == timeTmp.substr(0, 2)) {
                                         if (dayCount == 0) {
                                             timeDiv += '<span class="round"></span>';
