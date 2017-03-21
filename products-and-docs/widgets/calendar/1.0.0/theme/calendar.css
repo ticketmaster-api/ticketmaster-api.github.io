@@ -267,7 +267,8 @@ div[w-theme="calendar"] .bg-cover {
 }
 
 div[w-theme="calendar"] .bg-cover-default {
-	background: rgba(183, 201, 211, 0.2) url("http://localhost:4000/assets/widgets/1.0.0/img/tm-logo-short-big.svg") no-repeat center center;
+	/* TODO: update after release to  https://developer.ticketmaster.com/*/
+	background: rgba(183, 201, 211, 0.2) url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-short-big.svg") no-repeat center center;
 	border: solid 1px rgba(183, 201, 211, 0.2);
 	background-size: 24px;
 }

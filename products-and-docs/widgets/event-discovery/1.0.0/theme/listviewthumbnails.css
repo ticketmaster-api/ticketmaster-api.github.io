@@ -705,6 +705,7 @@ div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .event-buy-btn {
 
 div[w-theme="listviewthumbnails"][w-layout="fullwidth"] .bg-cover-default {
 	border: solid 1px rgba(183, 201, 211, 0.2);
+	/* TODO: update after release to  https://developer.ticketmaster.com/*/
 	background: rgba(183, 201, 211, 0.2) url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-short-big.svg") no-repeat center center;
 	background-size: 82px;
 }
