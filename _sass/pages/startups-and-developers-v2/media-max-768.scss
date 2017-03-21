@@ -1,0 +1,266 @@
+@media #{$max-768} {
+	.startups-and-developers {
+		min-width: 300px;
+		.header-title {
+			font-size: 24px;
+			margin: 18px auto;
+		}
+		header.top-bar.bg-header {
+			min-height: 445px;
+			&::before {
+				display: none;
+			}
+			.gray {
+				border-top: none;
+			}
+			#header-logo {
+				left: 6px !important;
+			}
+			&.no-content-header {
+				min-height: 444px;
+				margin: 0 0 -40px;
+				& + main .products-and-application header {
+					padding: 20px 0 0;
+				}
+			}
+			.slick-slider,
+			.sd-carousel {
+				.no-content {
+					.slide-content-wrapper {
+						padding: 105px 14.2% 170px;
+						max-width: none;
+						.slide-title {
+							max-width: 268px;
+							font: {
+								size: 24px;
+								weight: 900;
+								style: normal;
+								stretch: normal;
+							}
+							line-height: 1.33;
+							text-align: center;
+							color: #ffffff;
+							margin: 23px auto 47px;
+						}
+						.slide-descr {
+							min-height: 48px;
+							font: {
+								size: 16px;
+								weight: bold;
+								style: normal;
+								stretch: normal;
+							}
+							line-height: 1.5;
+							text-align: center;
+							margin: 28px auto;
+						}
+					}
+				}
+				.slide-content-wrapper {
+					text-align: center;
+					padding: 105px 14.2% 170px;
+					.slide-title {
+						max-width: 268px;
+						font: {
+							size: 24px;
+							weight: 900;
+							style: normal;
+							stretch: normal;
+						}
+						line-height: 1.33;
+						text-align: center;
+						color: #ffffff;
+						margin: 23px auto 47px;
+					}
+					.slide-descr {
+						min-height: 48px;
+						font: {
+							size: 16px;
+							weight: bold;
+							style: normal;
+							stretch: normal;
+						}
+						line-height: 1.5;
+						text-align: center;
+						margin: 28px auto;
+					}
+				}
+				.slick-arrow {
+					display: none !important;
+				}
+				.slick-dots {
+					bottom: 22px;
+					top: initial;
+					z-index: 1;
+					max-width: 100px;
+					margin-left: -50px;
+					left: 50%;
+					height: 20px;
+					overflow: hidden;
+					li {
+						margin: 0;
+						button {
+							&::before {
+								font-size: 9px;
+								opacity: 0.4;
+								color: #88979f;
+							}
+						}
+						&.slick-active {
+							button {
+								&::before {
+									opacity: 0.9;
+									color: #ffffff;
+								}
+							}
+						}
+					}
+				}
+				.btn-transparent {
+					text-align: center;
+				}
+			}
+		}
+		.products-and-application {
+			margin: 47px auto 35px;
+			position:relative;
+			header {
+				position: relative;
+				z-index: 0;
+			}
+			&-header {}
+			&-wrapper {
+				.nav-tabs {
+					display: none;
+				}
+				.mobile-dropdown {
+					display: block;
+					$padding: 15px;
+					margin: 51px auto 20px;
+					width: 196px;
+					position: relative;
+					.dropdown-toggle {
+						font-size: 24px;
+						font-weight: normal;
+						font-style: normal;
+						font-stretch: normal;
+						line-height: 1.33;
+						letter-spacing: normal;
+						color: $cerulean;
+						border-bottom: solid 2px #f1f5f7;
+						padding: 0 16px $padding;
+						position: relative;
+						background: none;
+						outline: none;
+						&:after {
+							content: '';
+							margin: 0 0 3px 32px;
+							background: url(/assets/img/products-and-docs/ic-shevron-down-active.svg) 50% 50% no-repeat;
+							@include transition(all .2s ease-in-out);
+							display: inline-block;
+							width: 14.4px;
+							height: 9.2px;
+						}
+						&[aria-expanded="true"]:after {
+							@include transition(all .2s ease-in-out);
+							@include rotate-180();
+							margin-bottom: 4px;
+						}
+					}
+					ul.dropdown-menu {
+						border-left: 0;
+						padding: 0;
+						margin: 0;
+						font-size: 16px;
+						letter-spacing: -1px;
+						font-style: normal;
+						width: 100%;
+						background: #b7c9d2;
+						border-radius: 0 0 4px 4px;
+						top: $padding + 32px;
+						li[role="presentation"] {
+							.tab {
+								text-shadow: none;
+								color: #fff;
+								font-size: 1.5em;
+								text-decoration: none;
+								display: block;
+								padding: 0 1.5em;
+								box-sizing: content-box;
+								margin: 0 1.3%;
+								text-align: left;
+								line-height: 2em;
+								white-space: nowrap;
+								min-width: 86px;
+								&:hover {
+									background: none;
+									color: #00ade5;
+								}
+							}
+							&.active{
+								.tab {
+									background: none;
+									color: #00ade5;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.top-section {
+			margin-bottom: 32px;
+			header {
+				padding: 0 15px;
+			}
+			&-title {
+				font-size: 16px;
+				line-height: 1.5;
+				letter-spacing: normal;
+			}
+			&-description {}
+			&-main {
+				max-height: 1075px;
+				.top-section-item {
+					width: 490px;
+					height: 304px;
+					border: solid 1px #979797;
+					position: relative;
+					margin-bottom: 82px;
+					.controll-fold {
+						position: absolute;
+						left: 0;
+						bottom: 0;
+						right: 0;
+						height: 88px;
+						opacity: 1;
+						background-color: rgba(#414141, 0.8);
+						width: auto;
+						padding: 0;
+						float: none;
+						&-content {
+							position: static;
+							transform: none;
+							.top-item-title {
+								font-size: 16px;
+								line-height: 1.5;
+								text-align: left;
+								margin: 14px 10px 0;
+							}
+							.btn-see-more {
+								@include strech();
+								border-radius: 0;
+								border: none;
+								padding: 0;
+								color: transparent;
+							}
+						}
+					}
+				}
+			}
+		}
+		#footer {
+			margin: 0;
+		}
+	}
+}

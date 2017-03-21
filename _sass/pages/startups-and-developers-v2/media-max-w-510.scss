@@ -1,0 +1,23 @@
+@media screen and (max-width: 510px) {
+	.startups-and-developers {
+		.products-and-application {
+			&-wrapper {
+				.grid {
+					max-width: 310px;
+				}
+			}
+		}
+		.top-section {
+			&-main {
+				max-height: 703px;
+				.top-section-item {
+					width: 290px;
+					height: 180px;
+				}
+			}
+		}
+		.tm-api-docs {
+			padding: 66px 0 55px;
+		}
+	}
+}
