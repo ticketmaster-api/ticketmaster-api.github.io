@@ -1,0 +1,197 @@
+@media #{$max-1200} {
+	.startups-and-developers {
+		header.top-bar.bg-header {
+			min-height: 596px;
+			padding: 0;
+			margin: 0;
+			.body-wrapper {
+				.search-container {
+					margin: auto;
+					right: 13px;
+				}
+			}
+			.gray {
+				margin: 7px 0 0 -8px;
+			}
+			#header-logo {
+				top: 15px;
+				left: 25px !important;
+			}
+			.slick-slider,
+			.sd-carousel {
+				.no-content {
+					.slide-content-wrapper {
+						max-width: none;
+						.slide-title {
+							max-width: none;
+						}
+						.slide-descr {
+							max-width: none;
+						}
+					}
+				}
+				.slide-content-wrapper {
+					margin: 0 1%;
+					padding: 105px 9.2% 170px;
+				}
+				.slick-arrow {
+					$distance: 15px;
+					display: inline-block !important;
+					margin: -13px 0 0;
+					&.slick-prev {
+						left: $distance;
+					}
+					&.slick-next {
+						right: $distance;
+					}
+				}
+				.slick-dots {
+					bottom: 57px;
+					max-height: 55px;
+				}
+			}
+		}
+		.products-and-application {
+			margin: 20px auto 35px;
+			padding: 0 15px;
+			&-header {
+			}
+			&-wrapper {
+				.nav-tabs {
+					margin: 42px auto 40px;
+					li[role="presentation"] {
+						a.tab {
+							font-size: 16px;
+							font-weight: normal;
+							font-style: normal;
+							font-stretch: normal;
+							line-height: 1.5;
+							text-align: left;
+						}
+					}
+				}
+				.grid {
+					max-height: 590px;
+					max-width: 1000px;
+					margin: auto;
+					&-item {
+						@include size(250px, 195px);
+						&[data-size^="2"] {
+							width: 500px;
+						}
+						&[data-size$="2"] {
+							height: 390px;
+						}
+						.card {
+							.front.cardFront {
+								.front-title {
+									font-size: 26px;
+									line-height: 1.15;
+								}
+							}
+							.back.cardBack {
+								a {
+								}
+							}
+							&-title {
+								font-size: 16px;
+								line-height: 1.5;
+							}
+							&-summary {
+								font-size: 16px;
+								line-height: 1.5;
+							}
+						}
+					}
+				}
+			}
+		}
+		.top-section {
+			margin: 40px auto 110px;
+			&-title {
+			}
+			&-description {
+			}
+			&-main {
+				max-height: 1488px;
+				margin-bottom: 35px;
+				.top-section-item {
+					@include size(720px, 448px);
+					margin: 0 auto 72px;
+					.controll-fold {
+						@include size(220px, 100%);
+						.top-item-title {
+							margin: 0 auto 24px;
+						}
+						.top-item-descr {
+							display: none;
+						}
+						.tags-section {
+							margin: 90px auto 25px;
+							bottom: 77px;
+							.btn-tag {
+								padding: 0 8px;
+							}
+						}
+						.top-section-hr {
+							width: 224px;
+							height: 2px;
+							opacity: 0.7;
+							border-top: solid 1px #ffffff;
+							color: transparent;
+							position: absolute;
+							bottom: 75px;
+						}
+						.like-and-share {
+							position: absolute;
+							bottom: 25px;
+							left: 30px;
+							right: 73px;
+							.btn {
+								outline: none;
+								background: {
+									color: transparent;
+									position: 50% 50%;
+									size: cover;
+									repeat: no-repeat;
+								}
+								padding: 13px;
+								&[disabled] {
+									opacity: 0.2;
+								}
+								&-like {
+									background-image: url('/assets/img/ic-like-white.svg');
+									float: right;
+								}
+								&-share {
+									float: right;
+									background-image: url('/assets/img/ic-share-partners-white.svg');
+								}
+							}
+							.like {
+								float: right;
+								margin-right: 23px;
+								.count {
+									opacity: 0.7;
+									font-size: 16px;
+									font-weight: normal;
+									font-style: normal;
+									font-stretch: normal;
+									line-height: 1.8;
+									color: #ffffff;
+									float: right;
+									padding: 0 5px 0;
+									min-width: 37px;
+									text-align: right;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.tm-api-docs {
+			padding: 149px 0 72px;
+		}
+	}
+}
