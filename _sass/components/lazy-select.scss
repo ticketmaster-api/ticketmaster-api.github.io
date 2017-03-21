@@ -44,6 +44,18 @@
 				opacity: 0;
 			}
 		}
+
+		&.icon-name {
+			&:before,
+			&:after {
+				background: url("/assets/controls/ic-keyword-search.svg") no-repeat;
+			}
+			&:hover {
+				&:before {
+					background-color: $p1b;
+				}
+			}
+		}
 	}
 }
 
