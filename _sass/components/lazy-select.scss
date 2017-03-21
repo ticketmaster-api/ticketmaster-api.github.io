@@ -23,17 +23,17 @@
 			top: 0;
 			bottom: 0;
 			right: 0;
-			background: url("/assets/controls/ic-input-controls.svg") no-repeat;
+			background: url("/assets/controls/icons-sprite.svg") no-repeat;
 			@include transition(opacity 0.2s ease-in-out);
 		}
 
 		&:before {
-			background-position: -28px 0;
+			background-position: -(28*7)+2px -28px;
 			opacity: 0;
 		}
 
 		&:after {
-			background-position: 1px 0;
+			background-position: -(28*7)+2px 0;
 		}
 
 		&:hover {
@@ -48,12 +48,14 @@
 		&.icon-name {
 			&:before,
 			&:after {
-				background: url("/assets/controls/ic-keyword-search.svg") no-repeat;
+				background: url("/assets/controls/icons-sprite.svg") no-repeat;
 			}
-			&:hover {
-				&:before {
-					background-color: $p1b;
-				}
+			&:before {
+				background-position: -(28*6)+2px -28px
+			}
+
+			&:after {
+				background-position: -(28*6)+2px 0;
 			}
 		}
 	}
