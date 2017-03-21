@@ -30,6 +30,23 @@ var configWidget = (folderName)=> {
 				library: "widgetsLib" // global library of widgets
 			},
 			devtool: 'cheap-module-source-map',
+			module: {
+				loaders: [{
+						test: /\.js$/,
+						loader: 'babel-loader',
+						include: [
+							path.resolve(__dirname, "scripts"),
+						],
+						query: {
+							presets: [
+								"es2015",
+								"stage-0"
+							],
+							plugins: [],
+							cacheDirectory: true
+						}
+					}]
+			},
 			plugins: [
 				new webpack.DefinePlugin({
 					ENV: JSON.stringify("main-widget"),
@@ -43,7 +60,24 @@ var configWidget = (folderName)=> {
 			output: {
 				filename: `./products-and-docs/widgets/${folderName}/1.0.0/lib/main-widget-config.js`
 			},
-			devtool: 'cheap-module-source-map'
+			devtool: 'cheap-module-source-map',
+			module: {
+				loaders: [{
+					test: /\.js$/,
+					loader: 'babel-loader',
+					include: [
+						path.resolve(__dirname, "scripts"),
+					],
+					query: {
+						presets: [
+							"es2015",
+							"stage-0"
+						],
+						plugins: [],
+						cacheDirectory: true
+					}
+				}]
+			},
 		}
 	];
 };
