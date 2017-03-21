@@ -92,7 +92,7 @@ var widgetsLib =
 
 	    get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-	    get widgetVersion() { return `${("1.0.58")}`; }
+	    get widgetVersion() { return `${("1.0.59")}`; }
 
 	    get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
@@ -1929,7 +1929,7 @@ var widgetsLib =
 	                    let startFlag = 0;
 	                    let endFlag = 0;
 
-	                    for (var e = 0, l = weekEvents.length; e < l; ++e) {
+	                    for (let e = 0, l = weekEvents.length; e < l; ++e) {
 	                        if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0,2)) {
 	                            weekEvents[e].count = count;
 	                            endFlag = e;
@@ -2011,7 +2011,7 @@ var widgetsLib =
 	                            }
 	                            timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
-	                            for (var e = 0, l = weekEvents.length; e < l; ++e) {
+	                            for (let e = 0, l = weekEvents.length; e < l; ++e) {
 	                                if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0,2) == timeTmp.substr(0,2)) {
 	                                    if (dayCount == 0) {
 	                                        timeDiv += '<span class="round"></span>';
@@ -2170,7 +2170,7 @@ var widgetsLib =
 	                        let startFlag = 0;
 	                        let endFlag = 0;
 
-	                        for (var e = 0, l = weekEvents.length; e < l; ++e) {
+	                        for (let e = 0, l = weekEvents.length; e < l; ++e) {
 	                            if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0, 2)) {
 	                                weekEvents[e].count = count;
 	                                endFlag = e;
@@ -2252,7 +2252,7 @@ var widgetsLib =
 	                                }
 	                                timeDiv += `<div class="d d-${d}" w-date="${dateTmp}" w-time="${zeroLead}${i}:00:00">`;
 
-	                                for (var e = 0, l = weekEvents.length; e < l; ++e) {
+	                                for (let e = 0, l = weekEvents.length; e < l; ++e) {
 	                                    if (weekEvents[e].date == dateTmp && weekEvents[e].time.substr(0, 2) == timeTmp.substr(0, 2)) {
 	                                        if (dayCount == 0) {
 	                                            timeDiv += '<span class="round"></span>';
@@ -2781,7 +2781,7 @@ var widgetsLib =
 	                        tDate = '';
 	                    }
 
-	                    for (var e = 0, l = monthEvents.length; e < l; e++) {
+	                    for (let e = 0, l = monthEvents.length; e < l; e++) {
 	                        if (tDate == monthEvents[e].date) {
 	                            eventsArr.push(monthEvents[e]);
 	                            let day = tDate.toString().substr(8,2);
@@ -3011,7 +3011,7 @@ var widgetsLib =
 	                            tDate = '';
 	                        }
 
-	                        for (var e = 0, l = monthEvents.length; e < l; e++) {
+	                        for (let e = 0, l = monthEvents.length; e < l; e++) {
 	                            if (tDate == monthEvents[e].date) {
 	                                eventsArr.push(monthEvents[e]);
 	                                let day = tDate.toString().substr(8,2);
