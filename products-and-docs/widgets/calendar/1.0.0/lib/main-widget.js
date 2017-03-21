@@ -92,7 +92,7 @@ var widgetsLib =
 
 	    get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-	    get widgetVersion() { return `${("1.0.55")}`; }
+	    get widgetVersion() { return `${("1.0.56")}`; }
 
 	    get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
@@ -1929,7 +1929,10 @@ var widgetsLib =
 	                    let startFlag = 0;
 	                    let endFlag = 0;
 
-	                    for (let e = 0, l = weekEvents.length; e < l; ++e) {
+	                    let e = 0;
+	                    let l = weekEvents.length;
+	                    // for (let e = 0, l = weekEvents.length; e < l; ++e) {
+	                    for (e = 0; e < l; ++e) {
 	                        if (tDate == weekEvents[e].date && tTime == weekEvents[e].time.substr(0,2)) {
 	                            weekEvents[e].count = count;
 	                            endFlag = e;
