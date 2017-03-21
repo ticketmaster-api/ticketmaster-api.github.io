@@ -205,7 +205,7 @@ class TicketmasterCountdownWidget {
 
   get legalNoticeUrl() { return "http://developer.ticketmaster.com/support/terms-of-use/"; }
 
-  get widgetVersion() { return `${"1.0.0.5"}`; }
+  get widgetVersion() { return `${"1.0.55"}`; }
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 

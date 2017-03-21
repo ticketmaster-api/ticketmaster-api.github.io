@@ -110,7 +110,7 @@ class TicketmasterMapWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-    get widgetVersion() { return `${"1.0.0.5"}`; }
+    get widgetVersion() { return `${"1.0.55"}`; }
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
