@@ -5,6 +5,7 @@ categories:
 - deals-api
 title: Deals API
 excerpt: Use the Deals API to find content that is interesting to your audience.
+description: Use the Deals API to find content that is interesting to your audience.
 keywords: API, deals, search for events, specified deal, group ticket deals
 ---
 

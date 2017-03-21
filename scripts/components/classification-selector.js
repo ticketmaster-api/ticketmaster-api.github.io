@@ -16,7 +16,7 @@
   $.fn.classificationSelector = function (options) {
     var defaults = {},
         settings = $.extend({}, $.fn.lazySelector.defaults, options),
-        $iconButton = $('<a class="icon" id="get-'+options.selector+'-'+options.use+'" data-toggle="modal" data-target="#js_ls-modal-classification" />');
+        $iconButton = $('<a class="icon icon-'+options.use +'" id="get-'+options.selector+'-'+options.use+'" data-toggle="modal" data-target="#js_ls-modal-classification" />');
 
     var $input = $(this),
 			$modal = $('#js_ls-modal-classification'),
