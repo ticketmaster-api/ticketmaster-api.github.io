@@ -1,0 +1,11 @@
+@media screen and (max-width: 1044px) {
+	.startups-and-developers {
+		.products-and-application {
+			&-wrapper {
+				.grid {
+					max-width: 750px;
+				}
+			}
+		}
+	}
+}
