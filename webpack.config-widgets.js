@@ -10,10 +10,10 @@ __versionString__ = ~~__versionString__ - 5540;
  */
 var ENV = process.env.npm_lifecycle_event;
 var versionsMajor = {
-	countdown: '1.0.0',
-	'event-discovery' :'1.0.0',
-	calendar :'1.0.0',
-	map :'1.0.0'
+	countdown: '1.0',
+	'event-discovery' :'1.0',
+	calendar :'1.0',
+	map :'1.0'
 };
 /**
  *
