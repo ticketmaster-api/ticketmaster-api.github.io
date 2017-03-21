@@ -2,7 +2,7 @@
 
   const DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
 
-  let widget = widgetsCountdown[0];
+  let widget = widgetsLib.widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
         sizes: {

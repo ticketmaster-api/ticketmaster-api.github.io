@@ -45,7 +45,7 @@ class TicketmasterCalendarWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-    get widgetVersion() { return "1.0.0"; }
+    get widgetVersion() { return `${__VERSION__}`; }
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
@@ -2041,8 +2041,8 @@ class WeekScheduler {
                         attrs = Object.keys(attrs).map(function (key) {
                             return `${key}=${attrs[key]}`;
                         }).join("&");
-                        let url = widget.apiUrl + [url, attrs].join("?");
-                        this
+                        let url;
+                        url = widget.apiUrl + [url, attrs].join("?");
                         let thisSchedulerRoot = widget.weekSchedulerRoot.parentNode.parentNode.parentNode;
                         if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
                         url += '&sort=date,asc';
@@ -2876,7 +2876,8 @@ class MonthScheduler {
                         attrs = Object.keys(attrs).map(function (key) {
                             return `${key}=${attrs[key]}`;
                         }).join("&");
-                        let url = widget.apiUrl + [url, attrs].join("?");
+                        let url;
+                        url= widget.apiUrl + [url, attrs].join("?");
                         let thisSchedulerRoot = widget.monthSchedulerRoot.parentNode.parentNode.parentNode;
                         if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
                         url += '&sort=date,asc';
@@ -3640,7 +3641,8 @@ class YearScheduler {
             attrs = Object.keys(attrs).map(function(key){
                 return `${key}=${attrs[key]}`;
             }).join("&");
-            let url = this.apiUrl + [url,attrs].join("?");
+            let url;
+            url = this.apiUrl + [url,attrs].join("?");
             let thisSchedulerRoot = this.yearSchedulerRoot.parentNode.parentNode.parentNode;
             if (thisSchedulerRoot.getAttribute('w-postalcodeapi') != null) url += '&postalCode=' + thisSchedulerRoot.getAttribute('w-postalcodeapi');
             url += '&sort=date,asc';
@@ -3739,3 +3741,7 @@ let yearSchedulers = [];
 })();
 
 let controls = new TabsControls;
+
+if(typeof module !== "undefined") {
+    module.exports = { widgetsCalendar , weekSchedulers, monthSchedulers, yearSchedulers};
+}

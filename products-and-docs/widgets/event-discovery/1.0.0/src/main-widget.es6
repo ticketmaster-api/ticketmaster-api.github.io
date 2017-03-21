@@ -41,7 +41,7 @@ class TicketmasterEventDiscoveryWidget {
 
   get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-  get widgetVersion() { return "1.0.0"; }
+  get widgetVersion() { return `${__VERSION__}`; }
 
   get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
@@ -1554,6 +1554,6 @@ ga('send', 'pageview');
 
 
 if(typeof module !== "undefined") {
-  module.exports = { TicketmasterEventDiscoveryWidget };
+  module.exports = { widgetsEventDiscovery, TicketmasterEventDiscoveryWidget };
 }
 
