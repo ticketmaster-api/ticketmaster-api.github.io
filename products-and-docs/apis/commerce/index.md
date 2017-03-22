@@ -6654,6 +6654,7 @@ commerce/{version}/shopping/carts/{cartId}/purchase.{format}
 | Parameter  | Description          | Type              | Default Value      | Required |
 |:-----------|:---------------------|:----------------- |:------------------ |:-------- |
 | `version`  | The API Version.     | string            |       "v2"         | Yes      |
+| `cartId`   | Cart ID. Required.   | string            | "c5d3fb70-f7cb-489d-823d-8103222f0c17.jash1" | Yes      |
 | `format`   | API Response Format. | string            |       "json"       | Yes      |
 
 ### Request body structure:
