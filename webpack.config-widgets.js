@@ -32,11 +32,8 @@ var configWidget = (folderName)=> {
 			devtool: 'cheap-module-source-map',
 			module: {
 				loaders: [{
-						test: /\.js$/,
+						test: /\.es6$/,
 						loader: 'babel-loader',
-						include: [
-							path.resolve(__dirname, "scripts"),
-						],
 						query: {
 							presets: [
 								"es2015",
@@ -65,9 +62,6 @@ var configWidget = (folderName)=> {
 				loaders: [{
 					test: /\.js$/,
 					loader: 'babel-loader',
-					include: [
-						path.resolve(__dirname, "scripts"),
-					],
 					query: {
 						presets: [
 							"es2015",
