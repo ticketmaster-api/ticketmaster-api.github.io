@@ -26,7 +26,7 @@ public class AnyPageSteps {
     @Step
     public void clearCookiesAndLocalStorage(){
         anyPage.getDriver().manage().deleteAllCookies();
-        anyPage.evaluateJavascript(String.format("window.localStorage.clear();"));
+        anyPage.evaluateJavascript("window.localStorage.clear();");
     }
 
     @Step

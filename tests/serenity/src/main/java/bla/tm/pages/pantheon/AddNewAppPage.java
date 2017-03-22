@@ -50,7 +50,7 @@ public class AddNewAppPage extends AncestorPage {
     }
 
     public WebElementFacade getAppNameWebElement(String name) {
-        WebElementFacade appNameWebElement = find(By.xpath(String.format("//label[text()='" + name + " ']/../input")));
+        WebElementFacade appNameWebElement = find(By.xpath(String.format("//label[text()='%s ']/../input", name)));
         return appNameWebElement;
     }
 
@@ -60,7 +60,7 @@ public class AddNewAppPage extends AncestorPage {
     }
 
     public WebElementFacade getAppNameInDetailsTab(String val) {
-        WebElementFacade appName = find(By.xpath(String.format("//div[@class='table-responsive']/table/tbody/tr/td/strong[text()='"+val+"']/../../td[2]")));
+        WebElementFacade appName = find(By.xpath(String.format("//div[@class='table-responsive']/table/tbody/tr/td/strong[text()='%s']/../../td[2]", val)));
         return appName;
     }
 

@@ -44,7 +44,6 @@ public class PD_DiscoveryAPIv1Steps {
     public void checkAPIKeyPlaceholders(String apikey) {
         //First check for non hidden elements
         for (Map.Entry<String, WebElementFacade> entry : discoveryAPIv1Page.getAPIKeyPlaceHoldersList().entrySet()){
-            String key = entry.getKey();
             WebElementFacade value = entry.getValue();
             waitForSomeActionHappened(50);
             assertTrue(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
@@ -57,7 +56,6 @@ public class PD_DiscoveryAPIv1Steps {
         discoveryAPIv1Page.getSwitchToCUrlCode().click();
 
         for (Map.Entry<String, WebElementFacade> entry : discoveryAPIv1Page.getAPIKeyHiddenPlaceHoldersList().entrySet()){
-            String key = entry.getKey();
             WebElementFacade value = entry.getValue();
             waitForSomeActionHappened(50);
             assertTrue(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));

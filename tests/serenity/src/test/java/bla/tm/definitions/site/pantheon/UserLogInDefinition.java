@@ -27,7 +27,7 @@ public class UserLogInDefinition {
     @Given("navigate to Pantheon User Account page from LogIn page")
     @When("navigate to Pantheon User Account page from LogIn page")
     public void openUserAccountPage(){
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
+        userLogInPage.logInToApp((String)getCurrentSession().get("username"), (String)getCurrentSession().get("password"));
     }
 
     @When("login to Pantheon with $username and $password")

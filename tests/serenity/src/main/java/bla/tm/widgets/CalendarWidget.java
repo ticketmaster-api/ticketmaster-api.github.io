@@ -7,7 +7,7 @@ public interface CalendarWidget extends AncestorWidget {
     String getAPIKeyTextFieldValue();
     void setAPIKeyTextFieldValue(String apiKey);
 
-    void setZipCodeTextFieldValue(String zipCode);
+    void setPostalCodeTextFieldValue(String zipCode);
 
     String getKeywordTextFieldValue();
     void setKeywordTextFieldValue(String keyword);

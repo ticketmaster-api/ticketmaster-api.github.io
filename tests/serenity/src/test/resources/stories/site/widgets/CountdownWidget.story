@@ -73,7 +73,7 @@ Examples:
 |layoutResolution|
 |300x600         |
 |300x250         |
-|fullwidth      |
+|fullwidth       |
 |custom          |
 
 Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Layout Orientations
