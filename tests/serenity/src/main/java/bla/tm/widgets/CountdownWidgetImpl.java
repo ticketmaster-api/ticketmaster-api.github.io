@@ -90,7 +90,6 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     //Countdown Widget Interface Implementation
     @Override
     public void clickOnGetButton() {
-        scrollToElement(getCodeButton);
         getCodeButton.click();
     }
 
@@ -118,7 +117,6 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
 
     @Override
     public void clickOnGetEventId() {
-        scrollToElement(getEventIdLink);
         getEventIdLink.click();
     }
 
@@ -146,12 +144,10 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     public void switchToTab(String tab) {
         switch (tab){
             case "visual": {
-                scrollToElement(visualTab);
                 visualTab.click();
             }
             break;
             case "technical": {
-                scrollToElement(technicalTab);
                 technicalTab.click();
             }
             break;
@@ -191,7 +187,6 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
             break;
             default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", resolution));
         }
-        scrollToElement(resolutionRadioButton);
         resolutionRadioButton.click();
     }
 
@@ -209,7 +204,6 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
             break;
             default: throw new IllegalArgumentException(String.format("Illegal layout orientation: '%s'", orientation));
         }
-        scrollToElement(orientationRadioButton);
         orientationRadioButton.click();
     }
 

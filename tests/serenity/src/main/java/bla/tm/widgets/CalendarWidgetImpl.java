@@ -82,7 +82,6 @@ public class CalendarWidgetImpl extends AncestorWidgetImpl implements CalendarWi
     @Override
     public void setRadiusDropdownValueTo15() {
         WebElementFacade arrow = getPage().$("//label[@for='w-radius']/following-sibling::div//div[@class='custom_select__arrow']");
-        scrollToElement(arrow);
         arrow.click();
         secondRadiusValue.waitUntilVisible().click();
     }

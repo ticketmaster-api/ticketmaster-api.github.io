@@ -81,7 +81,6 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
 
     @Override
     public void clickResetButton() {
-        scrollToElement(resetButton);
         resetButton.click();
         waitForSomeActionHappened(2000);
     }
@@ -292,21 +291,8 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
         return embeddedCode;
     }
 
-    public void scrollToElement(WebElementFacade element){
-        int screenHeight = getPage().getDriver().manage().window().getSize().getHeight();
-        getPage().evaluateJavascript("window.scrollTo(0," + (element.getLocation().y - screenHeight / 2) + ")");
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
     public void setValueToCustomDropDown(By dropdownArrow, By dropdownItem){
         WebElementFacade arrow = getPage().find(dropdownArrow);
-        scrollToElement(arrow);
         arrow.click();
         WebElementFacade item = getPage().find(dropdownItem);
         item.waitUntilVisible().click();

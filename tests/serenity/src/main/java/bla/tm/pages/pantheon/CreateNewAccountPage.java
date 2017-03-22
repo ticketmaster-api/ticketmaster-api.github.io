@@ -28,7 +28,7 @@ public class CreateNewAccountPage extends AncestorPage {
     }
 
     private WebElementFacade getWebElementOnRegisterPage(String name) {
-        WebElementFacade appNameWebElement = find(By.xpath(String.format("//label[text()='"+name+" ']/../input")));
+        WebElementFacade appNameWebElement = find(By.xpath(String.format("//label[text()='%s ']/../input", name)));
         return appNameWebElement;
     }
 
