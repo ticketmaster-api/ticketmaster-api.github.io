@@ -271,9 +271,9 @@
 								color: #ffffff;
 								margin: 0;
 								padding: 0 0 5px;
-								max-height: 111px;
 								line-height: 37px;
 								text-overflow: ellipsis;
+								display: block;
 								display: -webkit-box;
 								-webkit-box-orient: vertical;
 								-webkit-line-clamp: 3;
@@ -336,6 +336,7 @@
 								color: #ffffff;
 								margin: 10px 0 0;
 								text-overflow: ellipsis;
+								display: block; // it's needed for IE
 								display: -webkit-box;
 								-webkit-box-orient: vertical;
 								-webkit-line-clamp: 3;
@@ -368,6 +369,10 @@
 		}
 		.slick-slide {
 			padding: 0;
+		}
+
+		.front-title {
+			max-height: 111px;
 		}
 	}
 	.top-section {
