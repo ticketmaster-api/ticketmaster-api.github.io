@@ -14,7 +14,7 @@
     "event-discovery-widget-1.0.0": "webpack --config webpack.config-widgets.js -w",
 		"countdown-widget-1.0.0-once": "webpack --config webpack.config-widgets.js",
 		"countdown-widget-1.0.0": "webpack --config webpack.config-widgets.js -w",
-    "calendar-widget-1.0.0-once": "webpack --config webpack.config-widgets.js",
+    "calendar-widget-1.0.0-once": "babel products-and-docs/widgets/calendar/1.0.0/src -d products-and-docs/widgets/calendar/1.0.0/lib --source-maps",
     "calendar-widget-1.0.0": "npm run calendar-widget-1.0.0-once -- -w",
     "map-widget-1.0.0-once": "webpack --config webpack.config-widgets.js",
     "map-widget-1.0.0": "npm run map-widget-1.0.0-once -- -w",

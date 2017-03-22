@@ -47,7 +47,7 @@ class TicketmasterCalendarWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-    get widgetVersion() { return `${__VERSION__}`; }
+    get widgetVersion() { return `1.0.5`; }
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
@@ -2052,7 +2052,7 @@ class WeekScheduler {
                     Promise.all(prm).then(value => {
                         spinner.classList.add('hide');
                         let le = value.length;
-                        for (var e = 0; e <= le; e++) {
+                        for (let e = 0; e <= le; e++) {
                             if(value[e] && value[e]._embedded && value[e]._embedded.events){
                                 value[e]._embedded.events.forEach(function (item) {
                                     if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
@@ -2900,7 +2900,7 @@ class MonthScheduler {
                                 curMonth = calendarWidgetRoot.getAttribute("w-period").substr(5, 2);
                             }
                         }
-                        for (var e = 0; e <= le; e++) {
+                        for (let e = 0; e <= le; e++) {
                             if(value[e] && value[e]._embedded && value[e]._embedded.events){
                                 value[e]._embedded.events.forEach(function (item) {
                                     if (item.hasOwnProperty('_embedded') && item._embedded.hasOwnProperty('venues')) {
