@@ -36,10 +36,10 @@
         }
     };
 
-    let widget = widgetsLib.widgetsCalendar[0],
-        weekScheduler = widgetsLib.weekSchedulers[0],
-        monthScheduler = widgetsLib.monthSchedulers[0],
-        yearScheduler = widgetsLib.yearSchedulers[0],
+    let widget = widgetsLib.widgetsCalendar[0] || widgetsCalendar[0],
+        weekScheduler = widgetsLib.weekSchedulers[0] || weekSchedulers[0],
+        monthScheduler = widgetsLib.monthSchedulers[0] || monthSchedulers[0],
+        yearScheduler = widgetsLib.yearSchedulers[0] || yearSchedulers[0],
         themeConfig = {
             sizes: {
                 standart: {

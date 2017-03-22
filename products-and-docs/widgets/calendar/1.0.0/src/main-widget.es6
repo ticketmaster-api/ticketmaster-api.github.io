@@ -45,7 +45,7 @@ class TicketmasterCalendarWidget {
 
     get questionUrl() { return "http://developer.ticketmaster.com/support/faq/"; }
 
-    get widgetVersion() { return `${__VERSION__}`; }
+    get widgetVersion() { return `1.0.5`; }
 
     get geocodeUrl() { return "https://maps.googleapis.com/maps/api/geocode/json"; }
 
