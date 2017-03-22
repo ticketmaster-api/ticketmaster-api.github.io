@@ -10,10 +10,10 @@ __versionString__ = ~~__versionString__ - 5540;
  */
 var ENV = process.env.npm_lifecycle_event;
 var versionsMajor = {
-	countdown: '1.0',
+	'countdown': '1.0',
 	'event-discovery' :'1.0',
-	calendar :'1.0',
-	map :'1.0'
+	'calendar' :'1.0',
+	'map' :'1.0'
 };
 /**
  *
@@ -32,22 +32,29 @@ var configWidget = (folderName)=> {
 			devtool: 'cheap-module-source-map',
 			module: {
 				loaders: [{
-						test: /\.js$/,
-						loader: 'babel-loader',
-						include: [
-							path.resolve(__dirname, "scripts"),
+					test: /\.es6$/,
+					loader: 'babel-loader',
+					query: {
+						presets: [
+							"es2015",
+							"stage-0"
 						],
-						query: {
-							presets: [
-								"es2015",
-								"stage-0"
-							],
-							plugins: [],
-							cacheDirectory: true
-						}
-					}]
+						plugins: [],
+						cacheDirectory: true
+					}
+				}]
 			},
 			plugins: [
+				/*new webpack.optimize.UglifyJsPlugin({
+					minimize: true,
+					sourceMap: true,
+					compress: {
+						drop_console: true
+					},
+					mangle: {
+						except: ['$', 'exports', 'require']
+					}
+				}),*/
 				new webpack.DefinePlugin({
 					ENV: JSON.stringify("main-widget"),
 					__VERSION__: JSON.stringify(versionsMajor[folderName] + '.' +__versionString__)
@@ -63,11 +70,8 @@ var configWidget = (folderName)=> {
 			devtool: 'cheap-module-source-map',
 			module: {
 				loaders: [{
-					test: /\.js$/,
+					test: /\.es6$/,
 					loader: 'babel-loader',
-					include: [
-						path.resolve(__dirname, "scripts"),
-					],
 					query: {
 						presets: [
 							"es2015",

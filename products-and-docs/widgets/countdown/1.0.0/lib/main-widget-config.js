@@ -68,76 +68,79 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-($ => {
+"use strict";
 
-  const DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
 
-  let widget = widgetsLib.widgetsCountdown[0];
+(function ($) {
+
+  var DEFAULT_API_KEY = apiKeyService.getApiWidgetsKey();
+
+  var widget = widgetsLib.widgetsCountdown[0];
   var themeConfig = {
     simple_countdown: {
-        sizes: {
-          s: {
-            width: 180,
-            height: 150,
-            layout: 'horizontal'
-          },
-          m: {
-            width: 300,
-            height: 250,
-            layout: 'vertical'
-          },
-          l: {
-            width: 160,
-            height: 600,
-            layout: 'horizontal'
-          },
-          xl: {
-            width: 728,
-            height: 90,
-            layout: 'horizontal'
-          },
-          xxl: {
-            width: 300,
-            height: 600,
-            layout: 'vertical'
-          },
-          custom: {
-            width: 350,
-            height: 600,
-            layout: 'vertical'
-          },
-          fullwidth: {
-            width: '100%',
-            height: 700,
-            layout: ''
-          }
+      sizes: {
+        s: {
+          width: 180,
+          height: 150,
+          layout: 'horizontal'
         },
-        initSliderSize: {
+        m: {
+          width: 300,
+          height: 250,
+          layout: 'vertical'
+        },
+        l: {
+          width: 160,
+          height: 600,
+          layout: 'horizontal'
+        },
+        xl: {
+          width: 728,
+          height: 90,
+          layout: 'horizontal'
+        },
+        xxl: {
+          width: 300,
+          height: 600,
+          layout: 'vertical'
+        },
+        custom: {
           width: 350,
           height: 600,
-          maxWidth: 500,
-          minWidth: 350
+          layout: 'vertical'
+        },
+        fullwidth: {
+          width: '100%',
+          height: 700,
+          layout: ''
         }
+      },
+      initSliderSize: {
+        width: 350,
+        height: 600,
+        maxWidth: 500,
+        minWidth: 350
       }
+    }
   };
 
   var $widthController = $('#w-width').slider({
-      tooltip: 'always',
-      handle: 'square'
-    }),
-    $borderRadiusController = $('#w-borderradius').slider({
-      tooltip: 'always',
-      handle: 'square'
-    }),
-    $getCodeButton = $('.js_get_widget_code'),
-    widgetNode = document.querySelector("div[w-tmapikey]"),
-    $tabButtons = $('.js-tab-buttons'),
-    $layoutBox = $('#js-layout-box'),
-    $configForm = $(".main-widget-config-form"),
-    $widgetModal = $('#js_widget_modal'),
-    $widgetModalNoCode = $('#js_widget_modal_no_code');
+    tooltip: 'always',
+    handle: 'square'
+  }),
+      $borderRadiusController = $('#w-borderradius').slider({
+    tooltip: 'always',
+    handle: 'square'
+  }),
+      $getCodeButton = $('.js_get_widget_code'),
+      widgetNode = document.querySelector("div[w-tmapikey]"),
+      $tabButtons = $('.js-tab-buttons'),
+      $layoutBox = $('#js-layout-box'),
+      $configForm = $(".main-widget-config-form"),
+      $widgetModal = $('#js_widget_modal'),
+      $widgetModalNoCode = $('#js_widget_modal_no_code');
 
   //variables for fixed widget
   var $window = $(window),
@@ -150,16 +153,14 @@
   /*
    set the container's maximum and minimum limits as well as movement thresholds
    */
-  function setLimits(){
+  function setLimits() {
     //max and min container movements
-    var topCss = ($containerWidget.css("top")>0) ? parseInt($containerWidget.css("top")) : 0;
+    var topCss = $containerWidget.css("top") > 0 ? parseInt($containerWidget.css("top")) : 0;
     var headerOffset = $('.top-bar').height() + /*padding of top-bar*/8 + /*bottom-margin*/10;
     var max_move = $configBlock.offset().top + $configBlock.height() - $containerWidget.height() - topCss - headerOffset;
     var min_move = $configBlock.offset().top - headerOffset;
 
-    $containerWidget
-      .data('min', min_move)
-      .data('max',max_move);
+    $containerWidget.data('min', min_move).data('max', max_move);
 
     //window thresholds so the movement isn't called when its not needed!
     window_min = min_move - threshold_offset;
@@ -169,9 +170,9 @@
   /*
    widget container scroll handler
    */
-  function windowScroll(){
-    let innerWidth = window.innerWidth;
-    let j = 0;
+  function windowScroll() {
+    var innerWidth = window.innerWidth;
+    var j = 0;
     function updateScroll() {
       //if the window is within the threshold, begin movements
       if ($window.scrollTop() >= window_min && $window.scrollTop() < window_max) {
@@ -184,21 +185,20 @@
       }
       j++;
     }
-    if(j === 0) updateScroll();
+    if (j === 0) updateScroll();
 
-    setTimeout(() => {
+    setTimeout(function () {
       if (innerWidth < desktopWidth && $containerWidget.height() > $configBlock.height()) {
         containerMove_clearOffset();
         updateScroll();
       }
-      if($containerWidget.height() < $configBlock.height() || innerWidth >= desktopWidth) {
-        if( innerWidth < desktopWidth ){
+      if ($containerWidget.height() < $configBlock.height() || innerWidth >= desktopWidth) {
+        if (innerWidth < desktopWidth) {
           containerMove_clearOffset();
         }
         updateScroll();
       }
-    }, 200);    
-
+    }, 200);
   }
 
   $window.on("scroll resize", windowScroll);
@@ -206,25 +206,27 @@
   /**
    * Clear top offset of widget container
    */
-  function containerMove_clearOffset(){
+  function containerMove_clearOffset() {
     $containerWidget.css("margin-top", 0);
   }
   /**
    * Handles moving the container if needed.
    **/
-  function containerMove(){
-    let marginTop = 0;
-    const wst = $window.scrollTop(),
-      {min, max} = $containerWidget.data();
+  function containerMove() {
+    var marginTop = 0;
+    var wst = $window.scrollTop(),
+        _$containerWidget$dat = $containerWidget.data(),
+        min = _$containerWidget$dat.min,
+        max = _$containerWidget$dat.max;
 
     //if the window scroll is within the min and max (the container will be 'sticky';
-    if( wst >= min && wst <= max ){
+    if (wst >= min && wst <= max) {
       //if the window scroll is below the minimum move it down!
       marginTop = wst - min;
-    }else if( wst > max ){
+    } else if (wst > max) {
       marginTop = max - min;
     }
-    $containerWidget.css('marginTop', (marginTop > 0 ? marginTop : 0));
+    $containerWidget.css('marginTop', marginTop > 0 ? marginTop : 0);
   }
 
   /**
@@ -232,39 +234,43 @@
    * @param targetValue(string) -
    * @param widgetNode(object) - current widget
    */
-  var fullWidth = function(targetValue , widgetNode){
-    let widthSlider = $('.js_widget_width_slider'),
+  var fullWidth = function fullWidth(targetValue, widgetNode) {
+    var widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $containerWidget,
         widgetContainer = $(".widget-container", widgetContainerWrapper),
         $border_slider = $('.js_widget_border_slider');
 
-    if(targetValue === 'fullwidth'){
+    if (targetValue === 'fullwidth') {
       widthSlider.slideUp("fast");
       $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
-      widgetContainerWrapper.css({width: "100%"});
+      widgetContainerWrapper.css({ width: "100%" });
       widgetContainer.css({ width: '100%' });
       // widgetNode.setAttribute('w-height', 700);
-    }else {
+    } else {
       $border_slider.slideDown("fast");
       $borderRadiusController.slider('setValue', 4);
       widgetNode.setAttribute('w-borderradius', 4);
       widgetContainerWrapper.css({ width: 'auto' });
       widgetContainer.css({ width: 'auto' });
-      if(targetValue === 'custom'){widthSlider.slideDown("fast");}
+      if (targetValue === 'custom') {
+        widthSlider.slideDown("fast");
+      }
       //resetWidget($configForm );
     }
   };
 
-  var changeState = function(event){
-    if(!event.target.name){return;}
-    const targetValue = event.target.value,
-          targetName = event.target.name;
+  var changeState = function changeState(event) {
+    if (!event.target.name) {
+      return;
+    }
+    var targetValue = event.target.value,
+        targetName = event.target.name;
 
-    if(targetName === "w-layout"){
-      let sizeConfig = themeConfig.simple_countdown.initSliderSize;
+    if (targetName === "w-layout") {
+      var sizeConfig = themeConfig.simple_countdown.initSliderSize;
 
-      if(targetValue === 'horizontal'){
+      if (targetValue === 'horizontal') {
         sizeConfig = {
           width: 620,
           height: 252,
@@ -274,20 +280,19 @@
       }
 
       $widthController.slider({
-          setValue: sizeConfig.width ,
-          max: sizeConfig.maxWidth,
-          min: sizeConfig.minWidth
-        })
-        .slider('refresh');
+        setValue: sizeConfig.width,
+        max: sizeConfig.maxWidth,
+        min: sizeConfig.minWidth
+      }).slider('refresh');
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
     }
 
     //Check fixed sizes for 'simple_countdown' theme
-    if(targetName === "w-proportion") {
-      let widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
-      let sizeConfig = {
+    if (targetName === "w-proportion") {
+      var widthSlider = $('.js_widget_width_slider'); //if init it on top -> then see bug on Vertical/Horizontal layout change
+      var _sizeConfig = {
         width: themeConfig.simple_countdown.sizes[targetValue].width,
         height: themeConfig.simple_countdown.sizes[targetValue].height,
         maxWidth: 600,
@@ -302,27 +307,26 @@
       if (targetValue !== 'custom') {
         $tabButtons.slideUp("fast");
         widthSlider.slideUp("fast");
-      }else{
+      } else {
         $tabButtons.slideDown("fast");
         widthSlider.slideDown("fast");
-        $('input:radio[name="w-layout"][value="vertical"]',$tabButtons).prop('checked', true);
+        $('input:radio[name="w-layout"][value="vertical"]', $tabButtons).prop('checked', true);
 
-        sizeConfig = { //default size
-          width: themeConfig.simple_countdown.initSliderSize.width,  //350
-          height: themeConfig.simple_countdown.initSliderSize.height,  //600
-          maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth,  //500
+        _sizeConfig = { //default size
+          width: themeConfig.simple_countdown.initSliderSize.width, //350
+          height: themeConfig.simple_countdown.initSliderSize.height, //600
+          maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
         $widthController.slider({
-            setValue: sizeConfig.width,
-            max: sizeConfig.maxWidth,
-            min: sizeConfig.minWidth
-          })
-          .slider('refresh');
+          setValue: _sizeConfig.width,
+          max: _sizeConfig.maxWidth,
+          min: _sizeConfig.minWidth
+        }).slider('refresh');
       }
 
-      widgetNode.setAttribute('w-width', sizeConfig.width);
-      widgetNode.setAttribute('w-height', sizeConfig.height);
+      widgetNode.setAttribute('w-width', _sizeConfig.width);
+      widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value); //set attr in widget
@@ -330,50 +334,49 @@
 
     widget.update();
 
-    windowScroll();//recalculate widget container position
+    windowScroll(); //recalculate widget container position
   };
 
-  var resetWidget = function(configForm , excludeOption) {
-    let widthSlider = $('.js_widget_width_slider'),
+  var resetWidget = function resetWidget(configForm, excludeOption) {
+    var widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $('.widget-container-wrapper'),
         height = 600,
-        theme,
-        layout,
+        theme = void 0,
+        layout = void 0,
         $border_slider = $('.js_widget_border_slider');
-        $tabButtons = $('.js-tab-buttons');
+    $tabButtons = $('.js-tab-buttons');
 
     widgetContainerWrapper.removeAttr('style');
 
-    configForm.find("input[type='text']").each(function(){
-      let $self = $(this),
+    configForm.find("input[type='text']").each(function () {
+      var $self = $(this),
           data = $self.data(),
           value = data.userAPIkey || data.defaultValue || '';
-      
-      if(data.sliderValue){
+
+      if (data.sliderValue) {
         value = data.sliderValue;
         $self.slider({
           setValue: value,
           max: data.sliderMax,
           min: data.sliderMin
-        })
-        .slider('refresh');
-      }else{
+        }).slider('refresh');
+      } else {
         $self.val(value);
       }
 
       widgetNode.setAttribute($self.attr('name'), value);
     });
 
-    configForm.find("input[type='radio']").each(function(){
+    configForm.find("input[type='radio']").each(function () {
       var $self = $(this);
-      if($self.data('is-checked')){
-        let name = $self.attr('name'),
+      if ($self.data('is-checked')) {
+        var name = $self.attr('name'),
             val = $self.val();
-        if(name === 'w-theme'){
+        if (name === 'w-theme') {
           theme = val;
-        }else if(name === 'w-layout'){
+        } else if (name === 'w-layout') {
           layout = val;
-        }else if(name === 'w-proportion'){
+        } else if (name === 'w-proportion') {
           $layoutBox.slideDown("fast");
           $border_slider.slideDown("fast");
           $borderRadiusController.slider('setValue', 4);
@@ -386,10 +389,10 @@
       }
     });
 
-    if(typeof excludeOption !== 'undefined' && typeof excludeOption.id !== 'undefined'){
+    if (typeof excludeOption !== 'undefined' && typeof excludeOption.id !== 'undefined') {
       widgetNode.setAttribute('w-id', excludeOption.id); //set val in widget
-        $('#w-id').val(excludeOption.id);//set val in cofigurator
-    }    
+      $('#w-id').val(excludeOption.id); //set val in cofigurator
+    }
     $layoutBox.slideDown("fast");
     $border_slider.slideDown("fast");
     $borderRadiusController.slider('setValue', 4);
@@ -397,7 +400,7 @@
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 
-    if(layout === 'horizontal'){
+    if (layout === 'horizontal') {
       //height = getHeightByTheme(theme);
       height = 252;
     }
@@ -408,7 +411,7 @@
     widget.update();
   };
 
-  var init = function (){
+  var init = function init() {
     //sets the limits for the first load
     setLimits();
 
@@ -416,7 +419,7 @@
     containerMove();
 
     // Set min widget size on mobile devices
-    if(parseInt($(window).width(), 10) < 767){
+    if (parseInt($(window).width(), 10) < 767) {
       $('#w-fixed-300x250').trigger('click');
     }
   };
@@ -442,8 +445,7 @@
 
     $configForm.find("input[type='radio']").each(function () {
       var $self = $(this);
-      if ($self.is(':checked'))
-        $self.data('is-checked', 'checked');
+      if ($self.is(':checked')) $self.data('is-checked', 'checked');
     });
 
     $getCodeButton.on('click', function () {
@@ -474,16 +476,14 @@
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
       $widthController.slider('relayout');
       $borderRadiusController.slider('relayout');
-      windowScroll();//recalculate widget container position
+      windowScroll(); //recalculate widget container position
     });
   }
 
   addEvents();
 
   init();
-
 })(jQuery);
-
 
 /***/ })
 /******/ ]);

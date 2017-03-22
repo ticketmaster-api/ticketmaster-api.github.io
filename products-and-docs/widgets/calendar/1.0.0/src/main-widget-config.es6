@@ -37,9 +37,9 @@
     };
 
     let widget = widgetsLib.widgetsCalendar[0],
-        weekScheduler = widgetsLib.weekSchedulers[0],
-        monthScheduler = widgetsLib.monthSchedulers[0],
-        yearScheduler = widgetsLib.yearSchedulers[0],
+        weekScheduler = widgetsLib.weekSchedulers[0] ,
+        monthScheduler =  widgetsLib.monthSchedulers[0] ,
+        yearScheduler = widgetsLib.yearSchedulers[0]  ,
         themeConfig = {
             sizes: {
                 standart: {
