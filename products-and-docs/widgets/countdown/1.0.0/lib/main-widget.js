@@ -289,7 +289,7 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'widgetVersion',
     get: function get() {
-      return '' + "1.0.77";
+      return '' + "1.0.82";
     }
   }, {
     key: 'questionUrl',
