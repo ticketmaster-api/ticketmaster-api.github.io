@@ -209,8 +209,8 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
 
     @Override
     public boolean isEventMessageContains(String text) {
-        String eventTExt = eventMessage.getText();
-        return eventTExt.contains(text);
+
+        return eventMessage.getText().contains(text);
     }
 
     @Override

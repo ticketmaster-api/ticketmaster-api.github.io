@@ -86,7 +86,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
                 break;
             case "keyword": calendarWidgetPage.getCalendarWidget().setKeywordTextFieldValue(randomKeyword);
                 break;
-            case "postalCodeApi": calendarWidgetPage.getCalendarWidget().setZipCodeTextFieldValue(randomZipCode);
+            case "postalCodeApi": calendarWidgetPage.getCalendarWidget().setPostalCodeTextFieldValue(randomZipCode);
                 break;
             default: throw new IllegalArgumentException(String.format("Invalid field name argument %s", randomValueFor));
         }
@@ -101,7 +101,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
 
     @Step
     public void setZipCodeValue(String zipCodeValue) {
-        calendarWidgetPage.getCalendarWidget().setZipCodeTextFieldValue(zipCodeValue);
+        calendarWidgetPage.getCalendarWidget().setPostalCodeTextFieldValue(zipCodeValue);
     }
 
     @Step

@@ -53,7 +53,7 @@ public class CalendarWidgetImpl extends AncestorWidgetImpl implements CalendarWi
     }
 
     @Override
-    public void setZipCodeTextFieldValue(String zipCode) {
+    public void setPostalCodeTextFieldValue(String zipCode) {
         postalCodeApiField.clear();
         postalCodeApiField.sendKeys(zipCode, Keys.ENTER);
         waitForSomeActionHappened(1500);
