@@ -62,7 +62,7 @@ When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored theme
 
-Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Layout Resolutions
+Scenario: (/products-and-docs/widgets/countdown/) [3.3.4 Countdown widget : Full-width]
 Given open Countdown Widget page
 And switch to VISUAL Tab
 And set layout resolution to <layoutResolution>
