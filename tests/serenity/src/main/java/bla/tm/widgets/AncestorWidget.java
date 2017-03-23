@@ -27,4 +27,6 @@ public interface AncestorWidget extends WidgetObject {
     String getPostalCodeApiFieldValue();
     String getZipCodeFieldValue();
     void clickOnGeoPosition();
+    WebElementFacade getGetCodeButton();
+    WebElementFacade getResetButton();
 }
