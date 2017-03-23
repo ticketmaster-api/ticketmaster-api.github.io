@@ -244,19 +244,17 @@
   //do one container move on load
   containerMove();
 
-  var replaceApiKey = function replaceApiKey(options) {
-    var userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
-
-    if (userKey !== null) {
-      var inputApiKey = options.inputApiKey,
-          widgetNode = options.widgetNode,
-          _widget = options.widget;
-
-      inputApiKey.attr('value', userKey).val(userKey);
+  /*var replaceApiKey = function (options) {
+    let userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
+     if(userKey !== null) {
+      let {inputApiKey, widgetNode , widget } = options;
+      inputApiKey
+          .attr('value',userKey)
+          .val(userKey);
       widgetNode.setAttribute("w-tmapikey", userKey);
-      _widget.update();
+      widget.update();
     }
-  };
+  };*/
   /*replaceApiKey({
       inputApiKey:$('#w-tm-api-key'),
       widgetNode: document.querySelector("div[w-tmapikey]"),
@@ -299,9 +297,9 @@
         $tabButtons = $('.js-tab-buttons');
 
     if (targetName === "w-tm-api-key") {
-      console.log("target -   w-tm-api-key");
+      // console.log("target -   w-tm-api-key");
       /*document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
-        if (sessionStorage.getItem('tk-api-key')) {
+       if (sessionStorage.getItem('tk-api-key')) {
         document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
         document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
       }
@@ -325,7 +323,7 @@
        var numInputClass = document.getElementById('w-radius');
        var incArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__inc');
        var decArrow = event.target.parentNode.nextElementSibling.querySelector('div').querySelector('.arrow__dec');
-         if (targetValue == '') {
+        if (targetValue == '') {
        numInputClass.setAttribute('disabled', 'disabled');
        numInputClass.value = '';
        incArrow.classList.add('disabled');
@@ -489,7 +487,7 @@
       }
 
       ["#w-countryCode", "#w-source"].map(function (item) {
-        $(item).prop("selectedIndex", -1);
+        $(item).prop("selectedIndex", 0);
       });
       widgetNode.setAttribute($self.attr('name'), value);
       if ($self.attr('name') === 'w-tm-api-key') widgetNode.removeAttribute($self.attr('name'));

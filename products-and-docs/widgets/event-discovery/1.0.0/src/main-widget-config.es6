@@ -168,7 +168,7 @@
   //do one container move on load
   containerMove();
 
-  var replaceApiKey = function (options) {
+  /*var replaceApiKey = function (options) {
     let userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
 
     if(userKey !== null) {
@@ -179,7 +179,7 @@
       widgetNode.setAttribute("w-tmapikey", userKey);
       widget.update();
     }
-  };
+  };*/
   /*replaceApiKey({
       inputApiKey:$('#w-tm-api-key'),
       widgetNode: document.querySelector("div[w-tmapikey]"),
@@ -223,7 +223,7 @@
         $tabButtons = $('.js-tab-buttons');
 
     if(targetName === "w-tm-api-key") {
-      console.log("target -   w-tm-api-key");
+      // console.log("target -   w-tm-api-key");
       /*document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
 
       if (sessionStorage.getItem('tk-api-key')) {
@@ -413,9 +413,9 @@
       for (let i = 0; i < activeItemsLenght; ++i) {
         activeItems[i].classList.remove('custom_select__item-active');
       }
-
+      
       ["#w-countryCode","#w-source"].map((item)=> {
-        $(item).prop("selectedIndex", -1);
+        $(item).prop("selectedIndex", 0);
       });
       widgetNode.setAttribute($self.attr('name'), value);
       if ( $self.attr('name') === 'w-tm-api-key' ) widgetNode.removeAttribute($self.attr('name'));
