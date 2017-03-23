@@ -275,6 +275,9 @@
             }else{
                 $self.val(value);
             }
+            ["#w-countryCode","#w-source"].map((item)=> {
+                $(item).prop("selectedIndex", 0);
+            });
 
             widgetNode.setAttribute($self.attr('name'), value);
             if ( $self.attr('name') === 'w-tm-api-key' ) widgetNode.removeAttribute($self.attr('name'));

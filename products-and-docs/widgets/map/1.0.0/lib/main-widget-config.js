@@ -414,7 +414,7 @@
             }
 
             ["#w-countryCode", "#w-source"].map(function (item) {
-                $(item).prop("selectedIndex", -1);
+                $(item).prop("selectedIndex", 0);
             });
             widgetNode.setAttribute($self.attr('name'), value);
         });

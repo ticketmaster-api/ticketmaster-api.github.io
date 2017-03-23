@@ -168,24 +168,6 @@
   //do one container move on load
   containerMove();
 
-  /*var replaceApiKey = function (options) {
-    let userKey = options.userKey || sessionStorage.getItem('tk-api-key') || DEFAULT_API_KEY;
-
-    if(userKey !== null) {
-      let {inputApiKey, widgetNode , widget } = options;
-      inputApiKey
-          .attr('value',userKey)
-          .val(userKey);
-      widgetNode.setAttribute("w-tmapikey", userKey);
-      widget.update();
-    }
-  };*/
-  /*replaceApiKey({
-      inputApiKey:$('#w-tm-api-key'),
-      widgetNode: document.querySelector("div[w-tmapikey]"),
-      widget
-    });*/
-
   var fullWidth = function(targetValue , widgetNode){
     let widthSlider = $('.js_widget_width_slider'),
         widgetContainerWrapper = $containerWidget,
@@ -222,25 +204,7 @@
         targetName = event.target.name,
         $tabButtons = $('.js-tab-buttons');
 
-    if(targetName === "w-tm-api-key") {
-      // console.log("target -   w-tm-api-key");
-      /*document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', targetValue);
-
-      if (sessionStorage.getItem('tk-api-key')) {
-        document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
-        document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
-      }
-      if (document.getElementById('w-tm-api-key').value == '') {
-        if (sessionStorage.getItem('tk-api-key')) {
-          document.getElementById('w-tm-api-key').value = sessionStorage.getItem('tk-api-key');
-          document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', sessionStorage.getItem('tk-api-key'));
-        }
-        else {
-          document.getElementById('w-tm-api-key').value = DEFAULT_API_KEY;
-          document.querySelector('[w-type="event-discovery"]').setAttribute('w-tmapikey', DEFAULT_API_KEY);
-        }
-      }*/
-    }
+    if(targetName === "w-tm-api-key") {    }
 
     if(targetName === "w-postalcodeapi"){
       widgetNode.setAttribute('w-country', '');
