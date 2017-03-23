@@ -333,7 +333,7 @@
 		background-size: contain;
 
 		h2#map-widget {
-			width: 30%;
+			width: 30%!important;
 		}
 
 		@media #{$max-1200} {
