@@ -6,7 +6,11 @@ As a developer
 I want to use the widget configurator to customize the layout of the widget,
 and have ability to grab a small code snippet to insert into 3-rd party websites
 
-Scenario: (/products-and-docs/widgets/countdown/) TECHNICAL TAB - Check that required fields are not empty
+Scenario: (/products-and-docs/widgets/countdown/) [3.3.1 Countdown widget layout]
+Given open Countdown Widget page
+Then check general page elements for page, where DISQUS = true and LeftMenu = true
+
+Scenario: (/products-and-docs/widgets/countdown/) [3.3.2 Countdown widget : Common functionality is not broken]
 Given open Countdown Widget page
 Then the required fields are not empty on the Countdown Widget page
 
@@ -62,7 +66,7 @@ When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored theme
 
-Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Layout Resolutions
+Scenario: (/products-and-docs/widgets/countdown/) [3.3.4 Countdown widget : Full-width]
 Given open Countdown Widget page
 And switch to VISUAL Tab
 And set layout resolution to <layoutResolution>

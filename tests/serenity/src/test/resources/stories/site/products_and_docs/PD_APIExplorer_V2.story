@@ -1,4 +1,4 @@
-Meta:@NotImplemented
+Meta:
 
 Narrative:
 As a test engineer
@@ -44,10 +44,10 @@ Then the request list contains url
 And the request list contains response block
 Examples:
 |apiGetMethod              |
-|Search Events             |
-|Search Attractions        |
-|Search Classifications    |
-|Search Venues             |
+|Event Search             |
+|Attraction Search        |
+|Classification Search    |
+|Venue Search             |
 
 
 

@@ -13,7 +13,6 @@ public class PD_APIExplorerV2Page extends AncestorPage {
     @FindBy(xpath = "//div[@class='api-exp-methods__select']/custom-select/div/div/select")
     private WebElementFacade apiMethodSelector;
 
-
     @FindBy(xpath = "//div[@class='api-exp-params-wrapper clearfix js-slide-wrapper']")
     private WebElementFacade parameterSection;
 
