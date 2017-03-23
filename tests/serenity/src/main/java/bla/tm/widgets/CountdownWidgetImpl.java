@@ -51,7 +51,6 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='GET CODE']")
     private WebElementFacade getCodeButton;
 
-
     @FindBy(xpath = "//span[contains(@class,'event-name')]")
     private WebElementFacade posterWindow;
 
@@ -167,6 +166,10 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
 
     @Override
     public void setLayoutResolution(String resolution) {
+        getLayoutResolution(resolution).click();
+    }
+
+    public WebElementFacade getLayoutResolution(String resolution) {
         WebElementFacade resolutionRadioButton;
         switch(resolution){
             case "300x250": {
@@ -187,11 +190,15 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
             break;
             default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", resolution));
         }
-        resolutionRadioButton.click();
+        return resolutionRadioButton;
     }
 
     @Override
     public void setLayoutOrientation(String orientation) {
+        getLayoutOrientation(orientation).click();
+    }
+
+    public WebElementFacade getLayoutOrientation(String orientation) {
         WebElementFacade orientationRadioButton;
         switch (orientation){
             case "horizontal": {
@@ -204,7 +211,7 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
             break;
             default: throw new IllegalArgumentException(String.format("Illegal layout orientation: '%s'", orientation));
         }
-        orientationRadioButton.click();
+        return orientationRadioButton;
     }
 
     @Override
@@ -252,6 +259,10 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     @Override
     public String getEmbeddedOrientation() {
         return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ORIENTATION);
+    }
+
+    public WebElementFacade getEventId(){
+        return getEventIdLink;
     }
 
 }

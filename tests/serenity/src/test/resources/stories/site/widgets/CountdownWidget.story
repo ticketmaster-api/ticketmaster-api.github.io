@@ -96,6 +96,6 @@ Then the event message is shown "No results were found"
 
 Scenario: (/products-and-docs/widgets/countdown/) Event message - Check event message for invalid Event ID
 Given open Countdown Widget page
-And enter custom EventId "invalidEventId123"
+And enter custom EventId invalidEventId123
 When submit form
 Then the event message is shown "No results were found"

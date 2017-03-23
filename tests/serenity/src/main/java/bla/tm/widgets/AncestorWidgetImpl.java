@@ -79,10 +79,13 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     @FindBy(xpath = "//span[text()='use Geoposition']")
     private WebElementFacade geoPosition;
 
+    @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='GET CODE']")
+    private WebElementFacade getCodeButton;
+
     @Override
     public void clickResetButton() {
         resetButton.click();
-        waitForSomeActionHappened(2000);
+        waitForSomeActionHappened(1000);
     }
 
     @Override
@@ -339,4 +342,13 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     public String getZipCodeFieldValue() {
         return zipCodeField.getText();
     }
+
+    public WebElementFacade getGetCodeButton() {
+        return getCodeButton;
+    }
+
+    public WebElementFacade getResetButton() {
+        return resetButton;
+    }
+
 }

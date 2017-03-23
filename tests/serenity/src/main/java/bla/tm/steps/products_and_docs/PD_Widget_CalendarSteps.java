@@ -106,6 +106,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
 
     @Step
     public void resetForm(){
+        ancestorPage.scrollToElement(calendarWidgetPage.getCalendarWidget().getResetButton());
         calendarWidgetPage.getCalendarWidget().clickResetButton();
         waitForSomeActionHappened(500);
     }
