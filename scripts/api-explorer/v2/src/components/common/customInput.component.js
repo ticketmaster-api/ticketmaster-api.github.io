@@ -82,12 +82,16 @@ class CustomInput {
 	get isTextarea() {
 		return this.data.style === 'requestBody';
 	}
+
+	get cssClasses() {
+		return {[this.cssClass]: true, dirty: this.isDirty, virgin: this.isVirgin};
+	}
 }
 
 ko.components.register('custom-input', {
 	viewModel: CustomInput,
 	template: `
-		<div data-bind="css: {[cssClass]: true, dirty: isDirty, virgin: isVirgin}" class="api-exp-custom-input">
+		<div data-bind="css: cssClasses" class="api-exp-custom-input">
 			<div data-bind="validationElement: value" class="custom-input__inner-wrapper">
 				<!-- ko ifnot: isTextarea -->
 				<input data-bind="textInput: value, lazyLoader: {name: placeholder, val: value}, dateTimePicker, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"

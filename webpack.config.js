@@ -12,6 +12,7 @@ var isProd = ENV === 'build';
 var config = {
 		entry: {
 			script: [
+				'babel-polyfill',
 				'./scripts/api-explorer/v2/src/main.es6.js'
 			]
 		},

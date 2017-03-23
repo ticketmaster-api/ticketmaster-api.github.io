@@ -12,8 +12,8 @@
     "start-with-limit-3": "jekyll serve --no-watch -I --limit_posts 3",
     "event-discovery-widget-1.0.0-once": "webpack --config webpack.config-widgets.js",
     "event-discovery-widget-1.0.0": "webpack --config webpack.config-widgets.js -w",
-		"countdown-widget-1.0.0-once": "webpack --config webpack.config-widgets.js",
-		"countdown-widget-1.0.0": "webpack --config webpack.config-widgets.js -w",
+    "countdown-widget-1.0.0-once": "webpack --config webpack.config-widgets.js",
+    "countdown-widget-1.0.0": "webpack --config webpack.config-widgets.js -w",
     "calendar-widget-1.0.0-once": "babel products-and-docs/widgets/calendar/1.0.0/src -d products-and-docs/widgets/calendar/1.0.0/lib --source-maps",
     "calendar-widget-1.0.0": "npm run calendar-widget-1.0.0-once -- -w",
     "map-widget-1.0.0-once": "webpack --config webpack.config-widgets.js",
@@ -34,9 +34,16 @@
       "node_modules",
       "./"
     ],
-		"collectCoverage": true,
-		"coverageReporters": ["json", "lcov", "text", "html"],
-		"roots": ["<rootDir>/spec/"]
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "html"
+    ],
+    "roots": [
+      "<rootDir>/spec/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -76,6 +83,7 @@
     "worker-loader": "^0.7.1"
   },
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.18.0",
     "clipboard": "^1.6.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.43",
