@@ -420,6 +420,7 @@ div[w-theme="simple"] .event-logo.right-logo {
     margin: auto;
     right: 0;
     left: 50%;
+		line-height: 18px;
 }
 div[w-theme="simple"] .event-logo.centered-logo {
     -webkit-transition-duration: .5s;
@@ -430,7 +431,7 @@ div[w-theme="simple"] .event-logo.centered-logo {
     margin: auto;
     right: 0;
     left: 0;
-	  line-height: 16.5px;
+	  line-height: 18px;
 }
 
 
