@@ -1106,6 +1106,8 @@ class TicketmasterEventDiscoveryWidget {
       this.showMessage("No results were found.", true);
       this.reduceParamsOrder = 0;
       this.hideSliderControls();
+      document.querySelector('.event-buy-btn.main-btn').setAttribute('href', '');
+      this.stopAutoSlideX();
     }
   }
 
