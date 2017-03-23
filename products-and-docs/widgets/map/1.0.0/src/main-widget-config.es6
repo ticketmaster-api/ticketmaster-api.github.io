@@ -343,7 +343,7 @@
             }
 
             ["#w-countryCode","#w-source"].map((item)=> {
-                $(item).prop("selectedIndex", -1);
+                $(item).prop("selectedIndex", 0);
             });
             widgetNode.setAttribute($self.attr('name'), value);
 
