@@ -37,7 +37,6 @@ Examples:
 |Get Venue Details         |
 
 Scenario: (/api-explorer/v2) [5.2.3 API Explorer V2 : The request list contains url and block]
-Meta:@NotImplemented
 Given open API Explorer V2 page
 When I choose <apiGetMethod> to send request
 And click GET button
@@ -45,10 +44,10 @@ Then the request list contains url
 And the request list contains response block
 Examples:
 |apiGetMethod              |
-|Events Search             |
-|Attractions Search        |
-|Classifications Search    |
-|Venues Search             |
+|Event Search             |
+|Attraction Search        |
+|Classification Search    |
+|Venue Search             |
 
 
 
