@@ -74,12 +74,16 @@ class Panel {
 	static isExpanded(config) {
 		return !(Object.getProp(config, '._CONFIG.collapsed') || false);
 	}
+
+	get cssClasses() {
+		return {[this.colorClass]: true, active: this.isActive};
+	}
 }
 
 module.exports = ko.components.register('panel', {
 	viewModel: Panel,
 	template:`
-		<section data-bind="css: {[colorClass]: true, active: isActive}" class="panel panel-primary">
+		<section data-bind="css: cssClasses" class="panel panel-primary">
 			<!--panel-heading-->
 			<panel-heading params="
 				showMapPopup: showMapPopup,
