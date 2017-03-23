@@ -15,7 +15,7 @@ public class BlogsDefinition {
         blogsPage.openPage();
     }
 
-    @Then("check general page elements for Blogs Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
+    @Then("check general page elements for page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         blogsPage.checkGeneralPageElements(disqus, leftMenu);
     }
