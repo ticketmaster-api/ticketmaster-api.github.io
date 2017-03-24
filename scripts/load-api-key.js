@@ -1,3 +1,6 @@
+/**
+ * Show email if user logged
+ */
 (function(){
   //get Cookie by name
   function getCookie(cname) {
@@ -20,16 +23,18 @@
 
   if(email){
     $(".apigee-login").text(email);
+		console.log('email',email);
   }
 
   if(apiKeys && apiKeys[0] && apiKeys[0].length){
     var key = apiKeys[0][apiKeys[0].length-1];
     /*add custom login event for widget*/
-    if(key){
+    /*if(key){
+			console.log('trigger login: ',email);
       $(window).trigger('login', [{
         key: key,
         email: email
       }]);
-    }
+    }*/
   }
 })();
