@@ -61,7 +61,9 @@ public class PD_Widget_MapSteps extends PD_CommonSteps{
         ancestorPage.getMapWidget().setAttractionIdValue(attractionId);
         ancestorPage.getMapWidget().setVenueIdValue(venueId);
         ancestorPage.getMapWidget().setPromoterIdValue(promoterId);
+        ancestorPage.scrollToElement(ancestorPage.getMapWidget().getSourceLink());
         ancestorPage.getMapWidget().setSourceValue(source);
+        ancestorPage.scrollToElement(ancestorPage.getMapWidget().getCountryCodeLink());
         ancestorPage.getMapWidget().setCountryCodeValue(countryCode);
         ancestorPage.getMapWidget().setClassificationNameValue(classificationName);
         ancestorPage.getMapWidget().setEventCountValue(eventCount);

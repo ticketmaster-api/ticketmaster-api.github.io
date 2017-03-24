@@ -29,4 +29,7 @@ public interface AncestorWidget extends WidgetObject {
     void clickOnGeoPosition();
     WebElementFacade getGetCodeButton();
     WebElementFacade getResetButton();
+    WebElementFacade getSource();
+    WebElementFacade getSourceLink();
+    WebElementFacade getCountryCodeLink();
 }
