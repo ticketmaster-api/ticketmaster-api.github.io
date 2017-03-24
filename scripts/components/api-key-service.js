@@ -8,8 +8,8 @@ var apiKeyService = {};
   };
 
   var STAGING_KEYS = {
-    apiExplore: 'RKkWdMNW8Isua8RNc5U87KjXXNct110K',
-    widgets: 'TQMbqzKDBbcCjAxC9SaKS1lg9D5Eousb'
+    apiExplore: '2Qa4W67WwEiu8ZNXpMbmVX2IGvTMJtIG',
+    widgets: 'y61xDc5xqUSIOz4ISjgCe5E9Lh0hfUH1'
   };
 
   var LOCAL_KEYS = {
