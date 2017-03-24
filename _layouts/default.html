@@ -37,6 +37,7 @@
             <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
         {% endif %}
 
+				<script src="{{'/scripts/load-api-key.js?v=1' | prepend: site.baseurl }}" async></script>
         <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
         {% include feedback.html %}
@@ -82,6 +83,5 @@
             {%endif%}
         {%endif%}
 
-				<script src="{{'/scripts/load-api-key.js?v=1' | prepend: site.baseurl }}"></script>
     </body>
 </html>
