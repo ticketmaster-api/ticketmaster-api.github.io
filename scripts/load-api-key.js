@@ -23,18 +23,16 @@
 
   if(email){
     $(".apigee-login").text(email);
-		console.log('email',email);
   }
 
   if(apiKeys && apiKeys[0] && apiKeys[0].length){
     var key = apiKeys[0][apiKeys[0].length-1];
     /*add custom login event for widget*/
-    /*if(key){
-			console.log('trigger login: ',email);
+    if(key){
       $(window).trigger('login', [{
         key: key,
         email: email
       }]);
-    }*/
+    }
   }
 })();
