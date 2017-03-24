@@ -82,6 +82,15 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='GET CODE']")
     private WebElementFacade getCodeButton;
 
+    @FindBy(id = "w-source")
+    private WebElementFacade sourceField;
+
+    @FindBy(xpath = "//label[@for='w-source']/following-sibling::div//div[@class='custom_select__arrow']")
+    private WebElementFacade sourceLink;
+
+    @FindBy(xpath = "//label[@for='w-countryCode']/following-sibling::div//div[@class='custom_select__arrow']")
+    private WebElementFacade eventCountLink;
+
     @Override
     public void clickResetButton() {
         resetButton.click();
@@ -295,7 +304,7 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     }
 
     public void setValueToCustomDropDown(By dropdownArrow, By dropdownItem){
-        WebElementFacade arrow = getPage().find(dropdownArrow);
+        WebElementFacade arrow = find(dropdownArrow);
         arrow.click();
         WebElementFacade item = getPage().find(dropdownItem);
         item.waitUntilVisible().click();
@@ -351,4 +360,15 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
         return resetButton;
     }
 
+    public WebElementFacade getSource(){
+        return  sourceField;
+    }
+
+    public WebElementFacade getSourceLink(){
+        return sourceLink;
+    }
+
+    public WebElementFacade getCountryCodeLink(){
+        return eventCountLink;
+    }
 }

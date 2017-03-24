@@ -133,7 +133,9 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setAttractionIdValue(attractionId);
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setVenueIdValue(venueId);
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setPromoterIdValue(promoterId);
+        ancestorPage.scrollToElement(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getSourceLink());
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setSourceValue(source);
+        ancestorPage.scrollToElement(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getCountryCodeLink());
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setCountryCodeValue(countryCode);
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setClassificationNameValue(classificationName);
         eventDiscoveryWidgetPage.getEventDiscoveryWidget().setEventCountValue(eventCount);
