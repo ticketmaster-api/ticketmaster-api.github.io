@@ -2287,7 +2287,6 @@ Status 200
                 "value": "2015-12-09T23:30:37Z"
             },
             "barcode_id": "8819624561542398",
-            "barcode_url": "https://api-intqa.ticketmaster.net/tap/endpoint/restv1/barcode/AES-1.0.0-0001-Q6SE4RS7ZJ3KCHQ62LUESAPPRMPPJME4HT6EV4F7LX7GSE5CIVMOGD35EGLNQ536LVDWUGVIIT6TY.png",
             "charges": [
                 {
                     "amount": {
