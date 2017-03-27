@@ -13,6 +13,8 @@ tab: Amazon
 cardsize: 1.2
 places:
   - gallery
+  - header
+  - top
 ---
 
 {% capture left %}
