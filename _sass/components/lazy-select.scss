@@ -296,17 +296,16 @@
         min-height: 102px;
         border-radius: 0px;
 
-        img {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          -webkit-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-          margin: 0;
-          width: auto;
-          height: 100%;
-          object-fit: cover;
+        .img-wrapper {
+          transition: 0.5s;
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+					background-size: cover;
+					background-repeat: no-repeat;
+					background-position: 50% 50%;
         }
       }
       .event-text-wrapper {

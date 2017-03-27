@@ -48,7 +48,7 @@
 
     var keyword = $form.find('#keyword'),
       defaultApiKey = apiKeyService.getApiExploreKey(),
-      apikey = apiKeyService.checkApiKeyCookie('tk-api-key') || $('#w-tm-api-key').val() || defaultApiKey,
+      apikey = function () { return apiKeyService.checkApiKeyCookie('tk-api-key') || apiKeyService.getApiExploreKey() || $('#w-tm-api-key').val() || defaultApiKey },
       selector = options.selector || 'events',
       eventUrl = 'https://app.ticketmaster.com/discovery/v2/' + selector + '.json'
       ;
@@ -291,9 +291,8 @@
      */
     function submitForm(/*optional*/pageNumero) {
       pageNumero = parseInt(pageNumero);
-
-      var url = ( isNaN(pageNumero) ) ? eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() :
-        eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val() + '&page=' + pageNumero;
+      var url = ( isNaN(pageNumero) ) ? eventUrl + '?apikey=' + apikey() + '&keyword=' + keyword.val() :
+        eventUrl + '?apikey=' + apikey() + '&keyword=' + keyword.val() + '&page=' + pageNumero;
 
       //stop load
       if (isNaN(pageNumero) && pageNumero !== 0 && stateConf.loadingFlag === 'STOP_LOAD') {
@@ -349,6 +348,27 @@
       return src;
     }
 
+		/**
+		 *
+		 * @param element - DOM parent element
+		 * @param item - loop index
+		 * @param src - string
+		 */
+		function insertImageTo(element, item ) {
+			var src,
+				leftCol = $('<div class="clear-padding" />').appendTo(element),
+				spanImg = $('<div class="thumbnail" />').appendTo(leftCol);
+
+			if (item.images) {
+				src = getImageForEvent(item.images);
+			} else {
+				src = 'style="background-color: #f7f9fa;width: 120px; border: none;"';
+			}
+
+			var img = $('<div style="background-image:url(' + src + ');" ></div>')
+				.addClass('img-wrapper')
+				.appendTo(spanImg);
+		}
     /**
      * render for events-id-selector
      * @param items - array
@@ -358,22 +378,9 @@
       items.map(function (item) {
         var li = $('<li/>')
           .addClass('list-group-item row')
-          //.insertBefore($liFooter);
           .appendTo($ul);
 
-        var leftCol = $('<div class="clear-padding" />').appendTo(li);
-        var spanImg = $('<span class="thumbnail" />')
-          .appendTo(leftCol);
-
-        if (item.images) {
-          src = "src=" + getImageForEvent(item.images);
-        } else {
-          src = 'style="background-color: #f7f9fa;width: 120px; border: none;"';
-        }
-
-        var img = $('<img ' + src + ' />')
-          .addClass('list-group-item-heading')
-          .appendTo(spanImg);
+				insertImageTo(li, item);
 
         var $wrapCol = $('<div class="event-text-wrapper"/>')
           .appendTo(li);
@@ -452,12 +459,7 @@
           .appendTo($ul);
 
         if (item.images) {
-          var leftCol = $('<div class="clear-padding" />').appendTo(li);
-          var spanImg = $('<span class="thumbnail" />')
-            .appendTo(leftCol);
-          var img = $('<img src=' + getImageForEvent(item.images) + ' />')
-            .addClass('list-group-item-heading')
-            .appendTo(spanImg);
+					insertImageTo(li, item);
         }
 
         var $wrapCol = $('<div class="event-text-wrapper clear-margin-left"/>')
@@ -471,7 +473,6 @@
         }
 
         if (item.dates) {
-          // console.log('item.dates' , item.dates);
           /*add time*/
           var currentEvent = {};
           currentEvent.date = {
@@ -523,12 +524,10 @@
             .appendTo(li)
             .wrap('<div class ="wrapper-btns text-right"/>');
           if (venue.location && venue.location.latitude && venue.location.longitude) {
-            //console.log('venue.location - ' , venue.location);
             var buttonMap = $("<button data-latitude=" + venue.location.latitude + " data-longitude=" + venue.location.longitude + "/>")
               .addClass('js_open-map_btn btn btn-transparent')
               .text('Show on map')
               .insertAfter(buttonSetId)
-              //.appendTo(buttonSetId)
               .wrap('<div class ="wrapper-location_btn pull-right"/>');
           }
           var addToEl = {li: li, buttonSetIdWrapper: buttonSetId.parent()};
@@ -550,12 +549,7 @@
           .appendTo($ul);
 
         if (item.images) {
-          var leftCol = $('<div class="clear-padding" />').appendTo(li);
-          var spanImg = $('<span class="thumbnail" />')
-            .appendTo(leftCol);
-          var img = $('<img src=' + getImageForEvent(item.images) + ' />')
-            .addClass('list-group-item-heading')
-            .appendTo(spanImg);
+					insertImageTo(li, item);
         }
 
         var $wrapCol = $('<div class="event-text-wrapper clear-margin-left"/>')
