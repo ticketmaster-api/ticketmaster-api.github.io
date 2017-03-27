@@ -2785,6 +2785,7 @@ class MonthScheduler {
                     let tableRowMonth = 0;
                     let tail_ = 'tail';
                     let popup_ = 'popup ';
+                    let notFound = true;
 
                     while (d.getMonth() == mon) {
                         table += '<td';
@@ -2834,6 +2835,7 @@ class MonthScheduler {
                                 table += '<span class="place">' + place + '</span>';
                                 table += '</span>';
                                 table += '</span>';
+                                notFound = false;
                             }
 
                             table += '</div>';
@@ -2863,8 +2865,14 @@ class MonthScheduler {
                         }
                     }
                     table += '</tr></table><span class="month-update"></span>';
+
                     elem.innerHTML = table;
                     widget.addScroll();
+
+                    if (notFound === true) {
+                        widget.showMessage("No results were found.<br/>Here other options for you.");
+                        widget.hideMessageWithDelay(widget.hideMessageDelay);
+                    }
 
                 }
                 else {
