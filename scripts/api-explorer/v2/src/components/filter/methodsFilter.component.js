@@ -23,7 +23,7 @@ class MethodsFilter {
 		this.selectedMethod.subscribe(val => {
 			this.selectedMethodName(this.data[ko.unwrap(this.selectedCategory)]['ALL'][val].name)
 		})
-	}
+	};
 
 	/**
 	 * Filters transclusion dom nodes
@@ -86,7 +86,7 @@ class MethodsFilter {
 	};
 }
 
-module.exports = ko.components.register('methods-filter', {
+ko.components.register('methods-filter', {
 	viewModel: MethodsFilter,
 	template:`
 		<section  class="api-exp-main-filter">
@@ -105,3 +105,5 @@ module.exports = ko.components.register('methods-filter', {
 			</section>
 		</section>
 `});
+
+module.exports = MethodsFilter;
