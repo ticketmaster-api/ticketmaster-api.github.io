@@ -352,7 +352,6 @@
 		 *
 		 * @param element - DOM parent element
 		 * @param item - loop index
-		 * @param src - string
 		 */
 		function insertImageTo(element, item ) {
 			var src,
