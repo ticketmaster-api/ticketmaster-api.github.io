@@ -14,6 +14,8 @@ tab: Web
 cardsize: 1.2
 places:
   - gallery
+  - header
+  - top
 ---
 
 {% capture left %}
