@@ -1,8 +1,6 @@
-var self;
 
 class CategoryMenu {
 	constructor({data, selectedCategory}) {
-		self = this;
 		this.selectedCategory = selectedCategory;
 		var initCategory = ko.unwrap(this.selectedCategory);
 		this.categories = ko.observableArray(Object.keys(data).map((item, index) => {
@@ -28,7 +26,7 @@ class CategoryMenu {
 	}
 }
 
-module.exports = ko.components.register('category-menu', {
+ko.components.register('category-menu', {
 	viewModel: CategoryMenu,
 	template:`
 		<aside class="api-exp-side-menu">
@@ -56,3 +54,5 @@ function checkActive(koArr, activeElem) {
 		return obj;
 	}));
 }
+
+module.exports = CategoryMenu;
