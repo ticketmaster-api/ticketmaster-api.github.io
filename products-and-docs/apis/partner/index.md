@@ -69,7 +69,7 @@ The Ticketmaster back-end reservation systems are distributed globally and event
 
 ### Quota Policy
 
-The Partner API has a quota policy.This policy is applied for all the request following the pattern
+The Partner API has a quota policy.This policy is applied for all the request made to these endpoints
 
 /events/ or
 /events/{eventId}
@@ -86,7 +86,7 @@ The following headers are returned in the response add more information about th
 
 In addition to that the just <b>Availability End Point </b>(/event/{eventId}/availability)  has an updated quota policy.The restriction is <b>3600 requests/hour </b> for an apikey.If you get a 429 error code, it means that your request was aborted because of violation of quota policy.
 
-The following headers to the availability response add more information about the rate limit
+The following headers to the availability response add more information about the quota 
 
      Ratelimit-Expiry          :  The expiry time for the rate limit
      Ratelimit-Quota-Allowed   :  The total no of requests allowed
@@ -2287,7 +2287,6 @@ Status 200
                 "value": "2015-12-09T23:30:37Z"
             },
             "barcode_id": "8819624561542398",
-            "barcode_url": "https://api-intqa.ticketmaster.net/tap/endpoint/restv1/barcode/AES-1.0.0-0001-Q6SE4RS7ZJ3KCHQ62LUESAPPRMPPJME4HT6EV4F7LX7GSE5CIVMOGD35EGLNQ536LVDWUGVIIT6TY.png",
             "charges": [
                 {
                     "amount": {
