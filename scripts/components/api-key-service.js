@@ -3,7 +3,7 @@ var apiKeyService = {};
 
 (function () {
   var LIVE_KEYS = {
-    apiExplore: '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0 ', 
+    apiExplore: '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0', 
     widgets: '5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG'
   };
 
