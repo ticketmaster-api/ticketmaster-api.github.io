@@ -22,7 +22,7 @@ AboutMethod.prototype.onAboutClick = function (model) {
 	return model.togglePopUp(!model.togglePopUp());
 };
 
-module.exports = ko.components.register('about-method', {
+ko.components.register('about-method', {
 	viewModel: AboutMethod,
 	template:`
 		<section data-bind="css: {active: togglePopUp}" class="api-exp-about">
@@ -42,3 +42,4 @@ module.exports = ko.components.register('about-method', {
 			</div>
 		</section>
 `});
+module.exports = AboutMethod;

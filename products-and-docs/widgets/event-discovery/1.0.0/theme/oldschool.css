@@ -415,6 +415,7 @@ div[w-theme="oldschool"] .event-question {
     -moz-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
     z-index: 50;
+		cursor: pointer;
 }
 
 div[w-theme="oldschool"] .event-question:before,
@@ -589,6 +590,95 @@ div[w-theme="oldschool"] .event-buy-btn[href='']:hover {
     opacity: 0;
 }
 
+/*tooltip-version*/
+div[w-theme="oldschool"] .tooltip-version {
+	position: absolute;
+	z-index: 1070;
+	display: block;
+	font-family: "TMSans-Light", Arial, serif;
+	font-style: normal;
+	font-weight: normal;
+	letter-spacing: normal;
+	line-break: auto;
+	line-height: 1.42857;
+	text-align: left;
+	text-align: start;
+	text-decoration: none;
+	text-shadow: none;
+	text-transform: none;
+	white-space: normal;
+	word-break: normal;
+	word-spacing: normal;
+	word-wrap: normal;
+	font-size: 12px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+div[w-theme="oldschool"] .tooltip-inner {
+	max-width: 100%;
+	padding: 3px 8px;
+	color: #fff;
+	text-align: center;
+	background-color: #768692;
+	border-radius: 4px;
+}
+
+div[w-theme="oldschool"] .tooltip-inner a {
+	color: #fff;
+	font-size: 11px;
+	font-family: "TMSans-Light", Arial, serif;
+}
+
+div[w-theme="oldschool"] .tooltip-inner a:hover {
+	text-decoration: underline;
+}
+
+div[w-theme="oldschool"] .tooltip-inner .place{
+	font-family: "TMSans-Light", Arial, serif;
+	font-size: 11px;
+	line-height: 14px;
+	color: #fff;
+	opacity: 0.7;
+	display: block;
+}
+
+div[w-theme="oldschool"] .tooltip-inner .place b {
+	font-weight: 700;
+	color: #fff;
+}
+
+div[w-theme="oldschool"] .tooltip-version.left {
+	margin-left: -3px;
+	padding: 0 5px;
+	right: 28px;
+	top: 6px;
+	display: none;
+}
+
+div[w-theme="oldschool"] .tooltip-inner::before {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+}
+
+div[w-theme="oldschool"] .tooltip-version.left .tooltip-inner::before {
+	top: 30%;
+	right: 0;
+	margin-top: -5px;
+	content: "";
+	border-width: 5px 0 5px 5px;
+	border-left-color: #768692;
+}
+
+div[w-theme="oldschool"] .tooltip-version.left.show-tip {
+	opacity: 1;
+	filter: alpha(opacity=1);
+	display: block;
+}
+/*tooltip-version END*/
 
 /*div[w-theme="oldschool"][w-colorscheme="dark"] */
 
@@ -717,6 +807,25 @@ div[w-theme="oldschool"][w-layout="horizontal"] .events-root-container:before {
     width: 36px;
     right: auto;
 }
+/*layout="fullwidth"*/
+div[w-theme="oldschool"][w-layout="fullwidth"] .event-name {
+		font-size: 48px;
+		line-height: 48px;
+		max-height: 96px;
+}
+div[w-theme="oldschool"][w-layout="fullwidth"] .event-address {
+	display: inline-block;
+	margin-right: 10px;
+}
+div[w-theme="oldschool"][w-layout="fullwidth"] .address-wrapper{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+div[w-theme="oldschool"][w-layout="fullwidth"] .widget-container--discovery {
+	border-bottom: 0;
+}
+/*w-layout END*/
 
 /* 300x600 [Start] */
 div[w-theme="oldschool"][w-proportion="xxl"] .events-root {
@@ -850,7 +959,8 @@ div[w-theme="oldschool"][w-proportion="m"] .legal-notice {
     font-size: 11px;
 }
 
-div[w-theme="oldschool"][w-proportion="m"] .events-counter {
+div[w-theme="oldschool"][w-proportion="m"] .events-counter,
+div[w-theme="oldschool"][w-layout="fullwidth"] .events-counter {
     position: absolute;
     bottom: 1px;
     right: 11px;

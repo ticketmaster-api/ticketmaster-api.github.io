@@ -23,17 +23,17 @@
 			top: 0;
 			bottom: 0;
 			right: 0;
-			background: url("/assets/controls/ic-input-controls.svg") no-repeat;
+			background: url("/assets/controls/icons-sprite.svg") no-repeat;
 			@include transition(opacity 0.2s ease-in-out);
 		}
 
 		&:before {
-			background-position: -28px 0;
+			background-position: -(28*7)+2px -28px;
 			opacity: 0;
 		}
 
 		&:after {
-			background-position: 1px 0;
+			background-position: -(28*7)+2px 0;
 		}
 
 		&:hover {
@@ -42,6 +42,20 @@
 			}
 			&:after {
 				opacity: 0;
+			}
+		}
+
+		&.icon-name {
+			&:before,
+			&:after {
+				background: url("/assets/controls/icons-sprite.svg") no-repeat;
+			}
+			&:before {
+				background-position: -(28*6)+2px -28px
+			}
+
+			&:after {
+				background-position: -(28*6)+2px 0;
 			}
 		}
 	}
@@ -282,18 +296,15 @@
         min-height: 102px;
         border-radius: 0px;
 
-        img {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          -webkit-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-          margin: 0;
-          width: auto;
-          height: 100%;
-          object-fit: cover;
-        }
+        .img-wrapper {
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+					background-size: cover;
+					background: no-repeat 50% 50%;
+				}
       }
       .event-text-wrapper {
         margin-right: 110px;

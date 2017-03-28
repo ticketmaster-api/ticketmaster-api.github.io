@@ -8,6 +8,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import static net.serenitybdd.core.Serenity.getCurrentSession;
+
 public class PD_GettingStartedDefinition {
 
     private String apiKey = "{apikey}";
@@ -37,7 +39,7 @@ public class PD_GettingStartedDefinition {
     @When("User is logged to site (Getting Started)")
     public void openLogInPageAndLogIn() {
         gettingStartedPage.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
         apiKey = userAccountSteps.getAPIKeyOfUser();
         gettingStartedPage.openPage();
     }

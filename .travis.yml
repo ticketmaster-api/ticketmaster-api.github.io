@@ -55,5 +55,8 @@ before_install:
   - gem install html-proofer
   - gem install github-pages
   - npm install -g galenframework-cli
-  - /usr/bin/Xvfb :99 -ac -screen 0 1600x900x16 -extension RANDR &
+  - /usr/bin/Xvfb :99 -ac -screen 0 1600x1366x16 -extension RANDR &
+  
+addons:
+  - firefox: "51.0"
 

@@ -36,11 +36,12 @@ layout: documentation-single
                       w-size="25"
                       w-border="1"
                       w-borderradius="4"
-                      w-postalcode="90015"
-											w-latlong="34.0390107,-118.2672801"
+                      w-postalcode=""
                       w-radius="25"
-                      w-country="US"
-                      w-latlong="34.0390107,-118.2672801"
+                      w-country=""
+											w-countryCode="US"
+											w-city="Los Angeles"
+                      w-latlong=""
                       w-period="week"
                       w-period-week="week"
                       w-layout="vertical"
@@ -124,11 +125,49 @@ layout: documentation-single
 </div>
 <!-- Modal has no code end-->
 
-{% include disqus.html %}
+
+<!-- Modal Map -->
+<div id="js_widget_modal_map" class="modal modal-common fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+				<div class="row">
+					<h3 class="modal-title col-lg-12">Select Location</h3>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="map-holder">
+							<input id="pac_input" class="controls" type="text" placeholder="Enter a location">
+							<div id="map_latlong"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div id="map_address">
+					<div id="map_address_country"></div>
+					<div id="map_address_street"></div>
+				</div>
+				<button id="js_widget_modal_map__close" type="button" class="btn btn-submit text-center">SELECT</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal Map end-->
+
+{% include disqus.html add_disqusDIV='true'%}
 
 
-<script type="text/javascript" src="{{"/scripts/vendors/datetimepicker.js" | prepend: site.baseurl }}"></script>
-<script type="text/javascript" src="{{"/scripts/components/api-key-service.js?v=1" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{'/scripts/vendors/datetimepicker.js' | prepend: site.baseurl }}"></script>
+{%if site.local_test_apikeys == 'true' %}
+	<script src="{{'/scripts/components/api-key-service-testKeys.js' | prepend: site.baseurl }}"></script>
+{%else%}
+	<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 <script type="text/javascript">
     // Get default widget API_KEY
     var defaultApiKey = apiKeyService.getApiWidgetsKey();
@@ -136,9 +175,9 @@ layout: documentation-single
     $('[w-type=calendar]').attr('w-tmapikey', defaultApiKey);
     $('#w-tm-api-key').val(defaultApiKey);
 </script>
-<script src="{{"/products-and-docs/widgets/calendar/1.0.0/lib/main-widget.js?v=1" | prepend: site.baseurl }}"></script>
+<script src="{{'/products-and-docs/widgets/calendar/1.0.0/lib/main-widget.js?v=1' | prepend: site.baseurl }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
-<script src="{{"/products-and-docs/widgets/calendar/1.0.0/lib/main-widget-config.js?v=1" | prepend: site.baseurl }}"></script>
+<script src="{{'/products-and-docs/widgets/calendar/1.0.0/lib/main-widget-config.js?v=1' | prepend: site.baseurl }}"></script>
 
 <!--add copy button to modal-->
 <script src="{{'/scripts/vendors/clipboard.js' | prepend: site.baseurl }}"></script>

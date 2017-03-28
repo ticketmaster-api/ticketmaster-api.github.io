@@ -1,0 +1,49 @@
+@media screen and (max-width: 797px) {
+	.startups-and-developers {
+		.products-and-application {
+			&-wrapper {
+				margin: 0 -15px;
+				.grid {
+					max-width: 465px;
+					max-height: 480px;
+					&-item {
+						$padding: 10px;
+						$width: 135px + $padding * 2;
+						$height: 100px + $padding * 2;
+						@include size($width, $height);
+						border: $padding solid transparent;
+						position: relative;
+						&[data-size^="2"] {
+							width: $width;
+						}
+						&[data-size$="2"] {
+							height: $height;
+						}
+					}
+				}
+				.show-more {
+					margin: 6px 0 0;
+				}
+			}
+
+			.front-title {
+				max-height: 70px;
+			}
+		}
+		.tm-api-docs {
+			header {
+				margin: 0 40px;
+			}
+			&-main {
+				margin: 0 40px;
+				padding: 0;
+				.content {
+					margin: 24px auto;
+				}
+				.get-tm-api-docs {
+					margin: 0 -40px;
+				}
+			}
+		}
+	}
+}

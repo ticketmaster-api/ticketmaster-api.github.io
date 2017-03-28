@@ -34,104 +34,65 @@
                 </div>
             </div>
 
-            <div class="row row-native">
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-postalcode">ZIP Code</label>
-                    <input type="text" id="w-postalcode" name="w-postalcode" value="90015">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-radius">
-                        Radius <span class="config_field__description">(miles)</span>
-                    </label>
-                    <!-- <input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25"> -->
+						<div class="row row-native">
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="loclatlong">
+									<div class="widget__location">
+										<p>You can input locaton data or <span>use Geoposition</span></p>
+										<div class="row row-native">
+											<div class="col-lg-12 col-md-12 col-sm-12">
+												<label for="w-countryCode">Country Code</label>
+												<div class="js_custom_select custom_select">
+													{% assign countryCodesData = site.data.orgs['discovery-api']['v2'].countryCode %}
+													<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="0">
+														{% for country in countryCodesData.CountryCode %}
+														<option value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: '(','' | replace: ')','' | strip }}</option>
+														{% endfor %}
+													</select>
+													<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
+													<input class="custom_select__placeholder" type="text" value="{{countryCodesData.CountryCode[0] | slice: 2, 99 | replace: '(','' | replace: ')','' | strip}}" readonly="">
+													<ul class="custom_select__list js_widget_custom__list mh-300">
+														{% for country in countryCodesData.CountryCode %}
+														<li class="custom_select__item" data-value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: "(","" | replace: ")","" | strip }}</li>
+														{% endfor %}
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="row row-native">
+											<div class="col-lg-5 col-md-5 col-sm-5">
+												<label for="w-postalcodeapi">Postal Code</label>
+												<input type="text" id="w-postalcodeapi" name="w-postalcodeapi" value="">
+												<input type="hidden" id="h-postalcodeapi" name="h-postalcodeapi" value="">
+											</div>
+											<div class="col-lg-7 col-md-7 col-sm-7">
+												<label for="w-city">City <span class="config_field__description">(Required)</span></label>
+												<input type="text" id="w-city" name="w-city" value="Los Angeles">
+												<input type="hidden" id="h-city" name="h-city" value="">
+											</div>
+										</div>
+									</div>
+									<div class="widget__latlong hidn">
+										<p>You can use Geoposition or <span>input Location data</span></p>
+										<div class="row row-native">
+											<div class="col-lg-8 col-md-8 col-sm-8 latlong-holder">
+												<label for="w-latlong">Geoposition <span class="config_field__description">(Latitude, Longitude)</span></label>
+												<input type="text" id="w-latlong" name="w-latlong" value="">
+												<a href="#" id="js_widget_modal_map__open" class="latlong-picker"></a>
+												<input type="hidden" id="h-latlong" name="h-latlong" value="34.0390107, -118.2672801">
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4">
+												<label for="w-radius">
+													Radius <span class="config_field__description">(miles)</span>
+												</label>
+												<input class="js_widget__number js_numeric_input text-center" type="number" id="w-radius" name="w-radius" value="25" min="1" max="19999">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                    <div class="js_custom_select custom_select">
-                        <select id="w-radius" class="custom_select__field" name="w-radius" tabindex="-1">
-                            <option selected value="25">25</option>
-                            <option value="15">15</option>
-                            <option value="5">5</option>
-                        </select>
-                        <input class="custom_select__placeholder" type="text" value="25" readonly="">
-                        <ul class="custom_select__list js_widget_custom__list">
-                            <li class="custom_select__item" data-value="25">25</li>
-                            <li class="custom_select__item" data-value="15">15</li>
-                            <li class="custom_select__item" data-value="5">5</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row row-native">
-                <div class="col-lg-12 col-md-12 col-sm-6">
-                    <label for="w-country">Country</label>
-                </div>
-                <div class="col-xs-12 country-select">
-                    <div class="js_custom_select custom_select">
-                        <select id="w-country" class="custom_select__field" name="w-country" disabled>
-                            <option selected value="US">United States</option>
-                        </select>
-                        <input class="custom_select__placeholder" type="text" value="United States" readonly="">
-                        <ul class="custom_select__list js_widget_custom__list">
-                            <li class="custom_select__item" data-value="US">United States</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!--<div class="row row-native">-->
-            <!--<div class="col-lg-12">-->
-            <!--<label for="w-googleapikey">Google API Key</label>-->
-            <!--<input type="text" id="w-googleapikey" name="w-googleapikey" value="">-->
-            <!--</div>-->
-            <!--</div>-->
-
-            <!--
-            <div class="row row-native">
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-attractionid">Attraction ID</label>
-                    <input type="text" id="w-attractionid" name="w-attractionid" value="">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-promoterid">Promoter ID</label>
-                    <input type="text" id="w-promoterid" name="w-promoterid" value="">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-venueid">Venue ID</label>
-                    <input type="text" id="w-venueid" name="w-venueid" value="">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-city">City</label>
-                    <input type="text" id="w-city" name="w-city" value="">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-countryCode">Country Code</label>
-                    <input type="text" id="w-countryCode" name="w-countryCode" value="">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-3">
-                    <label for="w-source">Source</label>
-                    <input type="text" id="w-source" name="w-source" value="">
-                </div>
-                <div class="col-lg-12 col-md-6 col-sm-3">
-                    <label for="w-classificationname">Classification Name</label>
-                    <input type="text" id="w-classificationname" name="w-classificationname" value="">
-                </div>
-            </div>
-
-            <div class="row row-native">
-                <div class="col-lg-12 col-md-6 col-sm-6">
-                    <label for="w-affiliateid">Affiliate ID</label>
-                    <input type="text" id="w-affiliateid" name="w-affiliateid" value="">
-                </div>
-                <div class="col-lg-12 col-md-6 col-sm-6">
-                    <label for="w-size">
-                        Event Count <span class="config_field__description">(1-100)</span>
-                    </label>
-                </div>
-                <div class="col-lg-3 col-md-2 col-sm-2 widget__various-width">
-                    <input class="js_widget__number js_numeric_input text-center double-margin-bottom" type="number" id="w-size" name="w-size" value="25" max="100" min="1" required>
-                </div>
-            </div>
-            -->
         </div>
 
         <div class="tab-pane fade" id="widget-config-styling">

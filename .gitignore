@@ -19,3 +19,6 @@ Gemfile.lock
 # Ignore Local automation files
 /tests/serenity/.idea
 /tests/serenity/*.iml
+
+# Ingnore unit tests coverage report
+coverage

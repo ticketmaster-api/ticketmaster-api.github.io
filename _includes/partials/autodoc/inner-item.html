@@ -1,4 +1,7 @@
-{% comment %}<!-- <p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p> -->{% endcomment %}
+{% comment %}<!--
+<p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p>
+-->{% endcomment %}
+
 <ul>
     {%if _HAL.links.size > 0 %}
 
@@ -36,11 +39,9 @@
     {% endif %}
 
 
-
-
-
     {% assign schemaResInner = outer | replace: '#/',''  | replace:'/',' ' %}
     {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+
     {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
     {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
 

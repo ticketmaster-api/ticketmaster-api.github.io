@@ -1,8 +1,5 @@
-var self;
-
 class ObjectPanelBody {
 	constructor({data = {}, config, index = this.cardIndex, panelGroup = {}, page, collapseId, subjectID}) {
-		self = this;
 		this.data = this.data || ko.observable(data.value);
 		this.config = config;
 		this._panelName = data.key;
@@ -16,19 +13,23 @@ class ObjectPanelBody {
 		this.subjectID = subjectID;
 		this.sendId(this.data);
 	}
+	
 	sendId(data) {
 		let id = ko.unwrap(data).id;
 		if(id) {
 			this.subjectID(id)
 		}
 	}
-	onEnterKeyDown = (model, event) => {
+	
+	changePage = (model, event) => {
 		if (event.keyCode === 13) {
-			let page = this.page;
-			var value = +event.currentTarget.value;
+			let page = this.page,
+				totalPages = ko.unwrap(this.data).totalPages,
+				value = +event.currentTarget.value;
+			
 			value = Number.isNaN(value) ? 0 : value;
-			var pageNumber = ~~value < 0 ? 0 : ~~value;
-			page.pageParam(pageNumber < ko.unwrap(this.data).totalPages ? pageNumber : ko.unwrap(this.data).totalPages - 1);
+			let pageNumber = ~~value < 0 ? 0 : ~~value;
+			page.pageParam(pageNumber < totalPages ? pageNumber : totalPages - 1);
 			page.setParams({
 				category: page.category,
 				method: page.method,
@@ -41,8 +42,8 @@ class ObjectPanelBody {
 		}
 	};
 
-	canBeCopied() {
-		return !!Object.getProp(self.config, '._CONFIG.copyBtn.' + this.key) && typeof this.value !== 'object';
+	canBeCopied(data) {
+		return !!Object.getProp(this.config, '._CONFIG.copyBtn.' + data.key) && typeof data.value !== 'object';
 	}
 
 	setActive(key, value, model, e){
@@ -80,11 +81,11 @@ module.exports = ko.components.register('object-panel-body', {
 					
 					<!-- ko if: $component._panelName === 'page' && key === 'number'-->
 						<div class="form-inline">
-							<input id="pagination-input" data-bind="event: {keydown: $component.onEnterKeyDown.bind($component)}, attr: {placeholder: value}" type="text" pattern="[0-9]+" class="form-control">
+							<input id="pagination-input" data-bind="event: {keydown: $component.changePage}, attr: {placeholder: value}" type="text" pattern="[0-9]+" class="form-control">
 						</div>
 					<!-- /ko -->
 					
-					<!-- ko if: $component.canBeCopied.call($data, '#prop-value-' + key + $index()) -->
+					<!-- ko if: $component.canBeCopied.call($component, $data) -->
 						<!-- copy property btn -->
 						<button data-bind="copyToClipboard: {text: value.toString()}, attr: {id: 'prop-value-' + key + $index()}, popover: {type: 'tooltip', title: 'Copy value'}" type="button" class="btn btn-icon btn-copy"></button>
 					<!-- /ko -->

@@ -59,6 +59,10 @@
     @media (max-width: 767px){
       display: none !important; // reset inline style
     }
+		&.mh-300{
+			max-height: 300px;
+			overflow-y: auto;
+		}
   }
 
   &__item {

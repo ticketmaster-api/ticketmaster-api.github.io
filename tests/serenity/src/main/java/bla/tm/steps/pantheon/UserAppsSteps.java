@@ -3,6 +3,7 @@ package bla.tm.steps.pantheon;
 import bla.tm.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -26,7 +27,7 @@ public class UserAppsSteps {
     }
 
     @Step
-    public void navigateToMyAppsPage() {
+    public void openMyAppsPage() {
         addNewAppPage.clickOnApp();
     }
 
@@ -56,8 +57,8 @@ public class UserAppsSteps {
     }
 
     @Step
-    public void checkIfTheAppIsPresent(String appName) {
-        assertEquals(addNewAppPage.getAppName().getText(), appName);
+    public void checkIfTheAppIsPresent() {
+        assertTrue(addNewAppPage.getAppName().isDisplayed());
     }
 
     @Step

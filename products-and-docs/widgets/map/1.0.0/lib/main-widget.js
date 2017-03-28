@@ -1,4 +1,78 @@
+var widgetsLib =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
+
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -87,6 +161,11 @@ var TicketmasterMapWidget = function () {
         key: "questionUrl",
         get: function get() {
             return "http://developer.ticketmaster.com/support/faq/";
+        }
+    }, {
+        key: "widgetVersion",
+        get: function get() {
+            return "" + "1.0.98";
         }
     }, {
         key: "geocodeUrl",
@@ -218,7 +297,7 @@ var TicketmasterMapWidget = function () {
             this.config = this.widgetRoot.attributes;
 
             this.eventsRoot = document.createElement("div");
-            this.eventsRoot.id = "map";
+            this.eventsRoot.classList.add("map");
             // this.eventsRoot.style.height = parseInt(parseInt(this.widgetHeight) + 25) + "px";
             this.eventsRoot.style.height = this.widgetHeight + "px";
             this.eventsRoot.style.width = this.config.width + "px";
@@ -447,11 +526,24 @@ var TicketmasterMapWidget = function () {
             logoBox.appendChild(logo);
             this.eventsRootContainer.appendChild(logoBox);
 
-            var question = document.createElement('a');
+            var question = document.createElement('span');
             question.classList.add("event-question");
             question.target = '_blank';
             question.href = this.questionUrl;
+            question.addEventListener('click', toolTipHandler);
             this.eventsRootContainer.appendChild(question);
+
+            var toolTip = document.createElement('div'),
+                tooltipHtml = "\n              <div class=\"tooltip-inner\"> \n                <a href=\"" + this.questionUrl + "\" target = \"_blank\" >About widget</a>\n                <div class=\"place\">version: <b>" + this.widgetVersion + "</b></div>\n              </div>";
+            toolTip.classList.add("tooltip-version");
+            toolTip.classList.add("left");
+            toolTip.innerHTML = tooltipHtml;
+            this.eventsRootContainer.appendChild(toolTip);
+
+            function toolTipHandler(e) {
+                e.preventDefault();
+                e.target.nextSibling.classList.toggle('show-tip');
+            }
         }
     }, {
         key: "formatDate",
@@ -691,7 +783,7 @@ var TicketmasterMapWidget = function () {
 
                         var myLatLng = { lat: 34.0390107, lng: -118.2672801 };
 
-                        var map = new google.maps.Map(document.getElementById('map'), {
+                        var map = new google.maps.Map(widget.widgetRoot.firstChild.firstChild, {
                             zoom: 4,
                             center: myLatLng,
                             mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -1107,4 +1199,11 @@ var widgetsMap = [];
 
 ga('create', 'UA-78315612-1', 'auto');
 ga('send', 'pageview');
+
+if (true) {
+    module.exports = { widgetsMap: widgetsMap };
+}
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=main-widget.js.map

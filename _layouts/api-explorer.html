@@ -11,23 +11,15 @@
   </div>
 </div>
 
+{%if site.local_test_apikeys == 'true' %}
+<script src="{{'/scripts/components/api-key-service-testKeys.js' | prepend: site.baseurl }}"></script>
+{%else%}
 <script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
 
-<script>
-  var disqus_config = function () {
-    this.page.url = document.URL || "http://developer.ticketmaster.com/";
-    this.page.identifier = "{{page.title}}";
-  };
-  (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
+{% include disqus.html %}
 
-    s.src = '//ticketmasterapi.disqus.com/embed.js';
-
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
 {% include home-footer.html %}
 <div id="back-top">
   <a href="javascript:void(0)"><span></span></a>
@@ -39,7 +31,6 @@
 <script src="{{'/scripts/components/intro.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/slick.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/vendors/datetimepicker.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/api-explorer-datetimepicker.js' | prepend: site.baseurl }}"></script>
   {% include lazy-selector-modal.html %}

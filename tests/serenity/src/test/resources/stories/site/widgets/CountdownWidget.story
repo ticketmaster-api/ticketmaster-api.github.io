@@ -6,7 +6,11 @@ As a developer
 I want to use the widget configurator to customize the layout of the widget,
 and have ability to grab a small code snippet to insert into 3-rd party websites
 
-Scenario: (/products-and-docs/widgets/countdown/) TECHNICAL TAB - Check that required fields are not empty
+Scenario: (/products-and-docs/widgets/countdown/) [3.3.1 Countdown widget layout]
+Given open Countdown Widget page
+Then check general page elements for page, where DISQUS = true and LeftMenu = true
+
+Scenario: (/products-and-docs/widgets/countdown/) [3.3.2 Countdown widget : Common functionality is not broken]
 Given open Countdown Widget page
 Then the required fields are not empty on the Countdown Widget page
 
@@ -45,10 +49,9 @@ And embedded html code contains stored ApiKey and EventId
 
 Scenario: (/products-and-docs/widgets/countdown/) TECHNICAL TAB - Get new EventId
 Given open Countdown Widget page
-When User is logged to site (Countdown Widget)
-And get eventId by keyword ADELE
+When get eventId by keyword ZZ TOP
 And set first eventId from list
-Then the event poster contains ADELE
+Then the event poster contains ZZ TOP
 
 Scenario: (/products-and-docs/widgets/countdown/) TECHNICAL TAB - Check links
 Given open Countdown Widget page
@@ -63,10 +66,9 @@ When click on "Get code" button
 Then the pop-up Embedded Code is opened
 And embedded html code contains stored theme
 
-Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Layout Resolutions
+Scenario: (/products-and-docs/widgets/countdown/) [3.3.4 Countdown widget : Full-width]
 Given open Countdown Widget page
 And switch to VISUAL Tab
-And set theme to poster
 And set layout resolution to <layoutResolution>
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
@@ -75,12 +77,12 @@ Examples:
 |layoutResolution|
 |300x600         |
 |300x250         |
+|fullwidth       |
 |custom          |
 
 Scenario: (/products-and-docs/widgets/countdown/) VISUAL TAB - Check Layout Orientations
 Given open Countdown Widget page
 And switch to VISUAL Tab
-And set theme to poster
 And set layout orientation to <orientation>
 When click on "Get code" button
 Then the pop-up Embedded Code is opened
@@ -98,6 +100,6 @@ Then the event message is shown "No results were found"
 
 Scenario: (/products-and-docs/widgets/countdown/) Event message - Check event message for invalid Event ID
 Given open Countdown Widget page
-And enter custom EventId "invalidEventId123"
+And enter custom EventId invalidEventId123
 When submit form
 Then the event message is shown "No results were found"

@@ -10,6 +10,8 @@ import org.jbehave.core.annotations.When;
 
 import java.util.List;
 
+import static net.serenitybdd.core.Serenity.getCurrentSession;
+
 public class CalendarWidgetDefinition {
 
     private String apiKey = "{apikey}";
@@ -53,7 +55,7 @@ public class CalendarWidgetDefinition {
     @When("User is logged to site (Calendar Widget)")
     public void openLogInPageAndLogIn() {
         calendarWidgetSteps.clickLogIn();
-        userLogInPage.logInToAccount();
+        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
         apiKey = userAccountSteps.getAPIKeyOfUser();
         calendarWidgetSteps.openPage();
     }
@@ -71,7 +73,7 @@ public class CalendarWidgetDefinition {
         }
     }
 
-    @Then("the Country field contains appropriate value $countryName")
+    @Then("the Country field contains appropriate value $companyName")
     public void checkThatCountryFieldContainsAppropriateValue(String countryName) {
         calendarWidgetSteps.fieldCountryContains(countryName);
     }
@@ -86,7 +88,7 @@ public class CalendarWidgetDefinition {
     @Then("the required fields are not empty on the Calendar Widget page")
     public void checkThatRequiredFieldsAreNotEmptyOnTheCalendarWidgetPage() {
         calendarWidgetSteps.apiKeyFieldIsNotEmpty();
-        calendarWidgetSteps.zipCodeIsNotEmpty();
+        calendarWidgetSteps.zipCodeIsEmpty();
     }
 
     @Then("check that API key is provided for all placeholders on Calendar Widget page")

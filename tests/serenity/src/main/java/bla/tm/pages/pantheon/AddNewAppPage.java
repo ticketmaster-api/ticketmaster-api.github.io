@@ -5,7 +5,6 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -51,16 +50,17 @@ public class AddNewAppPage extends AncestorPage {
     }
 
     public WebElementFacade getAppNameWebElement(String name) {
-        WebElementFacade appNameWebElement = find(By.xpath(String.format("//label[text()='" + name + " ']/../input")));
+        WebElementFacade appNameWebElement = find(By.xpath(String.format("//label[text()='%s ']/../input", name)));
         return appNameWebElement;
     }
 
-    public WebElement getSaveButton() {
-        return saveButton.getWrappedElement();
+    public WebElementFacade getSaveButton() {
+        return saveButton;
+  
     }
 
     public WebElementFacade getAppNameInDetailsTab(String val) {
-        WebElementFacade appName = find(By.xpath(String.format("//div[@class='table-responsive']/table/tbody/tr/td/strong[text()='"+val+"']/../../td[2]")));
+        WebElementFacade appName = find(By.xpath(String.format("//div[@class='table-responsive']/table/tbody/tr/td/strong[text()='%s']/../../td[2]", val)));
         return appName;
     }
 
@@ -93,4 +93,5 @@ public class AddNewAppPage extends AncestorPage {
     public WebElementFacade getNoApplicationText() {
         return noAppsMessage;
     }
+
 }

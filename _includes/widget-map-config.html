@@ -71,23 +71,18 @@
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<label for="w-countryCode">Country Code</label>
 									<div class="js_custom_select custom_select">
-										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="-1">
-											<option value="US">United States</option>
-											<option value="AU">Australia</option>
-											<option value="CA">Canada</option>
-											<option value="GB ">Great Britain</option>
-											<option value="IE">Ireland</option>
-											<option value="NZ">New Zealand</option>
+										{% assign countryCodesData = site.data.orgs['discovery-api']['v2'].countryCode %}
+										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="0">
+											{% for country in countryCodesData.CountryCode %}
+											<option value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: '(','' | replace: ')','' | strip }}</option>
+											{% endfor %}
 										</select>
 										<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
-										<input class="custom_select__placeholder" type="text" value="United States" readonly="">
-										<ul class="custom_select__list js_widget_custom__list">
-											<li class="custom_select__item" data-value="US">United States</li>
-											<li class="custom_select__item" data-value="AU">Australia</li>
-											<li class="custom_select__item" data-value="CA">Canada</li>
-											<li class="custom_select__item" data-value="GB">Great Britain</li>
-											<li class="custom_select__item" data-value="IE">Ireland</li>
-											<li class="custom_select__item" data-value="NZ">New Zealand</li>
+										<input class="custom_select__placeholder" type="text" value="{{countryCodesData.CountryCode[0] | slice: 2, 99 | replace: '(','' | replace: ')','' | strip}}" readonly="">
+										<ul class="custom_select__list js_widget_custom__list mh-300">
+											{% for country in countryCodesData.CountryCode %}
+											<li class="custom_select__item" data-value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: "(","" | replace: ")","" | strip }}</li>
+											{% endfor %}
 										</ul>
 									</div>
 								</div>
@@ -135,16 +130,16 @@
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<label for="w-source">Source</label>
 					<div class="js_custom_select custom_select">
-						<select id="w-source" class="custom_select__field" name="w-source" tabindex="-1">
-							<option value="" label=" "></option>
+						<select id="w-source" class="custom_select__field" name="w-source" tabindex="0">
+							<option value="" label="none">none</option>
 							<option value="ticketmaster">ticketmaster</option>
 							<option value="tmr">ticketmaster resale platform</option>
 							<option value="universe">universe</option>
 							<option value="frontgate">frontgate</option>
 						</select>
-						<input class="custom_select__placeholder" type="text" value="" readonly="">
+						<input class="custom_select__placeholder" type="text" value="none" readonly="">
 						<ul class="custom_select__list js_widget_custom__list">
-							<li class="custom_select__item" data-value="" ></li>
+							<li class="custom_select__item" data-value="" >none</li>
 							<li class="custom_select__item" data-value="ticketmaster">ticketmaster</li>
 							<li class="custom_select__item" data-value="tmr">tmr (ticketmaster resale platform)</li>
 							<li class="custom_select__item" data-value="universe">universe</li>

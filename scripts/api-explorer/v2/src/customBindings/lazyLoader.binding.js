@@ -36,7 +36,6 @@ ko.bindingHandlers.lazyLoader = {
 			});
 
 			selector.on('onchange', function() {
-				debugger;
 				params.val($(this).val())
 			})
 		}

@@ -1,8 +1,11 @@
 package bla.tm.postconditions;
+
 import net.thucydides.core.model.TestOutcome;
+import net.thucydides.core.steps.BaseStepListener;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.yaml.snakeyaml.util.UriEncoder;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -12,12 +15,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static net.thucydides.core.steps.StepEventBus.getEventBus;
+
 public class JiraIntegrator {
+
     public String getTestCaseName(){
         //Get test-case name from current scenario title
-        net.thucydides.core.steps.BaseStepListener g = net.thucydides.core.steps.StepEventBus.getEventBus().getBaseStepListener();
+        BaseStepListener g = getEventBus().getBaseStepListener();
         List<TestOutcome> o = g.getTestOutcomes();
-        String scenarioTitle = o.get(0).getTitle();
+        String scenarioTitle = o.get(0).getName();
 
         //Extract test-case name from automation scenario (convention)
         Pattern pattern = Pattern.compile("\\[([^\\]]+)]");
@@ -25,7 +31,7 @@ public class JiraIntegrator {
         if(matcher.find()) {
             String testCaseName = matcher.group(1);
             return testCaseName;
-        }else {
+        } else {
             return null;
         }
     }

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import static bla.tm.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
 
-public class CountdownWidgetImpl extends AnsestorWidgetImpl implements CountdownWidget{
+public class CountdownWidgetImpl extends AncestorWidgetImpl implements CountdownWidget{
     //Constants
     private final String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
     private final String HTML_CODE_ATTRIBUTE_EVENTID = "id";
@@ -30,7 +30,7 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = ".//div[@class='tab-buttons']/label[@for='w-theme-simple']")
     private WebElementFacade posterTab;
 
-    @FindBy(xpath = ".//div[@class='tab-buttons']/label[@for='w-theme-fullwidth']")
+    @FindBy(xpath = "//label[@for='w-layout-fullwidth']")
     private WebElementFacade fullWidthTab;
 
     @FindBy(xpath = ".//div[@class='row']/div/label[@for='w-fixed-300x600']")
@@ -50,7 +50,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
 
     @FindBy(xpath = "//div[contains(@class,'visible-lg')]//button[text()='GET CODE']")
     private WebElementFacade getCodeButton;
-
 
     @FindBy(xpath = "//span[contains(@class,'event-name')]")
     private WebElementFacade posterWindow;
@@ -73,6 +72,8 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     @FindBy(xpath = "//div[contains(@class,'event-message-visible')]/div[@class='event-message__content']")
     private WebElementFacade eventMessage;
 
+    @FindBy(xpath = "//label[@for='w-layout-fullwidth']")
+    private WebElementFacade layoutFullwidthTab;
 
     //Constructors
     public CountdownWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
@@ -88,7 +89,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     //Countdown Widget Interface Implementation
     @Override
     public void clickOnGetButton() {
-        scrollToElement(getCodeButton);
         getCodeButton.click();
     }
 
@@ -116,7 +116,6 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
 
     @Override
     public void clickOnGetEventId() {
-        scrollToElement(getEventIdLink);
         getEventIdLink.click();
     }
 
@@ -144,12 +143,10 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     public void switchToTab(String tab) {
         switch (tab){
             case "visual": {
-                scrollToElement(visualTab);
                 visualTab.click();
             }
             break;
             case "technical": {
-                scrollToElement(technicalTab);
                 technicalTab.click();
             }
             break;
@@ -169,6 +166,10 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
 
     @Override
     public void setLayoutResolution(String resolution) {
+        getLayoutResolution(resolution).click();
+    }
+
+    public WebElementFacade getLayoutResolution(String resolution) {
         WebElementFacade resolutionRadioButton;
         switch(resolution){
             case "300x250": {
@@ -183,14 +184,21 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
                 resolutionRadioButton = layoutCustomTab;
             }
             break;
+            case "fullwidth": {
+                resolutionRadioButton = layoutFullwidthTab;
+            }
+            break;
             default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", resolution));
         }
-        scrollToElement(resolutionRadioButton);
-        resolutionRadioButton.click();
+        return resolutionRadioButton;
     }
 
     @Override
     public void setLayoutOrientation(String orientation) {
+        getLayoutOrientation(orientation).click();
+    }
+
+    public WebElementFacade getLayoutOrientation(String orientation) {
         WebElementFacade orientationRadioButton;
         switch (orientation){
             case "horizontal": {
@@ -203,14 +211,13 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
             break;
             default: throw new IllegalArgumentException(String.format("Illegal layout orientation: '%s'", orientation));
         }
-        scrollToElement(orientationRadioButton);
-        orientationRadioButton.click();
+        return orientationRadioButton;
     }
 
     @Override
     public boolean isEventMessageContains(String text) {
-        String eventTExt = eventMessage.getText();
-        return eventTExt.contains(text);
+
+        return eventMessage.getText().contains(text);
     }
 
     @Override
@@ -226,11 +233,11 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
 
     @Override
     public String getEmbeddedTheme() {
-        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_THEME).contains("simple")) {
+        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).contains("custom")) {
             return "poster";
         }
-        else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_THEME).equalsIgnoreCase("fullwidth")) {
-            return "full-width";
+        else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase("fullwidth")) {
+            return "fullwidth";
         } else return null;
     }
 
@@ -244,6 +251,8 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
         } if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase("600") &&
               getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase("300")){
             return "300x600";
+        }   if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase("fullwidth")){
+            return "fullwidth";
         } else return null;
     }
 
@@ -251,4 +260,9 @@ public class CountdownWidgetImpl extends AnsestorWidgetImpl implements Countdown
     public String getEmbeddedOrientation() {
         return getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_ORIENTATION);
     }
+
+    public WebElementFacade getEventId(){
+        return getEventIdLink;
+    }
+
 }

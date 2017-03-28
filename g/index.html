@@ -1,5 +1,9 @@
 <script src="/scripts/vendors/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="/scripts/components/api-key-service.js"></script>
+{%if site.local_test_apikeys == 'true' %}
+<script src="{{'/scripts/components/api-key-service-testKeys.js' | prepend: site.baseurl }}"></script>
+{%else%}
+<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 <script>
   var apiKey = apiKeyService.getApiWidgetsKey();
   var eventId = window.location.href.toString().split("?");

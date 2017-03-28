@@ -205,4 +205,4 @@ If the debug tool may indicates the event cannot be transacted using Universal C
 | One Sheet  | 2016-10-03    | <a href="https://lne.box.com/s/kh1d9gm3h75eqs2gzpd20v78ljv5njhy" target="_blank">PDF</a> |
 | FAQ        | 2016-10-03    | <a href="https://lne.box.com/s/eg6s3qfmdtsz8t7mvrsjr9zufaqxqd9o" target="_blank">PDF</a> |
 
-{% include disqus.html %}
+{% include disqus.html add_disqusDIV='true' %}

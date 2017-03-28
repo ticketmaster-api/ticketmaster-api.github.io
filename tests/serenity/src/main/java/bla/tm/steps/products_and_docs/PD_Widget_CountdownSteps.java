@@ -1,5 +1,6 @@
 package bla.tm.steps.products_and_docs;
 
+import bla.tm.pages.AncestorPage;
 import bla.tm.pages.site.products_and_docs.PD_Widget_CountdownPage;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class PD_Widget_CountdownSteps extends PD_CommonSteps {
 
     PD_Widget_CountdownPage countdownWidgetPage;
+    AncestorPage ancestorPage;
 
     @Step
     public void openPage() {
@@ -72,13 +74,13 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
 
     @Step
     public void clickOnGetButton() {
+        ancestorPage.scrollToElement( countdownWidgetPage.getCountdownWidget().getGetCodeButton());
         countdownWidgetPage.getCountdownWidget().clickOnGetButton();
     }
 
     @Step
     public void checkThatPopupEmbeddedCodeIsOpened() {
         assertTrue(countdownWidgetPage.getCountdownWidget().getEmbeddedHtmlCode().isDisplayed());
-        waitForSomeActionHappened(1000);
     }
 
     @Step
@@ -112,6 +114,7 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
 
     @Step
     public void resetForm() {
+        ancestorPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getResetButton());
         countdownWidgetPage.getCountdownWidget().clickResetButton();
     }
 
@@ -131,6 +134,7 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
 
     @Step
     public void clickOnGetEventId() {
+        ancestorPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getEventId());
         countdownWidgetPage.getCountdownWidget().clickOnGetEventId();
     }
 
@@ -167,13 +171,13 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
     @Step
     public void setFullWidth() {
         countdownWidgetPage.getCountdownWidget().setFullWidthMode();
-        Serenity.getCurrentSession().put("theme", "full-width");
+        Serenity.getCurrentSession().put("w-proportion", "fullwidth");
     }
 
     @Step
     public void checkThatEmbeddedCodeContainsStoredTheme() {
         String embeddedThemeValue = countdownWidgetPage.getCountdownWidget().getEmbeddedTheme();
-        String themeValue = (String) Serenity.getCurrentSession().get("theme");
+        String themeValue = (String) Serenity.getCurrentSession().get("w-proportion");
         assertTrue(String.format("The embedded code theme value is: %s but the theme value which was stored before is: %s ", embeddedThemeValue, themeValue), embeddedThemeValue.equalsIgnoreCase(themeValue));
     }
 
@@ -183,6 +187,7 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
     }
 
     public void setLayoutResolutionTo(String layoutResolution) {
+        ancestorPage.scrollToElement( countdownWidgetPage.getCountdownWidget().getLayoutResolution(layoutResolution));
         countdownWidgetPage.getCountdownWidget().setLayoutResolution(layoutResolution);
         Serenity.getCurrentSession().put("resolution", layoutResolution);
     }
@@ -191,11 +196,12 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
     public void checkThatEmbeddedCodeContainsStoredResolution() {
         String embeddedResolutionValue = countdownWidgetPage.getCountdownWidget().getEmbeddedResolution();
         String resolutionValue = (String) Serenity.getCurrentSession().get("resolution");
-        assertTrue(String.format("The embedded code resolution value is: %s but the resulution value which was stored before is: %s ", embeddedResolutionValue, resolutionValue), embeddedResolutionValue.equalsIgnoreCase(resolutionValue));
+        assertTrue(String.format("The embedded code resolution value is: %s but the resolution value which was stored before is: %s ", embeddedResolutionValue, resolutionValue), embeddedResolutionValue.equalsIgnoreCase(resolutionValue));
     }
 
     @Step
     public void setLayoutOrientation(String layoutOrientation) {
+        ancestorPage.scrollToElement(countdownWidgetPage.getCountdownWidget().getLayoutOrientation(layoutOrientation));
         countdownWidgetPage.getCountdownWidget().setLayoutOrientation(layoutOrientation);
         Serenity.getCurrentSession().put("orientation", layoutOrientation);
     }

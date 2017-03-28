@@ -67,23 +67,18 @@
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<label for="w-countryCode">Country Code</label>
 									<div class="js_custom_select custom_select">
-										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="-1">
-											<option value="US">United States</option>
-											<option value="AU">Australia</option>
-											<option value="CA">Canada</option>
-											<option value="GB ">Great Britain</option>
-											<option value="IE">Ireland</option>
-											<option value="NZ">New Zealand</option>
+										{% assign countryCodesData = site.data.orgs['discovery-api']['v2'].countryCode %}
+										<select id="w-countryCode" class="custom_select__field" name="w-countryCode" tabindex="0">
+											{% for country in countryCodesData.CountryCode %}
+											<option value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: '(','' | replace: ')','' | strip }}</option>
+											{% endfor %}
 										</select>
 										<input type="hidden" id="h-countryCode" name="h-countryCode" value="">
-										<input class="custom_select__placeholder" type="text" value="United States" readonly="">
-										<ul class="custom_select__list js_widget_custom__list">
-											<li class="custom_select__item" data-value="US">United States</li>
-											<li class="custom_select__item" data-value="AU">Australia</li>
-											<li class="custom_select__item" data-value="CA">Canada</li>
-											<li class="custom_select__item" data-value="GB">Great Britain</li>
-											<li class="custom_select__item" data-value="IE">Ireland</li>
-											<li class="custom_select__item" data-value="NZ">New Zealand</li>
+										<input class="custom_select__placeholder" type="text" value="{{countryCodesData.CountryCode[0] | slice: 2, 99 | replace: '(','' | replace: ')','' | strip}}" readonly="">
+										<ul class="custom_select__list js_widget_custom__list mh-300">
+											{% for country in countryCodesData.CountryCode %}
+											<li class="custom_select__item" data-value="{{country | truncatewords: 1,''}}">{{country | slice: 2, 99 | replace: "(","" | replace: ")","" | strip }}</li>
+											{% endfor %}
 										</ul>
 									</div>
 								</div>
@@ -136,18 +131,18 @@
           <label for="w-venueid">Venue ID</label>
           <input type="text" id="w-venueid" name="w-venueid" value="" class="js_lazy-selector-venues">
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-3">
+        <div class="col-lg-12 col-md-12 col-sm-12">
           <label for="w-source">Source</label>
           <div class="js_custom_select custom_select">
-            <select id="w-source" class="custom_select__field" name="w-source" tabindex="-1">
-              <option value="" label=" ">none</option>
+            <select id="w-source" class="custom_select__field" name="w-source" tabindex="0">
+              <option value="" label="none">none</option>
               <option value="ticketmaster">ticketmaster</option>
               <option value="ticketweb">ticketweb</option>
               <option value="tmr">ticketmaster resale platform</option>
               <option value="universe">universe</option>
               <option value="frontgate">frontgate</option>
             </select>
-            <input class="custom_select__placeholder" type="text" value="" contenteditable="true">
+            <input class="custom_select__placeholder" type="text" value="none" contenteditable="true">
             <ul class="custom_select__list js_widget_custom__list">
               <li class="custom_select__item" data-value="" >none</li>
               <li class="custom_select__item" data-value="ticketmaster">ticketmaster</li>
@@ -158,7 +153,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-3">
+        <div class="col-lg-12 col-md-12 col-sm-12">
           <label for="w-classificationname">Classification Name</label>
           <input type="text" id="w-classificationname" name="w-classificationname" value="" class="js_lazy-selector-classification">
         </div>
@@ -193,8 +188,8 @@
             <label for="w-theme-newschool">Color Block</label>
             <input id="w-theme-listview" type="radio" value="listview" name="w-theme">
             <label for="w-theme-listview">List View</label>
-						<input id="w-theme-listview-thumbnails" type="radio" value="listviewthumbnails" name="w-theme">
-						<label for="w-theme-listview-thumbnails">List View Thumbnails</label>
+            <input id="w-theme-listview-thumbnails" type="radio" value="listviewthumbnails" name="w-theme">
+            <label for="w-theme-listview-thumbnails">List View Thumbnails</label>
           </div>
         </div>
 
@@ -248,6 +243,10 @@
                 <div class="col-lg-4 col-sm-2 col-xs-2  widget__various-width">
                   <input id="w-layout-horizontal" type="radio" value="horizontal" name="w-layout">
                   <label for="w-layout-horizontal">Horizontal</label>
+                </div>
+                <div class="col-lg-4 col-sm-2 col-xs-2  widget__various-width">
+                    <input id="w-layout-fullwidth" type="radio" value="fullwidth" name="w-layout">
+                    <label for="w-layout-fullwidth">Fullwidth</label>
                 </div>
               </div>
             </div>

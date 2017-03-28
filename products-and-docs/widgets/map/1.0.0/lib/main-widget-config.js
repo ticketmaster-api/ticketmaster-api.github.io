@@ -1,4 +1,77 @@
-'use strict';
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 (function () {
 
@@ -22,7 +95,7 @@
         return code || "AIzaSyBQrJ5ECXDaXVlICIdUBOe8impKIGHDzdA";
     }
 
-    var widget = widgetsMap[0],
+    var widget = widgetsLib.widgetsMap[0],
         themeConfig = {
         sizes: {
             s: {
@@ -215,6 +288,13 @@
             isPostalCodeChanged = true;
         }
 
+        if (targetName === "w-countryCode") {
+            if (widgetNode.getAttribute('w-countrycode') != targetValue) {
+                document.getElementById("w-city").value = '';
+                widgetNode.setAttribute('w-city', '');
+            }
+        }
+
         if (targetName === "w-theme") {
             if (targetValue === 'simple') {
                 $colorSchemeSelector.hide();
@@ -245,15 +325,15 @@
                 min: sizeConfig.minWidth
             }).slider('refresh');
 
-            document.getElementById('map').style.width = sizeConfig.width + 'px';
-            document.getElementById('map').style.height = sizeConfig.height + 'px';
+            document.querySelector('.map').style.width = sizeConfig.width + 'px';
+            document.querySelector('.map').style.height = sizeConfig.height + 'px';
             widgetNode.setAttribute('w-width', sizeConfig.width);
             widgetNode.setAttribute('w-height', sizeConfig.height);
         }
 
         if (targetName === "w-width") {
-            document.getElementById('map').style.width = widgetNode.getAttribute('w-width') + 'px';
-            document.getElementById('map').style.height = widgetNode.getAttribute('w-height') + 'px';
+            document.querySelector('.map').style.width = widgetNode.getAttribute('w-width') + 'px';
+            document.querySelector('.map').style.height = widgetNode.getAttribute('w-height') + 'px';
         }
 
         //Check fixed sizes for 'simple' theme
@@ -266,8 +346,8 @@
                 minWidth: 350
             };
 
-            document.getElementById('map').style.width = themeConfig.sizes[targetValue].width + 'px';
-            document.getElementById('map').style.height = themeConfig.sizes[targetValue].height + 'px';
+            document.querySelector('.map').style.width = themeConfig.sizes[targetValue].width + 'px';
+            document.querySelector('.map').style.height = themeConfig.sizes[targetValue].height + 'px';
 
             //set layout
             widgetNode.setAttribute('w-layout', themeConfig.sizes[targetValue].layout);
@@ -334,7 +414,7 @@
             }
 
             ["#w-countryCode", "#w-source"].map(function (item) {
-                $(item).prop("selectedIndex", -1);
+                $(item).prop("selectedIndex", 0);
             });
             widgetNode.setAttribute($self.attr('name'), value);
         });
@@ -367,8 +447,8 @@
         widgetNode.removeAttribute('w-source');
 
         $('.country-select .js_custom_select').removeClass('custom_select-opened'); //reset custom select
-        document.getElementById('map').style.width = '350px';
-        document.getElementById('map').style.height = '600px';
+        document.querySelector('.map').style.width = '350px';
+        document.querySelector('.map').style.height = '600px';
         widget.onLoadCoordinate();
         widget.update();
         // document.querySelector('.widget-container-wrapper').removeAttribute('style');
@@ -524,4 +604,7 @@
         $('#w-fixed-300x250').trigger('click');
     }
 })();
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=main-widget-config.js.map

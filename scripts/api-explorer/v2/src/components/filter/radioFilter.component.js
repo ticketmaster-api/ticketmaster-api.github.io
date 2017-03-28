@@ -82,7 +82,7 @@ function compareMethods(f,s) {
 }
 
 
-module.exports = ko.components.register('radio-filter', {
+ko.components.register('radio-filter', {
 	viewModel: RadioFilter,
 	template:`
 		<!--radios-->
@@ -96,3 +96,5 @@ module.exports = ko.components.register('radio-filter', {
 			</div>
 		</section>
 `});
+
+module.exports = RadioFilter;

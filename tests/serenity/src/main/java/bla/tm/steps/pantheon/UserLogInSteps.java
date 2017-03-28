@@ -10,9 +10,9 @@ public class UserLogInSteps {
     UserLogInPage userLogInPage;
 
     @Step
-    public void logInToAccount() {
-        userLogInPage.getNameTextField().sendKeys("TestUser");
-        userLogInPage.getPasswordTextField().sendKeys("1234567");
+    public void logInToApp(String userName, String password) {
+        userLogInPage.getNameTextField().sendKeys(userName);
+        userLogInPage.getPasswordTextField().sendKeys(password);
         userLogInPage.getLogInButton().click();
     }
 
@@ -39,5 +39,11 @@ public class UserLogInSteps {
     @Step
     public void clickCreateNewAccountButton() {
         userLogInPage.getCreateNewAccountButton().click();
+    }
+
+    public void logInUsingOpenID(String openID) {
+        userLogInPage.getOpenIDButton().click();
+        userLogInPage.getOpenIDInputField().sendKeys(openID);
+        userLogInPage.getLogInButton().click();
     }
 }

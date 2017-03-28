@@ -475,6 +475,17 @@
 	}
 }
 
+.tab-content {
+	.required {
+		label {
+			color: #d0021b;
+		}
+		input {
+			border: 1px solid #d0021b;
+		}
+	}
+}
+
 #js_widget_modal_map {
   .modal-body {
 		margin: 0;
@@ -636,57 +647,3 @@ input[type="checkbox"]:checked+label:after {
 	top: 7px;
 }
 
-.tooltip {
-	position: absolute;
-	z-index: 1070;
-	display: block;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-style: normal;
-	font-weight: normal;
-	letter-spacing: normal;
-	line-break: auto;
-	line-height: 1.42857;
-	text-align: left;
-	text-align: start;
-	text-decoration: none;
-	text-shadow: none;
-	text-transform: none;
-	white-space: normal;
-	word-break: normal;
-	word-spacing: normal;
-	word-wrap: normal;
-	font-size: 12px;
-	opacity: 1;
-	filter: alpha(opacity=0);
-}
-
-.tooltip-inner {
-	max-width: 200px;
-	padding: 3px 8px;
-	color: #fff;
-	text-align: center;
-	background-color: #b7c9d3;
-	border-radius: 4px;
-}
-
-.tooltip.left {
-	margin-left: -3px;
-	padding: 0 5px;
-}
-
-.tooltip-inner::before {
-	position: absolute;
-	width: 0;
-	height: 0;
-	border-color: transparent;
-	border-style: solid;
-}
-
-.tooltip.left .tooltip-inner::before {
-	top: 50%;
-	right: 0;
-	margin-top: -5px;
-	content: "";
-	border-width: 5px 0 5px 5px;
-	border-left-color: #b7c9d3;
-}

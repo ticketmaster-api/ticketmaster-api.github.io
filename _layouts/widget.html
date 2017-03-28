@@ -70,21 +70,7 @@ layout: documentation-single
   </div>
 </div>
 
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function () {
-    this.page.url = document.URL || "http://developer.ticketmaster.com/";
-    this.page.identifier = "{{page.title}}";
-  };
-  (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-
-    s.src = '//ticketmasterapi.disqus.com/embed.js';
-
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
+{% include disqus.html add_disqusDIV='true'%}
 
 <!-- Modal widget-->
 <div id="js_widget_modal" class="modal modal-common fade" role="dialog">
@@ -174,7 +160,11 @@ layout: documentation-single
 <!-- Modal Map end-->
 
 
-<script type="text/javascript" src="{{"/scripts/components/api-key-service.js?v=1" | prepend: site.baseurl }}"></script>
+{%if site.local_test_apikeys == 'true' %}
+	<script src="{{'/scripts/components/api-key-service-testKeys.js' | prepend: site.baseurl }}"></script>
+{%else%}
+	<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 <script type="text/javascript">
   // Get default widget API_KEY
   var defaultApiKey = apiKeyService.getApiWidgetsKey();
@@ -182,9 +172,9 @@ layout: documentation-single
   $('[w-type=event-discovery]').attr('w-tmapikey', defaultApiKey);
   $('#w-tm-api-key').val(defaultApiKey);
 </script>
-<script src="{{"/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js?v=1" | prepend: site.baseurl }}"></script>
+<script src="{{'/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js?v=1' | prepend: site.baseurl }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.min.js"></script>
-<script src="{{"/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget-config.js?v=2" | prepend: site.baseurl }}"></script>
+<script src="{{'/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget-config.js?v=2' | prepend: site.baseurl }}"></script>
 
 <!--add copy button to modal-->
 <script src="{{'/scripts/vendors/clipboard.js' | prepend: site.baseurl }}"></script>

@@ -1,4 +1,78 @@
-'use strict';
+var widgetsLib =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -193,6 +267,11 @@ var TicketmasterCountdownWidget = function () {
       return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/products-and-docs/widgets/countdown/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/countdown/1.0.0/theme/';
     }
   }, {
+    key: 'isFullWidth',
+    get: function get() {
+      return this.config.proportion === 'fullwidth';
+    }
+  }, {
     key: 'portalUrl',
     get: function get() {
       return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/' : 'https://ticketmaster-api-staging.github.io/';
@@ -206,6 +285,11 @@ var TicketmasterCountdownWidget = function () {
     key: 'legalNoticeUrl',
     get: function get() {
       return "http://developer.ticketmaster.com/support/terms-of-use/";
+    }
+  }, {
+    key: 'widgetVersion',
+    get: function get() {
+      return '' + "1.0.82";
     }
   }, {
     key: 'questionUrl',
@@ -258,11 +342,6 @@ var TicketmasterCountdownWidget = function () {
     this.eventsRoot.classList.add("events-root");
     this.eventsRootContainer.appendChild(this.eventsRoot);
 
-    // Set theme modificators
-    /*this.themeModificators = {
-      "oldschool" : this.oldSchoolModificator.bind(this)
-    };*/
-
     this.config = this.widgetRoot.attributes;
     this.eventId = this.config.id;
 
@@ -292,10 +371,6 @@ var TicketmasterCountdownWidget = function () {
       this.showMessage("Please enter event ID.", true, null);
     }
 
-    /*if( this.themeModificators.hasOwnProperty( this.widgetConfig.theme ) ) {
-      this.themeModificators[ this.widgetConfig.theme ]();
-    }*/
-
     this.embedUniversePlugin();
     this.embedTMPlugin();
 
@@ -306,6 +381,10 @@ var TicketmasterCountdownWidget = function () {
     });
 
     this.toggleSecondsVisibility();
+
+    if (this.isFullWidth) {
+      this.initFullWidth();
+    }
   }
 
   _createClass(TicketmasterCountdownWidget, [{
@@ -573,18 +652,22 @@ var TicketmasterCountdownWidget = function () {
       logoBox.appendChild(logo);
       this.eventsRootContainer.appendChild(logoBox);
 
-      var question = document.createElement('a');
+      var question = document.createElement('span'),
+          toolTip = document.createElement('div'),
+          tooltipHtml = '\n\t\t\t\t<div class="tooltip-inner"> \n\t\t\t\t\t<a href="' + this.questionUrl + '" target = "_blank" >About widget</a>\n\t\t\t\t\t<div class="place">version: <b>' + this.widgetVersion + '</b></div>\n\t\t\t\t</div>';
       question.classList.add("event-question");
-      question.target = '_blank';
-      question.href = this.questionUrl;
+      question.addEventListener('click', toolTipHandler);
+      toolTip.classList.add("tooltip-version");
+      toolTip.classList.add("left");
+      toolTip.innerHTML = tooltipHtml;
       this.eventsRootContainer.appendChild(question);
+      this.eventsRootContainer.appendChild(toolTip);
+
+      function toolTipHandler(e) {
+        e.preventDefault();
+        e.target.nextSibling.classList.toggle('show-tip');
+      }
     }
-
-    //adds general admission element for OLDSCHOOL theme
-    /*oldSchoolModificator(){
-      console.log('inside oldSchoolModificator' );
-    }*/
-
   }, {
     key: 'formatDate',
     value: function formatDate(date) {
@@ -650,12 +733,13 @@ var TicketmasterCountdownWidget = function () {
       this.eventsRootContainer.style.borderRadius = this.config.borderradius + 'px';
       this.eventsRootContainer.style.borderWidth = this.borderSize + 'px';
 
-      if (this.config.theme !== null) {
-        this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
-      }
-
       if (this.needToUpdate(this.config, oldTheme, this.updateExceptions) || isFullWidthTheme) {
         this.clear();
+
+        if (this.config.theme !== null) {
+          //set new styles
+          this.makeRequest(this.styleLoadingHandler, this.themeUrl + this.config.theme + ".css");
+        }
 
         if (this.widgetConfig.theme !== 'simple_countdown') {
           var heightStatic = '700px';
@@ -692,6 +776,10 @@ var TicketmasterCountdownWidget = function () {
             events[i].style.height = this.config.height - this.borderSize * 2 + 'px';
           }
         }
+      }
+
+      if (this.isFullWidth) {
+        this.initFullWidth();
       }
       //this.toggleSecondsVisibility();
     }
@@ -779,6 +867,9 @@ var TicketmasterCountdownWidget = function () {
       var width = this.config.width,
           height = this.config.height;
 
+      if (width === '100%') {
+        width = this.widgetRoot.offsetWidth;
+      }
       images.sort(function (a, b) {
         if (a.width < b.width) return -1;else if (a.width > b.width) return 1;else return 0;
       });
@@ -947,6 +1038,18 @@ var TicketmasterCountdownWidget = function () {
       return el;
     }
   }, {
+    key: 'initFullWidth',
+    value: function initFullWidth() {
+      var heightStatic = 700;
+      this.config.width = '100%';
+      this.config.height = heightStatic;
+      this.widgetRoot.style.width = '100%';
+      this.widgetRoot.style.height = heightStatic + 'px';
+      this.widgetRoot.style.display = 'block';
+      this.eventsRootContainer.style.width = '100%';
+      this.eventsRootContainer.style.height = this.widgetContentHeight + 'px';
+    }
+  }, {
     key: 'createDOMItem',
     value: function createDOMItem(itemConfig) {
       var medWrapper = document.createElement("div");
@@ -955,7 +1058,7 @@ var TicketmasterCountdownWidget = function () {
       var event = document.createElement("li");
       event.classList.add("event-wrapper");
       event.style.height = this.config.height - this.borderSize * 2 + 'px';
-      event.style.width = this.config.width - this.borderSize * 2 + 'px';
+      event.style.width = !this.isFullWidth ? this.config.width - this.borderSize * 2 + 'px' : '100%';
 
       var image = document.createElement("span");
       image.classList.add("bg-cover");
@@ -1066,4 +1169,11 @@ var widgetsCountdown = [];
 
 ga('create', 'UA-78317809-1', 'auto');
 ga('send', 'pageview');
+
+if (true) {
+  module.exports = { CountdownClock: CountdownClock, TicketmasterCountdownWidget: TicketmasterCountdownWidget, widgetsCountdown: widgetsCountdown };
+}
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=main-widget.js.map

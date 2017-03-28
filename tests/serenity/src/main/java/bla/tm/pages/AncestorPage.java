@@ -1,23 +1,20 @@
 package bla.tm.pages;
 
-import bla.tm.staticmethods.MenuElements;
 import bla.tm.widgets.*;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
-
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.NoSuchElementException;
 
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class AncestorPage extends PageObject {
 
-    public List<MenuElements> leftMenuElements;
-
-//    WIDGETS
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(AncestorPage.class));
 
     @FindBy(xpath = "//form[@class='main-widget-config-form common_tabs']")
     private EventDiscoveryWidget eventDiscoveryWidget;
@@ -28,8 +25,8 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
     private CalendarWidget calendarWidget;
 
-    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]")
-    protected MapWidget widget;
+    @FindBy(xpath = "//div[div[form[@class='main-widget-config-form common_tabs']]]/div[1]")
+    protected MapWidget mapWidget;
 
     public CountdownWidget getCountDownWidget() {
         return countdownWidget;
@@ -39,8 +36,8 @@ public class AncestorPage extends PageObject {
 
     public CalendarWidget getCalendarWidget() {return calendarWidget;}
 
-    public MapWidget getWidget() {
-        return widget;
+    public MapWidget getMapWidget() {
+        return mapWidget;
     }
 
     @FindBy(xpath = "//div[./ul[@id='scrollable-element']]")
@@ -117,10 +114,12 @@ public class AncestorPage extends PageObject {
         return titleText.getText();
     }
 
-    private boolean iSDisplayedFooterMenu() {
-        try { return footerMenu.isDisplayed();
+    private boolean isDisplayedFooterMenu() {
+        try {
+            return footerMenu.isDisplayed();
         } catch (NoSuchElementException e) {
-            try {return footerMenu2.isDisplayed();
+            try {
+                return footerMenu2.isDisplayed();
             } catch  (NoSuchElementException x) {
                 return footerMenu3.isDisplayed();
             }
@@ -128,14 +127,16 @@ public class AncestorPage extends PageObject {
     }
 
     private boolean iSDisplayedDisqusFeature() {
-        try { return disqusOption.isDisplayed();
+        try {
+            return disqusOption.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
     }
 
     private boolean iSDisplayedLeftSideMenu() {
-        try { return leftSideMenu.isDisplayed();
+        try {
+            return leftSideMenu.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -143,27 +144,33 @@ public class AncestorPage extends PageObject {
 
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         headerMenu.shouldBeVisible();
-        iSDisplayedFooterMenu();
+        isDisplayedFooterMenu();
         feedbackButton.shouldBeVisible();
         searchOption.shouldBeVisible();
         logInLink.shouldBeVisible();
-
-        if (disqus){assertTrue(iSDisplayedDisqusFeature());}
-        else {assertFalse(iSDisplayedDisqusFeature());}
-
-        if (leftMenu){assertTrue(iSDisplayedLeftSideMenu());}
-        else {assertFalse(iSDisplayedLeftSideMenu());}
+        if (disqus){
+            assertTrue(iSDisplayedDisqusFeature());
+        }
+        else {
+            assertFalse(iSDisplayedDisqusFeature());
+        }
+        if (leftMenu){
+            assertTrue(iSDisplayedLeftSideMenu());
+        }
+        else {
+            assertFalse(iSDisplayedLeftSideMenu());
+        }
     }
 
     public void checkGeneralPageElementsPantheon(){
         headerMenuPantheon.shouldBeVisible();
-        assertTrue(iSDisplayedFooterMenu());
+        assertTrue(isDisplayedFooterMenu());
         logInLinkPantheon.shouldBeVisible();
     }
 
     public void checkGeneralPageElementsPantheonLoggedIn(){
         headerMenuPantheon.shouldBeVisible();
-        assertTrue(iSDisplayedFooterMenu());
+        assertTrue(isDisplayedFooterMenu());
     }
 
     public FeedbackWidget getFeedbackWidget() {return feedbackWidget;}
@@ -177,6 +184,22 @@ public class AncestorPage extends PageObject {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Interrupted!", e);
+            Thread.currentThread().interrupt();
         }
     }
+
+    public String getPageSource() {
+        return getDriver().getPageSource();
+    }
+
+
+    public boolean checkIsPresentAndDisplayed(WebElementFacade webElementFacade) {
+        try {
+            return webElementFacade.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }

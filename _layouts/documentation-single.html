@@ -42,21 +42,7 @@ layout: default
                     {% endif %}
                 <div class="side-box"></div>
                     {% if page.categories[1] == 'changelog' or page.categories[1] == 'getting-started' %}
-                        <div id="disqus_thread"></div>
-                        <script>
-                            var disqus_config = function () {
-                                this.page.url = document.URL || "http://developer.ticketmaster.com/";
-                                this.page.identifier = "{{page.title}}";
-                            };
-                            (function() { // DON'T EDIT BELOW THIS LINE
-                                var d = document, s = d.createElement('script');
-
-                                s.src = '//ticketmasterapi.disqus.com/embed.js';
-
-                                s.setAttribute('data-timestamp', +new Date());
-                                (d.head || d.body).appendChild(s);
-                            })();
-                        </script>
+												{% include disqus.html add_disqusDIV='true'%}
                     {% endif %}
                 </div>
             </div>
@@ -67,18 +53,22 @@ layout: default
 
 {% include home-footer.html %}
 
-<script src="{{"/scripts/vendors/user-scroll-disabler.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/components/pd-side-menu.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/user-scroll-disabler.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/pd-side-menu.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/menu-highlight.js' | prepend: site.baseurl }}"></script>
 
 {% if page.categories[0] == "documentation" and page.categories[1] == "changelog" %}
-<script src="{{"/scripts/vendors/jstree.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/components/list-collapse.js" | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/vendors/jstree.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/list-collapse.js' | prepend: site.baseurl }}"></script>
 
 {% endif %}
 
 {% if page.categories contains "replace_apikey" %}
-<script src="{{site.baseurl }}/scripts/components/api-key-service.js"></script>
+{%if site.local_test_apikeys == 'true' %}
+	<script src="{{'/scripts/components/api-key-service-testKeys.js' | prepend: site.baseurl }}"></script>
+{%else%}
+	<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 <script>
     var userKey = apiKeyService.checkApiKeyCookie();
 
