@@ -226,7 +226,7 @@ class TicketmasterCalendarWidget {
         this.tabsRootContainer.appendChild(this.tab2RootContainer);
         this.eventLogoBox = document.createElement("div");
         this.eventLogoBox.classList.add("event-logo-box-c");
-        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by</a>';
         this.tab2RootContainer.appendChild(this.eventLogoBox);
 
 
@@ -236,7 +236,7 @@ class TicketmasterCalendarWidget {
         this.tabsRootContainer.appendChild(this.tab3RootContainer);
         this.eventLogoBox = document.createElement("div");
         this.eventLogoBox.classList.add("event-logo-box-c");
-        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by</a>';
         this.tab3RootContainer.appendChild(this.eventLogoBox);
 
         this.tab4RootContainer = document.createElement("div");
@@ -245,7 +245,7 @@ class TicketmasterCalendarWidget {
         this.tabsRootContainer.appendChild(this.tab4RootContainer);
         this.eventLogoBox = document.createElement("div");
         this.eventLogoBox.classList.add("event-logo-box-c");
-        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by</a>';
         this.tab4RootContainer.appendChild(this.eventLogoBox);
 
         this.eventsRootContainer = document.createElement("div");
@@ -531,7 +531,7 @@ class TicketmasterCalendarWidget {
         logo.classList.add("event-logo");
         logo.target = '_blank';
         logo.href = this.logoUrl;
-        logo.innerHTML = 'Powered by:';
+        logo.innerHTML = 'Powered by';
 
         var logoBox = document.createElement('div');
         logoBox.classList.add("event-logo-box");
@@ -1939,7 +1939,7 @@ class WeekScheduler {
                     let timeTmp = '';
                     let dateTmp = '';
                     let monthTmp = '';
-                    let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+                    let timeDiv = '<div class="top-gradient"></div><div class="ss time-wrapper"><div class="ss-container time-holder">';
 
                     for (let i = 13; i <= 23; i++) {
                         if (i <= 9) {
@@ -2004,7 +2004,7 @@ class WeekScheduler {
                         }
                         timeDiv += `</div>`;
                     }
-                    timeDiv += `</div></div>`;
+                    timeDiv += '</div></div><div class="bottom-gradient"></div>';
                     daysDiv += timeDiv;
                     widget.weekdaysRootContainer.innerHTML = daysDiv;
                     widget.addScroll();
@@ -2794,7 +2794,9 @@ class MonthScheduler {
                         if (monthEventsSort[d.getDate()] != undefined) {
                             let eventsCount = monthEventsSort[d.getDate()].length;
                             if (eventsCount === undefined) eventsCount = 1;
-                            table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
+                            table += '<span class="round-holder"><span class="round">' + d.getDate();
+                            if (eventsCount > 1) table += '<span class="count">' + eventsCount + '</span>';
+                            table += '</span></span>';
 
                             table += '<span class="' + tail_ + '"></span>';
                             table += '<div class="' + popup_ + ' ';
@@ -3031,8 +3033,9 @@ class MonthScheduler {
                             if (monthEventsSort[d.getDate()] != undefined) {
                                 let eventsCount = monthEventsSort[d.getDate()].length;
                                 if (eventsCount === undefined) eventsCount = 1;
-                                table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
-
+                                table += '<span class="round-holder"><span class="round">' + d.getDate();
+                                if (eventsCount > 1) table += '<span class="count">' + eventsCount + '</span>';
+                                table += '</span></span>';
                                 table += '<span class="' + tail_ + '"></span>';
                                 table += '<div class="' + popup_ + ' ';
                                 if (eventsCount == 1) table += 'single ';
