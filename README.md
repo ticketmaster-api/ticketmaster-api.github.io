@@ -39,8 +39,8 @@ While developing, you will probably rely mostly on `npm start`; however, there a
 |`webpack`|Build bundle for API Explorer V2 and watches for changes to re-run build.|
 |`build`|Build bundle for API Explorer V2 and compress by uglify plugin.| 
 |`test`|Runs unit tests with JEST and generates a coverage report and watches for changes to re-run tests.|
-|`lint`|Lint `.js` (from `scripts/` fodler) and `.scss` files.|
-|`es-lint`|Lint all `.js` files from folder `/script/`.|
+|`lint`|Lint `.js` (from `/scripts/` fodler) and `.scss` files.|
+|`es-lint`|Lint all `.js` files from folder `/scripts/`.|
 |`sass-lint`|Lint `.scss` files.|
 
 ## Contributions
