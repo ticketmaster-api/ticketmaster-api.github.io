@@ -17,7 +17,7 @@
 
 
 <div class="tiles-wrapper ">
-	<h4 class="tiles-group-title">"North American Partners"</h4>
+	<h4 class="tiles-group-title" id="north-american-partners">North American Partners</h4>
 	{% for partner in north_partner_array %}
 		{% if partner.group == "North American Partners" %}
 			{% include partials/certified-partner-card.html %}
@@ -28,7 +28,7 @@
 <div class="clearfix"></div>
 
 <div class="tiles-wrapper ">
-	<h4 class="tiles-group-title">"International Partners"</h4>
+	<h4 class="tiles-group-title" id="international-partners">International Partners</h4>
 	{% for partner in inter_partner_array %}
 		{% if partner.group == nil or partner.group == "International Partners" %}
 			{% include partials/certified-partner-card.html %}
