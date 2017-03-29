@@ -112,15 +112,18 @@ var readFromWADL = function (url) {
 function readApiDataFromAPISources (sources) {
   var result = {};
   for (var cat in sources) {
-    let { api, meta } = sources[cat];
-    result[cat] = readSwaggerJSON(api, meta || {});
+    let { apiContext, meta } = sources[cat];
+
+		result[cat] = apiContext.keys()
+			.map(file => readSwaggerJSON(apiContext(file), meta || {}))
+			.reduce((res, curent) => $.extend(true, res, curent), {});
   }
   return result;
 }
 
 function getBaseData(){
 	var base = {};
-	
+
 	var apiSourcesBase = readApiDataFromAPISources(apiSourcesConfig);
 	Object.assign(base, apiSourcesBase);
 

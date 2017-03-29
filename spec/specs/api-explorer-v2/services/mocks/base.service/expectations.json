@@ -1,5 +1,5 @@
 {
-  "Publish API": "mockPublishApi",
+  "Publish API": {"publicApiMock": "mock", "someMethod": "someMethodMock" },
   "Discovery API v2": {
     "ALL": {
       "discovery.v2.events.get": {
