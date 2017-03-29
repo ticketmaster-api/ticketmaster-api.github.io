@@ -161,7 +161,7 @@ var widgetsLib =
 	  }, {
 	    key: 'widgetVersion',
 	    get: function get() {
-	      return '' + ("1.0.160");
+	      return '' + ("1.0.161");
 	    }
 	  }, {
 	    key: 'geocodeUrl',
