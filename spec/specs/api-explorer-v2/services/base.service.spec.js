@@ -10,13 +10,24 @@ jest.mock('scripts/api-explorer/v2/src/services/options/country.options.js', () 
 ]);
 
 jest.mock('scripts/api-explorer/v2/src/services/swagger.api.reader', function () {
-	return jest.fn(()=>('mockPublishApi'))
+	return jest.fn(param => param)
 });
 
 jest.mock('scripts/api-explorer/v2/api.sources', function () {
+	function apiContext(key){
+		switch (key){
+			case 'api1':
+						return { publicApiMock: 'mock' }
+			case 'api2':
+				return { someMethod: 'someMethodMock' }
+		}
+	}
+	apiContext.keys = function(){
+		return ['api1', 'api2'];
+	};
 	return {
 		"Publish API" : {
-			api: 'apiMock',
+			apiContext: apiContext,
 			meta: {
 				extraMethodsInfo: 'extraMethodsInfoMock'
 			}
@@ -58,7 +69,7 @@ describe('API Explorer base service', function () {
 	});
 
 	it('should call swagger api reader with api config', () => {
-		expect(this.swaggerApiReader).toBeCalledWith('apiMock', {extraMethodsInfo: 'extraMethodsInfoMock'});
+		expect(this.swaggerApiReader).toBeCalledWith({"publicApiMock": "mock"}, {extraMethodsInfo: 'extraMethodsInfoMock'});
 	});
 
 	it('should requested api description xml by ajax', () => {

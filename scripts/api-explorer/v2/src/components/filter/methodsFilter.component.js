@@ -70,8 +70,9 @@ class MethodsFilter {
 		}
 
 		if (correctOrder) {
+			let allMethodsOrder = correctOrder.concat(Object.keys(obj)); // needed for move non-exist items to end of list
 			arr = arr.sort((methodA, methodB) => {
-				return correctOrder.indexOf(methodA.id) - correctOrder.indexOf(methodB.id);
+				return allMethodsOrder.indexOf(methodA.id) - allMethodsOrder.indexOf(methodB.id);
 			});
 		}
 
