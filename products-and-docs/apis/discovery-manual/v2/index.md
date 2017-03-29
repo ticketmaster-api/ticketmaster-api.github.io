@@ -15,8 +15,6 @@ keywords: API, search events, attraction details, event images, category details
 {: .version-button .active}
 [V 2.0]({{"/products-and-docs/apis/discovery-manual/v2/" | prepend: site.baseurl}})
 
-{: .version-button }
-[V 1.0]({{"/products-and-docs/apis/discovery-manual/v1/" | prepend: site.baseurl}})
 
 Search and look up events, attractions, venues and classifications across all supported sources, markets and locales.
 {: .lead .article}

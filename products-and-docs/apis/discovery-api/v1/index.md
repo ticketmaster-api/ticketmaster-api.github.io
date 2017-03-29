@@ -15,8 +15,7 @@ keywords: API, search events, attraction details, event images, category details
 {: .version-button}
 [V 2.0]({{"/products-and-docs/apis/discovery-api/v2/" | prepend: site.baseurl}})
 
-{: .version-button .active}
-[V 1.0]({{"/products-and-docs/apis/discovery-api/v1/" | prepend: site.baseurl}})
+
 
 
 Use the Discovery API to search, look up and find events, attractions and venues. The API provides access to all Ticketmaster events for North America and International, as well as Universe, TicketWeb and Front Gate events.

@@ -23,8 +23,5 @@ categories:
 <p class="version-button article {% if version == 'v2' %}active{% endif %}" style="margin-right: 0px;">
     <a href="/products-and-docs/apis/{{apiName}}/v2/">V 2.0</a>
 </p>
-<p class="version-button {% if version == 'v1' %}active{% endif %}">
-    <a href="/products-and-docs/apis/{{apiName}}/v1/">V 1.0</a>
-</p>
 {% endif %}
 
