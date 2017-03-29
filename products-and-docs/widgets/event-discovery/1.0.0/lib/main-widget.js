@@ -136,12 +136,12 @@ var widgetsLib =
 	  }, {
 	    key: 'themeUrl',
 	    get: function get() {
-	      return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/';
+	      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/' : 'https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/';
 	    }
 	  }, {
 	    key: 'portalUrl',
 	    get: function get() {
-	      return window.location.host === 'developer.ticketmaster.com' ? 'https://developer.ticketmaster.com/' : 'https://ticketmaster-api-staging.github.io/';
+	      return window.location.host === 'developer.ticketmaster.com' ? 'http://developer.ticketmaster.com/' : 'https://ticketmaster-api-staging.github.io/';
 	    }
 	  }, {
 	    key: 'logoUrl',
@@ -161,7 +161,7 @@ var widgetsLib =
 	  }, {
 	    key: 'widgetVersion',
 	    get: function get() {
-	      return '' + ("1.0.121");
+	      return '' + ("1.0.161");
 	    }
 	  }, {
 	    key: 'geocodeUrl',

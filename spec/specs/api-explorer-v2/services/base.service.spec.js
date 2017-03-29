@@ -58,7 +58,7 @@ describe('API Explorer base service', function () {
 	});
 
 	it('should call swagger api reader with api config', () => {
-		expect(this.swaggerApiReader).toBeCalledWith('apiMock', 'extraMethodsInfoMock');
+		expect(this.swaggerApiReader).toBeCalledWith('apiMock', {extraMethodsInfo: 'extraMethodsInfoMock'});
 	});
 
 	it('should requested api description xml by ajax', () => {

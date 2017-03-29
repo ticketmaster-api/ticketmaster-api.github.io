@@ -137,6 +137,10 @@
             if (widgetNode.getAttribute('w-countrycode') != targetValue) {
                 document.getElementById("w-city").value = '';
                 widgetNode.setAttribute('w-city', '');
+                if (targetValue == 'US') {
+                    document.getElementById("w-city").value = 'Los Angeles';
+                    widgetNode.setAttribute('w-city', 'Los Angeles');
+                }
             }
         }
 

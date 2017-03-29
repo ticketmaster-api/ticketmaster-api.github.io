@@ -20,7 +20,7 @@ RadioFilter.prototype.updateRadiosModel = function (param) {
 		arr = [];
 
 	for (var i in obj) {
-		if (!obj.hasOwnProperty(i)) { continue; }
+		if (!obj.hasOwnProperty(i) || /^__/g.test(i)) { continue; } // exclude all fields that begin from '__' - this will be service fields
 		var item = {
 			checked: ko.observable(i === 'ALL'),
 			name: i
