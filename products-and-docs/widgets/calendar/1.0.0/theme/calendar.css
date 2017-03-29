@@ -267,7 +267,6 @@ div[w-theme="calendar"] .bg-cover {
 }
 
 div[w-theme="calendar"] .bg-cover-default {
-	/* TODO: update after release to  https://developer.ticketmaster.com/*/
 	background: rgba(183, 201, 211, 0.2) url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-short-big.svg") no-repeat center center;
 	border: solid 1px rgba(183, 201, 211, 0.2);
 	background-size: 24px;
@@ -599,11 +598,10 @@ div[w-theme="calendar"] .weekSсheduler .top-gradient {
 	height: 10px;
 	z-index: 9;
 	top:50px;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
-	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
 }
 
 div[w-theme="calendar"] .weekSсheduler .bottom-gradient {
@@ -612,27 +610,24 @@ div[w-theme="calendar"] .weekSсheduler .bottom-gradient {
 	height: 10px;
 	z-index: 9;
 	bottom: -3px;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
-	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .top-gradient {
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
-	background: -moz-linear-gradient(top, rgba(65,65,65,1) 0%, rgba(65,65,65,0) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(65,65,65,1) 0%,rgba(65,65,65,0) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(65,65,65,1) 0%,rgba(65,65,65,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#414141', endColorstr='#414141',GradientType=0 ); /* IE6-9 */
+	background: -moz-linear-gradient(top, rgba(65,65,65,1) 0%, rgba(65,65,65,0) 100%);
+	background: -webkit-linear-gradient(top, rgba(65,65,65,1) 0%,rgba(65,65,65,0) 100%);
+	background: linear-gradient(to bottom, rgba(65,65,65,1) 0%,rgba(65,65,65,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#414141', endColorstr='#414141',GradientType=0 );
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .weekSсheduler .bottom-gradient {
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
-	background: -moz-linear-gradient(top, rgba(65,65,65,0) 0%, rgba(65,65,65,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(65,65,65,0) 0%,rgba(65,65,65,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(65,65,65,0) 0%,rgba(65,65,65,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#414141', endColorstr='#414141',GradientType=0 ); /* IE6-9 */
+	background: -moz-linear-gradient(top, rgba(65,65,65,0) 0%, rgba(65,65,65,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(65,65,65,0) 0%,rgba(65,65,65,1) 100%);
+	background: linear-gradient(to bottom, rgba(65,65,65,0) 0%,rgba(65,65,65,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#414141', endColorstr='#414141',GradientType=0 );
 }
 
 div[w-theme="calendar"] .weekSсheduler .days {
@@ -1732,6 +1727,7 @@ div[w-theme="calendar"] .event-logo.centered-logo {
 	right: 0;
 	left: 0;
 	line-height: 18px;
+}
 
 div[w-theme="calendar"] .event-logo.right-logo {
 	-webkit-transition-duration: .5s;
@@ -1743,17 +1739,6 @@ div[w-theme="calendar"] .event-logo.right-logo {
 	right: 0;
 	left: 50%;
 	line-height: 18px;
-}
-
-div[w-theme="calendar"][w-colorscheme="dark"] .spinner-container {
-    width: 100%;
-    height: 275px;
-    margin: 0 auto;
-    text-align: center;
-    background: #48494a;
-    display: block;
-    position: absolute;
-    z-index: 10;
 }
 
 div[w-theme="calendar"] .spinner > div {
@@ -1773,6 +1758,17 @@ div[w-theme="calendar"] .spinner-container {
     display: block;
     position: absolute;
     z-index: 10;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .spinner-container {
+	width: 100%;
+	height: 275px;
+	margin: 0 auto;
+	text-align: center;
+	background: #48494a;
+	display: block;
+	position: absolute;
+	z-index: 10;
 }
 
 div[w-theme="calendar"] .spinner-container.hide {
