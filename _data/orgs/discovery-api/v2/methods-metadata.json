@@ -209,6 +209,12 @@
     "extraMethodsInfo" : {
         "base": "https://app.ticketmaster.com",
         "category": "Discovery API v2",
+        "commonParamsOrder": [ "id", "format", "keyword", "attractionId", "venueId", "postalCode",
+            "latlong", "radius", "unit", "source", "locale", "marketId",
+            "startDateTime", "endDateTime", "includeTBA", "includeTBD",
+            "includeTest", "size", "page", "sort", "onsaleStartDateTime",
+            "onsaleEndDateTime", "city", "countryCode", "stateCode",
+            "classificationName", "classificationId", "dmaId" ],
         "paths" : {
             "/discovery/v2/events" : {
                 "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2"

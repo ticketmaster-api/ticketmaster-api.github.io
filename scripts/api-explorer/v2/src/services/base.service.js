@@ -112,8 +112,8 @@ var readFromWADL = function (url) {
 function readApiDataFromAPISources (sources) {
   var result = {};
   for (var cat in sources) {
-    let {api, meta} = sources[cat];
-    result[cat] = readSwaggerJSON(api, meta.extraMethodsInfo && meta.extraMethodsInfo || {});
+    let { api, meta } = sources[cat];
+    result[cat] = readSwaggerJSON(api, meta || {});
   }
   return result;
 }
