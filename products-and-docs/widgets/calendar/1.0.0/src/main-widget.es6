@@ -426,6 +426,7 @@ class TicketmasterCalendarWidget {
     }
 
     setBuyBtnUrl(){
+        let eLogo = this.widgetRoot.querySelector('.tab').querySelector('.event-logo');
         if(this.buyBtn){
             let event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
                 url = '';
@@ -434,7 +435,14 @@ class TicketmasterCalendarWidget {
 
                     if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
                         url = event.url;
+                        eLogo.classList.remove('centered-logo');
+                        eLogo.classList.add('right-logo');
                     }
+                    else {
+                        eLogo.classList.remove('right-logo');
+                        eLogo.classList.add('centered-logo');
+                    }
+
                 }
             }
             this.buyBtn.href = url;
@@ -518,17 +526,9 @@ class TicketmasterCalendarWidget {
     }
 
     AdditionalElements(){
-        /*
-        var legalNoticeContent = document.createTextNode('Legal Notice'),
-            legalNotice = document.createElement("a");
-        legalNotice.appendChild(legalNoticeContent);
-        legalNotice.classList.add("legal-notice");
-        legalNotice.target = '_blank';
-        legalNotice.href = this.legalNoticeUrl;
-        this.widgetRoot.appendChild(legalNotice);
-        */
         var logo = document.createElement('a');
         logo.classList.add("event-logo");
+        logo.classList.add("centered-logo");
         logo.target = '_blank';
         logo.href = this.logoUrl;
         logo.innerHTML = 'Powered by';

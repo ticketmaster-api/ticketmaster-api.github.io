@@ -557,6 +557,14 @@ div[w-theme="calendar"] .tabs span {
     cursor: pointer;
 }
 
+div[w-theme="calendar"] .tabs span:hover {
+	background-color: #dfe6ea;
+}
+
+div[w-theme="calendar"][w-colorscheme="dark"] .tabs span:hover {
+	background-color: #5e5f60;
+}
+
 div[w-theme="calendar"] .tabs span:first-child {
     border-left: 1px solid #b7c9d2;
     border-radius: 4px 0 0 4px;
@@ -588,7 +596,7 @@ div[w-theme="calendar"] .weekSсheduler {
 div[w-theme="calendar"] .weekSсheduler .top-gradient {
 	position: absolute;
 	width: 100%;
-	height: 15px;
+	height: 10px;
 	z-index: 9;
 	top:50px;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
@@ -601,7 +609,7 @@ div[w-theme="calendar"] .weekSсheduler .top-gradient {
 div[w-theme="calendar"] .weekSсheduler .bottom-gradient {
 	position: absolute;
 	width: 100%;
-	height: 15px;
+	height: 10px;
 	z-index: 9;
 	bottom: -3px;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
@@ -1694,6 +1702,10 @@ div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-box {
 
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo {
     color: #fff;
+	  -webkit-transition-duration: .5s;
+	  -webkit-transition-timing-function: linear;
+	  transition-duration: .5s;
+	  transition-timing-function: linear;
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo:before {
@@ -1708,6 +1720,29 @@ div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c {
 div[w-theme="calendar"][w-colorscheme="dark"] .event-logo-c:after {
     background-image: url("https://ticketmaster-api-staging.github.io/assets/widgets/1.0.0/img/tm-logo-white.svg");
     background-size: 98px;
+}
+
+div[w-theme="calendar"] .event-logo.centered-logo {
+	-webkit-transition-duration: .5s;
+	-webkit-transition-timing-function: linear;
+	transition-duration: .5s;
+	transition-timing-function: linear;
+	position: absolute;
+	margin: auto;
+	right: 0;
+	left: 0;
+	line-height: 18px;
+
+div[w-theme="calendar"] .event-logo.right-logo {
+	-webkit-transition-duration: .5s;
+	-webkit-transition-timing-function: linear;
+	transition-duration: .5s;
+	transition-timing-function: linear;
+	position: absolute;
+	margin: auto;
+	right: 0;
+	left: 50%;
+	line-height: 18px;
 }
 
 div[w-theme="calendar"][w-colorscheme="dark"] .spinner-container {
