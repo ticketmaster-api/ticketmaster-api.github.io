@@ -144,8 +144,16 @@
   }
 }
 
+
+
 .tiles-wrapper{
   margin: 0 -15px;
+	.tiles-group-title {
+		color: $n3;
+		border-top: solid 2px $steel-20;
+		margin: $base-margin*2 15px $base-margin;
+		padding-top: 5px;
+	}
 }
 
 .img-wrapper {

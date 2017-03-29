@@ -1,0 +1,38 @@
+{% assign sorted_article = (site.pages | sort: 'order') %}
+{% assign inter_partner_array = "" | split:"|"  %}
+{% assign north_partner_array = "" | split:"|"  %}
+{% assign groups_array = "" | split:"|"  %}
+{% for partner in sorted_article %}
+	{% if partner.categories[0] == "partner" and partner.categories[1] == "certified"  %}
+
+		{% if partner.group contains "International Partners" or partner.group == nil%}
+			{% assign inter_partner_array = inter_partner_array | push: {{partner}} %}
+		{% endif %}
+		{% if partner.group contains "North American Partners" %}
+			{% assign north_partner_array = north_partner_array | push: {{partner}} %}
+		{% endif %}
+
+	{% endif %}
+{% endfor %}
+
+
+<div class="tiles-wrapper ">
+	<h4 class="tiles-group-title" id="north-american-partners">North American Partners</h4>
+	{% for partner in north_partner_array %}
+		{% if partner.group == "North American Partners" %}
+			{% include partials/certified-partner-card.html %}
+		{% endif %}
+	{% endfor %}
+</div>
+
+<div class="clearfix"></div>
+
+<div class="tiles-wrapper ">
+	<h4 class="tiles-group-title" id="international-partners">International Partners</h4>
+	{% for partner in inter_partner_array %}
+		{% if partner.group == nil or partner.group == "International Partners" %}
+			{% include partials/certified-partner-card.html %}
+		{% endif %}
+	{% endfor %}
+</div>
+
