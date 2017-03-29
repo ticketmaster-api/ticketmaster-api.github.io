@@ -2011,6 +2011,8 @@ class WeekScheduler {
                     var rounds = widget.weekdaysRootContainer.querySelectorAll("span.round");
                     for (var x = 0; x < rounds.length; x++) {
                         rounds[x].addEventListener("click", function (e) {
+                            widget.weekdaysRootContainer.querySelector('.top-gradient').style.display = "none";
+                            widget.weekdaysRootContainer.querySelector('.bottom-gradient').style.display = "none";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-wrapper")[0].style.overflow = "visible";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-content")[0].style.overflow = "visible";
                             this.nextElementSibling.classList.add("show");
@@ -2023,6 +2025,8 @@ class WeekScheduler {
                     for (var y = 0; y < popups.length; y++) {
                         popups[y].addEventListener("blur", function (e) {
                             let self = this;
+                            widget.weekdaysRootContainer.querySelector('.top-gradient').style.display = "";
+                            widget.weekdaysRootContainer.querySelector('.bottom-gradient').style.display = "";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-wrapper")[0].style.overflow = "hidden";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-content")[0].style.overflow = "auto";
                             setTimeout(function () {
