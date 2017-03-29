@@ -25,13 +25,13 @@ class TicketmasterEventDiscoveryWidget {
 
   get themeUrl() {
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
+      ? `http://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/1.0.0/theme/`
       : `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/theme/`;
   }
 
   get portalUrl(){
     return (window.location.host === 'developer.ticketmaster.com')
-      ? `https://developer.ticketmaster.com/`
+      ? `http://developer.ticketmaster.com/`
       : `https://ticketmaster-api-staging.github.io/`;
   }
 

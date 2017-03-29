@@ -226,7 +226,7 @@ class TicketmasterCalendarWidget {
         this.tabsRootContainer.appendChild(this.tab2RootContainer);
         this.eventLogoBox = document.createElement("div");
         this.eventLogoBox.classList.add("event-logo-box-c");
-        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by</a>';
         this.tab2RootContainer.appendChild(this.eventLogoBox);
 
 
@@ -236,7 +236,7 @@ class TicketmasterCalendarWidget {
         this.tabsRootContainer.appendChild(this.tab3RootContainer);
         this.eventLogoBox = document.createElement("div");
         this.eventLogoBox.classList.add("event-logo-box-c");
-        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by</a>';
         this.tab3RootContainer.appendChild(this.eventLogoBox);
 
         this.tab4RootContainer = document.createElement("div");
@@ -245,7 +245,7 @@ class TicketmasterCalendarWidget {
         this.tabsRootContainer.appendChild(this.tab4RootContainer);
         this.eventLogoBox = document.createElement("div");
         this.eventLogoBox.classList.add("event-logo-box-c");
-        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by:</a>';
+        this.eventLogoBox.innerHTML = '<a class="event-logo-c" target="_blank" href="http://www.ticketmaster.com/">Powered by</a>';
         this.tab4RootContainer.appendChild(this.eventLogoBox);
 
         this.eventsRootContainer = document.createElement("div");
@@ -426,6 +426,7 @@ class TicketmasterCalendarWidget {
     }
 
     setBuyBtnUrl(){
+        let eLogo = this.widgetRoot.querySelector('.tab').querySelector('.event-logo');
         if(this.buyBtn){
             let event = this.eventsGroups[this.currentSlideX][this.currentSlideY],
                 url = '';
@@ -434,7 +435,14 @@ class TicketmasterCalendarWidget {
 
                     if((this.isUniversePluginInitialized && this.isUniverseUrl(event.url)) || (this.isTMPluginInitialized && this.isAllowedTMEvent(event.url))){
                         url = event.url;
+                        eLogo.classList.remove('centered-logo');
+                        eLogo.classList.add('right-logo');
                     }
+                    else {
+                        eLogo.classList.remove('right-logo');
+                        eLogo.classList.add('centered-logo');
+                    }
+
                 }
             }
             this.buyBtn.href = url;
@@ -518,20 +526,12 @@ class TicketmasterCalendarWidget {
     }
 
     AdditionalElements(){
-        /*
-        var legalNoticeContent = document.createTextNode('Legal Notice'),
-            legalNotice = document.createElement("a");
-        legalNotice.appendChild(legalNoticeContent);
-        legalNotice.classList.add("legal-notice");
-        legalNotice.target = '_blank';
-        legalNotice.href = this.legalNoticeUrl;
-        this.widgetRoot.appendChild(legalNotice);
-        */
         var logo = document.createElement('a');
         logo.classList.add("event-logo");
+        logo.classList.add("centered-logo");
         logo.target = '_blank';
         logo.href = this.logoUrl;
-        logo.innerHTML = 'Powered by:';
+        logo.innerHTML = 'Powered by';
 
         var logoBox = document.createElement('div');
         logoBox.classList.add("event-logo-box");
@@ -1939,7 +1939,7 @@ class WeekScheduler {
                     let timeTmp = '';
                     let dateTmp = '';
                     let monthTmp = '';
-                    let timeDiv = '<div class="ss time-wrapper"><div class="ss-container time-holder">';
+                    let timeDiv = '<div class="top-gradient"></div><div class="ss time-wrapper"><div class="ss-container time-holder">';
 
                     for (let i = 13; i <= 23; i++) {
                         if (i <= 9) {
@@ -2004,13 +2004,15 @@ class WeekScheduler {
                         }
                         timeDiv += `</div>`;
                     }
-                    timeDiv += `</div></div>`;
+                    timeDiv += '</div></div><div class="bottom-gradient"></div>';
                     daysDiv += timeDiv;
                     widget.weekdaysRootContainer.innerHTML = daysDiv;
                     widget.addScroll();
                     var rounds = widget.weekdaysRootContainer.querySelectorAll("span.round");
                     for (var x = 0; x < rounds.length; x++) {
                         rounds[x].addEventListener("click", function (e) {
+                            widget.weekdaysRootContainer.querySelector('.top-gradient').style.display = "none";
+                            widget.weekdaysRootContainer.querySelector('.bottom-gradient').style.display = "none";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-wrapper")[0].style.overflow = "visible";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-content")[0].style.overflow = "visible";
                             this.nextElementSibling.classList.add("show");
@@ -2023,6 +2025,8 @@ class WeekScheduler {
                     for (var y = 0; y < popups.length; y++) {
                         popups[y].addEventListener("blur", function (e) {
                             let self = this;
+                            widget.weekdaysRootContainer.querySelector('.top-gradient').style.display = "";
+                            widget.weekdaysRootContainer.querySelector('.bottom-gradient').style.display = "";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-wrapper")[0].style.overflow = "hidden";
                             widget.weekdaysRootContainer.querySelectorAll(".ss-content")[0].style.overflow = "auto";
                             setTimeout(function () {
@@ -2794,7 +2798,9 @@ class MonthScheduler {
                         if (monthEventsSort[d.getDate()] != undefined) {
                             let eventsCount = monthEventsSort[d.getDate()].length;
                             if (eventsCount === undefined) eventsCount = 1;
-                            table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
+                            table += '<span class="round-holder"><span class="round">' + d.getDate();
+                            if (eventsCount > 1) table += '<span class="count">' + eventsCount + '</span>';
+                            table += '</span></span>';
 
                             table += '<span class="' + tail_ + '"></span>';
                             table += '<div class="' + popup_ + ' ';
@@ -3031,8 +3037,9 @@ class MonthScheduler {
                             if (monthEventsSort[d.getDate()] != undefined) {
                                 let eventsCount = monthEventsSort[d.getDate()].length;
                                 if (eventsCount === undefined) eventsCount = 1;
-                                table += '<span class="round-holder"><span class="round">' + d.getDate() + '<span class="count">' + eventsCount + '</span></span></span>';
-
+                                table += '<span class="round-holder"><span class="round">' + d.getDate();
+                                if (eventsCount > 1) table += '<span class="count">' + eventsCount + '</span>';
+                                table += '</span></span>';
                                 table += '<span class="' + tail_ + '"></span>';
                                 table += '<div class="' + popup_ + ' ';
                                 if (eventsCount == 1) table += 'single ';
