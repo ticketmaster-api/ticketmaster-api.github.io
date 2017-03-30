@@ -98,7 +98,7 @@
 					<!--<exclude>**/ParallelTestSuite.java</exclude>-->
 					<!--</excludes>-->
 					<systemPropertyVariables>
-						<webdriver.driver>${basedir}</webdriver.driver>
+						<webdriver.driver>${webdriver.driver}</webdriver.driver>
 					</systemPropertyVariables>
 				</configuration>
 				<executions>
