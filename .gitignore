@@ -9,7 +9,8 @@ tests/galen/reports-local
 
 # NodeJS libs
 node_modules
-npm-debug.log
+*.log
+
 
 
 # Ignore Mac DS_Store files
@@ -19,6 +20,7 @@ Gemfile.lock
 # Ignore Local automation files
 /tests/serenity/.idea
 /tests/serenity/*.iml
+/tests/serenity/.sonar
 
 # Ingnore unit tests coverage report
 coverage
