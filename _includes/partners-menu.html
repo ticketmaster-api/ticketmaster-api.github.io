@@ -5,7 +5,7 @@
 <ul class="support-aside-menu" id="scrollable-element">
     <li>
         <ul class="categories">
-            <li><a href="/partners/distribution-partners/" class="{% if page.categories[0] == "partners" and page.categories[1] == "distribution" %}active{% endif %}" >Distribution Partners</a>
+            <li><a href="/partners/distribution-partners/" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %}active{% endif %}" >Distribution Partners</a>
                 {% if page.categories[0] == "partners" and page.categories[1] == "distribution" %}
                 <ul class="sections menu-highlight">
                     <li>
@@ -13,17 +13,18 @@
                     </li>
                 </ul>
                 {% endif %}
-            <li><a href="/partners/certified-partners/" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" %}active{% endif %}" >Certified Partners</a>
+						</li>
+            <li><a href="/partners/certified-partners/" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' %}active{% endif %}" >Certified Partners</a>
                 {% if page.categories[0] == "partners" and page.categories[1] == "certified" %}
                     <ul class="sections menu-highlight">
                         <li>
-                            <a href="/partners/certified-partners/nexus/" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" and page.categories[2] == "nexus" %}active{% endif %}">Join the Nexus program</a>
+                            <a href="/partners/certified-partners/nexus/" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' and page.categories[2] == 'nexus' %}active{% endif %}">Join the Nexus program</a>
                         </li>
 												<li>
-													<a href="/partners/certified-partners/#north-american-partners" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" and page.categories[2] == "nexus" %}{% endif %}">North American Partners</a>
+													<a href="/partners/certified-partners/#north-american-partners" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' and page.categories[2] == 'nexus' %}{% endif %}">North American Partners</a>
 												</li>
 												<li>
-													<a href="/partners/certified-partners/#international-partners" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" and page.categories[2] == "nexus" %}{% endif %}">International Partners</a>
+													<a href="/partners/certified-partners/#international-partners" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' and page.categories[2] == 'nexus' %}{% endif %}">International Partners</a>
 												</li>
                         {% for partner in site.pages %}
                             {% if partner.available AND partner.categories[0] == "partner" AND partner.categories[1] == "certified" %}
