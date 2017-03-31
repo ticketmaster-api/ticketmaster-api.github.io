@@ -1,0 +1,159 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Ticketmaster Discovery API allows you to search for events, attractions, or venues.",
+    "version": "v2",
+    "title": "Multiple Test API",
+    "contact": {
+      "url": "http://developer.ticketmaster.com/support/contact-us/"
+    }
+  },
+  "host": "www.ticketmaster.com",
+  "basePath": "/discovery/v2",
+  "paths": {    
+    "/discovery/v2/multiple" : {
+      "get" : {
+        "summary" : "Multiple Test Method",
+        "description" : "Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.",
+        "operationId" : "find",
+        "parameters" : [ {
+          "name" : "sort",
+          "in" : "query",
+          "description" : "Sorting order of the search result",
+          "required" : false,
+          "type" : "string",
+          "default" : "name,asc",
+          "pattern" : "^name,asc|name,desc$",
+          "x-example" : ""
+        }, {
+          "name" : "someparam",
+          "in" : "query",
+          "description" : "Param to search on",
+          "required" : false,
+          "type" : "string",
+          "default" : "",
+          "x-example" : ""
+        }],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/MultipleMethod"
+              }
+            }
+          }
+        }
+      }
+    },
+	 "/discovery/v2/multiple/{id}": {
+      "get": {
+        "summary": "Multiple Test Method 2",
+        "description": "Get details for a specific attraction using the unique identifier for the attraction.",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the attraction",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MultipleMethod"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+	"MultipleMethod": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of the entity",
+          "enum": [
+            "event",
+            "venue",
+            "attraction"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "position": 1,
+          "description": "Unique id of the entity in the discovery API"
+        },
+        "locale": {
+          "type": "string",
+          "position": 3,
+          "description": "Locale in which the content is returned"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        },
+        "description": {
+          "type": "string",
+          "position": 20,
+          "description": "Description's of the entity"
+        },
+        "additionalInfo": {
+          "type": "string",
+          "position": 22,
+          "description": "Additional information of the entity"
+        },
+        "url": {
+          "type": "string",
+          "position": 24,
+          "description": "URL of a web site detail page of the entity"
+        },
+        "images": {
+          "type": "array",
+          "position": 29,
+          "description": "Images of the entity",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "classifications": {
+          "type": "array",
+          "position": 30,
+          "description": "Attraction's classifications",
+          "items": {
+            "$ref": "#/definitions/Classification"
+          }
+        },
+        "test": {
+          "type": "boolean",
+          "position": 96,
+          "description": "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default": false
+        }
+      },
+      "description": "MultipleMethod"
+    }
+  }
+}
