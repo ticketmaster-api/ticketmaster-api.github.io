@@ -1,7 +1,8 @@
 package com.tkmdpa.taf.preconditions;
 
 import com.tkmdpa.taf.definitions.pantheon.UserLogInDefinition;
-import org.jbehave.core.annotations.BeforeScenario;
+import com.tkmdpa.taf.definitions.products_and_docs.PD_GettingStartedDefinition;
+import org.jbehave.core.annotations.BeforeStory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,14 +15,18 @@ import static net.serenitybdd.core.Serenity.getCurrentSession;
 
 public class Before_User_Scenario {
 
-    @BeforeScenario()
+    @BeforeStory()
     public void beforeEachScenario () {
         System.out.println("Before Scenario ...");
         UserLogInDefinition definition = new UserLogInDefinition();
+        PD_GettingStartedDefinition defin = new PD_GettingStartedDefinition();
 
         //Before test is started we are going to put user credentials to current Session
         getCurrentSession().put("username", definition.getLogin(parseJson("validUser")));
         getCurrentSession().put("password", definition.getPassword(parseJson("validUser")));
+
+        getCurrentSession().put("prodUserName", defin.getLogin(parseJson("prodUser")));
+        getCurrentSession().put("prodPassword", defin.getPassword(parseJson("prodUser")));
     }
 
     public JSONObject parseJson(String fileName){

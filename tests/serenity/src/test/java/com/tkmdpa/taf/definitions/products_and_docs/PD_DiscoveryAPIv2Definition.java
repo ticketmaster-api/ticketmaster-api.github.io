@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_DiscoveryAPIv2Steps;
@@ -10,9 +11,7 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class PD_DiscoveryAPIv2Definition {
-
-    private String apiKey = "{apikey}";
+public class PD_DiscoveryAPIv2Definition extends CommonDefinition {
 
     @Steps
     PD_DiscoveryAPIv2Steps discoveryAPIv2Page;
@@ -24,6 +23,7 @@ public class PD_DiscoveryAPIv2Definition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Discovery API v2 page")
+    @When("open Discovery API v2 page")
     public void openDiscoveryAPIv2Page() {
         discoveryAPIv2Page.openPage();
     }
@@ -32,15 +32,6 @@ public class PD_DiscoveryAPIv2Definition {
     public void openLogInPageAndCheckUserIsNotLoggedIn() {
         discoveryAPIv2Page.clickLogIn();
         userLogInPage.isPageOpened();
-        discoveryAPIv2Page.openPage();
-    }
-
-    @When("User is logged to site (Discovery API v2)")
-    public void openLogInPageAndLogIn() {
-        discoveryAPIv2Page.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
-        discoveryAPIv2Page.openPage();
     }
 
     @Then("check general page elements for Discovery API v2 Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
@@ -51,7 +42,12 @@ public class PD_DiscoveryAPIv2Definition {
 
     @Then("check that API key is provided for all placeholders on Discovery API v2 page")
     public void checkAPIKeyPlaceholders(){
-        discoveryAPIv2Page.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        if (tempApiKey == null || tempApiKey.isEmpty()){
+            discoveryAPIv2Page.checkAPIKeyPlaceholders(apiKey);
+        }
+        else
+            discoveryAPIv2Page.checkAPIKeyPlaceholders(tempApiKey);
     }
 
 }

@@ -40,7 +40,6 @@ public class PD_CommerceAPISteps {
     public void checkAPIKeyPlaceholders(String apikey) {
         //First check for non hidden elements
         for (Map.Entry<String, WebElementFacade> entry : commerceAPIPage.getAPIKeyPlaceHoldersList().entrySet()){
-            String key = entry.getKey();
             WebElementFacade value = entry.getValue();
             waitForSomeActionHappened(50);
             assertFalse(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
@@ -51,7 +50,6 @@ public class PD_CommerceAPISteps {
         commerceAPIPage.getSwitchToCUrlCode().click();
 
         for (Map.Entry<String, WebElementFacade> entry : commerceAPIPage.getAPIKeyHiddenPlaceHoldersList().entrySet()){
-            String key = entry.getKey();
             WebElementFacade value = entry.getValue();
             waitForSomeActionHappened(50);
             assertFalse(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));

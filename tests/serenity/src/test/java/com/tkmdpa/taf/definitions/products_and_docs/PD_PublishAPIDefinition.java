@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_PublishAPISteps;
@@ -10,9 +11,7 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class PD_PublishAPIDefinition {
-
-    private String apiKey = "{apikey}";
+public class PD_PublishAPIDefinition extends CommonDefinition{
 
     @Steps
     PD_PublishAPISteps publishAPIPage;
@@ -24,11 +23,12 @@ public class PD_PublishAPIDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Publish API page")
+    @When("open Publish API page")
     public void openPublishAPIPage() {
         publishAPIPage.openPage();
     }
 
-    @When("User is logged to site (Publish API)")
+    @When("Production Production user is logged to site (Publish API)")
     public void openLogInPageAndLogIn() {
         publishAPIPage.clickLogIn();
         userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
@@ -44,7 +44,8 @@ public class PD_PublishAPIDefinition {
 
     @Then("check that API key is provided for all placeholders on Publish API page")
     public void checkAPIKeyPlaceholders(){
-        publishAPIPage.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        publishAPIPage.checkAPIKeyPlaceholders(tempApiKey);
     }
 
 }

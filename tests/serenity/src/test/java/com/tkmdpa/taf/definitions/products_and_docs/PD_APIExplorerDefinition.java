@@ -1,5 +1,7 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
+import com.tkmdpa.taf.steps.AnyPageSteps;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_APIExplorerSteps;
@@ -10,12 +12,13 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class PD_APIExplorerDefinition {
-
-    private String apiKey = "{apikey}";
+public class PD_APIExplorerDefinition extends CommonDefinition {
 
     @Steps
     PD_APIExplorerSteps apiExplorerPage;
+
+    @Steps
+    AnyPageSteps anyPageSteps;
 
     @Steps
     UserLogInSteps userLogInPage;
@@ -24,23 +27,15 @@ public class PD_APIExplorerDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open API Explorer page")
+    @When("open API Explorer page")
     public void openAPIExplorerPage() {
         apiExplorerPage.openPage();
     }
 
-    @When("User is not logged to site (API Explorer)")
-    public void openLogInPageAndCheckUserIsNotLoggedIn() {
-        apiExplorerPage.clickLogIn();
-        userLogInPage.isPageOpened();
-        apiExplorerPage.openPage();
-    }
-
-    @When("User is logged to site (API Explorer)")
+    @When("production user is logged to site")
     public void openLogInPageAndLogIn() {
-        apiExplorerPage.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
-        apiExplorerPage.openPage();
+        anyPageSteps.clickLogIn();
+        userLogInPage.logInToApp((String) getCurrentSession().get("prodUserName"), (String) getCurrentSession().get("prodPassword"));
     }
 
     @Then("check general page elements for API Explorer Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
@@ -51,7 +46,12 @@ public class PD_APIExplorerDefinition {
 
     @Then("check that API key is provided for all placeholders on API Explorer page")
     public void checkAPIKeyPlaceholders(){
-        apiExplorerPage.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        if (tempApiKey == null || tempApiKey.isEmpty()){
+            apiExplorerPage.checkAPIKeyPlaceholders(apiKey);
+        }
+        else
+            apiExplorerPage.checkAPIKeyPlaceholders(tempApiKey);
     }
 
     @Then("Summary widget is shown for API Explorer page")

@@ -20,8 +20,8 @@ public class PD_GettingStartedPage extends AncestorPage {
     @FindBy(xpath = "//div[contains(@class,'horizontal-events-tracker__section')]")
     private WebElementFacade summaryWidget;
 
-    @FindBy(xpath = "//div[@class='content getting-started']/figure/pre/code[@class='language-json']/span[@class='s2' and contains(., 'Rate limit quota violation. Quota limit  exceeded. Identifier :')]")
-    private WebElementFacade apikey01PlaceHolder;
+    @FindBy(xpath = "//*[@id='main-block']/div/figure[2]/pre/code/span[@class='s2' and contains(., 'Rate limit quota violation. Quota limit  exceeded. Identifier :')]")
+    private WebElementFacade apikeyPlaceHolder;
 
     public WebElementFacade getAvailableResourcesTable() {
        return  availableResourcesTable;
@@ -33,7 +33,7 @@ public class PD_GettingStartedPage extends AncestorPage {
 
     public Map<String,WebElementFacade> getAPIKeyPlaceHoldersList() {
         Map<String,WebElementFacade> elements = new HashMap<>();
-        elements.put("apikey01PlaceHolder", apikey01PlaceHolder);
+        elements.put("apikeyPlaceHolder", apikeyPlaceHolder);
         return elements;
     }
 

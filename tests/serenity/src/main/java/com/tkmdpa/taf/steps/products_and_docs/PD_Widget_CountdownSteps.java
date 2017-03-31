@@ -7,7 +7,6 @@ import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.tkmdpa.taf.staticmethods.StaticMethods.*;
 import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.*;
 
@@ -39,7 +38,7 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
     @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         if ("{apikey}".equals(apikey)){
-            assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextFieldValue(), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
+            assertEquals(countdownWidgetPage.getCountdownWidget().getAPIKeyTextFieldValue(), DEFAULTKEY);
         }
         else {
             waitForSomeActionHappened(50);

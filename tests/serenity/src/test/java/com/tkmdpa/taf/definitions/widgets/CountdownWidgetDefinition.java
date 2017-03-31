@@ -1,5 +1,7 @@
 package com.tkmdpa.taf.definitions.widgets;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
+import com.tkmdpa.taf.steps.AnyPageSteps;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_Widget_CountdownSteps;
@@ -10,12 +12,13 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class CountdownWidgetDefinition {
-
-    private String apiKey = "{apikey}";
+public class CountdownWidgetDefinition extends CommonDefinition {
 
     @Steps
     PD_Widget_CountdownSteps countdownWidgetSteps;
+
+    @Steps
+    AnyPageSteps anyPageSteps;
 
     @Steps
     UserLogInSteps userLogInPage;
@@ -85,19 +88,10 @@ public class CountdownWidgetDefinition {
     /**
      * When
      */
-    @When("User is not logged to site (Countdown Widget)")
+    @When("user is not logged to site")
     public void openLogInPageAndCheckUserIsNotLoggedIn() {
-        countdownWidgetSteps.clickLogIn();
+        anyPageSteps.clickLogIn();
         userLogInPage.isPageOpened();
-        countdownWidgetSteps.openPage();
-    }
-
-    @When("User is logged to site (Countdown Widget)")
-    public void openLogInPageAndLogIn() {
-        countdownWidgetSteps.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
-        countdownWidgetSteps.openPage();
     }
 
     @When("click on \"Get code\" button")
@@ -136,7 +130,12 @@ public class CountdownWidgetDefinition {
 
     @Then("check that API key is provided for all placeholders on Countdown Widget page")
     public void checkAPIKeyPlaceholders(){
-        countdownWidgetSteps.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        if (tempApiKey == null || tempApiKey.isEmpty()){
+            countdownWidgetSteps.checkAPIKeyPlaceholders(apiKey);
+        }
+        else
+            countdownWidgetSteps.checkAPIKeyPlaceholders(tempApiKey);
     }
 
     @Then("the required fields are not empty on the Countdown Widget page")

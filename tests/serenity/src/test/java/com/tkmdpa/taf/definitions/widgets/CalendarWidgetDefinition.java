@@ -39,25 +39,9 @@ public class CalendarWidgetDefinition {
         }
     }
 
-    //When
     @When("change value of Zip Code $zipCode")
     public void changeValueOfZipCode(String zipCode) {
         calendarWidgetSteps.setZipCodeValue(zipCode);
-    }
-
-    @When("User is not logged to site (Calendar Widget)")
-    public void openLogInPageAndCheckUserIsNotLoggedIn() {
-        calendarWidgetSteps.clickLogIn();
-        userLogInPage.isPageOpened();
-        calendarWidgetSteps.openPage();
-    }
-
-    @When("User is logged to site (Calendar Widget)")
-    public void openLogInPageAndLogIn() {
-        calendarWidgetSteps.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
-        calendarWidgetSteps.openPage();
     }
 
     @When("click reset button on Calendar Widget Page")
@@ -93,6 +77,11 @@ public class CalendarWidgetDefinition {
 
     @Then("check that API key is provided for all placeholders on Calendar Widget page")
     public void checkAPIKeyPlaceholders(){
-        calendarWidgetSteps.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        if (tempApiKey == null || tempApiKey.isEmpty()){
+            calendarWidgetSteps.checkAPIKeyPlaceholders(apiKey);
+        }
+        else
+            calendarWidgetSteps.checkAPIKeyPlaceholders(tempApiKey);
     }
 }

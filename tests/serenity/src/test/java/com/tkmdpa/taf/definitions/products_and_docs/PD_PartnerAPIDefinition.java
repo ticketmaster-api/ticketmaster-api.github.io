@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_PartnerAPISteps;
@@ -10,9 +11,7 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class PD_PartnerAPIDefinition {
-
-    private String apiKey = "{apikey}";
+public class PD_PartnerAPIDefinition extends CommonDefinition {
 
     @Steps
     PD_PartnerAPISteps partnerAPIPage;
@@ -24,15 +23,8 @@ public class PD_PartnerAPIDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Partner API page")
+    @When("open Partner API page")
     public void openPartnerAPIPage() {
-        partnerAPIPage.openPage();
-    }
-
-    @When("User is logged to site (Partner API)")
-    public void openLogInPageAndLogIn() {
-        partnerAPIPage.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
         partnerAPIPage.openPage();
     }
 
@@ -44,7 +36,8 @@ public class PD_PartnerAPIDefinition {
 
     @Then("check that API key is provided for all placeholders on Partner API page")
     public void checkAPIKeyPlaceholders(){
-        partnerAPIPage.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        partnerAPIPage.checkAPIKeyPlaceholders(tempApiKey);
     }
 
 }

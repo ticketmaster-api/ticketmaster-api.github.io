@@ -4,6 +4,7 @@ import com.tkmdpa.taf.steps.products_and_docs.PD_Widget_CalendarSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 
 public class PD_Widget_CalendarDefinition {
 
@@ -11,6 +12,7 @@ public class PD_Widget_CalendarDefinition {
     PD_Widget_CalendarSteps calendarWidgetPage;
 
     @Given("open Calendar Widget page")
+    @When("open Calendar Widget page")
     public void openCalendarWidgetPage() {
         calendarWidgetPage.openPage();
     }

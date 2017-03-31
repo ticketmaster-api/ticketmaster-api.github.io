@@ -33,4 +33,10 @@ public class AnyPageSteps {
     public void quitBrowser(){
         anyPage.getDriver().quit();
     }
+
+
+    @Step
+    public void clickLogIn() {
+        anyPage.getLogInButton().click();
+    }
 }

@@ -17,11 +17,6 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
     }
 
     @Step
-    public void clickLogIn() {
-        calendarWidgetPage.getLogInButton().click();
-    }
-
-    @Step
     public void checkIfTitleIsCorrect() {
         assertEquals(calendarWidgetPage.getTitleText(), calendarWidgetPage.pageHeader);
     }
@@ -34,7 +29,7 @@ public class PD_Widget_CalendarSteps extends PD_CommonSteps {
     @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         if ("{apikey}".equals(apikey)){
-            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue(), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
+            assertEquals(calendarWidgetPage.getCalendarWidget().getAPIKeyTextFieldValue(), DEFAULTKEY);
         }
         else {
             waitForSomeActionHappened(50);

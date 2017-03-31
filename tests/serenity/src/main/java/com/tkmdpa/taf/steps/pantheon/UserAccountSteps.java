@@ -11,8 +11,8 @@ public class UserAccountSteps {
 
     @Step
     public String getAPIKeyOfUser() {
-        userAccountPage.getFirstUserAccount().click();
-        return userAccountPage.getCustomerKey().getText();
+        userAccountPage.getFirstUserApplication().click();
+        return userAccountPage.getConsumerKey().getText();
     }
 
     @Step

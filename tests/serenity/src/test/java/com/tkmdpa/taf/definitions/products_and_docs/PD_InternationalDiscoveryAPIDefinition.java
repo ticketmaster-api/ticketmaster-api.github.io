@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_InternationalDiscoveryAPISteps;
@@ -10,9 +11,7 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class PD_InternationalDiscoveryAPIDefinition {
-
-    private String apiKey = "{apikey}";
+public class PD_InternationalDiscoveryAPIDefinition extends CommonDefinition{
 
     @Steps
     PD_InternationalDiscoveryAPISteps internationalDiscoveryAPIPage;
@@ -24,15 +23,8 @@ public class PD_InternationalDiscoveryAPIDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open International Discovery API page")
+    @When("open International Discovery API page")
     public void openInternationalDiscoveryAPIPage() {
-        internationalDiscoveryAPIPage.openPage();
-    }
-
-    @When("User is logged to site (International Discovery API)")
-    public void openLogInPageAndLogIn() {
-        internationalDiscoveryAPIPage.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
         internationalDiscoveryAPIPage.openPage();
     }
 
@@ -44,7 +36,8 @@ public class PD_InternationalDiscoveryAPIDefinition {
 
     @Then("check that API key is provided for all placeholders on International Discovery API page")
     public void checkAPIKeyPlaceholders(){
-        internationalDiscoveryAPIPage.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        internationalDiscoveryAPIPage.checkAPIKeyPlaceholders(tempApiKey);
     }
 
 }

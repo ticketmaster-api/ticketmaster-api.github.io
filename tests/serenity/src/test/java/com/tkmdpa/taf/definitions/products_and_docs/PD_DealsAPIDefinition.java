@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_DealsAPISteps;
@@ -10,9 +11,7 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class PD_DealsAPIDefinition {
-
-    private String apiKey = "{apikey}";
+public class PD_DealsAPIDefinition extends CommonDefinition {
 
     @Steps
     PD_DealsAPISteps dealsAPIPage;
@@ -24,15 +23,8 @@ public class PD_DealsAPIDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Deals API page")
+    @When("open Deals API page")
     public void openDealsAPIPage() {
-        dealsAPIPage.openPage();
-    }
-
-    @When("User is logged to site (Deals API)")
-    public void openLogInPageAndLogIn() {
-        dealsAPIPage.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
         dealsAPIPage.openPage();
     }
 
@@ -44,7 +36,8 @@ public class PD_DealsAPIDefinition {
 
     @Then("check that API key is provided for all placeholders on Deals API page")
     public void checkAPIKeyPlaceholders(){
-        dealsAPIPage.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        dealsAPIPage.checkAPIKeyPlaceholders(tempApiKey);
     }
 
 }

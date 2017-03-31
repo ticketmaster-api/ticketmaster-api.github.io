@@ -9,6 +9,7 @@ public class PD_CommonSteps extends WidgetFields {
 
     AncestorPage ancestorPage;
 
+    protected static final String DEFAULTKEY = "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG";
 
     public String getCountryNameByCode(String countryCode) {
         Map<String, String> countryCodes = new HashMap<>();

@@ -26,11 +26,6 @@ public class PD_APIExplorerSteps {
     }
 
     @Step
-    public void clickLogIn() {
-        apiExplorerPage.getLogInButton().click();
-    }
-
-    @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         if ("{apikey}".equals(apikey)){
             assertEquals(apiExplorerPage.getAPIKeyTextField().getAttribute("value"), "");

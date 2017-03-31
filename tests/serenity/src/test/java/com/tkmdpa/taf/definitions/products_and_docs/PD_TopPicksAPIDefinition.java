@@ -1,5 +1,6 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
+import com.tkmdpa.taf.definitions.CommonDefinition;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_TopPicksAPISteps;
@@ -10,9 +11,7 @@ import org.jbehave.core.annotations.When;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 
-public class PD_TopPicksAPIDefinition {
-
-    private String apiKey = "{apikey}";
+public class PD_TopPicksAPIDefinition extends CommonDefinition {
 
     @Steps
     PD_TopPicksAPISteps topPicksAPIPage;
@@ -24,15 +23,8 @@ public class PD_TopPicksAPIDefinition {
     UserAccountSteps userAccountSteps;
 
     @Given("open Top Picks API page")
+    @When("open Top Picks API page")
     public void openTopPicksAPIPage() {
-        topPicksAPIPage.openPage();
-    }
-
-    @When("User is logged to site (Top Picks API)")
-    public void openLogInPageAndLogIn() {
-        topPicksAPIPage.clickLogIn();
-        userLogInPage.logInToApp((String) getCurrentSession().get("username"), (String) getCurrentSession().get("password"));
-        apiKey = userAccountSteps.getAPIKeyOfUser();
         topPicksAPIPage.openPage();
     }
 
@@ -44,7 +36,12 @@ public class PD_TopPicksAPIDefinition {
 
     @Then("check that API key is provided for all placeholders on Top Picks API page")
     public void checkAPIKeyPlaceholders(){
-        topPicksAPIPage.checkAPIKeyPlaceholders(apiKey);
+        String tempApiKey = (String) getCurrentSession().get("apiKey");
+        if (tempApiKey == null || tempApiKey.isEmpty()){
+            topPicksAPIPage.checkAPIKeyPlaceholders(apiKey);
+        }
+        else
+            topPicksAPIPage.checkAPIKeyPlaceholders(tempApiKey);
     }
 
 }

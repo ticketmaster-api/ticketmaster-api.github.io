@@ -12,10 +12,10 @@ public class UserAccountPage extends AncestorPage {
                                      "Create something!";
 
     @FindBy(xpath = "//div[@class='truncate']/a")
-    private WebElementFacade firstUserAccount;
+    private WebElementFacade firstUserApplication;
 
     @FindBy(xpath = "//div[@id='keys0']/div/div/table/tbody/tr[./td[contains(.,'Consumer Key')]]/td[2]/span")
-    private WebElementFacade customerKey;
+    private WebElementFacade consumerKey;
 
     @FindBy(xpath = "//a[@href='/user']")
     private WebElementFacade loggedUserEmailLink;
@@ -30,12 +30,12 @@ public class UserAccountPage extends AncestorPage {
         return this.titleText.getText();
     }
 
-    public WebElementFacade getFirstUserAccount() {
-        return firstUserAccount;
+    public WebElementFacade getFirstUserApplication() {
+        return firstUserApplication;
     }
 
-    public WebElementFacade getCustomerKey() {
-        return customerKey;
+    public WebElementFacade getConsumerKey() {
+        return consumerKey;
     }
 
     public WebElementFacade getLoggedUserEmailLink() {

@@ -31,14 +31,9 @@ public class PD_Widget_EventDiscoverySteps extends PD_CommonSteps {
     }
 
     @Step
-    public void clickLogIn() {
-        eventDiscoveryWidgetPage.getLogInButton().click();
-    }
-
-    @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         if ("{apikey}".equals(apikey)){
-            assertEquals(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue(), "5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG");
+            assertEquals(eventDiscoveryWidgetPage.getEventDiscoveryWidget().getApiKeyValue(), DEFAULTKEY);
         }
         else {
             waitForSomeActionHappened(50);

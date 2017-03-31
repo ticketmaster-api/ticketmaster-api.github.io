@@ -39,7 +39,6 @@ public class PD_DealsAPISteps {
     public void checkAPIKeyPlaceholders(String apikey) {
         //First check for non hidden elements
         for (Map.Entry<String, WebElementFacade> entry : dealsAPIPage.getAPIKeyPlaceHoldersList().entrySet()){
-            String key = entry.getKey();
             WebElementFacade value = entry.getValue();
             waitForSomeActionHappened(50);
             assertFalse(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));
