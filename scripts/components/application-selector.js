@@ -10,7 +10,7 @@ jQuery.fn.applicationSelect = function(options) {
     return this.each(function () {
 
         var $custom_select = $(this);
-        var useData = apiKeyService.getApiKeysCookie();
+        var useData = apiKeyService.getApiKeysCookie("tk-api-apps");
 
         function addCustomList() {
             var data = useData,
@@ -77,7 +77,7 @@ jQuery.fn.applicationSelect = function(options) {
 })(jQuery);
 
 $(document).on('ready', function () {
-    var listApiKeys = apiKeyService.getApiKeysCookie();
+    var listApiKeys = apiKeyService.getApiKeysCookie("tk-api-apps");
     if( listApiKeys && listApiKeys.length > 0) {
         $('#js_custom_select_key')
           .applicationSelect({updateInputs:['#w-tm-api-key','#api-key']})

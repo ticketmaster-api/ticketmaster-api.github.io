@@ -1,6 +1,7 @@
 <!--api-name:{{page.categories[2]}}  api-version: {{page.categories[3]}} -->
-<!--last api.json update : 02 september 2016 -->
 <!--last site.time build: {{ site.time | date: '%B %d, %Y' }}-->
+<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/swagger-redirect-user-role.js' | prepend: site.baseurl }}"></script>
 
 {% assign pageMetaFolder        = page.categories[2] %}
 {% assign pageMetaVersionFolder = page.categories[3] %}
@@ -19,7 +20,7 @@
 {% endif %}
 
 {% if methodsDescription %}{%else%}
-    <p>These 'pageMetaVersionFolder':<b>{{pageMetaVersionFolder}}</b> or 'pageMetaFolder':<b>{{pageMetaFolder}}</b> are not correct. Please fix it.</p>
+    <p>These 'pageMetaVersionFolder':<b>{{pageMetaVersionFolder}}</b> or 'pageMetaFolder':<b>{{pageMetaFolder}}</b> or <b>'methods-metadata.json'</b> are not correct. Please fix it.</p>
 {% endif %}
 
 <h1>{{ swagger.info.title | upcase}}</h1>
