@@ -88,12 +88,6 @@ public class CountdownWidgetDefinition extends CommonDefinition {
     /**
      * When
      */
-    @When("user is not logged to site")
-    public void openLogInPageAndCheckUserIsNotLoggedIn() {
-        anyPageSteps.clickLogIn();
-        userLogInPage.isPageOpened();
-    }
-
     @When("click on \"Get code\" button")
     public void clickOnGetCodeButton() {
         countdownWidgetSteps.clickOnGetButton();

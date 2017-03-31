@@ -28,13 +28,13 @@ public class PD_DiscoveryAPIv2Page extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Overview')]]/p[./strong[contains(.,'Get a list of all events for Adele in Canada')]]/code")
     private WebElementFacade apikey05PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Search')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey06PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Search')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey07PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/events.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/events.json')]")
     private WebElementFacade apikey08PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Event Details')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
@@ -43,7 +43,7 @@ public class PD_DiscoveryAPIv2Page extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Event Details')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey10PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/events/G5diZfkn0B-bh.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/events/G5diZfkn0B-bh.json')]")
     private WebElementFacade apikey11PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Event Images')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
@@ -52,16 +52,16 @@ public class PD_DiscoveryAPIv2Page extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Event Images')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey13PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/events/0B004F0401BD55E5/images.json')]")
+    @FindBy(xpath = "//*[@id='main-block']/div[1]/div[10]/div/div/figure[1]/pre/code/span[2]")
     private WebElementFacade apikey14PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Attractions')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Attraction Search')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey15PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Attractions')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Attraction Search')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey16PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/attractions.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/attractions.json')]")
     private WebElementFacade apikey17PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Attraction Details')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
@@ -70,16 +70,16 @@ public class PD_DiscoveryAPIv2Page extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Attraction Details')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey20PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/attractions/K8vZ9175BhV.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/attractions/K8vZ9175BhV.json')]")
     private WebElementFacade apikey21PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Classifications')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Classification Search')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey22PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Classifications')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Classification Search')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey23PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/classifications.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/classifications.json')]")
     private WebElementFacade apikey24PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Classification Details')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
@@ -88,16 +88,16 @@ public class PD_DiscoveryAPIv2Page extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Classification Details')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey26PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/classifications/KZFzniwnSyZfZ7v7nE')]")
     private WebElementFacade apikey27PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Venues')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Venue Search')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey28PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Venues')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Venue Search')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey29PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/venues.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/venues.json')]")
     private WebElementFacade apikey30PlaceHolder;
 
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Venue Details')]]/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'https://app.ticketmaster.com')]")
@@ -106,13 +106,13 @@ public class PD_DiscoveryAPIv2Page extends AncestorPage {
     @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Get Venue Details')]]/div/figure/pre/code[@class='language-bash']/span[@class='s1' and contains(.,'https://app.ticketmaster.com')]")
     private WebElementFacade apikey32PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-http']/span[@class='nn' and contains(.,'/discovery/v2/venues/KovZpZAFnIEA.json')]")
+    @FindBy(xpath = "//div[@class='article-wrapper']/div/figure/pre/code[@class='language-js']/span[@class='s2' and contains(.,'/discovery/v2/venues/KovZpZAFnIEA.json')]")
     private WebElementFacade apikey33PlaceHolder;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/a")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Search')]]/div/a")
     private WebElementFacade codeSection;
 
-    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Search Events')]]/div/blockquote/p/a[@href='#curl']")
+    @FindBy(xpath = "//div[@class='article-wrapper' and ./h2[contains(.,'Event Search')]]/div/blockquote/p/a[@href='#curl']")
     private WebElementFacade switchToCUrlCode;
 
     public WebElementFacade getSwitchToCUrlCode() {
