@@ -17,7 +17,7 @@ var config = {
 			]
 		},
 		output: {
-			path: './scripts/api-explorer/v2/',
+			path: path.join(__dirname, './scripts/api-explorer/v2/'),
 			filename: '[name].js',
 			library: "base" // global variable
 		},
@@ -79,7 +79,7 @@ var config = {
 
 if (isProd) {
 	config.plugins.push(
-		new webpack.NoErrorsPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			minimize: true,
 			sourceMap: true,
