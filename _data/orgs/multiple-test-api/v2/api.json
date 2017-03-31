@@ -1,0 +1,3688 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The Ticketmaster Discovery API allows you to search for events, attractions, or venues.",
+    "version": "v2",
+    "title": "Multiple Test API",
+    "contact": {
+      "url": "http://developer.ticketmaster.com/support/contact-us/"
+    }
+  },
+  "host": "www.ticketmaster.com",
+  "basePath": "/discovery/v2",
+  "paths": {
+    "/discovery/v2/attractions": {
+      "get": {
+        "summary": "Attraction Search",
+        "description": "Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.",
+        "operationId": "find",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting order of the search result. Allowable Values : 'name,asc', 'name,desc', 'relevance,asc', 'relevance,desc'",
+            "required": false,
+            "type": "string",
+            "default": "relevance,desc",
+            "pattern": "^(name|relevance),(asc|desc)$",
+            "x-example": ""
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Keyword to search on",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter entities by its id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Filter entities by its source name",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " universe",
+              " frontgate",
+              " tmr"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "description": "True if you want to have entities flag as test in the response. Only, if you only wanted test entities",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no|only$",
+            "enum": [
+              "yes",
+              " no",
+              " only"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "string",
+            "default": "0",
+            "minimum": 0,
+            "x-example": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size of the response",
+            "required": false,
+            "type": "string",
+            "default": "20",
+            "maximum": 500,
+            "minimum": 1,
+            "x-example": ""
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Attraction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/attractions/{id}": {
+      "get": {
+        "summary": "Get Attraction Details",
+        "description": "Get details for a specific attraction using the unique identifer for the attraction.",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the attraction",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Attraction"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications": {
+      "get": {
+        "summary": "Classification Search",
+        "description": "Find classifications and filter your search by name, and much more. Classifications help define the nature of attractions and events.",
+        "operationId": "find",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting order of the search result",
+            "required": false,
+            "type": "string",
+            "default": "name,asc",
+            "pattern": "^name,asc|name,desc$",
+            "x-example": ""
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Keyword to search on",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter entities by its id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Filter entities by its source name",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " universe",
+              " frontgate",
+              " tmr"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "description": "True if you want to have entities flag as test in the response. Only, if you only wanted test entities",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no|only$",
+            "enum": [
+              "yes",
+              " no",
+              " only"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "string",
+            "default": "0",
+            "minimum": 0,
+            "x-example": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size of the response",
+            "required": false,
+            "type": "string",
+            "default": "20",
+            "maximum": 500,
+            "minimum": 1,
+            "x-example": ""
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Classification"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/genres/{id}": {
+      "get": {
+        "summary": "Get Genre Details",
+        "description": "Get details for a specific genre using its unique identifer.",
+        "operationId": "getGenre",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the genre",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Genre"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/segments/{id}": {
+      "get": {
+        "summary": "Get Segment Details",
+        "description": "Get details for a specific segment using its unique identifer.",
+        "operationId": "getSegment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the segment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Segment"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/subgenres/{id}": {
+      "get": {
+        "summary": "Get Sub-Genre Details",
+        "description": "Get details for a specific sub-genre using its unique identifer.",
+        "operationId": "getSubgenre",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the subgenre",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Level"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/classifications/{id}": {
+      "get": {
+        "summary": "Get Classification Details",
+        "description": "Get details for a specific segment, genre, or sub-genre using its unique identifer.",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the segment, genre, or sub-genre",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Classification"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events": {
+      "get": {
+        "summary": "Event Search",
+        "description": "Find events and filter your search by location, date, availability, and much more.",
+        "operationId": "find",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting order of the search result. Allowable values : 'name,asc', 'name,desc', 'date,asc', 'date,desc', 'relevance,asc', 'relevance,desc', 'distance,asc', 'name,date,asc', 'name,date,desc', 'date,name,asc', 'date,name,desc'",
+            "required": false,
+            "type": "string",
+            "default": "relevance,desc",
+            "pattern": "^((name|date|relevance|name,date|date,name),(asc|desc))|(distance,asc)$",
+            "x-example": ""
+          },
+          {
+            "name": "startDateTime",
+            "in": "query",
+            "description": "Filter events with a start date after this date",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "endDateTime",
+            "in": "query",
+            "description": "Filter events with a start date before this date",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "onsaleStartDateTime",
+            "in": "query",
+            "description": "Filter events with onsale start date after this date",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "onsaleOnStartDate",
+            "in": "query",
+            "description": "Filter events with onsale start date on this date",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "onsaleOnAfterStartDate",
+            "in": "query",
+            "description": "Filter events with onsale range within this date",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "onsaleEndDateTime",
+            "in": "query",
+            "description": "Filter events with onsale end date before this date",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Filter events by city",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "countryCode",
+            "in": "query",
+            "description": "Filter events by country code",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "stateCode",
+            "in": "query",
+            "description": "Filter events by state code",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "postalCode",
+            "in": "query",
+            "description": "Filter events by postal code / zipcode",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "venueId",
+            "in": "query",
+            "description": "Filter events by venue id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "attractionId",
+            "in": "query",
+            "description": "Filter events by attraction id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "segmentId",
+            "in": "query",
+            "description": "Filter events by segment id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "segmentName",
+            "in": "query",
+            "description": "Filter events by segment name",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "classificationName",
+            "in": "query",
+            "description": "Filter events by classification name: name of any segment, genre, sub-genre, type, sub-type",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "multi",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "classificationId",
+            "in": "query",
+            "description": "Filter events by classification id: id of any segment, genre, sub-genre, type, sub-type",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "multi",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "marketId",
+            "in": "query",
+            "description": "Filter events by market id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "pattern": "^\\s*$|^(\\d+(,\\d+)*)?$",
+            "x-example": ""
+          },
+          {
+            "name": "promoterId",
+            "in": "query",
+            "description": "Filter events by promoter id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "pattern": "^\\s*$|^(\\d+(,\\d+)*)?$",
+            "x-example": ""
+          },
+          {
+            "name": "dmaId",
+            "in": "query",
+            "description": "Filter events by dma id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "pattern": "^\\s*$|^(\\d+(,\\d+)*)?$",
+            "x-example": ""
+          },
+          {
+            "name": "includeTBA",
+            "in": "query",
+            "description": "True, to include events with date to be announce (TBA)",
+            "required": false,
+            "type": "string",
+            "default": "no if date parameter sent, yes otherwise",
+            "pattern": "^\\s*|yes|no|only$",
+            "enum": [
+              "yes",
+              " no",
+              " only"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeTBD",
+            "in": "query",
+            "description": "True, to include event with a date to be defined (TBD)",
+            "required": false,
+            "type": "string",
+            "default": "no if date parameter sent, yes otherwise",
+            "pattern": "^\\s*|yes|no|only$",
+            "enum": [
+              "yes",
+              " no",
+              " only"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "clientVisibility",
+            "in": "query",
+            "description": "Filter events by clientName",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "nlp",
+            "in": "query",
+            "description": "Semantic search events with nlp(experimental)",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "pattern": "^\\s*|(?:(?:^|,)(location))+$",
+            "enum": [
+              "location"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "latlong",
+            "in": "query",
+            "description": "Filter events by latitude and longitude",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "pattern": "^\\s*$|^-?(90(\\.0+)?|[0-8]?[0-9](\\.\\d+)?),-?(180(\\.0+)?|(1[0-7][0-9]|\\d{1,2})(\\.\\d+)?)$",
+            "x-example": "33.80003000,-117.88304300"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Radius of the area in which we want to search for events.",
+            "required": false,
+            "type": "string",
+            "default": "50",
+            "pattern": "^\\s*$|^0*1?\\d{1,4}$",
+            "x-example": ""
+          },
+          {
+            "name": "unit",
+            "in": "query",
+            "description": "Unit of the radius",
+            "required": false,
+            "type": "string",
+            "default": "miles",
+            "pattern": "^\\s*|miles|km$",
+            "enum": [
+              "miles",
+              "km"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Keyword to search on",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter entities by its id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Filter entities by its source name",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " universe",
+              " frontgate",
+              " tmr"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "description": "True if you want to have entities flag as test in the response. Only, if you only wanted test entities",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no|only$",
+            "enum": [
+              "yes",
+              " no",
+              " only"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "string",
+            "default": "0",
+            "minimum": 0,
+            "x-example": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size of the response",
+            "required": false,
+            "type": "string",
+            "default": "20",
+            "maximum": 500,
+            "minimum": 1,
+            "x-example": ""
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/{id}": {
+      "get": {
+        "summary": "Get Event Details",
+        "description": "Get details for a specific event using the unique identifer for the event. This includes the venue and location, the attraction(s), and the Ticketmaster Website URL for purchasing tickets for the event.",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the event",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/{id}/images": {
+      "get": {
+        "summary": "Get Event Images",
+        "description": "Get images for a specific event using the unique identifer for the event.",
+        "operationId": "getImages",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the event",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EventImages"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues": {
+      "get": {
+        "summary": "Venue Search",
+        "description": "Find venues and filter your search by name, and much more.",
+        "operationId": "find",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting order of the search result. Allowable Values: 'name,asc', 'name,desc', 'relevance,asc', 'relevance,desc', 'distance,asc', 'distance,desc'",
+            "required": false,
+            "type": "string",
+            "default": "relevance,desc",
+            "pattern": "^(name|relevance|distance),(asc|desc)$",
+            "x-example": ""
+          },
+          {
+            "name": "stateCode",
+            "in": "query",
+            "description": "Filter venues by state / province code",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "countryCode",
+            "in": "query",
+            "description": "Filter venues by country code",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "latlong",
+            "in": "query",
+            "description": "Filter events by latitude and longitude",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "pattern": "^\\s*$|^-?(90(\\.0+)?|[0-8]?[0-9](\\.\\d+)?),-?(180(\\.0+)?|(1[0-7][0-9]|\\d{1,2})(\\.\\d+)?)$",
+            "x-example": "33.80003000,-117.88304300"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Radius of the area in which we want to search for events.",
+            "required": false,
+            "type": "string",
+            "default": "50",
+            "pattern": "^\\s*$|^0*1?\\d{1,4}$",
+            "x-example": ""
+          },
+          {
+            "name": "unit",
+            "in": "query",
+            "description": "Unit of the radius",
+            "required": false,
+            "type": "string",
+            "default": "miles",
+            "pattern": "^\\s*|miles|km$",
+            "enum": [
+              "miles",
+              "km"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Keyword to search on",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter entities by its id",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Filter entities by its source name",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " universe",
+              " frontgate",
+              " tmr"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeTest",
+            "in": "query",
+            "description": "True if you want to have entities flag as test in the response. Only, if you only wanted test entities",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no|only$",
+            "enum": [
+              "yes",
+              " no",
+              " only"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "string",
+            "default": "0",
+            "minimum": 0,
+            "x-example": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size of the response",
+            "required": false,
+            "type": "string",
+            "default": "20",
+            "maximum": 500,
+            "minimum": 1,
+            "x-example": ""
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Venue"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues/{id}": {
+      "get": {
+        "summary": "Get Venue Details",
+        "description": "Get details for a specific venue using the unique identifer for the venue.",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the venue",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Venue"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/multiple": {
+      "get": {
+        "summary": "Multiple Test Method",
+        "description": "Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.",
+        "operationId": "find",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting order of the search result",
+            "required": false,
+            "type": "string",
+            "default": "name,asc",
+            "pattern": "^name,asc|name,desc$",
+            "x-example": ""
+          },
+          {
+            "name": "someparam",
+            "in": "query",
+            "description": "Param to search on",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MultipleMethod"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/multiple/{id}": {
+      "get": {
+        "summary": "Multiple Test Method 2",
+        "description": "Get details for a specific attraction using the unique identifier for the attraction.",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the attraction",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MultipleMethod"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/attractions/legacy": {
+      "get": {
+        "summary": "Search Attractions",
+        "description": "Since 1.0.0",
+        "operationId": "legacyFind",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter entities by ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Change the fields returned in the response",
+            "required": false,
+            "type": "string",
+            "default": "internal, images",
+            "x-example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "string",
+            "default": "0",
+            "minimum": 0,
+            "x-example": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size of the response",
+            "required": false,
+            "type": "string",
+            "default": "20",
+            "maximum": 500,
+            "minimum": 1,
+            "x-example": ""
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Attraction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/attractions/legacy/{id}": {
+      "get": {
+        "summary": "Get Attraction Details",
+        "description": "Since 1.0.0",
+        "operationId": "getBySource",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of the attraction",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the attraction in its original system",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "internalId",
+            "in": "query",
+            "description": "Filter entities by internal ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "legacyId",
+            "in": "query",
+            "description": "Filter entities by legacyId ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Change the fields returned in the response",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "internal",
+              " images"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "description": "Return extension on entities within the response",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "multi",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " geolocation"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Attraction"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/legacy": {
+      "get": {
+        "summary": "Search Events",
+        "description": "Since 1.0.0",
+        "operationId": "legacyFind",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter entities by ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Change the fields returned in the response",
+            "required": false,
+            "type": "string",
+            "default": "internal, images",
+            "x-example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "string",
+            "default": "0",
+            "minimum": 0,
+            "x-example": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size of the response",
+            "required": false,
+            "type": "string",
+            "default": "20",
+            "maximum": 500,
+            "minimum": 1,
+            "x-example": ""
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/legacy/{id}": {
+      "get": {
+        "summary": "Get Event Images",
+        "description": "Since 1.0.0",
+        "operationId": "legacyGetImages",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the event in its original system",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "internalId",
+            "in": "query",
+            "description": "Filter entities by internal ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "legacyId",
+            "in": "query",
+            "description": "Filter entities by legacyId ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Change the fields returned in the response",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "internal",
+              " images"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "description": "Return extension on entities within the response",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "multi",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " geolocation"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EventImages"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/events/{source}/{id}": {
+      "get": {
+        "summary": "Get Event Details",
+        "description": "Since 1.0.0",
+        "operationId": "getBySource",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of the event",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the event in its original system",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clientVisibility",
+            "in": "query",
+            "description": "Filter events by clientName",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": "tmol"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "internalId",
+            "in": "query",
+            "description": "Filter entities by internal ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "legacyId",
+            "in": "query",
+            "description": "Filter entities by legacyId ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Change the fields returned in the response",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "internal",
+              " images"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "description": "Return extension on entities within the response",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "multi",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " geolocation"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues/legacy": {
+      "get": {
+        "summary": "Search Venues",
+        "description": "Since 1.0.0",
+        "operationId": "legacyFind",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Filter entities by ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Change the fields returned in the response",
+            "required": false,
+            "type": "string",
+            "default": "internal, images",
+            "x-example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "string",
+            "default": "0",
+            "minimum": 0,
+            "x-example": ""
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Page size of the response",
+            "required": false,
+            "type": "string",
+            "default": "20",
+            "maximum": 500,
+            "minimum": 1,
+            "x-example": ""
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Venue"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/discovery/v2/venues/{source}/{id}": {
+      "get": {
+        "summary": "Get Venue Details",
+        "description": "Since 1.0.0",
+        "operationId": "getBySource",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of the venue",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the venue in its original system",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "The locale in ISO code format. Multiple comma-separated values can be provided. When omiting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
+            "required": false,
+            "type": "string",
+            "default": "en",
+            "pattern": "(?i)^\\s*$|^\\s*[a-z]{2}(-[a-z]{2})?(\\s*,\\s*[a-z]{2}(-[a-z]{2})?)*\\s*$",
+            "x-example": "en-us,en,fr"
+          },
+          {
+            "name": "internalId",
+            "in": "query",
+            "description": "Filter entities by internal ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "legacyId",
+            "in": "query",
+            "description": "Filter entities by legacyId ids",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "x-example": ""
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Change the fields returned in the response",
+            "required": false,
+            "type": "string",
+            "default": "",
+            "enum": [
+              "internal",
+              " images"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "extensions",
+            "in": "query",
+            "description": "Return extension on entities within the response",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "multi",
+            "default": "",
+            "enum": [
+              "ticketmaster",
+              " geolocation"
+            ],
+            "x-example": ""
+          },
+          {
+            "name": "includeLicensedContent",
+            "in": "query",
+            "description": "True if you want to display licensed content",
+            "required": false,
+            "type": "string",
+            "default": "no",
+            "pattern": "^\\s*|yes|no$",
+            "enum": [
+              "yes",
+              " no"
+            ],
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Venue"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccessDates": {
+      "type": "object",
+      "properties": {
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "yyyy-MM-ddThh-mm-ssZ",
+          "description": "Event's start access time"
+        },
+        "startApproximate": {
+          "type": "boolean",
+          "position": 1,
+          "description": "Boolean flag to indicate whether or not the access start date is approximated",
+          "default": false
+        },
+        "endDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "yyyy-MM-ddThh-mm-ssZ",
+          "position": 2,
+          "description": "Event's end access time"
+        },
+        "endApproximate": {
+          "type": "boolean",
+          "example": "yyyy-MM-ddThh-mm-ssZ",
+          "position": 3,
+          "description": "Boolean flag to indicate whether or not the access end date is approximated",
+          "default": false
+        }
+      },
+      "description": "Event's Access Date"
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "line1": {
+          "type": "string",
+          "description": "Address first line"
+        },
+        "line2": {
+          "type": "string",
+          "position": 3,
+          "description": "Address second line"
+        },
+        "line3": {
+          "type": "string",
+          "position": 3,
+          "description": "Address third line"
+        }
+      },
+      "description": "Address"
+    },
+    "Area": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        }
+      },
+      "description": "Area"
+    },
+    "Attraction": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of the entity",
+          "enum": [
+            "event",
+            "venue",
+            "attraction"
+          ]
+        },
+        "extensions": {
+          "position": 101,
+          "description": "Attraction's extensions",
+          "$ref": "#/definitions/AttractionExtensions"
+        },
+        "id": {
+          "type": "string",
+          "position": 1,
+          "description": "Unique id of the entity in the discovery API"
+        },
+        "source": {
+          "position": 2,
+          "description": "Source of the entity, where the entity comes from",
+          "$ref": "#/definitions/Source"
+        },
+        "locale": {
+          "type": "string",
+          "position": 3,
+          "description": "Locale in which the content is returned"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        },
+        "description": {
+          "type": "string",
+          "position": 20,
+          "description": "Description's of the entity"
+        },
+        "additionalInfo": {
+          "type": "string",
+          "position": 22,
+          "description": "Additional information of the entity"
+        },
+        "url": {
+          "type": "string",
+          "position": 24,
+          "description": "URL of a web site detail page of the entity"
+        },
+        "images": {
+          "type": "array",
+          "position": 29,
+          "description": "Images of the entity",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "classifications": {
+          "type": "array",
+          "position": 30,
+          "description": "Attraction's classifications",
+          "items": {
+            "$ref": "#/definitions/Classification"
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "position": 70,
+          "description": "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items": {
+            "$ref": "#/definitions/Relationship"
+          }
+        },
+        "references": {
+          "type": "object",
+          "example": "sourceName: id",
+          "position": 71,
+          "description": "References of this entity in an other system. Reference is the exact same entity",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "attributions": {
+          "position": 80,
+          "description": "References on licensed content in this entity",
+          "$ref": "#/definitions/Attributions"
+        },
+        "lastUpdate": {
+          "type": "integer",
+          "format": "int64",
+          "position": 81,
+          "description": "The entity last update date"
+        },
+        "test": {
+          "type": "boolean",
+          "position": 96,
+          "description": "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default": false
+        },
+        "entityChanges": {
+          "position": 99,
+          "description": "Fields changes on the last update",
+          "$ref": "#/definitions/EntityChanges"
+        }
+      },
+      "description": "Attraction"
+    },
+    "AttractionExtensions": {
+      "type": "object",
+      "properties": {
+        "ticketmaster": {
+          "description": "Ticketmaster extension on an attraction | add filter 'extensions=ticketmaster' on your venues request",
+          "$ref": "#/definitions/TicketmasterAttractionExtensions"
+        }
+      },
+      "description": "All Attraction's extensions"
+    },
+    "Attribution": {
+      "type": "object",
+      "properties": {
+        "licenceUrl": {
+          "type": "string",
+          "description": "LicenceUrl"
+        },
+        "licenceName": {
+          "type": "string",
+          "description": "LicenceName"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "description": "SourceUrl"
+        },
+        "sourceName": {
+          "type": "string",
+          "description": "SourceName"
+        }
+      },
+      "description": "Attribution"
+    },
+    "Attributions": {
+      "type": "object",
+      "properties": {
+        "descriptions": {
+          "type": "object",
+          "description": "Attribution descriptions - multi-lingual fields",
+          "additionalProperties": {
+            "$ref": "#/definitions/Attribution"
+          }
+        },
+        "description": {
+          "description": "Attribution description",
+          "$ref": "#/definitions/Attribution"
+        }
+      },
+      "description": "Attributions"
+    },
+    "Chronology": {
+      "type": "object",
+      "properties": {
+        "zone": {
+          "$ref": "#/definitions/DateTimeZone"
+        }
+      }
+    },
+    "City": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        }
+      },
+      "description": "City"
+    },
+    "Classification": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "boolean",
+          "default": false
+        },
+        "segment": {
+          "position": 1,
+          "description": "A Segment is a primary genre for an entity (Music, Sports, Arts, etc)",
+          "$ref": "#/definitions/Segment"
+        },
+        "genre": {
+          "position": 2,
+          "description": "Secondary Genre to further describe an entity (Rock, Classical, Animation, etc)",
+          "$ref": "#/definitions/Level"
+        },
+        "subGenre": {
+          "position": 3,
+          "description": "Tertiary Genre for additional detail when describring an entity (Alternative Rock, Ambient Pop, etc)",
+          "$ref": "#/definitions/Level"
+        },
+        "type": {
+          "position": 5,
+          "description": "A Type represents a kind or group of people. (Donation, Group, Individual, Merchandise, Event Style, etc)",
+          "$ref": "#/definitions/Level"
+        },
+        "subType": {
+          "position": 6,
+          "description": "Secondary Type to further categorize an entity (Band, Choir, Chorus, etc)",
+          "$ref": "#/definitions/Level"
+        }
+      },
+      "description": "Classification"
+    },
+    "Country": {
+      "type": "object",
+      "properties": {
+        "countryCode": {
+          "type": "string",
+          "description": "Country code (ISO 3166)"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        }
+      },
+      "description": "Country"
+    },
+    "DateTimeField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DateTimeFieldType"
+        },
+        "supported": {
+          "type": "boolean",
+          "default": false
+        },
+        "lenient": {
+          "type": "boolean",
+          "default": false
+        },
+        "durationField": {
+          "$ref": "#/definitions/DurationField"
+        },
+        "minimumValue": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maximumValue": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rangeDurationField": {
+          "$ref": "#/definitions/DurationField"
+        },
+        "leapDurationField": {
+          "$ref": "#/definitions/DurationField"
+        }
+      }
+    },
+    "DateTimeFieldType": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "durationType": {
+          "$ref": "#/definitions/DurationFieldType"
+        },
+        "rangeDurationType": {
+          "$ref": "#/definitions/DurationFieldType"
+        }
+      }
+    },
+    "DateTimeZone": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fixed": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "DisplaySettingExtension": {
+      "type": "object",
+      "properties": {
+        "softLanding": {
+          "type": "boolean",
+          "description": "True the landing is Soft otherwise it's Comingled",
+          "default": false
+        }
+      },
+      "description": "Event's display settings extension"
+    },
+    "Dma": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "DMS's id"
+        }
+      },
+      "description": "DMA (Designated Market Area)"
+    },
+    "DurationField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DurationFieldType"
+        },
+        "supported": {
+          "type": "boolean",
+          "default": false
+        },
+        "precise": {
+          "type": "boolean",
+          "default": false
+        },
+        "unitMillis": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DurationFieldType": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "EndDates": {
+      "type": "object",
+      "properties": {
+        "localTime": {
+          "example": "yyyy-MM-dd",
+          "description": "The event end time in local time",
+          "$ref": "#/definitions/LocalTime"
+        },
+        "dateTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "yyyy-MM-ddThh-mm-ssZ",
+          "position": 1,
+          "description": "The event end date time"
+        },
+        "approximate": {
+          "type": "boolean",
+          "position": 2,
+          "description": "Boolean flag to indicate whether or not the end date is approximated",
+          "default": false
+        }
+      },
+      "description": "Event's End Dates"
+    },
+    "EntityChanges": {
+      "type": "object",
+      "properties": {
+        "newlyCreated": {
+          "type": "boolean",
+          "default": false
+        },
+        "changes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Event": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of the entity",
+          "enum": [
+            "event",
+            "venue",
+            "attraction"
+          ]
+        },
+        "extensions": {
+          "position": 101,
+          "description": "Event's extension",
+          "$ref": "#/definitions/EventExtensions"
+        },
+        "distance": {
+          "type": "number",
+          "format": "double"
+        },
+        "units": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/Location"
+        },
+        "id": {
+          "type": "string",
+          "position": 1,
+          "description": "Unique id of the entity in the discovery API"
+        },
+        "source": {
+          "position": 2,
+          "description": "Source of the entity, where the entity comes from",
+          "$ref": "#/definitions/Source"
+        },
+        "locale": {
+          "type": "string",
+          "position": 3,
+          "description": "Locale in which the content is returned"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        },
+        "description": {
+          "type": "string",
+          "position": 20,
+          "description": "Description's of the entity"
+        },
+        "additionalInfo": {
+          "type": "string",
+          "position": 22,
+          "description": "Additional information of the entity"
+        },
+        "url": {
+          "type": "string",
+          "position": 24,
+          "description": "URL of a web site detail page of the entity"
+        },
+        "images": {
+          "type": "array",
+          "position": 29,
+          "description": "Images of the entity",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "publicVisibility": {
+          "position": 30,
+          "description": "Event's public visibility dates",
+          "$ref": "#/definitions/PublicVisibility"
+        },
+        "dates": {
+          "position": 31,
+          "description": "Event's dates information",
+          "$ref": "#/definitions/EventDates"
+        },
+        "sales": {
+          "position": 32,
+          "description": "Event's sales dates information",
+          "$ref": "#/definitions/EventSalesDates"
+        },
+        "info": {
+          "type": "string",
+          "position": 32,
+          "description": "Any information related to the event"
+        },
+        "pleaseNote": {
+          "type": "string",
+          "position": 34,
+          "description": "Any notes related to the event"
+        },
+        "priceRanges": {
+          "type": "array",
+          "position": 36,
+          "description": "Price ranges of this event",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/PriceRange"
+          }
+        },
+        "promoter": {
+          "position": 37,
+          "description": "Event's promoter",
+          "$ref": "#/definitions/Promoter"
+        },
+        "domain": {
+          "type": "string",
+          "position": 41,
+          "description": "Event's domain"
+        },
+        "isPubliclyVisible": {
+          "type": "boolean",
+          "position": 42,
+          "description": "false",
+          "default": false
+        },
+        "clientVisibility": {
+          "type": "array",
+          "position": 43,
+          "description": "Clients who can see the event",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "seatmap": {
+          "position": 43,
+          "$ref": "#/definitions/SeatMap"
+        },
+        "classifications": {
+          "type": "array",
+          "position": 50,
+          "description": "Event's classifications",
+          "items": {
+            "$ref": "#/definitions/Classification"
+          }
+        },
+        "place": {
+          "position": 51,
+          "description": "Place has the information on where the event happens. It can be set if there is no venue",
+          "$ref": "#/definitions/Place"
+        },
+        "relationships": {
+          "type": "array",
+          "position": 70,
+          "description": "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items": {
+            "$ref": "#/definitions/Relationship"
+          }
+        },
+        "references": {
+          "type": "object",
+          "example": "sourceName: id",
+          "position": 71,
+          "description": "References of this entity in an other system. Reference is the exact same entity",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "attributions": {
+          "position": 80,
+          "description": "References on licensed content in this entity",
+          "$ref": "#/definitions/Attributions"
+        },
+        "lastUpdate": {
+          "type": "integer",
+          "format": "int64",
+          "position": 81,
+          "description": "The entity last update date"
+        },
+        "test": {
+          "type": "boolean",
+          "position": 96,
+          "description": "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default": false
+        },
+        "entityChanges": {
+          "position": 99,
+          "description": "Fields changes on the last update",
+          "$ref": "#/definitions/EntityChanges"
+        }
+      },
+      "description": "Event"
+    },
+    "EventDates": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "description": "Event's start dates. The date and time when the event will start",
+          "$ref": "#/definitions/StartDates"
+        },
+        "end": {
+          "position": 1,
+          "description": "Event's end dates. The date and time when the event will end",
+          "$ref": "#/definitions/EndDates"
+        },
+        "access": {
+          "position": 2,
+          "description": "Event's access dates. The date and time the fan can access the event",
+          "$ref": "#/definitions/AccessDates"
+        },
+        "timezone": {
+          "type": "string",
+          "position": 3,
+          "description": "Event's timezone"
+        },
+        "status": {
+          "position": 4,
+          "description": "Status of the event",
+          "$ref": "#/definitions/EventStatus"
+        }
+      },
+      "description": "Event's Dates"
+    },
+    "EventExtensions": {
+      "type": "object",
+      "properties": {
+        "ticketmaster": {
+          "description": "Ticketmaster extension on an event | add filter 'extensions=ticketmaster' on your venues request",
+          "$ref": "#/definitions/TicketmasterEventExtensions"
+        }
+      },
+      "description": "All Event's extensions"
+    },
+    "EventImages": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of the entity",
+          "enum": [
+            "event"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "position": 1,
+          "description": "Unique id of the entity in the discovery API"
+        },
+        "images": {
+          "type": "array",
+          "position": 2,
+          "description": "Images of the entity",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        }
+      },
+      "description": "This class defines an Event with only images view on the Discovery API"
+    },
+    "EventSalesDates": {
+      "type": "object",
+      "properties": {
+        "public": {
+          "description": "Public onsale information on this event",
+          "$ref": "#/definitions/PublicSaleDates"
+        },
+        "presales": {
+          "type": "array",
+          "position": 1,
+          "description": "Presale information on this event",
+          "items": {
+            "$ref": "#/definitions/Presale"
+          }
+        }
+      },
+      "description": "Event's Sales Dates"
+    },
+    "EventStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "The event's status code",
+          "enum": [
+            "onsale",
+            "offsale",
+            "canceled",
+            "postponed",
+            "rescheduled"
+          ]
+        }
+      },
+      "description": "Event's Status"
+    },
+    "Extension": {
+      "type": "object"
+    },
+    "Genre": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the classification's level"
+        },
+        "name": {
+          "type": "string",
+          "position": 1,
+          "description": "The Name of the classification's level"
+        }
+      },
+      "description": "Secondary Genre"
+    },
+    "GeocodeExtension": {
+      "type": "object",
+      "properties": {
+        "county": {
+          "type": "string"
+        },
+        "geometry": {
+          "$ref": "#/definitions/Geometry"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "route": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "formattedAddress": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "GeolocationVenueExtensions": {
+      "type": "object",
+      "properties": {
+        "geocode": {
+          "description": "Geocoding information about the venue",
+          "$ref": "#/definitions/GeocodeExtension"
+        }
+      },
+      "description": "Venue's geocode extension"
+    },
+    "Geometry": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "#/definitions/Location"
+        }
+      }
+    },
+    "HostExtension": {
+      "type": "object",
+      "properties": {
+        "eventType": {
+          "type": "string",
+          "description": "Event type as it is authored on the HOST"
+        }
+      },
+      "description": "Event's Host extension"
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "position": 2,
+          "description": "Public URL of the image"
+        },
+        "ratio": {
+          "type": "string",
+          "position": 3,
+          "description": "Aspect ratio of the image",
+          "enum": [
+            "16_9",
+            "3_2",
+            "4_3"
+          ]
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32",
+          "position": 4,
+          "description": "Width of the image"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32",
+          "position": 5,
+          "description": "Height of the image"
+        },
+        "fallback": {
+          "type": "boolean",
+          "position": 6,
+          "description": "true if the image is not the event's image but a fallbak image",
+          "default": false
+        },
+        "domains": {
+          "type": "array",
+          "position": 7,
+          "description": "Domains on which this image should be displayed",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "attribution": {
+          "type": "string",
+          "position": 8,
+          "description": "Attribution of the image"
+        }
+      },
+      "description": "Image"
+    },
+    "Level": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the classification's level"
+        },
+        "name": {
+          "type": "string",
+          "position": 1,
+          "description": "The Name of the classification's level"
+        }
+      }
+    },
+    "LocalTime": {
+      "type": "object",
+      "properties": {
+        "chronology": {
+          "$ref": "#/definitions/Chronology"
+        },
+        "millisOfDay": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minuteOfHour": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hourOfDay": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "millisOfSecond": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "secondOfMinute": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DateTimeField"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "fieldTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DateTimeFieldType"
+          }
+        }
+      }
+    },
+    "Locale": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "displayCountry": {
+          "type": "string"
+        },
+        "displayLanguage": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "displayScript": {
+          "type": "string"
+        },
+        "displayVariant": {
+          "type": "string"
+        },
+        "extensionKeys": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "iso3Country": {
+          "type": "string"
+        },
+        "iso3Language": {
+          "type": "string"
+        },
+        "script": {
+          "type": "string"
+        },
+        "unicodeLocaleAttributes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "unicodeLocaleKeys": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "variant": {
+          "type": "string"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "longitude": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Latitude"
+        }
+      },
+      "description": "Location"
+    },
+    "Market": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Market's id"
+        }
+      },
+      "description": "Market"
+    },
+    "Parking": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        },
+        "url": {
+          "type": "string",
+          "position": 20,
+          "description": "Url to the web page of the parking"
+        }
+      },
+      "description": "Parking"
+    },
+    "Place": {
+      "type": "object",
+      "properties": {
+        "area": {
+          "description": "Area of the place",
+          "$ref": "#/definitions/Area"
+        },
+        "address": {
+          "position": 1,
+          "description": "Address of the place",
+          "$ref": "#/definitions/Address"
+        },
+        "city": {
+          "position": 2,
+          "description": "City of the Place",
+          "$ref": "#/definitions/City"
+        },
+        "state": {
+          "position": 3,
+          "description": "State / Province of the place",
+          "$ref": "#/definitions/State"
+        },
+        "country": {
+          "position": 4,
+          "description": "Country of the place",
+          "$ref": "#/definitions/Country"
+        },
+        "postalCode": {
+          "type": "string",
+          "position": 5,
+          "description": "Postal code / zipcode of the place"
+        },
+        "location": {
+          "position": 6,
+          "description": "Location of the place",
+          "$ref": "#/definitions/Location"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        }
+      },
+      "description": "Place"
+    },
+    "Presale": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the presale"
+        },
+        "description": {
+          "type": "string",
+          "position": 1,
+          "description": "Description of the presame"
+        },
+        "url": {
+          "type": "string",
+          "position": 3,
+          "description": "Presale link URL"
+        },
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "position": 4,
+          "description": "Presale's start dates. The date and time when the presale will start"
+        },
+        "endDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "position": 5,
+          "description": "Presale's end dates. The date and time when the presale will end"
+        }
+      },
+      "description": "Event's Presale Info"
+    },
+    "PriceRange": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of price",
+          "enum": [
+            "standard"
+          ]
+        },
+        "currency": {
+          "type": "string",
+          "position": 1,
+          "description": "Currency"
+        },
+        "min": {
+          "type": "number",
+          "format": "double",
+          "position": 2,
+          "description": "Minimum price"
+        },
+        "max": {
+          "type": "number",
+          "format": "double",
+          "position": 3,
+          "description": "Maximum price"
+        }
+      },
+      "description": "PriceRange"
+    },
+    "Promoter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Id of the promoter"
+        },
+        "name": {
+          "type": "string",
+          "position": 1,
+          "description": "Name of the promoter"
+        },
+        "description": {
+          "type": "string",
+          "position": 3,
+          "description": "Description of the promoter"
+        }
+      },
+      "description": "Promoter"
+    },
+    "PublicSaleDates": {
+      "type": "object",
+      "properties": {
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Public sale's start dates. The date and time when the public sale will start"
+        },
+        "endDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "position": 1,
+          "description": "Public sale's end dates. The date and time when the public sale will end"
+        },
+        "startTBD": {
+          "type": "boolean",
+          "position": 2,
+          "description": "True if the public sale's date is to be determined",
+          "default": false
+        }
+      },
+      "description": "Event's Public Onsales Dates"
+    },
+    "PublicVisibility": {
+      "type": "object",
+      "properties": {
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The start of the public visibility. The date and time when the event will be public visible"
+        },
+        "endDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "position": 1,
+          "description": "The end of the public visibility. The date and time when the event will be public visible"
+        },
+        "visible": {
+          "type": "boolean",
+          "position": 2,
+          "description": "True if you want to have the event visible in the discovery API",
+          "default": false
+        }
+      },
+      "description": "The class defines the public visibility period on the Discovery/Publish API."
+    },
+    "Relationship": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of the relationship",
+          "enum": [
+            "duplicate"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "position": 1,
+          "description": "The source name of the related entity"
+        },
+        "id": {
+          "type": "string",
+          "position": 2,
+          "description": "The ID of the related entity"
+        }
+      },
+      "description": "Relationship"
+    },
+    "SeatMap": {
+      "type": "object",
+      "properties": {
+        "staticUrl": {
+          "type": "string",
+          "position": 3,
+          "description": "Static Seatmap Url"
+        }
+      },
+      "description": "Seatmap"
+    },
+    "Segment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the classification's level"
+        },
+        "name": {
+          "type": "string",
+          "position": 1,
+          "description": "The Name of the classification's level"
+        }
+      },
+      "description": "Segment"
+    },
+    "Social": {
+      "type": "object",
+      "properties": {
+        "twitter": {
+          "description": "Twitter data",
+          "$ref": "#/definitions/Twitter"
+        }
+      },
+      "description": "Social networks data"
+    },
+    "Source": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Source's name",
+          "pattern": "^[a-zA-Z0-9_-]*$"
+        },
+        "id": {
+          "type": "string",
+          "position": 1,
+          "description": "ID of the entity in the source's system",
+          "pattern": "^[a-zA-Z0-9_-]*$"
+        }
+      },
+      "description": "Source"
+    },
+    "StartDates": {
+      "type": "object",
+      "properties": {
+        "localDate": {
+          "type": "string",
+          "format": "date",
+          "example": "yyyy-MM-dd",
+          "description": "The event start date in local date"
+        },
+        "localTime": {
+          "example": "yyyy-MM-dd",
+          "position": 1,
+          "description": "The event end time in local time",
+          "$ref": "#/definitions/LocalTime"
+        },
+        "dateTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "yyyy-MM-ddThh:mm:ssZ",
+          "position": 2,
+          "description": "The event start datetime"
+        },
+        "dateTBD": {
+          "type": "boolean",
+          "position": 3,
+          "description": "Boolean flag to indicate whether or not the start date is TBD",
+          "default": false
+        },
+        "dateTBA": {
+          "type": "boolean",
+          "position": 4,
+          "description": "Boolean flag to indicate whether or not the start date is TBA",
+          "default": false
+        },
+        "timeTBA": {
+          "type": "boolean",
+          "position": 5,
+          "description": "Boolean flag to indicate whether or not the start time is TBA",
+          "default": false
+        },
+        "noSpecificTime": {
+          "type": "boolean",
+          "position": 6,
+          "description": "Boolean flag to indicate whether or not the event has no specific time",
+          "default": false
+        }
+      },
+      "description": "Event's Start Dates"
+    },
+    "State": {
+      "type": "object",
+      "properties": {
+        "stateCode": {
+          "type": "string",
+          "description": "State code"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        }
+      },
+      "description": "State"
+    },
+    "TatExtension": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the attraction in the Attraction Tool (TAT)"
+        },
+        "majorCategoryId": {
+          "type": "integer",
+          "format": "int32",
+          "position": 1,
+          "description": "Major category id of the Attraction in the Attraction Tool (TAT)"
+        },
+        "minorCategoryId": {
+          "type": "integer",
+          "format": "int32",
+          "position": 2,
+          "description": "Minor category id of the Attraction in the Attraction Tool (TAT)"
+        }
+      },
+      "description": "The Attraction Tool (TAT) extension"
+    },
+    "TicketmasterAttractionExtensions": {
+      "type": "object",
+      "properties": {
+        "tat": {
+          "description": "The Attraction Tool (TAT) extentions information",
+          "$ref": "#/definitions/TatExtension"
+        }
+      },
+      "description": "Attraction's extension (ticketmaster source)"
+    },
+    "TicketmasterEventExtensions": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "description": "Host event information about the event",
+          "$ref": "#/definitions/HostExtension"
+        },
+        "displaySettings": {
+          "description": "Event's display setting informations",
+          "$ref": "#/definitions/DisplaySettingExtension"
+        }
+      },
+      "description": "Event's extension (ticketmaster source)"
+    },
+    "TicketmasterVenueExtensions": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "description": "Host extentions information",
+          "$ref": "#/definitions/HostExtension"
+        }
+      },
+      "description": "Venue's extension (ticketmaster source)"
+    },
+    "Twitter": {
+      "type": "object",
+      "properties": {
+        "handle": {
+          "type": "string",
+          "example": "@a Twitter handle exampe",
+          "description": "Twitter handle",
+          "enum": [
+            "@a Twitter handle"
+          ]
+        },
+        "hashtags": {
+          "type": "array",
+          "example": "#hashtag example #hashtag another example",
+          "position": 1,
+          "description": "Twitter hashtags",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Twitter data"
+    },
+    "Venue": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of the entity",
+          "enum": [
+            "event",
+            "venue",
+            "attraction"
+          ]
+        },
+        "extensions": {
+          "position": 101,
+          "description": "Venue's extensions",
+          "$ref": "#/definitions/VenueExtensions"
+        },
+        "distance": {
+          "type": "number",
+          "format": "double"
+        },
+        "units": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "position": 1,
+          "description": "Unique id of the entity in the discovery API"
+        },
+        "source": {
+          "position": 2,
+          "description": "Source of the entity, where the entity comes from",
+          "$ref": "#/definitions/Source"
+        },
+        "locale": {
+          "type": "string",
+          "position": 3,
+          "description": "Locale in which the content is returned"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        },
+        "description": {
+          "type": "string",
+          "position": 20,
+          "description": "Description's of the entity"
+        },
+        "address": {
+          "position": 20,
+          "description": "Address of the venue",
+          "$ref": "#/definitions/Address"
+        },
+        "city": {
+          "position": 21,
+          "description": "City of the venue",
+          "$ref": "#/definitions/City"
+        },
+        "additionalInfo": {
+          "type": "string",
+          "position": 22,
+          "description": "Additional information of the entity"
+        },
+        "state": {
+          "position": 22,
+          "description": "State / Province of the venue",
+          "$ref": "#/definitions/State"
+        },
+        "country": {
+          "position": 23,
+          "description": "Country of the venue",
+          "$ref": "#/definitions/Country"
+        },
+        "url": {
+          "type": "string",
+          "position": 24,
+          "description": "URL of a web site detail page of the entity"
+        },
+        "postalCode": {
+          "type": "string",
+          "position": 24,
+          "description": "Postal code / zipcode of the venue"
+        },
+        "location": {
+          "position": 25,
+          "description": "Location of the venue",
+          "$ref": "#/definitions/Location"
+        },
+        "timezone": {
+          "type": "string",
+          "position": 26,
+          "description": "Timezone of the venue"
+        },
+        "currency": {
+          "type": "string",
+          "position": 27,
+          "description": "Default currency of ticket prices for events in this venue"
+        },
+        "markets": {
+          "type": "array",
+          "position": 28,
+          "description": "Markets of the venue",
+          "items": {
+            "$ref": "#/definitions/Market"
+          }
+        },
+        "images": {
+          "type": "array",
+          "position": 29,
+          "description": "Images of the entity",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "dma": {
+          "type": "array",
+          "position": 29,
+          "description": "The list of associated DMAs (Designated Market Areas) of the venue",
+          "items": {
+            "$ref": "#/definitions/Dma"
+          }
+        },
+        "social": {
+          "position": 30,
+          "description": "Social networks data",
+          "$ref": "#/definitions/Social"
+        },
+        "boxOfficeInfo": {
+          "position": 31,
+          "description": "Box office informations for the venue",
+          "$ref": "#/definitions/VenueBoxOfficeInfo"
+        },
+        "parkingDetail": {
+          "type": "string",
+          "position": 33,
+          "description": "Venue parking info"
+        },
+        "accessibleSeatingDetail": {
+          "type": "string",
+          "position": 35,
+          "description": "Venue accessible seating detail"
+        },
+        "generalInfo": {
+          "position": 36,
+          "description": "General informations on the venue",
+          "$ref": "#/definitions/VenueGeneralInfo"
+        },
+        "relationships": {
+          "type": "array",
+          "position": 70,
+          "description": "Relationships on the entity, like if the entity is a duplicate of another one",
+          "items": {
+            "$ref": "#/definitions/Relationship"
+          }
+        },
+        "references": {
+          "type": "object",
+          "example": "sourceName: id",
+          "position": 71,
+          "description": "References of this entity in an other system. Reference is the exact same entity",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "attributions": {
+          "position": 80,
+          "description": "References on licensed content in this entity",
+          "$ref": "#/definitions/Attributions"
+        },
+        "lastUpdate": {
+          "type": "integer",
+          "format": "int64",
+          "position": 81,
+          "description": "The entity last update date"
+        },
+        "test": {
+          "type": "boolean",
+          "position": 96,
+          "description": "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default": false
+        },
+        "entityChanges": {
+          "position": 99,
+          "description": "Fields changes on the last update",
+          "$ref": "#/definitions/EntityChanges"
+        }
+      },
+      "description": "Venue"
+    },
+    "VenueBoxOfficeInfo": {
+      "type": "object",
+      "properties": {
+        "phoneNumberDetail": {
+          "type": "string",
+          "position": 1,
+          "description": "Venue box office phone number"
+        },
+        "openHoursDetail": {
+          "type": "string",
+          "position": 3,
+          "description": "Venue box office opening hours"
+        },
+        "acceptedPaymentDetail": {
+          "type": "string",
+          "position": 5,
+          "description": "Venue box office accepted payment details"
+        },
+        "willCallDetail": {
+          "type": "string",
+          "position": 7,
+          "description": "Venue box office will call details"
+        }
+      },
+      "description": "Venue box office information"
+    },
+    "VenueExtensions": {
+      "type": "object",
+      "properties": {
+        "ticketmaster": {
+          "description": "Ticketmaster extension on a venue | add filter 'extensions=ticketmaster' on your venues request",
+          "$ref": "#/definitions/TicketmasterVenueExtensions"
+        },
+        "geolocation": {
+          "position": 1,
+          "description": "Gelocolation extension on a venue | add filter 'extensions=geolocation' on your venues request",
+          "$ref": "#/definitions/GeolocationVenueExtensions"
+        }
+      },
+      "description": "All Venue's extensions"
+    },
+    "VenueGeneralInfo": {
+      "type": "object",
+      "properties": {
+        "generalRule": {
+          "type": "string",
+          "position": 1,
+          "description": "Venue general rules"
+        },
+        "childRule": {
+          "type": "string",
+          "position": 3,
+          "description": "Venue children rule"
+        }
+      },
+      "description": "Venue general information"
+    },
+    "MultipleMethod": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of the entity",
+          "enum": [
+            "event",
+            "venue",
+            "attraction"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "position": 1,
+          "description": "Unique id of the entity in the discovery API"
+        },
+        "locale": {
+          "type": "string",
+          "position": 3,
+          "description": "Locale in which the content is returned"
+        },
+        "name": {
+          "type": "string",
+          "position": 10,
+          "description": "Name of the entity"
+        },
+        "description": {
+          "type": "string",
+          "position": 20,
+          "description": "Description's of the entity"
+        },
+        "additionalInfo": {
+          "type": "string",
+          "position": 22,
+          "description": "Additional information of the entity"
+        },
+        "url": {
+          "type": "string",
+          "position": 24,
+          "description": "URL of a web site detail page of the entity"
+        },
+        "images": {
+          "type": "array",
+          "position": 29,
+          "description": "Images of the entity",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "classifications": {
+          "type": "array",
+          "position": 30,
+          "description": "Attraction's classifications",
+          "items": {
+            "$ref": "#/definitions/Classification"
+          }
+        },
+        "test": {
+          "type": "boolean",
+          "position": 96,
+          "description": "Indicate if this is a test entity, by default test entities won't appear in discovery API",
+          "default": false
+        }
+      },
+      "description": "MultipleMethod"
+    }
+  }
+}
