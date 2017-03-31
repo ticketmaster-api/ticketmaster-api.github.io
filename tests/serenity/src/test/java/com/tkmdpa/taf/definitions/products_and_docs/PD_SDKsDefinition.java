@@ -15,7 +15,7 @@ public class PD_SDKsDefinition {
     PD_SDKsSteps sDKsPage;
 
     @Steps
-    AnyPageSteps anyPage;
+    AnyPageSteps anyPageSteps;
 
     @Given("open SDKs page")
     public void openSDKsPage() {
@@ -29,7 +29,7 @@ public class PD_SDKsDefinition {
 
     @Then("check that new page opened from SDKs page has $url and $title")
     public void checkIfPageIsOpened(String url, String title){
-        anyPage.checkIfPageIsOpened(url, title, baseTestedUrl);
+        anyPageSteps.checkIfPageIsOpened(url, title, baseTestedUrl);
     }
 
     @Then("check general page elements for SDKs Page, where DISQUS = $disqus and LeftMenu = $leftMenu")

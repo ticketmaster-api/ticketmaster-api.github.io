@@ -15,7 +15,7 @@ import static net.serenitybdd.core.Serenity.getCurrentSession;
 public class PD_APIExplorerDefinition extends CommonDefinition {
 
     @Steps
-    PD_APIExplorerSteps apiExplorerPage;
+    PD_APIExplorerSteps apiExplorerSteps;
 
     @Steps
     AnyPageSteps anyPageSteps;
@@ -29,7 +29,7 @@ public class PD_APIExplorerDefinition extends CommonDefinition {
     @Given("open API Explorer page")
     @When("open API Explorer page")
     public void openAPIExplorerPage() {
-        apiExplorerPage.openPage();
+        apiExplorerSteps.openPage();
     }
 
     @When("production user is logged to site")
@@ -40,23 +40,23 @@ public class PD_APIExplorerDefinition extends CommonDefinition {
 
     @Then("check general page elements for API Explorer Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
-        apiExplorerPage.checkIfTitleIsCorrect();
-        apiExplorerPage.checkGeneralPageElements(disqus, leftMenu);
+        apiExplorerSteps.checkIfTitleIsCorrect();
+        apiExplorerSteps.checkGeneralPageElements(disqus, leftMenu);
     }
 
     @Then("check that API key is provided for all placeholders on API Explorer page")
     public void checkAPIKeyPlaceholders(){
         String tempApiKey = (String) getCurrentSession().get("apiKey");
         if (tempApiKey == null || tempApiKey.isEmpty()){
-            apiExplorerPage.checkAPIKeyPlaceholders(apiKey);
+            apiExplorerSteps.checkAPIKeyPlaceholders(apiKey);
         }
         else
-            apiExplorerPage.checkAPIKeyPlaceholders(tempApiKey);
+            apiExplorerSteps.checkAPIKeyPlaceholders(tempApiKey);
     }
 
     @Then("Summary widget is shown for API Explorer page")
     public void checkSummaryWidgetVisible(){
-        apiExplorerPage.checkSummaryWidgetVisible();
+        apiExplorerSteps.checkSummaryWidgetVisible();
     }
 
 }

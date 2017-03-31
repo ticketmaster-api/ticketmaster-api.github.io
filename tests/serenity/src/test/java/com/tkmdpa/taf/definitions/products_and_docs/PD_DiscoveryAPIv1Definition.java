@@ -28,12 +28,6 @@ public class PD_DiscoveryAPIv1Definition extends CommonDefinition {
         discoveryAPIv1Page.openPage();
     }
 
-    @When("User is not logged to site (Discovery API v1)")
-    public void openLogInPageAndCheckUserIsNotLoggedIn() {
-        discoveryAPIv1Page.clickLogIn();
-        userLogInPage.isPageOpened();
-    }
-
     @Then("check general page elements for Discovery API v1 Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
     public void checkGeneralPageElements(boolean disqus, boolean leftMenu){
         discoveryAPIv1Page.checkIfTitleIsCorrect();

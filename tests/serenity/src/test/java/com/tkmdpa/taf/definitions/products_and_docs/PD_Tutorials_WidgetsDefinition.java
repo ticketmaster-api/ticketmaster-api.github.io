@@ -16,7 +16,7 @@ public class PD_Tutorials_WidgetsDefinition {
     PD_Tutorials_WidgetsSteps tutorialsWidgetsPage;
 
     @Steps
-    AnyPageSteps anyPage;
+    AnyPageSteps anyPageSteps;
 
     @Given("open Tutorials Widgets page")
     public void openTutorialsWidgetsPage() {
@@ -80,7 +80,7 @@ public class PD_Tutorials_WidgetsDefinition {
 
     @Then("check that new page opened from Tutorials Widgets page has $url and $title")
     public void checkIfPageIsOpened(String url, String title){
-        anyPage.checkIfPageIsOpened(url,title,baseTestedUrl);
+        anyPageSteps.checkIfPageIsOpened(url,title,baseTestedUrl);
     }
 
     @Then("Feedback mapWidget is shown")

@@ -1,6 +1,5 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
-import com.tkmdpa.taf.steps.AnyPageSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_APIExplorerV2Steps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
@@ -11,9 +10,6 @@ public class PD_APIExplorerV2Definition {
 
     @Steps
     PD_APIExplorerV2Steps apiExplorerV2Page;
-
-    @Steps
-    AnyPageSteps anyPage;
 
     @Given("open API Explorer V2 page")
     public void openAPIExplorerPage() {

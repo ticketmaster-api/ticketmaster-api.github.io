@@ -36,11 +36,6 @@ public class PD_DiscoveryAPIv1Steps {
     }
 
     @Step
-    public void clickLogIn() {
-        discoveryAPIv1Page.getLogInButton().click();
-    }
-
-    @Step
     public void checkAPIKeyPlaceholders(String apikey) {
         //First check for non hidden elements
         for (Map.Entry<String, WebElementFacade> entry : discoveryAPIv1Page.getAPIKeyPlaceHoldersList().entrySet()){

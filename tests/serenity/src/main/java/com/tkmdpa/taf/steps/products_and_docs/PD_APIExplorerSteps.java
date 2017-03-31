@@ -27,11 +27,11 @@ public class PD_APIExplorerSteps {
 
     @Step
     public void checkAPIKeyPlaceholders(String apikey) {
+        waitForSomeActionHappened(150);
         if ("{apikey}".equals(apikey)){
             assertEquals(apiExplorerPage.getAPIKeyTextField().getAttribute("value"), "");
         }
         else {
-            waitForSomeActionHappened(150);
             assertEquals(apiExplorerPage.getAPIKeyTextField().getAttribute("value"), apikey);
         }
     }
