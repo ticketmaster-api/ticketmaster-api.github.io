@@ -11,7 +11,7 @@
 #### JUnitRunner in IntelliJ IDEA
  1. Create a JUnit run configuration.
  2. Specify particular story or scenario with tag `@debug`.
- 3. Select test type `Class` and specify `bla.tm.DevSiteTestsRunner` as class to run.
+ 3. Select test type `Class` and specify `com.tkmdpa.taf.AcceptanceTestSuite` as class to run.
  4. Specify VM options, i.e. `-ea -Dmetafilter=+debug`
  5. Run created configuration. This approach is also applicable for debugging purposes.
 
