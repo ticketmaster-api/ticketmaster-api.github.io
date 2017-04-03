@@ -5,7 +5,7 @@
 <ul class="support-aside-menu" id="scrollable-element">
     <li>
         <ul class="categories">
-            <li><a href="/partners/distribution-partners/" class="{% if page.categories[0] == "partners" and page.categories[1] == "distribution" %}active{% endif %}" >Distribution Partners</a>
+            <li><a href="/partners/distribution-partners/" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %}active{% endif %}" >Distribution Partners</a>
                 {% if page.categories[0] == "partners" and page.categories[1] == "distribution" %}
                 <ul class="sections menu-highlight">
                     <li>
@@ -13,7 +13,8 @@
                     </li>
                 </ul>
                 {% endif %}
-            <li><a href="/partners/certified-partners/" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" %}active{% endif %}" >Certified Partners</a>
+						</li>
+            <li><a href="/partners/certified-partners/" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' %}active{% endif %}" >Certified Partners</a>
                 {% if page.categories[0] == "partners" and page.categories[1] == "certified" %}
                     <ul class="sections menu-highlight">
 												{% if page.categories[2] == 'nexus' %}
