@@ -46,9 +46,6 @@ public class HomePage extends AncestorPage {
     @FindBy(xpath = "//div[@class='col-xs-12 col-sm-8 col-lg-12']/ul/li/a[text()='Partner API']")
     private WebElementFacade partnerAPILink;
 
-    @FindBy(xpath = "//div[@class='col-xs-12 col-sm-8 col-lg-12']/ul/li/a[text()='Deals API']")
-    private WebElementFacade dealsAPILink;
-
     @FindBy(xpath = "//div[@class='col-xs-12 col-sm-8 col-lg-12']/ul/li/a[text()='Legacy docs']")
     private WebElementFacade legacyDocsLink;
 
@@ -70,7 +67,6 @@ public class HomePage extends AncestorPage {
         elements.put("Tech blog", techLogLink);
         elements.put("Medium Publication", mediumPublicationLink);
         elements.put("Partner API", partnerAPILink);
-        elements.put("Deals API", dealsAPILink);
         elements.put("Legacy docs", legacyDocsLink);
         elements.put("Open Source", openSourceMenuItem);
         return elements;
