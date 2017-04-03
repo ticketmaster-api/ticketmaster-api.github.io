@@ -1,38 +1,45 @@
 {% assign sorted_article = (site.pages | sort: 'order') %}
-{% assign inter_partner_array = "" | split:"|"  %}
-{% assign north_partner_array = "" | split:"|"  %}
-{% assign groups_array = "" | split:"|"  %}
+{% assign partner_full = "" | split:"|"  %}
+{% assign groups_names = "" | split:"|"  %}
+
 {% for partner in sorted_article %}
-	{% if partner.categories[0] == "partner" and partner.categories[1] == "certified"  %}
-
-		{% if partner.group contains "International Partners" or partner.group == nil%}
-			{% assign inter_partner_array = inter_partner_array | push: {{partner}} %}
+	{% if partner.categories[0] == "partner" and partner.categories[1] == "certified" %}
+		{% if partner.group %}
+			{% assign groups_names = groups_names | push: {{partner.group}} | uniq %}
 		{% endif %}
-		{% if partner.group contains "North American Partners" %}
-			{% assign north_partner_array = north_partner_array | push: {{partner}} %}
-		{% endif %}
-
+		{% assign partner_full = partner_full | push: {{partner}}  %}
 	{% endif %}
 {% endfor %}
 
-
-<div class="tiles-wrapper ">
-	<h4 class="tiles-group-title" id="north-american-partners">North American Partners</h4>
-	{% for partner in north_partner_array %}
-		{% if partner.group == "North American Partners" %}
-			{% include partials/certified-partner-card.html %}
-		{% endif %}
+{% if groups_names.size <=1 %}
+{%comment%}<!--SHOW ALL CARDS-->{%endcomment%}
+<div class="tiles-wrapper">
+	{% for partner in partner_full %}
+		{% include partials/certified-partner-card.html %}
 	{% endfor %}
 </div>
+{% else %}
 
+{%comment%} <!-- SHOW CARDS BY GROUP --> {%endcomment%}
+{% for group in groups_names %}{%comment%} <!-- Loop through out-and-outer groups --> {%endcomment%}
+<div class="tiles-wrapper" >
+	{% if groups_names.size >=2 %}<h4 class="tiles-group-title" id="{{group | lstrip
+																																					| downcase
+																																					| replace: ' ' , '-'
+																																					| replace: '[' , '-'
+																																					| replace: ']' , '-'
+																																					| replace: '/' , '-'
+																																					| replace: '\' , '-'
+																																					| replace: '(' , '-'
+																																					| replace: ')' , '-'}}">{{group}}</h4>{% endif %}
+		{% for partner in partner_full %} {%comment%} <!-- Loop through array again to sort cards--> {%endcomment%}
+			{% if partner.group == group %} {%comment%} <!-- SHOW this GROUP --> {%endcomment%}
+				{% include partials/certified-partner-card.html %}
+			{% endif %}
+		{% endfor %}
+</div>
 <div class="clearfix"></div>
+{% endfor %}
 
-<div class="tiles-wrapper ">
-	<h4 class="tiles-group-title" id="international-partners">International Partners</h4>
-	{% for partner in inter_partner_array %}
-		{% if partner.group == nil or partner.group == "International Partners" %}
-			{% include partials/certified-partner-card.html %}
-		{% endif %}
-	{% endfor %}
-</div>
+{% endif %}
 
