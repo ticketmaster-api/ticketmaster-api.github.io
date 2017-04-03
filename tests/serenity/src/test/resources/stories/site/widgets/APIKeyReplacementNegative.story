@@ -30,11 +30,6 @@ Given open Publish API page
 When User is logged to site (Publish API)
 Then check that API key is provided for all placeholders on Publish API page
 
-Scenario: (APi Key - Deals API page) Custom API key is not replaced when user is logged in
-Given open Deals API page
-When User is logged to site (Deals API)
-Then check that API key is provided for all placeholders on Deals API page
-
 Scenario: (APi Key - Partner API page) Custom API key is not replaced when user is logged in
 Given open Partner API page
 When User is logged to site (Partner API)

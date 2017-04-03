@@ -94,11 +94,6 @@ Partner APIs, search and look up events, attractions, venues and classifications
 {% capture International_Discovery_API_description %}International Discovery API{% endcapture %}
 {% capture International_Discovery_API_link %}/products-and-docs/apis/international-discovery/{% endcapture %}
 
-{% capture Deals_API %}/assets/img/products-and-docs/ic-cart.svg{% endcapture %}
-{% capture Deals_API_title %}Deals API{% endcapture %}
-{% capture Deals_API_description %}Deals API{% endcapture %}
-{% capture Deals_API_link %}/products-and-docs/apis/deals-api/{% endcapture %}
-
 {% capture Season_Tix_API %}/assets/img/products-and-docs/ic-seasons.svg{% endcapture %}
 {% capture Season_Tix_API_title %}Season Ticketing API{% endcapture %}
 {% capture Season_Tix_API_description %}Season Ticketing API{% endcapture %}
@@ -355,27 +350,29 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 </div>
 </div>
 </div>
+
 <div class="flipper flipper-rect flipper-rect-margin">
-<div class="card">
-<div class="content">
-<div class="front cardFront">
-<div class="img-wrapper">
-<img class="visible-lg" src="{{Deals_API}}" alt="{{Deals_API_title}}"/>
-<a class="hidden-lg" href="{{Deals_API_link}}">
-<img src="{{Deals_API}}" alt="{{Deals_API_title}}"/>
-<h3 class="flipper-title hidden-lg">{{Deals_API_description}}</h3>
-</a>
+    <div class="card">
+        <div class="content">
+            <div class="front cardFront">
+                <div class="img-wrapper">
+                    <img class="visible-lg" src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
+                    <a class="hidden-lg" href="{{Inventory_Status_API_link}}">
+                        <img src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
+                        <h3 class="flipper-title hidden-lg">{{Inventory_Status_API_description}}</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="back cardBack">
+                <a href="{{Inventory_Status_API_link}}">
+                    <h3 class="flipper-title">{{Inventory_Status_API_description}}</h3>
+                    <p class="flipper-description">{{Inventory_Status_API_description}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-<div class="back cardBack">
-<a href="{{Deals_API_link}}">
-<h3 class="flipper-title">{{Deals_API_description}}</h3>
-<p class="flipper-description">{{Deals_API_description}}</p>
-</a>
-</div>
-</div>
-</div>
-</div>
+
 </div><!--tiles-wrapper-->
 
 <div class="row tiles-wrapper limited-width-xs limited-width-md">
@@ -395,27 +392,6 @@ Do you have a site that attracts visitors who are interested in buying tickets? 
 <a href="{{Season_Tix_API_link}}">
 <h3 class="flipper-title">{{Season_Tix_API_description}}</h3>
 <p class="flipper-description">{{Season_Tix_API_description}}</p>
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="flipper flipper-rect flipper-rect-margin">
-<div class="card">
-<div class="content">
-<div class="front cardFront">
-<div class="img-wrapper">
-<img class="visible-lg" src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
-<a class="hidden-lg" href="{{Inventory_Status_API_link}}">
-<img src="{{Inventory_Status_API}}" alt="{{Inventory_Status_API_title}}"/>
-<h3 class="flipper-title hidden-lg">{{Inventory_Status_API_description}}</h3>
-</a>
-</div>
-</div>
-<div class="back cardBack">
-<a href="{{Inventory_Status_API_link}}">
-<h3 class="flipper-title">{{Inventory_Status_API_description}}</h3>
-<p class="flipper-description">{{Inventory_Status_API_description}}</p>
 </a>
 </div>
 </div>
