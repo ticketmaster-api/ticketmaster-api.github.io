@@ -4,7 +4,7 @@ categories:
 - documentation
 - generated
 - commerce-swagger
-- v1
+- v1-internal
 - replace_apikey
 title: Discovery API 2.0
 ---

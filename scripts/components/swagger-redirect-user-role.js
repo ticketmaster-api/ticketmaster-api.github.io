@@ -2,7 +2,7 @@
 
 	var listApiKeys = apiKeyService.getApiKeysCookie("tk-user-roles");
 	function redirect(listApiKeys) {
-		var x = 'internal/';
+		var x = 'internal.html';
 
 		if(listApiKeys && listApiKeys.indexOf("Internal User") !== -1) {
 			if (location.href.indexOf(x) !== -1) return;
