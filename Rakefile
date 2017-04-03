@@ -95,7 +95,7 @@ namespace 'travis' do
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
         system "git add tests/galen"
-        system "git add tests/serenity"
+        system "git add tests/serenity/target/site"
         system "git commit --allow-empty  --amend -m 'Auto-Report from Travis #{Time.now.utc.to_s}'"
         system "git checkout -b #{REPORT_BRANCH}"
     reported = system "git push -u -f origin #{REPORT_BRANCH}"
