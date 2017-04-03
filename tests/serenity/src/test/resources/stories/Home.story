@@ -30,5 +30,4 @@ Examples:
 |Tech blog            |https://tech.ticketmaster.com/                          |//h1[@class='site-title']/a                                                         |
 |Medium Publication   |https://medium.com/ticketmaster-tech                    |//h2[text()='Because Engineers are Fans Too!']                                      |
 |Partner API          |{url}/products-and-docs/apis/partner/                   |//h1                                                                                |
-|Deals API            |{url}/products-and-docs/apis/deals-api/                 |//h1                                                                                |
 |Legacy docs          |http://apidocs.ticketmaster.com/                        |//td[@class='WikiLogoName']/a                                                       |
