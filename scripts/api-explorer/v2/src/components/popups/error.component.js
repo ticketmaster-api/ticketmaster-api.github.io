@@ -35,3 +35,4 @@ module.exports = ko.components.register('error-pop-up', {
 			</div><!-- /.modal-dialog -->
 		</section><!-- /.modal -->
 `});
+module.exports = ErrorPopUp;
