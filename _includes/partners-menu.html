@@ -17,15 +17,42 @@
             <li><a href="/partners/certified-partners/" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' %}active{% endif %}" >Certified Partners</a>
                 {% if page.categories[0] == "partners" and page.categories[1] == "certified" %}
                     <ul class="sections menu-highlight">
+												{% if page.categories[2] == 'nexus' %}
                         <li>
-                            <a href="/partners/certified-partners/nexus/" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' and page.categories[2] == 'nexus' %}active{% endif %}">Join the Nexus program</a>
+                            <a href="/partners/certified-partners/nexus/" class="{% if page.categories[0] == "partners" and page.categories[1] == "certified" and page.categories[2] == "nexus" %}active{% endif %}">Join the Nexus program</a>
                         </li>
-												<li>
-													<a href="/partners/certified-partners/#north-american-partners" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' and page.categories[2] == 'nexus' %}{% endif %}">North American Partners</a>
-												</li>
-												<li>
-													<a href="/partners/certified-partners/#international-partners" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'certified' and page.categories[2] == 'nexus' %}{% endif %}">International Partners</a>
-												</li>
+												{% endif %}
+												{% if page.categories[2] != 'nexus' %}
+
+													{%comment%} <!-- find unique groups names --> {%endcomment%}
+													{% assign groups_uniq = "" | split:"|"  %}
+													{% for partner in site.pages %}
+															{% if partner.categories[0] == "partner" and partner.categories[1] == "certified" %}
+																{% if partner.group %}
+																	{% assign groups_uniq = groups_uniq | push: {{partner.group}} | uniq %}
+																{% endif %}
+														{% endif %}
+													{% endfor %}
+													{% if groups_uniq.size >=2 %}
+													{% for groupName in groups_uniq %}
+															<li>
+																<a href="/partners/certified-partners/#{{groupName | lstrip
+																																									| downcase
+																																									| replace: ' ' , '-'
+																																									| replace: '[' , '-'
+																																									| replace: ']' , '-'
+																																									| replace: '/' , '-'
+																																									| replace: '\' , '-'
+																																									| replace: '(' , '-'
+																																									| replace: ')' , '-'}}"
+																	 class="{% if page.groupName == {{groupName}} and page.categories[1] == 'certified' and page.categories[2] != 'nexus' %}active{% endif %}">
+																	{{groupName}}
+																</a>
+															</li>
+													{% endfor %}
+													{% endif %}
+												{% endif %}
+
                         {% for partner in site.pages %}
                             {% if partner.available AND partner.categories[0] == "partner" AND partner.categories[1] == "certified" %}
                                 <li class="{% if partner.pname == page.pname %}active{% endif %}">
