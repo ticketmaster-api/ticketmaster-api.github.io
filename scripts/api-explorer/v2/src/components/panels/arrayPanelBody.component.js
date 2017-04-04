@@ -29,7 +29,7 @@ class ArrayPanelBody {
 	}
 }
 
-module.exports = ko.components.register('array-panel-body', {
+ko.components.register('array-panel-body', {
 	viewModel: ArrayPanelBody,
 	template:`
 		<section class="panel-body array-panel-body">
@@ -70,3 +70,5 @@ module.exports = ko.components.register('array-panel-body', {
 			</ul>
 		</section>
 `});
+
+module.exports = ArrayPanelBody;

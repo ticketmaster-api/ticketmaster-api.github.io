@@ -158,7 +158,7 @@ class CardGroup {
 	}
 }
 
-module.exports = ko.components.register('panel-group', {
+ko.components.register('panel-group', {
 	viewModel: CardGroup,
 	template:`
 		<section data-bind="foreachprop: {data: data, sortFn: sortByConfig.bind($component)}" class="panel-group">
@@ -171,3 +171,5 @@ module.exports = ko.components.register('panel-group', {
 			</panel>
 		</section>
 `});
+
+module.exports = CardGroup;
