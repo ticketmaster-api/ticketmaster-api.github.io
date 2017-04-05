@@ -105,21 +105,24 @@ public class PD_Tutorials_WidgetsSteps {
     }
 
     @Step
-    public void populateAllFieldsExceptName() {
-        tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys("test@test.com");
-        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test!");
+    public void populateName() {
+        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys("test user");
     }
 
     @Step
-    public void populateAllFieldsExceptEmail() {
-        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys("test user");
-        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test test!");
+    public void populateEmail() {
+        tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys("test@test.com");
     }
 
     @Step
     public void populateNameFieldWithMoreThanAccepted() {
+        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test!");
+    }
+
+    @Step
+    public void populateDescription() {
         String input = new String(new char[256]).replace('\0', 'w');
-        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys(input);
+        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys(input);
     }
 
     @Step
@@ -142,4 +145,15 @@ public class PD_Tutorials_WidgetsSteps {
         waitForSomeActionHappened(500);
         assertFalse(tutorialsWidgetsPage.getSuccessfulSentEmailNotificationOKButton().isVisible());
     }
+
+    @Step
+    public void checkThatFeedbackWidgetIsShown() {
+        assertTrue(tutorialsWidgetsPage.getFeedbackWidget().isVisible());
+    }
+
+    @Step
+    public void checkThatFeedbackWidgetIsNotShown() {
+        assertTrue(!tutorialsWidgetsPage.getFeedbackWidget().isVisible());
+    }
+
 }

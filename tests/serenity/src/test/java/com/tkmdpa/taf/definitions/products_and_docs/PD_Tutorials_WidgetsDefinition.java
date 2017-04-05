@@ -45,19 +45,45 @@ public class PD_Tutorials_WidgetsDefinition {
         tutorialsWidgetsPage.clickFeedbackButton();
     }
 
+    @When("click close button of Feedback widget")
+    public void clickCloseButton(){
+        tutorialsWidgetsPage.clickCloseFeedbackWidgetButton();
+    }
+
+    @Given("feedback widget is not shown")
+    @Then("feedback widget is not shown")
+    public void checkThatFidbackWidgetIsNotShown(){
+        tutorialsWidgetsPage.checkThatFeedbackWidgetIsNotShown();
+    }
+
+    @Then("feedback widget elements is shown")
+    public void checkThatFidbackWidgetIsShown(){
+        tutorialsWidgetsPage.checkThatFeedbackWidgetIsShown();
+    }
+
     @When("click send button of Feedback mapWidget")
     public void clickSendButton() {
         tutorialsWidgetsPage.clickSendFeedbackWidgetButton();
     }
 
-    @When("all fields except Name are populated")
-    public void populateAllFieldsExceptName() {
-        tutorialsWidgetsPage.populateAllFieldsExceptName();
+    @When("name is populated")
+    public void populateNameField() {
+        tutorialsWidgetsPage.populateName();
     }
 
-    @When("all fields except Email are populated")
-    public void populateAllFieldsExceptEmail() {
-        tutorialsWidgetsPage.populateAllFieldsExceptEmail();
+    @When("click send button of Feedback widget")
+    public void clickSendButtonOnFeedbackWidget(){
+        tutorialsWidgetsPage.clickSendFeedbackWidgetButton();
+    }
+
+    @When("email is populated")
+    public void populateEmailField() {
+        tutorialsWidgetsPage.populateEmail();
+    }
+
+    @When("description is populated")
+    public void populateDescriptionField() {
+        tutorialsWidgetsPage.populateDescription();
     }
 
     @When("Name field is populated with bigger than 255 symbols text")
@@ -121,6 +147,11 @@ public class PD_Tutorials_WidgetsDefinition {
     @Then("check that email sent notification is not shown")
     public void checkEmailSentNotificationIsNotShown() {
         tutorialsWidgetsPage.checkEmailSentNotificationIsNotShown();
+    }
+
+    @Then("feedback was successfully sent")
+    public void checkFeedbackWasSent(){
+        tutorialsWidgetsPage.checkEmailSentNotificationIsShown();
     }
 
 }
