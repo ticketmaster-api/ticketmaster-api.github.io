@@ -69,7 +69,7 @@ class PanelHeading {
 }
 
 
-module.exports = ko.components.register('panel-heading', {
+ko.components.register('panel-heading', {
 	viewModel:  PanelHeading,
 	template:`
 		<section class="panel-heading">
@@ -103,3 +103,5 @@ module.exports = ko.components.register('panel-heading', {
 			</div>
 		</section>
 `});
+
+module.exports = PanelHeading;
