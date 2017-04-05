@@ -161,7 +161,6 @@
                 </ul>
                 {% endif %}
             </li>
-
             <li><a href="/products-and-docs/apis/inventory-status/">Inventory Status API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "inventory-status" %}
                 <ul class="sections menu-highlight">
@@ -171,8 +170,6 @@
                 </ul>
                 {% endif %}
             </li>
-
-
             <li><a href="/products-and-docs/apis/deals-api/">Deals API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "deals-api" %}
                 <ul class="sections menu-highlight">
@@ -209,8 +206,14 @@
 											{% include partials/autodoc/side-menu-faq.html %}
 									{% endcomment %}-->
 							{% endif %}
+						</li>
+						<!--END automenu-->
+						<!--automenu for multiple-test-api-->
+						<li><a href="/products-and-docs/apis/multiple-test-api/v2/">multiple-test-api</a>
+							{% if page.categories[0] == "documentation" and page.categories[1] == "generated" and page.categories[2] == "multiple-test-api" %}
+								{% include partials/autodoc/side-menu-generate.html%}
+							{% endif %}
 						</li><!--END automenu-->
-
             <li><a href="/products-and-docs/apis/oauth/">OAuth API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "oauth" %}
                 <ul class="sections menu-highlight">
@@ -288,7 +291,7 @@
             <!--<li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>-->
             <li><a href="/api-explorer/">API Explorer</a></li>
 					  <li><a href="/api-explorer/v2/">API Explorer v2</a></li>
-            <li><a href="/products-and-docs/apis/changelog/">Changelog</a></li>
+            <li><a href="/products-and-docs/apis/changelog/">Changelog</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "changelog" %}
                 {% assign files = site.pages | sort: 'title' , 'last'%}
                     <ul class="sections menu-highlight">
@@ -302,6 +305,7 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
+						</li>
         </ul>
         {% endif %}
     </li>
