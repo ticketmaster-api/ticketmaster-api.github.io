@@ -18,7 +18,7 @@ When click Feedback button of Tutorials Widgets page
 When click close button of Feedback widget
 Then feedback widget is not shown
 
-Scenario: (feedback widget) Feedback widget error notifications for NAME field
+Scenario: (feedback widget) [3.1.1 Feedback widget sanity]
 Given open Tutorials Widgets page
 And click Feedback button of Tutorials Widgets page
 When name is populated
