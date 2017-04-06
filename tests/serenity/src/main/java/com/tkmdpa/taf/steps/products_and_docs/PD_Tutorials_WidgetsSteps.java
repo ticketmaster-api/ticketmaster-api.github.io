@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class PD_Tutorials_WidgetsSteps {
 
-    PD_Tutorials_WidgetsPage tutorialsWidgetsPage;
+    private PD_Tutorials_WidgetsPage tutorialsWidgetsPage;
 
     @Step
     public void openPage() {
@@ -29,7 +29,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void validateAndClickElement(String key) {
-        WebElementFacade element = findWebElementByKey(key, tutorialsWidgetsPage.getClickableElements());
+        WebElementFacade element = findWebElementByKey(key, tutorialsWidgetsPage.getClickAbleElements());
         element.isEnabled();
         element.click();
     }

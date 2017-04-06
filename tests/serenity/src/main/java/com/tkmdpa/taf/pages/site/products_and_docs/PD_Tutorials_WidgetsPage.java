@@ -11,7 +11,7 @@ import java.util.Map;
 @DefaultUrl("/products-and-docs/tutorials/widgets/")
 public class PD_Tutorials_WidgetsPage extends AncestorPage {
 
-    public final String pageHeader = "WIDGETS TUTORIALS";
+    public static final String pageHeader = "WIDGETS TUTORIALS";
 
     @FindBy(xpath = "//div[@class='announcement']/a[text()='Learn more']")
     private WebElementFacade addingEventDiscoveryWidgetButton;
@@ -25,8 +25,8 @@ public class PD_Tutorials_WidgetsPage extends AncestorPage {
     @FindBy(xpath = ".//button[@id='js_feedback_btn_alert_ok']")
     private WebElementFacade successfulSentEmailNotificationOKButton;
 
-    public Map<String, WebElementFacade> getClickableElements() {
-        Map<String, WebElementFacade> elements = new HashMap<String, WebElementFacade>();
+    public Map<String, WebElementFacade> getClickAbleElements() {
+        Map<String, WebElementFacade> elements = new HashMap<>();
         elements.put("Adding Event Discovery Widget Button", addingEventDiscoveryWidgetButton);
         elements.put("Adding Event Discovery Widget Header Link", addingEventDiscoveryWidgetHeaderLink);
         elements.put("Adding Event Discovery Widget Image Link", addingEventDiscoveryWidgetImageLink);
