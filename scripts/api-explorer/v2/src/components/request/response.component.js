@@ -65,7 +65,7 @@ class ResponseComponent{
 			_propTitle: typeof id === 'string' && id || 'object',
 			config: panel.config,
 			colorClass: color
-		});
+		});		
 
 		// apply component data bindings
 		ko.applyBindings({
@@ -102,7 +102,7 @@ class ResponseComponent{
 	}
 }
 
-module.exports = ko.components.register('response-component', {
+ko.components.register('response-component', {
 	viewModel: ResponseComponent,
 	template:`
 		<!-- ko if: hasResponse -->
@@ -159,3 +159,5 @@ module.exports = ko.components.register('response-component', {
 		</section>
 		<!-- /ko -->	
 `});
+
+module.exports = ResponseComponent;
