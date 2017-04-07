@@ -14,7 +14,7 @@ const options = commandLineArgs(optionDefinitions);
 
 
 function printHelp () {
-	const getUsage = require('command-line-usage')
+	const getUsage = require('command-line-usage');
 
 	const sections = [
 		{

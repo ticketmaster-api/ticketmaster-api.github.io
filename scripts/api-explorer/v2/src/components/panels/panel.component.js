@@ -80,7 +80,7 @@ class Panel {
 	}
 }
 
-module.exports = ko.components.register('panel', {
+ko.components.register('panel', {
 	viewModel: Panel,
 	template:`
 		<section data-bind="css: cssClasses" class="panel panel-primary">
@@ -113,3 +113,5 @@ module.exports = ko.components.register('panel', {
 			</section>
 		</section>
 `});
+
+module.exports = Panel;
