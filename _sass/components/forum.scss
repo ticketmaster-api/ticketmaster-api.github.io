@@ -1,0 +1,118 @@
+.search {
+	width:100%;
+	margin: 4em auto 2em auto;
+	.search-input {
+		width: 83%;
+	}
+	.button {
+		margin-top: 0;
+		width: 15%;
+		margin-left: 10px;
+		display: inline-block;
+	}
+}
+#disqus_header:first-letter {
+  text-transform: uppercase;
+}
+#disqus-table {
+	font-famiuly: "TMSans-Regular",Helvetica,Arial,sans-serif;
+}
+
+.tabs-forum {
+	text-align: center;
+	margin: 2em auto 3em auto;
+  .tab {
+		font-family: "TMSans-Regular",Helvetica,Arial,sans-serif;
+		font-size: 1.5em;
+		line-height: 2em;
+		padding: 0 10px;
+		margin: 0 10px;
+		border-bottom: 1px solid #b7c9d3;
+		color: #b7c9d3;
+		display: inline-block;
+		&.active {
+			color: #009cde;
+			border-bottom: 2px solid #009cde;
+		}
+	}
+}
+
+.row-forum {
+	width: 100%;
+	display: table;
+	overflow: hidden;
+	div {
+		display: inline-block;
+		text-align: left;
+		height: 50px;
+		margin-bottom: 1.7em;
+		vertical-align: middle;
+	}
+	.avatar {
+		width: 48px;
+		img {
+			width: 48px;
+			height: 48px;
+			border-radius: 5px;
+		}
+
+	}
+	.title {
+		width: 45%;
+		overflow: hidden;
+		a {
+			font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+			font-size: 1.5em;
+			line-height: 1.2em;
+			color: #768692;
+			text-align: left;
+			width: 100%;
+			max-width: 470px;
+			height: 50px;
+			display: table-cell;
+			vertical-align: middle;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			&:first-letter {
+				text-transform: uppercase;
+			}
+		}
+	}
+	.title, .created, .updated, .posts, .likes {
+		padding: 0 20px;
+	}
+	.created, .updated {
+		width: 15%;
+	}
+	.posts, .likes {
+		width: 10%;
+		text-align: right;
+		font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+	}
+
+	&.header {
+		margin-bottom: 1.5em;
+		padding-bottom: 0.5em;
+		border-bottom: 1px solid #b7c9d3;
+		display: table;
+		width: 100%;
+		div {
+			height: auto;
+			margin: 0;
+			padding: 0;
+		}
+		.title, .created, .updated, .posts, .likes {
+			font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+			font-size: 1em;
+			color: #b7c9d3;
+		}
+		.created, .updated, .posts, .likes {
+			text-align: left;
+		}
+		.posts, .likes {
+			text-align: right;
+		}
+	}
+
+}
+
