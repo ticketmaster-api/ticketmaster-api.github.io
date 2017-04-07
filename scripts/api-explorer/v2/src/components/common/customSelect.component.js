@@ -93,7 +93,7 @@ class CustomSelect {
 	}
 }
 
-module.exports = ko.components.register('custom-select', {
+ko.components.register('custom-select', {
   viewModel: CustomSelect,
   template: `
 	<div class="api-exp-custom-select js-custom-select">
@@ -117,3 +117,5 @@ module.exports = ko.components.register('custom-select', {
 		<div data-bind="click: slideToggle" class="api-exp-custom-select-layer js-custom-select-layer hidden"></div>
 	</div>
 `});
+
+module.exports = CustomSelect;
