@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.At;
 @At("https://developer-acct.ticketmaster.com/user/login")
 public class UserLogInPage extends AncestorPage {
 
-    public final String pageHeader = "LOG IN";
+    public static final String PAGE_HEADER = "LOG IN";
 
     @FindBy(xpath = "//h1[@class='only-desktop']")
     private WebElementFacade pageTitle;
@@ -31,12 +31,12 @@ public class UserLogInPage extends AncestorPage {
     @FindBy(xpath = "//a[text()=\"Log in using OpenID\"]")
     private WebElementFacade openIDButton;
 
-    public WebElementFacade getOpenIDInputField() {
-        return openIDInputField;
-    }
-
     @FindBy(id = "edit-openid-identifier")
-    private WebElementFacade openIDInputField;
+    private WebElementFacade openIdInputField;
+
+    public WebElementFacade getOpenIdInputField() {
+        return openIdInputField;
+    }
 
     public WebElementFacade getOpenIDButton() {
         return openIDButton;

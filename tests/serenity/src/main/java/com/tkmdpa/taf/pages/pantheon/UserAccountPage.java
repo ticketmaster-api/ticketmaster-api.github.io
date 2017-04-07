@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/products-and-docs/widgets/map/")
 public class UserAccountPage extends AncestorPage {
 
-    public final String pageHeader = "There are no applications here.\n" +
+    public static final String PAGE_HEADER = "There are no applications here.\n" +
                                      "Create something!";
 
     @FindBy(xpath = "//div[@class='truncate']/a")
