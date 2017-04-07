@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class PD_Tutorials_WidgetsSteps {
 
-    PD_Tutorials_WidgetsPage tutorialsWidgetsPage;
+    private PD_Tutorials_WidgetsPage tutorialsWidgetsPage;
 
     @Step
     public void openPage() {
@@ -29,7 +29,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void validateAndClickElement(String key) {
-        WebElementFacade element = findWebElementByKey(key, tutorialsWidgetsPage.getClickableElements());
+        WebElementFacade element = findWebElementByKey(key, tutorialsWidgetsPage.getClickAbleElements());
         element.isEnabled();
         element.click();
     }
@@ -95,55 +95,24 @@ public class PD_Tutorials_WidgetsSteps {
     }
 
     @Step
-    public void checkErrorNotificationForTextField() {
-        assertTrue(tutorialsWidgetsPage.getFeedbackWidget().getTextFieldError().isVisible());
+    public void populateName(String text) {
+        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys(text);
     }
 
     @Step
-    public void checkErrorNotificationForTextArea() {
-        assertTrue(tutorialsWidgetsPage.getFeedbackWidget().getTextAreaError().isVisible());
+    public void populateEmail(String text) {
+        tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys(text);
     }
 
     @Step
-    public void populateName() {
-        tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys("test user");
-    }
-
-    @Step
-    public void populateEmail() {
-        tutorialsWidgetsPage.getFeedbackWidget().getEmailTextField().sendKeys("test@test.com");
-    }
-
-    @Step
-    public void populateNameFieldWithMoreThanAccepted() {
-        tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys("test!");
-    }
-
-    @Step
-    public void populateDescription() {
-        String input = new String(new char[256]).replace('\0', 'w');
+    public void populateDescriptionFieldWithMoreThanAccepted(int number) {
+        String input = new String(new char[number]).replace('\0', 'w');
         tutorialsWidgetsPage.getFeedbackWidget().getDescriptionTextField().sendKeys(input);
     }
 
     @Step
     public void checkDescriptionErrorMessageIsShown() {
         assertTrue(tutorialsWidgetsPage.getFeedbackWidget().getDescriptionErrorMessage().isVisible());
-    }
-
-    @Step
-    public void clickOkFeedbackWidgetButton() {
-        tutorialsWidgetsPage.getSuccessfulSentEmailNotificationOKButton().click();
-    }
-
-    @Step
-    public void checkEmailSentNotificationIsShown() {
-        assertTrue(tutorialsWidgetsPage.getSuccessfulSentEmailNotificationOKButton().isVisible());
-    }
-
-    @Step
-    public void checkEmailSentNotificationIsNotShown() {
-        waitForSomeActionHappened(500);
-        assertFalse(tutorialsWidgetsPage.getSuccessfulSentEmailNotificationOKButton().isVisible());
     }
 
     @Step

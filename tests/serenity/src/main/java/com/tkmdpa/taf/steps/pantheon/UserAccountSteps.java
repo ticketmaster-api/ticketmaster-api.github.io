@@ -22,7 +22,7 @@ public class UserAccountSteps {
 
     @Step
     public void checkIfTitleIsCorrect(){
-        assertEquals (userAccountPage.pageHeader, userAccountPage.getTitleText());
+        assertEquals (userAccountPage.PAGE_HEADER, userAccountPage.getTitleText());
     }
 
     @Step

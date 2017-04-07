@@ -41,12 +41,6 @@ public class FeedbackWidgetImpl extends AncestorWidgetImpl implements FeedbackWi
     @FindBy(xpath = "//button[@class='close']")
     private WebElementFacade feedbackCloseButton;
 
-    @FindBy(css = "input:invalid")
-    private WebElementFacade textFieldError;
-
-    @FindBy(css = "textarea:invalid")
-    private WebElementFacade textAreaError;
-
     @FindBy(xpath = ".//*[contains(@id,'feedback-message-error')]")
     private WebElementFacade descriptionErrorMessage;
 
@@ -113,16 +107,6 @@ public class FeedbackWidgetImpl extends AncestorWidgetImpl implements FeedbackWi
     @Override
     public WebElementFacade getCloseButton() {
         return feedbackCloseButton;
-    }
-
-    @Override
-    public WebElementFacade getTextFieldError() {
-        return textFieldError;
-    }
-
-    @Override
-    public WebElementFacade getTextAreaError() {
-        return textAreaError;
     }
 
     @Override

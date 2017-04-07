@@ -17,7 +17,5 @@ public interface FeedbackWidget extends AncestorWidget {
     WebElementFacade getDescriptionTextField();
     WebElementFacade getSendButton();
     WebElementFacade getCloseButton();
-    WebElementFacade getTextFieldError();
-    WebElementFacade getTextAreaError();
     WebElementFacade getDescriptionErrorMessage();
 }

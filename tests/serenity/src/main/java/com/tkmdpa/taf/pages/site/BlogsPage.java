@@ -6,5 +6,5 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/blogs/")
 public class BlogsPage extends AncestorPage {
 
-//    public final String pageHeader = "";
+//    public final String PAGE_HEADER = "";
 }

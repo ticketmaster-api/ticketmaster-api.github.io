@@ -28,7 +28,7 @@ public class UserLogInSteps {
 
     @Step
     public void checkIfTitleIsCorrect(){
-        assertEquals (userLogInPage.pageHeader, userLogInPage.getTitleText());
+        assertEquals (userLogInPage.PAGE_HEADER, userLogInPage.getTitleText());
     }
 
     @Step
@@ -43,7 +43,7 @@ public class UserLogInSteps {
 
     public void logInUsingOpenID(String openID) {
         userLogInPage.getOpenIDButton().click();
-        userLogInPage.getOpenIDInputField().sendKeys(openID);
+        userLogInPage.getOpenIdInputField().sendKeys(openID);
         userLogInPage.getLogInButton().click();
     }
 }
