@@ -66,9 +66,9 @@ public class PD_Tutorials_WidgetsDefinition {
         tutorialsWidgetsPage.clickSendFeedbackWidgetButton();
     }
 
-    @When("name is populated")
-    public void populateNameField() {
-        tutorialsWidgetsPage.populateName();
+    @When("name is populated with $text")
+    public void populateNameField(String text) {
+        tutorialsWidgetsPage.populateName(text);
     }
 
     @When("click send button of Feedback widget")
@@ -76,26 +76,15 @@ public class PD_Tutorials_WidgetsDefinition {
         tutorialsWidgetsPage.clickSendFeedbackWidgetButton();
     }
 
-    @When("email is populated")
-    public void populateEmailField() {
-        tutorialsWidgetsPage.populateEmail();
+    @When("email is populated with $text")
+    public void populateEmailField(String text) {
+        tutorialsWidgetsPage.populateEmail(text);
     }
 
-    @When("description is populated")
-    public void populateDescriptionField() {
-        tutorialsWidgetsPage.populateDescription();
-    }
-
-    @When("Name field is populated with bigger than 255 symbols text")
-    public void populateNameFieldWithMoreThanAccepted() {
+    @When("description field is populated with $number symbols text")
+    public void populateNameFieldWithMoreThanAccepted(int number) {
+        tutorialsWidgetsPage.populateDescriptionFieldWithMoreThanAccepted(number);
         waitForSomeActionHappened(500);
-        tutorialsWidgetsPage.populateNameFieldWithMoreThanAccepted();
-    }
-
-    @When("click OK Feedback Widget button")
-    @Then("click OK Feedback Widget button")
-    public void clickOkFeedbackWidgetButton() {
-        tutorialsWidgetsPage.clickOkFeedbackWidgetButton();
     }
 
     @Then("check general page elements for Tutorials Widgets Page, where DISQUS = $disqus and LeftMenu = $leftMenu")
@@ -124,34 +113,19 @@ public class PD_Tutorials_WidgetsDefinition {
         tutorialsWidgetsPage.clickCloseFeedbackWidgetButton();
     }
 
-    @Then("error notification is shown for Feedback mapWidget")
-    public void checkErrorNotificationForTextField() {
-        tutorialsWidgetsPage.checkErrorNotificationForTextField();
-    }
-
-    @Then("description error notification is shown for Feedback mapWidget")
-    public void checkErrorNotificationForTextArea() {
-        tutorialsWidgetsPage.checkErrorNotificationForTextArea();
-    }
-
     @Then("check that error message is shown for Description for Feedback mapWidget")
     public void checkDescriptionErrorMessageIsShown() {
         tutorialsWidgetsPage.checkDescriptionErrorMessageIsShown();
     }
 
-    @Then("check that email sent notification is shown")
-    public void checkEmailSentNotificationIsShown() {
-        tutorialsWidgetsPage.checkEmailSentNotificationIsShown();
-    }
-
-    @Then("check that email sent notification is not shown")
-    public void checkEmailSentNotificationIsNotShown() {
-        tutorialsWidgetsPage.checkEmailSentNotificationIsNotShown();
-    }
-
     @Then("feedback was successfully sent")
     public void checkFeedbackWasSent(){
-        tutorialsWidgetsPage.checkEmailSentNotificationIsShown();
+        anyPageSteps.checkEmailSentNotificationIsShown();
+    }
+
+    @Then("error notification is shown")
+    public void checkFeedbackWasNotSent(){
+        anyPageSteps.checkErrorEmailSentNotificationIsShown();
     }
 
 }

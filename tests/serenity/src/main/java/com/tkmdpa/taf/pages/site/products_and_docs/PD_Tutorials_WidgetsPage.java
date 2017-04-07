@@ -22,19 +22,12 @@ public class PD_Tutorials_WidgetsPage extends AncestorPage {
     @FindBy(xpath = "//div[@class='tutorials-article']/a/img[@alt='Adding Event Discovery widget to a website']")
     private WebElementFacade addingEventDiscoveryWidgetImageLink;
 
-    @FindBy(xpath = ".//button[@id='js_feedback_btn_alert_ok']")
-    private WebElementFacade successfulSentEmailNotificationOKButton;
-
     public Map<String, WebElementFacade> getClickAbleElements() {
         Map<String, WebElementFacade> elements = new HashMap<>();
         elements.put("Adding Event Discovery Widget Button", addingEventDiscoveryWidgetButton);
         elements.put("Adding Event Discovery Widget Header Link", addingEventDiscoveryWidgetHeaderLink);
         elements.put("Adding Event Discovery Widget Image Link", addingEventDiscoveryWidgetImageLink);
         return elements;
-    }
-
-    public WebElementFacade getSuccessfulSentEmailNotificationOKButton() {
-        return successfulSentEmailNotificationOKButton;
     }
 
 }

@@ -5,6 +5,7 @@ import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AnyPageSteps {
 
@@ -30,13 +31,17 @@ public class AnyPageSteps {
     }
 
     @Step
-    public void quitBrowser(){
-        anyPage.getDriver().quit();
-    }
-
-
-    @Step
     public void clickLogIn() {
         anyPage.getLogInButton().click();
+    }
+
+    @Step
+    public void checkErrorEmailSentNotificationIsShown() {
+        assertTrue("Error message is absent", anyPage.getErrorMessage().getWrappedElement().getText().contains("Error"));
+    }
+
+    @Step
+    public void checkEmailSentNotificationIsShown() {
+        assertTrue(anyPage.getSuccessfulSentEmailNotificationOKButton().isVisible());
     }
 }

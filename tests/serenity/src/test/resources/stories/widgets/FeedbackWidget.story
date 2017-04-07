@@ -21,9 +21,19 @@ Then feedback widget is not shown
 Scenario: (feedback widget) [3.1.1 Feedback widget sanity]
 Given open Tutorials Widgets page
 And click Feedback button of Tutorials Widgets page
-When name is populated
-When email is populated
-When description is populated
+When name is populated with test
+When email is populated with test@test.com
+When description field is populated with 12 symbols text
 And click send button of Feedback widget
 Then feedback was successfully sent
+
+Scenario: (feedback widget) Verification of allowed symbols in description
+Given open Tutorials Widgets page
+And click Feedback button of Tutorials Widgets page
+When name is populated with test
+When email is populated with test@test.com
+When description field is populated with 3001 symbols text
+And click send button of Feedback widget
+Then error notification is shown
+
 
