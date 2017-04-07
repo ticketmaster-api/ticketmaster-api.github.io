@@ -22,6 +22,9 @@ public class Support_ContactUsPage extends AncestorPage {
     @FindBy(xpath = "//button[text()='SEND']")
     private WebElementFacade sendButton;
 
+    public static String getPageHeader() {
+        return PAGE_HEADER;
+    }
 
     public WebElementFacade getFirstNameField() {
         return firstNameField;
