@@ -90,6 +90,13 @@ public class AncestorPage extends PageObject {
     @FindBy(xpath = "//div[@class='user-control-section']/a[@href='/user/login']")
     private WebElementFacade logInLinkPantheon;
 
+    @FindBy(xpath = "//button[text()='SEND']")
+    private WebElementFacade sendButton;
+
+    public WebElementFacade getSendButton() {
+        return sendButton;
+    }
+
     public String returnCurrentUrl(){
         return this.getDriver().getCurrentUrl();
     }

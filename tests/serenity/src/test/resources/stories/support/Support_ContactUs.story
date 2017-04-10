@@ -14,7 +14,7 @@ Given open Contact Us page
 When name is populated on Contact Us Page with test
 When email is populated on Contact Us Page with test@test.com
 When description is populated with 12 symbols text on Contact Us Page
-When click send button on Contact Us Page
+When click send button
 Then feedback was successfully sent
 
 Scenario: (/support/contact-us/) Verification of allowed symbols in description
@@ -22,5 +22,5 @@ Given open Contact Us page
 When name is populated on Contact Us Page with test
 When email is populated on Contact Us Page with test@test.com
 When description is populated with 3001 symbols text on Contact Us Page
-When click send button on Contact Us Page
+When click send button
 Then error notification is shown
