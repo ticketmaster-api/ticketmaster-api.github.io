@@ -16,6 +16,21 @@
 }
 #disqus-table {
 	font-famiuly: "TMSans-Regular",Helvetica,Arial,sans-serif;
+	.pager {
+		text-align: left;
+		a, span {
+			font-family: "TMSans-Regular", Helvetica, Arial, sans-serif !important;
+			font-size: 25px;
+			text-decoration: none;
+			color: #009cde;
+			font-weight: normal;
+			margin-right: 24px;
+			display: inline-block;
+		}
+		span {
+			color: #b7c9d3;
+		}
+	}
 }
 
 .tabs-forum {
@@ -58,8 +73,9 @@
 
 	}
 	.title {
-		width: 45%;
+		width: 44%;
 		overflow: hidden;
+		padding-left: 0!important;
 		a {
 			font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
 			font-size: 1.5em;
@@ -88,6 +104,9 @@
 		width: 10%;
 		text-align: right;
 		font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+	}
+	.posts {
+		width: 13%;
 	}
 
 	&.header {
