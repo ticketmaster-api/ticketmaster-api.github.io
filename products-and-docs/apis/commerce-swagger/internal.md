@@ -6,6 +6,9 @@ categories:
 - commerce-swagger
 - v1-internal
 - replace_apikey
+
+check_internal: true
+
 title: Discovery API 2.0
 ---
 
