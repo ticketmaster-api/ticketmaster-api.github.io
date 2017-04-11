@@ -122,7 +122,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void checkThatFeedbackWidgetIsNotShown() {
-        assertTrue(!tutorialsWidgetsPage.getFeedbackWidget().isVisible());
+        tutorialsWidgetsPage.getFeedbackWidget().shouldBeVisible();
     }
 
 }

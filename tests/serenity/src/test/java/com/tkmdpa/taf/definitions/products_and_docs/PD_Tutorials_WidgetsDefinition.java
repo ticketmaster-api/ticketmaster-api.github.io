@@ -52,12 +52,12 @@ public class PD_Tutorials_WidgetsDefinition {
 
     @Given("feedback widget is not shown")
     @Then("feedback widget is not shown")
-    public void checkThatFidbackWidgetIsNotShown(){
+    public void checkThatFeedbackWidgetIsNotShown(){
         tutorialsWidgetsPage.checkThatFeedbackWidgetIsNotShown();
     }
 
     @Then("feedback widget elements is shown")
-    public void checkThatFidbackWidgetIsShown(){
+    public void checkThatFeedbackWidgetIsShown(){
         tutorialsWidgetsPage.checkThatFeedbackWidgetIsShown();
     }
 
