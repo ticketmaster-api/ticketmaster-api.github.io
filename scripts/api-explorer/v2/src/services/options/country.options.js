@@ -3,13 +3,13 @@ var countryCodes = require('../../../../../../_data/orgs/discovery-api/v2/countr
 
 export default [{
 		name: 'none',
-		checked: true,
+		checked: false,
 		link: false
 	},
-	...countryCodes.CountryCode.map(codeAndCountry => ({
+	...countryCodes.CountryCode.map((codeAndCountry, i) => ({
 		name: codeAndCountry.substr(4, codeAndCountry.length - 5), // or you can use regexp \(([a-zA-Z\s]+)\)
 		value: codeAndCountry.substr(0, 2),
-		checked: false,
+		checked: !i,
 		link: false
 	}))
 ]
