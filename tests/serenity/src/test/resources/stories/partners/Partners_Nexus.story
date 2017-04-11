@@ -9,10 +9,18 @@ Scenario: (/partners/certified-partners/nexus/) Verification for general page's 
 Given open Join The Nexus Program page
 Then check general page elements for Join The Nexus Program Page, where DISQUS = true and LeftMenu = true
 
-Scenario: (/partners/certified-partners/nexus/) Verification of successfull Nexus program
+Scenario: (/partners/certified-partners/nexus/) Verification of successfull message sending when paid
 Given open Join The Nexus Program page
 When email is populated on Nexus Page with test@test.com
 When check Paid radio button on Nexus Page
+When description is populated with 12 symbols text on Nexus Page
+When click send button
+Then message was successfully sent on Nexus form
+
+Scenario: (/partners/certified-partners/nexus/) Verification of successfull message sending when free
+Given open Join The Nexus Program page
+When email is populated on Nexus Page with test@test.com
+When check Free radio button on Nexus Page
 When description is populated with 12 symbols text on Nexus Page
 When click send button
 Then message was successfully sent on Nexus form
