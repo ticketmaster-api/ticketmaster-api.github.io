@@ -15,7 +15,6 @@ describe("CDWidget", () => {
 
 	beforeEach(function() {
 		spyOn(widget, 'toggleSecondsVisibility');
-		//spyOn(widget, 'clearEvents');
 		spyOn(widget, 'clear');
 		spyOn(widget, 'hideMessage');
 		spyOn(widget, 'showMessage');
@@ -75,14 +74,6 @@ describe("CDWidget", () => {
 		widget.updateTransition('');
 		expect(elem.classList).toContain("centered-logo")
 	});
-
-	/*it('#changeDefaultIdHandler should show message', () => {
-		widget.clearEvents = function () {
-		 return this.eventsRoot.innerHTML = "";;
-		};
-		console.log(widget);;
-		widget.changeDefaultIdHandler();
-	});*/
 	
 	it('#hideMessageDelay should be integer', () => {
 		expect(widget.hideMessageDelay).toBe(5000);
@@ -110,12 +101,8 @@ describe("CDWidget", () => {
 			console.log('1 innerHTML', widget.countDownMonth.innerHTML);
 			widget.toggleSecondsVisibility();
 			expect(widget.toggleSecondsVisibility).toHaveBeenCalled();
-			//expect(widget.countDownWrapper.classList).toContain("hide-seconds");
 			done();
 		}, 200);
-
-
-
 	});
 
 	it('#update should be called with FullWidthTheme', () => {
@@ -264,23 +251,5 @@ describe("CDWidget", () => {
 		expect(domElement.children[1].children[2].className).toContain("address-wrapper");
 		expect(domElement.children[1].children[3].className).toContain("category-wrapper");
 	});	
-
-	/*not finished*/
-
-	/*it('#showStatusMessage should show message', () => {
-		widget.event.date = {};
-		widget.event.date.dateTime = 1;
-		 // console.log('widget.hideMessage', );
-		widget.showStatusMessage(true);
-		expect(widget.showMessage(true)).toHaveBeenCalled();
-	});
-
-	it('#hideMessage should set timeinterval', () => {
-		widget.messageTimeout = 1;
-		 // console.log('widget.hideMessage', );
-		widget.hideMessage();
-		expect(widget.hideMessage).toHaveBeenCalled();
-	});*/
-
-
+	
 });
