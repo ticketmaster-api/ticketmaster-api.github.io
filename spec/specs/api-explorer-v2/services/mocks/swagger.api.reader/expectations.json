@@ -81,7 +81,7 @@
           "doc": "Filter events by country code",
           "style": "query",
           "required": false,
-          "default": "",
+          "default": "US",
           "select": true,
           "type": "string",
           "options": [
@@ -90,7 +90,8 @@
               "checked": true,
               "link": false
             }
-          ]
+          ],
+          "value": "US"
         },
         "venueId": {
           "name": "venueId",
@@ -196,7 +197,7 @@
           "doc": "Filter venues by country code",
           "style": "query",
           "required": false,
-          "default": "",
+          "default": "US",
           "select": true,
           "type": "string",
           "options": [
@@ -205,7 +206,8 @@
               "checked": true,
               "link": false
             }
-          ]
+          ],
+          "value": "US"
         },
         "keyword": {
           "name": "keyword",
@@ -331,7 +333,7 @@
           "doc": "Filter events by country code",
           "style": "query",
           "required": false,
-          "default": "",
+          "default": "US",
           "select": true,
           "type": "string",
           "options": [
@@ -340,7 +342,8 @@
               "checked": true,
               "link": false
             }
-          ]
+          ],
+          "value": "US"
         },
         "venueId": {
           "name": "venueId",
@@ -446,7 +449,7 @@
           "doc": "Filter venues by country code",
           "style": "query",
           "required": false,
-          "default": "",
+          "default": "US",
           "select": true,
           "type": "string",
           "options": [
@@ -455,7 +458,8 @@
               "checked": true,
               "link": false
             }
-          ]
+          ],
+          "value": "US"
         },
         "keyword": {
           "name": "keyword",

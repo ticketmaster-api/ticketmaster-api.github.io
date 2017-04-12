@@ -18,6 +18,8 @@ function readParam (data) {
 	if(param.name === 'countryCode'){
 		param.select = true;
 		param.options = countryOptions;
+		param.value = 'US';
+		param.default = 'US';
 	} else if (data.enum && data.enum.length) {
 		param.select = true;
 		param.options = data.enum.map(value => ({
