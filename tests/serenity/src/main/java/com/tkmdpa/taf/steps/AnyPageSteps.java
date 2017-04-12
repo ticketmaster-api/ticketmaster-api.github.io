@@ -44,4 +44,9 @@ public class AnyPageSteps {
     public void checkEmailSentNotificationIsShown() {
         assertTrue(anyPage.getSuccessfulSentEmailNotificationOKButton().isVisible());
     }
+
+    @Step
+    public void clickSendButton() {
+        anyPage.getSendButton().click();
+    }
 }

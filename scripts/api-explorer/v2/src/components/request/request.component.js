@@ -101,7 +101,7 @@ class RequestComponent{
 	}
 }
 
-module.exports = ko.components.register('request-component', {
+ko.components.register('request-component', {
 	viewModel: RequestComponent,
 	template:`
 		<section class="row-container request" data-bind="attr: {id: ids.wrapper}" role="tab">
@@ -124,3 +124,5 @@ module.exports = ko.components.register('request-component', {
 			<p data-bind="text: req, blockEllipsis: {clamp: 2}" class="item_text"></p>
 		</section>
 `});
+
+module.exports = RequestComponent;

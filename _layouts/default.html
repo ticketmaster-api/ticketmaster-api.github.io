@@ -33,16 +33,22 @@
             <script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
 					{%endif%}
         {% endif %}
-        {% if page.category == 'home' or page.layout == 'documentation-single' %}
+        {% if page.category == 'home' or page.layout == 'documentation-single' and page.categories[1] == "getting-started" %}
             <script src="{{'/scripts/components/events-counter.js' | prepend: site.baseurl }}" async></script>
         {% endif %}
-
         <script src="{{'/scripts/components/scroll-top.js' | prepend: site.baseurl }}"></script>
         <script src="{{'/scripts/vendors/bootstrap.min.js' | prepend: site.baseurl }}"></script>
         {% include feedback.html %}
-        <script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
-        <script src="{{'/scripts/components/numeric-input.js' | prepend: site.baseurl }}"></script>
-        <script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+				<script src="{{'/scripts/components/custom-select.js' | prepend: site.baseurl }}"></script>
+				<script src="{{'/scripts/components/feedback.js' | prepend: site.baseurl }}"></script>
+
+				{%comment%}<!--add script to 'certified\nexus' and to EDW,CDW,Map and Calendar widget -->{%endcomment%}
+				{% if page.categories[1] == "widgets" and page.categories[2] != nil and page.categories[2] != "widget-checkout" and page.categories[2] != "widget-wordpress"%}
+					<script src="{{'/scripts/components/numeric-input.js' | prepend: site.baseurl }}"></script>
+				{% elsif page.layout == "partners-doc" and page.categories[1] == "certified" and page.categories[2] == "nexus" %}
+					<script src="{{'/scripts/components/numeric-input.js' | prepend: site.baseurl }}"></script>
+				{% endif %}
+
 
 {% if page.category == 'products-and-docs' or page.categories[0] == "documentation" and page.categories[1] == "sdks"%}
     <script>
@@ -55,7 +61,7 @@
     </script>
 {% endif %}
 
-        {% if page.categories[0] == "documentation" and page.categories[1] == "widgets"%}
+        {% if page.categories[0] == "documentation" and page.categories[1] == "widgets" and page.categories[2] != "widget-checkout"%}
             {% if page.categories[2] == "widget-calendar"%}
                 <script src="{{'/scripts/components/application-selector.js' | prepend: site.baseurl }}"></script>
 				        <script src="{{'/scripts/pages/default.js' | prepend: site.baseurl }}"></script>

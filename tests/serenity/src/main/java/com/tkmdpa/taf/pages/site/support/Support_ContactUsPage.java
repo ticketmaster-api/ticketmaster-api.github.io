@@ -19,8 +19,6 @@ public class Support_ContactUsPage extends AncestorPage {
     @FindBy(id = "email-contact")
     private WebElementFacade emailAdressField;
 
-    @FindBy(xpath = "//button[text()='SEND']")
-    private WebElementFacade sendButton;
 
     public static String getPageHeader() {
         return PAGE_HEADER;
@@ -38,7 +36,4 @@ public class Support_ContactUsPage extends AncestorPage {
         return descriptionField;
     }
 
-    public WebElementFacade getSendButton() {
-        return sendButton;
-    }
 }

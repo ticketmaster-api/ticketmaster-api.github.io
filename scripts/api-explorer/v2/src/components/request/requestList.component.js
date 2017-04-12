@@ -70,7 +70,7 @@ class RequestListComponent{
 	}
 }
 
-module.exports = ko.components.register('request-list', {
+ko.components.register('request-list', {
 	viewModel: RequestListComponent,
 	template:`
 	<section class="clearfix">
@@ -95,3 +95,6 @@ module.exports = ko.components.register('request-list', {
 		<!-- /ko -->
 	</section>
 `});
+
+
+module.exports = RequestListComponent;

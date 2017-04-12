@@ -19,6 +19,8 @@ import static net.thucydides.core.steps.StepEventBus.getEventBus;
 
 public class JiraIntegrator {
 
+    private static final String DECODEDPASS = "Basic bWFrc3ltX21henVya2V2eWNoOndvcnRoeUxvdmU2NQ==";
+
     public String getTestCaseName(){
         //Get test-case name from current scenario title
         BaseStepListener g = getEventBus().getBaseStepListener();
@@ -51,7 +53,7 @@ public class JiraIntegrator {
         conn1.setDoOutput(true);
         conn1.setRequestMethod("GET");
         conn1.addRequestProperty("Content-Type", "application/json");
-        conn1.addRequestProperty("Authorization", "Basic bWFrc3ltX21henVya2V2eWNoOnFlbXVSdW5EZXZpY2U2NQ==");
+        conn1.addRequestProperty("Authorization", DECODEDPASS);
 
         BufferedReader br = new BufferedReader(new InputStreamReader((conn1.getInputStream())));
 
@@ -77,7 +79,7 @@ public class JiraIntegrator {
         conn.setDoOutput(true);
         conn.setRequestMethod("PUT");
         conn.addRequestProperty("Content-Type", "application/json");
-        conn.addRequestProperty("Authorization", "Basic bWFrc3ltX21henVya2V2eWNoOnFlbXVSdW5EZXZpY2U2NQ==");
+        conn.addRequestProperty("Authorization", DECODEDPASS);
         OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
 
         String jsonText = null;

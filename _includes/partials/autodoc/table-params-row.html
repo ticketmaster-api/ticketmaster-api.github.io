@@ -1,0 +1,27 @@
+<tr>
+	<td>
+		{% if parameter.required %}
+				<span class="swagger-parameter-required">
+			{% endif %}
+				<code>{{ parameter.name }}</code>
+			{% if parameter.required %}
+				</span>
+		{% endif %}
+	</td>
+	<td>{{ parameter.description }}</td>
+	<td>
+		{% if parameter.type %}
+			{{ parameter.type | capitalize }}
+			{% if parameter.items %}
+				of {{ parameter.items.type | capitalize }}
+			{% endif %}
+			{% if parameter.enum %}
+				{{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
+			{% endif %}
+		{% else %}<!--Not defined in api.json-->
+		{% endif %}
+	</td>
+	<td>{% if parameter.default %}{{ parameter.default | join: ', ' | strip }}{% endif %}</td>
+	<td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
+</tr>
+
