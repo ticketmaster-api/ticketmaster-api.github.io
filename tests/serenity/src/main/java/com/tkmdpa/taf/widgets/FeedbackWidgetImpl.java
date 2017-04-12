@@ -35,7 +35,7 @@ public class FeedbackWidgetImpl extends AncestorWidgetImpl implements FeedbackWi
     @FindBy(xpath = ".//textarea[@id='description']")
     private WebElementFacade feedbackDescriptionTextField;
 
-    @FindBy(xpath = ".//*[contains(@id,'js_feedback_btn')]")
+    @FindBy(id = "js_feedback_btn")
     private WebElementFacade feedbackSendButton;
 
     @FindBy(xpath = "//button[@class='close']")

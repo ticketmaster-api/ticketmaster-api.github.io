@@ -35,5 +35,3 @@ When email is populated with test@test.com
 When description field is populated with 3001 symbols text
 And click send button of Feedback widget
 Then error notification is shown
-
-

@@ -9,7 +9,7 @@ public class AnyPage extends AncestorPage {
     @FindBy(xpath = "//h3[text()='Error']")
     private WebElementFacade errorMessage;
 
-    @FindBy(id = "js_contact_btn_alert_ok")
+    @FindBy(xpath = "//button[text()='Ok']")
     private WebElementFacade successfulSentEmailNotificationOKButton;
 
     public void keyPageElementIsVisible(String xpath) {

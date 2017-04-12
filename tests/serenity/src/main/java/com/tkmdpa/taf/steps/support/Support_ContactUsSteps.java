@@ -40,8 +40,4 @@ public class Support_ContactUsSteps {
         contactUsPage.getEmailAddressField().sendKeys(text);
     }
 
-    @Step
-    public void clickSendButton() {
-        contactUsPage.getSendButton().click();
-    }
 }
