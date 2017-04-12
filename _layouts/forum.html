@@ -7,34 +7,25 @@ layout: default
 <div class="base-content-wrapper thread">
 	<div class='col-lg-12 col-md-12 col-sm-12 content{% if page.categories[0] == "support" and page.categories[1] == "contact-us" %} contact-us{% endif %}'>
 		<h1>DISQUS</h1>
-
 		<p class="lead">Some special information about Disqus and what it does. It functions and beneficial features.</p>
-
 		<div class="search">
-			<input autocomplete="off" type="text" size="10" class="search-input" name="search" title="search" />
-			<button type="button" class="button button-blue">SEARCH</button>
+			<input id="search-inp" autocomplete="off" type="text" size="10" class="search-input" name="search" title="search" />
+			<span class="sclose"></span>
+			<button id="search-btn" type="button" class="button button-blue">SEARCH</button>
 		</div>
-
-		<div class="tabs-forum">
-		  <div id="all-discusssions"class="tab active">All Discussions</div>
-		  <div id="latest-comment" class="tab">Latest Comments</div>
-		  <div id="recomended" class="tab">Recomended</div>
-		</div>
-
 		<div class="row-forum header">
-			<!-- <div class="avatar"></div> -->
 			<div class="title">Title</div>
 			<div class="created">Date Creadted</div>
-			<div class="updated">Date Updated</div>
 			<div class="posts">Comments</div>
 			<div class="likes">Likes</div>
 		</div>
 		<div id="disqus-table">
+			<div class="cssload-container">
+				<div class="cssload-speeding-wheel"></div>
+			</div>
 		</div>
-
 		<h2 id="disqus_header"></h2>
 		<div id="disqus_thread"></div>
-
 	</div>
 </div>
 

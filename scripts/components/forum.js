@@ -1,3 +1,6 @@
+var arThreads = [];
+var arThreadsFind = [];
+
 function parseGetParams() {
 	var $_GET = {};
 	var __GET = window.location.search.substring(1).split("&");
@@ -7,7 +10,6 @@ function parseGetParams() {
 	}
 	return $_GET;
 }
-
 
 function formatDate(date) {
 	var monthNames = [
@@ -41,25 +43,25 @@ function dynamicSort(property) {
 	}
 }
 
-var arThreads = [];
-
 function getThreads(cursor='') {
 	var apiKey ='ohRvg9N3dieJJRshzJsaQbKJAO2ZNuAebul7MeXvICNIjNKjhuhPyTfSVzrP8y8M';
 	$.ajax({
 		url: 'https://disqus.com/api/3.0/forums/listThreads.json?&api_key=' + apiKey + '&forum=ticketmasterapi&cursor=' + cursor + '&limit=100',
 		method: 'GET',
 		dataType: 'json',
-		success: function(data){
-			for (i=0;i<data.response.length;i++) {
-				if (data.response[i].posts > 0) {
-					arThreads.push(data.response[i]);
-				}
-			}
-			if (data.cursor.hasNext == true) {
-				getThreads(data.cursor.next);
-			}
-		}
+		success: processedThreads
 	});
+}
+
+function processedThreads(data) {
+	for (i=0;i<data.response.length;i++) {
+		if (data.response[i].posts > 0) {
+			arThreads.push(data.response[i]);
+		}
+	}
+	if (data.cursor.hasNext == true) {
+		getThreads(data.cursor.next);
+	}
 }
 
 function drawThreads(threads, start, limit) {
@@ -68,15 +70,12 @@ function drawThreads(threads, start, limit) {
 	var startPage = parseInt(start);
 	start = parseInt(start*limit);
 	limit = (parseInt(start+limit) >  parseInt(threads.length)) ? parseInt(threads.length) : parseInt(start+limit);
-
-	console.log(' LIMIT ' + start + ', ' + limit);
 	for (i = start; i < limit; i++) {
 		content += '<div class="row-forum">';
 		content += '<div class="title"><a href="/support/forum/?category=' + threads[i].identifiers[0] + '&link=' + threads[i].link + '">' + decodeURI(threads[i].clean_title) + '</a></div>';
 		content += '<div class="created">' + formatDate(threads[i].createdAt) + '</div>';
-		content += '<div class="updated">' + formatDate(threads[i].createdAt) + '</div>';
 		content += '<div class="posts">' + threads[i].posts + '</div>';
-		content += '<div class="likes">' + threads[i].dislikes + '</div>';
+		content += '<div class="likes">' + threads[i].likes + '</div>';
 		content += '</div>';
 	}
 	content += '<div class="pager">';
@@ -88,7 +87,35 @@ function drawThreads(threads, start, limit) {
 	$('#disqus-table').html(content);
 }
 
-function getPosts(newIdentifier, newUrl) {
+function sortThreads(e, cArray, field) {
+	var cls = 'asc';
+	e.preventDefault();
+	if ( $(e.target).hasClass('asc') ) {
+		cls = 'desc' ;
+		field = "-" + field;
+	}
+	else {
+		cls = 'asc';
+	}
+	$(e.target).parent().children().removeClass('asc desc');
+	$(e.target).addClass(cls);
+	cArray.sort(dynamicSort(field));
+	drawThreads(cArray, 0, 8);
+}
+
+function findThreads(arr) {
+	var limit = 8;
+  var toFind = $('#search-inp').val().toUpperCase();
+	for (var i in arr) {
+		if (arr[i].clean_title.toUpperCase().indexOf(toFind) >= 0) {
+			arThreadsFind.push(arr[i]);
+		}
+	}
+	if (arThreadsFind.length < 8) limit = arThreadsFind.length;
+	drawThreads(arThreadsFind, 0, limit);
+}
+
+function getPosts(newIdentifier) {
 	$('.thread .search').remove();
 	$('.thread .tabs-forum').remove();
 	$('.thread .row-forum.header').remove();
@@ -110,7 +137,6 @@ var disqus_config = function () {
 	(d.head || d.body).appendChild(s);
 })();
 
-
 $(document).ready(function() {
 
 	if (!parseGetParams().hasOwnProperty('category')) {
@@ -118,36 +144,55 @@ $(document).ready(function() {
 		$('#disqus_thread').remove();
 		getThreads();
 		$(document).ajaxStop(function() {
-			console.log(arThreads);
 			drawThreads(arThreads, 0, 8);
 		});
 	}
 	else {
-		getPosts(parseGetParams().category, parseGetParams().link);
+		getPosts(parseGetParams().category);
 	}
 
 	$('body').on('click', '#disqus-table .pager a', function(e) {
 		e.preventDefault();
-		drawThreads(arThreads, parseInt($(this).attr('rel')), 8);
+		drawThreads( (arThreadsFind.length > 0) ? arThreadsFind : arThreads, parseInt($(this).attr('rel')), 8);
 	});
 
 	$('body').on('click', '.row-forum.header .title', function(e) {
-		e.preventDefault();
-		arThreads.sort(dynamicSort("clean_title"));
-		drawThreads(arThreads, 0, 8);
+		sortThreads(e, (arThreadsFind.length > 0) ? arThreadsFind : arThreads, 'clean_title');
 	});
 
 	$('body').on('click', '.row-forum.header .created', function(e) {
-		e.preventDefault();
-		arThreads.sort(dynamicSort("createdAt"));
-		drawThreads(arThreads, 0, 8);
+		sortThreads(e, (arThreadsFind.length > 0) ? arThreadsFind : arThreads, 'createdAt');
 	});
 
 	$('body').on('click', '.row-forum.header .posts', function(e) {
-		e.preventDefault();
-		arThreads.sort(dynamicSort("posts"));
-		drawThreads(arThreads, 0, 8);
+		sortThreads(e, (arThreadsFind.length > 0) ? arThreadsFind : arThreads, 'posts');
 	});
 
+	$('body').on('click', '.row-forum.header .likes', function(e) {
+		sortThreads(e, (arThreadsFind.length > 0) ? arThreadsFind : arThreads, 'likes');
+	});
+
+	$('body').on('click', '#search-btn', function(e) {
+		if ($('#search-inp').val().length > 0) {
+			$('#search-inp').addClass('act');
+			$('.row-forum.header').children().removeClass('asc desc');
+			findThreads(arThreads);
+		}
+		else {
+			$('#search-inp').removeClass('act');
+			$('.row-forum.header').children().removeClass('asc desc');
+			arThreadsFind = [];
+			drawThreads(arThreads, 0, 8);
+		}
+	});
+
+	$('body').on('click', '.sclose', function(e) {
+		$('#search-inp').val('');
+		$('#search-inp').removeClass('act');
+		$('.row-forum.header').children().removeClass('asc desc');
+		arThreadsFind = [];
+		sortThreads(e, arThreads, '-createdAt');
+		drawThreads(arThreads, 0, 8);
+	});
 
 });
