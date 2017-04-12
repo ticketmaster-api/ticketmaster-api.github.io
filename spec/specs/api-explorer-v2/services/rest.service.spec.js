@@ -195,7 +195,10 @@ describe('API Explorer Rest service', function () {
 				"complete": jasmine.any(Function),
 				"dataType": "json",
 				"type": "GET",
-				"url": controlUrl
+				"url": controlUrl,
+				"headers": {
+					"Accept-Language": "en-US,en;q=0.8"
+				}
 			});
 			var resp = {
 				responseJSON:{}
@@ -249,7 +252,10 @@ describe('API Explorer Rest service', function () {
 				"complete": jasmine.any(Function),
 				"dataType": "json",
 				"type": "GET",
-				"url": controlUrl
+				"url": controlUrl,
+				"headers": {
+					"Accept-Language": "en-US,en;q=0.8"
+				}
 			});
 		});
 
@@ -271,7 +277,8 @@ describe('API Explorer Rest service', function () {
 				},
 				"dataType": "json",
 				"headers": {
-					"someHeader": "testValue"
+					"someHeader": "testValue",
+					"Accept-Language": "en-US,en;q=0.8"
 				},
 				"type": "POST",
 				"url": "https://app.ticketmaster.com/some/path.json?apikey=mockApiKey&"
