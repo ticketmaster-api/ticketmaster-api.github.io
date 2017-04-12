@@ -53,6 +53,7 @@ public class PD_Tutorials_WidgetsSteps {
     @Step
     public void clickCloseFeedbackWidgetButton() {
         tutorialsWidgetsPage.getFeedbackWidget().getCloseButton().click();
+        waitForSomeActionHappened(100);
     }
 
     @Step
@@ -122,7 +123,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void checkThatFeedbackWidgetIsNotShown() {
-        tutorialsWidgetsPage.getFeedbackWidget().shouldBeVisible();
+        tutorialsWidgetsPage.getFeedbackWidget().shouldNotBeVisible();
     }
 
 }
