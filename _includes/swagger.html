@@ -1,7 +1,10 @@
 <!--api-name:{{page.categories[2]}}  api-version: {{page.categories[3]}} -->
 <!--last site.time build: {{ site.time | date: '%B %d, %Y' }}-->
+
+{% if page.check_internal == true%}
 <script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
 <script src="{{'/scripts/components/swagger-redirect-user-role.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 
 {% assign pageMetaFolder        = page.categories[2] %}
 {% assign pageMetaVersionFolder = page.categories[3] %}
