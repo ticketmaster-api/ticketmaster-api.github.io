@@ -9,7 +9,7 @@ import net.thucydides.core.annotations.At;
 @At("https://developer-acct.ticketmaster.com/user/register")
 public class CreateNewAccountPage extends AncestorPage {
 
-    public final String pageHeader = "CREATE NEW ACCOUNT";
+    public static final String PAGE_HEADER = "CREATE NEW ACCOUNT";
     private final String firstNameLabel = "First Name";
     private final String lastNameLabel = "Last Name";
     private final String companyNameLabel = "Company Name";
