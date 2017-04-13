@@ -20,6 +20,9 @@ public class Support_ContactUsPage extends AncestorPage {
     private WebElementFacade emailAdressField;
 
 
+    public static String getPageHeader() {
+        return PAGE_HEADER;
+    }
 
     public WebElementFacade getFirstNameField() {
         return firstNameField;

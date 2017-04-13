@@ -16,7 +16,7 @@ public class Support_ContactUsSteps {
 
     @Step
     public void checkIfTitleIsCorrect(){
-        assertEquals (contactUsPage.getTitleText(), contactUsPage.PAGE_HEADER);
+        assertEquals (contactUsPage.getTitleText(), contactUsPage.getPageHeader());
     }
 
     @Step

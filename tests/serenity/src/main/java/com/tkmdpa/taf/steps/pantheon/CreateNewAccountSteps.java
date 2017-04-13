@@ -16,7 +16,7 @@ public class CreateNewAccountSteps {
 
     @Step
     public void checkIfTitleIsCorrect() {
-        assertEquals(createNewAccountPage.pageHeader, createNewAccountPage.getTitleText());
+        assertEquals(createNewAccountPage.getPageHeader(), createNewAccountPage.getTitleText());
     }
 
     @Step
