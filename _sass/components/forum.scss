@@ -34,25 +34,6 @@
 	}
 }
 
-.tabs-forum {
-	text-align: center;
-	margin: 2em auto 3em auto;
-  .tab {
-		font-family: "TMSans-Regular",Helvetica,Arial,sans-serif;
-		font-size: 1.5em;
-		line-height: 2em;
-		padding: 0 10px;
-		margin: 0 10px;
-		border-bottom: 1px solid #b7c9d3;
-		color: #b7c9d3;
-		display: inline-block;
-		&.active {
-			color: #009cde;
-			border-bottom: 2px solid #009cde;
-		}
-	}
-}
-
 .row-forum {
 	width: 100%;
 	display: table;
@@ -155,6 +136,21 @@
 		}
 	}
 
+}
+
+.no-results {
+	margin: -35px 0 0 10px;
+	font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+	font-size: 25px;
+	color: #768692;
+	width: 70%;
+}
+
+.thread .backtoall {
+	display: block;
+	margin: 50px 0 40px 0;
+	padding: 0;
+	border: none;
 }
 
 .sclose {

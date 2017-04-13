@@ -72,7 +72,7 @@ function drawThreads(threads, start, limit) {
 	limit = (parseInt(start+limit) >  parseInt(threads.length)) ? parseInt(threads.length) : parseInt(start+limit);
 	for (i = start; i < limit; i++) {
 		content += '<div class="row-forum">';
-		content += '<div class="title"><a href="/support/forum/?category=' + threads[i].identifiers[0] + '&link=' + threads[i].link + '">' + decodeURI(threads[i].clean_title) + '</a></div>';
+		content += '<div class="title"><a href="/support/forum/?category=' + decodeURI(threads[i].clean_title) + '&link=' + threads[i].link + '">' + decodeURI(threads[i].clean_title) + '</a></div>';
 		content += '<div class="created">' + formatDate(threads[i].createdAt) + '</div>';
 		content += '<div class="posts">' + threads[i].posts + '</div>';
 		content += '<div class="likes">' + threads[i].likes + '</div>';
@@ -104,6 +104,7 @@ function sortThreads(e, cArray, field) {
 }
 
 function findThreads(arr) {
+	arThreadsFind = [];
 	var limit = 8;
   var toFind = $('#search-inp').val().toUpperCase();
 	for (var i in arr) {
@@ -112,6 +113,11 @@ function findThreads(arr) {
 		}
 	}
 	if (arThreadsFind.length < 8) limit = arThreadsFind.length;
+	if (arThreadsFind.length <= 0) {
+		$('.row-forum.header').addClass('hide');
+		$('.no-results').removeClass('hide');
+	}
+	console.log();
 	drawThreads(arThreadsFind, 0, limit);
 }
 
@@ -140,6 +146,7 @@ var disqus_config = function () {
 $(document).ready(function() {
 
 	if (!parseGetParams().hasOwnProperty('category')) {
+		$('.thread .backtoall').remove();
 		$('#disqus_header').remove();
 		$('#disqus_thread').remove();
 		getThreads();
