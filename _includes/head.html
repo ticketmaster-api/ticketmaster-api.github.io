@@ -13,7 +13,7 @@
     <!-- <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}"> -->
     <script src="{{ "/scripts/vendors/jquery-1.11.3.min.js" | prepend: site.baseurl }}"></script>
     <script src="{{ "/scripts/components/header.js" | prepend: site.baseurl }}"></script>
-		<script type="text/javascript" src="https://www.universe.com/embed.js"></script>
+	  {% if page.layout != 'search' %}<script type="text/javascript" src="https://www.universe.com/embed.js"></script>{% endif %}
 		{% seo %}
 		<meta property="og:image" content="{% if page.cover %}{{ page.cover | prepend: site.baseurl | prepend: site.url }}{% else %}{{ site.protocols.fb_image | prepend: site.baseurl | prepend: site.url }}{% endif %}" />
 		<meta property="og:image:type" content="{{ site.protocols.fb_image_type }}" />

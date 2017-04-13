@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+{% include home-header.html %}
+
+<div class="base-content-wrapper thread">
+	<div class='col-lg-12 col-md-12 col-sm-12 content{% if page.categories[0] == "support" and page.categories[1] == "contact-us" %} contact-us{% endif %}'>
+		<h1>DISQUS</h1>
+		<p class="lead">Some special information about Disqus and what it does. It functions and beneficial features.</p>
+		<div class="search">
+			<input id="search-inp" autocomplete="off" type="text" size="10" class="search-input" name="search" title="search" />
+			<span class="sclose"></span>
+			<button id="search-btn" type="button" class="button button-blue">SEARCH</button>
+		</div>
+		<div class="no-results hide">Unfortunately, no results found for this search. Please change search conditions.</div>
+		<div class="row-forum header">
+			<div class="title">Title</div>
+			<div class="created">Date Creadted</div>
+			<div class="posts">Comments</div>
+			<div class="likes">Likes</div>
+		</div>
+		<div id="disqus-table">
+			<div class="cssload-container">
+				<div class="cssload-speeding-wheel"></div>
+			</div>
+		</div>
+		<a class="backtoall" href="/support/forum/">Back to all</a>
+		<h2 id="disqus_header"></h2>
+		<div id="disqus_thread"></div>
+	</div>
+</div>
+
+<div id="footer" class="xs-center slice-top-left">
+	{% include partials/footer.html %}
+</div>
+
+
+<script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/forum.js' | prepend: site.baseurl }}"></script>
