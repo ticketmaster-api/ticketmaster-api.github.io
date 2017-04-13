@@ -25,6 +25,24 @@ jest.mock('scripts/api-explorer/v2/api.sources', function () {
 	};
 });
 
+jest.mock('scripts/api-explorer/v2/api.sources-internal', function () {
+	return {
+		"Internal Publish API" : {
+			api: 'Internal PublishApiMock',
+			meta: {
+				extraMethodsInfo: 'InternalExtraMethodsInfoMock'
+			}
+		}
+	};
+});
+
+jest.mock('scripts/api-explorer/v2/src/services/user.service', function () {
+	return {
+		isInternalUser: () => true
+	};
+});
+
+
 function FakePromise () {
 	var _callback;
 	var _subProm;
@@ -46,7 +64,7 @@ function FakePromise () {
 
 
 
-describe('API Explorer base service', function () {
+describe('API Explorer base service with internal user', function () {
 	var ajaxPromise = new FakePromise();
 
 	beforeAll(() => {
@@ -59,7 +77,7 @@ describe('API Explorer base service', function () {
 	});
 
 	it('should call swagger api reader with api config', () => {
-		expect(this.swaggerApiReader).toBeCalledWith('PublishApiMock', {extraMethodsInfo: 'extraMethodsInfoMock'});
+		expect(this.swaggerApiReader).toBeCalledWith("Internal PublishApiMock", {"extraMethodsInfo": "InternalExtraMethodsInfoMock"});
 	});
 
 	it('should requested api description xml by ajax', () => {
@@ -71,11 +89,11 @@ describe('API Explorer base service', function () {
 	});
 
 	it('should parse xml and make configuration object', () => {
-		var expectations = require('./mocks/base.service/expectations.json');
-		var xmlContent = fs.readFileSync( __dirname +'/mocks/base.service/apidescription.xml', 'utf8');
+
+		var expectations = require('../mocks/base.service/expectations-internal.json');
+		var xmlContent = fs.readFileSync( __dirname +'/../mocks/base.service/apidescription.xml', 'utf8');
 		ajaxPromise.resolve(xmlContent);
+		//require('fs').writeFileSync(__dirname + '/../mocks/base.service/expectations-internal.json', JSON.stringify(this.module, null, '  '), 'utf8'); // write snapshot
 		expect(this.module).toEqual(expectations);
 	});
-
-
 });

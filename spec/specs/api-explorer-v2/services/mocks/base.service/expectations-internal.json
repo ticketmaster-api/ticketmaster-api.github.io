@@ -1,0 +1,1413 @@
+{
+  "Internal Publish API": "Internal PublishApiMock",
+  "Discovery API v2": {
+    "ALL": {
+      "discovery.v2.events.get": {
+        "id": "discovery.v2.events.get",
+        "name": "Search Events",
+        "method": "GET",
+        "category": "Discovery API v2",
+        "path": "discovery/v2/events.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2",
+        "description": "Returns the 20 most recent events for the authenticated user.",
+        "parameters": {
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": true,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "keyword": {
+            "name": "keyword",
+            "doc": "A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "attractionId": {
+            "name": "attractionId",
+            "doc": "Attraction ID(s) separated by comma.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "venueId": {
+            "name": "venueId",
+            "doc": "Venue ID(s) separated by comma.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "postalCode": {
+            "name": "postalCode",
+            "doc": "Zipcode or Postal Code of the venue in which the event is taking place.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "latlong": {
+            "name": "latlong",
+            "doc": "The Latitude,Longitude coordinates for the venue in which this event is taking place.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "radius": {
+            "name": "radius",
+            "doc": "The radius of the area in which we want to search for events.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "integer"
+          },
+          "unit": {
+            "name": "unit",
+            "doc": "The radius distance unit. Possible values: miles, km.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "source": {
+            "name": "source",
+            "doc": "Source of the event.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "ticketmaster",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "ticketweb",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "universe",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "tmr",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "frontgate",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "marketId": {
+            "name": "marketId",
+            "doc": "The city/area in which this event takes place.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "integer"
+          },
+          "startDateTime": {
+            "name": "startDateTime",
+            "doc": "Include events happening after this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "endDateTime": {
+            "name": "endDateTime",
+            "doc": "Include events happening before this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "includeTBA": {
+            "name": "includeTBA",
+            "doc": "Whether or not to return events with dates to be announced (TBA). TBA events are not returned.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "no",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "only",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "yes",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "includeTBD": {
+            "name": "includeTBD",
+            "doc": "Whether or not to return events with dates to be announced (TBD). TBD events are not returned.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "no",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "yes",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "only",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "size": {
+            "name": "size",
+            "doc": "The number of events returned in the API response.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "integer"
+          },
+          "page": {
+            "name": "page",
+            "doc": "The page for paginating through the results.",
+            "style": "query",
+            "required": false,
+            "default": "0",
+            "select": false,
+            "type": "integer"
+          },
+          "sort": {
+            "name": "sort",
+            "doc": "The search sort criteria.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "name,desc",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "name,asc",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "date,asc",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "date,desc",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "onsaleStartDateTime": {
+            "name": "onsaleStartDateTime",
+            "doc": "Include events happening before this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "onsaleEndDateTime": {
+            "name": "onsaleEndDateTime",
+            "doc": "Include events happening before this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "city": {
+            "name": "city",
+            "doc": "The city.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "countryCode": {
+            "name": "countryCode",
+            "doc": "The country code.",
+            "style": "query",
+            "required": false,
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "mocked country name",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "stateCode": {
+            "name": "stateCode",
+            "doc": "The state code.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "classificationName": {
+            "name": "classificationName",
+            "doc": "The classification name.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "classificationId": {
+            "name": "classificationId",
+            "doc": "The classification ID.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "dmaId": {
+            "name": "dmaId",
+            "doc": "The dmaId.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "GET": {
+      "discovery.v2.events.get": {
+        "id": "discovery.v2.events.get",
+        "name": "Search Events",
+        "method": "GET",
+        "category": "Discovery API v2",
+        "path": "discovery/v2/events.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2",
+        "description": "Returns the 20 most recent events for the authenticated user.",
+        "parameters": {
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": true,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "keyword": {
+            "name": "keyword",
+            "doc": "A string to search against events, attractions and venues. The keyword will be checked against titles, descriptions, names and other logical fields that describe any of these data objects.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "attractionId": {
+            "name": "attractionId",
+            "doc": "Attraction ID(s) separated by comma.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "venueId": {
+            "name": "venueId",
+            "doc": "Venue ID(s) separated by comma.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "postalCode": {
+            "name": "postalCode",
+            "doc": "Zipcode or Postal Code of the venue in which the event is taking place.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "latlong": {
+            "name": "latlong",
+            "doc": "The Latitude,Longitude coordinates for the venue in which this event is taking place.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "radius": {
+            "name": "radius",
+            "doc": "The radius of the area in which we want to search for events.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "integer"
+          },
+          "unit": {
+            "name": "unit",
+            "doc": "The radius distance unit. Possible values: miles, km.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "source": {
+            "name": "source",
+            "doc": "Source of the event.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "ticketmaster",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "ticketweb",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "universe",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "tmr",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "frontgate",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "marketId": {
+            "name": "marketId",
+            "doc": "The city/area in which this event takes place.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "integer"
+          },
+          "startDateTime": {
+            "name": "startDateTime",
+            "doc": "Include events happening after this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "endDateTime": {
+            "name": "endDateTime",
+            "doc": "Include events happening before this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "includeTBA": {
+            "name": "includeTBA",
+            "doc": "Whether or not to return events with dates to be announced (TBA). TBA events are not returned.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "no",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "only",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "yes",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "includeTBD": {
+            "name": "includeTBD",
+            "doc": "Whether or not to return events with dates to be announced (TBD). TBD events are not returned.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "no",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "yes",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "only",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "size": {
+            "name": "size",
+            "doc": "The number of events returned in the API response.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "integer"
+          },
+          "page": {
+            "name": "page",
+            "doc": "The page for paginating through the results.",
+            "style": "query",
+            "required": false,
+            "default": "0",
+            "select": false,
+            "type": "integer"
+          },
+          "sort": {
+            "name": "sort",
+            "doc": "The search sort criteria.",
+            "style": "query",
+            "required": false,
+            "default": "",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "none",
+                "checked": true,
+                "link": false
+              },
+              {
+                "name": "name,desc",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "name,asc",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "date,asc",
+                "checked": false,
+                "link": false
+              },
+              {
+                "name": "date,desc",
+                "checked": false,
+                "link": false
+              }
+            ]
+          },
+          "onsaleStartDateTime": {
+            "name": "onsaleStartDateTime",
+            "doc": "Include events happening before this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "onsaleEndDateTime": {
+            "name": "onsaleEndDateTime",
+            "doc": "Include events happening before this date.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "city": {
+            "name": "city",
+            "doc": "The city.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "countryCode": {
+            "name": "countryCode",
+            "doc": "The country code.",
+            "style": "query",
+            "required": false,
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "mocked country name",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "stateCode": {
+            "name": "stateCode",
+            "doc": "The state code.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "classificationName": {
+            "name": "classificationName",
+            "doc": "The classification name.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "classificationId": {
+            "name": "classificationId",
+            "doc": "The classification ID.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "dmaId": {
+            "name": "dmaId",
+            "doc": "The dmaId.",
+            "style": "query",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "Commerce API": {
+    "ALL": {
+      "commerce.shopping.cart.get": {
+        "id": "commerce.shopping.cart.get",
+        "name": "Get Cart",
+        "method": "GET",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts/{cartId}.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-cart",
+        "description": "Get Cart!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The cart id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      },
+      "commerce.shopping.cart.empty": {
+        "id": "commerce.shopping.cart.empty",
+        "name": "Empty Cart",
+        "method": "DELETE",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts/{cartId}.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#empty-cart",
+        "description": "Empty Cart!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The cart id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      },
+      "commerce.shopping.cart.create": {
+        "id": "commerce.shopping.cart.create",
+        "name": "Create Cart",
+        "method": "POST",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#create-cart",
+        "description": "Create Cart!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "Content-Type": {
+            "name": "Content-Type",
+            "doc": "",
+            "style": "header",
+            "required": true,
+            "default": "application/json",
+            "select": false,
+            "type": "string"
+          },
+          "requestBody": {
+            "name": "Post JSON",
+            "doc": "Request JSON body",
+            "style": "requestBody",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          }
+        }
+      },
+      "commerce.shopping.cart.select.payments": {
+        "id": "commerce.shopping.cart.select.payments",
+        "name": "Select Payments",
+        "method": "POST",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts/{cartId}/payments.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#select-payments",
+        "description": "Select Payments!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The Cart Id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": true,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "Content-Type": {
+            "name": "Content-Type",
+            "doc": "",
+            "style": "header",
+            "required": true,
+            "default": "application/json",
+            "select": false,
+            "type": "string"
+          },
+          "requestBody": {
+            "name": "Post JSON",
+            "doc": "Request JSON body",
+            "style": "requestBody",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          }
+        }
+      },
+      "commerce.checkout.delivery.get": {
+        "id": "commerce.checkout.delivery.get",
+        "name": "Get Deliveries",
+        "method": "GET",
+        "category": "Commerce API",
+        "path": "commerce/{version}/checkout/carts/{cartId}.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-deliveries",
+        "description": "Get Deliveries!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The cart id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "GET": {
+      "commerce.shopping.cart.get": {
+        "id": "commerce.shopping.cart.get",
+        "name": "Get Cart",
+        "method": "GET",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts/{cartId}.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-cart",
+        "description": "Get Cart!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The cart id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      },
+      "commerce.checkout.delivery.get": {
+        "id": "commerce.checkout.delivery.get",
+        "name": "Get Deliveries",
+        "method": "GET",
+        "category": "Commerce API",
+        "path": "commerce/{version}/checkout/carts/{cartId}.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#get-deliveries",
+        "description": "Get Deliveries!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The cart id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DELETE": {
+      "commerce.shopping.cart.empty": {
+        "id": "commerce.shopping.cart.empty",
+        "name": "Empty Cart",
+        "method": "DELETE",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts/{cartId}.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#empty-cart",
+        "description": "Empty Cart!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The cart id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "POST": {
+      "commerce.shopping.cart.create": {
+        "id": "commerce.shopping.cart.create",
+        "name": "Create Cart",
+        "method": "POST",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#create-cart",
+        "description": "Create Cart!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": false,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "Content-Type": {
+            "name": "Content-Type",
+            "doc": "",
+            "style": "header",
+            "required": true,
+            "default": "application/json",
+            "select": false,
+            "type": "string"
+          },
+          "requestBody": {
+            "name": "Post JSON",
+            "doc": "Request JSON body",
+            "style": "requestBody",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          }
+        }
+      },
+      "commerce.shopping.cart.select.payments": {
+        "id": "commerce.shopping.cart.select.payments",
+        "name": "Select Payments",
+        "method": "POST",
+        "category": "Commerce API",
+        "path": "commerce/{version}/shopping/carts/{cartId}/payments.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/commerce/#select-payments",
+        "description": "Select Payments!",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "cartId": {
+            "name": "cartId",
+            "doc": "The Cart Id",
+            "style": "template",
+            "required": true,
+            "default": "",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Response Format",
+            "style": "template",
+            "required": true,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": false,
+            "select": false,
+            "type": "string"
+          },
+          "Content-Type": {
+            "name": "Content-Type",
+            "doc": "",
+            "style": "header",
+            "required": true,
+            "default": "application/json",
+            "select": false,
+            "type": "string"
+          },
+          "requestBody": {
+            "name": "Post JSON",
+            "doc": "Request JSON body",
+            "style": "requestBody",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "Publish API": {
+    "ALL": {
+      "publish.event": {
+        "id": "publish.event",
+        "name": "Publish events",
+        "method": "POST",
+        "category": "Publish API",
+        "path": "publish/{version}/events.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/publish/",
+        "description": "Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.\r\n\r\n\t\t\t\t\tThe \"common.isTest\" should be set to \"false\" so your event get indexed in the Discovery API.",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Request Format",
+            "style": "template",
+            "required": true,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": true,
+            "select": false,
+            "type": "string"
+          },
+          "requestBody": {
+            "name": "Post JSON",
+            "doc": "Request JSON body",
+            "style": "requestBody",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "POST": {
+      "publish.event": {
+        "id": "publish.event",
+        "name": "Publish events",
+        "method": "POST",
+        "category": "Publish API",
+        "path": "publish/{version}/events.{format}",
+        "base": "https://app.ticketmaster.com",
+        "link": "http://developer.ticketmaster.com/products-and-docs/apis/publish/",
+        "description": "Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.\r\n\r\n\t\t\t\t\tThe \"common.isTest\" should be set to \"false\" so your event get indexed in the Discovery API.",
+        "parameters": {
+          "version": {
+            "name": "version",
+            "doc": "The API Version",
+            "style": "template",
+            "required": true,
+            "default": "v2",
+            "select": false,
+            "type": "string"
+          },
+          "format": {
+            "name": "format",
+            "doc": "API Request Format",
+            "style": "template",
+            "required": true,
+            "default": "json",
+            "select": true,
+            "type": "string",
+            "options": [
+              {
+                "name": "json",
+                "checked": true,
+                "link": false
+              }
+            ]
+          },
+          "TMPS-Correlation-Id": {
+            "name": "TMPS-Correlation-Id",
+            "doc": "The TMPS-Correlation-Id header will be propagate to all our system. In order to track down issue with your request. You should provide it and it should be unique for each request.",
+            "style": "header",
+            "required": true,
+            "select": false,
+            "type": "string"
+          },
+          "requestBody": {
+            "name": "Post JSON",
+            "doc": "Request JSON body",
+            "style": "requestBody",
+            "required": false,
+            "default": "",
+            "select": false,
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
