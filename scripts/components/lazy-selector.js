@@ -977,6 +977,11 @@
         keyword.val('');//clear search input
     });
 
+		// CommonJS exports
+		if (typeof module !== "undefined") {
+			module.exports = { lazySelector: jQuery.fn.lazySelector };
+		}
+
     return this.each(function () {
       init($(this));
 

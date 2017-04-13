@@ -223,6 +223,11 @@ jQuery.fn.customSelect = function(options ) {
         reset();
         });
     };
+
+		// CommonJS exports
+		if (typeof module !== "undefined") {
+			module.exports = { customSelect: jQuery.fn.customSelect };
+		}
 })(jQuery);
 
 $(document).on('ready', function () {
