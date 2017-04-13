@@ -128,9 +128,7 @@ class ParamsFilter {
 	 */
 	prepareUrlPairs(arr, koObs) {
 		if (!arr || !koObs) {return false;}
-		return koObs(arr.filter(item => {
-			return item.value() !== 'none';
-		}));
+		koObs(arr);
 	}
 
 	/**
