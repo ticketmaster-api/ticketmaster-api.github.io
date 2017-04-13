@@ -196,6 +196,8 @@ $(document).ready(function() {
 	$('body').on('click', '.sclose', function(e) {
 		$('#search-inp').val('');
 		$('#search-inp').removeClass('act');
+		$('.no-results').addClass('hide');
+		$('.row-forum.header').removeClass('hide');
 		$('.row-forum.header').children().removeClass('asc desc');
 		arThreadsFind = [];
 		sortThreads(e, arThreads, '-createdAt');
