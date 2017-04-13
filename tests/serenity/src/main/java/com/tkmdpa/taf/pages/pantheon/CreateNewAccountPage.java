@@ -32,6 +32,10 @@ public class CreateNewAccountPage extends AncestorPage {
         return appNameWebElement;
     }
 
+    public static String getPageHeader() {
+        return PAGE_HEADER;
+    }
+
     public String getTitleText() {
         return this.titleText.getText();
     }
