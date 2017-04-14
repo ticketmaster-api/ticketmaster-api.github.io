@@ -161,4 +161,34 @@ describe("CustomSelect component spec", function() {
 			expect(this.component.slideToggle).toBeCalledWith(this.paramsMock.options()[2], event);
 		});
 	});
+
+	describe('When selected param updated', () => {
+		var selectedMock;
+		beforeEach(() => {
+			selectedMock = {
+				checked:jest.fn()
+			};
+			this.paramsMock.selected(selectedMock);
+		});
+		it('should update selectedOption', () => {
+			expect(this.component.selectedOption()).toBe(selectedMock);
+		});
+		it('should checked selectedOption', () => {
+			expect(selectedMock.checked).toBeCalledWith(true);
+		});
+	});
+
+	describe('When component created with selected object', () => {
+		var selectedMock;
+		beforeEach(() => {
+			selectedMock = {
+				checked:jest.fn()
+			};
+			this.paramsMock.selected = ko.observable(selectedMock);
+			this.component = new CustomSelect(this.paramsMock);
+		});
+		it('should be checked selected item', () => {
+			expect(selectedMock.checked).toBeCalledWith(true);
+		});
+	});
 });

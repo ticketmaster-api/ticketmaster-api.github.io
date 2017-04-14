@@ -12,7 +12,16 @@ class CustomSelect {
 		this.animationSpeed = animationSpeed;
 		this.options = options;
 		this.value = ko.unwrap(selected) || DEFAULT_SELECTED;
-		this.selectedOption = ko.observable(this.mapForChecked({rawOptions, name: this.value}));
+
+		if(typeof this.value === 'object'){
+			this.selectedOption = ko.observable(this.value);
+			this.uncheckAllItems(ko.unwrap(this.options));
+			this.value.checked(true);
+		}
+		else{
+			this.selectedOption = ko.observable(this.mapForChecked({rawOptions, name: this.value}));
+		}
+
 		this.isExpandeded = ko.observable(false);
 		this.isReadOnly = isReadOnly;
 		this.setSubscribtions({selected, DEFAULT_SELECTED});
@@ -32,20 +41,30 @@ class CustomSelect {
 		// has preselected option
 		if (selected) {
 			selected.subscribe(value => {
-				let selectedOption = this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value || DEFAULT_SELECTED});
-
-				return this.selectedOption(selectedOption);
+				if(!value) return;
+				if(typeof value === 'object') {
+					this.selectedOption(value);
+				}
+				else{
+					this.selectedOption(
+						this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value || DEFAULT_SELECTED}));
+				}
 			});
 		}
 
 		// on select map for checked
 		this.selectedOption.subscribe(value => {
-			this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value.name});
+			this.uncheckAllItems(ko.unwrap(this.options));
+			value.checked(true);
 			this.onselectMethod(value);
 		});
 
 		// quantity of options check
 		this.isOneOption = ko.pureComputed(() => ko.unwrap(this.options).length < 2);
+	}
+
+	uncheckAllItems (rawOptionsList) {
+		rawOptionsList.forEach((item)=> item.checked(false));
 	}
 
 	/**
@@ -55,14 +74,16 @@ class CustomSelect {
 	 * @returns {object} selected option
 	 */
 	mapForChecked({rawOptions, name}) {
+		this.uncheckAllItems(rawOptions);
 		let selectedOption;
 		for (const option of rawOptions) {
 			let optionValue = option.value || option.name;
-			option.checked(optionValue === name);
 			if (optionValue === name) {
-				selectedOption = option
+				selectedOption = option;
+				break;
 			}
 		}
+		selectedOption.checked(true);
 		return selectedOption;
 	}
 
@@ -78,8 +99,6 @@ class CustomSelect {
 	}
 
 	onSelect(item, event) {
-		const rawOptions = ko.unwrap(this.options);
-		this.mapForChecked({rawOptions, name: item.name});
 		this.selectedOption(item);
 		this.slideToggle(item, event);
 	}
