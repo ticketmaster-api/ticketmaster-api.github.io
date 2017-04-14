@@ -98,6 +98,7 @@ public class PD_Widget_CountdownSteps extends PD_CommonSteps {
     @Step
     public void submitForm() {
         countdownWidgetPage.getCountdownWidget().submitForm();
+        waitForSomeActionHappened(200);
     }
 
     @Step

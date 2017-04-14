@@ -53,7 +53,7 @@ public class PD_Tutorials_WidgetsSteps {
     @Step
     public void clickCloseFeedbackWidgetButton() {
         tutorialsWidgetsPage.getFeedbackWidget().getCloseButton().click();
-        waitForSomeActionHappened(100);
+        waitForSomeActionHappened(200);
     }
 
     @Step
