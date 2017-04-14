@@ -1,0 +1,1937 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster’s and TicketWeb’s. Once offers and products are selected, you can use the API to cart and transact on those items.",
+    "version" : "v2",
+    "title" : "Commerce API",
+    "contact" : {
+      "url" : "http://developer.ticketmaster.com/support/contact-us/"
+    }
+  },
+  "host" : "www.ticketmaster.com",
+  "basePath" : "/commerce",
+  "paths" : {
+    "/carts" : {
+      "post" : {
+        "summary" : "Create Cart",
+        "description" : "Method: POST. Authentication required.\nThis operation allows users to add products to a cart.\na number of items for an offer of a product.\na number of items for an offer in specific areas.\na number of items for an offer in a specific price range.\na specific set of inventory items (i.e. seats).\nThis operation returns a new cart.",
+        "operationId" : "createCart",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CreateCartRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CartResponse"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}" : {
+      "get" : {
+        "summary" : "Get Cart",
+        "description" : "Find the cart by ID",
+        "operationId" : "getCart",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "",
+          "in" : "path",
+          "description" : "Cart Identifier",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CartResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Empty Cart",
+        "description" : "Method: DELETE. Authentication required.\nThis operation empties the cart.\nThis operation returns the updated cart.",
+        "operationId" : "emptyCart",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CartResponse"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}/customer" : {
+      "patch" : {
+        "summary" : "Update Customer Info",
+        "description" : "This operation allows to update customer's info",
+        "operationId" : "updateCustomerInfo",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/SelectCustomerInfoRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CartResponse"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}/deliveries" : {
+      "patch" : {
+        "summary" : "Select Deliveries",
+        "description" : "Method: PATCH Authentication required.\nThis operation allows users to add deliveries to a cart.\nall items in a cart.\nall items in a reservation.\nall items in a specified set of inventory item groups.\na set of specified inventory items.\nThis operation returns the updated cart including delivery information.",
+        "operationId" : "selectDeliveries",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/SelectDeliveryRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CartResponse"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}/payments" : {
+      "patch" : {
+        "summary" : "Select Payments",
+        "description" : "Method: PATCH Authentication required.\nThis operation allows users to add one or more payments to a cart.\nThis operation returns a cart with the selected payment(s).",
+        "operationId" : "selectCartPayments",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/SelectPaymentRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CartResponse"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}/products" : {
+      "patch" : {
+        "summary" : "Update Cart Products",
+        "description" : "This operation allows users to add or remove products to/from a cart.\nThis operation supports add products in the same ways as the Create Cart Operation.\nall items in a reservation.\nall items in a reservation for a specific product.\nall items in a specified set of inventory item groups.\na set of specified inventory items.\nThis operation returns the updated cart.",
+        "operationId" : "updateCartProducts",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateCartProductRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CartResponse"
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}/purchase" : {
+      "post" : {
+        "summary" : "Purchase",
+        "description" : "Method: POST. Authentication required.\nThis operation allows users to complete cart purchase.\nThis operation returns an order confirmation response.",
+        "operationId" : "completePurchase",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-CART-ORIGIN",
+          "in" : "header",
+          "description" : "Cart Origin header",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Query Param Came From",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CompleteCartRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/OrderConfirmationResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AddProductRequest" : {
+      "type" : "object",
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "offers" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OfferRequest"
+          }
+        },
+        "filters" : {
+          "$ref" : "#/definitions/OfferFilter"
+        },
+        "opCode" : {
+          "type" : "string"
+        },
+        "product" : {
+          "type" : "string"
+        },
+        "event" : {
+          "type" : "string"
+        },
+        "qty" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Attribute" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/AttributeAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/AttributeRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "AttributeAttributes" : {
+      "type" : "object"
+    },
+    "AttributeGroup" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/AttributeGroupAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/AttributeGroupRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "AttributeGroupAttributes" : {
+      "type" : "object"
+    },
+    "AttributeGroupRelationships" : {
+      "type" : "object"
+    },
+    "AttributeRelationships" : {
+      "type" : "object"
+    },
+    "Cart" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/CartAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/CartRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "metadata" : {
+          "$ref" : "#/definitions/CartMetadata"
+        }
+      }
+    },
+    "CartAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "reservations" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Reservation"
+          }
+        },
+        "deliveries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Delivery"
+          }
+        },
+        "payments" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Payment"
+          }
+        },
+        "customer" : {
+          "$ref" : "#/definitions/CustomerInfo"
+        },
+        "fees" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Fee"
+          }
+        },
+        "taxes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tax"
+          }
+        },
+        "totals" : {
+          "$ref" : "#/definitions/Totals"
+        }
+      }
+    },
+    "CartMetadata" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "external-ids" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ExternalCartId"
+          }
+        }
+      }
+    },
+    "CartOrigin" : {
+      "type" : "object",
+      "properties" : {
+        "cluster" : {
+          "type" : "string"
+        },
+        "time" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "CartRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "events" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        },
+        "products" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        },
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        },
+        "attributeGroups" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        }
+      }
+    },
+    "CartResponse" : {
+      "type" : "object",
+      "properties" : {
+        "cart" : {
+          "$ref" : "#/definitions/Cart"
+        },
+        "_embedded" : {
+          "$ref" : "#/definitions/CartResponseEmbeddedData"
+        },
+        "status" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "polling" : {
+          "type" : "boolean",
+          "readOnly" : true,
+          "default" : false
+        }
+      }
+    },
+    "CartResponseEmbeddedData" : {
+      "type" : "object",
+      "properties" : {
+        "events" : {
+          "$ref" : "#/definitions/ResponseObjectListEventSimpleLinks"
+        },
+        "products" : {
+          "$ref" : "#/definitions/ResponseObjectListProductSimpleLinks"
+        },
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectListOfferSimpleLinks"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/ResponseObjectListAttributeSimpleLinks"
+        },
+        "attributeGroups" : {
+          "$ref" : "#/definitions/ResponseObjectListAttributeGroupSimpleLinks"
+        },
+        "payments" : {
+          "$ref" : "#/definitions/ResponseObjectListPaymentDataSimpleLinks"
+        },
+        "deliveries" : {
+          "$ref" : "#/definitions/ResponseObjectListDeliveryOptionSimpleLinks"
+        }
+      }
+    },
+    "CashPaymentData" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/PaymentData"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "attributes" : {
+            "$ref" : "#/definitions/CashPaymentDataAttributes"
+          },
+          "relationships" : {
+            "$ref" : "#/definitions/CashPaymentDataRelationships"
+          }
+        }
+      } ]
+    },
+    "CashPaymentDataAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "token" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CashPaymentDataRelationships" : {
+      "type" : "object"
+    },
+    "CompleteCartRequest" : {
+      "type" : "object",
+      "properties" : {
+        "pollingCallbackUrl" : {
+          "type" : "string"
+        },
+        "cameFrom" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CreateCartRequest" : {
+      "type" : "object",
+      "properties" : {
+        "pollingCallbackUrl" : {
+          "type" : "string"
+        },
+        "products" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AddProductRequest"
+          }
+        }
+      }
+    },
+    "CreditCardPaymentData" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/PaymentData"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "attributes" : {
+            "$ref" : "#/definitions/CreditCardPaymentDataAttributes"
+          },
+          "relationships" : {
+            "$ref" : "#/definitions/CreditCardPaymentDataRelationships"
+          }
+        }
+      } ]
+    },
+    "CreditCardPaymentDataAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "token" : {
+          "type" : "string"
+        },
+        "cardType" : {
+          "type" : "string"
+        },
+        "expirationMonth" : {
+          "type" : "string"
+        },
+        "expirationYear" : {
+          "type" : "string"
+        },
+        "lastFour" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CreditCardPaymentDataRelationships" : {
+      "type" : "object"
+    },
+    "CustomerCountry" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "standard" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CustomerInfo" : {
+      "type" : "object",
+      "properties" : {
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "tmUserId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CustomerInfoRequest" : {
+      "type" : "object",
+      "properties" : {
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "addRequest" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "op" : {
+          "type" : "string"
+        },
+        "country" : {
+          "$ref" : "#/definitions/CustomerCountry"
+        }
+      }
+    },
+    "Delivery" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/DeliveryAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/DeliveryRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "DeliveryAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "totals" : {
+          "$ref" : "#/definitions/Totals"
+        },
+        "reservations" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "deliveryType" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DeliveryDescriptions" : {
+      "type" : "object",
+      "properties" : {
+        "short" : {
+          "type" : "string"
+        },
+        "long" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DeliveryOption" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/DeliveryOptionAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/DeliveryOptionRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "DeliveryOptionAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "icon" : {
+          "type" : "string"
+        },
+        "displayRank" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "requiresAddress" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "requiresIdentification" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "expectedDeliveryDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "description" : {
+          "$ref" : "#/definitions/DeliveryDescriptions"
+        }
+      }
+    },
+    "DeliveryOptionRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "reservations" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        }
+      }
+    },
+    "DeliveryRelationships" : {
+      "type" : "object"
+    },
+    "DeliveryRequest" : {
+      "type" : "object",
+      "properties" : {
+        "deliveryId" : {
+          "type" : "string"
+        },
+        "addRequest" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "op" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "selectedItems" : {
+          "$ref" : "#/definitions/SelectedDeliveryItems"
+        }
+      }
+    },
+    "Event" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/EventAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/EventRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "metadata" : {
+          "$ref" : "#/definitions/EventMetadata"
+        }
+      }
+    },
+    "EventAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EventMetadata" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "source" : {
+          "$ref" : "#/definitions/EventSource"
+        }
+      }
+    },
+    "EventRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "products" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "EventSource" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ExternalCartId" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "provider" : {
+          "type" : "string"
+        },
+        "cartOrigin" : {
+          "$ref" : "#/definitions/CartOrigin"
+        }
+      }
+    },
+    "Fee" : {
+      "type" : "object",
+      "properties" : {
+        "label" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "HrefLinkValue" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ItemDetail" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "metadata" : {
+          "$ref" : "#/definitions/Metadata"
+        }
+      }
+    },
+    "ItemGroup" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "metadata" : {
+          "$ref" : "#/definitions/Metadata"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "perItemPrice" : {
+          "type" : "string"
+        },
+        "fees" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Fee"
+          }
+        },
+        "taxes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tax"
+          }
+        },
+        "details" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ItemDetail"
+          }
+        },
+        "offer" : {
+          "type" : "string"
+        }
+      }
+    },
+    "JetsonTicketItemGroupMetadata" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Metadata"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "cartProduct" : {
+            "type" : "string"
+          },
+          "cartOffer" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Links" : {
+      "type" : "object"
+    },
+    "Metadata" : {
+      "type" : "object",
+      "discriminator" : "type"
+    },
+    "Money" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Offer" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/OfferAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/OfferRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "OfferAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "startSeat" : {
+          "type" : "string"
+        },
+        "endSeat" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OfferFilter" : {
+      "type" : "object",
+      "properties" : {
+        "areas" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "maxPrice" : {
+          "$ref" : "#/definitions/Money"
+        },
+        "minPrice" : {
+          "$ref" : "#/definitions/Money"
+        }
+      }
+    },
+    "OfferRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "products" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "events" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "OfferRequest" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string"
+        },
+        "passwordId" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "offer" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Order" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/OrderAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/OrderRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "metadata" : {
+          "$ref" : "#/definitions/OrderMetadata"
+        }
+      }
+    },
+    "OrderAttributes" : {
+      "type" : "object"
+    },
+    "OrderConfirmation" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/OrderConfirmationAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/OrderConfirmationRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "OrderConfirmationAttributes" : {
+      "type" : "object"
+    },
+    "OrderConfirmationRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "orders" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        }
+      }
+    },
+    "OrderConfirmationResponse" : {
+      "type" : "object",
+      "properties" : {
+        "confirmation" : {
+          "$ref" : "#/definitions/OrderConfirmation"
+        },
+        "_embedded" : {
+          "$ref" : "#/definitions/OrderConfirmationResponseEmbeddedData"
+        },
+        "status" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "polling" : {
+          "type" : "boolean",
+          "readOnly" : true,
+          "default" : false
+        }
+      }
+    },
+    "OrderConfirmationResponseEmbeddedData" : {
+      "type" : "object",
+      "properties" : {
+        "orders" : {
+          "$ref" : "#/definitions/ResponseObjectListOrderSimpleLinks"
+        }
+      }
+    },
+    "OrderMetadata" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "providerId" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OrderRelationships" : {
+      "type" : "object"
+    },
+    "Payment" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "paymentType" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PaymentAmount" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PaymentAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "token" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PaymentData" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/PaymentAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/PaymentRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "PaymentRelationships" : {
+      "type" : "object"
+    },
+    "PaymentRequest" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "token" : {
+          "type" : "string"
+        },
+        "cvv" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "$ref" : "#/definitions/PaymentAmount"
+        },
+        "selectedItems" : {
+          "$ref" : "#/definitions/SelectedPaymentItems"
+        },
+        "accountNumber" : {
+          "type" : "string"
+        },
+        "expirationMonth" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "expirationYear" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cin" : {
+          "type" : "string"
+        },
+        "addRequest" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "op" : {
+          "type" : "string"
+        },
+        "payment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Product" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/ProductAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/ProductRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "ProductAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ProductRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "events" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "ResaleTicketItemGroupMetadata" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Metadata"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "cartProduct" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Reservation" : {
+      "type" : "object",
+      "properties" : {
+        "expiration" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "itemGroups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ItemGroup"
+          }
+        },
+        "itemDetails" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ItemDetail"
+          }
+        },
+        "reservation" : {
+          "type" : "string"
+        },
+        "product" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResponseObjectListAttributeGroupSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AttributeGroup"
+          }
+        }
+      }
+    },
+    "ResponseObjectListAttributeSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Attribute"
+          }
+        }
+      }
+    },
+    "ResponseObjectListDeliveryOptionSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DeliveryOption"
+          }
+        }
+      }
+    },
+    "ResponseObjectListEventSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Event"
+          }
+        }
+      }
+    },
+    "ResponseObjectListOfferSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Offer"
+          }
+        }
+      }
+    },
+    "ResponseObjectListOrderSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Order"
+          }
+        }
+      }
+    },
+    "ResponseObjectListPaymentDataSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PaymentData"
+          }
+        }
+      }
+    },
+    "ResponseObjectListProductSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Product"
+          }
+        }
+      }
+    },
+    "ResponseObjectRef" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResponseObjectRefList" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/Links"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ResponseObjectRef"
+          }
+        }
+      }
+    },
+    "ResponseObjectRefListSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ResponseObjectRef"
+          }
+        }
+      }
+    },
+    "SeatDetail" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "metadata" : {
+          "$ref" : "#/definitions/Metadata"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "SelectCustomerInfoRequest" : {
+      "type" : "object",
+      "properties" : {
+        "pollingCallbackUrl" : {
+          "type" : "string"
+        },
+        "customer" : {
+          "$ref" : "#/definitions/CustomerInfoRequest"
+        }
+      }
+    },
+    "SelectDeliveryRequest" : {
+      "type" : "object",
+      "properties" : {
+        "pollingCallbackUrl" : {
+          "type" : "string"
+        },
+        "deliveries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DeliveryRequest"
+          }
+        }
+      }
+    },
+    "SelectPaymentRequest" : {
+      "type" : "object",
+      "properties" : {
+        "pollingCallbackUrl" : {
+          "type" : "string"
+        },
+        "payments" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PaymentRequest"
+          }
+        }
+      }
+    },
+    "SelectedDeliveryItems" : {
+      "type" : "object",
+      "properties" : {
+        "reservations" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "SelectedPaymentItems" : {
+      "type" : "object",
+      "properties" : {
+        "reservations" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "SimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/HrefLinkValue"
+        }
+      }
+    },
+    "Tax" : {
+      "type" : "object",
+      "properties" : {
+        "label" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TicketBlockDetail" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ItemDetail"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "section" : {
+            "type" : "string"
+          },
+          "row" : {
+            "type" : "string"
+          },
+          "startSeat" : {
+            "type" : "string"
+          },
+          "endSeat" : {
+            "type" : "string"
+          },
+          "ga" : {
+            "type" : "boolean",
+            "default" : false
+          },
+          "seats" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      } ]
+    },
+    "TicketBlockDetailMetadata" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Metadata"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "itemGroup" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "TicketItemGroup" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ItemGroup"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/SeatDetail"
+            }
+          }
+        }
+      } ]
+    },
+    "TmssItemGroupMetadata" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Metadata"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "lineItem" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Totals" : {
+      "type" : "object",
+      "properties" : {
+        "currency" : {
+          "type" : "string"
+        },
+        "price" : {
+          "type" : "string"
+        },
+        "fees" : {
+          "type" : "string"
+        },
+        "taxes" : {
+          "type" : "string"
+        },
+        "deliveries" : {
+          "type" : "string"
+        },
+        "upsells" : {
+          "type" : "string"
+        },
+        "total" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UpdateCartProductRequest" : {
+      "type" : "object",
+      "properties" : {
+        "pollingCallbackUrl" : {
+          "type" : "string"
+        },
+        "products" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/UpdateProductRequest"
+          }
+        }
+      }
+    },
+    "UpdateProductRequest" : {
+      "type" : "object",
+      "properties" : {
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "offers" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OfferRequest"
+          }
+        },
+        "filters" : {
+          "$ref" : "#/definitions/OfferFilter"
+        },
+        "product" : {
+          "type" : "string"
+        },
+        "event" : {
+          "type" : "string"
+        },
+        "qty" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "op" : {
+          "type" : "string"
+        },
+        "reservation" : {
+          "type" : "string"
+        },
+        "item-groups" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "VoucherPaymentData" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/PaymentData"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "attributes" : {
+            "$ref" : "#/definitions/VoucherPaymentDataAttributes"
+          },
+          "relationships" : {
+            "$ref" : "#/definitions/VoucherPaymentDataRelationships"
+          }
+        }
+      } ]
+    },
+    "VoucherPaymentDataAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "token" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        }
+      }
+    },
+    "VoucherPaymentDataRelationships" : {
+      "type" : "object"
+    }
+  }
+}
