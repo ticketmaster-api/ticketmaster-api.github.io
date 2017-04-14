@@ -46,7 +46,7 @@ function dynamicSort(property) {
 function getThreads(cursor='') {
 	var apiKey ='ohRvg9N3dieJJRshzJsaQbKJAO2ZNuAebul7MeXvICNIjNKjhuhPyTfSVzrP8y8M';
 	$.ajax({
-		url: 'https://disqus.com/api/3.0/forums/listThreads.json?&api_key=' + apiKey + '&forum=ticketmasterapi&cursor=' + cursor + '&limit=100',
+		url: 'https://degratnik-prod.apigee.net/disqus-tkm/3.0/forums/listThreads.json?&api_key=' + apiKey + '&forum=ticketmasterapi&cursor=' + cursor + '&limit=100',
 		method: 'GET',
 		dataType: 'json',
 		success: processedThreads
@@ -205,3 +205,8 @@ $(document).ready(function() {
 	});
 
 });
+
+// CommonJS exports
+if (typeof module !== "undefined") {
+	module.exports = { parseGetParams: parseGetParams };
+}
