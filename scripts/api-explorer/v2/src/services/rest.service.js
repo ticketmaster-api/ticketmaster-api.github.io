@@ -86,7 +86,8 @@ class RestService {
 		let replacement,
 			url,
 			params,
-			selectedParams = ko.unwrap(_selectedParams || this.selectedParams);
+			selectedParams = ko.unwrap(_selectedParams || this.selectedParams)
+				.filter(item =>  item.value() !== 'none' && (item.value() || item.default));
 
 		let domain = _domain || this.selectedMethodData.base;
 		let path = _path || this.selectedMethodData.path;
