@@ -308,7 +308,7 @@
         async: true,
         url: url,
         data: $form.serialize()
-      }).done(function (result) {
+      }).success(function (result) {
         if (result) {
           //last page reached
           if (stateConf.pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
@@ -323,7 +323,7 @@
         } else {
           console.log('no result found');
         }
-      }).fail(function (e) {
+      }).error(function (e) {
         console.log('There was an fail status - ' , e.status);
         loading('off');
         renderResults('FAIL', $ul);
@@ -700,7 +700,7 @@
         renderListAttractions(items);
       }
 
-      //hide scroll if recive less then 2 items
+      //hide scroll if receive less then 2 items
       if (hasScrollBar($ul)) {
         $ul.removeClass('no-scroll');
       } else {
@@ -977,9 +977,20 @@
         keyword.val('');//clear search input
     });
 
-		// CommonJS exports
-		if (typeof module !== "undefined") {
-			module.exports = { lazySelector: jQuery.fn.lazySelector };
+		if(options.test === 'UnitTest') {
+			// CommonJS exports
+			if (typeof module !== "undefined") {
+				module.exports = { lazySelector: jQuery.fn.lazySelector , addMsButtonListener: addMsButtonListener};
+			}
+			return {
+				stateConf: stateConf,
+				selector: selector,
+				renderResults: renderResults,
+				renderListEvents: renderListEvents,
+				loading: loading,
+				changeModalTextListener: changeModalTextListener,
+				getImageForEvent: getImageForEvent
+			};
 		}
 
     return this.each(function () {
