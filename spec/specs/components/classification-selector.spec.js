@@ -54,26 +54,6 @@ let setFixture = () => {
 		`;
 	};
 
-/*
-var testObj = {
-	ajaxFunction : function(url){
-		$.ajax({url : url , data:'tr'}).done(this.successFunction.bind(this));
-	},
-	successFunction : function(data){
-		console.log(data);
-	}
-};
-describe('ajax test suite', function(){
-	it('sample test', function(){
-		testObj.ajaxFunction('https://app.ticketmaster.com/discovery/v2/events.json?apikey=2Qa4W67WwEiu8ZNXpMbmVX2IGvTMJtIG&keyword=tr&page=0');
-		spyOn($, 'ajax').and.callFake(function(e) {
-			return $.Deferred().resolve({'text':'this a a fake response'}).promise();
-		});
-		spyOn(testObj, 'successFunction').and.callThrough();
-		testObj.ajaxFunction('https://app.ticketmaster.com/discovery/v2/events.json?apikey=2Qa4W67WwEiu8ZNXpMbmVX2IGvTMJtIG&keyword=tr&page=0');
-		expect(testObj.successFunction).toHaveBeenCalledWith({'text':'this a a fake response'});
-	});
-});*/
 
 describe("Classification selector", () => {
 	var options , optionsTest, sut;
@@ -334,4 +314,37 @@ describe("Classification selector test methods", () => {
 
 });
 
+describe('ajax test suite', function(){
 
+	var testObj = {
+		ajaxFunction : function(url){
+			$.ajax({url : url , data:'tr'}).done(this.successFunction.bind(this));
+		},
+		successFunction : function(data){
+			sut = $('#w-classificationid').classificationSelector(optionsTest);
+			sut.ajaxDone(data);
+			expect($('#spinner-ls').css('display')).toEqual('none');
+		}
+	};
+	var optionsTest, sut;
+
+	beforeAll(() => {
+		module = require('scripts/components/classification-selector.js');
+	});
+
+	beforeEach(function() {
+		setFixture();
+		optionsTest = {selector:'classifications', use:'id', test:'UnitTest'};
+		sut = $('#w-classificationid').classificationSelector(optionsTest);
+	});
+
+	it('#ajaxDone test', function(){
+		testObj.ajaxFunction('https://app.ticketmaster.com/discovery/v2/events.json?apikey=2Qa4W67WwEiu8ZNXpMbmVX2IGvTMJtIG&keyword=tr&page=0');
+		spyOn($, 'ajax').and.callFake(function(e) {
+			return $.Deferred().resolve( {page: { totalElements : 0}} ).promise();
+		});
+		spyOn(testObj, 'successFunction').and.callThrough();
+		testObj.ajaxFunction('https://app.ticketmaster.com/discovery/v2/events.json?apikey=2Qa4W67WwEiu8ZNXpMbmVX2IGvTMJtIG&keyword=tr&page=0');
+		expect(testObj.successFunction).toHaveBeenCalledWith({page: { totalElements : 0}});
+	});
+});
