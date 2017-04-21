@@ -289,7 +289,7 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'widgetVersion',
     get: function get() {
-      return '' + "1.0.231";
+      return '' + "1.0.265";
     }
   }, {
     key: 'questionUrl',
@@ -671,7 +671,6 @@ var TicketmasterCountdownWidget = function () {
   }, {
     key: 'formatDate',
     value: function formatDate(date) {
-      console.dir(date);
       var result = '';
       if (!date.day) return result; // Day is required
 

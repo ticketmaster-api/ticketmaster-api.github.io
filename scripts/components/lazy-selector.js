@@ -978,18 +978,29 @@
     });
 
 		if(options.test === 'UnitTest') {
-			// CommonJS exports
-			if (typeof module !== "undefined") {
-				module.exports = { lazySelector: jQuery.fn.lazySelector , addMsButtonListener: addMsButtonListener};
-			}
 			return {
 				stateConf: stateConf,
 				selector: selector,
+				markers: markers,
+				map: map,
+				formatDate : formatDate,
 				renderResults: renderResults,
 				renderListEvents: renderListEvents,
+				renderListVenues: renderListVenues,
+				renderListAttractions: renderListAttractions,
 				loading: loading,
 				changeModalTextListener: changeModalTextListener,
-				getImageForEvent: getImageForEvent
+				getImageForEvent: getImageForEvent,
+				delIdListener: delIdListener,
+				addMsButtonListener: addMsButtonListener,
+				toggleMsSelectionBox: toggleMsSelectionBox,
+				mapPopUpListener: mapPopUpListener,
+				initMap: initMap,
+				submitForm: submitForm,
+				setIdsListener: setIdsListener,
+				setIdListener: setIdListener,
+				mapListener: mapListener,
+				clearMarkers: clearMarkers
 			};
 		}
 
