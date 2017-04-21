@@ -1,0 +1,745 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Use the Ticketmaster Commerce API to look up available offers and products on various platforms, including Ticketmaster’s and TicketWeb’s. Once offers and products are selected, you can use the API to cart and transact on those items.",
+    "version" : "v2",
+    "title" : "Commerce API",
+    "contact" : {
+      "url" : "http://developer.ticketmaster.com/support/contact-us/"
+    }
+  },
+  "host" : "www.ticketmaster.com",
+  "basePath" : "/commerce/v2",
+  "paths" : {
+    "/events/{eventId}/offers" : {
+      "get" : {
+        "summary" : "Event Offers",
+        "description" : "Returns Event Offers.",
+        "operationId" : "getEventOffers",
+        "parameters" : [ {
+          "name" : "X-SSL-CERT-UID",
+          "in" : "header",
+          "description" : "API Key for external API developer",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "X-TM-ACCESS-TOKEN",
+          "in" : "header",
+          "description" : "Access token for",
+          "required" : false,
+          "type" : "string",
+          "default" : ""
+        }, {
+          "name" : "access_token",
+          "in" : "query",
+          "description" : "Query Param Access Token",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "api-key",
+          "in" : "query",
+          "description" : "Query Param API Key for external API developer",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "eventId",
+          "in" : "path",
+          "description" : "Event Identifier",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "displayId to un-hide protected offers",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/OfferingResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Area" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/AreaAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/AreaRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "AreaAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "rank" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "areaType" : {
+          "type" : "string",
+          "enum" : [ "LEVEL", "SECTION", "AREA" ]
+        }
+      }
+    },
+    "AreaRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "areas" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "priceZones" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "AttributeRef" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/AttributeRefAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/AttributeRefRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "AttributeRefAttributes" : {
+      "type" : "object"
+    },
+    "AttributeRefRelationships" : {
+      "type" : "object"
+    },
+    "EventMappingView" : {
+      "type" : "object",
+      "properties" : {
+        "source" : {
+          "$ref" : "#/definitions/Source"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "HoldRef" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/HoldRefAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/HoldRefRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "HoldRefAttributes" : {
+      "type" : "object"
+    },
+    "HoldRefRelationships" : {
+      "type" : "object"
+    },
+    "HrefLinkValue" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Limit" : {
+      "type" : "object",
+      "properties" : {
+        "min" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "max" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sellableQty" : {
+          "type" : "string"
+        },
+        "multiples" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Links" : {
+      "type" : "object"
+    },
+    "Offer" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/OfferAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/OfferRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "OfferAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "rank" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "offerDetails" : {
+          "$ref" : "#/definitions/OfferDetails"
+        },
+        "offerType" : {
+          "type" : "string",
+          "enum" : [ "BASE_TICKET", "STANDARD_TICKET_TYPE", "SPECIAL_OFFER", "DEFAULT", "STANDARD", "SPECIAL" ]
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "start" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "end" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "prices" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OfferPrice"
+          }
+        },
+        "limit" : {
+          "$ref" : "#/definitions/Limit"
+        }
+      }
+    },
+    "OfferDetails" : {
+      "type" : "object",
+      "properties" : {
+        "link" : {
+          "type" : "string"
+        },
+        "linkText" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OfferPrice" : {
+      "type" : "object",
+      "properties" : {
+        "priceZone" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "total" : {
+          "type" : "string"
+        },
+        "fees" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OfferPriceFee"
+          }
+        },
+        "taxes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OfferPriceTax"
+          }
+        }
+      }
+    },
+    "OfferPriceFee" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OfferPriceTax" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OfferRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "areas" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "priceZones" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "offerSets" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "passwords" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "products" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "OfferedPrice" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/OfferedPriceAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/OfferedPriceRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "OfferedPriceAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "currency" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OfferedPriceRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        },
+        "priceZones" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        },
+        "areas" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "OfferingResponse" : {
+      "type" : "object",
+      "properties" : {
+        "limits" : {
+          "$ref" : "#/definitions/Limit"
+        },
+        "prices" : {
+          "$ref" : "#/definitions/ResponseObjectListOfferedPriceSimpleLinks"
+        },
+        "metadata" : {
+          "$ref" : "#/definitions/OfferingResponseMetadata"
+        },
+        "offers" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Offer"
+          }
+        },
+        "_embedded" : {
+          "$ref" : "#/definitions/OfferingResponseEmbeddedData"
+        }
+      }
+    },
+    "OfferingResponseEmbeddedData" : {
+      "type" : "object",
+      "properties" : {
+        "priceZones" : {
+          "$ref" : "#/definitions/ResponseObjectListPriceZoneSimpleLinks"
+        },
+        "areas" : {
+          "$ref" : "#/definitions/ResponseObjectListAreaSimpleLinks"
+        },
+        "attributesRefs" : {
+          "$ref" : "#/definitions/ResponseObjectListAttributeRefSimpleLinks"
+        },
+        "holds" : {
+          "$ref" : "#/definitions/ResponseObjectListHoldRefSimpleLinks"
+        },
+        "passwords" : {
+          "$ref" : "#/definitions/ResponseObjectListPasswordSimpleLinks"
+        }
+      }
+    },
+    "OfferingResponseMetadata" : {
+      "type" : "object",
+      "properties" : {
+        "eventMapping" : {
+          "$ref" : "#/definitions/EventMappingView"
+        }
+      }
+    },
+    "Password" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/PasswordAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/PasswordRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "metadata" : {
+          "$ref" : "#/definitions/PasswordMetadata"
+        }
+      }
+    },
+    "PasswordAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "link" : {
+          "type" : "string"
+        },
+        "textLabel" : {
+          "type" : "string"
+        },
+        "linkLabel" : {
+          "type" : "string"
+        },
+        "exclusive" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "start" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "end" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "prompts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Prompt"
+          }
+        }
+      }
+    },
+    "PasswordMetadata" : {
+      "type" : "object",
+      "discriminator" : "type",
+      "properties" : {
+        "offerIds" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "PasswordRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectRefListSimpleLinks"
+        }
+      }
+    },
+    "PriceZone" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "attributes" : {
+          "$ref" : "#/definitions/PriceZoneAttributes"
+        },
+        "relationships" : {
+          "$ref" : "#/definitions/PriceZoneRelationships"
+        },
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        }
+      }
+    },
+    "PriceZoneAttributes" : {
+      "type" : "object",
+      "properties" : {
+        "currency" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PriceZoneRelationships" : {
+      "type" : "object",
+      "properties" : {
+        "offers" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        },
+        "areas" : {
+          "$ref" : "#/definitions/ResponseObjectRefList"
+        }
+      }
+    },
+    "Prompt" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResponseObjectListAreaSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Area"
+          }
+        }
+      }
+    },
+    "ResponseObjectListAttributeRefSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AttributeRef"
+          }
+        }
+      }
+    },
+    "ResponseObjectListHoldRefSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/HoldRef"
+          }
+        }
+      }
+    },
+    "ResponseObjectListOfferedPriceSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OfferedPrice"
+          }
+        }
+      }
+    },
+    "ResponseObjectListPasswordSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Password"
+          }
+        }
+      }
+    },
+    "ResponseObjectListPriceZoneSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PriceZone"
+          }
+        }
+      }
+    },
+    "ResponseObjectRef" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResponseObjectRefList" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/Links"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ResponseObjectRef"
+          }
+        }
+      }
+    },
+    "ResponseObjectRefListSimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/SimpleLinks"
+        },
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ResponseObjectRef"
+          }
+        }
+      }
+    },
+    "SimpleLinks" : {
+      "type" : "object",
+      "properties" : {
+        "self" : {
+          "$ref" : "#/definitions/HrefLinkValue"
+        }
+      }
+    },
+    "Source" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
