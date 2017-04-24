@@ -11,6 +11,21 @@
 	{% endif %}
 {% endfor %}
 
+<div class="common_tabs">
+	{% if groups_names.size >=2 %}
+	{%comment%} <!-- SHOW CARDS BY GROUP --> {%endcomment%}
+	<ul class="nav nav-tabs nav-tabs-centered" role="tablist">
+	{% for group in groups_names %}{%comment%} <!-- Loop through out-and-outer groups --> {%endcomment%}
+		{%assign id = group | lstrip	| downcase	| replace: ' ' , '-'	| replace: '[' , '-'	| replace: ']' , '-'	| replace: '/' , '-'	| replace: '\' , '-'	| replace: '(' , '-'	| replace: ')' , '-' %}
+			<li role="presentation" class="hidden-xs {% if forloop.first == true %}active{%endif%}">
+				<a class="tab" href="{{id | prepend: '#'}}" aria-controls="{{id}}" role="tab" data-toggle="tab">{{group}}</a>
+			</li>
+		{%assign id = nil%}
+	{%endfor%}
+	</ul>
+	{%endif%}
+</div>
+
 {% if groups_names.size <=1 %}
 {%comment%}<!--SHOW ALL CARDS-->{%endcomment%}
 <div class="tiles-wrapper">
@@ -21,25 +36,20 @@
 {% else %}
 
 {%comment%} <!-- SHOW CARDS BY GROUP --> {%endcomment%}
+<div class="tiles-wrapper tab-content ">
 {% for group in groups_names %}{%comment%} <!-- Loop through out-and-outer groups --> {%endcomment%}
-<div class="tiles-wrapper" >
-	{% if groups_names.size >=2 %}<h4 class="tiles-group-title" id="{{group | lstrip
-																																					| downcase
-																																					| replace: ' ' , '-'
-																																					| replace: '[' , '-'
-																																					| replace: ']' , '-'
-																																					| replace: '/' , '-'
-																																					| replace: '\' , '-'
-																																					| replace: '(' , '-'
-																																					| replace: ')' , '-'}}">{{group}}</h4>{% endif %}
-		{% for partner in partner_full %} {%comment%} <!-- Loop through array again to sort cards--> {%endcomment%}
-			{% if partner.group == group %} {%comment%} <!-- SHOW this GROUP --> {%endcomment%}
-				{% include partials/certified-partner-card.html %}
-			{% endif %}
-		{% endfor %}
+{%assign id = group | lstrip	| downcase	| replace: ' ' , '-'	| replace: '[' , '-'	| replace: ']' , '-'	| replace: '/' , '-'	| replace: '\' , '-'	| replace: '(' , '-'	| replace: ')' , '-' %}
+	<div role="tabpanel" class="tab-pane {% if forloop.first == true %}active{%endif%}" id="{{id}}">
+	{% for partner in partner_full %} {%comment%} <!-- Loop through array again to sort cards--> {%endcomment%}
+		{% if partner.group == group %} {%comment%} <!-- SHOW this GROUP --> {%endcomment%}
+			{% include partials/certified-partner-card.html %}
+		{% endif %}
+	{% endfor %}
+	{%assign id = nil%}
+	</div>
+{% endfor %}
 </div>
 <div class="clearfix"></div>
-{% endfor %}
 
 {% endif %}
 
