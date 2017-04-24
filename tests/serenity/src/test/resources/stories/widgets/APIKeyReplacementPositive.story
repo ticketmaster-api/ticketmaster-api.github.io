@@ -15,25 +15,25 @@ When user gets apiKey
 When open Getting Started page
 Then check that API key is provided for all placeholders on Getting Started page
 
-Scenario: (APi Key - API Explorer) Custom API key is shown when user is logged in
+Scenario: (APi Key - API Explorer) [1.9.1. Application selector verifying (positive)]
 When production user is logged to site
 When user gets apiKey
 When open API Explorer page
 Then check that API key is provided for all placeholders on API Explorer page
 
-Scenario: (APi Key - Countdown Widget) Custom API key is shown when user is logged in
+Scenario: (APi Key - Countdown Widget) [1.9.1. Application selector verifying (positive)]
 When production user is logged to site
 When user gets apiKey
 When open Countdown Widget page
 Then check that API key is provided for all placeholders on Countdown Widget page
 
-Scenario: (APi Key - Event Discovery Widget) Custom API key is shown when user is logged in
+Scenario: (APi Key - Event Discovery Widget) [1.9.1. Application selector verifying (positive)]
 When production user is logged to site
 When user gets apiKey
 When open Event Discovery Widget page
 Then check that API key is provided for all placeholders on Event Discovery Widget page
 
-Scenario: (APi Key - Calendar Widget) Custom API key is shown when user is logged in
+Scenario: (APi Key - Calendar Widget) [1.9.1. Application selector verifying (positive)]
 When production user is logged to site
 When user gets apiKey
 When open Calendar Widget page

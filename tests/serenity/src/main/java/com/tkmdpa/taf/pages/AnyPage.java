@@ -12,6 +12,12 @@ public class AnyPage extends AncestorPage {
     @FindBy(xpath = "//button[text()='Ok']")
     private WebElementFacade successfulSentEmailNotificationOKButton;
 
+    @FindBy(xpath = "//ul/li/a[@href=\"/user/logout\"]")
+    private WebElementFacade logOutLink;
+
+    @FindBy(xpath = "//a[@class='dropdown-toggle']")
+    private WebElementFacade logOutButton;
+
     public void keyPageElementIsVisible(String xpath) {
         element(By.xpath(xpath)).shouldBeVisible();
     }
@@ -24,4 +30,11 @@ public class AnyPage extends AncestorPage {
         return successfulSentEmailNotificationOKButton;
     }
 
+    public WebElementFacade getLogOutButton() {
+        return logOutButton;
+    }
+
+    public WebElementFacade getLogOutLink() {
+        return logOutLink;
+    }
 }
