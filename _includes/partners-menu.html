@@ -35,20 +35,13 @@
 													{% endfor %}
 													{% if groups_uniq.size >=2 %}
 													{% for groupName in groups_uniq %}
+														{%assign id = groupName | lstrip	| downcase	| replace: ' ' , '-'	| replace: '[' , '-'	| replace: ']' , '-'	| replace: '/' , '-'	| replace: '\' , '-'	| replace: '(' , '-'	| replace: ')' , '-' %}
 															<li>
-																<a href="/partners/certified-partners/#{{groupName | lstrip
-																																									| downcase
-																																									| replace: ' ' , '-'
-																																									| replace: '[' , '-'
-																																									| replace: ']' , '-'
-																																									| replace: '/' , '-'
-																																									| replace: '\' , '-'
-																																									| replace: '(' , '-'
-																																									| replace: ')' , '-'}}"
-																	 class="{% if page.groupName == {{groupName}} and page.categories[1] == 'certified' and page.categories[2] != 'nexus' %}active{% endif %}">
-																	{{groupName}}
-																</a>
+																<a href="/partners/certified-partners/#{{id}}"
+																	 aria-controls="{{id}}"
+																	 class="{% if page.groupName == {{groupName}} and page.categories[1] == 'certified' and page.categories[2] != 'nexus' %}active{% endif %}">{{groupName}}</a>
 															</li>
+														{%assign id = nil%}
 													{% endfor %}
 													{% endif %}
 												{% endif %}

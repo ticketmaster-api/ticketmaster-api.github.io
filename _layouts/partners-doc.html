@@ -14,7 +14,7 @@ category: partners
     <div class="col-lg-3 menu" tabindex="-1">
         {% include partners-menu.html %}
     </div>
-    <div class="col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == "partners" and page.categories[1] == "distribution" %} distribution{% endif %}">
+    <div class="col-lg-9 col-md-12 col-sm-12 content{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %} distribution{% endif %}">
         {{ content }}
     {% if page.categories[1] != "certified" %}
 			<div id="disqus_thread" class="{% if page.categories[0] == 'partners' and page.categories[1] == 'distribution' %}col-sm-12{% endif %}"></div>
@@ -26,14 +26,7 @@ category: partners
     {% endif %}
 
 		{% if page.categories[1] == "certified" %}
-			<script>
-				$('.card').each(function () {
-					var me = $(this);
-					me.hover(function(){
-						me.toggleClass('applyflip');
-					});
-				});
-			</script>
+			<script src="{{'/scripts/pages/partners-doc.certified-partners.js' | prepend: site.baseurl}}"></script>
 		{% endif %}
     </div>
 </div>
@@ -42,5 +35,5 @@ category: partners
     {% include partials/footer.html %}
 </div>
 
-<script src="{{"/scripts/components/support-side-menu.js" | prepend: site.baseurl }}"></script>
-<script src="{{"/scripts/components/menu-highlight.js" | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/support-side-menu.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/menu-highlight.js' | prepend: site.baseurl }}"></script>
