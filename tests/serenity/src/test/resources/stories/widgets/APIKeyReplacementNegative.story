@@ -9,23 +9,23 @@ Scenario: (APi Key - Geting Started page) Placeholder is shown when user is not 
 When open Getting Started page
 Then check that API key is provided for all placeholders on Getting Started page
 
-Scenario: (APi Key - Geting Started page) Placeholder is shown when user is not logged in
-When open Getting Started page
+Scenario: (APi Key - Geting Started page) [1.9.4. Application selector (w/o apps)]
+When open API Explorer V2 page
 Then check that API key is provided for all placeholders on Getting Started page
 
-Scenario: (APi Key - API Explorer) Placeholder is shown when user is not logged in
+Scenario: (APi Key - API Explorer) [1.9.4. Application selector (w/o apps)]
 When open API Explorer page
 Then check that API key is provided for all placeholders on API Explorer page
 
-Scenario: (APi Key - Countdown Widget) Placeholder is shown when user is not logged in
+Scenario: (APi Key - Countdown Widget) [1.9.4. Application selector (w/o apps)]
 When open Countdown Widget page
 Then check that API key is provided for all placeholders on Countdown Widget page
 
-Scenario: (APi Key - Event Discovery Widget) Placeholder is shown when user is not logged in
+Scenario: (APi Key - Event Discovery Widget) [1.9.4. Application selector (w/o apps)]
 When open Event Discovery Widget page
 Then check that API key is provided for all placeholders on Event Discovery Widget page
 
-Scenario: (APi Key - Calendar Widget) Placeholder is shown when user is not logged in
+Scenario: (APi Key - Calendar Widget) [1.9.4. Application selector (w/o apps)]
 When open Calendar Widget page
 Then check that API key is provided for all placeholders on Calendar Widget page
 

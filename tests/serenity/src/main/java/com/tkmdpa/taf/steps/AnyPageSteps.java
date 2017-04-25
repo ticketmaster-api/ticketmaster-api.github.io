@@ -36,6 +36,13 @@ public class AnyPageSteps {
     }
 
     @Step
+    public void clickLogOut() {
+        anyPage.getLogOutButton().click();
+        ExpectedConditions.visibilityOf(anyPage.getLogOutLink().getWrappedElement());
+        anyPage.getLogOutLink().click();
+    }
+
+    @Step
     public void checkErrorEmailSentNotificationIsShown() {
         assertTrue("Error message is absent", anyPage.getErrorMessage().getWrappedElement().getText().contains("Error"));
     }

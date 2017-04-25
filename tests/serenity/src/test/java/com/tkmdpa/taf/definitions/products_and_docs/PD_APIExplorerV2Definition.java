@@ -12,6 +12,7 @@ public class PD_APIExplorerV2Definition {
     PD_APIExplorerV2Steps apiExplorerV2Page;
 
     @Given("open API Explorer V2 page")
+    @When("open API Explorer V2 page")
     public void openAPIExplorerPage() {
         apiExplorerV2Page.openPage();
     }
