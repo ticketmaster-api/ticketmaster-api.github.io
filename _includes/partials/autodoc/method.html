@@ -278,14 +278,13 @@
 										{% endfor %}
 								{% endif %}
 								{% if addThisFieldToEmbedded == false %}
-										<li>
+										<li>{% comment %}
 												<!--
 														<p class="blue-btn">property[1]['$ref'] : {{property}}</p>
 														<p class="blue-btn">property[0] : {{property[0]}}</p>
 														<p class="blue-btn">property[1] : {{property[1]}}</p>
 														<p class="blue-btn">property[1].items or ['$ref']: {{property[1].items or property[1]['$ref'] }}</p>
-												-->
-
+												-->{% endcomment %}
 												<code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
 												<ul>
 														{% if property[1].type == 'array' %}
@@ -302,7 +301,7 @@
 																</li>
 																{% endif %}
 														</ul>
-														{% endif %}<!-- END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}-->
+														{% endif %}<!--{% comment %} END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}{% endcomment %}-->
 
 														{% if property[1]['$ref'] %}
 														<!--<li><code class="highlighter-rouge" style="color: #768692"> property[1].['$ref'] -  {{ property[1].['$ref'] }}  </code></li>-->
