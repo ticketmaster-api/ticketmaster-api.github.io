@@ -5,6 +5,7 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.AfterScenario;
 
 public class After_User_Scenario{
+
     @Steps
     AnyPageSteps anyPageSteps;
 
