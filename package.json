@@ -21,7 +21,11 @@
     "start-watch": "jekyll serve --watch --incremental --force_polling --limit_posts 1",
     "webpack": "npm run build-swagger-api && webpack -w",
     "test": "node spec/jest.js --env=jsdom",
-		"build-swagger-api": "node ./bin/swagger-api-merge.js -i _data/orgs/multiple-test-api/v2/api-parts  -o _data/orgs/multiple-test-api/v2/api.json"
+		"build-swagger-api": "node ./bin/swagger-api-merge.js -i _data/orgs/multiple-test-api/v2/api-parts  -o _data/orgs/multiple-test-api/v2/api.json",
+
+		"build-commerce-api-all": "npm run merge-commerce-api && npm run merge-commerce-api-internal",
+		"merge-commerce-api": "node ./bin/swagger-api-merge.js -i _data/orgs/commerce-api/v2/api-parts  -o _data/orgs/commerce-api/v2/api.json",
+		"merge-commerce-api-internal": "node ./bin/swagger-api-merge.js -i _data/orgs/commerce-api/v2-internal/api-parts  -o _data/orgs/commerce-api/v2-internal/api.json"
   },
   "jest": {
     "moduleFileExtensions": [

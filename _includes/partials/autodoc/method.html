@@ -294,7 +294,7 @@
 																		{%include partials/autodoc/inner-item.html%}
 																</li>
 																{% endif %}
-																<li>{{property[1].type}} , <span class="red">swagger : </span>{{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }} </li>
+																<!--<li>{{property[1].type}} , <span class="red">swagger : </span>{{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }} </li>-->
 																{% if property[1].type == 'object' %}
 																<li><code class="highlighter-rouge" style="color: #768692">{ object } </code>
 																		{%assign outer = property[1].['$ref'] %}
