@@ -1982,13 +1982,13 @@ https://app.ticketmaster.com/partners/v1/events/0B004ED9FC825ACB/cart?apikey=GkB
         "sub_id2" : "4",
         "sub_id3" : "5"
     }
-    "attribute_overrides": { //Optional , to override the images for redemption and email 
-   "images": {
-     "email_1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg (606KB) ",
-     "1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg (606KB) ",
-     "web_1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg (606KB) "
-   }
- }
+    "attribute_overrides": { //Optional , to override the images for redemption and email. Contact Ticketmaster for access to override attributes.
+      "images": {
+        "email_1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+        "1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+        "web_1x": "http://s1.ticketm.net/dam/c/MUSIC_TABLET_LANDSCAPE_LARGE_16_9.jpg"
+      }
+    }
 }
 {% endhighlight %}
 
