@@ -15,7 +15,7 @@
 
   $.fn.classificationSelector = function (options) {
     var defaults = {},
-        settings = $.extend({}, $.fn.lazySelector.defaults, options),
+        settings = $.extend({}, $.fn.classificationSelector.defaults, options),
         $iconButton = $('<a class="icon icon-'+options.use +'" id="get-'+options.selector+'-'+options.use+'" data-toggle="modal" data-target="#js_ls-modal-classification" />');
 
     var $input = $(this),
@@ -211,34 +211,36 @@
       var url = ( isInit )
         ? eventUrl + '?apikey=' + apikey
         : eventUrl + '?apikey=' + apikey + '&keyword=' + keyword.val();
-      
+
       $.ajax({
         dataType: 'json',
         async: true,
         url: url,
         data: $form.serialize()
-      }).done(function (result) {
-        if (result) {
-          if (result.page.totalElements < 1) {
-            loading('off');
-            renderResults(null, $jstree); //add message at bottom of list
-            return false;
-          };
-
-          (isInit) ? initTree(result) : updateTree(result);
-          loading('off');
-          $btnGET.attr('disabled', false);
-        } else {
-          console.log('no result found');
-        }
-      }).fail(function (e, textStatus, errorThrown) {
+      }).done(ajaxDone, function (result) {
+				if (result) { (isInit) ? initTree(result) : updateTree(result); }
+			})
+				.fail(function (e, textStatus, errorThrown) {
         console.log('There was an fail status - ' , e.status , errorThrown);
         loading('off');
         renderResults('FAIL', $jstree , e);
         $btnGET.attr('disabled', false);
       });
-
     }
+		function ajaxDone(result) {
+			if (result) {
+				if (result.page.totalElements < 1) {
+					loading('off');
+					renderResults(null, $jstree); //add message at bottom of list
+					return false;
+				};
+
+				loading('off');
+				$btnGET.attr('disabled', false);
+			} else {
+				console.log('no result found');
+			}
+		}
 
     function hasScrollBar(element) {
       return element.get(0).scrollHeight > element.parent().innerHeight();
@@ -263,9 +265,9 @@
 
       //show fail msg
       if (data === 'FAIL') {
-        var msgErr = (errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].status : 'unknown',
-          statusText = (errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].statusText  : errorMsg.statusText  || '',
-          explanation = (errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].detail : 'unknown';
+        var msgErr = (errorMsg && errorMsg.responseJSON && errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].status : 'unknown',
+          statusText = (errorMsg && errorMsg.responseJSON && errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].statusText  : errorMsg.statusText  || '',
+          explanation = (errorMsg && errorMsg.responseJSON && errorMsg.responseJSON !== null )?errorMsg.responseJSON.errors[0].detail : 'unknown';
 
         showMessage($jstree, {
           msg: 'Error ' + msgErr + ': ' + statusText,
@@ -339,6 +341,21 @@
       resetForm();
       keyword.val('');//clear search input
     });
+
+		if(options.test === 'UnitTest') {
+			return {
+				changeModalTextListener: changeModalTextListener,
+				loading: loading,
+				rename: rename,
+				setChildren: setChildren,
+				hasScrollBar:hasScrollBar,
+				renderResults: renderResults,
+				setIdListener: setIdListener,
+				ajaxDone: ajaxDone,
+				resetForm: resetForm,
+				submitForm : submitForm
+			};
+		}
 
     return this.each(function (i) {
       init($(this));

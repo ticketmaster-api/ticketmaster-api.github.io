@@ -6,7 +6,7 @@ pname: "inner join technologies"
 categories: 
   - partner
   - certified
-
+group: "North American Partners"
 tile_logo: "inner-join-technologies-logo.png"
 tile_description: "Inner Join Technologies provides cost effective analytic and CRM integration solutions for Ticketmaster Teams and venues."
 ---

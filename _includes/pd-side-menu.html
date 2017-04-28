@@ -161,7 +161,6 @@
                 </ul>
                 {% endif %}
             </li>
-
             <li><a href="/products-and-docs/apis/inventory-status/">Inventory Status API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "inventory-status" %}
                 <ul class="sections menu-highlight">
@@ -197,10 +196,8 @@
 									{% endcomment %}-->
 					  <!--
 							{% endif %}
-						</li>
-			      -->
-			      <!--END automenu-->
-
+						</li>-->
+						<!--END automenu-->
             <li><a href="/products-and-docs/apis/oauth/">OAuth API</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "oauth" %}
                 <ul class="sections menu-highlight">
@@ -278,7 +275,7 @@
             <!--<li><a href="/products-and-docs/apis/interactive-console/">Interactive Docs</a></li>-->
             <li><a href="/api-explorer/">API Explorer</a></li>
 					  <li><a href="/api-explorer/v2/">API Explorer v2</a></li>
-            <li><a href="/products-and-docs/apis/changelog/">Changelog</a></li>
+            <li><a href="/products-and-docs/apis/changelog/">Changelog</a>
                 {% if page.categories[0] == "documentation" and page.categories[1] == "changelog" %}
                 {% assign files = site.pages | sort: 'title' , 'last'%}
                     <ul class="sections menu-highlight">
@@ -292,6 +289,7 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
+						</li>
         </ul>
         {% endif %}
     </li>

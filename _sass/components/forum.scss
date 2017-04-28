@@ -1,0 +1,259 @@
+.search {
+	width:100%;
+	margin: 4em auto 3em auto;
+	position: relative;
+	.search-input {
+		width: 83%;
+	}
+	.button {
+		margin-top: 0;
+		width: 15%;
+		margin-left: 10px;
+		display: inline-block;
+	}
+}
+#disqus_header:first-letter {
+  text-transform: uppercase;
+}
+#disqus-table {
+	font-famiuly: "TMSans-Regular",Helvetica,Arial,sans-serif;
+	.pager {
+		text-align: left;
+		a, span {
+			font-family: "TMSans-Regular", Helvetica, Arial, sans-serif !important;
+			font-size: 25px;
+			text-decoration: none;
+			color: #009cde;
+			font-weight: normal;
+			margin-right: 24px;
+			display: inline-block;
+		}
+		span {
+			color: #b7c9d3;
+		}
+	}
+}
+
+.row-forum {
+	width: 100%;
+	display: table;
+	overflow: hidden;
+	div {
+		display: inline-block;
+		text-align: left;
+		height: 50px;
+		margin-bottom: 1.7em;
+		vertical-align: middle;
+	}
+	.title {
+		width: 62%;
+		overflow: hidden;
+		padding-left: 0!important;
+		a {
+			font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+			font-size: 1.5em;
+			line-height: 1.2em;
+			color: #768692;
+			text-align: left;
+			width: 100%;
+			max-width: 700px;
+			height: 50px;
+			display: table-cell;
+			vertical-align: middle;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			&:first-letter {
+				text-transform: uppercase;
+			}
+		}
+	}
+	.title, .created, .posts, .likes {
+		padding: 0 20px;
+	}
+	.created {
+		width: 18%;
+	}
+	.posts, .likes {
+		text-align: left;
+		font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+	}
+	.posts {
+		width: 14%;
+	}
+	.likes {
+		width: 6%;
+	}
+
+	&.header {
+		margin-bottom: 1.5em;
+		padding-bottom: 0.5em;
+		border-bottom: 1px solid #b7c9d3;
+		display: table;
+		width: 100%;
+		div {
+			height: auto;
+			margin: 0;
+			padding: 0;
+		}
+		.title, .created, .posts, .likes {
+			font-family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+			font-size: 1em;
+			color: #b7c9d3;
+			position: relative;
+			padding: 0 10px 0 20px!important;
+			text-align: left;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			&:hover {
+				cursor: pointer;
+			}
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				width:18px;
+				height:18px;
+				top: 3px;
+				left: 0px;
+				background: url("/assets/img/forum/ic-arrows-sorting.svg") 0 0 no-repeat;
+			}
+		}
+		.title, .created, .posts, .likes {
+			&.asc {
+				&:before {
+					background-position: 0 -18px;
+				}
+			}
+			&.desc {
+				&:before {
+					background-position: 0 -36px;
+				}
+			}
+		}
+	}
+
+}
+
+.no-results {
+	margin: -35px 0 0 10px;
+	font-family: "TMSans-Regular", Helvetica, Arial, sans-serif;
+	font-size: 25px;
+	color: #768692;
+	width: 70%;
+}
+
+.thread .backtoall {
+	display: block;
+	margin: 50px 0 40px 0;
+	padding: 0;
+	border: none;
+}
+
+.sclose {
+	position: relative;
+	display: inline-block;
+	width: 16px;
+	height: 26px;
+	overflow: hidden;
+	position: absolute;
+	margin: 10px 0 0 -34px;
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		height: 3px;
+		width: 100%;
+		top: 50%;
+		left: 0;
+		background: #a1b9ed;
+		border-radius: 50%;
+	}
+	&:before {
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+	&:after {
+		-webkit-transform: rotate(-45deg);
+		-moz-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		-o-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+	&:hover {
+		cursor: pointer;
+		&:before, &:after {
+			background: #3366cc;
+		}
+	}
+}
+
+.cssload-container {
+	width: 50px;
+	height: 50px;
+	border: 5px solid #afb1b2;
+	border-radius: 50%;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	padding-top: 6px;
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		width:14px;
+		height:14px;
+		background:#fff;
+		transform: rotate(45deg);
+		-webkit-transform: rotate(92deg);
+		-moz-transform: rotate(92deg);
+		-o-transform: rotate(92deg);
+		-ms-transform: rotate(92deg);
+		border-right: 5px solid #afb1b2;
+		border-bottom: 5px solid #afb1b2;
+		bottom:-1px;
+		left:-4px;
+	}
+}
+
+.cssload-speeding-wheel {
+	width: 27px;
+	height: 27px;
+	margin: 0 auto;
+	border: 3px solid #afb1b2;
+	border-radius: 50%;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	animation: cssload-spin 575ms infinite linear;
+	-o-animation: cssload-spin 575ms infinite linear;
+	-ms-animation: cssload-spin 575ms infinite linear;
+	-webkit-animation: cssload-spin 575ms infinite linear;
+	-moz-animation: cssload-spin 575ms infinite linear;
+}
+
+
+
+@keyframes cssload-spin {
+	100%{ transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-o-keyframes cssload-spin {
+	100%{ -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-ms-keyframes cssload-spin {
+	100%{ -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes cssload-spin {
+	100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-moz-keyframes cssload-spin {
+	100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}

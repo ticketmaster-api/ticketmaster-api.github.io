@@ -943,14 +943,14 @@ class TicketmasterCountdownWidget {
   /*
    * Config block
    */
-
-  decConfig(config){
+  /*
+  decConfig(config){    
     return JSON.parse(window.atob(config));
   }
-
   encConfig(config){
     return window.btoa(config);
   }
+  */
 
 }
 

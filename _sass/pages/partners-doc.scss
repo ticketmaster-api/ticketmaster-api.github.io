@@ -55,6 +55,22 @@
 .partner-logo img{
   width: 100%;
   max-width: 450px;
+	&.small {
+		max-width: 130px;
+	}
+}
+.wrapper-nexus {
+	padding: $base-margin*1.5 $base-margin;
+	background-color: rgb(255, 255, 255);
+	border: solid 1px rgba(21, 140, 210, 0.2);
+	margin-bottom: $base-margin;
+	.button-blue {
+		line-height: $base-font-size;
+		font-size: 12px;
+		font-family: $font-bold-p;
+		padding: 7px 48px;
+		margin-top: 0;
+	}
 }
 
 /* flip speed goes here */
@@ -145,7 +161,13 @@
 }
 
 .tiles-wrapper{
-  margin: 0 -15px;
+  margin: $base-margin*2 -15px;
+	.tiles-group-title {
+		color: $n3;
+		border-top: solid 2px $steel-20;
+		margin: $base-margin 15px;
+		padding-top: 5px;
+	}
 }
 
 .img-wrapper {

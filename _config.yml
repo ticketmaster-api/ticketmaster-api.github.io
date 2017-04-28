@@ -5,6 +5,8 @@ permalink: /:categories/:year/:month/:day/:title
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "test", "pom.xml", "target", "node_modules",
   "CNAME", "gulpfile.js", "karma.conf.js", "npm-debug.log", "package.json",
   "webpack.config.js",
+  "bin",
+  "webpack.config-widgets.js",
   "products-and-docs/widgets/calendar/1.0.0/src",
   "products-and-docs/widgets/countdown/1.0.0/src",
   "products-and-docs/widgets/event-discovery/1.0.0/src",

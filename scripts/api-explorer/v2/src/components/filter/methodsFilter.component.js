@@ -47,9 +47,9 @@ class MethodsFilter {
 	 */
 	updateMethodsModel = (methodType) => {
 		var obj = this.data[ko.unwrap(this.selectedCategory)][methodType]|| {},
+			correctOrder = this.data[ko.unwrap(this.selectedCategory)]['__correctOrder'],
 			arr = [],
-			selectedMethod = ko.unwrap(this.selectedMethod),
-			count = 0;
+			selectedMethod = ko.unwrap(this.selectedMethod);
 
 		for (var i in obj) {
 			if (!obj.hasOwnProperty(i)) { continue; }
@@ -59,7 +59,7 @@ class MethodsFilter {
 				id: property.id,
 				name: property.name,
 				link: property.link,
-				checked: ko.observable( selectedMethod ? selectedMethod === property.id : !count )
+				checked: ko.observable(false)
 			});
 
 			if (selectedMethod === property.id) {
@@ -67,11 +67,18 @@ class MethodsFilter {
 			}
 
 			arr.push(vmMethod);
+		}
 
-			// set global observable
-			!selectedMethod && !count && this.selectedMethod(property.id);
+		if (correctOrder) {
+			let allMethodsOrder = correctOrder.concat(Object.keys(obj)); // needed for move non-exist items to end of list
+			arr = arr.sort((methodA, methodB) => {
+				return allMethodsOrder.indexOf(methodA.id) - allMethodsOrder.indexOf(methodB.id);
+			});
+		}
 
-			count++;
+		if(arr.length){
+			arr[0].checked = ko.observable(true); // select first item
+			!selectedMethod && this.selectedMethod(arr[0].id);
 		}
 
 		this.methodsViewModel(arr);

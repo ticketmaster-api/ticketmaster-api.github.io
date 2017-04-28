@@ -4,6 +4,8 @@ window.$ = $;
 window.ko = ko;
 require('knockout-postbox');
 
+const HEADER_ACCEPT_LANGUAGE = 'en-US,en;q=0.8';
+
 jest.mock('scripts/api-explorer/v2/src/services/base.service', () => {
 	return {
 		'Discovery API v2': {
@@ -102,7 +104,7 @@ var formatParam = {
 	default: "json",
 	select: true,
 	type: "string",
-	value: 'json'
+	value: ko.observable('json')
 };
 
 var mockSelectedParams = [formatParam,
@@ -112,7 +114,7 @@ var mockSelectedParams = [formatParam,
 		"required": false,
 		"select": false,
 		"type": "string",
-		"value": "MyTestKeyword"
+		"value": ko.observable("MyTestKeyword")
 	}];
 
 var mockSelectedParams2 = [
@@ -123,7 +125,7 @@ var mockSelectedParams2 = [
 		"required": false,
 		"select": false,
 		"type": "string",
-		value: 'testValue'
+		value: ko.observable('testValue')
 	}
 ];
 
@@ -135,13 +137,13 @@ var mockSelectedParams3 = [
 		"required": false,
 		"select": false,
 		"type": "string",
-		"value": "testValue"
+		"value": ko.observable("testValue")
 	},
 	{
 		name: "Post JSON",
 		style: "requestBody",
 		type: "string",
-		"value": "requestBody testValue"
+		"value": ko.observable("requestBody testValue")
 	}
 ];
 
@@ -195,7 +197,10 @@ describe('API Explorer Rest service', function () {
 				"complete": jasmine.any(Function),
 				"dataType": "json",
 				"type": "GET",
-				"url": controlUrl
+				"url": controlUrl,
+				"headers": {
+					"Accept-Language": HEADER_ACCEPT_LANGUAGE
+				}
 			});
 			var resp = {
 				responseJSON:{}
@@ -249,7 +254,10 @@ describe('API Explorer Rest service', function () {
 				"complete": jasmine.any(Function),
 				"dataType": "json",
 				"type": "GET",
-				"url": controlUrl
+				"url": controlUrl,
+				"headers": {
+					"Accept-Language": HEADER_ACCEPT_LANGUAGE
+				}
 			});
 		});
 
@@ -271,7 +279,8 @@ describe('API Explorer Rest service', function () {
 				},
 				"dataType": "json",
 				"headers": {
-					"someHeader": "testValue"
+					"someHeader": "testValue",
+					"Accept-Language": HEADER_ACCEPT_LANGUAGE
 				},
 				"type": "POST",
 				"url": "https://app.ticketmaster.com/some/path.json?apikey=mockApiKey&"

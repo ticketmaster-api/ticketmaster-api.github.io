@@ -131,11 +131,16 @@
 		}
 		h1 {
 			color: $n3;
+			text-transform: none;
 		}
 		p {
 			max-width: 555px;
 			margin: 0 auto;
 		}
+	}
+
+	.w-50{
+		width: 50%;
 	}
 
 }

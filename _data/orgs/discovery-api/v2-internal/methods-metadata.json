@@ -1,0 +1,258 @@
+{
+    "before": 
+        {
+            "include": "discovery-api/before-api.md",
+            "menuItem":["Overview"]
+        }
+    ,
+    "after": 
+        {
+            "include": "discovery-api/after-api.md",
+            "menuItem":["Supported Country Codes","Supported Markets","Supported Sources","Supported Locales","Supported DMA"],
+            "comment_for_developers": "'Supported DMA' will be transformed to '#supported-dma' - required for menu navigation"
+        }
+    ,
+    "method": [
+        {
+            "pathsParent":"/discovery/v2/events",
+            "id":"search-events-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-search-events.md",
+            "codePath":"discovery-api/code-search-events.md",
+            "NOT_CORRECT": ["field venue suppouse to be 'venues' "],
+            "HAL" : {
+                "wrappin": "events",
+                "links": [
+                    "#/definitions/Event",
+                    "#/definitions/Venue",
+                    "#/definitions/Attraction"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Venue", "as": "venues", "link":true },
+                    { "embed": "#/definitions/Attraction", "as": "attractions", "link":true }
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/events/{id}",
+            "id":"event-details-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-get-event.md",
+            "codePath":"discovery-api/code-get-event.md",
+            "NOT_CORRECT": ["field venue suppouse to be 'venues' <br> * expect that object `#/definitions/EventExtensions` contains 'properties' in api.json(line 1322)"],
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Event",
+                    "#/definitions/Venue",
+                    "#/definitions/Attraction"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Venue", "as": "venues", "link":true },
+                    { "embed": "#/definitions/Attraction", "as": "attractions", "link":true }
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/events/{id}/images",
+            "id":"event-images-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-get-event-images.md",
+            "codePath":"discovery-api/code-get-event-images.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/EventImages"
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/attractions",
+            "id":"search-attractions-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-search-attractions.md",
+            "codePath":"discovery-api/code-search-attractions.md",
+            "HAL" : {
+                "wrappin": "attractions",
+                "links": [
+                    "#/definitions/Attraction"
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/attractions/{id}",
+            "id":"attraction-details-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-get-attraction.md",
+            "codePath":"discovery-api/code-get-attraction.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Attraction"
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications",
+            "id":"search-classifications-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-search-classifications.md",
+            "codePath":"discovery-api/code-search-classifications.md",
+            "HAL" : {
+                "wrappin": "classifications",
+                "links": [
+                    "#/definitions/Classification",
+                    "#/definitions/Segment",
+                    "#/definitions/Level"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in": "#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Classification/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/{id}",
+            "id":"classification-details-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-get-classification.md",
+            "codePath":"discovery-api/code-get-classification.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Classification",
+                    "#/definitions/Segment",
+                    "#/definitions/Genre",
+                    "#/definitions/Level"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in": "segment"},
+                    { "embed": "#/definitions/Classification/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/genres/{id}",
+            "id":"genre-details-v2",
+            "reqres": "discovery-api/reqres-get-genre.md",
+            "codePath":"discovery-api/code-get-genre.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Genre",
+                    "#/definitions/Level"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Level", "as": "subgenres" }
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/segments/{id}",
+            "id":"segment-details-v2",
+            "reqres": "discovery-api/reqres-get-segment.md",
+            "codePath":"discovery-api/code-get-segment.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Segment",
+                    "#/definitions/Genre",
+                    "#/definitions/Level"
+                ],
+                "embed": [
+                    { "embed": "#/definitions/Classification/genre", "as": "genres" , "in": "#/definitions/Classification/segment"},
+                    { "embed": "#/definitions/Classification/subGenre", "as": "subgenres" , "in":"#/definitions/Classification/genre"}
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/classifications/subgenres/{id}",
+            "id":"subgenre-details-v2",
+            "reqres": "discovery-api/reqres-get-subgenre.md",
+            "codePath":"discovery-api/code-get-subgenre.md",
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Level"
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/venues",
+            "id":"search-venues-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-search-venues.md",
+            "codePath":"discovery-api/code-search-venues.md",
+            "HAL" : {
+                "wrappin": "venues",
+                "links": [
+                    "#/definitions/Venue"
+                ]
+            }
+        },
+        {
+            "pathsParent":"/discovery/v2/venues/{id}",
+            "id":"venue-details-v2",
+            "interactiveConsole": true,
+            "reqres": "discovery-api/reqres-get-venue.md",
+            "codePath":"discovery-api/code-get-venue.md",
+            "NOT_CORRECT": ["unused fields such as : boxOfficeInfo, parkingDetail , accessibleSeatingDetail ... <br> link to test: https://app.ticketmaster.com/discovery/v2/venues/KovZpZAFnIEA.json?apikey=5QGCEXAsJowiCI4n1uAwMlCGAcSNAEmG "],
+            "HAL" : {
+                "wrappin": null,
+                "links": [
+                    "#/definitions/Venue"
+                ]
+            }
+        }
+        
+    ],
+    "extraMethodsInfo" : {
+        "base": "https://app.ticketmaster.com",
+        "category": "Discovery API v2",
+        "commonParamsOrder": [ "id", "format", "keyword", "attractionId", "venueId", "postalCode",
+            "latlong", "radius", "unit", "source", "locale", "marketId",
+            "startDateTime", "endDateTime", "includeTBA", "includeTBD",
+            "includeTest", "size", "page", "sort", "onsaleStartDateTime",
+            "onsaleEndDateTime", "city", "countryCode", "stateCode",
+            "classificationName", "classificationId", "dmaId" ],
+        "paths" : {
+            "/discovery/v2/events" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2"
+            },
+            "/discovery/v2/events/{id}" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-details-v2"
+            },
+            "/discovery/v2/attractions" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-attractions-v2"
+            },
+            "/discovery/v2/attractions/{id}" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#attraction-details-v2"
+            },
+            "/discovery/v2/classifications" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-classifications-v2"
+            },
+            "/discovery/v2/classifications/{id}" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/classifications/genres/{id}" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/classifications/segments/{id}" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/classifications/subgenres/{id}" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/events/{id}/images" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-images-v2"
+            },
+            "/discovery/v2/venues" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-venues-v2"
+            },
+            "/discovery/v2/venues/{id}" : {
+                "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#venue-details-v2"
+            }
+
+        }
+    }
+}

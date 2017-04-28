@@ -1,6 +1,6 @@
 import countryOptions from './options/country.options';
 
-function pathToId (path) {
+export function pathToId (path) {
 	return path.replace(/(\/{|}\/|\/)/g,'.').replace(/}/,'').substring(1);
 }
 
@@ -18,6 +18,8 @@ function readParam (data) {
 	if(param.name === 'countryCode'){
 		param.select = true;
 		param.options = countryOptions;
+		param.value = 'US';
+		param.default = 'US';
 	} else if (data.enum && data.enum.length) {
 		param.select = true;
 		param.options = data.enum.map(value => ({
@@ -41,13 +43,20 @@ function readParam (data) {
 	return param;
 }
 
+function getMethodsCorrectOrder (meta) {
+	if(!meta || !meta.method || !meta.method.length) return;
+	return meta.method.map(({ pathsParent }) => pathToId(pathsParent));
+}
+
+
 export default function (apiJSONObject, meta) {
 	var result = { ALL: {} };
 
 	for (let path in apiJSONObject.paths) {
 		for (let method in apiJSONObject.paths[path]) {
 			let data = apiJSONObject.paths[path][method];
-			var baseMethodData = meta && meta.paths && meta.paths[path] || {
+			let extraInfo = meta.extraMethodsInfo || {};
+			var baseMethodData = extraInfo.paths && extraInfo.paths[path] || {
 					link: '/'
 				};
 
@@ -55,14 +64,15 @@ export default function (apiJSONObject, meta) {
 				id : pathToId(path), // method id
 				name : data.summary,
 				method : method.toUpperCase(), // GET or POST
-				category : meta.category, // API name
+				category : extraInfo.category, // API name
 				path: path, // method URL
-				base: meta.base,
-				description : data.description, //method description
+				base: extraInfo.base,
+				description : data.description, // method description
 				parameters: data.parameters.map(readParam).reduce((res, param) => ({
 					...res,
 					[param.name] : param
-				}), {})
+				}), {}),
+				paramsOrder: baseMethodData.paramsOrder || extraInfo.commonParamsOrder
 			};
 
 			method = { ...baseMethodData, ...method };
@@ -70,6 +80,7 @@ export default function (apiJSONObject, meta) {
 
 			result[method.method] = result[method.method] || {};
 			result[method.method][method.id] = method;
+			result.__correctOrder = getMethodsCorrectOrder(meta);
 		}
 	}
 	return result;

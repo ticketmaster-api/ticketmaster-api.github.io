@@ -1,646 +1,367 @@
-{% for method in route[1] %}{% endfor %}
+<h2 class="article {% if _interactiveConsole %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
+				| lstrip
+				| downcase
+				| replace: ' ' , '-'
+				| replace: '[' , '-'
+				| replace: ']' , '-'
+				| replace: '/' , '-'
+				| replace: '\' , '-'
+				| replace: '(' , '-'
+				| replace: ')' , '-'
+				| append: '-'
+				| append: indexLoop
+				| append: '-'
+				| append: page.categories[3] | lstrip }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
+<!--{% comment %} Add post content if it defined in metadata.json {% endcomment %}-->
+{% if _preContent %}
+{% assign preContent = _preContent | prepend: 'apis-code-examples/' %}
+	<div class="pre-content">
+		{% include {{ preContent }} %}
+	</div>
+{% endif %}
+		<p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
+		<!--{% comment %}<p><strong>Summary: </strong>{{ method[1].summary }}</p>{% endcomment %}-->
+{%if method[1].description %}<p><strong>Description: </strong>{{ method[1].description }}</p>{% endif %}
 
-    <h2 class="article {% if _interactiveConsole %}console-link{% endif %}" id="{% if _id %}{{ _id }}{% else %}{{ method[1].summary
-            | lstrip
-            | downcase
-            | replace: ' ' , '-'
-            | replace: '[' , '-'
-            | replace: ']' , '-'
-            | replace: '/' , '-'
-            | replace: '\' , '-'
-            | replace: '(' , '-'
-            | replace: ')' , '-'
-            | append: '-'
-            | append: indexLoop
-            | append: '-'
-            | append: page.categories[3] | lstrip }}{% endif %}">{% if _title %}{{ _title }}{% else %}{{ method[1].summary }}{% endif %}</h2>
-    <!--{% comment %} Add post content if it defined in metadata.json {% endcomment %}-->
-    {% if _preContent %}
-    {% assign preContent = _preContent | prepend: 'apis-code-examples/' %}
-        <div class="pre-content">
-        {% include {{ preContent }} %}
-    </div>
-    {% endif %}
-        <p><strong>Method: </strong><span class="swagger-method-{{method[0]}}">{{ method[0] | upcase }}</span></p>
-        <!--{% comment %}<p><strong>Summary: </strong>{{ method[1].summary }}</p>{% endcomment %}-->
-    {%if method[1].description %}<p><strong>Description: </strong>{{ method[1].description }}</p>{% endif %}
+{%if method[1].tags and swagger.tags %}
+		<p><strong>API name: </strong>
+				{% for tagItem in method[1].tags %}
+						{% for topTagItem in swagger.tags %}
+						{% if topTagItem.name contains tagItem %}
+								<em>{{ topTagItem.name }}</em> description: <em>{{ topTagItem.description }}</em></br>
+						{% endif %}
+						{% endfor %}
+				{% endfor %}
+		</p>
+{% endif %}
 
-    {%if method[1].tags and swagger.tags %}
-        <p><strong>API name: </strong>
-            {% for tagItem in method[1].tags %}
-                {% for topTagItem in swagger.tags %}
-                {% if topTagItem.name contains tagItem %}
-                    <em>{{ topTagItem.name }}</em> description: <em>{{ topTagItem.description }}</em></br>
-                {% endif %}
-                {% endfor %}
-            {% endfor %}
-        </p>
-    {% endif %}
+<p class="code red">{% if routeInner[0] %}{{ routeInner[0] }}{% else %}{{ route[0] }}{% endif %}</p>
 
-    <p class="code red">{% if routeInner[0] %}{{ routeInner[0] }}{% else %}{{ route[0] }}{% endif %}</p>
-    <div class="">
-        {% assign tableUrlParam = false %}
-        {% assign tableQueryParam = false %}
-        {% assign tableBodyHeaderFormdataParam = false %}
-        {% assign tableOtherParam = false %}
+{% include partials/autodoc/table-params.html%}
 
-        {% for parameter in method[1].parameters %}
-            {% case parameter.in %}
-            {% when 'path' %}
-                {% assign tableUrlParam = true %}
-            {% when 'query' %}
-                {% assign tableQueryParam = true %}
-            {% when 'body' or 'header' or 'formData'%}
-                {% assign tableBodyHeaderFormdataParam = true %}
-            <!-- If 'in' is "header", "formData" or "body".-->
-            {% else %}
-            {% assign tableOtherParam = true %}
-            {% endcase %}
-        {% endfor %}
+{% if method[1].responses %}
+<div class="swagger-response">
+		<h3>Response structure:</h3>
+		{% for response in method[1].responses %}
 
-        {% if tableUrlParam %}
-        <div class="swagger-parameters">
-            <h3>URL parameters:</h3>
-            <table class="swagger-parameters-table">
-                <thead>
-                <tr>
-                    <th>Parameter</th><!--name-->
-                    <th>Description</th><!--Description-->
-                    <th>Type</th><!--Type-->
-                    <th>Default Value</th><!--default-->
-                    <th>Required</th><!--required-->
-                </tr>
-                </thead>
-                <tbody>
-                {% for parameter in method[1].parameters %}
-                {% if parameter.in contains 'path' %}
-                <tr>
-                    <td>
-                        {% if parameter.required %}
-                            <span class="swagger-parameter-required">
-                        {% endif %}
-                            <code>{{ parameter.name }}</code>
-                        {% if parameter.required %}
-                            </span>
-                        {% endif %}
-                    </td>
-                    <td>{{ parameter.description }}</td>
-                    <!--"query", "header", "path", "formData" or "body"-->
-                    <td>
-                        {% if parameter.type %}
-                        {{ parameter.type | capitalize }}
-                        {% if parameter.items %}
-                        of {{ parameter.items.type | capitalize }}
-                        {% endif %}
+		{% if response[1].schema['type'] %}
 
-                        {% if parameter.enum %}
-                        {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
-                        {% endif %}
-                        {% else %}
-                        <!--Not defined in json-->
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if parameter.default %}{{ parameter.default | join: ', ' }}{% endif %}
-                    </td>
-                    <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
+		{% comment %}<!-- Parse inner prop if its obj or arr
+				<ul>
+						{% for item in response[1].schema  %}
+								{% assign collection = item[1] %}
+								{% for itemCollection in collection  %}
+										{%if itemCollection[0] %}
+												<li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
+										{% endif %}
+								{% endfor %}
+								{% assign collection = '' %}
+						{% endfor %}
+				</ul>
+				-->{% endcomment %}
 
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% endif %}
+		<ul class="nested-list">
+				{% if response[1].schema.type == 'string'%}
+				<li>
+						<code class="highlighter-rouge">schema</code>{% if response[1].schema.type %} ({{ response[1].schema.type | lstrip }}){% endif %} - {% if response[1].schema.description %}{{ response[1].schema.description | lstrip}}{% elsif response[1].schema.format %}{{ response[1].schema.format | lstrip}}{%else%}A simple string response{% endif %}
+						<ul>
+								{% for item in response[1].schema  %}
+								<!--if obj-->
+								{% assign collection = item[1] %}
+								{% for itemCollection in collection  %}
+										{%if itemCollection[0] %}
+												<li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
+										{% endif %}
+								{% endfor %}
+								{% assign collection = '' %}
+								<!--if obj-->
+								{% endfor %}
+						</ul>
+				</li>
+				{% endif %}
+		</ul>
+		{% endif %}
+		{% comment %}<!-- END response[1].schema['type'] -->{% endcomment %}
 
-        {% if tableQueryParam %}
-        <div class="swagger-parameters">
-            <h3>Query parameters:</h3>
-            <table class="swagger-parameters-table">
-                <thead>
-                <tr>
-                    <th>Parameter</th><!--name-->
-                    <th>Description</th><!--Description-->
-                    <th>Type</th><!--Type-->
-                    <th>Default Value</th><!--default-->
-                    <th>Required</th><!--required-->
-                </tr>
-                </thead>
-                <tbody>
-                {% for parameter in method[1].parameters %}
-                {% if parameter.in contains 'query' %}
-                <tr>
-                    <td>
-                        {% if parameter.required %}
-                        <span class="swagger-parameter-required">
-                        {% endif %}
-                        <code>{{ parameter.name }}</code>
-                        {% if parameter.required %}
-                        </span>
-                        {% endif %}
-                    </td>
-                    <td>{{ parameter.description }}</td>
-                    <td>
-                        {% if parameter.type %}
-                        {{ parameter.type | capitalize }}
-                        {% if parameter.items %}
-                            of {{ parameter.items.type | capitalize }}
-                        {% endif %}
-                        {% if parameter.enum %}
-                            {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
-                        {% endif %}
-                        {% else %}<!--Not defined in api.json-->
-                        {% endif %}
-                    </td>
-                    <td>{% if parameter.default %}{{ parameter.default | join: ', ' | strip }}{% endif %}</td>
-                    <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
+		{% if response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref'] %}
+				{% if response[1].schema['$ref'] %}
+						{% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+						{% assign schemaType = swagger.definitions[schemaSplitType].type %}
+				{% else %}
+						{% assign schemaRes = response[1].schema.items['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+						{% assign schemaType = response[1].schema['type'] %}
+				{% endif %}
+		{% assign schemaSplit = schemaRes | split: ' ' %}
 
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% endif %}
+		{% comment %}
+		{%if listTag.NOT_CORRECT %}
+		<p class="red" style="background: #7356a5; color: white; padding: 20px; border-radius: 4px;">
+				<b class='blue'>NOT CORRECT :</b> please compare api.json with <b class='blue'>real</b> response.
+				<br>
+				* {{ listTag.NOT_CORRECT[0] }}
+		</p>
+		{% endif %}
+		<p>
+				<span class="swagger-response-code">{{ response[0] }}</span> {{ response[1].description }}
+		</p>
+		<h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
+				{{ schemaSplit[1] }}
+				{% for schemaSplitType in schemaSplit[1] %}
+				<span class="body">({%if response[1].schema['type']%}{{ response[1].schema.type }}{%else%}{{ swagger.definitions[schemaSplitType].type }}{%endif%})</span>
+				{% endfor %}
+				<!--<p>_HAL.wrappin <span class="red">{{_HAL.wrappin}}</span></p>
+	<p>_HAL.links <span class="red">{{_HAL.links | split: ' ' }}</span> size= <span class="red">{{_HAL.links.size}}</span></p>-->
+		</h5>
+		{% endcomment %}
 
-        {% if tableBodyHeaderFormdataParam %}
-        <div class="swagger-parameters">
-            <h3>Other parameters:</h3>
-            <table class="swagger-parameters-table">
-                <thead>
-                <tr>
-                    <th>Parameter</th><!--name-->
-                    <th>In</th><!--name-->
-                    <th>Description</th><!--Description-->
-                    <th>Type</th><!--Type-->
-                    <th>Default Value</th><!--default-->
-                    <th>Required</th><!--required-->
-                <tr>
-                </thead>
-                <tbody>
-                {% for parameter in method[1].parameters %}
-                {% if parameter.in contains 'body' or parameter.in contains 'header' parameter.in contains 'formData' %}
-                <tr>
-                    <td>
-                        {% if parameter.required %}
-                        <span class="swagger-parameter-required">
-                        {% endif %}
-                        <code>{{ parameter.name }}</code>
-                        {% if parameter.required %}
-                        </span>
-                        {% endif %}
-                    </td>
-                    <td>{{ parameter.in }}</td>
-                    <td>{{ parameter.description }}<br/>
-                        {%if parameter.schema %}
-                        {% assign paramsSchema = parameter.schema %}
-                        {% if parameter.schema['$ref'] %}
-                        {% assign schemaRes = paramsSchema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
-                        {% assign schemaSplit = schemaRes | split: ' ' %}
-                        {% assign pathFirsLvl = schemaSplit[0] %}
-                        {% assign pathScdLvl = schemaSplit[1] %}
-                        <h5 class="code blue" style="margin-right: 80px;" data-ref-path="{{ schemaSplit[1] }}">
-                            {{ schemaSplit[1] }}
-                        </h5>
-                        {%if swagger.[pathFirsLvl][pathScdLvl].properties%}
-                            <span>
-                                <a class="button btn-small js_show-modal"
-                                   style=""
-                                   rel="tooltip"
-                                   data-toggle="modal"
-                                   data-target=".modal-langs"
-                                   data-placement="top"
-                                   data-original-title="View Full Screen"
-                                   aria-describedby="tooltip500998"
-                                   data-modal-title={{ schemaSplit[1] }}
-                                >show all</a>
-                            </span>
-                        {% endif %}
+		{% comment %}
+		<ul class="nested-list">
+				{% for pathFirsLvl in schemaSplit[0] %}
+				{% for pathScdLvl in schemaSplit[1] %}
+				{% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
+				{%assign isRootEmbed = false %}
+
+				{% for add_property_HAL in _HAL.embed %}
+				{% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+				{%if add_property_HAL.in.size > 0 %}
+
+				{% for itemIn in add_property_HAL.in %}
+						{% assign propToEmbed = itemIn | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+						{% assign propToEmbedLength = propToEmbed.size | minus: 1 %}
+						{% assign _inToExclude = propToEmbed[propToEmbedLength] %}
+						{% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _inToExclude %}
+						{% if propToEmbedLength > 2 %}
+								{% assign isWrappedByIn = true %}
+						{%endif%}
+						<li><code class="red">** inToExclude2 - {{_inToExclude}} ; itemIn2 - {{itemIn}} , propToEmbed.size - {{propToEmbed.size}}</code></li>
+				{% endfor %}
+				{% if propToEmbedLength <= 1%}
+						{% assign topPath = swagger.[pathFirsLvl][pathScdLvl] %}
+						<li><code class="red">propToEmbedLength - </code> {{propToEmbedLength}}</li>
+						{%else%}
+						{% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath] %}
+						<li><code class="red">propToEmbedLength - </code> {{propToEmbedLength}}</li>
+				{%endif%}
+				<li><code class="red">propToEmbedLength - {{propToEmbedLength}} ;  topPath['type'] - {{topPath.type}}</code></li>
+				<li><code>+++ {{propToEmbed[2]}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
 
 
-                        {%if swagger.[pathFirsLvl][pathScdLvl].properties%}
-                        <div class="copy-json" style="height: 0; width: 0; opacity: 0; display: none;">
-                            <!--{% comment %}
-                            {% assign json_obj = swagger.[pathFirsLvl][pathScdLvl].properties %}
-                            {% highlight json %}{{ json_obj | jsonify  }}{% endhighlight %}
-                            Parse inner prop
-                            {% endcomment %}-->
-                            <div class="copy-btn-fs"rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-text=""></div>
+						{%endif%}
+				{%comment%}
+						{%if add_property_HAL.in == '#/definitions/Classification/segment' %}
+						<!--<li><h3 class="blue">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}}</li>-->
+						{%include partials/autodoc/wrap-embed-in-root.html%}
+						{%assign isRootEmbed = true %}
+						{%else%}
+						{%if isRootEmbed == false and forloop.index == 1%}
+				<li><h3 class="red">method->inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , path - {{pathFirsLvl}}/{{pathScdLvl}}</li>
+				{% assign removeEmbeddedFields = [""] %}
+				{%include partials/autodoc/wrap-embed-in-item.html%}
+				{%endif%}
+				{%endif%}
+				{%endcomment%}
+				{% endfor %}
+				{% endif %}
 
-                            <ul>
-                                {% for pathFirsLvl in schemaSplit[0] %}
-                                {% for pathScdLvl in schemaSplit[1] %}
-                                {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
-                                <li>
-                                    <code>{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
-                                    <ul>
-                                        {% for item in property[1].items %}
-                                        <li><span>&#123;{{ item[0] }}&#125;</span> - {{ item[1] }}{% if item[0] == '$ref'%}
-                                            <ul>
-                                                {% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
-                                                {% assign schemaSplitInner = schemaResInner | split: ' ' %}
-                                                {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
-                                                {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
-                                                <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1]['$ref'] %}{% endif %}
-																									{% if innerRef[1]['$ref'] %}
-                                                    {%assign outer = innerRef[1]['$ref'] %}
-                                                    {%include partials/autodoc/inner-item.html%}
-                                                  {%endif%}
-                                                </li>
-                                                {% endfor %}
-                                                {% endfor %}
-                                            </ul>
-                                            {%endif%}
-                                        </li>
-                                        {% endfor %}
-                                        {% if property[1]['$ref'] %}
-                                        <li><span>{$ref}</span> - {{ property[1]['$ref'] }}
-                                            <ul>
-                                                {% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
-                                                {% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
-                                                {% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
-                                                {% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
-                                                <!--<span>innerRefPage[1]: {{innerRefPage[1]}}</span>-->
-                                                <li><code>{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
-																									{% if innerRef[1].type == 'array' or innerRef[1].type == 'object' %}
-																										{%assign outer = innerRef[1].items['$ref']%}
-																										{%include partials/autodoc/inner-item.html %}
-																									{%endif%}
-                                                {% endfor %}
-                                                {% endfor %}
-                                            </ul>
-                                        </li>
-                                        {% endif %}
-                                    </ul>
-                                    {% endif %}
-                                </li>
-                                {% endfor %}
-                                {% endfor %}
-                                {% endfor %}
-                            </ul>
-                            <!--{% comment %} Parse inner prop{% endcomment %}-->
-                        </div>
-                        {%endif%}
+				{% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+				{% endfor %}
 
-                        {% endif %}
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if parameter.type %}
-                        {{ parameter.type | capitalize }}
-                        {% if parameter.items %}
-                        of {{ parameter.items.type | capitalize }}
-                        {% endif %}
+				{% endfor %}
+				{% endfor %}
 
-                        {% if parameter.enum %}
-                        {{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
-                        {% endif %}
-                        {% else %}
-                        <!--Not defined in json-->
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if parameter.default %}{{ parameter.default | join: ', ' }}{% endif %}
-                    </td>
-                    <td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
+		</ul>
 
-                </tr>
-                {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% endif %}
-
-        {% if method[1].responses %}
-        <div class="swagger-response">
-            <h3>Response structure:</h3>
-            {% for response in method[1].responses %}
-
-            {% if response[1].schema['type'] %}
-
-            {% comment %}<!-- Parse inner prop if its obj or arr
-            <ul>
-                {% for item in response[1].schema  %}
-                    {% assign collection = item[1] %}
-                    {% for itemCollection in collection  %}
-                        {%if itemCollection[0] %}
-                            <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
-                        {% endif %}
-                    {% endfor %}
-                    {% assign collection = '' %}
-                {% endfor %}
-            </ul>
-            -->{% endcomment %}
-
-            <ul class="nested-list">
-                {% if response[1].schema.type == 'string'%}
-                <li>
-                    <code class="highlighter-rouge">schema</code>{% if response[1].schema.type %} ({{ response[1].schema.type | lstrip }}){% endif %} - {% if response[1].schema.description %}{{ response[1].schema.description | lstrip}}{% elsif response[1].schema.format %}{{ response[1].schema.format | lstrip}}{%else%}A simple string response{% endif %}
-                    <ul>
-                        {% for item in response[1].schema  %}
-                        <!--if obj-->
-                        {% assign collection = item[1] %}
-                            {% for itemCollection in collection  %}
-                                {%if itemCollection[0] %}
-                                <li><code class="highlighter-rouge">{{itemCollection[0]}}</code> - ( {{itemCollection[1].type }} ) - {{itemCollection[1].description }}</li>
-                                {% endif %}
-                            {% endfor %}
-                        {% assign collection = '' %}
-                        <!--if obj-->
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endif %}
-            </ul>
-            {% endif %}
-            {% comment %}<!-- END response[1].schema['type'] -->{% endcomment %}
-
-            {% if response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref'] %}
-                {% if response[1].schema['$ref'] %}
-                    {% assign schemaRes = response[1].schema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
-                    {% assign schemaType = swagger.definitions[schemaSplitType].type %}
-                {% else %}
-                    {% assign schemaRes = response[1].schema.items['$ref'] | replace: '#/',''  | replace:'/',' ' %}
-                    {% assign schemaType = response[1].schema['type'] %}
-                {% endif %}
-            {% assign schemaSplit = schemaRes | split: ' ' %}
-
-            {% comment %}
-            {%if listTag.NOT_CORRECT %}
-            <p class="red" style="background: #7356a5; color: white; padding: 20px; border-radius: 4px;">
-                <b class='blue'>NOT CORRECT :</b> please compare api.json with <b class='blue'>real</b> response.
-                <br>
-                * {{ listTag.NOT_CORRECT[0] }}
-            </p>
-            {% endif %}
-                <p>
-                    <span class="swagger-response-code">{{ response[0] }}</span> {{ response[1].description }}
-                </p>
-
-                <h5 class="code blue" data-ref-path="{{ schemaSplit[1] }}">
-                    {{ schemaSplit[1] }}
-                    {% for schemaSplitType in schemaSplit[1] %}
-                        <span class="body">({%if response[1].schema['type']%}{{ response[1].schema.type }}{%else%}{{ swagger.definitions[schemaSplitType].type }}{%endif%})</span>
-                    {% endfor %}
-                    <!--<p>_HAL.wrappin <span class="red">{{_HAL.wrappin}}</span></p>
-                    <p>_HAL.links <span class="red">{{_HAL.links | split: ' ' }}</span> size= <span class="red">{{_HAL.links.size}}</span></p>-->
-                </h5>
-            {% endcomment %}
-
-            {% comment %}
-            <ul class="nested-list">
-                {% for pathFirsLvl in schemaSplit[0] %}
-                {% for pathScdLvl in schemaSplit[1] %}
-                    {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
-                        {%assign isRootEmbed = false %}
-
-                        {% for add_property_HAL in _HAL.embed %}
-                            {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-                            {%if add_property_HAL.in.size > 0 %}
-
-                                {% for itemIn in add_property_HAL.in %}
-                                    {% assign propToEmbed = itemIn | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-                                    {% assign propToEmbedLength = propToEmbed.size | minus: 1 %}
-                                    {% assign _inToExclude = propToEmbed[propToEmbedLength] %}
-                                    {% assign removeEmbeddedFields = removeEmbeddedFields | append: ' ' | append: _inToExclude %}
-                                    {% if propToEmbedLength > 2 %}
-                                        {% assign isWrappedByIn = true %}
-                                    {%endif%}
-                                    <li><code class="red">** inToExclude2 - {{_inToExclude}} ; itemIn2 - {{itemIn}} , propToEmbed.size - {{propToEmbed.size}}</code></li>
-                                {% endfor %}
-                                {% if propToEmbedLength <= 1%}
-                                    {% assign topPath = swagger.[pathFirsLvl][pathScdLvl] %}
-                                    <li><code class="red">propToEmbedLength - </code> {{propToEmbedLength}}</li>
-                                {%else%}
-                                    {% assign topPath = swagger.[pathFirsLvl][pathScdLvl].properties[propLastInPath] %}
-                                    <li><code class="red">propToEmbedLength - </code> {{propToEmbedLength}}</li>
-                                {%endif%}
-                                <li><code class="red">propToEmbedLength - {{propToEmbedLength}} ;  topPath['type'] - {{topPath.type}}</code></li>
-                                <li><code>+++ {{propToEmbed[2]}}</code>{%if topPath['type']%}({{topPath['type']}}){%else%}(object){%endif%}{%if topPath['description']%} - {{topPath['description']}}{% elsif topPath['format'] %} - {{topPath['format']}}{%endif%}
+		<h3>------------</h3>
+		{% endcomment %}
 
 
-                            {%endif%}
-                            {%comment%}
-                            {%if add_property_HAL.in == '#/definitions/Classification/segment' %}
-                            <!--<li><h3 class="blue">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}}</li>-->
-                                {%include partials/autodoc/wrap-embed-in-root.html%}
-                                {%assign isRootEmbed = true %}
-                            {%else%}
-                                {%if isRootEmbed == false and forloop.index == 1%}
-                                <li><h3 class="red">method->inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , path - {{pathFirsLvl}}/{{pathScdLvl}}</li>
-                                    {% assign removeEmbeddedFields = [""] %}
-                                    {%include partials/autodoc/wrap-embed-in-item.html%}
-                                {%endif%}
-                            {%endif%}
-                            {%endcomment%}
-                        {% endfor %}
-                    {% endif %}
+		<ul class="nested-list">
 
-                {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
-                {% endfor %}
+				{% if _HAL.wrappin != null %}
+						{% assign _HAL-part1 = true %}
+						{% include partials/autodoc/hal-wrapper.html %}
+						{% assign _HAL-part1 = false %}
+				{% endif %}
 
-                {% endfor %}
-                {% endfor %}
+				{% if _HAL.links.size > 0 and _HAL.wrappin == null%}
+						{% if _HAL.links.size == 1 %}
+								{% assign isSingleLink = true %}
+						{% else %}
+								{% assign isMultiLink = true %}
+						{% endif %}
 
-            </ul>
+						{% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
+								{% for pathFirsLvl in schemaSplit[0] %}
+										{% for pathScdLvl in schemaSplit[1] %}
+												{% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+														{% for add_property_HAL in _HAL.embed %}
+																{% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+																{% if propToEmbed[2] == property[0] %}
+																		{% assign isSingleLink = true %}
+																		{% assign isMultiLink = false %}
+																<!--show Single Link obj cuz `HAL.embed.in` is exist-->
+																{%endif%}
+														{% endfor %}
+												{% endfor %}
+										{% endfor %}
+								{% endfor %}
+						{% endif %}
 
-            <h3>------------</h3>
-            {% endcomment %}
+						{% for add_link_HAL in _HAL.links %}
+								{% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
+								{% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->{% endcomment %}
+								{% if schemaSplit[1] == _link_HAL[1] %}
 
-
-            <ul class="nested-list">
-
-                {% if _HAL.wrappin != null %}
-                    {% assign _HAL-part1 = true %}
-                        {% include partials/autodoc/hal-wrapper.html %}
-                    {% assign _HAL-part1 = false %}
-                {% endif %}
-
-                {% if _HAL.links.size > 0 and _HAL.wrappin == null%}
-                    {% if _HAL.links.size == 1 %}
-                        {% assign isSingleLink = true %}
-                    {% else %}
-                        {% assign isMultiLink = true %}
-                    {% endif %}
-
-                    {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
-                        {% for pathFirsLvl in schemaSplit[0] %}
-                        {% for pathScdLvl in schemaSplit[1] %}
-                        {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
-                            {% for add_property_HAL in _HAL.embed %}
-                                {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-                                {% if propToEmbed[2] == property[0] %}
-                                    {% assign isSingleLink = true %}
-                                    {% assign isMultiLink = false %}
-                                    <!--show Single Link obj cuz `HAL.embed.in` is exist-->
-                                {%endif%}
-                            {% endfor %}
-                        {% endfor %}
-                        {% endfor %}
-                        {% endfor %}
-                    {% endif %}
-
-                    {% for add_link_HAL in _HAL.links %}
-                        {% assign _link_HAL = add_link_HAL | replace : "#/","" | replace : "/"," " | split: " " %}
-                        {% comment %}<!--<li>add _link here- {{ _link_HAL[1] }} , schemaSplit[1] - {{ schemaSplit[1] }}</li>-->{% endcomment %}
-                        {% if schemaSplit[1] == _link_HAL[1] %}
-
-                            {%assign isLinkExist = false%}
-                            {% for embed in _HAL.embed %}
-                                <!--<li>embed.link - {{embed.link}}</li>-->
-                                {%if embed.link == true %}
-                                    {%assign isLinkExist = true%}
-                                {% endif %}
-                            {% endfor %}
-                            {%if isLinkExist == true %}
-                                {%assign isMultiLink = true %}
-                                {%assign isSingleLink = false %}
-                                <!--<li><code class="blue">_HAL.embed.link</code> 0 - {{_HAL.embed[0].link}} ; 1 - {{_HAL.embed[1].link}} </li>-->
-                            {% else %}
-                                {%assign isMultiLink = false %}
-                                {%assign isSingleLink = true %}
-                            {% endif %}
-                            {%assign isLinkExist = false%}
+										{%assign isLinkExist = false%}
+										{% for embed in _HAL.embed %}
+										<!--<li>embed.link - {{embed.link}}</li>-->
+												{%if embed.link == true %}
+												{%assign isLinkExist = true%}
+												{% endif %}
+										{% endfor %}
+										{%if isLinkExist == true %}
+												{%assign isMultiLink = true %}
+												{%assign isSingleLink = false %}
+												<!--<li><code class="blue">_HAL.embed.link</code> 0 - {{_HAL.embed[0].link}} ; 1 - {{_HAL.embed[1].link}} </li>-->
+										{% else %}
+												{%assign isMultiLink = false %}
+												{%assign isSingleLink = true %}
+										{% endif %}
+										{%assign isLinkExist = false%}
 
 
-                            {% include partials/autodoc/hal-wrapper-links.html %}
-                            {% include partials/autodoc/hal-wrapper-embed.html %}
-                            {% assign isMultiLink = false %}
-                            {% assign isSingleLink = false %}
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
+										{% include partials/autodoc/hal-wrapper-links.html %}
+										{% include partials/autodoc/hal-wrapper-embed.html %}
+										{% assign isMultiLink = false %}
+										{% assign isSingleLink = false %}
+								{% endif %}
+						{% endfor %}
+				{% endif %}
 
-                {% for pathFirsLvl in schemaSplit[0] %}
-                {% for pathScdLvl in schemaSplit[1] %}
+				{% for pathFirsLvl in schemaSplit[0] %}
+				{% for pathScdLvl in schemaSplit[1] %}
 
-                {% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
-                    {%assign isRootEmbed = false %}
+						{% if _HAL.links.size > 0 and _HAL.wrappin == null and _HAL.embed %}
+								{%assign isRootEmbed = false %}
 
-                    {% for add_property_HAL in _HAL.embed %}
-                        {% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
-                        {%if add_property_HAL.in == '#/definitions/Classification/segment' %}
-                            <!--<li><h3 class="blue">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , _HAL.wrappin -> null , listTag.pathsParent - {{listTag.pathsParent}}</li>-->
-                            {%include partials/autodoc/wrap-embed-in-root.html%}
-                            {%assign isRootEmbed = true %}
-                        {%else%}
-                            {%if isRootEmbed == false and forloop.index == 1%}
-                                <!--<li><h3 class="red">method->inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , pathScdLvl - {{pathScdLvl}}</li>-->
-                                {% assign removeEmbeddedFields = [""] %}
-                                {%include partials/autodoc/wrap-embed-in.html%}
-                            {%endif%}
-                        {%endif%}
-                    {% endfor %}
-                {% endif %}
+								{% for add_property_HAL in _HAL.embed %}
+										{% assign propToEmbed = add_property_HAL.in | replace: '#/',''  | replace:'/',' ' | split: ' ' %}
+										{%if add_property_HAL.in == '#/definitions/Classification/segment' %}
+												<!--<li><h3 class="blue">inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , _HAL.wrappin -> null , listTag.pathsParent - {{listTag.pathsParent}}</li>-->
+												{%include partials/autodoc/wrap-embed-in-root.html%}
+												{%assign isRootEmbed = true %}
+										{%else%}
+												{%if isRootEmbed == false and forloop.index == 1%}
+														<!--<li><h3 class="red">method->inside wrap-embed-in.html </h3> propToEmbed is - {{add_property_HAL.in}} , pathScdLvl - {{pathScdLvl}}</li>-->
+														{% assign removeEmbeddedFields = [""] %}
+														{%include partials/autodoc/wrap-embed-in.html%}
+												{%endif%}
+										{%endif%}
+								{% endfor %}
+						{% endif %}
 
-                {% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
-            {% if removeEmbeddedFields contains property[0] %}
-                <!--<li>
-                    <h4 class="blue">exclude property - {{property[0]}}</h4>
-                </li>-->
-            {%else%}
-                {% if _HAL.wrappin or _HAL.embed.size > 0 %}
-                    {% assign addThisFieldToEmbedded = false %}
-                    {% for add_property_HAL in _HAL.embed %}
-                        {% assign methodNamebyRef = add_property_HAL.embed | downcase | replace : "#/","" | replace : "/"," " | split: " " %}
-                        {% assign methodName = add_property_HAL.as %}
-                        {% comment %}<!--<li>methodNamebyRef - {{ methodNamebyRef }}, methodName - {{methodName}} <span class="blue">property[0] - {{property[0]}}</span></li>-->{% endcomment %}
-                        {% if property[0] == methodName %}
-                            {% assign addThisFieldToEmbedded = true %}
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if addThisFieldToEmbedded == false %}
-                <li>
-									 <!--
-									 <p class="blue-btn">property[1]['$ref'] : {{property}}</p>
-									 <p class="blue-btn">property[0] : {{property[0]}}</p>
-									 <p class="blue-btn">property[1] : {{property[1]}}</p>
-									 <p class="blue-btn">property[1].items or ['$ref']: {{property[1].items or property[1]['$ref'] }}</p>
-									 -->
+				{% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+						{% if removeEmbeddedFields contains property[0] %}
+						<!--<li>
+										<h4 class="blue">exclude property - {{property[0]}}</h4>
+						</li>-->
+						{%else%}
+								{% if _HAL.wrappin or _HAL.embed.size > 0 %}
+										{% assign addThisFieldToEmbedded = false %}
+										{% for add_property_HAL in _HAL.embed %}
+												{% assign methodNamebyRef = add_property_HAL.embed | downcase | replace : "#/","" | replace : "/"," " | split: " " %}
+												{% assign methodName = add_property_HAL.as %}
+												{% comment %}<!--<li>methodNamebyRef - {{ methodNamebyRef }}, methodName - {{methodName}} <span class="blue">property[0] - {{property[0]}}</span></li>-->{% endcomment %}
+												{% if property[0] == methodName %}
+														{% assign addThisFieldToEmbedded = true %}
+												{% endif %}
+										{% endfor %}
+								{% endif %}
+								{% if addThisFieldToEmbedded == false %}
+										<li>{% comment %}
+												<!--
+														<p class="blue-btn">property[1]['$ref'] : {{property}}</p>
+														<p class="blue-btn">property[0] : {{property[0]}}</p>
+														<p class="blue-btn">property[1] : {{property[1]}}</p>
+														<p class="blue-btn">property[1].items or ['$ref']: {{property[1].items or property[1]['$ref'] }}</p>
+												-->{% endcomment %}
+												<code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+												<ul>
+														{% if property[1].type == 'array' %}
+																<li><code class="highlighter-rouge" style="color: #768692">{ array item object } </code>
+																		{%assign outer = property[1].items.['$ref'] %}
+																		{%include partials/autodoc/inner-item.html%}
+																</li>
+																{% endif %}
+																<li>{{property[1].type}} , <span class="red">swagger : </span>{{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }} </li>
+																{% if property[1].type == 'object' %}
+																<li><code class="highlighter-rouge" style="color: #768692">{ object } </code>
+																		{%assign outer = property[1].['$ref'] %}
+																		{%include partials/autodoc/inner-item.html%}
+																</li>
+																{% endif %}
+														</ul>
+														{% endif %}<!--{% comment %} END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}{% endcomment %}-->
 
-                    <code class="highlighter-rouge">{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){%else%}({{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
-                    <ul>
-                        {% if property[1].type == 'array' %}
-                            <li><code class="highlighter-rouge" style="color: #768692">{ array item object } </code>
-                                {%assign outer = property[1].items.['$ref'] %}
-                                {%include partials/autodoc/inner-item.html%}
-                            </li>
-                        {% endif %}
-												<li>{{property[1].type}} , <span class="red">swagger : </span>{{swagger.[pathFirsLvl][pathScdLvl].type | lstrip }} </li>
-												{% if property[1].type == 'object' %}
-													<li><code class="highlighter-rouge" style="color: #768692">{ object } </code>
+														{% if property[1]['$ref'] %}
+														<!--<li><code class="highlighter-rouge" style="color: #768692"> property[1].['$ref'] -  {{ property[1].['$ref'] }}  </code></li>-->
 														{%assign outer = property[1].['$ref'] %}
 														{%include partials/autodoc/inner-item.html%}
-													</li>
 												{% endif %}
-                    </ul>
-                    {% endif %}<!-- END if property[1].items or property[1]['$ref'] - {{property[1]['$ref']}}-->
+										</li>
+								{% endif %}
+								{% assign addThisFieldToEmbedded = false %}
+						{% endif %}
+				{% endfor %}
+				{% assign removeEmbeddedFields = [""] %}
 
-                    {% if property[1]['$ref'] %}
-                        <!--<li><code class="highlighter-rouge" style="color: #768692"> property[1].['$ref'] -  {{ property[1].['$ref'] }}  </code></li>-->
-                            {%assign outer = property[1].['$ref'] %}
-                            {%include partials/autodoc/inner-item.html%}
+				{% endfor %}
+				{% endfor %}
 
-                    {% endif %}
+				{%if _HAL.wrappin != null %}
+						{% assign _HAL-part2 = true %}
+						{% include partials/autodoc/hal-wrapper.html %}
+						{% assign _HAL-part2 = false %}
+				{% endif %}
 
-                </li>
-                {% endif %}
-                {% assign addThisFieldToEmbedded = false %}
+				{% comment %}<!-- END _embedded-->{% endcomment %}
 
-            {% endif %}
-                {% endfor %}
-                {% assign removeEmbeddedFields = [""] %}
+		</ul>
+		{% endif %}
+		{% comment %}
+		<!--END response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref']:
+		{% if response[1].schema['type'] == 'array' %}
+		<p>schema['type'] is : {{response[1].schema['type']}}</p>
+		{% endif %}
+-->
+		{% endcomment %}
 
-                {% endfor %}
-                {% endfor %}
+		{% comment %}<!--//check content_type here:
+				{% for content_type in swagger.produces %}
+						{% if response[1].examples[content_type] %}
+						{% assign example = response[1].examples[content_type] %}
+								{% if content_type contains 'json' %}
+								{% highlight json %}{{ example }}{% endhighlight %}
+								{% elsif content_type contains 'xml' %}
+								{% highlight xml %}{{ example }}{% endhighlight %}
+								{% else %}
+								{% highlight http %}{{ example }}{% endhighlight %}
+								{% endif %}
+						{% endif %}
+				{% endfor %}
+				-->{% endcomment %}
 
-                {%if _HAL.wrappin != null %}
-                    {% assign _HAL-part2 = true %}
-                        {% include partials/autodoc/hal-wrapper.html %}
-                    {% assign _HAL-part2 = false %}
-                {% endif %}
-
-                {% comment %}<!-- END _embedded-->{% endcomment %}
-
-            </ul>
-            {% endif %}
-            {% comment %}
-            <!--END response[1].schema['$ref'] or response[1].schema['type'] == 'array' and response[1].schema.items['$ref']:
-                {% if response[1].schema['type'] == 'array' %}
-                <p>schema['type'] is : {{response[1].schema['type']}}</p>
-                {% endif %}
-            -->
-            {% endcomment %}
-
-            {% comment %}<!--//check content_type here:
-            {% for content_type in swagger.produces %}
-                {% if response[1].examples[content_type] %}
-                {% assign example = response[1].examples[content_type] %}
-                    {% if content_type contains 'json' %}
-                    {% highlight json %}{{ example }}{% endhighlight %}
-                    {% elsif content_type contains 'xml' %}
-                    {% highlight xml %}{{ example }}{% endhighlight %}
-                    {% else %}
-                    {% highlight http %}{{ example }}{% endhighlight %}
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-            -->{% endcomment %}
-
-            {% endfor %}
-        </div>
-        {% endif %}
-    </div>
+		{% endfor %}
+</div>
+{% endif %}
 
 
-    {% if _codePath %}
-    {% assign codePath = _codePath | prepend: 'apis-code-examples/' %}
-    <blockquote class="aside lang-selector" tabindex="-1">
-        <p><a href="#js" class="active">JavaScript</a>
-            <a href="#curl">cURL</a></p>
-    </blockquote>
-    {% include {{codePath}} %}
-    {%endif%}
+{% if _codePath %}
+{% assign codePath = _codePath | prepend: 'apis-code-examples/' %}
+<blockquote class="aside lang-selector" tabindex="-1">
+		<p><a href="#js" class="active">JavaScript</a>
+				<a href="#curl">cURL</a></p>
+</blockquote>
+{% include {{codePath}} %}
+{%endif%}
 

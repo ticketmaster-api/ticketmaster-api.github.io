@@ -1,0 +1,287 @@
+<div class="">
+	{% assign tableUrlParam = false %}
+	{% assign tableQueryParam = false %}
+	{% assign tableBodyHeaderFormdataParam = false %}
+	{% assign tableOtherParam = false %}
+
+	{% for parameter in method[1].parameters %}
+		{% case parameter.in %}
+			{% when 'path' %}
+				{% assign tableUrlParam = true %}
+			{% when 'query' %}
+				{% assign tableQueryParam = true %}
+			{% when 'body' or 'header' or 'formData'%}
+				{% assign tableBodyHeaderFormdataParam = true %}
+			<!-- If 'in' is "header", "formData" or "body".-->
+			{% else %}
+				{% assign tableOtherParam = true %}
+		{% endcase %}
+	{% endfor %}
+
+	{% if tableUrlParam %}
+	<div class="swagger-parameters">
+		<h3>URL parameters:</h3>
+		<table class="swagger-parameters-table">
+			<thead>
+			<tr>
+				<th>Parameter</th><!--name-->
+				<th>Description</th><!--Description-->
+				<th>Type</th><!--Type-->
+				<th>Default Value</th><!--default-->
+				<th>Required</th><!--required-->
+			</tr>
+			</thead>
+			<tbody>
+			{% for parameter in method[1].parameters %}
+				{% if parameter.in contains 'path' %}
+				<tr>
+					<td>
+						{% if parameter.required %}
+															<span class="swagger-parameter-required">
+													{% endif %}
+															<code>{{ parameter.name }}</code>
+													{% if parameter.required %}
+															</span>
+						{% endif %}
+					</td>
+					<td>{{ parameter.description }}</td>
+					<!--"query", "header", "path", "formData" or "body"-->
+					<td>
+						{% if parameter.type %}
+							{{ parameter.type | capitalize }}
+							{% if parameter.items %}
+								of {{ parameter.items.type | capitalize }}
+							{% endif %}
+
+							{% if parameter.enum %}
+								{{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
+							{% endif %}
+						{% else %}
+						<!--Not defined in json-->
+						{% endif %}
+					</td>
+					<td>
+						{% if parameter.default %}{{ parameter.default | join: ', ' }}{% endif %}
+					</td>
+					<td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
+
+				</tr>
+				{% endif %}
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{% endif %}
+
+	{% if tableQueryParam %}
+	<div class="swagger-parameters">
+		<h3>Query parameters:</h3>
+		<table class="swagger-parameters-table">
+			<thead>
+			<tr>
+				<th>Parameter</th><!--name-->
+				<th>Description</th><!--Description-->
+				<th>Type</th><!--Type-->
+				<th>Default Value</th><!--default-->
+				<th>Required</th><!--required-->
+			</tr>
+			</thead>
+			<tbody>
+			{% assign paramsOriginArray = "" | split:"|" %}
+			{% assign skipMe = false %}
+
+			{%comment%}<!-- show param in custom order-->{%endcomment%}
+			{%if methodsDescription.extraMethodsInfo.commonParamsOrder.size > 0 %}
+				{% for commonParam in methodsDescription.extraMethodsInfo.commonParamsOrder %}
+					{% for parameter in method[1].parameters %}
+						{% if commonParam contains parameter.name %}
+							{% if parameter.in contains 'query' %}
+								{% include partials/autodoc/table-params-row.html %}
+							{% endif %}
+						{%endif%}
+					{% endfor %}
+				{% endfor %}
+			{%endif%}
+
+			{%comment%}<!-- show param in default order-->{%endcomment%}
+			{%comment%}<!--find unused params name, output is Array of string uniq names only-->{%endcomment%}
+			{% for parameter in method[1].parameters %}
+				{% assign skipMe = false %}
+				{% for commonParam in methodsDescription.extraMethodsInfo.commonParamsOrder %}
+					{% if commonParam contains parameter.name %}
+						{% assign skipMe = true %}{%comment%}<!--skip this item because it was already rendered before-->{%endcomment%}
+					{%endif%}
+				{% endfor %}
+				{% if skipMe == false %}
+					{%comment%}<!-- add paramName to array of not rendered items-->{%endcomment%}
+					{% assign paramsOriginArray = paramsOriginArray | push: {{parameter.name}} | uniq %}
+				{% endif %}
+			{% endfor %}
+			{%comment%}<!--find unused params nameEND-->{%endcomment%}
+
+			{%comment%}<!--iterate by item that not in metadata list-->{%endcomment%}
+			{% for commonParam in paramsOriginArray %}
+				{% for parameter in method[1].parameters %}
+					{% if commonParam == parameter.name %}
+						{% if parameter.in contains 'query' %}
+							{% include partials/autodoc/table-params-row.html %}
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			{% endfor %}{%comment%}<!-- iterate END-->{%endcomment%}
+			{%comment%}<!-- show param in default order END-->{%endcomment%}
+
+			</tbody>
+		</table>
+	</div>
+	{% endif %}
+
+	{% if tableBodyHeaderFormdataParam %}
+	<div class="swagger-parameters">
+		<h3>Other parameters:</h3>
+		<table class="swagger-parameters-table">
+			<thead>
+			<tr>
+				<th>Parameter</th><!--name-->
+				<th>In</th><!--name-->
+				<th>Description</th><!--Description-->
+				<th>Type</th><!--Type-->
+				<th>Default Value</th><!--default-->
+				<th>Required</th><!--required-->
+			<tr>
+			</thead>
+			<tbody>
+			{% for parameter in method[1].parameters %}
+			{% if parameter.in contains 'body' or parameter.in contains 'header' parameter.in contains 'formData' %}
+			<tr>
+				<td>
+					{% if parameter.required %}
+						<span class="swagger-parameter-required">
+						{% endif %}
+						<code>{{ parameter.name }}</code>
+						{% if parameter.required %}
+						</span>
+					{% endif %}
+				</td>
+				<td>{{ parameter.in }}</td>
+				<td>{{ parameter.description }}<br/>
+					{%if parameter.schema %}
+					{% assign paramsSchema = parameter.schema %}
+					{% if parameter.schema['$ref'] %}
+					{% assign schemaRes = paramsSchema['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+					{% assign schemaSplit = schemaRes | split: ' ' %}
+					{% assign pathFirsLvl = schemaSplit[0] %}
+					{% assign pathScdLvl = schemaSplit[1] %}
+					<h5 class="code blue" style="margin-right: 80px;" data-ref-path="{{ schemaSplit[1] }}">
+						{{ schemaSplit[1] }}
+					</h5>
+					{%if swagger.[pathFirsLvl][pathScdLvl].properties%}
+						<span>
+								<a class="button btn-small js_show-modal"
+									 style=""
+									 rel="tooltip"
+									 data-toggle="modal"
+									 data-target=".modal-langs"
+									 data-placement="top"
+									 data-original-title="View Full Screen"
+									 aria-describedby="tooltip500998"
+									 data-modal-title={{ schemaSplit[1] }}
+								>show all</a>
+						</span>
+					{% endif %}
+
+
+					{%if swagger.[pathFirsLvl][pathScdLvl].properties%}
+					<div class="copy-json" style="height: 0; width: 0; opacity: 0; display: none;">
+						<!--{% comment %}
+            {% assign json_obj = swagger.[pathFirsLvl][pathScdLvl].properties %}
+            {% highlight json %}{{ json_obj | jsonify  }}{% endhighlight %}
+            Parse inner prop
+            {% endcomment %}-->
+						<div class="copy-btn-fs"rel="tooltip" data-placement="top" data-original-title="Copy to Clipboard" data-clipboard-text=""></div>
+
+						<ul>
+							{% for pathFirsLvl in schemaSplit[0] %}
+							{% for pathScdLvl in schemaSplit[1] %}
+							{% for property in swagger.[pathFirsLvl][pathScdLvl].properties %}
+							<li>
+								<code>{{ property[0] }}</code> {% if property[1].type %}({{ property[1].type | lstrip }}){% endif %} - {% if property[1].description %}{{ property[1].description }}{% elsif property[1].format %}{{ property[1].format }}{%else%}No description specified{% endif %}{% if property[1].$ref %}{{ property[1].$ref }}{% endif %}{% if property[1].items or property[1]['$ref'] %}
+								<ul>
+									{% for item in property[1].items %}
+									<!--<li><span>&#123;{{ item[0] }}&#125;</span> - {{ item[1] }}-->{% if item[0] == '$ref'%}
+										<!--<ul>-->
+											{% assign schemaResInner = item[1] | replace: '#/',''  | replace:'/',' ' %}
+											{% assign schemaSplitInner = schemaResInner | split: ' ' %}
+											{% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+												{% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+												<li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1]['$ref'] %}{% endif %}
+													{% if innerRef[1]['$ref'] %}
+														{%assign outer = innerRef[1]['$ref'] %}
+														{%include partials/autodoc/inner-item.html%}
+													{%endif%}
+												</li>
+												{% endfor %}
+											{% endfor %}
+										<!--</ul>-->
+										{%endif%}
+									<!--</li>-->
+									{% endfor %}
+									{% if property[1]['$ref'] %}
+										{% comment %}<!--<li><span>{$ref}</span> - {{ property[1]['$ref'] }}
+										<ul>-->{% endcomment %}
+											{% assign schemaPageInner = property[1]['$ref'] | replace: '#/',''  | replace:'/',' ' %}
+											{% assign schemaPageSplitInner = schemaPageInner | split: ' ' %}
+											{% for schemaPageSplitInnerEnd in schemaPageSplitInner[1] %}
+												{% for innerRefPage in swagger.definitions.[schemaPageSplitInnerEnd].properties %}
+												{% comment %}<!--<span>innerRefPage[1]: {{innerRefPage[1]}}</span>-->{% endcomment %}
+												<li><code>{{ innerRefPage[0] }}</code> {% if innerRefPage[1].type %}({{ innerRefPage[1].type }}){% endif %} - {% if innerRefPage[1].description %}{{ innerRefPage[1].description }}{% elsif innerRefPage[1].format %}{{ innerRefPage[1].format }}{%else%}No description specified{% endif %}{% if innerRefPage[1].$ref %}{{ innerRefPage[1].$ref }}{% endif %}</li>
+												{% if innerRef[1].type == 'array' or innerRef[1].type == 'object' %}
+													{%assign outer = innerRef[1].items['$ref']%}
+													{%include partials/autodoc/inner-item.html %}
+												{%endif%}
+												{% endfor %}
+											{% endfor %}
+										{% comment %}<!--</ul>
+									</li>-->{% endcomment %}
+									{% endif %}
+								</ul>
+								{% endif %}
+							</li>
+							{% endfor %}
+							{% endfor %}
+							{% endfor %}
+						</ul>
+						<!--{% comment %} Parse inner prop{% endcomment %}-->
+					</div>
+					{%endif%}
+
+					{% endif %}
+					{% endif %}
+				</td>
+				<td>
+					{% if parameter.type %}
+						{{ parameter.type | capitalize }}
+						{% if parameter.items %}
+							of {{ parameter.items.type | capitalize }}
+						{% endif %}
+
+						{% if parameter.enum %}
+							{{ parameter.enum | prepend: ' enum:' | capitalize | join: ', ' }}
+						{% endif %}
+					{% else %}
+					<!--Not defined in json-->
+					{% endif %}
+				</td>
+				<td>
+					{% if parameter.default %}{{ parameter.default | join: ', ' }}{% endif %}
+				</td>
+				<td>{% if parameter.required == false %}No{%else%}Yes{%endif%}</td>
+
+			</tr>
+			{% endif %}
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{% endif %}
+</div>

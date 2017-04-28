@@ -40,7 +40,8 @@ class ParamsFilter {
 	 */
 	updateViewModel = () => {
 		let obj = ko.unwrap(this.selectedMethodData);
-		let parameters = ko.unwrap(this.selectedMethodData).parameters || {},
+		let parameters = obj.parameters || {},
+			paramsOrder = obj.paramsOrder,
 			arr = [];
 
 		for (var i in parameters) {
@@ -67,6 +68,13 @@ class ParamsFilter {
 			vmParam.hasPopUp = i.search(/(attractionId|venueId)/gmi) != -1;
 
 			arr.push(vmParam);
+		}
+
+		if (paramsOrder) {
+			let allParamsOrder = paramsOrder.concat(Object.keys(parameters));
+			arr = arr.sort((paramA, paramB) => {
+				return allParamsOrder.indexOf(paramA.name) - allParamsOrder.indexOf(paramB.name);
+			});
 		}
 
 		// prepare output for request
@@ -120,10 +128,7 @@ class ParamsFilter {
 	 */
 	prepareUrlPairs(arr, koObs) {
 		if (!arr || !koObs) {return false;}
-
-		return koObs(arr.filter(item => {
-			return (item.value() && item.value() !== 'none' || item.default);
-		}));
+		koObs(arr);
 	}
 
 	/**

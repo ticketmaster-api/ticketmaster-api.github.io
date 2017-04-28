@@ -19,7 +19,7 @@
             "interactiveConsole": true,
             "reqres": "discovery-api/reqres-search-events.md",
             "codePath":"discovery-api/code-search-events.md",
-            "NOT_CORRECT": ["field venue suppouse to be 'venues' "],
+            "NOT_CORRECT": ["field venue suppose to be 'venues' "],
             "HAL" : {
                 "wrappin": "events",
                 "links": [
@@ -209,6 +209,12 @@
     "extraMethodsInfo" : {
         "base": "https://app.ticketmaster.com",
         "category": "Discovery API v2",
+        "commonParamsOrder": [ "id", "format", "keyword", "attractionId", "venueId", "postalCode",
+            "latlong", "radius", "unit", "source", "locale", "marketId",
+            "startDateTime", "endDateTime", "includeTBA", "includeTBD",
+            "includeTest", "size", "page", "sort", "onsaleStartDateTime",
+            "onsaleEndDateTime", "city", "countryCode", "stateCode",
+            "classificationName", "classificationId", "dmaId" ],
         "paths" : {
             "/discovery/v2/events" : {
                 "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2"

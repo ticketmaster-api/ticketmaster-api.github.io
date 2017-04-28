@@ -45,7 +45,7 @@ class Pagination {
 	}
 }
 
-module.exports = ko.components.register('pagination', {
+ko.components.register('pagination', {
 	viewModel: Pagination,
 	template:
 	`<span class="navigation-wrapper">
@@ -53,3 +53,5 @@ module.exports = ko.components.register('pagination', {
 		<button data-bind="click: getNextPage, enable: last" type="button" class="navigation next"></button>
 	</span>`
 });
+
+module.exports = Pagination;

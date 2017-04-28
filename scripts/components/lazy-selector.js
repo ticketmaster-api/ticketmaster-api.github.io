@@ -308,7 +308,7 @@
         async: true,
         url: url,
         data: $form.serialize()
-      }).done(function (result) {
+      }).success(function (result) {
         if (result) {
           //last page reached
           if (stateConf.pageIncrement === result.page.totalPages && result.page.totalElements > 0) {
@@ -323,7 +323,7 @@
         } else {
           console.log('no result found');
         }
-      }).fail(function (e) {
+      }).error(function (e) {
         console.log('There was an fail status - ' , e.status);
         loading('off');
         renderResults('FAIL', $ul);
@@ -700,7 +700,7 @@
         renderListAttractions(items);
       }
 
-      //hide scroll if recive less then 2 items
+      //hide scroll if receive less then 2 items
       if (hasScrollBar($ul)) {
         $ul.removeClass('no-scroll');
       } else {
@@ -976,6 +976,33 @@
         }
         keyword.val('');//clear search input
     });
+
+		if(options.test === 'UnitTest') {
+			return {
+				stateConf: stateConf,
+				selector: selector,
+				markers: markers,
+				map: map,
+				formatDate : formatDate,
+				renderResults: renderResults,
+				renderListEvents: renderListEvents,
+				renderListVenues: renderListVenues,
+				renderListAttractions: renderListAttractions,
+				loading: loading,
+				changeModalTextListener: changeModalTextListener,
+				getImageForEvent: getImageForEvent,
+				delIdListener: delIdListener,
+				addMsButtonListener: addMsButtonListener,
+				toggleMsSelectionBox: toggleMsSelectionBox,
+				mapPopUpListener: mapPopUpListener,
+				initMap: initMap,
+				submitForm: submitForm,
+				setIdsListener: setIdsListener,
+				setIdListener: setIdListener,
+				mapListener: mapListener,
+				clearMarkers: clearMarkers
+			};
+		}
 
     return this.each(function () {
       init($(this));

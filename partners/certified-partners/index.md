@@ -9,63 +9,23 @@ excerpt: Certified partners
 keywords: Certified partners
 ---
 
-# CERTIFIED PARTNERS
-{: .double-margin-bottom}
-
-{::comment}
-{: .lead .double-margin}
-Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh 
-aesthetic food truck sriracha cornhole single-origin coffee chu.
-{:/comment}
-
-<div class="tiles-wrapper ">
-{% for partner in site.pages %}
-    {% if partner.categories[0] == "partner" and partner.categories[1] == "certified" %}
-
-
-{% if partner.type == blank or partner.type == nil or partner.type == "small" or partner.type == "wide" %}
-<div class="flipper col-xs-12 {% if partner.type == "wide" %} col-sm-12 col-md-12 {% else %} col-sm-6 col-md-6 {% endif %}  col-lg-4" >
-    <div class="card">
-        <div class="content">
-            <div class="front cardFront">
-                {% capture fullpath %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
-                <div class="img-wrapper">
-                    <img src="{{fullpath}}" alt="{{partner.pname | capitalize }}">
-                </div>
-            </div>
-            <div class="back cardBack">
-                {% if partner.tile_header %}
-                <h3>{{ partner.tile_header }}</h3>
-                {% endif %}
-                {{ partner.tile_description | markdownify }}
-            </div>
-        </div>
-    </div>
+<div markdown="1" class="row">
+<div class="col-lg-6">
+	<h1 class="double-margin-bottom">
+		CERTIFIED PARTNERS
+	</h1>
 </div>
-{% endif %}
-
-{% if partner.type == "big" %}
-
-{% capture bgimg %}{{ page.logos_url }}{{ partner.tile_bg }}{% endcapture %}
-{% capture logo %}{{ page.logos_url }}{{ partner.tile_logo }}{% endcapture %}
-
-<div class="big-tile col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-    <div class="content-box" style="background-image: url('{{bgimg}}');">
-        <div class="logo-box col-sm-3 col-md-3 col-lg-3">
-            <div class="img-wrapper ">
-                <img src="{{logo}}" style="width:200px;" alt="{{partner.pname | capitalize }}">
-            </div>
-        </div>
-        <div class="description col-sm-7 col-md-7 col-lg-7">
-            {% if partner.tile_header %}
-            <h3>{{ partner.tile_header }}</h3>
-            {% endif %}
-            {{ partner.tile_description | markdownify }}
-        </div>
-    </div>
+<div class="col-lg-6 text-center wrapper-nexus">
+	<div class="partner-logo">
+		<img src="/assets/img/partners/logos/nexus-logo@2x.png" alt="Nexus" class="small">
+	</div>
+	<p>
+		If you want to find out ways to integrate your product or service with Ticketmaster’s systems, please complete the form
+	</p>
+	<div>
+		<a href="/partners/certified-partners/nexus/" class="button-blue">JOIN</a>
+	</div>
 </div>
-{% endif %}
-
-    {% endif %}
-{% endfor %}
 </div>
+
+{% include partials/certified-partners.html %}

@@ -60,7 +60,7 @@ class ObjectPanelBody {
 
 
 
-module.exports = ko.components.register('object-panel-body', {
+ko.components.register('object-panel-body', {
 	viewModel:  ObjectPanelBody,
 	template:`
 		<section data-bind="css: {'all-inside': $component._allInside}" class="panel-body object-panel-body">
@@ -100,3 +100,5 @@ module.exports = ko.components.register('object-panel-body', {
 			</ul>
 		</section>
 `});
+
+module.exports = ObjectPanelBody;

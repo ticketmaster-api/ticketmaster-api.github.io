@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>TicketMasterAutomation</groupId>
-    <artifactId>TicketMasterAutomationTests</artifactId>
+    <groupId>com.tkmdpa.taf</groupId>
+    <artifactId>testautomation</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-    <name>Automation testing framework created for Ticket Master</name>
+    <name>UI Test Automation Framework TKM-DPA</name>
 
     <properties>
-        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		  	<serenity.version>1.2.2</serenity.version>
-			  <serenity.jbehave.version>1.21.0</serenity.jbehave.version>
-				<jbehave.version>4.1</jbehave.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <serenity.version>1.2.2</serenity.version>
+        <serenity.jbehave.version>1.21.0</serenity.jbehave.version>
+        <jbehave.version>4.1</jbehave.version>
+        <java.version>1.8</java.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <webdriver.driver>firefox</webdriver.driver>
     </properties>
 
+    <repositories>
+      <repository>
+        <snapshots>
+        <enabled>false</enabled>
+        </snapshots>
+        <id>central</id>
+        <name>bintray</name>
+        <url>http://jcenter.bintray.com</url>
+      </repository>
+    </repositories>
+    <pluginRepositories>
+      <pluginRepository>
+        <snapshots>
+        <enabled>false</enabled>
+        </snapshots>
+        <id>central</id>
+        <name>bintray-plugins</name>
+        <url>http://jcenter.bintray.com</url>
+      </pluginRepository>
+    </pluginRepositories>
+
     <dependencies>
-        <!-- Serenity drivers -->
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
-            <version>${serenity.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-junit</artifactId>
             <version>${serenity.version}</version>
         </dependency>
         <dependency>
@@ -39,65 +52,63 @@
             <version>${serenity.jbehave.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Fix for Conflict of Selenium Versions java.lang.NoClassDefFoundError: org/apache/commons/exec/DaemonExecutor -->
-        <!--<dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-exec</artifactId>
-            <version>1.3</version>
-        </dependency>-->
-        <!-- Mechanism used by JUnit by better logging of executed tests -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.21</version>
+            <version>1.7.7</version>
         </dependency>
-
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.53.0</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
-
-				<dependency>
-					<groupId>org.json</groupId>
-					<artifactId>json</artifactId>
-					<version>20160810</version>
-				</dependency>
-
-				<dependency>
-					<groupId>org.jbehave</groupId>
-					<artifactId>jbehave-core</artifactId>
-					<version>${jbehave.version}</version>
-				</dependency>
-
-			<dependency>
-				<groupId>com.googlecode.json-simple</groupId>
-				<artifactId>json-simple</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-
-		</dependencies>
-
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.lambdaj</groupId>
+            <artifactId>lambdaj</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-core</artifactId>
+            <version>${jbehave.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+    </dependencies>
     <build>
-        <plugins><!-- Plugin for defining of selected java class as Integration tests and creation Serenity report -->
-
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
-										<argLine>
-											-Xmx256m
-										</argLine>
                     <includes>
-                        <include>**/*Runner.java</include>
-                        <!--<include>**/*TestSuite.java</include>-->
-                        <!--<include>**/Test*.java</include>-->
-                        <!--<include>**/When*.java</include>-->
+                        <include>**/*Test.java</include>
+                        <include>**/*TestSuite.java</include>
+                        <include>**/Test*.java</include>
+                        <include>**/When*.java</include>
                     </includes>
-                    <!--<excludes>-->
-                        <!--<exclude>**/ParallelTestSuite.java</exclude>-->
-                    <!--</excludes>-->
+                    <argLine>-Xmx512m</argLine>
                     <systemPropertyVariables>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
                     </systemPropertyVariables>
@@ -114,7 +125,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
+                <version>3.2</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -136,4 +147,30 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+      <profile>
+        <id>SonarQube</id>
+          <build>
+            <plugins>
+              <plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>${maven-compiler-plugin.version}</version>
+							<configuration>
+								<source>${java.version}</source>
+								<target>${java.version}</target>
+							</configuration>
+							<executions>
+								<execution>
+									<id>default-testCompile</id>
+									<configuration>
+										<skip>false</skip>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>
+		</profiles>
 </project>

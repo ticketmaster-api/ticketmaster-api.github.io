@@ -1,42 +1,49 @@
 {
-    "base": "https://app.ticketmaster.com",
-    "category": "Discovery API v2",
-    "paths" : {
-        "/discovery/v2/events" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2"
-        },
-        "/discovery/v2/events/{id}" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-details-v2"
-        },
-        "/discovery/v2/attractions" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-attractions-v2"
-        },
-        "/discovery/v2/attractions/{id}" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#attraction-details-v2"
-        },
-        "/discovery/v2/classifications" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-classifications-v2"
-        },
-        "/discovery/v2/classifications/{id}" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
-        },
-        "/discovery/v2/classifications/genres/{id}" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
-        },
-        "/discovery/v2/classifications/segments/{id}" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
-        },
-        "/discovery/v2/classifications/subgenres/{id}" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
-        },
-        "/discovery/v2/events/{id}/images" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-images-v2"
-        },
-        "/discovery/v2/venues" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-venues-v2"
-        },
-        "/discovery/v2/venues/{id}" : {
-            "link" : "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#venue-details-v2"
+    "method": [{
+        "pathsParent":"/discovery/v2/events"
+    },{
+        "pathsParent": "/discovery/v2/events/{id}"
+    }],
+    "extraMethodsInfo": {
+        "base": "https://app.ticketmaster.com",
+        "category": "Discovery API v2",
+        "paths": {
+            "/discovery/v2/events": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2"
+            },
+            "/discovery/v2/events/{id}": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-details-v2"
+            },
+            "/discovery/v2/attractions": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-attractions-v2"
+            },
+            "/discovery/v2/attractions/{id}": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#attraction-details-v2"
+            },
+            "/discovery/v2/classifications": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-classifications-v2"
+            },
+            "/discovery/v2/classifications/{id}": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/classifications/genres/{id}": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/classifications/segments/{id}": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/classifications/subgenres/{id}": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#classification-details-v2"
+            },
+            "/discovery/v2/events/{id}/images": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#event-images-v2"
+            },
+            "/discovery/v2/venues": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-venues-v2"
+            },
+            "/discovery/v2/venues/{id}": {
+                "link": "http://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#venue-details-v2"
+            }
         }
     }
 }

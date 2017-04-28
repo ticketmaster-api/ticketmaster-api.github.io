@@ -52,8 +52,8 @@ var apiKeyService = {};
     return userApiKey;
   };
   
-  apiKeyService.getApiKeysCookie = function () {
-    var key = getCookie("tk-api-apps");
+  apiKeyService.getApiKeysCookie = function (coockieName) {
+    var key = getCookie(coockieName);//"tk-api-apps"
     if (!key) {return;}
 
     var userApiKey;

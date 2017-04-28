@@ -74,7 +74,6 @@ class TicketmasterMapWidget {
     }
 
     isConfigAttrExistAndNotEmpty(attr) {
-
         if( !this.config.hasOwnProperty(attr) || this.config[attr] === "undefined"){
             return false;
         }else if( this.config[attr] === ""){
@@ -539,7 +538,7 @@ class TicketmasterMapWidget {
             }
             else {
                 //alert("theme wasn't loaded");
-                console.log("theme wasn't loaded");
+                // console.log("theme wasn't loaded");
             }
         }
     }
@@ -736,39 +735,6 @@ class TicketmasterMapWidget {
         }
     }
 
-    publishEventsGroup(group, index){
-         let groupNodeWrapper = document.createElement("li");
-         groupNodeWrapper.classList.add("event-wrapper");
-         groupNodeWrapper.classList.add("event-group-wrapper");
-         groupNodeWrapper.style.width  = `${this.config.width - this.borderSize * 2}px`;
-         groupNodeWrapper.style.height = `${this.widgetContentHeight - this.borderSize * 2}px`;
-
-         let groupNode = document.createElement("ul");
-         groupNode.classList.add("event-group");
-         groupNode.classList.add("event-group-" + index);
-
-         group.map((event)=> {
-         this.publishEvent(event, groupNode)
-         });
-
-         groupNodeWrapper.appendChild(groupNode);
-         this.eventsRoot.appendChild(groupNodeWrapper);
-    }
-
-    publishEvent(event, parentNode){
-         parentNode = parentNode || this.eventsRoot;
-         let DOMElement = this.createDOMItem(event);
-         parentNode.appendChild(DOMElement);
-    }
-
-    getEventByID(id){
-        for(let index in this.events){
-            if(this.events.hasOwnProperty(index) && this.events[index].id === id){
-                return this.events[index]
-            }
-        }
-    }
-
     getImageForEvent(images){
         let imgWidth;
         let idx;
@@ -892,15 +858,6 @@ class TicketmasterMapWidget {
         return el;
     }
 
-    createBackgroundImage(event, img) {
-        if (!this.isListView) {
-            var image = document.createElement("span");
-            image.classList.add("bg-cover");
-            image.style.backgroundImage = `url('${img}')`;
-            event.appendChild(image);
-        }
-    }
-
     addBuyButton(domNode, url) {
         if (this.isListView) {
             let _urlValid = ( this.isUniversePluginInitialized && this.isUniverseUrl(url) ) || ( this.isTMPluginInitialized && this.isAllowedTMEvent(url) );
@@ -1003,7 +960,6 @@ class TicketmasterMapWidget {
         return `https://app.ticketmaster.com/discovery/v2/events/${id}/images.json`;
     }
 
-
     /*
      * Config block
      */
@@ -1078,5 +1034,5 @@ ga('create', 'UA-78315612-1', 'auto');
 ga('send', 'pageview');
 
 if(typeof module !== "undefined") {
-    module.exports = { widgetsMap };
+    module.exports = { TicketmasterMapWidget, widgetsMap };
 }

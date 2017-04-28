@@ -2,7 +2,7 @@ const $ = require('jquery');
 const ko  = require('knockout');
 
 jest.mock('scripts/api-explorer/v2/src/services/rest.service.js', () => ({}));
-jest.mock('scripts/api-explorer/v2/src/modules/index.js', () => ({}));
+jest.mock('scripts/api-explorer/v2/src/modules', () => ({}));
 jest.mock('scripts/api-explorer/v2/src/customBindings/index.js', () => ({}));
 jest.mock('scripts/api-explorer/v2/src/components/index.js', () => ({}));
 jest.mock('scripts/api-explorer/v2/src/services/index.js', () => {

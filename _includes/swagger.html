@@ -1,6 +1,10 @@
 <!--api-name:{{page.categories[2]}}  api-version: {{page.categories[3]}} -->
-<!--last api.json update : 02 september 2016 -->
 <!--last site.time build: {{ site.time | date: '%B %d, %Y' }}-->
+
+{% if page.check_internal == true%}
+<script src="{{'/scripts/components/api-key-service.js' | prepend: site.baseurl }}"></script>
+<script src="{{'/scripts/components/swagger-redirect-user-role.js' | prepend: site.baseurl }}"></script>
+{%endif%}
 
 {% assign pageMetaFolder        = page.categories[2] %}
 {% assign pageMetaVersionFolder = page.categories[3] %}
@@ -19,7 +23,7 @@
 {% endif %}
 
 {% if methodsDescription %}{%else%}
-    <p>These 'pageMetaVersionFolder':<b>{{pageMetaVersionFolder}}</b> or 'pageMetaFolder':<b>{{pageMetaFolder}}</b> are not correct. Please fix it.</p>
+    <p>These 'pageMetaVersionFolder':<b>{{pageMetaVersionFolder}}</b> or 'pageMetaFolder':<b>{{pageMetaFolder}}</b> or <b>'methods-metadata.json'</b> are not correct. Please fix it.</p>
 {% endif %}
 
 <h1>{{ swagger.info.title | upcase}}</h1>
@@ -66,7 +70,7 @@
                 {% for tag in methodsDescription.method %}
                 {% comment %}<!--<p class="article">tag {{tag.pathsParent}} : listTag : {{listTag.pathsParent}}, routeInner[0] : {{routeInner[0]}}</p> -->{% endcomment %}
                     {% if tag.pathsParent == routeInner[0] %}
-                        {% assign _id = tag.id %} {% comment %}<!--{% assign _id = tag.id | append: '-' | append: page.categories[3] %}-->{% endcomment %}
+                        {% assign _id = tag.id %
                         {% assign _interactiveConsole = tag.interactiveConsole %}
                         {% assign _title = tag.title %}
                         {% assign _reqres = tag.reqres %}

@@ -2,41 +2,41 @@ var widgetsLib =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -47,7 +47,7 @@ var widgetsLib =
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -56,13 +56,13 @@ var widgetsLib =
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
@@ -82,7 +82,6 @@ var TicketmasterMapWidget = function () {
     _createClass(TicketmasterMapWidget, [{
         key: "isConfigAttrExistAndNotEmpty",
         value: function isConfigAttrExistAndNotEmpty(attr) {
-
             if (!this.config.hasOwnProperty(attr) || this.config[attr] === "undefined") {
                 return false;
             } else if (this.config[attr] === "") {
@@ -165,7 +164,7 @@ var TicketmasterMapWidget = function () {
     }, {
         key: "widgetVersion",
         get: function get() {
-            return "" + "1.0.98";
+            return "" + "1.0.298";
         }
     }, {
         key: "geocodeUrl",
@@ -668,7 +667,7 @@ var TicketmasterMapWidget = function () {
                     document.getElementsByTagName("head")[0].appendChild(style);
                 } else {
                     //alert("theme wasn't loaded");
-                    console.log("theme wasn't loaded");
+                    // console.log("theme wasn't loaded");
                 }
             }
         }
@@ -845,44 +844,6 @@ var TicketmasterMapWidget = function () {
             }
         }
     }, {
-        key: "publishEventsGroup",
-        value: function publishEventsGroup(group, index) {
-            var _this5 = this;
-
-            var groupNodeWrapper = document.createElement("li");
-            groupNodeWrapper.classList.add("event-wrapper");
-            groupNodeWrapper.classList.add("event-group-wrapper");
-            groupNodeWrapper.style.width = this.config.width - this.borderSize * 2 + "px";
-            groupNodeWrapper.style.height = this.widgetContentHeight - this.borderSize * 2 + "px";
-
-            var groupNode = document.createElement("ul");
-            groupNode.classList.add("event-group");
-            groupNode.classList.add("event-group-" + index);
-
-            group.map(function (event) {
-                _this5.publishEvent(event, groupNode);
-            });
-
-            groupNodeWrapper.appendChild(groupNode);
-            this.eventsRoot.appendChild(groupNodeWrapper);
-        }
-    }, {
-        key: "publishEvent",
-        value: function publishEvent(event, parentNode) {
-            parentNode = parentNode || this.eventsRoot;
-            var DOMElement = this.createDOMItem(event);
-            parentNode.appendChild(DOMElement);
-        }
-    }, {
-        key: "getEventByID",
-        value: function getEventByID(id) {
-            for (var index in this.events) {
-                if (this.events.hasOwnProperty(index) && this.events[index].id === id) {
-                    return this.events[index];
-                }
-            }
-        }
-    }, {
         key: "getImageForEvent",
         value: function getImageForEvent(images) {
             var imgWidth = void 0;
@@ -1010,16 +971,6 @@ var TicketmasterMapWidget = function () {
                 });
             }
             return el;
-        }
-    }, {
-        key: "createBackgroundImage",
-        value: function createBackgroundImage(event, img) {
-            if (!this.isListView) {
-                var image = document.createElement("span");
-                image.classList.add("bg-cover");
-                image.style.backgroundImage = "url('" + img + "')";
-                event.appendChild(image);
-            }
         }
     }, {
         key: "addBuyButton",
@@ -1201,7 +1152,7 @@ ga('create', 'UA-78315612-1', 'auto');
 ga('send', 'pageview');
 
 if (true) {
-    module.exports = { widgetsMap: widgetsMap };
+    module.exports = { TicketmasterMapWidget: TicketmasterMapWidget, widgetsMap: widgetsMap };
 }
 
 /***/ })

@@ -3,6 +3,9 @@ import countryOptions from './options/country.options';
 import readSwaggerJSON from './swagger.api.reader';
 
 import apiSourcesConfig from '../../api.sources';
+import apiSourcesConfigInternal from '../../api.sources-internal';
+
+import { isInternalUser } from './user.service';
 
 var CONFIG_URL = '../../scripts/api-explorer/apidescription.xml';
 
@@ -100,6 +103,14 @@ var parseData = function (xml) {
 	return global;
 };
 
+/**
+ * Getting API Configuration depend on user role
+ * @returns {object}
+ */
+function getSwaggerSourcesConfig() {
+	return isInternalUser() ? apiSourcesConfigInternal : apiSourcesConfig;
+}
+
 //gets document from WADL configuration file
 var readFromWADL = function (url) {
   return $.ajax({
@@ -112,16 +123,16 @@ var readFromWADL = function (url) {
 function readApiDataFromAPISources (sources) {
   var result = {};
   for (var cat in sources) {
-    let {api, meta} = sources[cat];
-    result[cat] = readSwaggerJSON(api, meta.extraMethodsInfo && meta.extraMethodsInfo || {});
+    let { api, meta } = sources[cat];
+    result[cat] = readSwaggerJSON(api, meta || {});
   }
   return result;
 }
 
 function getBaseData(){
 	var base = {};
-	
-	var apiSourcesBase = readApiDataFromAPISources(apiSourcesConfig);
+
+	var apiSourcesBase = readApiDataFromAPISources(getSwaggerSourcesConfig());
 	Object.assign(base, apiSourcesBase);
 
 	readFromWADL(CONFIG_URL).then(data => Object.assign(base, data, apiSourcesBase))
