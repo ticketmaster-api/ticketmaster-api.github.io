@@ -2324,11 +2324,6 @@ var TicketmasterCalendarWidget = function () {
                 widget.config.latlong = '34.0390107,-118.2672801';
                 widget.config.country = 'US';
                 cb(widget.config.latlong);
-                /*
-                if (document.getElementById('w-keyword').value != '') {
-                    document.querySelector('[w-type="calendar"]').setAttribute("w-latlong", '');
-                }
-                */
             }
         }
     }, {
