@@ -21,6 +21,7 @@ describe("CustomSelect component spec", function() {
 		setFixture();
 		this.paramsMock = {
 			data: {
+				name: 'nameMock',
 				value: ko.observable(),
 				isDirty: false
 			},
@@ -57,6 +58,7 @@ describe("CustomSelect component spec", function() {
 			expect(this.component.isReadOnly).toBe(this.paramsMock.isReadOnly);
 			expect(this.component.isDirty()).toBeFalsy();
 			expect(this.component.isOneOption()).toBeFalsy();
+			expect(this.component.name).toBe(this.paramsMock.data.name);
 		});
 
 		it('should update checked properties in options list', () => {

@@ -6,6 +6,7 @@ class CustomSelect {
 	constructor({data, selected, options, focus, onselect, animationSpeed = 200, isReadOnly = true}) {
 		const rawOptions = ko.unwrap(options);
 		const DEFAULT_SELECTED = rawOptions[0].name;
+		this.name = data && data.name;
 		this.curentSelectData = data;
 		this.onFocus = focus;
 		this.onselectMethod = onselect;
@@ -117,6 +118,9 @@ ko.components.register('custom-select', {
   template: `
 	<div class="api-exp-custom-select js-custom-select">
 		<div class="api-exp-custom-select-wrapper">
+			<!-- ko if: name -->
+			<span data-bind="text: name" class="api-exp-custom-select__title"></span>
+			<!-- /ko -->
 			<select class="api-exp-custom-select__field" name="api-exp-method" data-bind="options: options, optionsText: 'name', value: selectedOption"></select>
 				<span class="api-exp-custom-select__placeholder">
 				<input type="text" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption, readonly: isReadOnly}">
