@@ -7,7 +7,7 @@ class MethodsFilter {
 		this.data = data;
 		this.selectedMethodType = selectedMethodType;
 		this.selectedMethod = selectedMethod;
-		this.selectedMethodName = ko.observable('');
+		this.selectedMethodName = ko.observable();
 		this.methodsViewModel = ko.observableArray([]);
 		this.init()
 	}
@@ -21,7 +21,7 @@ class MethodsFilter {
 		//on change
 		this.selectedMethodType.subscribe(val => this.updateMethodsModel(val));
 		this.selectedMethod.subscribe(val => {
-			this.selectedMethodName(this.data[ko.unwrap(this.selectedCategory)]['ALL'][val].name)
+			this.selectedMethodName(ko.unwrap(this.methodsViewModel).find(item => item.id === val));
 		})
 	};
 
@@ -63,7 +63,7 @@ class MethodsFilter {
 			});
 
 			if (selectedMethod === property.id) {
-				this.selectedMethodName(property.name);
+				this.selectedMethodName(vmMethod);
 			}
 
 			arr.push(vmMethod);

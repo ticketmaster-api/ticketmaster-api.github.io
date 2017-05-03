@@ -49,9 +49,11 @@ describe("MethodsFilter component spec", function(){
 	describe('When onSelectMethod called', () => {
 		it('should updated selectedMethodName', () => {
 			this.component.onSelectMethod({id: 'method2'});
-			expect(this.component.selectedMethodName()).toBe('method 2');
+			expect(this.component.selectedMethodName()).toEqual(
+				{ id: 'method2', name: 'method 2', link: 'method 2 link', checked: jasmine.any(Function)});
 			this.component.onSelectMethod({id: 'method3'});
-			expect(this.component.selectedMethodName()).toBe('method 3');
+			expect(this.component.selectedMethodName()).toEqual(
+				{ id: 'method3', name: 'method 3', link: 'method 3 link', checked: jasmine.any(Function)});
 		});
 	});
 
