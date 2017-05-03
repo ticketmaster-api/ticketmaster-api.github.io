@@ -92,6 +92,9 @@ ko.components.register('custom-input', {
 	viewModel: CustomInput,
 	template: `
 		<div data-bind="css: cssClasses" class="api-exp-custom-input">
+		  <!-- ko if: value -->
+		  <span data-bind="text: id" class="custom-input__title"></span>
+		  <!-- /ko -->
 			<div data-bind="validationElement: value" class="custom-input__inner-wrapper">
 				<!-- ko ifnot: isTextarea -->
 				<input data-bind="textInput: value, lazyLoader: {name: placeholder, val: value}, dateTimePicker, event: {focus: onFocusMethod(data), keydown: onKeyDown.bind($component)}, attr: {id: id}"
