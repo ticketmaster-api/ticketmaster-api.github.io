@@ -7,6 +7,7 @@
 }
 .api-exp-custom-input {
 	position: relative;
+	padding-top: $custom-inpt-title-height;
 	padding-bottom: 23px;
 	// clean
 	.custom-input {
@@ -107,6 +108,15 @@
 			width: 20px;
 			height: 20px;
 			z-index: 1;
+		}
+		&__title {
+			position: absolute;
+			top:0;
+			color: #b7c9d3;
+			font: {
+				size: 11px;
+				family: "TMSans-Bold", Helvetica, Arial, sans-serif;
+			}
 		}
 	}
 
