@@ -365,8 +365,18 @@
             }
         }
         // Use only Key from config form
+        var googleKey = 'YOUR_GOOGLE_API_KEY';
         htmlCode.setAttribute('w-googleapikey', getGooleApiKey());
         htmlCode.setAttribute('w-tmapikey', getTmApiKey());
+        /*
+        if (document.getElementById('w-googleapikey').value != '') {
+            googleKey = document.getElementById('w-googleapikey').value;
+            htmlCode.setAttribute('w-googleapikey', googleKey);
+        } else {
+            htmlCode.setAttribute('w-googleapikey', googleKey);
+        }
+        */
+        htmlCode.setAttribute('w-googleapikey', googleKey);
         var tmp = document.createElement("div");
         tmp.appendChild(htmlCode);
         codeCont.textContent = tmp.innerHTML;
