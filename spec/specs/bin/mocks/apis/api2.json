@@ -1,0 +1,10 @@
+{
+  "basePath": "/commerce/v2/shopping",
+  "paths" : {
+    "/events/{eventId}/shopping": "mockPathData",
+    "/commerce/v2/shopping/events/{eventId}": "mockPathData"
+  },
+  "definitions": {
+    "api2":"def2"
+  }
+}

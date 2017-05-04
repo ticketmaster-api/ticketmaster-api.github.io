@@ -22,5 +22,8 @@ Gemfile.lock
 /tests/serenity/*.iml
 /tests/serenity/.sonar
 
-# Ingnore unit tests coverage report
+# Ignore unit tests coverage report
 coverage
+
+# Ignore unit tests temp files
+spec/specs/bin/mocks/result.json
