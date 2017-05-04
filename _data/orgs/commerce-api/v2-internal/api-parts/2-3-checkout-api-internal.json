@@ -396,7 +396,7 @@
     "Links" : {
       "type" : "object"
     },
-    "Options" : {
+    "OptionsResponse" : {
       "type" : "object",
       "properties" : {
         "paymentOptions" : {
@@ -412,23 +412,20 @@
           }
         },
         "_embedded" : {
-          "$ref" : "#/definitions/DeliveryOptionsResponseEmbeddedData"
-        }
-      }
-    },
-    "OptionsResponse" : {
-      "type" : "object",
-      "properties" : {
-        "data" : {
-          "$ref" : "#/definitions/Options"
-        },
-        "_embedded" : {
           "$ref" : "#/definitions/OptionsResponseEmbeddedData"
         }
       }
     },
     "OptionsResponseEmbeddedData" : {
-      "type" : "object"
+      "type" : "object",
+      "properties" : {
+        "deliveryOptions" : {
+          "$ref" : "#/definitions/ResponseObjectListDeliveryOptionSimpleLinks"
+        },
+        "instruments" : {
+          "$ref" : "#/definitions/ResponseObjectListPaymentOptionsEmbeddedInstrumentsResponseObjectSimpleLinks"
+        }
+      }
     },
     "PaymentAttributes" : {
       "type" : "object",
