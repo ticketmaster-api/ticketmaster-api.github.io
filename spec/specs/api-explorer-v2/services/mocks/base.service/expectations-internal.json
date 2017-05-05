@@ -1338,7 +1338,7 @@
         "path": "publish/{version}/events.{format}",
         "base": "https://app.ticketmaster.com",
         "link": "http://developer.ticketmaster.com/products-and-docs/apis/publish/",
-        "description": "Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.\r\n\r\n\t\t\t\t\tThe \"common.isTest\" should be set to \"false\" so your event get indexed in the Discovery API.",
+        "description": "Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.",
         "parameters": {
           "version": {
             "name": "version",
@@ -1395,7 +1395,7 @@
         "path": "publish/{version}/events.{format}",
         "base": "https://app.ticketmaster.com",
         "link": "http://developer.ticketmaster.com/products-and-docs/apis/publish/",
-        "description": "Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.\r\n\r\n\t\t\t\t\tThe \"common.isTest\" should be set to \"false\" so your event get indexed in the Discovery API.",
+        "description": "Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.",
         "parameters": {
           "version": {
             "name": "version",
