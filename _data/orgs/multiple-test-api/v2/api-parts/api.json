@@ -11,7 +11,7 @@
   "host" : "www.ticketmaster.com",
   "basePath" : "/discovery/v2",
   "paths" : {
-    "/discovery/v2/attractions" : {
+    "/discovery/v2/attractions/check" : {
       "get" : {
         "summary" : "Attraction Search Check",
         "description" : "Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.",
