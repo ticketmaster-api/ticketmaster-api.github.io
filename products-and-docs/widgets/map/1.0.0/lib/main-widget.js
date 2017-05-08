@@ -164,7 +164,7 @@ var TicketmasterMapWidget = function () {
     }, {
         key: "widgetVersion",
         get: function get() {
-            return "" + "1.0.298";
+            return "" + "1.0.345";
         }
     }, {
         key: "geocodeUrl",

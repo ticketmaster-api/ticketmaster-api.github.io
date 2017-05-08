@@ -584,7 +584,13 @@
   }
 
    document.getElementById('w-width').addEventListener('blur', function(e) {
-       if(this.value <=200 || this.value >=500) this.value = 350;
+       if(this.value <=200 || this.value >=1921) {
+         this.value = 350;
+         let widgetNode = document.querySelector("div[w-tmapikey]");
+         widgetNode.setAttribute('w-width', '350');
+         document.querySelector('.events-root-container').style.width = '350px';
+         widget.update();
+       }
    });
 
 })();

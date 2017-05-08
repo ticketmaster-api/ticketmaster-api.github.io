@@ -51,6 +51,7 @@
       }
   };
 
+  /*
   var $widthController = $('#w-width').slider({
       tooltip: 'always',
       handle: 'square'
@@ -59,7 +60,8 @@
       tooltip: 'always',
       handle: 'square'
     }),
-    $getCodeButton = $('.js_get_widget_code'),
+  */
+  var  $getCodeButton = $('.js_get_widget_code'),
     widgetNode = document.querySelector("div[w-tmapikey]"),
     $tabButtons = $('.js-tab-buttons'),
     $layoutBox = $('#js-layout-box'),
@@ -400,10 +402,21 @@
     });
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-      $widthController.slider('relayout');
-      $borderRadiusController.slider('relayout');
+      /* $widthController.slider('relayout'); */
+      /* $borderRadiusController.slider('relayout'); */
       windowScroll();//recalculate widget container position
     });
+
+    document.getElementById('w-width').addEventListener('blur', function(e) {
+      if(this.value <=200 || this.value >=1921) {
+        this.value = 350;
+        let widgetNode = document.querySelector("div[w-tmapikey]");
+        widgetNode.setAttribute('w-width', '350');
+        document.querySelector('.events-root-container').style.width = '350px';
+          widget.update();
+      }
+    });
+
   }
 
   addEvents();
