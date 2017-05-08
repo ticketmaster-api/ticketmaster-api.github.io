@@ -342,8 +342,6 @@
 				<apigee:example url="publish/v2/events.json"/>
 				<doc apigee:url="http://developer.ticketmaster.com/products-and-docs/apis/publish/">
 					Publish Events on ticketmaster network! So they became available on ticketmaster websites and can be find using the Discovery API.
-
-					The "common.isTest" should be set to "false" so your event get indexed in the Discovery API.
 				</doc>
 				<request>
 					<param name="TMPS-Correlation-Id" required="true" type="xsd:string" style="header">

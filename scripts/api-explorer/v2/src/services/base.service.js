@@ -50,7 +50,7 @@ var parseData = function (xml) {
 						doc: param.find('doc').first().text().trim(),
 						style: param.attr('style'),
 						required: param.attr('required') === 'true',
-						default: param.attr('default') === 'none' && isSelect ? '' : param.attr('default'),
+						default: param.attr('default') === 'none' && isSelect ? '' : param.attr('default') || '',
 						select: isSelect,
 						type: param.attr('type').replace('xsd:', '')
 					};
