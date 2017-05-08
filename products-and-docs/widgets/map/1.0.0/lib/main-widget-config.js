@@ -123,19 +123,22 @@
     },
         isPostalCodeChanged = false;
 
+    /*
     var $widthController = $('#w-width').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
+            tooltip: 'always',
+            handle: 'square'
+        }),
         $borderRadiusController = $('#w-borderradius').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
-        $colorSchemeSelector = $('.widget__color_scheme_control');
+            tooltip: 'always',
+            handle: 'square'
+        }),
+     */
+
+    var $colorSchemeSelector = $('.widget__color_scheme_control');
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-        $widthController.slider('relayout');
-        $borderRadiusController.slider('relayout');
+        /* $widthController.slider('relayout'); */
+        /* $borderRadiusController.slider('relayout'); */
         windowScroll(); //recalculate widget container position
     });
 
@@ -334,6 +337,7 @@
         if (targetName === "w-width") {
             document.querySelector('.map').style.width = widgetNode.getAttribute('w-width') + 'px';
             document.querySelector('.map').style.height = widgetNode.getAttribute('w-height') + 'px';
+            document.querySelector('.map').style.width = document.getElementById('w-width').value + 'px';
         }
 
         //Check fixed sizes for 'simple' theme
@@ -603,6 +607,16 @@
     if (parseInt($(window).width(), 10) < 767) {
         $('#w-fixed-300x250').trigger('click');
     }
+
+    document.getElementById('w-width').addEventListener('blur', function (e) {
+        if (this.value <= 200 || this.value >= 1921) {
+            this.value = 350;
+            var widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-width', '350');
+            document.querySelector('.events-root-container').style.width = '350px';
+            document.querySelector('.map').style.width = '350px';
+        }
+    });
 })();
 
 /***/ })

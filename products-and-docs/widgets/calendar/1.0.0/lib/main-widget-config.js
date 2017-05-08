@@ -62,19 +62,11 @@
     },
         isPostalCodeChanged = false;
 
-    var $widthController = $('#w-width').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
-        $borderRadiusController = $('#w-borderradius').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
-        $colorSchemeSelector = $('.widget__color_scheme_control');
+    var $colorSchemeSelector = $('.widget__color_scheme_control');
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
         // $widthController.slider('relayout');
-        $borderRadiusController.slider('relayout');
+        // $borderRadiusController.slider('relayout');
     });
 
     //replace Api Key on init
