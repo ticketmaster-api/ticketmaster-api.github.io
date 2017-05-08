@@ -75,7 +75,8 @@ namespace 'travis' do
       system 'npm run build'
       status = `git status --porcelain`
       if status != ''
-        system 'git add .'
+        puts "Files changed: \n#{status}"
+        system 'git add --all'
         system 'git commit -m "TRAVIS BUILD COMMIT"'
         build_commit = system "git push origin #{SOURCE_BRANCH}"
         puts "Build commit: #{build_commit}"
