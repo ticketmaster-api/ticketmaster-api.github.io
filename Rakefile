@@ -64,6 +64,7 @@ namespace 'travis' do
       f.write("https://#{ENV['GH_TOKEN']}:x-oauth-basic@github.com")
     end
 
+    # Notice: if you want add new directories to build, please do it here:
     status_api_expoloer_v2_scriptjs = `git show -m --name-only --pretty=format:%N HEAD | grep 'scripts/api-explorer/v2/script.js'`
     status_api_json_updated = `git show -m --name-only --pretty=format:%N HEAD | grep '_data/orgs'`
     status_api_expoloer_v2_updated = `git show -m --name-only --pretty=format:%N HEAD | grep 'scripts/api-explorer/v2/'`

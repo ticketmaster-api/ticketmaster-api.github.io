@@ -787,11 +787,11 @@ class TicketmasterCalendarWidget {
         }
 
         this.eventsRootContainer.addEventListener('touchstart', (e)=> {
-            if(this.config.theme !== "listview") { if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault(); } /*used in plugins for 'buy button'*/
+            if(this.config.theme !== "calendar") { if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault(); } /*used in plugins for 'buy button'*/
             handleTouchStart.call(this, e);
         }, false);
         this.eventsRootContainer.addEventListener('touchmove', (e)=> {
-            if(this.config.theme !== "listview") { if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault(); }
+            if(this.config.theme !== "calendar") { if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault(); }
             handleTouchMove.call(this, e);
         }, false);
     }

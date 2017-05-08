@@ -61,19 +61,22 @@
       },
       isPostalCodeChanged = false;
 
+  /*
   var $widthController = $('#w-width').slider({
         tooltip: 'always',
         handle: 'square'
       }),
+
       $borderRadiusController = $('#w-borderradius').slider({
         tooltip: 'always',
         handle: 'square'
       }),
-      $colorSchemeSelector = $('.widget__color_scheme_control');
+      */
+      var $colorSchemeSelector = $('.widget__color_scheme_control');
 
   $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-    $widthController.slider('relayout');
-    $borderRadiusController.slider('relayout');
+    // $widthController.slider('relayout');
+    /* $borderRadiusController.slider('relayout'); */
     windowScroll(); //recalculate widget container position
   });
 
@@ -187,7 +190,7 @@
       // $layoutBox.slideDown("fast");
       widthSlider.hide();
       $border_slider.hide();
-      $borderRadiusController.slider('setValue', 4);
+      // $borderRadiusController.slider('setValue', 4);
       widgetNode.setAttribute('w-borderradius', 4);
       widgetContainerWrapper.css({ width: 'auto' });
       widgetContainer.css({ width: 'auto' });
@@ -579,4 +582,9 @@
   if(parseInt($(window).width(), 10) < 767){
     $('#w-fixed-300x250').trigger('click');
   }
+
+   document.getElementById('w-width').addEventListener('blur', function(e) {
+       if(this.value <=200 || this.value >=500) this.value = 350;
+   });
+
 })();
