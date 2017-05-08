@@ -125,6 +125,17 @@
     }
   }
 
+	.config_field__description {
+		font-family: $font-lead-regular;
+		color: #b7c9d3;
+		font-weight: normal;
+	}
+
+	.config_field__description.max {
+		margin-left: -20px;
+		display: block;
+	}
+
   select::-ms-expand {
     display: none;
   }

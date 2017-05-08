@@ -2729,13 +2729,13 @@ var TicketmasterCalendarWidget = function () {
             }
 
             this.eventsRootContainer.addEventListener('touchstart', function (e) {
-                if (_this7.config.theme !== "listview") {
+                if (_this7.config.theme !== "calendar") {
                     if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault();
                 } /*used in plugins for 'buy button'*/
                 handleTouchStart.call(_this7, e);
             }, false);
             this.eventsRootContainer.addEventListener('touchmove', function (e) {
-                if (_this7.config.theme !== "listview") {
+                if (_this7.config.theme !== "calendar") {
                     if (e.target.className != 'event-logo' && e.target.className != 'event-question') e.preventDefault();
                 }
                 handleTouchMove.call(_this7, e);
