@@ -64,6 +64,30 @@ namespace 'travis' do
       f.write("https://#{ENV['GH_TOKEN']}:x-oauth-basic@github.com")
     end
 
+    # Notice: if you want add new directories to build, please do it here:
+    status_api_expoloer_v2_scriptjs = `git show -m --name-only --pretty=format:%N HEAD | grep 'scripts/api-explorer/v2/script.js'`
+    status_api_json_updated = `git show -m --name-only --pretty=format:%N HEAD | grep '_data/orgs'`
+    status_api_expoloer_v2_updated = `git show -m --name-only --pretty=format:%N HEAD | grep 'scripts/api-explorer/v2/'`
+
+    if (status_api_json_updated != '' || status_api_expoloer_v2_updated !='') && status_api_expoloer_v2_scriptjs == ''
+      puts "Last commit has changes in swagger .json files or in API Exploerer V2"
+      system 'npm install'
+      system 'npm run build'
+      status = `git status --porcelain`
+      if status != ''
+        puts "Files changed: \n#{status}"
+        system "git config --global user.email 'de.gratnik@gmail.com'"
+        system "git config --global user.name 'degratnik' "
+        system "git config --global push.default current"
+        system 'git add --all'
+        system 'git commit -m "TRAVIS BUILD COMMIT"'
+        build_commit = system "git push origin #{SOURCE_BRANCH}"
+        puts "Build commit: #{build_commit}"
+        File.delete '.git/credentials'
+        exit 0
+      end
+    end
+
     puts "Deploying from #{SOURCE_BRANCH} to #{DEPLOY_BRANCH}"
     deployed = system "git push origin #{SOURCE_BRANCH}:#{DEPLOY_BRANCH}"
     puts "Deployed: #{deployed}"

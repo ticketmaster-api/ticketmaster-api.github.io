@@ -2,7 +2,9 @@
 .custom_select {
   position: relative;
   margin-bottom: 24px;
-
+	input {
+		margin-bottom: 0;
+	}
   &__arrow{
     content: '';
     position: absolute;

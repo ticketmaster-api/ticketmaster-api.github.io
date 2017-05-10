@@ -1442,10 +1442,10 @@
           "type" : "boolean",
           "default" : false
         },
-        "durationField" : {
+        "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
-        "rangeDurationField" : {
+        "durationField" : {
           "$ref" : "#/definitions/DurationField"
         },
         "minimumValue" : {
@@ -1567,6 +1567,12 @@
           "position" : 3,
           "description" : "Boolean flag to indicate whether or not the end date is approximated",
           "default" : false
+        },
+        "noSpecificTime" : {
+          "type" : "boolean",
+          "position" : 4,
+          "description" : "Boolean flag to indicate whether or not the event end time has no specific time",
+          "default" : false
         }
       },
       "description" : "Event's End Dates"
@@ -1679,8 +1685,17 @@
           "description" : "Event's promoter",
           "$ref" : "#/definitions/Promoter"
         },
+        "promoters" : {
+          "type" : "array",
+          "position" : 37,
+          "description" : "Event's promoters",
+          "items" : {
+            "$ref" : "#/definitions/Promoter"
+          }
+        },
         "seatmap" : {
           "position" : 43,
+          "description" : "Event's seatmap",
           "$ref" : "#/definitions/SeatMap"
         },
         "classifications" : {
@@ -2355,7 +2370,7 @@
         "noSpecificTime" : {
           "type" : "boolean",
           "position" : 6,
-          "description" : "Boolean flag to indicate whether or not the event has no specific time",
+          "description" : "Boolean flag to indicate whether or not the event start time has no specific time",
           "default" : false
         }
       },

@@ -6,13 +6,23 @@ class CustomSelect {
 	constructor({data, selected, options, focus, onselect, animationSpeed = 200, isReadOnly = true}) {
 		const rawOptions = ko.unwrap(options);
 		const DEFAULT_SELECTED = rawOptions[0].name;
+		this.name = data && data.name;
 		this.curentSelectData = data;
 		this.onFocus = focus;
 		this.onselectMethod = onselect;
 		this.animationSpeed = animationSpeed;
 		this.options = options;
 		this.value = ko.unwrap(selected) || DEFAULT_SELECTED;
-		this.selectedOption = ko.observable(this.mapForChecked({rawOptions, name: this.value}));
+
+		if(typeof this.value === 'object'){
+			this.selectedOption = ko.observable(this.value);
+			this.uncheckAllItems(ko.unwrap(this.options));
+			this.value.checked(true);
+		}
+		else{
+			this.selectedOption = ko.observable(this.mapForChecked({rawOptions, name: this.value}));
+		}
+
 		this.isExpandeded = ko.observable(false);
 		this.isReadOnly = isReadOnly;
 		this.setSubscribtions({selected, DEFAULT_SELECTED});
@@ -32,20 +42,30 @@ class CustomSelect {
 		// has preselected option
 		if (selected) {
 			selected.subscribe(value => {
-				let selectedOption = this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value || DEFAULT_SELECTED});
-
-				return this.selectedOption(selectedOption);
+				if(!value) return;
+				if(typeof value === 'object') {
+					this.selectedOption(value);
+				}
+				else{
+					this.selectedOption(
+						this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value || DEFAULT_SELECTED}));
+				}
 			});
 		}
 
 		// on select map for checked
 		this.selectedOption.subscribe(value => {
-			this.mapForChecked({rawOptions: ko.unwrap(this.options), name: value.name});
+			this.uncheckAllItems(ko.unwrap(this.options));
+			value.checked(true);
 			this.onselectMethod(value);
 		});
 
 		// quantity of options check
 		this.isOneOption = ko.pureComputed(() => ko.unwrap(this.options).length < 2);
+	}
+
+	uncheckAllItems (rawOptionsList) {
+		rawOptionsList.forEach((item)=> item.checked(false));
 	}
 
 	/**
@@ -55,14 +75,16 @@ class CustomSelect {
 	 * @returns {object} selected option
 	 */
 	mapForChecked({rawOptions, name}) {
+		this.uncheckAllItems(rawOptions);
 		let selectedOption;
 		for (const option of rawOptions) {
 			let optionValue = option.value || option.name;
-			option.checked(optionValue === name);
 			if (optionValue === name) {
-				selectedOption = option
+				selectedOption = option;
+				break;
 			}
 		}
+		selectedOption.checked(true);
 		return selectedOption;
 	}
 
@@ -78,8 +100,6 @@ class CustomSelect {
 	}
 
 	onSelect(item, event) {
-		const rawOptions = ko.unwrap(this.options);
-		this.mapForChecked({rawOptions, name: item.name});
 		this.selectedOption(item);
 		this.slideToggle(item, event);
 	}
@@ -98,6 +118,9 @@ ko.components.register('custom-select', {
   template: `
 	<div class="api-exp-custom-select js-custom-select">
 		<div class="api-exp-custom-select-wrapper">
+			<!-- ko if: name -->
+			<span data-bind="text: name" class="api-exp-custom-select__title"></span>
+			<!-- /ko -->
 			<select class="api-exp-custom-select__field" name="api-exp-method" data-bind="options: options, optionsText: 'name', value: selectedOption"></select>
 				<span class="api-exp-custom-select__placeholder">
 				<input type="text" data-bind="click: slideToggle, value: selectedOption().name, attr: {disabled: isOneOption, readonly: isReadOnly}">

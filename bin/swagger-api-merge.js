@@ -43,6 +43,48 @@ function printHelp () {
 	console.log(usage)
 }
 
+/**
+ * Find common base paths: if base paths will be "/commerce/v2/cart", "/commerce/v2/shopping", "/commerce/v2/checkout"
+ * common will be "/commerce/v2"
+ * @param {array} filesContentList - json files content
+ * @returns {string}
+ */
+function findCommonBasePath (filesContentList) {
+	var pathItems = filesContentList
+		.map(data => data.basePath)
+		.map(basePath => (basePath || "").split('/').filter(pathItem => !!pathItem));
+
+	var similarSegmentsCount = pathItems
+		.reduce((res, curr, idx, list) => {
+			if (!idx) return curr.length;
+			for(var i = 0; i < curr.length; i++){
+				if(list[idx - 1][i] !== curr[i]) break;
+			}
+			if(typeof res !== 'number' || i < res) return i;
+			return res;
+		}, null);
+
+	return '/' + pathItems[0].slice(0, similarSegmentsCount).join('/');
+}
+
+/**
+ * prepare "paths"
+ * @param {object} swaggerJsonCfg
+ * @returns {{}}
+ */
+function preparePaths (swaggerJsonCfg) {
+	var res = {};
+	var basePath = swaggerJsonCfg.basePath;
+	for (var key in swaggerJsonCfg.paths) {
+		var newPath = key;
+		if (key.indexOf(basePath) !== 0) {
+			newPath = basePath + key;
+		}
+		res[newPath] = swaggerJsonCfg.paths[key];
+	}
+	return res;
+}
+
 function readSwaggerFilesAndMergeAndStore(directoryPath, resultFilePath) {
 	if (!fs.existsSync(directoryPath)) {
 		console.log(`Directory ${directoryPath} non exist`);
@@ -51,6 +93,7 @@ function readSwaggerFilesAndMergeAndStore(directoryPath, resultFilePath) {
 
 	var resolvedDir = path.resolve(DIR_ROOT, directoryPath);
 
+	// prepare .json files paths list
 	var filesPaths = fs.readdirSync(directoryPath)
 		.filter(file => /\.json$/.test(file))
 		.map(file => path.join(resolvedDir, file))
@@ -61,13 +104,18 @@ function readSwaggerFilesAndMergeAndStore(directoryPath, resultFilePath) {
 		return;
 	}
 
+	// require each file and store files content in array
+	var filesContentList = filesPaths.map(filePath => require(filePath));
+	var resultJSON = filesContentList
+		.reduce((prev, current) => {
+			var paths = preparePaths(current);
+			if(!prev) return Object.assign({}, current, { paths: paths });
+			Object.assign(prev.paths, paths);
+			Object.assign(prev.definitions, current.definitions);
+			return prev;
+		}, null);
 
-	var resultJSON = filesPaths.map(filePath => require(filePath)).reduce((prev, current) => {
-		if(!prev) return current;
-		Object.assign(prev.paths, current.paths);
-		Object.assign(prev.definitions, current.definitions);
-		return prev;
-	});
+	resultJSON.basePath = findCommonBasePath(filesContentList);
 
 	try {
 		fs.writeFileSync(path.resolve(DIR_ROOT, resultFilePath), JSON.stringify(resultJSON, null, '  '), 'utf8');
@@ -78,7 +126,6 @@ function readSwaggerFilesAndMergeAndStore(directoryPath, resultFilePath) {
 }
 
 
-
 function main(options) {
 	if (options.help || !options['input-directory'] || !options['output-file']) {
 		printHelp ();
@@ -86,6 +133,5 @@ function main(options) {
 	}
 	readSwaggerFilesAndMergeAndStore(options['input-directory'], options['output-file'], options['output-file']);
 }
-
 
 main(options);

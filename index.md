@@ -98,7 +98,6 @@ We have a ton of brilliant minds working on some incredibly challenging problems
 Are you an existing partner looking for current developer resources? Look no further!
 
 * [Partner API](/products-and-docs/apis/partner/)
-* [Deals API](/products-and-docs/apis/deals-api/)
 * [Legacy docs](http://apidocs.ticketmaster.com/)
 {% endcapture %}
 

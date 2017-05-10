@@ -1,41 +1,41 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -46,7 +46,7 @@
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -55,13 +55,13 @@
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
@@ -123,19 +123,22 @@
     },
         isPostalCodeChanged = false;
 
+    /*
     var $widthController = $('#w-width').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
+            tooltip: 'always',
+            handle: 'square'
+        }),
         $borderRadiusController = $('#w-borderradius').slider({
-        tooltip: 'always',
-        handle: 'square'
-    }),
-        $colorSchemeSelector = $('.widget__color_scheme_control');
+            tooltip: 'always',
+            handle: 'square'
+        }),
+     */
+
+    var $colorSchemeSelector = $('.widget__color_scheme_control');
 
     $('#js_styling_nav_tab').on('shown.bs.tab', function (e) {
-        $widthController.slider('relayout');
-        $borderRadiusController.slider('relayout');
+        /* $widthController.slider('relayout'); */
+        /* $borderRadiusController.slider('relayout'); */
         windowScroll(); //recalculate widget container position
     });
 
@@ -334,6 +337,7 @@
         if (targetName === "w-width") {
             document.querySelector('.map').style.width = widgetNode.getAttribute('w-width') + 'px';
             document.querySelector('.map').style.height = widgetNode.getAttribute('w-height') + 'px';
+            document.querySelector('.map').style.width = document.getElementById('w-width').value + 'px';
         }
 
         //Check fixed sizes for 'simple' theme
@@ -603,6 +607,16 @@
     if (parseInt($(window).width(), 10) < 767) {
         $('#w-fixed-300x250').trigger('click');
     }
+
+    document.getElementById('w-width').addEventListener('blur', function (e) {
+        if (this.value <= 200 || this.value >= 1921) {
+            this.value = 350;
+            var widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-width', '350');
+            document.querySelector('.events-root-container').style.width = '350px';
+            document.querySelector('.map').style.width = '350px';
+        }
+    });
 })();
 
 /***/ })
