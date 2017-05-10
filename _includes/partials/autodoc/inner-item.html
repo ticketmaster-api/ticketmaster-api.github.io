@@ -1,93 +1,64 @@
-{% comment %}<!--
+<!--{% comment %}
 <p class="code blue">outer0 : {{outer}} , me: {{ schemaSplitInner[1] }}, _HAL.links.size - {{_HAL.links.size}}</p>
--->{% endcomment %}
-
+{% endcomment %}-->
 <ul>
-    {%if _HAL.links.size > 0 %}
-
-    {% comment %}
-        {%assign isSingleLink = true %}
-        <!--{ include partials/autodoc/hal-wrapper-links.html }-->
-
-        {% for add_links_HAL in _HAL.links %}
-            {%if add_links_HAL == outer %}
-                <li><code class="highlighter-rouge">_links</code>(object) - links to data sets
-                    <ul>
-                        <li><code class="highlighter-rouge">self</code>(object) - link to this data set
-                            <ul>
-                                <li><code class="highlighter-rouge">href</code>(string) - reference</li>
-                                <li><code class="highlighter-rouge">templated</code>(boolean) - ability to be templated</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            {% endif %}
-        {% endfor %}
-
-        {% assign isSingleLink = false %}
-        {% assign isMultiLink = false %}
-    {% endcomment %}
-
-        {%assign isSingleLink = true %}
-        {% for add_links_HAL in _HAL.links %}
-            <!--<li>outer - {{outer}} , <h6>add_links_HAL - {{add_links_HAL}}</h6>_HAL.links - {{_HAL.links}}</li>-->
-            {%if add_links_HAL == outer %}
-                {% include partials/autodoc/hal-wrapper-links.html %}
-            {% endif %}
-        {% endfor %}
-        {%assign isSingleLink = false%}
-    {% endif %}
+	{%if _HAL.links.size > 0 %}
+			{%assign isSingleLink = true %}
+			{% for add_links_HAL in _HAL.links %}
+					<!--<li>outer - {{outer}} , <h6>add_links_HAL - {{add_links_HAL}}</h6>_HAL.links - {{_HAL.links}}</li>-->
+					{%if add_links_HAL == outer %}
+							{% include partials/autodoc/hal-wrapper-links.html %}
+					{% endif %}
+			{% endfor %}
+			{%assign isSingleLink = false%}
+	{% endif %}
 
 
-    {% assign schemaResInner = outer | replace: '#/',''  | replace:'/',' ' %}
-    {% assign schemaSplitInner = schemaResInner | split: ' ' %}
+	{% assign schemaResInner = outer | replace: '#/',''  | replace:'/',' ' %}
+	{% assign schemaSplitInner = schemaResInner | split: ' ' %}
 
-    {% for schemaSplitInnerEnd in schemaSplitInner[1] %}
-    {% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
+	{% for schemaSplitInnerEnd in schemaSplitInner[1] %}
+	{% for innerRef in swagger.definitions.[schemaSplitInnerEnd].properties %}
 
-        {% if propToEmbed[2] == innerRef[0] %}
-            {% assign excludeThisField = true %}
-        {%endif%}
-        {% if removeEmbeddedFields contains innerRef[0]%}
-            {% assign excludeThisField = true %}
-        {% endif %}
-        <!--<li><code>innerRef[0] - {{innerRef[0]}}</code></li>-->
-        {% if excludeThisField == false %}
-            <li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){%else%}({{swagger.definitions.[schemaSplitInnerEnd].type}}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}{% if innerRef[1]['$ref'] %}{%assign outer = innerRef[1]['$ref']%}{%include partials/autodoc/inner-item.html%}{%endif%}
-            <!--innerRef[1] - {{ innerRef[1]['$ref'] }}, schemaSplitInner - {{ schemaSplitInner | join: ' ' }} , innerRef[0] - {{ innerRef[0] }}{% comment %}{% endcomment %}-->
-            {% if innerRef[1].type =='array' %}
-            <!--{% comment %}{{ innerRef[1]['$ref'] }}</code> <p class="blue">{{ innerRef[1] }}</p> {% endcomment %}-->
-                <ul>
-                    <li><code class="highlighter-rouge" style="color: #768692">{array item object}</code> <!-- - item type: {{ innerRef[1].items.type }}-->
-                        <ul>
-                            {% for item in innerRef[1].items %}
-                            {% if item[0] == '$ref' %}
-                            {%else%}
-                                <li><code>{{ item[0] }}</code> {% if item[1].type %}({{ item[1].type }}){%elsif item[1] %}({{item[1]}}){% endif %}
-                                </li>
-                            {%endif%}
-                            {% endfor %}
-                        </ul>
-                        {% for item in innerRef[1].items %}
-                            {% if item[0] == '$ref' %}
-                                {%assign outer = item[1]%}
-                                {%include partials/autodoc/inner-item.html%}
-                            {%endif%}
-                        {% endfor %}
+			{% if propToEmbed[2] == innerRef[0] %}
+					{% assign excludeThisField = true %}
+			{%endif%}
+			{% if removeEmbeddedFields contains innerRef[0]%}
+					{% assign excludeThisField = true %}
+			{% endif %}
+			<!--<li><code>innerRef[0] - {{innerRef[0]}}</code></li>-->
+			{% if excludeThisField == false %}
+					<li><code>{{ innerRef[0] }}</code> {% if innerRef[1].type %}({{ innerRef[1].type }}){%else%}({{swagger.definitions.[schemaSplitInnerEnd].type}}){% endif %}{% if innerRef[1].description %} - {{ innerRef[1].description }}{% elsif innerRef[1].format %} - {{ innerRef[1].format }}{%else%}{% endif %}{% if innerRef[1].$ref %} - {{ innerRef[1].$ref }}{% endif %}{% if innerRef[1]['$ref'] %}{%assign outer = innerRef[1]['$ref']%}{%include partials/autodoc/inner-item.html%}{%endif%}{% if innerRef[1].type =='array' %}
+							<ul>
+									<li><code class="highlighter-rouge" style="color: #768692">{array item object}</code> <!-- - item type: {{ innerRef[1].items.type }}-->
+											<ul>
+													{% for item in innerRef[1].items %}
+													{% if item[0] == '$ref' %}
+													{%else%}
+															<li><code>{{ item[0] }}</code> {% if item[1].type %}({{ item[1].type }}){%elsif item[1] %}({{item[1]}}){% endif %}
+															</li>
+													{%endif%}
+													{% endfor %}
+											</ul>
+											{% for item in innerRef[1].items %}
+													{% if item[0] == '$ref' %}
+															{%assign outer = item[1]%}
+															{%include partials/autodoc/inner-item.html%}
+													{%endif%}
+											{% endfor %}
 
-                    </li>
-                </ul>
-            {%endif%}
-            </li>
-        {%endif%}
-        {% assign excludeThisField = false %}
-    {% endfor %}
-        {%if swagger.definitions.[schemaSplitInnerEnd].properties %}{%else%}
-            {% for innerRef in swagger.definitions.[schemaSplitInnerEnd] %}
-                <li><code>{{innerRef[0]}}</code> - {{innerRef[1]}}</li>
-            {% endfor %}
-        {% endif %}
+									</li>
+							</ul>
+					{%endif%}
+					</li>
+			{%endif%}
+			{% assign excludeThisField = false %}
+	{% endfor %}
+			{%if swagger.definitions.[schemaSplitInnerEnd].properties %}{%else%}
+					{% for innerRef in swagger.definitions.[schemaSplitInnerEnd] %}
+							<li><code>{{innerRef[0]}}</code> - {{innerRef[1]}}</li>
+					{% endfor %}
+			{% endif %}
 
-
-    {% endfor %}
+	{% endfor %}
 </ul>
