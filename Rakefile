@@ -80,7 +80,7 @@ namespace 'travis' do
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
         system 'git add --all'
-        system 'git commit --amend -m "TRAVIS BUILD COMMIT"'
+        system 'git commit -m "TRAVIS BUILD COMMIT"'
         build_commit = system "git push -u origin #{SOURCE_BRANCH}"
         puts "Build commit: #{build_commit}"
         File.delete '.git/credentials'
