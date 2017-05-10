@@ -322,15 +322,6 @@
                 };
             }
 
-            /*
-            $widthController.slider({
-                setValue: sizeConfig.width ,
-                max: sizeConfig.maxWidth,
-                min: sizeConfig.minWidth
-            })
-                .slider('refresh');
-            */
-
             document.querySelector('.map').style.width = sizeConfig.width + 'px';
             document.querySelector('.map').style.height = sizeConfig.height + 'px';
             widgetNode.setAttribute('w-width', sizeConfig.width);
