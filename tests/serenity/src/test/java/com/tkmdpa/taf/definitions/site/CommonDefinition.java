@@ -1,6 +1,6 @@
-package com.tkmdpa.taf.definitions;
+package com.tkmdpa.taf.definitions.site;
 
-import com.tkmdpa.taf.steps.AnyPageSteps;
+import com.tkmdpa.taf.steps.site.AnyPageSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
 

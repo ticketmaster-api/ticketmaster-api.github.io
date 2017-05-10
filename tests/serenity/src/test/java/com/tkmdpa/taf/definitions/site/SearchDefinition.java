@@ -1,6 +1,6 @@
-package com.tkmdpa.taf.definitions;
+package com.tkmdpa.taf.definitions.site;
 
-import com.tkmdpa.taf.steps.SearchSteps;
+import com.tkmdpa.taf.steps.site.SearchSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
