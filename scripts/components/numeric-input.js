@@ -96,20 +96,6 @@
 						}
 
             //EVENTS
-
-            /*
-            $numeric_input.focus(function() {
-                $(this)
-                  //.prop('type', 'text')
-                  // .keyup(function() {
-                  //     $(this).val($(this).val().replace(/[^\d|\s]/g, ''));
-                  //     //checkValue($(this), $min, $max);
-                  // })
-                  .blur(function() {
-                      //$(this).val($(this).val().replace(/[^\d]/g, '')).prop('type', 'number');
-                  });
-            });*/
-
             $numeric_input.change(function(){
                 checkValue($(this), $min, $max , incBtn , decBtn); //need for update "widget config panel"
             });
