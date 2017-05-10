@@ -322,11 +322,14 @@
                 };
             }
 
+            /*
             $widthController.slider({
-                setValue: sizeConfig.width,
+                setValue: sizeConfig.width ,
                 max: sizeConfig.maxWidth,
                 min: sizeConfig.minWidth
-            }).slider('refresh');
+            })
+                .slider('refresh');
+            */
 
             document.querySelector('.map').style.width = sizeConfig.width + 'px';
             document.querySelector('.map').style.height = sizeConfig.height + 'px';
@@ -370,11 +373,14 @@
                     maxWidth: themeConfig.initSliderSize.maxWidth, //500
                     minWidth: themeConfig.initSliderSize.minWidth // 350
                 };
+                /*
                 $widthController.slider({
-                    setValue: _sizeConfig.width,
-                    max: _sizeConfig.maxWidth,
-                    min: _sizeConfig.minWidth
-                }).slider('refresh');
+                    setValue: sizeConfig.width,
+                    max: sizeConfig.maxWidth,
+                    min: sizeConfig.minWidth
+                })
+                    .slider('refresh');
+                */
             }
 
             widgetNode.setAttribute('w-width', _sizeConfig.width);
