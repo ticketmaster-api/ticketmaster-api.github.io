@@ -1,8 +1,18 @@
 {% highlight js %}
 $.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/commerce/v2/events/0B00508C829A3875/offers.json?{apikey}",
+  type:"POST",
+  url:"https://app.ticketmaster.com/commerce/v2/shopping/carts.json?{apikey}",
   async:true,
+  data: {
+          "pollingCallbackUrl" : "http://requestb.in/14hknvt1",
+          "products" : [ {
+             "offers" : [ {
+               "offer" : "000000000001"
+             } ],    
+             "product" : "090050A9ED5B49D9",
+             "qty" : 1
+           } ]
+        },
   dataType: "json",
   success: function(json) {
               console.log(json);
@@ -17,5 +27,5 @@ $.ajax({
 
 {% highlight bash %}
 curl \
---include 'https://app.ticketmaster.com/commerce/v2/events/0B00508C829A3875/offers.json?{apikey}
+--include 'https://app.ticketmaster.com/commerce/v2/shopping/carts.json?{apikey} -X POST -d '{"pollingCallbackUrl" : "http://requestb.in/14hknvt1","products" : [ {"offers" : [ {"offer" : "000000000001"} ],"product" : "090050A9ED5B49D9","qty" : 1} ]}'
 {% endhighlight %}

@@ -3,6 +3,52 @@
     ,
     "after": {}
     ,
-    "method": [],
+    "method": [
+        {
+            "pathsParent": "/events/{eventId}/offers",
+            "codePath":"commerse-api/code-get-event-offers.md",
+            "reqres": "commerse-api/reqres-get-event-offers.md"
+        },
+        {
+            "pathsParent": "/carts",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/carts/{cartId}",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/carts/{cartId}/customer",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/carts/{cartId}/deliveries",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/carts/{cartId}/payments",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/carts/{cartId}/products",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/carts/{cartId}/purchase",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/carts/{cartId}/options",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        }
+    ],
     "extraMethodsInfo" : {}
 }
