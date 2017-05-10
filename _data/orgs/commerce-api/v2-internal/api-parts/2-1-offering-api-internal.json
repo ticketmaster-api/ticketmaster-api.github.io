@@ -99,6 +99,9 @@
         "name" : {
           "type" : "string"
         },
+        "description" : {
+          "type" : "string"
+        },
         "areaType" : {
           "type" : "string",
           "enum" : [ "LEVEL", "SECTION", "AREA" ]
