@@ -5,7 +5,7 @@ categories:
 - documentation
 - generated
 - commerce-api
-- v2-internal
+- v2
 
 check_internal: true
 

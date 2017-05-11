@@ -6,14 +6,14 @@ X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 
 {
-          "pollingCallbackUrl" : "http://requestb.in/14hknvt1",
-          "products" : [ {
-             "offers" : [ {
-               "offer" : "000000000001"
-             } ],    
-             "product" : "090050A9ED5B49D9",
-             "qty" : 1
-           } ]
+		"pollingCallbackUrl" : "http://requestb.in/14hknvt1",
+		"products" : [ {
+			 "offers" : [ {
+				 "offer" : "000000000001"
+			 } ],    
+			 "product" : "090050A9ED5B49D9",
+			 "qty" : 1
+		 } ]
 }
 {% endhighlight %}
 
@@ -36,6 +36,7 @@ X-TM-SESSION-SID: 49D8E7AAEF70BE318E4CEB599C499675
 X-Application-Context: commerce-api-commerce-shopping-v1:default,jash1:8080
 Content-Type: application/json;charset=UTF-8
 Rate-Limit: 500000
+
 {
   "cart": {
     "id": "8dc07b26-9b81-4b75-94cc-b66a83332f83.intqa102",
