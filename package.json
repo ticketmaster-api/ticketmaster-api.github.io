@@ -21,11 +21,12 @@
     "start-watch": "jekyll serve --watch --incremental --force_polling --limit_posts 1",
     "webpack": "npm run build-swagger-api && webpack -w",
     "test": "bnr swaggerMerge:test && node spec/jest.js --env=jsdom",
-    "build-swagger-api": "bnr swaggerMerge:MultipleTestAPI && bnr swaggerMerge:CommerceAPI:internal"
+    "build-swagger-api": "bnr swaggerMerge:MultipleTestAPI && bnr swaggerMerge:CommerceAPI && bnr swaggerMerge:CommerceAPI:internal"
   },
 	"betterScripts" : {
 		"swaggerMerge:test": "node ./bin/swagger-api-merge.js -i spec/specs/bin/mocks/apis  -o spec/specs/bin/mocks/result.json",
 		"swaggerMerge:MultipleTestAPI": "node ./bin/swagger-api-merge.js -i _data/orgs/multiple-test-api/v2/api-parts  -o _data/orgs/multiple-test-api/v2/api.json",
+		"swaggerMerge:CommerceAPI": "node ./bin/swagger-api-merge.js -i _data/orgs/commerce-api/v2/api-parts  -o _data/orgs/commerce-api/v2/api.json",
 		"swaggerMerge:CommerceAPI:internal": "node ./bin/swagger-api-merge.js -i _data/orgs/commerce-api/v2-internal/api-parts  -o _data/orgs/commerce-api/v2-internal/api.json"
 	},
   "jest": {

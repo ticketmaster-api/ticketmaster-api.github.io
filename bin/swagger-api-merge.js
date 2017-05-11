@@ -110,8 +110,8 @@ function readSwaggerFilesAndMergeAndStore(directoryPath, resultFilePath) {
 		.reduce((prev, current) => {
 			var paths = preparePaths(current);
 			if(!prev) return Object.assign({}, current, { paths: paths });
-			Object.assign(prev.paths, paths);
-			Object.assign(prev.definitions, current.definitions);
+			if(prev.paths) Object.assign(prev.paths, paths);
+			if(prev.definitions) Object.assign(prev.definitions, current.definitions);
 			return prev;
 		}, null);
 
