@@ -244,14 +244,14 @@
 
     if (targetValue === 'fullwidth') {
       widthSlider.slideUp("fast");
-      $borderRadiusController.slider('setValue', 0);
+      // $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
       widgetContainerWrapper.css({ width: "100%" });
       widgetContainer.css({ width: '100%' });
       // widgetNode.setAttribute('w-height', 700);
     } else {
       $border_slider.slideDown("fast");
-      $borderRadiusController.slider('setValue', 4);
+      // $borderRadiusController.slider('setValue', 4);
       widgetNode.setAttribute('w-borderradius', 4);
       widgetContainerWrapper.css({ width: 'auto' });
       widgetContainer.css({ width: 'auto' });
@@ -281,11 +281,14 @@
         };
       }
 
+      /*
       $widthController.slider({
-        setValue: sizeConfig.width,
-        max: sizeConfig.maxWidth,
-        min: sizeConfig.minWidth
-      }).slider('refresh');
+          setValue: sizeConfig.width ,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        })
+        .slider('refresh');
+      */
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
       widgetNode.setAttribute('w-height', sizeConfig.height);
@@ -320,11 +323,14 @@
           maxWidth: themeConfig.simple_countdown.initSliderSize.maxWidth, //500
           minWidth: themeConfig.simple_countdown.initSliderSize.minWidth // 350
         };
+        /*
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
-        }).slider('refresh');
+            setValue: sizeConfig.width,
+            max: sizeConfig.maxWidth,
+            min: sizeConfig.minWidth
+          })
+          .slider('refresh');
+        */
       }
 
       widgetNode.setAttribute('w-width', _sizeConfig.width);
@@ -381,10 +387,10 @@
         } else if (name === 'w-proportion') {
           $layoutBox.slideDown("fast");
           $border_slider.slideDown("fast");
-          $borderRadiusController.slider('setValue', 4);
+          // $borderRadiusController.slider('setValue', 4);
           $tabButtons.slideDown("fast");
           widthSlider.slideDown("fast");
-          $widthController.slider('refresh');
+          // $widthController.slider('refresh');
         }
         $self.prop('checked', true);
         widgetNode.setAttribute($self.attr('name'), val);
@@ -397,8 +403,8 @@
     }
     $layoutBox.slideDown("fast");
     $border_slider.slideDown("fast");
-    $borderRadiusController.slider('setValue', 4);
-    $widthController.slider('refresh');
+    // $borderRadiusController.slider('setValue', 4);
+    // $widthController.slider('refresh');
     $tabButtons.slideDown("fast");
     widthSlider.slideDown("fast");
 

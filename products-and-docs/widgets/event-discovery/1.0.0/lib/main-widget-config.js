@@ -255,7 +255,7 @@
     if (targetValue === 'fullwidth') {
       // $layoutBox.slideUp();
       widthSlider.slideUp("fast");
-      $borderRadiusController.slider('setValue', 0);
+      // $borderRadiusController.slider('setValue', 0);
       widgetNode.setAttribute('w-borderradius', 0);
       $border_slider.slideUp("fast");
       widgetContainerWrapper.css({ width: "100%" });
@@ -358,16 +358,18 @@
 
         $('.js_widget_width_slider').slideDown("fast");
         $('.js_widget_border_slider').slideDown("fast");
-        $borderRadiusController.slider('setValue', 4);
+        // $borderRadiusController.slider('setValue', 4);
         widgetNode.setAttribute('w-borderradius', 4);
         $containerWidget.css({ width: 'auto' });
         $(".widget-container", $containerWidget).css({ width: 'auto' });
 
+        /*
         $widthController.slider({
           setValue: sizeConfig.width,
           max: sizeConfig.maxWidth,
           min: sizeConfig.minWidth
         }).slider('refresh');
+        */
       }
 
       widgetNode.setAttribute('w-width', sizeConfig.width);
@@ -404,17 +406,22 @@
           maxWidth: themeConfig.initSliderSize.maxWidth, //500
           minWidth: themeConfig.initSliderSize.minWidth // 350
         };
+        /*
         $widthController.slider({
-          setValue: _sizeConfig.width,
-          max: _sizeConfig.maxWidth,
-          min: _sizeConfig.minWidth
-        }).slider('refresh');
+          setValue: sizeConfig.width,
+          max: sizeConfig.maxWidth,
+          min: sizeConfig.minWidth
+        })
+            .slider('refresh');
+         */
       }
       widgetNode.setAttribute('w-width', _sizeConfig.width);
       widgetNode.setAttribute('w-height', _sizeConfig.height);
     }
 
     widgetNode.setAttribute(event.target.name, event.target.value);
+    document.getElementById('w-width').value = widgetNode.getAttribute('w-width');
+    document.getElementById('w-borderradius').value = widgetNode.getAttribute('w-borderradius');
     widget.update();
 
     windowScroll(); //recalculate widget container position
