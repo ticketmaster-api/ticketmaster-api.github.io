@@ -79,6 +79,8 @@ namespace 'travis' do
         system "git config --global user.email 'de.gratnik@gmail.com'"
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
+        puts "git checkout #{SOURCE_BRANCH}"
+        system "git checkout #{SOURCE_BRANCH}"
         puts "git status"
         system 'git status'
         puts "git add --all"
