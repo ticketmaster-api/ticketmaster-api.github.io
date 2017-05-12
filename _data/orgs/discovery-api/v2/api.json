@@ -956,6 +956,42 @@
           "enum" : [ "yes", " no" ],
           "x-example" : ""
         }, {
+          "name" : "countryCode",
+          "in" : "query",
+          "description" : "Filter suggestions by country code",
+          "required" : false,
+          "type" : "string",
+          "default" : "",
+          "x-example" : ""
+        }, {
+          "name" : "includeTBA",
+          "in" : "query",
+          "description" : "True, to include events with date to be announce (TBA)",
+          "required" : false,
+          "type" : "string",
+          "default" : "no if date parameter sent, yes otherwise",
+          "pattern" : "^\\s*|yes|no|only$",
+          "enum" : [ "yes", " no", " only" ],
+          "x-example" : ""
+        }, {
+          "name" : "includeTBD",
+          "in" : "query",
+          "description" : "True, to include event with a date to be defined (TBD)",
+          "required" : false,
+          "type" : "string",
+          "default" : "no if date parameter sent, yes otherwise",
+          "pattern" : "^\\s*|yes|no|only$",
+          "enum" : [ "yes", " no", " only" ],
+          "x-example" : ""
+        }, {
+          "name" : "segmentId",
+          "in" : "query",
+          "description" : "Filter suggestions by segment id",
+          "required" : false,
+          "type" : "string",
+          "default" : "",
+          "x-example" : ""
+        }, {
           "name" : "locale",
           "in" : "query",
           "description" : "The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used.",
@@ -1432,16 +1468,6 @@
           "type" : "boolean",
           "default" : false
         },
-        "name" : {
-          "type" : "string"
-        },
-        "type" : {
-          "$ref" : "#/definitions/DateTimeFieldType"
-        },
-        "supported" : {
-          "type" : "boolean",
-          "default" : false
-        },
         "rangeDurationField" : {
           "$ref" : "#/definitions/DurationField"
         },
@@ -1458,32 +1484,42 @@
         },
         "leapDurationField" : {
           "$ref" : "#/definitions/DurationField"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/DateTimeFieldType"
+        },
+        "supported" : {
+          "type" : "boolean",
+          "default" : false
         }
       }
     },
     "DateTimeFieldType" : {
       "type" : "object",
       "properties" : {
-        "name" : {
-          "type" : "string"
-        },
         "durationType" : {
           "$ref" : "#/definitions/DurationFieldType"
         },
         "rangeDurationType" : {
           "$ref" : "#/definitions/DurationFieldType"
+        },
+        "name" : {
+          "type" : "string"
         }
       }
     },
     "DateTimeZone" : {
       "type" : "object",
       "properties" : {
-        "id" : {
-          "type" : "string"
-        },
         "fixed" : {
           "type" : "boolean",
           "default" : false
+        },
+        "id" : {
+          "type" : "string"
         }
       }
     },
@@ -1512,6 +1548,14 @@
     "DurationField" : {
       "type" : "object",
       "properties" : {
+        "precise" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "unitMillis" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "name" : {
           "type" : "string"
         },
@@ -1521,14 +1565,6 @@
         "supported" : {
           "type" : "boolean",
           "default" : false
-        },
-        "precise" : {
-          "type" : "boolean",
-          "default" : false
-        },
-        "unitMillis" : {
-          "type" : "integer",
-          "format" : "int64"
         }
       }
     },
@@ -1994,12 +2030,6 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "fields" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/DateTimeField"
-          }
-        },
         "values" : {
           "type" : "array",
           "items" : {
@@ -2011,6 +2041,12 @@
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/DateTimeFieldType"
+          }
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DateTimeField"
           }
         }
       }
