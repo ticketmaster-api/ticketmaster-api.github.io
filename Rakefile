@@ -79,9 +79,22 @@ namespace 'travis' do
         system "git config --global user.email 'de.gratnik@gmail.com'"
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
-        system 'git add --all'
-        system 'git commit -m "TRAVIS BUILD COMMIT"'
-        build_commit = system "git push -u origin #{SOURCE_BRANCH}"
+        puts "git status"
+        system 'git status'
+        puts "git add --all"
+        system 'git add --all -v'
+        puts "git status"
+        system 'git status'
+        puts "git commit"
+        system 'git commit -m -v "TRAVIS BUILD COMMIT"'
+        puts "git status"
+        system 'git status'
+        puts "git log"
+        system 'git log -n 3'
+        puts "git push"
+        build_commit = system "git push -u -v origin #{SOURCE_BRANCH}"
+        puts "git status"
+        system 'git status'
         puts "Build commit: #{build_commit}"
         File.delete '.git/credentials'
         exit 0
