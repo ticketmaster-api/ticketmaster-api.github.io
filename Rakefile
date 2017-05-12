@@ -94,7 +94,7 @@ namespace 'travis' do
         puts "git log"
         system 'git log -n 3'
         puts "git push"
-        build_commit = system "git push -u -v origin #{SOURCE_BRANCH}"
+        build_commit = system "git push -u -v origin HEAD:#{SOURCE_BRANCH}"
         puts "git status"
         system 'git status'
         puts "Build commit: #{build_commit}"
