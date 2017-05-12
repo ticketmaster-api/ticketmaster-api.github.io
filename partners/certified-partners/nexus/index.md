@@ -121,6 +121,7 @@ We offer the support, knowledge and validation to make sure your solution is ful
 </div>
 <!-- Modal alert end-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webshim/1.16.0/dev/polyfiller.js" integrity="sha256-/QuORjyYBwJJiGASxFGeaX/kFIlIfKQJXLlb9jcrUr8=" crossorigin="anonymous"></script>
+<script src="/scripts/components/simple-form-checker.js"></script>
 <script src="/scripts/components/nexus-form-validate.js"></script>
 
 <script> 
