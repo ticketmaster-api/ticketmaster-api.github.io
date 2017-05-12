@@ -88,7 +88,7 @@ namespace 'travis' do
         puts "git status"
         system 'git status'
         puts "git commit"
-        system 'git commit -m -v "TRAVIS BUILD COMMIT"'
+        system 'git commit -v -m "TRAVIS BUILD COMMIT"'
         puts "git status"
         system 'git status'
         puts "git log"
