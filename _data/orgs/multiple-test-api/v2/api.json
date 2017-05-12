@@ -13,7 +13,7 @@
   "paths": {
     "/discovery/v2/attractions/check": {
       "get": {
-        "summary": "Attraction Search Check",
+        "summary": "Attraction Search Check 3",
         "description": "Find attractions (artists, sports, packages, plays and so on) and filter your search by name, and much more.",
         "operationId": "find",
         "parameters": [
