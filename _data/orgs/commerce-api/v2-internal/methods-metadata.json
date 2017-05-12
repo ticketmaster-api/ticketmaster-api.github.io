@@ -5,47 +5,58 @@
     ,
     "method": [
         {
-            "pathsParent": "/events/{eventId}/offers",
+            "pathsParent": "/commerce/v2/events/{eventId}/offers",
             "codePath":"commerse-api/code-get-event-offers.md",
             "reqres": "commerse-api/reqres-get-event-offers.md"
         },
         {
-            "pathsParent": "/carts",
+            "pathsParent": "/commerce/v2/shopping/carts",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         },
         {
-            "pathsParent": "/carts/{cartId}",
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         },
         {
-            "pathsParent": "/carts/{cartId}/customer",
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/customer",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         },
         {
-            "pathsParent": "/carts/{cartId}/deliveries",
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/deliveries",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         },
         {
-            "pathsParent": "/carts/{cartId}/payments",
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/payments",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         },
         {
-            "pathsParent": "/carts/{cartId}/products",
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/products",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         },
         {
-            "pathsParent": "/carts/{cartId}/purchase",
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/purchase",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+
+        {
+            "pathsParent": "/commerce/v2/checkout/carts/{cartId}/deliveries",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         },
         {
-            "pathsParent": "/carts/{cartId}/options",
+            "pathsParent": "/commerce/v2/checkout/carts/{cartId}/options",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/checkout/carts/{cartId}/payments",
             "codePath":"commerse-api/code-post-cards.md",
             "reqres": "commerse-api/reqres-post-cards.md"
         }
