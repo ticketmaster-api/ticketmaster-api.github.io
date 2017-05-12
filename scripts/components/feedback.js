@@ -4,8 +4,8 @@
         $modalAlert = $('#feedback-alert-modal'),
         $modalAlertError = $('#feedback-alert-modal-error'),
         $form = $modal.find('#js_feedback_form'),
-				formKey = 'd9878ccc8e22c7253d057015617f82cd', //production key
-				formKeyCC = '0d9da5473940d4380dc3a16fb47a2c55', //CC key
+				formKey = simpleFormService.checkKey('d9878ccc8e22c7253d057015617f82cd'/*production key*/,null)[0],
+				formKeyCC = simpleFormService.checkKey(null,'0d9da5473940d4380dc3a16fb47a2c55'/*CC production key*/)[1],
         $email = $form.find('#email'),
         $btn = $modal.find('#js_feedback_btn'),
         $btnAlertOk = $modalAlert.find('#js_feedback_btn_alert_ok'),
@@ -84,17 +84,6 @@
         },delay);
     }
 
-		/*set new key for localhost*/
-		function checkKey() {
-			var localhost = /(localhost:4000|127\.0\.0\.1)+/ig,
-				host = window.location.host;
-
-			if(localhost.test(host)){
-				formKey = '3d9f2df7bef3e8bc5d9323cbea36f4d0' ;
-				formKeyCC = '3d9f2df7bef3e8bc5d9323cbea36f4d0' ;
-			}
-		}
-
     $btnAlertOk.on('click', function(){
         $modalAlert.modal('hide');
         clearBody(310); //310 - time of fading bootstrap modal
@@ -107,8 +96,6 @@
         $modal.modal('show');
         $btn.attr('disabled', false);
     });
-
-		checkKey(formKey);
 
     //$modal.on('hidden.bs.modal', resetForm);
 

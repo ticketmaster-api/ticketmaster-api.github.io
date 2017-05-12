@@ -4,18 +4,8 @@ var $nexusForm = $('.js_nexus_form'),
   $btnAlertOk = $modalAlert.find('#js_nexus_btn_alert_ok'),
   $btnAlertError = $modalAlertError.find('#js_nexus_btn_alert_ok-error'),
   $textAreaDescription = $('#company-detail-text'),
-  formKey = '41f4cf3970c05bb985abec394b1e3c0b',
+	formKey = simpleFormService.checkKey('41f4cf3970c05bb985abec394b1e3c0b'/*production key*/,null)[0],	
 	errorDescriptionID = 'nexus-contact-char-count';
-
-/*set new key for localhost*/
-function checkKey() {
-  var localhost = /(localhost:4000|127\.0\.0\.1)+/ig,
-      host = window.location.host;
-
-  if(localhost.test(host)){
-    formKey = '3d9f2df7bef3e8bc5d9323cbea36f4d0';
-  }
-}
 
 $nexusForm.submit(function(e){
   var charCount = $textAreaDescription.val().length;
@@ -62,7 +52,7 @@ function initListeners() {
 	});
 }
 
-checkKey(formKey);
+// checkKey();
 
 initListeners();
 

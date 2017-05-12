@@ -177,6 +177,7 @@ Attn: Trademark Department, Legal
   </div>
 </div>
 <!-- Modal alert end-->
+<script src="/scripts/components/simple-form-checker.js"></script>
 <script src="/scripts/components/contact-us-validate.js"></script>
 <!--contact us form END -->
 
