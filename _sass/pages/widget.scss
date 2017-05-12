@@ -10,6 +10,7 @@
       padding: 5px 15px;
       margin-right: 2px;
       margin-left: 0;
+			margin-bottom: 16px;
       cursor: pointer;
       font-family: Helvetica, Arial, sans-serif;
       &:last-child {
@@ -132,7 +133,8 @@
 	}
 
 	.config_field__description.max {
-		margin-left: -10px;
+		margin-left: -17px;
+		margin-top: 11px;
 		display: block;
 	}
 
