@@ -79,6 +79,7 @@ namespace 'travis' do
         system "git config --global user.email 'de.gratnik@gmail.com'"
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
+        # current repo has detached HEAD, so let do checkout:
         puts "git checkout #{SOURCE_BRANCH}"
         system "git checkout #{SOURCE_BRANCH}"
         puts "git status"
@@ -94,7 +95,7 @@ namespace 'travis' do
         puts "git log"
         system 'git log -n 3'
         puts "git push"
-        build_commit = system "git push -u -v origin HEAD:#{SOURCE_BRANCH}"
+        build_commit = system "git push -u -v origin #{SOURCE_BRANCH}"
         puts "git status"
         system 'git status'
         puts "Build commit: #{build_commit}"
