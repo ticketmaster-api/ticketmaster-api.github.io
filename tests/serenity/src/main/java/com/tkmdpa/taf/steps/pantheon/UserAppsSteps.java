@@ -3,6 +3,7 @@ package com.tkmdpa.taf.steps.pantheon;
 import com.tkmdpa.taf.pages.pantheon.AddNewAppPage;
 import net.thucydides.core.annotations.Step;
 
+import static com.tkmdpa.taf.staticmethods.StaticMethods.reloadPage;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -73,6 +74,7 @@ public class UserAppsSteps {
 
     @Step
     public void checkIsAppNotExists() {
+        reloadPage();
         assertFalse(addNewAppPage.checkIsPresent());
         addNewAppPage.getNoApplicationText().shouldBeVisible();
     }

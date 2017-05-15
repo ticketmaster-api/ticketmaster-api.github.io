@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.util.Optional.ofNullable;
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 public class StaticMethods {
 
@@ -36,5 +37,13 @@ public class StaticMethods {
             attrValue = matcher.group(1);
         }
         return attrValue;
+    }
+
+    public static void clearCookies() {
+        getDriver().manage().deleteAllCookies();
+    }
+
+    public static void reloadPage() {
+        getDriver().navigate().refresh();
     }
 }
