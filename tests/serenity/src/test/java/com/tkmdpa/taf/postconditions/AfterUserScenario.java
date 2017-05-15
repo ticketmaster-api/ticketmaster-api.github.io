@@ -3,8 +3,12 @@ package com.tkmdpa.taf.postconditions;
 import com.tkmdpa.taf.steps.site.AnyPageSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.AfterScenario;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class After_User_Scenario{
+public class AfterUserScenario {
+
+    static Logger LOGGER = LoggerFactory.getLogger(AfterUserScenario.class);
 
     @Steps
     AnyPageSteps anyPageSteps;
@@ -19,16 +23,17 @@ public class After_User_Scenario{
 
     @AfterScenario(uponOutcome = AfterScenario.Outcome.SUCCESS)
     public void afterScenarioSuccess() throws Exception {
+        LOGGER.info("Setting status to passed");
         setStatusForCurrentIssue("Passed");
     }
 
     @AfterScenario(uponOutcome = AfterScenario.Outcome.FAILURE)
     public void afterScenarioFailure() throws Exception {
+        LOGGER.info("Setting status to failed");
         setStatusForCurrentIssue("Failed");
     }
 
     private void setStatusForCurrentIssue(String status) throws Exception{
-        //status could be: Failed or Passed
         if(System.getProperty("testRunName") != null) {
             JiraIntegrator jiraIntegrator = new JiraIntegrator();
             String currentTestCaseName = jiraIntegrator.getTestCaseName();
