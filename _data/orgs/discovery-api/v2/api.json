@@ -1344,6 +1344,15 @@
           "position" : 96,
           "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
           "default" : false
+        },
+        "upcomingEvents" : {
+          "type" : "object",
+          "position" : 110,
+          "description" : "number of upcoming events",
+          "additionalProperties" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
         }
       },
       "description" : "Attraction"
@@ -1415,7 +1424,6 @@
       "properties" : {
         "primary" : {
           "type" : "boolean",
-          "description" : "True if this is the entity's primary classification",
           "default" : false
         },
         "segment" : {
@@ -1474,6 +1482,9 @@
         "durationField" : {
           "$ref" : "#/definitions/DurationField"
         },
+        "leapDurationField" : {
+          "$ref" : "#/definitions/DurationField"
+        },
         "minimumValue" : {
           "type" : "integer",
           "format" : "int32"
@@ -1481,9 +1492,6 @@
         "maximumValue" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "leapDurationField" : {
-          "$ref" : "#/definitions/DurationField"
         },
         "name" : {
           "type" : "string"
@@ -2319,6 +2327,15 @@
           "type" : "string",
           "position" : 2,
           "description" : "The ID of the related entity"
+        },
+        "references" : {
+          "type" : "object",
+          "example" : "sourceName: id",
+          "position" : 3,
+          "description" : "References of this relationship in another system. Reference is the exact same entity",
+          "additionalProperties" : {
+            "type" : "string"
+          }
         }
       },
       "description" : "Relationship"
@@ -2622,6 +2639,15 @@
           "position" : 96,
           "description" : "Indicate if this is a test entity, by default test entities won't appear in discovery API",
           "default" : false
+        },
+        "upcomingEvents" : {
+          "type" : "object",
+          "position" : 110,
+          "description" : "number of upcoming events",
+          "additionalProperties" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
         }
       },
       "description" : "Venue"
