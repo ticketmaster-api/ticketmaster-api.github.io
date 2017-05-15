@@ -188,7 +188,7 @@ var TicketmasterEventDiscoveryWidget = function () {
   }, {
     key: 'widgetVersion',
     get: function get() {
-      return '' + "1.0.378";
+      return '' + "1.0.428";
     }
   }, {
     key: 'geocodeUrl',

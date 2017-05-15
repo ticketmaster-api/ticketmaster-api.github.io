@@ -7,11 +7,15 @@ describe("MapWidget", () => {
   };
 
 	beforeAll(function() {
+		global.apiKeyService = {
+			checkApiKeyCode: function() { return true },
+			checkApiKeyCookie: function() { return true },
+			getApiWidgetsKey: function() { return true }
+		}
 		window.__VERSION__ = 'mockedVersion';
 		setFixture();
 		module = require('products-and-docs/widgets/map/1.0.0/src/main-widget.es6');
 		widget = new module.TicketmasterMapWidget(document.querySelector('div[w-type="map"]'));
-		// console.log(widget.isConfigAttrExistAndNotEmpty);
 	});
 
 	beforeEach(function() {
@@ -26,31 +30,58 @@ describe("MapWidget", () => {
 	});
 
 	it('widget #themeUrl should be BeDefined', function(){
-		window.location.host == 'developer.ticketmaster.com';
-		let widget = {
-			config : {
-				height: 350
-			},
-			themeUrl : function() { return (window.location.host === 'developer.ticketmaster.com')
-				? `https://developer.ticketmaster.com/products-and-docs/widgets/map/1.0.0/theme/`
-				: `https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/theme/`;
-			}
-		};
-		expect(widget.themeUrl()).toBe('https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/theme/');
+		expect(widget.themeUrl).toBe('https://ticketmaster-api-staging.github.io/products-and-docs/widgets/map/1.0.0/theme/');
+		Object.defineProperty(window.location, 'host', {
+			writable: true,
+			value: 'developer.ticketmaster.com'
+		});
+		expect(widget.themeUrl).toBe('https://developer.ticketmaster.com/products-and-docs/widgets/map/1.0.0/theme/');
+	});
+
+	it('widget #portalUrl should be Defined', function(){
+		expect(widget.portalUrl).toBe('https://developer.ticketmaster.com/');
+		Object.defineProperty(window.location, 'host', {
+			writable: true,
+			value: 'developer.ticketmaster.com'
+		});
+		expect(widget.portalUrl).toBe('https://developer.ticketmaster.com/');
 	});
 
 	it('widget #tmWidgetWhiteList should be BeDefined', function(){
 		expect(widget.tmWidgetWhiteList).toBeDefined();
 	});
 
-	it('widget #isConfigAttrExistAndNotEmpty should be BeDefined', function(){
-		expect(widget.isConfigAttrExistAndNotEmpty).toBeDefined();
-		widget.config = {
-			height : 350,
-			hasOwnProperty : function() { return true }
-		};
-		expect(widget.isConfigAttrExistAndNotEmpty(widget.config)).toBeFalsy();
+	it('#isConfigAttrExistAndNotEmpty should be Undefined', () => {
+		widget.widgetConfig = {
+			height: undefined
+		}
+		expect(widget.config.height).toBeUndefined();
+		widget.widgetConfig = {
+			height: 350
+		}
+		expect(widget.config.height).toBeDefined();
+		expect(widget.isConfigAttrExistAndNotEmpty('height')).toBe(true);
+	});
 
+	it('widget eventReqAttrs should be BeDefined', function(){
+		widget.eventsRootContainer = document.querySelector('.events-root-container');
+		expect(widget.eventReqAttrs).toBeDefined();
+		widget.widgetConfig = {
+			latlong: '34567.87,4589745',
+			postalcode: 90015,
+			tmapikey: 'test',
+			height: 350
+		}
+		expect(widget.isConfigAttrExistAndNotEmpty('height')).toBe(true);
+		expect(widget.eventReqAttrs).toBeDefined();
+		widget.widgetConfig = {
+			tmapikey: ''
+		};
+		expect(widget.eventReqAttrs).toBeDefined();
+		widget.attrs = {
+			latlong: ','
+		};
+		expect(widget.eventReqAttrs).toBeDefined();
 	});
 
 	it('widget #countriesWhiteList should be BeDefined', function(){
@@ -182,6 +213,7 @@ describe("MapWidget", () => {
 		};
 		widget.groupEventsByName();
 		expect(typeof(widget.groupEventsByName)).toBe('function');
+
 	});
 
 	it('#clear should be defined', () => {

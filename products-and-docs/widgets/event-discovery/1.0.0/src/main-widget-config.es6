@@ -590,7 +590,7 @@
   }
 
    document.getElementById('w-width').addEventListener('blur', function(e) {
-       if(this.value <=200 || this.value >=1921) {
+       if(this.value < 350 || this.value > 1920) {
          this.value = 350;
          let widgetNode = document.querySelector("div[w-tmapikey]");
          widgetNode.setAttribute('w-width', '350');
@@ -598,5 +598,14 @@
          widget.update();
        }
    });
+
+    document.getElementById('w-borderradius').addEventListener('blur', function(e) {
+        if(this.value < 0 || this.value > 50) {
+            this.value = 4;
+            let widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-borderradius', '4');
+            widget.update();
+        }
+    });
 
 })();
