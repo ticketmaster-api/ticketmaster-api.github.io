@@ -540,4 +540,13 @@
         });
     }
 
+    document.getElementById('w-borderradius').addEventListener('blur', function(e) {
+        if(this.value < 0 || this.value > 50) {
+            this.value = 4;
+            let widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-borderradius', '4');
+            widget.update();
+        }
+    });
+
 })();

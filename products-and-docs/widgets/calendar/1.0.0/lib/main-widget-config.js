@@ -533,5 +533,14 @@
             $ul.append('<li class="custom_select__item ' + (activeVal === data.value ? 'custom_select__item-active' : '') + '" data-value="' + data.value + '">' + $(this).text() + '</li>');
         });
     }
+
+    document.getElementById('w-borderradius').addEventListener('blur', function (e) {
+        if (this.value < 0 || this.value > 50) {
+            this.value = 4;
+            var widgetNode = document.querySelector("div[w-tmapikey]");
+            widgetNode.setAttribute('w-borderradius', '4');
+            widget.update();
+        }
+    });
 })();
 //# sourceMappingURL=main-widget-config.js.map
