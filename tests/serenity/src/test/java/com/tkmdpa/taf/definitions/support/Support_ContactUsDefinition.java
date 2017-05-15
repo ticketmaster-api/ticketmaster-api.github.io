@@ -1,6 +1,6 @@
 package com.tkmdpa.taf.definitions.support;
 
-import com.tkmdpa.taf.steps.AnyPageSteps;
+import com.tkmdpa.taf.steps.site.AnyPageSteps;
 import com.tkmdpa.taf.steps.support.Support_ContactUsSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;

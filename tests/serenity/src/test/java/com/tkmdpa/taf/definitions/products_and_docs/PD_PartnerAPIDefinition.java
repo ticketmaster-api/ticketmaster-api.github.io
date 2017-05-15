@@ -1,6 +1,6 @@
 package com.tkmdpa.taf.definitions.products_and_docs;
 
-import com.tkmdpa.taf.definitions.CommonDefinition;
+import com.tkmdpa.taf.definitions.site.CommonDefinition;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_PartnerAPISteps;

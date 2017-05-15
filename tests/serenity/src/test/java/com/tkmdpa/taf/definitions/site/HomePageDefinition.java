@@ -1,7 +1,7 @@
-package com.tkmdpa.taf.definitions;
+package com.tkmdpa.taf.definitions.site;
 
-import com.tkmdpa.taf.steps.AnyPageSteps;
-import com.tkmdpa.taf.steps.HomePageSteps;
+import com.tkmdpa.taf.steps.site.AnyPageSteps;
+import com.tkmdpa.taf.steps.site.HomePageSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;

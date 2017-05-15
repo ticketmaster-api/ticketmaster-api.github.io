@@ -1,7 +1,7 @@
 package com.tkmdpa.taf.definitions.widgets;
 
-import com.tkmdpa.taf.definitions.CommonDefinition;
-import com.tkmdpa.taf.steps.AnyPageSteps;
+import com.tkmdpa.taf.definitions.site.CommonDefinition;
+import com.tkmdpa.taf.steps.site.AnyPageSteps;
 import com.tkmdpa.taf.steps.pantheon.UserAccountSteps;
 import com.tkmdpa.taf.steps.pantheon.UserLogInSteps;
 import com.tkmdpa.taf.steps.products_and_docs.PD_Widget_CountdownSteps;

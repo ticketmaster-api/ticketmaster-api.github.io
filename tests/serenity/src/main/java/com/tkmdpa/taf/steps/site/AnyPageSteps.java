@@ -1,4 +1,4 @@
-package com.tkmdpa.taf.steps;
+package com.tkmdpa.taf.steps.site;
 
 import com.tkmdpa.taf.pages.AnyPage;
 import net.thucydides.core.annotations.Step;
