@@ -10,7 +10,7 @@ import static com.tkmdpa.taf.staticmethods.StaticMethods.getEmbeddedCodeAttribut
 
 public class CountdownWidgetImpl extends AncestorWidgetImpl implements CountdownWidget{
 
-    private static final String X300 = "300";
+    private final String X300 = "300";
     private final String VISUAL = "visual";
     private final String TECHNICAL = "technical";
     private final String VERTICAL = "vertical";
