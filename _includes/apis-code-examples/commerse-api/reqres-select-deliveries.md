@@ -1,19 +1,17 @@
 
 {% highlight HTTP %}
-POST /commerce/v2/shopping/carts.json?{apikey} HTTP/1.1
+PATCH /commerce/v2/shopping/carts/{cartid}/deliveries.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 
 {
-	"pollingCallbackUrl" : "http://requestb.in/14hknvt1",
-	"products" : [ {
-		 "offers" : [ {
-			 "offer" : "000000000001"
-		 } ],    
-		 "product" : "090050A9ED5B49D9",
-		 "qty" : 1
-	 } ]
+  "pollingCallbackUrl" : "http://requestb.in/14hknvt1",
+  "deliveries":[{
+      "deliveryId" : "ad20f8bc3e69a6c7a340c711731f2342",
+      "op":"add"
+    }
+  ]
 }
 {% endhighlight %}
 
@@ -44,7 +42,7 @@ Rate-Limit: 500000
     "attributes": {
       "reservations": [
         {
-          "expiration": "2016-09-19T18:42:59.661Z",
+          "expiration": "2016-09-19T18:43:00.103Z",
           "itemGroups": [
             {
               "type": "ticket-item-groups",
@@ -104,6 +102,25 @@ Rate-Limit: 500000
           ],
           "reservation": "1",
           "product": "3F004E7EE3F5B5AC"
+        }
+      ],
+      "deliveries": [
+        {
+          "id": "3",
+          "type": "delivery",
+          "attributes": {
+            "totals": {
+              "currency": "USD",
+              "price": "0.00",
+              "fees": "0.00",
+              "taxes": "0.00",
+              "total": "0.00"
+            },
+            "reservations": [
+              "1"
+            ],
+            "deliveryType": "TICKETMASTER"
+          }
         }
       ],
       "fees": [
@@ -253,6 +270,31 @@ Rate-Limit: 500000
                 {
                   "id": "G5dHZKEDNWhpi",
                   "type": "events"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "deliveries": {
+      "data": [
+        {
+          "id": "3",
+          "type": "delivery-options",
+          "attributes": {
+            "displayRank": 1,
+            "description": {
+              "short": "eTickets",
+              "long": "Get in with:"
+            }
+          },
+          "relationships": {
+            "reservations": {
+              "data": [
+                {
+                  "id": "1",
+                  "type": "reservations"
                 }
               ]
             }

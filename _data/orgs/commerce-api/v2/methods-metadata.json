@@ -3,6 +3,61 @@
     ,
     "after": {}
     ,
-    "method": [],
+    "method": [
+        {
+            "pathsParent": "/commerce/v2/events/{eventId}/offers",
+            "codePath":"commerse-api/code-get-event-offers.md",
+            "reqres": "commerse-api/reqres-get-event-offers.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/shopping/carts",
+            "codePath":"commerse-api/code-post-cards.md",
+            "reqres": "commerse-api/reqres-post-cards.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}",
+            "codePath":"commerse-api/code-empty-cart.md",
+            "reqres": "commerse-api/reqres-empty-cart.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/customer"
+        },
+        {
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/deliveries",
+            "codePath":"commerse-api/code-select-deliveries.md",
+            "reqres": "commerse-api/reqres-select-deliveries.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/payments",
+            "codePath":"commerse-api/code-select-payments.md",
+            "reqres": "commerse-api/reqres-select-payments.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/products",
+            "codePath":"commerse-api/code-update-cart-products.md",
+            "reqres": "commerse-api/reqres-update-cart-products.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/shopping/carts/{cartId}/purchase",
+            "codePath":"commerse-api/code-purchase.md",
+            "reqres": "commerse-api/reqres-purchase.md"
+        },
+
+        {
+            "pathsParent": "/commerce/v2/checkout/carts/{cartId}/deliveries",
+            "codePath":"commerse-api/code-get-deliveries.md",
+            "reqres": "commerse-api/reqres-get-deliveries.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/checkout/carts/{cartId}/options",
+            "codePath":"commerse-api/code-get-options.md",
+            "reqres": "commerse-api/reqres-get-options.md"
+        },
+        {
+            "pathsParent": "/commerce/v2/checkout/carts/{cartId}/payments",
+            "codePath":"commerse-api/code-get-payments.md",
+            "reqres": "commerse-api/reqres-get-payments.md"
+        }
+    ],
     "extraMethodsInfo" : {}
 }
