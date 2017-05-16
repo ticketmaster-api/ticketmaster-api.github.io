@@ -25,9 +25,11 @@ namespace 'travis' do
       end
       next
     else
-     puts "Unit Tests Jest"
-    system 'npm install'
-    system 'npm run test'
+      puts "Unit Tests Jest"
+      puts 'npm install'
+      system 'npm install'
+      puts 'npm run test'
+      system 'npm run test'
       next
     end
     puts 'test final result'
