@@ -9,7 +9,17 @@ import org.openqa.selenium.support.pagefactory.ElementLocator;
 import static com.tkmdpa.taf.staticmethods.StaticMethods.getEmbeddedCodeAttributeValue;
 
 public class CountdownWidgetImpl extends AncestorWidgetImpl implements CountdownWidget{
-    //Constants
+
+    private final String X300 = "300";
+    private final String VISUAL = "visual";
+    private final String TECHNICAL = "technical";
+    private final String VERTICAL = "vertical";
+    private final String HORIZONTAL = "horizontal";
+    private final String POSTER = "poster";
+    private final String X250 = "300x250";
+    private final String X600 = "300x600";
+    private final String FULL_WIDTH = "fullwidth";
+    private final String CUSTOM = "custom";
     private final String HTML_CODE_ATTRIBUTE_APIKEY = "w-tmapikey";
     private final String HTML_CODE_ATTRIBUTE_EVENTID = "id";
     private final String HTML_CODE_ATTRIBUTE_WIDTH = "w-width";
@@ -73,7 +83,7 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     private WebElementFacade eventMessage;
 
     @FindBy(xpath = "//label[@for='w-layout-fullwidth']")
-    private WebElementFacade layoutFullwidthTab;
+    private WebElementFacade layoutFullWidthTab;
 
     //Constructors
     public CountdownWidgetImpl(final PageObject page, final ElementLocator locator, final WebElementFacade webElement,
@@ -86,7 +96,6 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
         super(page, locator, timeoutInMilliseconds);
     }
 
-    //Countdown Widget Interface Implementation
     @Override
     public void clickOnGetButton() {
         getCodeButton.click();
@@ -142,11 +151,11 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     @Override
     public void switchToTab(String tab) {
         switch (tab){
-            case "visual": {
+            case VISUAL: {
                 visualTab.click();
             }
             break;
-            case "technical": {
+            case TECHNICAL: {
                 technicalTab.click();
             }
             break;
@@ -172,20 +181,20 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     public WebElementFacade getLayoutResolution(String resolution) {
         WebElementFacade resolutionRadioButton;
         switch(resolution){
-            case "300x250": {
+            case X250: {
                 resolutionRadioButton = layout300x250Tab;
             }
             break;
-            case "300x600": {
+            case X600: {
                 resolutionRadioButton = layout300x600Tab;
             }
             break;
-            case "custom": {
+            case CUSTOM: {
                 resolutionRadioButton = layoutCustomTab;
             }
             break;
-            case "fullwidth": {
-                resolutionRadioButton = layoutFullwidthTab;
+            case FULL_WIDTH: {
+                resolutionRadioButton = layoutFullWidthTab;
             }
             break;
             default: throw new IllegalArgumentException(String.format("The layout resolution: '%s' is illegal.", resolution));
@@ -201,11 +210,12 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     public WebElementFacade getLayoutOrientation(String orientation) {
         WebElementFacade orientationRadioButton;
         switch (orientation){
-            case "horizontal": {
+            case HORIZONTAL: {
                 orientationRadioButton = layoutHorisontalTab;
             }
             break;
-            case "vertical": {
+
+            case VERTICAL: {
                 orientationRadioButton = layoutVerticalTab;
             }
             break;
@@ -233,26 +243,26 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
 
     @Override
     public String getEmbeddedTheme() {
-        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).contains("custom")) {
-            return "poster";
+        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).contains(CUSTOM)) {
+            return POSTER;
         }
-        else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase("fullwidth")) {
-            return "fullwidth";
+        else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase(FULL_WIDTH)) {
+            return FULL_WIDTH;
         } else return null;
     }
 
     @Override
     public String getEmbeddedResolution() {
-        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase("custom")){
-            return "custom";
-        } else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase("250") &&
-                   getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase("300")){
-            return "300x250";
-        } if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase("600") &&
-              getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase("300")){
-            return "300x600";
-        }   if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase("fullwidth")){
-            return "fullwidth";
+        if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase(CUSTOM)){
+            return CUSTOM;
+        } else if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase(X250) &&
+                   getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase(X300)){
+            return X250;
+        } if (getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_HEIGHT).equalsIgnoreCase(X600) &&
+              getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_WIDTH).equalsIgnoreCase(X300)){
+            return X600;
+        }   if(getEmbeddedCodeAttributeValue(getEmbeddedHtmlCode().getText(), HTML_CODE_ATTRIBUTE_PROPORTION).equalsIgnoreCase(FULL_WIDTH)){
+            return FULL_WIDTH;
         } else return null;
     }
 

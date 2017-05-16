@@ -39,7 +39,7 @@ public class PD_InternationalDiscoveryAPISteps {
     public void checkAPIKeyPlaceholders(String apikey) {
         //First check for non hidden elements
         for (Map.Entry<String, WebElementFacade> entry : internationalDiscoveryAPIPage.getAPIKeyPlaceHoldersList().entrySet()){
-            String key = entry.getKey();
+//            String key = entry.getKey();
             WebElementFacade value = entry.getValue();
             waitForSomeActionHappened(50);
             assertFalse(checkIfWebElementExist(value).getAttribute("textContent").contains(apikey));

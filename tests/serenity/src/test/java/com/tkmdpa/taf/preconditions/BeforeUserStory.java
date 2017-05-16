@@ -20,8 +20,8 @@ public class BeforeUserStory {
     static Logger LOGGER = LoggerFactory.getLogger(BeforeUserScenario.class);
 
     @BeforeStory()
-    public void beforeEachStory () {
-        LOGGER.info("Put account credentials into getCurrentSession() method");
+    public void beforeStory () {
+        LOGGER.info("PUT CREDENTIALS INTO CURRENT SESSION");
 
         UserLogInDefinition definition = new UserLogInDefinition();
         PD_GettingStartedDefinition fun = new PD_GettingStartedDefinition();
