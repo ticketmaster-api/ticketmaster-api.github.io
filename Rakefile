@@ -33,6 +33,7 @@ namespace 'travis' do
       if (resultU) == false
         puts 'Unit tests failed'
         exit 1
+      end
       next
     end
     puts 'test final result'
