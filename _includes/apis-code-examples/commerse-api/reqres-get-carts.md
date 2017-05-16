@@ -1,20 +1,10 @@
 
 {% highlight HTTP %}
-POST /commerce/v2/shopping/carts.json?{apikey} HTTP/1.1
+GET /commerce/v2/shopping/carts/{cartId}.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 
-{
-	"pollingCallbackUrl" : "http://requestb.in/14hknvt1",
-	"products" : [ {
-		 "offers" : [ {
-			 "offer" : "000000000001"
-		 } ],    
-		 "product" : "090050A9ED5B49D9",
-		 "qty" : 1
-	 } ]
-}
 {% endhighlight %}
 
 {% highlight HTTP %}
@@ -39,12 +29,12 @@ Rate-Limit: 500000
 
 {
   "cart": {
-    "id": "8dc07b26-9b81-4b75-94cc-b66a83332f83.intqa102",
+    "id": "01643524-c6ff-449f-922b-388d2f501a32.jash1",
     "type": "carts",
     "attributes": {
       "reservations": [
         {
-          "expiration": "2016-09-19T18:42:59.661Z",
+          "expiration": "2016-09-19T18:51:05.278Z",
           "itemGroups": [
             {
               "type": "ticket-item-groups",
@@ -55,7 +45,7 @@ Rate-Limit: 500000
               "id": "1-000000000001",
               "quantity": 1,
               "currency": "USD",
-              "perItemPrice": "63.00",
+              "perItemPrice": "225.00",
               "fees": [
                 {
                   "label": "Distance Fee",
@@ -64,12 +54,12 @@ Rate-Limit: 500000
                 },
                 {
                   "label": "Facility Fee",
-                  "amount": "0.00",
+                  "amount": "12.00",
                   "type": "facility"
                 },
                 {
                   "label": "Service Fee",
-                  "amount": "0.00",
+                  "amount": "28.25",
                   "type": "service"
                 }
               ],
@@ -95,21 +85,21 @@ Rate-Limit: 500000
                 "type": "ticket-block-detail-meta",
                 "itemGroup": "1-000000000001"
               },
-              "section": "F3",
-              "row": "B",
-              "startSeat": "36",
-              "endSeat": "36",
+              "section": "ORCH 2",
+              "row": "JJ",
+              "startSeat": "21",
+              "endSeat": "21",
               "ga": false
             }
           ],
           "reservation": "1",
-          "product": "3F004E7EE3F5B5AC"
+          "product": "090050A9ED5B49D9"
         }
       ],
       "fees": [
         {
           "label": "Processing Fee",
-          "amount": "3.90",
+          "amount": "0.00",
           "type": "processing_fee"
         }
       ],
@@ -122,19 +112,19 @@ Rate-Limit: 500000
       ],
       "totals": {
         "currency": "USD",
-        "price": "63.00",
-        "fees": "3.90",
+        "price": "225.00",
+        "fees": "40.25",
         "taxes": "0.00",
         "deliveries": "0.00",
         "upsells": "0.00",
-        "total": "66.90"
+        "total": "265.25"
       }
     },
     "relationships": {
       "events": {
         "data": [
           {
-            "id": "G5dHZKEDNWhpi",
+            "id": "vvG10Zf1EcpVE_",
             "type": "events"
           }
         ]
@@ -142,7 +132,7 @@ Rate-Limit: 500000
       "products": {
         "data": [
           {
-            "id": "3F004E7EE3F5B5AC",
+            "id": "090050A9ED5B49D9",
             "type": "products"
           }
         ]
@@ -160,7 +150,7 @@ Rate-Limit: 500000
       "type": "cart-meta",
       "external-ids": [
         {
-          "id": "5692d015-2c37-4fd4-a4f4-70f1edb45efb",
+          "id": "596e8618-60a6-4ee9-8caf-c2babcff03c4",
           "provider": "host"
         }
       ]
@@ -170,16 +160,16 @@ Rate-Limit: 500000
     "events": {
       "data": [
         {
-          "id": "G5dHZKEDNWhpi",
+          "id": "vvG10Zf1EcpVE_",
           "type": "events",
           "attributes": {
-            "name": "Harlem Globetrotters"
+            "name": "Ozzfest Meets Knotfest 2 Day  Festival Pass  Sat Sept 24 & Sun Sept 25"
           },
           "relationships": {
             "products": {
               "data": [
                 {
-                  "id": "3F004E7EE3F5B5AC",
+                  "id": "090050A9ED5B49D9",
                   "type": "products"
                 }
               ]
@@ -196,7 +186,7 @@ Rate-Limit: 500000
           "metadata": {
             "type": "event-meta",
             "source": {
-              "id": "3F004E7EE3F5B5AC",
+              "id": "090050A9ED5B49D9",
               "name": "ticketmaster"
             }
           }
@@ -206,7 +196,7 @@ Rate-Limit: 500000
     "products": {
       "data": [
         {
-          "id": "3F004E7EE3F5B5AC",
+          "id": "090050A9ED5B49D9",
           "type": "products",
           "attributes": {},
           "relationships": {
@@ -221,7 +211,7 @@ Rate-Limit: 500000
             "events": {
               "data": [
                 {
-                  "id": "G5dHZKEDNWhpi",
+                  "id": "vvG10Zf1EcpVE_",
                   "type": "events"
                 }
               ]
@@ -236,14 +226,14 @@ Rate-Limit: 500000
           "id": "000000000001",
           "type": "offers",
           "attributes": {
-            "name": "Full Price Ticket",
-            "description": "Full Price Ticket"
+            "name": "Standard Ticket",
+            "description": "Standard Ticket"
           },
           "relationships": {
             "products": {
               "data": [
                 {
-                  "id": "3F004E7EE3F5B5AC",
+                  "id": "090050A9ED5B49D9",
                   "type": "products"
                 }
               ]
@@ -251,7 +241,7 @@ Rate-Limit: 500000
             "events": {
               "data": [
                 {
-                  "id": "G5dHZKEDNWhpi",
+                  "id": "vvG10Zf1EcpVE_",
                   "type": "events"
                 }
               ]

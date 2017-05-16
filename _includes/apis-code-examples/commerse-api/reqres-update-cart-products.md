@@ -1,19 +1,25 @@
 
 {% highlight HTTP %}
-POST /commerce/v2/shopping/carts.json?{apikey} HTTP/1.1
+PATCH /commerce/v2/shopping/carts/{cartid}/products.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 
 {
-	"pollingCallbackUrl" : "http://requestb.in/14hknvt1",
-	"products" : [ {
-		 "offers" : [ {
-			 "offer" : "000000000001"
-		 } ],    
-		 "product" : "090050A9ED5B49D9",
-		 "qty" : 1
-	 } ]
+  "pollingCallbackUrl" : "http://requestb.in/14hknvt1",
+  "products" : [ {
+    "op" : "add",
+    "offers" : [
+    {
+      "offer" : "000000000001"
+    }
+    ],
+    "filters" : {
+      "areas" : [ "44A" ]
+    },
+    "product" : "3F004E7EE3F5B5AC",
+    "qty" : 1
+  } ]
 }
 {% endhighlight %}
 
@@ -104,6 +110,25 @@ Rate-Limit: 500000
           ],
           "reservation": "1",
           "product": "3F004E7EE3F5B5AC"
+        }
+      ],
+      "deliveries": [
+        {
+          "id": "3",
+          "type": "delivery",
+          "attributes": {
+            "totals": {
+              "currency": "USD",
+              "price": "0.00",
+              "fees": "0.00",
+              "taxes": "0.00",
+              "total": "0.00"
+            },
+            "reservations": [
+              "1"
+            ],
+            "deliveryType": "TICKETMASTER"
+          }
         }
       ],
       "fees": [
@@ -253,6 +278,31 @@ Rate-Limit: 500000
                 {
                   "id": "G5dHZKEDNWhpi",
                   "type": "events"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "deliveries": {
+      "data": [
+        {
+          "id": "3",
+          "type": "delivery-options",
+          "attributes": {
+            "displayRank": 1,
+            "description": {
+              "short": "eTickets",
+              "long": "Get in with:"
+            }
+          },
+          "relationships": {
+            "reservations": {
+              "data": [
+                {
+                  "id": "1",
+                  "type": "reservations"
                 }
               ]
             }
