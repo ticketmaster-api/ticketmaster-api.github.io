@@ -31,7 +31,7 @@ namespace 'travis' do
       puts 'npm run test'
       resultU = system 'npm run test'
       if (resultU) == false
-        puts ' unit tests failed'
+        puts 'Unit tests failed'
         exit 1
       next
     end
