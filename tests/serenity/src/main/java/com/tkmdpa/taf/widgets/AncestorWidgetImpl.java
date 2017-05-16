@@ -11,8 +11,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements AncestorWidget {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AncestorWidgetImpl.class);
+
     /**
      * Private fields
      */
@@ -29,6 +34,7 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     protected final String HTML_CODE_ATTRIBUTE_CLASSIFICATIONNAME = "w-classificationname";
     protected final String HTML_CODE_ATTRIBUTE_EVENTCOUNT = "w-size";
     protected final String HTML_CODE_ATTRIBUTE_PROMOTERID = "w-promoterid";
+    private final String EXCEPTION_TEXT = "Cannot get countryCode value in dropdown";
 
     /**
      * WebElements
@@ -221,13 +227,13 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     public String getCountryCodeValue() {
         String countryCodeXpath = "//label[@for=\"w-countryCode\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
         String firstCountryCodeItemXpath = "//*[@id=\"w-countryCode\"]/following-sibling::ul/li[1]";
-        String exceptionText = "Cannot get countryCode value in dropdown";
         String countryCodeValue = null;
         try {
-            countryCodeValue = getElementValueByXpathJs(countryCodeXpath, exceptionText);
+            countryCodeValue = getElementValueByXpathJs(countryCodeXpath, EXCEPTION_TEXT);
         } catch (WebDriverException e) {
+            LOGGER.info(String.valueOf(e));
             if (e.toString().contains("document.evaluate")) {
-                countryCodeValue = getElementValueByXpathJs(firstCountryCodeItemXpath, exceptionText);
+                countryCodeValue = getElementValueByXpathJs(firstCountryCodeItemXpath, EXCEPTION_TEXT);
             }
         }
         return countryCodeValue;
@@ -236,13 +242,13 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     public String getSourceValue() {
         String sourceXpath = "//label[@for=\"w-source\"]/following-sibling::div/ul/li[contains(@class,\"item-active\")]";
         String firstSourceItemXpath = "//*[@id=\"w-source\"]/following-sibling::ul/li[1]";
-        String exceptionText = "Cannot get Source value in dropdown";
         String sourceValue = null;
         try {
-            sourceValue = getElementValueByXpathJs(sourceXpath, exceptionText);
+            sourceValue = getElementValueByXpathJs(sourceXpath, EXCEPTION_TEXT);
         } catch (WebDriverException e) {
+            LOGGER.error(String.valueOf(e));
             if (e.toString().contains("document.evaluate")) {
-                sourceValue = getElementValueByXpathJs(firstSourceItemXpath, exceptionText);
+                sourceValue = getElementValueByXpathJs(firstSourceItemXpath, EXCEPTION_TEXT);
             }
         }
         return sourceValue;
@@ -332,7 +338,8 @@ public abstract class AncestorWidgetImpl extends WidgetObjectImpl implements Anc
     public static void waitForSomeActionHappened(int milliSec) {
         try {
             Thread.sleep(milliSec);
-        } catch (InterruptedException ex) {
+        } catch (InterruptedException e) {
+            LOGGER.info(String.valueOf(e));
             Thread.currentThread().interrupt();
         }
     }
