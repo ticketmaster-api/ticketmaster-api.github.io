@@ -9,7 +9,7 @@ public class BeforeUserScenario {
     static Logger LOGGER = LoggerFactory.getLogger(BeforeUserScenario.class);
 
     @BeforeScenario()
-    public void beforeEachScenario () {
+    public void beforeScenario () {
         LOGGER.info("Before Scenario ...");
     }
 }
