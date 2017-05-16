@@ -16,20 +16,23 @@ namespace 'travis' do
   task :test do
     result = 0
     if ENV['TRAVIS_BRANCH'] == 'master'
-      puts "Test serenity"
+      puts "UI Automation tests Serenity-JBehave"
       resultS = system("mvn verify -f ./tests/serenity/pom.xml -Dmetafilter=\"-prod -NotImplemented\"")
       puts resultS
-      puts "Test galen"
-      resultG = system("sh ./tests/run-test-dispatch.sh")
-      puts resultG
-      puts 'test result'
       if (resultS) == false
         puts 'test failed'
         exit 1
       end
       next
     else
-      puts "Test low"
+      puts "Unit Tests Jest"
+      puts 'npm install'
+      system 'npm install'
+      puts 'npm run test'
+      resultU = system 'npm run test'
+      if (resultU) == false
+        puts 'Unit tests failed'
+        exit 1
       next
     end
     puts 'test final result'
@@ -51,7 +54,7 @@ namespace 'travis' do
     if ENV['TRAVIS_PULL_REQUEST'] != "false" or ENV['TRAVIS_BRANCH'] != SOURCE_BRANCH
       puts "Skipping deployment from #{ENV['TRAVIS_BRANCH']}"
       if ENV['TRAVIS_PULL_REQUEST'] != "false"
-          puts "This brach is pull request."
+          puts "This branch is pull request."
       end
       next
     end
@@ -134,7 +137,6 @@ namespace 'travis' do
         system "git config --global user.email 'de.gratnik@gmail.com'"
         system "git config --global user.name 'degratnik' "
         system "git config --global push.default current"
-        system "git add tests/galen"
         system "git add tests/serenity/target/site"
         system "git commit --allow-empty  --amend -m 'Auto-Report from Travis #{Time.now.utc.to_s}'"
         system "git checkout -b #{REPORT_BRANCH}"
