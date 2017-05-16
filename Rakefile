@@ -29,7 +29,10 @@ namespace 'travis' do
       puts 'npm install'
       system 'npm install'
       puts 'npm run test'
-      system 'npm run test'
+      resultU = system 'npm run test'
+      if (resultU) == false
+        puts ' unit tests failed'
+        exit 1
       next
     end
     puts 'test final result'
