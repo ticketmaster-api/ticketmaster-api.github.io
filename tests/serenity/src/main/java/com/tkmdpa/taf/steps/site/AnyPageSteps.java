@@ -4,6 +4,7 @@ import com.tkmdpa.taf.pages.AnyPage;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -44,6 +45,7 @@ public class AnyPageSteps {
 
     @Step
     public void checkErrorEmailSentNotificationIsShown() {
+        checkIfWebElementExist(anyPage.getErrorMessage());
         assertTrue("Error message is absent", anyPage.getErrorMessage().getWrappedElement().getText().contains("Error"));
     }
 

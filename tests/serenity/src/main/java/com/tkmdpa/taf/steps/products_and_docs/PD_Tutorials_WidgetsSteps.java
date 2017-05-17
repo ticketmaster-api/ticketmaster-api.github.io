@@ -4,6 +4,7 @@ import com.tkmdpa.taf.pages.site.products_and_docs.PD_Tutorials_WidgetsPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
+import static com.tkmdpa.taf.staticmethods.StaticMethods.checkIfWebElementExist;
 import static com.tkmdpa.taf.staticmethods.StaticMethods.findWebElementByKey;
 import static com.tkmdpa.taf.staticmethods.StaticMethods.waitForSomeActionHappened;
 import static org.junit.Assert.*;
@@ -97,6 +98,7 @@ public class PD_Tutorials_WidgetsSteps {
 
     @Step
     public void populateName(String text) {
+        checkIfWebElementExist(tutorialsWidgetsPage.getFeedbackWidget().getNameTextField());
         tutorialsWidgetsPage.getFeedbackWidget().getNameTextField().sendKeys(text);
     }
 
