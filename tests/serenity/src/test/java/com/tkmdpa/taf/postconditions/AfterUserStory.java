@@ -9,7 +9,7 @@ public class AfterUserStory {
     static Logger LOGGER = LoggerFactory.getLogger(AfterUserStory.class);
 
     @AfterStory()
-    public void actionAfterStory (){
+    public void afterStory (){
         LOGGER.info("After Story ...");
     }
 }

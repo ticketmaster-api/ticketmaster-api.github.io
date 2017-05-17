@@ -23,13 +23,13 @@ public class AfterUserScenario {
 
     @AfterScenario(uponOutcome = AfterScenario.Outcome.SUCCESS)
     public void afterScenarioSuccess() throws Exception {
-        LOGGER.info("Setting status to passed");
+        LOGGER.info("TEST PASSED");
         setStatusForCurrentIssue("Passed");
     }
 
     @AfterScenario(uponOutcome = AfterScenario.Outcome.FAILURE)
     public void afterScenarioFailure() throws Exception {
-        LOGGER.info("Setting status to failed");
+        LOGGER.info("TEST FAILED");
         setStatusForCurrentIssue("Failed");
     }
 

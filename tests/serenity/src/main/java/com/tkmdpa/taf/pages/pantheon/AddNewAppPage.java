@@ -8,6 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.logging.Logger;
+
 public class AddNewAppPage extends AncestorPage {
 
     @FindBy(xpath = "//input[@name='human']")
@@ -86,6 +88,7 @@ public class AddNewAppPage extends AncestorPage {
     public boolean checkIsPresent() {
         try { return appLink.isDisplayed();
         } catch (NoSuchElementException e) {
+            LOGGER.error(String.valueOf(e));
             return false;
         }
     }
