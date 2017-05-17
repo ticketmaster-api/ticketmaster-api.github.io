@@ -10,7 +10,6 @@ import static com.tkmdpa.taf.staticmethods.StaticMethods.getEmbeddedCodeAttribut
 
 public class CountdownWidgetImpl extends AncestorWidgetImpl implements CountdownWidget{
 
-    private final String X300 = "300";
     private final String VISUAL = "visual";
     private final String TECHNICAL = "technical";
     private final String VERTICAL = "vertical";
@@ -25,7 +24,6 @@ public class CountdownWidgetImpl extends AncestorWidgetImpl implements Countdown
     private final String HTML_CODE_ATTRIBUTE_WIDTH = "w-width";
     private final String HTML_CODE_ATTRIBUTE_HEIGHT = "w-height";
     private final String HTML_CODE_ATTRIBUTE_ORIENTATION = "w-layout";
-    private final String HTML_CODE_ATTRIBUTE_THEME = "theme";
     private final String HTML_CODE_ATTRIBUTE_PROPORTION = "w-proportion";
 
     @FindBy(xpath = ".//input[@id='w-id']")

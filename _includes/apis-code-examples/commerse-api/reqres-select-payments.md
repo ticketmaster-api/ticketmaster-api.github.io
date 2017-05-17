@@ -1,19 +1,30 @@
-
 {% highlight HTTP %}
-POST /commerce/v2/shopping/carts.json?{apikey} HTTP/1.1
+PATCH /commerce/v2/shopping/carts/{cartid}/payments.json?{apikey} HTTP/1.1
 Host: app.ticketmaster.com
 X-Target-URI: https://app.ticketmaster.com
 Connection: Keep-Alive
 
 {
-	"pollingCallbackUrl" : "http://requestb.in/14hknvt1",
-	"products" : [ {
-		 "offers" : [ {
-			 "offer" : "000000000001"
-		 } ],    
-		 "product" : "090050A9ED5B49D9",
-		 "qty" : 1
-	 } ]
+"pollingCallbackUrl" : "http://requestb.in/14hknvt1",
+ "payments":[
+   {
+     "type":"wallet",
+     "op":"add",
+     "token":"encryptedWalletToken1",
+     "cvv":"123",
+     "amount":{
+       "amount":"19.00",
+       "currency":"USD"
+     }
+   },
+   {
+     "type":"cash",
+     "amount":{
+       "amount":"19.00",
+       "currency":"USD"
+     }
+   }
+ ]
 }
 {% endhighlight %}
 
@@ -37,14 +48,13 @@ X-Application-Context: commerce-api-commerce-shopping-v1:default,jash1:8080
 Content-Type: application/json;charset=UTF-8
 Rate-Limit: 500000
 
-{
-  "cart": {
+"cart": {
     "id": "8dc07b26-9b81-4b75-94cc-b66a83332f83.intqa102",
     "type": "carts",
     "attributes": {
       "reservations": [
         {
-          "expiration": "2016-09-19T18:42:59.661Z",
+          "expiration": "2016-09-19T18:43:00.103Z",
           "itemGroups": [
             {
               "type": "ticket-item-groups",
@@ -105,6 +115,39 @@ Rate-Limit: 500000
           "reservation": "1",
           "product": "3F004E7EE3F5B5AC"
         }
+      ],
+      "deliveries": [
+        {
+          "id": "3",
+          "type": "delivery",
+          "attributes": {
+            "totals": {
+              "currency": "USD",
+              "price": "0.00",
+              "fees": "0.00",
+              "taxes": "0.00",
+              "total": "0.00"
+            },
+            "reservations": [
+              "1"
+            ],
+            "deliveryType": "TICKETMASTER"
+          }
+        }
+      ],
+      "payments": [
+              {
+                  "id": "walletToken",
+                  "type": "credit_card_payments",
+                  "amount": "19.00",
+                  "currency": "USD"
+              },
+              {
+                  "id": "cashPaymentId",
+                  "type": "cash_payments",
+                  "amount": "19.00",
+                  "currency": "USD"
+              }
       ],
       "fees": [
         {
@@ -259,8 +302,57 @@ Rate-Limit: 500000
           }
         }
       ]
-    }
+    },
+    "deliveries": {
+      "data": [
+        {
+          "id": "3",
+          "type": "delivery-options",
+          "attributes": {
+            "displayRank": 1,
+            "description": {
+              "short": "eTickets",
+              "long": "Get in with:"
+            }
+          },
+          "relationships": {
+            "reservations": {
+              "data": [
+                {
+                  "id": "1",
+                  "type": "reservations"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "payments":{
+         "data":[
+           {
+             "id":"walletToken",
+             "type":"credit_card_payments",
+             "attributes":{
+               "cardType":"VISA",
+               "expirationMonth":"5",
+               "expirationYear":"2018",
+               "lastFour":"1234"
+             },
+             "relationships":{}
+           },
+           {
+             "id":"cashPaymentId",
+             "type":"cash_payments",
+             "attributes":{
+             },
+             "relationships":{}
+           }
+         ]
+       }
+     }
   },
   "status": "200"
 }
+
 {% endhighlight %}
