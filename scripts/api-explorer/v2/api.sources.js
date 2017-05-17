@@ -10,5 +10,9 @@ export default {
 	"Multiple Method Test" : {
 		api: require("_data/orgs/multiple-test-api/v2/api.json"),
 		meta: require("_data/orgs/multiple-test-api/v2/methods-metadata.json")
+	},
+	"Commerce API" : {
+		api: require("_data/orgs/commerce-api/v2/api.json"),
+		meta: require("_data/orgs/commerce-api/v2/methods-metadata.json")
 	}
 }
